@@ -1,25 +1,24 @@
 use std::collections::HashMap;
 use std::fmt::Debug;
-use std::result::Result as StdResult;
 
-use cookie::Cookie;
-use hyper::{
-    header::{ACCEPT_LANGUAGE, AUTHORIZATION, COOKIE},
-    Body, HeaderMap, Request,
+use actix_web::{
+    dev,
+    error::{ErrorBadRequest, ErrorUnauthorized},
+    http::HeaderMap,
+    Error, FromRequest, HttpRequest,
 };
+use cookie::Cookie;
+use futures_util::future::{err, ok, Ready};
+use hyper::header::{ACCEPT_LANGUAGE, AUTHORIZATION, COOKIE};
 use language_tags::LanguageTag;
+use serde::{Deserialize, Serialize};
 use url::Url;
 
-pub trait FromRequest: Sync + Send {
-    type Error: Sync + Send + Debug;
-    type Item: Sync + Send;
-    fn from_request(req: &Request<Body>) -> StdResult<Self::Item, Self::Error>;
-}
-
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Locale(pub String);
 
 impl Locale {
-    fn detect(req: &Request<Body>) -> Option<LanguageTag> {
+    fn detect(req: &HttpRequest) -> Option<LanguageTag> {
         let key = "locale";
 
         // 1. Check URL arguments.
@@ -65,17 +64,20 @@ impl Locale {
 }
 
 impl FromRequest for Locale {
-    type Error = ();
-    type Item = Self;
-    fn from_request(req: &Request<Body>) -> StdResult<Self, Self::Error> {
+    type Error = Error;
+    type Future = Ready<Result<Self, Self::Error>>;
+    type Config = ();
+
+    fn from_request(req: &HttpRequest, _payload: &mut dev::Payload) -> Self::Future {
         let lang = Self::detect(req)
             .map(|x| x.to_string())
             .unwrap_or_else(|| "en-US".to_string());
-        Ok(Self(lang))
+        ok(Self(lang))
     }
 }
 
-pub struct ClientIp(pub Option<String>);
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ClientIp(pub String);
 
 impl ClientIp {
     /// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For
@@ -113,19 +115,23 @@ impl ClientIp {
 }
 
 impl FromRequest for ClientIp {
-    type Error = ();
-    type Item = Self;
+    type Error = Error;
+    type Future = Ready<Result<Self, Self::Error>>;
+    type Config = ();
 
-    fn from_request(req: &Request<Body>) -> StdResult<Self, Self::Error> {
-        let it = Self::detect(req.headers());
-        Ok(Self(it))
+    fn from_request(req: &HttpRequest, _payload: &mut dev::Payload) -> Self::Future {
+        match Self::detect(req.headers()) {
+            Some(it) => ok(Self(it)),
+            None => err(ErrorBadRequest("can't detect peer ip")),
+        }
     }
 }
 
-pub struct Token(pub Option<String>);
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Token(pub String);
 
 impl Token {
-    fn detect(req: &Request<Body>) -> Option<String> {
+    fn detect(req: &HttpRequest) -> Option<String> {
         let key = "token";
         // 1. Check header
         {
@@ -165,10 +171,14 @@ impl Token {
 }
 
 impl FromRequest for Token {
-    type Error = ();
-    type Item = Self;
-    fn from_request(req: &Request<Body>) -> StdResult<Self, Self::Error> {
-        let it = Self::detect(req);
-        Ok(Self(it))
+    type Error = Error;
+    type Future = Ready<Result<Self, Self::Error>>;
+    type Config = ();
+
+    fn from_request(req: &HttpRequest, _payload: &mut dev::Payload) -> Self::Future {
+        match Self::detect(req) {
+            Some(it) => ok(Self(it)),
+            None => err(ErrorUnauthorized("can't detect token")),
+        }
     }
 }

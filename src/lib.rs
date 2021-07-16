@@ -8,6 +8,7 @@ extern crate lazy_static;
 #[macro_use]
 pub mod macros;
 
+pub mod aws;
 pub mod cache;
 pub mod crypto;
 pub mod env;
@@ -39,7 +40,7 @@ use juniper::GraphQLEnum;
 use serde::{Deserialize, Serialize};
 use xml::writer::{EventWriter, Result as XmlWriterResult};
 
-pub use self::result::{Error, HttpError, Result};
+pub use self::result::{Error, HttpError, HttpResult, Result};
 
 include!(concat!(env!("OUT_DIR"), "/env.rs"));
 

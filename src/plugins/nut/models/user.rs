@@ -10,8 +10,8 @@ use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 use super::super::super::super::{
-    crypto::Password, oauth::google::openid::IdToken, orm::postgresql::Connection, HttpError,
-    Result,
+    crypto::Password, jwt::Jwt, oauth::google::openid::IdToken, orm::postgresql::Connection,
+    request::Token as Auth, HttpError, Result,
 };
 use super::schema::users;
 
@@ -411,4 +411,17 @@ impl Token {
     pub const CONFIRM: &'static str = "auth.confirm";
     pub const UNLOCK: &'static str = "auth.unlock";
     pub const RESET_PASSWORD: &'static str = "auth.reset-password";
+}
+
+impl Auth {
+    pub fn current_user(&self, db: &Connection, jwt: &Jwt) -> Result<Item> {
+        let token = jwt.parse::<Token>(&self.0)?;
+        let token = token.claims;
+        if token.act != Token::SIGN_IN {
+            return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
+        }
+        let it = Dao::by_uid(db, &token.uid)?;
+        it.available()?;
+        Ok(it)
+    }
 }

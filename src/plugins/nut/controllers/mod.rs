@@ -1,39 +1,104 @@
-// pub mod attachments;
+pub mod attachments;
 
-// use std::sync::Arc;
+use std::ops::Deref;
+use std::path::Path;
+use std::sync::Arc;
 
+use actix_files::NamedFile;
+use actix_web::{
+    get,
+    http::header::{ContentEncoding, CONTENT_ENCODING},
+    web, HttpResponse, Responder, Result,
+};
 use askama::Template;
+use mime::{TEXT_HTML_UTF_8, TEXT_PLAIN_UTF_8, TEXT_XML};
 
-// use hyper::header::AUTHORIZATION;
+use super::super::super::{
+    aws::s3::S3, cache::redis::Pool as CachePool, crypto::Aes, jwt::Jwt,
+    orm::postgresql::Pool as DbPool, queue::amqp::RabbitMq, request::Locale, Error, HttpResult,
+};
 
-// use super::super::super::{crypto::Aes, jwt::Jwt, orm::postgresql::Pool as DbPool};
+pub struct State {
+    pub aes: Arc<Aes>,
+    pub jwt: Arc<Jwt>,
+    pub db: DbPool,
+    pub cache: CachePool,
+    pub queue: Arc<RabbitMq>,
+    pub s3: Arc<S3>,
+}
 
-// // https://developers.google.com/search/docs/advanced/robots/create-robots-txt
-// pub fn robots_txt(state: State) -> (State, Response<Body>) {
-//     let tpl = RobotsTxt { domain: "todo!" };
-//     let res = __plain_text!(&state, tpl.render());
-//     // TODO
-//     (state, res)
-// }
+#[derive(Template)]
+#[template(path = "themes/bootstrap/home.html")]
+pub struct Home {
+    pub language: String,
+}
 
-// // https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap#xml
-// pub fn sitemap_xml_gz(state: State) -> (State, Response<Body>) {
-//     let tpl = Home {};
-//     let res = __plain_text!(&state, tpl.render());
-//     // TODO
-//     (state, res)
-// }
+async fn index(lang: &str, _state: &State) -> HttpResult<impl Responder> {
+    // TODO
+    let tpl = Home {
+        language: lang.to_string(),
+    };
+    let it = HttpResponse::Ok()
+        .content_type(TEXT_HTML_UTF_8)
+        .body(tpl.render().map_err(Error::from)?);
+    Ok(it)
+}
 
-// // https://cyber.harvard.edu/rss/rss.html
-// pub fn rss_xml(state: State) -> (State, Response<Body>) {
-//     let tpl = Home {};
-//     let res = __plain_text!(&state, tpl.render());
-//     // TODO
-//     (state, res)
-// }
+#[get("/")]
+pub async fn home(locale: Locale, state: web::Data<Arc<State>>) -> HttpResult<impl Responder> {
+    let state = state.deref();
+    index(&locale.0, state).await
+}
+
+#[get("/{lang}/")]
+pub async fn home_by_lang(
+    locale: web::Path<(String,)>,
+    state: web::Data<Arc<State>>,
+) -> HttpResult<impl Responder> {
+    let state = state.deref();
+    index(&locale.0, state).await
+}
 
 #[derive(Template)]
 #[template(path = "robots.txt", escape = "none")]
 pub struct RobotsTxt<'a> {
     pub domain: &'a str,
+}
+
+// https://developers.google.com/search/docs/advanced/robots/create-robots-txt
+#[get("/robots.txt")]
+pub async fn robots_txt(_state: web::Data<Arc<State>>) -> HttpResult<impl Responder> {
+    // TODO
+    let tpl = RobotsTxt { domain: "todo!" };
+    let it = HttpResponse::Ok()
+        .content_type(TEXT_PLAIN_UTF_8)
+        .body(tpl.render().map_err(Error::from)?);
+    Ok(it)
+}
+
+// https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap#xml
+#[get("/sitemap.xml.gz")]
+pub async fn sitemap_xml_gz(_state: web::Data<Arc<State>>) -> HttpResult<impl Responder> {
+    // TODO
+    let it = HttpResponse::Ok()
+        .content_type(TEXT_XML)
+        .insert_header((CONTENT_ENCODING, ContentEncoding::Gzip))
+        .body("todo!");
+    Ok(it)
+}
+
+// https://cyber.harvard.edu/rss/rss.html
+#[get("/{lang}/rss.xml")]
+pub async fn rss_xml(
+    _locale: web::Path<(String,)>,
+    _state: web::Data<Arc<State>>,
+) -> HttpResult<impl Responder> {
+    // TODO
+    let it = HttpResponse::Ok().content_type(TEXT_XML).body("todo!");
+    Ok(it)
+}
+
+#[get("/3rd/{file:.*}")]
+pub async fn third(file: web::Path<(String,)>) -> Result<NamedFile> {
+    Ok(NamedFile::open(Path::new("node_modules").join(&file.0))?)
 }

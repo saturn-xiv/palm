@@ -1,155 +1,12 @@
-use std::fs::{create_dir_all, File};
-use std::io::prelude::*;
-use std::ops::Deref;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use mime::Mime;
-use rusoto_core::{HttpClient, Region};
-use rusoto_credential::StaticProvider;
-use rusoto_s3::{
-    CreateBucketRequest, DeleteObjectRequest, GetBucketLocationRequest, HeadBucketRequest,
-    PutObjectRequest, S3Client, S3,
-};
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
-use super::super::super::super::{
-    crypto::Aes,
-    orm::postgresql::{Connection, PooledConnection},
-    settings::Dao as SettingDao,
-    Result,
-};
+use super::super::super::super::{orm::postgresql::Connection, Result};
 use super::schema::attachments;
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub enum Config {
-    S3(AwsS3),
-    Fs(FileSystem),
-}
-impl Config {
-    pub const KEY: &'static str = "file.storage";
-}
-
-// pub trait Provider {
-//     async fn store(&self, name: &str, payload: &[u8]) -> Result<String>;
-// }
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct AwsS3 {
-    pub region: String,
-    pub endpoint: Option<String>,
-    pub access_key: String,
-    pub secret_key: String,
-}
-
-impl AwsS3 {
-    fn open(&self) -> Result<S3Client> {
-        let it = S3Client::new_with(
-            HttpClient::new()?,
-            StaticProvider::new(self.access_key.clone(), self.access_key.clone(), None, None),
-            match self.endpoint {
-                Some(ref v) => Region::Custom {
-                    name: self.region.clone(),
-                    endpoint: v.to_string(),
-                },
-                None => self.region.parse()?,
-            },
-        );
-        Ok(it)
-    }
-
-    pub async fn put(&self, bucket: &str, name: &str, body: &[u8]) -> Result<()> {
-        let client = self.open()?;
-        if client
-            .head_bucket(HeadBucketRequest {
-                bucket: bucket.to_string(),
-                ..Default::default()
-            })
-            .await
-            .is_err()
-        {
-            client
-                .create_bucket(CreateBucketRequest {
-                    bucket: bucket.to_string(),
-                    ..Default::default()
-                })
-                .await?;
-        }
-
-        let body = body.to_owned();
-        client
-            .put_object(PutObjectRequest {
-                key: name.to_string(),
-                body: Some(body.into()),
-                ..Default::default()
-            })
-            .await?;
-        Ok(())
-    }
-
-    // https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
-    pub async fn get(&self, bucket: &str, name: &str) -> Result<String> {
-        if let Some(ref endpoint) = self.endpoint {
-            return Ok(format!("{}/{}/{}", endpoint, bucket, name));
-        }
-        let client = self.open()?;
-        let val = client
-            .get_bucket_location(GetBucketLocationRequest {
-                bucket: bucket.to_string(),
-                ..Default::default()
-            })
-            .await?;
-        Ok(format!(
-            "https://s3-{}.amazonaws.com/{}/{}",
-            val.location_constraint.unwrap_or_else(|| "".to_string()),
-            bucket,
-            name
-        ))
-    }
-
-    pub async fn delete(&self, bucket: &str, name: &str) -> Result<()> {
-        let client = self.open()?;
-        client
-            .delete_object(DeleteObjectRequest {
-                bucket: bucket.to_string(),
-                key: name.to_string(),
-                ..Default::default()
-            })
-            .await?;
-        Ok(())
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct FileSystem {
-    pub root: PathBuf,
-}
-
-impl Default for FileSystem {
-    fn default() -> Self {
-        Self {
-            root: Path::new("tmp").join("uploads"),
-        }
-    }
-}
-
-impl FileSystem {
-    pub async fn store(&self, bucket: &str, name: &str, payload: &[u8]) -> Result<String> {
-        let root = self.root.join(bucket);
-        create_dir_all(bucket)?;
-        {
-            let file = root.join(name);
-            info!("save to file {}", file.display());
-            let mut file = File::create(file)?;
-            file.write_all(payload)?;
-        }
-        Ok(format!("/uploads/{}/{}", bucket, name))
-    }
-}
 
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -180,29 +37,6 @@ impl Item {
             name.display().to_string(),
             mime::APPLICATION_OCTET_STREAM,
         )
-    }
-    pub async fn store(
-        db: PooledConnection,
-        aes: &Aes,
-        user: i32,
-        title: &str,
-        payload: &[u8],
-    ) -> Result<()> {
-        let (bucket, name, content_type) = Self::detect(title);
-        let cfg: Config = {
-            let db = db.deref();
-            SettingDao::get(db, aes, Config::KEY)?
-        };
-        let url = match cfg {
-            Config::S3(it) => {
-                it.put(&bucket, &name, payload).await?;
-                it.get(&bucket, &name).await?
-            }
-            Config::Fs(it) => it.store(&bucket, &name, payload).await?,
-        };
-        let db = db.deref();
-        Dao::create(db, user, title, &content_type, &url, payload.len() as i32)?;
-        Ok(())
     }
 }
 

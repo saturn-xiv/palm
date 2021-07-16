@@ -1,6 +1,7 @@
 # Usage
 
 ```bash
+sudo apt install podman buildah runc
 # first time start
 ./docker/ubuntu/first.sh
 # next time start

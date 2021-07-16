@@ -2,6 +2,7 @@ use std::error::Error as StdError;
 use std::fmt;
 use std::result::Result as StdResult;
 
+use actix_web::error::ResponseError;
 use hyper::StatusCode;
 
 pub type Error = Box<dyn StdError + Send + Sync>;
@@ -10,6 +11,8 @@ pub type Result<T> = StdResult<T, Error>;
 #[derive(Debug)]
 pub struct HttpError(pub StatusCode, pub Option<String>);
 pub type HttpResult<T> = StdResult<T, HttpError>;
+// TODO: https://github.com/rust-lang/rust/issues/63063
+// pub type HttpResponder = HttpResult<impl Responder>;
 
 impl StdError for HttpError {}
 
@@ -27,3 +30,5 @@ impl From<Error> for HttpError {
         Self(StatusCode::INTERNAL_SERVER_ERROR, Some(err.to_string()))
     }
 }
+
+impl ResponseError for HttpError {}

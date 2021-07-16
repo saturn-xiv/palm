@@ -13,6 +13,7 @@ lto = true
 
 [dependencies]
 futures = "0.3"
+futures-util = "0.3"
 mime = "0.3"
 language-tags = "0.3"
 juniper_actix = "0.4"
@@ -42,6 +43,7 @@ nix = "0.22"
 rusoto_core = "0.47"
 rusoto_credential = "0.47"
 rusoto_s3 = "0.47"
+rusoto_sqs = "0.47"
 bytes = "1"
 bytesize = "1"
 eui48 = "1"

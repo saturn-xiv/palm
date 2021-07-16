@@ -1,61 +1,64 @@
-// use std::convert::Infallible;
-// use std::ops::Deref;
-// use std::result::Result as StdResult;
-// use std::sync::Arc;
+use std::ops::Deref;
+use std::sync::Arc;
 
-// use bytes::BufMut;
-// use futures::{TryFutureExt, TryStreamExt};
-// use hyper::StatusCode;
+use actix_multipart::Multipart;
+use actix_web::{post, web, HttpResponse, Responder};
+use futures::{StreamExt, TryStreamExt};
 
-// use super::super::super::super::{crypto::Aes, jwt::Jwt, orm::postgresql::Pool as DbPool, Result};
-// use super::super::models::attachment::Item as Attachment;
+use super::super::super::super::{request::Token, Error, HttpResult};
+use super::super::models::attachment::{Dao as AttachmentDao, Item as Attachment};
+use super::State;
 
-// pub async fn post(
-//     token: Option<String>,
-//     form: warp::multipart::FormData,
-//     db: DbPool,
-//     jwt: Arc<Jwt>,
-//     aes: Arc<Aes>,
-// ) -> StdResult<impl warp::Reply, Infallible> {
-//     let status = store(token, db, jwt, aes, form)
-//         .await
-//         .map(|_| StatusCode::OK)
-//         .unwrap_or_else(|_| StatusCode::FORBIDDEN);
-//     Ok(status)
-// }
+#[post("/attachments/")]
+pub async fn create(
+    token: Token,
+    mut payload: Multipart,
+    state: web::Data<Arc<State>>,
+) -> HttpResult<impl Responder> {
+    let db = state.db.get().map_err(Error::from)?;
+    let db = db.deref();
+    let jwt = state.jwt.deref();
+    let s3 = state.s3.deref();
+    let user = token.current_user(db, jwt)?;
+    while let Ok(Some(mut field)) = payload.try_next().await {
+        if let Some(title) = field.content_disposition() {
+            if let Some(title) = title.get_filename() {
+                info!("receive file {}", title);
+                let (bucket, name, content_type) = Attachment::detect(title);
 
-// async fn store(
-//     token: Option<String>,
-//     db: DbPool,
-//     jwt: Arc<Jwt>,
-//     aes: Arc<Aes>,
-//     form: warp::multipart::FormData,
-// ) -> Result<()> {
-//     let files: Vec<(String, Vec<u8>)> = form
-//         .and_then(|part| {
-//             let name = part.name().to_string();
-//             let value = part.stream().try_fold(Vec::new(), |mut vec, data| {
-//                 vec.put(data);
-//                 async move { Ok(vec) }
-//             });
-//             value.map_ok(move |vec| (name, vec))
-//         })
-//         .try_collect()
-//         .await?;
-//     let user = {
-//         let db = db.get()?;
-//         let db = db.deref();
-//         let jwt = jwt.deref();
-//         let ss = Session {
-//             token,
-//             ..Default::default()
-//         };
-//         ss.current_user(db, jwt)?
-//     };
-//     for (name, payload) in files {
-//         let db = db.get()?;
-//         let aes = aes.deref();
-//         Attachment::store(db, aes, user.id, &name, &payload).await?;
-//     }
-//     Ok(())
-// }
+                let location = match s3.bucket_exists(bucket.clone()).await {
+                    Ok(v) => v,
+                    Err(_) => s3.create_bucket(bucket.clone()).await?,
+                };
+                let mut buffer = Vec::new();
+
+                while let Some(chunk) = field.next().await {
+                    let data = chunk.map_err(Error::from)?;
+                    buffer.extend_from_slice(&data);
+                }
+                let size = buffer.len();
+                s3.put_object(bucket.clone(), name.clone(), buffer).await?;
+
+                let url = match s3.endpoint {
+                    Some(ref v) => format!("{}/{}/{}", v, bucket, name),
+                    // https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+                    None => format!(
+                        "https://s3-{}.amazonaws.com/{}/{}",
+                        location.unwrap_or_else(|| "".to_string()),
+                        bucket,
+                        name
+                    ),
+                };
+                AttachmentDao::create(
+                    db,
+                    user.id,
+                    title,
+                    &content_type,
+                    &url,
+                    (size << 10) as i32,
+                )?;
+            }
+        }
+    }
+    Ok(HttpResponse::Ok().finish())
+}
