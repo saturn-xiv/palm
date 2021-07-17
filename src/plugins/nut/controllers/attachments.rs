@@ -5,20 +5,23 @@ use actix_multipart::Multipart;
 use actix_web::{post, web, HttpResponse, Responder};
 use futures::{StreamExt, TryStreamExt};
 
-use super::super::super::super::{request::Token, Error, HttpResult};
+use super::super::super::super::{
+    aws::s3::S3, jwt::Jwt, orm::postgresql::Pool as Db, request::Token, Error, HttpResult,
+};
 use super::super::models::attachment::{Dao as AttachmentDao, Item as Attachment};
-use super::State;
 
 #[post("/attachments/")]
 pub async fn create(
     token: Token,
     mut payload: Multipart,
-    state: web::Data<Arc<State>>,
+    db: web::Data<Db>,
+    jwt: web::Data<Arc<Jwt>>,
+    s3: web::Data<Arc<S3>>,
 ) -> HttpResult<impl Responder> {
-    let db = state.db.get().map_err(Error::from)?;
+    let db = db.get().map_err(Error::from)?;
     let db = db.deref();
-    let jwt = state.jwt.deref();
-    let s3 = state.s3.deref();
+    let jwt = jwt.deref();
+    let s3 = s3.deref();
     let user = token.current_user(db, jwt)?;
     while let Ok(Some(mut field)) = payload.try_next().await {
         if let Some(title) = field.content_disposition() {

@@ -1,43 +1,32 @@
-// #[macro_export]
-// macro_rules! __try {
-//     ($v:expr) => {{
-//         $v.map_err(|it| {
-//             let it = Error::from(it);
-//             HttpError(StatusCode::INTERNAL_SERVER_ERROR, Some(it.to_string()))
-//         })?
-//     }};
-// }
+#[macro_export]
+macro_rules! __tty_write {
+    ($n:expr, $m:expr) => {{
+        let q = nut::queue::zero::Queue::Ipc($n.to_string()).push()?;
+        q.send($m, 0)?;
+        Ok(())
+    }};
+}
 
-// #[macro_export]
-// macro_rules! __html {
-//     ($v:expr) => {{
-//         let (body, status) = match $v {
-//             Ok(v) => (v, hyper::StatusCode::OK),
-//             Err(e) => {
-//                 log::error!("{:#?}", e);
-//                 (e.to_string(), hyper::StatusCode::INTERNAL_SERVER_ERROR)
-//             }
-//         };
-//         Ok(warp::reply::with_status(warp::reply::html(body), status))
-//     }};
-// }
+#[macro_export]
+macro_rules! __audio_play {
+    ($n:expr, $f:expr, $c:expr, $v:expr) => {{
+        let q = nut::queue::zero::Queue::Ipc($n.to_string()).push()?;
+        let b = flexbuffers::to_vec(&loquat::audio::Message::Play {
+            file: $f,
+            count: $c,
+            volume: $v,
+        })?;
+        q.send(&b, 0)?;
+        Ok(())
+    }};
+}
 
-// #[macro_export]
-// macro_rules! __plain_text {
-//     ($s:expr, $v:expr) => {
-//         match $v {
-//             Ok(v) => gotham::helpers::http::response::create_response(
-//                 $s,
-//                 hyper::StatusCode::OK,
-//                 mime::TEXT_PLAIN,
-//                 v.into_bytes(),
-//             ),
-//             Err(e) => gotham::helpers::http::response::create_response(
-//                 $s,
-//                 hyper::StatusCode::INTERNAL_SERVER_ERROR,
-//                 mime::TEXT_PLAIN,
-//                 format!("{:#?}", e).into_bytes(),
-//             ),
-//         }
-//     };
-// }
+#[macro_export]
+macro_rules! __audio_stop {
+    ($n:expr) => {{
+        let q = nut::queue::zero::Queue::Ipc($n.to_string()).push()?;
+        let b = flexbuffers::to_vec(&loquat::audio::Message::Stop)?;
+        q.send(&b, 0)?;
+        Ok(())
+    }};
+}

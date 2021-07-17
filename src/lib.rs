@@ -8,10 +8,12 @@ extern crate lazy_static;
 #[macro_use]
 pub mod macros;
 
+pub mod audio;
 pub mod aws;
 pub mod cache;
 pub mod crypto;
 pub mod env;
+pub mod gpio;
 pub mod i18n;
 pub mod image_magick;
 pub mod jwt;
@@ -26,7 +28,9 @@ pub mod queue;
 pub mod request;
 pub mod result;
 pub mod settings;
+pub mod sys;
 pub mod theme;
+pub mod tty;
 pub mod twilio;
 
 use std::default::Default;

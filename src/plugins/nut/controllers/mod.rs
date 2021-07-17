@@ -2,7 +2,6 @@ pub mod attachments;
 
 use std::ops::Deref;
 use std::path::Path;
-use std::sync::Arc;
 
 use actix_files::NamedFile;
 use actix_web::{
@@ -14,18 +13,11 @@ use askama::Template;
 use mime::{TEXT_HTML_UTF_8, TEXT_PLAIN_UTF_8, TEXT_XML};
 
 use super::super::super::{
-    aws::s3::S3, cache::redis::Pool as CachePool, crypto::Aes, jwt::Jwt,
-    orm::postgresql::Pool as DbPool, queue::amqp::RabbitMq, request::Locale, Error, HttpResult,
+    cache::redis::Pool as CachePool,
+    orm::postgresql::{Connection as Db, Pool as DbPool},
+    request::Locale,
+    Error, HttpResult,
 };
-
-pub struct State {
-    pub aes: Arc<Aes>,
-    pub jwt: Arc<Jwt>,
-    pub db: DbPool,
-    pub cache: CachePool,
-    pub queue: Arc<RabbitMq>,
-    pub s3: Arc<S3>,
-}
 
 #[derive(Template)]
 #[template(path = "themes/bootstrap/home.html")]
@@ -33,7 +25,7 @@ pub struct Home {
     pub language: String,
 }
 
-async fn index(lang: &str, _state: &State) -> HttpResult<impl Responder> {
+async fn index(lang: &str, _db: &Db) -> HttpResult<impl Responder> {
     // TODO
     let tpl = Home {
         language: lang.to_string(),
@@ -45,18 +37,25 @@ async fn index(lang: &str, _state: &State) -> HttpResult<impl Responder> {
 }
 
 #[get("/")]
-pub async fn home(locale: Locale, state: web::Data<Arc<State>>) -> HttpResult<impl Responder> {
-    let state = state.deref();
-    index(&locale.0, state).await
+pub async fn home(
+    locale: Locale,
+    db: web::Data<DbPool>,
+    _cache: web::Data<CachePool>,
+) -> HttpResult<impl Responder> {
+    let db = db.get().map_err(Error::from)?;
+    let db = db.deref();
+    index(&locale.0, db).await
 }
 
 #[get("/{lang}/")]
 pub async fn home_by_lang(
     locale: web::Path<(String,)>,
-    state: web::Data<Arc<State>>,
+    db: web::Data<DbPool>,
+    _cache: web::Data<CachePool>,
 ) -> HttpResult<impl Responder> {
-    let state = state.deref();
-    index(&locale.0, state).await
+    let db = db.get().map_err(Error::from)?;
+    let db = db.deref();
+    index(&locale.0, db).await
 }
 
 #[derive(Template)]
@@ -67,7 +66,10 @@ pub struct RobotsTxt<'a> {
 
 // https://developers.google.com/search/docs/advanced/robots/create-robots-txt
 #[get("/robots.txt")]
-pub async fn robots_txt(_state: web::Data<Arc<State>>) -> HttpResult<impl Responder> {
+pub async fn robots_txt(
+    _db: web::Data<DbPool>,
+    _cache: web::Data<CachePool>,
+) -> HttpResult<impl Responder> {
     // TODO
     let tpl = RobotsTxt { domain: "todo!" };
     let it = HttpResponse::Ok()
@@ -78,7 +80,10 @@ pub async fn robots_txt(_state: web::Data<Arc<State>>) -> HttpResult<impl Respon
 
 // https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap#xml
 #[get("/sitemap.xml.gz")]
-pub async fn sitemap_xml_gz(_state: web::Data<Arc<State>>) -> HttpResult<impl Responder> {
+pub async fn sitemap_xml_gz(
+    _db: web::Data<DbPool>,
+    _cache: web::Data<CachePool>,
+) -> HttpResult<impl Responder> {
     // TODO
     let it = HttpResponse::Ok()
         .content_type(TEXT_XML)
@@ -91,7 +96,8 @@ pub async fn sitemap_xml_gz(_state: web::Data<Arc<State>>) -> HttpResult<impl Re
 #[get("/{lang}/rss.xml")]
 pub async fn rss_xml(
     _locale: web::Path<(String,)>,
-    _state: web::Data<Arc<State>>,
+    _db: web::Data<DbPool>,
+    _cache: web::Data<CachePool>,
 ) -> HttpResult<impl Responder> {
     // TODO
     let it = HttpResponse::Ok().content_type(TEXT_XML).body("todo!");
