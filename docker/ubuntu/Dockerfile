@@ -126,12 +126,17 @@ RUN zsh -c "source $HOME/.zshrc \
     && cargo install diesel_cli \
     && cargo install --locked cargo-outdated"
 
-RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
+#RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
+COPY redis/* /etc/redis/
+RUN sudo mkdir -p /var/lib/redis/cluster-1 /var/lib/redis/cluster-2
+RUN echo "vm.overcommit_memory = 1" | sudo tee /etc/sysctl.d/90-redis.conf
+
+
 COPY pg_hba.conf /etc/postgresql/13/main/
 RUN sudo sed -i 's/^port = .*/port = 5432/' /etc/postgresql/13/main/postgresql.conf
 COPY supervisor/ /etc/supervisor/conf.d/
 
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee -a /VERSION
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace
 WORKDIR /workspace

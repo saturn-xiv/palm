@@ -1,12 +1,11 @@
 use std::default::Default;
 use std::fmt;
 use std::fmt::Display;
-use std::ops::DerefMut;
 use std::time::Duration;
 
 use ::redis::{
     cluster::{ClusterClient, ClusterClientBuilder, ClusterConnection},
-    cmd, Commands, RedisResult,
+    cmd, Commands, RedisResult, Value,
 };
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 
@@ -21,7 +20,6 @@ pub struct Config {
     pub hosts: Vec<(String, u16)>,
     pub password: Option<String>,
     pub pool: Option<u32>,
-    pub prefix: Option<String>,
 }
 
 impl Config {
@@ -42,12 +40,15 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             hosts: vec![
-                ("127.0.0.1".to_string(), 63791),
-                ("127.0.0.1".to_string(), 63792),
+                ("127.0.0.1".to_string(), 6371),
+                ("127.0.0.1".to_string(), 6372),
+                ("127.0.0.1".to_string(), 6373),
+                ("127.0.0.1".to_string(), 6374),
+                ("127.0.0.1".to_string(), 6375),
+                ("127.0.0.1".to_string(), 6376),
             ],
             password: None,
             pool: Some(32),
-            prefix: None,
         }
     }
 }
@@ -58,77 +59,69 @@ impl fmt::Display for Config {
     }
 }
 
-// // https://redis.io/commands
-// impl super::Provider for Pool {
-//     fn version(&self) -> Result<String> {
-//         let mut db = self.get()?;
-//         let db = db.deref_mut();
-//         let it = cmd("info").query::<String>(db)?;
-//         Ok(it)
-//     }
-//     fn keys(&self) -> Result<Vec<(String, i64)>> {
-//         let mut db = self.get()?;
-//         let db = db.deref_mut();
-//         let mut items = Vec::new();
-//         let keys: Vec<String> = db.keys("*")?;
-//         for it in keys {
-//             let ttl = db.ttl(&it)?;
-//             items.push((it, ttl));
-//         }
-//         Ok(items)
-//     }
+// https://redis.io/commands
+impl super::Provider for ClusterConnection {
+    fn version(&mut self) -> Result<String> {
+        let it = cmd("info").query::<Value>(self)?;
+        Ok(format!("{:#?}", it))
+    }
+    fn keys(&mut self) -> Result<Vec<(String, i64)>> {
+        let mut items = Vec::new();
+        let keys: Vec<String> = Commands::keys(self, "*")?;
+        for it in keys {
+            let ttl = self.ttl(&it)?;
+            items.push((it, ttl));
+        }
+        Ok(items)
+    }
 
-//     fn get<K, V, F>(&self, key: &K, fun: F, ttl: Duration) -> Result<V>
-//     where
-//         F: FnOnce() -> Result<V>,
-//         K: Display,
-//         V: DeserializeOwned + Serialize,
-//     {
-//         let mut db = self.get()?;
-//         let db = db.deref_mut();
+    fn get<K, V, F>(&mut self, key: &K, fun: F, ttl: Duration) -> Result<V>
+    where
+        F: FnOnce() -> Result<V>,
+        K: Display,
+        V: DeserializeOwned + Serialize,
+    {
+        let key = key.to_string();
+        let buf: RedisResult<Vec<u8>> = Commands::get(self, &key);
+        if let Ok(buf) = buf {
+            if let Ok(val) = flexbuffers::from_slice(buf.as_slice()) {
+                return Ok(val);
+            }
+        }
+        debug!("cache expire, set {:?} {:?}", key, ttl);
+        let val = fun()?;
+        let _: () = self.set_ex(
+            &key,
+            flexbuffers::to_vec(&val)?.as_slice(),
+            ttl.as_secs() as usize,
+        )?;
+        Ok(val)
+    }
 
-//         let key = key.to_string();
-//         let buf: RedisResult<Vec<u8>> = db.get(&key);
-//         if let Ok(buf) = buf {
-//             if let Ok(val) = flexbuffers::from_slice(buf.as_slice()) {
-//                 return Ok(val);
-//             }
-//         }
-//         debug!("cache expire, set {:?} {:?}", key, ttl);
-//         let val = fun()?;
-//         let _: () = db.set_ex(
-//             &key,
-//             flexbuffers::to_vec(&val)?.as_slice(),
-//             ttl.as_secs() as usize,
-//         )?;
-//         Ok(val)
-//     }
+    fn clear(&mut self) -> Result<()> {
+        let rst = cmd("flushall").query::<String>(self)?;
+        info!("{}", rst);
+        Ok(())
+    }
 
-//     fn clear(&self) -> Result<()> {
-//         let mut db = self.get()?;
-//         let db = db.deref_mut();
-//         let rst = cmd("flushdb").query::<String>(db)?;
-//         info!("{}", rst);
-//         Ok(())
-//     }
-// }
+    fn heartbeat(&mut self) -> Result<()> {
+        let rst = cmd("ping").query::<String>(self)?;
+        info!("{}", rst);
+        Ok(())
+    }
+}
 
-// impl super::Kv for Pool {
-//     fn set<K: Display, V: Serialize>(&self, key: &K, val: &V) -> Result<()> {
-//         let key = key.to_string();
-//         let val = flexbuffers::to_vec(val)?;
-//         let mut db = self.get()?;
-//         let db = db.deref_mut();
-//         let _: () = db.set(&key, val.as_slice())?;
-//         Ok(())
-//     }
-//     fn get<K: Display, V: DeserializeOwned>(&self, key: &K) -> Result<V> {
-//         let key = key.to_string();
-//         let mut db = self.get()?;
-//         let db = db.deref_mut();
-
-//         let val: Vec<u8> = db.get(&key)?;
-//         let val = flexbuffers::from_slice(val.as_slice())?;
-//         Ok(val)
-//     }
-// }
+impl super::Kv for ClusterConnection {
+    fn set<K: Display, V: Serialize>(&mut self, key: &K, val: &V) -> Result<()> {
+        let key = key.to_string();
+        let val = flexbuffers::to_vec(val)?;
+        let _: () = Commands::set(self, &key, val.as_slice())?;
+        Ok(())
+    }
+    fn get<K: Display, V: DeserializeOwned>(&mut self, key: &K) -> Result<V> {
+        let key = key.to_string();
+        let val: Vec<u8> = Commands::get(self, &key)?;
+        let val = flexbuffers::from_slice(val.as_slice())?;
+        Ok(val)
+    }
+}
