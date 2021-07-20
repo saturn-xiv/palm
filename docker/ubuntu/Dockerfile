@@ -128,7 +128,7 @@ RUN zsh -c "source $HOME/.zshrc \
 
 #RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
 COPY redis/* /etc/redis/
-RUN sudo mkdir -p /var/lib/redis/cluster-1 /var/lib/redis/cluster-2
+RUN sudo mkdir -p /var/lib/redis/cluster-{1,2,3,4,5,6}
 RUN echo "vm.overcommit_memory = 1" | sudo tee /etc/sysctl.d/90-redis.conf
 
 
