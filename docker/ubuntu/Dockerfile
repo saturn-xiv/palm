@@ -90,6 +90,10 @@ RUN sh -c ". $HOME/.profile \
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.profile
 RUN echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.profile
 
+# https://min.io/download#/linux
+RUN wget https://dl.min.io/server/minio/release/linux-amd64/minio -O $HOME/.local/bin/minio
+RUN chmod +x $HOME/.local/bin/minio
+
 # https://getcomposer.org/doc/00-intro.md#manual-installation
 RUN wget https://getcomposer.org/download/latest-stable/composer.phar -O $HOME/.local/bin/composer
 RUN chmod +x $HOME/.local/bin/composer
@@ -128,9 +132,9 @@ RUN zsh -c "source $HOME/.zshrc \
 
 #RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
 COPY redis/* /etc/redis/
-RUN sudo mkdir -p /var/lib/redis/cluster-{1,2,3,4,5,6}
+RUN {1,2,3,4,5,6}
+RUN for i in {1..6}; do sudo mkdir -pv /var/lib/redis/cluster-$i; done
 RUN echo "vm.overcommit_memory = 1" | sudo tee /etc/sysctl.d/90-redis.conf
-
 
 COPY pg_hba.conf /etc/postgresql/13/main/
 RUN sudo sed -i 's/^port = .*/port = 5432/' /etc/postgresql/13/main/postgresql.conf

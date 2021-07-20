@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # https://redis.io/topics/cluster-tutorial
-
 set -e
 
+echo "setup redis clusters"
 redis-cli --cluster create \
     127.0.0.1:6371 \
     127.0.0.1:6372 \
@@ -12,5 +12,7 @@ redis-cli --cluster create \
     127.0.0.1:6375 \
     127.0.0.1:6376 \
     --cluster-replicas 1
+    
+echo "done."
 
 exit 0
