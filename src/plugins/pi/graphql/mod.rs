@@ -2,6 +2,7 @@ pub mod dns;
 pub mod network;
 pub mod ntp;
 pub mod ping;
+pub mod user;
 pub mod vpn;
 
 use std::process::Command;
@@ -14,9 +15,11 @@ use juniper::GraphQLObject;
 use nix::sys::{sysinfo::sysinfo, utsname::uname};
 
 use super::super::super::{
-    graphql::Session, jwt::Jwt, models::log::Dao as LogDao, models::user::Token,
-    orm::Connection as Db, Result,
+    crypto::Aes, jwt::Jwt, orm::sqlite::Connection as Db, request::Token as Auth, Result,
 };
+use super::super::nut::models::user::Token;
+
+use self::user::{CurrentUser, User};
 
 #[derive(GraphQLObject)]
 #[graphql(name = "Status")]
@@ -30,8 +33,8 @@ pub struct Status {
 }
 
 impl Status {
-    pub fn new(ss: &Session, db: &Db, jwt: &Jwt) -> Result<Self> {
-        ss.current_user(db, jwt)?;
+    pub fn new(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<Self> {
+        ss.current_user(db, jwt, aes)?;
         let si = sysinfo()?;
         let un = uname();
         let load = si.load_average();
@@ -68,25 +71,25 @@ impl Status {
 pub struct Pi {}
 
 impl Pi {
-    pub fn reboot(ss: &Session, db: &Db, jwt: &Jwt) -> Result<()> {
-        let user = ss.current_user(db, jwt)?;
-        LogDao::add(db, user.id, &ss.client_ip, "Reboot!")?;
+    pub fn reboot(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
+        ss.current_user(db, jwt, aes)?;
+        info!("reboot!");
         thread::sleep(Duration::from_secs(2));
         thread::spawn(|| {
-            if let Err(e) = super::sys::reboot() {
+            if let Err(e) = super::super::super::sys::reboot() {
                 error!("{:?}", e);
             }
         });
         Ok(())
     }
-    pub fn token(ss: &Session, db: &Db, jwt: &Jwt, years: i32) -> Result<String> {
-        let user = ss.current_user(db, jwt)?;
+    pub fn token(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes, years: i32) -> Result<String> {
+        let user = ss.current_user(db, jwt, aes)?;
         let (nbf, exp) = Jwt::years(years)?;
         let it = jwt.sum(
             None,
             &Token {
-                uid: user.uid.clone(),
-                sub: user.real_name,
+                uid: user.name,
+                sub: User::KEY.to_string(),
                 act: Token::SIGN_IN.to_string(),
                 nbf,
                 exp,
@@ -94,8 +97,8 @@ impl Pi {
         )?;
         Ok(it)
     }
-    pub fn logs(ss: &Session, db: &Db, jwt: &Jwt, name: &str) -> Result<String> {
-        ss.current_user(db, jwt)?;
+    pub fn logs(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes, name: &str) -> Result<String> {
+        ss.current_user(db, jwt, aes)?;
         let output = Command::new("journalctl")
             .arg("-u")
             .arg(&name)
@@ -109,26 +112,26 @@ impl Pi {
         Ok(msg)
     }
 
-    pub fn reset(ss: &Session, db: &Db, jwt: &Jwt) -> Result<()> {
-        ss.current_user(db, jwt)?;
+    pub fn reset(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
+        ss.current_user(db, jwt, aes)?;
         // TODO
         todo!()
     }
 
-    pub fn dump(ss: &Session, db: &Db, jwt: &Jwt) -> Result<()> {
-        ss.current_user(db, jwt)?;
+    pub fn dump(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
+        ss.current_user(db, jwt, aes)?;
         // TODO
         todo!()
     }
 
-    pub fn restore(ss: &Session, db: &Db, jwt: &Jwt) -> Result<()> {
-        ss.current_user(db, jwt)?;
+    pub fn restore(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
+        ss.current_user(db, jwt, aes)?;
         // TODO
         Ok(())
     }
 
-    pub fn upgrade(ss: &Session, db: &Db, jwt: &Jwt) -> Result<()> {
-        ss.current_user(db, jwt)?;
+    pub fn upgrade(ss: &Auth, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
+        ss.current_user(db, jwt, aes)?;
         // TODO
         todo!()
     }

@@ -8,7 +8,10 @@ use futures::{StreamExt, TryStreamExt};
 use super::super::super::super::{
     aws::s3::S3, jwt::Jwt, orm::postgresql::Pool as Db, request::Token, Error, HttpResult,
 };
-use super::super::models::attachment::{Dao as AttachmentDao, Item as Attachment};
+use super::super::models::{
+    attachment::{Dao as AttachmentDao, Item as Attachment},
+    user::CurrentUser,
+};
 
 #[post("/attachments/")]
 pub async fn create(

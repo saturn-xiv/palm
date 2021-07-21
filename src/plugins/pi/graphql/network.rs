@@ -3,16 +3,17 @@ use serde::{Deserialize, Serialize};
 
 use super::super::super::super::{
     crypto::Aes,
-    graphql::Session,
     jwt::Jwt,
-    orm::Connection as Db,
-    settings::Dao as SettingDao,
+    orm::sqlite::Connection as Db,
+    request::Token,
     sys::network::{
         ip4 as get_ip4, is_on, mac as get_mac,
         systemd::{Dhcp, Network, Static, Wifi, Wpa},
     },
     Result,
 };
+use super::super::models::settings::Dao as SettingDao;
+use super::user::CurrentUser;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -65,13 +66,13 @@ impl Form {
         (is_on(&self.eth.name) && get_ip4(&self.eth.name).is_some())
             || (is_on(&self.wlan.name) && get_ip4(&self.wlan.name).is_some())
     }
-    pub fn new(ss: &Session, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<Self> {
-        ss.current_user(db, jwt)?;
+    pub fn new(ss: &Token, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<Self> {
+        ss.current_user(db, jwt, aes)?;
         let it: Self = SettingDao::get(db, aes, Self::KEY).unwrap_or_default();
         Ok(it)
     }
-    pub fn save(&self, vendor: &str, ss: &Session, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
-        ss.current_user(db, jwt)?;
+    pub fn save(&self, vendor: &str, ss: &Token, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
+        ss.current_user(db, jwt, aes)?;
         SettingDao::set(db, aes, Self::KEY, self, true)?;
         debug!("save network interfaces {:?}", self);
         {

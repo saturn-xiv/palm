@@ -2,7 +2,10 @@ use std::process::Command;
 
 use validator::Validate;
 
-use super::super::super::super::{graphql::Session, jwt::Jwt, orm::Connection as Db, Result};
+use super::super::super::super::{
+    crypto::Aes, jwt::Jwt, orm::sqlite::Connection as Db, request::Token, Result,
+};
+use super::user::CurrentUser;
 
 #[derive(Validate)]
 pub struct Form {
@@ -13,9 +16,9 @@ pub struct Form {
 }
 
 impl Form {
-    pub fn execute(&self, ss: &Session, db: &Db, jwt: &Jwt) -> Result<String> {
+    pub fn execute(&self, ss: &Token, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<String> {
         self.validate()?;
-        ss.current_user(db, jwt)?;
+        ss.current_user(db, jwt, aes)?;
         let out = match self.server {
             Some(ref it) => Command::new("dig")
                 .arg(&format!("@{}", it))

@@ -413,8 +413,12 @@ impl Token {
     pub const RESET_PASSWORD: &'static str = "auth.reset-password";
 }
 
-impl Auth {
-    pub fn current_user(&self, db: &Connection, jwt: &Jwt) -> Result<Item> {
+pub trait CurrentUser {
+    fn current_user(&self, db: &Connection, jwt: &Jwt) -> Result<Item>;
+}
+
+impl CurrentUser for Auth {
+    fn current_user(&self, db: &Connection, jwt: &Jwt) -> Result<Item> {
         let token = jwt.parse::<Token>(&self.0)?;
         let token = token.claims;
         if token.act != Token::SIGN_IN {

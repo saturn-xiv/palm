@@ -9,9 +9,10 @@ use serde::{self, Deserialize, Serialize};
 use validator::Validate;
 
 use super::super::super::super::{
-    crypto::Aes, graphql::Session, jwt::Jwt, ntp::Response, orm::Connection as Db,
-    settings::Dao as SettingDao, Result,
+    crypto::Aes, jwt::Jwt, ntp::Response, orm::sqlite::Connection as Db, request::Token, Result,
 };
+use super::super::models::settings::Dao as SettingDao;
+use super::user::CurrentUser;
 
 #[derive(Serialize, Deserialize, Validate, GraphQLObject, Debug)]
 #[graphql(name = "OpenVpn")]
@@ -65,14 +66,14 @@ ntpdate {server}
 
 impl Form {
     pub const KEY: &'static str = "ntp.client";
-    pub fn new(ss: &Session, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<Self> {
-        ss.current_user(db, jwt)?;
+    pub fn new(ss: &Token, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<Self> {
+        ss.current_user(db, jwt, aes)?;
         let it: Self = SettingDao::get(db, aes, Self::KEY).unwrap_or_default();
         Ok(it)
     }
-    pub fn save(&self, ss: &Session, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
+    pub fn save(&self, ss: &Token, db: &Db, jwt: &Jwt, aes: &Aes) -> Result<()> {
         self.validate()?;
-        ss.current_user(db, jwt)?;
+        ss.current_user(db, jwt, aes)?;
         debug!("save ntp server {:?}", self);
         let mut fd = File::create(
             Path::new(&Component::RootDir)
