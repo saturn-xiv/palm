@@ -10,21 +10,17 @@ RUN apt -y install apt-transport-https software-properties-common curl wget gnup
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
 # https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
-RUN add-apt-repository -y ppa:deadsnakes/ppa
+# RUN add-apt-repository -y ppa:deadsnakes/ppa
 # https://launchpad.net/~ondrej/+archive/ubuntu/php
 RUN add-apt-repository -y ppa:ondrej/php
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/install/
+RUN add-apt-repository -y ppa:nginx/stable
 # https://www.postgresql.org/download/linux/ubuntu/
 RUN echo "deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-# https://www.rabbitmq.com/install-debian.html
-RUN apt-key adv --keyserver "hkps://keys.openpgp.org" --recv-keys "0x0A9AF2115F4687BD29803A206B73A36E6026DFCA"
-RUN apt-key adv --keyserver "keyserver.ubuntu.com" --recv-keys "F77F1EDA57EBB1CC"
-RUN apt-key adv --keyserver "keyserver.ubuntu.com" --recv-keys "F6609E60DC62814E"
-RUN echo "deb [arch=amd64] http://ppa.launchpad.net/rabbitmq/rabbitmq-erlang/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/rabbitmq.list
-RUN echo "deb [arch=amd64] https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ $(lsb_release -cs) main" >> /etc/apt/sources.list.d/rabbitmq.list
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
-RUN wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-RUN echo "deb [arch=amd64] https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list
+# https://www.erlang-solutions.com/downloads/
+RUN echo "deb [arch=amd64] https://packages.erlang-solutions.com/ubuntu $(lsb_release -cs) contrib" > /etc/apt/sources.list.d/erlang.list
+RUN wget --quiet -O - https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | apt-key add -
 # https://wiki.ubuntu.com/ToolChain
 RUN dpkg --add-architecture armhf
 RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs) main restricted universe multiverse" > /etc/apt/sources.list
@@ -45,13 +41,14 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     pkg-config-arm-linux-gnueabihf binutils-arm-linux-gnueabihf \
     libgcc1-armhf-cross libsfgcc1-armhf-cross \
     libstdc++6-armhf-cross libstdc++-10-dev-armhf-cross \
-    python3.9 python3.9-distutils python3.9-dev \
+    python3 python3-distutils python3-pip python3-dev \
     php-cli php-fpm \
     php-xml php-json php-imap php-intl \
     php-mbstring php-bz2 php-zip php-curl \
     php-gd php-imagick \
     php-mysql php-pgsql php-sqlite3 php-redis \
-    supervisor postgresql redis-server rabbitmq-server elasticsearch
+    erlang \
+    nginx mariadb-server postgresql redis-server
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -59,6 +56,8 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 RUN locale-gen
 RUN update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
+
+RUN pip3 install --user supervisor
 
 # deploy
 RUN useradd -m deploy -s /bin/zsh
@@ -82,17 +81,13 @@ RUN git config --global core.quotepath false
 
 # https://pip.pypa.io/en/stable/installing/
 RUN curl https://bootstrap.pypa.io/get-pip.py -o $HOME/downloads/get-pip.py
-RUN python3.9 $HOME/downloads/get-pip.py --user
+RUN python3 $HOME/downloads/get-pip.py --user
 RUN sh -c ". $HOME/.profile \
     && pip install --user cmake"
 RUN sh -c ". $HOME/.profile \
     && pip install --user ansible paramiko"
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.profile
 RUN echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.profile
-
-# https://min.io/download#/linux
-RUN wget https://dl.min.io/server/minio/release/linux-amd64/minio -O $HOME/.local/bin/minio
-RUN chmod +x $HOME/.local/bin/minio
 
 # https://getcomposer.org/doc/00-intro.md#manual-installation
 RUN wget https://getcomposer.org/download/latest-stable/composer.phar -O $HOME/.local/bin/composer
@@ -102,6 +97,8 @@ RUN chmod +x $HOME/.local/bin/composer
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | sh
 RUN sh -c ". $HOME/.profile \
     && nvm install node"
+RUN sh -c ". $HOME/.profile \
+    && nvm install node --lts"
 RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
@@ -130,10 +127,33 @@ RUN zsh -c "source $HOME/.zshrc \
     && cargo install diesel_cli \
     && cargo install --locked cargo-outdated"
 
+
+# https://min.io/download#/linux
+RUN wget https://dl.min.io/server/minio/release/linux-amd64/minio -O $HOME/.local/bin/minio
+RUN chmod +x $HOME/.local/bin/minio
+RUN sudo mkdir -p /var/lib/minio/data
+RUN sudo chown -R deploy:deploy /var/lib/minio/data
+
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/targz.html#install-linux
+ENV ELASTICSEARCH_VERSION "7.13.4"
+RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}-linux-x86_64.tar.gz -O $HOME/downloads/elasticsearch-${ELASTICSEARCH_VERSION}-linux-x86_64.tar.gz
+RUN tar xf $HOME/downloads/elasticsearch-${ELASTICSEARCH_VERSION}-linux-x86_64.tar.gz -C $HOME/local
+RUN ln -s $HOME/local/elasticsearch-${ELASTICSEARCH_VERSION} $HOME/local/elasticsearch
+
+# https://www.rabbitmq.com/install-generic-unix.html
+ENV RABBITMQ_VERSION "3.8.19"
+RUN wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz -O $HOME/downloads/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz
+RUN tar xf $HOME/downloads/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz -C $HOME/local
+RUN ln -s $HOME/local/rabbitmq_server-${RABBITMQ_VERSION} $HOME/local/rabbitmq_server
+
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN echo "daemon off;" | sudo tee /etc/nginx/modules-enabled/100-disable-daemon.conf
+
+RUN sudo mkdir -p /run/php
+
 #RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
 COPY redis/* /etc/redis/
-RUN {1,2,3,4,5,6}
-RUN for i in {1..6}; do sudo mkdir -pv /var/lib/redis/cluster-$i; done
+RUN for i in $(seq 1 6); do sudo mkdir -p /var/lib/redis/cluster-$i; done
 RUN echo "vm.overcommit_memory = 1" | sudo tee /etc/sysctl.d/90-redis.conf
 
 COPY pg_hba.conf /etc/postgresql/13/main/
