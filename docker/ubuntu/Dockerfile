@@ -57,7 +57,7 @@ RUN locale-gen
 RUN update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
 
-RUN pip3 install --user supervisor
+RUN pip3 install supervisor
 
 # deploy
 RUN useradd -m deploy -s /bin/zsh
@@ -146,19 +146,38 @@ RUN wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v${RABBIT
 RUN tar xf $HOME/downloads/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz -C $HOME/local
 RUN ln -s $HOME/local/rabbitmq_server-${RABBITMQ_VERSION} $HOME/local/rabbitmq_server
 
+# setup nginx
 COPY nginx.conf /etc/nginx/sites-available/default
 RUN echo "daemon off;" | sudo tee /etc/nginx/modules-enabled/100-disable-daemon.conf
+RUN sudo mkdir -p /var/lib/nginx
+RUN sudo touch /run/nginx.pid
+RUN sudo chown -R www-data:www-data /var/lib/nginx /run/nginx.pid
 
+# setup php-fpm
 RUN sudo mkdir -p /run/php
 
+# setup redis
 #RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
 COPY redis/* /etc/redis/
 RUN for i in $(seq 1 6); do sudo mkdir -p /var/lib/redis/cluster-$i; done
 RUN echo "vm.overcommit_memory = 1" | sudo tee /etc/sysctl.d/90-redis.conf
 
+# setup postgresql
 COPY pg_hba.conf /etc/postgresql/13/main/
 RUN sudo sed -i 's/^port = .*/port = 5432/' /etc/postgresql/13/main/postgresql.conf
-COPY supervisor/ /etc/supervisor/conf.d/
+
+# setup mysql
+RUN sudo mkdir /run/mysqld
+RUN sudo chown -R root:mysql /run/mysqld
+RUN sudo chmod 774 /run/mysqld
+
+# setup rabbitmq
+RUN sudo mkdir -p /var/lib/rabbitmq
+RUN sudo chown -R deploy:deploy /var/lib/rabbitmq
+
+# setup supervisord
+COPY supervisor /etc/
+RUN sudo mkdir -p /var/log/supervisor
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 

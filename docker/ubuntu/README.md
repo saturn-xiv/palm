@@ -20,4 +20,7 @@ sudo apt install podman buildah runc
 > sudo mysql_secure_installation
 # test mysql connection
 > mysql -h 127.0.0.1 -u root -p
+# test elasticsearch connection
+# OR: open http://localhost:9000 user:admin password:12345678
+> curl 127.0.0.1:9200/
 ```
