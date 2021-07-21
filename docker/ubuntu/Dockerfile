@@ -157,8 +157,9 @@ RUN sudo chown -R www-data:www-data /var/lib/nginx /run/nginx.pid
 RUN sudo mkdir -p /run/php
 
 # setup redis
-#RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
+# RUN sudo sed -i -e 's/daemonize yes/daemonize no/g' /etc/redis/redis.conf
 COPY redis/* /etc/redis/
+RUN sudo mkdir -p /var/lib/redis/server
 RUN for i in $(seq 1 6); do sudo mkdir -p /var/lib/redis/cluster-$i; done
 RUN echo "vm.overcommit_memory = 1" | sudo tee /etc/sysctl.d/90-redis.conf
 
@@ -169,15 +170,24 @@ RUN sudo sed -i 's/^port = .*/port = 5432/' /etc/postgresql/13/main/postgresql.c
 # setup mysql
 RUN sudo mkdir /run/mysqld
 RUN sudo chown -R root:mysql /run/mysqld
-RUN sudo chmod 774 /run/mysqld
+RUN sudo chmod 775 /run/mysqld
 
 # setup rabbitmq
 RUN sudo mkdir -p /var/lib/rabbitmq
 RUN sudo chown -R deploy:deploy /var/lib/rabbitmq
+RUN sudo touch /var/lib/rabbitmq/.erlang.cookie
 
 # setup supervisord
-COPY supervisor /etc/
+COPY supervisor/ /etc/supervisor
 RUN sudo mkdir -p /var/log/supervisor
+
+
+# set open files
+# ulimit -a; ulimit -Sn; ulimit -Hn
+# COPY limits.d/* /etc/security/limits.d/
+# RUN echo "session required pam_limits.so" | sudo tee /etc/pam.d/common-session
+# RUN echo "fs.file-max = 2048000" | sudo tee /etc/sysctl.d/91-fs.conf
+
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
