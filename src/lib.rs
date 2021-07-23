@@ -32,6 +32,7 @@ pub mod sys;
 pub mod theme;
 pub mod tty;
 pub mod twilio;
+pub mod zigbee;
 
 use std::default::Default;
 use std::fmt;

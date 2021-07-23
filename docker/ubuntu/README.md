@@ -18,7 +18,7 @@ podman run --rm -it --userns=keep-id --hostname=palm --user=$(id -ur):$(id -gr) 
 > ./docker/ubuntu/redis/setup.sh
 # test redis connections
 > redis-cli -p 6371
-# enable rabbitmq Management Plugin 
+# enable rabbitmq Management Plugin: user`guest` password`guest` 
 > sudo rabbitmq-plugins enable rabbitmq_management
 # test postgresql connection
 > psql -U postgres -h 127.0.0.1 -p 5432
@@ -27,8 +27,9 @@ podman run --rm -it --userns=keep-id --hostname=palm --user=$(id -ur):$(id -gr) 
 # test mysql connection
 > mysql -h 127.0.0.1 -u root -p
 # test elasticsearch connection
-# OR: open http://localhost:9000 user:admin password:12345678
 > curl http://127.0.0.1:9200/
+# test minio: user`admin` password`12345678`
+> curl http://localhost:9001
 ```
 
 ## Issues
