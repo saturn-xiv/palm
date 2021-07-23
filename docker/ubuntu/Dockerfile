@@ -128,7 +128,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk install gradle"
 
 # https://golang.org/doc/install
-ENV GO_VERSION "1.16.5"
+ENV GO_VERSION "1.16.6"
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz -O $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile
@@ -141,20 +141,6 @@ RUN sudo apt install -y libpq-dev libmysqlclient-dev libsqlite3-dev
 RUN zsh -c "source $HOME/.zshrc \
     && cargo install diesel_cli \
     && cargo install --locked cargo-outdated"
-
-
-
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/targz.html#install-linux
-# ENV ELASTICSEARCH_VERSION "7.13.4"
-# RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}-linux-x86_64.tar.gz -O $HOME/downloads/elasticsearch-${ELASTICSEARCH_VERSION}-linux-x86_64.tar.gz
-# RUN tar xf $HOME/downloads/elasticsearch-${ELASTICSEARCH_VERSION}-linux-x86_64.tar.gz -C $HOME/local
-# RUN ln -s $HOME/local/elasticsearch-${ELASTICSEARCH_VERSION} $HOME/local/elasticsearch
-
-# https://www.rabbitmq.com/install-generic-unix.html
-# ENV RABBITMQ_VERSION "3.8.19"
-# RUN wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz -O $HOME/downloads/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz
-# RUN tar xf $HOME/downloads/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz -C $HOME/local
-# RUN ln -s $HOME/local/rabbitmq_server-${RABBITMQ_VERSION} $HOME/local/rabbitmq_server
 
 # setup nginx
 COPY nginx.conf /etc/nginx/sites-available/default
