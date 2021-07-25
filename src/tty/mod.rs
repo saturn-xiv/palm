@@ -2,7 +2,10 @@ pub mod g786;
 
 use std::fmt;
 use std::io::{prelude::*, ErrorKind as IoErrorKind};
+use std::num::ParseIntError;
 use std::ops::Deref;
+use std::result::Result as StdResult;
+use std::str::FromStr;
 use std::sync::Mutex;
 use std::thread;
 use std::time::Duration;
@@ -62,11 +65,16 @@ impl fmt::Display for Uuid {
     }
 }
 
-impl Uuid {
-    pub fn new(s: &str) -> Result<Self> {
+impl FromStr for Uuid {
+    type Err = ParseIntError;
+
+    fn from_str(s: &str) -> StdResult<Self, Self::Err> {
         let v = u16::from_str_radix(s, 16)?;
         Ok(Self(v))
     }
+}
+
+impl Uuid {
     pub fn null() -> Self {
         Self(u16::MAX)
     }

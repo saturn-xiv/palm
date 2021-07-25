@@ -13,7 +13,7 @@ fn ports() {
 fn uuid() {
     println!("{it} {it:?}", it = tty::Uuid::null());
     println!("{it} {it:?}", it = tty::Uuid::zero());
-    println!("{it} {it:?}", it = tty::Uuid::new("abcd").unwrap());
+    println!("{it} {it:?}", it = "abcd".parse::<tty::Uuid>().unwrap());
     for _ in 1..100 {
         println!("{it} {it:?}", it = tty::Uuid::default());
     }
