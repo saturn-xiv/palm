@@ -1,3 +1,6 @@
+pub mod g786;
+
+use std::fmt;
 use std::io::{prelude::*, ErrorKind as IoErrorKind};
 use std::ops::Deref;
 use std::sync::Mutex;
@@ -6,6 +9,7 @@ use std::time::Duration;
 
 use chrono::Utc;
 use clap::Clap;
+use serde::{Deserialize, Serialize};
 use serialport::{available_ports, SerialPortBuilder, TTYPort};
 
 use super::{queue::zero::Queue, Result};
@@ -30,6 +34,46 @@ pub const ORAGNTE_PI_UART2: &str = "/dev/ttyS2";
 pub const USB0: &str = "/dev/ttyUSB0";
 pub const USB1: &str = "/dev/ttyUSB1";
 pub const RASPBERRY_PI_UART1: &str = "/dev/serial0";
+
+lazy_static! {
+    static ref UUID: Mutex<u16> = Mutex::new(u16::MIN);
+}
+
+#[derive(PartialEq, Serialize, Deserialize, Debug, Clone)]
+pub struct Uuid(u16);
+
+impl Default for Uuid {
+    fn default() -> Self {
+        loop {
+            if let Ok(mut it) = UUID.lock() {
+                *it += 1;
+                if *it == u16::MAX {
+                    *it = 1;
+                }
+                return Self(*it);
+            }
+        }
+    }
+}
+
+impl fmt::Display for Uuid {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:04X}", self.0)
+    }
+}
+
+impl Uuid {
+    pub fn new(s: &str) -> Result<Self> {
+        let v = u16::from_str_radix(s, 16)?;
+        Ok(Self(v))
+    }
+    pub fn null() -> Self {
+        Self(u16::MAX)
+    }
+    pub fn zero() -> Self {
+        Self(u16::MIN)
+    }
+}
 
 pub fn ports() -> Result<Vec<String>> {
     let items = available_ports()?

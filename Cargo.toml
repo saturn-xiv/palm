@@ -109,6 +109,10 @@ version = "1"
 default-features = false
 features = ["postgres", "mysql", "sqlite", "chrono", "serde_json", "uuid", "numeric", "r2d2", "128-column-tables"]
 
+[dependencies.rss]
+version = "1"
+features = ["validation"]
+
 [dependencies.serde]
 version = "1"
 features = ["derive"]
