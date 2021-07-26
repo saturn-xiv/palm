@@ -1,9 +1,11 @@
 pub mod g786;
+pub mod modbus;
 
 use std::fmt;
 use std::io::{prelude::*, ErrorKind as IoErrorKind};
 use std::num::ParseIntError;
 use std::ops::Deref;
+use std::path::PathBuf;
 use std::result::Result as StdResult;
 use std::str::FromStr;
 use std::sync::Mutex;
@@ -22,12 +24,15 @@ pub struct Tty {
     #[clap(short, long)]
     pub port: u16,
     #[clap(short, long)]
-    pub name: String,
+    pub name: PathBuf,
 }
 
 impl Tty {
     pub fn open(&self) -> Result<TTYPort> {
-        let tty = open(serialport::new(&self.name, 9600).timeout(Duration::from_millis(10)))?;
+        let name = self.name.display();
+        info!("open serial port {}", name);
+        let tty =
+            open(serialport::new(&name.to_string(), 9600).timeout(Duration::from_millis(10)))?;
         Ok(tty)
     }
 }
