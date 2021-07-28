@@ -1,5 +1,6 @@
 use std::ops::Deref;
 use std::path::{Path, PathBuf};
+use std::process::Command;
 
 use sdl2::mixer::{
     self, allocate_channels, get_chunk_decoder, get_chunk_decoders_number, get_music_decoder,
@@ -10,15 +11,22 @@ use serde::{Deserialize, Serialize};
 
 use super::{queue::zero::Queue, Result};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(PartialEq, Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "camelCase")]
 pub enum Message {
     Play {
         file: PathBuf,
-        count: i32,
-        volume: i32,
+        count: usize,
+        volume: u8,
     },
     Stop,
+    Tts {
+        voice: String,
+        speed: usize,
+        gap: u8,
+        message: String,
+        volume: f32,
+    },
 }
 
 fn hook_finished() {
@@ -78,14 +86,32 @@ pub fn listen<P: AsRef<Path>>(name: &str, file: P) -> Result<()> {
                 volume,
             } => {
                 music = Music::from_file(file)?;
-                Music::set_volume(volume);
+                Music::set_volume(volume as i32);
                 debug!("music => {:?}", music);
                 debug!("music type => {:?}", music.get_type());
                 debug!("music volume => {:?}", Music::get_volume());
-                debug!("play => {:?}", music.play(count));
+                debug!("play => {:?}", music.play(count as i32));
             }
             Message::Stop => {
                 Music::halt();
+            }
+            Message::Tts {
+                voice,
+                speed,
+                gap,
+                message,
+                volume: _volume,
+            } => {
+                // https://github.com/espeak-ng/espeak-ng/blob/master/src/espeak-ng.1.ronn
+                Command::new("espeak-ng")
+                    .arg("-v")
+                    .arg(&voice)
+                    .arg("-s")
+                    .arg(&speed.to_string())
+                    .arg("-g")
+                    .arg(&gap.to_string())
+                    .arg(&message)
+                    .output()?;
             }
         };
     }
