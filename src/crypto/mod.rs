@@ -27,7 +27,7 @@ pub struct Key(pub String);
 
 impl Default for Key {
     fn default() -> Self {
-        Key(base64::encode(&random::bytes(32)))
+        Self(base64::encode(&random::bytes(32)))
     }
 }
 

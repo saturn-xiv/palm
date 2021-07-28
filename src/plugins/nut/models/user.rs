@@ -13,6 +13,7 @@ use super::super::super::super::{
     crypto::Password, jwt::Jwt, oauth::google::openid::IdToken, orm::postgresql::Connection,
     request::Token as Auth, HttpError, Result,
 };
+use super::role::{Dao as RoleDao, Item as Role};
 use super::schema::users;
 
 pub type Profile = HashMap<String, String>;
@@ -91,6 +92,16 @@ impl Item {
             return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
         }
         Ok(())
+    }
+    pub fn has_role(&self, db: &Connection, role: &str) -> Result<()> {
+        let role = RoleDao::by_code(db, role)?;
+        if RoleDao::has_user(db, role.id, self.id)? {
+            return Ok(());
+        }
+        Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)))
+    }
+    pub fn is_administrator(&self, db: &Connection) -> Result<()> {
+        self.has_role(db, Role::ADMINISTRATOR)
     }
 }
 

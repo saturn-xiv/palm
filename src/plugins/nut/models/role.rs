@@ -43,6 +43,7 @@ pub trait Dao {
     fn associate_group(&self, role: i32, group: i32) -> Result<()>;
     fn dissociate_group(&self, role: i32, group: i32) -> Result<()>;
     fn destory(&self, id: i32) -> Result<()>;
+    fn has_user(&self, role: i32, user: i32) -> Result<bool>;
 }
 
 impl Dao for Connection {
@@ -230,5 +231,13 @@ impl Dao for Connection {
         delete(policies::dsl::policies.filter(policies::dsl::role_id.eq(id))).execute(self)?;
         delete(roles::dsl::roles.filter(roles::dsl::id.eq(id))).execute(self)?;
         Ok(())
+    }
+    fn has_user(&self, role: i32, user: i32) -> Result<bool> {
+        let it: i64 = roles_users::dsl::roles_users
+            .filter(roles_users::dsl::role_id.eq(role))
+            .filter(roles_users::dsl::user_id.eq(user))
+            .count()
+            .first(self)?;
+        Ok(it > 0)
     }
 }

@@ -30,10 +30,27 @@ pub struct Response {
     pub uri: String,
 }
 
+// https://www.twilio.com/docs/sms/tutorials/how-to-confirm-delivery-java
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct DeliveryStatusCallbackForm {
+    #[serde(rename(deserialize = "AccountSid"))]
+    pub account_sid: String,
+    #[serde(rename(deserialize = "From"))]
+    pub from: String,
+    #[serde(rename(deserialize = "MessageSid"))]
+    pub message_sid: String,
+    #[serde(rename(deserialize = "MessageStatus"))]
+    pub message_status: String,
+    #[serde(rename(deserialize = "SmsSid"))]
+    pub sms_sid: String,
+    #[serde(rename(deserialize = "SmsStatus"))]
+    pub sms_status: String,
+}
+
 // https://www.twilio.com/docs/usage/webhooks/sms-webhooks
 // Your status delivery URL will receive an HTTP POST request with the application/x-www-form-urlencoded content type.
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct CallbackForm {
+pub struct IncomingMessagesCallbackForm {
     #[serde(rename(deserialize = "To"))]
     pub to: String,
     #[serde(rename(deserialize = "AccountSid"))]
@@ -106,6 +123,7 @@ pub struct InboundMessage {
     pub body: String,
 }
 
+// https://www.twilio.com/docs/glossary/what-is-twilio-markup-language-twiml
 impl ToXml for InboundResponse {
     fn write<W: Write>(&self, wrt: &mut EventWriter<W>) -> XmlResult<()> {
         wrt.write(XmlEvent::start_element("Response"))?;
