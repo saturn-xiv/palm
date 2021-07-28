@@ -41,19 +41,23 @@ impl Default for Form {
     fn default() -> Self {
         Self {
             eth: Eth {
-                name: "eth0".to_string(),
+                name: Self::ETH.to_string(),
                 network: Network::default(),
             },
             wlan: Wlan {
-                name: "wlan0".to_string(),
+                name: Self::WLAN.to_string(),
                 network: Network::default(),
                 wifi: None,
             },
         }
     }
 }
+
 impl Form {
     pub const KEY: &'static str = "systemd.network";
+    pub const ETH: &'static str = "eth0";
+    pub const WLAN: &'static str = "wlan0";
+
     #[cfg(debug_assertions)]
     pub fn mac(&self) -> Result<MacAddress> {
         get_mac("wlp3s0")
