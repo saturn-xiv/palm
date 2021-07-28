@@ -135,8 +135,13 @@ RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile
 
 # https://www.rust-lang.org/tools/install
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+# https://doc.rust-lang.org/nightly/rustc/platform-support.html
+RUN zsh -c "source $HOME/.cargo/env \
+    && rustup target add x86_64-unknown-linux-musl"
 RUN zsh -c "source $HOME/.cargo/env \
     && rustup target add armv7-unknown-linux-gnueabihf"
+RUN zsh -c "source $HOME/.cargo/env \
+    && rustup target add armv7-unknown-linux-musleabihf"
 RUN sudo apt install -y libpq-dev libmysqlclient-dev libsqlite3-dev
 RUN zsh -c "source $HOME/.zshrc \
     && cargo install diesel_cli \
