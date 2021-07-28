@@ -24,6 +24,7 @@ pub struct Form {
     pub server: String,
     #[validate(range(min = 5))]
     pub heartbeat: i32,
+    pub enable: bool,
 }
 
 impl Default for Form {
@@ -32,6 +33,7 @@ impl Default for Form {
             timezone: Tz::UTC.name().to_string(),
             server: "0.us.pool.ntp.org".to_string(),
             heartbeat: 60 * 60 * 24,
+            enable: false,
         }
     }
 }
@@ -57,7 +59,7 @@ ntpdate {server}
         )
     }
 
-    pub fn test(&self) -> Result<(DateTime<Local>, Tz)> {
+    pub fn ping(&self) -> Result<(DateTime<Local>, Tz)> {
         let tz = self.timezone.parse::<Tz>()?;
         let now: DateTime<Local> = Response::fetch(&self.server, None)?.into();
         Ok((now, tz))

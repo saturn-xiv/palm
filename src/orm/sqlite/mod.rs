@@ -2,7 +2,7 @@ pub mod schema;
 
 use std::default::Default;
 use std::fmt;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::time::Duration;
 
 use chrono::Utc;
@@ -41,26 +41,28 @@ pub const UP: &str = include_str!("up.sql");
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Config {
-    pub file: String,
+    pub file: PathBuf,
 }
 
 impl Default for Config {
     fn default() -> Self {
         Self {
-            file: format!("{}", Path::new("tmp").join("db").display()),
+            file: Path::new("tmp").join("db"),
         }
     }
 }
 
 impl fmt::Display for Config {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.file)
+        write!(f, "{}", self.file.display())
     }
 }
 
 impl Config {
     pub fn open(&self) -> Result<Pool> {
-        let manager = diesel::r2d2::ConnectionManager::<Connection>::new(&self.to_string()[..]);
+        let manager = diesel::r2d2::ConnectionManager::<Connection>::new(
+            &self.file.display().to_string()[..],
+        );
         Ok(Pool::new(manager)?)
     }
 }
