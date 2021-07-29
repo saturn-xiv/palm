@@ -2,6 +2,8 @@
 
 set -e
 
+# sudo apt install musl-tools musl-dev
+
 declare -a targets=(
     "x86_64-unknown-linux-gnu"
     "x86_64-unknown-linux-musl"

@@ -5,8 +5,8 @@ RUN apk update
 RUN apk upgrade
 RUN apk add perl vim curl zsh sudo pwgen openssl git tmux screen \
     build-base cmake \
-    postgresql-dev sqlite-dev
-
+    libudev-zero-dev sdl2-dev libunwind-dev \
+    postgresql-dev mariadb-dev sqlite-dev
 
 # deploy
 RUN adduser -D -s /bin/zsh deploy
