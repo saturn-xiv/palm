@@ -44,9 +44,9 @@ where
     queue.consume(topic, &move |topic, payload| {
         // let (topic, id, payload) = queue.receive()?;
         info!("receive message from {}", topic);
-        let payload = flexbuffers::from_slice(&payload)?;
+        let payload = flexbuffers::from_slice(payload)?;
         debug!("{:?}", payload);
-        handler.handle(&topic, &payload)?;
+        handler.handle(topic, &payload)?;
         info!("done {}", topic);
         Ok(())
     })

@@ -139,7 +139,7 @@ impl Response {
         socket: &UdpSocket,
     ) -> io::Result<SocketAddr> {
         for addr in dest {
-            match Self::send_request(&req, &socket, addr) {
+            match Self::send_request(req, socket, addr) {
                 Ok(_) => {
                     return Ok(addr);
                 }

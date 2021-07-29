@@ -135,7 +135,7 @@ impl Dao for Connection {
         for it in items {
             info!("find locale {}", it.lang);
             for node in YamlLoader::load_from_str(it.body)? {
-                let (i, f) = loop_yaml(&self, it.lang, None, node)?;
+                let (i, f) = loop_yaml(self, it.lang, None, node)?;
                 inserted += i;
                 find += f;
             }

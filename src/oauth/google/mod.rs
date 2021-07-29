@@ -99,7 +99,7 @@ impl Web {
             "https://accounts.google.com/o/oauth2/v2/auth?".to_string(),
         )
         .append_pair("client_id", &self.client_id)
-        .append_pair("redirect_uri", &redirect_uri)
+        .append_pair("redirect_uri", redirect_uri)
         .append_pair(
             "scope",
             &scope
