@@ -102,7 +102,7 @@ features = ["r2d2", "cluster"]
 
 [dependencies.sdl2]
 version = "0.34"
-features = ["bundled", "mixer"]
+features = ["bundled", "static-link", "mixer"]
 
 [dependencies.diesel]
 version = "1"
