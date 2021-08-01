@@ -133,6 +133,25 @@ RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz -O $HOME/do
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile
 
+# https://github.com/rbenv/rbenv#installation
+RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
+RUN cd $HOME/.rbenv && src/configure && make -C src
+RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.profile
+RUN echo 'eval "$(rbenv init - zsh)"' >> ~/.profile
+# https://github.com/rbenv/rbenv-vars
+RUN git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+# https://github.com/rbenv/ruby-build#readme
+RUN git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars
+ENV RUBY_VERSION "3.0.2"
+RUN sudo apt install libssl-dev
+RUN zsh -c "source $HOME/.zshrc \
+    && rbenv install ${RUBY_VERSION} \
+    && rbenv global ${RUBY_VERSION}"
+# https://guides.rubyonrails.org/v5.0/getting_started.html
+RUN zsh -c "source $HOME/.zshrc \
+    && gem install bundler \
+    && gem install rails"
+
 # https://www.rust-lang.org/tools/install
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 # https://doc.rust-lang.org/nightly/rustc/platform-support.html

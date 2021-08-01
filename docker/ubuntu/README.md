@@ -15,7 +15,7 @@ podman run --rm -it --userns=keep-id --hostname=palm --user=$(id -ur):$(id -gr) 
 # check services
 > supervisorctl status
 # setup redis clusters
-> ./docker/ubuntu/redis/setup.sh
+> /etc/redis/setup.sh
 # test redis connections
 > redis-cli -p 6371
 # enable rabbitmq Management Plugin: user`guest` password`guest` 
