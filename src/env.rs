@@ -3,8 +3,34 @@ use std::io::prelude::*;
 use std::path::Path;
 
 use askama::Template;
+use serde::{Deserialize, Serialize};
 
-use super::Result;
+use super::{
+    cache::redis::Config as Redis, crypto::Key, orm::postgresql::Config as PostgreSql,
+    queue::amqp::Config as RabbitMq, Result,
+};
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct Config {
+    pub secrets: String,
+    pub port: u16,
+    pub postgresql: PostgreSql,
+    pub redis: Redis,
+    pub rabbitmq: RabbitMq,
+}
+
+impl Default for Config {
+    fn default() -> Self {
+        Self {
+            secrets: Key::default().0,
+            port: 8080,
+            postgresql: PostgreSql::default(),
+            redis: Redis::default(),
+            rabbitmq: RabbitMq::default(),
+        }
+    }
+}
 
 #[derive(Template)]
 #[template(path = "nginx.conf", escape = "none")]

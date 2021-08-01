@@ -8,6 +8,7 @@ extern crate lazy_static;
 #[macro_use]
 pub mod macros;
 
+pub mod app;
 pub mod audio;
 pub mod aws;
 pub mod cache;
@@ -48,6 +49,12 @@ use xml::writer::{EventWriter, Result as XmlWriterResult};
 pub use self::result::{Error, HttpError, HttpResult, Result};
 
 include!(concat!(env!("OUT_DIR"), "/env.rs"));
+
+pub const NAME: &str = env!("CARGO_PKG_NAME");
+pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");
+pub const HOMEPAGE: &str = env!("CARGO_PKG_HOMEPAGE");
+pub const AUTHORS: &str = env!("CARGO_PKG_AUTHORS");
+// pub const BANNER: &str = include_str!("banner.txt");
 
 #[derive(Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

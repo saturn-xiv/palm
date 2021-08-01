@@ -2,7 +2,7 @@ pub mod g786;
 pub mod modbus;
 
 use std::fmt;
-use std::io::{prelude::*, ErrorKind as IoErrorKind};
+use std::io::{prelude::*, Error as IoError, ErrorKind as IoErrorKind};
 use std::num::ParseIntError;
 use std::ops::Deref;
 use std::path::{Path, PathBuf};
@@ -214,5 +214,27 @@ impl SerialPort {
             StatusCode::BAD_REQUEST,
             Some("write tty failed.".to_string()),
         )))
+    }
+}
+
+pub fn write<T: DeserializeOwned>(name: &str, buffer: &[u8], port: u16, ttl: i64) -> Result<T> {
+    let raw = Queue::Ipc(name.to_string()).push()?;
+    let js = Queue::Tcp(None, port).sub(None)?;
+    raw.send(buffer, 0)?;
+    let now = Utc::now();
+
+    loop {
+        let msg = js.recv_msg(0)?;
+        let msg = msg.deref();
+        if let Ok(it) = serde_json::from_slice(msg) {
+            return Ok(it);
+        }
+
+        if (Utc::now() - now) >= chrono::Duration::seconds(ttl) {
+            return Err(Box::new(IoError::new(
+                IoErrorKind::TimedOut,
+                "can't get the expect response",
+            )));
+        }
     }
 }

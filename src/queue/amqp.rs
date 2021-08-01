@@ -18,7 +18,7 @@ use super::super::{HttpError, Result};
 pub struct Config {
     pub host: String,
     pub port: u16,
-    pub username: String,
+    pub user: String,
     pub password: String,
     #[serde(rename = "virtual-host")]
     pub virtual_host: String,
@@ -29,7 +29,7 @@ impl Default for Config {
         Self {
             host: "127.0.0.1".to_string(),
             port: 5672,
-            username: "guest".to_string(),
+            user: "guest".to_string(),
             password: "guest".to_string(),
             virtual_host: "/demo".to_string(),
         }
@@ -45,7 +45,7 @@ impl Config {
                     port: self.port,
                     host: self.host.clone(),
                     userinfo: AMQPUserInfo {
-                        username: self.username.clone(),
+                        username: self.user.clone(),
                         password: self.password.clone(),
                     },
                 },
