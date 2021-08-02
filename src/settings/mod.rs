@@ -13,13 +13,6 @@ use super::{
     Result,
 };
 
-#[cfg(feature = "mysql")]
-pub use self::mysql::*;
-#[cfg(feature = "postgresql")]
-pub use self::postgresql::*;
-#[cfg(feature = "sqlite")]
-pub use self::sqlite::*;
-
 use schema::settings;
 
 lazy_static! {

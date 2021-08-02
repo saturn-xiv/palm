@@ -17,7 +17,7 @@ pub type PooledConnection = r2d2::PooledConnection<Connection>;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
-    pub hosts: Vec<(String, u16)>,
+    pub hosts: Vec<String>,
     pub password: Option<String>,
     pub pool: Option<u32>,
 }
@@ -40,12 +40,12 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             hosts: vec![
-                ("127.0.0.1".to_string(), 6371),
-                ("127.0.0.1".to_string(), 6372),
-                ("127.0.0.1".to_string(), 6373),
-                ("127.0.0.1".to_string(), 6374),
-                ("127.0.0.1".to_string(), 6375),
-                ("127.0.0.1".to_string(), 6376),
+                "127.0.0.1:6371".to_string(),
+                "127.0.0.1:6372".to_string(),
+                "127.0.0.1:6373".to_string(),
+                "127.0.0.1:6374".to_string(),
+                "127.0.0.1:6375".to_string(),
+                "127.0.0.1:6376".to_string(),
             ],
             password: None,
             pool: Some(32),
