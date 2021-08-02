@@ -45,7 +45,7 @@ build_backend() {
             libpq-dev libmysqlclient-dev libsqlite3-dev
         
         local target="x86_64-unknown-linux-gnu"
-        cargo build --target $target --release palm
+        cargo build --target $target --release
         cp -av $WORKSPACE/target/$target/release/palm $TARGET/usr/bin/
         strip -s $TARGET/usr/bin/palm
     elif [ "$1" = "armhf" ]
@@ -65,7 +65,7 @@ build_backend() {
 
         local target="armv7-unknown-linux-gnueabihf"
         
-        cargo build --target $target --release palm
+        cargo build --target $target --release
         cp -av target/$target/release/palm $TARGET/usr/bin/
         arm-linux-gnueabihf-strip -s target/$target/release/palm
     else
