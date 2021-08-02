@@ -51,7 +51,7 @@ build_backend() {
     elif [ "$1" = "armhf" ]
     then
         sudo apt -y install libc6-dev:armhf libudev-dev:armhf \
-            libpq-dev:armhf libmysqlclient-dev:armhf libsqlite3-dev:armhf
+            libpq5:armhf libpq-dev:armhf libmysqlclient-dev:armhf libsqlite3-dev:armhf
 
         PKG_CONFIG_ALLOW_CROSS=1
         PKG_CONFIG_DIR=
