@@ -17,10 +17,10 @@ fi
 # ---------------------------------
 export WORKSPACE=$PWD
 export VERSION=$(git describe --tags --always --dirty --first-parent)
-export TARGET=$WORKSPACE/tmp/fig-$1-$VERSION/target
+export TARGET=$WORKSPACE/tmp/palm-$1-$VERSION/target
 # ---------------------------------
 prepare_build() {
-    if [ -f $TARGET/../fig_*.deb ]
+    if [ -f $TARGET/../palm_*.deb ]
     then
         echo "ingore..."
         exit 0
@@ -31,11 +31,11 @@ prepare_build() {
         rm -rf $TARGET
     fi
     mkdir -pv $TARGET/usr/bin
-    cp -r $WORKSPACE/fig/debian $TARGET/
+    cp -r $WORKSPACE/debian $TARGET/
 }
 
 build_backend() {
-    export PKG_CONFIG_ALL_STATIC=1
+    export PKG_CONpalm_ALL_STATIC=1
     # export SQLITE3_STATIC=1
     # FIXME
     # export PQ_LIB_STATIC=1 
@@ -45,9 +45,9 @@ build_backend() {
             libpq-dev libmysqlclient-dev libsqlite3-dev
         
         local target="x86_64-unknown-linux-gnu"
-        cargo build --target $target --release --package fig
-        cp -av $WORKSPACE/target/$target/release/fig $TARGET/usr/bin/
-        strip -s $TARGET/usr/bin/fig
+        cargo build --target $target --release palm
+        cp -av $WORKSPACE/target/$target/release/palm $TARGET/usr/bin/
+        strip -s $TARGET/usr/bin/palm
     elif [ "$1" = "armhf" ]
     then
         sudo apt -y install libc6-dev:armhf libudev-dev:armhf \
@@ -65,9 +65,9 @@ build_backend() {
 
         local target="armv7-unknown-linux-gnueabihf"
         
-        cargo build --target $target --release --package fig
-        cp -av target/$target/release/fig $TARGET/usr/bin/
-        arm-linux-gnueabihf-strip -s target/$target/release/fig
+        cargo build --target $target --release palm
+        cp -av target/$target/release/palm $TARGET/usr/bin/
+        arm-linux-gnueabihf-strip -s target/$target/release/palm
     else
         echo "unknown arch $1"
         exit 1
@@ -89,17 +89,17 @@ build_frontend(){
     cd $WORKSPACE/dashboard
     yarn build
 
-    mkdir -pv $TARGET/usr/share/fig
-    cp -av $WORKSPACE/node_modules $TARGET/usr/share/fig/
-    cp -av $WORKSPACE/dashboard/dist $TARGET/usr/share/fig/dashboard
+    mkdir -pv $TARGET/usr/share/palm
+    cp -av $WORKSPACE/node_modules $TARGET/usr/share/palm/
+    cp -av $WORKSPACE/dashboard/build $TARGET/usr/share/palm/dashboard
 }
 
 build_deb() {
-    mkdir -pv $TARGET/etc/fig
-    cp -r $WORKSPACE/LICENSE $WORKSPACE/README.md $WORKSPACE/package.json $TARGET/etc/fig/
-    echo "$VERSION $(date -R)" > $TARGET/etc/fig/VERSION
+    mkdir -pv $TARGET/etc/palm
+    cp -r $WORKSPACE/LICENSE $WORKSPACE/README.md $WORKSPACE/package.json $TARGET/etc/palm/
+    echo "$VERSION $(date -R)" > $TARGET/etc/palm/VERSION
 
-    mkdir -pv $TARGET/var/lib/fig
+    mkdir -pv $TARGET/var/lib/palm
 
     mkdir -pv $TARGET/lib/systemd/system/
 

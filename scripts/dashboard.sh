@@ -11,7 +11,7 @@ yarn add react-intl \
     redux react-redux react-router-dom react-intl react-hook-form \
     moment moment-timezone react-moment \
     @material-ui/core@next @emotion/react @emotion/styled @material-ui/icons@next @fontsource/roboto \
-    js-cookie jwt-decode dinero    
+    grpc-web js-cookie jwt-decode dinero    
 
 echo 'done.'
 
