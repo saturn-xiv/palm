@@ -20,11 +20,15 @@ juniper_actix = "0.4"
 log = "0.4"
 serde-xml-rs = "0.4"
 yaml-rust = "0.4"
+tonic = "0.5"
 actix-multipart = "0.4.0-beta.5"
 actix-session = "0.5.0-beta.2"
 toml = "0.5"
 actix-files = "0.6.0-beta.6"
 encoding_rs = "0.8"
+prost = "0.8"
+prost-types = "0.8"
+prost-derive = "0.8"
 r2d2 = "0.8"
 rand = "0.8"
 xml-rs = "0.8"
@@ -131,3 +135,6 @@ features = ["serde"]
 [dependencies.openssl]
 version = "*"
 features = ["vendored"]
+
+[build-dependencies]
+tonic-build = "0.5"

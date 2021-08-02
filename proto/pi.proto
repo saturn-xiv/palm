@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package palm.pi.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/duration.proto";
+
+service User {
+  rpc SignIn(UserProfile) returns (SignInResponse);
+  rpc GetProfile(google.protobuf.Empty) returns (UserProfile);
+  rpc SetProfile(UserProfile) returns (google.protobuf.Empty);
+  rpc Logs(google.protobuf.Empty) returns (LogsResponse);
+  rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+message UserProfile {
+  string user = 1;
+  string password = 2;
+}
+
+message SignInResponse { string token = 1; }
+
+message LogsResponse { repeated string message = 1; }
+
+service Os {
+  rpc Uptime(google.protobuf.Empty) returns (google.protobuf.Duration);
+}

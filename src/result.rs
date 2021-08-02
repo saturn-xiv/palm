@@ -25,6 +25,13 @@ impl fmt::Display for HttpError {
     }
 }
 
+// impl From<Error> for String {
+//     fn from(err: Error) -> Self {
+//         err.to_string()
+//         // Self::internal(err)
+//     }
+// }
+
 impl From<Error> for HttpError {
     fn from(err: Error) -> Self {
         Self(StatusCode::INTERNAL_SERVER_ERROR, Some(err.to_string()))

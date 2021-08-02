@@ -12,6 +12,9 @@ fn shell(cmd: &mut Command) -> String {
 }
 
 fn main() {
+    for it in ["nut", "pi"] {
+        tonic_build::compile_protos(&format!("proto/{}.proto", it)).unwrap();
+    }
     {
         let out_dir = env::var("OUT_DIR").unwrap();
         let git_version = shell(
