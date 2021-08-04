@@ -8,10 +8,7 @@ pub mod api {
 use std::net::IpAddr;
 
 use serde::{Deserialize, Serialize};
-use tonic::{
-    metadata::{KeyAndValueRef, MetadataMap},
-    Request,
-};
+use tonic::{metadata::MetadataMap, Request};
 
 use super::super::super::Result;
 
@@ -26,17 +23,17 @@ impl Session {
     const AUTHORIZAATION: &'static str = "authorization";
     const BEARER: &'static str = "Bearer ";
 
-    pub fn new<T>(req: &Request<T>) -> Result<Self> {
+    pub fn new<T>(req: &Request<T>) -> Self {
         let mt = req.metadata();
-        for it in mt.iter() {
-            if let KeyAndValueRef::Ascii(ref key, ref val) = it {
-                debug!("{} => {}", key, val.to_str()?);
-            }
-        }
-        Ok(Self {
+        // for it in mt.iter() {
+        //     if let KeyAndValueRef::Ascii(ref key, val) = it {
+        //         debug!("{} => {}", key, val.to_str()?);
+        //     }
+        // }
+        Self {
             peer: req.remote_addr().map(|x| x.ip()),
             token: Self::authorization(mt),
-        })
+        }
     }
 
     fn authorization(mt: &MetadataMap) -> Option<String> {

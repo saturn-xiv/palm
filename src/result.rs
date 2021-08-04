@@ -7,6 +7,7 @@ use hyper::StatusCode;
 
 pub type Error = Box<dyn StdError + Send + Sync>;
 pub type Result<T> = StdResult<T, Error>;
+pub type GrpcResult<T> = StdResult<T, tonic::Status>;
 
 #[derive(Debug)]
 pub struct HttpError(pub StatusCode, pub Option<String>);

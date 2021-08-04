@@ -1,4 +1,15 @@
 #[macro_export]
+macro_rules! __try_grpc {
+    ($r:expr, $s:expr) => {{
+        $r.map_err(|x| x.to_string()).map_err($s)
+    }};
+    ($r:expr) => {{
+        $r.map_err(|x| x.to_string())
+            .map_err(tonic::Status::internal)
+    }};
+}
+
+#[macro_export]
 macro_rules! __tty_write {
     ($n:expr, $m:expr) => {{
         let q = nut::queue::zero::Queue::Ipc($n.to_string()).push()?;

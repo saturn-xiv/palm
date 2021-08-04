@@ -13,8 +13,11 @@ use super::super::super::super::{
     crypto::Password, jwt::Jwt, oauth::google::openid::IdToken, orm::postgresql::Connection,
     request::Token as Auth, HttpError, Result,
 };
-use super::role::{Dao as RoleDao, Item as Role};
-use super::schema::users;
+use super::super::services::Session as GrpcSession;
+use super::{
+    role::{Dao as RoleDao, Item as Role},
+    schema::users,
+};
 
 pub type Profile = HashMap<String, String>;
 
@@ -77,6 +80,16 @@ impl fmt::Display for Item {
 }
 
 impl Item {
+    fn new(db: &Connection, jwt: &Jwt, token: &str) -> Result<Item> {
+        let token = jwt.parse::<Token>(token)?;
+        let token = token.claims;
+        if token.act != Token::SIGN_IN {
+            return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
+        }
+        let it = Dao::by_uid(db, &token.uid)?;
+        it.available()?;
+        Ok(it)
+    }
     pub fn profile(&self) -> Result<Profile> {
         let val = flexbuffers::from_slice(&self.profile)?;
         Ok(val)
@@ -430,13 +443,18 @@ pub trait CurrentUser {
 
 impl CurrentUser for Auth {
     fn current_user(&self, db: &Connection, jwt: &Jwt) -> Result<Item> {
-        let token = jwt.parse::<Token>(&self.0)?;
-        let token = token.claims;
-        if token.act != Token::SIGN_IN {
-            return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
+        Item::new(db, jwt, &self.0)
+    }
+}
+
+impl CurrentUser for GrpcSession {
+    fn current_user(&self, db: &Connection, jwt: &Jwt) -> Result<Item> {
+        if let Some(ref token) = self.token {
+            return Item::new(db, jwt, token);
         }
-        let it = Dao::by_uid(db, &token.uid)?;
-        it.available()?;
-        Ok(it)
+        Err(Box::new(HttpError(
+            StatusCode::NON_AUTHORITATIVE_INFORMATION,
+            None,
+        )))
     }
 }

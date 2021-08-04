@@ -99,18 +99,18 @@ impl Wpa {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
-pub enum Network {
+pub enum Ip {
     Dhcp,
     Static {
         address: String,
         netmask: String,
         gateway: String,
         dns1: String,
-        dns2: String,
+        dns2: Option<String>,
     },
 }
 
-impl Default for Network {
+impl Default for Ip {
     fn default() -> Self {
         Self::Dhcp
     }

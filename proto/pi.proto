@@ -6,22 +6,130 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
 
 service User {
-  rpc SignIn(UserProfile) returns (SignInResponse);
+  rpc SignIn(UserProfile) returns (TokenResponse);
   rpc GetProfile(google.protobuf.Empty) returns (UserProfile);
   rpc SetProfile(UserProfile) returns (google.protobuf.Empty);
-  rpc Logs(google.protobuf.Empty) returns (LogsResponse);
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Token(google.protobuf.Duration) returns (TokenResponse);
 }
 
 message UserProfile {
-  string user = 1;
+  string name = 1;
   string password = 2;
 }
 
-message SignInResponse { string token = 1; }
-
-message LogsResponse { repeated string message = 1; }
+message TokenResponse { string token = 1; }
 
 service Os {
-  rpc Uptime(google.protobuf.Empty) returns (google.protobuf.Duration);
+  rpc Logs(LogsRequest) returns (LinesResponse);
+  rpc Status(google.protobuf.Empty) returns (StatusResponse);
+  rpc Reboot(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Reset(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Dump(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Restore(RestoreRequest) returns (google.protobuf.Empty);
+
+  rpc GetNetwork(google.protobuf.Empty) returns (NetworkProfile);
+  rpc SetNetwork(NetworkProfile) returns (google.protobuf.Empty);
+  rpc Ping(PingRequest) returns (LinesResponse);
+  rpc Dns(DnsRequest) returns (LinesResponse);
+
+  rpc GetVpn(google.protobuf.Empty) returns (VpnProfile);
+  rpc SetVpn(VpnProfile) returns (google.protobuf.Empty);
+
+  rpc GetNtp(google.protobuf.Empty) returns (NtpProfile);
+  rpc SetNtp(NtpProfile) returns (google.protobuf.Empty);
+}
+
+message RestoreRequest { string version = 1; }
+
+message StatusResponse {
+  message Uname {
+    string sys = 1;
+    string node = 2;
+    string machine = 3;
+    string release = 4;
+    string version = 5;
+  }
+  message Load {
+    double one = 1;
+    double five = 2;
+    double fifteen = 3;
+  }
+  message Range {
+    uint64 total = 1;
+    uint64 free = 2;
+  }
+  google.protobuf.Duration uptime = 1;
+  Uname uname = 2;
+  uint32 process = 3;
+  Load load = 4;
+  Range ram = 5;
+  Range swap = 6;
+
+  repeated string versions = 100;
+}
+
+message LogsRequest { string name = 1; }
+
+message DnsRequest {
+  optional string server = 1;
+  string host = 2;
+}
+
+message PingRequest { string host = 1; }
+
+message VpnProfile {
+  bool enable = 1;
+  string body = 2;
+}
+
+message NtpProfile {
+  bool enable = 1;
+  string timezone = 2;
+  repeated string servers = 3;
+  uint64 heartbeat = 4;
+}
+
+message LinesResponse { repeated string messages = 1; }
+
+message NetworkProfile {
+  message Eth {
+    string name = 1;
+    oneof ip {
+      bool dhcp = 10;
+      Static static = 11;
+    }
+  }
+  message Open { string ssid = 1; }
+  message Psk {
+    string ssid = 1;
+    string password = 2;
+  }
+  message Eap {
+    string ssid = 1;
+    string identity = 2;
+    string password = 3;
+  }
+  message Wlan {
+    string name = 1;
+    oneof wifi {
+      Open open = 11;
+      Psk psk = 12;
+      Eap eap = 13;
+    }
+    oneof ip {
+      bool dhcp = 20;
+      Static static = 21;
+    }
+  }
+  message Static {
+    string address = 1;
+    string netmask = 2;
+    string gateway = 3;
+    string dns1 = 4;
+    optional string dns2 = 5;
+  }
+
+  Eth eth = 1;
+  Wlan wlan = 2;
 }
