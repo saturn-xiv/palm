@@ -10,7 +10,7 @@ pub mod mail;
 pub mod metrics;
 pub mod nut;
 pub mod pi;
-pub mod sms;
 pub mod survey;
+pub mod twilio;
 pub mod vpn;
 pub mod workflow;

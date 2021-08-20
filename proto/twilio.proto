@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package palm.plugins.twilio.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+import "nut.proto";
+
+service Twilio {
+  rpc Send(TextMessage) returns (google.protobuf.Empty);
+  rpc Logs(palm.plugins.nut.v1.Page) returns (LogsResponse);
+}
+
+message TextMessage {
+  repeated string to = 1;
+  string body = 2;
+}
+
+message LogsResponse {
+  message Item {
+    uint64 id = 1;
+    string from = 2;
+    string to = 3;
+    string body = 4;
+    google.protobuf.Timestamp created_at = 5;
+  }
+  repeated Item items = 1;
+  palm.plugins.nut.v1.Pagination pagination = 2;
+}

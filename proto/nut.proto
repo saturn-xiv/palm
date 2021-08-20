@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package palm.nut.v1;
+package palm.plugins.nut.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
@@ -73,7 +73,7 @@ message LogsResponse {
     int64 user_id = 2;
     string ip = 3;
     Level level = 4;
-    google.protobuf.Timestamp time_name = 5;
+    google.protobuf.Timestamp created_at = 5;
   }
   repeated Item items = 1;
   Pagination pagination = 2;

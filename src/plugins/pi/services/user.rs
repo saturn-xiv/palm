@@ -14,8 +14,11 @@ use super::super::super::super::{
     Result,
 };
 use super::super::super::nut::{models::user::Token, services::Session};
-use super::super::models::settings::Dao as SettingDao;
-use super::{user_server::User as UserServer, Context, TokenResponse, UserProfile};
+use super::super::{
+    models::settings::Dao as SettingDao,
+    v1::{user_server::User as UserServer, TokenResponse, UserProfile},
+};
+use super::Context;
 
 pub struct Service {
     pub ctx: Arc<Context>,

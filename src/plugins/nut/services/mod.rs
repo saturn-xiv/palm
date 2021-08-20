@@ -1,10 +1,6 @@
 pub mod site;
 pub mod user;
 
-pub mod api {
-    tonic::include_proto!("palm.nut.v1");
-}
-
 use std::net::IpAddr;
 
 use serde::{Deserialize, Serialize};

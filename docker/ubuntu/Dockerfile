@@ -83,6 +83,8 @@ RUN zsh -c "source $HOME/.zshrc \
     && cargo install diesel_cli \
     && cargo install --locked cargo-outdated"
 
+RUN echo 'set-option -g history-limit 10240' > $HOME/.tmux.conf
+
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace

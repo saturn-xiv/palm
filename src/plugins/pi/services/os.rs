@@ -23,12 +23,14 @@ use super::super::super::super::{
     },
     GrpcResult, Result,
 };
-use super::super::models::settings::Dao as SettingDao;
-use super::{
-    network_profile, os_server::Os, status_response, Context, DnsRequest, LinesResponse,
-    LogsRequest, NetworkProfile, NtpProfile, PingRequest, RestoreRequest, StatusResponse,
-    VpnProfile,
+use super::super::{
+    models::settings::Dao as SettingDao,
+    v1::{
+        network_profile, os_server::Os, status_response, DnsRequest, LinesResponse, LogsRequest,
+        NetworkProfile, NtpProfile, PingRequest, RestoreRequest, StatusResponse, VpnProfile,
+    },
 };
+use super::Context;
 
 pub struct Service {
     pub ctx: Arc<Context>,

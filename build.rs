@@ -12,7 +12,7 @@ fn shell(cmd: &mut Command) -> String {
 }
 
 fn main() {
-    for it in ["nut", "pi"] {
+    for it in ["nut", "pi", "twilio"] {
         tonic_build::compile_protos(&format!("proto/{}.proto", it)).unwrap();
     }
     {

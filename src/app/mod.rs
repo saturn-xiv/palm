@@ -4,13 +4,13 @@ pub mod web;
 use std::ops::Deref;
 use std::path::PathBuf;
 
-use clap::Clap;
+use clap::{AppSettings, Clap};
 
 use super::{
     i18n,
     orm::postgresql::console::Database,
     parser::from_toml,
-    plugins::{crawler, nut, sms},
+    plugins::{crawler, nut, twilio},
     settings, Result, VERSION,
 };
 
@@ -23,6 +23,7 @@ use super::env::Config;
     after_help = env!("CARGO_PKG_HOMEPAGE"),
     version = VERSION
 )]
+#[clap(setting = AppSettings::ColoredHelp)]
 pub struct Opts {
     #[clap(short, long, about = "Config file", default_value = "config.toml")]
     pub config: PathBuf,
@@ -32,9 +33,9 @@ pub struct Opts {
 
 #[derive(Clap)]
 pub enum SubCommand {
-    #[clap(about = "Generate")]
+    #[clap(subcommand, about = "Generate")]
     Generate(generate::Generate),
-    #[clap(about = "PostgreSql")]
+    #[clap(subcommand, about = "PostgreSql")]
     Db(Database),
     #[clap(about = "Http Server")]
     Web,
@@ -58,7 +59,7 @@ pub async fn launch() -> Result<()> {
                     i18n::locale::MIGRATION.deref(),
                     nut::models::MIGRATION.deref(),
                     crawler::models::MIGRATION.deref(),
-                    sms::models::MIGRATION.deref(),
+                    twilio::models::MIGRATION.deref(),
                 ],
             )?;
         }

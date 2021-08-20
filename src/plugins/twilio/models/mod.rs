@@ -8,7 +8,7 @@ pub const DOWN: &str = include_str!("down.sql");
 
 lazy_static! {
     pub static ref MIGRATION: Migration<'static> = Migration {
-        name: "create-sms",
+        name: "create-twilio",
         version: "20210730180934",
         up: UP,
         down: DOWN

@@ -10,5 +10,3 @@ pub struct Context {
     pub jwt: Arc<Jwt>,
     pub aes: Arc<Aes>,
 }
-
-tonic::include_proto!("palm.pi.v1");
