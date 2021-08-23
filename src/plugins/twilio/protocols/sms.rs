@@ -4,7 +4,7 @@ use std::io::Write;
 use serde::{Deserialize, Serialize};
 use xml::writer::{EventWriter, Result as XmlResult, XmlEvent};
 
-use super::super::ToXml;
+use super::super::super::super::ToXml;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Response {

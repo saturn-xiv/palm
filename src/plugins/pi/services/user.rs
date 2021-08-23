@@ -10,56 +10,60 @@ use tonic::{Request, Response, Status};
 use validator::Validate;
 
 use super::super::super::super::{
-    crypto::Aes, jwt::Jwt, orm::sqlite::Connection, request::Token as Auth, GrpcResult, HttpError,
-    Result,
+    crypto::Aes,
+    jwt::Jwt,
+    orm::sqlite::{Connection, Pool as DbPool},
+    request::Token as Auth,
+    GrpcResult, HttpError, Result,
 };
 use super::super::super::nut::{models::user::Token, services::Session};
 use super::super::{
     models::settings::Dao as SettingDao,
     v1::{user_server::User as UserServer, TokenResponse, UserProfile},
 };
-use super::Context;
 
 pub struct Service {
-    pub ctx: Arc<Context>,
+    pub db: DbPool,
+    pub jwt: Arc<Jwt>,
+    pub aes: Arc<Aes>,
 }
 
 #[tonic::async_trait]
 impl UserServer for Service {
     async fn set_profile(&self, req: Request<UserProfile>) -> GrpcResult<Response<()>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
+        let db = try_grpc!(self.db.get())?;
+        let db = db.deref();
+
         let req = req.into_inner();
         let fm = User {
             name: req.name,
             password: req.password,
         };
-        __try_grpc!(fm.validate())?;
-        let db = __try_grpc!(self.ctx.db.get())?;
-        let db = db.deref();
-        let aes = self.ctx.aes.deref();
-        __try_grpc!(SettingDao::set(db, aes, User::KEY, &fm, true))?;
+        try_grpc!(fm.validate())?;
+        let aes = self.aes.deref();
+        try_grpc!(SettingDao::set(db, aes, User::KEY, &fm, true))?;
         Ok(Response::new(()))
     }
     async fn get_profile(&self, req: Request<()>) -> GrpcResult<Response<UserProfile>> {
-        self.ctx.current_user(&req)?;
-
-        let db = __try_grpc!(self.ctx.db.get())?;
+        current_pi_user!(self, &req);
+        let db = try_grpc!(self.db.get())?;
         let db = db.deref();
-        let aes = self.ctx.aes.deref();
-        let user: User = __try_grpc!(SettingDao::get(db, aes, User::KEY))?;
+        let aes = self.aes.deref();
+        let user: User = try_grpc!(SettingDao::get(db, aes, User::KEY))?;
 
         Ok(Response::new(UserProfile {
-            name: user.name.clone(),
-            password: user.password,
+            name: user.name,
+            password: String::new(),
         }))
     }
     async fn sign_in(&self, req: Request<UserProfile>) -> GrpcResult<Response<TokenResponse>> {
         let req = req.into_inner();
 
-        let db = __try_grpc!(self.ctx.db.get())?;
+        let db = try_grpc!(self.db.get())?;
         let db = db.deref();
-        let aes = self.ctx.aes.deref();
-        let user: User = __try_grpc!(SettingDao::get(db, aes, User::KEY))?;
+        let aes = self.aes.deref();
+        let user: User = try_grpc!(SettingDao::get(db, aes, User::KEY))?;
         let form = User {
             name: req.name,
             password: req.password,
@@ -68,7 +72,7 @@ impl UserServer for Service {
             return Err(Status::invalid_argument("bad name and password"));
         }
         let (nbf, exp) = Jwt::timestamps(ChronoDuration::weeks(1));
-        let token = __try_grpc!(self.ctx.jwt.sum(
+        let token = try_grpc!(self.jwt.sum(
             None,
             &Token {
                 uid: user.name.clone(),
@@ -83,13 +87,13 @@ impl UserServer for Service {
         Ok(Response::new(TokenResponse { token }))
     }
     async fn token(&self, req: Request<Duration>) -> GrpcResult<Response<TokenResponse>> {
-        let user = self.ctx.current_user(&req)?;
+        let user = current_pi_user!(self, &req);
         let req = req.into_inner();
 
         let nbf = Utc::now().naive_utc();
         let exp = nbf.add(ChronoDuration::seconds(req.seconds));
 
-        let token = __try_grpc!(self.ctx.jwt.sum(
+        let token = try_grpc!(self.jwt.sum(
             None,
             &Token {
                 uid: user.name,
@@ -103,7 +107,7 @@ impl UserServer for Service {
         Ok(Response::new(TokenResponse { token }))
     }
     async fn sign_out(&self, req: Request<()>) -> GrpcResult<Response<()>> {
-        let user = self.ctx.current_user(&req)?;
+        let user = current_pi_user!(self, &req);
         warn!("user {} sign out.", user.name);
         Ok(Response::new(()))
     }
@@ -164,17 +168,5 @@ impl CurrentUser for Session {
             StatusCode::NON_AUTHORITATIVE_INFORMATION,
             None,
         )))
-    }
-}
-
-impl Context {
-    pub fn current_user<T>(&self, req: &Request<T>) -> GrpcResult<User> {
-        let ss = Session::new(req);
-        let db = __try_grpc!(self.db.get())?;
-        let it = __try_grpc!(
-            ss.current_user(&db, &self.jwt, &self.aes),
-            Status::unauthenticated
-        )?;
-        Ok(it)
     }
 }

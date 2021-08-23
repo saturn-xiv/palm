@@ -15,14 +15,16 @@ use validator::Validate;
 
 use super::super::super::super::{
     crypto::Aes,
+    jwt::Jwt,
     ntp::Response as NtpResponse,
-    orm::sqlite::Connection as Db,
+    orm::sqlite::{Connection as Db, Pool as DbPool},
     sys::network::{
         ip4 as get_ip4, is_on, mac as get_mac,
         systemd::{Dhcp, Ip, Static, Wifi, Wpa},
     },
     GrpcResult, Result,
 };
+use super::super::super::nut::services::Session;
 use super::super::{
     models::settings::Dao as SettingDao,
     v1::{
@@ -30,18 +32,20 @@ use super::super::{
         NetworkProfile, NtpProfile, PingRequest, RestoreRequest, StatusResponse, VpnProfile,
     },
 };
-use super::Context;
+use super::user::CurrentUser;
 
 pub struct Service {
-    pub ctx: Arc<Context>,
+    pub db: DbPool,
+    pub jwt: Arc<Jwt>,
+    pub aes: Arc<Aes>,
 }
 
 #[tonic::async_trait]
 impl Os for Service {
     async fn logs(&self, req: Request<LogsRequest>) -> GrpcResult<Response<LinesResponse>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
         let req = req.into_inner();
-        let output = __try_grpc!(
+        let output = try_grpc!(
             Command::new("journalctl")
                 .arg("-u")
                 .arg(&req.name)
@@ -54,10 +58,10 @@ impl Os for Service {
             return Err(Status::internal(format!(
                 "{:#?} {}",
                 output.status,
-                __try_grpc!(String::from_utf8(output.stderr))?
+                try_grpc!(String::from_utf8(output.stderr))?
             )));
         }
-        let out = __try_grpc!(String::from_utf8(output.stdout))?;
+        let out = try_grpc!(String::from_utf8(output.stdout))?;
         let lines: Vec<&str> = out.split('\n').collect();
 
         Ok(Response::new(LinesResponse {
@@ -66,8 +70,8 @@ impl Os for Service {
     }
 
     async fn status(&self, req: Request<()>) -> GrpcResult<Response<StatusResponse>> {
-        self.ctx.current_user(&req)?;
-        let si = __try_grpc!(nix::sys::sysinfo::sysinfo())?;
+        current_pi_user!(self, &req);
+        let si = try_grpc!(nix::sys::sysinfo::sysinfo())?;
         let un = nix::sys::utsname::uname();
         let load = si.load_average();
         Ok(Response::new(StatusResponse {
@@ -98,31 +102,31 @@ impl Os for Service {
     }
 
     async fn reboot(&self, req: Request<()>) -> GrpcResult<Response<()>> {
-        self.ctx.current_user(&req)?;
-        __try_grpc!(super::super::super::super::sys::reboot())?;
+        current_pi_user!(self, &req);
+        try_grpc!(super::super::super::super::sys::reboot())?;
         Ok(Response::new(()))
     }
     async fn reset(&self, req: Request<()>) -> GrpcResult<Response<()>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
         // TODO
         Ok(Response::new(()))
     }
     async fn dump(&self, req: Request<()>) -> GrpcResult<Response<()>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
         // TODO
         Ok(Response::new(()))
     }
     async fn restore(&self, req: Request<RestoreRequest>) -> GrpcResult<Response<()>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
         // TODO
         Ok(Response::new(()))
     }
 
     async fn ping(&self, req: Request<PingRequest>) -> GrpcResult<Response<LinesResponse>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
         let req = req.into_inner();
         let form = Ping { host: req.host };
-        let out = __try_grpc!(form.execute())?;
+        let out = try_grpc!(form.execute())?;
         let lines: Vec<&str> = out.split('\n').collect();
 
         Ok(Response::new(LinesResponse {
@@ -130,13 +134,13 @@ impl Os for Service {
         }))
     }
     async fn dns(&self, req: Request<DnsRequest>) -> GrpcResult<Response<LinesResponse>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
         let req = req.into_inner();
         let form = Dns {
             server: req.server.clone(),
             host: req.host,
         };
-        let out = __try_grpc!(form.execute())?;
+        let out = try_grpc!(form.execute())?;
         let lines: Vec<&str> = out.split('\n').collect();
 
         Ok(Response::new(LinesResponse {
@@ -145,10 +149,10 @@ impl Os for Service {
     }
 
     async fn get_network(&self, req: Request<()>) -> GrpcResult<Response<NetworkProfile>> {
-        self.ctx.current_user(&req)?;
-        let db = __try_grpc!(self.ctx.db.get())?;
+        current_pi_user!(self, &req);
+        let db = try_grpc!(self.db.get())?;
         let db = db.deref();
-        let aes = self.ctx.aes.deref();
+        let aes = self.aes.deref();
         let form: Network = SettingDao::get(db, aes, Network::KEY).unwrap_or_default();
         Ok(Response::new(NetworkProfile {
             eth: Some(network_profile::Eth {
@@ -209,16 +213,17 @@ impl Os for Service {
         }))
     }
 
-    async fn set_network(&self, _req: Request<NetworkProfile>) -> GrpcResult<Response<()>> {
+    async fn set_network(&self, req: Request<NetworkProfile>) -> GrpcResult<Response<()>> {
+        current_pi_user!(self, &req);
         // TODO
         Ok(Response::new(()))
     }
 
     async fn get_ntp(&self, req: Request<()>) -> GrpcResult<Response<NtpProfile>> {
-        self.ctx.current_user(&req)?;
-        let db = __try_grpc!(self.ctx.db.get())?;
+        current_pi_user!(self, &req);
+        let db = try_grpc!(self.db.get())?;
         let db = db.deref();
-        let aes = self.ctx.aes.deref();
+        let aes = self.aes.deref();
         let it: Ntp = SettingDao::get(db, aes, Ntp::KEY).unwrap_or_default();
 
         Ok(Response::new(NtpProfile {
@@ -230,7 +235,9 @@ impl Os for Service {
     }
 
     async fn set_ntp(&self, req: Request<NtpProfile>) -> GrpcResult<Response<()>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
+        let db = try_grpc!(self.db.get())?;
+        let db = db.deref();
         let req = req.into_inner();
 
         let form = Ntp {
@@ -239,18 +246,16 @@ impl Os for Service {
             servers: req.servers,
             heartbeat: req.heartbeat as usize,
         };
-        let db = __try_grpc!(self.ctx.db.get())?;
-        let db = db.deref();
-        let aes = self.ctx.aes.deref();
-        __try_grpc!(form.save(db, aes))?;
+
+        try_grpc!(form.save(db, &self.aes))?;
         Ok(Response::new(()))
     }
 
     async fn get_vpn(&self, req: Request<()>) -> GrpcResult<Response<VpnProfile>> {
-        self.ctx.current_user(&req)?;
-        let db = __try_grpc!(self.ctx.db.get())?;
+        current_pi_user!(self, &req);
+        let db = try_grpc!(self.db.get())?;
         let db = db.deref();
-        let aes = self.ctx.aes.deref();
+        let aes = self.aes.deref();
         let it: Vpn = SettingDao::get(db, aes, Vpn::KEY).unwrap_or_default();
 
         Ok(Response::new(VpnProfile {
@@ -260,17 +265,18 @@ impl Os for Service {
     }
 
     async fn set_vpn(&self, req: Request<VpnProfile>) -> GrpcResult<Response<()>> {
-        self.ctx.current_user(&req)?;
+        current_pi_user!(self, &req);
+        let db = try_grpc!(self.db.get())?;
+        let db = db.deref();
         let req = req.into_inner();
 
         let form = Vpn {
             enable: req.enable,
             body: req.body,
         };
-        let db = __try_grpc!(self.ctx.db.get())?;
-        let db = db.deref();
-        let aes = self.ctx.aes.deref();
-        __try_grpc!(form.save(db, aes))?;
+
+        let aes = self.aes.deref();
+        try_grpc!(form.save(db, aes))?;
         Ok(Response::new(()))
     }
 }

@@ -1,12 +1,11 @@
 use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
-use juniper::GraphQLObject;
 use serde::Serialize;
 
 use super::super::super::super::{orm::postgresql::Connection, Result};
 use super::schema::sms_logs;
 
-#[derive(Queryable, Serialize, GraphQLObject)]
+#[derive(Queryable, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
     pub id: i32,

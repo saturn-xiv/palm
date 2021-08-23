@@ -2,12 +2,11 @@ use std::ops::Deref;
 
 use actix_web::{post, web, HttpResponse, Responder};
 
-use super::super::super::super::{
-    orm::postgresql::Pool as Db,
-    twilio::sms::{DeliveryStatusCallbackForm, IncomingMessagesCallbackForm},
-    Error, HttpResult,
+use super::super::super::super::{orm::postgresql::Pool as Db, Error, HttpResult};
+use super::super::{
+    models::log::Dao as LogDao,
+    protocols::sms::{DeliveryStatusCallbackForm, IncomingMessagesCallbackForm},
 };
-use super::super::models::log::Dao as LogDao;
 
 #[post("/incoming-messages")]
 pub async fn incoming_messages(
