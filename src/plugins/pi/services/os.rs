@@ -371,7 +371,7 @@ done
         )
     }
 
-    pub fn ping(&self) -> Result<Vec<DateTime<Local>>> {
+    pub fn test(&self) -> Result<Vec<DateTime<Local>>> {
         let mut items = Vec::new();
         for it in self.servers.iter() {
             let now: DateTime<Local> = NtpResponse::fetch(it, None)?.into();
@@ -379,12 +379,20 @@ done
         }
         Ok(items)
     }
-}
 
-impl Ntp {
+    pub fn ping(&self) -> Option<DateTime<Local>> {
+        for it in self.servers.iter() {
+            if let Ok(it) = NtpResponse::fetch(it, None) {
+                return Some(it.into());
+            }
+        }
+        None
+    }
+
     pub const KEY: &'static str = "ntp.client";
     pub fn save(&self, db: &Db, aes: &Aes) -> Result<()> {
         self.validate()?;
+        self.test()?;
         debug!("save ntp server {:?}", self);
         let file = Path::new(&Component::RootDir)
             .join("etc")
