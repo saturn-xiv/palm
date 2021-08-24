@@ -37,8 +37,14 @@ pub enum SubCommand {
     Generate(generate::Generate),
     #[clap(subcommand, about = "PostgreSql")]
     Db(Database),
+    #[clap(subcommand, about = "Crawler")]
+    Crawler(crawler::Crawler),
     #[clap(about = "Http Server")]
     Web,
+    #[clap(about = "Rpc Server")]
+    Rpc,
+    #[clap(about = "Worker process")]
+    Worker,
 }
 
 pub async fn launch() -> Result<()> {
@@ -63,10 +69,26 @@ pub async fn launch() -> Result<()> {
                 ],
             )?;
         }
+        SubCommand::Crawler(opt) => {
+            let cfg: Config = from_toml(&opts.config)?;
+            let db = cfg.postgresql.open()?;
+            let db = db.get()?;
+            let db = db.deref();
+            match opt {
+                crawler::Crawler::Crontab => {
+                    crawler::export(&opts.config, db)?;
+                }
+                crawler::Crawler::Fetch(opt) => {
+                    opt.fetch(db).await?;
+                }
+            }
+        }
         SubCommand::Web => {
             let cfg: Config = from_toml(&opts.config)?;
             web::launch(&cfg).await?;
         }
+        SubCommand::Rpc => {}
+        SubCommand::Worker => {}
     };
     Ok(())
 }

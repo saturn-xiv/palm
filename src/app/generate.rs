@@ -1,11 +1,9 @@
-use std::env::current_dir;
 use std::fs;
 use std::io::Write;
 use std::os::unix::fs::OpenOptionsExt;
 use std::path::Path;
 
 use clap::Clap;
-use nix::unistd::{Gid, Uid};
 
 use super::super::{env, parser::from_toml, Result, DESCRIPTION, NAME};
 
@@ -21,10 +19,10 @@ pub enum Generate {
 
 impl Generate {
     pub fn launch<P: AsRef<Path>>(&self, file: P) -> Result<()> {
+        let file = file.as_ref();
         match self {
             Self::Config => {
                 let buf = toml::to_vec(&env::Config::default())?;
-                let file = file.as_ref();
                 info!("generate file {}", file.display());
                 let mut file = fs::OpenOptions::new()
                     .write(true)
@@ -37,22 +35,25 @@ impl Generate {
                 let cfg: env::Config = from_toml(file)?;
                 let it = env::NginxConf {
                     name: NAME,
-                    domain: &it.domain,
+                    domain: &cfg.domain,
+                    http: &cfg.http,
+                    grpc: &cfg.grpc,
                     ssl: it.ssl,
-                    port: cfg.port,
                 };
                 it.store("tmp")?;
             }
             Self::Systemd => {
-                let cur = current_dir()?;
-                let it = env::SystemdService {
-                    user: &Uid::current().to_string(),
-                    group: &Gid::current().to_string(),
-                    name: NAME,
-                    description: DESCRIPTION,
-                    root: &format!("{}", cur.display()),
-                };
-                it.store("tmp")?;
+                let cfg: env::Config = from_toml(file)?;
+                for action in &["web", "rpc", "worker"] {
+                    let it = env::SystemdService {
+                        domain: &cfg.domain,
+                        config: &file.display().to_string(),
+                        name: NAME,
+                        description: DESCRIPTION,
+                        action,
+                    };
+                    it.store("tmp")?;
+                }
             }
         };
         Ok(())
@@ -61,8 +62,6 @@ impl Generate {
 
 #[derive(Clap)]
 pub struct Nginx {
-    #[clap(short, long)]
-    pub domain: String,
     #[clap(short, long)]
     pub ssl: bool,
 }

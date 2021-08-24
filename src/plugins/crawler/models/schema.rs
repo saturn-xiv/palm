@@ -12,7 +12,7 @@ table! {
         id -> Int4,
         name -> Varchar,
         url -> Varchar,
-        ttl -> Int4,
+        cron -> Varchar,
         created_at -> Timestamp,
     }
 }

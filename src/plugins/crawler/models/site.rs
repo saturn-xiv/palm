@@ -12,12 +12,12 @@ pub struct Item {
     pub id: i32,
     pub name: String,
     pub url: String,
-    pub ttl: i32,
+    pub cron: String,
     pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {
-    fn add(&self, name: &str, url: &str) -> Result<()>;
+    fn add(&self, name: &str, url: &str, cron: &str) -> Result<()>;
     fn all(&self) -> Result<Vec<Item>>;
     fn count(&self) -> Result<i64>;
     fn destory(&self, id: i32) -> Result<()>;
@@ -25,11 +25,12 @@ pub trait Dao {
 }
 
 impl Dao for Connection {
-    fn add(&self, name: &str, url: &str) -> Result<()> {
+    fn add(&self, name: &str, url: &str, cron: &str) -> Result<()> {
         insert_into(crawler_sites::dsl::crawler_sites)
             .values((
                 crawler_sites::dsl::url.eq(url),
                 crawler_sites::dsl::name.eq(name),
+                crawler_sites::dsl::cron.eq(cron),
             ))
             .execute(self)?;
         Ok(())

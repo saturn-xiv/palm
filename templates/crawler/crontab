@@ -1,0 +1,4 @@
+{% for it in items %}
+# {{ it.name }}
+{{ it.cron }} www-data /user/bin/{{ name }} -c {{ config }} crawler fetch -u {{ it.url }}
+{% endfor %}

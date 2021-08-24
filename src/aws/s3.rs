@@ -8,12 +8,14 @@ use serde::{Deserialize, Serialize};
 
 use super::super::Result;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Default, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Config {
     pub region: String,
     pub endpoint: Option<String>,
+    #[serde(rename = "access-key")]
     pub access_key: String,
+    #[serde(rename = "secret-key")]
     pub secret_key: String,
 }
 
