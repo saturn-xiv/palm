@@ -32,19 +32,20 @@ pub struct Fetch {
 
 impl Fetch {
     pub async fn fetch(&self, db: &Db) -> Result<()> {
+        let site = SiteDao::by_url(db, &self.url)?;
         let res = reqwest::get(&self.url).await?;
         let status = res.status();
         let body = res.text().await?;
         if !status.is_success() {
             return Err(Box::new(HttpError(status, Some(body))));
         }
-        if let Ok(it) = LogDao::latest(db, &self.url) {
+        if let Ok(it) = LogDao::latest(db, site.id) {
             if it.body == body {
                 debug!("didn't change, skip");
                 return Ok(());
             }
         }
-        LogDao::add(db, &self.url, &body)?;
+        LogDao::add(db, site.id, &body)?;
         Ok(())
     }
 }

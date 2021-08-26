@@ -10,7 +10,7 @@ service Crawler { rpc Logs(palm.plugins.nut.v1.Page) returns (LogsResponse); }
 
 message LogsResponse {
   message Item {
-    int32 id = 1;
+    int64 id = 1;
     string url = 2;
     string body = 3;
     google.protobuf.Timestamp created_at = 5;

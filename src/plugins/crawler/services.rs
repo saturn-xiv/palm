@@ -3,25 +3,41 @@ use std::sync::Arc;
 
 use tonic::{Request, Response, Status};
 
-use super::super::super::{jwt::Jwt, orm::postgresql::Pool as DbPool, GrpcResult};
+use super::super::super::{
+    jwt::Jwt,
+    orm::postgresql::{Connection as Db, Pool as DbPool},
+    GrpcResult, Result,
+};
 use super::super::nut::{
     models::user::CurrentUser,
     services::Session,
     v1::{Page, Pagination},
 };
 use super::{
-    models::log::{Dao as LogDao, Item as Log},
+    models::{log::Dao as LogDao, site::Dao as SiteDao},
     v1::{crawler_server::Crawler, logs_response, LogsResponse},
 };
 
-impl From<Log> for logs_response::Item {
-    fn from(it: Log) -> Self {
-        Self {
-            id: it.id,
-            url: it.url.clone(),
-            body: it.body.clone(),
-            created_at: Some(to_timestamp!(it.created_at)),
+impl LogsResponse {
+    pub fn load(&mut self, db: &Db, page: &Page) -> Result<()> {
+        let total = LogDao::count(db)?;
+        let page = page.validate(total);
+        self.pagination = Some(Pagination {
+            total,
+            size: page.size,
+            index: page.index,
+        });
+        for it in LogDao::all(db, page.offset(), page.size)? {
+            let site = SiteDao::by_id(db, it.site_id)?;
+            let log = logs_response::Item {
+                id: it.id,
+                url: site.url,
+                body: it.body.clone(),
+                created_at: Some(to_timestamp!(it.created_at)),
+            };
+            self.items.push(log);
         }
+        Ok(())
     }
 }
 
@@ -38,18 +54,8 @@ impl Crawler for Service {
         let db = db.deref();
         try_grpc!(user.is_administrator(db))?;
         let req = req.into_inner();
-        let total = try_grpc!(LogDao::count(db))?;
-        let page = req.validate(total);
-        Ok(Response::new(LogsResponse {
-            pagination: Some(Pagination {
-                total,
-                size: page.size,
-                index: page.index,
-            }),
-            items: try_grpc!(LogDao::all(db, page.offset(), page.size))?
-                .iter()
-                .map(|x| x.clone().into())
-                .collect(),
-        }))
+        let mut ret = LogsResponse::default();
+        try_grpc!(ret.load(db, &req))?;
+        Ok(Response::new(ret))
     }
 }

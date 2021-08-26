@@ -1,7 +1,7 @@
 table! {
     crawler_logs (id) {
-        id -> Int4,
-        url -> Varchar,
+        id -> Int8,
+        site_id -> Int8,
         body -> Text,
         created_at -> Timestamp,
     }
@@ -9,7 +9,7 @@ table! {
 
 table! {
     crawler_sites (id) {
-        id -> Int4,
+        id -> Int8,
         name -> Varchar,
         url -> Varchar,
         cron -> Varchar,

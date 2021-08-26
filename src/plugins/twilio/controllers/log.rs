@@ -35,6 +35,5 @@ pub async fn delivery_status(
     let _db = db.deref();
     let form = form.deref();
     info!("{:?}", form);
-    // LogDao::add(form.from, form.respond_to(_: &HttpRequest), body: &str)
     Ok(HttpResponse::Ok().finish())
 }

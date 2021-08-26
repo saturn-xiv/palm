@@ -26,11 +26,11 @@ lazy_static! {
 
 #[derive(Queryable)]
 pub struct Item {
-    pub id: i32,
+    pub id: i64,
     pub key: String,
     pub value: Vec<u8>,
     pub salt: Option<Vec<u8>>,
-    pub version: i32,
+    pub version: i64,
     pub updated_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
 }

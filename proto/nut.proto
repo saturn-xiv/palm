@@ -39,6 +39,8 @@ service User {
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
+message IdRequest { int64 id = 1; }
+
 message EmailRequest { string email = 1; }
 
 message TokenRequest { string token = 1; }
@@ -92,6 +94,16 @@ message ResetPasswordRequest {
 message UserProfile {
   string real_name = 1;
   string logo = 2;
+}
+
+service Rbac { rpc ListRole(google.protobuf.Empty) returns (ListRollResponse); }
+
+message ListRollResponse {
+  message Item {
+    int32 id = 1;
+    string name = 2;
+  }
+  repeated Item items = 1;
 }
 
 service Site {
