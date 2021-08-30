@@ -4,7 +4,6 @@ use std::ops::Add;
 use chrono::{Datelike, Duration, NaiveDate, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use hyper::http::StatusCode;
-use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 
 use super::super::super::super::{orm::postgresql::Connection, HttpError, Result};
@@ -16,18 +15,18 @@ use super::{
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub role_id: i32,
-    pub resource_id: i32,
-    pub operation_id: i32,
+    pub id: i64,
+    pub role_id: i64,
+    pub resource_id: i64,
+    pub operation_id: i64,
     pub not_before: NaiveDate,
     pub expire_at: NaiveDate,
-    pub version: i32,
+    pub version: i64,
     pub updated_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
 }
 
-#[derive(Serialize, GraphQLObject, Deserialize)]
+#[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Entity {
     pub role: String,
@@ -46,9 +45,9 @@ impl Item {
         (nbf.date(), exp.date())
     }
 
-    pub fn years(y: i32) -> Result<(NaiveDate, NaiveDate)> {
+    pub fn years(y: usize) -> Result<(NaiveDate, NaiveDate)> {
         let nbf = Utc::now().naive_utc();
-        if let Some(exp) = nbf.with_year(nbf.year() + y) {
+        if let Some(exp) = nbf.with_year(nbf.year() + (y as i32)) {
             return Ok((nbf.date(), exp.date()));
         }
         Err(Box::new(HttpError(
@@ -59,28 +58,28 @@ impl Item {
 }
 
 pub trait Dao {
-    fn by_role(&self, id: i32) -> Result<Vec<Item>>;
-    fn by_operation(&self, id: i32) -> Result<Vec<Item>>;
-    fn by_resource(&self, id: i32) -> Result<Vec<Item>>;
-    fn by_user(&self, id: i32) -> Result<Vec<Item>>;
-    fn entities(&self, user: i32) -> Result<Vec<Entity>>;
-    fn get(&self, role: i32, resource: i32, operation: i32) -> Result<Item>;
-    fn deny(&self, role: i32, resource: i32, operation: i32) -> Result<()>;
+    fn by_role(&self, id: i64) -> Result<Vec<Item>>;
+    fn by_operation(&self, id: i64) -> Result<Vec<Item>>;
+    fn by_resource(&self, id: i64) -> Result<Vec<Item>>;
+    fn by_user(&self, id: i64) -> Result<Vec<Item>>;
+    fn entities(&self, user: i64) -> Result<Vec<Entity>>;
+    fn get(&self, role: i64, resource: i64, operation: i64) -> Result<Item>;
+    fn deny(&self, role: i64, resource: i64, operation: i64) -> Result<()>;
     fn apply(
         &self,
-        role: i32,
-        resource: i32,
-        operation: i32,
+        role: i64,
+        resource: i64,
+        operation: i64,
         not_before: &NaiveDate,
         expire_at: &NaiveDate,
     ) -> Result<()>;
-    fn can(&self, user: i32, resource: &str, operation: &str) -> bool;
+    fn can(&self, user: i64, resource: &str, operation: &str) -> bool;
 }
 
 impl Dao for Connection {
-    fn by_user(&self, id: i32) -> Result<Vec<Item>> {
+    fn by_user(&self, id: i64) -> Result<Vec<Item>> {
         let mut items = Vec::new();
-        let mut roles: HashSet<i32> = HashSet::new();
+        let mut roles: HashSet<i64> = HashSet::new();
         {
             for it in RoleDao::by_user(self, id)? {
                 roles.insert(it.id);
@@ -88,7 +87,7 @@ impl Dao for Connection {
                     RoleDao::offsprings(self, it.id)?
                         .iter()
                         .map(|x| x.id)
-                        .collect::<Vec<i32>>(),
+                        .collect::<Vec<i64>>(),
                 );
             }
         }
@@ -97,25 +96,25 @@ impl Dao for Connection {
         }
         Ok(items)
     }
-    fn by_role(&self, id: i32) -> Result<Vec<Item>> {
+    fn by_role(&self, id: i64) -> Result<Vec<Item>> {
         let items = policies::dsl::policies
             .filter(policies::dsl::role_id.eq(id))
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn by_operation(&self, id: i32) -> Result<Vec<Item>> {
+    fn by_operation(&self, id: i64) -> Result<Vec<Item>> {
         let items = policies::dsl::policies
             .filter(policies::dsl::operation_id.eq(id))
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn by_resource(&self, id: i32) -> Result<Vec<Item>> {
+    fn by_resource(&self, id: i64) -> Result<Vec<Item>> {
         let items = policies::dsl::policies
             .filter(policies::dsl::resource_id.eq(id))
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn entities(&self, user: i32) -> Result<Vec<Entity>> {
+    fn entities(&self, user: i64) -> Result<Vec<Entity>> {
         let mut items = Vec::new();
         for it in Dao::by_user(self, user)? {
             if it.enable() {
@@ -131,7 +130,7 @@ impl Dao for Connection {
         }
         Ok(items)
     }
-    fn get(&self, role: i32, resource: i32, operation: i32) -> Result<Item> {
+    fn get(&self, role: i64, resource: i64, operation: i64) -> Result<Item> {
         let it = policies::dsl::policies
             .filter(policies::dsl::role_id.eq(role))
             .filter(policies::dsl::resource_id.eq(resource))
@@ -139,7 +138,7 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn deny(&self, role: i32, resource: i32, operation: i32) -> Result<()> {
+    fn deny(&self, role: i64, resource: i64, operation: i64) -> Result<()> {
         delete(
             policies::dsl::policies
                 .filter(policies::dsl::role_id.eq(role))
@@ -151,9 +150,9 @@ impl Dao for Connection {
     }
     fn apply(
         &self,
-        role: i32,
-        resource: i32,
-        operation: i32,
+        role: i64,
+        resource: i64,
+        operation: i64,
         not_before: &NaiveDate,
         expire_at: &NaiveDate,
     ) -> Result<()> {
@@ -189,8 +188,8 @@ impl Dao for Connection {
         }
         Ok(())
     }
-    fn can(&self, user: i32, resource: &str, operation: &str) -> bool {
-        fn f(db: &Connection, user: i32, resource: &str, operation: &str) -> Result<bool> {
+    fn can(&self, user: i64, resource: &str, operation: &str) -> bool {
+        fn f(db: &Connection, user: i64, resource: &str, operation: &str) -> Result<bool> {
             let resource = ResouceDao::by_code(db, resource)?;
             let operation = OperationDao::by_code(db, operation)?;
             for it in Dao::by_user(db, user)? {

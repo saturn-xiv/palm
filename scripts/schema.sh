@@ -9,7 +9,10 @@ export DATABASE_URL="postgres://postgres@127.0.0.1:5432/demo"
 diesel print-schema -o schema_migrations > src/orm/postgresql/schema.rs
 diesel print-schema -o settings > src/settings/schema.rs
 diesel print-schema -o locales > src/i18n/schema.rs
-diesel print-schema -o tags notifications attachments logs users groups_users groups roles_users roles_groups roles_relations roles operations resources policies > src/plugins/nut/models/schema.rs
+
+diesel print-schema -o logs users groups_users groups roles_users roles_groups roles_relations roles operations resources policies > src/auth/models/schema.rs
+# FIXME
+# diesel print-schema -o tags notifications attachments > src/plugins/nut/models/schema.rs
 diesel print-schema -o crawler_sites crawler_logs > src/plugins/crawler/models/schema.rs
 diesel print-schema -o sms_logs > src/plugins/twilio/models/schema.rs
 

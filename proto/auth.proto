@@ -1,0 +1,297 @@
+syntax = "proto3";
+
+package palm.auth.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+service User {
+  rpc SignIn(SignInRequest) returns (SignInResponse);
+  rpc SignUp(SignUpRequest) returns (google.protobuf.Empty);
+  rpc Confirm(EmailRequest) returns (google.protobuf.Empty);
+  rpc ConfirmByToken(TokenRequest) returns (google.protobuf.Empty);
+  rpc Unlock(EmailRequest) returns (google.protobuf.Empty);
+  rpc UnlockByToken(TokenRequest) returns (google.protobuf.Empty);
+  rpc ForgotPassword(EmailRequest) returns (google.protobuf.Empty);
+  rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty);
+
+  rpc Current(google.protobuf.Empty) returns (SignInResponse);
+  rpc ChangePassword(ChangePasswordRequest) returns (google.protobuf.Empty);
+  rpc Logs(google.protobuf.Duration) returns (LogsResponse);
+  rpc GetProfile(google.protobuf.Empty) returns (UserProfile);
+  rpc SetProfile(UserProfile) returns (google.protobuf.Empty);
+  rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+message EmailRequest { string email = 1; }
+
+message TokenRequest { string token = 1; }
+
+message SignInRequest {
+  string user = 1;
+  string password = 2;
+}
+
+message SignInResponse {
+  string token = 1;
+  string real_name = 2;
+  string logo = 3;
+}
+
+message SignUpRequest {
+  string real_name = 1;
+  string nick_name = 2;
+  string password = 3;
+}
+
+message LogsResponse {
+  enum Level {
+    DEBUG = 0;
+    INFO = 1;
+    WARNING = 2;
+    ERROR = 3;
+    PANIC = 9;
+  }
+  message Item {
+    int64 id = 1;
+    int64 user_id = 2;
+    string ip = 3;
+    Level level = 4;
+    google.protobuf.Timestamp created_at = 5;
+  }
+  repeated Item items = 1;
+}
+
+message ChangePasswordRequest {
+  string current_password = 1;
+  string new_password = 2;
+}
+
+message ResetPasswordRequest {
+  string token = 1;
+  string new_password = 2;
+}
+
+message UserProfile {
+  string real_name = 1;
+  string logo = 2;
+}
+
+enum UserProviderType {
+  Email = 0;
+  Phone = 1;
+  Google = 2;
+  FaceBook = 3;
+  WeChat = 4;
+}
+
+service Policy {
+  rpc Can(CanRequest) returns (google.protobuf.Empty);
+
+  rpc Apply(ApplyRequest) returns (google.protobuf.Empty);
+  rpc Deny(DenyRequest) returns (google.protobuf.Empty);
+  rpc GetPoliciesByRole(IdRequest) returns (IndexPolicyResponse);
+
+  rpc CreateOperation(CreateOperationRequest) returns (google.protobuf.Empty);
+  rpc UpdateOperation(UpdateOperationRequest) returns (google.protobuf.Empty);
+  rpc DestroyOperation(IdRequest) returns (google.protobuf.Empty);
+  rpc IndexOperation(google.protobuf.Empty) returns (IndexOperationResponse);
+
+  rpc CreateResource(CreateResourceRequest) returns (google.protobuf.Empty);
+  rpc UpdateResource(UpdateResourceRequest) returns (google.protobuf.Empty);
+  rpc DestroyResource(IdRequest) returns (google.protobuf.Empty);
+  rpc IndexResource(google.protobuf.Empty) returns (IndexResourceResponse);
+
+  rpc CreateRole(CreateRoleRequest) returns (google.protobuf.Empty);
+  rpc UpdateRole(UpdateRoleRequest) returns (google.protobuf.Empty);
+  rpc DestroyRole(IdRequest) returns (google.protobuf.Empty);
+  rpc IndexRole(google.protobuf.Empty) returns (IndexRoleResponse);
+  rpc ApplyUserForRole(ApplyRoleRequest) returns (google.protobuf.Empty);
+  rpc DenyUserForRole(DenyRoleRequest) returns (google.protobuf.Empty);
+  rpc GetRolesForUser(IdRequest) returns (IndexRoleResponse);
+  rpc GetUsersForRole(IdRequest) returns (IndexUserResponse);
+  rpc ApplyGroupForRole(ApplyRoleRequest) returns (google.protobuf.Empty);
+  rpc DenyGroupForRole(DenyRoleRequest) returns (google.protobuf.Empty);
+  rpc GetRolesForGroup(IdRequest) returns (IndexRoleResponse);
+  rpc GetGroupsForRole(IdRequest) returns (IndexGroupResponse);
+
+  rpc CreateGroup(CreateGroupRequest) returns (google.protobuf.Empty);
+  rpc UpdateGroup(UpdateGroupRequest) returns (google.protobuf.Empty);
+  rpc DestroyGroup(IdRequest) returns (google.protobuf.Empty);
+  rpc IndexGroup(google.protobuf.Empty) returns (IndexGroupResponse);
+  rpc ApplyUserForGroup(UserGroupRequest) returns (google.protobuf.Empty);
+  rpc DenyUserForGroup(UserGroupRequest) returns (google.protobuf.Empty);
+  rpc GetUsersForGroup(IdRequest) returns (IndexUserResponse);
+  rpc GetGroupsForUser(IdRequest) returns (IndexGroupResponse);
+}
+
+message IndexUserResponse {
+  message Item {
+    string uid = 2;
+    string real_name = 3;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+}
+
+message IndexPolicyResponse {
+  message Item {
+    IndexRoleResponse.Item role = 1;
+    IndexOperationResponse.Item operation = 2;
+    IndexResourceResponse.Item resource = 3;
+  }
+  repeated Item items = 1;
+}
+
+message CanRequest {
+  string operation = 1;
+  string resource = 2;
+}
+message ApplyRequest {
+  string role = 1;
+  string operation = 2;
+  string resource = 3;
+  google.protobuf.Timestamp not_before = 5;
+  google.protobuf.Timestamp exipie_at = 6;
+}
+message DenyRequest {
+  string role = 1;
+  string operation = 2;
+  string resource = 3;
+}
+
+message IndexOperationResponse {
+  message Item {
+    int64 id = 1;
+    string code = 2;
+    string name = 3;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+}
+
+message CreateOperationRequest {
+  string code = 1;
+  string name = 2;
+}
+
+message UpdateOperationRequest {
+  int64 id = 1;
+  string code = 2;
+  string name = 3;
+}
+
+message IdRequest { int64 id = 1; }
+
+message CreateResourceRequest {
+  string code = 1;
+  string name = 2;
+}
+
+message UpdateResourceRequest {
+  int64 id = 1;
+  string code = 2;
+  string name = 3;
+}
+
+message IndexResourceResponse {
+  message Item {
+    int64 id = 1;
+    string code = 2;
+    string name = 3;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+}
+
+message CreateRoleRequest {
+  string code = 1;
+  string name = 2;
+  optional int64 parent_id = 3;
+}
+
+message UpdateRoleRequest {
+  int64 id = 1;
+  string code = 2;
+  string name = 3;
+  optional int64 parent_id = 4;
+}
+
+message IndexRoleResponse {
+  message Item {
+    int64 id = 1;
+    string code = 2;
+    string name = 3;
+    optional int64 parent_id = 4;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+}
+
+message ApplyRoleRequest {
+  int64 target_id = 1;
+  int64 role_id = 2;
+  google.protobuf.Timestamp not_before = 5;
+  google.protobuf.Timestamp exipie_at = 6;
+}
+message DenyRoleRequest {
+  int64 target_id = 1;
+  int64 role_id = 2;
+}
+
+message CreateGroupRequest {
+  string code = 1;
+  string name = 2;
+  optional int64 parent_id = 3;
+}
+
+message UpdateGroupRequest {
+  int64 id = 1;
+  string code = 2;
+  string name = 3;
+  optional int64 parent_id = 4;
+}
+
+message IndexGroupResponse {
+  message Item {
+    int64 id = 1;
+    string code = 2;
+    string name = 3;
+    optional int64 parent_id = 4;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+}
+
+message UserGroupRequest {
+  int64 user_id = 1;
+  int64 group_id = 2;
+}
+
+// message User {
+
+//   int64 id = 1;
+//   string uid = 2;
+//   string email = 3;
+//   string nick_name = 4;
+//   string real_name = 5;
+//   optional bytes password = 6;
+//   bytes salt = 7;
+//   string lang = 17;
+//   string logo = 18;
+//   bytes profile = 19;
+
+//   ProviderType provider_type = 21;
+//   string provider_id = 22;
+//   optional string access_token = 23;
+
+//   int64 sign_in_count = 91;
+//   optional google.protobuf.Timestamp current_sign_in_at = 92;
+//   optional string current_sign_in_ip = 93;
+//   optional google.protobuf.Timestamp last_sign_in_at = 92;
+//   optional string last_sign_in_ip = 93;
+//   confirmed_at;
+//   locked_at;
+//   deleted_at;
+// }

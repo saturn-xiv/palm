@@ -1,29 +1,28 @@
 use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
-use juniper::GraphQLObject;
 use serde::Serialize;
 
 use super::super::super::super::{orm::postgresql::Connection, Result};
 use super::schema::logs;
 
-#[derive(Queryable, Serialize, GraphQLObject)]
+#[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub ip: String,
     pub message: String,
     pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {
-    fn add<S: Into<String>>(&self, user: i32, ip: &str, message: S) -> Result<()>;
-    fn all(&self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
-    fn count(&self, user: i32) -> Result<i64>;
+    fn add<S: Into<String>>(&self, user: i64, ip: &str, message: S) -> Result<()>;
+    fn all(&self, user: i64, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn count(&self, user: i64) -> Result<i64>;
 }
 
 impl Dao for Connection {
-    fn add<S: Into<String>>(&self, user: i32, ip: &str, message: S) -> Result<()> {
+    fn add<S: Into<String>>(&self, user: i64, ip: &str, message: S) -> Result<()> {
         insert_into(logs::dsl::logs)
             .values((
                 logs::dsl::user_id.eq(user),
@@ -34,7 +33,7 @@ impl Dao for Connection {
         Ok(())
     }
 
-    fn all(&self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>> {
+    fn all(&self, user: i64, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = logs::dsl::logs
             .filter(logs::dsl::user_id.eq(user))
             .order(logs::dsl::created_at.desc())
@@ -43,7 +42,7 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn count(&self, user: i32) -> Result<i64> {
+    fn count(&self, user: i64) -> Result<i64> {
         let it = logs::dsl::logs
             .filter(logs::dsl::user_id.eq(user))
             .count()

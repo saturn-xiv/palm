@@ -7,7 +7,7 @@ use std::path::PathBuf;
 use clap::{AppSettings, Clap};
 
 use super::{
-    i18n,
+    auth, i18n,
     orm::postgresql::console::Database,
     parser::from_toml,
     plugins::{crawler, nut, twilio},
@@ -63,6 +63,7 @@ pub async fn launch() -> Result<()> {
                 &[
                     settings::MIGRATION.deref(),
                     i18n::locale::MIGRATION.deref(),
+                    auth::models::MIGRATION.deref(),
                     nut::models::MIGRATION.deref(),
                     crawler::models::MIGRATION.deref(),
                     twilio::models::MIGRATION.deref(),

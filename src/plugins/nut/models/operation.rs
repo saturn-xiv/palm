@@ -8,10 +8,10 @@ use super::schema::{operations, policies};
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
+    pub id: i64,
     pub code: String,
     pub name: String,
-    pub version: i32,
+    pub version: i64,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
 }
@@ -22,11 +22,11 @@ impl Item {
 
 pub trait Dao {
     fn all(&self) -> Result<Vec<Item>>;
-    fn by_id(&self, id: i32) -> Result<Item>;
+    fn by_id(&self, id: i64) -> Result<Item>;
     fn by_code(&self, user: &str) -> Result<Item>;
     fn create(&self, code: &str, name: &str) -> Result<()>;
-    fn update(&self, id: i32, code: &str, name: &str) -> Result<()>;
-    fn destory(&self, id: i32) -> Result<()>;
+    fn update(&self, id: i64, code: &str, name: &str) -> Result<()>;
+    fn destory(&self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -36,7 +36,7 @@ impl Dao for Connection {
             .load(self)?;
         Ok(items)
     }
-    fn by_id(&self, id: i32) -> Result<Item> {
+    fn by_id(&self, id: i64) -> Result<Item> {
         let it = operations::dsl::operations
             .filter(operations::dsl::id.eq(id))
             .first(self)?;
@@ -59,7 +59,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn update(&self, id: i32, code: &str, name: &str) -> Result<()> {
+    fn update(&self, id: i64, code: &str, name: &str) -> Result<()> {
         let now = Utc::now().naive_local();
         update(operations::dsl::operations.filter(operations::dsl::id.eq(&id)))
             .set((
@@ -70,7 +70,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn destory(&self, id: i32) -> Result<()> {
+    fn destory(&self, id: i64) -> Result<()> {
         delete(policies::dsl::policies.filter(policies::dsl::operation_id.eq(id))).execute(self)?;
         delete(operations::dsl::operations.filter(operations::dsl::id.eq(id))).execute(self)?;
         Ok(())

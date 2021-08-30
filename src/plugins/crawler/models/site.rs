@@ -1,5 +1,5 @@
-use chrono::NaiveDateTime;
-use diesel::{delete, insert_into, prelude::*};
+use chrono::{NaiveDateTime, Utc};
+use diesel::{delete, insert_into, prelude::*, update};
 use serde::Serialize;
 
 use super::super::super::super::{orm::postgresql::Connection, Result};
@@ -12,11 +12,14 @@ pub struct Item {
     pub name: String,
     pub url: String,
     pub cron: String,
+    pub version: i64,
     pub created_at: NaiveDateTime,
+    pub updated_at: NaiveDateTime,
 }
 
 pub trait Dao {
     fn add(&self, name: &str, url: &str, cron: &str) -> Result<()>;
+    fn set(&self, id: i64, name: &str, url: &str, cron: &str) -> Result<()>;
     fn all(&self) -> Result<Vec<Item>>;
     fn count(&self) -> Result<i64>;
     fn destory(&self, id: i64) -> Result<()>;
@@ -26,11 +29,25 @@ pub trait Dao {
 
 impl Dao for Connection {
     fn add(&self, name: &str, url: &str, cron: &str) -> Result<()> {
+        let now = Utc::now().naive_local();
         insert_into(crawler_sites::dsl::crawler_sites)
             .values((
                 crawler_sites::dsl::url.eq(url),
                 crawler_sites::dsl::name.eq(name),
                 crawler_sites::dsl::cron.eq(cron),
+                crawler_sites::dsl::updated_at.eq(&now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
+    fn set(&self, id: i64, name: &str, url: &str, cron: &str) -> Result<()> {
+        let now = Utc::now().naive_local();
+        update(crawler_sites::dsl::crawler_sites.filter(crawler_sites::dsl::id.eq(&id)))
+            .set((
+                crawler_sites::dsl::name.eq(name),
+                crawler_sites::dsl::url.eq(url),
+                crawler_sites::dsl::cron.eq(cron),
+                crawler_sites::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())

@@ -55,14 +55,7 @@ pub async fn create(
                         name
                     ),
                 };
-                AttachmentDao::create(
-                    db,
-                    user.id,
-                    title,
-                    &content_type,
-                    &url,
-                    (size << 10) as i32,
-                )?;
+                AttachmentDao::create(db, user.id, title, &content_type, &url, size << 10)?;
             }
         }
     }

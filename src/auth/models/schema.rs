@@ -1,18 +1,4 @@
 table! {
-    attachments (id) {
-        id -> Int8,
-        user_id -> Int8,
-        title -> Varchar,
-        size -> Int8,
-        content_type -> Varchar,
-        url -> Varchar,
-        version -> Int8,
-        created_at -> Timestamp,
-        updated_at -> Timestamp,
-    }
-}
-
-table! {
     groups (id) {
         id -> Int8,
         code -> Varchar,
@@ -41,21 +27,6 @@ table! {
         ip -> Varchar,
         message -> Varchar,
         created_at -> Timestamp,
-    }
-}
-
-table! {
-    notifications (id) {
-        id -> Int8,
-        user_id -> Int8,
-        url -> Varchar,
-        body -> Text,
-        media_type -> Varchar,
-        level -> Varchar,
-        read -> Bool,
-        version -> Int8,
-        created_at -> Timestamp,
-        updated_at -> Timestamp,
     }
 }
 
@@ -141,18 +112,6 @@ table! {
 }
 
 table! {
-    tags (id) {
-        id -> Int8,
-        code -> Varchar,
-        name -> Varchar,
-        color -> Varchar,
-        version -> Int8,
-        created_at -> Timestamp,
-        updated_at -> Timestamp,
-    }
-}
-
-table! {
     users (id) {
         id -> Int8,
         real_name -> Varchar,
@@ -182,11 +141,9 @@ table! {
 }
 
 allow_tables_to_appear_in_same_query!(
-    attachments,
     groups,
     groups_users,
     logs,
-    notifications,
     operations,
     policies,
     resources,
@@ -194,6 +151,5 @@ allow_tables_to_appear_in_same_query!(
     roles_groups,
     roles_relations,
     roles_users,
-    tags,
     users,
 );

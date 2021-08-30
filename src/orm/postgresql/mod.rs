@@ -139,7 +139,6 @@ impl Dao for Connection {
                 info!("rollback {}-{}", it.version, it.name);
                 debug!("{}", it.down);
                 self.transaction::<_, DieselError, _>(|| {
-                    self.batch_execute(&it.up)?;
                     self.batch_execute(&it.down)?;
                     delete(
                         schema_migrations::dsl::schema_migrations

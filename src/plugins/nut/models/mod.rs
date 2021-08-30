@@ -17,7 +17,7 @@ pub const DOWN: &str = include_str!("down.sql");
 
 lazy_static! {
     pub static ref MIGRATION: Migration<'static> = Migration {
-        name: "create-rbac",
+        name: "create-nut",
         version: "20210517125807",
         up: UP,
         down: DOWN

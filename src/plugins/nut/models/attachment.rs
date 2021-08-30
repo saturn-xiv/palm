@@ -11,13 +11,13 @@ use super::schema::attachments;
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub title: String,
-    pub size: i32,
+    pub size: i64,
     pub content_type: String,
     pub url: String,
-    pub version: i32,
+    pub version: i64,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
 }
@@ -41,24 +41,30 @@ impl Item {
 }
 
 pub trait Dao {
-    fn by_id(&self, id: i32) -> Result<Item>;
+    fn by_id(&self, id: i64) -> Result<Item>;
     fn create(
         &self,
-        user: i32,
+        user: i64,
         title: &str,
         content_type: &Mime,
         url: &str,
-        size: i32,
+        size: usize,
     ) -> Result<()>;
-    fn update(&self, id: i32, title: &str, content_type: &Mime, url: &str, size: i32)
-        -> Result<()>;
+    fn update(
+        &self,
+        id: i64,
+        title: &str,
+        content_type: &Mime,
+        url: &str,
+        size: usize,
+    ) -> Result<()>;
     fn all(&self) -> Result<Vec<Item>>;
-    fn by_user(&self, user: i32) -> Result<Vec<Item>>;
-    fn delete(&self, id: i32) -> Result<()>;
+    fn by_user(&self, user: i64) -> Result<Vec<Item>>;
+    fn delete(&self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
-    fn by_id(&self, id: i32) -> Result<Item> {
+    fn by_id(&self, id: i64) -> Result<Item> {
         let it = attachments::dsl::attachments
             .filter(attachments::dsl::id.eq(id))
             .first::<Item>(self)?;
@@ -66,11 +72,11 @@ impl Dao for Connection {
     }
     fn create(
         &self,
-        user: i32,
+        user: i64,
         title: &str,
         content_type: &Mime,
         url: &str,
-        size: i32,
+        size: usize,
     ) -> Result<()> {
         let now = Utc::now().naive_utc();
         let content_type = content_type.to_string();
@@ -80,7 +86,7 @@ impl Dao for Connection {
                 attachments::dsl::title.eq(title),
                 attachments::dsl::content_type.eq(content_type),
                 attachments::dsl::url.eq(url),
-                attachments::dsl::size.eq(size),
+                attachments::dsl::size.eq(size as i64),
                 attachments::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -89,11 +95,11 @@ impl Dao for Connection {
 
     fn update(
         &self,
-        id: i32,
+        id: i64,
         title: &str,
         content_type: &Mime,
         url: &str,
-        size: i32,
+        size: usize,
     ) -> Result<()> {
         let now = Utc::now().naive_utc();
         let content_type = content_type.to_string();
@@ -102,7 +108,7 @@ impl Dao for Connection {
                 attachments::dsl::title.eq(title),
                 attachments::dsl::content_type.eq(content_type),
                 attachments::dsl::url.eq(url),
-                attachments::dsl::size.eq(size),
+                attachments::dsl::size.eq(size as i64),
                 attachments::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -116,7 +122,7 @@ impl Dao for Connection {
         Ok(items)
     }
 
-    fn by_user(&self, user: i32) -> Result<Vec<Item>> {
+    fn by_user(&self, user: i64) -> Result<Vec<Item>> {
         let items = attachments::dsl::attachments
             .filter(attachments::dsl::user_id.eq(user))
             .order(attachments::dsl::updated_at.desc())
@@ -124,7 +130,7 @@ impl Dao for Connection {
         Ok(items)
     }
 
-    fn delete(&self, id: i32) -> Result<()> {
+    fn delete(&self, id: i64) -> Result<()> {
         delete(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }

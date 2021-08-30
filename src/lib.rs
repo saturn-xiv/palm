@@ -10,6 +10,7 @@ pub mod macros;
 
 pub mod app;
 pub mod audio;
+pub mod auth;
 pub mod aws;
 pub mod cache;
 pub mod crypto;
@@ -41,7 +42,6 @@ use std::path::Path;
 use std::str::FromStr;
 
 use hyper::StatusCode;
-use juniper::GraphQLEnum;
 use serde::{Deserialize, Serialize};
 use xml::writer::{EventWriter, Result as XmlWriterResult};
 
@@ -79,7 +79,7 @@ impl fmt::Display for Environment {
     }
 }
 
-#[derive(Serialize, Deserialize, GraphQLEnum, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub enum MediaType {
     Html,
     Markdown,

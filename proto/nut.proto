@@ -3,7 +3,8 @@ syntax = "proto3";
 package palm.plugins.nut.v1;
 
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
+// import "google/protobuf/timestamp.proto";
+import "auth.proto";
 
 message Page {
   int64 index = 1;
@@ -21,99 +22,19 @@ message Menu {
   string href = 2;
 }
 
-service User {
-  rpc SignIn(SignInRequest) returns (SignInResponse);
-  rpc SignUp(SignUpRequest) returns (google.protobuf.Empty);
-  rpc Confirm(EmailRequest) returns (google.protobuf.Empty);
-  rpc ConfirmByToken(TokenRequest) returns (google.protobuf.Empty);
-  rpc Unlock(EmailRequest) returns (google.protobuf.Empty);
-  rpc UnlockByToken(TokenRequest) returns (google.protobuf.Empty);
-  rpc ForgotPassword(EmailRequest) returns (google.protobuf.Empty);
-  rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty);
-
-  rpc Current(google.protobuf.Empty) returns (SignInResponse);
-  rpc ChangePassword(ChangePasswordRequest) returns (google.protobuf.Empty);
-  rpc Logs(Page) returns (LogsResponse);
-  rpc GetProfile(google.protobuf.Empty) returns (UserProfile);
-  rpc SetProfile(UserProfile) returns (google.protobuf.Empty);
-  rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty);
-}
-
 message IdRequest { int64 id = 1; }
 
-message EmailRequest { string email = 1; }
-
-message TokenRequest { string token = 1; }
-
-message SignInRequest {
-  string user = 1;
-  string password = 2;
-}
-
-message SignInResponse {
-  string token = 1;
-  string real_name = 2;
-  string logo = 3;
-}
-
-message SignUpRequest {
-  string real_name = 1;
-  string nick_name = 2;
-  string password = 3;
-}
-
-message LogsResponse {
-  enum Level {
-    DEBUG = 0;
-    INFO = 1;
-    WARNING = 2;
-    ERROR = 3;
-    PANIC = 9;
-  }
-  message Item {
-    int64 id = 1;
-    int64 user_id = 2;
-    string ip = 3;
-    Level level = 4;
-    google.protobuf.Timestamp created_at = 5;
-  }
-  repeated Item items = 1;
-  Pagination pagination = 2;
-}
-
-message ChangePasswordRequest {
-  string current_password = 1;
-  string new_password = 2;
-}
-
-message ResetPasswordRequest {
-  string token = 1;
-  string new_password = 2;
-}
-
-message UserProfile {
-  string real_name = 1;
-  string logo = 2;
-}
-
-service Rbac { rpc ListRole(google.protobuf.Empty) returns (ListRollResponse); }
-
-message ListRollResponse {
-  message Item {
-    int32 id = 1;
-    string name = 2;
-  }
-  repeated Item items = 1;
-}
-
 service Site {
-  rpc Install(SignUpRequest) returns (google.protobuf.Empty);
+  rpc Install(palm.auth.v1.SignUpRequest) returns (google.protobuf.Empty);
   rpc Refresh(google.protobuf.Empty) returns (SiteInfo);
 }
 
 message SiteInfo {
   string title = 1;
   string subhead = 2;
-  string logo = 3;
-  string copyright = 4;
+  repeated string keywords = 3;
+  string description = 4;
+  string copyright = 5;
+  string logo = 11;
+  repeated string languages = 12;
 }

@@ -13,7 +13,9 @@ table! {
         name -> Varchar,
         url -> Varchar,
         cron -> Varchar,
+        version -> Int8,
         created_at -> Timestamp,
+        updated_at -> Timestamp,
     }
 }
 

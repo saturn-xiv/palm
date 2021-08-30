@@ -53,42 +53,42 @@ impl FromStr for Level {
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub url: String,
     pub body: String,
     pub meta_type: String,
     pub level: String,
     pub read: bool,
-    pub version: i32,
+    pub version: i64,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
 }
 
 pub trait Dao {
-    fn all(&self, user: i32) -> Result<Vec<Item>>;
-    fn by_id(&self, id: i32) -> Result<Item>;
-    fn unread(&self, user: i32) -> Result<Vec<Item>>;
-    fn create(&self, user: i32, body: &str, media_type: &MediaType, level: &Level) -> Result<()>;
-    fn set_read(&self, id: i32) -> Result<()>;
-    fn destory(&self, id: i32) -> Result<()>;
+    fn all(&self, user: i64) -> Result<Vec<Item>>;
+    fn by_id(&self, id: i64) -> Result<Item>;
+    fn unread(&self, user: i64) -> Result<Vec<Item>>;
+    fn create(&self, user: i64, body: &str, media_type: &MediaType, level: &Level) -> Result<()>;
+    fn set_read(&self, id: i64) -> Result<()>;
+    fn destory(&self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
-    fn all(&self, user: i32) -> Result<Vec<Item>> {
+    fn all(&self, user: i64) -> Result<Vec<Item>> {
         let items = notifications::dsl::notifications
             .filter(notifications::dsl::user_id.eq(user))
             .order(notifications::dsl::created_at.desc())
             .load(self)?;
         Ok(items)
     }
-    fn by_id(&self, id: i32) -> Result<Item> {
+    fn by_id(&self, id: i64) -> Result<Item> {
         let it = notifications::dsl::notifications
             .filter(notifications::dsl::id.eq(id))
             .first(self)?;
         Ok(it)
     }
-    fn unread(&self, user: i32) -> Result<Vec<Item>> {
+    fn unread(&self, user: i64) -> Result<Vec<Item>> {
         let items = notifications::dsl::notifications
             .filter(notifications::dsl::user_id.eq(user))
             .filter(notifications::dsl::read.eq(false))
@@ -96,7 +96,7 @@ impl Dao for Connection {
             .load(self)?;
         Ok(items)
     }
-    fn create(&self, user: i32, body: &str, media_type: &MediaType, level: &Level) -> Result<()> {
+    fn create(&self, user: i64, body: &str, media_type: &MediaType, level: &Level) -> Result<()> {
         let now = Utc::now().naive_local();
         insert_into(notifications::dsl::notifications)
             .values((
@@ -109,13 +109,13 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_read(&self, id: i32) -> Result<()> {
+    fn set_read(&self, id: i64) -> Result<()> {
         update(notifications::dsl::notifications.filter(notifications::dsl::id.eq(&id)))
             .set(notifications::dsl::read.eq(true))
             .execute(self)?;
         Ok(())
     }
-    fn destory(&self, id: i32) -> Result<()> {
+    fn destory(&self, id: i64) -> Result<()> {
         delete(notifications::dsl::notifications.filter(notifications::dsl::id.eq(id)))
             .execute(self)?;
         Ok(())

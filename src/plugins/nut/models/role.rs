@@ -12,12 +12,12 @@ use super::{
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
+    pub id: i64,
     pub code: String,
     pub name: String,
-    pub parent_id: Option<i32>,
-    pub level: i32,
-    pub version: i32,
+    pub parent_id: Option<i64>,
+    pub level: i64,
+    pub version: i64,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
 }
@@ -29,21 +29,21 @@ impl Item {
 
 pub trait Dao {
     fn all(&self) -> Result<Vec<Item>>;
-    fn by_id(&self, id: i32) -> Result<Item>;
+    fn by_id(&self, id: i64) -> Result<Item>;
     fn by_code(&self, cod: &str) -> Result<Item>;
-    fn by_user(&self, user: i32) -> Result<Vec<Item>>;
-    fn by_group(&self, group: i32) -> Result<Vec<Item>>;
-    fn offsprings(&self, id: i32) -> Result<Vec<Item>>;
-    fn users(&self, id: i32) -> Result<Vec<User>>;
-    fn groups(&self, id: i32) -> Result<Vec<Group>>;
-    fn create(&self, code: &str, name: &str, parent: Option<i32>) -> Result<()>;
-    fn update(&self, id: i32, code: &str, name: &str) -> Result<()>;
-    fn associate_user(&self, role: i32, user: i32) -> Result<()>;
-    fn dissociate_user(&self, role: i32, user: i32) -> Result<()>;
-    fn associate_group(&self, role: i32, group: i32) -> Result<()>;
-    fn dissociate_group(&self, role: i32, group: i32) -> Result<()>;
-    fn destory(&self, id: i32) -> Result<()>;
-    fn has_user(&self, role: i32, user: i32) -> Result<bool>;
+    fn by_user(&self, user: i64) -> Result<Vec<Item>>;
+    fn by_group(&self, group: i64) -> Result<Vec<Item>>;
+    fn offsprings(&self, id: i64) -> Result<Vec<Item>>;
+    fn users(&self, id: i64) -> Result<Vec<User>>;
+    fn groups(&self, id: i64) -> Result<Vec<Group>>;
+    fn create(&self, code: &str, name: &str, parent: Option<i64>) -> Result<()>;
+    fn update(&self, id: i64, code: &str, name: &str) -> Result<()>;
+    fn associate_user(&self, role: i64, user: i64) -> Result<()>;
+    fn dissociate_user(&self, role: i64, user: i64) -> Result<()>;
+    fn associate_group(&self, role: i64, group: i64) -> Result<()>;
+    fn dissociate_group(&self, role: i64, group: i64) -> Result<()>;
+    fn destory(&self, id: i64) -> Result<()>;
+    fn has_user(&self, role: i64, user: i64) -> Result<bool>;
 }
 
 impl Dao for Connection {
@@ -51,7 +51,7 @@ impl Dao for Connection {
         let items = roles::dsl::roles.order(roles::dsl::name.asc()).load(self)?;
         Ok(items)
     }
-    fn by_id(&self, id: i32) -> Result<Item> {
+    fn by_id(&self, id: i64) -> Result<Item> {
         let it = roles::dsl::roles
             .filter(roles::dsl::id.eq(id))
             .first(self)?;
@@ -63,8 +63,8 @@ impl Dao for Connection {
             .first(self)?;
         Ok(it)
     }
-    fn by_user(&self, user: i32) -> Result<Vec<Item>> {
-        let ids: Vec<i32> = roles_users::dsl::roles_users
+    fn by_user(&self, user: i64) -> Result<Vec<Item>> {
+        let ids: Vec<i64> = roles_users::dsl::roles_users
             .select(roles_users::dsl::role_id)
             .filter(roles_users::dsl::user_id.eq(user))
             .order(roles_users::dsl::created_at.desc())
@@ -76,8 +76,8 @@ impl Dao for Connection {
         }
         Ok(items)
     }
-    fn by_group(&self, group: i32) -> Result<Vec<Item>> {
-        let ids: Vec<i32> = roles_groups::dsl::roles_groups
+    fn by_group(&self, group: i64) -> Result<Vec<Item>> {
+        let ids: Vec<i64> = roles_groups::dsl::roles_groups
             .select(roles_groups::dsl::role_id)
             .filter(roles_groups::dsl::group_id.eq(group))
             .order(roles_groups::dsl::created_at.desc())
@@ -89,8 +89,8 @@ impl Dao for Connection {
         }
         Ok(items)
     }
-    fn users(&self, id: i32) -> Result<Vec<User>> {
-        let ids: Vec<i32> = roles_users::dsl::roles_users
+    fn users(&self, id: i64) -> Result<Vec<User>> {
+        let ids: Vec<i64> = roles_users::dsl::roles_users
             .select(roles_users::dsl::user_id)
             .filter(roles_users::dsl::role_id.eq(id))
             .order(roles_users::dsl::created_at.desc())
@@ -102,8 +102,8 @@ impl Dao for Connection {
         }
         Ok(items)
     }
-    fn groups(&self, id: i32) -> Result<Vec<Group>> {
-        let ids: Vec<i32> = roles_groups::dsl::roles_groups
+    fn groups(&self, id: i64) -> Result<Vec<Group>> {
+        let ids: Vec<i64> = roles_groups::dsl::roles_groups
             .select(roles_groups::dsl::group_id)
             .filter(roles_groups::dsl::role_id.eq(id))
             .order(roles_groups::dsl::created_at.desc())
@@ -115,7 +115,7 @@ impl Dao for Connection {
         }
         Ok(items)
     }
-    fn offsprings(&self, id: i32) -> Result<Vec<Item>> {
+    fn offsprings(&self, id: i64) -> Result<Vec<Item>> {
         let mut children = Vec::new();
 
         for it in roles::dsl::roles
@@ -127,7 +127,7 @@ impl Dao for Connection {
         }
         Ok(children)
     }
-    fn create(&self, code: &str, name: &str, parent: Option<i32>) -> Result<()> {
+    fn create(&self, code: &str, name: &str, parent: Option<i64>) -> Result<()> {
         let now = Utc::now().naive_local();
         let level = match parent {
             Some(id) => {
@@ -147,7 +147,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn update(&self, id: i32, code: &str, name: &str) -> Result<()> {
+    fn update(&self, id: i64, code: &str, name: &str) -> Result<()> {
         let now = Utc::now().naive_local();
         update(roles::dsl::roles.filter(roles::dsl::id.eq(&id)))
             .set((
@@ -158,7 +158,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn associate_user(&self, role: i32, user: i32) -> Result<()> {
+    fn associate_user(&self, role: i64, user: i64) -> Result<()> {
         let c: i64 = roles_users::dsl::roles_users
             .filter(roles_users::dsl::role_id.eq(role))
             .filter(roles_users::dsl::user_id.eq(user))
@@ -174,7 +174,7 @@ impl Dao for Connection {
         }
         Ok(())
     }
-    fn dissociate_user(&self, role: i32, user: i32) -> Result<()> {
+    fn dissociate_user(&self, role: i64, user: i64) -> Result<()> {
         delete(
             roles_users::dsl::roles_users
                 .filter(roles_users::dsl::role_id.eq(role))
@@ -183,7 +183,7 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn associate_group(&self, role: i32, group: i32) -> Result<()> {
+    fn associate_group(&self, role: i64, group: i64) -> Result<()> {
         let c: i64 = roles_groups::dsl::roles_groups
             .filter(roles_groups::dsl::role_id.eq(role))
             .filter(roles_groups::dsl::group_id.eq(group))
@@ -199,7 +199,7 @@ impl Dao for Connection {
         }
         Ok(())
     }
-    fn dissociate_group(&self, role: i32, group: i32) -> Result<()> {
+    fn dissociate_group(&self, role: i64, group: i64) -> Result<()> {
         delete(
             roles_groups::dsl::roles_groups
                 .filter(roles_groups::dsl::role_id.eq(role))
@@ -208,11 +208,11 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn destory(&self, id: i32) -> Result<()> {
+    fn destory(&self, id: i64) -> Result<()> {
         let now = Utc::now().naive_local();
         update(roles::dsl::roles.filter(roles::dsl::parent_id.eq(id)))
             .set((
-                roles::dsl::parent_id.eq(None::<i32>),
+                roles::dsl::parent_id.eq(None::<i64>),
                 roles::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -232,7 +232,7 @@ impl Dao for Connection {
         delete(roles::dsl::roles.filter(roles::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }
-    fn has_user(&self, role: i32, user: i32) -> Result<bool> {
+    fn has_user(&self, role: i64, user: i64) -> Result<bool> {
         let it: i64 = roles_users::dsl::roles_users
             .filter(roles_users::dsl::role_id.eq(role))
             .filter(roles_users::dsl::user_id.eq(user))
