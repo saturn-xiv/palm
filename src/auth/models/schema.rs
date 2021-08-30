@@ -58,8 +58,6 @@ table! {
 table! {
     resources (id) {
         id -> Int8,
-        #[sql_name = "type"]
-        type_ -> Varchar,
         code -> Varchar,
         name -> Varchar,
         version -> Int8,
@@ -118,7 +116,7 @@ table! {
         nick_name -> Varchar,
         email -> Varchar,
         password -> Nullable<Bytea>,
-        salt -> Nullable<Bytea>,
+        salt -> Bytea,
         uid -> Varchar,
         provider_type -> Varchar,
         provider_id -> Varchar,

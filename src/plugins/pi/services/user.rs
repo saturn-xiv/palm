@@ -10,13 +10,13 @@ use tonic::{Request, Response, Status};
 use validator::Validate;
 
 use super::super::super::super::{
+    auth::{models::user::Token, services::Session},
     crypto::Aes,
     jwt::Jwt,
     orm::sqlite::{Connection, Pool as DbPool},
     request::Token as Auth,
     GrpcResult, HttpError, Result,
 };
-use super::super::super::nut::{models::user::Token, services::Session};
 use super::super::{
     models::settings::Dao as SettingDao,
     v1::{user_server::User as UserServer, TokenResponse, UserProfile},
@@ -30,7 +30,7 @@ pub struct Service {
 
 #[tonic::async_trait]
 impl UserServer for Service {
-    async fn set_profile(&self, req: Request<UserProfile>) -> GrpcResult<Response<()>> {
+    async fn set_profile(&self, req: Request<UserProfile>) -> GrpcResult<()> {
         current_pi_user!(self, &req);
         let db = try_grpc!(self.db.get())?;
         let db = db.deref();
@@ -45,7 +45,7 @@ impl UserServer for Service {
         try_grpc!(SettingDao::set(db, aes, User::KEY, &fm, true))?;
         Ok(Response::new(()))
     }
-    async fn get_profile(&self, req: Request<()>) -> GrpcResult<Response<UserProfile>> {
+    async fn get_profile(&self, req: Request<()>) -> GrpcResult<UserProfile> {
         current_pi_user!(self, &req);
         let db = try_grpc!(self.db.get())?;
         let db = db.deref();
@@ -57,7 +57,7 @@ impl UserServer for Service {
             password: String::new(),
         }))
     }
-    async fn sign_in(&self, req: Request<UserProfile>) -> GrpcResult<Response<TokenResponse>> {
+    async fn sign_in(&self, req: Request<UserProfile>) -> GrpcResult<TokenResponse> {
         let req = req.into_inner();
 
         let db = try_grpc!(self.db.get())?;
@@ -86,7 +86,7 @@ impl UserServer for Service {
         warn!("user {} sign in.", user.name);
         Ok(Response::new(TokenResponse { token }))
     }
-    async fn token(&self, req: Request<Duration>) -> GrpcResult<Response<TokenResponse>> {
+    async fn token(&self, req: Request<Duration>) -> GrpcResult<TokenResponse> {
         let user = current_pi_user!(self, &req);
         let req = req.into_inner();
 
@@ -106,7 +106,7 @@ impl UserServer for Service {
 
         Ok(Response::new(TokenResponse { token }))
     }
-    async fn sign_out(&self, req: Request<()>) -> GrpcResult<Response<()>> {
+    async fn sign_out(&self, req: Request<()>) -> GrpcResult<()> {
         let user = current_pi_user!(self, &req);
         warn!("user {} sign out.", user.name);
         Ok(Response::new(()))

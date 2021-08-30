@@ -2,7 +2,7 @@ use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
 use serde::Serialize;
 
-use super::super::super::super::{orm::postgresql::Connection, Result};
+use super::super::super::{orm::postgresql::Connection, Result};
 use super::schema::logs;
 
 #[derive(Queryable, Serialize)]

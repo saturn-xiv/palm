@@ -4,15 +4,12 @@ use std::sync::Arc;
 use tonic::{Request, Response, Status};
 
 use super::super::super::{
+    auth::{models::user::CurrentUser, services::Session},
     jwt::Jwt,
     orm::postgresql::{Connection as Db, Pool as DbPool},
     GrpcResult, Result,
 };
-use super::super::nut::{
-    models::user::CurrentUser,
-    services::Session,
-    v1::{Page, Pagination},
-};
+use super::super::nut::v1::{Page, Pagination};
 use super::{
     models::{log::Dao as LogDao, site::Dao as SiteDao},
     v1::{crawler_server::Crawler, logs_response, LogsResponse},
@@ -48,7 +45,7 @@ pub struct Service {
 
 #[tonic::async_trait]
 impl Crawler for Service {
-    async fn logs(&self, req: Request<Page>) -> GrpcResult<Response<LogsResponse>> {
+    async fn logs(&self, req: Request<Page>) -> GrpcResult<LogsResponse> {
         let user = current_user!(self, &req);
         let db = try_grpc!(self.db.get())?;
         let db = db.deref();

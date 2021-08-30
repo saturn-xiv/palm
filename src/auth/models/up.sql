@@ -4,7 +4,7 @@ CREATE TABLE users(
     nick_name VARCHAR(32) NOT NULL,
     email VARCHAR(255) NOT NULL,
     "password" BYTEA,
-    salt BYTEA,
+    salt BYTEA NOT NULL,
     uid VARCHAR(36) NOT NULL,
     provider_type VARCHAR(16) NOT NULL,
     provider_id VARCHAR(255) NOT NULL,

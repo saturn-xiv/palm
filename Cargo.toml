@@ -91,7 +91,7 @@ features = ["full"]
 
 [dependencies.validator]
 version = "0.14"
-features = ["derive"]
+features = ["derive", "phone", "card", "unic"]
 
 [dependencies.cookie]
 version = "0.15"

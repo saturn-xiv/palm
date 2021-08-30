@@ -84,7 +84,7 @@ impl RabbitMq {
 }
 
 impl RabbitMq {
-    pub async fn publish<T: Serialize>(&self, queue: &str, payload: &T) -> Result<()> {
+    pub async fn publish(&self, queue: &str, content_type: &str, payload: Vec<u8>) -> Result<()> {
         let ch = self.open(queue).await?;
         let id = Uuid::new_v4().to_string();
         info!("publish task {}://{}", queue, id);
@@ -92,10 +92,10 @@ impl RabbitMq {
             "",
             queue,
             BasicPublishOptions::default(),
-            flexbuffers::to_vec(payload)?,
+            payload,
             BasicProperties::default()
                 .with_message_id(id.into())
-                .with_content_type("FlatBuffers".into())
+                .with_content_type(content_type.into())
                 .with_timestamp(SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs()),
         )
         .await?

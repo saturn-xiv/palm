@@ -2,7 +2,7 @@ use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use serde::Serialize;
 
-use super::super::super::super::{orm::postgresql::Connection, Result};
+use super::super::super::{orm::postgresql::Connection, Result};
 use super::{
     group::{Dao as GroupDao, Item as Group},
     schema::{policies, roles, roles_groups, roles_relations, roles_users},

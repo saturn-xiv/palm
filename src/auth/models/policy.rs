@@ -6,7 +6,7 @@ use diesel::{delete, insert_into, prelude::*, update};
 use hyper::http::StatusCode;
 use serde::{Deserialize, Serialize};
 
-use super::super::super::super::{orm::postgresql::Connection, HttpError, Result};
+use super::super::super::{orm::postgresql::Connection, HttpError, Result};
 use super::{
     operation::Dao as OperationDao, resource::Dao as ResouceDao, role::Dao as RoleDao,
     schema::policies,

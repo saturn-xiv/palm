@@ -8,9 +8,10 @@ use hyper::StatusCode;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-use super::super::super::super::{
-    crypto::Password, jwt::Jwt, oauth::google::openid::IdToken, orm::postgresql::Connection,
-    request::Token as Auth, HttpError, Result,
+use super::super::super::{
+    crypto::random::bytes as random_bytes, crypto::Password, jwt::Jwt,
+    oauth::google::openid::IdToken, orm::postgresql::Connection, request::Token as Auth, HttpError,
+    Result,
 };
 use super::super::services::Session as GrpcSession;
 use super::{
@@ -51,7 +52,7 @@ pub struct Item {
     pub nick_name: String,
     pub email: String,
     pub password: Option<Vec<u8>>,
-    pub salt: Option<Vec<u8>>,
+    pub salt: Vec<u8>,
     pub uid: String,
     pub provider_type: String,
     pub provider_id: String,
@@ -79,6 +80,7 @@ impl fmt::Display for Item {
 }
 
 impl Item {
+    const SALT_SIZE: usize = 32;
     fn new(db: &Connection, jwt: &Jwt, token: &str) -> Result<Item> {
         let token = jwt.parse::<Token>(token)?;
         let token = token.claims;
@@ -117,50 +119,6 @@ impl Item {
     }
 }
 
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Entity {
-    pub real_name: String,
-    pub nick_name: String,
-    pub email: String,
-    pub provider_type: String,
-    pub logo: String,
-    pub lang: String,
-    pub sign_in_count: i64,
-    pub current_sign_in_at: Option<NaiveDateTime>,
-    pub current_sign_in_ip: Option<String>,
-    pub last_sign_in_at: Option<NaiveDateTime>,
-    pub last_sign_in_ip: Option<String>,
-    pub confirmed_at: Option<NaiveDateTime>,
-    pub locked_at: Option<NaiveDateTime>,
-    pub deleted_at: Option<NaiveDateTime>,
-    pub created_at: NaiveDateTime,
-    pub updated_at: NaiveDateTime,
-}
-
-impl From<Item> for Entity {
-    fn from(it: Item) -> Self {
-        Self {
-            real_name: it.real_name,
-            nick_name: it.nick_name,
-            email: it.email,
-            provider_type: it.provider_type,
-            logo: it.logo,
-            lang: it.lang,
-            sign_in_count: it.sign_in_count,
-            current_sign_in_at: it.current_sign_in_at,
-            current_sign_in_ip: it.current_sign_in_ip,
-            last_sign_in_at: it.last_sign_in_at,
-            last_sign_in_ip: it.last_sign_in_ip,
-            confirmed_at: it.confirmed_at,
-            locked_at: it.locked_at,
-            deleted_at: it.deleted_at,
-            created_at: it.created_at,
-            updated_at: it.updated_at,
-        }
-    }
-}
-
 #[derive(Insertable)]
 #[table_name = "users"]
 pub struct New<'a> {
@@ -168,6 +126,7 @@ pub struct New<'a> {
     pub nick_name: &'a str,
     pub email: &'a str,
     pub password: Option<&'a [u8]>,
+    pub salt: &'a [u8],
     pub uid: &'a str,
     pub provider_type: &'a str,
     pub provider_id: &'a str,
@@ -268,6 +227,7 @@ impl Dao for Connection {
                         nick_name: &format!("g{}", id_token.sub),
                         email: &email,
                         password: None,
+                        salt: &random_bytes(Item::SALT_SIZE),
                         profile: &flexbuffers::to_vec(Profile::new())?,
                         provider_type: &Type::Google.to_string(),
                         provider_id: &id_token.sub,
@@ -320,17 +280,16 @@ impl Dao for Connection {
         email: &str,
         password: &str,
     ) -> Result<()> {
-        let email = email.trim().to_lowercase();
-        let nick_name = nick_name.trim();
         insert_into(users::dsl::users)
             .values(&New {
                 real_name,
                 nick_name,
                 profile: &flexbuffers::to_vec(Profile::new())?,
-                email: &email,
+                email,
                 password: Some(&enc.sum(password.as_bytes())?),
+                salt: &random_bytes(Item::SALT_SIZE),
                 provider_type: &Type::Email.to_string(),
-                provider_id: &email,
+                provider_id: email,
                 logo: &Item::gravatar_logo(&email)?,
                 uid: &Uuid::new_v4().to_string(),
                 updated_at: &Utc::now().naive_utc(),

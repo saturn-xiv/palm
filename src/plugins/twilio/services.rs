@@ -3,12 +3,13 @@ use std::sync::Arc;
 
 use tonic::{Request, Response, Status};
 
-use super::super::super::{jwt::Jwt, orm::postgresql::Pool as DbPool, GrpcResult};
-use super::super::nut::{
-    models::user::CurrentUser,
-    services::Session,
-    v1::{Page, Pagination},
+use super::super::super::{
+    auth::{models::user::CurrentUser, services::Session},
+    jwt::Jwt,
+    orm::postgresql::Pool as DbPool,
+    GrpcResult,
 };
+use super::super::nut::v1::{Page, Pagination};
 use super::{
     models::log::{Dao as LogDao, Item as Log},
     protocols::Config,
@@ -35,14 +36,14 @@ pub struct Service {
 
 #[tonic::async_trait]
 impl Twilio for Service {
-    async fn send(&self, req: Request<TextMessage>) -> GrpcResult<Response<()>> {
+    async fn send(&self, req: Request<TextMessage>) -> GrpcResult<()> {
         let user = current_user!(self, &req);
         let db = try_grpc!(self.db.get())?;
         let db = db.deref();
         try_grpc!(user.is_administrator(db))?;
         Ok(Response::new(()))
     }
-    async fn logs(&self, req: Request<Page>) -> GrpcResult<Response<LogsResponse>> {
+    async fn logs(&self, req: Request<Page>) -> GrpcResult<LogsResponse> {
         let user = current_user!(self, &req);
         let db = try_grpc!(self.db.get())?;
         let db = db.deref();

@@ -1,4 +1,11 @@
+pub mod group;
+pub mod log;
+pub mod operation;
+pub mod policy;
+pub mod resource;
+pub mod role;
 pub mod schema;
+pub mod user;
 
 use super::super::orm::migration::Migration;
 

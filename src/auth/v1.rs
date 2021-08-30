@@ -1,1 +1,1 @@
-tonic::include_proto!("palm.rbac.v1");
+tonic::include_proto!("palm.auth.v1");

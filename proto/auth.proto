@@ -6,6 +6,29 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
+message EmailTask {
+  message Part {
+    string content_type = 1;
+    string body = 2;
+  }
+  message File {
+    string content_type = 1;
+    string name = 2;
+    bytes body = 3;
+  }
+  string to = 1;
+  repeated string cc = 2;
+  repeated string bcc = 3;
+  string subject = 11;
+  repeated Part parts = 12;
+  repeated File attachemts = 13;
+}
+
+message SmsTask {
+  string body = 1;
+  repeated string to = 2;
+}
+
 service User {
   rpc SignIn(SignInRequest) returns (SignInResponse);
   rpc SignUp(SignUpRequest) returns (google.protobuf.Empty);
@@ -18,7 +41,7 @@ service User {
 
   rpc Current(google.protobuf.Empty) returns (SignInResponse);
   rpc ChangePassword(ChangePasswordRequest) returns (google.protobuf.Empty);
-  rpc Logs(google.protobuf.Duration) returns (LogsResponse);
+  rpc Logs(google.protobuf.Duration) returns (IndexLogResponse);
   rpc GetProfile(google.protobuf.Empty) returns (UserProfile);
   rpc SetProfile(UserProfile) returns (google.protobuf.Empty);
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty);
@@ -42,10 +65,11 @@ message SignInResponse {
 message SignUpRequest {
   string real_name = 1;
   string nick_name = 2;
-  string password = 3;
+  string email = 3;
+  string password = 4;
 }
 
-message LogsResponse {
+message IndexLogResponse {
   enum Level {
     DEBUG = 0;
     INFO = 1;
@@ -76,14 +100,6 @@ message ResetPasswordRequest {
 message UserProfile {
   string real_name = 1;
   string logo = 2;
-}
-
-enum UserProviderType {
-  Email = 0;
-  Phone = 1;
-  Google = 2;
-  FaceBook = 3;
-  WeChat = 4;
 }
 
 service Policy {

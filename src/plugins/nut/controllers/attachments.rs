@@ -6,12 +6,10 @@ use actix_web::{post, web, HttpResponse, Responder};
 use futures::{StreamExt, TryStreamExt};
 
 use super::super::super::super::{
-    aws::s3::S3, jwt::Jwt, orm::postgresql::Pool as Db, request::Token, Error, HttpResult,
+    auth::models::user::CurrentUser, aws::s3::S3, jwt::Jwt, orm::postgresql::Pool as Db,
+    request::Token, Error, HttpResult,
 };
-use super::super::models::{
-    attachment::{Dao as AttachmentDao, Item as Attachment},
-    user::CurrentUser,
-};
+use super::super::models::attachment::{Dao as AttachmentDao, Item as Attachment};
 
 #[post("/attachments/")]
 pub async fn create(
