@@ -15,9 +15,6 @@
         "**/node_modules/**": true
     },
     "sql-formatter.uppercase": true,
-    "cmake.configureSettings": {
-        "CMAKE_TOOLCHAIN_FILE": "${env:HOME}/local/vcpkg/scripts/buildsystems/vcpkg.cmake"
-    },
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },

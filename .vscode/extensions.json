@@ -2,7 +2,7 @@
     "recommendations": [
         "ms-vscode.cpptools-extension-pack",
         "ms-python.python",
-        "zbr.vscode-ansible",
+        "redhat.ansible",
         "redhat.vscode-yaml",
         "ms-vscode-remote.remote-ssh",
         "ms-azuretools.vscode-docker",
