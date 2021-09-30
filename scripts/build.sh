@@ -59,7 +59,11 @@ grpc_install() {
         fi
         mkdir -pv $grpc_build
         cd $grpc_build
-        cmake -DCMAKE_BUILD_TYPE=Release -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$GRPC_INSTALL_PREFIX $grpc_src
+        cmake -DCMAKE_BUILD_TYPE=Release \
+            -DgRPC_INSTALL=ON \
+            -DgRPC_BUILD_TESTS=OFF \
+            -DgRPC_SSL_PROVIDER=package \
+            -DCMAKE_INSTALL_PREFIX=$GRPC_INSTALL_PREFIX $grpc_src
         make
         make install
     fi
