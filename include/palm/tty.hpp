@@ -1,4 +1,12 @@
-// #pragma once
+#pragma once
+
+/**
+ *
+ * sudo usermod -a -G dialout $USER
+ * sudo usermod -a -G plugdev $USER
+ * socat -d -d pty,raw,echo=0,link=/dev/ttyS0 pty,raw,echo=0,link=/dev/ttyS1
+ *
+ */
 
 // #include "palm/env.hpp"
 

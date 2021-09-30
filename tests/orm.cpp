@@ -1,68 +1,74 @@
-#define BOOST_TEST_MODULE orm
-#include <boost/test/included/unit_test.hpp>
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch.hpp>
 
-// #include "palm/orm.hpp"
+TEST_CASE("Demo", "[f]") { REQUIRE(2 * 2 == 4); }
 
-BOOST_AUTO_TEST_CASE(queries) {
-  // palm::orm::Schema::load_queries("db");
-  // for (const auto& it : {"insert", "delete", "set-run-at"}) {
-  //   std::stringstream ss;
-  //   ss << "schema_migrations." << it;
-  //   const auto key = ss.str();
-  //   std::cout << key << " = " << palm::orm::Schema::query(key) << std::endl;
-  // }
-}
+// #define BOOST_TEST_MODULE orm
+// #include <boost/test/included/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(sqlite3) {
-  // palm::sqlite3::init();
-  // auto sql = palm::sqlite3::open("demo");
+// // #include "palm/orm.hpp"
 
-  // std::tm now;
-  // (*sql) << "SELECT CURRENT_TIMESTAMP", soci::into(now);
+// BOOST_AUTO_TEST_CASE(queries) {
+//   // palm::orm::Schema::load_queries("db");
+//   // for (const auto& it : {"insert", "delete", "set-run-at"}) {
+//   //   std::stringstream ss;
+//   //   ss << "schema_migrations." << it;
+//   //   const auto key = ss.str();
+//   //   std::cout << key << " = " << palm::orm::Schema::query(key) <<
+//   std::endl;
+//   // }
+// }
 
-  // std::cout << std::asctime(&now) << std::endl;
-}
+// BOOST_AUTO_TEST_CASE(sqlite3) {
+//   // palm::sqlite3::init();
+//   // auto sql = palm::sqlite3::open("demo");
 
-BOOST_AUTO_TEST_CASE(postgresql) {
-  // palm::postgresql::init();
+//   // std::tm now;
+//   // (*sql) << "SELECT CURRENT_TIMESTAMP", soci::into(now);
 
-  // toml::table cfg;
-  // cfg.insert("name", "demo");
-  // cfg.insert("pool-size", 5);
+//   // std::cout << std::asctime(&now) << std::endl;
+// }
 
-  // auto builder = std::make_shared<palm::postgresql::Config>();
-  // *builder = cfg;
-  // auto pool = std::make_shared<palm::postgresql::Pool>(builder);
+// BOOST_AUTO_TEST_CASE(postgresql) {
+//   // palm::postgresql::init();
 
-  // auto it = pool->get();
-  // palm::postgresql::PooledConnection(pool, it);
+//   // toml::table cfg;
+//   // cfg.insert("name", "demo");
+//   // cfg.insert("pool-size", 5);
 
-  // std::tm now;
-  // (*it) << "SELECT CURRENT_TIMESTAMP", soci::into(now);
+//   // auto builder = std::make_shared<palm::postgresql::Config>();
+//   // *builder = cfg;
+//   // auto pool = std::make_shared<palm::postgresql::Pool>(builder);
 
-  // pool->heartbeat([](std::shared_ptr<soci::session> it) -> bool {
-  //   (*it) << "SELECT 1";
-  //   return true;
-  // });
+//   // auto it = pool->get();
+//   // palm::postgresql::PooledConnection(pool, it);
 
-  // std::cout << std::asctime(&now) << std::endl;
-}
+//   // std::tm now;
+//   // (*it) << "SELECT CURRENT_TIMESTAMP", soci::into(now);
 
-BOOST_AUTO_TEST_CASE(mysql) {
-  // palm::mysql::init();
-  // toml::table cfg;
-  // cfg.insert("name", "demo");
-  // cfg.insert("pool-size", 5);
+//   // pool->heartbeat([](std::shared_ptr<soci::session> it) -> bool {
+//   //   (*it) << "SELECT 1";
+//   //   return true;
+//   // });
 
-  // auto builder = std::make_shared<palm::mysql::Config>();
-  // *builder = cfg;
-  // auto pool = std::make_shared<palm::mysql::Pool>(builder);
+//   // std::cout << std::asctime(&now) << std::endl;
+// }
 
-  // auto it = pool->get();
-  // palm::mysql::PooledConnection(pool, it);
+// BOOST_AUTO_TEST_CASE(mysql) {
+//   // palm::mysql::init();
+//   // toml::table cfg;
+//   // cfg.insert("name", "demo");
+//   // cfg.insert("pool-size", 5);
 
-  // std::tm now;
-  // (*it) << "SELECT CURRENT_TIMESTAMP", soci::into(now);
+//   // auto builder = std::make_shared<palm::mysql::Config>();
+//   // *builder = cfg;
+//   // auto pool = std::make_shared<palm::mysql::Pool>(builder);
 
-  // std::cout << std::asctime(&now) << std::endl;
-}
+//   // auto it = pool->get();
+//   // palm::mysql::PooledConnection(pool, it);
+
+//   // std::tm now;
+//   // (*it) << "SELECT CURRENT_TIMESTAMP", soci::into(now);
+
+//   // std::cout << std::asctime(&now) << std::endl;
+// }

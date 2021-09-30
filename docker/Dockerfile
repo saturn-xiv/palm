@@ -26,9 +26,10 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     vim sudo tzdata pwgen curl zip unzip tree tmux \
     net-tools dnsutils net-tools iputils-arping iputils-ping telnet \
     imagemagick ffmpeg \
-    build-essential pkg-config libtool automake autoconf binutils cpio \
+    build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
     clang-13 lldb-13 lld-13 \
+    crossbuild-essential-armhf \
     gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf gcc-multilib-arm-linux-gnueabihf g++-multilib-arm-linux-gnueabihf \
     pkg-config-arm-linux-gnueabihf binutils-arm-linux-gnueabihf \
     python3 python3-distutils python3-pip python3-dev
@@ -77,6 +78,11 @@ RUN sh -c ". $HOME/.profile \
 RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
+
+# https://github.com/microsoft/vcpkg#quick-start-unix
+# RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
+# RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
+# RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 

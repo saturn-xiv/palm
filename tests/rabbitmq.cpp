@@ -1,53 +1,58 @@
-#define BOOST_TEST_MODULE rabbitmq
-#include <boost/test/included/unit_test.hpp>
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch.hpp>
 
-// #include "palm/queue.hpp"
+TEST_CASE("Demo", "[f]") { REQUIRE(2 * 2 == 4); }
 
-// #define PALM_QUEUE "test"
+// #define BOOST_TEST_MODULE rabbitmq
+// #include <boost/test/included/unit_test.hpp>
 
-// void open(std::function<void(std::shared_ptr<palm::rabbitmq::Connection>)>
-// fn) {
-//   toml::table cfg;
+// // #include "palm/queue.hpp"
 
-//   cfg.insert("pool-size", 5);
-//   cfg.insert("virtual-host", "/demo");
-//   std::cout << cfg << std::endl;
+// // #define PALM_QUEUE "test"
 
-//   auto builder = std::make_shared<palm::rabbitmq::Config>();
-//   *builder = cfg;
-//   auto pool = std::make_shared<palm::rabbitmq::Pool>(builder);
+// // void open(std::function<void(std::shared_ptr<palm::rabbitmq::Connection>)>
+// // fn) {
+// //   toml::table cfg;
 
-//   auto it = pool->get();
-//   palm::rabbitmq::PooledConnection con(pool, it);
+// //   cfg.insert("pool-size", 5);
+// //   cfg.insert("virtual-host", "/demo");
+// //   std::cout << cfg << std::endl;
 
-//   std::cout << "### into fun fun ### " << (it == nullptr) << std::endl;
-//   fn(it);
-//   std::cout << "### out from fun ### " << (it == nullptr) << std::endl;
+// //   auto builder = std::make_shared<palm::rabbitmq::Config>();
+// //   *builder = cfg;
+// //   auto pool = std::make_shared<palm::rabbitmq::Pool>(builder);
+
+// //   auto it = pool->get();
+// //   palm::rabbitmq::PooledConnection con(pool, it);
+
+// //   std::cout << "### into fun fun ### " << (it == nullptr) << std::endl;
+// //   fn(it);
+// //   std::cout << "### out from fun ### " << (it == nullptr) << std::endl;
+// // }
+
+// BOOST_AUTO_TEST_CASE(pub) {
+//   // open([](std::shared_ptr<palm::rabbitmq::Connection> it) {
+//   //   for (int i = 1; i < 10; i++) {
+//   //     std::stringstream ss;
+//   //     ss << "hello, " << i << ".";
+//   //     it->publish(PALM_QUEUE, "plain", ss.str());
+//   //   }
+//   // });
 // }
 
-BOOST_AUTO_TEST_CASE(pub) {
-  // open([](std::shared_ptr<palm::rabbitmq::Connection> it) {
-  //   for (int i = 1; i < 10; i++) {
-  //     std::stringstream ss;
-  //     ss << "hello, " << i << ".";
-  //     it->publish(PALM_QUEUE, "plain", ss.str());
-  //   }
-  // });
-}
+// // class Handler : public palm::rabbitmq::Handler {
+// //  public:
+// //   void execute(const std::string& id, const std::string& content_type,
+// //                const std::string& body) override {
+// //     std::cout << "process message " << id << "@" << content_type << "\n"
+// //               << body << std::endl;
+// //   }
+// // };
 
-// class Handler : public palm::rabbitmq::Handler {
-//  public:
-//   void execute(const std::string& id, const std::string& content_type,
-//                const std::string& body) override {
-//     std::cout << "process message " << id << "@" << content_type << "\n"
-//               << body << std::endl;
-//   }
-// };
-
-BOOST_AUTO_TEST_CASE(sub) {
-  // auto handler = std::make_shared<Handler>();
-  // open([&](std::shared_ptr<palm::rabbitmq::Connection> it) {
-  //   std::cout << "### sub 1 ### " << (it == nullptr) << std::endl;
-  //   it->consume(PALM_QUEUE, handler);
-  // });
-}
+// BOOST_AUTO_TEST_CASE(sub) {
+//   // auto handler = std::make_shared<Handler>();
+//   // open([&](std::shared_ptr<palm::rabbitmq::Connection> it) {
+//   //   std::cout << "### sub 1 ### " << (it == nullptr) << std::endl;
+//   //   it->consume(PALM_QUEUE, handler);
+//   // });
+// }

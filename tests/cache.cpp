@@ -1,42 +1,47 @@
-#define BOOST_TEST_MODULE cache
-#include <boost/test/included/unit_test.hpp>
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch.hpp>
 
-#include "palm/cache.hpp"
+TEST_CASE("Demo", "[f]") { REQUIRE(2 * 2 == 4); }
 
-BOOST_AUTO_TEST_CASE(redis) {
-  const auto key = "hi";
-  const auto val = "hello";
-  toml::table cfg;
+// #define BOOST_TEST_MODULE cache
+// #include <boost/test/included/unit_test.hpp>
 
-  cfg.insert("pool-size", 5);
-  cfg.insert("zone", "test");
-  std::cout << cfg << std::endl;
+// #include "palm/cache.hpp"
 
-  auto builder = std::make_shared<palm::redis::Config>();
-  *builder = cfg;
-  auto pool = std::make_shared<palm::redis::Pool>(builder);
+// BOOST_AUTO_TEST_CASE(redis) {
+//   const auto key = "hi";
+//   const auto val = "hello";
+//   toml::table cfg;
 
-  {
-    toml::table it;
-    it << *builder;
-    std::cout << "new config: " << it << std::endl;
-  }
+//   cfg.insert("pool-size", 5);
+//   cfg.insert("zone", "test");
+//   std::cout << cfg << std::endl;
 
-  auto it = pool->get();
-  palm::redis::PooledConnection(pool, it);
+//   auto builder = std::make_shared<palm::redis::Config>();
+//   *builder = cfg;
+//   auto pool = std::make_shared<palm::redis::Pool>(builder);
 
-  it->palm::cache::Cache::set(key, val);
+//   {
+//     toml::table it;
+//     it << *builder;
+//     std::cout << "new config: " << it << std::endl;
+//   }
 
-  for (int i = 1; i < 10; i++) {
-    std::stringstream ss;
-    ss << key << "/" << i;
-    it->set(ss.str(), val, std::chrono::hours{i});
-  }
+//   auto it = pool->get();
+//   palm::redis::PooledConnection(pool, it);
 
-  const auto tmp = it->get(key);
-  BOOST_CHECK_EQUAL(val, tmp);
+//   it->palm::cache::Cache::set(key, val);
 
-  for (const auto& it : it->keys()) {
-    std::cout << it.first << "\t" << it.second << std::endl;
-  }
-}
+//   for (int i = 1; i < 10; i++) {
+//     std::stringstream ss;
+//     ss << key << "/" << i;
+//     it->set(ss.str(), val, std::chrono::hours{i});
+//   }
+
+//   const auto tmp = it->get(key);
+//   BOOST_CHECK_EQUAL(val, tmp);
+
+//   for (const auto& it : it->keys()) {
+//     std::cout << it.first << "\t" << it.second << std::endl;
+//   }
+// }

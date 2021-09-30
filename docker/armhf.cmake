@@ -1,0 +1,16 @@
+set(CMAKE_SYSTEM_PROCESSOR arm)
+set(CMAKE_SYSTEM_NAME Linux)
+
+set(CMAKE_FIND_ROOT_PATH /usr/arm-linux-gnueabihf)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+# set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+# set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+# set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+set(PKG_CONFIG_EXECUTABLE arm-linux-gnueabihf-pkg-config)
+set(ENV{PKG_CONFIG_ALLOW_CROSS} 1)
+set(ENV{PKG_CONFIG_DIR} "")
+set(ENV{PKG_CONFIG_LIBDIR} /usr/lib/arm-linux-gnueabihf/pkgconfig)
+# set(ENV{PKG_CONFIG_SYSROOT_DIR} /usr/arm-linux-gnueabihf)
+        
