@@ -6,8 +6,7 @@ export WORKSPACE=$PWD
 export CLANG_USE_STD="-stdlib=libstdc++"
 export CMAKE_CLANG="-DCMAKE_C_COMPILER=clang-13 \
     -DCMAKE_CXX_COMPILER=clang++-13 \
-    -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=lld-13' \
-    -DCMAKE_STATIC_LINKER_FLAGS='-fuse-ld=lld-13'"
+    -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=lld-13'"
 export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DLIBSERIAL_BUILD_DOCS=OFF \
     -DLIBSERIAL_ENABLE_TESTING=OFF \
@@ -66,7 +65,6 @@ amd64_clang_release() {
     cd $WORKSPACE/build/amd64-clang-release
     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release \
         $CMAKE_CLANG $CMAKE_OPTIONS \
-        -DCMAKE_C_COMPILER=clang-$CLANG_VERSION -DCMAKE_CXX_COMPILER=clang++-$CLANG_VERSION \
         -DCMAKE_CXX_FLAGS="$CLANG_USE_STD"
     make
 }
@@ -88,7 +86,6 @@ arch_clang_debug() {
     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Debug \
         -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
         -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=lld' \
-        -DCMAKE_STATIC_LINKER_FLAGS='-fuse-ld=lld' \
         $CMAKE_OPTIONS \
         -DCMAKE_CXX_FLAGS="$CLANG_USE_STD"
     make
