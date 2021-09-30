@@ -79,6 +79,18 @@ RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
+# https://grpc.io/docs/languages/cpp/quickstart/
+ENV GRPC_VERSION "v1.41.0"
+RUN zsh -c "source $HOME/.zshrc \
+    && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
+RUN zsh -c "source $HOME/.zshrc \
+    && mkdir -pv $HOME/build/grpc-amd64 \
+    && cd $HOME/build/grpc-amd64 \
+    && cmake -DCMAKE_BUILD_TYPE=Release -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
+    && make \
+    && make install"
+
+# https://github.com/microsoft/vcpkg#quick-start-unix
 # https://github.com/microsoft/vcpkg#quick-start-unix
 # RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
 # RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile

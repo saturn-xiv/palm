@@ -3,6 +3,7 @@
 set -e
 
 export WORKSPACE=$PWD
+export GRPC_INSTALL_PREFIX=$HOME/.local
 export CLANG_USE_STD="-stdlib=libstdc++"
 export CMAKE_CLANG="-DCMAKE_C_COMPILER=clang-13 \
     -DCMAKE_CXX_COMPILER=clang++-13 \
@@ -23,12 +24,47 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTING=OFF \
-    -DBUILD_BENCHMARK=OFF"
+    -DBUILD_BENCHMARK=OFF \
+    -DgRPC_SSL_PROVIDER=package \
+    -DgRPC_ZLIB_PROVIDER=package \
+    -DgRPC_PROTOBUF_PROVIDER=package \
+    -DProtobuf_PROTOC_EXECUTABLE $GRPC_INSTALL_PREFIX/bin/protoc \
+    -DgRPC_PROTOBUF_PACKAGE_TYPE=module \
+    -DgRPC_ABSL_PROVIDER=module \
+    -DgRPC_BUILD_TESTS=OFF"
 export CMAKE_CROSS_OPTIONS="-DENABLE_ACTIVERECORD_COMPILER=OFF \
     -DENABLE_PAGECOMPILER=OFF \
     -DENABLE_PAGECOMPILER_FILE2PAGE=OFF \
     -DFLATBUFFERS_BUILD_FLATC=OFF"
 
+grpc_install() {
+    local grpc_version="v1.41.0"
+    local protoc_version="3.17.3.0"
+    local grpc_src=$HOME/downloads/grpc
+    local grpc_build=$grpc_src/build-amd64
+    
+    if [ -d $grpc_src ]
+    then
+        cd $grpc_src
+        git checkout --recurse-submodules $grpc_version
+    else
+        git clone --recurse-submodules -b $grpc_version https://github.com/grpc/grpc.git $grpc_src
+    fi
+    if [ ! -f $GRPC_INSTALL_PREFIX/bin/protoc-$protoc_version ]
+    then
+        if [ -d $grpc_build ]
+        then
+            rm -rv $grpc_build
+        fi
+        mkdir -pv $grpc_build
+        cd $grpc_build
+        cmake -DCMAKE_BUILD_TYPE=Release -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$GRPC_INSTALL_PREFIX $grpc_src
+        make
+        make install
+    fi
+
+    
+}
 
 dashboard_release() {
     cd $WORKSPACE
@@ -94,9 +130,9 @@ arch_clang_debug() {
 export OS_NAME=$(lsb_release -is)
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    sudo apt install -y libpq-dev libmysqlclient-dev
-    amd64_clang_debug
-    amd64_clang_release
+    # sudo apt install -y libpq-dev libmysqlclient-dev
+    # amd64_clang_debug
+    # amd64_clang_release
 
     sudo apt install -y libpq-dev:armhf libmysqlclient-dev:armhf
     cross_clang_release arm-linux-gnueabihf

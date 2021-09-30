@@ -16,6 +16,9 @@ target_link_libraries(palm PUBLIC
 
   rabbitmq-static libzmq-static
   flatbuffers
+
+  dl crypt m ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES}
+  grpc grpc++ grpc++_reflection
 )
 
 source_group(

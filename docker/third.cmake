@@ -63,6 +63,27 @@ FetchContent_Declare(
     GIT_TAG         "b9d43a5"
 )
 FetchContent_MakeAvailable(flatbuffers)
+
+# https://github.com/protocolbuffers/protobuf
+# FetchContent_Declare(
+#     protobuf
+#     GIT_REPOSITORY  "https://github.com/protocolbuffers/protobuf.git"
+#     GIT_TAG         "v3.15.8"
+# )
+# set(protobuf_BUILD_TESTS OFF)
+
+# https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/examples/cpp/helloworld/cmake_externalproject/CMakeLists.txt
+# https://grpc.io/blog/cmake-improvements/
+# https://stackoverflow.com/questions/52202453/cross-compiling-grpc-using-cmake
+FetchContent_Declare(
+    gRPC
+    GIT_REPOSITORY  "https://github.com/grpc/grpc.git"
+    GIT_TAG         "v1.41.0"
+)
+FetchContent_MakeAvailable(gRPC)
+# set(Protobuf_PROTOC_EXECUTABLE $ENV{HOME}/local/vcpkg/installed/x64-linux/tools/protobuf/protoc)
+
+
 # --------------------------------------------------------
 
 # find_package(ZLIB REQUIRED)
@@ -120,29 +141,6 @@ FetchContent_MakeAvailable(flatbuffers)
 # https://github.com/zeromq/libzmq
 
 
-# https://github.com/protocolbuffers/protobuf
-# FetchContent_Declare(
-#     protobuf
-#     GIT_REPOSITORY  "https://github.com/protocolbuffers/protobuf.git"
-#     GIT_TAG         "v3.15.8"
-# )
-# set(protobuf_BUILD_TESTS OFF)
-
-# https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/examples/cpp/helloworld/cmake_externalproject/CMakeLists.txt
-# https://grpc.io/blog/cmake-improvements/
-# https://stackoverflow.com/questions/52202453/cross-compiling-grpc-using-cmake
-# FetchContent_Declare(
-#     gRPC
-#     GIT_REPOSITORY  "https://github.com/grpc/grpc.git"
-#     GIT_TAG         "v1.39.1"
-# )
-# set(gRPC_BUILD_TESTS OFF)
-# set(gRPC_SSL_PROVIDER "package")
-# set(gRPC_ZLIB_PROVIDER "package")
-# set(gRPC_PROTOBUF_PROVIDER "package")
-# set(gRPC_PROTOBUF_PACKAGE_TYPE "module")
-# set(gRPC_ABSL_PROVIDER "package")
-# set(Protobuf_PROTOC_EXECUTABLE $ENV{HOME}/local/vcpkg/installed/x64-linux/tools/protobuf/protoc)
 
 # # https://github.com/google/tink
 # FetchContent_Declare(
