@@ -27,9 +27,10 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DBUILD_BENCHMARK=OFF \
     -DgRPC_SSL_PROVIDER=package \
     -DgRPC_ZLIB_PROVIDER=package \
-    -DgRPC_PROTOBUF_PROVIDER=package \
-    -DProtobuf_PROTOC_EXECUTABLE $GRPC_INSTALL_PREFIX/bin/protoc \
+    -DgRPC_PROTOBUF_PROVIDER=module \
     -DgRPC_PROTOBUF_PACKAGE_TYPE=module \
+    -Dprotobuf_BUILD_TESTS=OFF \
+    -DProtobuf_PROTOC_EXECUTABLE=$GRPC_INSTALL_PREFIX/bin/protoc \
     -DgRPC_ABSL_PROVIDER=module \
     -DgRPC_BUILD_TESTS=OFF"
 export CMAKE_CROSS_OPTIONS="-DENABLE_ACTIVERECORD_COMPILER=OFF \
@@ -41,7 +42,7 @@ grpc_install() {
     local grpc_version="v1.41.0"
     local protoc_version="3.17.3.0"
     local grpc_src=$HOME/downloads/grpc
-    local grpc_build=$grpc_src/build-amd64
+    local grpc_build=$HOME/build/grpc-amd64
     
     if [ -d $grpc_src ]
     then
@@ -127,12 +128,14 @@ arch_clang_debug() {
     make
 }
 
+grpc_install
+
 export OS_NAME=$(lsb_release -is)
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    # sudo apt install -y libpq-dev libmysqlclient-dev
-    # amd64_clang_debug
-    # amd64_clang_release
+    sudo apt install -y libpq-dev libmysqlclient-dev
+    amd64_clang_debug
+    amd64_clang_release
 
     sudo apt install -y libpq-dev:armhf libmysqlclient-dev:armhf
     cross_clang_release arm-linux-gnueabihf

@@ -68,9 +68,9 @@ FetchContent_MakeAvailable(flatbuffers)
 # FetchContent_Declare(
 #     protobuf
 #     GIT_REPOSITORY  "https://github.com/protocolbuffers/protobuf.git"
-#     GIT_TAG         "v3.15.8"
+#     GIT_TAG         "v3.17.3"
 # )
-# set(protobuf_BUILD_TESTS OFF)
+# FetchContent_MakeAvailable(protobuf)
 
 # https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/examples/cpp/helloworld/cmake_externalproject/CMakeLists.txt
 # https://grpc.io/blog/cmake-improvements/
@@ -81,104 +81,3 @@ FetchContent_Declare(
     GIT_TAG         "v1.41.0"
 )
 FetchContent_MakeAvailable(gRPC)
-# set(Protobuf_PROTOC_EXECUTABLE $ENV{HOME}/local/vcpkg/installed/x64-linux/tools/protobuf/protoc)
-
-
-# --------------------------------------------------------
-
-# find_package(ZLIB REQUIRED)
-# find_package(hiredis CONFIG REQUIRED)
-# find_package(rabbitmq-c CONFIG REQUIRED)
-# find_package(nlohmann_json CONFIG REQUIRED)
-# find_package(inja CONFIG REQUIRED)
-# find_package(Libssh2 CONFIG REQUIRED)
-# find_package(unofficial-sqlite3 CONFIG REQUIRED)
-# find_package(Boost REQUIRED COMPONENTS 
-#     system locale log_setup log thread program_options
-#     date_time chrono timer random
-#     unit_test_framework
-# )
-# find_package(bigint CONFIG REQUIRED)
-# find_package(zxing CONFIG REQUIRED)
-# find_package(absl CONFIG REQUIRED)
-# find_package(ZeroMQ CONFIG REQUIRED)
-# find_package(protobuf CONFIG REQUIRED)
-
-# find_library(GIT2_LIBRARY git2)
-# find_library(RABBITMQ_LIBRARY rabbitmq)
-# find_library(MAILIO_LIBRARY mailio)
-
-# --------------------------------------------------------
-
-# set(BUILD_STATIC_LIBS ON)
-# set(BUILD_SHARED_LIBS OFF)
-# set(BUILD_TESTING OFF)
-# set(BUILD_SHARED OFF)
-# set(BUILD_STATIC ON)
-# set(BUILD_TESTS OFF)
-
-# # http://soci.sourceforge.net/doc/release/4.0/installation/
-# # https://github.com/SOCI/soci/pull/884
-# FetchContent_Declare(
-#     soci
-#     GIT_REPOSITORY  "https://github.com/SOCI/soci.git"
-#     GIT_TAG         "1a97e58"
-# )
-# set(SOCI_SHARED OFF)
-# set(SOCI_TESTS OFF)
-# set(WITH_BOOST ON)
-# set(WITH_SQLITE3 ON)
-# set(WITH_MYSQL ON)
-# set(WITH_POSTGRESQL ON)
-# set(WITH_ODBC OFF)
-# set(WITH_ORACLE OFF)
-# set(WITH_FIREBIRD OFF)
-# set(WITH_DB2 OFF)
-
-# # https://github.com/marzer/tomlplusplus
-
-
-# https://github.com/zeromq/libzmq
-
-
-
-# # https://github.com/google/tink
-# FetchContent_Declare(
-#     tink
-#     GIT_REPOSITORY  "https://github.com/google/tink.git"
-#     GIT_TAG         "v1.6.1"
-# )
-# FetchContent_MakeAvailable(gRPC tink tomlplusplus soci)
-
-# --------------------------------------------------------
-
-# link_libraries(stdc++fs dl crypt m
-#     
-
-#      ${Boost_LIBRARIES}
-#     unofficial::sqlite3::sqlite3
-#     soci_postgresql_static soci_mysql_static soci_sqlite3_static soci_empty_static soci_core_static
-#     hiredis::hiredis
-
-#     rabbitmq::rabbitmq-static
-#     libzmq-static
-
-#     nlohmann_json::nlohmann_json
-#     pantor::inja
-
-#     Libssh2::libssh2
-    
-#     ${GIT2_LIBRARY} ${RABBITMQ_LIBRARY}
-
-#     grpc grpc++ grpc++_reflection
-# )
-
-# include_directories(
-#     ${tomlplusplus_SOURCE_DIR}
-#     ${soci_BINARY_DIR}/include
-# )
-
-# --------------------------------------------------------
-
-# TODO PCH
-# https://cmake.org/cmake/help/latest/command/target_precompile_headers.html
