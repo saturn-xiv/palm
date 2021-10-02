@@ -12,5 +12,5 @@ set(PKG_CONFIG_EXECUTABLE arm-linux-gnueabihf-pkg-config)
 set(ENV{PKG_CONFIG_ALLOW_CROSS} 1)
 set(ENV{PKG_CONFIG_DIR} "")
 set(ENV{PKG_CONFIG_LIBDIR} /usr/lib/arm-linux-gnueabihf/pkgconfig)
-# set(ENV{PKG_CONFIG_SYSROOT_DIR} /usr/arm-linux-gnueabihf)
+
         

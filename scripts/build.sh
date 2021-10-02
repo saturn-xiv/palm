@@ -32,7 +32,8 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -Dprotobuf_BUILD_TESTS=OFF \
     -DProtobuf_PROTOC_EXECUTABLE=$GRPC_INSTALL_PREFIX/bin/protoc \
     -DgRPC_ABSL_PROVIDER=module \
-    -DgRPC_BUILD_TESTS=OFF"
+    -DgRPC_BUILD_TESTS=OFF \
+    -DYAML_BUILD_SHARED_LIBS=OFF"
 export CMAKE_CROSS_OPTIONS="-DENABLE_ACTIVERECORD_COMPILER=OFF \
     -DENABLE_PAGECOMPILER=OFF \
     -DENABLE_PAGECOMPILER_FILE2PAGE=OFF \
@@ -44,6 +45,11 @@ grpc_install() {
     local grpc_src=$HOME/downloads/grpc
     local grpc_build=$HOME/build/grpc-amd64
     
+    if [ -f $GRPC_INSTALL_PREFIX/bin/protoc-$protoc_version ]
+    then
+        return
+    fi
+    
     if [ -d $grpc_src ]
     then
         cd $grpc_src
@@ -51,24 +57,21 @@ grpc_install() {
     else
         git clone --recurse-submodules -b $grpc_version https://github.com/grpc/grpc.git $grpc_src
     fi
-    if [ ! -f $GRPC_INSTALL_PREFIX/bin/protoc-$protoc_version ]
-    then
-        if [ -d $grpc_build ]
-        then
-            rm -rv $grpc_build
-        fi
-        mkdir -pv $grpc_build
-        cd $grpc_build
-        cmake -DCMAKE_BUILD_TYPE=Release \
-            -DgRPC_INSTALL=ON \
-            -DgRPC_BUILD_TESTS=OFF \
-            -DgRPC_SSL_PROVIDER=package \
-            -DCMAKE_INSTALL_PREFIX=$GRPC_INSTALL_PREFIX $grpc_src
-        make
-        make install
-    fi
-
     
+    if [ -d $grpc_build ]
+    then
+        rm -rv $grpc_build
+    fi
+    mkdir -pv $grpc_build
+    cd $grpc_build
+    cmake -DCMAKE_BUILD_TYPE=Release \
+        -DgRPC_INSTALL=ON \
+        -DgRPC_BUILD_TESTS=OFF \
+        -DgRPC_SSL_PROVIDER=package \
+        -DCMAKE_INSTALL_PREFIX=$GRPC_INSTALL_PREFIX $grpc_src
+    make
+    make install
+        
 }
 
 dashboard_release() {

@@ -30,6 +30,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(tomlplusplus)
 
 FetchContent_Declare(
+    yaml_cpp
+    GIT_REPOSITORY  "https://github.com/jbeder/yaml-cpp.git"
+    GIT_TAG         "yaml-cpp-0.7.0"
+)
+FetchContent_MakeAvailable(yaml_cpp)
+
+FetchContent_Declare(
     libzmq
     GIT_REPOSITORY  "https://github.com/zeromq/libzmq.git"
     GIT_TAG         "v4.3.4"

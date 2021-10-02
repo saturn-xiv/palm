@@ -7,6 +7,8 @@ add_library(palm STATIC ${SOURCE_LIST})
 target_include_directories(palm PUBLIC
   ${palm_SOURCE_DIR}/include
   ${tomlplusplus_SOURCE_DIR}
+  ${inja_SOURCE_DIR}/include
+  ${inja_SOURCE_DIR}/third_party/include
 )
 
 target_link_libraries(palm PUBLIC
@@ -16,6 +18,7 @@ target_link_libraries(palm PUBLIC
 
   rabbitmq-static libzmq-static
   flatbuffers
+  libserial_static yaml-cpp
 
   dl crypt m ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES}
   grpc grpc++ grpc++_reflection

@@ -1,18 +1,30 @@
-// #pragma once
+#pragma once
 
-// #include "palm/env.hpp"
+#include "palm/env.hpp"
 
-// namespace palm {
+#include <Poco/Util/Application.h>
 
-// template <typename T>
-// std::string to_string(T t) {
-//   std::stringstream ss;
-//   ss << t;
-//   return ss.str();
-// }
+namespace palm {
 
-// inline bool is_stopped() { return std::filesystem::exists(".stop"); }
+class Application : public Poco::Util::Application {
+ protected:
+  void defineOptions(Poco::Util::OptionSet& options) override;
+  int main(const std::vector<std::string>& args) override;
+  virtual void launch() = 0;
+  virtual std::string description() = 0;
 
-// void reboot();
+ private:
+  void handleDebug(const std::string& name, const std::string& value);
+  void handleHelp(const std::string& name, const std::string& value);
+  void handleVersion(const std::string& name, const std::string& value);
+  bool stopped;
+  bool debug;
+};
 
-// }  // namespace palm
+void set_logger(bool debug);
+
+inline bool is_stopped() { return std::filesystem::exists(".stop"); }
+
+void reboot();
+
+}  // namespace palm

@@ -28,64 +28,63 @@
 #include <variant>
 #include <vector>
 
-// #include <boost/algorithm/string.hpp>
-// #include <boost/log/trivial.hpp>
+#include <Poco/LogStream.h>
+#include <Poco/Logger.h>
+#include <grpcpp/ext/proto_server_reflection_plugin.h>
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/health_check_service_interface.h>
+#include <inja/inja.hpp>
+#include <nlohmann/json.hpp>
 
-// #include <inja/inja.hpp>
-// #include <nlohmann/json.hpp>
+#define TOML_EXCEPTIONS true
+#include <toml.hpp>
 
-// #define TOML_EXCEPTIONS true
-// #include <toml.hpp>
-// #define CPPHTTPLIB_OPENSSL_SUPPORT
-// #include <httplib.h>
+#include "palm/version.hpp"
 
-// #include "palm/version.hpp"
+namespace nlohmann {
 
-// namespace nlohmann {
+template <typename T>
+struct adl_serializer<std::optional<T>> {
+  static void to_json(nlohmann::json &j, const std::optional<T> &opt) {
+    if (opt == std::nullopt) {
+      j = nullptr;
+    } else {
+      j = *opt;
+    }
+  }
 
-// template <typename T>
-// struct adl_serializer<std::optional<T>> {
-//   static void to_json(nlohmann::json &j, const std::optional<T> &opt) {
-//     if (opt == std::nullopt) {
-//       j = nullptr;
-//     } else {
-//       j = *opt;
-//     }
-//   }
+  static void from_json(const nlohmann::json &j, std::optional<T> &opt) {
+    if (j.is_null()) {
+      opt = std::nullopt;
+    } else {
+      opt = j.get<T>();
+    }
+  }
+};
 
-//   static void from_json(const nlohmann::json &j, std::optional<T> &opt) {
-//     if (j.is_null()) {
-//       opt = std::nullopt;
-//     } else {
-//       opt = j.get<T>();
-//     }
-//   }
-// };
+template <>
+struct adl_serializer<std::filesystem::path> {
+  static void to_json(nlohmann::json &j, const std::filesystem::path &opt) {
+    j = opt.string();
+  }
 
-// template <>
-// struct adl_serializer<std::filesystem::path> {
-//   static void to_json(nlohmann::json &j, const std::filesystem::path &opt) {
-//     j = opt.string();
-//   }
+  static void from_json(const nlohmann::json &j, std::filesystem::path &opt) {
+    opt = j.get<std::string>();
+  }
+};
 
-//   static void from_json(const nlohmann::json &j, std::filesystem::path &opt)
-//   {
-//     opt = j.get<std::string>();
-//   }
-// };
+template <typename T>
+struct adl_serializer<std::shared_ptr<T>> {
+  static void to_json(json &j, const std::shared_ptr<T> &opt) {
+    if (opt.get()) {
+      j = *opt;
+    } else {
+      j = nullptr;
+    }
+  }
+};
 
-// template <typename T>
-// struct adl_serializer<std::shared_ptr<T>> {
-//   static void to_json(json &j, const std::shared_ptr<T> &opt) {
-//     if (opt.get()) {
-//       j = *opt;
-//     } else {
-//       j = nullptr;
-//     }
-//   }
-// };
-
-// }  // namespace nlohmann
+}  // namespace nlohmann
 
 // namespace palm {
 
