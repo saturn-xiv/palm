@@ -3,7 +3,7 @@
 
 #include "palm/loquat.hpp"
 
-TEST_CASE("print value", "[Loquat]") {
+TEST_CASE("print value", "[loquat]") {
   std::vector<palm::loquat::Value> items;
   items.push_back(true);
   items.push_back(1);
@@ -21,7 +21,7 @@ TEST_CASE("print value", "[Loquat]") {
   }
 }
 
-TEST_CASE("print env", "[Loquat]") {
+TEST_CASE("print env", "[loquat]") {
   const auto node = toml::parse_file("staging/hosts/all.toml");
   const auto env = palm::loquat::load(node);
   for (const auto& [k, v] : env) {
@@ -30,7 +30,7 @@ TEST_CASE("print env", "[Loquat]") {
   }
 }
 
-TEST_CASE("load tasks", "[Loquat]") {
+TEST_CASE("load tasks", "[loquat]") {
   palm::set_logger(true);
   Poco::Logger& logger = Poco::Logger::root();
   auto lstr = std::make_shared<Poco::LogStream>(logger);

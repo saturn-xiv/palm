@@ -27,4 +27,19 @@ inline bool is_stopped() { return std::filesystem::exists(".stop"); }
 
 void reboot();
 
+std::string filename_without_extension(const std::filesystem::path& name);
+
+std::string timestamp();
+std::string uuid();
+
+namespace random {
+std::string string(std::string::size_type length);
+std::vector<unsigned char> bytes(const size_t length);
+}  // namespace random
+
+namespace hex {
+std::string to(const std::vector<unsigned char>& buffer);
+std::vector<unsigned char> from(const std::string& buffer);
+}  // namespace hex
+
 }  // namespace palm

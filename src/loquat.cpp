@@ -7,70 +7,23 @@
 static const std::string EXT = ".toml";
 static const std::string ALL = "all" + EXT;
 
-palm::loquat::Host::Host(const std::filesystem::path& root,
-                         const std::string& name,
-                         std::shared_ptr<Poco::LogStream> logger)
-    : logger(logger) {
-  logger->information() << "load host " << name << " from " << root
-                        << std::endl;
-  // TODO
-}
-
-palm::loquat::Group::Group(const std::filesystem::path& root,
-                           const std::string& name,
-                           std::shared_ptr<Poco::LogStream> logger)
-    : logger(logger) {
-  // TODO
-}
-
-palm::loquat::Inventory::Inventory(const std::filesystem::path& root,
-                                   std::shared_ptr<Poco::LogStream> logger)
-    : logger(logger) {
-  logger->information() << "load inventory from " << root << std::endl;
-
-  {
-    const auto groups = root / "groups";
-    const auto all = (groups / ALL);
-    logger->debug() << "load " << all << std::endl;
-    const auto node = toml::parse_file(all.string());
-    auto env = palm::loquat::load(node);
-    for (const auto& entry : std::filesystem::directory_iterator(groups)) {
-      const auto it = entry.path();
-      if (it.filename() != ALL) {
-        logger->debug() << "find group " << entry.path() << std::endl;
-      }
-    }
-  }
-
-  for (const auto& entry :
-       std::filesystem::directory_iterator(root / "hosts")) {
-    const auto it = entry.path();
-    if (it.filename() == ALL) {
-    } else {
-      logger->debug() << "find host " << entry.path() << " "
-                      << entry.path().filename() << std::endl;
-    }
-  }
-  // {
-  //   auto it = root / ALL;
-  //   logger->debug() << "read " << it << std::endl;
-  //   auto cfg = toml::parse_file(it.string());
-  // }
-}
-
 // https://marzer.github.io/tomlplusplus/classtoml_1_1table.html#type-checks
 static palm::loquat::Value load_toml_node(const toml::node& node) {
   if (node.is_boolean()) {
-    return node.value_or<bool>(false);
+    const auto it = node.value<bool>();
+    return it.value();
   }
   if (node.is_integer()) {
-    return node.value_or<int>(0);
+    const auto it = node.value<int>();
+    return it.value();
   }
   if (node.is_floating_point()) {
-    return node.value_or<float>(0.0);
+    const auto it = node.value<float>();
+    return it.value();
   }
   if (node.is_string()) {
-    return node.value_or<std::string>("");
+    const auto it = node.value<std::string>();
+    return it.value();
   }
 
   std::stringstream ss;
@@ -79,26 +32,29 @@ static palm::loquat::Value load_toml_node(const toml::node& node) {
 }
 
 static palm::loquat::Value load_toml_array(const toml::array& node) {
-    const auto it = node.get(0);
+  const auto it = node.get(0);
   if (it) {
     if (it->is_integer()) {
-      std::vector<int> items{};
+      std::vector<int> items;
       for (const auto& v : node) {
-        items.push_back(v.value_or<int>(0));
+        const auto it = v.value<int>();
+        items.push_back(it.value());
       }
       return items;
     }
     if (it->is_floating_point()) {
       std::vector<float> items{};
       for (const auto& v : node) {
-        items.push_back(v.value_or<float>(0.0));
+        const auto it = v.value<float>();
+        items.push_back(it.value());
       }
       return items;
     }
     if (it->is_string()) {
       std::vector<std::string> items{};
       for (const auto& v : node) {
-        items.push_back(v.value_or<std::string>(""));
+        const auto it = v.value<std::string>();
+        items.push_back(it.value());
       }
       return items;
     }
@@ -109,6 +65,84 @@ static palm::loquat::Value load_toml_array(const toml::array& node) {
 
   std::vector<std::string> items;
   return items;
+}
+
+palm::loquat::Host::Host(const std::filesystem::path& file,
+                         const palm::loquat::Env& env,
+                         std::shared_ptr<Poco::LogStream> logger)
+    : env({}), logger(logger) {
+  this->name = palm::filename_without_extension(file);
+  logger->information() << "find host " << name << std::endl;
+  {
+    this->env.insert(env.begin(), env.end());
+    const auto node = toml::parse_file(file.string());
+    const auto it = palm::loquat::load(node);
+    this->env.insert(it.begin(), it.end());
+  }
+}
+
+palm::loquat::Group::Group(const std::filesystem::path& file,
+                           const palm::loquat::Env& env,
+                           std::shared_ptr<Poco::LogStream> logger)
+    : env({}), hosts({}), logger(logger) {
+  this->name = palm::filename_without_extension(file);
+  logger->information() << "find group " << name << std::endl;
+  const auto node = toml::parse_file(file.string());
+
+  for (const auto& it : *node["hosts"].as_array()) {
+    const auto host = it.value<std::string>();
+    this->hosts.push_back(host.value());
+  }
+
+  {
+    this->env.insert(env.begin(), env.end());
+    const auto it = palm::loquat::load(*node["vars"].as_table());
+    this->env.insert(it.begin(), it.end());
+  }
+}
+
+palm::loquat::Inventory::Inventory(const std::filesystem::path& root,
+                                   std::shared_ptr<Poco::LogStream> logger)
+    : logger(logger), groups({}), hosts({}) {
+  logger->information() << "load inventory from " << root << std::endl;
+  this->name = palm::filename_without_extension(root);
+
+  Env env;
+  {
+    env["deploy.timestamp"] = palm::timestamp();
+    env["deploy.uuid"] = 1;
+  }
+  {
+    const auto groups = root / "groups";
+    const auto all = (groups / ALL);
+    logger->debug() << "load " << all << std::endl;
+    const auto node = toml::parse_file(all.string());
+    auto g_env = palm::loquat::load(node);
+    g_env.insert(env.begin(), env.end());
+    for (const auto& entry : std::filesystem::directory_iterator(groups)) {
+      const auto file = entry.path();
+      if (file.filename() != ALL) {
+        Group group(file, g_env, logger);
+        this->groups.push_back(group);
+      }
+    }
+  }
+
+  {
+    const auto hosts = root / "hosts";
+    const auto all = (hosts / ALL);
+    logger->debug() << "load " << all << std::endl;
+    const auto node = toml::parse_file(all.string());
+    auto g_env = palm::loquat::load(node);
+    g_env.insert(env.begin(), env.end());
+    for (const auto& entry : std::filesystem::directory_iterator(hosts)) {
+      const auto file = entry.path();
+      if (file.filename() != ALL) {
+        Host host(file, g_env, logger);
+        this->hosts.push_back(host);
+      }
+    }
+  }
 }
 
 palm::loquat::Env palm::loquat::load(const toml::table& node) {

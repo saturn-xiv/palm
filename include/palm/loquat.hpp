@@ -62,26 +62,23 @@ using Env = std::map<std::string, Value>;
 class Host {
  public:
   Host() {}
-  Host(const std::filesystem::path& root, const std::string& name,
+  Host(const std::filesystem::path& file, const Env& env,
        std::shared_ptr<Poco::LogStream> logger);
 
  private:
   Env env;
-  std::string hostname;
-  std::optional<uint16_t> port;
-  std::optional<std::string> user;
-  std::optional<std::string> password;
-  std::optional<std::string> identity_file;
+  std::string name;
   std::shared_ptr<Poco::LogStream> logger;
 };
 
 class Group {
  public:
   Group() {}
-  Group(const std::filesystem::path& root, const std::string& name,
+  Group(const std::filesystem::path& file, const Env& env,
         std::shared_ptr<Poco::LogStream> logger);
 
  private:
+  std::string name;
   std::vector<std::string> hosts;
   Env env;
   std::shared_ptr<Poco::LogStream> logger;
@@ -103,8 +100,8 @@ class Inventory {
  private:
   Env env;
   std::string name;
-  std::vector<std::string> groups;
-  std::vector<std::string> hosts;
+  std::vector<Group> groups;
+  std::vector<Host> hosts;
   std::shared_ptr<Poco::LogStream> logger;
 };
 

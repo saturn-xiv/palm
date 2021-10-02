@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <chrono>
+#include <climits>
 #include <condition_variable>
 #include <ctime>
 #include <deque>
@@ -17,6 +18,7 @@
 #include <mutex>
 #include <optional>
 #include <queue>
+#include <random>
 #include <sstream>
 #include <stdexcept>
 #include <streambuf>
