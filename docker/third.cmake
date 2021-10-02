@@ -58,6 +58,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(inja)
 
 FetchContent_Declare(
+    cppcodec
+    GIT_REPOSITORY  "https://github.com/tplgy/cppcodec.git"
+    GIT_TAG         "9838f9e"
+)
+FetchContent_MakeAvailable(cppcodec)
+
+FetchContent_Declare(
     libserial
     GIT_REPOSITORY  "https://github.com/crayzeewulf/libserial.git"
     GIT_TAG         "1d1e47a"

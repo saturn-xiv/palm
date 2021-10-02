@@ -7,6 +7,7 @@ add_library(palm STATIC ${SOURCE_LIST})
 target_include_directories(palm PUBLIC
   ${palm_SOURCE_DIR}/include
   ${tomlplusplus_SOURCE_DIR}
+  ${cppcodec_SOURCE_DIR}
   ${inja_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/third_party/include
 )

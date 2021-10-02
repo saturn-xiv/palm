@@ -1,88 +1,79 @@
-// #include "palm/crypto.hpp"
+#include "palm/crypto.hpp"
 
-// #include <algorithm>
-// #include <climits>
-// #include <cstdint>
-// #include <ctime>
-// #include <fstream>
-// #include <functional>
-// #include <iostream>
-// #include <optional>
-// #include <random>
-// #include <sstream>
-// #include <stdexcept>
-// #include <streambuf>
+#include <openssl/conf.h>
+#include <openssl/err.h>
+#include <openssl/hmac.h>
+#include <openssl/opensslv.h>
+#include <openssl/pem.h>
+#include <openssl/sha.h>
+#include <cppcodec/base64_url.hpp>
 
-// #include <boost/algorithm/string.hpp>
-// #include <boost/beast/core/detail/base64.hpp>
-// #include <boost/log/trivial.hpp>
-// #include <boost/uuid/uuid.hpp>
-// #include <boost/uuid/uuid_generators.hpp>
-// #include <boost/uuid/uuid_io.hpp>
+// https://en.cppreference.com/w/cpp/io/manip/put_time
+std::string palm::timestamp() {
+  auto now = std::chrono::system_clock::now();
+  auto itt = std::chrono::system_clock::to_time_t(now);
+  std::ostringstream ss;
+  ss << std::put_time(gmtime(&itt), "%Y%m%d%H%M%S");
+  return ss.str();
+}
+
+std::string palm::uuid::v4() {
+  // #include <Poco/UUID.h>
+  // #include <Poco/UUIDGenerator.h>
+  // thread_local static Poco::UUIDGenerator& gen =
+  //     Poco::UUIDGenerator::defaultGenerator();
+  // Poco::UUID it = gen.create();
+  // return it.toString();
+
+  std::ifstream it("/proc/sys/kernel/random/uuid");
+  return std::string((std::istreambuf_iterator<char>(it)),
+                     std::istreambuf_iterator<char>());
+}
+
+std::string palm::random::string(const std::string::size_type len) {
+  std::stringstream ss;
+  std::uniform_int_distribution<int> ud(32, 126);
+  std::random_device rd;
+  for (auto i = 0; i < len; i++) {
+    ss << (char)ud(rd);
+  }
+  return ss.str();
+}
+
+std::vector<uint8_t> palm::random::bytes(const size_t len) {
+  std::random_device rd;
+  static std::independent_bits_engine<std::default_random_engine, CHAR_BIT,
+                                      uint8_t>
+      rbe(rd());
+  std::vector<uint8_t> buf(len);
+  std::generate(begin(buf), end(buf), std::ref(rbe));
+  return buf;
+}
+
+std::string palm::hex::to(const std::vector<uint8_t>& buffer) {
+  std::stringstream ss;
+  ss << std::hex << std::setfill('0');
+  for (const auto it : buffer) {
+    ss << std::setw(2) << static_cast<unsigned>(it);
+  }
+  return ss.str();
+}
+std::vector<uint8_t> palm::hex::from(const std::string& buffer) {
+  std::vector<uint8_t> items;
+  for (auto i = 0; i < buffer.length(); i += 2) {
+    const auto it = buffer.substr(i, 2);
+    items.push_back(static_cast<uint8_t>(strtol(it.c_str(), NULL, 16)));
+  }
+  return items;
+}
+std::string palm::base64::to(const std::vector<uint8_t>& buffer) {
+  return cppcodec::base64_url::encode(buffer);
+}
+std::vector<uint8_t> palm::base64::from(const std::string& buffer) {
+  return cppcodec::base64_url::decode(buffer);
+}
 
 // #include <jwt-cpp/jwt.h>
-// #include <openssl/conf.h>
-// #include <openssl/err.h>
-// #include <openssl/hmac.h>
-// #include <openssl/opensslv.h>
-// #include <openssl/pem.h>
-// #include <openssl/sha.h>
-// #include <tink/aead.h>
-// #include <tink/cleartext_keyset_handle.h>
-// #include <tink/config.h>
-// #include <tink/config/tink_config.h>
-// #include <tink/json_keyset_reader.h>
-// #include <tink/keyset_handle.h>
-// #include <tink/keyset_reader.h>
-
-// // https://gist.github.com/litefeel/1197e5c24eb9ec93d771
-// std::string palm::url::encode(const std::string& s) {
-//   const auto hex = [](unsigned char c, unsigned char& a, unsigned char& b) {
-//     a = c / 16;
-//     b = c % 16;
-//     a += a <= 9 ? '0' : 'a' - 10;
-//     b += b <= 9 ? '0' : 'a' - 10;
-//   };
-
-//   const char* str = s.c_str();
-//   std::vector<char> v(s.size());
-//   v.clear();
-//   for (size_t i = 0, l = s.size(); i < l; i++) {
-//     char c = str[i];
-//     if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') ||
-//         (c >= 'A' && c <= 'Z') || c == '-' || c == '_' || c == '.' ||
-//         c == '!' || c == '~' || c == '*' || c == '\'' || c == '(' || c ==
-//         ')') {
-//       v.push_back(c);
-//     } else if (c == ' ') {
-//       v.push_back('+');
-//     } else {
-//       v.push_back('%');
-//       unsigned char d1, d2;
-//       hex(c, d1, d2);
-//       v.push_back(d1);
-//       v.push_back(d2);
-//     }
-//   }
-
-//   return std::string(v.cbegin(), v.cend());
-// }
-
-// std::string palm::base64::encode(const std::vector<uint8_t>& buf) {
-//   std::string it;
-//   it.resize(boost::beast::detail::base64::encoded_size(buf.size()));
-//   it.resize(boost::beast::detail::base64::encode(&it[0], &buf[0],
-//   buf.size())); return it;
-// }
-
-// std::vector<uint8_t> palm::base64::decode(const std::string& buf) {
-//   std::vector<uint8_t> it;
-//   it.resize(boost::beast::detail::base64::decoded_size(buf.size()));
-//   auto const rs =
-//       boost::beast::detail::base64::decode(&it[0], buf.data(), buf.size());
-//   it.resize(rs.first);
-//   return it;
-// }
 
 // static void check_openssl_err(const std::string& act) {
 //   ERR_print_errors_fp(stderr);
@@ -245,41 +236,6 @@
 //     jwt.set_payload_claim(it.first, jwt::claim(it.second));
 //   }
 //   return jwt.sign(jwt::algorithm::hs512{this->key});
-// }
-
-// //
-// https://github.com/pokowaka/jwt-cpp/blob/b1db67e54f01f72c914af82aaea9a8d49d6dc6b9/src/validators/hmacvalidator.cpp
-// //
-// https://github.com/pokowaka/jwt-cpp/blob/master/src/include/private/ssl_compat.h
-// //
-// https://github.com/pokowaka/jwt-cpp/blob/b1db67e54f01f72c914af82aaea9a8d49d6dc6b9/src/jwt/jwt.cpp
-
-// std::string palm::uuid::v4() {
-//   // std::ifstream it("/proc/sys/kernel/random/uuid");
-//   // return std::string((std::istreambuf_iterator<char>(it)),
-//   //                    std::istreambuf_iterator<char>());
-//   boost::uuids::uuid it = boost::uuids::random_generator()();
-//   return boost::uuids::to_string(it);
-// }
-
-// std::string palm::random::string(const size_t len) {
-//   std::stringstream ss;
-//   std::uniform_int_distribution<int> ud(32, 126);
-//   std::random_device rd;
-//   for (auto i = 0; i < len; i++) {
-//     ss << (char)ud(rd);
-//   }
-//   return ss.str();
-// }
-
-// std::vector<uint8_t> palm::random::bytes(const size_t len) {
-//   std::random_device rd;
-//   static std::independent_bits_engine<std::default_random_engine, CHAR_BIT,
-//                                       uint8_t>
-//       rbe(rd());
-//   std::vector<uint8_t> buf(len);
-//   std::generate(begin(buf), end(buf), std::ref(rbe));
-//   return buf;
 // }
 
 // palm::Session::Session(grpc::ServerContext* ctx) {

@@ -1,4 +1,5 @@
 #include "palm/loquat.hpp"
+#include "palm/crypto.hpp"
 #include "palm/utils.hpp"
 
 #include <Poco/Util/IniFileConfiguration.h>
@@ -110,7 +111,8 @@ palm::loquat::Inventory::Inventory(const std::filesystem::path& root,
   Env env;
   {
     env["deploy.timestamp"] = palm::timestamp();
-    env["deploy.uuid"] = 1;
+    env["deploy.uuid"] = palm::uuid::v4();
+    // env["deploy.user"] = getlogin();
   }
   {
     const auto groups = root / "groups";

@@ -1,31 +1,30 @@
-// #pragma once
+#pragma once
 
-// #include "palm/env.hpp"
+#include "palm/env.hpp"
 
-// #include <grpcpp/grpcpp.h>
-// #include <openssl/evp.h>
+#include <openssl/evp.h>
 
-// namespace palm {
+namespace palm {
 
-// namespace uuid {
-// std::string v4();
-// }
+std::string timestamp();
+namespace uuid {
+std::string v4();
+}
 
-// namespace url {
-// std::string encode(const std::string& s);
-// }
+namespace random {
+std::string string(std::string::size_type length);
+std::vector<uint8_t> bytes(const size_t length);
+}  // namespace random
 
-// namespace base64 {
+namespace hex {
+std::string to(const std::vector<uint8_t>& buffer);
+std::vector<uint8_t> from(const std::string& buffer);
+}  // namespace hex
 
-// std::string encode(const std::vector<uint8_t>& buf);
-// std::vector<uint8_t> decode(const std::string& buf);
-
-// }  // namespace base64
-
-// namespace random {
-// std::string string(const size_t len);
-// std::vector<uint8_t> bytes(const size_t len);
-// }  // namespace random
+namespace base64 {
+std::string to(const std::vector<uint8_t>& buffer);
+std::vector<uint8_t> from(const std::string& buffer);
+}  // namespace base64
 
 // class Aes {
 //  public:
@@ -102,4 +101,4 @@
 //   std::string peer;
 // };
 
-// }  // namespace palm
+}  // namespace palm

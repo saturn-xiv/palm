@@ -4,6 +4,7 @@
 #include <chrono>
 #include <climits>
 #include <condition_variable>
+#include <cstdint>
 #include <ctime>
 #include <deque>
 #include <filesystem>

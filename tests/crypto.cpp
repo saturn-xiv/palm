@@ -1,7 +1,50 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
-TEST_CASE("Demo", "[f]") { REQUIRE(2 * 2 == 4); }
+#include "palm/crypto.hpp"
+
+TEST_CASE("random string", "[crypto]") {
+  for (auto i = 0; i < 10; i++) {
+    std::cout << palm::timestamp() << " " << palm::random::string(8) << " "
+              << palm::uuid::v4() << std::endl;
+  }
+}
+
+TEST_CASE("hex", "[crypto]") {
+  const size_t len = 32;
+  for (auto i = 0; i < 10; i++) {
+    const auto d1 = palm::random::bytes(len);
+    REQUIRE(d1.size() == len);
+    // const uint8_t* buffer = (data.size() ? &data.front() : nullptr);
+    const auto s1 = palm::hex::to(d1);
+    REQUIRE(s1.size() == len * 2);
+    std::cout << s1 << std::endl;
+    const auto d2 = palm::hex::from(s1);
+    const auto s2 = palm::hex::to(d2);
+    REQUIRE(s1 == s2);
+    REQUIRE(d1.size() == d2.size());
+    for (auto i = 0; i < len; i++) {
+      REQUIRE(d1[i] == d2[i]);
+    }
+  }
+}
+TEST_CASE("base64", "[crypto]") {
+  const size_t len = 32;
+  for (auto i = 0; i < 10; i++) {
+    const auto d1 = palm::random::bytes(len);
+    REQUIRE(d1.size() == len);
+    // const uint8_t* buffer = (data.size() ? &data.front() : nullptr);
+    const auto s1 = palm::base64::to(d1);
+    std::cout << s1 << std::endl;
+    const auto d2 = palm::base64::from(s1);
+    const auto s2 = palm::base64::to(d2);
+    REQUIRE(s1 == s2);
+    REQUIRE(d1.size() == d2.size());
+    for (auto i = 0; i < len; i++) {
+      REQUIRE(d1[i] == d2[i]);
+    }
+  }
+}
 
 // #define BOOST_TEST_MODULE crypto
 // #include <boost/test/included/unit_test.hpp>
