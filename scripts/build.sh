@@ -92,7 +92,7 @@ cross_clang_release() {
     echo "build ${1}@release..."
     mkdir -pv $WORKSPACE/build/${1}-clang-release
     cd $WORKSPACE/build/${1}-clang-release
-    local target_flags="-target $1 -ccc-gcc-name $1-gcc"
+    local target_flags="-target $1 -ccc-gcc-name $1-gcc-10"
     
     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release \
         $CMAKE_CLANG $CMAKE_OPTIONS $CMAKE_CROSS_OPTIONS \

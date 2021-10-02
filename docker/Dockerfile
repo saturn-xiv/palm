@@ -8,7 +8,8 @@ RUN apt -y upgrade
 RUN apt -y install debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
 
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
-# RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
+# https://apt.llvm.org/
 RUN echo "deb [arch=amd64] http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-13 main" > /etc/apt/sources.list.d/llvm.list
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 # https://wiki.ubuntu.com/ToolChain
@@ -28,7 +29,7 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     imagemagick ffmpeg \
     build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
-    clang-13 lldb-13 lld-13 \
+    g++-11 g++-10-arm-linux-gnueabihf clang-13 lldb-13 lld-13 \
     crossbuild-essential-armhf \
     gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf gcc-multilib-arm-linux-gnueabihf g++-multilib-arm-linux-gnueabihf \
     pkg-config-arm-linux-gnueabihf binutils-arm-linux-gnueabihf \
