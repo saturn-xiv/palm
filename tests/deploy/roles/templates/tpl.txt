@@ -1,0 +1,3 @@
+template {{ deploy.hostname }} {{ deploy.user }} {{ deploy.timestamp }}
+
+{{ ssh.hostname }}

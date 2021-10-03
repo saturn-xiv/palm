@@ -1,0 +1,8 @@
+hosts-a-k-1 = "hosts.a.k.1"
+hosts-a-k-2 = "hosts.a.k.2"
+hosts-a-k-3 = 123
+hosts-a-k-4 = 1.1
+hosts-a-k-5 = [1, 2, 3]
+hosts-a-k-6 = [1.1, 2.2, 3.3]
+hosts-a-k-7 = ["s1", "s2", "s3"]
+hosts-a-k-8 = true

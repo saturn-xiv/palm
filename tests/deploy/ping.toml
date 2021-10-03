@@ -1,0 +1,15 @@
+["ping 1"]
+roles = [ "ping" ]
+hosts = []
+groups = [ "g1" ]
+
+["ping 2"]
+roles = [ "ping" ]
+hosts = []
+groups = [ "g2" ]
+
+["ping all"]
+roles = [ "ping" ]
+hosts = ['h2', 'h1']
+groups = [ "g1", "g2" ]
+

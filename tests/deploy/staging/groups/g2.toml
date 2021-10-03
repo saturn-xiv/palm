@@ -1,0 +1,5 @@
+hosts = ["g2h1", "g2h2"]
+
+[vars]
+group-2-k-1 = "group.2.v.1"
+group-2-k-2 = "group.2.v.2"

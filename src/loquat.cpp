@@ -112,7 +112,8 @@ palm::loquat::Inventory::Inventory(const std::filesystem::path& root,
   {
     env["deploy.timestamp"] = palm::timestamp();
     env["deploy.uuid"] = palm::uuid::v4();
-    // env["deploy.user"] = getlogin();
+    env["deploy.user"] = palm::current_user();
+    env["deploy.hostname"] = std::string(palm::os().nodename);
   }
   {
     const auto groups = root / "groups";
@@ -159,13 +160,34 @@ palm::loquat::Env palm::loquat::load(const toml::table& node) {
   return env;
 }
 
-void palm::loquat::Task::run() {
-  // TODO
-}
+// TODO .ssh/id_ed25519 .ssh/id_rsa
 
-palm::loquat::Job::Job(const std::filesystem::path& name,
+palm::loquat::Job::Job(const std::filesystem::path& file,
                        std::shared_ptr<Poco::LogStream> logger)
-    : logger(logger) {}
+    : logger(logger), tasks({}) {
+  logger->information() << "load job from " << file;
+  const auto node = toml::parse_file(file.string());
+  this->name = palm::filename_without_extension(file);
+  for (auto [k, v] : node) {
+    Task task;
+    task.name = k;
+    task.logger = this->logger;
+    auto node = v.as_table();
+    for (const auto& it : *(*node)["hosts"].as_array()) {
+      const auto h = it.value<std::string>();
+      task.hosts.push_back(h.value());
+    }
+    for (const auto& it : *(*node)["groups"].as_array()) {
+      const auto g = it.value<std::string>();
+      task.groups.push_back(g.value());
+    }
+    for (const auto& it : *(*node)["roles"].as_array()) {
+      const auto r = it.value<std::string>();
+      task.roles.push_back(r.value());
+    }
+    this->tasks.push_back(task);
+  }
+}
 
 std::vector<std::shared_ptr<palm::loquat::Task>> palm::loquat::Job::build(
     const Inventory& inventory) {

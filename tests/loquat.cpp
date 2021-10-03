@@ -37,6 +37,6 @@ TEST_CASE("load tasks", "[loquat]") {
 
   palm::loquat::Inventory inventory("staging", lstr);
   std::cout << inventory << std::endl;
-  palm::loquat::Job job("ping", lstr);
+  palm::loquat::Job job("ping.toml", lstr);
   std::cout << job << std::endl;
 }

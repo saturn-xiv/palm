@@ -1,5 +1,7 @@
 #include "palm/crypto.hpp"
 
+#include <Poco/UUID.h>
+#include <Poco/UUIDGenerator.h>
 #include <openssl/conf.h>
 #include <openssl/err.h>
 #include <openssl/hmac.h>
@@ -18,16 +20,14 @@ std::string palm::timestamp() {
 }
 
 std::string palm::uuid::v4() {
-  // #include <Poco/UUID.h>
-  // #include <Poco/UUIDGenerator.h>
-  // thread_local static Poco::UUIDGenerator& gen =
-  //     Poco::UUIDGenerator::defaultGenerator();
-  // Poco::UUID it = gen.create();
-  // return it.toString();
+  thread_local static Poco::UUIDGenerator& gen =
+      Poco::UUIDGenerator::defaultGenerator();
+  Poco::UUID it = gen.createRandom();
+  return it.toString();
 
-  std::ifstream it("/proc/sys/kernel/random/uuid");
-  return std::string((std::istreambuf_iterator<char>(it)),
-                     std::istreambuf_iterator<char>());
+  // std::ifstream it("/proc/sys/kernel/random/uuid");
+  // return std::string((std::istreambuf_iterator<char>(it)),
+  //                    std::istreambuf_iterator<char>());
 }
 
 std::string palm::random::string(const std::string::size_type len) {

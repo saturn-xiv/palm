@@ -65,6 +65,15 @@ class Host {
   Host(const std::filesystem::path& file, const Env& env,
        std::shared_ptr<Poco::LogStream> logger);
 
+  friend std::ostream& operator<<(std::ostream& out, const Host& self) {
+    out << "--- Host " << self.name << " ---\n";
+    for (const auto& [k, v] : self.env) {
+      out << k << "=" << std::visit(value2string(), v) << "\n";
+    }
+    out << "------\n";
+    return out;
+  }
+
  private:
   Env env;
   std::string name;
@@ -76,6 +85,18 @@ class Group {
   Group() {}
   Group(const std::filesystem::path& file, const Env& env,
         std::shared_ptr<Poco::LogStream> logger);
+  friend std::ostream& operator<<(std::ostream& out, const Group& self) {
+    out << "--- Group " << self.name << " ---\n";
+    out << "hosts: ";
+    std::copy(self.hosts.begin(), self.hosts.end(),
+              std::ostream_iterator<std::string>(out, ", "));
+    out << "\n";
+    for (const auto& [k, v] : self.env) {
+      out << k << "=" << std::visit(value2string(), v) << "\n";
+    }
+    out << "------\n";
+    return out;
+  }
 
  private:
   std::string name;
@@ -91,14 +112,18 @@ class Inventory {
             std::shared_ptr<Poco::LogStream> logger);
 
   friend std::ostream& operator<<(std::ostream& out, const Inventory& self) {
-    out << "=== Begin Inventory " << self.name << " ===";
-    // TODO
-    out << "=== End Inventory " << self.name << " ===";
+    out << "=== Inventory " << self.name << " ===\n";
+    for (const auto& it : self.groups) {
+      out << it;
+    }
+    for (const auto& it : self.hosts) {
+      out << it;
+    }
+    out << "======\n";
     return out;
   }
 
  private:
-  Env env;
   std::string name;
   std::vector<Group> groups;
   std::vector<Host> hosts;
@@ -106,35 +131,61 @@ class Inventory {
 };
 
 class Task {
-  Task(const std::string& name, const std::string& script, const Env& env,
+  Task() {}
+  Task(const std::string& name, const std::vector<std::string>& groups,
+       const std::vector<std::string>& hosts, std::vector<std::string>& roles,
        std::shared_ptr<Poco::LogStream> logger)
-      : name(name), script(script), env(env), logger(logger) {}
-  void run();
+      : name(name),
+        groups(groups),
+        hosts(hosts),
+        roles(roles),
+        logger(logger) {}
+
+  friend class Job;
+
+  friend std::ostream& operator<<(std::ostream& out, const Task& self) {
+    out << "--- Task " << self.name << " ---\n";
+    out << "groups: ";
+    std::copy(self.groups.begin(), self.groups.end(),
+              std::ostream_iterator<std::string>(out, ", "));
+    out << "\n";
+    out << "hosts: ";
+    std::copy(self.hosts.begin(), self.hosts.end(),
+              std::ostream_iterator<std::string>(out, ", "));
+    out << "\n";
+    out << "roles: ";
+    std::copy(self.roles.begin(), self.roles.end(),
+              std::ostream_iterator<std::string>(out, ", "));
+    out << "\n";
+    out << "------\n";
+    return out;
+  }
 
  private:
+  std::vector<std::string> groups;
+  std::vector<std::string> roles;
+  std::vector<std::string> hosts;
   std::string name;
-  std::string script;
-  Env env;
   std::shared_ptr<Poco::LogStream> logger;
 };
 
 class Job {
  public:
-  Job(const std::filesystem::path& root,
+  Job(const std::filesystem::path& file,
       std::shared_ptr<Poco::LogStream> logger);
   std::vector<std::shared_ptr<Task>> build(const Inventory& inventory);
   friend std::ostream& operator<<(std::ostream& out, const Job& self) {
-    out << "=== Begin Job " << self.name << " ===";
-    // TODO
-    out << "=== End Job " << self.name << " ===";
-
+    out << "=== Job " << self.name << " ===\n";
+    for (const auto& it : self.tasks) {
+      out << it;
+    }
+    out << "======\n";
     return out;
   }
 
  private:
   std::string name;
-  Env env;
-  std::map<std::string, std::string> tasks;
+  std::vector<Task> tasks;
   std::shared_ptr<Poco::LogStream> logger;
 };
 
