@@ -73,6 +73,7 @@ class Host {
     out << "------\n";
     return out;
   }
+  friend class Inventory;
 
  private:
   Env env;
@@ -97,10 +98,11 @@ class Group {
     out << "------\n";
     return out;
   }
+  friend class Inventory;
 
  private:
   std::string name;
-  std::vector<std::string> hosts;
+  std::set<std::string> hosts;
   Env env;
   std::shared_ptr<Poco::LogStream> logger;
 };
@@ -110,6 +112,9 @@ class Inventory {
   Inventory() {}
   Inventory(const std::filesystem::path& root,
             std::shared_ptr<Poco::LogStream> logger);
+
+  std::vector<Env> by_group(const std::string& group) const;
+  Env by_host(const std::string& host) const;
 
   friend std::ostream& operator<<(std::ostream& out, const Inventory& self) {
     out << "=== Inventory " << self.name << " ===\n";
@@ -130,16 +135,44 @@ class Inventory {
   std::shared_ptr<Poco::LogStream> logger;
 };
 
+class Executor {
+ public:
+  Executor(const std::string& role, const Env& env);
+
+  inline const static std::string SSH_HOST = "ssh.host";
+  inline const static std::string SSH_PORT = "ssh.port";
+  inline const static std::string SSH_USER = "ssh.user";
+  inline const static std::string SSH_IDENTITY_FILE = "identity-file";
+
+  inline void log(const std::string& message) {
+    std::lock_guard<std::mutex> _l(locker);
+    const auto root = std::filesystem::path("tmp") / "logs";
+    if (!std::filesystem::exists(root)) {
+      std::filesystem::create_directories(root);
+    }
+
+    auto now = std::chrono::system_clock::now();
+    auto itt = std::chrono::system_clock::to_time_t(now);
+
+    std::ofstream file((root / (this->host + ".log")),
+                       (std::ios::out | std::ios::app));
+    file << std::put_time(std::gmtime(&itt), "%FT%TZ") << message << std::endl;
+    file.close();
+  }
+
+ private:
+  Env env;
+  std::string role;
+  std::string host;
+
+  static std::mutex locker;
+};
+
 class Task {
+ public:
   Task() {}
-  Task(const std::string& name, const std::vector<std::string>& groups,
-       const std::vector<std::string>& hosts, std::vector<std::string>& roles,
-       std::shared_ptr<Poco::LogStream> logger)
-      : name(name),
-        groups(groups),
-        hosts(hosts),
-        roles(roles),
-        logger(logger) {}
+
+  std::vector<Executor> executors(const Inventory& inventory) const;
 
   friend class Job;
 
@@ -173,7 +206,6 @@ class Job {
  public:
   Job(const std::filesystem::path& file,
       std::shared_ptr<Poco::LogStream> logger);
-  std::vector<std::shared_ptr<Task>> build(const Inventory& inventory);
   friend std::ostream& operator<<(std::ostream& out, const Job& self) {
     out << "=== Job " << self.name << " ===\n";
     for (const auto& it : self.tasks) {

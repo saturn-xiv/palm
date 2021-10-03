@@ -2,9 +2,6 @@
 #include "palm/crypto.hpp"
 #include "palm/utils.hpp"
 
-#include <Poco/Util/IniFileConfiguration.h>
-#include <yaml-cpp/yaml.h>
-
 static const std::string EXT = ".toml";
 static const std::string ALL = "all" + EXT;
 
@@ -92,7 +89,7 @@ palm::loquat::Group::Group(const std::filesystem::path& file,
 
   for (const auto& it : *node["hosts"].as_array()) {
     const auto host = it.value<std::string>();
-    this->hosts.push_back(host.value());
+    this->hosts.insert(host.value());
   }
 
   {
@@ -100,6 +97,34 @@ palm::loquat::Group::Group(const std::filesystem::path& file,
     const auto it = palm::loquat::load(*node["vars"].as_table());
     this->env.insert(it.begin(), it.end());
   }
+}
+
+std::vector<palm::loquat::Env> palm::loquat::Inventory::by_group(
+    const std::string& group) const {
+  std::vector<palm::loquat::Env> items;
+  for (const auto& ig : this->groups) {
+    if (ig.name == group) {
+      for (const auto& ih : ig.hosts) {
+        palm::loquat::Env it;
+        it.insert(ig.env.begin(), ig.env.end());
+        const auto env = this->by_host(ih);
+        it.insert(env.begin(), env.end());
+        items.push_back(it);
+      }
+    }
+  }
+
+  return items;
+}
+palm::loquat::Env palm::loquat::Inventory::by_host(
+    const std::string& host) const {
+  palm::loquat::Env env;
+  for (const auto& it : this->hosts) {
+    if (host == it.name) {
+      env.insert(it.env.begin(), it.env.end());
+    }
+  }
+  return env;
 }
 
 palm::loquat::Inventory::Inventory(const std::filesystem::path& root,
@@ -160,7 +185,48 @@ palm::loquat::Env palm::loquat::load(const toml::table& node) {
   return env;
 }
 
-// TODO .ssh/id_ed25519 .ssh/id_rsa
+palm::loquat::Executor::Executor(const std::string& role, const Env& env)
+    : role(role), env(env) {
+  {
+    const auto pos = this->env.find(SSH_HOST);
+    if (pos == this->env.end()) {
+      throw Poco::RuntimeException("can't find ssh host");
+    }
+    this->host = std::get<std::string>(pos->second);
+  }
+  if (this->env.find(SSH_PORT) == this->env.end()) {
+    this->env[SSH_PORT] = 22;
+  }
+  if (this->env.find(SSH_USER) == this->env.end()) {
+    this->env[SSH_USER] = std::string("root");
+  }
+
+  if (this->env.find(SSH_IDENTITY_FILE) == this->env.end()) {
+    // .ssh/id_rsa
+    this->env[SSH_IDENTITY_FILE] = std::string(".ssh/id_ed25519");
+  }
+}
+
+std::vector<palm::loquat::Executor> palm::loquat::Task::executors(
+    const palm::loquat::Inventory& inventory) const {
+  std::vector<Executor> items;
+
+  for (const auto& role : this->roles) {
+    for (const auto& group : this->groups) {
+      for (const auto& env : inventory.by_group(group)) {
+        Executor it(role, env);
+        items.push_back(it);
+      }
+    }
+    for (const auto& host : this->hosts) {
+      const auto env = inventory.by_host(host);
+      Executor it(role, env);
+      items.push_back(it);
+    }
+  }
+
+  return items;
+}
 
 palm::loquat::Job::Job(const std::filesystem::path& file,
                        std::shared_ptr<Poco::LogStream> logger)
@@ -187,13 +253,6 @@ palm::loquat::Job::Job(const std::filesystem::path& file,
     }
     this->tasks.push_back(task);
   }
-}
-
-std::vector<std::shared_ptr<palm::loquat::Task>> palm::loquat::Job::build(
-    const Inventory& inventory) {
-  std::vector<std::shared_ptr<palm::loquat::Task>> items;
-  //   TODO
-  return items;
 }
 
 void palm::loquat::Application::launch() {
