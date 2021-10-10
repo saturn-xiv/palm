@@ -130,3 +130,13 @@ FetchContent_Declare(
     GIT_TAG         "v1.41.0"
 )
 FetchContent_MakeAvailable(gRPC)
+
+# FetchContent_Declare(
+#     tink
+#     GIT_REPOSITORY  "https://github.com/google/tink.git"
+#     GIT_TAG         "v1.6.1"
+# )
+# FetchContent_MakeAvailable(tink)
+
+# https://github.com/google/tink/blob/master/docs/CMAKE-HOWTO.md
+# add_subdirectory(vendors/tink)
