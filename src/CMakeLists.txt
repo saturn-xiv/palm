@@ -13,10 +13,9 @@ target_include_directories(palm PUBLIC
 )
 
 target_link_libraries(palm PUBLIC
-  Poco::Crypto Poco::JWT Poco::JSON Poco::Zip Poco::XML Poco::Util
-  Poco::DataPostgreSQL Poco::DataMySQL Poco::DataSQLite
-  Poco::Redis Poco::MongoDB
+  ${Boost_LIBRARIES} ${PostgreSQL_LIBRARIES} ${SQLite3_LIBRARIES}
 
+  pqxx SQLiteCpp hiredis_static
   rabbitmq-static libzmq-static
   flatbuffers
   libserial_static yaml-cpp

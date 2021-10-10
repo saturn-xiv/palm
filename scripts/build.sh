@@ -25,6 +25,8 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTING=OFF \
     -DBUILD_BENCHMARK=OFF \
+    -DBUILD_TEST=OFF \
+    -DBUILD_DOC=OFF \
     -DgRPC_SSL_PROVIDER=package \
     -DgRPC_ZLIB_PROVIDER=package \
     -DgRPC_PROTOBUF_PROVIDER=module \
@@ -33,11 +35,15 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DProtobuf_PROTOC_EXECUTABLE=$GRPC_INSTALL_PREFIX/bin/protoc \
     -DgRPC_ABSL_PROVIDER=module \
     -DgRPC_BUILD_TESTS=OFF \
-    -DYAML_BUILD_SHARED_LIBS=OFF"
+    -DYAML_BUILD_SHARED_LIBS=OFF \
+    -DDISABLE_TESTS=ON \
+    -DBUILD_STATIC_LIBS=ON \
+    -DSQLITECPP_INTERNAL_SQLITE=OFF"
 export CMAKE_CROSS_OPTIONS="-DENABLE_ACTIVERECORD_COMPILER=OFF \
     -DENABLE_PAGECOMPILER=OFF \
     -DENABLE_PAGECOMPILER_FILE2PAGE=OFF \
-    -DFLATBUFFERS_BUILD_FLATC=OFF"
+    -DFLATBUFFERS_BUILD_FLATC=OFF \
+    -DJWT_BUILD_EXAMPLES=OFF"
 
 grpc_install() {
     local grpc_version="v1.41.0"
@@ -156,7 +162,7 @@ then
     cross_clang_release arm64 aarch64-linux-gnu
 elif [[ $OS_NAME == "Arch" ]]
 then
-    sudo pacman -S --needed postgresql-libs mariadb-libs
+    sudo pacman -S --needed postgresql-libs mariadb-libs boost
     arch_clang_debug
 else
     echo "Unknowk os $OS_NAME"

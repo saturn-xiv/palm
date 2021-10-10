@@ -13,14 +13,49 @@ string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
 # --------------------------------------------------------
 find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS 
+    system locale log_setup log thread program_options
+    date_time chrono timer random
+    unit_test_framework
+)
 find_package(OpenSSL REQUIRED)
 find_package(PostgreSQL REQUIRED)
+find_package(SQLite3 REQUIRED)
 # --------------------------------------------------------
-FetchContent_Declare(poco
-  GIT_REPOSITORY    "https://github.com/pocoproject/poco.git"
-  GIT_TAG           "poco-1.11.0-release"
+FetchContent_Declare(
+    libpqxx
+    GIT_REPOSITORY  "https://github.com/jtv/libpqxx.git"
+    GIT_TAG         "7f79dba"
 )
-FetchContent_MakeAvailable(poco)
+FetchContent_MakeAvailable(libpqxx)
+
+FetchContent_Declare(
+    SQLiteCpp
+    GIT_REPOSITORY  "https://github.com/SRombauts/SQLiteCpp.git"
+    GIT_TAG         "3.1.1"
+)
+FetchContent_MakeAvailable(SQLiteCpp)
+
+FetchContent_Declare(
+    hiredis
+    GIT_REPOSITORY  "https://github.com/redis/hiredis.git"
+    GIT_TAG         "783a378"
+)
+FetchContent_MakeAvailable(hiredis)
+
+FetchContent_Declare(
+    cpp_httplib
+    GIT_REPOSITORY  "https://github.com/yhirose/cpp-httplib.git"
+    GIT_TAG         "c7554cc"
+)
+FetchContent_MakeAvailable(cpp_httplib)
+
+FetchContent_Declare(
+    jwt_cpp
+    GIT_REPOSITORY  "https://github.com/Thalhammer/jwt-cpp.git"
+    GIT_TAG         "ab1a60e"
+)
+FetchContent_MakeAvailable(jwt_cpp)
 
 FetchContent_Declare(
     tomlplusplus

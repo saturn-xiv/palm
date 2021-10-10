@@ -32,8 +32,9 @@
 #include <variant>
 #include <vector>
 
-#include <Poco/LogStream.h>
-#include <Poco/Logger.h>
+#include <boost/algorithm/string.hpp>
+#include <boost/log/trivial.hpp>
+
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>

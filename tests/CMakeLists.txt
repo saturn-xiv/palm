@@ -1,21 +1,13 @@
 file(GLOB TEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 
-FetchContent_Declare(Catch2
-  GIT_REPOSITORY    "https://github.com/catchorg/Catch2.git"
-  GIT_TAG           "v2.13.7"
-)
-FetchContent_MakeAvailable(Catch2)
-
-target_include_directories(palm PUBLIC
-  ${Catch2_SOURCE_DIR}/single_include
-)
+enable_testing()
 
 foreach(sfn ${TEST_SOURCES})
     file(RELATIVE_PATH itn ${CMAKE_CURRENT_SOURCE_DIR} ${sfn})
     string(REPLACE ".cpp" "-test" it ${itn})
     add_executable(${it} ${itn})
 
-    target_link_libraries(${it} PRIVATE palm Catch2::Catch2)
+    target_link_libraries(${it} PRIVATE palm ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
     set_target_properties(${it} PROPERTIES LINK_FLAGS_RELEASE -s)
 endforeach(sfn ${TEST_SOURCES})
 
