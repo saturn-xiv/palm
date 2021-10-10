@@ -3,7 +3,7 @@
 set -e
 
 export VERSION=$(date "+%4Y%m%d%H%M%S")
-export CODE="palm-poco"
+export CODE="palm-boost"
 
 buildah pull ubuntu:latest
 buildah bud --layers -t $CODE .

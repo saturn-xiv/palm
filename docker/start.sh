@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NAME=palm-poco
+NAME=palm-boost
 
 if podman container exists $NAME
 then

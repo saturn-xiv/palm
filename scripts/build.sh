@@ -135,19 +135,24 @@ arch_clang_debug() {
     make
 }
 
+ubuntu_dependencies(){
+    sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libboost-all-dev:$1
+}
+
 grpc_install
 
 export OS_NAME=$(lsb_release -is)
+
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    sudo apt install -y libpq-dev libmysqlclient-dev
+    ubuntu_dependencies amd64
     amd64_clang_debug
     amd64_clang_release
 
-    sudo apt install -y libpq-dev:armhf libmysqlclient-dev:armhf
+    ubuntu_dependencies armhf
     cross_clang_release armhf arm-linux-gnueabihf
 
-    sudo apt install -y libpq-dev:arm64 libmysqlclient-dev:arm64
+    ubuntu_dependencies arm64
     cross_clang_release arm64 aarch64-linux-gnu
 elif [[ $OS_NAME == "Arch" ]]
 then
