@@ -92,14 +92,14 @@ cross_clang_release() {
     echo "build ${1}@release..."
     mkdir -pv $WORKSPACE/build/${1}-clang-release
     cd $WORKSPACE/build/${1}-clang-release
-    local target_flags="-target $1 -ccc-gcc-name $1-gcc-10"
+    local target_flags="-target $2 -ccc-gcc-name $2-gcc-10"
     
     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release \
         $CMAKE_CLANG $CMAKE_OPTIONS $CMAKE_CROSS_OPTIONS \
-        -DCMAKE_C_COMPILER_TARGET=$1 -DCMAKE_CXX_COMPILER_TARGET=$1 \
+        -DCMAKE_C_COMPILER_TARGET=$2 -DCMAKE_CXX_COMPILER_TARGET=$2 \
         -DCMAKE_C_FLAGS="$target_flags" \
         -DCMAKE_CXX_FLAGS="$CLANG_USE_STD $target_flags" \
-        -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/docker/armhf.cmake
+        -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/docker/$1.cmake
     make
 }
 
@@ -145,7 +145,10 @@ then
     amd64_clang_release
 
     sudo apt install -y libpq-dev:armhf libmysqlclient-dev:armhf
-    cross_clang_release arm-linux-gnueabihf
+    cross_clang_release armhf arm-linux-gnueabihf
+
+    sudo apt install -y libpq-dev:arm64 libmysqlclient-dev:arm64
+    cross_clang_release arm64 aarch64-linux-gnu
 elif [[ $OS_NAME == "Arch" ]]
 then
     sudo pacman -S --needed postgresql-libs mariadb-libs

@@ -206,6 +206,8 @@ class Job {
  public:
   Job(const std::filesystem::path& file,
       std::shared_ptr<Poco::LogStream> logger);
+
+  void execute(const Inventory& inventory) const;
   friend std::ostream& operator<<(std::ostream& out, const Job& self) {
     out << "=== Job " << self.name << " ===\n";
     for (const auto& it : self.tasks) {
@@ -225,7 +227,7 @@ Env load(const toml::table& node);
 
 class Application : public palm::Application {
  protected:
-  void launch() override;
+  int launch() override;
   void defineOptions(Poco::Util::OptionSet& options) override;
   std::string description() override;
 

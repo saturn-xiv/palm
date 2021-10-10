@@ -12,7 +12,7 @@ class Application : public Poco::Util::Application {
  protected:
   void defineOptions(Poco::Util::OptionSet& options) override;
   int main(const std::vector<std::string>& args) override;
-  virtual void launch() = 0;
+  virtual int launch() = 0;
   virtual std::string description() = 0;
 
  private:

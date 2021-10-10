@@ -116,6 +116,7 @@ std::vector<palm::loquat::Env> palm::loquat::Inventory::by_group(
 
   return items;
 }
+
 palm::loquat::Env palm::loquat::Inventory::by_host(
     const std::string& host) const {
   palm::loquat::Env env;
@@ -123,6 +124,11 @@ palm::loquat::Env palm::loquat::Inventory::by_host(
     if (host == it.name) {
       env.insert(it.env.begin(), it.env.end());
     }
+  }
+
+  const auto pos = env.find(Executor::SSH_HOST);
+  if (pos == env.end()) {
+    env[Executor::SSH_HOST] = host;
   }
   return env;
 }
@@ -189,9 +195,9 @@ palm::loquat::Executor::Executor(const std::string& role, const Env& env)
     : role(role), env(env) {
   {
     const auto pos = this->env.find(SSH_HOST);
-    if (pos == this->env.end()) {
-      throw Poco::RuntimeException("can't find ssh host");
-    }
+    // if (pos == this->env.end()) {
+    //   throw Poco::RuntimeException("can't find ssh host");
+    // }
     this->host = std::get<std::string>(pos->second);
   }
   if (this->env.find(SSH_PORT) == this->env.end()) {
@@ -255,14 +261,33 @@ palm::loquat::Job::Job(const std::filesystem::path& file,
   }
 }
 
-void palm::loquat::Application::launch() {
+void palm::loquat::Job::execute(
+    const palm::loquat::Inventory& inventory) const {
+  std::vector<std::vector<palm::loquat::Executor>> items;
+  for (const auto& task : this->tasks) {
+    for (const auto& role : task.roles) {
+      const auto executors = task.executors(inventory);
+      // TODO run
+      items.push_back(executors);
+    }
+  }
+}
+
+int palm::loquat::Application::launch() {
   Poco::Logger& logger = Poco::Logger::root();
   poco_information_f(logger, "deploy %s@%s", this->job, this->inventory);
   auto lstr = std::make_shared<Poco::LogStream>(logger);
-  Job job(this->job, lstr);
-  Inventory inventory(this->inventory, lstr);
-  //   TODO
-  poco_information(logger, "done.");
+
+  try {
+    const Job job(this->job, lstr);
+    const Inventory inventory(this->inventory, lstr);
+    job.execute(inventory);
+    poco_information(logger, "done.");
+    return Poco::Util::Application::EXIT_OK;
+  } catch (Poco::Exception& ex) {
+    lstr->error() << ex.displayText() << std::endl;
+    return Poco::Util::Application::EXIT_SOFTWARE;
+  }
 }
 void palm::loquat::Application::defineOptions(Poco::Util::OptionSet& options) {
   palm::Application::defineOptions(options);

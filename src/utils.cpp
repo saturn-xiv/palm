@@ -54,8 +54,8 @@ int palm::Application::main(const std::vector<std::string>& args) {
   if (this->stopped) {
     return Poco::Util::Application::EXIT_OK;
   }
-  this->launch();
-  return Poco::Util::Application::EXIT_OK;
+
+  return this->launch();
 }
 
 void palm::reboot() {
