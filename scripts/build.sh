@@ -98,7 +98,7 @@ cross_clang_release() {
     echo "build ${1}@release..."
     mkdir -pv $WORKSPACE/build/${1}-clang-release
     cd $WORKSPACE/build/${1}-clang-release
-    local target_flags="-target $2 -ccc-gcc-name $2-gcc-10"
+    local target_flags="-target $2 -ccc-gcc-name $3"
     
     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release \
         $CMAKE_CLANG $CMAKE_OPTIONS $CMAKE_CROSS_OPTIONS \
@@ -144,7 +144,7 @@ arch_clang_debug() {
 ubuntu_dependencies(){
     # libboost-all-dev:$1
     sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
-        libboost-all-dev:$1
+        libboost-system-dev:$1 libboost-locale-dev:$1 libboost-program-options-dev:$1 libboost-date-time-dev:$1 libboost-chrono-dev:$1 libboost-timer-dev:$1 libboost-random-dev:$1 libboost-log-dev:$1 libboost-test-dev:$1
 }
 
 grpc_install
@@ -158,10 +158,10 @@ then
     amd64_clang_release
 
     ubuntu_dependencies armhf
-    cross_clang_release armhf arm-linux-gnueabihf
+    cross_clang_release armhf arm-linux-gnueabihf arm-linux-gnueabihf-gcc-10
 
     ubuntu_dependencies arm64
-    cross_clang_release arm64 aarch64-linux-gnu
+    cross_clang_release arm64 aarch64-linux-gnu aarch64-linux-gnu-gcc-10
 elif [[ $OS_NAME == "Arch" ]]
 then
     sudo pacman -S --needed postgresql-libs mariadb-libs boost
