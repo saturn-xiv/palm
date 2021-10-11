@@ -5,10 +5,8 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
-service Pi {
-  rpc Tty(TtyRequest) returns (google.protobuf.Empty) {}
-  rpc PlayAudio(AudioRequest) returns (google.protobuf.Empty) {}
-  rpc StopAudio(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+service Tty {
+  rpc Write(TtyRequest) returns (google.protobuf.Empty) {}
 }
 
 message TtyRequest {
@@ -21,8 +19,27 @@ message TtyResponse {
   google.protobuf.Timestamp timestamp = 2;
 }
 
-message AudioRequest {
-  repeated string files = 1;
-  repeated uint64 loop = 2;
-  optional google.protobuf.Duration delay = 3;
+service Audio {
+  rpc Play(AudioPlayRequest) returns (google.protobuf.Empty) {}
+  rpc Stop(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Tts(AudioTtsRequest) returns (google.protobuf.Empty) {}
 }
+
+message AudioPlayRequest {
+  repeated string files = 1;
+  repeated uint64 loop = 21;
+  optional google.protobuf.Duration delay = 22;
+}
+
+message AudioTtsRequest {
+  message Message {
+    string message = 1;
+  }
+  repeated Message messages = 1;
+  repeated uint64 loop = 21;
+  optional google.protobuf.Duration delay = 22;
+}
+
+service Button {}
+
+service Led {}

@@ -23,148 +23,241 @@ namespace palm {
 namespace tty {
 namespace v1 {
 
-static const char* Pi_method_names[] = {
-  "/palm.tty.v1.Pi/Tty",
-  "/palm.tty.v1.Pi/PlayAudio",
-  "/palm.tty.v1.Pi/StopAudio",
+static const char* Tty_method_names[] = {
+  "/palm.tty.v1.Tty/Write",
 };
 
-std::unique_ptr< Pi::Stub> Pi::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+std::unique_ptr< Tty::Stub> Tty::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Pi::Stub> stub(new Pi::Stub(channel, options));
+  std::unique_ptr< Tty::Stub> stub(new Tty::Stub(channel, options));
   return stub;
 }
 
-Pi::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Tty_(Pi_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PlayAudio_(Pi_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_StopAudio_(Pi_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+Tty::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Write_(Tty_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Pi::Stub::Tty(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Tty_, context, request, response);
+::grpc::Status Tty::Stub::Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Write_, context, request, response);
 }
 
-void Pi::Stub::async::Tty(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Tty_, context, request, response, std::move(f));
+void Tty::Stub::async::Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Write_, context, request, response, std::move(f));
 }
 
-void Pi::Stub::async::Tty(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Tty_, context, request, response, reactor);
+void Tty::Stub::async::Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Write_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Pi::Stub::PrepareAsyncTtyRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::tty::v1::TtyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Tty_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tty::Stub::PrepareAsyncWriteRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::tty::v1::TtyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Write_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Pi::Stub::AsyncTtyRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tty::Stub::AsyncWriteRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncTtyRaw(context, request, cq);
+    this->PrepareAsyncWriteRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status Pi::Stub::PlayAudio(::grpc::ClientContext* context, const ::palm::tty::v1::AudioRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::tty::v1::AudioRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PlayAudio_, context, request, response);
-}
-
-void Pi::Stub::async::PlayAudio(::grpc::ClientContext* context, const ::palm::tty::v1::AudioRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::tty::v1::AudioRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlayAudio_, context, request, response, std::move(f));
-}
-
-void Pi::Stub::async::PlayAudio(::grpc::ClientContext* context, const ::palm::tty::v1::AudioRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlayAudio_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Pi::Stub::PrepareAsyncPlayAudioRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::tty::v1::AudioRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PlayAudio_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Pi::Stub::AsyncPlayAudioRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncPlayAudioRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status Pi::Stub::StopAudio(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StopAudio_, context, request, response);
-}
-
-void Pi::Stub::async::StopAudio(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopAudio_, context, request, response, std::move(f));
-}
-
-void Pi::Stub::async::StopAudio(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StopAudio_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Pi::Stub::PrepareAsyncStopAudioRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StopAudio_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Pi::Stub::AsyncStopAudioRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStopAudioRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-Pi::Service::Service() {
+Tty::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Pi_method_names[0],
+      Tty_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Pi::Service, ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Pi::Service* service,
+      new ::grpc::internal::RpcMethodHandler< Tty::Service, ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Tty::Service* service,
              ::grpc::ServerContext* ctx,
              const ::palm::tty::v1::TtyRequest* req,
              ::google::protobuf::Empty* resp) {
-               return service->Tty(ctx, req, resp);
+               return service->Write(ctx, req, resp);
              }, this)));
+}
+
+Tty::Service::~Service() {
+}
+
+::grpc::Status Tty::Service::Write(::grpc::ServerContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Audio_method_names[] = {
+  "/palm.tty.v1.Audio/Play",
+  "/palm.tty.v1.Audio/Stop",
+  "/palm.tty.v1.Audio/Tts",
+};
+
+std::unique_ptr< Audio::Stub> Audio::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Audio::Stub> stub(new Audio::Stub(channel, options));
+  return stub;
+}
+
+Audio::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Play_(Audio_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Stop_(Audio_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Tts_(Audio_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Audio::Stub::Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Play_, context, request, response);
+}
+
+void Audio::Stub::async::Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Play_, context, request, response, std::move(f));
+}
+
+void Audio::Stub::async::Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Play_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Audio::Stub::PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::tty::v1::AudioPlayRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Play_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Audio::Stub::AsyncPlayRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPlayRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Audio::Stub::Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Stop_, context, request, response);
+}
+
+void Audio::Stub::async::Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, std::move(f));
+}
+
+void Audio::Stub::async::Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Stop_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Audio::Stub::PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Stop_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Audio::Stub::AsyncStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncStopRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Audio::Stub::Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Tts_, context, request, response);
+}
+
+void Audio::Stub::async::Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Tts_, context, request, response, std::move(f));
+}
+
+void Audio::Stub::async::Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Tts_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Audio::Stub::PrepareAsyncTtsRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::tty::v1::AudioTtsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Tts_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Audio::Stub::AsyncTtsRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncTtsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Audio::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Pi_method_names[1],
+      Audio_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Pi::Service, ::palm::tty::v1::AudioRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Pi::Service* service,
+      new ::grpc::internal::RpcMethodHandler< Audio::Service, ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Audio::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::tty::v1::AudioRequest* req,
+             const ::palm::tty::v1::AudioPlayRequest* req,
              ::google::protobuf::Empty* resp) {
-               return service->PlayAudio(ctx, req, resp);
+               return service->Play(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Pi_method_names[2],
+      Audio_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Pi::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Pi::Service* service,
+      new ::grpc::internal::RpcMethodHandler< Audio::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Audio::Service* service,
              ::grpc::ServerContext* ctx,
              const ::google::protobuf::Empty* req,
              ::google::protobuf::Empty* resp) {
-               return service->StopAudio(ctx, req, resp);
+               return service->Stop(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Audio_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Audio::Service, ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Audio::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::tty::v1::AudioTtsRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Tts(ctx, req, resp);
              }, this)));
 }
 
-Pi::Service::~Service() {
+Audio::Service::~Service() {
 }
 
-::grpc::Status Pi::Service::Tty(::grpc::ServerContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Audio::Service::Play(::grpc::ServerContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Pi::Service::PlayAudio(::grpc::ServerContext* context, const ::palm::tty::v1::AudioRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Audio::Service::Stop(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Pi::Service::StopAudio(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+::grpc::Status Audio::Service::Tts(::grpc::ServerContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+std::unique_ptr< Button::Stub> Button::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Button::Stub> stub(new Button::Stub(channel, options));
+  return stub;
+}
+
+Button::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel){}
+
+Button::Service::Service() {
+}
+
+Button::Service::~Service() {
+}
+
+
+std::unique_ptr< Led::Stub> Led::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Led::Stub> stub(new Led::Stub(channel, options));
+  return stub;
+}
+
+Led::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel){}
+
+Led::Service::Service() {
+}
+
+Led::Service::~Service() {
 }
 
 

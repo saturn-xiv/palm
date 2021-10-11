@@ -49,7 +49,7 @@ struct TableStruct_pi_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -59,9 +59,15 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace palm {
 namespace tty {
 namespace v1 {
-class AudioRequest;
-struct AudioRequestDefaultTypeInternal;
-extern AudioRequestDefaultTypeInternal _AudioRequest_default_instance_;
+class AudioPlayRequest;
+struct AudioPlayRequestDefaultTypeInternal;
+extern AudioPlayRequestDefaultTypeInternal _AudioPlayRequest_default_instance_;
+class AudioTtsRequest;
+struct AudioTtsRequestDefaultTypeInternal;
+extern AudioTtsRequestDefaultTypeInternal _AudioTtsRequest_default_instance_;
+class AudioTtsRequest_Message;
+struct AudioTtsRequest_MessageDefaultTypeInternal;
+extern AudioTtsRequest_MessageDefaultTypeInternal _AudioTtsRequest_Message_default_instance_;
 class TtyRequest;
 struct TtyRequestDefaultTypeInternal;
 extern TtyRequestDefaultTypeInternal _TtyRequest_default_instance_;
@@ -72,7 +78,9 @@ extern TtyResponseDefaultTypeInternal _TtyResponse_default_instance_;
 }  // namespace tty
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::palm::tty::v1::AudioRequest* Arena::CreateMaybeMessage<::palm::tty::v1::AudioRequest>(Arena*);
+template<> ::palm::tty::v1::AudioPlayRequest* Arena::CreateMaybeMessage<::palm::tty::v1::AudioPlayRequest>(Arena*);
+template<> ::palm::tty::v1::AudioTtsRequest* Arena::CreateMaybeMessage<::palm::tty::v1::AudioTtsRequest>(Arena*);
+template<> ::palm::tty::v1::AudioTtsRequest_Message* Arena::CreateMaybeMessage<::palm::tty::v1::AudioTtsRequest_Message>(Arena*);
 template<> ::palm::tty::v1::TtyRequest* Arena::CreateMaybeMessage<::palm::tty::v1::TtyRequest>(Arena*);
 template<> ::palm::tty::v1::TtyResponse* Arena::CreateMaybeMessage<::palm::tty::v1::TtyResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -421,24 +429,24 @@ class TtyResponse final :
 };
 // -------------------------------------------------------------------
 
-class AudioRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.AudioRequest) */ {
+class AudioPlayRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.AudioPlayRequest) */ {
  public:
-  inline AudioRequest() : AudioRequest(nullptr) {}
-  ~AudioRequest() override;
-  explicit constexpr AudioRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline AudioPlayRequest() : AudioPlayRequest(nullptr) {}
+  ~AudioPlayRequest() override;
+  explicit constexpr AudioPlayRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  AudioRequest(const AudioRequest& from);
-  AudioRequest(AudioRequest&& from) noexcept
-    : AudioRequest() {
+  AudioPlayRequest(const AudioPlayRequest& from);
+  AudioPlayRequest(AudioPlayRequest&& from) noexcept
+    : AudioPlayRequest() {
     *this = ::std::move(from);
   }
 
-  inline AudioRequest& operator=(const AudioRequest& from) {
+  inline AudioPlayRequest& operator=(const AudioPlayRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AudioRequest& operator=(AudioRequest&& from) noexcept {
+  inline AudioPlayRequest& operator=(AudioPlayRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()) {
       InternalSwap(&from);
@@ -457,20 +465,20 @@ class AudioRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AudioRequest& default_instance() {
+  static const AudioPlayRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const AudioRequest* internal_default_instance() {
-    return reinterpret_cast<const AudioRequest*>(
-               &_AudioRequest_default_instance_);
+  static inline const AudioPlayRequest* internal_default_instance() {
+    return reinterpret_cast<const AudioPlayRequest*>(
+               &_AudioPlayRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(AudioRequest& a, AudioRequest& b) {
+  friend void swap(AudioPlayRequest& a, AudioPlayRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(AudioRequest* other) {
+  inline void Swap(AudioPlayRequest* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -478,7 +486,7 @@ class AudioRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AudioRequest* other) {
+  void UnsafeArenaSwap(AudioPlayRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -486,17 +494,17 @@ class AudioRequest final :
 
   // implements Message ----------------------------------------------
 
-  inline AudioRequest* New() const final {
-    return new AudioRequest();
+  inline AudioPlayRequest* New() const final {
+    return new AudioPlayRequest();
   }
 
-  AudioRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<AudioRequest>(arena);
+  AudioPlayRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AudioPlayRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AudioRequest& from);
+  void CopyFrom(const AudioPlayRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const AudioRequest& from);
+  void MergeFrom(const AudioPlayRequest& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
   public:
@@ -513,13 +521,13 @@ class AudioRequest final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(AudioRequest* other);
+  void InternalSwap(AudioPlayRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.tty.v1.AudioRequest";
+    return "palm.tty.v1.AudioPlayRequest";
   }
   protected:
-  explicit AudioRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit AudioPlayRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -537,8 +545,8 @@ class AudioRequest final :
 
   enum : int {
     kFilesFieldNumber = 1,
-    kLoopFieldNumber = 2,
-    kDelayFieldNumber = 3,
+    kLoopFieldNumber = 21,
+    kDelayFieldNumber = 22,
   };
   // repeated string files = 1;
   int files_size() const;
@@ -564,7 +572,7 @@ class AudioRequest final :
   std::string* _internal_add_files();
   public:
 
-  // repeated uint64 loop = 2;
+  // repeated uint64 loop = 21;
   int loop_size() const;
   private:
   int _internal_loop_size() const;
@@ -586,7 +594,7 @@ class AudioRequest final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
       mutable_loop();
 
-  // optional .google.protobuf.Duration delay = 3;
+  // optional .google.protobuf.Duration delay = 22;
   bool has_delay() const;
   private:
   bool _internal_has_delay() const;
@@ -604,7 +612,7 @@ class AudioRequest final :
       PROTOBUF_NAMESPACE_ID::Duration* delay);
   PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_delay();
 
-  // @@protoc_insertion_point(class_scope:palm.tty.v1.AudioRequest)
+  // @@protoc_insertion_point(class_scope:palm.tty.v1.AudioPlayRequest)
  private:
   class _Internal;
 
@@ -614,6 +622,346 @@ class AudioRequest final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> files_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 > loop_;
+  mutable std::atomic<int> _loop_cached_byte_size_;
+  PROTOBUF_NAMESPACE_ID::Duration* delay_;
+  friend struct ::TableStruct_pi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AudioTtsRequest_Message final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.AudioTtsRequest.Message) */ {
+ public:
+  inline AudioTtsRequest_Message() : AudioTtsRequest_Message(nullptr) {}
+  ~AudioTtsRequest_Message() override;
+  explicit constexpr AudioTtsRequest_Message(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AudioTtsRequest_Message(const AudioTtsRequest_Message& from);
+  AudioTtsRequest_Message(AudioTtsRequest_Message&& from) noexcept
+    : AudioTtsRequest_Message() {
+    *this = ::std::move(from);
+  }
+
+  inline AudioTtsRequest_Message& operator=(const AudioTtsRequest_Message& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AudioTtsRequest_Message& operator=(AudioTtsRequest_Message&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AudioTtsRequest_Message& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AudioTtsRequest_Message* internal_default_instance() {
+    return reinterpret_cast<const AudioTtsRequest_Message*>(
+               &_AudioTtsRequest_Message_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(AudioTtsRequest_Message& a, AudioTtsRequest_Message& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AudioTtsRequest_Message* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AudioTtsRequest_Message* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AudioTtsRequest_Message* New() const final {
+    return new AudioTtsRequest_Message();
+  }
+
+  AudioTtsRequest_Message* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AudioTtsRequest_Message>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AudioTtsRequest_Message& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AudioTtsRequest_Message& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AudioTtsRequest_Message* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.tty.v1.AudioTtsRequest.Message";
+  }
+  protected:
+  explicit AudioTtsRequest_Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 1,
+  };
+  // string message = 1;
+  void clear_message();
+  const std::string& message() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_message(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_message();
+  PROTOBUF_MUST_USE_RESULT std::string* release_message();
+  void set_allocated_message(std::string* message);
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.tty.v1.AudioTtsRequest.Message)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_pi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AudioTtsRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.AudioTtsRequest) */ {
+ public:
+  inline AudioTtsRequest() : AudioTtsRequest(nullptr) {}
+  ~AudioTtsRequest() override;
+  explicit constexpr AudioTtsRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AudioTtsRequest(const AudioTtsRequest& from);
+  AudioTtsRequest(AudioTtsRequest&& from) noexcept
+    : AudioTtsRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AudioTtsRequest& operator=(const AudioTtsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AudioTtsRequest& operator=(AudioTtsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AudioTtsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AudioTtsRequest* internal_default_instance() {
+    return reinterpret_cast<const AudioTtsRequest*>(
+               &_AudioTtsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(AudioTtsRequest& a, AudioTtsRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AudioTtsRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AudioTtsRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AudioTtsRequest* New() const final {
+    return new AudioTtsRequest();
+  }
+
+  AudioTtsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AudioTtsRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AudioTtsRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const AudioTtsRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AudioTtsRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.tty.v1.AudioTtsRequest";
+  }
+  protected:
+  explicit AudioTtsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef AudioTtsRequest_Message Message;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessagesFieldNumber = 1,
+    kLoopFieldNumber = 21,
+    kDelayFieldNumber = 22,
+  };
+  // repeated .palm.tty.v1.AudioTtsRequest.Message messages = 1;
+  int messages_size() const;
+  private:
+  int _internal_messages_size() const;
+  public:
+  void clear_messages();
+  ::palm::tty::v1::AudioTtsRequest_Message* mutable_messages(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >*
+      mutable_messages();
+  private:
+  const ::palm::tty::v1::AudioTtsRequest_Message& _internal_messages(int index) const;
+  ::palm::tty::v1::AudioTtsRequest_Message* _internal_add_messages();
+  public:
+  const ::palm::tty::v1::AudioTtsRequest_Message& messages(int index) const;
+  ::palm::tty::v1::AudioTtsRequest_Message* add_messages();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >&
+      messages() const;
+
+  // repeated uint64 loop = 21;
+  int loop_size() const;
+  private:
+  int _internal_loop_size() const;
+  public:
+  void clear_loop();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_loop(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
+      _internal_loop() const;
+  void _internal_add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
+      _internal_mutable_loop();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::uint64 loop(int index) const;
+  void set_loop(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value);
+  void add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
+      loop() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
+      mutable_loop();
+
+  // optional .google.protobuf.Duration delay = 22;
+  bool has_delay() const;
+  private:
+  bool _internal_has_delay() const;
+  public:
+  void clear_delay();
+  const PROTOBUF_NAMESPACE_ID::Duration& delay() const;
+  PROTOBUF_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Duration* release_delay();
+  PROTOBUF_NAMESPACE_ID::Duration* mutable_delay();
+  void set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* delay);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Duration& _internal_delay() const;
+  PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_delay();
+  public:
+  void unsafe_arena_set_allocated_delay(
+      PROTOBUF_NAMESPACE_ID::Duration* delay);
+  PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_delay();
+
+  // @@protoc_insertion_point(class_scope:palm.tty.v1.AudioTtsRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message > messages_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 > loop_;
   mutable std::atomic<int> _loop_cached_byte_size_;
   PROTOBUF_NAMESPACE_ID::Duration* delay_;
@@ -931,149 +1279,149 @@ inline void TtyResponse::set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestam
 
 // -------------------------------------------------------------------
 
-// AudioRequest
+// AudioPlayRequest
 
 // repeated string files = 1;
-inline int AudioRequest::_internal_files_size() const {
+inline int AudioPlayRequest::_internal_files_size() const {
   return files_.size();
 }
-inline int AudioRequest::files_size() const {
+inline int AudioPlayRequest::files_size() const {
   return _internal_files_size();
 }
-inline void AudioRequest::clear_files() {
+inline void AudioPlayRequest::clear_files() {
   files_.Clear();
 }
-inline std::string* AudioRequest::add_files() {
+inline std::string* AudioPlayRequest::add_files() {
   std::string* _s = _internal_add_files();
-  // @@protoc_insertion_point(field_add_mutable:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_add_mutable:palm.tty.v1.AudioPlayRequest.files)
   return _s;
 }
-inline const std::string& AudioRequest::_internal_files(int index) const {
+inline const std::string& AudioPlayRequest::_internal_files(int index) const {
   return files_.Get(index);
 }
-inline const std::string& AudioRequest::files(int index) const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioRequest.files)
+inline const std::string& AudioPlayRequest::files(int index) const {
+  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioPlayRequest.files)
   return _internal_files(index);
 }
-inline std::string* AudioRequest::mutable_files(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioRequest.files)
+inline std::string* AudioPlayRequest::mutable_files(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioPlayRequest.files)
   return files_.Mutable(index);
 }
-inline void AudioRequest::set_files(int index, const std::string& value) {
+inline void AudioPlayRequest::set_files(int index, const std::string& value) {
   files_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioPlayRequest.files)
 }
-inline void AudioRequest::set_files(int index, std::string&& value) {
+inline void AudioPlayRequest::set_files(int index, std::string&& value) {
   files_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioPlayRequest.files)
 }
-inline void AudioRequest::set_files(int index, const char* value) {
+inline void AudioPlayRequest::set_files(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   files_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_set_char:palm.tty.v1.AudioPlayRequest.files)
 }
-inline void AudioRequest::set_files(int index, const char* value, size_t size) {
+inline void AudioPlayRequest::set_files(int index, const char* value, size_t size) {
   files_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_set_pointer:palm.tty.v1.AudioPlayRequest.files)
 }
-inline std::string* AudioRequest::_internal_add_files() {
+inline std::string* AudioPlayRequest::_internal_add_files() {
   return files_.Add();
 }
-inline void AudioRequest::add_files(const std::string& value) {
+inline void AudioPlayRequest::add_files(const std::string& value) {
   files_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioPlayRequest.files)
 }
-inline void AudioRequest::add_files(std::string&& value) {
+inline void AudioPlayRequest::add_files(std::string&& value) {
   files_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioPlayRequest.files)
 }
-inline void AudioRequest::add_files(const char* value) {
+inline void AudioPlayRequest::add_files(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   files_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_add_char:palm.tty.v1.AudioPlayRequest.files)
 }
-inline void AudioRequest::add_files(const char* value, size_t size) {
+inline void AudioPlayRequest::add_files(const char* value, size_t size) {
   files_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.tty.v1.AudioRequest.files)
+  // @@protoc_insertion_point(field_add_pointer:palm.tty.v1.AudioPlayRequest.files)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-AudioRequest::files() const {
-  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioRequest.files)
+AudioPlayRequest::files() const {
+  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioPlayRequest.files)
   return files_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-AudioRequest::mutable_files() {
-  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioRequest.files)
+AudioPlayRequest::mutable_files() {
+  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioPlayRequest.files)
   return &files_;
 }
 
-// repeated uint64 loop = 2;
-inline int AudioRequest::_internal_loop_size() const {
+// repeated uint64 loop = 21;
+inline int AudioPlayRequest::_internal_loop_size() const {
   return loop_.size();
 }
-inline int AudioRequest::loop_size() const {
+inline int AudioPlayRequest::loop_size() const {
   return _internal_loop_size();
 }
-inline void AudioRequest::clear_loop() {
+inline void AudioPlayRequest::clear_loop() {
   loop_.Clear();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioRequest::_internal_loop(int index) const {
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioPlayRequest::_internal_loop(int index) const {
   return loop_.Get(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioRequest::loop(int index) const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioRequest.loop)
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioPlayRequest::loop(int index) const {
+  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioPlayRequest.loop)
   return _internal_loop(index);
 }
-inline void AudioRequest::set_loop(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void AudioPlayRequest::set_loop(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value) {
   loop_.Set(index, value);
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioRequest.loop)
+  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioPlayRequest.loop)
 }
-inline void AudioRequest::_internal_add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void AudioPlayRequest::_internal_add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   loop_.Add(value);
 }
-inline void AudioRequest::add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline void AudioPlayRequest::add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_add_loop(value);
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioRequest.loop)
+  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioPlayRequest.loop)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
-AudioRequest::_internal_loop() const {
+AudioPlayRequest::_internal_loop() const {
   return loop_;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
-AudioRequest::loop() const {
-  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioRequest.loop)
+AudioPlayRequest::loop() const {
+  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioPlayRequest.loop)
   return _internal_loop();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
-AudioRequest::_internal_mutable_loop() {
+AudioPlayRequest::_internal_mutable_loop() {
   return &loop_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
-AudioRequest::mutable_loop() {
-  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioRequest.loop)
+AudioPlayRequest::mutable_loop() {
+  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioPlayRequest.loop)
   return _internal_mutable_loop();
 }
 
-// optional .google.protobuf.Duration delay = 3;
-inline bool AudioRequest::_internal_has_delay() const {
+// optional .google.protobuf.Duration delay = 22;
+inline bool AudioPlayRequest::_internal_has_delay() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || delay_ != nullptr);
   return value;
 }
-inline bool AudioRequest::has_delay() const {
+inline bool AudioPlayRequest::has_delay() const {
   return _internal_has_delay();
 }
-inline const PROTOBUF_NAMESPACE_ID::Duration& AudioRequest::_internal_delay() const {
+inline const PROTOBUF_NAMESPACE_ID::Duration& AudioPlayRequest::_internal_delay() const {
   const PROTOBUF_NAMESPACE_ID::Duration* p = delay_;
   return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Duration&>(
       PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
 }
-inline const PROTOBUF_NAMESPACE_ID::Duration& AudioRequest::delay() const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioRequest.delay)
+inline const PROTOBUF_NAMESPACE_ID::Duration& AudioPlayRequest::delay() const {
+  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioPlayRequest.delay)
   return _internal_delay();
 }
-inline void AudioRequest::unsafe_arena_set_allocated_delay(
+inline void AudioPlayRequest::unsafe_arena_set_allocated_delay(
     PROTOBUF_NAMESPACE_ID::Duration* delay) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay_);
@@ -1084,9 +1432,9 @@ inline void AudioRequest::unsafe_arena_set_allocated_delay(
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.tty.v1.AudioRequest.delay)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.tty.v1.AudioPlayRequest.delay)
 }
-inline PROTOBUF_NAMESPACE_ID::Duration* AudioRequest::release_delay() {
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::release_delay() {
   _has_bits_[0] &= ~0x00000001u;
   PROTOBUF_NAMESPACE_ID::Duration* temp = delay_;
   delay_ = nullptr;
@@ -1101,14 +1449,14 @@ inline PROTOBUF_NAMESPACE_ID::Duration* AudioRequest::release_delay() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline PROTOBUF_NAMESPACE_ID::Duration* AudioRequest::unsafe_arena_release_delay() {
-  // @@protoc_insertion_point(field_release:palm.tty.v1.AudioRequest.delay)
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::unsafe_arena_release_delay() {
+  // @@protoc_insertion_point(field_release:palm.tty.v1.AudioPlayRequest.delay)
   _has_bits_[0] &= ~0x00000001u;
   PROTOBUF_NAMESPACE_ID::Duration* temp = delay_;
   delay_ = nullptr;
   return temp;
 }
-inline PROTOBUF_NAMESPACE_ID::Duration* AudioRequest::_internal_mutable_delay() {
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::_internal_mutable_delay() {
   _has_bits_[0] |= 0x00000001u;
   if (delay_ == nullptr) {
     auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
@@ -1116,12 +1464,12 @@ inline PROTOBUF_NAMESPACE_ID::Duration* AudioRequest::_internal_mutable_delay() 
   }
   return delay_;
 }
-inline PROTOBUF_NAMESPACE_ID::Duration* AudioRequest::mutable_delay() {
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::mutable_delay() {
   PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_delay();
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioRequest.delay)
+  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioPlayRequest.delay)
   return _msg;
 }
-inline void AudioRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* delay) {
+inline void AudioPlayRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* delay) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay_);
@@ -1140,12 +1488,245 @@ inline void AudioRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* d
     _has_bits_[0] &= ~0x00000001u;
   }
   delay_ = delay;
-  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.AudioRequest.delay)
+  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.AudioPlayRequest.delay)
+}
+
+// -------------------------------------------------------------------
+
+// AudioTtsRequest_Message
+
+// string message = 1;
+inline void AudioTtsRequest_Message::clear_message() {
+  message_.ClearToEmpty();
+}
+inline const std::string& AudioTtsRequest_Message::message() const {
+  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.Message.message)
+  return _internal_message();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AudioTtsRequest_Message::set_message(ArgT0&& arg0, ArgT... args) {
+ 
+ message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioTtsRequest.Message.message)
+}
+inline std::string* AudioTtsRequest_Message::mutable_message() {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioTtsRequest.Message.message)
+  return _s;
+}
+inline const std::string& AudioTtsRequest_Message::_internal_message() const {
+  return message_.Get();
+}
+inline void AudioTtsRequest_Message::_internal_set_message(const std::string& value) {
+  
+  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* AudioTtsRequest_Message::_internal_mutable_message() {
+  
+  return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* AudioTtsRequest_Message::release_message() {
+  // @@protoc_insertion_point(field_release:palm.tty.v1.AudioTtsRequest.Message.message)
+  return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void AudioTtsRequest_Message::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
+    
+  } else {
+    
+  }
+  message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.AudioTtsRequest.Message.message)
+}
+
+// -------------------------------------------------------------------
+
+// AudioTtsRequest
+
+// repeated .palm.tty.v1.AudioTtsRequest.Message messages = 1;
+inline int AudioTtsRequest::_internal_messages_size() const {
+  return messages_.size();
+}
+inline int AudioTtsRequest::messages_size() const {
+  return _internal_messages_size();
+}
+inline void AudioTtsRequest::clear_messages() {
+  messages_.Clear();
+}
+inline ::palm::tty::v1::AudioTtsRequest_Message* AudioTtsRequest::mutable_messages(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioTtsRequest.messages)
+  return messages_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >*
+AudioTtsRequest::mutable_messages() {
+  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioTtsRequest.messages)
+  return &messages_;
+}
+inline const ::palm::tty::v1::AudioTtsRequest_Message& AudioTtsRequest::_internal_messages(int index) const {
+  return messages_.Get(index);
+}
+inline const ::palm::tty::v1::AudioTtsRequest_Message& AudioTtsRequest::messages(int index) const {
+  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.messages)
+  return _internal_messages(index);
+}
+inline ::palm::tty::v1::AudioTtsRequest_Message* AudioTtsRequest::_internal_add_messages() {
+  return messages_.Add();
+}
+inline ::palm::tty::v1::AudioTtsRequest_Message* AudioTtsRequest::add_messages() {
+  ::palm::tty::v1::AudioTtsRequest_Message* _add = _internal_add_messages();
+  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioTtsRequest.messages)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >&
+AudioTtsRequest::messages() const {
+  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioTtsRequest.messages)
+  return messages_;
+}
+
+// repeated uint64 loop = 21;
+inline int AudioTtsRequest::_internal_loop_size() const {
+  return loop_.size();
+}
+inline int AudioTtsRequest::loop_size() const {
+  return _internal_loop_size();
+}
+inline void AudioTtsRequest::clear_loop() {
+  loop_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioTtsRequest::_internal_loop(int index) const {
+  return loop_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioTtsRequest::loop(int index) const {
+  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.loop)
+  return _internal_loop(index);
+}
+inline void AudioTtsRequest::set_loop(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  loop_.Set(index, value);
+  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioTtsRequest.loop)
+}
+inline void AudioTtsRequest::_internal_add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  loop_.Add(value);
+}
+inline void AudioTtsRequest::add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_add_loop(value);
+  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioTtsRequest.loop)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
+AudioTtsRequest::_internal_loop() const {
+  return loop_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
+AudioTtsRequest::loop() const {
+  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioTtsRequest.loop)
+  return _internal_loop();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
+AudioTtsRequest::_internal_mutable_loop() {
+  return &loop_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
+AudioTtsRequest::mutable_loop() {
+  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioTtsRequest.loop)
+  return _internal_mutable_loop();
+}
+
+// optional .google.protobuf.Duration delay = 22;
+inline bool AudioTtsRequest::_internal_has_delay() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || delay_ != nullptr);
+  return value;
+}
+inline bool AudioTtsRequest::has_delay() const {
+  return _internal_has_delay();
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AudioTtsRequest::_internal_delay() const {
+  const PROTOBUF_NAMESPACE_ID::Duration* p = delay_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Duration&>(
+      PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AudioTtsRequest::delay() const {
+  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.delay)
+  return _internal_delay();
+}
+inline void AudioTtsRequest::unsafe_arena_set_allocated_delay(
+    PROTOBUF_NAMESPACE_ID::Duration* delay) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay_);
+  }
+  delay_ = delay;
+  if (delay) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.tty.v1.AudioTtsRequest.delay)
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::release_delay() {
+  _has_bits_[0] &= ~0x00000001u;
+  PROTOBUF_NAMESPACE_ID::Duration* temp = delay_;
+  delay_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::unsafe_arena_release_delay() {
+  // @@protoc_insertion_point(field_release:palm.tty.v1.AudioTtsRequest.delay)
+  _has_bits_[0] &= ~0x00000001u;
+  PROTOBUF_NAMESPACE_ID::Duration* temp = delay_;
+  delay_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::_internal_mutable_delay() {
+  _has_bits_[0] |= 0x00000001u;
+  if (delay_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    delay_ = p;
+  }
+  return delay_;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::mutable_delay() {
+  PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_delay();
+  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioTtsRequest.delay)
+  return _msg;
+}
+inline void AudioTtsRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* delay) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay_);
+  }
+  if (delay) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(delay));
+    if (message_arena != submessage_arena) {
+      delay = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, delay, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  delay_ = delay;
+  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.AudioTtsRequest.delay)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
