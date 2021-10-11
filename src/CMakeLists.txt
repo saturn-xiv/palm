@@ -13,15 +13,18 @@ target_include_directories(palm PUBLIC
   ${jwt_cpp_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/third_party/include
+  ${rabbitmq_SOURCE_DIR}/librabbitmq
+  ${libzmq_SOURCE_DIR}/include
+  ${cpr_SOURCE_DIR}/include
 )
 
 target_link_libraries(palm PUBLIC
-  ${Boost_LIBRARIES} ${PostgreSQL_LIBRARIES} ${SQLite3_LIBRARIES}
+  ${Boost_LIBRARIES} ${PostgreSQL_LIBRARIES} ${SQLite3_LIBRARIES} ${CURL_LIBRARIES}
 
   pqxx SQLiteCpp hiredis_static
   rabbitmq-static libzmq-static
   flatbuffers
-  libserial_static yaml-cpp
+  libserial_static yaml-cpp cpr::cpr
   # tink::static
 
   dl crypt m ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES}

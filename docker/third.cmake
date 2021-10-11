@@ -21,6 +21,7 @@ find_package(Boost REQUIRED COMPONENTS
 find_package(OpenSSL REQUIRED)
 find_package(PostgreSQL REQUIRED)
 find_package(SQLite3 REQUIRED)
+find_package(CURL REQUIRED)
 # --------------------------------------------------------
 FetchContent_Declare(
     libpqxx
@@ -113,6 +114,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(flatbuffers)
 
+
 # https://github.com/protocolbuffers/protobuf
 # FetchContent_Declare(
 #     protobuf
@@ -140,3 +142,10 @@ FetchContent_MakeAvailable(gRPC)
 
 # https://github.com/google/tink/blob/master/docs/CMAKE-HOWTO.md
 # add_subdirectory(vendors/tink)
+
+FetchContent_Declare(
+    cpr
+    GIT_REPOSITORY  "https://github.com/libcpr/cpr.git"
+    GIT_TAG         "1.6.2"
+)
+FetchContent_MakeAvailable(cpr)

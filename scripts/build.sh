@@ -38,7 +38,9 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DYAML_BUILD_SHARED_LIBS=OFF \
     -DDISABLE_TESTS=ON \
     -DBUILD_STATIC_LIBS=ON \
-    -DSQLITECPP_INTERNAL_SQLITE=OFF"
+    -DSQLITECPP_INTERNAL_SQLITE=OFF \
+    -DCPR_BUILD_TESTS=OFF \
+    -DCPR_FORCE_USE_SYSTEM_CURL=ON"
 export CMAKE_CROSS_OPTIONS="-DENABLE_ACTIVERECORD_COMPILER=OFF \
     -DENABLE_PAGECOMPILER=OFF \
     -DENABLE_PAGECOMPILER_FILE2PAGE=OFF \
@@ -144,6 +146,7 @@ arch_clang_debug() {
 ubuntu_dependencies(){
     # libboost-all-dev:$1
     sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
+        libcurl4-openssl-dev:$1 \
         libboost-system-dev:$1 libboost-locale-dev:$1 libboost-program-options-dev:$1 libboost-date-time-dev:$1 libboost-chrono-dev:$1 libboost-timer-dev:$1 libboost-random-dev:$1 libboost-log-dev:$1 libboost-test-dev:$1
 }
 
