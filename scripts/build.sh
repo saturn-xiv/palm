@@ -145,15 +145,14 @@ arch_clang_debug() {
 }
 
 ubuntu_dependencies(){
-    local boost_version="1.67"
     sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
         libcurl4-openssl-dev:$1 \
-        libboost-system-dev${boost_version}:$1 libboost-locale-dev${boost_version}:$1 \
-        libboost-program-options-dev${boost_version}:$1 \
-        libboost-date-time-dev${boost_version}:$1 \
-        libboost-chrono-dev${boost_version}:$1 \
-        libboost-timer-dev${boost_version}:$1 libboost-random-dev${boost_version}:$1 \
-        libboost-log-dev${boost_version}:$1 libboost-test-dev${boost_version}:$1
+        libboost-system-dev:$1 libboost-locale-dev:$1 \
+        libboost-program-options-dev:$1 \
+        libboost-date-time-dev:$1 \
+        libboost-chrono-dev:$1 \
+        libboost-timer-dev:$1 libboost-random-dev:$1 \
+        libboost-log-dev:$1 libboost-test-dev:$1
 }
 
 build_dashboard(){
@@ -176,12 +175,14 @@ build_deb(){
     then
         rm -rf $(dirname $target)
     fi
+    mkdir -pv $target
     cp -r $WORKSPACE/debian $target/
 
     mkdir -pv $target/usr/bin
-    cp -av $WORKSPACE/build/$1-clang-release/apps/*  $target/usr/bin/
+    cd $WORKSPACE/build/$1-clang-release/apps/
+    cp -av fig mint pi $target/usr/bin/
 
-    mkdir -pv $TARGET/usr/share/palm
+    mkdir -pv $target/usr/share/palm
     cp -av $WORKSPACE/node_modules $target/usr/share/palm/
     cp -av $WORKSPACE/dashboard/dist $target/usr/share/palm/dashboard
     
