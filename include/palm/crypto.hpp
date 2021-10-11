@@ -13,7 +13,8 @@ std::string v4();
 
 namespace url {
 std::string encode(const std::vector<uint8_t>& buf);
-}
+std::string encode(const std::string& buf);
+}  // namespace url
 
 namespace base64 {
 

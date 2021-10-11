@@ -33,8 +33,10 @@ BOOST_AUTO_TEST_CASE(url) {
        {"?", "&", "+", ")", "\"", "(", "|", "=", "\n", "\t", " "}) {
     std::stringstream ss;
     ss << "aa" << it << "bb";
-    const auto s = ss.str();
-    // std::cout << s << "\t" << palm::url::encode(s) << std::endl;
+    const auto str = ss.str();
+    std::vector<uint8_t> buf(str.begin(), str.end());
+    std::cout << str << "\t" << palm::url::encode(str) << "\t"
+              << palm::url::encode(buf) << std::endl;
   }
 }
 

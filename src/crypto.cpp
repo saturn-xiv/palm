@@ -16,8 +16,10 @@
 #include <cppcodec/base64_rfc4648.hpp>
 #include <cppcodec/base64_url.hpp>
 
-// https://gist.github.com/litefeel/1197e5c24eb9ec93d771
 std::string palm::url::encode(const std::vector<uint8_t>& buf) {
+  return cppcodec::base64_url::encode(buf);
+}
+std::string palm::url::encode(const std::string& buf) {
   return cppcodec::base64_url::encode(buf);
 }
 
