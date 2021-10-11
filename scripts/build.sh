@@ -143,7 +143,7 @@ arch_clang_debug() {
 
 ubuntu_dependencies(){
     sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
-        libstdc++-11-dev:$1 libssl-dev:$1 libboost-all-dev:$1
+        libboost-all-dev:$1
 }
 
 grpc_install

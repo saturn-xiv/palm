@@ -35,6 +35,10 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
     crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
     python3 python3-distutils python3-pip python3-dev
+RUN apt -y install \
+    libstdc++-11-dev:amd64 libssl-dev:amd64 \
+    libstdc++-11-dev:armhf libssl-dev:armhf \
+    libstdc++-11-dev:arm64 libssl-dev:arm64
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -85,7 +89,6 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 ENV GRPC_VERSION "v1.41.0"
 RUN zsh -c "source $HOME/.zshrc \
     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
-RUN sudo apt install -y libssl-dev
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/grpc-amd64 \
     && cd $HOME/build/grpc-amd64 \
