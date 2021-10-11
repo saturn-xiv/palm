@@ -18,17 +18,13 @@ target_include_directories(palm PUBLIC
   ${cpr_SOURCE_DIR}/include
 )
 
-target_link_libraries(palm PUBLIC
+target_link_libraries(palm PUBLIC lemon
   ${Boost_LIBRARIES} ${PostgreSQL_LIBRARIES} ${SQLite3_LIBRARIES} ${CURL_LIBRARIES}
 
   pqxx SQLiteCpp hiredis_static
   rabbitmq-static libzmq-static
   flatbuffers
   libserial_static yaml-cpp cpr::cpr
-  # tink::static
-
-  dl crypt m ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES}
-  grpc grpc++ grpc++_reflection
 )
 
 source_group(

@@ -1,0 +1,28 @@
+syntax = "proto3";
+package palm.tty.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+service Pi {
+  rpc Tty(TtyRequest) returns (google.protobuf.Empty) {}
+  rpc PlayAudio(AudioRequest) returns (google.protobuf.Empty) {}
+  rpc StopAudio(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+message TtyRequest {
+  repeated string items = 1;
+  optional google.protobuf.Duration delay = 2;
+}
+
+message TtyResponse {
+  string message = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message AudioRequest {
+  repeated string files = 1;
+  repeated uint64 loop = 2;
+  optional google.protobuf.Duration delay = 3;
+}
