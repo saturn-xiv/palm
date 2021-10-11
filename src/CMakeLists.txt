@@ -8,6 +8,8 @@ target_include_directories(palm PUBLIC
   ${palm_SOURCE_DIR}/include
   ${tomlplusplus_SOURCE_DIR}
   ${cppcodec_SOURCE_DIR}
+  ${cpp_httplib_SOURCE_DIR}
+  ${jwt_cpp_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/include
   ${inja_SOURCE_DIR}/third_party/include
 )
