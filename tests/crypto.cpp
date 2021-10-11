@@ -1,5 +1,5 @@
 #define BOOST_TEST_MODULE crypto
-#include <boost/test/included/unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 
 #include "palm/crypto.hpp"
 #include "palm/ops-email.hpp"

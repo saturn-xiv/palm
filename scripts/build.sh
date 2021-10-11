@@ -142,6 +142,7 @@ arch_clang_debug() {
 }
 
 ubuntu_dependencies(){
+    # libboost-all-dev:$1
     sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
         libboost-all-dev:$1
 }
