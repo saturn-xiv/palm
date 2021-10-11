@@ -1,0 +1,14 @@
+[Unit]
+Description=http server of palm
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/palm
+ExecStart=/usr/bin/palm -c /etc/palm/config.toml --web
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

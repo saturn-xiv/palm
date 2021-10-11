@@ -3,6 +3,7 @@
 set -e
 
 export WORKSPACE=$PWD
+export VERSION=$(git describe --tags --always --dirty --first-parent)
 export GRPC_INSTALL_PREFIX=$HOME/.local
 export CLANG_USE_STD="-stdlib=libstdc++"
 export CMAKE_CLANG="-DCMAKE_C_COMPILER=clang-13 \
@@ -144,11 +145,75 @@ arch_clang_debug() {
 }
 
 ubuntu_dependencies(){
-    # libboost-all-dev:$1
+    local boost_version="1.67"
     sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
         libcurl4-openssl-dev:$1 \
-        libboost-system-dev:$1 libboost-locale-dev:$1 libboost-program-options-dev:$1 libboost-date-time-dev:$1 libboost-chrono-dev:$1 libboost-timer-dev:$1 libboost-random-dev:$1 libboost-log-dev:$1 libboost-test-dev:$1
+        libboost-system-dev${boost_version}:$1 libboost-locale-dev${boost_version}:$1 \
+        libboost-program-options-dev${boost_version}:$1 \
+        libboost-date-time-dev${boost_version}:$1 \
+        libboost-chrono-dev${boost_version}:$1 \
+        libboost-timer-dev${boost_version}:$1 libboost-random-dev${boost_version}:$1 \
+        libboost-log-dev${boost_version}:$1 libboost-test-dev${boost_version}:$1
 }
+
+build_dashboard(){
+    cd $WORKSPACE
+    if [ ! -d node_modules ]
+    then
+        yarn install
+    fi
+    cd $WORKSPACE/dashboard
+    if [ ! -d node_modules ]
+    then
+        yarn install
+    fi
+    yarn build
+}
+
+build_deb(){
+    local target=$WORKSPACE/tmp/palm-$1-$VERSION/target
+    if [ -d $target ]
+    then
+        rm -rf $(dirname $target)
+    fi
+    cp -r $WORKSPACE/debian $target/
+
+    mkdir -pv $target/usr/bin
+    cp -av $WORKSPACE/build/$1-clang-release/apps/*  $target/usr/bin/
+
+    mkdir -pv $TARGET/usr/share/palm
+    cp -av $WORKSPACE/node_modules $target/usr/share/palm/
+    cp -av $WORKSPACE/dashboard/dist $target/usr/share/palm/dashboard
+    
+    mkdir -pv $target/var/lib/palm
+    mkdir -pv $target/lib/systemd/system/
+    cp -av $WORKSPACE/scripts/palm.*.service $target/lib/systemd/system/
+
+    mkdir -pv $target/etc/palm
+    cp -r $WORKSPACE/LICENSE $WORKSPACE/README.md $WORKSPACE/package.json $target/etc/palm/
+    echo "$VERSION $(date -R)" > $target/etc/palm/VERSION
+
+    if [ "$1" = "armhf" ]
+    then
+        CC=arm-linux-gnueabihf-gcc
+        CXX=arm-linux-gnueabihf-g++
+        export CC CXX
+    elif [ "$1" = "arm64" ]
+    then
+        CC=aarch64-linux-gnu-gcc
+        CXX=aarch64-linux-gnu-g++
+        export CC CXX
+    else
+        CC=gcc
+        CXX=g++
+        export CC CXX
+    fi
+    
+    cd $target
+    dpkg-buildpackage -us -uc -b --host-arch $1
+}
+
+# -----------------------------------------------------------------------------
 
 grpc_install
 
@@ -156,17 +221,24 @@ export OS_NAME=$(lsb_release -is)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
+    build_dashboard
+
     ubuntu_dependencies amd64
     amd64_clang_debug
     amd64_clang_release
+    build_deb amd64
 
     ubuntu_dependencies armhf
     cross_clang_release armhf arm-linux-gnueabihf arm-linux-gnueabihf-gcc-10
+    build_deb armhf
 
     ubuntu_dependencies arm64
     cross_clang_release arm64 aarch64-linux-gnu aarch64-linux-gnu-gcc-10
+    build_deb arm64
 elif [[ $OS_NAME == "Arch" ]]
 then
+    build_dashboard
+    
     sudo pacman -S --needed postgresql-libs mariadb-libs boost
     arch_clang_debug
 else
