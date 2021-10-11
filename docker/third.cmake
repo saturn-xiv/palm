@@ -14,7 +14,7 @@ string(TIMESTAMP BUILD_TIME UTC)
 # --------------------------------------------------------
 find_package(Threads REQUIRED)
 find_package(Boost REQUIRED COMPONENTS 
-    system locale log_setup log thread program_options
+    system locale log_setup log program_options
     date_time chrono timer random
     unit_test_framework
 )
