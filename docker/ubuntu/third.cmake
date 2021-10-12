@@ -23,6 +23,13 @@ find_package(PostgreSQL REQUIRED)
 find_package(SQLite3 REQUIRED)
 find_package(CURL REQUIRED)
 # --------------------------------------------------------
+# FetchContent_Declare(
+#     mysql_connector_cpp
+#     GIT_REPOSITORY  "https://github.com/mysql/mysql-connector-cpp.git"
+#     GIT_TAG         "8.0.26"
+# )
+# FetchContent_MakeAvailable(mysql_connector_cpp)
+
 FetchContent_Declare(
     libpqxx
     GIT_REPOSITORY  "https://github.com/jtv/libpqxx.git"
