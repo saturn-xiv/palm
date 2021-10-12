@@ -57,7 +57,7 @@ struct TableStruct_pi_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_pi_2eproto;
 namespace palm {
-namespace tty {
+namespace pi {
 namespace v1 {
 class AudioPlayRequest;
 struct AudioPlayRequestDefaultTypeInternal;
@@ -75,23 +75,23 @@ class TtyResponse;
 struct TtyResponseDefaultTypeInternal;
 extern TtyResponseDefaultTypeInternal _TtyResponse_default_instance_;
 }  // namespace v1
-}  // namespace tty
+}  // namespace pi
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::palm::tty::v1::AudioPlayRequest* Arena::CreateMaybeMessage<::palm::tty::v1::AudioPlayRequest>(Arena*);
-template<> ::palm::tty::v1::AudioTtsRequest* Arena::CreateMaybeMessage<::palm::tty::v1::AudioTtsRequest>(Arena*);
-template<> ::palm::tty::v1::AudioTtsRequest_Message* Arena::CreateMaybeMessage<::palm::tty::v1::AudioTtsRequest_Message>(Arena*);
-template<> ::palm::tty::v1::TtyRequest* Arena::CreateMaybeMessage<::palm::tty::v1::TtyRequest>(Arena*);
-template<> ::palm::tty::v1::TtyResponse* Arena::CreateMaybeMessage<::palm::tty::v1::TtyResponse>(Arena*);
+template<> ::palm::pi::v1::AudioPlayRequest* Arena::CreateMaybeMessage<::palm::pi::v1::AudioPlayRequest>(Arena*);
+template<> ::palm::pi::v1::AudioTtsRequest* Arena::CreateMaybeMessage<::palm::pi::v1::AudioTtsRequest>(Arena*);
+template<> ::palm::pi::v1::AudioTtsRequest_Message* Arena::CreateMaybeMessage<::palm::pi::v1::AudioTtsRequest_Message>(Arena*);
+template<> ::palm::pi::v1::TtyRequest* Arena::CreateMaybeMessage<::palm::pi::v1::TtyRequest>(Arena*);
+template<> ::palm::pi::v1::TtyResponse* Arena::CreateMaybeMessage<::palm::pi::v1::TtyResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
-namespace tty {
+namespace pi {
 namespace v1 {
 
 // ===================================================================
 
 class TtyRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.TtyRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.pi.v1.TtyRequest) */ {
  public:
   inline TtyRequest() : TtyRequest(nullptr) {}
   ~TtyRequest() override;
@@ -185,7 +185,7 @@ class TtyRequest final :
   void InternalSwap(TtyRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.tty.v1.TtyRequest";
+    return "palm.pi.v1.TtyRequest";
   }
   protected:
   explicit TtyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -250,7 +250,7 @@ class TtyRequest final :
       PROTOBUF_NAMESPACE_ID::Duration* delay);
   PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_delay();
 
-  // @@protoc_insertion_point(class_scope:palm.tty.v1.TtyRequest)
+  // @@protoc_insertion_point(class_scope:palm.pi.v1.TtyRequest)
  private:
   class _Internal;
 
@@ -266,7 +266,7 @@ class TtyRequest final :
 // -------------------------------------------------------------------
 
 class TtyResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.TtyResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.pi.v1.TtyResponse) */ {
  public:
   inline TtyResponse() : TtyResponse(nullptr) {}
   ~TtyResponse() override;
@@ -360,7 +360,7 @@ class TtyResponse final :
   void InternalSwap(TtyResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.tty.v1.TtyResponse";
+    return "palm.pi.v1.TtyResponse";
   }
   protected:
   explicit TtyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -415,7 +415,7 @@ class TtyResponse final :
       PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
   PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_timestamp();
 
-  // @@protoc_insertion_point(class_scope:palm.tty.v1.TtyResponse)
+  // @@protoc_insertion_point(class_scope:palm.pi.v1.TtyResponse)
  private:
   class _Internal;
 
@@ -430,7 +430,7 @@ class TtyResponse final :
 // -------------------------------------------------------------------
 
 class AudioPlayRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.AudioPlayRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.pi.v1.AudioPlayRequest) */ {
  public:
   inline AudioPlayRequest() : AudioPlayRequest(nullptr) {}
   ~AudioPlayRequest() override;
@@ -524,7 +524,7 @@ class AudioPlayRequest final :
   void InternalSwap(AudioPlayRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.tty.v1.AudioPlayRequest";
+    return "palm.pi.v1.AudioPlayRequest";
   }
   protected:
   explicit AudioPlayRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -612,7 +612,7 @@ class AudioPlayRequest final :
       PROTOBUF_NAMESPACE_ID::Duration* delay);
   PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_delay();
 
-  // @@protoc_insertion_point(class_scope:palm.tty.v1.AudioPlayRequest)
+  // @@protoc_insertion_point(class_scope:palm.pi.v1.AudioPlayRequest)
  private:
   class _Internal;
 
@@ -630,7 +630,7 @@ class AudioPlayRequest final :
 // -------------------------------------------------------------------
 
 class AudioTtsRequest_Message final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.AudioTtsRequest.Message) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.pi.v1.AudioTtsRequest.Message) */ {
  public:
   inline AudioTtsRequest_Message() : AudioTtsRequest_Message(nullptr) {}
   ~AudioTtsRequest_Message() override;
@@ -724,7 +724,7 @@ class AudioTtsRequest_Message final :
   void InternalSwap(AudioTtsRequest_Message* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.tty.v1.AudioTtsRequest.Message";
+    return "palm.pi.v1.AudioTtsRequest.Message";
   }
   protected:
   explicit AudioTtsRequest_Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -760,7 +760,7 @@ class AudioTtsRequest_Message final :
   std::string* _internal_mutable_message();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.tty.v1.AudioTtsRequest.Message)
+  // @@protoc_insertion_point(class_scope:palm.pi.v1.AudioTtsRequest.Message)
  private:
   class _Internal;
 
@@ -774,7 +774,7 @@ class AudioTtsRequest_Message final :
 // -------------------------------------------------------------------
 
 class AudioTtsRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.tty.v1.AudioTtsRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.pi.v1.AudioTtsRequest) */ {
  public:
   inline AudioTtsRequest() : AudioTtsRequest(nullptr) {}
   ~AudioTtsRequest() override;
@@ -868,7 +868,7 @@ class AudioTtsRequest final :
   void InternalSwap(AudioTtsRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.tty.v1.AudioTtsRequest";
+    return "palm.pi.v1.AudioTtsRequest";
   }
   protected:
   explicit AudioTtsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -894,22 +894,22 @@ class AudioTtsRequest final :
     kLoopFieldNumber = 21,
     kDelayFieldNumber = 22,
   };
-  // repeated .palm.tty.v1.AudioTtsRequest.Message messages = 1;
+  // repeated .palm.pi.v1.AudioTtsRequest.Message messages = 1;
   int messages_size() const;
   private:
   int _internal_messages_size() const;
   public:
   void clear_messages();
-  ::palm::tty::v1::AudioTtsRequest_Message* mutable_messages(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >*
+  ::palm::pi::v1::AudioTtsRequest_Message* mutable_messages(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::pi::v1::AudioTtsRequest_Message >*
       mutable_messages();
   private:
-  const ::palm::tty::v1::AudioTtsRequest_Message& _internal_messages(int index) const;
-  ::palm::tty::v1::AudioTtsRequest_Message* _internal_add_messages();
+  const ::palm::pi::v1::AudioTtsRequest_Message& _internal_messages(int index) const;
+  ::palm::pi::v1::AudioTtsRequest_Message* _internal_add_messages();
   public:
-  const ::palm::tty::v1::AudioTtsRequest_Message& messages(int index) const;
-  ::palm::tty::v1::AudioTtsRequest_Message* add_messages();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >&
+  const ::palm::pi::v1::AudioTtsRequest_Message& messages(int index) const;
+  ::palm::pi::v1::AudioTtsRequest_Message* add_messages();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::pi::v1::AudioTtsRequest_Message >&
       messages() const;
 
   // repeated uint64 loop = 21;
@@ -952,7 +952,7 @@ class AudioTtsRequest final :
       PROTOBUF_NAMESPACE_ID::Duration* delay);
   PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_delay();
 
-  // @@protoc_insertion_point(class_scope:palm.tty.v1.AudioTtsRequest)
+  // @@protoc_insertion_point(class_scope:palm.pi.v1.AudioTtsRequest)
  private:
   class _Internal;
 
@@ -961,7 +961,7 @@ class AudioTtsRequest final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message > messages_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::pi::v1::AudioTtsRequest_Message > messages_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 > loop_;
   mutable std::atomic<int> _loop_cached_byte_size_;
   PROTOBUF_NAMESPACE_ID::Duration* delay_;
@@ -990,66 +990,66 @@ inline void TtyRequest::clear_items() {
 }
 inline std::string* TtyRequest::add_items() {
   std::string* _s = _internal_add_items();
-  // @@protoc_insertion_point(field_add_mutable:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_add_mutable:palm.pi.v1.TtyRequest.items)
   return _s;
 }
 inline const std::string& TtyRequest::_internal_items(int index) const {
   return items_.Get(index);
 }
 inline const std::string& TtyRequest::items(int index) const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.TtyRequest.items)
   return _internal_items(index);
 }
 inline std::string* TtyRequest::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.TtyRequest.items)
   return items_.Mutable(index);
 }
 inline void TtyRequest::set_items(int index, const std::string& value) {
   items_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.TtyRequest.items)
 }
 inline void TtyRequest::set_items(int index, std::string&& value) {
   items_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.TtyRequest.items)
 }
 inline void TtyRequest::set_items(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   items_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_set_char:palm.pi.v1.TtyRequest.items)
 }
 inline void TtyRequest::set_items(int index, const char* value, size_t size) {
   items_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_set_pointer:palm.pi.v1.TtyRequest.items)
 }
 inline std::string* TtyRequest::_internal_add_items() {
   return items_.Add();
 }
 inline void TtyRequest::add_items(const std::string& value) {
   items_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_add:palm.pi.v1.TtyRequest.items)
 }
 inline void TtyRequest::add_items(std::string&& value) {
   items_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_add:palm.pi.v1.TtyRequest.items)
 }
 inline void TtyRequest::add_items(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   items_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_add_char:palm.pi.v1.TtyRequest.items)
 }
 inline void TtyRequest::add_items(const char* value, size_t size) {
   items_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_add_pointer:palm.pi.v1.TtyRequest.items)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 TtyRequest::items() const {
-  // @@protoc_insertion_point(field_list:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_list:palm.pi.v1.TtyRequest.items)
   return items_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 TtyRequest::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.TtyRequest.items)
+  // @@protoc_insertion_point(field_mutable_list:palm.pi.v1.TtyRequest.items)
   return &items_;
 }
 
@@ -1068,7 +1068,7 @@ inline const PROTOBUF_NAMESPACE_ID::Duration& TtyRequest::_internal_delay() cons
       PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Duration& TtyRequest::delay() const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.TtyRequest.delay)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.TtyRequest.delay)
   return _internal_delay();
 }
 inline void TtyRequest::unsafe_arena_set_allocated_delay(
@@ -1082,7 +1082,7 @@ inline void TtyRequest::unsafe_arena_set_allocated_delay(
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.tty.v1.TtyRequest.delay)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.pi.v1.TtyRequest.delay)
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* TtyRequest::release_delay() {
   _has_bits_[0] &= ~0x00000001u;
@@ -1100,7 +1100,7 @@ inline PROTOBUF_NAMESPACE_ID::Duration* TtyRequest::release_delay() {
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* TtyRequest::unsafe_arena_release_delay() {
-  // @@protoc_insertion_point(field_release:palm.tty.v1.TtyRequest.delay)
+  // @@protoc_insertion_point(field_release:palm.pi.v1.TtyRequest.delay)
   _has_bits_[0] &= ~0x00000001u;
   PROTOBUF_NAMESPACE_ID::Duration* temp = delay_;
   delay_ = nullptr;
@@ -1116,7 +1116,7 @@ inline PROTOBUF_NAMESPACE_ID::Duration* TtyRequest::_internal_mutable_delay() {
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* TtyRequest::mutable_delay() {
   PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_delay();
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.TtyRequest.delay)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.TtyRequest.delay)
   return _msg;
 }
 inline void TtyRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* delay) {
@@ -1138,7 +1138,7 @@ inline void TtyRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* del
     _has_bits_[0] &= ~0x00000001u;
   }
   delay_ = delay;
-  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.TtyRequest.delay)
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.TtyRequest.delay)
 }
 
 // -------------------------------------------------------------------
@@ -1150,7 +1150,7 @@ inline void TtyResponse::clear_message() {
   message_.ClearToEmpty();
 }
 inline const std::string& TtyResponse::message() const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.TtyResponse.message)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.TtyResponse.message)
   return _internal_message();
 }
 template <typename ArgT0, typename... ArgT>
@@ -1158,11 +1158,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void TtyResponse::set_message(ArgT0&& arg0, ArgT... args) {
  
  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.tty.v1.TtyResponse.message)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.TtyResponse.message)
 }
 inline std::string* TtyResponse::mutable_message() {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.TtyResponse.message)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.TtyResponse.message)
   return _s;
 }
 inline const std::string& TtyResponse::_internal_message() const {
@@ -1177,7 +1177,7 @@ inline std::string* TtyResponse::_internal_mutable_message() {
   return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TtyResponse::release_message() {
-  // @@protoc_insertion_point(field_release:palm.tty.v1.TtyResponse.message)
+  // @@protoc_insertion_point(field_release:palm.pi.v1.TtyResponse.message)
   return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void TtyResponse::set_allocated_message(std::string* message) {
@@ -1188,7 +1188,7 @@ inline void TtyResponse::set_allocated_message(std::string* message) {
   }
   message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.TtyResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.TtyResponse.message)
 }
 
 // .google.protobuf.Timestamp timestamp = 2;
@@ -1204,7 +1204,7 @@ inline const PROTOBUF_NAMESPACE_ID::Timestamp& TtyResponse::_internal_timestamp(
       PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Timestamp& TtyResponse::timestamp() const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.TtyResponse.timestamp)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.TtyResponse.timestamp)
   return _internal_timestamp();
 }
 inline void TtyResponse::unsafe_arena_set_allocated_timestamp(
@@ -1218,7 +1218,7 @@ inline void TtyResponse::unsafe_arena_set_allocated_timestamp(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.tty.v1.TtyResponse.timestamp)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.pi.v1.TtyResponse.timestamp)
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* TtyResponse::release_timestamp() {
   
@@ -1236,7 +1236,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* TtyResponse::release_timestamp() {
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* TtyResponse::unsafe_arena_release_timestamp() {
-  // @@protoc_insertion_point(field_release:palm.tty.v1.TtyResponse.timestamp)
+  // @@protoc_insertion_point(field_release:palm.pi.v1.TtyResponse.timestamp)
   
   PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
   timestamp_ = nullptr;
@@ -1252,7 +1252,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* TtyResponse::_internal_mutable_timestam
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* TtyResponse::mutable_timestamp() {
   PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_timestamp();
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.TtyResponse.timestamp)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.TtyResponse.timestamp)
   return _msg;
 }
 inline void TtyResponse::set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
@@ -1274,7 +1274,7 @@ inline void TtyResponse::set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestam
     
   }
   timestamp_ = timestamp;
-  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.TtyResponse.timestamp)
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.TtyResponse.timestamp)
 }
 
 // -------------------------------------------------------------------
@@ -1293,66 +1293,66 @@ inline void AudioPlayRequest::clear_files() {
 }
 inline std::string* AudioPlayRequest::add_files() {
   std::string* _s = _internal_add_files();
-  // @@protoc_insertion_point(field_add_mutable:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_add_mutable:palm.pi.v1.AudioPlayRequest.files)
   return _s;
 }
 inline const std::string& AudioPlayRequest::_internal_files(int index) const {
   return files_.Get(index);
 }
 inline const std::string& AudioPlayRequest::files(int index) const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.AudioPlayRequest.files)
   return _internal_files(index);
 }
 inline std::string* AudioPlayRequest::mutable_files(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.AudioPlayRequest.files)
   return files_.Mutable(index);
 }
 inline void AudioPlayRequest::set_files(int index, const std::string& value) {
   files_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.AudioPlayRequest.files)
 }
 inline void AudioPlayRequest::set_files(int index, std::string&& value) {
   files_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.AudioPlayRequest.files)
 }
 inline void AudioPlayRequest::set_files(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   files_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_set_char:palm.pi.v1.AudioPlayRequest.files)
 }
 inline void AudioPlayRequest::set_files(int index, const char* value, size_t size) {
   files_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_set_pointer:palm.pi.v1.AudioPlayRequest.files)
 }
 inline std::string* AudioPlayRequest::_internal_add_files() {
   return files_.Add();
 }
 inline void AudioPlayRequest::add_files(const std::string& value) {
   files_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_add:palm.pi.v1.AudioPlayRequest.files)
 }
 inline void AudioPlayRequest::add_files(std::string&& value) {
   files_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_add:palm.pi.v1.AudioPlayRequest.files)
 }
 inline void AudioPlayRequest::add_files(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   files_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_add_char:palm.pi.v1.AudioPlayRequest.files)
 }
 inline void AudioPlayRequest::add_files(const char* value, size_t size) {
   files_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_add_pointer:palm.pi.v1.AudioPlayRequest.files)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 AudioPlayRequest::files() const {
-  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_list:palm.pi.v1.AudioPlayRequest.files)
   return files_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 AudioPlayRequest::mutable_files() {
-  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioPlayRequest.files)
+  // @@protoc_insertion_point(field_mutable_list:palm.pi.v1.AudioPlayRequest.files)
   return &files_;
 }
 
@@ -1370,19 +1370,19 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioPlayRequest::_internal_loop(int inde
   return loop_.Get(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioPlayRequest::loop(int index) const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioPlayRequest.loop)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.AudioPlayRequest.loop)
   return _internal_loop(index);
 }
 inline void AudioPlayRequest::set_loop(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value) {
   loop_.Set(index, value);
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioPlayRequest.loop)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.AudioPlayRequest.loop)
 }
 inline void AudioPlayRequest::_internal_add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   loop_.Add(value);
 }
 inline void AudioPlayRequest::add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_add_loop(value);
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioPlayRequest.loop)
+  // @@protoc_insertion_point(field_add:palm.pi.v1.AudioPlayRequest.loop)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
 AudioPlayRequest::_internal_loop() const {
@@ -1390,7 +1390,7 @@ AudioPlayRequest::_internal_loop() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
 AudioPlayRequest::loop() const {
-  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioPlayRequest.loop)
+  // @@protoc_insertion_point(field_list:palm.pi.v1.AudioPlayRequest.loop)
   return _internal_loop();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
@@ -1399,7 +1399,7 @@ AudioPlayRequest::_internal_mutable_loop() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
 AudioPlayRequest::mutable_loop() {
-  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioPlayRequest.loop)
+  // @@protoc_insertion_point(field_mutable_list:palm.pi.v1.AudioPlayRequest.loop)
   return _internal_mutable_loop();
 }
 
@@ -1418,7 +1418,7 @@ inline const PROTOBUF_NAMESPACE_ID::Duration& AudioPlayRequest::_internal_delay(
       PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Duration& AudioPlayRequest::delay() const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioPlayRequest.delay)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.AudioPlayRequest.delay)
   return _internal_delay();
 }
 inline void AudioPlayRequest::unsafe_arena_set_allocated_delay(
@@ -1432,7 +1432,7 @@ inline void AudioPlayRequest::unsafe_arena_set_allocated_delay(
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.tty.v1.AudioPlayRequest.delay)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.pi.v1.AudioPlayRequest.delay)
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::release_delay() {
   _has_bits_[0] &= ~0x00000001u;
@@ -1450,7 +1450,7 @@ inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::release_delay() {
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::unsafe_arena_release_delay() {
-  // @@protoc_insertion_point(field_release:palm.tty.v1.AudioPlayRequest.delay)
+  // @@protoc_insertion_point(field_release:palm.pi.v1.AudioPlayRequest.delay)
   _has_bits_[0] &= ~0x00000001u;
   PROTOBUF_NAMESPACE_ID::Duration* temp = delay_;
   delay_ = nullptr;
@@ -1466,7 +1466,7 @@ inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::_internal_mutable_dela
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* AudioPlayRequest::mutable_delay() {
   PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_delay();
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioPlayRequest.delay)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.AudioPlayRequest.delay)
   return _msg;
 }
 inline void AudioPlayRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* delay) {
@@ -1488,7 +1488,7 @@ inline void AudioPlayRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duratio
     _has_bits_[0] &= ~0x00000001u;
   }
   delay_ = delay;
-  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.AudioPlayRequest.delay)
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.AudioPlayRequest.delay)
 }
 
 // -------------------------------------------------------------------
@@ -1500,7 +1500,7 @@ inline void AudioTtsRequest_Message::clear_message() {
   message_.ClearToEmpty();
 }
 inline const std::string& AudioTtsRequest_Message::message() const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.Message.message)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.AudioTtsRequest.Message.message)
   return _internal_message();
 }
 template <typename ArgT0, typename... ArgT>
@@ -1508,11 +1508,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void AudioTtsRequest_Message::set_message(ArgT0&& arg0, ArgT... args) {
  
  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioTtsRequest.Message.message)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.AudioTtsRequest.Message.message)
 }
 inline std::string* AudioTtsRequest_Message::mutable_message() {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioTtsRequest.Message.message)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.AudioTtsRequest.Message.message)
   return _s;
 }
 inline const std::string& AudioTtsRequest_Message::_internal_message() const {
@@ -1527,7 +1527,7 @@ inline std::string* AudioTtsRequest_Message::_internal_mutable_message() {
   return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* AudioTtsRequest_Message::release_message() {
-  // @@protoc_insertion_point(field_release:palm.tty.v1.AudioTtsRequest.Message.message)
+  // @@protoc_insertion_point(field_release:palm.pi.v1.AudioTtsRequest.Message.message)
   return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void AudioTtsRequest_Message::set_allocated_message(std::string* message) {
@@ -1538,14 +1538,14 @@ inline void AudioTtsRequest_Message::set_allocated_message(std::string* message)
   }
   message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.AudioTtsRequest.Message.message)
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.AudioTtsRequest.Message.message)
 }
 
 // -------------------------------------------------------------------
 
 // AudioTtsRequest
 
-// repeated .palm.tty.v1.AudioTtsRequest.Message messages = 1;
+// repeated .palm.pi.v1.AudioTtsRequest.Message messages = 1;
 inline int AudioTtsRequest::_internal_messages_size() const {
   return messages_.size();
 }
@@ -1555,33 +1555,33 @@ inline int AudioTtsRequest::messages_size() const {
 inline void AudioTtsRequest::clear_messages() {
   messages_.Clear();
 }
-inline ::palm::tty::v1::AudioTtsRequest_Message* AudioTtsRequest::mutable_messages(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioTtsRequest.messages)
+inline ::palm::pi::v1::AudioTtsRequest_Message* AudioTtsRequest::mutable_messages(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.AudioTtsRequest.messages)
   return messages_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::pi::v1::AudioTtsRequest_Message >*
 AudioTtsRequest::mutable_messages() {
-  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioTtsRequest.messages)
+  // @@protoc_insertion_point(field_mutable_list:palm.pi.v1.AudioTtsRequest.messages)
   return &messages_;
 }
-inline const ::palm::tty::v1::AudioTtsRequest_Message& AudioTtsRequest::_internal_messages(int index) const {
+inline const ::palm::pi::v1::AudioTtsRequest_Message& AudioTtsRequest::_internal_messages(int index) const {
   return messages_.Get(index);
 }
-inline const ::palm::tty::v1::AudioTtsRequest_Message& AudioTtsRequest::messages(int index) const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.messages)
+inline const ::palm::pi::v1::AudioTtsRequest_Message& AudioTtsRequest::messages(int index) const {
+  // @@protoc_insertion_point(field_get:palm.pi.v1.AudioTtsRequest.messages)
   return _internal_messages(index);
 }
-inline ::palm::tty::v1::AudioTtsRequest_Message* AudioTtsRequest::_internal_add_messages() {
+inline ::palm::pi::v1::AudioTtsRequest_Message* AudioTtsRequest::_internal_add_messages() {
   return messages_.Add();
 }
-inline ::palm::tty::v1::AudioTtsRequest_Message* AudioTtsRequest::add_messages() {
-  ::palm::tty::v1::AudioTtsRequest_Message* _add = _internal_add_messages();
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioTtsRequest.messages)
+inline ::palm::pi::v1::AudioTtsRequest_Message* AudioTtsRequest::add_messages() {
+  ::palm::pi::v1::AudioTtsRequest_Message* _add = _internal_add_messages();
+  // @@protoc_insertion_point(field_add:palm.pi.v1.AudioTtsRequest.messages)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::tty::v1::AudioTtsRequest_Message >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::pi::v1::AudioTtsRequest_Message >&
 AudioTtsRequest::messages() const {
-  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioTtsRequest.messages)
+  // @@protoc_insertion_point(field_list:palm.pi.v1.AudioTtsRequest.messages)
   return messages_;
 }
 
@@ -1599,19 +1599,19 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioTtsRequest::_internal_loop(int index
   return loop_.Get(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 AudioTtsRequest::loop(int index) const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.loop)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.AudioTtsRequest.loop)
   return _internal_loop(index);
 }
 inline void AudioTtsRequest::set_loop(int index, ::PROTOBUF_NAMESPACE_ID::uint64 value) {
   loop_.Set(index, value);
-  // @@protoc_insertion_point(field_set:palm.tty.v1.AudioTtsRequest.loop)
+  // @@protoc_insertion_point(field_set:palm.pi.v1.AudioTtsRequest.loop)
 }
 inline void AudioTtsRequest::_internal_add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   loop_.Add(value);
 }
 inline void AudioTtsRequest::add_loop(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_add_loop(value);
-  // @@protoc_insertion_point(field_add:palm.tty.v1.AudioTtsRequest.loop)
+  // @@protoc_insertion_point(field_add:palm.pi.v1.AudioTtsRequest.loop)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
 AudioTtsRequest::_internal_loop() const {
@@ -1619,7 +1619,7 @@ AudioTtsRequest::_internal_loop() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >&
 AudioTtsRequest::loop() const {
-  // @@protoc_insertion_point(field_list:palm.tty.v1.AudioTtsRequest.loop)
+  // @@protoc_insertion_point(field_list:palm.pi.v1.AudioTtsRequest.loop)
   return _internal_loop();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
@@ -1628,7 +1628,7 @@ AudioTtsRequest::_internal_mutable_loop() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::uint64 >*
 AudioTtsRequest::mutable_loop() {
-  // @@protoc_insertion_point(field_mutable_list:palm.tty.v1.AudioTtsRequest.loop)
+  // @@protoc_insertion_point(field_mutable_list:palm.pi.v1.AudioTtsRequest.loop)
   return _internal_mutable_loop();
 }
 
@@ -1647,7 +1647,7 @@ inline const PROTOBUF_NAMESPACE_ID::Duration& AudioTtsRequest::_internal_delay()
       PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Duration& AudioTtsRequest::delay() const {
-  // @@protoc_insertion_point(field_get:palm.tty.v1.AudioTtsRequest.delay)
+  // @@protoc_insertion_point(field_get:palm.pi.v1.AudioTtsRequest.delay)
   return _internal_delay();
 }
 inline void AudioTtsRequest::unsafe_arena_set_allocated_delay(
@@ -1661,7 +1661,7 @@ inline void AudioTtsRequest::unsafe_arena_set_allocated_delay(
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.tty.v1.AudioTtsRequest.delay)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.pi.v1.AudioTtsRequest.delay)
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::release_delay() {
   _has_bits_[0] &= ~0x00000001u;
@@ -1679,7 +1679,7 @@ inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::release_delay() {
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::unsafe_arena_release_delay() {
-  // @@protoc_insertion_point(field_release:palm.tty.v1.AudioTtsRequest.delay)
+  // @@protoc_insertion_point(field_release:palm.pi.v1.AudioTtsRequest.delay)
   _has_bits_[0] &= ~0x00000001u;
   PROTOBUF_NAMESPACE_ID::Duration* temp = delay_;
   delay_ = nullptr;
@@ -1695,7 +1695,7 @@ inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::_internal_mutable_delay
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* AudioTtsRequest::mutable_delay() {
   PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_delay();
-  // @@protoc_insertion_point(field_mutable:palm.tty.v1.AudioTtsRequest.delay)
+  // @@protoc_insertion_point(field_mutable:palm.pi.v1.AudioTtsRequest.delay)
   return _msg;
 }
 inline void AudioTtsRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration* delay) {
@@ -1717,7 +1717,7 @@ inline void AudioTtsRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration
     _has_bits_[0] &= ~0x00000001u;
   }
   delay_ = delay;
-  // @@protoc_insertion_point(field_set_allocated:palm.tty.v1.AudioTtsRequest.delay)
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.AudioTtsRequest.delay)
 }
 
 #ifdef __GNUC__
@@ -1735,7 +1735,7 @@ inline void AudioTtsRequest::set_allocated_delay(PROTOBUF_NAMESPACE_ID::Duration
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace v1
-}  // namespace tty
+}  // namespace pi
 }  // namespace palm
 
 // @@protoc_insertion_point(global_scope)

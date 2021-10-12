@@ -106,6 +106,8 @@ RUN zsh -c "source $HOME/.zshrc \
 # RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 # RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
 
+ADD third.cmake armhf.cmake arm64.cmake /opt/
+
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace

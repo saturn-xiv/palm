@@ -26,52 +26,52 @@
 #include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace palm {
-namespace tty {
+namespace pi {
 namespace v1 {
 
 class Tty final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.tty.v1.Tty";
+    return "palm.pi.v1.Tty";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncWrite(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Write(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncWrite(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncWriteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncWrite(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncWrite(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncWriteRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Write(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Write(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncWriteRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncWriteRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncWriteRaw(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncWriteRaw(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncWrite(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Write(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncWrite(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncWriteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncWrite(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncWrite(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncWriteRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Write(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Write(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Write(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -83,8 +83,8 @@ class Tty final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncWriteRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncWriteRaw(::grpc::ClientContext* context, const ::palm::tty::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncWriteRaw(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncWriteRaw(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Write_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -93,7 +93,7 @@ class Tty final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Write(::grpc::ServerContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Write(::grpc::ServerContext* context, const ::palm::pi::v1::TtyRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Write : public BaseClass {
@@ -107,11 +107,11 @@ class Tty final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestWrite(::grpc::ServerContext* context, ::palm::tty::v1::TtyRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestWrite(::grpc::ServerContext* context, ::palm::pi::v1::TtyRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -123,25 +123,25 @@ class Tty final {
    public:
     WithCallbackMethod_Write() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::pi::v1::TtyRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::tty::v1::TtyRequest* request, ::google::protobuf::Empty* response) { return this->Write(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::pi::v1::TtyRequest* request, ::google::protobuf::Empty* response) { return this->Write(context, request, response); }));}
     void SetMessageAllocatorFor_Write(
-        ::grpc::MessageAllocator< ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::pi::v1::TtyRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::pi::v1::TtyRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Write() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Write(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::tty::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::pi::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Write<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -157,7 +157,7 @@ class Tty final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -174,7 +174,7 @@ class Tty final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -197,7 +197,7 @@ class Tty final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -212,10 +212,10 @@ class Tty final {
     WithStreamedUnaryMethod_Write() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty>(
+          ::palm::pi::v1::TtyRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::tty::v1::TtyRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::pi::v1::TtyRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedWrite(context,
                          streamer);
                   }));
@@ -224,12 +224,12 @@ class Tty final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Write(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::TtyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedWrite(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::tty::v1::TtyRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedWrite(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::pi::v1::TtyRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Write<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -239,16 +239,16 @@ class Tty final {
 class Audio final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.tty.v1.Audio";
+    return "palm.pi.v1.Audio";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncPlay(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Play(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncPlay(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncPlayRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncPlay(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncPlay(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncPlayRaw(context, request, cq));
     }
     virtual ::grpc::Status Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) = 0;
@@ -258,42 +258,42 @@ class Audio final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncStopRaw(context, request, cq));
     }
-    virtual ::grpc::Status Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncTts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Tts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncTts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncTtsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncTts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncTts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncTtsRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Play(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Play(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Tts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Tts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncPlayRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncPlayRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncTtsRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncTtsRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncTtsRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncTtsRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncPlay(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Play(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncPlay(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncPlayRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncPlay(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncPlay(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncPlayRaw(context, request, cq));
     }
     ::grpc::Status Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) override;
@@ -303,22 +303,22 @@ class Audio final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncStop(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncStopRaw(context, request, cq));
     }
-    ::grpc::Status Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncTts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Tts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncTts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncTtsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncTts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncTts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncTtsRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Play(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Play(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Play(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void Stop(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Tts(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Tts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Tts(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -330,12 +330,12 @@ class Audio final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncPlayRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncPlayRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncTtsRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncTtsRaw(::grpc::ClientContext* context, const ::palm::tty::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncTtsRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncTtsRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioTtsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Play_;
     const ::grpc::internal::RpcMethod rpcmethod_Stop_;
     const ::grpc::internal::RpcMethod rpcmethod_Tts_;
@@ -346,9 +346,9 @@ class Audio final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Play(::grpc::ServerContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Play(::grpc::ServerContext* context, const ::palm::pi::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status Stop(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Tts(::grpc::ServerContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Tts(::grpc::ServerContext* context, const ::palm::pi::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Play : public BaseClass {
@@ -362,11 +362,11 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPlay(::grpc::ServerContext* context, ::palm::tty::v1::AudioPlayRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPlay(::grpc::ServerContext* context, ::palm::pi::v1::AudioPlayRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -402,11 +402,11 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestTts(::grpc::ServerContext* context, ::palm::tty::v1::AudioTtsRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestTts(::grpc::ServerContext* context, ::palm::pi::v1::AudioTtsRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -418,25 +418,25 @@ class Audio final {
    public:
     WithCallbackMethod_Play() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::pi::v1::AudioPlayRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::tty::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response) { return this->Play(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::pi::v1::AudioPlayRequest* request, ::google::protobuf::Empty* response) { return this->Play(context, request, response); }));}
     void SetMessageAllocatorFor_Play(
-        ::grpc::MessageAllocator< ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::pi::v1::AudioPlayRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::pi::v1::AudioPlayRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Play() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Play(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::tty::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::pi::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Stop : public BaseClass {
@@ -472,25 +472,25 @@ class Audio final {
    public:
     WithCallbackMethod_Tts() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::pi::v1::AudioTtsRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::tty::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response) { return this->Tts(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::pi::v1::AudioTtsRequest* request, ::google::protobuf::Empty* response) { return this->Tts(context, request, response); }));}
     void SetMessageAllocatorFor_Tts(
-        ::grpc::MessageAllocator< ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::pi::v1::AudioTtsRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::pi::v1::AudioTtsRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Tts() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Tts(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::tty::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::pi::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Play<WithCallbackMethod_Stop<WithCallbackMethod_Tts<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -506,7 +506,7 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -540,7 +540,7 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -557,7 +557,7 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -597,7 +597,7 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -620,7 +620,7 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -664,7 +664,7 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -679,10 +679,10 @@ class Audio final {
     WithStreamedUnaryMethod_Play() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty>(
+          ::palm::pi::v1::AudioPlayRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::tty::v1::AudioPlayRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::pi::v1::AudioPlayRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedPlay(context,
                          streamer);
                   }));
@@ -691,12 +691,12 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Play(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioPlayRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPlay(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::tty::v1::AudioPlayRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedPlay(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::pi::v1::AudioPlayRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Stop : public BaseClass {
@@ -733,10 +733,10 @@ class Audio final {
     WithStreamedUnaryMethod_Tts() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty>(
+          ::palm::pi::v1::AudioTtsRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::tty::v1::AudioTtsRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::pi::v1::AudioTtsRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedTts(context,
                          streamer);
                   }));
@@ -745,12 +745,12 @@ class Audio final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::tty::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Tts(::grpc::ServerContext* /*context*/, const ::palm::pi::v1::AudioTtsRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedTts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::tty::v1::AudioTtsRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedTts(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::pi::v1::AudioTtsRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Play<WithStreamedUnaryMethod_Stop<WithStreamedUnaryMethod_Tts<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -760,7 +760,7 @@ class Audio final {
 class Button final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.tty.v1.Button";
+    return "palm.pi.v1.Button";
   }
   class StubInterface {
    public:
@@ -810,7 +810,7 @@ class Button final {
 class Led final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.tty.v1.Led";
+    return "palm.pi.v1.Led";
   }
   class StubInterface {
    public:
@@ -858,7 +858,7 @@ class Led final {
 };
 
 }  // namespace v1
-}  // namespace tty
+}  // namespace pi
 }  // namespace palm
 
 
