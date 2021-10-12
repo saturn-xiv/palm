@@ -30,6 +30,13 @@ find_package(CURL REQUIRED)
 # )
 # FetchContent_MakeAvailable(mysql_connector_cpp)
 
+# FetchContent_Declare(
+#     mariadb_connector_cpp
+#     GIT_REPOSITORY  "https://github.com/mariadb-corporation/mariadb-connector-cpp.git"
+#     GIT_TAG         "1.1.0"
+# )
+# FetchContent_MakeAvailable(mariadb_connector_cpp)
+
 FetchContent_Declare(
     libpqxx
     GIT_REPOSITORY  "https://github.com/jtv/libpqxx.git"
