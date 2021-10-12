@@ -8,7 +8,7 @@ project(
     DESCRIPTION "A total free education & translation & ops solution."
     LANGUAGES C CXX)
 
-include(docker/third.cmake)
+include(docker/ubuntu/third.cmake)
 configure_file(include/palm/version.h.in ${PROJECT_SOURCE_DIR}/include/palm/version.hpp)
 
 add_subdirectory(clients)

@@ -108,7 +108,7 @@ cross_clang_release() {
         -DCMAKE_C_COMPILER_TARGET=$2 -DCMAKE_CXX_COMPILER_TARGET=$2 \
         -DCMAKE_C_FLAGS="$target_flags" \
         -DCMAKE_CXX_FLAGS="$CLANG_USE_STD $target_flags" \
-        -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/docker/$1.cmake
+        -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/docker/ubuntu/$1.cmake
     make
 }
 
