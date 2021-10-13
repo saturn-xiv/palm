@@ -7,3 +7,6 @@
   roles:
     - ubuntu-qt
 
+- hosts: all
+  roles:
+    - reboot

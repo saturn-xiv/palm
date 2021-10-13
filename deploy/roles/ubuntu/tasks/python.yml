@@ -2,8 +2,8 @@
 - name: Download get-pip
   get_url:
     url: https://bootstrap.pypa.io/get-pip.py
-    desc: 
-    mode: '0440'
+    desc: "{{ app_downloads }}/get-pip.py"
+    mode: '0644'
 
 - name: Run get-pip
   ansible.builtin.script: "{{ app_downloads }}/get-pip.py"
