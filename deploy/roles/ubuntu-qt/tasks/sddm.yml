@@ -1,0 +1,5 @@
+- name: Enable sddm service
+  ansible.builtin.systemd:
+    name: sddm
+    enabled: yes
+    masked: no

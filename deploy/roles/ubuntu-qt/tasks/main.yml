@@ -1,0 +1,25 @@
+
+- name: Install desktop dependicy packages
+  become: true
+  apt:
+    pkg:
+      - fontconfig
+      - xfonts-intl-chinese-big
+      - fonts-powerline
+      - fonts-dejavu-extra
+      - fonts-liberation
+      - fonts-wqy-microhei
+      - fonts-wqy-zenhei
+      - fonts-moe-standard-kai
+      - fonts-moe-standard-song
+      - fonts-arphic-uming
+      - fonts-arphic-ukai
+      - fonts-noto-cjk-extra
+      - xfonts-wqy
+      - xfonts-75dpi
+      - xfonts-100dpi
+      - xfonts-terminus
+      - language-pack-zh-hans
+      - language-pack-zh-hant
+      - sddm
+

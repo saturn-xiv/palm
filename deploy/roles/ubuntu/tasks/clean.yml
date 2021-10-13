@@ -1,0 +1,18 @@
+- name: Reset root password
+  become: true
+  shell: echo "root:$(pwgen 32 1)" | chpasswd
+
+- name: Remove useless packages from the cache
+  become: true
+  apt:
+    autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  become: true
+  apt:
+    autoremove: yes
+
+- name: Force systemd to reread configs
+  become: true
+  systemd:
+    daemon_reload: yes

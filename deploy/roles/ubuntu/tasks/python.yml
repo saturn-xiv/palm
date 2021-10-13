@@ -1,0 +1,18 @@
+# https://pip.pypa.io/en/stable/installation/
+- name: Download get-pip
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    desc: 
+    mode: '0440'
+
+- name: Run get-pip
+  ansible.builtin.script: "{{ app_downloads }}/get-pip.py"
+  args:
+    executable: python3
+
+- name: Install python packages
+  pip:
+    name:
+      - cmake
+    extra_args: --user
+    executable: pip3
