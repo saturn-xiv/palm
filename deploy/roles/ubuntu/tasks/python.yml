@@ -3,16 +3,16 @@
   get_url:
     url: https://bootstrap.pypa.io/get-pip.py
     dest: "{{ app_downloads }}/get-pip.py"
-    mode: '0644'
+    mode: "0644"
 
 - name: Run get-pip
-  ansible.builtin.script: "{{ app_downloads }}/get-pip.py"
+  ansible.builtin.command: "python3 {{ app_downloads }}/get-pip.py"
   args:
-    executable: python3
+    creates: "{{ ansible_env.HOME }}/.local/bin/pip"
 
-- name: Install python packages
-  pip:
-    name:
-      - cmake
-    extra_args: --user
-    executable: pip3
+# - name: Install python packages
+#   pip:
+#     name:
+#       - cmake
+#     extra_args: --user
+#     executable: pip3
