@@ -91,6 +91,7 @@ class Client {
 
     return node;
   }
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Client, account_sid, auth_token, from)
 
  private:
   std::string account_sid;

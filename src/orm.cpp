@@ -11,7 +11,7 @@ std::shared_ptr<SQLite::Database> palm::sqlite::open(
     SQLite::Statement query(*db, "SELECT SQLITE_VERSION() AS value");
     if (query.executeStep()) {
       const std::string version = query.getColumn("value");
-      BOOST_LOG_TRIVIAL(info) << "sqlite version: " << version;
+      BOOST_LOG_TRIVIAL(debug) << "sqlite version: " << version;
     }
   }
   db->exec("PRAGMA synchronous = OFF");
@@ -32,4 +32,31 @@ std::shared_ptr<SQLite::Database> palm::sqlite::open(
     // query.exec();
   }
   return db;
+}
+
+std::shared_ptr<pqxx::connection> palm::postgresql::Config::open() const {
+  BOOST_LOG_TRIVIAL(debug) << "connect to " << this->user << "@" << this->host
+                           << ":" << this->port << "/" << this->name;
+  std::stringstream url;
+  {
+    url << "host=" << this->host;
+    url << " port=" << this->port;
+    url << " dbname=" << this->name;
+    url << " user=" << this->user;
+    if (password) {
+      url << " password=" << password.value();
+    }
+    url << " requiressl=0";
+  }
+  std::shared_ptr<pqxx::connection> con =
+      std::make_shared<pqxx::connection>(url.str());
+  {
+    pqxx::work tr{*con};
+    pqxx::result rst{tr.exec("SELECT VERSION() AS value")};
+    const auto& row = rst.front();
+    const std::string version = row["value"].as(std::string());
+    BOOST_LOG_TRIVIAL(debug) << "version: " << version;
+    tr.commit();
+  }
+  return con;
 }
