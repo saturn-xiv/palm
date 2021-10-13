@@ -2,7 +2,7 @@
 - name: Download get-pip
   get_url:
     url: https://bootstrap.pypa.io/get-pip.py
-    desc: "{{ app_downloads }}/get-pip.py"
+    dest: "{{ app_downloads }}/get-pip.py"
     mode: '0644'
 
 - name: Run get-pip

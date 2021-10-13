@@ -15,3 +15,4 @@
 app_vendor="saturn-xiv.palm"
 ; openssl rand -base64 32
 app_secret_key="23259PGhRSGmeiYR/Pfea34d+Sz5ghcms665IlDBQJ8="
+app_boost_version="1.71.0"
