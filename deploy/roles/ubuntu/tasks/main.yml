@@ -1,9 +1,9 @@
-- name: Remove postfix at first
-  become: true
-  apt:
-    name: postfix
-    state: absent
-    purge: yes
+# - name: Remove postfix at first
+#   become: true
+#   apt:
+#     name: postfix
+#     state: absent
+#     purge: yes
 
 # - name: Backup /etc/apt/sources.list.d
 #   become: true
@@ -81,13 +81,13 @@
       - python3-distutils
       - python3-dev
       - libpq5
-      - libboost-chrono
-      - libboost-date-time
-      - libboost-timer
-      - libboost-log
-      - libboost-random
-      - libboost-program-options
-      - libboost-test
+      - libboost-chrono{{ app_boost_version }}
+      - libboost-date-time{{ app_boost_version }}
+      - libboost-timer{{ app_boost_version }}
+      - libboost-log{{ app_boost_version }}
+      - libboost-random{{ app_boost_version }}
+      - libboost-program-options{{ app_boost_version }}
+      - libboost-test{{ app_boost_version }}
 
 - include: locales.yml
 
