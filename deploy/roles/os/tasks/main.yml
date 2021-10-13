@@ -6,6 +6,12 @@
   become: true
   shell: timedatectl set-timezone UTC
 
+- name: Setup sudo without password 
+  become: true
+  lineinfile:
+    path: /etc/sudoers.d/100-{{ ansible_user }}
+    line: "{{ ansible_user }} ALL=(ALL) NOPASSWD:ALL"
+  when: ansible_distribution != 'Raspbian' && ansible_user != 'root'
 
 - name: Setup journald storage 
   become: true
