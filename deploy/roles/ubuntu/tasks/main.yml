@@ -81,12 +81,15 @@
       - python3-distutils
       - python3-dev
       - libpq5
+      - libboost-atomic{{ app_boost_version }}
+      - libboost-locale{{ app_boost_version }}
       - libboost-chrono{{ app_boost_version }}
       - libboost-date-time{{ app_boost_version }}
       - libboost-timer{{ app_boost_version }}
       - libboost-log{{ app_boost_version }}
       - libboost-random{{ app_boost_version }}
       - libboost-program-options{{ app_boost_version }}
+      - libboost-system{{ app_boost_version }}
       - libboost-test{{ app_boost_version }}
 
 - include: locales.yml
