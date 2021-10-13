@@ -50,6 +50,12 @@
       - ethtool
       - dnsutils
       - dnsmasq
+      - uuid-runtime
+      - lshw
+      - tcpdump
+      - lm-sensors
+      - hddtemp
+      - dmidecode
       - net-tools
       - iputils-arping
       - iputils-ping
@@ -71,6 +77,7 @@
       - curl
       - zip
       - unzip
+      - nginx
       - openvpn
       - snmpd
       - systemd-cron
@@ -108,5 +115,53 @@
 
 - include: python.yml
 - include: zsh.yml
+
+# ---------------------------------------------------
+
+- name: check if friendlyelec
+  ansible.builtin.stat:
+    path: /etc/friendlyelec-release
+  register: app_os_friendlyelec
+
+- include: friendly-core.yml
+  when: app_os_friendlyelec.stat.islnk is defined and app_os_friendlyelec.stat.isreg
+
+- name: check if armbian
+  ansible.builtin.stat:
+    path: /etc/armbian-release
+  register: app_os_armbian
+
+- include: armbian.yml
+  when: app_os_armbian.stat.islnk is defined and app_os_armbian.stat.isreg
+
+- include: raspbian.yml
+  when: ansible_distribution == 'Raspbian'
+
+- include: pi.yml
+  when: ansible_distribution == 'Raspbian' or (app_os_armbian.stat.islnk is defined and app_os_armbian.stat.isreg) or (app_os_friendlyelec.stat.islnk is defined and app_os_friendlyelec.stat.isreg)
+
+# ---------------------------------------------------
+
+- name: enable nginx service
+  become: true
+  ansible.builtin.systemd:
+    name: nginx
+    enabled: yes
+    masked: no
+
+
+- name: enable cron service
+  become: true
+  ansible.builtin.systemd:
+    name: cron-target
+    enabled: yes
+    masked: no
+
+- name: enable ssh service
+  become: true
+  ansible.builtin.systemd:
+    name: ssh
+    enabled: yes
+    masked: no
 
 - include: clean.yml

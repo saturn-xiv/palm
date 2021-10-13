@@ -24,3 +24,9 @@ peony -i staging pi.yml
 # run on only group
 peony -i staging pi.yml -l GROUP
 ```
+
+## System image
+
+- [Raspberry Pi OS Lite](https://www.raspberrypi.com/software/operating-systems/)
+- [Armbian](https://www.armbian.com/download/)
+- [wiringPi for Orange Pi](https://github.com/orangepi-xunlong/WiringOP)
