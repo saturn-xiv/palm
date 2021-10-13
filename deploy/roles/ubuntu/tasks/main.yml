@@ -93,4 +93,3 @@
 - include: zsh.yml
 
 - include: clean.yml
-- include: reboot.yml

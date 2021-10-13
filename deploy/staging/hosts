@@ -1,18 +1,17 @@
 ; raspbian
-[raspbarry-pi]
-192.168.1.112
+[raspbarry_pi]
+192.168.6.112
 
 ; friendlycore
-[nano-pi]
+[nano_pi]
 192.168.6.33
 192.168.6.61
 
 ; armbian
-[orange-pi]
+[orange_pi]
 192.168.6.81
 
 [all:vars]
-ansible_user="root"
 app_vendor="saturn-xiv.palm"
 ; openssl rand -base64 32
 app_secret_key="23259PGhRSGmeiYR/Pfea34d+Sz5ghcms665IlDBQJ8="

@@ -1,8 +1,6 @@
-- name: Setup sshd
-  include: sshd.yml
-
-- name: setup ulimits
-  include: ulimits.yml
+- include: init.yml
+- include: sshd.yml
+- include: ulimits.yml
 
 - name: Set timezone
   become: true

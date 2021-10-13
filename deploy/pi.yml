@@ -3,11 +3,7 @@
     - os
     - ubuntu
 
-- hosts: raspbarry-pi
+- hosts: raspbarry_pi
   roles:
     - ubuntu-qt
 
-- name: Reboot
-  become: true
-  reboot:
-    reboot_timeout: 3600
