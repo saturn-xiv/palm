@@ -81,6 +81,7 @@
       - openvpn
       - snmpd
       - systemd-cron
+      - systemd-timesyncd
       - screen
       - tmux
       - python3
@@ -163,5 +164,13 @@
     name: ssh
     enabled: yes
     masked: no
+
+- name: enable systemd-timesyncd service
+  become: true
+  ansible.builtin.systemd:
+    name: systemd-timesyncd
+    enabled: yes
+    masked: no
+
 
 - include: clean.yml

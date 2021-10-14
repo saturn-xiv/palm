@@ -25,7 +25,7 @@
 - name: disable autologin for tty1
   become: true
   ansible.builtin.replace:
-    path: /etc/systemd/system/serial-getty@tty1.service.d/autologin.conf
+    path: /etc/systemd/system/getty@tty1.service.d/autologin.conf
     regexp: ' --autologin pi '
     replace: ' '
 
