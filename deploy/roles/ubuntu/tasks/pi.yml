@@ -104,13 +104,6 @@
     enabled: yes
     masked: no
 
-- name: enable systemd-timesyncd service
-  become: true
-  ansible.builtin.systemd:
-    name: systemd-timesyncd
-    enabled: yes
-    masked: no
-
 - name: enable wpa_supplicant@wlan0service
   become: true
   ansible.builtin.systemd:
@@ -124,6 +117,12 @@
     name: openvpn@client
     enabled: yes
     masked: no
+
+
+- name: Reboot
+  become: true
+  reboot:
+    reboot_timeout: 120
 
 - name: enable pulseaudio service
   become: true
