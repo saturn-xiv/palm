@@ -4,13 +4,13 @@ triple=x86_64-linux-gnu
 os=Linux
 arch=x86_64
 compiler=clang
-compiler.version=13
+compiler.version=12
 compiler.libcxx=libstdc++11
 build_type=Release
 
 [env]
-CC=clang-13
-CXX=clang++-13
+CC=clang
+CXX=clang++
 CFLAGS="-target $triple"
 CXXFLAGS="-target $triple"
-LDFLAGS="--ld-path=ld.lld-13"
+LDFLAGS="--ld-path=ld.lld"

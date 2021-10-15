@@ -105,8 +105,8 @@ RUN zsh -c "source $HOME/.zshrc \
     && make install"
 
 # https://github.com/llvm/llvm-project/releases
-RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-RUN tar xf $HOME/downloads/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
+# RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+# RUN tar xf $HOME/downloads/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
 
 # https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
 # RUN wget -P $HOME/downloads https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf.tar.xz
