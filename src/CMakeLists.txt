@@ -19,7 +19,13 @@ target_include_directories(palm PUBLIC
 )
 
 target_link_libraries(palm PUBLIC lemon
-  ${Boost_LIBRARIES} ${PostgreSQL_LIBRARIES} ${SQLite3_LIBRARIES} ${CURL_LIBRARIES}
+  # ${Boost_LIBRARIES} ${CURL_LIBRARIES}
+  
+  ${PostgreSQL_LIBRARIES} ${SQLite3_LIBRARIES} 
+
+  boost_system boost_locale boost_log_setup boost_log boost_program_options
+  boost_date_time boost_chrono boost_timer boost_random
+  boost_unit_test_framework
 
   pqxx SQLiteCpp hiredis_static
   rabbitmq-static libzmq-static

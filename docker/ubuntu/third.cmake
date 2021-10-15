@@ -13,15 +13,15 @@ string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
 # --------------------------------------------------------
 find_package(Threads REQUIRED)
-find_package(Boost REQUIRED COMPONENTS 
-    system locale log_setup log program_options
-    date_time chrono timer random
-    unit_test_framework
-)
+# find_package(Boost REQUIRED COMPONENTS 
+#     system locale log_setup log program_options
+#     date_time chrono timer random
+#     unit_test_framework
+# )
 find_package(OpenSSL REQUIRED)
 find_package(PostgreSQL REQUIRED)
 find_package(SQLite3 REQUIRED)
-find_package(CURL REQUIRED)
+# find_package(CURL REQUIRED)
 # --------------------------------------------------------
 # FetchContent_Declare(
 #     mysql_connector_cpp
@@ -36,6 +36,14 @@ find_package(CURL REQUIRED)
 #     GIT_TAG         "1.1.0"
 # )
 # FetchContent_MakeAvailable(mariadb_connector_cpp)
+
+FetchContent_Declare(
+    boost
+    GIT_REPOSITORY  "https://github.com/boostorg/boost.git"
+    GIT_TAG         "boost-1.77.0"
+)
+FetchContent_MakeAvailable(boost)
+
 
 FetchContent_Declare(
     libpqxx

@@ -24,6 +24,7 @@ std::vector<uint8_t> decode(const std::string& buf);
 }  // namespace base64
 
 namespace random {
+std::string alphanumeric(const size_t len);
 std::string string(const size_t len);
 std::vector<uint8_t> bytes(const size_t len);
 }  // namespace random

@@ -7,6 +7,79 @@
 #include <pqxx/pqxx>
 
 namespace palm {
+
+namespace orm {
+
+class Migration {
+ public:
+  Migration() {}
+  Migration(const std::filesystem::path& root);
+  static void generate(const std::filesystem::path& root,
+                       const std::string& name);
+
+  static void header(std::ostream& out) {
+    std::ios_base::fmtflags f(out.flags());
+    out << std::left << std::setw(Migration::VERSION_SIZE) << "Version"
+        << std::setw(Migration::NAME_SIZE) << "Name"
+        << std::setw(Migration::RUN_AT_SIZE) << "Run At";
+    out.flags(f);
+  }
+
+  friend std::ostream& operator<<(std::ostream& out, Migration const& self) {
+    std::ios_base::fmtflags f(out.flags());
+    out << std::left << std::setw(Migration::VERSION_SIZE) << self.version
+        << std::setw(Migration::NAME_SIZE) << self.name
+        << std::setw(Migration::RUN_AT_SIZE);
+    if (self.run_at) {
+      out << std::asctime(&self.run_at.value());
+    } else {
+      out << "n/a";
+    }
+    out.flags(f);
+    return out;
+  }
+
+  friend struct sort_migration_asc;
+  friend class Schema;
+
+  inline static const std::string DIV = "-";
+  inline static const std::string UP = "up.sql";
+  inline static const std::string DOWN = "down.sql";
+  inline static const std::string MIGRATION_FOLDER = "migrations";
+
+  static const int VERSION_SIZE = 15;
+  static const int NAME_SIZE = 36;
+  static const int RUN_AT_SIZE = 24;
+
+ private:
+  int32_t id;
+  std::string name;
+  std::string version;
+  std::string up;
+  std::string down;
+  std::optional<std::tm> run_at;
+  std::tm created_at;
+};
+
+struct sort_migration_asc {
+  inline bool operator()(const Migration& a, const Migration& b) {
+    return (a.version < b.version);
+  }
+};
+
+class Schema {
+ public:
+  Schema() {}
+  static std::vector<Migration> load_migrations(
+      const std::filesystem::path& root);
+  static std::map<std::string, std::string> load_queries(
+      const std::filesystem::path& root);
+
+ private:
+};
+
+}  // namespace orm
+
 // .show Displays current settings for various parameters
 // .databases Provides database names and files
 // .quit Quit sqlite3 program

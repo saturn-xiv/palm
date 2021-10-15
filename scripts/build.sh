@@ -9,6 +9,8 @@ export CLANG_USE_STD="-stdlib=libstdc++"
 export CMAKE_CLANG="-DCMAKE_C_COMPILER=clang-13 \
     -DCMAKE_CXX_COMPILER=clang++-13 \
     -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=lld-13'"
+
+# -DCPR_FORCE_USE_SYSTEM_CURL=ON
 export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DLIBSERIAL_BUILD_DOCS=OFF \
     -DLIBSERIAL_ENABLE_TESTING=OFF \
@@ -42,7 +44,6 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DBUILD_STATIC_LIBS=ON \
     -DSQLITECPP_INTERNAL_SQLITE=OFF \
     -DCPR_BUILD_TESTS=OFF \
-    -DCPR_FORCE_USE_SYSTEM_CURL=ON \
     -DWITH_SSL=system \
     -DDCONC_WITH_UNIT_TESTS=OFF"
 export CMAKE_CROSS_OPTIONS="-DENABLE_ACTIVERECORD_COMPILER=OFF \
@@ -149,13 +150,7 @@ arch_clang_debug() {
 
 ubuntu_dependencies(){
     sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
-        libcurl4-openssl-dev:$1 \
-        libboost-system-dev:$1 libboost-locale-dev:$1 \
-        libboost-program-options-dev:$1 \
-        libboost-date-time-dev:$1 \
-        libboost-chrono-dev:$1 \
-        libboost-timer-dev:$1 libboost-random-dev:$1 \
-        libboost-log-dev:$1 libboost-test-dev:$1
+        libcurl4-openssl-dev:$1
 }
 
 build_dashboard(){
@@ -243,7 +238,7 @@ elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard
     
-    sudo pacman -S --needed postgresql-libs mariadb-libs boost
+    sudo pacman -S --needed postgresql-libs mariadb-libs
     arch_clang_debug
 else
     echo "Unknowk os $OS_NAME"

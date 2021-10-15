@@ -217,6 +217,20 @@ std::string palm::random::string(const size_t len) {
   return ss.str();
 }
 
+std::string palm::random::alphanumeric(const size_t len) {
+  static auto& line =
+      R"(0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ)";
+  thread_local static std::mt19937 rg{std::random_device{}()};
+  thread_local static std::uniform_int_distribution<std::string::size_type>
+      pick(0, sizeof(line) - 2);
+
+  std::stringstream ss;
+  for (auto i = 0; i < len; i++) {
+    ss << line[pick(rg)];
+  }
+  return ss.str();
+}
+
 std::vector<uint8_t> palm::random::bytes(const size_t len) {
   std::random_device rd;
   static std::independent_bits_engine<std::default_random_engine, CHAR_BIT,
