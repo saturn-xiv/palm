@@ -10,17 +10,8 @@ RUN apt -y install debian-keyring debian-archive-keyring apt-transport-https sof
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
 # https://apt.llvm.org/
-RUN echo "deb [arch=amd64] http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-13 main" > /etc/apt/sources.list.d/llvm.list
+RUN echo "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-13 main" > /etc/apt/sources.list.d/llvm.list
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-# https://wiki.ubuntu.com/ToolChain
-RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs) main restricted universe multiverse" > /etc/apt/sources.list
-RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list
-RUN dpkg --add-architecture armhf
-RUN dpkg --add-architecture arm64
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
 RUN apt update
 RUN apt -y upgrade
 
@@ -30,15 +21,11 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     imagemagick ffmpeg \
     build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
-    clang-13 lldb-13 lld-13 \
+    clang-13 lldb-13 lld-13 libstdc++-11-dev \
     g++-10-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
     crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
     crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
     python3 python3-distutils python3-pip python3-dev
-RUN apt -y install \
-    libstdc++-11-dev:amd64 libssl-dev:amd64 \
-    libstdc++-11-dev:armhf libssl-dev:armhf \
-    libstdc++-11-dev:arm64 libssl-dev:arm64
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -86,27 +73,27 @@ RUN sh -c ". $HOME/.profile \
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 # https://grpc.io/docs/languages/cpp/quickstart/
-ENV GRPC_VERSION "v1.41.0"
-RUN zsh -c "source $HOME/.zshrc \
-    && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
-RUN zsh -c "source $HOME/.zshrc \
-    && mkdir -pv $HOME/build/grpc-amd64 \
-    && cd $HOME/build/grpc-amd64 \
-    && cmake -DCMAKE_BUILD_TYPE=Release \
-    -DgRPC_INSTALL=ON \
-    -DgRPC_SSL_PROVIDER=package \
-    -DgRPC_BUILD_TESTS=OFF \
-    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
-    && make \
-    && make install"
+# ENV GRPC_VERSION "v1.41.0"
+# RUN zsh -c "source $HOME/.zshrc \
+#     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
+# RUN zsh -c "source $HOME/.zshrc \
+#     && mkdir -pv $HOME/build/grpc-amd64 \
+#     && cd $HOME/build/grpc-amd64 \
+#     && cmake -DCMAKE_BUILD_TYPE=Release \
+#     -DgRPC_INSTALL=ON \
+#     -DgRPC_SSL_PROVIDER=package \
+#     -DgRPC_BUILD_TESTS=OFF \
+#     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
+#     && make \
+#     && make install"
 
 # https://github.com/microsoft/vcpkg#quick-start-unix
-# https://github.com/microsoft/vcpkg#quick-start-unix
-# RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
-# RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
-# RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
-
-ADD third.cmake armhf.cmake arm64.cmake /opt/
+RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
+RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
+# ADD vcpkg /opt/
+# RUN sh -c ". $HOME/.profile \
+#     && /opt/vcpkg/install.sh"
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
