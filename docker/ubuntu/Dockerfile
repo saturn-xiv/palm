@@ -70,6 +70,16 @@ RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
+# https://github.com/llvm/llvm-project/releases
+RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+RUN tar xf $HOME/downloads/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
+
+# https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
+RUN wget -P $HOME/downloads https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf.tar.xz
+RUN tar xf $HOME/downloads/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local
+RUN wget -P $HOME/downloads https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
+RUN tar xf $HOME/downloads/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
+
 # https://grpc.io/docs/languages/cpp/quickstart/
 # ENV GRPC_VERSION "v1.41.0"
 # RUN zsh -c "source $HOME/.zshrc \
@@ -89,7 +99,8 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
-ADD vcpkg /opt/
+# ADD vcpkg $HOME/local/vcpkg/triplets/
+# ADD toolchains $HOME/local/vcpkg/scripts/toolchains/
 # RUN sh -c ". $HOME/.profile \
 #     && /opt/vcpkg/install.sh"
 

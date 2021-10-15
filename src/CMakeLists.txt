@@ -6,6 +6,11 @@ add_library(palm STATIC ${SOURCE_LIST})
 # ----------------
 target_include_directories(palm PUBLIC
   ${palm_SOURCE_DIR}/include
+
+  ${CPPCODEC_INCLUDE_DIRS}
+  ${JWT_CPP_INCLUDE_DIRS}
+  ${CPP_HTTPLIB_INCLUDE_DIRS}
+
   ${tomlplusplus_SOURCE_DIR}
   ${cppcodec_SOURCE_DIR}
   ${cpp_httplib_SOURCE_DIR}
@@ -19,18 +24,26 @@ target_include_directories(palm PUBLIC
 )
 
 target_link_libraries(palm PUBLIC lemon
-  # ${Boost_LIBRARIES} ${CURL_LIBRARIES}
+  ${Boost_LIBRARIES} 
+  OpenSSL::SSL OpenSSL::Crypto
+  CURL::libcurl
+  hiredis::hiredis
+  libzmq-static cppzmq-static
+  PostgreSQL::PostgreSQL
+  libmariadb mariadbclient
+  unofficial::sqlite3::sqlite3 SQLiteCpp
+  tomlplusplus::tomlplusplus
+  nlohmann_json::nlohmann_json
+  yaml-cpp
+  tinyxml2::tinyxml2
+  pantor::inja
+  rabbitmq::rabbitmq-static
+  eclipse-paho-mqtt-c::paho-mqtt3c-static
+  flatbuffers::flatbuffers
   
-  ${PostgreSQL_LIBRARIES} ${SQLite3_LIBRARIES} 
-
-  boost_system boost_locale boost_log_setup boost_log boost_program_options
-  boost_date_time boost_chrono boost_timer boost_random
-  boost_unit_test_framework
-
-  pqxx SQLiteCpp hiredis_static
-  rabbitmq-static libzmq-static
-  flatbuffers
-  libserial_static yaml-cpp cpr::cpr
+  pqxx
+  libserial_static
+  cpr::cpr
 )
 
 source_group(

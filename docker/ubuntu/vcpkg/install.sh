@@ -20,12 +20,13 @@ declare -a packages=(
     "boost-test"
     "boost-timer"
     "boost-uuid"
-    "curl[openssl]"
-    "cpr"
+    "curl[core,openssl]"
+    # "cpr"
     "hiredis[ssl]"
-    "czmq[core]"
-    "libpq[nls,uuid,openssl]"
-    "libpqxx"
+    "zeromq[core,draft]"
+    "cppzmq"
+    "libpq[core]"
+    # "libpqxx"
     "libmariadb[openssl]"
     "sqlite3"
     "sqlitecpp"
@@ -39,22 +40,22 @@ declare -a packages=(
     "cpp-httplib"
     "librabbitmq"
     "paho-mqtt"
-    "aws-sdk-cpp[s3]"
+    # "aws-sdk-cpp[core,s3]"
     "flatbuffers"
     # "grpc"
 )
 
 declare -a triplets=(
-    "x64-linux"
-    "arm-linux"
-    "arm64-linux"
+    "amd64-linux"
+    "armhf-linux"
+    # "amd64-linux"
 )
 
 for p in "${packages[@]}"
 do
     for t in "${triplets[@]}"
     do
-        $HOME/local/vcpkg/vcpkg install --host-triplet=x64-linux --triplet=$t $p
+        $HOME/local/vcpkg/vcpkg install --recurse --host-triplet=x64-linux --triplet=$t $p
     done
 done
 

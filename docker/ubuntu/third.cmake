@@ -13,15 +13,33 @@ string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
 # --------------------------------------------------------
 find_package(Threads REQUIRED)
-# find_package(Boost REQUIRED COMPONENTS 
-#     system locale log_setup log program_options
-#     date_time chrono timer random
-#     unit_test_framework
-# )
+find_package(Boost REQUIRED COMPONENTS 
+    system locale log_setup log program_options
+    date_time chrono timer random pool
+    unit_test_framework
+)
 find_package(OpenSSL REQUIRED)
+find_package(CURL REQUIRED)
+find_package(hiredis CONFIG REQUIRED)
+find_package(ZeroMQ CONFIG REQUIRED)
+find_package(cppzmq CONFIG REQUIRED)
 find_package(PostgreSQL REQUIRED)
-find_package(SQLite3 REQUIRED)
-# find_package(CURL REQUIRED)
+find_package(unofficial-libmariadb CONFIG REQUIRED)
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
+find_package(SQLiteCpp CONFIG REQUIRED)
+find_package(tomlplusplus CONFIG REQUIRED)
+find_package(nlohmann_json CONFIG REQUIRED)
+find_package(yaml-cpp CONFIG REQUIRED)
+find_package(tinyxml2 CONFIG REQUIRED)
+find_package(inja CONFIG REQUIRED)
+find_package(rabbitmq-c CONFIG REQUIRED)
+find_package(eclipse-paho-mqtt-c CONFIG REQUIRED)
+find_package(Flatbuffers CONFIG REQUIRED)
+    
+find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
+find_path(JWT_CPP_INCLUDE_DIRS "jwt-cpp/base.h")
+find_path(CPP_HTTPLIB_INCLUDE_DIRS "httplib.h")
+        
 # --------------------------------------------------------
 # FetchContent_Declare(
 #     mysql_connector_cpp
