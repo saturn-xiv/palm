@@ -107,9 +107,10 @@ RUN tar xf $HOME/downloads/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.x
 RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
-# ADD vcpkg $HOME/local/vcpkg/triplets/
-# ADD toolchains $HOME/local/vcpkg/scripts/toolchains/
-# RUN sh -c ". $HOME/.profile \
+ADD vcpkg /opt/vcpkg
+RUN ln -s /opt/vcpkg/triplets/* $HOME/local/vcpkg/triplets/
+RUN ln -s /opt/vcpkg/toolchains/* $HOME/local/vcpkg/scripts/toolchains/
+#RUN sh -c ". $HOME/.profile \
 #     && /opt/vcpkg/install.sh"
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
