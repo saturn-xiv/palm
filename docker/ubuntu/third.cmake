@@ -41,62 +41,6 @@ find_path(JWT_CPP_INCLUDE_DIRS "jwt-cpp/base.h")
 find_path(CPP_HTTPLIB_INCLUDE_DIRS "httplib.h")
         
 # --------------------------------------------------------
-# FetchContent_Declare(
-#     mysql_connector_cpp
-#     GIT_REPOSITORY  "https://github.com/mysql/mysql-connector-cpp.git"
-#     GIT_TAG         "8.0.26"
-# )
-# FetchContent_MakeAvailable(mysql_connector_cpp)
-
-# FetchContent_Declare(
-#     mariadb_connector_cpp
-#     GIT_REPOSITORY  "https://github.com/mariadb-corporation/mariadb-connector-cpp.git"
-#     GIT_TAG         "1.1.0"
-# )
-# FetchContent_MakeAvailable(mariadb_connector_cpp)
-
-FetchContent_Declare(
-    boost
-    GIT_REPOSITORY  "https://github.com/boostorg/boost.git"
-    GIT_TAG         "boost-1.77.0"
-)
-FetchContent_MakeAvailable(boost)
-
-
-FetchContent_Declare(
-    libpqxx
-    GIT_REPOSITORY  "https://github.com/jtv/libpqxx.git"
-    GIT_TAG         "7f79dba"
-)
-FetchContent_MakeAvailable(libpqxx)
-
-FetchContent_Declare(
-    SQLiteCpp
-    GIT_REPOSITORY  "https://github.com/SRombauts/SQLiteCpp.git"
-    GIT_TAG         "3.1.1"
-)
-FetchContent_MakeAvailable(SQLiteCpp)
-
-FetchContent_Declare(
-    hiredis
-    GIT_REPOSITORY  "https://github.com/redis/hiredis.git"
-    GIT_TAG         "783a378"
-)
-FetchContent_MakeAvailable(hiredis)
-
-FetchContent_Declare(
-    cpp_httplib
-    GIT_REPOSITORY  "https://github.com/yhirose/cpp-httplib.git"
-    GIT_TAG         "c7554cc"
-)
-FetchContent_MakeAvailable(cpp_httplib)
-
-FetchContent_Declare(
-    jwt_cpp
-    GIT_REPOSITORY  "https://github.com/Thalhammer/jwt-cpp.git"
-    GIT_TAG         "ab1a60e"
-)
-FetchContent_MakeAvailable(jwt_cpp)
 
 FetchContent_Declare(
     tomlplusplus
@@ -106,39 +50,12 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(tomlplusplus)
 
 FetchContent_Declare(
-    yaml_cpp
-    GIT_REPOSITORY  "https://github.com/jbeder/yaml-cpp.git"
-    GIT_TAG         "yaml-cpp-0.7.0"
+    libpqxx
+    GIT_REPOSITORY  "https://github.com/jtv/libpqxx.git"
+    GIT_TAG         "7f79dba"
 )
-FetchContent_MakeAvailable(yaml_cpp)
+FetchContent_MakeAvailable(libpqxx)
 
-FetchContent_Declare(
-    libzmq
-    GIT_REPOSITORY  "https://github.com/zeromq/libzmq.git"
-    GIT_TAG         "v4.3.4"
-)
-FetchContent_MakeAvailable(libzmq)
-
-FetchContent_Declare(
-    rabbitmq
-    GIT_REPOSITORY  "https://github.com/alanxz/rabbitmq-c.git"
-    GIT_TAG         "v0.11.0"
-)
-FetchContent_MakeAvailable(rabbitmq)
-
-FetchContent_Declare(
-    inja
-    GIT_REPOSITORY  "https://github.com/pantor/inja.git"
-    GIT_TAG         "v3.3.0"
-)
-FetchContent_MakeAvailable(inja)
-
-FetchContent_Declare(
-    cppcodec
-    GIT_REPOSITORY  "https://github.com/tplgy/cppcodec.git"
-    GIT_TAG         "9838f9e"
-)
-FetchContent_MakeAvailable(cppcodec)
 
 FetchContent_Declare(
     libserial
@@ -147,21 +64,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(libserial)
 
-FetchContent_Declare(
-    flatbuffers
-    GIT_REPOSITORY  "https://github.com/google/flatbuffers.git"
-    GIT_TAG         "b9d43a5"
-)
-FetchContent_MakeAvailable(flatbuffers)
-
-
-# https://github.com/protocolbuffers/protobuf
-# FetchContent_Declare(
-#     protobuf
-#     GIT_REPOSITORY  "https://github.com/protocolbuffers/protobuf.git"
-#     GIT_TAG         "v3.17.3"
-# )
-# FetchContent_MakeAvailable(protobuf)
 
 # https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/examples/cpp/helloworld/cmake_externalproject/CMakeLists.txt
 # https://grpc.io/blog/cmake-improvements/
@@ -172,16 +74,6 @@ FetchContent_Declare(
     GIT_TAG         "v1.41.0"
 )
 FetchContent_MakeAvailable(gRPC)
-
-# FetchContent_Declare(
-#     tink
-#     GIT_REPOSITORY  "https://github.com/google/tink.git"
-#     GIT_TAG         "v1.6.1"
-# )
-# FetchContent_MakeAvailable(tink)
-
-# https://github.com/google/tink/blob/master/docs/CMAKE-HOWTO.md
-# add_subdirectory(vendors/tink)
 
 FetchContent_Declare(
     cpr

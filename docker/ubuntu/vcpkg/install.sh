@@ -21,16 +21,12 @@ declare -a packages=(
     "boost-timer"
     "boost-uuid"
     "curl[core,openssl]"
-    # "cpr"
     "hiredis[ssl]"
     "zeromq[core,draft]"
     "cppzmq"
-    "libpq[core]"
-    # "libpqxx"
-    "libmariadb[openssl]"
+    "libmariadb[core,openssl]"
     "sqlite3"
     "sqlitecpp"
-    "tomlplusplus"
     "nlohmann-json"
     "yaml-cpp"
     "tinyxml2"
@@ -40,15 +36,24 @@ declare -a packages=(
     "cpp-httplib"
     "librabbitmq"
     "paho-mqtt"
-    # "aws-sdk-cpp[core,s3]"
     "flatbuffers"
-    # "grpc"
+    "grpc"
+
+    # "tomlplusplus" # arm
+    # "libpq[core]"
+    # "libpqxx"
+    # "cpr" # cross build
+    # "aws-sdk-cpp[core,s3]"
+    
+    
+    
+    
 )
 
 declare -a triplets=(
     "amd64-linux"
     "armhf-linux"
-    # "amd64-linux"
+    "arm64-linux"
 )
 
 for p in "${packages[@]}"

@@ -11,15 +11,6 @@ target_include_directories(palm PUBLIC
   ${JWT_CPP_INCLUDE_DIRS}
   ${CPP_HTTPLIB_INCLUDE_DIRS}
 
-  ${tomlplusplus_SOURCE_DIR}
-  ${cppcodec_SOURCE_DIR}
-  ${cpp_httplib_SOURCE_DIR}
-  ${hiredis_SOURCE_DIR}
-  ${jwt_cpp_SOURCE_DIR}/include
-  ${inja_SOURCE_DIR}/include
-  ${inja_SOURCE_DIR}/third_party/include
-  ${rabbitmq_SOURCE_DIR}/librabbitmq
-  ${libzmq_SOURCE_DIR}/include
   ${cpr_SOURCE_DIR}/include
 )
 
