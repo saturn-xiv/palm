@@ -1,9 +1,15 @@
 [requires]
 openssl/3.0.0
 boost/1.77.0
-soci/4.0.2
+#soci/4.0.2
+libpqxx/7.5.2
+mariadb-connector-c/3.1.12
+#libmysqlclient/8.0.25
+sqlitecpp/3.1.1
 hiredis/1.0.2
+libcurl/7.79.1
 cpr/1.6.2
+picojson/cci.20210117
 jwt-cpp/0.5.1
 cpp-httplib/0.9.5
 inja/3.3.0
@@ -17,14 +23,13 @@ paho-mqtt-cpp/1.2.0
 cppcodec/0.2
 flatbuffers/2.0.0
 grpc/1.39.1
-serial/1.2.1
 
 [options]
-soci:empty=True
-soci:with_boost=True
-soci:with_sqlite3=True
+#soci:empty=True
+#soci:with_boost=True
+#soci:with_sqlite3=True
 #soci:with_mysql=True
-soci:with_postgresql=True
+#soci:with_postgresql=True
 zeromq:encryption=None
 
 [generators]

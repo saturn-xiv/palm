@@ -26,6 +26,6 @@ else
 fi
 
 
-echo 'done'
+echo 'done.'
 
 exit 0

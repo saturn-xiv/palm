@@ -8,8 +8,7 @@ target_include_directories(lemon PUBLIC
 )
 
 target_link_libraries(lemon PUBLIC
-  dl crypt m ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES}
-  grpc grpc++ grpc++_reflection
+  dl crypt m ${CMAKE_THREAD_LIBS_INIT} ${CONAN_LIBS}
 )
 
 source_group(

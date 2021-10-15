@@ -12,6 +12,12 @@ export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export VCPKG_HOME=$HOME/local/vcpkg
 
+export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
+    -DLIBSERIAL_BUILD_DOCS=OFF \
+    -DLIBSERIAL_ENABLE_TESTING=OFF \
+    -DLIBSERIAL_PYTHON_ENABLE=OFF \
+    -DLIBSERIAL_BUILD_EXAMPLES=OFF"
+
 # export GRPC_INSTALL_PREFIX=$HOME/.local
 # export CLANG_USE_STD="-stdlib=libstdc++"
 # export CMAKE_CLANG="-DCMAKE_C_COMPILER=clang-13 \
@@ -106,7 +112,11 @@ build_arch_clang_debug() {
     echo 'build arch@debug...'
     mkdir -pv $WORKSPACE/build/arch-clang-debug
     cd $WORKSPACE/build/arch-clang-debug
-    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=$VCPKG_HOME/scripts/toolchains/amd64.cmake
+    conan install --build=missing --profile:build=default --profile:host=archlinux $WORKSPACE/docker/ubuntu/conan
+    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Debug $CMAKE_OPTIONS \
+        -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
+        -DCMAKE_EXE_LINKER_FLAGS='--ld-path=ld.lld' \
+        -DCMAKE_CXX_FLAGS="-stdlib=libstdc++"
     make
 }
 

@@ -2,7 +2,7 @@
 
 #include "palm/pool.hpp"
 
-#include <hiredis.h>
+#include <hiredis/hiredis.h>
 
 namespace palm {
 

@@ -3,7 +3,6 @@
 #include "palm/env.hpp"
 
 #include <SQLiteCpp/SQLiteCpp.h>
-// #include <mariadb/conncpp.hpp>
 #include <pqxx/pqxx>
 
 namespace palm {

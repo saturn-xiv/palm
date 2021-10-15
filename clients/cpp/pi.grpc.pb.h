@@ -53,7 +53,7 @@ class Tty final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncWriteRaw(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncWriteRaw(::grpc::ClientContext* context, const ::palm::pi::v1::TtyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -278,7 +278,7 @@ class Audio final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncPlayRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncPlayRaw(::grpc::ClientContext* context, const ::palm::pi::v1::AudioPlayRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncStopRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
@@ -772,7 +772,7 @@ class Button final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
   };
   class Stub final : public StubInterface {
    public:
@@ -822,7 +822,7 @@ class Led final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
   };
   class Stub final : public StubInterface {
    public:

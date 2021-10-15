@@ -49,7 +49,7 @@ constexpr AudioPlayRequest::AudioPlayRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : files_()
   , loop_()
-  , _loop_cached_byte_size_(0)
+  , _loop_cached_byte_size_()
   , delay_(nullptr){}
 struct AudioPlayRequestDefaultTypeInternal {
   constexpr AudioPlayRequestDefaultTypeInternal()
@@ -76,7 +76,7 @@ constexpr AudioTtsRequest::AudioTtsRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : messages_()
   , loop_()
-  , _loop_cached_byte_size_(0)
+  , _loop_cached_byte_size_()
   , delay_(nullptr){}
 struct AudioTtsRequestDefaultTypeInternal {
   constexpr AudioTtsRequestDefaultTypeInternal()
@@ -221,14 +221,11 @@ void TtyRequest::clear_delay() {
   if (delay_ != nullptr) delay_->Clear();
   _has_bits_[0] &= ~0x00000001u;
 }
-TtyRequest::TtyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+TtyRequest::TtyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   items_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.pi.v1.TtyRequest)
 }
 TtyRequest::TtyRequest(const TtyRequest& from)
@@ -244,18 +241,17 @@ TtyRequest::TtyRequest(const TtyRequest& from)
   // @@protoc_insertion_point(copy_constructor:palm.pi.v1.TtyRequest)
 }
 
-inline void TtyRequest::SharedCtor() {
+void TtyRequest::SharedCtor() {
 delay_ = nullptr;
 }
 
 TtyRequest::~TtyRequest() {
   // @@protoc_insertion_point(destructor:palm.pi.v1.TtyRequest)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void TtyRequest::SharedDtor() {
+void TtyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete delay_;
 }
@@ -403,22 +399,25 @@ size_t TtyRequest::ByteSizeLong() const {
   return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TtyRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    TtyRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TtyRequest::GetClassData() const { return &_class_data_; }
-
-void TtyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
-  static_cast<TtyRequest *>(to)->MergeFrom(
-      static_cast<const TtyRequest &>(from));
+void TtyRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.TtyRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TtyRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TtyRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.TtyRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.TtyRequest)
+    MergeFrom(*source);
+  }
 }
-
 
 void TtyRequest::MergeFrom(const TtyRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.TtyRequest)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -426,7 +425,13 @@ void TtyRequest::MergeFrom(const TtyRequest& from) {
   if (from._internal_has_delay()) {
     _internal_mutable_delay()->PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_delay());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TtyRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.TtyRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void TtyRequest::CopyFrom(const TtyRequest& from) {
@@ -471,13 +476,10 @@ void TtyResponse::clear_timestamp() {
   }
   timestamp_ = nullptr;
 }
-TtyResponse::TtyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+TtyResponse::TtyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.pi.v1.TtyResponse)
 }
 TtyResponse::TtyResponse(const TtyResponse& from)
@@ -496,19 +498,18 @@ TtyResponse::TtyResponse(const TtyResponse& from)
   // @@protoc_insertion_point(copy_constructor:palm.pi.v1.TtyResponse)
 }
 
-inline void TtyResponse::SharedCtor() {
+void TtyResponse::SharedCtor() {
 message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 timestamp_ = nullptr;
 }
 
 TtyResponse::~TtyResponse() {
   // @@protoc_insertion_point(destructor:palm.pi.v1.TtyResponse)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void TtyResponse::SharedDtor() {
+void TtyResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   message_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete timestamp_;
@@ -590,7 +591,7 @@ failure:
   (void) cached_has_bits;
 
   // string message = 1;
-  if (!this->_internal_message().empty()) {
+  if (!this->message().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -600,7 +601,7 @@ failure:
   }
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -624,14 +625,14 @@ size_t TtyResponse::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // string message = 1;
-  if (!this->_internal_message().empty()) {
+  if (!this->message().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_message());
   }
 
   // .google.protobuf.Timestamp timestamp = 2;
-  if (this->_internal_has_timestamp()) {
+  if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
@@ -646,32 +647,41 @@ size_t TtyResponse::ByteSizeLong() const {
   return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TtyResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    TtyResponse::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TtyResponse::GetClassData() const { return &_class_data_; }
-
-void TtyResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
-  static_cast<TtyResponse *>(to)->MergeFrom(
-      static_cast<const TtyResponse &>(from));
+void TtyResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.TtyResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TtyResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TtyResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.TtyResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.TtyResponse)
+    MergeFrom(*source);
+  }
 }
-
 
 void TtyResponse::MergeFrom(const TtyResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.TtyResponse)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_message().empty()) {
+  if (!from.message().empty()) {
     _internal_set_message(from._internal_message());
   }
-  if (from._internal_has_timestamp()) {
+  if (from.has_timestamp()) {
     _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TtyResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.TtyResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void TtyResponse::CopyFrom(const TtyResponse& from) {
@@ -721,15 +731,12 @@ void AudioPlayRequest::clear_delay() {
   if (delay_ != nullptr) delay_->Clear();
   _has_bits_[0] &= ~0x00000001u;
 }
-AudioPlayRequest::AudioPlayRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+AudioPlayRequest::AudioPlayRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   files_(arena),
   loop_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.pi.v1.AudioPlayRequest)
 }
 AudioPlayRequest::AudioPlayRequest(const AudioPlayRequest& from)
@@ -746,18 +753,17 @@ AudioPlayRequest::AudioPlayRequest(const AudioPlayRequest& from)
   // @@protoc_insertion_point(copy_constructor:palm.pi.v1.AudioPlayRequest)
 }
 
-inline void AudioPlayRequest::SharedCtor() {
+void AudioPlayRequest::SharedCtor() {
 delay_ = nullptr;
 }
 
 AudioPlayRequest::~AudioPlayRequest() {
   // @@protoc_insertion_point(destructor:palm.pi.v1.AudioPlayRequest)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void AudioPlayRequest::SharedDtor() {
+void AudioPlayRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete delay_;
 }
@@ -940,22 +946,25 @@ size_t AudioPlayRequest::ByteSizeLong() const {
   return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AudioPlayRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    AudioPlayRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AudioPlayRequest::GetClassData() const { return &_class_data_; }
-
-void AudioPlayRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
-  static_cast<AudioPlayRequest *>(to)->MergeFrom(
-      static_cast<const AudioPlayRequest &>(from));
+void AudioPlayRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.AudioPlayRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AudioPlayRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AudioPlayRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.AudioPlayRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.AudioPlayRequest)
+    MergeFrom(*source);
+  }
 }
-
 
 void AudioPlayRequest::MergeFrom(const AudioPlayRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.AudioPlayRequest)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -964,7 +973,13 @@ void AudioPlayRequest::MergeFrom(const AudioPlayRequest& from) {
   if (from._internal_has_delay()) {
     _internal_mutable_delay()->PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_delay());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AudioPlayRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.AudioPlayRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void AudioPlayRequest::CopyFrom(const AudioPlayRequest& from) {
@@ -999,13 +1014,10 @@ class AudioTtsRequest_Message::_Internal {
  public:
 };
 
-AudioTtsRequest_Message::AudioTtsRequest_Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+AudioTtsRequest_Message::AudioTtsRequest_Message(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.pi.v1.AudioTtsRequest.Message)
 }
 AudioTtsRequest_Message::AudioTtsRequest_Message(const AudioTtsRequest_Message& from)
@@ -1019,18 +1031,17 @@ AudioTtsRequest_Message::AudioTtsRequest_Message(const AudioTtsRequest_Message& 
   // @@protoc_insertion_point(copy_constructor:palm.pi.v1.AudioTtsRequest.Message)
 }
 
-inline void AudioTtsRequest_Message::SharedCtor() {
+void AudioTtsRequest_Message::SharedCtor() {
 message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 AudioTtsRequest_Message::~AudioTtsRequest_Message() {
   // @@protoc_insertion_point(destructor:palm.pi.v1.AudioTtsRequest.Message)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void AudioTtsRequest_Message::SharedDtor() {
+void AudioTtsRequest_Message::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   message_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1100,7 +1111,7 @@ failure:
   (void) cached_has_bits;
 
   // string message = 1;
-  if (!this->_internal_message().empty()) {
+  if (!this->message().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -1126,7 +1137,7 @@ size_t AudioTtsRequest_Message::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // string message = 1;
-  if (!this->_internal_message().empty()) {
+  if (!this->message().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_message());
@@ -1141,29 +1152,38 @@ size_t AudioTtsRequest_Message::ByteSizeLong() const {
   return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AudioTtsRequest_Message::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    AudioTtsRequest_Message::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AudioTtsRequest_Message::GetClassData() const { return &_class_data_; }
-
-void AudioTtsRequest_Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
-  static_cast<AudioTtsRequest_Message *>(to)->MergeFrom(
-      static_cast<const AudioTtsRequest_Message &>(from));
+void AudioTtsRequest_Message::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.AudioTtsRequest.Message)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AudioTtsRequest_Message* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AudioTtsRequest_Message>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.AudioTtsRequest.Message)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.AudioTtsRequest.Message)
+    MergeFrom(*source);
+  }
 }
-
 
 void AudioTtsRequest_Message::MergeFrom(const AudioTtsRequest_Message& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.AudioTtsRequest.Message)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_message().empty()) {
+  if (!from.message().empty()) {
     _internal_set_message(from._internal_message());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AudioTtsRequest_Message::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.AudioTtsRequest.Message)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void AudioTtsRequest_Message::CopyFrom(const AudioTtsRequest_Message& from) {
@@ -1212,15 +1232,12 @@ void AudioTtsRequest::clear_delay() {
   if (delay_ != nullptr) delay_->Clear();
   _has_bits_[0] &= ~0x00000001u;
 }
-AudioTtsRequest::AudioTtsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+AudioTtsRequest::AudioTtsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
   messages_(arena),
   loop_(arena) {
   SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
+  RegisterArenaDtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.pi.v1.AudioTtsRequest)
 }
 AudioTtsRequest::AudioTtsRequest(const AudioTtsRequest& from)
@@ -1237,18 +1254,17 @@ AudioTtsRequest::AudioTtsRequest(const AudioTtsRequest& from)
   // @@protoc_insertion_point(copy_constructor:palm.pi.v1.AudioTtsRequest)
 }
 
-inline void AudioTtsRequest::SharedCtor() {
+void AudioTtsRequest::SharedCtor() {
 delay_ = nullptr;
 }
 
 AudioTtsRequest::~AudioTtsRequest() {
   // @@protoc_insertion_point(destructor:palm.pi.v1.AudioTtsRequest)
-  if (GetArenaForAllocation() != nullptr) return;
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-inline void AudioTtsRequest::SharedDtor() {
+void AudioTtsRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete delay_;
 }
@@ -1426,22 +1442,25 @@ size_t AudioTtsRequest::ByteSizeLong() const {
   return total_size;
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AudioTtsRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    AudioTtsRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AudioTtsRequest::GetClassData() const { return &_class_data_; }
-
-void AudioTtsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
-  static_cast<AudioTtsRequest *>(to)->MergeFrom(
-      static_cast<const AudioTtsRequest &>(from));
+void AudioTtsRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.AudioTtsRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AudioTtsRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AudioTtsRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.AudioTtsRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.AudioTtsRequest)
+    MergeFrom(*source);
+  }
 }
-
 
 void AudioTtsRequest::MergeFrom(const AudioTtsRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.AudioTtsRequest)
   GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1450,7 +1469,13 @@ void AudioTtsRequest::MergeFrom(const AudioTtsRequest& from) {
   if (from._internal_has_delay()) {
     _internal_mutable_delay()->PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(from._internal_delay());
   }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AudioTtsRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.AudioTtsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void AudioTtsRequest::CopyFrom(const AudioTtsRequest& from) {
