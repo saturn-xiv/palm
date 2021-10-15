@@ -39,7 +39,7 @@ declare -a packages=(
     "flatbuffers"
 
     # "tomlplusplus" # arm
-    # "libpq[core,openssl]"
+    "libpq[core,client]"
     # "libpqxx"
     # "cpr" # cross build
     # "aws-sdk-cpp[core,s3]"

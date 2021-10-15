@@ -9,6 +9,9 @@ RUN apt -y install debian-keyring debian-archive-keyring apt-transport-https sof
 
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
+# https://apt.llvm.org/
+RUN echo "deb [arch=amd64] http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-13 main" > /etc/apt/sources.list.d/llvm.list
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 # https://wiki.ubuntu.com/ToolChain
 RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs) main restricted universe multiverse" > /etc/apt/sources.list
 RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
@@ -27,6 +30,7 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     imagemagick ffmpeg \
     g++-11 build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
+    clang-13 lldb-13 lld-13 \
     g++-10-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
     crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
     crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
@@ -62,10 +66,19 @@ RUN echo 'set-option -g history-limit 10240' > $HOME/.tmux.conf
 RUN curl -o- https://bootstrap.pypa.io/get-pip.py | python3
 RUN sh -c ". $HOME/.profile \
     && pip install --user cmake"
+
 RUN sh -c ". $HOME/.profile \
     && pip install --user ansible paramiko"
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.profile
 RUN echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.profile
+
+# https://docs.conan.io/en/latest/getting_started.html#installing-dependencies
+RUN sh -c ". $HOME/.profile \
+    && pip install --user conan"
+RUN sh -c ". $HOME/.profile \
+    && conan profile new default --detect"
+RUN sh -c ". $HOME/.profile \
+    && conan profile update settings.compiler.libcxx=libstdc++11 default"
 
 # https://github.com/nvm-sh/nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | sh
