@@ -79,6 +79,7 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 ENV GRPC_VERSION "v1.41.0"
 RUN zsh -c "source $HOME/.zshrc \
     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
+RUN sudo apt install libssl-dev
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/grpc-amd64 \
     && cd $HOME/build/grpc-amd64 \

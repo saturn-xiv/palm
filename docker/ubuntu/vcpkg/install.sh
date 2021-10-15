@@ -37,17 +37,14 @@ declare -a packages=(
     "librabbitmq"
     "paho-mqtt"
     "flatbuffers"
-    "grpc"
 
     # "tomlplusplus" # arm
-    # "libpq[core]"
+    # "libpq[core,openssl]"
     # "libpqxx"
     # "cpr" # cross build
     # "aws-sdk-cpp[core,s3]"
-    
-    
-    
-    
+    # "grpc" # old version
+
 )
 
 declare -a triplets=(
