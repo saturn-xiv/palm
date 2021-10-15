@@ -67,8 +67,6 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | s
 RUN sh -c ". $HOME/.profile \
     && nvm install node"
 RUN sh -c ". $HOME/.profile \
-    && nvm install node --lts"
-RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
@@ -91,7 +89,7 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
-# ADD vcpkg /opt/
+ADD vcpkg /opt/
 # RUN sh -c ". $HOME/.profile \
 #     && /opt/vcpkg/install.sh"
 

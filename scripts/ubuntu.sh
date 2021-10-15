@@ -3,54 +3,12 @@
 set -e
 
 export WORKSPACE=$PWD
-export VERSION=$(git describe --tags --always --dirty --first-parent)
+export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export GRPC_INSTALL_PREFIX=$HOME/.local
 export CLANG_USE_STD="-stdlib=libstdc++"
 export CMAKE_CLANG="-DCMAKE_C_COMPILER=clang-13 \
     -DCMAKE_CXX_COMPILER=clang++-13 \
     -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=lld-13'"
-
-# -DCPR_FORCE_USE_SYSTEM_CURL=ON
-export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
-    -DLIBSERIAL_BUILD_DOCS=OFF \
-    -DLIBSERIAL_ENABLE_TESTING=OFF \
-    -DLIBSERIAL_PYTHON_ENABLE=OFF \
-    -DLIBSERIAL_BUILD_EXAMPLES=OFF \
-    -DINJA_BUILD_TESTS=OFF \
-    -DFLATBUFFERS_BUILD_TESTS=OFF \
-    -DBUILD_SHARED=OFF \
-    -DBUILD_STATIC=ON \
-    -DWITH_LIBBSD=OFF \
-    -DWITH_LIBSODIUM=OFF \
-    -DWITH_TLS=OFF \
-    -DWITH_PERF_TOOL=OFF \
-    -DZMQ_BUILD_TESTS=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DBUILD_TESTING=OFF \
-    -DBUILD_BENCHMARK=OFF \
-    -DBUILD_TEST=OFF \
-    -DBUILD_DOC=OFF \
-    -DgRPC_SSL_PROVIDER=package \
-    -DgRPC_ZLIB_PROVIDER=package \
-    -DgRPC_PROTOBUF_PROVIDER=module \
-    -DgRPC_PROTOBUF_PACKAGE_TYPE=module \
-    -Dprotobuf_BUILD_TESTS=OFF \
-    -DProtobuf_PROTOC_EXECUTABLE=$GRPC_INSTALL_PREFIX/bin/protoc \
-    -DgRPC_ABSL_PROVIDER=module \
-    -DgRPC_BUILD_TESTS=OFF \
-    -DYAML_BUILD_SHARED_LIBS=OFF \
-    -DDISABLE_TESTS=ON \
-    -DBUILD_STATIC_LIBS=ON \
-    -DSQLITECPP_INTERNAL_SQLITE=OFF \
-    -DCPR_BUILD_TESTS=OFF \
-    -DWITH_SSL=system \
-    -DDCONC_WITH_UNIT_TESTS=OFF"
-export CMAKE_CROSS_OPTIONS="-DENABLE_ACTIVERECORD_COMPILER=OFF \
-    -DENABLE_PAGECOMPILER=OFF \
-    -DENABLE_PAGECOMPILER_FILE2PAGE=OFF \
-    -DFLATBUFFERS_BUILD_FLATC=OFF \
-    -DJWT_BUILD_EXAMPLES=OFF"
 
 grpc_install() {
     local grpc_version="v1.41.0"
@@ -87,7 +45,7 @@ grpc_install() {
         
 }
 
-dashboard_release() {
+build_dashboard_release() {
     cd $WORKSPACE
     if [ ! -d node_modules ]
     then
@@ -148,12 +106,8 @@ arch_clang_debug() {
     make
 }
 
-ubuntu_dependencies(){
-    sudo apt install -y libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 \
-        libcurl4-openssl-dev:$1
-}
 
-build_dashboard(){
+build_dashboard_release(){
     cd $WORKSPACE
     if [ ! -d node_modules ]
     then
@@ -214,32 +168,24 @@ build_deb(){
 
 # -----------------------------------------------------------------------------
 
-grpc_install
-
 export OS_NAME=$(lsb_release -is)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    build_dashboard
-
-    ubuntu_dependencies amd64
-    amd64_clang_debug
-    amd64_clang_release
+    build_dashboard_release
+    
+    build_amd64_clang_release
     build_deb amd64
-
-    ubuntu_dependencies armhf
-    cross_clang_release armhf arm-linux-gnueabihf arm-linux-gnueabihf-gcc-10
+    
+    build_armhf_clang_release
     build_deb armhf
 
-    ubuntu_dependencies arm64
-    cross_clang_release arm64 aarch64-linux-gnu aarch64-linux-gnu-gcc-10
+    build_arm64_clang_release
     build_deb arm64
 elif [[ $OS_NAME == "Arch" ]]
 then
-    build_dashboard
-    
-    sudo pacman -S --needed postgresql-libs mariadb-libs
-    arch_clang_debug
+    build_dashboard_release
+    build_arch_clang_debug
 else
     echo "Unknowk os $OS_NAME"
     exit 1
