@@ -11,6 +11,7 @@ set -e
 export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export VCPKG_HOME=$HOME/local/vcpkg
+export CONAN_HOME=$WORKSPACE/docker/ubuntu/conan
 
 export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
     -DLIBSERIAL_BUILD_DOCS=OFF \
@@ -108,13 +109,48 @@ export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
 #     make
 # }
 
+build_armhf_clang_release() {
+    echo 'build armhf@release...'
+    mkdir -pv $WORKSPACE/build/armhf-clang-release
+    cd $WORKSPACE/build/armhf-clang-release
+    conan install --build=missing --profile:build=default \
+        --profile:host=$CONAN_HOME/profiles/armhf-linux $CONAN_HOME
+    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release $CMAKE_OPTIONS \
+        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/armhf.cmake
+    make
+}
+
+build_arm64_clang_release() {
+    echo 'build arm64@release...'
+    mkdir -pv $WORKSPACE/build/arm64-clang-release
+    cd $WORKSPACE/build/arm64-clang-release
+    conan install --build=missing --profile:build=default \
+        --profile:host=$CONAN_HOME/profiles/arm64-linux $CONAN_HOME
+    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release $CMAKE_OPTIONS \
+        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/arm64.cmake
+    make
+}
+
+build_amd64_clang_release() {
+    echo 'build amd64@release...'
+    mkdir -pv $WORKSPACE/build/amd64-clang-release
+    cd $WORKSPACE/build/amd64-clang-release
+    conan install --build=missing --profile:build=default \
+        --profile:host=$CONAN_HOME/profiles/amd64-linux $CONAN_HOME
+    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release $CMAKE_OPTIONS \
+        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/amd64.cmake
+    make
+}
+
 build_arch_clang_debug() {
     echo 'build arch@debug...'
     mkdir -pv $WORKSPACE/build/arch-clang-debug
     cd $WORKSPACE/build/arch-clang-debug
-    conan install --build=missing --profile:build=default --profile:host=archlinux $WORKSPACE/docker/ubuntu/conan
+    conan install --build=missing --profile:build=default \
+        --profile:host=$CONAN_HOME/profiles/archlinux $CONAN_HOME
     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Debug $CMAKE_OPTIONS \
         -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
+        -DCMAKE_C_COMPILER_TARGET=x86_64-linux-gnu -DCMAKE_CXX_COMPILER_TARGET=x86_64-linux-gnu \
         -DCMAKE_EXE_LINKER_FLAGS='--ld-path=ld.lld' \
         -DCMAKE_CXX_FLAGS="-stdlib=libstdc++"
     make
@@ -136,7 +172,7 @@ build_dashboard_release(){
 }
 
 build_deb(){
-    local target=$WORKSPACE/tmp/palm-$1-$VERSION/target
+    local target=$WORKSPACE/tmp/palm-$1-$GIT_VERSION/target
     if [ -d $target ]
     then
         rm -rf $(dirname $target)
@@ -145,7 +181,7 @@ build_deb(){
     cp -r $WORKSPACE/debian $target/
 
     mkdir -pv $target/usr/bin
-    cd $WORKSPACE/build/$1-clang-release/apps/
+    cd $WORKSPACE/build/$1-clang-release/bin/
     cp -av fig mint pi $target/usr/bin/
 
     mkdir -pv $target/usr/share/palm
@@ -158,7 +194,7 @@ build_deb(){
 
     mkdir -pv $target/etc/palm
     cp -r $WORKSPACE/LICENSE $WORKSPACE/README.md $WORKSPACE/package.json $target/etc/palm/
-    echo "$VERSION $(date -R)" > $target/etc/palm/VERSION
+    echo "$GIT_VERSION $(date -R)" > $target/etc/palm/VERSION
 
     if [ "$1" = "armhf" ]
     then
@@ -186,16 +222,16 @@ export OS_NAME=$(lsb_release -is)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    build_dashboard_release
+    #build_dashboard_release
     
-    build_amd64_clang_release
-    build_deb amd64
+    #build_amd64_clang_release
+    #build_deb amd64
     
     build_armhf_clang_release
-    build_deb armhf
+    #build_deb armhf
 
     build_arm64_clang_release
-    build_deb arm64
+    #build_deb arm64
 elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard_release

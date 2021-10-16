@@ -1,5 +1,7 @@
 [requires]
-openssl/3.0.0
+icu/69.1
+# https://github.com/conan-io/conan-center-index/commit/0880e29dade6943e88c5b16aabc9b14d61d9a97c
+openssl/1.1.1l
 boost/1.77.0
 #soci/4.0.2
 libpqxx/7.5.2
@@ -23,6 +25,10 @@ paho-mqtt-cpp/1.2.0
 cppcodec/0.2
 flatbuffers/2.0.0
 grpc/1.39.1
+#gflags/2.2.2
+#glog/0.5.0
+#gtest/cci.20210126
+#aws-sdk-cpp/1.8.130
 
 [options]
 #soci:empty=True
@@ -31,7 +37,15 @@ grpc/1.39.1
 #soci:with_mysql=True
 #soci:with_postgresql=True
 zeromq:encryption=None
+sqlite3:build_executable=False
+# https://github.com/conan-io/conan-center-index/issues/7114#issuecomment-908424459
+boost:without_locale=True
+boost:without_log=True
+boost:without_stacktrace=True
+boost:without_python=True
+#boost:without_test=True
 
 [generators]
 cmake
 make
+b2
