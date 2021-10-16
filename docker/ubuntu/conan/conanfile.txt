@@ -1,8 +1,8 @@
 [requires]
-icu/69.1
+libxcrypt/4.4.26
 # https://github.com/conan-io/conan-center-index/commit/0880e29dade6943e88c5b16aabc9b14d61d9a97c
 openssl/1.1.1l
-boost/1.77.0
+boost/1.75.0
 #soci/4.0.2
 libpqxx/7.5.2
 mariadb-connector-c/3.1.12
@@ -38,12 +38,8 @@ grpc/1.39.1
 #soci:with_postgresql=True
 zeromq:encryption=None
 sqlite3:build_executable=False
-# https://github.com/conan-io/conan-center-index/issues/7114#issuecomment-908424459
-boost:without_locale=True
-boost:without_log=True
 boost:without_stacktrace=True
 boost:without_python=True
-#boost:without_test=True
 
 [generators]
 cmake

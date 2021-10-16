@@ -1,4 +1,4 @@
-triple=arm-linux-gnueabihf
+target=arm-linux-gnueabihf
 
 [settings]
 os=Linux
@@ -8,16 +8,21 @@ compiler.version=13
 compiler.libcxx=libstdc++11
 compiler.cppstd=20
 build_type=Release
+boost:compiler=gcc
+boost:compiler.cppstd=11
+boost:compiler.version=10
+boost:compiler.libcxx=libstdc++11
 
 [env]
+CHOST=$target
 CC=clang-13
 CXX=clang++-13
-CHOST=$triple
-AR=$triple-ar
-AS=$triple-as
-RANLIB=$triple-ranlib
-LD=$triple-ld
-STRIP=$triple-strip
-CFLAGS="-ccc-gcc-name $triple-gcc-10"
-CXXFLAGS="-ccc-gcc-name $triple-gcc-10"
+CFLAGS="-target $target -ccc-gcc-name $target-gcc-10"
+CXXFLAGS="-target $target -ccc-gcc-name $target-gcc-10"
 LDFLAGS="--ld-path=ld.lld-13"
+
+boost:CC=$target-gcc-10
+boost:CXX=$target-g++-10
+boost:CFLAGS=""
+boost:CXXFLAGS=""
+boost:LDFLAGS=""

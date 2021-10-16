@@ -105,11 +105,11 @@ then
     build_backend amd64-clang Release
     build_deb amd64 clang
     
-    build_backend armhf-gcc Release
-    build_deb armhf gcc
+    build_backend armhf-clang Release
+    build_deb armhf clang
 
-    build_backend arm64-gcc Release
-    build_deb arm64 gcc
+    build_backend arm64-clang Release
+    build_deb arm64 clang
 elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard
