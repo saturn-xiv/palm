@@ -13,151 +13,25 @@ export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export VCPKG_HOME=$HOME/local/vcpkg
 export CONAN_HOME=$WORKSPACE/docker/ubuntu/conan
 
-export CMAKE_OPTIONS="-DINSTALL_SHARED=OFF \
+export CMAKE_LIBSERIAL_OPTIONS="-DINSTALL_SHARED=OFF \
     -DLIBSERIAL_BUILD_DOCS=OFF \
     -DLIBSERIAL_ENABLE_TESTING=OFF \
     -DLIBSERIAL_PYTHON_ENABLE=OFF \
     -DLIBSERIAL_BUILD_EXAMPLES=OFF"
 
-# export GRPC_INSTALL_PREFIX=$HOME/.local
-# export CLANG_USE_STD="-stdlib=libstdc++"
-# export CMAKE_CLANG="-DCMAKE_C_COMPILER=clang-13 \
-#     -DCMAKE_CXX_COMPILER=clang++-13 \
-#     -DCMAKE_EXE_LINKER_FLAGS='-fuse-ld=lld-13'"
-
-# grpc_install() {
-#     local grpc_version="v1.41.0"
-#     local protoc_version="3.17.3.0"
-#     local grpc_src=$HOME/downloads/grpc
-#     local grpc_build=$HOME/build/grpc-amd64
-    
-#     if [ -f $GRPC_INSTALL_PREFIX/bin/protoc-$protoc_version ]
-#     then
-#         return
-#     fi
-    
-#     if [ -d $grpc_src ]
-#     then
-#         cd $grpc_src
-#         git checkout --recurse-submodules $grpc_version
-#     else
-#         git clone --recurse-submodules -b $grpc_version https://github.com/grpc/grpc.git $grpc_src
-#     fi
-    
-#     if [ -d $grpc_build ]
-#     then
-#         rm -rv $grpc_build
-#     fi
-#     mkdir -pv $grpc_build
-#     cd $grpc_build
-#     cmake -DCMAKE_BUILD_TYPE=Release \
-#         -DgRPC_INSTALL=ON \
-#         -DgRPC_BUILD_TESTS=OFF \
-#         -DgRPC_SSL_PROVIDER=package \
-#         -DCMAKE_INSTALL_PREFIX=$GRPC_INSTALL_PREFIX $grpc_src
-#     make
-#     make install
-        
-# }
-
-# build_dashboard_release() {
-#     cd $WORKSPACE
-#     if [ ! -d node_modules ]
-#     then
-#         yarn install
-#     fi
-#     cd $WORKSPACE/dashboard
-#     if [ ! -d node_modules ]
-#     then
-#         yarn install
-#     fi
-#     yarn build
-# }
-
-# cross_clang_release() {
-#     echo "build ${1}@release..."
-#     mkdir -pv $WORKSPACE/build/${1}-clang-release
-#     cd $WORKSPACE/build/${1}-clang-release
-#     local target_flags="-target $2 -ccc-gcc-name $3"
-    
-#     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release \
-#         $CMAKE_CLANG $CMAKE_OPTIONS $CMAKE_CROSS_OPTIONS \
-#         -DCMAKE_C_COMPILER_TARGET=$2 -DCMAKE_CXX_COMPILER_TARGET=$2 \
-#         -DCMAKE_C_FLAGS="$target_flags" \
-#         -DCMAKE_CXX_FLAGS="$CLANG_USE_STD $target_flags" \
-#         -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/docker/ubuntu/$1.cmake
-#     make
-# }
-
-# amd64_clang_release() {
-#     echo 'build amd64@release...'
-#     mkdir -pv $WORKSPACE/build/amd64-clang-release
-#     cd $WORKSPACE/build/amd64-clang-release
-#     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release \
-#         $CMAKE_CLANG $CMAKE_OPTIONS \
-#         -DCMAKE_CXX_FLAGS="$CLANG_USE_STD"
-#     make
-# }
-
-# amd64_clang_debug() {
-#     echo 'build amd64@debug...'
-#     mkdir -pv $WORKSPACE/build/amd64-clang-debug
-#     cd $WORKSPACE/build/amd64-clang-debug
-#     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Debug \
-#         $CMAKE_CLANG $CMAKE_OPTIONS \
-#         -DCMAKE_CXX_FLAGS="$CLANG_USE_STD"
-#     make
-# }
-
-build_armhf_clang_release() {
-    echo 'build armhf@release...'
-    mkdir -pv $WORKSPACE/build/armhf-clang-release
-    cd $WORKSPACE/build/armhf-clang-release
+build_backend() {
+    echo "build $1@$2..."
+    mkdir -pv $WORKSPACE/build/$1-$2
+    cd $WORKSPACE/build/$1-$2
     conan install --build=missing --profile:build=default \
-        --profile:host=$CONAN_HOME/profiles/armhf-linux $CONAN_HOME
-    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release $CMAKE_OPTIONS \
-        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/armhf.cmake
+        --profile:host=$CONAN_HOME/profiles/$1 $CONAN_HOME
+    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=$2 \
+        $CMAKE_LIBSERIAL_OPTIONS \
+        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/$1.cmake
     make
 }
 
-build_arm64_clang_release() {
-    echo 'build arm64@release...'
-    mkdir -pv $WORKSPACE/build/arm64-clang-release
-    cd $WORKSPACE/build/arm64-clang-release
-    conan install --build=missing --profile:build=default \
-        --profile:host=$CONAN_HOME/profiles/arm64-linux $CONAN_HOME
-    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release $CMAKE_OPTIONS \
-        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/arm64.cmake
-    make
-}
-
-build_amd64_clang_release() {
-    echo 'build amd64@release...'
-    mkdir -pv $WORKSPACE/build/amd64-clang-release
-    cd $WORKSPACE/build/amd64-clang-release
-    conan install --build=missing --profile:build=default \
-        --profile:host=$CONAN_HOME/profiles/amd64-linux $CONAN_HOME
-    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Release $CMAKE_OPTIONS \
-        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/amd64.cmake
-    make
-}
-
-build_arch_clang_debug() {
-    echo 'build arch@debug...'
-    mkdir -pv $WORKSPACE/build/arch-clang-debug
-    cd $WORKSPACE/build/arch-clang-debug
-    conan install --build=missing --profile:build=default \
-        --profile:host=$CONAN_HOME/profiles/archlinux $CONAN_HOME
-    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=Debug $CMAKE_OPTIONS \
-        -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
-        -DCMAKE_C_COMPILER_TARGET=x86_64-linux-gnu -DCMAKE_CXX_COMPILER_TARGET=x86_64-linux-gnu \
-        -DCMAKE_EXE_LINKER_FLAGS='--ld-path=ld.lld' \
-        -DCMAKE_CXX_FLAGS="-stdlib=libstdc++"
-    make
-}
-
-
-build_dashboard_release(){
+build_dashboard(){
     cd $WORKSPACE
     if [ ! -d node_modules ]
     then
@@ -172,7 +46,7 @@ build_dashboard_release(){
 }
 
 build_deb(){
-    local target=$WORKSPACE/tmp/palm-$1-$GIT_VERSION/target
+    local target=$WORKSPACE/tmp/palm-$1-$2-$GIT_VERSION/target
     if [ -d $target ]
     then
         rm -rf $(dirname $target)
@@ -181,7 +55,7 @@ build_deb(){
     cp -r $WORKSPACE/debian $target/
 
     mkdir -pv $target/usr/bin
-    cd $WORKSPACE/build/$1-clang-release/bin/
+    cd $WORKSPACE/build/$1-$2-Release/bin/
     cp -av fig mint pi $target/usr/bin/
 
     mkdir -pv $target/usr/share/palm
@@ -206,10 +80,14 @@ build_deb(){
         CC=aarch64-linux-gnu-gcc
         CXX=aarch64-linux-gnu-g++
         export CC CXX
-    else
+    elif [ "$1" = "amd64" ]
+    then
         CC=gcc
         CXX=g++
         export CC CXX
+    else
+        echo "unknown arch $1"
+        return 1
     fi
     
     cd $target
@@ -222,20 +100,20 @@ export OS_NAME=$(lsb_release -is)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    #build_dashboard_release
+    build_dashboard
     
-    #build_amd64_clang_release
-    #build_deb amd64
+    build_backend amd64-clang Release
+    build_deb amd64 clang
     
-    build_armhf_clang_release
-    #build_deb armhf
+    build_backend armhf-gcc Release
+    build_deb armhf gcc
 
-    build_arm64_clang_release
-    #build_deb arm64
+    build_backend arm64-gcc Release
+    build_deb arm64 gcc
 elif [[ $OS_NAME == "Arch" ]]
 then
-    build_dashboard_release
-    build_arch_clang_debug
+    build_dashboard
+    build_backend arch-clang Debug
 else
     echo "Unknowk os $OS_NAME"
     exit 1
