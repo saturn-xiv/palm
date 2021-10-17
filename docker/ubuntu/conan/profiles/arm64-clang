@@ -2,7 +2,7 @@ target=aarch64-linux-gnu
 
 [settings]
 os=Linux
-arch=armv7hf
+arch=armv8
 compiler=clang
 compiler.version=13
 compiler.libcxx=libstdc++11
