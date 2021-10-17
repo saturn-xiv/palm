@@ -4,51 +4,41 @@
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
 
-static void loop_ini_tree(std::map<std::string, std::string>& items,
-                          const std::optional<std::string>& key,
-                          const boost::property_tree::ptree& val) {
-  {
-    const std::optional<std::string> v = val.get_value<std::string>();
-    if (v) {
-      items[key.value()] = v.value();
-      return;
-    }
-  }
-  for (const auto& it : val) {
-    const std::string k = key ? (key.value() + "." + it.first) : it.first;
-    loop_ini_tree(items, k, it.second);
-  }
+palm::orm::Schema::Schema(const std::filesystem::path& root) {
+  this->load_queries(root);
+  this->load_migrations(root);
 }
 
-std::map<std::string, std::string> palm::orm::Schema::load_queries(
-    const std::filesystem::path& root) {
+void palm::orm::Schema::load_queries(const std::filesystem::path& root) {
   auto file = root / "queries.ini";
   BOOST_LOG_TRIVIAL(debug) << "load queries from " << file.string();
-  boost::property_tree::ptree queries;
-  boost::property_tree::ini_parser::read_ini(file, queries);
+  boost::property_tree::ptree tree;
+  boost::property_tree::ini_parser::read_ini(file, tree);
 
-  std::map<std::string, std::string> items;
-  loop_ini_tree(items, std::nullopt, queries);
-  return items;
+  for (const auto& section : tree) {
+    for (const auto& node : section.second) {
+      const std::string key = section.first + "." + node.first;
+      const std::optional<std::string> val =
+          node.second.get_value<std::string>();
+      this->queries[key] = val.value();
+    }
+  }
 }
 
-std::vector<palm::orm::Migration> palm::orm::Schema::load_migrations(
-    const std::filesystem::path& root) {
-  std::vector<palm::orm::Migration> items;
-
+void palm::orm::Schema::load_migrations(const std::filesystem::path& root) {
   const auto node = root / Migration::MIGRATION_FOLDER;
-
   BOOST_LOG_TRIVIAL(debug) << "load db migrations from " << node.string();
+
   for (const auto& it : std::filesystem::directory_iterator(node)) {
     if (std::filesystem::is_directory(it)) {
       auto mig = Migration(it);
       BOOST_LOG_TRIVIAL(debug)
           << "find migration " << mig.version << " " << mig.name;
-      items.push_back(mig);
+      this->migrations.push_back(mig);
     }
   }
-  std::sort(items.begin(), items.end(), palm::orm::sort_migration_asc());
-  return items;
+  std::sort(this->migrations.begin(), this->migrations.end(),
+            palm::orm::sort_migration_asc());
 }
 
 void palm::orm::Migration::generate(const std::filesystem::path& root,

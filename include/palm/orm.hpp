@@ -68,13 +68,14 @@ struct sort_migration_asc {
 
 class Schema {
  public:
-  Schema() {}
-  static std::vector<Migration> load_migrations(
-      const std::filesystem::path& root);
-  static std::map<std::string, std::string> load_queries(
-      const std::filesystem::path& root);
+  Schema(const std::filesystem::path& root);
 
  private:
+  void load_migrations(const std::filesystem::path& root);
+  void load_queries(const std::filesystem::path& root);
+
+  std::vector<Migration> migrations;
+  std::map<std::string, std::string> queries;
 };
 
 }  // namespace orm

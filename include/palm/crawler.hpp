@@ -7,12 +7,25 @@ namespace crawler {
 class Site {
  public:
   Site() {}
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Site, name, url, ttl)
+
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Site, id, name, url, ttl, version)
 
  private:
+  int8_t id;
   std::string name;
   std::string url;
-  size_t ttl;
+  std::chrono::minutes ttl;
+  int8_t version;
+  std::tm created_at;
+  std::tm updated_at;
+};
+
+class Log {
+ private:
+  int8_t id;
+  int8_t site_id;
+  std::string body;
+  std::tm created_at;
 };
 
 class Dao {
