@@ -8,9 +8,7 @@ target_include_directories(palm PUBLIC
   ${palm_SOURCE_DIR}/include
 )
 
-target_link_libraries(palm PUBLIC lemon
-  libserial_static
-)
+target_link_libraries(palm PUBLIC lemon)
 
 source_group(
   TREE "${PROJECT_SOURCE_DIR}/include"

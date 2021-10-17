@@ -5,30 +5,27 @@
 
 #include <boost/algorithm/string.hpp>
 
-void write_f(std::shared_ptr<palm::Tty> port) {
+class SerialPort : public palm::SerialPort {
+ protected:
+  void on_receive(const std::string& message) const override {
+    std::cout << "handle message: " << message << std::endl;
+  }
+  std::optional<std::pair<size_t, size_t>> match(
+      const std::string& buffer) const override {
+    return palm::SerialPort::match(buffer, "[", "]");
+  }
+};
+
+BOOST_AUTO_TEST_CASE(rs232) {
+  std::shared_ptr<SerialPort> port = std::make_shared<SerialPort>();
+  port->start(std::getenv("TTY_NAME"));
   std::ifstream file(std::getenv("TTY_SCRIPT"));
   for (std::string line; std::getline(file, line);) {
     boost::trim(line);
     if (line.size() > 0) {
       std::cout << "read line: " << line << std::endl;
       port->write(line);
-      std::this_thread::sleep_for(std::chrono::seconds(1));
+      std::this_thread::sleep_for(std::chrono::minutes(1));
     }
   }
-}
-
-void read_f(std::shared_ptr<palm::Tty> tty) {
-  for (auto i = 1; i < 100; i++) {
-    const auto it = tty->read();
-    std::cout << "receive message(" << i << "): " << it << std::endl;
-  }
-}
-
-BOOST_AUTO_TEST_CASE(rs232) {
-  std::shared_ptr<palm::Tty> port =
-      std::make_shared<palm::Tty>(std::getenv("TTY_NAME"));
-  std::thread tw(write_f, port);
-  std::thread tr(read_f, port);
-  tw.join();
-  tr.join();
 }

@@ -23,13 +23,6 @@ string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
 configure_file(include/palm/version.h.in ${PROJECT_SOURCE_DIR}/include/palm/version.hpp)
 # --------------------------------------------------------
-FetchContent_Declare(
-    libserial
-    GIT_REPOSITORY  "https://github.com/crayzeewulf/libserial.git"
-    GIT_TAG         "1d1e47a"
-)
-FetchContent_MakeAvailable(libserial)
-# --------------------------------------------------------
 add_subdirectory(clients)
 add_subdirectory(src)
 add_subdirectory(apps)

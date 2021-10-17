@@ -11,7 +11,7 @@ namespace pi {
 
 class TtyService final : public palm::pi::v1::Tty::Service {
  public:
-  TtyService(std::shared_ptr<Jwt> jwt, std::shared_ptr<palm::Tty> port)
+  TtyService(std::shared_ptr<Jwt> jwt, std::shared_ptr<palm::SerialPort> port)
       : jwt(jwt), port(port) {}
   ~TtyService() {}
   grpc::Status Write(grpc::ServerContext* context,
@@ -20,7 +20,7 @@ class TtyService final : public palm::pi::v1::Tty::Service {
 
  private:
   std::shared_ptr<Jwt> jwt;
-  std::shared_ptr<palm::Tty> port;
+  std::shared_ptr<palm::SerialPort> port;
 };
 }  // namespace pi
 }  // namespace palm
