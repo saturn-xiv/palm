@@ -3,32 +3,47 @@
 #include "palm/env.hpp"
 
 #include <SQLiteCpp/SQLiteCpp.h>
+#include <soci/postgresql/soci-postgresql.h>
+#include <soci/soci.h>
+#include <soci/sqlite3/soci-sqlite3.h>
 #include <pqxx/pqxx>
 
 namespace palm {
 
 namespace orm {
 
-class Migration {
+class logger : public soci::logger_impl {
  public:
-  Migration() {}
-  Migration(const std::filesystem::path& root);
+  void start_query(std::string const& query) {
+    BOOST_LOG_TRIVIAL(debug) << query;
+  }
+
+ private:
+  logger_impl* do_clone() const { return new logger(); }
+};
+
+namespace migration {
+
+inline static const std::string DIV = "-";
+inline static const std::string UP = "up.sql";
+inline static const std::string DOWN = "down.sql";
+inline static const std::string MIGRATION_FOLDER = "migrations";
+
+static const int VERSION_SIZE = 15;
+static const int NAME_SIZE = 36;
+static const int RUN_AT_SIZE = 24;
+
+class Item {
+ public:
+  Item() {}
+  Item(const std::filesystem::path& root);
   static void generate(const std::filesystem::path& root,
                        const std::string& name);
 
-  static void header(std::ostream& out) {
+  friend std::ostream& operator<<(std::ostream& out, Item const& self) {
     std::ios_base::fmtflags f(out.flags());
-    out << std::left << std::setw(Migration::VERSION_SIZE) << "Version"
-        << std::setw(Migration::NAME_SIZE) << "Name"
-        << std::setw(Migration::RUN_AT_SIZE) << "Run At";
-    out.flags(f);
-  }
-
-  friend std::ostream& operator<<(std::ostream& out, Migration const& self) {
-    std::ios_base::fmtflags f(out.flags());
-    out << std::left << std::setw(Migration::VERSION_SIZE) << self.version
-        << std::setw(Migration::NAME_SIZE) << self.name
-        << std::setw(Migration::RUN_AT_SIZE);
+    out << std::left << std::setw(VERSION_SIZE) << self.version
+        << std::setw(NAME_SIZE) << self.name << std::setw(RUN_AT_SIZE);
     if (self.run_at) {
       out << std::asctime(&self.run_at.value());
     } else {
@@ -38,19 +53,7 @@ class Migration {
     return out;
   }
 
-  friend struct sort_migration_asc;
-  friend class Schema;
-
-  inline static const std::string DIV = "-";
-  inline static const std::string UP = "up.sql";
-  inline static const std::string DOWN = "down.sql";
-  inline static const std::string MIGRATION_FOLDER = "migrations";
-
-  static const int VERSION_SIZE = 15;
-  static const int NAME_SIZE = 36;
-  static const int RUN_AT_SIZE = 24;
-
- private:
+ public:
   int32_t id;
   std::string name;
   std::string version;
@@ -60,22 +63,42 @@ class Migration {
   std::tm created_at;
 };
 
-struct sort_migration_asc {
-  inline bool operator()(const Migration& a, const Migration& b) {
+struct sort_by_asc {
+  inline bool operator()(const Item& a, const Item& b) {
     return (a.version < b.version);
   }
 };
 
-class Schema {
+void load(soci::session& sql, const std::filesystem::path& root);
+void migrate(soci::session& sql);
+void rollback(soci::session& sql);
+void status(soci::session& sql, std::ostream& out);
+
+}  // namespace migration
+
+class Query {
  public:
-  Schema(const std::filesystem::path& root);
+  static void load(const std::filesystem::path& root);
+  inline static std::string get(const std::string& name) {
+    return instance.at(name);
+  }
 
  private:
-  void load_migrations(const std::filesystem::path& root);
-  void load_queries(const std::filesystem::path& root);
+  inline static std::map<std::string, std::string> instance;
+};
 
-  std::vector<Migration> migrations;
-  std::map<std::string, std::string> queries;
+class Pool {
+ public:
+  static void open(const soci::backend_factory& backend, const std::string& url,
+                   const size_t size);
+  static inline std::shared_ptr<soci::session> get() {
+    std::shared_ptr<soci::session> sql =
+        std::make_shared<soci::session>(*instance);
+    return sql;
+  }
+
+ private:
+  inline static std::shared_ptr<soci::connection_pool> instance;
 };
 
 }  // namespace orm
@@ -96,10 +119,12 @@ std::shared_ptr<SQLite::Database> open(
     const std::filesystem::path& db, const bool wal_mode = true,
     const std::optional<std::chrono::seconds>& busy_timeout =
         std::chrono::seconds(5));
-}
+}  // namespace sqlite
+
 // https://www.postgresql.org/docs/current/runtime-config-logging.html
 // /var/lib/postgres/data/postgresql.conf: log_statement = 'all'
 namespace postgresql {
+
 class Config {
  public:
   Config() {}
@@ -108,6 +133,7 @@ class Config {
          const std::optional<std::string>& password = std::nullopt)
       : host(host), port(port), name(name), user(user), password(password) {}
   std::shared_ptr<pqxx::connection> open() const;
+  std::string url() const;
 
   void operator=(const toml::table& node) {
     {
@@ -230,3 +256,43 @@ class Config {
 };
 }  // namespace mysql
 }  // namespace palm
+
+namespace soci {
+template <>
+struct type_conversion<palm::orm::migration::Item> {
+  typedef values base_type;
+
+  static void from_base(values const& v, indicator /* ind */,
+                        palm::orm::migration::Item& p) {
+    p.id = v.get<int32_t>("id");
+    p.name = v.get<std::string>("name");
+    p.version = v.get<std::string>("version");
+    p.up = v.get<std::string>("up");
+    p.down = v.get<std::string>("down");
+
+    if (v.get_indicator("run_at") == i_null) {
+      p.run_at = std::nullopt;
+    } else {
+      p.run_at = v.get<std::tm>("run_at");
+    }
+    p.created_at = v.get<std::tm>("created_at");
+  }
+
+  static void to_base(const palm::orm::migration::Item& p, values& v,
+                      indicator& ind) {
+    v.set("id", p.id);
+    v.set("name", p.name);
+    v.set("version", p.version);
+    v.set("up", p.up);
+    v.set("down", p.down);
+
+    if (p.run_at) {
+      v.set("run_at", p.run_at.value());
+    } else {
+      v.set("run_at", NULL, i_null);
+    }
+    v.set("created_at", p.created_at);
+    ind = i_ok;
+  }
+};
+}  // namespace soci

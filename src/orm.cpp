@@ -4,13 +4,8 @@
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
 
-palm::orm::Schema::Schema(const std::filesystem::path& root) {
-  this->load_queries(root);
-  this->load_migrations(root);
-}
-
-void palm::orm::Schema::load_queries(const std::filesystem::path& root) {
-  auto file = root / "queries.ini";
+void palm::orm::Query::load(const std::filesystem::path& root) {
+  const auto file = root / "queries.ini";
   BOOST_LOG_TRIVIAL(debug) << "load queries from " << file.string();
   boost::property_tree::ptree tree;
   boost::property_tree::ini_parser::read_ini(file, tree);
@@ -18,65 +13,141 @@ void palm::orm::Schema::load_queries(const std::filesystem::path& root) {
   for (const auto& section : tree) {
     for (const auto& node : section.second) {
       const std::string key = section.first + "." + node.first;
+      BOOST_LOG_TRIVIAL(debug) << "find query: " << key;
       const std::optional<std::string> val =
           node.second.get_value<std::string>();
-      this->queries[key] = val.value();
+      instance[key] = val.value();
     }
   }
 }
 
-void palm::orm::Schema::load_migrations(const std::filesystem::path& root) {
-  const auto node = root / Migration::MIGRATION_FOLDER;
+void palm::orm::migration::load(soci::session& sql,
+                                const std::filesystem::path& root) {
+  {
+    std::ifstream it(root / "schema_migrations.sql");
+    auto script = std::string(std::istreambuf_iterator<char>(it),
+                              std::istreambuf_iterator<char>());
+    boost::trim(script);
+    sql << script;
+  }
+  const auto node = root / MIGRATION_FOLDER;
   BOOST_LOG_TRIVIAL(debug) << "load db migrations from " << node.string();
 
   for (const auto& it : std::filesystem::directory_iterator(node)) {
     if (std::filesystem::is_directory(it)) {
-      auto mig = Migration(it);
+      auto mig = Item(it);
       BOOST_LOG_TRIVIAL(debug)
           << "find migration " << mig.version << " " << mig.name;
-      this->migrations.push_back(mig);
+
+      Item it;
+      sql << palm::orm::Query::get("schema_migrations.by-version-and-name"),
+          soci::use(mig), soci::into(it);
+
+      if (sql.got_data()) {
+        if (it.up != mig.up || it.down != mig.down) {
+          std::stringstream ss;
+          ss << "Migration [" << mig.version << "," << mig.name
+             << "] already exists, however they aren't match";
+          throw std::invalid_argument(ss.str());
+        }
+      } else {
+        sql << palm::orm::Query::get("schema_migrations.insert"),
+            soci::use(mig);
+      }
     }
   }
-  std::sort(this->migrations.begin(), this->migrations.end(),
-            palm::orm::sort_migration_asc());
+
+  // std::sort(this->migrations.begin(), this->migrations.end(),
+  //           palm::orm::migration::sort_by_asc());
 }
 
-void palm::orm::Migration::generate(const std::filesystem::path& root,
-                                    const std::string& name) {
+void palm::orm::migration::migrate(soci::session& sql) {
+  soci::transaction tr(sql);
+  soci::rowset<Item> items =
+      (sql.prepare << palm::orm::Query::get("schema_migrations.all-asc"));
+
+  for (const auto& it : items) {
+    BOOST_LOG_TRIVIAL(info)
+        << "found migration " << it.version << " " << it.name;
+    if (it.run_at) {
+      BOOST_LOG_TRIVIAL(info) << "ignore...";
+      continue;
+    }
+    sql << it.up;
+    sql << palm::orm::Query::get("schema_migrations.set-run-at"), soci::use(it);
+  }
+  tr.commit();
+}
+void palm::orm::migration::rollback(soci::session& sql) {
+  soci::transaction tr(sql);
+  Item it;
+  sql << palm::orm::Query::get("schema_migrations.latest"), soci::into(it);
+  if (!sql.got_data()) {
+    BOOST_LOG_TRIVIAL(debug) << "empty database";
+    return;
+  }
+
+  BOOST_LOG_TRIVIAL(info) << "rollback migration " << it.version << " "
+                          << it.name;
+
+  sql << it.down;
+  sql << palm::orm::Query::get("schema_migrations.delete"), soci::use(it);
+  tr.commit();
+}
+
+void palm::orm::migration::Item::generate(const std::filesystem::path& root,
+                                          const std::string& name) {
   std::stringstream ss;
   auto now = std::time(nullptr);
-  ss << std::put_time(std::gmtime(&now), "%Y%m%d%H%M%S") << Migration::DIV
-     << name;
-  const auto node = root / Migration::MIGRATION_FOLDER / ss.str();
+  ss << std::put_time(std::gmtime(&now), "%Y%m%d%H%M%S") << DIV << name;
+  const auto node = root / MIGRATION_FOLDER / ss.str();
   BOOST_LOG_TRIVIAL(info) << "create migration in folder " << node;
   std::filesystem::create_directories(node);
   {
-    std::ofstream it(node / Migration::UP);
+    std::ofstream it(node / UP);
     it.close();
   }
   {
-    std::ofstream it(node / Migration::DOWN);
+    std::ofstream it(node / DOWN);
     it.close();
   }
 }
+void palm::orm::migration::status(soci::session& sql, std::ostream& out) {
+  {
+    std::ios_base::fmtflags f(out.flags());
+    out << std::left << std::setw(VERSION_SIZE) << "Version"
+        << std::setw(NAME_SIZE) << "Name" << std::setw(RUN_AT_SIZE) << "Run At";
+    out.flags(f);
+  }
+  out << std::endl;
 
-palm::orm::Migration::Migration(const std::filesystem::path& root) {
+  {
+    soci::rowset<Item> items =
+        (sql.prepare << palm::orm::Query::get("schema_migrations.all-asc"));
+
+    for (const auto& it : items) {
+      out << it << std::endl;
+    }
+  }
+}
+
+palm::orm::migration::Item::Item(const std::filesystem::path& root) {
   BOOST_LOG_TRIVIAL(info) << "load migration from " << root;
   {
-    std::ifstream it(root / Migration::UP);
-    this->up = std::string((std::istreambuf_iterator<char>(it)),
+    std::ifstream it(root / UP);
+    this->up = std::string(std::istreambuf_iterator<char>(it),
                            std::istreambuf_iterator<char>());
     boost::trim(this->up);
   }
   {
-    std::ifstream it(root / Migration::DOWN);
-    this->down = std::string((std::istreambuf_iterator<char>(it)),
+    std::ifstream it(root / DOWN);
+    this->down = std::string(std::istreambuf_iterator<char>(it),
                              std::istreambuf_iterator<char>());
     boost::trim(this->down);
   }
 
   const auto fn = root.filename().string();
-  const auto pos = fn.find(Migration::DIV);
+  const auto pos = fn.find(DIV);
   if (pos == std::string::npos) {
     throw std::invalid_argument("bad folder name");
   }
@@ -118,22 +189,26 @@ std::shared_ptr<SQLite::Database> palm::sqlite::open(
   return db;
 }
 
+std::string palm::postgresql::Config::url() const {
+  std::stringstream ss;
+  ss << "host=" << this->host;
+  ss << " port=" << this->port;
+  ss << " dbname=" << this->name;
+  ss << " user=" << this->user;
+  if (password) {
+    ss << " password=" << password.value();
+  }
+  ss << " requiressl=0";
+  return ss.str();
+}
+
 std::shared_ptr<pqxx::connection> palm::postgresql::Config::open() const {
   BOOST_LOG_TRIVIAL(debug) << "connect to " << this->user << "@" << this->host
                            << ":" << this->port << "/" << this->name;
-  std::stringstream url;
-  {
-    url << "host=" << this->host;
-    url << " port=" << this->port;
-    url << " dbname=" << this->name;
-    url << " user=" << this->user;
-    if (password) {
-      url << " password=" << password.value();
-    }
-    url << " requiressl=0";
-  }
+
+  const auto url = this->url();
   std::shared_ptr<pqxx::connection> con =
-      std::make_shared<pqxx::connection>(url.str());
+      std::make_shared<pqxx::connection>(url);
   {
     pqxx::work tr{*con};
     pqxx::result rst{tr.exec("SELECT VERSION() AS value")};
@@ -143,4 +218,14 @@ std::shared_ptr<pqxx::connection> palm::postgresql::Config::open() const {
     tr.commit();
   }
   return con;
+}
+
+void palm::orm::Pool::open(const soci::backend_factory& backend,
+                           const std::string& url, const size_t size) {
+  instance = std::make_shared<soci::connection_pool>(size);
+  for (auto i = 0; i < size; i++) {
+    soci::session& sql = instance->at(i);
+    sql.open(backend, url);
+    sql.set_logger(new palm::orm::logger());
+  }
 }

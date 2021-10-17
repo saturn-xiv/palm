@@ -15,18 +15,30 @@ BOOST_AUTO_TEST_CASE(migration) {
   const std::filesystem::path root = "db-test";
 
   const std::string name = palm::random::alphanumeric(8);
-  palm::orm::Migration::generate(root, name);
-  const auto migrations = palm::orm::Schema::load_migrations(root);
-  palm::orm::Migration::header(std::cout);
-  std::cout << std::endl;
-  for (const auto& it : migrations) {
-    std::cout << it << std::endl;
-  }
+  palm::orm::migration::Item::generate(root, name);
 }
 
-BOOST_AUTO_TEST_CASE(queries) {
-  const auto queries = palm::orm::Schema::load_queries("db/postgresql");
-  for (const auto& it : queries) {
-    std::cout << it.first << " = " << it.second << std::endl;
+BOOST_AUTO_TEST_CASE(schema) {
+  const std::filesystem::path root = "db/postgresql";
+  palm::orm::Query::load(root);
+  std::cout << "get query: "
+            << palm::orm::Query::get("schema_migrations.all-asc") << std::endl;
+
+  palm::postgresql::Config cfg("palm_test");
+  palm::orm::Pool::open(soci::postgresql, cfg.url(), 12);
+  {
+    auto sql = palm::orm::Pool::get();
+    std::tm now;
+    *sql << palm::orm::Query::get("schema_migrations.heartbeat"),
+        soci::into(now);
+    std::cout << "current db timestamp: " << std::asctime(&now) << std::endl;
+  }
+
+  {
+    auto sql = palm::orm::Pool::get();
+    palm::orm::migration::load(*sql, root);
+    palm::orm::migration::migrate(*sql);
+    palm::orm::migration::rollback(*sql);
+    palm::orm::migration::status(*sql, std::cout);
   }
 }
