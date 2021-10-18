@@ -5,7 +5,7 @@ set -e
 export VERSION=$(date "+%4Y%m%d%H%M%S")
 export CODE="palm-pi"
 
-buildah pull ubuntu:bionic
+buildah pull ubuntu:latest
 buildah bud --layers -t $CODE .
 podman save -o $CODE-$VERSION.tar $CODE
 

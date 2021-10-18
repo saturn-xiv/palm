@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -7,7 +7,7 @@ RUN apt update
 RUN apt -y upgrade
 
 RUN apt install -y build-essential pkg-config libtool automake autoconf binutils cpio \
-    unzip curl wget \
+    unzip curl wget bc \
     git rsync subversion \
     w3m graphviz \
     python3 python3-distutils python3-pip python3-dev \    
@@ -59,8 +59,7 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 
 ENV BUILDROOT_VERSION "2021.08.1"
-RUN git clone https://github.com/buildroot/buildroot.git $HOME/build/buildroot
-RUN cd $HOME/build/buildroot && git checkout ${BUILDROOT_VERSION}
+RUN git clone -b ${BUILDROOT_VERSION} https://github.com/buildroot/buildroot.git $HOME/build/buildroot
 
 # ENV FRIENDLYWRT_VERSION "v19.07.1"
 # https://stackoverflow.com/questions/33439905/is-the-cacerts-file-missing-in-ubuntu-15-10-and-openjdk-8-jdk
