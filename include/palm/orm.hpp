@@ -3,10 +3,12 @@
 #include "palm/env.hpp"
 
 #include <SQLiteCpp/SQLiteCpp.h>
+#include <pqxx/pqxx>
+
+#define SOCI_USE_BOOST
 #include <soci/postgresql/soci-postgresql.h>
 #include <soci/soci.h>
 #include <soci/sqlite3/soci-sqlite3.h>
-#include <pqxx/pqxx>
 
 namespace palm {
 
@@ -53,13 +55,16 @@ class Item {
     return out;
   }
 
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Item, id, name, version, up, down, run_at,
+                                 created_at)
+
  public:
   int32_t id;
   std::string name;
   std::string version;
   std::string up;
   std::string down;
-  std::optional<std::tm> run_at;
+  boost::optional<std::tm> run_at;
   std::tm created_at;
 };
 
@@ -262,7 +267,7 @@ template <>
 struct type_conversion<palm::orm::migration::Item> {
   typedef values base_type;
 
-  static void from_base(values const& v, indicator /* ind */,
+  static void from_base(values const& v, indicator ind,
                         palm::orm::migration::Item& p) {
     p.id = v.get<int32_t>("id");
     p.name = v.get<std::string>("name");
@@ -270,11 +275,12 @@ struct type_conversion<palm::orm::migration::Item> {
     p.up = v.get<std::string>("up");
     p.down = v.get<std::string>("down");
 
-    if (v.get_indicator("run_at") == i_null) {
-      p.run_at = std::nullopt;
-    } else {
-      p.run_at = v.get<std::tm>("run_at");
-    }
+    p.run_at = v.get<boost::optional<std::tm>>("run_at");
+    // if (v.get_indicator("run_at") == i_null) {
+    //   p.run_at = std::nullopt;
+    // } else {
+    //   p.run_at = v.get<std::tm>("run_at");
+    // }
     p.created_at = v.get<std::tm>("created_at");
   }
 
@@ -286,11 +292,12 @@ struct type_conversion<palm::orm::migration::Item> {
     v.set("up", p.up);
     v.set("down", p.down);
 
-    if (p.run_at) {
-      v.set("run_at", p.run_at.value());
-    } else {
-      v.set("run_at", NULL, i_null);
-    }
+    v.set("run_at", p.run_at);
+    // if (p.run_at) {
+    //   v.set("run_at", p.run_at.value());
+    // } else {
+    //   v.set("run_at", NULL, i_null);
+    // }
     v.set("created_at", p.created_at);
     ind = i_ok;
   }

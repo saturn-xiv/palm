@@ -34,7 +34,9 @@
 #include <vector>
 
 #include <boost/log/trivial.hpp>
+#include <boost/optional.hpp>
 
+#include <date/date.h>
 #include <grpcpp/grpcpp.h>
 #include <httplib.h>
 #include <inja/inja.hpp>
@@ -45,15 +47,68 @@
 
 #include "palm/version.hpp"
 
+// https://www.w3docs.com/snippets/javascript/the-right-json-date-format.html
+#define PALM_STDTM_ISO8601_FORMAT "%FT%TZ"
+#define PALM_BOOST_PTIME_ISO8601_FORMAT "%Y-%m-%dT%H:%M:%S%f"
+
+#define PALM_LOCALE_ENGLISH "en_US.UTF-8"
+
+#define PALM_APPLICATION_JSON_UTF8 "application/json; charset=UTF-8"
+#define PALM_TEXT_HTML_UTF8 "text/html; charset=UTF-8"
+#define PALM_PLAIN_TEXT_UTF8 "text/plain; charset=UTF-8"
+
+namespace palm {
+namespace iso8601 {
+inline static const std::string format = "%Y-%m-%dT%H:%M:%SZ";
+inline std::string to(const std::tm *t) {
+  std::stringstream ss;
+  ss.exceptions(std::ios::failbit);
+  ss << std::put_time(t, format.c_str());
+  return ss.str();
+}
+
+inline std::tm from(const std::string &s) {
+  std::tm t = {};
+  std::istringstream ss(s);
+  ss.imbue(std::locale("en_US.utf-8"));
+  ss.exceptions(std::ios::failbit);
+  ss >> std::get_time(&t, format.c_str());
+  if (ss.fail()) {
+    BOOST_LOG_TRIVIAL(error) << "parse time [" << format << "] " << s;
+  }
+  return t;
+}
+}  // namespace iso8601
+}  // namespace palm
+
 namespace nlohmann {
+
+template <typename T>
+struct adl_serializer<boost::optional<T>> {
+  static void to_json(nlohmann::json &j, const boost::optional<T> &opt) {
+    if (opt) {
+      j = *opt;
+    } else {
+      j = nullptr;
+    }
+  }
+
+  static void from_json(const nlohmann::json &j, boost::optional<T> &opt) {
+    if (j.is_null()) {
+      opt = boost::none;
+    } else {
+      opt = j.get<T>();
+    }
+  }
+};
 
 template <typename T>
 struct adl_serializer<std::optional<T>> {
   static void to_json(nlohmann::json &j, const std::optional<T> &opt) {
-    if (opt == std::nullopt) {
-      j = nullptr;
-    } else {
+    if (opt) {
       j = *opt;
+    } else {
+      j = nullptr;
     }
   }
 
@@ -154,6 +209,18 @@ struct adl_serializer<std::chrono::seconds> {
   }
 };
 
+template <>
+struct adl_serializer<std::tm> {
+  static void to_json(nlohmann::json &j, const std::tm &opt) {
+    j = palm::iso8601::to(&opt);
+  }
+
+  static void from_json(const nlohmann::json &j, std::tm &opt) {
+    const std::string it = j.get<std::string>();
+    opt = palm::iso8601::from(it);
+  }
+};
+
 template <typename T>
 struct adl_serializer<std::shared_ptr<T>> {
   static void to_json(json &j, const std::shared_ptr<T> &opt) {
@@ -166,14 +233,3 @@ struct adl_serializer<std::shared_ptr<T>> {
 };
 
 }  // namespace nlohmann
-
-// namespace palm {
-
-// // #define PALM_BOOST_PTIME_ISO8601_FORMAT "%Y-%m-%dT%H:%M:%S%f"
-// // #define PALM_LOCALE_ENGLISH "en_US.UTF-8"
-
-// // #define PALM_APPLICATION_JSON_UTF8 "application/json; charset=UTF-8"
-// // #define PALM_TEXT_HTML_UTF8 "text/html; charset=UTF-8"
-// // #define PALM_PLAIN_TEXT_UTF8 "text/plain; charset=UTF-8"
-
-// }  // namespace palm
