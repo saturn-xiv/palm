@@ -42,7 +42,8 @@ build_dashboard(){
     then
         yarn install
     fi
-    yarn build
+    # FIXME https://github.com/webpack/webpack/issues/14532
+    NODE_OPTIONS=--openssl-legacy-provider yarn build
 }
 
 build_deb(){
@@ -119,8 +120,6 @@ else
     exit 1
 fi
 
-
-# dashboard_release
 
 echo 'done.'
 exit 0

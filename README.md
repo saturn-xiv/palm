@@ -4,6 +4,18 @@ A total free education &amp; translation &amp; ops solution.
 
 ## Usage
 
+- Development
+
+```bash
+# start backend server
+./scripts/build.sh
+cd build/arch-clang-Debug
+./bin/fig -h
+# start frontend server
+cd dashboard
+NODE_OPTIONS=--openssl-legacy-provider yarn serve
+```
+
 - Hardware and Software Considerations(afterwards a reboot is required)
 
     ```bash
