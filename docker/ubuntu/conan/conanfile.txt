@@ -21,6 +21,7 @@ nlohmann_json/3.10.3
 tomlplusplus/2.5.0
 yaml-cpp/0.7.0
 tinyxml/2.6.2
+gettext/0.21
 rabbitmq-c/0.11.0
 cppzmq/4.8.1
 paho-mqtt-cpp/1.2.0
