@@ -33,17 +33,22 @@
 #include <variant>
 #include <vector>
 
+#include <boost/locale.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional.hpp>
 
 #include <date/date.h>
 #include <grpcpp/grpcpp.h>
 #include <httplib.h>
+#include <sw/redis++/redis++.h>
 #include <inja/inja.hpp>
 #include <nlohmann/json.hpp>
 
 #define TOML_EXCEPTIONS true
 #include <toml.hpp>
+
+#define SOCI_USE_BOOST
+#include <soci/soci.h>
 
 #include "palm/version.hpp"
 
@@ -58,6 +63,12 @@
 #define PALM_PLAIN_TEXT_UTF8 "text/plain; charset=UTF-8"
 
 namespace palm {
+
+// https://www.boost.org/doc/libs/1_74_0/libs/locale/doc/html/messages_formatting.html
+inline std::string tr(const std::string &lang, const std::string &code) {
+  return boost::locale::translate(code).str(lang);
+}
+
 namespace iso8601 {
 inline static const std::string format = "%Y-%m-%dT%H:%M:%SZ";
 inline std::string to(const std::tm *t) {

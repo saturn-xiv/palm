@@ -11,6 +11,7 @@ mariadb-connector-c/3.1.12
 sqlite3/3.36.0
 sqlitecpp/3.1.1
 hiredis/1.0.2
+redis-plus-plus/1.2.3
 libcurl/7.79.1
 cpr/1.6.2
 picojson/cci.20210117

@@ -7,9 +7,8 @@
 #include <SQLiteCpp/SQLiteCpp.h>
 #include <pqxx/pqxx>
 
-#define SOCI_USE_BOOST
+
 #include <soci/postgresql/soci-postgresql.h>
-#include <soci/soci.h>
 #include <soci/sqlite3/soci-sqlite3.h>
 
 namespace palm {
