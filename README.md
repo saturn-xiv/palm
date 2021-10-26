@@ -30,3 +30,4 @@ NODE_OPTIONS=--openssl-legacy-provider yarn serve
 - [ECMAScript regular expressions pattern syntax](https://www.cplusplus.com/reference/regex/ECMAScript/)
 - [C++ Standards Support in GCC](https://gcc.gnu.org/projects/cxx-status.html)
 - [Semantic Versioning 2.0.0](https://semver.org/)
+- [The RBAC96 Model](https://profsandhu.com/cs6393_s12/lecture-rbac96.pdf)
