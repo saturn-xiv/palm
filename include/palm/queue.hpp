@@ -37,7 +37,7 @@ class Config {
   Config(const std::string& host = "127.0.0.1", uint16_t port = 5672,
          const std::string& user = "guest",
          const std::string& password = "guest",
-         const std::string& virtual_host = "/", size_t size = 18)
+         const std::string& virtual_host = "/demo", size_t size = 18)
       : host(host),
         port(port),
         user(user),

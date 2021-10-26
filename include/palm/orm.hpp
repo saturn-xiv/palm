@@ -2,6 +2,8 @@
 
 #include "palm/env.hpp"
 
+#include <boost/property_tree/ptree.hpp>
+
 #include <SQLiteCpp/SQLiteCpp.h>
 #include <pqxx/pqxx>
 
@@ -24,6 +26,17 @@ class logger : public soci::logger_impl {
   logger_impl* do_clone() const { return new logger(); }
 };
 
+class Query {
+ public:
+  Query(const std::filesystem::path& root);
+  inline std::string get(const std::string& name) {
+    return this->tree.get<std::string>(name);
+  }
+
+ private:
+  boost::property_tree::ptree tree;
+};
+
 namespace migration {
 
 inline static const std::string DIV = "-";
@@ -42,12 +55,13 @@ class Item {
   static void generate(const std::filesystem::path& root,
                        const std::string& name);
 
-  friend std::ostream& operator<<(std::ostream& out, Item const& self) {
+  friend std::ostream& operator<<(std::ostream& out, const Item& self) {
     std::ios_base::fmtflags f(out.flags());
     out << std::left << std::setw(VERSION_SIZE) << self.version
         << std::setw(NAME_SIZE) << self.name << std::setw(RUN_AT_SIZE);
     if (self.run_at) {
-      out << std::asctime(&self.run_at.value());
+      // out << std::asctime(&self.run_at.value());
+      out << std::put_time(&self.run_at.value(), "%c %Z");
     } else {
       out << "n/a";
     }
@@ -74,37 +88,27 @@ struct sort_by_asc {
   }
 };
 
-void load(soci::session& sql, const std::filesystem::path& root);
-void migrate(soci::session& sql);
-void rollback(soci::session& sql);
-void status(soci::session& sql, std::ostream& out);
+class Migration {
+ public:
+  Migration(std::shared_ptr<soci::session> sql,
+            const std::shared_ptr<palm::orm::Query> query,
+            const std::filesystem::path& root);
+  void migrate();
+  void rollback();
+  void status(std::ostream& out);
+
+ private:
+  std::shared_ptr<soci::session> sql;
+  std::shared_ptr<palm::orm::Query> query;
+};
 
 }  // namespace migration
 
-class Query {
- public:
-  static void load(const std::filesystem::path& root);
-  inline static std::string get(const std::string& name) {
-    return instance.at(name);
-  }
-
- private:
-  inline static std::map<std::string, std::string> instance;
-};
-
-class Pool {
- public:
-  static void open(const soci::backend_factory& backend, const std::string& url,
-                   const size_t size);
-  static inline std::shared_ptr<soci::session> get() {
-    std::shared_ptr<soci::session> sql =
-        std::make_shared<soci::session>(*instance);
-    return sql;
-  }
-
- private:
-  inline static std::shared_ptr<soci::connection_pool> instance;
-};
+namespace pool {
+std::shared_ptr<soci::connection_pool> open(
+    const soci::backend_factory& backend, const std::string& url,
+    const size_t size);
+}
 
 }  // namespace orm
 
@@ -132,9 +136,9 @@ namespace postgresql {
 
 class Config {
  public:
-  Config() {}
-  Config(const std::string& name, const std::string& host = "127.0.0.1",
-         const uint16_t port = 5432, const std::string& user = "postgres",
+  Config(const std::string& name = "demo",
+         const std::string& host = "127.0.0.1", const uint16_t port = 5432,
+         const std::string& user = "postgres",
          const std::optional<std::string>& password = std::nullopt)
       : host(host), port(port), name(name), user(user), password(password) {}
   std::shared_ptr<pqxx::connection> open() const;
@@ -202,8 +206,9 @@ namespace mysql {
 class Config {
  public:
   Config() {}
-  Config(const std::string& name, const std::string& host = "127.0.0.1",
-         const uint16_t port = 3306, const std::string& user = "root",
+  Config(const std::string& name = "demo",
+         const std::string& host = "127.0.0.1", const uint16_t port = 3306,
+         const std::string& user = "root",
          const std::optional<std::string>& password = std::nullopt)
       : host(host), port(port), name(name), user(user), password(password) {}
   //   https://mariadb.com/resources/blog/how-to-connect-c-programs-to-mariadb/

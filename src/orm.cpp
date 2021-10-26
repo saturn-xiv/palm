@@ -2,33 +2,33 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/property_tree/ini_parser.hpp>
-#include <boost/property_tree/ptree.hpp>
 
-void palm::orm::Query::load(const std::filesystem::path& root) {
+palm::orm::Query::Query(const std::filesystem::path& root) {
   const auto file = root / "queries.ini";
   BOOST_LOG_TRIVIAL(debug) << "load queries from " << file.string();
-  boost::property_tree::ptree tree;
-  boost::property_tree::ini_parser::read_ini(file, tree);
-
-  for (const auto& section : tree) {
-    for (const auto& node : section.second) {
-      const std::string key = section.first + "." + node.first;
-      BOOST_LOG_TRIVIAL(debug) << "find query: " << key;
-      const std::optional<std::string> val =
-          node.second.get_value<std::string>();
-      instance[key] = val.value();
-    }
-  }
+  boost::property_tree::ini_parser::read_ini(file, this->tree);
+  // for (const auto& section : tree) {
+  //   for (const auto& node : section.second) {
+  //     const std::string key = section.first + "." + node.first;
+  //     BOOST_LOG_TRIVIAL(debug) << "find query: " << key;
+  //     const std::optional<std::string> val =
+  //         node.second.get_value<std::string>();
+  //     instance[key] = val.value();
+  //   }
+  // }
 }
 
-void palm::orm::migration::load(soci::session& sql,
-                                const std::filesystem::path& root) {
+palm::orm::migration::Migration::Migration(
+    std::shared_ptr<soci::session> sql,
+    const std::shared_ptr<palm::orm::Query> query,
+    const std::filesystem::path& root)
+    : sql(sql), query(query) {
   {
     std::ifstream it(root / "schema_migrations.sql");
     auto script = std::string(std::istreambuf_iterator<char>(it),
                               std::istreambuf_iterator<char>());
     boost::trim(script);
-    sql << script;
+    *sql << script;
   }
   const auto node = root / MIGRATION_FOLDER;
   BOOST_LOG_TRIVIAL(debug) << "load db migrations from " << node.string();
@@ -40,10 +40,10 @@ void palm::orm::migration::load(soci::session& sql,
           << "find migration " << mig.version << " " << mig.name;
 
       Item it;
-      sql << palm::orm::Query::get("schema_migrations.by-version-and-name"),
+      *sql << this->query->get("schema_migrations.by-version-and-name"),
           soci::use(mig), soci::into(it);
 
-      if (sql.got_data()) {
+      if (sql->got_data()) {
         if (it.up != mig.up || it.down != mig.down) {
           std::stringstream ss;
           ss << "Migration [" << mig.version << "," << mig.name
@@ -51,8 +51,7 @@ void palm::orm::migration::load(soci::session& sql,
           throw std::invalid_argument(ss.str());
         }
       } else {
-        sql << palm::orm::Query::get("schema_migrations.insert"),
-            soci::use(mig);
+        *sql << this->query->get("schema_migrations.insert"), soci::use(mig);
       }
     }
   }
@@ -61,10 +60,10 @@ void palm::orm::migration::load(soci::session& sql,
   //           palm::orm::migration::sort_by_asc());
 }
 
-void palm::orm::migration::migrate(soci::session& sql) {
-  soci::transaction tr(sql);
+void palm::orm::migration::Migration::migrate() {
+  soci::transaction tr(*(this->sql));
   soci::rowset<Item> items =
-      (sql.prepare << palm::orm::Query::get("schema_migrations.all-asc"));
+      (this->sql->prepare << this->query->get("schema_migrations.all-asc"));
 
   for (const auto& it : items) {
     BOOST_LOG_TRIVIAL(info)
@@ -73,16 +72,17 @@ void palm::orm::migration::migrate(soci::session& sql) {
       BOOST_LOG_TRIVIAL(info) << "ignore...";
       continue;
     }
-    sql << it.up;
-    sql << palm::orm::Query::get("schema_migrations.set-run-at"), soci::use(it);
+    *(this->sql) << it.up;
+    *(this->sql) << this->query->get("schema_migrations.set-run-at"),
+        soci::use(it);
   }
   tr.commit();
 }
-void palm::orm::migration::rollback(soci::session& sql) {
-  soci::transaction tr(sql);
+void palm::orm::migration::Migration::rollback() {
+  soci::transaction tr(*(this->sql));
   Item it;
-  sql << palm::orm::Query::get("schema_migrations.latest"), soci::into(it);
-  if (!sql.got_data()) {
+  *(this->sql) << this->query->get("schema_migrations.latest"), soci::into(it);
+  if (!sql->got_data()) {
     BOOST_LOG_TRIVIAL(debug) << "empty database";
     return;
   }
@@ -90,11 +90,29 @@ void palm::orm::migration::rollback(soci::session& sql) {
   BOOST_LOG_TRIVIAL(info) << "rollback migration " << it.version << " "
                           << it.name;
 
-  sql << it.down;
-  sql << palm::orm::Query::get("schema_migrations.delete"), soci::use(it);
+  *(this->sql) << it.down;
+  *(this->sql) << this->query->get("schema_migrations.delete"), soci::use(it);
   tr.commit();
 }
 
+void palm::orm::migration::Migration::status(std::ostream& out) {
+  {
+    std::ios_base::fmtflags f(out.flags());
+    out << std::left << std::setw(VERSION_SIZE) << "Version"
+        << std::setw(NAME_SIZE) << "Name" << std::setw(RUN_AT_SIZE) << "Run At";
+    out.flags(f);
+  }
+  out << std::endl;
+
+  {
+    soci::rowset<Item> items =
+        (this->sql->prepare << this->query->get("schema_migrations.all-asc"));
+
+    for (const auto& it : items) {
+      out << it << std::endl;
+    }
+  }
+}
 void palm::orm::migration::Item::generate(const std::filesystem::path& root,
                                           const std::string& name) {
   std::stringstream ss;
@@ -110,24 +128,6 @@ void palm::orm::migration::Item::generate(const std::filesystem::path& root,
   {
     std::ofstream it(node / DOWN);
     it.close();
-  }
-}
-void palm::orm::migration::status(soci::session& sql, std::ostream& out) {
-  {
-    std::ios_base::fmtflags f(out.flags());
-    out << std::left << std::setw(VERSION_SIZE) << "Version"
-        << std::setw(NAME_SIZE) << "Name" << std::setw(RUN_AT_SIZE) << "Run At";
-    out.flags(f);
-  }
-  out << std::endl;
-
-  {
-    soci::rowset<Item> items =
-        (sql.prepare << palm::orm::Query::get("schema_migrations.all-asc"));
-
-    for (const auto& it : items) {
-      out << it << std::endl;
-    }
   }
 }
 
@@ -220,12 +220,15 @@ std::shared_ptr<pqxx::connection> palm::postgresql::Config::open() const {
   return con;
 }
 
-void palm::orm::Pool::open(const soci::backend_factory& backend,
-                           const std::string& url, const size_t size) {
-  instance = std::make_shared<soci::connection_pool>(size);
+std::shared_ptr<soci::connection_pool> palm::orm::pool::open(
+    const soci::backend_factory& backend, const std::string& url,
+    const size_t size) {
+  std::shared_ptr<soci::connection_pool> it =
+      std::make_shared<soci::connection_pool>(size);
   for (auto i = 0; i < size; i++) {
-    soci::session& sql = instance->at(i);
+    soci::session& sql = it->at(i);
     sql.open(backend, url);
     sql.set_logger(new palm::orm::logger());
   }
+  return it;
 }

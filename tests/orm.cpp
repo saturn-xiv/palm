@@ -20,25 +20,29 @@ BOOST_AUTO_TEST_CASE(migration) {
 
 BOOST_AUTO_TEST_CASE(schema) {
   const std::filesystem::path root = "db/postgresql";
-  palm::orm::Query::load(root);
-  std::cout << "get query: "
-            << palm::orm::Query::get("schema_migrations.all-asc") << std::endl;
+  std::shared_ptr<palm::orm::Query> query =
+      std::make_shared<palm::orm::Query>(root);
+  std::cout << "get query: " << query->get("schema_migrations.all-asc")
+            << std::endl;
 
   palm::postgresql::Config cfg("palm_test");
-  palm::orm::Pool::open(soci::postgresql, cfg.url(), 12);
+  auto pool = palm::orm::pool::open(soci::postgresql, cfg.url(), 12);
   {
-    auto sql = palm::orm::Pool::get();
+    std::shared_ptr<soci::session> sql = std::make_shared<soci::session>(*pool);
     std::tm now;
-    *sql << palm::orm::Query::get("schema_migrations.heartbeat"),
-        soci::into(now);
+    *sql << query->get("schema_migrations.heartbeat"), soci::into(now);
     std::cout << "current db timestamp: " << std::asctime(&now) << std::endl;
   }
 
   {
-    auto sql = palm::orm::Pool::get();
-    palm::orm::migration::load(*sql, root);
-    palm::orm::migration::migrate(*sql);
-    palm::orm::migration::rollback(*sql);
-    palm::orm::migration::status(*sql, std::cout);
+    std::shared_ptr<soci::session> sql = std::make_shared<soci::session>(*pool);
+    palm::orm::migration::Migration mig(sql, query, root);
+    mig.migrate();
+    mig.rollback();
+  }
+  {
+    std::shared_ptr<soci::session> sql = std::make_shared<soci::session>(*pool);
+    palm::orm::migration::Migration mig(sql, query, root);
+    mig.status(std::cout);
   }
 }
