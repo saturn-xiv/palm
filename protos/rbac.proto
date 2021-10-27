@@ -3,6 +3,28 @@ package palm.rbac.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+message Pagination {
+  int64 total = 1;
+  int64 size = 2;
+  int64 current = 3;
+}
+
+message Pager {
+  int64 index = 1;
+  int64 size = 2;
+}
+
+enum MediaType {
+  PlainText = 0;
+  Markdown = 1;
+  Html = 2;
+}
+
+message IdRequest {
+  int64 id = 1;
+}
 
 service User {
   rpc SignIn(SignInRequest) returns (google.protobuf.Empty) {}
@@ -16,15 +38,38 @@ service User {
   rpc ChangePassword(ChangePasswordRequest) returns (google.protobuf.Empty) {}
   rpc SetProfile(ProfileRequest) returns (google.protobuf.Empty) {}
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Self(google.protobuf.Empty) returns (IndexUserResponse.Item) {}
+
+  rpc Index(Pager) returns (IndexUserResponse) {}
+  rpc Show(IdRequest) returns (IndexUserResponse.Item) {}
+  rpc Lock(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Destory(IdRequest) returns (google.protobuf.Empty) {}
+}
+
+message IndexLog {
+  enum Level {
+    Debug = 0;
+    Info = 1;
+    Warning = 2;
+    Error = 3;
+  }
+  message Item {
+    int64 id = 1;
+    string ip = 2;
+    Level level = 3;
+    string message = 4;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
 }
 
 message SignInRequest {
   oneof user {
     string email = 1;
-    string nickname = 2;
+    string nick_name = 2;
   }
   string password = 11;
-  optional google.protobuf.Duration ttl = 21;
+  google.protobuf.Duration ttl = 21;
 }
 message SignInResponse {
   string token = 1;
@@ -32,7 +77,7 @@ message SignInResponse {
 }
 message SignUpRequest {
   string email = 1;
-  string nickname = 2;
+  string nick_name = 2;
   string real_name = 3;
   string password = 4;
 }
@@ -57,15 +102,240 @@ message ProfileRequest {
   string home = 3;
 }
 
+enum ProviderType {
+  Email = 0;
+  Google = 1;
+  Factbook = 2;
+  WeChat = 3;
+}
+
+message IndexUserResponse {
+  message Item {
+    int64 id = 1;
+    string real_name = 2;
+    string nick_name = 3;
+    string email = 4;
+    string uid = 5;
+    ProviderType provider_type = 6;
+    string provider_id = 7;
+    string logo = 8;
+    string lang = 9;
+    int32 sign_in_count = 21;
+    optional google.protobuf.Timestamp current_sign_in_at = 22;
+    optional string current_sign_in_ip = 23;
+    optional google.protobuf.Timestamp last_sign_in_at = 24;
+    optional string last_sign_in_ip = 25;
+    optional google.protobuf.Timestamp confirmed_at = 31;
+    optional google.protobuf.Timestamp locked_at = 32;
+    optional google.protobuf.Timestamp deleted_at = 33;
+    google.protobuf.Timestamp updated_at = 39;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
+}
+
+service Operation {
+  rpc Index(Pager) returns (IndexOperationResponse) {}
+  rpc Show(IdRequest) returns (IndexOperationResponse.Item) {}
+  rpc Create(CreateOperationRequest) returns (google.protobuf.Empty) {}
+  rpc Update(UpdateOperationRequest) returns (google.protobuf.Empty) {}
+  rpc Destory(IdRequest) returns (google.protobuf.Empty) {}
+}
+
+service Group {
+  rpc Index(Pager) returns (IndexGroupResponse) {}
+  rpc Show(IdRequest) returns (IndexGroupResponse.Item) {}
+  rpc Create(CreateGroupRequest) returns (google.protobuf.Empty) {}
+  rpc Update(UpdateGroupRequest) returns (google.protobuf.Empty) {}
+  rpc Destory(IdRequest) returns (google.protobuf.Empty) {}
+
+  rpc ListUser(IdRequest) returns (ListGroupUserRequest) {}
+  rpc AssociateUser(AssociateGroupUserRequest) returns (google.protobuf.Empty) {
+  }
+  rpc DisassociateUser(DisassociateGroupUserRequest)
+      returns (google.protobuf.Empty) {}
+}
+
+service Role {
+  rpc Index(Pager) returns (IndexRoleResponse) {}
+  rpc Show(IdRequest) returns (IndexRoleResponse.Item) {}
+  rpc Create(CreateRoleRequest) returns (google.protobuf.Empty) {}
+  rpc Update(UpdateRoleRequest) returns (google.protobuf.Empty) {}
+  rpc Destory(IdRequest) returns (google.protobuf.Empty) {}
+
+  rpc ListUser(IdRequest) returns (ListRoleUserRequest) {}
+  rpc AssociateUser(AssociateRoleUserRequest) returns (google.protobuf.Empty) {}
+  rpc DisassociateUser(DisassociateRoleUserRequest)
+      returns (google.protobuf.Empty) {}
+
+  rpc ListGroup(IdRequest) returns (ListRoleGroupRequest) {}
+  rpc AssociateGroup(AssociateRoleGroupRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DisassociateGroup(DisassociateRoleGroupRequest)
+      returns (google.protobuf.Empty) {}
+}
+
+service Resource {
+  rpc Index(Pager) returns (IndexResourceResponse) {}
+  rpc Show(IdRequest) returns (IndexResourceResponse.Item) {}
+  rpc Create(CreateResourceRequest) returns (google.protobuf.Empty) {}
+  rpc Update(UpdateResourceRequest) returns (google.protobuf.Empty) {}
+  rpc Destory(IdRequest) returns (google.protobuf.Empty) {}
+}
+
 service Policy {
-  rpc Apply(ApplyRequest) returns (google.protobuf.Empty) {}
-  rpc Deny(DenyRequest) returns (google.protobuf.Empty) {}
+  rpc Apply(PolicyApplyRequest) returns (google.protobuf.Empty) {}
+  rpc Deny(PolicyDenyRequest) returns (google.protobuf.Empty) {}
 }
 
-message ApplyRequest {
-  int64 user = 1;
+message PolicyApplyRequest {
+  string role = 1;
+  string operation = 2;
+  string resource = 3;
+  google.protobuf.Duration ttl = 4;
 }
 
-message DenyRequest {
-  int64 user = 1;
+message PolicyDenyRequest {
+  string role = 1;
+  string operation = 2;
+  string resource = 3;
+}
+
+message AssociateRoleGroupRequest {
+  uint64 role_id = 1;
+  uint64 group_id = 2;
+  google.protobuf.Duration ttl = 3;
+}
+
+message DisassociateRoleGroupRequest {
+  uint64 role_id = 1;
+  uint64 group_id = 2;
+}
+
+message ListRoleGroupRequest {
+  repeated IndexGroupResponse.Item items = 1;
+}
+
+message AssociateRoleUserRequest {
+  uint64 user_id = 1;
+  uint64 role_id = 2;
+  google.protobuf.Duration ttl = 3;
+}
+
+message DisassociateRoleUserRequest {
+  uint64 user_id = 1;
+  uint64 role_id = 2;
+}
+
+message ListRoleUserRequest {
+  repeated IndexUserResponse.Item items = 1;
+}
+
+message AssociateGroupUserRequest {
+  uint64 user_id = 1;
+  uint64 group_id = 2;
+  google.protobuf.Duration ttl = 3;
+}
+
+message DisassociateGroupUserRequest {
+  uint64 user_id = 1;
+  uint64 group_id = 2;
+}
+
+message ListGroupUserRequest {
+  repeated IndexUserResponse.Item items = 1;
+}
+
+message CreateResourceRequest {
+  string code = 1;
+  string name = 2;
+}
+
+message UpdateResourceRequest {
+  uint64 id = 1;
+  string code = 2;
+  string name = 3;
+}
+
+message IndexResourceResponse {
+  message Item {
+    uint64 id = 1;
+    string code = 2;
+    string name = 3;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
+}
+
+message CreateRoleRequest {
+  string code = 1;
+  string name = 2;
+  optional int64 parent_id = 3;
+}
+
+message UpdateRoleRequest {
+  uint64 id = 1;
+  string code = 2;
+  string name = 3;
+  optional int64 parent_id = 4;
+}
+
+message IndexRoleResponse {
+  message Item {
+    uint64 id = 1;
+    string code = 2;
+    string name = 3;
+    optional int64 parent_id = 4;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
+}
+
+message CreateGroupRequest {
+  string code = 1;
+  string name = 2;
+  optional int64 parent_id = 3;
+}
+
+message UpdateGroupRequest {
+  uint64 id = 1;
+  string code = 2;
+  string name = 3;
+  optional int64 parent_id = 4;
+}
+
+message IndexGroupResponse {
+  message Item {
+    uint64 id = 1;
+    string code = 2;
+    string name = 3;
+    optional int64 parent_id = 4;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
+}
+
+message CreateOperationRequest {
+  string code = 1;
+  string name = 2;
+}
+
+message UpdateOperationRequest {
+  uint64 id = 1;
+  string code = 2;
+  string name = 3;
+}
+
+message IndexOperationResponse {
+  message Item {
+    uint64 id = 1;
+    string code = 2;
+    string name = 3;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
 }

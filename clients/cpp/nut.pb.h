@@ -30,7 +30,6 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/empty.pb.h>
 #include <google/protobuf/timestamp.pb.h>
@@ -49,7 +48,7 @@ struct TableStruct_nut_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -62,9 +61,6 @@ namespace v1 {
 class AboutResponse;
 struct AboutResponseDefaultTypeInternal;
 extern AboutResponseDefaultTypeInternal _AboutResponse_default_instance_;
-class IdRequest;
-struct IdRequestDefaultTypeInternal;
-extern IdRequestDefaultTypeInternal _IdRequest_default_instance_;
 class LocalesRequest;
 struct LocalesRequestDefaultTypeInternal;
 extern LocalesRequestDefaultTypeInternal _LocalesRequest_default_instance_;
@@ -74,12 +70,6 @@ extern LocalesResponseDefaultTypeInternal _LocalesResponse_default_instance_;
 class LocalesResponse_Item;
 struct LocalesResponse_ItemDefaultTypeInternal;
 extern LocalesResponse_ItemDefaultTypeInternal _LocalesResponse_Item_default_instance_;
-class Page;
-struct PageDefaultTypeInternal;
-extern PageDefaultTypeInternal _Page_default_instance_;
-class Pagination;
-struct PaginationDefaultTypeInternal;
-extern PaginationDefaultTypeInternal _Pagination_default_instance_;
 class SetLocaleRequest;
 struct SetLocaleRequestDefaultTypeInternal;
 extern SetLocaleRequestDefaultTypeInternal _SetLocaleRequest_default_instance_;
@@ -88,474 +78,16 @@ extern SetLocaleRequestDefaultTypeInternal _SetLocaleRequest_default_instance_;
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
 template<> ::palm::nut::v1::AboutResponse* Arena::CreateMaybeMessage<::palm::nut::v1::AboutResponse>(Arena*);
-template<> ::palm::nut::v1::IdRequest* Arena::CreateMaybeMessage<::palm::nut::v1::IdRequest>(Arena*);
 template<> ::palm::nut::v1::LocalesRequest* Arena::CreateMaybeMessage<::palm::nut::v1::LocalesRequest>(Arena*);
 template<> ::palm::nut::v1::LocalesResponse* Arena::CreateMaybeMessage<::palm::nut::v1::LocalesResponse>(Arena*);
 template<> ::palm::nut::v1::LocalesResponse_Item* Arena::CreateMaybeMessage<::palm::nut::v1::LocalesResponse_Item>(Arena*);
-template<> ::palm::nut::v1::Page* Arena::CreateMaybeMessage<::palm::nut::v1::Page>(Arena*);
-template<> ::palm::nut::v1::Pagination* Arena::CreateMaybeMessage<::palm::nut::v1::Pagination>(Arena*);
 template<> ::palm::nut::v1::SetLocaleRequest* Arena::CreateMaybeMessage<::palm::nut::v1::SetLocaleRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
 namespace nut {
 namespace v1 {
 
-enum MediaType : int {
-  PlainText = 0,
-  Markdown = 1,
-  Html = 2,
-  MediaType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  MediaType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
-};
-bool MediaType_IsValid(int value);
-constexpr MediaType MediaType_MIN = PlainText;
-constexpr MediaType MediaType_MAX = Html;
-constexpr int MediaType_ARRAYSIZE = MediaType_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MediaType_descriptor();
-template<typename T>
-inline const std::string& MediaType_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, MediaType>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function MediaType_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    MediaType_descriptor(), enum_t_value);
-}
-inline bool MediaType_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MediaType* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MediaType>(
-    MediaType_descriptor(), name, value);
-}
 // ===================================================================
-
-class Pagination final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.Pagination) */ {
- public:
-  inline Pagination() : Pagination(nullptr) {}
-  ~Pagination() override;
-  explicit constexpr Pagination(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  Pagination(const Pagination& from);
-  Pagination(Pagination&& from) noexcept
-    : Pagination() {
-    *this = ::std::move(from);
-  }
-
-  inline Pagination& operator=(const Pagination& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Pagination& operator=(Pagination&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Pagination& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Pagination* internal_default_instance() {
-    return reinterpret_cast<const Pagination*>(
-               &_Pagination_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  friend void swap(Pagination& a, Pagination& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Pagination* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Pagination* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline Pagination* New() const final {
-    return new Pagination();
-  }
-
-  Pagination* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Pagination>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Pagination& from);
-  void MergeFrom(const Pagination& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Pagination* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.nut.v1.Pagination";
-  }
-  protected:
-  explicit Pagination(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kTotalFieldNumber = 1,
-    kSizeFieldNumber = 2,
-    kCurrentFieldNumber = 3,
-  };
-  // int64 total = 1;
-  void clear_total();
-  ::PROTOBUF_NAMESPACE_ID::int64 total() const;
-  void set_total(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_total() const;
-  void _internal_set_total(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // int64 size = 2;
-  void clear_size();
-  ::PROTOBUF_NAMESPACE_ID::int64 size() const;
-  void set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_size() const;
-  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // int64 current = 3;
-  void clear_current();
-  ::PROTOBUF_NAMESPACE_ID::int64 current() const;
-  void set_current(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_current() const;
-  void _internal_set_current(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.nut.v1.Pagination)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 total_;
-  ::PROTOBUF_NAMESPACE_ID::int64 size_;
-  ::PROTOBUF_NAMESPACE_ID::int64 current_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_nut_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Page final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.Page) */ {
- public:
-  inline Page() : Page(nullptr) {}
-  ~Page() override;
-  explicit constexpr Page(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  Page(const Page& from);
-  Page(Page&& from) noexcept
-    : Page() {
-    *this = ::std::move(from);
-  }
-
-  inline Page& operator=(const Page& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Page& operator=(Page&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Page& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Page* internal_default_instance() {
-    return reinterpret_cast<const Page*>(
-               &_Page_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(Page& a, Page& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Page* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Page* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline Page* New() const final {
-    return new Page();
-  }
-
-  Page* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Page>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Page& from);
-  void MergeFrom(const Page& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Page* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.nut.v1.Page";
-  }
-  protected:
-  explicit Page(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIndexFieldNumber = 1,
-    kSizeFieldNumber = 2,
-  };
-  // int64 index = 1;
-  void clear_index();
-  ::PROTOBUF_NAMESPACE_ID::int64 index() const;
-  void set_index(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_index() const;
-  void _internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // int64 size = 2;
-  void clear_size();
-  ::PROTOBUF_NAMESPACE_ID::int64 size() const;
-  void set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_size() const;
-  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.nut.v1.Page)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 index_;
-  ::PROTOBUF_NAMESPACE_ID::int64 size_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_nut_2eproto;
-};
-// -------------------------------------------------------------------
-
-class IdRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IdRequest) */ {
- public:
-  inline IdRequest() : IdRequest(nullptr) {}
-  ~IdRequest() override;
-  explicit constexpr IdRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  IdRequest(const IdRequest& from);
-  IdRequest(IdRequest&& from) noexcept
-    : IdRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline IdRequest& operator=(const IdRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline IdRequest& operator=(IdRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const IdRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const IdRequest* internal_default_instance() {
-    return reinterpret_cast<const IdRequest*>(
-               &_IdRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(IdRequest& a, IdRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(IdRequest* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(IdRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline IdRequest* New() const final {
-    return new IdRequest();
-  }
-
-  IdRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<IdRequest>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const IdRequest& from);
-  void MergeFrom(const IdRequest& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(IdRequest* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.nut.v1.IdRequest";
-  }
-  protected:
-  explicit IdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIdFieldNumber = 1,
-  };
-  // int64 id = 1;
-  void clear_id();
-  ::PROTOBUF_NAMESPACE_ID::int64 id() const;
-  void set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_id() const;
-  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.nut.v1.IdRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_nut_2eproto;
-};
-// -------------------------------------------------------------------
 
 class LocalesRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.LocalesRequest) */ {
@@ -601,7 +133,7 @@ class LocalesRequest final :
                &_LocalesRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    0;
 
   friend void swap(LocalesRequest& a, LocalesRequest& b) {
     a.Swap(&b);
@@ -738,7 +270,7 @@ class LocalesResponse_Item final :
                &_LocalesResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    1;
 
   friend void swap(LocalesResponse_Item& a, LocalesResponse_Item& b) {
     a.Swap(&b);
@@ -938,7 +470,7 @@ class LocalesResponse final :
                &_LocalesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    2;
 
   friend void swap(LocalesResponse& a, LocalesResponse& b) {
     a.Swap(&b);
@@ -1081,7 +613,7 @@ class AboutResponse final :
                &_AboutResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    3;
 
   friend void swap(AboutResponse& a, AboutResponse& b) {
     a.Swap(&b);
@@ -1354,7 +886,7 @@ class SetLocaleRequest final :
                &_SetLocaleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    4;
 
   friend void swap(SetLocaleRequest& a, SetLocaleRequest& b) {
     a.Swap(&b);
@@ -1486,138 +1018,6 @@ class SetLocaleRequest final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// Pagination
-
-// int64 total = 1;
-inline void Pagination::clear_total() {
-  total_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_total() const {
-  return total_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::total() const {
-  // @@protoc_insertion_point(field_get:palm.nut.v1.Pagination.total)
-  return _internal_total();
-}
-inline void Pagination::_internal_set_total(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  total_ = value;
-}
-inline void Pagination::set_total(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_total(value);
-  // @@protoc_insertion_point(field_set:palm.nut.v1.Pagination.total)
-}
-
-// int64 size = 2;
-inline void Pagination::clear_size() {
-  size_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_size() const {
-  return size_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::size() const {
-  // @@protoc_insertion_point(field_get:palm.nut.v1.Pagination.size)
-  return _internal_size();
-}
-inline void Pagination::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  size_ = value;
-}
-inline void Pagination::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:palm.nut.v1.Pagination.size)
-}
-
-// int64 current = 3;
-inline void Pagination::clear_current() {
-  current_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_current() const {
-  return current_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::current() const {
-  // @@protoc_insertion_point(field_get:palm.nut.v1.Pagination.current)
-  return _internal_current();
-}
-inline void Pagination::_internal_set_current(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  current_ = value;
-}
-inline void Pagination::set_current(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_current(value);
-  // @@protoc_insertion_point(field_set:palm.nut.v1.Pagination.current)
-}
-
-// -------------------------------------------------------------------
-
-// Page
-
-// int64 index = 1;
-inline void Page::clear_index() {
-  index_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Page::_internal_index() const {
-  return index_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Page::index() const {
-  // @@protoc_insertion_point(field_get:palm.nut.v1.Page.index)
-  return _internal_index();
-}
-inline void Page::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  index_ = value;
-}
-inline void Page::set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_index(value);
-  // @@protoc_insertion_point(field_set:palm.nut.v1.Page.index)
-}
-
-// int64 size = 2;
-inline void Page::clear_size() {
-  size_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Page::_internal_size() const {
-  return size_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 Page::size() const {
-  // @@protoc_insertion_point(field_get:palm.nut.v1.Page.size)
-  return _internal_size();
-}
-inline void Page::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  size_ = value;
-}
-inline void Page::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:palm.nut.v1.Page.size)
-}
-
-// -------------------------------------------------------------------
-
-// IdRequest
-
-// int64 id = 1;
-inline void IdRequest::clear_id() {
-  id_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 IdRequest::_internal_id() const {
-  return id_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 IdRequest::id() const {
-  // @@protoc_insertion_point(field_get:palm.nut.v1.IdRequest.id)
-  return _internal_id();
-}
-inline void IdRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  id_ = value;
-}
-inline void IdRequest::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.nut.v1.IdRequest.id)
-}
-
-// -------------------------------------------------------------------
-
 // LocalesRequest
 
 // string lang = 1;
@@ -2552,28 +1952,12 @@ inline void SetLocaleRequest::set_allocated_message(std::string* message) {
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace v1
 }  // namespace nut
 }  // namespace palm
-
-PROTOBUF_NAMESPACE_OPEN
-
-template <> struct is_proto_enum< ::palm::nut::v1::MediaType> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::palm::nut::v1::MediaType>() {
-  return ::palm::nut::v1::MediaType_descriptor();
-}
-
-PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

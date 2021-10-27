@@ -35,6 +35,11 @@ static const char* User_method_names[] = {
   "/palm.rbac.v1.User/ChangePassword",
   "/palm.rbac.v1.User/SetProfile",
   "/palm.rbac.v1.User/SignOut",
+  "/palm.rbac.v1.User/Self",
+  "/palm.rbac.v1.User/Index",
+  "/palm.rbac.v1.User/Show",
+  "/palm.rbac.v1.User/Lock",
+  "/palm.rbac.v1.User/Destory",
 };
 
 std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -55,6 +60,11 @@ User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, cons
   , rpcmethod_ChangePassword_(User_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetProfile_(User_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SignOut_(User_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Self_(User_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(User_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(User_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Lock_(User_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Destory_(User_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status User::Stub::SignIn(::grpc::ClientContext* context, const ::palm::rbac::v1::SignInRequest& request, ::google::protobuf::Empty* response) {
@@ -310,6 +320,121 @@ void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::
   return result;
 }
 
+::grpc::Status User::Stub::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::rbac::v1::IndexUserResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::rbac::v1::IndexUserResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Self_, context, request, response);
+}
+
+void User::Stub::async::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::rbac::v1::IndexUserResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::rbac::v1::IndexUserResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Self_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::rbac::v1::IndexUserResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Self_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexUserResponse_Item>* User::Stub::PrepareAsyncSelfRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexUserResponse_Item, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Self_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexUserResponse_Item>* User::Stub::AsyncSelfRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSelfRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::rbac::v1::IndexUserResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexUserResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexUserResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexUserResponse>* User::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexUserResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexUserResponse>* User::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::IndexUserResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexUserResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void User::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexUserResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexUserResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexUserResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexUserResponse_Item>* User::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexUserResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexUserResponse_Item>* User::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Lock(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Lock_, context, request, response);
+}
+
+void User::Stub::async::Lock(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Lock_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Lock(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Lock_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncLockRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Lock_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncLockRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Destory_, context, request, response);
+}
+
+void User::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Destory_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDestoryRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 User::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[0],
@@ -421,6 +546,56 @@ User::Service::Service() {
              ::google::protobuf::Empty* resp) {
                return service->SignOut(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::palm::rbac::v1::IndexUserResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::rbac::v1::IndexUserResponse_Item* resp) {
+               return service->Self(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexUserResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::Pager* req,
+             ::palm::rbac::v1::IndexUserResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[13],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexUserResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::IndexUserResponse_Item* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[14],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Lock(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[15],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Destory(ctx, req, resp);
+             }, this)));
 }
 
 User::Service::~Service() {
@@ -503,6 +678,1335 @@ User::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
+::grpc::Status User::Service::Self(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::rbac::v1::IndexUserResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexUserResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexUserResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Lock(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Operation_method_names[] = {
+  "/palm.rbac.v1.Operation/Index",
+  "/palm.rbac.v1.Operation/Show",
+  "/palm.rbac.v1.Operation/Create",
+  "/palm.rbac.v1.Operation/Update",
+  "/palm.rbac.v1.Operation/Destory",
+};
+
+std::unique_ptr< Operation::Stub> Operation::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Operation::Stub> stub(new Operation::Stub(channel, options));
+  return stub;
+}
+
+Operation::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Operation_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(Operation_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Create_(Operation_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Operation_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Destory_(Operation_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Operation::Stub::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::rbac::v1::IndexOperationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Operation::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexOperationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Operation::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexOperationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexOperationResponse>* Operation::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexOperationResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexOperationResponse>* Operation::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Operation::Stub::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::IndexOperationResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexOperationResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void Operation::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexOperationResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexOperationResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void Operation::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexOperationResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexOperationResponse_Item>* Operation::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexOperationResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexOperationResponse_Item>* Operation::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Operation::Stub::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateOperationRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::CreateOperationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Operation::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateOperationRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::CreateOperationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Operation::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateOperationRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Operation::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::CreateOperationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Operation::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Operation::Stub::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateOperationRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::UpdateOperationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+}
+
+void Operation::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateOperationRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::UpdateOperationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+}
+
+void Operation::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateOperationRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Operation::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::UpdateOperationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Operation::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateOperationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Operation::Stub::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Destory_, context, request, response);
+}
+
+void Operation::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, std::move(f));
+}
+
+void Operation::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Operation::Stub::PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Destory_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Operation::Stub::AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDestoryRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Operation::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Operation_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Operation::Service, ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexOperationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Operation::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::Pager* req,
+             ::palm::rbac::v1::IndexOperationResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Operation_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Operation::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexOperationResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Operation::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::IndexOperationResponse_Item* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Operation_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Operation::Service, ::palm::rbac::v1::CreateOperationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Operation::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::CreateOperationRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Operation_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Operation::Service, ::palm::rbac::v1::UpdateOperationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Operation::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::UpdateOperationRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Update(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Operation_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Operation::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Operation::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Destory(ctx, req, resp);
+             }, this)));
+}
+
+Operation::Service::~Service() {
+}
+
+::grpc::Status Operation::Service::Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexOperationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Operation::Service::Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexOperationResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Operation::Service::Create(::grpc::ServerContext* context, const ::palm::rbac::v1::CreateOperationRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Operation::Service::Update(::grpc::ServerContext* context, const ::palm::rbac::v1::UpdateOperationRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Operation::Service::Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Group_method_names[] = {
+  "/palm.rbac.v1.Group/Index",
+  "/palm.rbac.v1.Group/Show",
+  "/palm.rbac.v1.Group/Create",
+  "/palm.rbac.v1.Group/Update",
+  "/palm.rbac.v1.Group/Destory",
+  "/palm.rbac.v1.Group/ListUser",
+  "/palm.rbac.v1.Group/AssociateUser",
+  "/palm.rbac.v1.Group/DisassociateUser",
+};
+
+std::unique_ptr< Group::Stub> Group::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Group::Stub> stub(new Group::Stub(channel, options));
+  return stub;
+}
+
+Group::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Group_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(Group_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Create_(Group_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Group_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Destory_(Group_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListUser_(Group_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AssociateUser_(Group_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DisassociateUser_(Group_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Group::Stub::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::rbac::v1::IndexGroupResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexGroupResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Group::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexGroupResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexGroupResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexGroupResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexGroupResponse>* Group::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexGroupResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexGroupResponse>* Group::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Group::Stub::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::IndexGroupResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexGroupResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void Group::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexGroupResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexGroupResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexGroupResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexGroupResponse_Item>* Group::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexGroupResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexGroupResponse_Item>* Group::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Group::Stub::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateGroupRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::CreateGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Group::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateGroupRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::CreateGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateGroupRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::CreateGroupRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Group::Stub::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateGroupRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::UpdateGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+}
+
+void Group::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateGroupRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::UpdateGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateGroupRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::UpdateGroupRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Group::Stub::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Destory_, context, request, response);
+}
+
+void Group::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Destory_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDestoryRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Group::Stub::ListUser(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::ListGroupUserRequest* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListGroupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListUser_, context, request, response);
+}
+
+void Group::Stub::async::ListUser(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListGroupUserRequest* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListGroupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListUser_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::ListUser(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListGroupUserRequest* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::ListGroupUserRequest>* Group::Stub::PrepareAsyncListUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::ListGroupUserRequest, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::ListGroupUserRequest>* Group::Stub::AsyncListUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Group::Stub::AssociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateGroupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::AssociateGroupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AssociateUser_, context, request, response);
+}
+
+void Group::Stub::async::AssociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateGroupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::AssociateGroupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AssociateUser_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::AssociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateGroupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AssociateUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::PrepareAsyncAssociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateGroupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::AssociateGroupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AssociateUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::AsyncAssociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateGroupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAssociateUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Group::Stub::DisassociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateGroupUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::DisassociateGroupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DisassociateUser_, context, request, response);
+}
+
+void Group::Stub::async::DisassociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateGroupUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::DisassociateGroupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DisassociateUser_, context, request, response, std::move(f));
+}
+
+void Group::Stub::async::DisassociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateGroupUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DisassociateUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::PrepareAsyncDisassociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateGroupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::DisassociateGroupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DisassociateUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Group::Stub::AsyncDisassociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateGroupUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisassociateUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Group::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexGroupResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::Pager* req,
+             ::palm::rbac::v1::IndexGroupResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexGroupResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::IndexGroupResponse_Item* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::CreateGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::CreateGroupRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::UpdateGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::UpdateGroupRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Update(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Destory(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListGroupUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::ListGroupUserRequest* resp) {
+               return service->ListUser(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::AssociateGroupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::AssociateGroupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->AssociateUser(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Group_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Group::Service, ::palm::rbac::v1::DisassociateGroupUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Group::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::DisassociateGroupUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->DisassociateUser(ctx, req, resp);
+             }, this)));
+}
+
+Group::Service::~Service() {
+}
+
+::grpc::Status Group::Service::Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexGroupResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Group::Service::Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexGroupResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Group::Service::Create(::grpc::ServerContext* context, const ::palm::rbac::v1::CreateGroupRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Group::Service::Update(::grpc::ServerContext* context, const ::palm::rbac::v1::UpdateGroupRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Group::Service::Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Group::Service::ListUser(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListGroupUserRequest* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Group::Service::AssociateUser(::grpc::ServerContext* context, const ::palm::rbac::v1::AssociateGroupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Group::Service::DisassociateUser(::grpc::ServerContext* context, const ::palm::rbac::v1::DisassociateGroupUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Role_method_names[] = {
+  "/palm.rbac.v1.Role/Index",
+  "/palm.rbac.v1.Role/Show",
+  "/palm.rbac.v1.Role/Create",
+  "/palm.rbac.v1.Role/Update",
+  "/palm.rbac.v1.Role/Destory",
+  "/palm.rbac.v1.Role/ListUser",
+  "/palm.rbac.v1.Role/AssociateUser",
+  "/palm.rbac.v1.Role/DisassociateUser",
+  "/palm.rbac.v1.Role/ListGroup",
+  "/palm.rbac.v1.Role/AssociateGroup",
+  "/palm.rbac.v1.Role/DisassociateGroup",
+};
+
+std::unique_ptr< Role::Stub> Role::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Role::Stub> stub(new Role::Stub(channel, options));
+  return stub;
+}
+
+Role::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Role_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(Role_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Create_(Role_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Role_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Destory_(Role_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListUser_(Role_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AssociateUser_(Role_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DisassociateUser_(Role_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListGroup_(Role_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AssociateGroup_(Role_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_DisassociateGroup_(Role_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Role::Stub::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::rbac::v1::IndexRoleResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Role::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexRoleResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexRoleResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexRoleResponse>* Role::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexRoleResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexRoleResponse>* Role::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::IndexRoleResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexRoleResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void Role::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexRoleResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexRoleResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexRoleResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexRoleResponse_Item>* Role::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexRoleResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexRoleResponse_Item>* Role::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateRoleRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::CreateRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Role::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateRoleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::CreateRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateRoleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::CreateRoleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateRoleRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::UpdateRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+}
+
+void Role::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateRoleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::UpdateRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateRoleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::UpdateRoleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateRoleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Destory_, context, request, response);
+}
+
+void Role::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Destory_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDestoryRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::ListUser(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::ListRoleUserRequest* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListRoleUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListUser_, context, request, response);
+}
+
+void Role::Stub::async::ListUser(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListRoleUserRequest* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListRoleUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListUser_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::ListUser(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListRoleUserRequest* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::ListRoleUserRequest>* Role::Stub::PrepareAsyncListUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::ListRoleUserRequest, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::ListRoleUserRequest>* Role::Stub::AsyncListUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::AssociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::AssociateRoleUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AssociateUser_, context, request, response);
+}
+
+void Role::Stub::async::AssociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::AssociateRoleUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AssociateUser_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::AssociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AssociateUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::PrepareAsyncAssociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::AssociateRoleUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AssociateUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::AsyncAssociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAssociateUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::DisassociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleUserRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::DisassociateRoleUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DisassociateUser_, context, request, response);
+}
+
+void Role::Stub::async::DisassociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleUserRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::DisassociateRoleUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DisassociateUser_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::DisassociateUser(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleUserRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DisassociateUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::PrepareAsyncDisassociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::DisassociateRoleUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DisassociateUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::AsyncDisassociateUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleUserRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisassociateUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::ListGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::ListRoleGroupRequest* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListRoleGroupRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListGroup_, context, request, response);
+}
+
+void Role::Stub::async::ListGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListRoleGroupRequest* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListRoleGroupRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListGroup_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::ListGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListRoleGroupRequest* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListGroup_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::ListRoleGroupRequest>* Role::Stub::PrepareAsyncListGroupRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::ListRoleGroupRequest, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListGroup_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::ListRoleGroupRequest>* Role::Stub::AsyncListGroupRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListGroupRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::AssociateGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleGroupRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::AssociateRoleGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_AssociateGroup_, context, request, response);
+}
+
+void Role::Stub::async::AssociateGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleGroupRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::AssociateRoleGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AssociateGroup_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::AssociateGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleGroupRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_AssociateGroup_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::PrepareAsyncAssociateGroupRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::AssociateRoleGroupRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_AssociateGroup_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::AsyncAssociateGroupRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::AssociateRoleGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAssociateGroupRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Role::Stub::DisassociateGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleGroupRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::DisassociateRoleGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DisassociateGroup_, context, request, response);
+}
+
+void Role::Stub::async::DisassociateGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleGroupRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::DisassociateRoleGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DisassociateGroup_, context, request, response, std::move(f));
+}
+
+void Role::Stub::async::DisassociateGroup(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleGroupRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DisassociateGroup_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::PrepareAsyncDisassociateGroupRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::DisassociateRoleGroupRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DisassociateGroup_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Role::Stub::AsyncDisassociateGroupRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DisassociateRoleGroupRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisassociateGroupRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Role::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexRoleResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::Pager* req,
+             ::palm::rbac::v1::IndexRoleResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexRoleResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::IndexRoleResponse_Item* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::CreateRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::CreateRoleRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::UpdateRoleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::UpdateRoleRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Update(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Destory(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListRoleUserRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::ListRoleUserRequest* resp) {
+               return service->ListUser(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::AssociateRoleUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::AssociateRoleUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->AssociateUser(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::DisassociateRoleUserRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::DisassociateRoleUserRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->DisassociateUser(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::ListRoleGroupRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::ListRoleGroupRequest* resp) {
+               return service->ListGroup(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::AssociateRoleGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::AssociateRoleGroupRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->AssociateGroup(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Role_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Role::Service, ::palm::rbac::v1::DisassociateRoleGroupRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Role::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::DisassociateRoleGroupRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->DisassociateGroup(ctx, req, resp);
+             }, this)));
+}
+
+Role::Service::~Service() {
+}
+
+::grpc::Status Role::Service::Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexRoleResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexRoleResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::Create(::grpc::ServerContext* context, const ::palm::rbac::v1::CreateRoleRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::Update(::grpc::ServerContext* context, const ::palm::rbac::v1::UpdateRoleRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::ListUser(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListRoleUserRequest* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::AssociateUser(::grpc::ServerContext* context, const ::palm::rbac::v1::AssociateRoleUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::DisassociateUser(::grpc::ServerContext* context, const ::palm::rbac::v1::DisassociateRoleUserRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::ListGroup(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::ListRoleGroupRequest* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::AssociateGroup(::grpc::ServerContext* context, const ::palm::rbac::v1::AssociateRoleGroupRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Role::Service::DisassociateGroup(::grpc::ServerContext* context, const ::palm::rbac::v1::DisassociateRoleGroupRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Resource_method_names[] = {
+  "/palm.rbac.v1.Resource/Index",
+  "/palm.rbac.v1.Resource/Show",
+  "/palm.rbac.v1.Resource/Create",
+  "/palm.rbac.v1.Resource/Update",
+  "/palm.rbac.v1.Resource/Destory",
+};
+
+std::unique_ptr< Resource::Stub> Resource::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Resource::Stub> stub(new Resource::Stub(channel, options));
+  return stub;
+}
+
+Resource::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Resource_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(Resource_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Create_(Resource_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Resource_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Destory_(Resource_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Resource::Stub::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::rbac::v1::IndexResourceResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexResourceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Resource::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexResourceResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexResourceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Resource::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexResourceResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexResourceResponse>* Resource::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexResourceResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexResourceResponse>* Resource::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Resource::Stub::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::rbac::v1::IndexResourceResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexResourceResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void Resource::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexResourceResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexResourceResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void Resource::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexResourceResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexResourceResponse_Item>* Resource::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::rbac::v1::IndexResourceResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::rbac::v1::IndexResourceResponse_Item>* Resource::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Resource::Stub::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateResourceRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::CreateResourceRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Resource::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateResourceRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::CreateResourceRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Resource::Stub::async::Create(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateResourceRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Resource::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::CreateResourceRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Resource::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::CreateResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Resource::Stub::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateResourceRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::UpdateResourceRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+}
+
+void Resource::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateResourceRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::UpdateResourceRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+}
+
+void Resource::Stub::async::Update(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateResourceRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Resource::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::UpdateResourceRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Resource::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UpdateResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Resource::Stub::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Destory_, context, request, response);
+}
+
+void Resource::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, std::move(f));
+}
+
+void Resource::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Resource::Stub::PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Destory_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Resource::Stub::AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDestoryRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Resource::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Resource_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Resource::Service, ::palm::rbac::v1::Pager, ::palm::rbac::v1::IndexResourceResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Resource::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::Pager* req,
+             ::palm::rbac::v1::IndexResourceResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Resource_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Resource::Service, ::palm::rbac::v1::IdRequest, ::palm::rbac::v1::IndexResourceResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Resource::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::rbac::v1::IndexResourceResponse_Item* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Resource_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Resource::Service, ::palm::rbac::v1::CreateResourceRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Resource::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::CreateResourceRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Resource_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Resource::Service, ::palm::rbac::v1::UpdateResourceRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Resource::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::UpdateResourceRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Update(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Resource_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Resource::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Resource::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Destory(ctx, req, resp);
+             }, this)));
+}
+
+Resource::Service::~Service() {
+}
+
+::grpc::Status Resource::Service::Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::rbac::v1::IndexResourceResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Resource::Service::Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::rbac::v1::IndexResourceResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Resource::Service::Create(::grpc::ServerContext* context, const ::palm::rbac::v1::CreateResourceRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Resource::Service::Update(::grpc::ServerContext* context, const ::palm::rbac::v1::UpdateResourceRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Resource::Service::Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
 
 static const char* Policy_method_names[] = {
   "/palm.rbac.v1.Policy/Apply",
@@ -520,46 +2024,46 @@ Policy::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, co
   , rpcmethod_Deny_(Policy_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Policy::Stub::Apply(::grpc::ClientContext* context, const ::palm::rbac::v1::ApplyRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::ApplyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Apply_, context, request, response);
+::grpc::Status Policy::Stub::Apply(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyApplyRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::PolicyApplyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Apply_, context, request, response);
 }
 
-void Policy::Stub::async::Apply(::grpc::ClientContext* context, const ::palm::rbac::v1::ApplyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::ApplyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Apply_, context, request, response, std::move(f));
+void Policy::Stub::async::Apply(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyApplyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::PolicyApplyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Apply_, context, request, response, std::move(f));
 }
 
-void Policy::Stub::async::Apply(::grpc::ClientContext* context, const ::palm::rbac::v1::ApplyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+void Policy::Stub::async::Apply(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyApplyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Apply_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::PrepareAsyncApplyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::ApplyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::ApplyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Apply_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::PrepareAsyncApplyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyApplyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::PolicyApplyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Apply_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::AsyncApplyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::ApplyRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::AsyncApplyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyApplyRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncApplyRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status Policy::Stub::Deny(::grpc::ClientContext* context, const ::palm::rbac::v1::DenyRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::DenyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Deny_, context, request, response);
+::grpc::Status Policy::Stub::Deny(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyDenyRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::PolicyDenyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Deny_, context, request, response);
 }
 
-void Policy::Stub::async::Deny(::grpc::ClientContext* context, const ::palm::rbac::v1::DenyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::DenyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Deny_, context, request, response, std::move(f));
+void Policy::Stub::async::Deny(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyDenyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::PolicyDenyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Deny_, context, request, response, std::move(f));
 }
 
-void Policy::Stub::async::Deny(::grpc::ClientContext* context, const ::palm::rbac::v1::DenyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+void Policy::Stub::async::Deny(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyDenyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Deny_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::PrepareAsyncDenyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DenyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::DenyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Deny_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::PrepareAsyncDenyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyDenyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::PolicyDenyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Deny_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::AsyncDenyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::DenyRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Policy::Stub::AsyncDenyRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::PolicyDenyRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncDenyRaw(context, request, cq);
   result->StartCall();
@@ -570,20 +2074,20 @@ Policy::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Policy_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::rbac::v1::ApplyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::rbac::v1::PolicyApplyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::rbac::v1::ApplyRequest* req,
+             const ::palm::rbac::v1::PolicyApplyRequest* req,
              ::google::protobuf::Empty* resp) {
                return service->Apply(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Policy_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::rbac::v1::DenyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Policy::Service, ::palm::rbac::v1::PolicyDenyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Policy::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::rbac::v1::DenyRequest* req,
+             const ::palm::rbac::v1::PolicyDenyRequest* req,
              ::google::protobuf::Empty* resp) {
                return service->Deny(ctx, req, resp);
              }, this)));
@@ -592,14 +2096,14 @@ Policy::Service::Service() {
 Policy::Service::~Service() {
 }
 
-::grpc::Status Policy::Service::Apply(::grpc::ServerContext* context, const ::palm::rbac::v1::ApplyRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Policy::Service::Apply(::grpc::ServerContext* context, const ::palm::rbac::v1::PolicyApplyRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Policy::Service::Deny(::grpc::ServerContext* context, const ::palm::rbac::v1::DenyRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Policy::Service::Deny(::grpc::ServerContext* context, const ::palm::rbac::v1::PolicyDenyRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

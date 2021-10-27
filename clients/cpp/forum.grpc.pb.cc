@@ -68,23 +68,23 @@ void Forum::Stub::async::CreateTopic(::grpc::ClientContext* context, const ::pal
   return result;
 }
 
-::grpc::Status Forum::Stub::ShowTopic(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::palm::forum::v1::IndexTopicResponse_Item* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ShowTopic_, context, request, response);
+::grpc::Status Forum::Stub::ShowTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::forum::v1::IndexTopicResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ShowTopic_, context, request, response);
 }
 
-void Forum::Stub::async::ShowTopic(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ShowTopic_, context, request, response, std::move(f));
+void Forum::Stub::async::ShowTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ShowTopic_, context, request, response, std::move(f));
 }
 
-void Forum::Stub::async::ShowTopic(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+void Forum::Stub::async::ShowTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ShowTopic_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>* Forum::Stub::PrepareAsyncShowTopicRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::forum::v1::IndexTopicResponse_Item, ::palm::nut::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ShowTopic_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>* Forum::Stub::PrepareAsyncShowTopicRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::forum::v1::IndexTopicResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ShowTopic_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>* Forum::Stub::AsyncShowTopicRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>* Forum::Stub::AsyncShowTopicRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncShowTopicRaw(context, request, cq);
   result->StartCall();
@@ -114,46 +114,46 @@ void Forum::Stub::async::UpdateTopic(::grpc::ClientContext* context, const ::pal
   return result;
 }
 
-::grpc::Status Forum::Stub::DestoryTopic(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DestoryTopic_, context, request, response);
+::grpc::Status Forum::Stub::DestoryTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_DestoryTopic_, context, request, response);
 }
 
-void Forum::Stub::async::DestoryTopic(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DestoryTopic_, context, request, response, std::move(f));
+void Forum::Stub::async::DestoryTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DestoryTopic_, context, request, response, std::move(f));
 }
 
-void Forum::Stub::async::DestoryTopic(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+void Forum::Stub::async::DestoryTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_DestoryTopic_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Forum::Stub::PrepareAsyncDestoryTopicRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DestoryTopic_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Forum::Stub::PrepareAsyncDestoryTopicRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_DestoryTopic_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Forum::Stub::AsyncDestoryTopicRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Forum::Stub::AsyncDestoryTopicRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncDestoryTopicRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status Forum::Stub::IndexTopic(::grpc::ClientContext* context, const ::palm::nut::v1::Page& request, ::palm::forum::v1::IndexTopicResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::Page, ::palm::forum::v1::IndexTopicResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IndexTopic_, context, request, response);
+::grpc::Status Forum::Stub::IndexTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::forum::v1::IndexTopicResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::forum::v1::IndexTopicResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IndexTopic_, context, request, response);
 }
 
-void Forum::Stub::async::IndexTopic(::grpc::ClientContext* context, const ::palm::nut::v1::Page* request, ::palm::forum::v1::IndexTopicResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::Page, ::palm::forum::v1::IndexTopicResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IndexTopic_, context, request, response, std::move(f));
+void Forum::Stub::async::IndexTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::forum::v1::IndexTopicResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IndexTopic_, context, request, response, std::move(f));
 }
 
-void Forum::Stub::async::IndexTopic(::grpc::ClientContext* context, const ::palm::nut::v1::Page* request, ::palm::forum::v1::IndexTopicResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void Forum::Stub::async::IndexTopic(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IndexTopic_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>* Forum::Stub::PrepareAsyncIndexTopicRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Page& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::forum::v1::IndexTopicResponse, ::palm::nut::v1::Page, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IndexTopic_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>* Forum::Stub::PrepareAsyncIndexTopicRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::forum::v1::IndexTopicResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IndexTopic_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>* Forum::Stub::AsyncIndexTopicRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Page& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>* Forum::Stub::AsyncIndexTopicRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncIndexTopicRaw(context, request, cq);
   result->StartCall();
@@ -174,10 +174,10 @@ Forum::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Forum_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Forum::Service, ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Forum::Service, ::palm::rbac::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Forum::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::nut::v1::IdRequest* req,
+             const ::palm::rbac::v1::IdRequest* req,
              ::palm::forum::v1::IndexTopicResponse_Item* resp) {
                return service->ShowTopic(ctx, req, resp);
              }, this)));
@@ -194,20 +194,20 @@ Forum::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Forum_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Forum::Service, ::palm::nut::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Forum::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Forum::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::nut::v1::IdRequest* req,
+             const ::palm::rbac::v1::IdRequest* req,
              ::google::protobuf::Empty* resp) {
                return service->DestoryTopic(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Forum_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Forum::Service, ::palm::nut::v1::Page, ::palm::forum::v1::IndexTopicResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Forum::Service, ::palm::rbac::v1::Pager, ::palm::forum::v1::IndexTopicResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Forum::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::nut::v1::Page* req,
+             const ::palm::rbac::v1::Pager* req,
              ::palm::forum::v1::IndexTopicResponse* resp) {
                return service->IndexTopic(ctx, req, resp);
              }, this)));
@@ -223,7 +223,7 @@ Forum::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Forum::Service::ShowTopic(::grpc::ServerContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response) {
+::grpc::Status Forum::Service::ShowTopic(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -237,14 +237,14 @@ Forum::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Forum::Service::DestoryTopic(::grpc::ServerContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Forum::Service::DestoryTopic(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Forum::Service::IndexTopic(::grpc::ServerContext* context, const ::palm::nut::v1::Page* request, ::palm::forum::v1::IndexTopicResponse* response) {
+::grpc::Status Forum::Service::IndexTopic(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response) {
   (void) context;
   (void) request;
   (void) response;

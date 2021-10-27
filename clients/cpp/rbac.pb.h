@@ -30,9 +30,11 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/empty.pb.h>
 #include <google/protobuf/duration.pb.h>
+#include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_rbac_2eproto
@@ -48,7 +50,7 @@ struct TableStruct_rbac_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[42]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -58,18 +60,102 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace palm {
 namespace rbac {
 namespace v1 {
-class ApplyRequest;
-struct ApplyRequestDefaultTypeInternal;
-extern ApplyRequestDefaultTypeInternal _ApplyRequest_default_instance_;
+class AssociateGroupUserRequest;
+struct AssociateGroupUserRequestDefaultTypeInternal;
+extern AssociateGroupUserRequestDefaultTypeInternal _AssociateGroupUserRequest_default_instance_;
+class AssociateRoleGroupRequest;
+struct AssociateRoleGroupRequestDefaultTypeInternal;
+extern AssociateRoleGroupRequestDefaultTypeInternal _AssociateRoleGroupRequest_default_instance_;
+class AssociateRoleUserRequest;
+struct AssociateRoleUserRequestDefaultTypeInternal;
+extern AssociateRoleUserRequestDefaultTypeInternal _AssociateRoleUserRequest_default_instance_;
 class ChangePasswordRequest;
 struct ChangePasswordRequestDefaultTypeInternal;
 extern ChangePasswordRequestDefaultTypeInternal _ChangePasswordRequest_default_instance_;
-class DenyRequest;
-struct DenyRequestDefaultTypeInternal;
-extern DenyRequestDefaultTypeInternal _DenyRequest_default_instance_;
+class CreateGroupRequest;
+struct CreateGroupRequestDefaultTypeInternal;
+extern CreateGroupRequestDefaultTypeInternal _CreateGroupRequest_default_instance_;
+class CreateOperationRequest;
+struct CreateOperationRequestDefaultTypeInternal;
+extern CreateOperationRequestDefaultTypeInternal _CreateOperationRequest_default_instance_;
+class CreateResourceRequest;
+struct CreateResourceRequestDefaultTypeInternal;
+extern CreateResourceRequestDefaultTypeInternal _CreateResourceRequest_default_instance_;
+class CreateRoleRequest;
+struct CreateRoleRequestDefaultTypeInternal;
+extern CreateRoleRequestDefaultTypeInternal _CreateRoleRequest_default_instance_;
+class DisassociateGroupUserRequest;
+struct DisassociateGroupUserRequestDefaultTypeInternal;
+extern DisassociateGroupUserRequestDefaultTypeInternal _DisassociateGroupUserRequest_default_instance_;
+class DisassociateRoleGroupRequest;
+struct DisassociateRoleGroupRequestDefaultTypeInternal;
+extern DisassociateRoleGroupRequestDefaultTypeInternal _DisassociateRoleGroupRequest_default_instance_;
+class DisassociateRoleUserRequest;
+struct DisassociateRoleUserRequestDefaultTypeInternal;
+extern DisassociateRoleUserRequestDefaultTypeInternal _DisassociateRoleUserRequest_default_instance_;
 class EmailForm;
 struct EmailFormDefaultTypeInternal;
 extern EmailFormDefaultTypeInternal _EmailForm_default_instance_;
+class IdRequest;
+struct IdRequestDefaultTypeInternal;
+extern IdRequestDefaultTypeInternal _IdRequest_default_instance_;
+class IndexGroupResponse;
+struct IndexGroupResponseDefaultTypeInternal;
+extern IndexGroupResponseDefaultTypeInternal _IndexGroupResponse_default_instance_;
+class IndexGroupResponse_Item;
+struct IndexGroupResponse_ItemDefaultTypeInternal;
+extern IndexGroupResponse_ItemDefaultTypeInternal _IndexGroupResponse_Item_default_instance_;
+class IndexLog;
+struct IndexLogDefaultTypeInternal;
+extern IndexLogDefaultTypeInternal _IndexLog_default_instance_;
+class IndexLog_Item;
+struct IndexLog_ItemDefaultTypeInternal;
+extern IndexLog_ItemDefaultTypeInternal _IndexLog_Item_default_instance_;
+class IndexOperationResponse;
+struct IndexOperationResponseDefaultTypeInternal;
+extern IndexOperationResponseDefaultTypeInternal _IndexOperationResponse_default_instance_;
+class IndexOperationResponse_Item;
+struct IndexOperationResponse_ItemDefaultTypeInternal;
+extern IndexOperationResponse_ItemDefaultTypeInternal _IndexOperationResponse_Item_default_instance_;
+class IndexResourceResponse;
+struct IndexResourceResponseDefaultTypeInternal;
+extern IndexResourceResponseDefaultTypeInternal _IndexResourceResponse_default_instance_;
+class IndexResourceResponse_Item;
+struct IndexResourceResponse_ItemDefaultTypeInternal;
+extern IndexResourceResponse_ItemDefaultTypeInternal _IndexResourceResponse_Item_default_instance_;
+class IndexRoleResponse;
+struct IndexRoleResponseDefaultTypeInternal;
+extern IndexRoleResponseDefaultTypeInternal _IndexRoleResponse_default_instance_;
+class IndexRoleResponse_Item;
+struct IndexRoleResponse_ItemDefaultTypeInternal;
+extern IndexRoleResponse_ItemDefaultTypeInternal _IndexRoleResponse_Item_default_instance_;
+class IndexUserResponse;
+struct IndexUserResponseDefaultTypeInternal;
+extern IndexUserResponseDefaultTypeInternal _IndexUserResponse_default_instance_;
+class IndexUserResponse_Item;
+struct IndexUserResponse_ItemDefaultTypeInternal;
+extern IndexUserResponse_ItemDefaultTypeInternal _IndexUserResponse_Item_default_instance_;
+class ListGroupUserRequest;
+struct ListGroupUserRequestDefaultTypeInternal;
+extern ListGroupUserRequestDefaultTypeInternal _ListGroupUserRequest_default_instance_;
+class ListRoleGroupRequest;
+struct ListRoleGroupRequestDefaultTypeInternal;
+extern ListRoleGroupRequestDefaultTypeInternal _ListRoleGroupRequest_default_instance_;
+class ListRoleUserRequest;
+struct ListRoleUserRequestDefaultTypeInternal;
+extern ListRoleUserRequestDefaultTypeInternal _ListRoleUserRequest_default_instance_;
+class Pager;
+struct PagerDefaultTypeInternal;
+extern PagerDefaultTypeInternal _Pager_default_instance_;
+class Pagination;
+struct PaginationDefaultTypeInternal;
+extern PaginationDefaultTypeInternal _Pagination_default_instance_;
+class PolicyApplyRequest;
+struct PolicyApplyRequestDefaultTypeInternal;
+extern PolicyApplyRequestDefaultTypeInternal _PolicyApplyRequest_default_instance_;
+class PolicyDenyRequest;
+struct PolicyDenyRequestDefaultTypeInternal;
+extern PolicyDenyRequestDefaultTypeInternal _PolicyDenyRequest_default_instance_;
 class ProfileRequest;
 struct ProfileRequestDefaultTypeInternal;
 extern ProfileRequestDefaultTypeInternal _ProfileRequest_default_instance_;
@@ -88,26 +174,951 @@ extern SignUpRequestDefaultTypeInternal _SignUpRequest_default_instance_;
 class TokenForm;
 struct TokenFormDefaultTypeInternal;
 extern TokenFormDefaultTypeInternal _TokenForm_default_instance_;
+class UpdateGroupRequest;
+struct UpdateGroupRequestDefaultTypeInternal;
+extern UpdateGroupRequestDefaultTypeInternal _UpdateGroupRequest_default_instance_;
+class UpdateOperationRequest;
+struct UpdateOperationRequestDefaultTypeInternal;
+extern UpdateOperationRequestDefaultTypeInternal _UpdateOperationRequest_default_instance_;
+class UpdateResourceRequest;
+struct UpdateResourceRequestDefaultTypeInternal;
+extern UpdateResourceRequestDefaultTypeInternal _UpdateResourceRequest_default_instance_;
+class UpdateRoleRequest;
+struct UpdateRoleRequestDefaultTypeInternal;
+extern UpdateRoleRequestDefaultTypeInternal _UpdateRoleRequest_default_instance_;
 }  // namespace v1
 }  // namespace rbac
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::palm::rbac::v1::ApplyRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::ApplyRequest>(Arena*);
+template<> ::palm::rbac::v1::AssociateGroupUserRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::AssociateGroupUserRequest>(Arena*);
+template<> ::palm::rbac::v1::AssociateRoleGroupRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::AssociateRoleGroupRequest>(Arena*);
+template<> ::palm::rbac::v1::AssociateRoleUserRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::AssociateRoleUserRequest>(Arena*);
 template<> ::palm::rbac::v1::ChangePasswordRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::ChangePasswordRequest>(Arena*);
-template<> ::palm::rbac::v1::DenyRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::DenyRequest>(Arena*);
+template<> ::palm::rbac::v1::CreateGroupRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::CreateGroupRequest>(Arena*);
+template<> ::palm::rbac::v1::CreateOperationRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::CreateOperationRequest>(Arena*);
+template<> ::palm::rbac::v1::CreateResourceRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::CreateResourceRequest>(Arena*);
+template<> ::palm::rbac::v1::CreateRoleRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::CreateRoleRequest>(Arena*);
+template<> ::palm::rbac::v1::DisassociateGroupUserRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::DisassociateGroupUserRequest>(Arena*);
+template<> ::palm::rbac::v1::DisassociateRoleGroupRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::DisassociateRoleGroupRequest>(Arena*);
+template<> ::palm::rbac::v1::DisassociateRoleUserRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::DisassociateRoleUserRequest>(Arena*);
 template<> ::palm::rbac::v1::EmailForm* Arena::CreateMaybeMessage<::palm::rbac::v1::EmailForm>(Arena*);
+template<> ::palm::rbac::v1::IdRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::IdRequest>(Arena*);
+template<> ::palm::rbac::v1::IndexGroupResponse* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexGroupResponse>(Arena*);
+template<> ::palm::rbac::v1::IndexGroupResponse_Item* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexGroupResponse_Item>(Arena*);
+template<> ::palm::rbac::v1::IndexLog* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexLog>(Arena*);
+template<> ::palm::rbac::v1::IndexLog_Item* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexLog_Item>(Arena*);
+template<> ::palm::rbac::v1::IndexOperationResponse* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexOperationResponse>(Arena*);
+template<> ::palm::rbac::v1::IndexOperationResponse_Item* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexOperationResponse_Item>(Arena*);
+template<> ::palm::rbac::v1::IndexResourceResponse* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexResourceResponse>(Arena*);
+template<> ::palm::rbac::v1::IndexResourceResponse_Item* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexResourceResponse_Item>(Arena*);
+template<> ::palm::rbac::v1::IndexRoleResponse* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexRoleResponse>(Arena*);
+template<> ::palm::rbac::v1::IndexRoleResponse_Item* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexRoleResponse_Item>(Arena*);
+template<> ::palm::rbac::v1::IndexUserResponse* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexUserResponse>(Arena*);
+template<> ::palm::rbac::v1::IndexUserResponse_Item* Arena::CreateMaybeMessage<::palm::rbac::v1::IndexUserResponse_Item>(Arena*);
+template<> ::palm::rbac::v1::ListGroupUserRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::ListGroupUserRequest>(Arena*);
+template<> ::palm::rbac::v1::ListRoleGroupRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::ListRoleGroupRequest>(Arena*);
+template<> ::palm::rbac::v1::ListRoleUserRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::ListRoleUserRequest>(Arena*);
+template<> ::palm::rbac::v1::Pager* Arena::CreateMaybeMessage<::palm::rbac::v1::Pager>(Arena*);
+template<> ::palm::rbac::v1::Pagination* Arena::CreateMaybeMessage<::palm::rbac::v1::Pagination>(Arena*);
+template<> ::palm::rbac::v1::PolicyApplyRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::PolicyApplyRequest>(Arena*);
+template<> ::palm::rbac::v1::PolicyDenyRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::PolicyDenyRequest>(Arena*);
 template<> ::palm::rbac::v1::ProfileRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::ProfileRequest>(Arena*);
 template<> ::palm::rbac::v1::ResetPasswordRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::ResetPasswordRequest>(Arena*);
 template<> ::palm::rbac::v1::SignInRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::SignInRequest>(Arena*);
 template<> ::palm::rbac::v1::SignInResponse* Arena::CreateMaybeMessage<::palm::rbac::v1::SignInResponse>(Arena*);
 template<> ::palm::rbac::v1::SignUpRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::SignUpRequest>(Arena*);
 template<> ::palm::rbac::v1::TokenForm* Arena::CreateMaybeMessage<::palm::rbac::v1::TokenForm>(Arena*);
+template<> ::palm::rbac::v1::UpdateGroupRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::UpdateGroupRequest>(Arena*);
+template<> ::palm::rbac::v1::UpdateOperationRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::UpdateOperationRequest>(Arena*);
+template<> ::palm::rbac::v1::UpdateResourceRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::UpdateResourceRequest>(Arena*);
+template<> ::palm::rbac::v1::UpdateRoleRequest* Arena::CreateMaybeMessage<::palm::rbac::v1::UpdateRoleRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
 namespace rbac {
 namespace v1 {
 
+enum IndexLog_Level : int {
+  IndexLog_Level_Debug = 0,
+  IndexLog_Level_Info = 1,
+  IndexLog_Level_Warning = 2,
+  IndexLog_Level_Error = 3,
+  IndexLog_Level_IndexLog_Level_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  IndexLog_Level_IndexLog_Level_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool IndexLog_Level_IsValid(int value);
+constexpr IndexLog_Level IndexLog_Level_Level_MIN = IndexLog_Level_Debug;
+constexpr IndexLog_Level IndexLog_Level_Level_MAX = IndexLog_Level_Error;
+constexpr int IndexLog_Level_Level_ARRAYSIZE = IndexLog_Level_Level_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* IndexLog_Level_descriptor();
+template<typename T>
+inline const std::string& IndexLog_Level_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, IndexLog_Level>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function IndexLog_Level_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    IndexLog_Level_descriptor(), enum_t_value);
+}
+inline bool IndexLog_Level_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, IndexLog_Level* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<IndexLog_Level>(
+    IndexLog_Level_descriptor(), name, value);
+}
+enum MediaType : int {
+  PlainText = 0,
+  Markdown = 1,
+  Html = 2,
+  MediaType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  MediaType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool MediaType_IsValid(int value);
+constexpr MediaType MediaType_MIN = PlainText;
+constexpr MediaType MediaType_MAX = Html;
+constexpr int MediaType_ARRAYSIZE = MediaType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MediaType_descriptor();
+template<typename T>
+inline const std::string& MediaType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MediaType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MediaType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MediaType_descriptor(), enum_t_value);
+}
+inline bool MediaType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MediaType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MediaType>(
+    MediaType_descriptor(), name, value);
+}
+enum ProviderType : int {
+  Email = 0,
+  Google = 1,
+  Factbook = 2,
+  WeChat = 3,
+  ProviderType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  ProviderType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool ProviderType_IsValid(int value);
+constexpr ProviderType ProviderType_MIN = Email;
+constexpr ProviderType ProviderType_MAX = WeChat;
+constexpr int ProviderType_ARRAYSIZE = ProviderType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ProviderType_descriptor();
+template<typename T>
+inline const std::string& ProviderType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ProviderType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ProviderType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ProviderType_descriptor(), enum_t_value);
+}
+inline bool ProviderType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ProviderType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ProviderType>(
+    ProviderType_descriptor(), name, value);
+}
 // ===================================================================
+
+class Pagination final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.Pagination) */ {
+ public:
+  inline Pagination() : Pagination(nullptr) {}
+  ~Pagination() override;
+  explicit constexpr Pagination(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Pagination(const Pagination& from);
+  Pagination(Pagination&& from) noexcept
+    : Pagination() {
+    *this = ::std::move(from);
+  }
+
+  inline Pagination& operator=(const Pagination& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Pagination& operator=(Pagination&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Pagination& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Pagination* internal_default_instance() {
+    return reinterpret_cast<const Pagination*>(
+               &_Pagination_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(Pagination& a, Pagination& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Pagination* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Pagination* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Pagination* New() const final {
+    return new Pagination();
+  }
+
+  Pagination* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Pagination>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Pagination& from);
+  void MergeFrom(const Pagination& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Pagination* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.Pagination";
+  }
+  protected:
+  explicit Pagination(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTotalFieldNumber = 1,
+    kSizeFieldNumber = 2,
+    kCurrentFieldNumber = 3,
+  };
+  // int64 total = 1;
+  void clear_total();
+  ::PROTOBUF_NAMESPACE_ID::int64 total() const;
+  void set_total(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_total() const;
+  void _internal_set_total(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 size = 2;
+  void clear_size();
+  ::PROTOBUF_NAMESPACE_ID::int64 size() const;
+  void set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_size() const;
+  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 current = 3;
+  void clear_current();
+  ::PROTOBUF_NAMESPACE_ID::int64 current() const;
+  void set_current(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_current() const;
+  void _internal_set_current(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.Pagination)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int64 total_;
+  ::PROTOBUF_NAMESPACE_ID::int64 size_;
+  ::PROTOBUF_NAMESPACE_ID::int64 current_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Pager final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.Pager) */ {
+ public:
+  inline Pager() : Pager(nullptr) {}
+  ~Pager() override;
+  explicit constexpr Pager(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Pager(const Pager& from);
+  Pager(Pager&& from) noexcept
+    : Pager() {
+    *this = ::std::move(from);
+  }
+
+  inline Pager& operator=(const Pager& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Pager& operator=(Pager&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Pager& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Pager* internal_default_instance() {
+    return reinterpret_cast<const Pager*>(
+               &_Pager_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(Pager& a, Pager& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Pager* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Pager* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Pager* New() const final {
+    return new Pager();
+  }
+
+  Pager* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Pager>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Pager& from);
+  void MergeFrom(const Pager& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Pager* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.Pager";
+  }
+  protected:
+  explicit Pager(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIndexFieldNumber = 1,
+    kSizeFieldNumber = 2,
+  };
+  // int64 index = 1;
+  void clear_index();
+  ::PROTOBUF_NAMESPACE_ID::int64 index() const;
+  void set_index(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_index() const;
+  void _internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 size = 2;
+  void clear_size();
+  ::PROTOBUF_NAMESPACE_ID::int64 size() const;
+  void set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_size() const;
+  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.Pager)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int64 index_;
+  ::PROTOBUF_NAMESPACE_ID::int64 size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IdRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IdRequest) */ {
+ public:
+  inline IdRequest() : IdRequest(nullptr) {}
+  ~IdRequest() override;
+  explicit constexpr IdRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IdRequest(const IdRequest& from);
+  IdRequest(IdRequest&& from) noexcept
+    : IdRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline IdRequest& operator=(const IdRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IdRequest& operator=(IdRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IdRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IdRequest* internal_default_instance() {
+    return reinterpret_cast<const IdRequest*>(
+               &_IdRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(IdRequest& a, IdRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IdRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IdRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IdRequest* New() const final {
+    return new IdRequest();
+  }
+
+  IdRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IdRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IdRequest& from);
+  void MergeFrom(const IdRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IdRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IdRequest";
+  }
+  protected:
+  explicit IdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+  };
+  // int64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IdRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int64 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexLog_Item final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexLog.Item) */ {
+ public:
+  inline IndexLog_Item() : IndexLog_Item(nullptr) {}
+  ~IndexLog_Item() override;
+  explicit constexpr IndexLog_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexLog_Item(const IndexLog_Item& from);
+  IndexLog_Item(IndexLog_Item&& from) noexcept
+    : IndexLog_Item() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexLog_Item& operator=(const IndexLog_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexLog_Item& operator=(IndexLog_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexLog_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexLog_Item* internal_default_instance() {
+    return reinterpret_cast<const IndexLog_Item*>(
+               &_IndexLog_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(IndexLog_Item& a, IndexLog_Item& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexLog_Item* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexLog_Item* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexLog_Item* New() const final {
+    return new IndexLog_Item();
+  }
+
+  IndexLog_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexLog_Item>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexLog_Item& from);
+  void MergeFrom(const IndexLog_Item& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexLog_Item* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexLog.Item";
+  }
+  protected:
+  explicit IndexLog_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIpFieldNumber = 2,
+    kMessageFieldNumber = 4,
+    kIdFieldNumber = 1,
+    kLevelFieldNumber = 3,
+  };
+  // string ip = 2;
+  void clear_ip();
+  const std::string& ip() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_ip(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_ip();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_ip();
+  void set_allocated_ip(std::string* ip);
+  private:
+  const std::string& _internal_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip(const std::string& value);
+  std::string* _internal_mutable_ip();
+  public:
+
+  // string message = 4;
+  void clear_message();
+  const std::string& message() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_message(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_message();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_message();
+  void set_allocated_message(std::string* message);
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // int64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // .palm.rbac.v1.IndexLog.Level level = 3;
+  void clear_level();
+  ::palm::rbac::v1::IndexLog_Level level() const;
+  void set_level(::palm::rbac::v1::IndexLog_Level value);
+  private:
+  ::palm::rbac::v1::IndexLog_Level _internal_level() const;
+  void _internal_set_level(::palm::rbac::v1::IndexLog_Level value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexLog.Item)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ip_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
+  ::PROTOBUF_NAMESPACE_ID::int64 id_;
+  int level_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexLog final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexLog) */ {
+ public:
+  inline IndexLog() : IndexLog(nullptr) {}
+  ~IndexLog() override;
+  explicit constexpr IndexLog(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexLog(const IndexLog& from);
+  IndexLog(IndexLog&& from) noexcept
+    : IndexLog() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexLog& operator=(const IndexLog& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexLog& operator=(IndexLog&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexLog& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexLog* internal_default_instance() {
+    return reinterpret_cast<const IndexLog*>(
+               &_IndexLog_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(IndexLog& a, IndexLog& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexLog* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexLog* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexLog* New() const final {
+    return new IndexLog();
+  }
+
+  IndexLog* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexLog>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexLog& from);
+  void MergeFrom(const IndexLog& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexLog* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexLog";
+  }
+  protected:
+  explicit IndexLog(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef IndexLog_Item Item;
+
+  typedef IndexLog_Level Level;
+  static constexpr Level Debug =
+    IndexLog_Level_Debug;
+  static constexpr Level Info =
+    IndexLog_Level_Info;
+  static constexpr Level Warning =
+    IndexLog_Level_Warning;
+  static constexpr Level Error =
+    IndexLog_Level_Error;
+  static inline bool Level_IsValid(int value) {
+    return IndexLog_Level_IsValid(value);
+  }
+  static constexpr Level Level_MIN =
+    IndexLog_Level_Level_MIN;
+  static constexpr Level Level_MAX =
+    IndexLog_Level_Level_MAX;
+  static constexpr int Level_ARRAYSIZE =
+    IndexLog_Level_Level_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  Level_descriptor() {
+    return IndexLog_Level_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& Level_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, Level>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function Level_Name.");
+    return IndexLog_Level_Name(enum_t_value);
+  }
+  static inline bool Level_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      Level* value) {
+    return IndexLog_Level_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 2,
+  };
+  // repeated .palm.rbac.v1.IndexLog.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexLog_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexLog_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexLog_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexLog_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexLog_Item& items(int index) const;
+  ::palm::rbac::v1::IndexLog_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexLog_Item >&
+      items() const;
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  bool has_pagination() const;
+  private:
+  bool _internal_has_pagination() const;
+  public:
+  void clear_pagination();
+  const ::palm::rbac::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::rbac::v1::Pagination* release_pagination();
+  ::palm::rbac::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::rbac::v1::Pagination* pagination);
+  private:
+  const ::palm::rbac::v1::Pagination& _internal_pagination() const;
+  ::palm::rbac::v1::Pagination* _internal_mutable_pagination();
+  public:
+  void unsafe_arena_set_allocated_pagination(
+      ::palm::rbac::v1::Pagination* pagination);
+  ::palm::rbac::v1::Pagination* unsafe_arena_release_pagination();
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexLog)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexLog_Item > items_;
+  ::palm::rbac::v1::Pagination* pagination_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
 
 class SignInRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.SignInRequest) */ {
@@ -150,7 +1161,7 @@ class SignInRequest final :
   }
   enum UserCase {
     kEmail = 1,
-    kNickname = 2,
+    kNickName = 2,
     USER_NOT_SET = 0,
   };
 
@@ -159,7 +1170,7 @@ class SignInRequest final :
                &_SignInRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    5;
 
   friend void swap(SignInRequest& a, SignInRequest& b) {
     a.Swap(&b);
@@ -226,7 +1237,7 @@ class SignInRequest final :
     kPasswordFieldNumber = 11,
     kTtlFieldNumber = 21,
     kEmailFieldNumber = 1,
-    kNicknameFieldNumber = 2,
+    kNickNameFieldNumber = 2,
   };
   // string password = 11;
   void clear_password();
@@ -242,7 +1253,7 @@ class SignInRequest final :
   std::string* _internal_mutable_password();
   public:
 
-  // optional .google.protobuf.Duration ttl = 21;
+  // .google.protobuf.Duration ttl = 21;
   bool has_ttl() const;
   private:
   bool _internal_has_ttl() const;
@@ -278,22 +1289,22 @@ class SignInRequest final :
   std::string* _internal_mutable_email();
   public:
 
-  // string nickname = 2;
-  bool has_nickname() const;
+  // string nick_name = 2;
+  bool has_nick_name() const;
   private:
-  bool _internal_has_nickname() const;
+  bool _internal_has_nick_name() const;
   public:
-  void clear_nickname();
-  const std::string& nickname() const;
+  void clear_nick_name();
+  const std::string& nick_name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_nickname(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_nickname();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_nickname();
-  void set_allocated_nickname(std::string* nickname);
+  void set_nick_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_nick_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_nick_name();
+  void set_allocated_nick_name(std::string* nick_name);
   private:
-  const std::string& _internal_nickname() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nickname(const std::string& value);
-  std::string* _internal_mutable_nickname();
+  const std::string& _internal_nick_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nick_name(const std::string& value);
+  std::string* _internal_mutable_nick_name();
   public:
 
   void clear_user();
@@ -302,7 +1313,7 @@ class SignInRequest final :
  private:
   class _Internal;
   void set_has_email();
-  void set_has_nickname();
+  void set_has_nick_name();
 
   inline bool has_user() const;
   inline void clear_has_user();
@@ -310,16 +1321,15 @@ class SignInRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
   PROTOBUF_NAMESPACE_ID::Duration* ttl_;
   union UserUnion {
     constexpr UserUnion() : _constinit_{} {}
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nickname_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nick_name_;
   } user_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
 
   friend struct ::TableStruct_rbac_2eproto;
@@ -370,7 +1380,7 @@ class SignInResponse final :
                &_SignInResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    6;
 
   friend void swap(SignInResponse& a, SignInResponse& b) {
     a.Swap(&b);
@@ -527,7 +1537,7 @@ class SignUpRequest final :
                &_SignUpRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    7;
 
   friend void swap(SignUpRequest& a, SignUpRequest& b) {
     a.Swap(&b);
@@ -592,7 +1602,7 @@ class SignUpRequest final :
 
   enum : int {
     kEmailFieldNumber = 1,
-    kNicknameFieldNumber = 2,
+    kNickNameFieldNumber = 2,
     kRealNameFieldNumber = 3,
     kPasswordFieldNumber = 4,
   };
@@ -610,18 +1620,18 @@ class SignUpRequest final :
   std::string* _internal_mutable_email();
   public:
 
-  // string nickname = 2;
-  void clear_nickname();
-  const std::string& nickname() const;
+  // string nick_name = 2;
+  void clear_nick_name();
+  const std::string& nick_name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_nickname(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_nickname();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_nickname();
-  void set_allocated_nickname(std::string* nickname);
+  void set_nick_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_nick_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_nick_name();
+  void set_allocated_nick_name(std::string* nick_name);
   private:
-  const std::string& _internal_nickname() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nickname(const std::string& value);
-  std::string* _internal_mutable_nickname();
+  const std::string& _internal_nick_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nick_name(const std::string& value);
+  std::string* _internal_mutable_nick_name();
   public:
 
   // string real_name = 3;
@@ -660,7 +1670,7 @@ class SignUpRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nickname_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nick_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr real_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -712,7 +1722,7 @@ class EmailForm final :
                &_EmailForm_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    8;
 
   friend void swap(EmailForm& a, EmailForm& b) {
     a.Swap(&b);
@@ -849,7 +1859,7 @@ class TokenForm final :
                &_TokenForm_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    9;
 
   friend void swap(TokenForm& a, TokenForm& b) {
     a.Swap(&b);
@@ -986,7 +1996,7 @@ class ResetPasswordRequest final :
                &_ResetPasswordRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    10;
 
   friend void swap(ResetPasswordRequest& a, ResetPasswordRequest& b) {
     a.Swap(&b);
@@ -1139,7 +2149,7 @@ class ChangePasswordRequest final :
                &_ChangePasswordRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    11;
 
   friend void swap(ChangePasswordRequest& a, ChangePasswordRequest& b) {
     a.Swap(&b);
@@ -1292,7 +2302,7 @@ class ProfileRequest final :
                &_ProfileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    12;
 
   friend void swap(ProfileRequest& a, ProfileRequest& b) {
     a.Swap(&b);
@@ -1417,24 +2427,24 @@ class ProfileRequest final :
 };
 // -------------------------------------------------------------------
 
-class ApplyRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.ApplyRequest) */ {
+class IndexUserResponse_Item final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexUserResponse.Item) */ {
  public:
-  inline ApplyRequest() : ApplyRequest(nullptr) {}
-  ~ApplyRequest() override;
-  explicit constexpr ApplyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline IndexUserResponse_Item() : IndexUserResponse_Item(nullptr) {}
+  ~IndexUserResponse_Item() override;
+  explicit constexpr IndexUserResponse_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  ApplyRequest(const ApplyRequest& from);
-  ApplyRequest(ApplyRequest&& from) noexcept
-    : ApplyRequest() {
+  IndexUserResponse_Item(const IndexUserResponse_Item& from);
+  IndexUserResponse_Item(IndexUserResponse_Item&& from) noexcept
+    : IndexUserResponse_Item() {
     *this = ::std::move(from);
   }
 
-  inline ApplyRequest& operator=(const ApplyRequest& from) {
+  inline IndexUserResponse_Item& operator=(const IndexUserResponse_Item& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ApplyRequest& operator=(ApplyRequest&& from) noexcept {
+  inline IndexUserResponse_Item& operator=(IndexUserResponse_Item&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()) {
       InternalSwap(&from);
@@ -1453,20 +2463,20 @@ class ApplyRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ApplyRequest& default_instance() {
+  static const IndexUserResponse_Item& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ApplyRequest* internal_default_instance() {
-    return reinterpret_cast<const ApplyRequest*>(
-               &_ApplyRequest_default_instance_);
+  static inline const IndexUserResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const IndexUserResponse_Item*>(
+               &_IndexUserResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    13;
 
-  friend void swap(ApplyRequest& a, ApplyRequest& b) {
+  friend void swap(IndexUserResponse_Item& a, IndexUserResponse_Item& b) {
     a.Swap(&b);
   }
-  inline void Swap(ApplyRequest* other) {
+  inline void Swap(IndexUserResponse_Item* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -1474,7 +2484,7 @@ class ApplyRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ApplyRequest* other) {
+  void UnsafeArenaSwap(IndexUserResponse_Item* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1482,17 +2492,17 @@ class ApplyRequest final :
 
   // implements Message ----------------------------------------------
 
-  inline ApplyRequest* New() const final {
-    return new ApplyRequest();
+  inline IndexUserResponse_Item* New() const final {
+    return new IndexUserResponse_Item();
   }
 
-  ApplyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ApplyRequest>(arena);
+  IndexUserResponse_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexUserResponse_Item>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ApplyRequest& from);
-  void MergeFrom(const ApplyRequest& from);
+  void CopyFrom(const IndexUserResponse_Item& from);
+  void MergeFrom(const IndexUserResponse_Item& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -1506,13 +2516,13 @@ class ApplyRequest final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ApplyRequest* other);
+  void InternalSwap(IndexUserResponse_Item* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.rbac.v1.ApplyRequest";
+    return "palm.rbac.v1.IndexUserResponse.Item";
   }
   protected:
-  explicit ApplyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit IndexUserResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1525,48 +2535,506 @@ class ApplyRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUserFieldNumber = 1,
+    kRealNameFieldNumber = 2,
+    kNickNameFieldNumber = 3,
+    kEmailFieldNumber = 4,
+    kUidFieldNumber = 5,
+    kProviderIdFieldNumber = 7,
+    kLogoFieldNumber = 8,
+    kLangFieldNumber = 9,
+    kCurrentSignInIpFieldNumber = 23,
+    kLastSignInIpFieldNumber = 25,
+    kCurrentSignInAtFieldNumber = 22,
+    kLastSignInAtFieldNumber = 24,
+    kConfirmedAtFieldNumber = 31,
+    kLockedAtFieldNumber = 32,
+    kDeletedAtFieldNumber = 33,
+    kUpdatedAtFieldNumber = 39,
+    kIdFieldNumber = 1,
+    kProviderTypeFieldNumber = 6,
+    kSignInCountFieldNumber = 21,
   };
-  // int64 user = 1;
-  void clear_user();
-  ::PROTOBUF_NAMESPACE_ID::int64 user() const;
-  void set_user(::PROTOBUF_NAMESPACE_ID::int64 value);
+  // string real_name = 2;
+  void clear_real_name();
+  const std::string& real_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_real_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_real_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_real_name();
+  void set_allocated_real_name(std::string* real_name);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_user() const;
-  void _internal_set_user(::PROTOBUF_NAMESPACE_ID::int64 value);
+  const std::string& _internal_real_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_real_name(const std::string& value);
+  std::string* _internal_mutable_real_name();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.rbac.v1.ApplyRequest)
+  // string nick_name = 3;
+  void clear_nick_name();
+  const std::string& nick_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_nick_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_nick_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_nick_name();
+  void set_allocated_nick_name(std::string* nick_name);
+  private:
+  const std::string& _internal_nick_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nick_name(const std::string& value);
+  std::string* _internal_mutable_nick_name();
+  public:
+
+  // string email = 4;
+  void clear_email();
+  const std::string& email() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_email(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_email();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_email();
+  void set_allocated_email(std::string* email);
+  private:
+  const std::string& _internal_email() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_email(const std::string& value);
+  std::string* _internal_mutable_email();
+  public:
+
+  // string uid = 5;
+  void clear_uid();
+  const std::string& uid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_uid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_uid();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_uid();
+  void set_allocated_uid(std::string* uid);
+  private:
+  const std::string& _internal_uid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_uid(const std::string& value);
+  std::string* _internal_mutable_uid();
+  public:
+
+  // string provider_id = 7;
+  void clear_provider_id();
+  const std::string& provider_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_provider_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_provider_id();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_provider_id();
+  void set_allocated_provider_id(std::string* provider_id);
+  private:
+  const std::string& _internal_provider_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_provider_id(const std::string& value);
+  std::string* _internal_mutable_provider_id();
+  public:
+
+  // string logo = 8;
+  void clear_logo();
+  const std::string& logo() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_logo(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_logo();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_logo();
+  void set_allocated_logo(std::string* logo);
+  private:
+  const std::string& _internal_logo() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_logo(const std::string& value);
+  std::string* _internal_mutable_logo();
+  public:
+
+  // string lang = 9;
+  void clear_lang();
+  const std::string& lang() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_lang(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_lang();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_lang();
+  void set_allocated_lang(std::string* lang);
+  private:
+  const std::string& _internal_lang() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const std::string& value);
+  std::string* _internal_mutable_lang();
+  public:
+
+  // optional string current_sign_in_ip = 23;
+  bool has_current_sign_in_ip() const;
+  private:
+  bool _internal_has_current_sign_in_ip() const;
+  public:
+  void clear_current_sign_in_ip();
+  const std::string& current_sign_in_ip() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_current_sign_in_ip(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_current_sign_in_ip();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_current_sign_in_ip();
+  void set_allocated_current_sign_in_ip(std::string* current_sign_in_ip);
+  private:
+  const std::string& _internal_current_sign_in_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_current_sign_in_ip(const std::string& value);
+  std::string* _internal_mutable_current_sign_in_ip();
+  public:
+
+  // optional string last_sign_in_ip = 25;
+  bool has_last_sign_in_ip() const;
+  private:
+  bool _internal_has_last_sign_in_ip() const;
+  public:
+  void clear_last_sign_in_ip();
+  const std::string& last_sign_in_ip() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_last_sign_in_ip(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_last_sign_in_ip();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_last_sign_in_ip();
+  void set_allocated_last_sign_in_ip(std::string* last_sign_in_ip);
+  private:
+  const std::string& _internal_last_sign_in_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_last_sign_in_ip(const std::string& value);
+  std::string* _internal_mutable_last_sign_in_ip();
+  public:
+
+  // optional .google.protobuf.Timestamp current_sign_in_at = 22;
+  bool has_current_sign_in_at() const;
+  private:
+  bool _internal_has_current_sign_in_at() const;
+  public:
+  void clear_current_sign_in_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& current_sign_in_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_current_sign_in_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_current_sign_in_at();
+  void set_allocated_current_sign_in_at(PROTOBUF_NAMESPACE_ID::Timestamp* current_sign_in_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_current_sign_in_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_current_sign_in_at();
+  public:
+  void unsafe_arena_set_allocated_current_sign_in_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* current_sign_in_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_current_sign_in_at();
+
+  // optional .google.protobuf.Timestamp last_sign_in_at = 24;
+  bool has_last_sign_in_at() const;
+  private:
+  bool _internal_has_last_sign_in_at() const;
+  public:
+  void clear_last_sign_in_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& last_sign_in_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_last_sign_in_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_sign_in_at();
+  void set_allocated_last_sign_in_at(PROTOBUF_NAMESPACE_ID::Timestamp* last_sign_in_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_sign_in_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_sign_in_at();
+  public:
+  void unsafe_arena_set_allocated_last_sign_in_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* last_sign_in_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_sign_in_at();
+
+  // optional .google.protobuf.Timestamp confirmed_at = 31;
+  bool has_confirmed_at() const;
+  private:
+  bool _internal_has_confirmed_at() const;
+  public:
+  void clear_confirmed_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& confirmed_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_confirmed_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_confirmed_at();
+  void set_allocated_confirmed_at(PROTOBUF_NAMESPACE_ID::Timestamp* confirmed_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_confirmed_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_confirmed_at();
+  public:
+  void unsafe_arena_set_allocated_confirmed_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* confirmed_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_confirmed_at();
+
+  // optional .google.protobuf.Timestamp locked_at = 32;
+  bool has_locked_at() const;
+  private:
+  bool _internal_has_locked_at() const;
+  public:
+  void clear_locked_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& locked_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_locked_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_locked_at();
+  void set_allocated_locked_at(PROTOBUF_NAMESPACE_ID::Timestamp* locked_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_locked_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_locked_at();
+  public:
+  void unsafe_arena_set_allocated_locked_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* locked_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_locked_at();
+
+  // optional .google.protobuf.Timestamp deleted_at = 33;
+  bool has_deleted_at() const;
+  private:
+  bool _internal_has_deleted_at() const;
+  public:
+  void clear_deleted_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_deleted_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_deleted_at();
+  void set_allocated_deleted_at(PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_deleted_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_deleted_at();
+  public:
+  void unsafe_arena_set_allocated_deleted_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_deleted_at();
+
+  // .google.protobuf.Timestamp updated_at = 39;
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
+  // int64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // .palm.rbac.v1.ProviderType provider_type = 6;
+  void clear_provider_type();
+  ::palm::rbac::v1::ProviderType provider_type() const;
+  void set_provider_type(::palm::rbac::v1::ProviderType value);
+  private:
+  ::palm::rbac::v1::ProviderType _internal_provider_type() const;
+  void _internal_set_provider_type(::palm::rbac::v1::ProviderType value);
+  public:
+
+  // int32 sign_in_count = 21;
+  void clear_sign_in_count();
+  ::PROTOBUF_NAMESPACE_ID::int32 sign_in_count() const;
+  void set_sign_in_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_sign_in_count() const;
+  void _internal_set_sign_in_count(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexUserResponse.Item)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 user_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr real_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nick_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr provider_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr logo_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr lang_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr current_sign_in_ip_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr last_sign_in_ip_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* current_sign_in_at_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* last_sign_in_at_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* confirmed_at_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* locked_at_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::PROTOBUF_NAMESPACE_ID::int64 id_;
+  int provider_type_;
+  ::PROTOBUF_NAMESPACE_ID::int32 sign_in_count_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexUserResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexUserResponse) */ {
+ public:
+  inline IndexUserResponse() : IndexUserResponse(nullptr) {}
+  ~IndexUserResponse() override;
+  explicit constexpr IndexUserResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexUserResponse(const IndexUserResponse& from);
+  IndexUserResponse(IndexUserResponse&& from) noexcept
+    : IndexUserResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexUserResponse& operator=(const IndexUserResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexUserResponse& operator=(IndexUserResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexUserResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexUserResponse* internal_default_instance() {
+    return reinterpret_cast<const IndexUserResponse*>(
+               &_IndexUserResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(IndexUserResponse& a, IndexUserResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexUserResponse* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexUserResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexUserResponse* New() const final {
+    return new IndexUserResponse();
+  }
+
+  IndexUserResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexUserResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexUserResponse& from);
+  void MergeFrom(const IndexUserResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexUserResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexUserResponse";
+  }
+  protected:
+  explicit IndexUserResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef IndexUserResponse_Item Item;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 2,
+  };
+  // repeated .palm.rbac.v1.IndexUserResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexUserResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexUserResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexUserResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexUserResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexUserResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >&
+      items() const;
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  bool has_pagination() const;
+  private:
+  bool _internal_has_pagination() const;
+  public:
+  void clear_pagination();
+  const ::palm::rbac::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::rbac::v1::Pagination* release_pagination();
+  ::palm::rbac::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::rbac::v1::Pagination* pagination);
+  private:
+  const ::palm::rbac::v1::Pagination& _internal_pagination() const;
+  ::palm::rbac::v1::Pagination* _internal_mutable_pagination();
+  public:
+  void unsafe_arena_set_allocated_pagination(
+      ::palm::rbac::v1::Pagination* pagination);
+  ::palm::rbac::v1::Pagination* unsafe_arena_release_pagination();
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexUserResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item > items_;
+  ::palm::rbac::v1::Pagination* pagination_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_rbac_2eproto;
 };
 // -------------------------------------------------------------------
 
-class DenyRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.DenyRequest) */ {
+class PolicyApplyRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.PolicyApplyRequest) */ {
  public:
-  inline DenyRequest() : DenyRequest(nullptr) {}
-  ~DenyRequest() override;
-  explicit constexpr DenyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline PolicyApplyRequest() : PolicyApplyRequest(nullptr) {}
+  ~PolicyApplyRequest() override;
+  explicit constexpr PolicyApplyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  DenyRequest(const DenyRequest& from);
-  DenyRequest(DenyRequest&& from) noexcept
-    : DenyRequest() {
+  PolicyApplyRequest(const PolicyApplyRequest& from);
+  PolicyApplyRequest(PolicyApplyRequest&& from) noexcept
+    : PolicyApplyRequest() {
     *this = ::std::move(from);
   }
 
-  inline DenyRequest& operator=(const DenyRequest& from) {
+  inline PolicyApplyRequest& operator=(const PolicyApplyRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline DenyRequest& operator=(DenyRequest&& from) noexcept {
+  inline PolicyApplyRequest& operator=(PolicyApplyRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()) {
       InternalSwap(&from);
@@ -1585,20 +3053,20 @@ class DenyRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const DenyRequest& default_instance() {
+  static const PolicyApplyRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const DenyRequest* internal_default_instance() {
-    return reinterpret_cast<const DenyRequest*>(
-               &_DenyRequest_default_instance_);
+  static inline const PolicyApplyRequest* internal_default_instance() {
+    return reinterpret_cast<const PolicyApplyRequest*>(
+               &_PolicyApplyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    15;
 
-  friend void swap(DenyRequest& a, DenyRequest& b) {
+  friend void swap(PolicyApplyRequest& a, PolicyApplyRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(DenyRequest* other) {
+  inline void Swap(PolicyApplyRequest* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -1606,7 +3074,7 @@ class DenyRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(DenyRequest* other) {
+  void UnsafeArenaSwap(PolicyApplyRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1614,17 +3082,17 @@ class DenyRequest final :
 
   // implements Message ----------------------------------------------
 
-  inline DenyRequest* New() const final {
-    return new DenyRequest();
+  inline PolicyApplyRequest* New() const final {
+    return new PolicyApplyRequest();
   }
 
-  DenyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<DenyRequest>(arena);
+  PolicyApplyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PolicyApplyRequest>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const DenyRequest& from);
-  void MergeFrom(const DenyRequest& from);
+  void CopyFrom(const PolicyApplyRequest& from);
+  void MergeFrom(const PolicyApplyRequest& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -1638,13 +3106,13 @@ class DenyRequest final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(DenyRequest* other);
+  void InternalSwap(PolicyApplyRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.rbac.v1.DenyRequest";
+    return "palm.rbac.v1.PolicyApplyRequest";
   }
   protected:
-  explicit DenyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit PolicyApplyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1657,25 +3125,4344 @@ class DenyRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUserFieldNumber = 1,
+    kRoleFieldNumber = 1,
+    kOperationFieldNumber = 2,
+    kResourceFieldNumber = 3,
+    kTtlFieldNumber = 4,
   };
-  // int64 user = 1;
-  void clear_user();
-  ::PROTOBUF_NAMESPACE_ID::int64 user() const;
-  void set_user(::PROTOBUF_NAMESPACE_ID::int64 value);
+  // string role = 1;
+  void clear_role();
+  const std::string& role() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_role(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_role();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_role();
+  void set_allocated_role(std::string* role);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_user() const;
-  void _internal_set_user(::PROTOBUF_NAMESPACE_ID::int64 value);
+  const std::string& _internal_role() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_role(const std::string& value);
+  std::string* _internal_mutable_role();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.rbac.v1.DenyRequest)
+  // string operation = 2;
+  void clear_operation();
+  const std::string& operation() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_operation(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_operation();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_operation();
+  void set_allocated_operation(std::string* operation);
+  private:
+  const std::string& _internal_operation() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_operation(const std::string& value);
+  std::string* _internal_mutable_operation();
+  public:
+
+  // string resource = 3;
+  void clear_resource();
+  const std::string& resource() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_resource();
+  void set_allocated_resource(std::string* resource);
+  private:
+  const std::string& _internal_resource() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource(const std::string& value);
+  std::string* _internal_mutable_resource();
+  public:
+
+  // .google.protobuf.Duration ttl = 4;
+  bool has_ttl() const;
+  private:
+  bool _internal_has_ttl() const;
+  public:
+  void clear_ttl();
+  const PROTOBUF_NAMESPACE_ID::Duration& ttl() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Duration* release_ttl();
+  PROTOBUF_NAMESPACE_ID::Duration* mutable_ttl();
+  void set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Duration& _internal_ttl() const;
+  PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_ttl();
+  public:
+  void unsafe_arena_set_allocated_ttl(
+      PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_ttl();
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.PolicyApplyRequest)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::int64 user_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr role_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr operation_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_;
+  PROTOBUF_NAMESPACE_ID::Duration* ttl_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PolicyDenyRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.PolicyDenyRequest) */ {
+ public:
+  inline PolicyDenyRequest() : PolicyDenyRequest(nullptr) {}
+  ~PolicyDenyRequest() override;
+  explicit constexpr PolicyDenyRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PolicyDenyRequest(const PolicyDenyRequest& from);
+  PolicyDenyRequest(PolicyDenyRequest&& from) noexcept
+    : PolicyDenyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline PolicyDenyRequest& operator=(const PolicyDenyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PolicyDenyRequest& operator=(PolicyDenyRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PolicyDenyRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PolicyDenyRequest* internal_default_instance() {
+    return reinterpret_cast<const PolicyDenyRequest*>(
+               &_PolicyDenyRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(PolicyDenyRequest& a, PolicyDenyRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PolicyDenyRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PolicyDenyRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PolicyDenyRequest* New() const final {
+    return new PolicyDenyRequest();
+  }
+
+  PolicyDenyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PolicyDenyRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PolicyDenyRequest& from);
+  void MergeFrom(const PolicyDenyRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PolicyDenyRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.PolicyDenyRequest";
+  }
+  protected:
+  explicit PolicyDenyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRoleFieldNumber = 1,
+    kOperationFieldNumber = 2,
+    kResourceFieldNumber = 3,
+  };
+  // string role = 1;
+  void clear_role();
+  const std::string& role() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_role(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_role();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_role();
+  void set_allocated_role(std::string* role);
+  private:
+  const std::string& _internal_role() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_role(const std::string& value);
+  std::string* _internal_mutable_role();
+  public:
+
+  // string operation = 2;
+  void clear_operation();
+  const std::string& operation() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_operation(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_operation();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_operation();
+  void set_allocated_operation(std::string* operation);
+  private:
+  const std::string& _internal_operation() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_operation(const std::string& value);
+  std::string* _internal_mutable_operation();
+  public:
+
+  // string resource = 3;
+  void clear_resource();
+  const std::string& resource() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_resource();
+  void set_allocated_resource(std::string* resource);
+  private:
+  const std::string& _internal_resource() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource(const std::string& value);
+  std::string* _internal_mutable_resource();
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.PolicyDenyRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr role_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr operation_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AssociateRoleGroupRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.AssociateRoleGroupRequest) */ {
+ public:
+  inline AssociateRoleGroupRequest() : AssociateRoleGroupRequest(nullptr) {}
+  ~AssociateRoleGroupRequest() override;
+  explicit constexpr AssociateRoleGroupRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AssociateRoleGroupRequest(const AssociateRoleGroupRequest& from);
+  AssociateRoleGroupRequest(AssociateRoleGroupRequest&& from) noexcept
+    : AssociateRoleGroupRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AssociateRoleGroupRequest& operator=(const AssociateRoleGroupRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AssociateRoleGroupRequest& operator=(AssociateRoleGroupRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AssociateRoleGroupRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AssociateRoleGroupRequest* internal_default_instance() {
+    return reinterpret_cast<const AssociateRoleGroupRequest*>(
+               &_AssociateRoleGroupRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(AssociateRoleGroupRequest& a, AssociateRoleGroupRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AssociateRoleGroupRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AssociateRoleGroupRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AssociateRoleGroupRequest* New() const final {
+    return new AssociateRoleGroupRequest();
+  }
+
+  AssociateRoleGroupRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AssociateRoleGroupRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AssociateRoleGroupRequest& from);
+  void MergeFrom(const AssociateRoleGroupRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AssociateRoleGroupRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.AssociateRoleGroupRequest";
+  }
+  protected:
+  explicit AssociateRoleGroupRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTtlFieldNumber = 3,
+    kRoleIdFieldNumber = 1,
+    kGroupIdFieldNumber = 2,
+  };
+  // .google.protobuf.Duration ttl = 3;
+  bool has_ttl() const;
+  private:
+  bool _internal_has_ttl() const;
+  public:
+  void clear_ttl();
+  const PROTOBUF_NAMESPACE_ID::Duration& ttl() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Duration* release_ttl();
+  PROTOBUF_NAMESPACE_ID::Duration* mutable_ttl();
+  void set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Duration& _internal_ttl() const;
+  PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_ttl();
+  public:
+  void unsafe_arena_set_allocated_ttl(
+      PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_ttl();
+
+  // uint64 role_id = 1;
+  void clear_role_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id() const;
+  void set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_role_id() const;
+  void _internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 group_id = 2;
+  void clear_group_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id() const;
+  void set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_group_id() const;
+  void _internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.AssociateRoleGroupRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  PROTOBUF_NAMESPACE_ID::Duration* ttl_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DisassociateRoleGroupRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.DisassociateRoleGroupRequest) */ {
+ public:
+  inline DisassociateRoleGroupRequest() : DisassociateRoleGroupRequest(nullptr) {}
+  ~DisassociateRoleGroupRequest() override;
+  explicit constexpr DisassociateRoleGroupRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DisassociateRoleGroupRequest(const DisassociateRoleGroupRequest& from);
+  DisassociateRoleGroupRequest(DisassociateRoleGroupRequest&& from) noexcept
+    : DisassociateRoleGroupRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DisassociateRoleGroupRequest& operator=(const DisassociateRoleGroupRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DisassociateRoleGroupRequest& operator=(DisassociateRoleGroupRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DisassociateRoleGroupRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DisassociateRoleGroupRequest* internal_default_instance() {
+    return reinterpret_cast<const DisassociateRoleGroupRequest*>(
+               &_DisassociateRoleGroupRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(DisassociateRoleGroupRequest& a, DisassociateRoleGroupRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DisassociateRoleGroupRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DisassociateRoleGroupRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DisassociateRoleGroupRequest* New() const final {
+    return new DisassociateRoleGroupRequest();
+  }
+
+  DisassociateRoleGroupRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DisassociateRoleGroupRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DisassociateRoleGroupRequest& from);
+  void MergeFrom(const DisassociateRoleGroupRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DisassociateRoleGroupRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.DisassociateRoleGroupRequest";
+  }
+  protected:
+  explicit DisassociateRoleGroupRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRoleIdFieldNumber = 1,
+    kGroupIdFieldNumber = 2,
+  };
+  // uint64 role_id = 1;
+  void clear_role_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id() const;
+  void set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_role_id() const;
+  void _internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 group_id = 2;
+  void clear_group_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id() const;
+  void set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_group_id() const;
+  void _internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.DisassociateRoleGroupRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListRoleGroupRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.ListRoleGroupRequest) */ {
+ public:
+  inline ListRoleGroupRequest() : ListRoleGroupRequest(nullptr) {}
+  ~ListRoleGroupRequest() override;
+  explicit constexpr ListRoleGroupRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListRoleGroupRequest(const ListRoleGroupRequest& from);
+  ListRoleGroupRequest(ListRoleGroupRequest&& from) noexcept
+    : ListRoleGroupRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListRoleGroupRequest& operator=(const ListRoleGroupRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListRoleGroupRequest& operator=(ListRoleGroupRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListRoleGroupRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListRoleGroupRequest* internal_default_instance() {
+    return reinterpret_cast<const ListRoleGroupRequest*>(
+               &_ListRoleGroupRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(ListRoleGroupRequest& a, ListRoleGroupRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListRoleGroupRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListRoleGroupRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListRoleGroupRequest* New() const final {
+    return new ListRoleGroupRequest();
+  }
+
+  ListRoleGroupRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListRoleGroupRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListRoleGroupRequest& from);
+  void MergeFrom(const ListRoleGroupRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListRoleGroupRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.ListRoleGroupRequest";
+  }
+  protected:
+  explicit ListRoleGroupRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.rbac.v1.IndexGroupResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexGroupResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexGroupResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexGroupResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexGroupResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexGroupResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >&
+      items() const;
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.ListRoleGroupRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item > items_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AssociateRoleUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.AssociateRoleUserRequest) */ {
+ public:
+  inline AssociateRoleUserRequest() : AssociateRoleUserRequest(nullptr) {}
+  ~AssociateRoleUserRequest() override;
+  explicit constexpr AssociateRoleUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AssociateRoleUserRequest(const AssociateRoleUserRequest& from);
+  AssociateRoleUserRequest(AssociateRoleUserRequest&& from) noexcept
+    : AssociateRoleUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AssociateRoleUserRequest& operator=(const AssociateRoleUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AssociateRoleUserRequest& operator=(AssociateRoleUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AssociateRoleUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AssociateRoleUserRequest* internal_default_instance() {
+    return reinterpret_cast<const AssociateRoleUserRequest*>(
+               &_AssociateRoleUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(AssociateRoleUserRequest& a, AssociateRoleUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AssociateRoleUserRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AssociateRoleUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AssociateRoleUserRequest* New() const final {
+    return new AssociateRoleUserRequest();
+  }
+
+  AssociateRoleUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AssociateRoleUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AssociateRoleUserRequest& from);
+  void MergeFrom(const AssociateRoleUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AssociateRoleUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.AssociateRoleUserRequest";
+  }
+  protected:
+  explicit AssociateRoleUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTtlFieldNumber = 3,
+    kUserIdFieldNumber = 1,
+    kRoleIdFieldNumber = 2,
+  };
+  // .google.protobuf.Duration ttl = 3;
+  bool has_ttl() const;
+  private:
+  bool _internal_has_ttl() const;
+  public:
+  void clear_ttl();
+  const PROTOBUF_NAMESPACE_ID::Duration& ttl() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Duration* release_ttl();
+  PROTOBUF_NAMESPACE_ID::Duration* mutable_ttl();
+  void set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Duration& _internal_ttl() const;
+  PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_ttl();
+  public:
+  void unsafe_arena_set_allocated_ttl(
+      PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_ttl();
+
+  // uint64 user_id = 1;
+  void clear_user_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id() const;
+  void set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_user_id() const;
+  void _internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 role_id = 2;
+  void clear_role_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id() const;
+  void set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_role_id() const;
+  void _internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.AssociateRoleUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  PROTOBUF_NAMESPACE_ID::Duration* ttl_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DisassociateRoleUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.DisassociateRoleUserRequest) */ {
+ public:
+  inline DisassociateRoleUserRequest() : DisassociateRoleUserRequest(nullptr) {}
+  ~DisassociateRoleUserRequest() override;
+  explicit constexpr DisassociateRoleUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DisassociateRoleUserRequest(const DisassociateRoleUserRequest& from);
+  DisassociateRoleUserRequest(DisassociateRoleUserRequest&& from) noexcept
+    : DisassociateRoleUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DisassociateRoleUserRequest& operator=(const DisassociateRoleUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DisassociateRoleUserRequest& operator=(DisassociateRoleUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DisassociateRoleUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DisassociateRoleUserRequest* internal_default_instance() {
+    return reinterpret_cast<const DisassociateRoleUserRequest*>(
+               &_DisassociateRoleUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(DisassociateRoleUserRequest& a, DisassociateRoleUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DisassociateRoleUserRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DisassociateRoleUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DisassociateRoleUserRequest* New() const final {
+    return new DisassociateRoleUserRequest();
+  }
+
+  DisassociateRoleUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DisassociateRoleUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DisassociateRoleUserRequest& from);
+  void MergeFrom(const DisassociateRoleUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DisassociateRoleUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.DisassociateRoleUserRequest";
+  }
+  protected:
+  explicit DisassociateRoleUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIdFieldNumber = 1,
+    kRoleIdFieldNumber = 2,
+  };
+  // uint64 user_id = 1;
+  void clear_user_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id() const;
+  void set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_user_id() const;
+  void _internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 role_id = 2;
+  void clear_role_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id() const;
+  void set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_role_id() const;
+  void _internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.DisassociateRoleUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 role_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListRoleUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.ListRoleUserRequest) */ {
+ public:
+  inline ListRoleUserRequest() : ListRoleUserRequest(nullptr) {}
+  ~ListRoleUserRequest() override;
+  explicit constexpr ListRoleUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListRoleUserRequest(const ListRoleUserRequest& from);
+  ListRoleUserRequest(ListRoleUserRequest&& from) noexcept
+    : ListRoleUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListRoleUserRequest& operator=(const ListRoleUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListRoleUserRequest& operator=(ListRoleUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListRoleUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListRoleUserRequest* internal_default_instance() {
+    return reinterpret_cast<const ListRoleUserRequest*>(
+               &_ListRoleUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  friend void swap(ListRoleUserRequest& a, ListRoleUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListRoleUserRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListRoleUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListRoleUserRequest* New() const final {
+    return new ListRoleUserRequest();
+  }
+
+  ListRoleUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListRoleUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListRoleUserRequest& from);
+  void MergeFrom(const ListRoleUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListRoleUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.ListRoleUserRequest";
+  }
+  protected:
+  explicit ListRoleUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.rbac.v1.IndexUserResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexUserResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexUserResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexUserResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexUserResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexUserResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >&
+      items() const;
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.ListRoleUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item > items_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AssociateGroupUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.AssociateGroupUserRequest) */ {
+ public:
+  inline AssociateGroupUserRequest() : AssociateGroupUserRequest(nullptr) {}
+  ~AssociateGroupUserRequest() override;
+  explicit constexpr AssociateGroupUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AssociateGroupUserRequest(const AssociateGroupUserRequest& from);
+  AssociateGroupUserRequest(AssociateGroupUserRequest&& from) noexcept
+    : AssociateGroupUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AssociateGroupUserRequest& operator=(const AssociateGroupUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AssociateGroupUserRequest& operator=(AssociateGroupUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AssociateGroupUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AssociateGroupUserRequest* internal_default_instance() {
+    return reinterpret_cast<const AssociateGroupUserRequest*>(
+               &_AssociateGroupUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  friend void swap(AssociateGroupUserRequest& a, AssociateGroupUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AssociateGroupUserRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AssociateGroupUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AssociateGroupUserRequest* New() const final {
+    return new AssociateGroupUserRequest();
+  }
+
+  AssociateGroupUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AssociateGroupUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AssociateGroupUserRequest& from);
+  void MergeFrom(const AssociateGroupUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AssociateGroupUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.AssociateGroupUserRequest";
+  }
+  protected:
+  explicit AssociateGroupUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTtlFieldNumber = 3,
+    kUserIdFieldNumber = 1,
+    kGroupIdFieldNumber = 2,
+  };
+  // .google.protobuf.Duration ttl = 3;
+  bool has_ttl() const;
+  private:
+  bool _internal_has_ttl() const;
+  public:
+  void clear_ttl();
+  const PROTOBUF_NAMESPACE_ID::Duration& ttl() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Duration* release_ttl();
+  PROTOBUF_NAMESPACE_ID::Duration* mutable_ttl();
+  void set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Duration& _internal_ttl() const;
+  PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_ttl();
+  public:
+  void unsafe_arena_set_allocated_ttl(
+      PROTOBUF_NAMESPACE_ID::Duration* ttl);
+  PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_ttl();
+
+  // uint64 user_id = 1;
+  void clear_user_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id() const;
+  void set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_user_id() const;
+  void _internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 group_id = 2;
+  void clear_group_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id() const;
+  void set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_group_id() const;
+  void _internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.AssociateGroupUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  PROTOBUF_NAMESPACE_ID::Duration* ttl_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DisassociateGroupUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.DisassociateGroupUserRequest) */ {
+ public:
+  inline DisassociateGroupUserRequest() : DisassociateGroupUserRequest(nullptr) {}
+  ~DisassociateGroupUserRequest() override;
+  explicit constexpr DisassociateGroupUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DisassociateGroupUserRequest(const DisassociateGroupUserRequest& from);
+  DisassociateGroupUserRequest(DisassociateGroupUserRequest&& from) noexcept
+    : DisassociateGroupUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DisassociateGroupUserRequest& operator=(const DisassociateGroupUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DisassociateGroupUserRequest& operator=(DisassociateGroupUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DisassociateGroupUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DisassociateGroupUserRequest* internal_default_instance() {
+    return reinterpret_cast<const DisassociateGroupUserRequest*>(
+               &_DisassociateGroupUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    24;
+
+  friend void swap(DisassociateGroupUserRequest& a, DisassociateGroupUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DisassociateGroupUserRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DisassociateGroupUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DisassociateGroupUserRequest* New() const final {
+    return new DisassociateGroupUserRequest();
+  }
+
+  DisassociateGroupUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DisassociateGroupUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DisassociateGroupUserRequest& from);
+  void MergeFrom(const DisassociateGroupUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DisassociateGroupUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.DisassociateGroupUserRequest";
+  }
+  protected:
+  explicit DisassociateGroupUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIdFieldNumber = 1,
+    kGroupIdFieldNumber = 2,
+  };
+  // uint64 user_id = 1;
+  void clear_user_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id() const;
+  void set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_user_id() const;
+  void _internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 group_id = 2;
+  void clear_group_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id() const;
+  void set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_group_id() const;
+  void _internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.DisassociateGroupUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 user_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 group_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListGroupUserRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.ListGroupUserRequest) */ {
+ public:
+  inline ListGroupUserRequest() : ListGroupUserRequest(nullptr) {}
+  ~ListGroupUserRequest() override;
+  explicit constexpr ListGroupUserRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ListGroupUserRequest(const ListGroupUserRequest& from);
+  ListGroupUserRequest(ListGroupUserRequest&& from) noexcept
+    : ListGroupUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListGroupUserRequest& operator=(const ListGroupUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListGroupUserRequest& operator=(ListGroupUserRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ListGroupUserRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ListGroupUserRequest* internal_default_instance() {
+    return reinterpret_cast<const ListGroupUserRequest*>(
+               &_ListGroupUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  friend void swap(ListGroupUserRequest& a, ListGroupUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListGroupUserRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ListGroupUserRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListGroupUserRequest* New() const final {
+    return new ListGroupUserRequest();
+  }
+
+  ListGroupUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListGroupUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListGroupUserRequest& from);
+  void MergeFrom(const ListGroupUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListGroupUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.ListGroupUserRequest";
+  }
+  protected:
+  explicit ListGroupUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.rbac.v1.IndexUserResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexUserResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexUserResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexUserResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexUserResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexUserResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >&
+      items() const;
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.ListGroupUserRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item > items_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateResourceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.CreateResourceRequest) */ {
+ public:
+  inline CreateResourceRequest() : CreateResourceRequest(nullptr) {}
+  ~CreateResourceRequest() override;
+  explicit constexpr CreateResourceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateResourceRequest(const CreateResourceRequest& from);
+  CreateResourceRequest(CreateResourceRequest&& from) noexcept
+    : CreateResourceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateResourceRequest& operator=(const CreateResourceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateResourceRequest& operator=(CreateResourceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateResourceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateResourceRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateResourceRequest*>(
+               &_CreateResourceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  friend void swap(CreateResourceRequest& a, CreateResourceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateResourceRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateResourceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CreateResourceRequest* New() const final {
+    return new CreateResourceRequest();
+  }
+
+  CreateResourceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CreateResourceRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const CreateResourceRequest& from);
+  void MergeFrom(const CreateResourceRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateResourceRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.CreateResourceRequest";
+  }
+  protected:
+  explicit CreateResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 1,
+    kNameFieldNumber = 2,
+  };
+  // string code = 1;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 2;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.CreateResourceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateResourceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.UpdateResourceRequest) */ {
+ public:
+  inline UpdateResourceRequest() : UpdateResourceRequest(nullptr) {}
+  ~UpdateResourceRequest() override;
+  explicit constexpr UpdateResourceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateResourceRequest(const UpdateResourceRequest& from);
+  UpdateResourceRequest(UpdateResourceRequest&& from) noexcept
+    : UpdateResourceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateResourceRequest& operator=(const UpdateResourceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateResourceRequest& operator=(UpdateResourceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateResourceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateResourceRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateResourceRequest*>(
+               &_UpdateResourceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  friend void swap(UpdateResourceRequest& a, UpdateResourceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateResourceRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateResourceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UpdateResourceRequest* New() const final {
+    return new UpdateResourceRequest();
+  }
+
+  UpdateResourceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UpdateResourceRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UpdateResourceRequest& from);
+  void MergeFrom(const UpdateResourceRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateResourceRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.UpdateResourceRequest";
+  }
+  protected:
+  explicit UpdateResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kIdFieldNumber = 1,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.UpdateResourceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexResourceResponse_Item final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexResourceResponse.Item) */ {
+ public:
+  inline IndexResourceResponse_Item() : IndexResourceResponse_Item(nullptr) {}
+  ~IndexResourceResponse_Item() override;
+  explicit constexpr IndexResourceResponse_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexResourceResponse_Item(const IndexResourceResponse_Item& from);
+  IndexResourceResponse_Item(IndexResourceResponse_Item&& from) noexcept
+    : IndexResourceResponse_Item() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexResourceResponse_Item& operator=(const IndexResourceResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexResourceResponse_Item& operator=(IndexResourceResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexResourceResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexResourceResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const IndexResourceResponse_Item*>(
+               &_IndexResourceResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  friend void swap(IndexResourceResponse_Item& a, IndexResourceResponse_Item& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexResourceResponse_Item* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexResourceResponse_Item* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexResourceResponse_Item* New() const final {
+    return new IndexResourceResponse_Item();
+  }
+
+  IndexResourceResponse_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexResourceResponse_Item>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexResourceResponse_Item& from);
+  void MergeFrom(const IndexResourceResponse_Item& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexResourceResponse_Item* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexResourceResponse.Item";
+  }
+  protected:
+  explicit IndexResourceResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kUpdatedAtFieldNumber = 9,
+    kIdFieldNumber = 1,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Timestamp updated_at = 9;
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexResourceResponse.Item)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexResourceResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexResourceResponse) */ {
+ public:
+  inline IndexResourceResponse() : IndexResourceResponse(nullptr) {}
+  ~IndexResourceResponse() override;
+  explicit constexpr IndexResourceResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexResourceResponse(const IndexResourceResponse& from);
+  IndexResourceResponse(IndexResourceResponse&& from) noexcept
+    : IndexResourceResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexResourceResponse& operator=(const IndexResourceResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexResourceResponse& operator=(IndexResourceResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexResourceResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexResourceResponse* internal_default_instance() {
+    return reinterpret_cast<const IndexResourceResponse*>(
+               &_IndexResourceResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(IndexResourceResponse& a, IndexResourceResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexResourceResponse* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexResourceResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexResourceResponse* New() const final {
+    return new IndexResourceResponse();
+  }
+
+  IndexResourceResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexResourceResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexResourceResponse& from);
+  void MergeFrom(const IndexResourceResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexResourceResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexResourceResponse";
+  }
+  protected:
+  explicit IndexResourceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef IndexResourceResponse_Item Item;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 2,
+  };
+  // repeated .palm.rbac.v1.IndexResourceResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexResourceResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexResourceResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexResourceResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexResourceResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexResourceResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexResourceResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexResourceResponse_Item >&
+      items() const;
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  bool has_pagination() const;
+  private:
+  bool _internal_has_pagination() const;
+  public:
+  void clear_pagination();
+  const ::palm::rbac::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::rbac::v1::Pagination* release_pagination();
+  ::palm::rbac::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::rbac::v1::Pagination* pagination);
+  private:
+  const ::palm::rbac::v1::Pagination& _internal_pagination() const;
+  ::palm::rbac::v1::Pagination* _internal_mutable_pagination();
+  public:
+  void unsafe_arena_set_allocated_pagination(
+      ::palm::rbac::v1::Pagination* pagination);
+  ::palm::rbac::v1::Pagination* unsafe_arena_release_pagination();
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexResourceResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexResourceResponse_Item > items_;
+  ::palm::rbac::v1::Pagination* pagination_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateRoleRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.CreateRoleRequest) */ {
+ public:
+  inline CreateRoleRequest() : CreateRoleRequest(nullptr) {}
+  ~CreateRoleRequest() override;
+  explicit constexpr CreateRoleRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateRoleRequest(const CreateRoleRequest& from);
+  CreateRoleRequest(CreateRoleRequest&& from) noexcept
+    : CreateRoleRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateRoleRequest& operator=(const CreateRoleRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateRoleRequest& operator=(CreateRoleRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateRoleRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateRoleRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateRoleRequest*>(
+               &_CreateRoleRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  friend void swap(CreateRoleRequest& a, CreateRoleRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateRoleRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateRoleRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CreateRoleRequest* New() const final {
+    return new CreateRoleRequest();
+  }
+
+  CreateRoleRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CreateRoleRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const CreateRoleRequest& from);
+  void MergeFrom(const CreateRoleRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateRoleRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.CreateRoleRequest";
+  }
+  protected:
+  explicit CreateRoleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kParentIdFieldNumber = 3,
+  };
+  // string code = 1;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 2;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional int64 parent_id = 3;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.CreateRoleRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateRoleRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.UpdateRoleRequest) */ {
+ public:
+  inline UpdateRoleRequest() : UpdateRoleRequest(nullptr) {}
+  ~UpdateRoleRequest() override;
+  explicit constexpr UpdateRoleRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateRoleRequest(const UpdateRoleRequest& from);
+  UpdateRoleRequest(UpdateRoleRequest&& from) noexcept
+    : UpdateRoleRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateRoleRequest& operator=(const UpdateRoleRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateRoleRequest& operator=(UpdateRoleRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateRoleRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateRoleRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateRoleRequest*>(
+               &_UpdateRoleRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  friend void swap(UpdateRoleRequest& a, UpdateRoleRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateRoleRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateRoleRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UpdateRoleRequest* New() const final {
+    return new UpdateRoleRequest();
+  }
+
+  UpdateRoleRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UpdateRoleRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UpdateRoleRequest& from);
+  void MergeFrom(const UpdateRoleRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateRoleRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.UpdateRoleRequest";
+  }
+  protected:
+  explicit UpdateRoleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kIdFieldNumber = 1,
+    kParentIdFieldNumber = 4,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // optional int64 parent_id = 4;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.UpdateRoleRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexRoleResponse_Item final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexRoleResponse.Item) */ {
+ public:
+  inline IndexRoleResponse_Item() : IndexRoleResponse_Item(nullptr) {}
+  ~IndexRoleResponse_Item() override;
+  explicit constexpr IndexRoleResponse_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexRoleResponse_Item(const IndexRoleResponse_Item& from);
+  IndexRoleResponse_Item(IndexRoleResponse_Item&& from) noexcept
+    : IndexRoleResponse_Item() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexRoleResponse_Item& operator=(const IndexRoleResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexRoleResponse_Item& operator=(IndexRoleResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexRoleResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexRoleResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const IndexRoleResponse_Item*>(
+               &_IndexRoleResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    32;
+
+  friend void swap(IndexRoleResponse_Item& a, IndexRoleResponse_Item& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexRoleResponse_Item* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexRoleResponse_Item* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexRoleResponse_Item* New() const final {
+    return new IndexRoleResponse_Item();
+  }
+
+  IndexRoleResponse_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexRoleResponse_Item>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexRoleResponse_Item& from);
+  void MergeFrom(const IndexRoleResponse_Item& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexRoleResponse_Item* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexRoleResponse.Item";
+  }
+  protected:
+  explicit IndexRoleResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kUpdatedAtFieldNumber = 9,
+    kIdFieldNumber = 1,
+    kParentIdFieldNumber = 4,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Timestamp updated_at = 9;
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // optional int64 parent_id = 4;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexRoleResponse.Item)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexRoleResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexRoleResponse) */ {
+ public:
+  inline IndexRoleResponse() : IndexRoleResponse(nullptr) {}
+  ~IndexRoleResponse() override;
+  explicit constexpr IndexRoleResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexRoleResponse(const IndexRoleResponse& from);
+  IndexRoleResponse(IndexRoleResponse&& from) noexcept
+    : IndexRoleResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexRoleResponse& operator=(const IndexRoleResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexRoleResponse& operator=(IndexRoleResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexRoleResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexRoleResponse* internal_default_instance() {
+    return reinterpret_cast<const IndexRoleResponse*>(
+               &_IndexRoleResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  friend void swap(IndexRoleResponse& a, IndexRoleResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexRoleResponse* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexRoleResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexRoleResponse* New() const final {
+    return new IndexRoleResponse();
+  }
+
+  IndexRoleResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexRoleResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexRoleResponse& from);
+  void MergeFrom(const IndexRoleResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexRoleResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexRoleResponse";
+  }
+  protected:
+  explicit IndexRoleResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef IndexRoleResponse_Item Item;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 2,
+  };
+  // repeated .palm.rbac.v1.IndexRoleResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexRoleResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexRoleResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexRoleResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexRoleResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexRoleResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexRoleResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexRoleResponse_Item >&
+      items() const;
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  bool has_pagination() const;
+  private:
+  bool _internal_has_pagination() const;
+  public:
+  void clear_pagination();
+  const ::palm::rbac::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::rbac::v1::Pagination* release_pagination();
+  ::palm::rbac::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::rbac::v1::Pagination* pagination);
+  private:
+  const ::palm::rbac::v1::Pagination& _internal_pagination() const;
+  ::palm::rbac::v1::Pagination* _internal_mutable_pagination();
+  public:
+  void unsafe_arena_set_allocated_pagination(
+      ::palm::rbac::v1::Pagination* pagination);
+  ::palm::rbac::v1::Pagination* unsafe_arena_release_pagination();
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexRoleResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexRoleResponse_Item > items_;
+  ::palm::rbac::v1::Pagination* pagination_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateGroupRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.CreateGroupRequest) */ {
+ public:
+  inline CreateGroupRequest() : CreateGroupRequest(nullptr) {}
+  ~CreateGroupRequest() override;
+  explicit constexpr CreateGroupRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateGroupRequest(const CreateGroupRequest& from);
+  CreateGroupRequest(CreateGroupRequest&& from) noexcept
+    : CreateGroupRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateGroupRequest& operator=(const CreateGroupRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateGroupRequest& operator=(CreateGroupRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateGroupRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateGroupRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateGroupRequest*>(
+               &_CreateGroupRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  friend void swap(CreateGroupRequest& a, CreateGroupRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateGroupRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateGroupRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CreateGroupRequest* New() const final {
+    return new CreateGroupRequest();
+  }
+
+  CreateGroupRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CreateGroupRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const CreateGroupRequest& from);
+  void MergeFrom(const CreateGroupRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateGroupRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.CreateGroupRequest";
+  }
+  protected:
+  explicit CreateGroupRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kParentIdFieldNumber = 3,
+  };
+  // string code = 1;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 2;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional int64 parent_id = 3;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.CreateGroupRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateGroupRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.UpdateGroupRequest) */ {
+ public:
+  inline UpdateGroupRequest() : UpdateGroupRequest(nullptr) {}
+  ~UpdateGroupRequest() override;
+  explicit constexpr UpdateGroupRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateGroupRequest(const UpdateGroupRequest& from);
+  UpdateGroupRequest(UpdateGroupRequest&& from) noexcept
+    : UpdateGroupRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateGroupRequest& operator=(const UpdateGroupRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateGroupRequest& operator=(UpdateGroupRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateGroupRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateGroupRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateGroupRequest*>(
+               &_UpdateGroupRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  friend void swap(UpdateGroupRequest& a, UpdateGroupRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateGroupRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateGroupRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UpdateGroupRequest* New() const final {
+    return new UpdateGroupRequest();
+  }
+
+  UpdateGroupRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UpdateGroupRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UpdateGroupRequest& from);
+  void MergeFrom(const UpdateGroupRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateGroupRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.UpdateGroupRequest";
+  }
+  protected:
+  explicit UpdateGroupRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kIdFieldNumber = 1,
+    kParentIdFieldNumber = 4,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // optional int64 parent_id = 4;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.UpdateGroupRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexGroupResponse_Item final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexGroupResponse.Item) */ {
+ public:
+  inline IndexGroupResponse_Item() : IndexGroupResponse_Item(nullptr) {}
+  ~IndexGroupResponse_Item() override;
+  explicit constexpr IndexGroupResponse_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexGroupResponse_Item(const IndexGroupResponse_Item& from);
+  IndexGroupResponse_Item(IndexGroupResponse_Item&& from) noexcept
+    : IndexGroupResponse_Item() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexGroupResponse_Item& operator=(const IndexGroupResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexGroupResponse_Item& operator=(IndexGroupResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexGroupResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexGroupResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const IndexGroupResponse_Item*>(
+               &_IndexGroupResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    36;
+
+  friend void swap(IndexGroupResponse_Item& a, IndexGroupResponse_Item& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexGroupResponse_Item* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexGroupResponse_Item* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexGroupResponse_Item* New() const final {
+    return new IndexGroupResponse_Item();
+  }
+
+  IndexGroupResponse_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexGroupResponse_Item>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexGroupResponse_Item& from);
+  void MergeFrom(const IndexGroupResponse_Item& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexGroupResponse_Item* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexGroupResponse.Item";
+  }
+  protected:
+  explicit IndexGroupResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kUpdatedAtFieldNumber = 9,
+    kIdFieldNumber = 1,
+    kParentIdFieldNumber = 4,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Timestamp updated_at = 9;
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // optional int64 parent_id = 4;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexGroupResponse.Item)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexGroupResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexGroupResponse) */ {
+ public:
+  inline IndexGroupResponse() : IndexGroupResponse(nullptr) {}
+  ~IndexGroupResponse() override;
+  explicit constexpr IndexGroupResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexGroupResponse(const IndexGroupResponse& from);
+  IndexGroupResponse(IndexGroupResponse&& from) noexcept
+    : IndexGroupResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexGroupResponse& operator=(const IndexGroupResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexGroupResponse& operator=(IndexGroupResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexGroupResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexGroupResponse* internal_default_instance() {
+    return reinterpret_cast<const IndexGroupResponse*>(
+               &_IndexGroupResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    37;
+
+  friend void swap(IndexGroupResponse& a, IndexGroupResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexGroupResponse* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexGroupResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexGroupResponse* New() const final {
+    return new IndexGroupResponse();
+  }
+
+  IndexGroupResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexGroupResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexGroupResponse& from);
+  void MergeFrom(const IndexGroupResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexGroupResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexGroupResponse";
+  }
+  protected:
+  explicit IndexGroupResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef IndexGroupResponse_Item Item;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 2,
+  };
+  // repeated .palm.rbac.v1.IndexGroupResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexGroupResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexGroupResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexGroupResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexGroupResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexGroupResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >&
+      items() const;
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  bool has_pagination() const;
+  private:
+  bool _internal_has_pagination() const;
+  public:
+  void clear_pagination();
+  const ::palm::rbac::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::rbac::v1::Pagination* release_pagination();
+  ::palm::rbac::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::rbac::v1::Pagination* pagination);
+  private:
+  const ::palm::rbac::v1::Pagination& _internal_pagination() const;
+  ::palm::rbac::v1::Pagination* _internal_mutable_pagination();
+  public:
+  void unsafe_arena_set_allocated_pagination(
+      ::palm::rbac::v1::Pagination* pagination);
+  ::palm::rbac::v1::Pagination* unsafe_arena_release_pagination();
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexGroupResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item > items_;
+  ::palm::rbac::v1::Pagination* pagination_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CreateOperationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.CreateOperationRequest) */ {
+ public:
+  inline CreateOperationRequest() : CreateOperationRequest(nullptr) {}
+  ~CreateOperationRequest() override;
+  explicit constexpr CreateOperationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreateOperationRequest(const CreateOperationRequest& from);
+  CreateOperationRequest(CreateOperationRequest&& from) noexcept
+    : CreateOperationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateOperationRequest& operator=(const CreateOperationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateOperationRequest& operator=(CreateOperationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateOperationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateOperationRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateOperationRequest*>(
+               &_CreateOperationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    38;
+
+  friend void swap(CreateOperationRequest& a, CreateOperationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateOperationRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateOperationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CreateOperationRequest* New() const final {
+    return new CreateOperationRequest();
+  }
+
+  CreateOperationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CreateOperationRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const CreateOperationRequest& from);
+  void MergeFrom(const CreateOperationRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreateOperationRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.CreateOperationRequest";
+  }
+  protected:
+  explicit CreateOperationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 1,
+    kNameFieldNumber = 2,
+  };
+  // string code = 1;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 2;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.CreateOperationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdateOperationRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.UpdateOperationRequest) */ {
+ public:
+  inline UpdateOperationRequest() : UpdateOperationRequest(nullptr) {}
+  ~UpdateOperationRequest() override;
+  explicit constexpr UpdateOperationRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdateOperationRequest(const UpdateOperationRequest& from);
+  UpdateOperationRequest(UpdateOperationRequest&& from) noexcept
+    : UpdateOperationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdateOperationRequest& operator=(const UpdateOperationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateOperationRequest& operator=(UpdateOperationRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateOperationRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateOperationRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateOperationRequest*>(
+               &_UpdateOperationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    39;
+
+  friend void swap(UpdateOperationRequest& a, UpdateOperationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdateOperationRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateOperationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UpdateOperationRequest* New() const final {
+    return new UpdateOperationRequest();
+  }
+
+  UpdateOperationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UpdateOperationRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UpdateOperationRequest& from);
+  void MergeFrom(const UpdateOperationRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdateOperationRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.UpdateOperationRequest";
+  }
+  protected:
+  explicit UpdateOperationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kIdFieldNumber = 1,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.UpdateOperationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexOperationResponse_Item final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexOperationResponse.Item) */ {
+ public:
+  inline IndexOperationResponse_Item() : IndexOperationResponse_Item(nullptr) {}
+  ~IndexOperationResponse_Item() override;
+  explicit constexpr IndexOperationResponse_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexOperationResponse_Item(const IndexOperationResponse_Item& from);
+  IndexOperationResponse_Item(IndexOperationResponse_Item&& from) noexcept
+    : IndexOperationResponse_Item() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexOperationResponse_Item& operator=(const IndexOperationResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexOperationResponse_Item& operator=(IndexOperationResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexOperationResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexOperationResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const IndexOperationResponse_Item*>(
+               &_IndexOperationResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    40;
+
+  friend void swap(IndexOperationResponse_Item& a, IndexOperationResponse_Item& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexOperationResponse_Item* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexOperationResponse_Item* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexOperationResponse_Item* New() const final {
+    return new IndexOperationResponse_Item();
+  }
+
+  IndexOperationResponse_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexOperationResponse_Item>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexOperationResponse_Item& from);
+  void MergeFrom(const IndexOperationResponse_Item& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexOperationResponse_Item* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexOperationResponse.Item";
+  }
+  protected:
+  explicit IndexOperationResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCodeFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kUpdatedAtFieldNumber = 9,
+    kIdFieldNumber = 1,
+  };
+  // string code = 2;
+  void clear_code();
+  const std::string& code() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_code(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_code();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 3;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .google.protobuf.Timestamp updated_at = 9;
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
+  // uint64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexOperationResponse.Item)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_rbac_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexOperationResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.rbac.v1.IndexOperationResponse) */ {
+ public:
+  inline IndexOperationResponse() : IndexOperationResponse(nullptr) {}
+  ~IndexOperationResponse() override;
+  explicit constexpr IndexOperationResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexOperationResponse(const IndexOperationResponse& from);
+  IndexOperationResponse(IndexOperationResponse&& from) noexcept
+    : IndexOperationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexOperationResponse& operator=(const IndexOperationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexOperationResponse& operator=(IndexOperationResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexOperationResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexOperationResponse* internal_default_instance() {
+    return reinterpret_cast<const IndexOperationResponse*>(
+               &_IndexOperationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    41;
+
+  friend void swap(IndexOperationResponse& a, IndexOperationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexOperationResponse* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexOperationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexOperationResponse* New() const final {
+    return new IndexOperationResponse();
+  }
+
+  IndexOperationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexOperationResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexOperationResponse& from);
+  void MergeFrom(const IndexOperationResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexOperationResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.rbac.v1.IndexOperationResponse";
+  }
+  protected:
+  explicit IndexOperationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef IndexOperationResponse_Item Item;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 2,
+  };
+  // repeated .palm.rbac.v1.IndexOperationResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::rbac::v1::IndexOperationResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexOperationResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::rbac::v1::IndexOperationResponse_Item& _internal_items(int index) const;
+  ::palm::rbac::v1::IndexOperationResponse_Item* _internal_add_items();
+  public:
+  const ::palm::rbac::v1::IndexOperationResponse_Item& items(int index) const;
+  ::palm::rbac::v1::IndexOperationResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexOperationResponse_Item >&
+      items() const;
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  bool has_pagination() const;
+  private:
+  bool _internal_has_pagination() const;
+  public:
+  void clear_pagination();
+  const ::palm::rbac::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::rbac::v1::Pagination* release_pagination();
+  ::palm::rbac::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::rbac::v1::Pagination* pagination);
+  private:
+  const ::palm::rbac::v1::Pagination& _internal_pagination() const;
+  ::palm::rbac::v1::Pagination* _internal_mutable_pagination();
+  public:
+  void unsafe_arena_set_allocated_pagination(
+      ::palm::rbac::v1::Pagination* pagination);
+  ::palm::rbac::v1::Pagination* unsafe_arena_release_pagination();
+
+  // @@protoc_insertion_point(class_scope:palm.rbac.v1.IndexOperationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexOperationResponse_Item > items_;
+  ::palm::rbac::v1::Pagination* pagination_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_rbac_2eproto;
 };
@@ -1688,6 +7475,398 @@ class DenyRequest final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// Pagination
+
+// int64 total = 1;
+inline void Pagination::clear_total() {
+  total_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_total() const {
+  return total_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::total() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.Pagination.total)
+  return _internal_total();
+}
+inline void Pagination::_internal_set_total(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  total_ = value;
+}
+inline void Pagination::set_total(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_total(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.Pagination.total)
+}
+
+// int64 size = 2;
+inline void Pagination::clear_size() {
+  size_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_size() const {
+  return size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::size() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.Pagination.size)
+  return _internal_size();
+}
+inline void Pagination::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  size_ = value;
+}
+inline void Pagination::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.Pagination.size)
+}
+
+// int64 current = 3;
+inline void Pagination::clear_current() {
+  current_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_current() const {
+  return current_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::current() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.Pagination.current)
+  return _internal_current();
+}
+inline void Pagination::_internal_set_current(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  current_ = value;
+}
+inline void Pagination::set_current(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_current(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.Pagination.current)
+}
+
+// -------------------------------------------------------------------
+
+// Pager
+
+// int64 index = 1;
+inline void Pager::clear_index() {
+  index_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::_internal_index() const {
+  return index_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::index() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.Pager.index)
+  return _internal_index();
+}
+inline void Pager::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  index_ = value;
+}
+inline void Pager::set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_index(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.Pager.index)
+}
+
+// int64 size = 2;
+inline void Pager::clear_size() {
+  size_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::_internal_size() const {
+  return size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::size() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.Pager.size)
+  return _internal_size();
+}
+inline void Pager::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  size_ = value;
+}
+inline void Pager::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.Pager.size)
+}
+
+// -------------------------------------------------------------------
+
+// IdRequest
+
+// int64 id = 1;
+inline void IdRequest::clear_id() {
+  id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IdRequest::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IdRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IdRequest.id)
+  return _internal_id();
+}
+inline void IdRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  id_ = value;
+}
+inline void IdRequest::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IdRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// IndexLog_Item
+
+// int64 id = 1;
+inline void IndexLog_Item::clear_id() {
+  id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexLog_Item::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexLog_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexLog.Item.id)
+  return _internal_id();
+}
+inline void IndexLog_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  id_ = value;
+}
+inline void IndexLog_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexLog.Item.id)
+}
+
+// string ip = 2;
+inline void IndexLog_Item::clear_ip() {
+  ip_.ClearToEmpty();
+}
+inline const std::string& IndexLog_Item::ip() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexLog.Item.ip)
+  return _internal_ip();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexLog_Item::set_ip(ArgT0&& arg0, ArgT... args) {
+ 
+ ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexLog.Item.ip)
+}
+inline std::string* IndexLog_Item::mutable_ip() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexLog.Item.ip)
+  return _internal_mutable_ip();
+}
+inline const std::string& IndexLog_Item::_internal_ip() const {
+  return ip_.Get();
+}
+inline void IndexLog_Item::_internal_set_ip(const std::string& value) {
+  
+  ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexLog_Item::_internal_mutable_ip() {
+  
+  return ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexLog_Item::release_ip() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexLog.Item.ip)
+  return ip_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexLog_Item::set_allocated_ip(std::string* ip) {
+  if (ip != nullptr) {
+    
+  } else {
+    
+  }
+  ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ip,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexLog.Item.ip)
+}
+
+// .palm.rbac.v1.IndexLog.Level level = 3;
+inline void IndexLog_Item::clear_level() {
+  level_ = 0;
+}
+inline ::palm::rbac::v1::IndexLog_Level IndexLog_Item::_internal_level() const {
+  return static_cast< ::palm::rbac::v1::IndexLog_Level >(level_);
+}
+inline ::palm::rbac::v1::IndexLog_Level IndexLog_Item::level() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexLog.Item.level)
+  return _internal_level();
+}
+inline void IndexLog_Item::_internal_set_level(::palm::rbac::v1::IndexLog_Level value) {
+  
+  level_ = value;
+}
+inline void IndexLog_Item::set_level(::palm::rbac::v1::IndexLog_Level value) {
+  _internal_set_level(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexLog.Item.level)
+}
+
+// string message = 4;
+inline void IndexLog_Item::clear_message() {
+  message_.ClearToEmpty();
+}
+inline const std::string& IndexLog_Item::message() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexLog.Item.message)
+  return _internal_message();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexLog_Item::set_message(ArgT0&& arg0, ArgT... args) {
+ 
+ message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexLog.Item.message)
+}
+inline std::string* IndexLog_Item::mutable_message() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexLog.Item.message)
+  return _internal_mutable_message();
+}
+inline const std::string& IndexLog_Item::_internal_message() const {
+  return message_.Get();
+}
+inline void IndexLog_Item::_internal_set_message(const std::string& value) {
+  
+  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexLog_Item::_internal_mutable_message() {
+  
+  return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexLog_Item::release_message() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexLog.Item.message)
+  return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexLog_Item::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
+    
+  } else {
+    
+  }
+  message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexLog.Item.message)
+}
+
+// -------------------------------------------------------------------
+
+// IndexLog
+
+// repeated .palm.rbac.v1.IndexLog.Item items = 1;
+inline int IndexLog::_internal_items_size() const {
+  return items_.size();
+}
+inline int IndexLog::items_size() const {
+  return _internal_items_size();
+}
+inline void IndexLog::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexLog_Item* IndexLog::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexLog.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexLog_Item >*
+IndexLog::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.IndexLog.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexLog_Item& IndexLog::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexLog_Item& IndexLog::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexLog.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexLog_Item* IndexLog::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexLog_Item* IndexLog::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.IndexLog.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexLog_Item >&
+IndexLog::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.IndexLog.items)
+  return items_;
+}
+
+// .palm.rbac.v1.Pagination pagination = 2;
+inline bool IndexLog::_internal_has_pagination() const {
+  return this != internal_default_instance() && pagination_ != nullptr;
+}
+inline bool IndexLog::has_pagination() const {
+  return _internal_has_pagination();
+}
+inline void IndexLog::clear_pagination() {
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+}
+inline const ::palm::rbac::v1::Pagination& IndexLog::_internal_pagination() const {
+  const ::palm::rbac::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::rbac::v1::Pagination&>(
+      ::palm::rbac::v1::_Pagination_default_instance_);
+}
+inline const ::palm::rbac::v1::Pagination& IndexLog::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexLog.pagination)
+  return _internal_pagination();
+}
+inline void IndexLog::unsafe_arena_set_allocated_pagination(
+    ::palm::rbac::v1::Pagination* pagination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  pagination_ = pagination;
+  if (pagination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexLog.pagination)
+}
+inline ::palm::rbac::v1::Pagination* IndexLog::release_pagination() {
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexLog::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexLog.pagination)
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexLog::_internal_mutable_pagination() {
+  
+  if (pagination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::palm::rbac::v1::Pagination>(GetArenaForAllocation());
+    pagination_ = p;
+  }
+  return pagination_;
+}
+inline ::palm::rbac::v1::Pagination* IndexLog::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexLog.pagination)
+  return _internal_mutable_pagination();
+}
+inline void IndexLog::set_allocated_pagination(::palm::rbac::v1::Pagination* pagination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pagination_;
+  }
+  if (pagination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::rbac::v1::Pagination>::GetOwningArena(pagination);
+    if (message_arena != submessage_arena) {
+      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pagination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pagination_ = pagination;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexLog.pagination)
+}
+
+// -------------------------------------------------------------------
+
 // SignInRequest
 
 // string email = 1;
@@ -1771,85 +7950,85 @@ inline void SignInRequest::set_allocated_email(std::string* email) {
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignInRequest.email)
 }
 
-// string nickname = 2;
-inline bool SignInRequest::_internal_has_nickname() const {
-  return user_case() == kNickname;
+// string nick_name = 2;
+inline bool SignInRequest::_internal_has_nick_name() const {
+  return user_case() == kNickName;
 }
-inline bool SignInRequest::has_nickname() const {
-  return _internal_has_nickname();
+inline bool SignInRequest::has_nick_name() const {
+  return _internal_has_nick_name();
 }
-inline void SignInRequest::set_has_nickname() {
-  _oneof_case_[0] = kNickname;
+inline void SignInRequest::set_has_nick_name() {
+  _oneof_case_[0] = kNickName;
 }
-inline void SignInRequest::clear_nickname() {
-  if (_internal_has_nickname()) {
-    user_.nickname_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+inline void SignInRequest::clear_nick_name() {
+  if (_internal_has_nick_name()) {
+    user_.nick_name_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
     clear_has_user();
   }
 }
-inline const std::string& SignInRequest::nickname() const {
-  // @@protoc_insertion_point(field_get:palm.rbac.v1.SignInRequest.nickname)
-  return _internal_nickname();
+inline const std::string& SignInRequest::nick_name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.SignInRequest.nick_name)
+  return _internal_nick_name();
 }
 template <typename ArgT0, typename... ArgT>
-inline void SignInRequest::set_nickname(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_nickname()) {
+inline void SignInRequest::set_nick_name(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_nick_name()) {
     clear_user();
-    set_has_nickname();
-    user_.nickname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    set_has_nick_name();
+    user_.nick_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   }
-  user_.nickname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.rbac.v1.SignInRequest.nickname)
+  user_.nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.SignInRequest.nick_name)
 }
-inline std::string* SignInRequest::mutable_nickname() {
-  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.SignInRequest.nickname)
-  return _internal_mutable_nickname();
+inline std::string* SignInRequest::mutable_nick_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.SignInRequest.nick_name)
+  return _internal_mutable_nick_name();
 }
-inline const std::string& SignInRequest::_internal_nickname() const {
-  if (_internal_has_nickname()) {
-    return user_.nickname_.Get();
+inline const std::string& SignInRequest::_internal_nick_name() const {
+  if (_internal_has_nick_name()) {
+    return user_.nick_name_.Get();
   }
   return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
 }
-inline void SignInRequest::_internal_set_nickname(const std::string& value) {
-  if (!_internal_has_nickname()) {
+inline void SignInRequest::_internal_set_nick_name(const std::string& value) {
+  if (!_internal_has_nick_name()) {
     clear_user();
-    set_has_nickname();
-    user_.nickname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    set_has_nick_name();
+    user_.nick_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   }
-  user_.nickname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  user_.nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* SignInRequest::_internal_mutable_nickname() {
-  if (!_internal_has_nickname()) {
+inline std::string* SignInRequest::_internal_mutable_nick_name() {
+  if (!_internal_has_nick_name()) {
     clear_user();
-    set_has_nickname();
-    user_.nickname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+    set_has_nick_name();
+    user_.nick_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   }
-  return user_.nickname_.Mutable(
+  return user_.nick_name_.Mutable(
       ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* SignInRequest::release_nickname() {
-  // @@protoc_insertion_point(field_release:palm.rbac.v1.SignInRequest.nickname)
-  if (_internal_has_nickname()) {
+inline std::string* SignInRequest::release_nick_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.SignInRequest.nick_name)
+  if (_internal_has_nick_name()) {
     clear_has_user();
-    return user_.nickname_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+    return user_.nick_name_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
   } else {
     return nullptr;
   }
 }
-inline void SignInRequest::set_allocated_nickname(std::string* nickname) {
+inline void SignInRequest::set_allocated_nick_name(std::string* nick_name) {
   if (has_user()) {
     clear_user();
   }
-  if (nickname != nullptr) {
-    set_has_nickname();
-    user_.nickname_.UnsafeSetDefault(nickname);
+  if (nick_name != nullptr) {
+    set_has_nick_name();
+    user_.nick_name_.UnsafeSetDefault(nick_name);
     ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArenaForAllocation();
     if (arena != nullptr) {
-      arena->Own(nickname);
+      arena->Own(nick_name);
     }
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignInRequest.nickname)
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignInRequest.nick_name)
 }
 
 // string password = 11;
@@ -1897,11 +8076,9 @@ inline void SignInRequest::set_allocated_password(std::string* password) {
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignInRequest.password)
 }
 
-// optional .google.protobuf.Duration ttl = 21;
+// .google.protobuf.Duration ttl = 21;
 inline bool SignInRequest::_internal_has_ttl() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || ttl_ != nullptr);
-  return value;
+  return this != internal_default_instance() && ttl_ != nullptr;
 }
 inline bool SignInRequest::has_ttl() const {
   return _internal_has_ttl();
@@ -1922,14 +8099,14 @@ inline void SignInRequest::unsafe_arena_set_allocated_ttl(
   }
   ttl_ = ttl;
   if (ttl) {
-    _has_bits_[0] |= 0x00000001u;
+    
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.SignInRequest.ttl)
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* SignInRequest::release_ttl() {
-  _has_bits_[0] &= ~0x00000001u;
+  
   PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
   ttl_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
@@ -1939,13 +8116,13 @@ inline PROTOBUF_NAMESPACE_ID::Duration* SignInRequest::release_ttl() {
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* SignInRequest::unsafe_arena_release_ttl() {
   // @@protoc_insertion_point(field_release:palm.rbac.v1.SignInRequest.ttl)
-  _has_bits_[0] &= ~0x00000001u;
+  
   PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
   ttl_ = nullptr;
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Duration* SignInRequest::_internal_mutable_ttl() {
-  _has_bits_[0] |= 0x00000001u;
+  
   if (ttl_ == nullptr) {
     auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
     ttl_ = p;
@@ -1970,9 +8147,9 @@ inline void SignInRequest::set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* tt
       ttl = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, ttl, submessage_arena);
     }
-    _has_bits_[0] |= 0x00000001u;
+    
   } else {
-    _has_bits_[0] &= ~0x00000001u;
+    
   }
   ttl_ = ttl;
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignInRequest.ttl)
@@ -2168,49 +8345,49 @@ inline void SignUpRequest::set_allocated_email(std::string* email) {
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignUpRequest.email)
 }
 
-// string nickname = 2;
-inline void SignUpRequest::clear_nickname() {
-  nickname_.ClearToEmpty();
+// string nick_name = 2;
+inline void SignUpRequest::clear_nick_name() {
+  nick_name_.ClearToEmpty();
 }
-inline const std::string& SignUpRequest::nickname() const {
-  // @@protoc_insertion_point(field_get:palm.rbac.v1.SignUpRequest.nickname)
-  return _internal_nickname();
+inline const std::string& SignUpRequest::nick_name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.SignUpRequest.nick_name)
+  return _internal_nick_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void SignUpRequest::set_nickname(ArgT0&& arg0, ArgT... args) {
+void SignUpRequest::set_nick_name(ArgT0&& arg0, ArgT... args) {
  
- nickname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.rbac.v1.SignUpRequest.nickname)
+ nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.SignUpRequest.nick_name)
 }
-inline std::string* SignUpRequest::mutable_nickname() {
-  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.SignUpRequest.nickname)
-  return _internal_mutable_nickname();
+inline std::string* SignUpRequest::mutable_nick_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.SignUpRequest.nick_name)
+  return _internal_mutable_nick_name();
 }
-inline const std::string& SignUpRequest::_internal_nickname() const {
-  return nickname_.Get();
+inline const std::string& SignUpRequest::_internal_nick_name() const {
+  return nick_name_.Get();
 }
-inline void SignUpRequest::_internal_set_nickname(const std::string& value) {
+inline void SignUpRequest::_internal_set_nick_name(const std::string& value) {
   
-  nickname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* SignUpRequest::_internal_mutable_nickname() {
+inline std::string* SignUpRequest::_internal_mutable_nick_name() {
   
-  return nickname_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return nick_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* SignUpRequest::release_nickname() {
-  // @@protoc_insertion_point(field_release:palm.rbac.v1.SignUpRequest.nickname)
-  return nickname_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* SignUpRequest::release_nick_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.SignUpRequest.nick_name)
+  return nick_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void SignUpRequest::set_allocated_nickname(std::string* nickname) {
-  if (nickname != nullptr) {
+inline void SignUpRequest::set_allocated_nick_name(std::string* nick_name) {
+  if (nick_name != nullptr) {
     
   } else {
     
   }
-  nickname_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), nickname,
+  nick_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), nick_name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignUpRequest.nickname)
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.SignUpRequest.nick_name)
 }
 
 // string real_name = 3;
@@ -2730,55 +8907,4437 @@ inline void ProfileRequest::set_allocated_home(std::string* home) {
 
 // -------------------------------------------------------------------
 
-// ApplyRequest
+// IndexUserResponse_Item
 
-// int64 user = 1;
-inline void ApplyRequest::clear_user() {
-  user_ = int64_t{0};
+// int64 id = 1;
+inline void IndexUserResponse_Item::clear_id() {
+  id_ = int64_t{0};
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 ApplyRequest::_internal_user() const {
-  return user_;
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexUserResponse_Item::_internal_id() const {
+  return id_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 ApplyRequest::user() const {
-  // @@protoc_insertion_point(field_get:palm.rbac.v1.ApplyRequest.user)
-  return _internal_user();
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexUserResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.id)
+  return _internal_id();
 }
-inline void ApplyRequest::_internal_set_user(::PROTOBUF_NAMESPACE_ID::int64 value) {
+inline void IndexUserResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   
-  user_ = value;
+  id_ = value;
 }
-inline void ApplyRequest::set_user(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_user(value);
-  // @@protoc_insertion_point(field_set:palm.rbac.v1.ApplyRequest.user)
+inline void IndexUserResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.id)
+}
+
+// string real_name = 2;
+inline void IndexUserResponse_Item::clear_real_name() {
+  real_name_.ClearToEmpty();
+}
+inline const std::string& IndexUserResponse_Item::real_name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.real_name)
+  return _internal_real_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_real_name(ArgT0&& arg0, ArgT... args) {
+ 
+ real_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.real_name)
+}
+inline std::string* IndexUserResponse_Item::mutable_real_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.real_name)
+  return _internal_mutable_real_name();
+}
+inline const std::string& IndexUserResponse_Item::_internal_real_name() const {
+  return real_name_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_real_name(const std::string& value) {
+  
+  real_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_real_name() {
+  
+  return real_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_real_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.real_name)
+  return real_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_real_name(std::string* real_name) {
+  if (real_name != nullptr) {
+    
+  } else {
+    
+  }
+  real_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), real_name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.real_name)
+}
+
+// string nick_name = 3;
+inline void IndexUserResponse_Item::clear_nick_name() {
+  nick_name_.ClearToEmpty();
+}
+inline const std::string& IndexUserResponse_Item::nick_name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.nick_name)
+  return _internal_nick_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_nick_name(ArgT0&& arg0, ArgT... args) {
+ 
+ nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.nick_name)
+}
+inline std::string* IndexUserResponse_Item::mutable_nick_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.nick_name)
+  return _internal_mutable_nick_name();
+}
+inline const std::string& IndexUserResponse_Item::_internal_nick_name() const {
+  return nick_name_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_nick_name(const std::string& value) {
+  
+  nick_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_nick_name() {
+  
+  return nick_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_nick_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.nick_name)
+  return nick_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_nick_name(std::string* nick_name) {
+  if (nick_name != nullptr) {
+    
+  } else {
+    
+  }
+  nick_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), nick_name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.nick_name)
+}
+
+// string email = 4;
+inline void IndexUserResponse_Item::clear_email() {
+  email_.ClearToEmpty();
+}
+inline const std::string& IndexUserResponse_Item::email() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.email)
+  return _internal_email();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_email(ArgT0&& arg0, ArgT... args) {
+ 
+ email_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.email)
+}
+inline std::string* IndexUserResponse_Item::mutable_email() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.email)
+  return _internal_mutable_email();
+}
+inline const std::string& IndexUserResponse_Item::_internal_email() const {
+  return email_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_email(const std::string& value) {
+  
+  email_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_email() {
+  
+  return email_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_email() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.email)
+  return email_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_email(std::string* email) {
+  if (email != nullptr) {
+    
+  } else {
+    
+  }
+  email_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), email,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.email)
+}
+
+// string uid = 5;
+inline void IndexUserResponse_Item::clear_uid() {
+  uid_.ClearToEmpty();
+}
+inline const std::string& IndexUserResponse_Item::uid() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.uid)
+  return _internal_uid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_uid(ArgT0&& arg0, ArgT... args) {
+ 
+ uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.uid)
+}
+inline std::string* IndexUserResponse_Item::mutable_uid() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.uid)
+  return _internal_mutable_uid();
+}
+inline const std::string& IndexUserResponse_Item::_internal_uid() const {
+  return uid_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_uid(const std::string& value) {
+  
+  uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_uid() {
+  
+  return uid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_uid() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.uid)
+  return uid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_uid(std::string* uid) {
+  if (uid != nullptr) {
+    
+  } else {
+    
+  }
+  uid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), uid,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.uid)
+}
+
+// .palm.rbac.v1.ProviderType provider_type = 6;
+inline void IndexUserResponse_Item::clear_provider_type() {
+  provider_type_ = 0;
+}
+inline ::palm::rbac::v1::ProviderType IndexUserResponse_Item::_internal_provider_type() const {
+  return static_cast< ::palm::rbac::v1::ProviderType >(provider_type_);
+}
+inline ::palm::rbac::v1::ProviderType IndexUserResponse_Item::provider_type() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.provider_type)
+  return _internal_provider_type();
+}
+inline void IndexUserResponse_Item::_internal_set_provider_type(::palm::rbac::v1::ProviderType value) {
+  
+  provider_type_ = value;
+}
+inline void IndexUserResponse_Item::set_provider_type(::palm::rbac::v1::ProviderType value) {
+  _internal_set_provider_type(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.provider_type)
+}
+
+// string provider_id = 7;
+inline void IndexUserResponse_Item::clear_provider_id() {
+  provider_id_.ClearToEmpty();
+}
+inline const std::string& IndexUserResponse_Item::provider_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.provider_id)
+  return _internal_provider_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_provider_id(ArgT0&& arg0, ArgT... args) {
+ 
+ provider_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.provider_id)
+}
+inline std::string* IndexUserResponse_Item::mutable_provider_id() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.provider_id)
+  return _internal_mutable_provider_id();
+}
+inline const std::string& IndexUserResponse_Item::_internal_provider_id() const {
+  return provider_id_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_provider_id(const std::string& value) {
+  
+  provider_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_provider_id() {
+  
+  return provider_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_provider_id() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.provider_id)
+  return provider_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_provider_id(std::string* provider_id) {
+  if (provider_id != nullptr) {
+    
+  } else {
+    
+  }
+  provider_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), provider_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.provider_id)
+}
+
+// string logo = 8;
+inline void IndexUserResponse_Item::clear_logo() {
+  logo_.ClearToEmpty();
+}
+inline const std::string& IndexUserResponse_Item::logo() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.logo)
+  return _internal_logo();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_logo(ArgT0&& arg0, ArgT... args) {
+ 
+ logo_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.logo)
+}
+inline std::string* IndexUserResponse_Item::mutable_logo() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.logo)
+  return _internal_mutable_logo();
+}
+inline const std::string& IndexUserResponse_Item::_internal_logo() const {
+  return logo_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_logo(const std::string& value) {
+  
+  logo_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_logo() {
+  
+  return logo_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_logo() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.logo)
+  return logo_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_logo(std::string* logo) {
+  if (logo != nullptr) {
+    
+  } else {
+    
+  }
+  logo_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), logo,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.logo)
+}
+
+// string lang = 9;
+inline void IndexUserResponse_Item::clear_lang() {
+  lang_.ClearToEmpty();
+}
+inline const std::string& IndexUserResponse_Item::lang() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.lang)
+  return _internal_lang();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_lang(ArgT0&& arg0, ArgT... args) {
+ 
+ lang_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.lang)
+}
+inline std::string* IndexUserResponse_Item::mutable_lang() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.lang)
+  return _internal_mutable_lang();
+}
+inline const std::string& IndexUserResponse_Item::_internal_lang() const {
+  return lang_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_lang(const std::string& value) {
+  
+  lang_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_lang() {
+  
+  return lang_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_lang() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.lang)
+  return lang_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_lang(std::string* lang) {
+  if (lang != nullptr) {
+    
+  } else {
+    
+  }
+  lang_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), lang,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.lang)
+}
+
+// int32 sign_in_count = 21;
+inline void IndexUserResponse_Item::clear_sign_in_count() {
+  sign_in_count_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 IndexUserResponse_Item::_internal_sign_in_count() const {
+  return sign_in_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 IndexUserResponse_Item::sign_in_count() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.sign_in_count)
+  return _internal_sign_in_count();
+}
+inline void IndexUserResponse_Item::_internal_set_sign_in_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  sign_in_count_ = value;
+}
+inline void IndexUserResponse_Item::set_sign_in_count(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_sign_in_count(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.sign_in_count)
+}
+
+// optional .google.protobuf.Timestamp current_sign_in_at = 22;
+inline bool IndexUserResponse_Item::_internal_has_current_sign_in_at() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || current_sign_in_at_ != nullptr);
+  return value;
+}
+inline bool IndexUserResponse_Item::has_current_sign_in_at() const {
+  return _internal_has_current_sign_in_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::_internal_current_sign_in_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = current_sign_in_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::current_sign_in_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_at)
+  return _internal_current_sign_in_at();
+}
+inline void IndexUserResponse_Item::unsafe_arena_set_allocated_current_sign_in_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* current_sign_in_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(current_sign_in_at_);
+  }
+  current_sign_in_at_ = current_sign_in_at;
+  if (current_sign_in_at) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::release_current_sign_in_at() {
+  _has_bits_[0] &= ~0x00000004u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = current_sign_in_at_;
+  current_sign_in_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::unsafe_arena_release_current_sign_in_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_at)
+  _has_bits_[0] &= ~0x00000004u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = current_sign_in_at_;
+  current_sign_in_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::_internal_mutable_current_sign_in_at() {
+  _has_bits_[0] |= 0x00000004u;
+  if (current_sign_in_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    current_sign_in_at_ = p;
+  }
+  return current_sign_in_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::mutable_current_sign_in_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_at)
+  return _internal_mutable_current_sign_in_at();
+}
+inline void IndexUserResponse_Item::set_allocated_current_sign_in_at(PROTOBUF_NAMESPACE_ID::Timestamp* current_sign_in_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(current_sign_in_at_);
+  }
+  if (current_sign_in_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(current_sign_in_at));
+    if (message_arena != submessage_arena) {
+      current_sign_in_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, current_sign_in_at, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  current_sign_in_at_ = current_sign_in_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_at)
+}
+
+// optional string current_sign_in_ip = 23;
+inline bool IndexUserResponse_Item::_internal_has_current_sign_in_ip() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool IndexUserResponse_Item::has_current_sign_in_ip() const {
+  return _internal_has_current_sign_in_ip();
+}
+inline void IndexUserResponse_Item::clear_current_sign_in_ip() {
+  current_sign_in_ip_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& IndexUserResponse_Item::current_sign_in_ip() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_ip)
+  return _internal_current_sign_in_ip();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_current_sign_in_ip(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000001u;
+ current_sign_in_ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_ip)
+}
+inline std::string* IndexUserResponse_Item::mutable_current_sign_in_ip() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_ip)
+  return _internal_mutable_current_sign_in_ip();
+}
+inline const std::string& IndexUserResponse_Item::_internal_current_sign_in_ip() const {
+  return current_sign_in_ip_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_current_sign_in_ip(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  current_sign_in_ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_current_sign_in_ip() {
+  _has_bits_[0] |= 0x00000001u;
+  return current_sign_in_ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_current_sign_in_ip() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_ip)
+  if (!_internal_has_current_sign_in_ip()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return current_sign_in_ip_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_current_sign_in_ip(std::string* current_sign_in_ip) {
+  if (current_sign_in_ip != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  current_sign_in_ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), current_sign_in_ip,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.current_sign_in_ip)
+}
+
+// optional .google.protobuf.Timestamp last_sign_in_at = 24;
+inline bool IndexUserResponse_Item::_internal_has_last_sign_in_at() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || last_sign_in_at_ != nullptr);
+  return value;
+}
+inline bool IndexUserResponse_Item::has_last_sign_in_at() const {
+  return _internal_has_last_sign_in_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::_internal_last_sign_in_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = last_sign_in_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::last_sign_in_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_at)
+  return _internal_last_sign_in_at();
+}
+inline void IndexUserResponse_Item::unsafe_arena_set_allocated_last_sign_in_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* last_sign_in_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_sign_in_at_);
+  }
+  last_sign_in_at_ = last_sign_in_at;
+  if (last_sign_in_at) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::release_last_sign_in_at() {
+  _has_bits_[0] &= ~0x00000008u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_sign_in_at_;
+  last_sign_in_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::unsafe_arena_release_last_sign_in_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_at)
+  _has_bits_[0] &= ~0x00000008u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = last_sign_in_at_;
+  last_sign_in_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::_internal_mutable_last_sign_in_at() {
+  _has_bits_[0] |= 0x00000008u;
+  if (last_sign_in_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    last_sign_in_at_ = p;
+  }
+  return last_sign_in_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::mutable_last_sign_in_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_at)
+  return _internal_mutable_last_sign_in_at();
+}
+inline void IndexUserResponse_Item::set_allocated_last_sign_in_at(PROTOBUF_NAMESPACE_ID::Timestamp* last_sign_in_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_sign_in_at_);
+  }
+  if (last_sign_in_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_sign_in_at));
+    if (message_arena != submessage_arena) {
+      last_sign_in_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_sign_in_at, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  last_sign_in_at_ = last_sign_in_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_at)
+}
+
+// optional string last_sign_in_ip = 25;
+inline bool IndexUserResponse_Item::_internal_has_last_sign_in_ip() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool IndexUserResponse_Item::has_last_sign_in_ip() const {
+  return _internal_has_last_sign_in_ip();
+}
+inline void IndexUserResponse_Item::clear_last_sign_in_ip() {
+  last_sign_in_ip_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& IndexUserResponse_Item::last_sign_in_ip() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_ip)
+  return _internal_last_sign_in_ip();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexUserResponse_Item::set_last_sign_in_ip(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000002u;
+ last_sign_in_ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_ip)
+}
+inline std::string* IndexUserResponse_Item::mutable_last_sign_in_ip() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_ip)
+  return _internal_mutable_last_sign_in_ip();
+}
+inline const std::string& IndexUserResponse_Item::_internal_last_sign_in_ip() const {
+  return last_sign_in_ip_.Get();
+}
+inline void IndexUserResponse_Item::_internal_set_last_sign_in_ip(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  last_sign_in_ip_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::_internal_mutable_last_sign_in_ip() {
+  _has_bits_[0] |= 0x00000002u;
+  return last_sign_in_ip_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexUserResponse_Item::release_last_sign_in_ip() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_ip)
+  if (!_internal_has_last_sign_in_ip()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return last_sign_in_ip_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexUserResponse_Item::set_allocated_last_sign_in_ip(std::string* last_sign_in_ip) {
+  if (last_sign_in_ip != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  last_sign_in_ip_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), last_sign_in_ip,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.last_sign_in_ip)
+}
+
+// optional .google.protobuf.Timestamp confirmed_at = 31;
+inline bool IndexUserResponse_Item::_internal_has_confirmed_at() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  PROTOBUF_ASSUME(!value || confirmed_at_ != nullptr);
+  return value;
+}
+inline bool IndexUserResponse_Item::has_confirmed_at() const {
+  return _internal_has_confirmed_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::_internal_confirmed_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = confirmed_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::confirmed_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.confirmed_at)
+  return _internal_confirmed_at();
+}
+inline void IndexUserResponse_Item::unsafe_arena_set_allocated_confirmed_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* confirmed_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(confirmed_at_);
+  }
+  confirmed_at_ = confirmed_at;
+  if (confirmed_at) {
+    _has_bits_[0] |= 0x00000010u;
+  } else {
+    _has_bits_[0] &= ~0x00000010u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexUserResponse.Item.confirmed_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::release_confirmed_at() {
+  _has_bits_[0] &= ~0x00000010u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = confirmed_at_;
+  confirmed_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::unsafe_arena_release_confirmed_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.confirmed_at)
+  _has_bits_[0] &= ~0x00000010u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = confirmed_at_;
+  confirmed_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::_internal_mutable_confirmed_at() {
+  _has_bits_[0] |= 0x00000010u;
+  if (confirmed_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    confirmed_at_ = p;
+  }
+  return confirmed_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::mutable_confirmed_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.confirmed_at)
+  return _internal_mutable_confirmed_at();
+}
+inline void IndexUserResponse_Item::set_allocated_confirmed_at(PROTOBUF_NAMESPACE_ID::Timestamp* confirmed_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(confirmed_at_);
+  }
+  if (confirmed_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(confirmed_at));
+    if (message_arena != submessage_arena) {
+      confirmed_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, confirmed_at, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000010u;
+  } else {
+    _has_bits_[0] &= ~0x00000010u;
+  }
+  confirmed_at_ = confirmed_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.confirmed_at)
+}
+
+// optional .google.protobuf.Timestamp locked_at = 32;
+inline bool IndexUserResponse_Item::_internal_has_locked_at() const {
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  PROTOBUF_ASSUME(!value || locked_at_ != nullptr);
+  return value;
+}
+inline bool IndexUserResponse_Item::has_locked_at() const {
+  return _internal_has_locked_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::_internal_locked_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = locked_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::locked_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.locked_at)
+  return _internal_locked_at();
+}
+inline void IndexUserResponse_Item::unsafe_arena_set_allocated_locked_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* locked_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(locked_at_);
+  }
+  locked_at_ = locked_at;
+  if (locked_at) {
+    _has_bits_[0] |= 0x00000020u;
+  } else {
+    _has_bits_[0] &= ~0x00000020u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexUserResponse.Item.locked_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::release_locked_at() {
+  _has_bits_[0] &= ~0x00000020u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = locked_at_;
+  locked_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::unsafe_arena_release_locked_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.locked_at)
+  _has_bits_[0] &= ~0x00000020u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = locked_at_;
+  locked_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::_internal_mutable_locked_at() {
+  _has_bits_[0] |= 0x00000020u;
+  if (locked_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    locked_at_ = p;
+  }
+  return locked_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::mutable_locked_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.locked_at)
+  return _internal_mutable_locked_at();
+}
+inline void IndexUserResponse_Item::set_allocated_locked_at(PROTOBUF_NAMESPACE_ID::Timestamp* locked_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(locked_at_);
+  }
+  if (locked_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(locked_at));
+    if (message_arena != submessage_arena) {
+      locked_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, locked_at, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000020u;
+  } else {
+    _has_bits_[0] &= ~0x00000020u;
+  }
+  locked_at_ = locked_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.locked_at)
+}
+
+// optional .google.protobuf.Timestamp deleted_at = 33;
+inline bool IndexUserResponse_Item::_internal_has_deleted_at() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  PROTOBUF_ASSUME(!value || deleted_at_ != nullptr);
+  return value;
+}
+inline bool IndexUserResponse_Item::has_deleted_at() const {
+  return _internal_has_deleted_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::_internal_deleted_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = deleted_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::deleted_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.deleted_at)
+  return _internal_deleted_at();
+}
+inline void IndexUserResponse_Item::unsafe_arena_set_allocated_deleted_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deleted_at_);
+  }
+  deleted_at_ = deleted_at;
+  if (deleted_at) {
+    _has_bits_[0] |= 0x00000040u;
+  } else {
+    _has_bits_[0] &= ~0x00000040u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexUserResponse.Item.deleted_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::release_deleted_at() {
+  _has_bits_[0] &= ~0x00000040u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = deleted_at_;
+  deleted_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::unsafe_arena_release_deleted_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.deleted_at)
+  _has_bits_[0] &= ~0x00000040u;
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = deleted_at_;
+  deleted_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::_internal_mutable_deleted_at() {
+  _has_bits_[0] |= 0x00000040u;
+  if (deleted_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    deleted_at_ = p;
+  }
+  return deleted_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::mutable_deleted_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.deleted_at)
+  return _internal_mutable_deleted_at();
+}
+inline void IndexUserResponse_Item::set_allocated_deleted_at(PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(deleted_at_);
+  }
+  if (deleted_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deleted_at));
+    if (message_arena != submessage_arena) {
+      deleted_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, deleted_at, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000040u;
+  } else {
+    _has_bits_[0] &= ~0x00000040u;
+  }
+  deleted_at_ = deleted_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.deleted_at)
+}
+
+// .google.protobuf.Timestamp updated_at = 39;
+inline bool IndexUserResponse_Item::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool IndexUserResponse_Item::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::_internal_updated_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexUserResponse_Item::updated_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void IndexUserResponse_Item::unsafe_arena_set_allocated_updated_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexUserResponse.Item.updated_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::release_updated_at() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.Item.updated_at)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexUserResponse_Item::mutable_updated_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.Item.updated_at)
+  return _internal_mutable_updated_at();
+}
+inline void IndexUserResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.Item.updated_at)
 }
 
 // -------------------------------------------------------------------
 
-// DenyRequest
+// IndexUserResponse
 
-// int64 user = 1;
-inline void DenyRequest::clear_user() {
-  user_ = int64_t{0};
+// repeated .palm.rbac.v1.IndexUserResponse.Item items = 1;
+inline int IndexUserResponse::_internal_items_size() const {
+  return items_.size();
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 DenyRequest::_internal_user() const {
-  return user_;
+inline int IndexUserResponse::items_size() const {
+  return _internal_items_size();
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 DenyRequest::user() const {
-  // @@protoc_insertion_point(field_get:palm.rbac.v1.DenyRequest.user)
-  return _internal_user();
+inline void IndexUserResponse::clear_items() {
+  items_.Clear();
 }
-inline void DenyRequest::_internal_set_user(::PROTOBUF_NAMESPACE_ID::int64 value) {
+inline ::palm::rbac::v1::IndexUserResponse_Item* IndexUserResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >*
+IndexUserResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.IndexUserResponse.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexUserResponse_Item& IndexUserResponse::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexUserResponse_Item& IndexUserResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* IndexUserResponse::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* IndexUserResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.IndexUserResponse.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >&
+IndexUserResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.IndexUserResponse.items)
+  return items_;
+}
+
+// .palm.rbac.v1.Pagination pagination = 2;
+inline bool IndexUserResponse::_internal_has_pagination() const {
+  return this != internal_default_instance() && pagination_ != nullptr;
+}
+inline bool IndexUserResponse::has_pagination() const {
+  return _internal_has_pagination();
+}
+inline void IndexUserResponse::clear_pagination() {
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+}
+inline const ::palm::rbac::v1::Pagination& IndexUserResponse::_internal_pagination() const {
+  const ::palm::rbac::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::rbac::v1::Pagination&>(
+      ::palm::rbac::v1::_Pagination_default_instance_);
+}
+inline const ::palm::rbac::v1::Pagination& IndexUserResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexUserResponse.pagination)
+  return _internal_pagination();
+}
+inline void IndexUserResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::rbac::v1::Pagination* pagination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  pagination_ = pagination;
+  if (pagination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexUserResponse.pagination)
+}
+inline ::palm::rbac::v1::Pagination* IndexUserResponse::release_pagination() {
   
-  user_ = value;
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
 }
-inline void DenyRequest::set_user(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_user(value);
-  // @@protoc_insertion_point(field_set:palm.rbac.v1.DenyRequest.user)
+inline ::palm::rbac::v1::Pagination* IndexUserResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexUserResponse.pagination)
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexUserResponse::_internal_mutable_pagination() {
+  
+  if (pagination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::palm::rbac::v1::Pagination>(GetArenaForAllocation());
+    pagination_ = p;
+  }
+  return pagination_;
+}
+inline ::palm::rbac::v1::Pagination* IndexUserResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexUserResponse.pagination)
+  return _internal_mutable_pagination();
+}
+inline void IndexUserResponse::set_allocated_pagination(::palm::rbac::v1::Pagination* pagination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pagination_;
+  }
+  if (pagination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::rbac::v1::Pagination>::GetOwningArena(pagination);
+    if (message_arena != submessage_arena) {
+      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pagination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pagination_ = pagination;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexUserResponse.pagination)
+}
+
+// -------------------------------------------------------------------
+
+// PolicyApplyRequest
+
+// string role = 1;
+inline void PolicyApplyRequest::clear_role() {
+  role_.ClearToEmpty();
+}
+inline const std::string& PolicyApplyRequest::role() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyApplyRequest.role)
+  return _internal_role();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PolicyApplyRequest::set_role(ArgT0&& arg0, ArgT... args) {
+ 
+ role_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyApplyRequest.role)
+}
+inline std::string* PolicyApplyRequest::mutable_role() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.PolicyApplyRequest.role)
+  return _internal_mutable_role();
+}
+inline const std::string& PolicyApplyRequest::_internal_role() const {
+  return role_.Get();
+}
+inline void PolicyApplyRequest::_internal_set_role(const std::string& value) {
+  
+  role_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PolicyApplyRequest::_internal_mutable_role() {
+  
+  return role_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PolicyApplyRequest::release_role() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.PolicyApplyRequest.role)
+  return role_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PolicyApplyRequest::set_allocated_role(std::string* role) {
+  if (role != nullptr) {
+    
+  } else {
+    
+  }
+  role_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), role,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyApplyRequest.role)
+}
+
+// string operation = 2;
+inline void PolicyApplyRequest::clear_operation() {
+  operation_.ClearToEmpty();
+}
+inline const std::string& PolicyApplyRequest::operation() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyApplyRequest.operation)
+  return _internal_operation();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PolicyApplyRequest::set_operation(ArgT0&& arg0, ArgT... args) {
+ 
+ operation_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyApplyRequest.operation)
+}
+inline std::string* PolicyApplyRequest::mutable_operation() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.PolicyApplyRequest.operation)
+  return _internal_mutable_operation();
+}
+inline const std::string& PolicyApplyRequest::_internal_operation() const {
+  return operation_.Get();
+}
+inline void PolicyApplyRequest::_internal_set_operation(const std::string& value) {
+  
+  operation_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PolicyApplyRequest::_internal_mutable_operation() {
+  
+  return operation_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PolicyApplyRequest::release_operation() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.PolicyApplyRequest.operation)
+  return operation_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PolicyApplyRequest::set_allocated_operation(std::string* operation) {
+  if (operation != nullptr) {
+    
+  } else {
+    
+  }
+  operation_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), operation,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyApplyRequest.operation)
+}
+
+// string resource = 3;
+inline void PolicyApplyRequest::clear_resource() {
+  resource_.ClearToEmpty();
+}
+inline const std::string& PolicyApplyRequest::resource() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyApplyRequest.resource)
+  return _internal_resource();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PolicyApplyRequest::set_resource(ArgT0&& arg0, ArgT... args) {
+ 
+ resource_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyApplyRequest.resource)
+}
+inline std::string* PolicyApplyRequest::mutable_resource() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.PolicyApplyRequest.resource)
+  return _internal_mutable_resource();
+}
+inline const std::string& PolicyApplyRequest::_internal_resource() const {
+  return resource_.Get();
+}
+inline void PolicyApplyRequest::_internal_set_resource(const std::string& value) {
+  
+  resource_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PolicyApplyRequest::_internal_mutable_resource() {
+  
+  return resource_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PolicyApplyRequest::release_resource() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.PolicyApplyRequest.resource)
+  return resource_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PolicyApplyRequest::set_allocated_resource(std::string* resource) {
+  if (resource != nullptr) {
+    
+  } else {
+    
+  }
+  resource_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), resource,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyApplyRequest.resource)
+}
+
+// .google.protobuf.Duration ttl = 4;
+inline bool PolicyApplyRequest::_internal_has_ttl() const {
+  return this != internal_default_instance() && ttl_ != nullptr;
+}
+inline bool PolicyApplyRequest::has_ttl() const {
+  return _internal_has_ttl();
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& PolicyApplyRequest::_internal_ttl() const {
+  const PROTOBUF_NAMESPACE_ID::Duration* p = ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Duration&>(
+      PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& PolicyApplyRequest::ttl() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyApplyRequest.ttl)
+  return _internal_ttl();
+}
+inline void PolicyApplyRequest::unsafe_arena_set_allocated_ttl(
+    PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  ttl_ = ttl;
+  if (ttl) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.PolicyApplyRequest.ttl)
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* PolicyApplyRequest::release_ttl() {
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* PolicyApplyRequest::unsafe_arena_release_ttl() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.PolicyApplyRequest.ttl)
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* PolicyApplyRequest::_internal_mutable_ttl() {
+  
+  if (ttl_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    ttl_ = p;
+  }
+  return ttl_;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* PolicyApplyRequest::mutable_ttl() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.PolicyApplyRequest.ttl)
+  return _internal_mutable_ttl();
+}
+inline void PolicyApplyRequest::set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  if (ttl) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl));
+    if (message_arena != submessage_arena) {
+      ttl = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ttl, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ttl_ = ttl;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyApplyRequest.ttl)
+}
+
+// -------------------------------------------------------------------
+
+// PolicyDenyRequest
+
+// string role = 1;
+inline void PolicyDenyRequest::clear_role() {
+  role_.ClearToEmpty();
+}
+inline const std::string& PolicyDenyRequest::role() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyDenyRequest.role)
+  return _internal_role();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PolicyDenyRequest::set_role(ArgT0&& arg0, ArgT... args) {
+ 
+ role_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyDenyRequest.role)
+}
+inline std::string* PolicyDenyRequest::mutable_role() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.PolicyDenyRequest.role)
+  return _internal_mutable_role();
+}
+inline const std::string& PolicyDenyRequest::_internal_role() const {
+  return role_.Get();
+}
+inline void PolicyDenyRequest::_internal_set_role(const std::string& value) {
+  
+  role_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PolicyDenyRequest::_internal_mutable_role() {
+  
+  return role_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PolicyDenyRequest::release_role() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.PolicyDenyRequest.role)
+  return role_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PolicyDenyRequest::set_allocated_role(std::string* role) {
+  if (role != nullptr) {
+    
+  } else {
+    
+  }
+  role_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), role,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyDenyRequest.role)
+}
+
+// string operation = 2;
+inline void PolicyDenyRequest::clear_operation() {
+  operation_.ClearToEmpty();
+}
+inline const std::string& PolicyDenyRequest::operation() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyDenyRequest.operation)
+  return _internal_operation();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PolicyDenyRequest::set_operation(ArgT0&& arg0, ArgT... args) {
+ 
+ operation_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyDenyRequest.operation)
+}
+inline std::string* PolicyDenyRequest::mutable_operation() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.PolicyDenyRequest.operation)
+  return _internal_mutable_operation();
+}
+inline const std::string& PolicyDenyRequest::_internal_operation() const {
+  return operation_.Get();
+}
+inline void PolicyDenyRequest::_internal_set_operation(const std::string& value) {
+  
+  operation_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PolicyDenyRequest::_internal_mutable_operation() {
+  
+  return operation_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PolicyDenyRequest::release_operation() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.PolicyDenyRequest.operation)
+  return operation_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PolicyDenyRequest::set_allocated_operation(std::string* operation) {
+  if (operation != nullptr) {
+    
+  } else {
+    
+  }
+  operation_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), operation,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyDenyRequest.operation)
+}
+
+// string resource = 3;
+inline void PolicyDenyRequest::clear_resource() {
+  resource_.ClearToEmpty();
+}
+inline const std::string& PolicyDenyRequest::resource() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyDenyRequest.resource)
+  return _internal_resource();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PolicyDenyRequest::set_resource(ArgT0&& arg0, ArgT... args) {
+ 
+ resource_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyDenyRequest.resource)
+}
+inline std::string* PolicyDenyRequest::mutable_resource() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.PolicyDenyRequest.resource)
+  return _internal_mutable_resource();
+}
+inline const std::string& PolicyDenyRequest::_internal_resource() const {
+  return resource_.Get();
+}
+inline void PolicyDenyRequest::_internal_set_resource(const std::string& value) {
+  
+  resource_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PolicyDenyRequest::_internal_mutable_resource() {
+  
+  return resource_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PolicyDenyRequest::release_resource() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.PolicyDenyRequest.resource)
+  return resource_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PolicyDenyRequest::set_allocated_resource(std::string* resource) {
+  if (resource != nullptr) {
+    
+  } else {
+    
+  }
+  resource_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), resource,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyDenyRequest.resource)
+}
+
+// -------------------------------------------------------------------
+
+// AssociateRoleGroupRequest
+
+// uint64 role_id = 1;
+inline void AssociateRoleGroupRequest::clear_role_id() {
+  role_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleGroupRequest::_internal_role_id() const {
+  return role_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleGroupRequest::role_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateRoleGroupRequest.role_id)
+  return _internal_role_id();
+}
+inline void AssociateRoleGroupRequest::_internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  role_id_ = value;
+}
+inline void AssociateRoleGroupRequest::set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_role_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.AssociateRoleGroupRequest.role_id)
+}
+
+// uint64 group_id = 2;
+inline void AssociateRoleGroupRequest::clear_group_id() {
+  group_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleGroupRequest::_internal_group_id() const {
+  return group_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleGroupRequest::group_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateRoleGroupRequest.group_id)
+  return _internal_group_id();
+}
+inline void AssociateRoleGroupRequest::_internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  group_id_ = value;
+}
+inline void AssociateRoleGroupRequest::set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_group_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.AssociateRoleGroupRequest.group_id)
+}
+
+// .google.protobuf.Duration ttl = 3;
+inline bool AssociateRoleGroupRequest::_internal_has_ttl() const {
+  return this != internal_default_instance() && ttl_ != nullptr;
+}
+inline bool AssociateRoleGroupRequest::has_ttl() const {
+  return _internal_has_ttl();
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AssociateRoleGroupRequest::_internal_ttl() const {
+  const PROTOBUF_NAMESPACE_ID::Duration* p = ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Duration&>(
+      PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AssociateRoleGroupRequest::ttl() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateRoleGroupRequest.ttl)
+  return _internal_ttl();
+}
+inline void AssociateRoleGroupRequest::unsafe_arena_set_allocated_ttl(
+    PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  ttl_ = ttl;
+  if (ttl) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.AssociateRoleGroupRequest.ttl)
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleGroupRequest::release_ttl() {
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleGroupRequest::unsafe_arena_release_ttl() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.AssociateRoleGroupRequest.ttl)
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleGroupRequest::_internal_mutable_ttl() {
+  
+  if (ttl_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    ttl_ = p;
+  }
+  return ttl_;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleGroupRequest::mutable_ttl() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.AssociateRoleGroupRequest.ttl)
+  return _internal_mutable_ttl();
+}
+inline void AssociateRoleGroupRequest::set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  if (ttl) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl));
+    if (message_arena != submessage_arena) {
+      ttl = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ttl, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ttl_ = ttl;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.AssociateRoleGroupRequest.ttl)
+}
+
+// -------------------------------------------------------------------
+
+// DisassociateRoleGroupRequest
+
+// uint64 role_id = 1;
+inline void DisassociateRoleGroupRequest::clear_role_id() {
+  role_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleGroupRequest::_internal_role_id() const {
+  return role_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleGroupRequest::role_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.DisassociateRoleGroupRequest.role_id)
+  return _internal_role_id();
+}
+inline void DisassociateRoleGroupRequest::_internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  role_id_ = value;
+}
+inline void DisassociateRoleGroupRequest::set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_role_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.DisassociateRoleGroupRequest.role_id)
+}
+
+// uint64 group_id = 2;
+inline void DisassociateRoleGroupRequest::clear_group_id() {
+  group_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleGroupRequest::_internal_group_id() const {
+  return group_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleGroupRequest::group_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.DisassociateRoleGroupRequest.group_id)
+  return _internal_group_id();
+}
+inline void DisassociateRoleGroupRequest::_internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  group_id_ = value;
+}
+inline void DisassociateRoleGroupRequest::set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_group_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.DisassociateRoleGroupRequest.group_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListRoleGroupRequest
+
+// repeated .palm.rbac.v1.IndexGroupResponse.Item items = 1;
+inline int ListRoleGroupRequest::_internal_items_size() const {
+  return items_.size();
+}
+inline int ListRoleGroupRequest::items_size() const {
+  return _internal_items_size();
+}
+inline void ListRoleGroupRequest::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexGroupResponse_Item* ListRoleGroupRequest::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.ListRoleGroupRequest.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >*
+ListRoleGroupRequest::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.ListRoleGroupRequest.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexGroupResponse_Item& ListRoleGroupRequest::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexGroupResponse_Item& ListRoleGroupRequest::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.ListRoleGroupRequest.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexGroupResponse_Item* ListRoleGroupRequest::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexGroupResponse_Item* ListRoleGroupRequest::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.ListRoleGroupRequest.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >&
+ListRoleGroupRequest::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.ListRoleGroupRequest.items)
+  return items_;
+}
+
+// -------------------------------------------------------------------
+
+// AssociateRoleUserRequest
+
+// uint64 user_id = 1;
+inline void AssociateRoleUserRequest::clear_user_id() {
+  user_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleUserRequest::_internal_user_id() const {
+  return user_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleUserRequest::user_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateRoleUserRequest.user_id)
+  return _internal_user_id();
+}
+inline void AssociateRoleUserRequest::_internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  user_id_ = value;
+}
+inline void AssociateRoleUserRequest::set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_user_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.AssociateRoleUserRequest.user_id)
+}
+
+// uint64 role_id = 2;
+inline void AssociateRoleUserRequest::clear_role_id() {
+  role_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleUserRequest::_internal_role_id() const {
+  return role_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateRoleUserRequest::role_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateRoleUserRequest.role_id)
+  return _internal_role_id();
+}
+inline void AssociateRoleUserRequest::_internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  role_id_ = value;
+}
+inline void AssociateRoleUserRequest::set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_role_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.AssociateRoleUserRequest.role_id)
+}
+
+// .google.protobuf.Duration ttl = 3;
+inline bool AssociateRoleUserRequest::_internal_has_ttl() const {
+  return this != internal_default_instance() && ttl_ != nullptr;
+}
+inline bool AssociateRoleUserRequest::has_ttl() const {
+  return _internal_has_ttl();
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AssociateRoleUserRequest::_internal_ttl() const {
+  const PROTOBUF_NAMESPACE_ID::Duration* p = ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Duration&>(
+      PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AssociateRoleUserRequest::ttl() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateRoleUserRequest.ttl)
+  return _internal_ttl();
+}
+inline void AssociateRoleUserRequest::unsafe_arena_set_allocated_ttl(
+    PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  ttl_ = ttl;
+  if (ttl) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.AssociateRoleUserRequest.ttl)
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleUserRequest::release_ttl() {
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleUserRequest::unsafe_arena_release_ttl() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.AssociateRoleUserRequest.ttl)
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleUserRequest::_internal_mutable_ttl() {
+  
+  if (ttl_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    ttl_ = p;
+  }
+  return ttl_;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateRoleUserRequest::mutable_ttl() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.AssociateRoleUserRequest.ttl)
+  return _internal_mutable_ttl();
+}
+inline void AssociateRoleUserRequest::set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  if (ttl) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl));
+    if (message_arena != submessage_arena) {
+      ttl = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ttl, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ttl_ = ttl;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.AssociateRoleUserRequest.ttl)
+}
+
+// -------------------------------------------------------------------
+
+// DisassociateRoleUserRequest
+
+// uint64 user_id = 1;
+inline void DisassociateRoleUserRequest::clear_user_id() {
+  user_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleUserRequest::_internal_user_id() const {
+  return user_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleUserRequest::user_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.DisassociateRoleUserRequest.user_id)
+  return _internal_user_id();
+}
+inline void DisassociateRoleUserRequest::_internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  user_id_ = value;
+}
+inline void DisassociateRoleUserRequest::set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_user_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.DisassociateRoleUserRequest.user_id)
+}
+
+// uint64 role_id = 2;
+inline void DisassociateRoleUserRequest::clear_role_id() {
+  role_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleUserRequest::_internal_role_id() const {
+  return role_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateRoleUserRequest::role_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.DisassociateRoleUserRequest.role_id)
+  return _internal_role_id();
+}
+inline void DisassociateRoleUserRequest::_internal_set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  role_id_ = value;
+}
+inline void DisassociateRoleUserRequest::set_role_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_role_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.DisassociateRoleUserRequest.role_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListRoleUserRequest
+
+// repeated .palm.rbac.v1.IndexUserResponse.Item items = 1;
+inline int ListRoleUserRequest::_internal_items_size() const {
+  return items_.size();
+}
+inline int ListRoleUserRequest::items_size() const {
+  return _internal_items_size();
+}
+inline void ListRoleUserRequest::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* ListRoleUserRequest::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.ListRoleUserRequest.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >*
+ListRoleUserRequest::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.ListRoleUserRequest.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexUserResponse_Item& ListRoleUserRequest::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexUserResponse_Item& ListRoleUserRequest::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.ListRoleUserRequest.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* ListRoleUserRequest::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* ListRoleUserRequest::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.ListRoleUserRequest.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >&
+ListRoleUserRequest::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.ListRoleUserRequest.items)
+  return items_;
+}
+
+// -------------------------------------------------------------------
+
+// AssociateGroupUserRequest
+
+// uint64 user_id = 1;
+inline void AssociateGroupUserRequest::clear_user_id() {
+  user_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateGroupUserRequest::_internal_user_id() const {
+  return user_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateGroupUserRequest::user_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateGroupUserRequest.user_id)
+  return _internal_user_id();
+}
+inline void AssociateGroupUserRequest::_internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  user_id_ = value;
+}
+inline void AssociateGroupUserRequest::set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_user_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.AssociateGroupUserRequest.user_id)
+}
+
+// uint64 group_id = 2;
+inline void AssociateGroupUserRequest::clear_group_id() {
+  group_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateGroupUserRequest::_internal_group_id() const {
+  return group_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 AssociateGroupUserRequest::group_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateGroupUserRequest.group_id)
+  return _internal_group_id();
+}
+inline void AssociateGroupUserRequest::_internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  group_id_ = value;
+}
+inline void AssociateGroupUserRequest::set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_group_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.AssociateGroupUserRequest.group_id)
+}
+
+// .google.protobuf.Duration ttl = 3;
+inline bool AssociateGroupUserRequest::_internal_has_ttl() const {
+  return this != internal_default_instance() && ttl_ != nullptr;
+}
+inline bool AssociateGroupUserRequest::has_ttl() const {
+  return _internal_has_ttl();
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AssociateGroupUserRequest::_internal_ttl() const {
+  const PROTOBUF_NAMESPACE_ID::Duration* p = ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Duration&>(
+      PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Duration& AssociateGroupUserRequest::ttl() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.AssociateGroupUserRequest.ttl)
+  return _internal_ttl();
+}
+inline void AssociateGroupUserRequest::unsafe_arena_set_allocated_ttl(
+    PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  ttl_ = ttl;
+  if (ttl) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.AssociateGroupUserRequest.ttl)
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateGroupUserRequest::release_ttl() {
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateGroupUserRequest::unsafe_arena_release_ttl() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.AssociateGroupUserRequest.ttl)
+  
+  PROTOBUF_NAMESPACE_ID::Duration* temp = ttl_;
+  ttl_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateGroupUserRequest::_internal_mutable_ttl() {
+  
+  if (ttl_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    ttl_ = p;
+  }
+  return ttl_;
+}
+inline PROTOBUF_NAMESPACE_ID::Duration* AssociateGroupUserRequest::mutable_ttl() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.AssociateGroupUserRequest.ttl)
+  return _internal_mutable_ttl();
+}
+inline void AssociateGroupUserRequest::set_allocated_ttl(PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl_);
+  }
+  if (ttl) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ttl));
+    if (message_arena != submessage_arena) {
+      ttl = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ttl, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ttl_ = ttl;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.AssociateGroupUserRequest.ttl)
+}
+
+// -------------------------------------------------------------------
+
+// DisassociateGroupUserRequest
+
+// uint64 user_id = 1;
+inline void DisassociateGroupUserRequest::clear_user_id() {
+  user_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateGroupUserRequest::_internal_user_id() const {
+  return user_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateGroupUserRequest::user_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.DisassociateGroupUserRequest.user_id)
+  return _internal_user_id();
+}
+inline void DisassociateGroupUserRequest::_internal_set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  user_id_ = value;
+}
+inline void DisassociateGroupUserRequest::set_user_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_user_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.DisassociateGroupUserRequest.user_id)
+}
+
+// uint64 group_id = 2;
+inline void DisassociateGroupUserRequest::clear_group_id() {
+  group_id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateGroupUserRequest::_internal_group_id() const {
+  return group_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 DisassociateGroupUserRequest::group_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.DisassociateGroupUserRequest.group_id)
+  return _internal_group_id();
+}
+inline void DisassociateGroupUserRequest::_internal_set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  group_id_ = value;
+}
+inline void DisassociateGroupUserRequest::set_group_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_group_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.DisassociateGroupUserRequest.group_id)
+}
+
+// -------------------------------------------------------------------
+
+// ListGroupUserRequest
+
+// repeated .palm.rbac.v1.IndexUserResponse.Item items = 1;
+inline int ListGroupUserRequest::_internal_items_size() const {
+  return items_.size();
+}
+inline int ListGroupUserRequest::items_size() const {
+  return _internal_items_size();
+}
+inline void ListGroupUserRequest::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* ListGroupUserRequest::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.ListGroupUserRequest.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >*
+ListGroupUserRequest::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.ListGroupUserRequest.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexUserResponse_Item& ListGroupUserRequest::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexUserResponse_Item& ListGroupUserRequest::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.ListGroupUserRequest.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* ListGroupUserRequest::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexUserResponse_Item* ListGroupUserRequest::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.ListGroupUserRequest.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexUserResponse_Item >&
+ListGroupUserRequest::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.ListGroupUserRequest.items)
+  return items_;
+}
+
+// -------------------------------------------------------------------
+
+// CreateResourceRequest
+
+// string code = 1;
+inline void CreateResourceRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& CreateResourceRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateResourceRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateResourceRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateResourceRequest.code)
+}
+inline std::string* CreateResourceRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateResourceRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& CreateResourceRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void CreateResourceRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateResourceRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateResourceRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateResourceRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateResourceRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateResourceRequest.code)
+}
+
+// string name = 2;
+inline void CreateResourceRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& CreateResourceRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateResourceRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateResourceRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateResourceRequest.name)
+}
+inline std::string* CreateResourceRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateResourceRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& CreateResourceRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void CreateResourceRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateResourceRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateResourceRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateResourceRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateResourceRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateResourceRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateResourceRequest
+
+// uint64 id = 1;
+inline void UpdateResourceRequest::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateResourceRequest::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateResourceRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateResourceRequest.id)
+  return _internal_id();
+}
+inline void UpdateResourceRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void UpdateResourceRequest::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateResourceRequest.id)
+}
+
+// string code = 2;
+inline void UpdateResourceRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& UpdateResourceRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateResourceRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateResourceRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateResourceRequest.code)
+}
+inline std::string* UpdateResourceRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateResourceRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& UpdateResourceRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void UpdateResourceRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateResourceRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateResourceRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateResourceRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateResourceRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateResourceRequest.code)
+}
+
+// string name = 3;
+inline void UpdateResourceRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& UpdateResourceRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateResourceRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateResourceRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateResourceRequest.name)
+}
+inline std::string* UpdateResourceRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateResourceRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& UpdateResourceRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void UpdateResourceRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateResourceRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateResourceRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateResourceRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateResourceRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateResourceRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// IndexResourceResponse_Item
+
+// uint64 id = 1;
+inline void IndexResourceResponse_Item::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexResourceResponse_Item::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexResourceResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexResourceResponse.Item.id)
+  return _internal_id();
+}
+inline void IndexResourceResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void IndexResourceResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexResourceResponse.Item.id)
+}
+
+// string code = 2;
+inline void IndexResourceResponse_Item::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& IndexResourceResponse_Item::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexResourceResponse.Item.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexResourceResponse_Item::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexResourceResponse.Item.code)
+}
+inline std::string* IndexResourceResponse_Item::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexResourceResponse.Item.code)
+  return _internal_mutable_code();
+}
+inline const std::string& IndexResourceResponse_Item::_internal_code() const {
+  return code_.Get();
+}
+inline void IndexResourceResponse_Item::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexResourceResponse_Item::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexResourceResponse_Item::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexResourceResponse.Item.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexResourceResponse_Item::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexResourceResponse.Item.code)
+}
+
+// string name = 3;
+inline void IndexResourceResponse_Item::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& IndexResourceResponse_Item::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexResourceResponse.Item.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexResourceResponse_Item::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexResourceResponse.Item.name)
+}
+inline std::string* IndexResourceResponse_Item::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexResourceResponse.Item.name)
+  return _internal_mutable_name();
+}
+inline const std::string& IndexResourceResponse_Item::_internal_name() const {
+  return name_.Get();
+}
+inline void IndexResourceResponse_Item::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexResourceResponse_Item::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexResourceResponse_Item::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexResourceResponse.Item.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexResourceResponse_Item::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexResourceResponse.Item.name)
+}
+
+// .google.protobuf.Timestamp updated_at = 9;
+inline bool IndexResourceResponse_Item::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool IndexResourceResponse_Item::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexResourceResponse_Item::_internal_updated_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexResourceResponse_Item::updated_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexResourceResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void IndexResourceResponse_Item::unsafe_arena_set_allocated_updated_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexResourceResponse.Item.updated_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexResourceResponse_Item::release_updated_at() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexResourceResponse_Item::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexResourceResponse.Item.updated_at)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexResourceResponse_Item::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexResourceResponse_Item::mutable_updated_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexResourceResponse.Item.updated_at)
+  return _internal_mutable_updated_at();
+}
+inline void IndexResourceResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexResourceResponse.Item.updated_at)
+}
+
+// -------------------------------------------------------------------
+
+// IndexResourceResponse
+
+// repeated .palm.rbac.v1.IndexResourceResponse.Item items = 1;
+inline int IndexResourceResponse::_internal_items_size() const {
+  return items_.size();
+}
+inline int IndexResourceResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void IndexResourceResponse::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexResourceResponse_Item* IndexResourceResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexResourceResponse.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexResourceResponse_Item >*
+IndexResourceResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.IndexResourceResponse.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexResourceResponse_Item& IndexResourceResponse::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexResourceResponse_Item& IndexResourceResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexResourceResponse.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexResourceResponse_Item* IndexResourceResponse::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexResourceResponse_Item* IndexResourceResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.IndexResourceResponse.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexResourceResponse_Item >&
+IndexResourceResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.IndexResourceResponse.items)
+  return items_;
+}
+
+// .palm.rbac.v1.Pagination pagination = 2;
+inline bool IndexResourceResponse::_internal_has_pagination() const {
+  return this != internal_default_instance() && pagination_ != nullptr;
+}
+inline bool IndexResourceResponse::has_pagination() const {
+  return _internal_has_pagination();
+}
+inline void IndexResourceResponse::clear_pagination() {
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+}
+inline const ::palm::rbac::v1::Pagination& IndexResourceResponse::_internal_pagination() const {
+  const ::palm::rbac::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::rbac::v1::Pagination&>(
+      ::palm::rbac::v1::_Pagination_default_instance_);
+}
+inline const ::palm::rbac::v1::Pagination& IndexResourceResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexResourceResponse.pagination)
+  return _internal_pagination();
+}
+inline void IndexResourceResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::rbac::v1::Pagination* pagination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  pagination_ = pagination;
+  if (pagination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexResourceResponse.pagination)
+}
+inline ::palm::rbac::v1::Pagination* IndexResourceResponse::release_pagination() {
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexResourceResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexResourceResponse.pagination)
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexResourceResponse::_internal_mutable_pagination() {
+  
+  if (pagination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::palm::rbac::v1::Pagination>(GetArenaForAllocation());
+    pagination_ = p;
+  }
+  return pagination_;
+}
+inline ::palm::rbac::v1::Pagination* IndexResourceResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexResourceResponse.pagination)
+  return _internal_mutable_pagination();
+}
+inline void IndexResourceResponse::set_allocated_pagination(::palm::rbac::v1::Pagination* pagination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pagination_;
+  }
+  if (pagination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::rbac::v1::Pagination>::GetOwningArena(pagination);
+    if (message_arena != submessage_arena) {
+      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pagination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pagination_ = pagination;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexResourceResponse.pagination)
+}
+
+// -------------------------------------------------------------------
+
+// CreateRoleRequest
+
+// string code = 1;
+inline void CreateRoleRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& CreateRoleRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateRoleRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateRoleRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateRoleRequest.code)
+}
+inline std::string* CreateRoleRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateRoleRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& CreateRoleRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void CreateRoleRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateRoleRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateRoleRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateRoleRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateRoleRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateRoleRequest.code)
+}
+
+// string name = 2;
+inline void CreateRoleRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& CreateRoleRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateRoleRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateRoleRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateRoleRequest.name)
+}
+inline std::string* CreateRoleRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateRoleRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& CreateRoleRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void CreateRoleRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateRoleRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateRoleRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateRoleRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateRoleRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateRoleRequest.name)
+}
+
+// optional int64 parent_id = 3;
+inline bool CreateRoleRequest::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool CreateRoleRequest::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void CreateRoleRequest::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateRoleRequest::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateRoleRequest::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateRoleRequest.parent_id)
+  return _internal_parent_id();
+}
+inline void CreateRoleRequest::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void CreateRoleRequest::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateRoleRequest.parent_id)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateRoleRequest
+
+// uint64 id = 1;
+inline void UpdateRoleRequest::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateRoleRequest::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateRoleRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateRoleRequest.id)
+  return _internal_id();
+}
+inline void UpdateRoleRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void UpdateRoleRequest::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateRoleRequest.id)
+}
+
+// string code = 2;
+inline void UpdateRoleRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& UpdateRoleRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateRoleRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateRoleRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateRoleRequest.code)
+}
+inline std::string* UpdateRoleRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateRoleRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& UpdateRoleRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void UpdateRoleRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateRoleRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateRoleRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateRoleRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateRoleRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateRoleRequest.code)
+}
+
+// string name = 3;
+inline void UpdateRoleRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& UpdateRoleRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateRoleRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateRoleRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateRoleRequest.name)
+}
+inline std::string* UpdateRoleRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateRoleRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& UpdateRoleRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void UpdateRoleRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateRoleRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateRoleRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateRoleRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateRoleRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateRoleRequest.name)
+}
+
+// optional int64 parent_id = 4;
+inline bool UpdateRoleRequest::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UpdateRoleRequest::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void UpdateRoleRequest::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateRoleRequest::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateRoleRequest::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateRoleRequest.parent_id)
+  return _internal_parent_id();
+}
+inline void UpdateRoleRequest::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void UpdateRoleRequest::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateRoleRequest.parent_id)
+}
+
+// -------------------------------------------------------------------
+
+// IndexRoleResponse_Item
+
+// uint64 id = 1;
+inline void IndexRoleResponse_Item::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexRoleResponse_Item::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexRoleResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexRoleResponse.Item.id)
+  return _internal_id();
+}
+inline void IndexRoleResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void IndexRoleResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexRoleResponse.Item.id)
+}
+
+// string code = 2;
+inline void IndexRoleResponse_Item::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& IndexRoleResponse_Item::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexRoleResponse.Item.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexRoleResponse_Item::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexRoleResponse.Item.code)
+}
+inline std::string* IndexRoleResponse_Item::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexRoleResponse.Item.code)
+  return _internal_mutable_code();
+}
+inline const std::string& IndexRoleResponse_Item::_internal_code() const {
+  return code_.Get();
+}
+inline void IndexRoleResponse_Item::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexRoleResponse_Item::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexRoleResponse_Item::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexRoleResponse.Item.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexRoleResponse_Item::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexRoleResponse.Item.code)
+}
+
+// string name = 3;
+inline void IndexRoleResponse_Item::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& IndexRoleResponse_Item::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexRoleResponse.Item.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexRoleResponse_Item::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexRoleResponse.Item.name)
+}
+inline std::string* IndexRoleResponse_Item::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexRoleResponse.Item.name)
+  return _internal_mutable_name();
+}
+inline const std::string& IndexRoleResponse_Item::_internal_name() const {
+  return name_.Get();
+}
+inline void IndexRoleResponse_Item::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexRoleResponse_Item::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexRoleResponse_Item::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexRoleResponse.Item.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexRoleResponse_Item::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexRoleResponse.Item.name)
+}
+
+// optional int64 parent_id = 4;
+inline bool IndexRoleResponse_Item::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool IndexRoleResponse_Item::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void IndexRoleResponse_Item::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexRoleResponse_Item::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexRoleResponse_Item::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexRoleResponse.Item.parent_id)
+  return _internal_parent_id();
+}
+inline void IndexRoleResponse_Item::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void IndexRoleResponse_Item::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexRoleResponse.Item.parent_id)
+}
+
+// .google.protobuf.Timestamp updated_at = 9;
+inline bool IndexRoleResponse_Item::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool IndexRoleResponse_Item::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexRoleResponse_Item::_internal_updated_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexRoleResponse_Item::updated_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexRoleResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void IndexRoleResponse_Item::unsafe_arena_set_allocated_updated_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexRoleResponse.Item.updated_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexRoleResponse_Item::release_updated_at() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexRoleResponse_Item::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexRoleResponse.Item.updated_at)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexRoleResponse_Item::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexRoleResponse_Item::mutable_updated_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexRoleResponse.Item.updated_at)
+  return _internal_mutable_updated_at();
+}
+inline void IndexRoleResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexRoleResponse.Item.updated_at)
+}
+
+// -------------------------------------------------------------------
+
+// IndexRoleResponse
+
+// repeated .palm.rbac.v1.IndexRoleResponse.Item items = 1;
+inline int IndexRoleResponse::_internal_items_size() const {
+  return items_.size();
+}
+inline int IndexRoleResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void IndexRoleResponse::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexRoleResponse_Item* IndexRoleResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexRoleResponse.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexRoleResponse_Item >*
+IndexRoleResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.IndexRoleResponse.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexRoleResponse_Item& IndexRoleResponse::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexRoleResponse_Item& IndexRoleResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexRoleResponse.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexRoleResponse_Item* IndexRoleResponse::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexRoleResponse_Item* IndexRoleResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.IndexRoleResponse.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexRoleResponse_Item >&
+IndexRoleResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.IndexRoleResponse.items)
+  return items_;
+}
+
+// .palm.rbac.v1.Pagination pagination = 2;
+inline bool IndexRoleResponse::_internal_has_pagination() const {
+  return this != internal_default_instance() && pagination_ != nullptr;
+}
+inline bool IndexRoleResponse::has_pagination() const {
+  return _internal_has_pagination();
+}
+inline void IndexRoleResponse::clear_pagination() {
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+}
+inline const ::palm::rbac::v1::Pagination& IndexRoleResponse::_internal_pagination() const {
+  const ::palm::rbac::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::rbac::v1::Pagination&>(
+      ::palm::rbac::v1::_Pagination_default_instance_);
+}
+inline const ::palm::rbac::v1::Pagination& IndexRoleResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexRoleResponse.pagination)
+  return _internal_pagination();
+}
+inline void IndexRoleResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::rbac::v1::Pagination* pagination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  pagination_ = pagination;
+  if (pagination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexRoleResponse.pagination)
+}
+inline ::palm::rbac::v1::Pagination* IndexRoleResponse::release_pagination() {
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexRoleResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexRoleResponse.pagination)
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexRoleResponse::_internal_mutable_pagination() {
+  
+  if (pagination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::palm::rbac::v1::Pagination>(GetArenaForAllocation());
+    pagination_ = p;
+  }
+  return pagination_;
+}
+inline ::palm::rbac::v1::Pagination* IndexRoleResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexRoleResponse.pagination)
+  return _internal_mutable_pagination();
+}
+inline void IndexRoleResponse::set_allocated_pagination(::palm::rbac::v1::Pagination* pagination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pagination_;
+  }
+  if (pagination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::rbac::v1::Pagination>::GetOwningArena(pagination);
+    if (message_arena != submessage_arena) {
+      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pagination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pagination_ = pagination;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexRoleResponse.pagination)
+}
+
+// -------------------------------------------------------------------
+
+// CreateGroupRequest
+
+// string code = 1;
+inline void CreateGroupRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& CreateGroupRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateGroupRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateGroupRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateGroupRequest.code)
+}
+inline std::string* CreateGroupRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateGroupRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& CreateGroupRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void CreateGroupRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateGroupRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateGroupRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateGroupRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateGroupRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateGroupRequest.code)
+}
+
+// string name = 2;
+inline void CreateGroupRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& CreateGroupRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateGroupRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateGroupRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateGroupRequest.name)
+}
+inline std::string* CreateGroupRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateGroupRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& CreateGroupRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void CreateGroupRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateGroupRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateGroupRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateGroupRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateGroupRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateGroupRequest.name)
+}
+
+// optional int64 parent_id = 3;
+inline bool CreateGroupRequest::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool CreateGroupRequest::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void CreateGroupRequest::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateGroupRequest::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateGroupRequest::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateGroupRequest.parent_id)
+  return _internal_parent_id();
+}
+inline void CreateGroupRequest::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void CreateGroupRequest::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateGroupRequest.parent_id)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateGroupRequest
+
+// uint64 id = 1;
+inline void UpdateGroupRequest::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateGroupRequest::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateGroupRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateGroupRequest.id)
+  return _internal_id();
+}
+inline void UpdateGroupRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void UpdateGroupRequest::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateGroupRequest.id)
+}
+
+// string code = 2;
+inline void UpdateGroupRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& UpdateGroupRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateGroupRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateGroupRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateGroupRequest.code)
+}
+inline std::string* UpdateGroupRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateGroupRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& UpdateGroupRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void UpdateGroupRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateGroupRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateGroupRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateGroupRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateGroupRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateGroupRequest.code)
+}
+
+// string name = 3;
+inline void UpdateGroupRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& UpdateGroupRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateGroupRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateGroupRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateGroupRequest.name)
+}
+inline std::string* UpdateGroupRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateGroupRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& UpdateGroupRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void UpdateGroupRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateGroupRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateGroupRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateGroupRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateGroupRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateGroupRequest.name)
+}
+
+// optional int64 parent_id = 4;
+inline bool UpdateGroupRequest::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UpdateGroupRequest::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void UpdateGroupRequest::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateGroupRequest::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateGroupRequest::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateGroupRequest.parent_id)
+  return _internal_parent_id();
+}
+inline void UpdateGroupRequest::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void UpdateGroupRequest::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateGroupRequest.parent_id)
+}
+
+// -------------------------------------------------------------------
+
+// IndexGroupResponse_Item
+
+// uint64 id = 1;
+inline void IndexGroupResponse_Item::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexGroupResponse_Item::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexGroupResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexGroupResponse.Item.id)
+  return _internal_id();
+}
+inline void IndexGroupResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void IndexGroupResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexGroupResponse.Item.id)
+}
+
+// string code = 2;
+inline void IndexGroupResponse_Item::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& IndexGroupResponse_Item::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexGroupResponse.Item.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexGroupResponse_Item::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexGroupResponse.Item.code)
+}
+inline std::string* IndexGroupResponse_Item::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexGroupResponse.Item.code)
+  return _internal_mutable_code();
+}
+inline const std::string& IndexGroupResponse_Item::_internal_code() const {
+  return code_.Get();
+}
+inline void IndexGroupResponse_Item::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexGroupResponse_Item::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexGroupResponse_Item::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexGroupResponse.Item.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexGroupResponse_Item::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexGroupResponse.Item.code)
+}
+
+// string name = 3;
+inline void IndexGroupResponse_Item::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& IndexGroupResponse_Item::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexGroupResponse.Item.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexGroupResponse_Item::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexGroupResponse.Item.name)
+}
+inline std::string* IndexGroupResponse_Item::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexGroupResponse.Item.name)
+  return _internal_mutable_name();
+}
+inline const std::string& IndexGroupResponse_Item::_internal_name() const {
+  return name_.Get();
+}
+inline void IndexGroupResponse_Item::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexGroupResponse_Item::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexGroupResponse_Item::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexGroupResponse.Item.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexGroupResponse_Item::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexGroupResponse.Item.name)
+}
+
+// optional int64 parent_id = 4;
+inline bool IndexGroupResponse_Item::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool IndexGroupResponse_Item::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void IndexGroupResponse_Item::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexGroupResponse_Item::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexGroupResponse_Item::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexGroupResponse.Item.parent_id)
+  return _internal_parent_id();
+}
+inline void IndexGroupResponse_Item::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void IndexGroupResponse_Item::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexGroupResponse.Item.parent_id)
+}
+
+// .google.protobuf.Timestamp updated_at = 9;
+inline bool IndexGroupResponse_Item::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool IndexGroupResponse_Item::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexGroupResponse_Item::_internal_updated_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexGroupResponse_Item::updated_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexGroupResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void IndexGroupResponse_Item::unsafe_arena_set_allocated_updated_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexGroupResponse.Item.updated_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexGroupResponse_Item::release_updated_at() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexGroupResponse_Item::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexGroupResponse.Item.updated_at)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexGroupResponse_Item::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexGroupResponse_Item::mutable_updated_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexGroupResponse.Item.updated_at)
+  return _internal_mutable_updated_at();
+}
+inline void IndexGroupResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexGroupResponse.Item.updated_at)
+}
+
+// -------------------------------------------------------------------
+
+// IndexGroupResponse
+
+// repeated .palm.rbac.v1.IndexGroupResponse.Item items = 1;
+inline int IndexGroupResponse::_internal_items_size() const {
+  return items_.size();
+}
+inline int IndexGroupResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void IndexGroupResponse::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexGroupResponse_Item* IndexGroupResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexGroupResponse.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >*
+IndexGroupResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.IndexGroupResponse.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexGroupResponse_Item& IndexGroupResponse::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexGroupResponse_Item& IndexGroupResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexGroupResponse.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexGroupResponse_Item* IndexGroupResponse::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexGroupResponse_Item* IndexGroupResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.IndexGroupResponse.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexGroupResponse_Item >&
+IndexGroupResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.IndexGroupResponse.items)
+  return items_;
+}
+
+// .palm.rbac.v1.Pagination pagination = 2;
+inline bool IndexGroupResponse::_internal_has_pagination() const {
+  return this != internal_default_instance() && pagination_ != nullptr;
+}
+inline bool IndexGroupResponse::has_pagination() const {
+  return _internal_has_pagination();
+}
+inline void IndexGroupResponse::clear_pagination() {
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+}
+inline const ::palm::rbac::v1::Pagination& IndexGroupResponse::_internal_pagination() const {
+  const ::palm::rbac::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::rbac::v1::Pagination&>(
+      ::palm::rbac::v1::_Pagination_default_instance_);
+}
+inline const ::palm::rbac::v1::Pagination& IndexGroupResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexGroupResponse.pagination)
+  return _internal_pagination();
+}
+inline void IndexGroupResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::rbac::v1::Pagination* pagination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  pagination_ = pagination;
+  if (pagination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexGroupResponse.pagination)
+}
+inline ::palm::rbac::v1::Pagination* IndexGroupResponse::release_pagination() {
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexGroupResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexGroupResponse.pagination)
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexGroupResponse::_internal_mutable_pagination() {
+  
+  if (pagination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::palm::rbac::v1::Pagination>(GetArenaForAllocation());
+    pagination_ = p;
+  }
+  return pagination_;
+}
+inline ::palm::rbac::v1::Pagination* IndexGroupResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexGroupResponse.pagination)
+  return _internal_mutable_pagination();
+}
+inline void IndexGroupResponse::set_allocated_pagination(::palm::rbac::v1::Pagination* pagination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pagination_;
+  }
+  if (pagination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::rbac::v1::Pagination>::GetOwningArena(pagination);
+    if (message_arena != submessage_arena) {
+      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pagination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pagination_ = pagination;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexGroupResponse.pagination)
+}
+
+// -------------------------------------------------------------------
+
+// CreateOperationRequest
+
+// string code = 1;
+inline void CreateOperationRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& CreateOperationRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateOperationRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOperationRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateOperationRequest.code)
+}
+inline std::string* CreateOperationRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateOperationRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& CreateOperationRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void CreateOperationRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateOperationRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateOperationRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateOperationRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateOperationRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateOperationRequest.code)
+}
+
+// string name = 2;
+inline void CreateOperationRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& CreateOperationRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.CreateOperationRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreateOperationRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.CreateOperationRequest.name)
+}
+inline std::string* CreateOperationRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.CreateOperationRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& CreateOperationRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void CreateOperationRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreateOperationRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreateOperationRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.CreateOperationRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreateOperationRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.CreateOperationRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// UpdateOperationRequest
+
+// uint64 id = 1;
+inline void UpdateOperationRequest::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateOperationRequest::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UpdateOperationRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateOperationRequest.id)
+  return _internal_id();
+}
+inline void UpdateOperationRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void UpdateOperationRequest::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateOperationRequest.id)
+}
+
+// string code = 2;
+inline void UpdateOperationRequest::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& UpdateOperationRequest::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateOperationRequest.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateOperationRequest::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateOperationRequest.code)
+}
+inline std::string* UpdateOperationRequest::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateOperationRequest.code)
+  return _internal_mutable_code();
+}
+inline const std::string& UpdateOperationRequest::_internal_code() const {
+  return code_.Get();
+}
+inline void UpdateOperationRequest::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateOperationRequest::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateOperationRequest::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateOperationRequest.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateOperationRequest::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateOperationRequest.code)
+}
+
+// string name = 3;
+inline void UpdateOperationRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& UpdateOperationRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.UpdateOperationRequest.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdateOperationRequest::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.UpdateOperationRequest.name)
+}
+inline std::string* UpdateOperationRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.UpdateOperationRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& UpdateOperationRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void UpdateOperationRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdateOperationRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdateOperationRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.UpdateOperationRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdateOperationRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.UpdateOperationRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// IndexOperationResponse_Item
+
+// uint64 id = 1;
+inline void IndexOperationResponse_Item::clear_id() {
+  id_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexOperationResponse_Item::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 IndexOperationResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexOperationResponse.Item.id)
+  return _internal_id();
+}
+inline void IndexOperationResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  id_ = value;
+}
+inline void IndexOperationResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexOperationResponse.Item.id)
+}
+
+// string code = 2;
+inline void IndexOperationResponse_Item::clear_code() {
+  code_.ClearToEmpty();
+}
+inline const std::string& IndexOperationResponse_Item::code() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexOperationResponse.Item.code)
+  return _internal_code();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexOperationResponse_Item::set_code(ArgT0&& arg0, ArgT... args) {
+ 
+ code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexOperationResponse.Item.code)
+}
+inline std::string* IndexOperationResponse_Item::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexOperationResponse.Item.code)
+  return _internal_mutable_code();
+}
+inline const std::string& IndexOperationResponse_Item::_internal_code() const {
+  return code_.Get();
+}
+inline void IndexOperationResponse_Item::_internal_set_code(const std::string& value) {
+  
+  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexOperationResponse_Item::_internal_mutable_code() {
+  
+  return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexOperationResponse_Item::release_code() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexOperationResponse.Item.code)
+  return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexOperationResponse_Item::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexOperationResponse.Item.code)
+}
+
+// string name = 3;
+inline void IndexOperationResponse_Item::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& IndexOperationResponse_Item::name() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexOperationResponse.Item.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexOperationResponse_Item::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.rbac.v1.IndexOperationResponse.Item.name)
+}
+inline std::string* IndexOperationResponse_Item::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexOperationResponse.Item.name)
+  return _internal_mutable_name();
+}
+inline const std::string& IndexOperationResponse_Item::_internal_name() const {
+  return name_.Get();
+}
+inline void IndexOperationResponse_Item::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexOperationResponse_Item::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexOperationResponse_Item::release_name() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexOperationResponse.Item.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexOperationResponse_Item::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexOperationResponse.Item.name)
+}
+
+// .google.protobuf.Timestamp updated_at = 9;
+inline bool IndexOperationResponse_Item::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool IndexOperationResponse_Item::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexOperationResponse_Item::_internal_updated_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexOperationResponse_Item::updated_at() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexOperationResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void IndexOperationResponse_Item::unsafe_arena_set_allocated_updated_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexOperationResponse.Item.updated_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexOperationResponse_Item::release_updated_at() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexOperationResponse_Item::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexOperationResponse.Item.updated_at)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexOperationResponse_Item::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexOperationResponse_Item::mutable_updated_at() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexOperationResponse.Item.updated_at)
+  return _internal_mutable_updated_at();
+}
+inline void IndexOperationResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexOperationResponse.Item.updated_at)
+}
+
+// -------------------------------------------------------------------
+
+// IndexOperationResponse
+
+// repeated .palm.rbac.v1.IndexOperationResponse.Item items = 1;
+inline int IndexOperationResponse::_internal_items_size() const {
+  return items_.size();
+}
+inline int IndexOperationResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void IndexOperationResponse::clear_items() {
+  items_.Clear();
+}
+inline ::palm::rbac::v1::IndexOperationResponse_Item* IndexOperationResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexOperationResponse.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexOperationResponse_Item >*
+IndexOperationResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.rbac.v1.IndexOperationResponse.items)
+  return &items_;
+}
+inline const ::palm::rbac::v1::IndexOperationResponse_Item& IndexOperationResponse::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::rbac::v1::IndexOperationResponse_Item& IndexOperationResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexOperationResponse.items)
+  return _internal_items(index);
+}
+inline ::palm::rbac::v1::IndexOperationResponse_Item* IndexOperationResponse::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::rbac::v1::IndexOperationResponse_Item* IndexOperationResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.rbac.v1.IndexOperationResponse.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::rbac::v1::IndexOperationResponse_Item >&
+IndexOperationResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.rbac.v1.IndexOperationResponse.items)
+  return items_;
+}
+
+// .palm.rbac.v1.Pagination pagination = 2;
+inline bool IndexOperationResponse::_internal_has_pagination() const {
+  return this != internal_default_instance() && pagination_ != nullptr;
+}
+inline bool IndexOperationResponse::has_pagination() const {
+  return _internal_has_pagination();
+}
+inline void IndexOperationResponse::clear_pagination() {
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+}
+inline const ::palm::rbac::v1::Pagination& IndexOperationResponse::_internal_pagination() const {
+  const ::palm::rbac::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::rbac::v1::Pagination&>(
+      ::palm::rbac::v1::_Pagination_default_instance_);
+}
+inline const ::palm::rbac::v1::Pagination& IndexOperationResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.rbac.v1.IndexOperationResponse.pagination)
+  return _internal_pagination();
+}
+inline void IndexOperationResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::rbac::v1::Pagination* pagination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  pagination_ = pagination;
+  if (pagination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.rbac.v1.IndexOperationResponse.pagination)
+}
+inline ::palm::rbac::v1::Pagination* IndexOperationResponse::release_pagination() {
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexOperationResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.rbac.v1.IndexOperationResponse.pagination)
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexOperationResponse::_internal_mutable_pagination() {
+  
+  if (pagination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::palm::rbac::v1::Pagination>(GetArenaForAllocation());
+    pagination_ = p;
+  }
+  return pagination_;
+}
+inline ::palm::rbac::v1::Pagination* IndexOperationResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.rbac.v1.IndexOperationResponse.pagination)
+  return _internal_mutable_pagination();
+}
+inline void IndexOperationResponse::set_allocated_pagination(::palm::rbac::v1::Pagination* pagination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete pagination_;
+  }
+  if (pagination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::rbac::v1::Pagination>::GetOwningArena(pagination);
+    if (message_arena != submessage_arena) {
+      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pagination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pagination_ = pagination;
+  // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.IndexOperationResponse.pagination)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -2803,6 +13362,26 @@ inline void DenyRequest::set_user(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }  // namespace v1
 }  // namespace rbac
 }  // namespace palm
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::palm::rbac::v1::IndexLog_Level> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::palm::rbac::v1::IndexLog_Level>() {
+  return ::palm::rbac::v1::IndexLog_Level_descriptor();
+}
+template <> struct is_proto_enum< ::palm::rbac::v1::MediaType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::palm::rbac::v1::MediaType>() {
+  return ::palm::rbac::v1::MediaType_descriptor();
+}
+template <> struct is_proto_enum< ::palm::rbac::v1::ProviderType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::palm::rbac::v1::ProviderType>() {
+  return ::palm::rbac::v1::ProviderType_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 
