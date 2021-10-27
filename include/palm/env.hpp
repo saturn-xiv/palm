@@ -33,6 +33,7 @@
 #include <variant>
 #include <vector>
 
+#define BOOST_LOCALE_HIDE_AUTO_PTR
 #include <boost/locale.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/optional.hpp>
