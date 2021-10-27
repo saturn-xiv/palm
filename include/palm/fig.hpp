@@ -1,6 +1,9 @@
 #pragma once
 
 #include "palm/forum.hpp"
+#include "palm/ops-email.hpp"
+#include "palm/ops-metrics.hpp"
+#include "palm/ops-vpn.hpp"
 
 namespace palm {
 namespace fig {

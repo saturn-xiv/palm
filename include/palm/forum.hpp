@@ -1,5 +1,6 @@
 #pragma once
 
+#include "forum.grpc.pb.h"
 #include "palm/nut.hpp"
 
 namespace palm {

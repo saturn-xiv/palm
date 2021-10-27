@@ -25,7 +25,6 @@ namespace v1 {
 
 static const char* Site_method_names[] = {
   "/palm.nut.v1.Site/About",
-  "/palm.nut.v1.Site/Locales",
 };
 
 std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -36,7 +35,6 @@ std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::Channe
 
 Site::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_About_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Locales_(Site_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Site::Stub::About(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::AboutResponse* response) {
@@ -62,29 +60,6 @@ void Site::Stub::async::About(::grpc::ClientContext* context, const ::google::pr
   return result;
 }
 
-::grpc::Status Site::Stub::Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::palm::nut::v1::LocalesResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Locales_, context, request, response);
-}
-
-void Site::Stub::async::Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Locales_, context, request, response, std::move(f));
-}
-
-void Site::Stub::async::Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Locales_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>* Site::Stub::PrepareAsyncLocalesRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::LocalesResponse, ::palm::nut::v1::LocalesRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Locales_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>* Site::Stub::AsyncLocalesRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncLocalesRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
 Site::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Site_method_names[0],
@@ -95,16 +70,6 @@ Site::Service::Service() {
              const ::google::protobuf::Empty* req,
              ::palm::nut::v1::AboutResponse* resp) {
                return service->About(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Site_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Site::Service, ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Site::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::palm::nut::v1::LocalesRequest* req,
-             ::palm::nut::v1::LocalesResponse* resp) {
-               return service->Locales(ctx, req, resp);
              }, this)));
 }
 
@@ -118,7 +83,103 @@ Site::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Site::Service::Locales(::grpc::ServerContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response) {
+
+static const char* Locale_method_names[] = {
+  "/palm.nut.v1.Locale/Index",
+  "/palm.nut.v1.Locale/Set",
+};
+
+std::unique_ptr< Locale::Stub> Locale::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Locale::Stub> stub(new Locale::Stub(channel, options));
+  return stub;
+}
+
+Locale::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Index_(Locale_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Set_(Locale_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Locale::Stub::Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::palm::nut::v1::LocaleIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Locale::Stub::async::Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Locale::Stub::async::Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>* Locale::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::LocaleIndexResponse, ::palm::nut::v1::LocaleIndexRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>* Locale::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Locale::Stub::Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+}
+
+void Locale::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+}
+
+void Locale::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Locale::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::LocaleSetRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Locale::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Locale::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Locale_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Locale::Service, ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Locale::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::LocaleIndexRequest* req,
+             ::palm::nut::v1::LocaleIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Locale_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Locale::Service, ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Locale::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::LocaleSetRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Set(ctx, req, resp);
+             }, this)));
+}
+
+Locale::Service::~Service() {
+}
+
+::grpc::Status Locale::Service::Index(::grpc::ServerContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Locale::Service::Set(::grpc::ServerContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -126,60 +187,766 @@ Site::Service::~Service() {
 }
 
 
-static const char* Admin_method_names[] = {
-  "/palm.nut.v1.Admin/SetLocale",
+static const char* Stmp_method_names[] = {
+  "/palm.nut.v1.Stmp/Get",
+  "/palm.nut.v1.Stmp/Set",
 };
 
-std::unique_ptr< Admin::Stub> Admin::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+std::unique_ptr< Stmp::Stub> Stmp::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Admin::Stub> stub(new Admin::Stub(channel, options));
+  std::unique_ptr< Stmp::Stub> stub(new Stmp::Stub(channel, options));
   return stub;
 }
 
-Admin::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_SetLocale_(Admin_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+Stmp::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Get_(Stmp_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Set_(Stmp_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Admin::Stub::SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetLocale_, context, request, response);
+::grpc::Status Stmp::Stub::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::StmpProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
 }
 
-void Admin::Stub::async::SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLocale_, context, request, response, std::move(f));
+void Stmp::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
 }
 
-void Admin::Stub::async::SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLocale_, context, request, response, reactor);
+void Stmp::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Admin::Stub::PrepareAsyncSetLocaleRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::SetLocaleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetLocale_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>* Stmp::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Admin::Stub::AsyncSetLocaleRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>* Stmp::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncSetLocaleRaw(context, request, cq);
+    this->PrepareAsyncGetRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-Admin::Service::Service() {
+::grpc::Status Stmp::Stub::Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+}
+
+void Stmp::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+}
+
+void Stmp::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Stmp::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Stmp::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Stmp::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Admin_method_names[0],
+      Stmp_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Admin::Service, ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Admin::Service* service,
+      new ::grpc::internal::RpcMethodHandler< Stmp::Service, ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Stmp::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::nut::v1::SetLocaleRequest* req,
+             const ::google::protobuf::Empty* req,
+             ::palm::nut::v1::StmpProfile* resp) {
+               return service->Get(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Stmp_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Stmp::Service, ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Stmp::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::StmpProfile* req,
              ::google::protobuf::Empty* resp) {
-               return service->SetLocale(ctx, req, resp);
+               return service->Set(ctx, req, resp);
              }, this)));
 }
 
-Admin::Service::~Service() {
+Stmp::Service::~Service() {
 }
 
-::grpc::Status Admin::Service::SetLocale(::grpc::ServerContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status Stmp::Service::Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Stmp::Service::Set(::grpc::ServerContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Twilio_method_names[] = {
+  "/palm.nut.v1.Twilio/Get",
+  "/palm.nut.v1.Twilio/Set",
+};
+
+std::unique_ptr< Twilio::Stub> Twilio::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Twilio::Stub> stub(new Twilio::Stub(channel, options));
+  return stub;
+}
+
+Twilio::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Get_(Twilio_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Set_(Twilio_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Twilio::Stub::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::TwilioProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
+}
+
+void Twilio::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
+}
+
+void Twilio::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>* Twilio::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>* Twilio::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Twilio::Stub::Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+}
+
+void Twilio::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+}
+
+void Twilio::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Twilio::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Twilio::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Twilio::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Twilio_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Twilio::Service, ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Twilio::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::nut::v1::TwilioProfile* resp) {
+               return service->Get(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Twilio_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Twilio::Service, ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Twilio::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::TwilioProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Set(ctx, req, resp);
+             }, this)));
+}
+
+Twilio::Service::~Service() {
+}
+
+::grpc::Status Twilio::Service::Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Twilio::Service::Set(::grpc::ServerContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Seo_method_names[] = {
+  "/palm.nut.v1.Seo/Get",
+  "/palm.nut.v1.Seo/Set",
+};
+
+std::unique_ptr< Seo::Stub> Seo::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Seo::Stub> stub(new Seo::Stub(channel, options));
+  return stub;
+}
+
+Seo::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Get_(Seo_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Set_(Seo_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Seo::Stub::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::SeoProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
+}
+
+void Seo::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
+}
+
+void Seo::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>* Seo::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>* Seo::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Seo::Stub::Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+}
+
+void Seo::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+}
+
+void Seo::Stub::async::Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Seo::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Seo::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Seo::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Seo_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Seo::Service, ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Seo::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::nut::v1::SeoProfile* resp) {
+               return service->Get(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Seo_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Seo::Service, ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Seo::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::SeoProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Set(ctx, req, resp);
+             }, this)));
+}
+
+Seo::Service::~Service() {
+}
+
+::grpc::Status Seo::Service::Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Seo::Service::Set(::grpc::ServerContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Tag_method_names[] = {
+  "/palm.nut.v1.Tag/Create",
+  "/palm.nut.v1.Tag/Show",
+  "/palm.nut.v1.Tag/Update",
+  "/palm.nut.v1.Tag/Destory",
+  "/palm.nut.v1.Tag/Index",
+};
+
+std::unique_ptr< Tag::Stub> Tag::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Tag::Stub> stub(new Tag::Stub(channel, options));
+  return stub;
+}
+
+Tag::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Create_(Tag_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(Tag_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_(Tag_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Destory_(Tag_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(Tag_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Tag::Stub::Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Tag::Stub::async::Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Tag::Stub::async::Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tag::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::CreateTagRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tag::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Tag::Stub::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::nut::v1::IndexTagResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void Tag::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void Tag::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>* Tag::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::IndexTagResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>* Tag::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Tag::Stub::Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+}
+
+void Tag::Stub::async::Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+}
+
+void Tag::Stub::async::Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tag::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::CreateTagRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tag::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Tag::Stub::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Destory_, context, request, response);
+}
+
+void Tag::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, std::move(f));
+}
+
+void Tag::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tag::Stub::PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Destory_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Tag::Stub::AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDestoryRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Tag::Stub::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::nut::v1::IndexTagResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Tag::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Tag::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>* Tag::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::IndexTagResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>* Tag::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Tag::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tag_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tag::Service, ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Tag::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::CreateTagRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tag_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tag::Service, ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Tag::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::nut::v1::IndexTagResponse_Item* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tag_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tag::Service, ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Tag::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::CreateTagRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Update(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tag_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tag::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Tag::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Destory(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tag_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tag::Service, ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Tag::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::Pager* req,
+             ::palm::nut::v1::IndexTagResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+}
+
+Tag::Service::~Service() {
+}
+
+::grpc::Status Tag::Service::Create(::grpc::ServerContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Tag::Service::Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Tag::Service::Update(::grpc::ServerContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Tag::Service::Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Tag::Service::Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Notification_method_names[] = {
+  "/palm.nut.v1.Notification/Create",
+  "/palm.nut.v1.Notification/Show",
+  "/palm.nut.v1.Notification/SetRead",
+  "/palm.nut.v1.Notification/Destory",
+  "/palm.nut.v1.Notification/Index",
+};
+
+std::unique_ptr< Notification::Stub> Notification::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Notification::Stub> stub(new Notification::Stub(channel, options));
+  return stub;
+}
+
+Notification::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Create_(Notification_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Show_(Notification_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetRead_(Notification_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Destory_(Notification_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(Notification_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Notification::Stub::Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Notification::Stub::async::Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Notification::Stub::async::Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Notification::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::nut::v1::CreateNotificationRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Notification::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Notification::Stub::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::nut::v1::IndexNotificationResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
+}
+
+void Notification::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
+}
+
+void Notification::Stub::async::Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>* Notification::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::IndexNotificationResponse_Item, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>* Notification::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Notification::Stub::SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetRead_, context, request, response);
+}
+
+void Notification::Stub::async::SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRead_, context, request, response, std::move(f));
+}
+
+void Notification::Stub::async::SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetRead_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Notification::Stub::PrepareAsyncSetReadRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetRead_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Notification::Stub::AsyncSetReadRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetReadRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Notification::Stub::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Destory_, context, request, response);
+}
+
+void Notification::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, std::move(f));
+}
+
+void Notification::Stub::async::Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Destory_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Notification::Stub::PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::rbac::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Destory_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Notification::Stub::AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDestoryRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Notification::Stub::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::nut::v1::IndexNotificationResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Notification::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Notification::Stub::async::Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>* Notification::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::nut::v1::IndexNotificationResponse, ::palm::rbac::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>* Notification::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Notification::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Notification_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Notification::Service, ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Notification::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::nut::v1::CreateNotificationRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Notification_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Notification::Service, ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Notification::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::palm::nut::v1::IndexNotificationResponse_Item* resp) {
+               return service->Show(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Notification_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Notification::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Notification::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetRead(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Notification_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Notification::Service, ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Notification::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Destory(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Notification_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Notification::Service, ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Notification::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::rbac::v1::Pager* req,
+             ::palm::nut::v1::IndexNotificationResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+}
+
+Notification::Service::~Service() {
+}
+
+::grpc::Status Notification::Service::Create(::grpc::ServerContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Notification::Service::Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Notification::Service::SetRead(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Notification::Service::Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Notification::Service::Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response) {
   (void) context;
   (void) request;
   (void) response;

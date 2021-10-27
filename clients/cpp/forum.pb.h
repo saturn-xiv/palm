@@ -49,7 +49,7 @@ struct TableStruct_forum_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -59,15 +59,27 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace palm {
 namespace forum {
 namespace v1 {
+class CreatePostRequest;
+struct CreatePostRequestDefaultTypeInternal;
+extern CreatePostRequestDefaultTypeInternal _CreatePostRequest_default_instance_;
 class CreateTopicRequest;
 struct CreateTopicRequestDefaultTypeInternal;
 extern CreateTopicRequestDefaultTypeInternal _CreateTopicRequest_default_instance_;
+class IndexPostResponse;
+struct IndexPostResponseDefaultTypeInternal;
+extern IndexPostResponseDefaultTypeInternal _IndexPostResponse_default_instance_;
+class IndexPostResponse_Item;
+struct IndexPostResponse_ItemDefaultTypeInternal;
+extern IndexPostResponse_ItemDefaultTypeInternal _IndexPostResponse_Item_default_instance_;
 class IndexTopicResponse;
 struct IndexTopicResponseDefaultTypeInternal;
 extern IndexTopicResponseDefaultTypeInternal _IndexTopicResponse_default_instance_;
 class IndexTopicResponse_Item;
 struct IndexTopicResponse_ItemDefaultTypeInternal;
 extern IndexTopicResponse_ItemDefaultTypeInternal _IndexTopicResponse_Item_default_instance_;
+class UpdatePostRequest;
+struct UpdatePostRequestDefaultTypeInternal;
+extern UpdatePostRequestDefaultTypeInternal _UpdatePostRequest_default_instance_;
 class UpdateTopicRequest;
 struct UpdateTopicRequestDefaultTypeInternal;
 extern UpdateTopicRequestDefaultTypeInternal _UpdateTopicRequest_default_instance_;
@@ -75,9 +87,13 @@ extern UpdateTopicRequestDefaultTypeInternal _UpdateTopicRequest_default_instanc
 }  // namespace forum
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
+template<> ::palm::forum::v1::CreatePostRequest* Arena::CreateMaybeMessage<::palm::forum::v1::CreatePostRequest>(Arena*);
 template<> ::palm::forum::v1::CreateTopicRequest* Arena::CreateMaybeMessage<::palm::forum::v1::CreateTopicRequest>(Arena*);
+template<> ::palm::forum::v1::IndexPostResponse* Arena::CreateMaybeMessage<::palm::forum::v1::IndexPostResponse>(Arena*);
+template<> ::palm::forum::v1::IndexPostResponse_Item* Arena::CreateMaybeMessage<::palm::forum::v1::IndexPostResponse_Item>(Arena*);
 template<> ::palm::forum::v1::IndexTopicResponse* Arena::CreateMaybeMessage<::palm::forum::v1::IndexTopicResponse>(Arena*);
 template<> ::palm::forum::v1::IndexTopicResponse_Item* Arena::CreateMaybeMessage<::palm::forum::v1::IndexTopicResponse_Item>(Arena*);
+template<> ::palm::forum::v1::UpdatePostRequest* Arena::CreateMaybeMessage<::palm::forum::v1::UpdatePostRequest>(Arena*);
 template<> ::palm::forum::v1::UpdateTopicRequest* Arena::CreateMaybeMessage<::palm::forum::v1::UpdateTopicRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
@@ -194,10 +210,33 @@ class CreateTopicRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTagsFieldNumber = 4,
     kTitleFieldNumber = 1,
     kBodyFieldNumber = 2,
     kBodyContentTypeFieldNumber = 3,
   };
+  // repeated int64 tags = 4;
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tags(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+      _internal_tags() const;
+  void _internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+      _internal_mutable_tags();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int64 tags(int index) const;
+  void set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value);
+  void add_tags(::PROTOBUF_NAMESPACE_ID::int64 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+      tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+      mutable_tags();
+
   // string title = 1;
   void clear_title();
   const std::string& title() const;
@@ -242,6 +281,8 @@ class CreateTopicRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 > tags_;
+  mutable std::atomic<int> _tags_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr body_;
   int body_content_type_;
@@ -358,11 +399,34 @@ class UpdateTopicRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTagsFieldNumber = 5,
     kTitleFieldNumber = 2,
     kBodyFieldNumber = 3,
     kIdFieldNumber = 1,
     kBodyContentTypeFieldNumber = 4,
   };
+  // repeated int64 tags = 5;
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tags(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+      _internal_tags() const;
+  void _internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+      _internal_mutable_tags();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int64 tags(int index) const;
+  void set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value);
+  void add_tags(::PROTOBUF_NAMESPACE_ID::int64 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+      tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+      mutable_tags();
+
   // string title = 2;
   void clear_title();
   const std::string& title() const;
@@ -416,6 +480,8 @@ class UpdateTopicRequest final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 > tags_;
+  mutable std::atomic<int> _tags_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr body_;
   ::PROTOBUF_NAMESPACE_ID::int64 id_;
@@ -533,6 +599,7 @@ class IndexTopicResponse_Item final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTagsFieldNumber = 6,
     kTitleFieldNumber = 2,
     kBodyFieldNumber = 3,
     kUpdatedAtFieldNumber = 11,
@@ -540,6 +607,28 @@ class IndexTopicResponse_Item final :
     kAuthorIdFieldNumber = 5,
     kBodyContentTypeFieldNumber = 4,
   };
+  // repeated int64 tags = 6;
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tags(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+      _internal_tags() const;
+  void _internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+      _internal_mutable_tags();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int64 tags(int index) const;
+  void set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value);
+  void add_tags(::PROTOBUF_NAMESPACE_ID::int64 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+      tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+      mutable_tags();
+
   // string title = 2;
   void clear_title();
   const std::string& title() const;
@@ -620,6 +709,8 @@ class IndexTopicResponse_Item final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 > tags_;
+  mutable std::atomic<int> _tags_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr body_;
   PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
@@ -792,6 +883,731 @@ class IndexTopicResponse final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_forum_2eproto;
 };
+// -------------------------------------------------------------------
+
+class CreatePostRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.CreatePostRequest) */ {
+ public:
+  inline CreatePostRequest() : CreatePostRequest(nullptr) {}
+  ~CreatePostRequest() override;
+  explicit constexpr CreatePostRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CreatePostRequest(const CreatePostRequest& from);
+  CreatePostRequest(CreatePostRequest&& from) noexcept
+    : CreatePostRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CreatePostRequest& operator=(const CreatePostRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreatePostRequest& operator=(CreatePostRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreatePostRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreatePostRequest* internal_default_instance() {
+    return reinterpret_cast<const CreatePostRequest*>(
+               &_CreatePostRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(CreatePostRequest& a, CreatePostRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreatePostRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreatePostRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CreatePostRequest* New() const final {
+    return new CreatePostRequest();
+  }
+
+  CreatePostRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CreatePostRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const CreatePostRequest& from);
+  void MergeFrom(const CreatePostRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CreatePostRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.forum.v1.CreatePostRequest";
+  }
+  protected:
+  explicit CreatePostRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBodyFieldNumber = 2,
+    kTopicIdFieldNumber = 1,
+    kParentIdFieldNumber = 4,
+    kAuthorIdFieldNumber = 5,
+    kBodyContentTypeFieldNumber = 3,
+  };
+  // string body = 2;
+  void clear_body();
+  const std::string& body() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_body(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_body();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_body();
+  void set_allocated_body(std::string* body);
+  private:
+  const std::string& _internal_body() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_body(const std::string& value);
+  std::string* _internal_mutable_body();
+  public:
+
+  // int64 topic_id = 1;
+  void clear_topic_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 topic_id() const;
+  void set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_topic_id() const;
+  void _internal_set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // optional int64 parent_id = 4;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 author_id = 5;
+  void clear_author_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 author_id() const;
+  void set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_author_id() const;
+  void _internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // .palm.rbac.v1.MediaType body_content_type = 3;
+  void clear_body_content_type();
+  ::palm::rbac::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::rbac::v1::MediaType value);
+  private:
+  ::palm::rbac::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::rbac::v1::MediaType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.CreatePostRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr body_;
+  ::PROTOBUF_NAMESPACE_ID::int64 topic_id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 author_id_;
+  int body_content_type_;
+  friend struct ::TableStruct_forum_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdatePostRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.UpdatePostRequest) */ {
+ public:
+  inline UpdatePostRequest() : UpdatePostRequest(nullptr) {}
+  ~UpdatePostRequest() override;
+  explicit constexpr UpdatePostRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UpdatePostRequest(const UpdatePostRequest& from);
+  UpdatePostRequest(UpdatePostRequest&& from) noexcept
+    : UpdatePostRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline UpdatePostRequest& operator=(const UpdatePostRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdatePostRequest& operator=(UpdatePostRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdatePostRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdatePostRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdatePostRequest*>(
+               &_UpdatePostRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(UpdatePostRequest& a, UpdatePostRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UpdatePostRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdatePostRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UpdatePostRequest* New() const final {
+    return new UpdatePostRequest();
+  }
+
+  UpdatePostRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UpdatePostRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UpdatePostRequest& from);
+  void MergeFrom(const UpdatePostRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UpdatePostRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.forum.v1.UpdatePostRequest";
+  }
+  protected:
+  explicit UpdatePostRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBodyFieldNumber = 2,
+    kIdFieldNumber = 1,
+    kBodyContentTypeFieldNumber = 3,
+  };
+  // string body = 2;
+  void clear_body();
+  const std::string& body() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_body(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_body();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_body();
+  void set_allocated_body(std::string* body);
+  private:
+  const std::string& _internal_body() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_body(const std::string& value);
+  std::string* _internal_mutable_body();
+  public:
+
+  // int64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // .palm.rbac.v1.MediaType body_content_type = 3;
+  void clear_body_content_type();
+  ::palm::rbac::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::rbac::v1::MediaType value);
+  private:
+  ::palm::rbac::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::rbac::v1::MediaType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.UpdatePostRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr body_;
+  ::PROTOBUF_NAMESPACE_ID::int64 id_;
+  int body_content_type_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_forum_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexPostResponse_Item final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.IndexPostResponse.Item) */ {
+ public:
+  inline IndexPostResponse_Item() : IndexPostResponse_Item(nullptr) {}
+  ~IndexPostResponse_Item() override;
+  explicit constexpr IndexPostResponse_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexPostResponse_Item(const IndexPostResponse_Item& from);
+  IndexPostResponse_Item(IndexPostResponse_Item&& from) noexcept
+    : IndexPostResponse_Item() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexPostResponse_Item& operator=(const IndexPostResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexPostResponse_Item& operator=(IndexPostResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexPostResponse_Item& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexPostResponse_Item* internal_default_instance() {
+    return reinterpret_cast<const IndexPostResponse_Item*>(
+               &_IndexPostResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(IndexPostResponse_Item& a, IndexPostResponse_Item& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexPostResponse_Item* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexPostResponse_Item* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexPostResponse_Item* New() const final {
+    return new IndexPostResponse_Item();
+  }
+
+  IndexPostResponse_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexPostResponse_Item>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexPostResponse_Item& from);
+  void MergeFrom(const IndexPostResponse_Item& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexPostResponse_Item* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.forum.v1.IndexPostResponse.Item";
+  }
+  protected:
+  explicit IndexPostResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBodyFieldNumber = 3,
+    kUpdatedAtFieldNumber = 11,
+    kIdFieldNumber = 1,
+    kTopicIdFieldNumber = 2,
+    kParentIdFieldNumber = 5,
+    kAuthorIdFieldNumber = 6,
+    kBodyContentTypeFieldNumber = 4,
+  };
+  // string body = 3;
+  void clear_body();
+  const std::string& body() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_body(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_body();
+  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_body();
+  void set_allocated_body(std::string* body);
+  private:
+  const std::string& _internal_body() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_body(const std::string& value);
+  std::string* _internal_mutable_body();
+  public:
+
+  // .google.protobuf.Timestamp updated_at = 11;
+  bool has_updated_at() const;
+  private:
+  bool _internal_has_updated_at() const;
+  public:
+  void clear_updated_at();
+  const PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
+  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
+  void set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  private:
+  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
+  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
+  public:
+  void unsafe_arena_set_allocated_updated_at(
+      PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
+  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
+
+  // int64 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 topic_id = 2;
+  void clear_topic_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 topic_id() const;
+  void set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_topic_id() const;
+  void _internal_set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // optional int64 parent_id = 5;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 author_id = 6;
+  void clear_author_id();
+  ::PROTOBUF_NAMESPACE_ID::int64 author_id() const;
+  void set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_author_id() const;
+  void _internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // .palm.rbac.v1.MediaType body_content_type = 4;
+  void clear_body_content_type();
+  ::palm::rbac::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::rbac::v1::MediaType value);
+  private:
+  ::palm::rbac::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::rbac::v1::MediaType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.IndexPostResponse.Item)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr body_;
+  PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+  ::PROTOBUF_NAMESPACE_ID::int64 id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 topic_id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 parent_id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 author_id_;
+  int body_content_type_;
+  friend struct ::TableStruct_forum_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IndexPostResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.IndexPostResponse) */ {
+ public:
+  inline IndexPostResponse() : IndexPostResponse(nullptr) {}
+  ~IndexPostResponse() override;
+  explicit constexpr IndexPostResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IndexPostResponse(const IndexPostResponse& from);
+  IndexPostResponse(IndexPostResponse&& from) noexcept
+    : IndexPostResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline IndexPostResponse& operator=(const IndexPostResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IndexPostResponse& operator=(IndexPostResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IndexPostResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IndexPostResponse* internal_default_instance() {
+    return reinterpret_cast<const IndexPostResponse*>(
+               &_IndexPostResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(IndexPostResponse& a, IndexPostResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IndexPostResponse* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IndexPostResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline IndexPostResponse* New() const final {
+    return new IndexPostResponse();
+  }
+
+  IndexPostResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<IndexPostResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const IndexPostResponse& from);
+  void MergeFrom(const IndexPostResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IndexPostResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.forum.v1.IndexPostResponse";
+  }
+  protected:
+  explicit IndexPostResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef IndexPostResponse_Item Item;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 2,
+  };
+  // repeated .palm.forum.v1.IndexPostResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::forum::v1::IndexPostResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::forum::v1::IndexPostResponse_Item& _internal_items(int index) const;
+  ::palm::forum::v1::IndexPostResponse_Item* _internal_add_items();
+  public:
+  const ::palm::forum::v1::IndexPostResponse_Item& items(int index) const;
+  ::palm::forum::v1::IndexPostResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >&
+      items() const;
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  bool has_pagination() const;
+  private:
+  bool _internal_has_pagination() const;
+  public:
+  void clear_pagination();
+  const ::palm::rbac::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::rbac::v1::Pagination* release_pagination();
+  ::palm::rbac::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::rbac::v1::Pagination* pagination);
+  private:
+  const ::palm::rbac::v1::Pagination& _internal_pagination() const;
+  ::palm::rbac::v1::Pagination* _internal_mutable_pagination();
+  public:
+  void unsafe_arena_set_allocated_pagination(
+      ::palm::rbac::v1::Pagination* pagination);
+  ::palm::rbac::v1::Pagination* unsafe_arena_release_pagination();
+
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.IndexPostResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item > items_;
+  ::palm::rbac::v1::Pagination* pagination_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_forum_2eproto;
+};
 // ===================================================================
 
 
@@ -911,6 +1727,53 @@ inline void CreateTopicRequest::_internal_set_body_content_type(::palm::rbac::v1
 inline void CreateTopicRequest::set_body_content_type(::palm::rbac::v1::MediaType value) {
   _internal_set_body_content_type(value);
   // @@protoc_insertion_point(field_set:palm.forum.v1.CreateTopicRequest.body_content_type)
+}
+
+// repeated int64 tags = 4;
+inline int CreateTopicRequest::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int CreateTopicRequest::tags_size() const {
+  return _internal_tags_size();
+}
+inline void CreateTopicRequest::clear_tags() {
+  tags_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateTopicRequest::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreateTopicRequest::tags(int index) const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreateTopicRequest.tags)
+  return _internal_tags(index);
+}
+inline void CreateTopicRequest::set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value) {
+  tags_.Set(index, value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreateTopicRequest.tags)
+}
+inline void CreateTopicRequest::_internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  tags_.Add(value);
+}
+inline void CreateTopicRequest::add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_add_tags(value);
+  // @@protoc_insertion_point(field_add:palm.forum.v1.CreateTopicRequest.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+CreateTopicRequest::_internal_tags() const {
+  return tags_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+CreateTopicRequest::tags() const {
+  // @@protoc_insertion_point(field_list:palm.forum.v1.CreateTopicRequest.tags)
+  return _internal_tags();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+CreateTopicRequest::_internal_mutable_tags() {
+  return &tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+CreateTopicRequest::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.CreateTopicRequest.tags)
+  return _internal_mutable_tags();
 }
 
 // -------------------------------------------------------------------
@@ -1045,6 +1908,53 @@ inline void UpdateTopicRequest::_internal_set_body_content_type(::palm::rbac::v1
 inline void UpdateTopicRequest::set_body_content_type(::palm::rbac::v1::MediaType value) {
   _internal_set_body_content_type(value);
   // @@protoc_insertion_point(field_set:palm.forum.v1.UpdateTopicRequest.body_content_type)
+}
+
+// repeated int64 tags = 5;
+inline int UpdateTopicRequest::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int UpdateTopicRequest::tags_size() const {
+  return _internal_tags_size();
+}
+inline void UpdateTopicRequest::clear_tags() {
+  tags_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTopicRequest::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTopicRequest::tags(int index) const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdateTopicRequest.tags)
+  return _internal_tags(index);
+}
+inline void UpdateTopicRequest::set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value) {
+  tags_.Set(index, value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdateTopicRequest.tags)
+}
+inline void UpdateTopicRequest::_internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  tags_.Add(value);
+}
+inline void UpdateTopicRequest::add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_add_tags(value);
+  // @@protoc_insertion_point(field_add:palm.forum.v1.UpdateTopicRequest.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+UpdateTopicRequest::_internal_tags() const {
+  return tags_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+UpdateTopicRequest::tags() const {
+  // @@protoc_insertion_point(field_list:palm.forum.v1.UpdateTopicRequest.tags)
+  return _internal_tags();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+UpdateTopicRequest::_internal_mutable_tags() {
+  return &tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+UpdateTopicRequest::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.UpdateTopicRequest.tags)
+  return _internal_mutable_tags();
 }
 
 // -------------------------------------------------------------------
@@ -1199,6 +2109,53 @@ inline void IndexTopicResponse_Item::_internal_set_author_id(::PROTOBUF_NAMESPAC
 inline void IndexTopicResponse_Item::set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_author_id(value);
   // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.author_id)
+}
+
+// repeated int64 tags = 6;
+inline int IndexTopicResponse_Item::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int IndexTopicResponse_Item::tags_size() const {
+  return _internal_tags_size();
+}
+inline void IndexTopicResponse_Item::clear_tags() {
+  tags_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::tags(int index) const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.tags)
+  return _internal_tags(index);
+}
+inline void IndexTopicResponse_Item::set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value) {
+  tags_.Set(index, value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.tags)
+}
+inline void IndexTopicResponse_Item::_internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  tags_.Add(value);
+}
+inline void IndexTopicResponse_Item::add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_add_tags(value);
+  // @@protoc_insertion_point(field_add:palm.forum.v1.IndexTopicResponse.Item.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+IndexTopicResponse_Item::_internal_tags() const {
+  return tags_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
+IndexTopicResponse_Item::tags() const {
+  // @@protoc_insertion_point(field_list:palm.forum.v1.IndexTopicResponse.Item.tags)
+  return _internal_tags();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+IndexTopicResponse_Item::_internal_mutable_tags() {
+  return &tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
+IndexTopicResponse_Item::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.IndexTopicResponse.Item.tags)
+  return _internal_mutable_tags();
 }
 
 // .google.protobuf.Timestamp updated_at = 11;
@@ -1402,9 +2359,601 @@ inline void IndexTopicResponse::set_allocated_pagination(::palm::rbac::v1::Pagin
   // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexTopicResponse.pagination)
 }
 
+// -------------------------------------------------------------------
+
+// CreatePostRequest
+
+// int64 topic_id = 1;
+inline void CreatePostRequest::clear_topic_id() {
+  topic_id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::_internal_topic_id() const {
+  return topic_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::topic_id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.topic_id)
+  return _internal_topic_id();
+}
+inline void CreatePostRequest::_internal_set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  topic_id_ = value;
+}
+inline void CreatePostRequest::set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_topic_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.topic_id)
+}
+
+// string body = 2;
+inline void CreatePostRequest::clear_body() {
+  body_.ClearToEmpty();
+}
+inline const std::string& CreatePostRequest::body() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.body)
+  return _internal_body();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CreatePostRequest::set_body(ArgT0&& arg0, ArgT... args) {
+ 
+ body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.body)
+}
+inline std::string* CreatePostRequest::mutable_body() {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.CreatePostRequest.body)
+  return _internal_mutable_body();
+}
+inline const std::string& CreatePostRequest::_internal_body() const {
+  return body_.Get();
+}
+inline void CreatePostRequest::_internal_set_body(const std::string& value) {
+  
+  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* CreatePostRequest::_internal_mutable_body() {
+  
+  return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* CreatePostRequest::release_body() {
+  // @@protoc_insertion_point(field_release:palm.forum.v1.CreatePostRequest.body)
+  return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void CreatePostRequest::set_allocated_body(std::string* body) {
+  if (body != nullptr) {
+    
+  } else {
+    
+  }
+  body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.CreatePostRequest.body)
+}
+
+// .palm.rbac.v1.MediaType body_content_type = 3;
+inline void CreatePostRequest::clear_body_content_type() {
+  body_content_type_ = 0;
+}
+inline ::palm::rbac::v1::MediaType CreatePostRequest::_internal_body_content_type() const {
+  return static_cast< ::palm::rbac::v1::MediaType >(body_content_type_);
+}
+inline ::palm::rbac::v1::MediaType CreatePostRequest::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.body_content_type)
+  return _internal_body_content_type();
+}
+inline void CreatePostRequest::_internal_set_body_content_type(::palm::rbac::v1::MediaType value) {
+  
+  body_content_type_ = value;
+}
+inline void CreatePostRequest::set_body_content_type(::palm::rbac::v1::MediaType value) {
+  _internal_set_body_content_type(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.body_content_type)
+}
+
+// optional int64 parent_id = 4;
+inline bool CreatePostRequest::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool CreatePostRequest::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void CreatePostRequest::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.parent_id)
+  return _internal_parent_id();
+}
+inline void CreatePostRequest::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void CreatePostRequest::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.parent_id)
+}
+
+// int64 author_id = 5;
+inline void CreatePostRequest::clear_author_id() {
+  author_id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::_internal_author_id() const {
+  return author_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::author_id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.author_id)
+  return _internal_author_id();
+}
+inline void CreatePostRequest::_internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  author_id_ = value;
+}
+inline void CreatePostRequest::set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_author_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.author_id)
+}
+
+// -------------------------------------------------------------------
+
+// UpdatePostRequest
+
+// int64 id = 1;
+inline void UpdatePostRequest::clear_id() {
+  id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdatePostRequest::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 UpdatePostRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdatePostRequest.id)
+  return _internal_id();
+}
+inline void UpdatePostRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  id_ = value;
+}
+inline void UpdatePostRequest::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdatePostRequest.id)
+}
+
+// string body = 2;
+inline void UpdatePostRequest::clear_body() {
+  body_.ClearToEmpty();
+}
+inline const std::string& UpdatePostRequest::body() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdatePostRequest.body)
+  return _internal_body();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UpdatePostRequest::set_body(ArgT0&& arg0, ArgT... args) {
+ 
+ body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdatePostRequest.body)
+}
+inline std::string* UpdatePostRequest::mutable_body() {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.UpdatePostRequest.body)
+  return _internal_mutable_body();
+}
+inline const std::string& UpdatePostRequest::_internal_body() const {
+  return body_.Get();
+}
+inline void UpdatePostRequest::_internal_set_body(const std::string& value) {
+  
+  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* UpdatePostRequest::_internal_mutable_body() {
+  
+  return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* UpdatePostRequest::release_body() {
+  // @@protoc_insertion_point(field_release:palm.forum.v1.UpdatePostRequest.body)
+  return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void UpdatePostRequest::set_allocated_body(std::string* body) {
+  if (body != nullptr) {
+    
+  } else {
+    
+  }
+  body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.UpdatePostRequest.body)
+}
+
+// .palm.rbac.v1.MediaType body_content_type = 3;
+inline void UpdatePostRequest::clear_body_content_type() {
+  body_content_type_ = 0;
+}
+inline ::palm::rbac::v1::MediaType UpdatePostRequest::_internal_body_content_type() const {
+  return static_cast< ::palm::rbac::v1::MediaType >(body_content_type_);
+}
+inline ::palm::rbac::v1::MediaType UpdatePostRequest::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdatePostRequest.body_content_type)
+  return _internal_body_content_type();
+}
+inline void UpdatePostRequest::_internal_set_body_content_type(::palm::rbac::v1::MediaType value) {
+  
+  body_content_type_ = value;
+}
+inline void UpdatePostRequest::set_body_content_type(::palm::rbac::v1::MediaType value) {
+  _internal_set_body_content_type(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdatePostRequest.body_content_type)
+}
+
+// -------------------------------------------------------------------
+
+// IndexPostResponse_Item
+
+// int64 id = 1;
+inline void IndexPostResponse_Item::clear_id() {
+  id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.id)
+  return _internal_id();
+}
+inline void IndexPostResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  id_ = value;
+}
+inline void IndexPostResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.id)
+}
+
+// int64 topic_id = 2;
+inline void IndexPostResponse_Item::clear_topic_id() {
+  topic_id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_topic_id() const {
+  return topic_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::topic_id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.topic_id)
+  return _internal_topic_id();
+}
+inline void IndexPostResponse_Item::_internal_set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  topic_id_ = value;
+}
+inline void IndexPostResponse_Item::set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_topic_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.topic_id)
+}
+
+// string body = 3;
+inline void IndexPostResponse_Item::clear_body() {
+  body_.ClearToEmpty();
+}
+inline const std::string& IndexPostResponse_Item::body() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.body)
+  return _internal_body();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void IndexPostResponse_Item::set_body(ArgT0&& arg0, ArgT... args) {
+ 
+ body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.body)
+}
+inline std::string* IndexPostResponse_Item::mutable_body() {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.Item.body)
+  return _internal_mutable_body();
+}
+inline const std::string& IndexPostResponse_Item::_internal_body() const {
+  return body_.Get();
+}
+inline void IndexPostResponse_Item::_internal_set_body(const std::string& value) {
+  
+  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* IndexPostResponse_Item::_internal_mutable_body() {
+  
+  return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* IndexPostResponse_Item::release_body() {
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexPostResponse.Item.body)
+  return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void IndexPostResponse_Item::set_allocated_body(std::string* body) {
+  if (body != nullptr) {
+    
+  } else {
+    
+  }
+  body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexPostResponse.Item.body)
+}
+
+// .palm.rbac.v1.MediaType body_content_type = 4;
+inline void IndexPostResponse_Item::clear_body_content_type() {
+  body_content_type_ = 0;
+}
+inline ::palm::rbac::v1::MediaType IndexPostResponse_Item::_internal_body_content_type() const {
+  return static_cast< ::palm::rbac::v1::MediaType >(body_content_type_);
+}
+inline ::palm::rbac::v1::MediaType IndexPostResponse_Item::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.body_content_type)
+  return _internal_body_content_type();
+}
+inline void IndexPostResponse_Item::_internal_set_body_content_type(::palm::rbac::v1::MediaType value) {
+  
+  body_content_type_ = value;
+}
+inline void IndexPostResponse_Item::set_body_content_type(::palm::rbac::v1::MediaType value) {
+  _internal_set_body_content_type(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.body_content_type)
+}
+
+// optional int64 parent_id = 5;
+inline bool IndexPostResponse_Item::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool IndexPostResponse_Item::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void IndexPostResponse_Item::clear_parent_id() {
+  parent_id_ = int64_t{0};
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::parent_id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.parent_id)
+  return _internal_parent_id();
+}
+inline void IndexPostResponse_Item::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _has_bits_[0] |= 0x00000001u;
+  parent_id_ = value;
+}
+inline void IndexPostResponse_Item::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.parent_id)
+}
+
+// int64 author_id = 6;
+inline void IndexPostResponse_Item::clear_author_id() {
+  author_id_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_author_id() const {
+  return author_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::author_id() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.author_id)
+  return _internal_author_id();
+}
+inline void IndexPostResponse_Item::_internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  author_id_ = value;
+}
+inline void IndexPostResponse_Item::set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_author_id(value);
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.author_id)
+}
+
+// .google.protobuf.Timestamp updated_at = 11;
+inline bool IndexPostResponse_Item::_internal_has_updated_at() const {
+  return this != internal_default_instance() && updated_at_ != nullptr;
+}
+inline bool IndexPostResponse_Item::has_updated_at() const {
+  return _internal_has_updated_at();
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexPostResponse_Item::_internal_updated_at() const {
+  const PROTOBUF_NAMESPACE_ID::Timestamp* p = updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexPostResponse_Item::updated_at() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void IndexPostResponse_Item::unsafe_arena_set_allocated_updated_at(
+    PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  updated_at_ = updated_at;
+  if (updated_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.forum.v1.IndexPostResponse.Item.updated_at)
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::release_updated_at() {
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::unsafe_arena_release_updated_at() {
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexPostResponse.Item.updated_at)
+  
+  PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
+  updated_at_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::_internal_mutable_updated_at() {
+  
+  if (updated_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    updated_at_ = p;
+  }
+  return updated_at_;
+}
+inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::mutable_updated_at() {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.Item.updated_at)
+  return _internal_mutable_updated_at();
+}
+inline void IndexPostResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at_);
+  }
+  if (updated_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
+    if (message_arena != submessage_arena) {
+      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, updated_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  updated_at_ = updated_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexPostResponse.Item.updated_at)
+}
+
+// -------------------------------------------------------------------
+
+// IndexPostResponse
+
+// repeated .palm.forum.v1.IndexPostResponse.Item items = 1;
+inline int IndexPostResponse::_internal_items_size() const {
+  return items_.size();
+}
+inline int IndexPostResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void IndexPostResponse::clear_items() {
+  items_.Clear();
+}
+inline ::palm::forum::v1::IndexPostResponse_Item* IndexPostResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.items)
+  return items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >*
+IndexPostResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.IndexPostResponse.items)
+  return &items_;
+}
+inline const ::palm::forum::v1::IndexPostResponse_Item& IndexPostResponse::_internal_items(int index) const {
+  return items_.Get(index);
+}
+inline const ::palm::forum::v1::IndexPostResponse_Item& IndexPostResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.items)
+  return _internal_items(index);
+}
+inline ::palm::forum::v1::IndexPostResponse_Item* IndexPostResponse::_internal_add_items() {
+  return items_.Add();
+}
+inline ::palm::forum::v1::IndexPostResponse_Item* IndexPostResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.forum.v1.IndexPostResponse.items)
+  return _internal_add_items();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >&
+IndexPostResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.forum.v1.IndexPostResponse.items)
+  return items_;
+}
+
+// .palm.rbac.v1.Pagination pagination = 2;
+inline bool IndexPostResponse::_internal_has_pagination() const {
+  return this != internal_default_instance() && pagination_ != nullptr;
+}
+inline bool IndexPostResponse::has_pagination() const {
+  return _internal_has_pagination();
+}
+inline const ::palm::rbac::v1::Pagination& IndexPostResponse::_internal_pagination() const {
+  const ::palm::rbac::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::rbac::v1::Pagination&>(
+      ::palm::rbac::v1::_Pagination_default_instance_);
+}
+inline const ::palm::rbac::v1::Pagination& IndexPostResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.pagination)
+  return _internal_pagination();
+}
+inline void IndexPostResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::rbac::v1::Pagination* pagination) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  pagination_ = pagination;
+  if (pagination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.forum.v1.IndexPostResponse.pagination)
+}
+inline ::palm::rbac::v1::Pagination* IndexPostResponse::release_pagination() {
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexPostResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexPostResponse.pagination)
+  
+  ::palm::rbac::v1::Pagination* temp = pagination_;
+  pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::rbac::v1::Pagination* IndexPostResponse::_internal_mutable_pagination() {
+  
+  if (pagination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::palm::rbac::v1::Pagination>(GetArenaForAllocation());
+    pagination_ = p;
+  }
+  return pagination_;
+}
+inline ::palm::rbac::v1::Pagination* IndexPostResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.pagination)
+  return _internal_mutable_pagination();
+}
+inline void IndexPostResponse::set_allocated_pagination(::palm::rbac::v1::Pagination* pagination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
+  }
+  if (pagination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<
+            ::PROTOBUF_NAMESPACE_ID::MessageLite>::GetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination));
+    if (message_arena != submessage_arena) {
+      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, pagination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  pagination_ = pagination;
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexPostResponse.pagination)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -23,6 +23,151 @@ namespace palm {
 namespace pi {
 namespace v1 {
 
+static const char* User_method_names[] = {
+  "/palm.pi.v1.User/Get",
+  "/palm.pi.v1.User/Set",
+  "/palm.pi.v1.User/Logs",
+};
+
+std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< User::Stub> stub(new User::Stub(channel, options));
+  return stub;
+}
+
+User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Get_(User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Set_(User_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Logs_(User_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status User::Stub::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::pi::v1::UserProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::UserProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
+}
+
+void User::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::UserProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::UserProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::UserProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::UserProfile>* User::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::pi::v1::UserProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::UserProfile>* User::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Set(::grpc::ClientContext* context, const ::palm::pi::v1::UserProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::pi::v1::UserProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+}
+
+void User::Stub::async::Set(::grpc::ClientContext* context, const ::palm::pi::v1::UserProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::pi::v1::UserProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Set(::grpc::ClientContext* context, const ::palm::pi::v1::UserProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::pi::v1::UserProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::pi::v1::UserProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::palm::pi::v1::UserProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Logs(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::pi::v1::UserLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
+}
+
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::UserLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::UserLogsResponse>* User::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::pi::v1::UserLogsResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::UserLogsResponse>* User::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLogsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+User::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::palm::pi::v1::UserProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::pi::v1::UserProfile* resp) {
+               return service->Get(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::pi::v1::UserProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::pi::v1::UserProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Set(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::palm::pi::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::pi::v1::UserLogsResponse* resp) {
+               return service->Logs(ctx, req, resp);
+             }, this)));
+}
+
+User::Service::~Service() {
+}
+
+::grpc::Status User::Service::Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::UserProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Set(::grpc::ServerContext* context, const ::palm::pi::v1::UserProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Logs(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::UserLogsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 static const char* Tty_method_names[] = {
   "/palm.pi.v1.Tty/Write",
 };
@@ -258,6 +403,212 @@ Led::Service::Service() {
 }
 
 Led::Service::~Service() {
+}
+
+
+static const char* OpenVpn_method_names[] = {
+  "/palm.pi.v1.OpenVpn/Get",
+  "/palm.pi.v1.OpenVpn/Set",
+};
+
+std::unique_ptr< OpenVpn::Stub> OpenVpn::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< OpenVpn::Stub> stub(new OpenVpn::Stub(channel, options));
+  return stub;
+}
+
+OpenVpn::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Get_(OpenVpn_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Set_(OpenVpn_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status OpenVpn::Stub::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::pi::v1::OpenVpnProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::OpenVpnProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
+}
+
+void OpenVpn::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::OpenVpnProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::OpenVpnProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
+}
+
+void OpenVpn::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::OpenVpnProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::OpenVpnProfile>* OpenVpn::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::pi::v1::OpenVpnProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::OpenVpnProfile>* OpenVpn::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status OpenVpn::Stub::Set(::grpc::ClientContext* context, const ::palm::pi::v1::OpenVpnProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::pi::v1::OpenVpnProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+}
+
+void OpenVpn::Stub::async::Set(::grpc::ClientContext* context, const ::palm::pi::v1::OpenVpnProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::pi::v1::OpenVpnProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+}
+
+void OpenVpn::Stub::async::Set(::grpc::ClientContext* context, const ::palm::pi::v1::OpenVpnProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* OpenVpn::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::pi::v1::OpenVpnProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::pi::v1::OpenVpnProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* OpenVpn::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::palm::pi::v1::OpenVpnProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+OpenVpn::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      OpenVpn_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< OpenVpn::Service, ::google::protobuf::Empty, ::palm::pi::v1::OpenVpnProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](OpenVpn::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::pi::v1::OpenVpnProfile* resp) {
+               return service->Get(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      OpenVpn_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< OpenVpn::Service, ::palm::pi::v1::OpenVpnProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](OpenVpn::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::pi::v1::OpenVpnProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Set(ctx, req, resp);
+             }, this)));
+}
+
+OpenVpn::Service::~Service() {
+}
+
+::grpc::Status OpenVpn::Service::Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::OpenVpnProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status OpenVpn::Service::Set(::grpc::ServerContext* context, const ::palm::pi::v1::OpenVpnProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Network_method_names[] = {
+  "/palm.pi.v1.Network/Get",
+  "/palm.pi.v1.Network/Set",
+};
+
+std::unique_ptr< Network::Stub> Network::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Network::Stub> stub(new Network::Stub(channel, options));
+  return stub;
+}
+
+Network::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Get_(Network_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Set_(Network_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Network::Stub::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::pi::v1::NetworkProfile* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::NetworkProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_, context, request, response);
+}
+
+void Network::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::NetworkProfile* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::pi::v1::NetworkProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, std::move(f));
+}
+
+void Network::Stub::async::Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::NetworkProfile* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::NetworkProfile>* Network::Stub::PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::pi::v1::NetworkProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::pi::v1::NetworkProfile>* Network::Stub::AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Network::Stub::Set(::grpc::ClientContext* context, const ::palm::pi::v1::NetworkProfile& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::pi::v1::NetworkProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Set_, context, request, response);
+}
+
+void Network::Stub::async::Set(::grpc::ClientContext* context, const ::palm::pi::v1::NetworkProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::pi::v1::NetworkProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, std::move(f));
+}
+
+void Network::Stub::async::Set(::grpc::ClientContext* context, const ::palm::pi::v1::NetworkProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Set_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Network::Stub::PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::pi::v1::NetworkProfile& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::pi::v1::NetworkProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Set_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Network::Stub::AsyncSetRaw(::grpc::ClientContext* context, const ::palm::pi::v1::NetworkProfile& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Network::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Network_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Network::Service, ::google::protobuf::Empty, ::palm::pi::v1::NetworkProfile, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Network::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::pi::v1::NetworkProfile* resp) {
+               return service->Get(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Network_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Network::Service, ::palm::pi::v1::NetworkProfile, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Network::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::pi::v1::NetworkProfile* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Set(ctx, req, resp);
+             }, this)));
+}
+
+Network::Service::~Service() {
+}
+
+::grpc::Status Network::Service::Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::pi::v1::NetworkProfile* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Network::Service::Set(::grpc::ServerContext* context, const ::palm::pi::v1::NetworkProfile* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 

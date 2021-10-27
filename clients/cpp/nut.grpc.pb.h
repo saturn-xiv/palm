@@ -44,20 +44,11 @@ class Site final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::AboutResponse>> PrepareAsyncAbout(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::AboutResponse>>(PrepareAsyncAboutRaw(context, request, cq));
     }
-    virtual ::grpc::Status Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::palm::nut::v1::LocalesResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocalesResponse>> AsyncLocales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocalesResponse>>(AsyncLocalesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocalesResponse>> PrepareAsyncLocales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocalesResponse>>(PrepareAsyncLocalesRaw(context, request, cq));
-    }
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void About(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::AboutResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void About(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::AboutResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -65,8 +56,6 @@ class Site final {
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::AboutResponse>* AsyncAboutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::AboutResponse>* PrepareAsyncAboutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocalesResponse>* AsyncLocalesRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocalesResponse>* PrepareAsyncLocalesRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -78,20 +67,11 @@ class Site final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::AboutResponse>> PrepareAsyncAbout(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::AboutResponse>>(PrepareAsyncAboutRaw(context, request, cq));
     }
-    ::grpc::Status Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::palm::nut::v1::LocalesResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>> AsyncLocales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>>(AsyncLocalesRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>> PrepareAsyncLocales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>>(PrepareAsyncLocalesRaw(context, request, cq));
-    }
     class async final :
       public StubInterface::async_interface {
      public:
       void About(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::AboutResponse* response, std::function<void(::grpc::Status)>) override;
       void About(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::AboutResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response, std::function<void(::grpc::Status)>) override;
-      void Locales(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -105,10 +85,7 @@ class Site final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::AboutResponse>* AsyncAboutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::AboutResponse>* PrepareAsyncAboutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>* AsyncLocalesRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocalesResponse>* PrepareAsyncLocalesRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocalesRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_About_;
-    const ::grpc::internal::RpcMethod rpcmethod_Locales_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -117,7 +94,6 @@ class Site final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status About(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::AboutResponse* response);
-    virtual ::grpc::Status Locales(::grpc::ServerContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_About : public BaseClass {
@@ -139,27 +115,7 @@ class Site final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  template <class BaseClass>
-  class WithAsyncMethod_Locales : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Locales() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_Locales() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Locales(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocalesRequest* /*request*/, ::palm::nut::v1::LocalesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestLocales(::grpc::ServerContext* context, ::palm::nut::v1::LocalesRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::LocalesResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_About<WithAsyncMethod_Locales<Service > > AsyncService;
+  typedef WithAsyncMethod_About<Service > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_About : public BaseClass {
    private:
@@ -187,34 +143,7 @@ class Site final {
     virtual ::grpc::ServerUnaryReactor* About(
       ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::AboutResponse* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_Locales : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Locales() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::LocalesRequest* request, ::palm::nut::v1::LocalesResponse* response) { return this->Locales(context, request, response); }));}
-    void SetMessageAllocatorFor_Locales(
-        ::grpc::MessageAllocator< ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Locales() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Locales(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocalesRequest* /*request*/, ::palm::nut::v1::LocalesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Locales(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::LocalesRequest* /*request*/, ::palm::nut::v1::LocalesResponse* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_About<WithCallbackMethod_Locales<Service > > CallbackService;
+  typedef WithCallbackMethod_About<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_About : public BaseClass {
@@ -229,23 +158,6 @@ class Site final {
     }
     // disable synchronous version of this method
     ::grpc::Status About(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::AboutResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Locales : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Locales() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_Locales() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Locales(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocalesRequest* /*request*/, ::palm::nut::v1::LocalesResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -271,26 +183,6 @@ class Site final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Locales : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Locales() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_Locales() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Locales(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocalesRequest* /*request*/, ::palm::nut::v1::LocalesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestLocales(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_About : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -310,28 +202,6 @@ class Site final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* About(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Locales : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Locales() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Locales(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Locales() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Locales(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocalesRequest* /*request*/, ::palm::nut::v1::LocalesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Locales(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -361,81 +231,74 @@ class Site final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedAbout(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::nut::v1::AboutResponse>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Locales : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Locales() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::nut::v1::LocalesRequest, ::palm::nut::v1::LocalesResponse>* streamer) {
-                       return this->StreamedLocales(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Locales() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Locales(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocalesRequest* /*request*/, ::palm::nut::v1::LocalesResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedLocales(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::LocalesRequest,::palm::nut::v1::LocalesResponse>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_About<WithStreamedUnaryMethod_Locales<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_About<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_About<WithStreamedUnaryMethod_Locales<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_About<Service > StreamedService;
 };
 
-class Admin final {
+class Locale final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.nut.v1.Admin";
+    return "palm.nut.v1.Locale";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetLocaleRaw(context, request, cq));
+    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::palm::nut::v1::LocaleIndexResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocaleIndexResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocaleIndexResponse>>(AsyncIndexRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetLocaleRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocaleIndexResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocaleIndexResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetLocaleRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetLocaleRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocaleIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::LocaleIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetLocaleRaw(context, request, cq));
+    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::palm::nut::v1::LocaleIndexResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>>(AsyncIndexRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetLocaleRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void SetLocale(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response, std::function<void(::grpc::Status)>) override;
+      void Index(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -447,9 +310,12 @@ class Admin final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetLocaleRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetLocaleRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SetLocaleRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_SetLocale_;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::LocaleIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Index_;
+    const ::grpc::internal::RpcMethod rpcmethod_Set_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -457,147 +323,3043 @@ class Admin final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status SetLocale(::grpc::ServerContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response);
+    virtual ::grpc::Status Set(::grpc::ServerContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_SetLocale : public BaseClass {
+  class WithAsyncMethod_Index : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_SetLocale() {
+    WithAsyncMethod_Index() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_SetLocale() override {
+    ~WithAsyncMethod_Index() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetLocale(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SetLocaleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleIndexRequest* /*request*/, ::palm::nut::v1::LocaleIndexResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetLocale(::grpc::ServerContext* context, ::palm::nut::v1::SetLocaleRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestIndex(::grpc::ServerContext* context, ::palm::nut::v1::LocaleIndexRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::LocaleIndexResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SetLocale<Service > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_SetLocale : public BaseClass {
+  class WithAsyncMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SetLocale() {
+    WithAsyncMethod_Set() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleSetRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::palm::nut::v1::LocaleSetRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Index<WithAsyncMethod_Set<Service > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Index() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::SetLocaleRequest* request, ::google::protobuf::Empty* response) { return this->SetLocale(context, request, response); }));}
-    void SetMessageAllocatorFor_SetLocale(
-        ::grpc::MessageAllocator< ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::LocaleIndexRequest* request, ::palm::nut::v1::LocaleIndexResponse* response) { return this->Index(context, request, response); }));}
+    void SetMessageAllocatorFor_Index(
+        ::grpc::MessageAllocator< ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SetLocale() override {
+    ~WithCallbackMethod_Index() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetLocale(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SetLocaleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleIndexRequest* /*request*/, ::palm::nut::v1::LocaleIndexResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* SetLocale(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::SetLocaleRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Index(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::LocaleIndexRequest* /*request*/, ::palm::nut::v1::LocaleIndexResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SetLocale<Service > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::LocaleSetRequest* request, ::google::protobuf::Empty* response) { return this->Set(context, request, response); }));}
+    void SetMessageAllocatorFor_Set(
+        ::grpc::MessageAllocator< ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleSetRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::LocaleSetRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Index<WithCallbackMethod_Set<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_SetLocale : public BaseClass {
+  class WithGenericMethod_Index : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_SetLocale() {
+    WithGenericMethod_Index() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_SetLocale() override {
+    ~WithGenericMethod_Index() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetLocale(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SetLocaleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleIndexRequest* /*request*/, ::palm::nut::v1::LocaleIndexResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SetLocale : public BaseClass {
+  class WithGenericMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_SetLocale() {
-      ::grpc::Service::MarkMethodRaw(0);
+    WithGenericMethod_Set() {
+      ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithRawMethod_SetLocale() override {
+    ~WithGenericMethod_Set() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetLocale(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SetLocaleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleSetRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetLocale(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  };
+  template <class BaseClass>
+  class WithRawMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Index() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleIndexRequest* /*request*/, ::palm::nut::v1::LocaleIndexResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndex(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetLocale : public BaseClass {
+  class WithRawMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SetLocale() {
+    WithRawMethod_Set() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleSetRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Index() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetLocale(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Index(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SetLocale() override {
+    ~WithRawCallbackMethod_Index() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetLocale(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SetLocaleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleIndexRequest* /*request*/, ::palm::nut::v1::LocaleIndexResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* SetLocale(
+    virtual ::grpc::ServerUnaryReactor* Index(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_SetLocale : public BaseClass {
+  class WithRawCallbackMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_SetLocale() {
+    WithRawCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Set(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleSetRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Index() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty>(
+          ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::nut::v1::SetLocaleRequest, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedSetLocale(context,
+                     ::palm::nut::v1::LocaleIndexRequest, ::palm::nut::v1::LocaleIndexResponse>* streamer) {
+                       return this->StreamedIndex(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_SetLocale() override {
+    ~WithStreamedUnaryMethod_Index() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SetLocale(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SetLocaleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleIndexRequest* /*request*/, ::palm::nut::v1::LocaleIndexResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetLocale(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::SetLocaleRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::LocaleIndexRequest,::palm::nut::v1::LocaleIndexResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SetLocale<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Set() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::nut::v1::LocaleSetRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::LocaleSetRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::LocaleSetRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Set<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SetLocale<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Set<Service > > StreamedService;
+};
+
+class Stmp final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.nut.v1.Stmp";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::StmpProfile* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::StmpProfile>> AsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::StmpProfile>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::StmpProfile>> PrepareAsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::StmpProfile>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+  private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::StmpProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::StmpProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::StmpProfile* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>> AsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>> PrepareAsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response, std::function<void(::grpc::Status)>) override;
+      void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::StmpProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Get_;
+    const ::grpc::internal::RpcMethod rpcmethod_Set_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response);
+    virtual ::grpc::Status Set(::grpc::ServerContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Get() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::StmpProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::StmpProfile>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Set() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::StmpProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::palm::nut::v1::StmpProfile* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Get<WithAsyncMethod_Set<Service > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::StmpProfile* response) { return this->Get(context, request, response); }));}
+    void SetMessageAllocatorFor_Get(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::StmpProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::StmpProfile* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::StmpProfile* request, ::google::protobuf::Empty* response) { return this->Set(context, request, response); }));}
+    void SetMessageAllocatorFor_Set(
+        ::grpc::MessageAllocator< ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::StmpProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::StmpProfile* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Get<WithCallbackMethod_Set<Service > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Get() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::StmpProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Set() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::StmpProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Get() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::StmpProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Set() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::StmpProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::StmpProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Set(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::StmpProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Get() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::nut::v1::StmpProfile>* streamer) {
+                       return this->StreamedGet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::StmpProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::nut::v1::StmpProfile>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Set() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::nut::v1::StmpProfile, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::StmpProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::StmpProfile,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Set<Service > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Set<Service > > StreamedService;
+};
+
+class Twilio final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.nut.v1.Twilio";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::TwilioProfile* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::TwilioProfile>> AsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::TwilioProfile>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::TwilioProfile>> PrepareAsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::TwilioProfile>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+  private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::TwilioProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::TwilioProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::TwilioProfile* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>> AsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>> PrepareAsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response, std::function<void(::grpc::Status)>) override;
+      void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::TwilioProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Get_;
+    const ::grpc::internal::RpcMethod rpcmethod_Set_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response);
+    virtual ::grpc::Status Set(::grpc::ServerContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Get() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::TwilioProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::TwilioProfile>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Set() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::TwilioProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::palm::nut::v1::TwilioProfile* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Get<WithAsyncMethod_Set<Service > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::TwilioProfile* response) { return this->Get(context, request, response); }));}
+    void SetMessageAllocatorFor_Get(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::TwilioProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::TwilioProfile* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::TwilioProfile* request, ::google::protobuf::Empty* response) { return this->Set(context, request, response); }));}
+    void SetMessageAllocatorFor_Set(
+        ::grpc::MessageAllocator< ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::TwilioProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::TwilioProfile* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Get<WithCallbackMethod_Set<Service > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Get() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::TwilioProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Set() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::TwilioProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Get() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::TwilioProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Set() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::TwilioProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::TwilioProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Set(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::TwilioProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Get() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::nut::v1::TwilioProfile>* streamer) {
+                       return this->StreamedGet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::TwilioProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::nut::v1::TwilioProfile>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Set() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::nut::v1::TwilioProfile, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::TwilioProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::TwilioProfile,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Set<Service > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Set<Service > > StreamedService;
+};
+
+class Seo final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.nut.v1.Seo";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::SeoProfile* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::SeoProfile>> AsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::SeoProfile>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::SeoProfile>> PrepareAsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::SeoProfile>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+  private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::SeoProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::SeoProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Get(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::nut::v1::SeoProfile* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>> AsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>> PrepareAsyncGet(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    ::grpc::Status Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSet(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response, std::function<void(::grpc::Status)>) override;
+      void Get(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Set(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::SeoProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::palm::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Get_;
+    const ::grpc::internal::RpcMethod rpcmethod_Set_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response);
+    virtual ::grpc::Status Set(::grpc::ServerContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Get() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::SeoProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::SeoProfile>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Set() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SeoProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::palm::nut::v1::SeoProfile* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Get<WithAsyncMethod_Set<Service > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::nut::v1::SeoProfile* response) { return this->Get(context, request, response); }));}
+    void SetMessageAllocatorFor_Get(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::SeoProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::SeoProfile* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::SeoProfile* request, ::google::protobuf::Empty* response) { return this->Set(context, request, response); }));}
+    void SetMessageAllocatorFor_Set(
+        ::grpc::MessageAllocator< ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SeoProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::SeoProfile* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Get<WithCallbackMethod_Set<Service > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Get() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::SeoProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Set() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SeoProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Get() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::SeoProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Set() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SeoProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::SeoProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Set(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SeoProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Get() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::google::protobuf::Empty, ::palm::nut::v1::SeoProfile>* streamer) {
+                       return this->StreamedGet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::nut::v1::SeoProfile* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::nut::v1::SeoProfile>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Set() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::nut::v1::SeoProfile, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::SeoProfile* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::SeoProfile,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Set<Service > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_Set<Service > > StreamedService;
+};
+
+class Tag final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.nut.v1.Tag";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::nut::v1::IndexTagResponse_Item* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse_Item>>(AsyncShowRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::nut::v1::IndexTagResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse>>(AsyncIndexRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+  private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexTagResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::nut::v1::IndexTagResponse_Item* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>>(AsyncShowRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    }
+    ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
+    }
+    ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
+    }
+    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::nut::v1::IndexTagResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>>(AsyncIndexRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response, std::function<void(::grpc::Status)>) override;
+      void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Update(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response, std::function<void(::grpc::Status)>) override;
+      void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexTagResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Create_;
+    const ::grpc::internal::RpcMethod rpcmethod_Show_;
+    const ::grpc::internal::RpcMethod rpcmethod_Update_;
+    const ::grpc::internal::RpcMethod rpcmethod_Destory_;
+    const ::grpc::internal::RpcMethod rpcmethod_Index_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response);
+    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Create() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::palm::nut::v1::CreateTagRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Show() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexTagResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShow(::grpc::ServerContext* context, ::palm::rbac::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::IndexTagResponse_Item>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Update() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdate(::grpc::ServerContext* context, ::palm::nut::v1::CreateTagRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Destory() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDestory(::grpc::ServerContext* context, ::palm::rbac::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Index() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexTagResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndex(::grpc::ServerContext* context, ::palm::rbac::v1::Pager* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::IndexTagResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Create<WithAsyncMethod_Show<WithAsyncMethod_Update<WithAsyncMethod_Destory<WithAsyncMethod_Index<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Create() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
+    void SetMessageAllocatorFor_Create(
+        ::grpc::MessageAllocator< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Create(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Show() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexTagResponse_Item* response) { return this->Show(context, request, response); }));}
+    void SetMessageAllocatorFor_Show(
+        ::grpc::MessageAllocator< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexTagResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Show(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexTagResponse_Item* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Update() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::CreateTagRequest* request, ::google::protobuf::Empty* response) { return this->Update(context, request, response); }));}
+    void SetMessageAllocatorFor_Update(
+        ::grpc::MessageAllocator< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Update(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Destory() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->Destory(context, request, response); }));}
+    void SetMessageAllocatorFor_Destory(
+        ::grpc::MessageAllocator< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Destory(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Index() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexTagResponse* response) { return this->Index(context, request, response); }));}
+    void SetMessageAllocatorFor_Index(
+        ::grpc::MessageAllocator< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexTagResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Index(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexTagResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Create<WithCallbackMethod_Show<WithCallbackMethod_Update<WithCallbackMethod_Destory<WithCallbackMethod_Index<Service > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Create() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Show() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexTagResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Update() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Destory() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Index() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexTagResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Create() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Show() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexTagResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Update() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestUpdate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Destory() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDestory(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Index() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexTagResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndex(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Create() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Create(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Create(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Show() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Show(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexTagResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Show(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Update() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Update(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Update(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Destory() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Destory(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Destory(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Index() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Index(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexTagResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Index(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Create() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedCreate(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::CreateTagRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Show() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexTagResponse_Item>* streamer) {
+                       return this->StreamedShow(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexTagResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::rbac::v1::IdRequest,::palm::nut::v1::IndexTagResponse_Item>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Update : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Update() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::nut::v1::CreateTagRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedUpdate(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Update() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateTagRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::CreateTagRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Destory() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedDestory(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDestory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::rbac::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Index() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexTagResponse>* streamer) {
+                       return this->StreamedIndex(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexTagResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::rbac::v1::Pager,::palm::nut::v1::IndexTagResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Destory<WithStreamedUnaryMethod_Index<Service > > > > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Destory<WithStreamedUnaryMethod_Index<Service > > > > > StreamedService;
+};
+
+class Notification final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "palm.nut.v1.Notification";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::nut::v1::IndexNotificationResponse_Item* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse_Item>>(AsyncShowRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    }
+    virtual ::grpc::Status SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetReadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetReadRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::nut::v1::IndexNotificationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse>>(AsyncIndexRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    class async_interface {
+     public:
+      virtual ~async_interface() {}
+      virtual void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+    };
+    typedef class async_interface experimental_async_interface;
+    virtual class async_interface* async() { return nullptr; }
+    class async_interface* experimental_async() { return async(); }
+  private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetReadRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetReadRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::nut::v1::IndexNotificationResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::palm::nut::v1::IndexNotificationResponse_Item* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>>(AsyncShowRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    }
+    ::grpc::Status SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetReadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetReadRaw(context, request, cq));
+    }
+    ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
+    }
+    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::palm::nut::v1::IndexNotificationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>>(AsyncIndexRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    }
+    class async final :
+      public StubInterface::async_interface {
+     public:
+      void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Create(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response, std::function<void(::grpc::Status)>) override;
+      void Show(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SetRead(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response, std::function<void(::grpc::Status)>) override;
+      void Index(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+     private:
+      friend class Stub;
+      explicit async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class async* async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetReadRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetReadRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::nut::v1::IndexNotificationResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Create_;
+    const ::grpc::internal::RpcMethod rpcmethod_Show_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetRead_;
+    const ::grpc::internal::RpcMethod rpcmethod_Destory_;
+    const ::grpc::internal::RpcMethod rpcmethod_Index_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response);
+    virtual ::grpc::Status SetRead(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Destory(::grpc::ServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Create() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateNotificationRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::palm::nut::v1::CreateNotificationRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Show() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexNotificationResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShow(::grpc::ServerContext* context, ::palm::rbac::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::IndexNotificationResponse_Item>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetRead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetRead() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_SetRead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRead(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetRead(::grpc::ServerContext* context, ::palm::rbac::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Destory() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDestory(::grpc::ServerContext* context, ::palm::rbac::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Index() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexNotificationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndex(::grpc::ServerContext* context, ::palm::rbac::v1::Pager* request, ::grpc::ServerAsyncResponseWriter< ::palm::nut::v1::IndexNotificationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Create<WithAsyncMethod_Show<WithAsyncMethod_SetRead<WithAsyncMethod_Destory<WithAsyncMethod_Index<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Create() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::CreateNotificationRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
+    void SetMessageAllocatorFor_Create(
+        ::grpc::MessageAllocator< ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateNotificationRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Create(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::CreateNotificationRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Show() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::palm::nut::v1::IndexNotificationResponse_Item* response) { return this->Show(context, request, response); }));}
+    void SetMessageAllocatorFor_Show(
+        ::grpc::MessageAllocator< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexNotificationResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Show(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexNotificationResponse_Item* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetRead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetRead() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->SetRead(context, request, response); }));}
+    void SetMessageAllocatorFor_SetRead(
+        ::grpc::MessageAllocator< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetRead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRead(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetRead(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Destory() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::rbac::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->Destory(context, request, response); }));}
+    void SetMessageAllocatorFor_Destory(
+        ::grpc::MessageAllocator< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Destory(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Index() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::rbac::v1::Pager* request, ::palm::nut::v1::IndexNotificationResponse* response) { return this->Index(context, request, response); }));}
+    void SetMessageAllocatorFor_Index(
+        ::grpc::MessageAllocator< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexNotificationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Index(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexNotificationResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Create<WithCallbackMethod_Show<WithCallbackMethod_SetRead<WithCallbackMethod_Destory<WithCallbackMethod_Index<Service > > > > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Create() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateNotificationRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Show() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexNotificationResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetRead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetRead() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_SetRead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRead(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Destory() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Index() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexNotificationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Create() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateNotificationRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Show() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexNotificationResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetRead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetRead() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_SetRead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRead(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetRead(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Destory() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDestory(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Index() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexNotificationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIndex(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Create() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Create(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateNotificationRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Create(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Show() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Show(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexNotificationResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Show(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetRead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetRead() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetRead(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetRead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetRead(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetRead(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Destory() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Destory(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Destory(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Index() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Index(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexNotificationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Index(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Create() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::nut::v1::CreateNotificationRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedCreate(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::CreateNotificationRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::CreateNotificationRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Show : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Show() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::rbac::v1::IdRequest, ::palm::nut::v1::IndexNotificationResponse_Item>* streamer) {
+                       return this->StreamedShow(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Show() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::palm::nut::v1::IndexNotificationResponse_Item* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::rbac::v1::IdRequest,::palm::nut::v1::IndexNotificationResponse_Item>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetRead : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetRead() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedSetRead(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetRead() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetRead(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetRead(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::rbac::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Destory : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Destory() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::rbac::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedDestory(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Destory() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDestory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::rbac::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Index : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Index() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::rbac::v1::Pager, ::palm::nut::v1::IndexNotificationResponse>* streamer) {
+                       return this->StreamedIndex(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Index() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::rbac::v1::Pager* /*request*/, ::palm::nut::v1::IndexNotificationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::rbac::v1::Pager,::palm::nut::v1::IndexNotificationResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_SetRead<WithStreamedUnaryMethod_Destory<WithStreamedUnaryMethod_Index<Service > > > > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_SetRead<WithStreamedUnaryMethod_Destory<WithStreamedUnaryMethod_Index<Service > > > > > StreamedService;
 };
 
 }  // namespace v1

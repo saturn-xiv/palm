@@ -1,5 +1,6 @@
 #pragma once
 
+#include "nut.grpc.pb.h"
 #include "palm/orm.hpp"
 
 namespace palm {

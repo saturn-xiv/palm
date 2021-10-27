@@ -19,6 +19,45 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace palm {
 namespace pi {
 namespace v1 {
+constexpr UserProfile::UserProfile(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , password_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct UserProfileDefaultTypeInternal {
+  constexpr UserProfileDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~UserProfileDefaultTypeInternal() {}
+  union {
+    UserProfile _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UserProfileDefaultTypeInternal _UserProfile_default_instance_;
+constexpr UserLogsResponse_Item::UserLogsResponse_Item(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : message_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , timestamp_(nullptr){}
+struct UserLogsResponse_ItemDefaultTypeInternal {
+  constexpr UserLogsResponse_ItemDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~UserLogsResponse_ItemDefaultTypeInternal() {}
+  union {
+    UserLogsResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UserLogsResponse_ItemDefaultTypeInternal _UserLogsResponse_Item_default_instance_;
+constexpr UserLogsResponse::UserLogsResponse(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : items_()
+  , pagination_(nullptr){}
+struct UserLogsResponseDefaultTypeInternal {
+  constexpr UserLogsResponseDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~UserLogsResponseDefaultTypeInternal() {}
+  union {
+    UserLogsResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UserLogsResponseDefaultTypeInternal _UserLogsResponse_default_instance_;
 constexpr TtyRequest::TtyRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : items_()
@@ -87,14 +126,141 @@ struct AudioTtsRequestDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AudioTtsRequestDefaultTypeInternal _AudioTtsRequest_default_instance_;
+constexpr OpenVpnProfile_Auth::OpenVpnProfile_Auth(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : user_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , password_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct OpenVpnProfile_AuthDefaultTypeInternal {
+  constexpr OpenVpnProfile_AuthDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~OpenVpnProfile_AuthDefaultTypeInternal() {}
+  union {
+    OpenVpnProfile_Auth _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT OpenVpnProfile_AuthDefaultTypeInternal _OpenVpnProfile_Auth_default_instance_;
+constexpr OpenVpnProfile::OpenVpnProfile(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : body_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , auth_(nullptr){}
+struct OpenVpnProfileDefaultTypeInternal {
+  constexpr OpenVpnProfileDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~OpenVpnProfileDefaultTypeInternal() {}
+  union {
+    OpenVpnProfile _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT OpenVpnProfileDefaultTypeInternal _OpenVpnProfile_default_instance_;
+constexpr NetworkProfile_IpV4::NetworkProfile_IpV4(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : address_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , netmask_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , gateway_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , dns1_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , dns2_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct NetworkProfile_IpV4DefaultTypeInternal {
+  constexpr NetworkProfile_IpV4DefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~NetworkProfile_IpV4DefaultTypeInternal() {}
+  union {
+    NetworkProfile_IpV4 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NetworkProfile_IpV4DefaultTypeInternal _NetworkProfile_IpV4_default_instance_;
+constexpr NetworkProfile_Wifi::NetworkProfile_Wifi(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , ssid_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , _oneof_case_{}{}
+struct NetworkProfile_WifiDefaultTypeInternal {
+  constexpr NetworkProfile_WifiDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~NetworkProfile_WifiDefaultTypeInternal() {}
+  union {
+    NetworkProfile_Wifi _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NetworkProfile_WifiDefaultTypeInternal _NetworkProfile_Wifi_default_instance_;
+constexpr NetworkProfile_Wpa::NetworkProfile_Wpa(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : username_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , password_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct NetworkProfile_WpaDefaultTypeInternal {
+  constexpr NetworkProfile_WpaDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~NetworkProfile_WpaDefaultTypeInternal() {}
+  union {
+    NetworkProfile_Wpa _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NetworkProfile_WpaDefaultTypeInternal _NetworkProfile_Wpa_default_instance_;
+constexpr NetworkProfile_Eap::NetworkProfile_Eap(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : identify_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , password_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct NetworkProfile_EapDefaultTypeInternal {
+  constexpr NetworkProfile_EapDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~NetworkProfile_EapDefaultTypeInternal() {}
+  union {
+    NetworkProfile_Eap _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NetworkProfile_EapDefaultTypeInternal _NetworkProfile_Eap_default_instance_;
+constexpr NetworkProfile_Ethernet::NetworkProfile_Ethernet(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , _oneof_case_{}{}
+struct NetworkProfile_EthernetDefaultTypeInternal {
+  constexpr NetworkProfile_EthernetDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~NetworkProfile_EthernetDefaultTypeInternal() {}
+  union {
+    NetworkProfile_Ethernet _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NetworkProfile_EthernetDefaultTypeInternal _NetworkProfile_Ethernet_default_instance_;
+constexpr NetworkProfile::NetworkProfile(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct NetworkProfileDefaultTypeInternal {
+  constexpr NetworkProfileDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~NetworkProfileDefaultTypeInternal() {}
+  union {
+    NetworkProfile _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT NetworkProfileDefaultTypeInternal _NetworkProfile_default_instance_;
 }  // namespace v1
 }  // namespace pi
 }  // namespace palm
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_pi_2eproto[5];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_pi_2eproto[16];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_pi_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_pi_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_pi_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserProfile, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserProfile, name_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserProfile, password_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserLogsResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserLogsResponse_Item, message_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserLogsResponse_Item, timestamp_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserLogsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserLogsResponse, items_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::UserLogsResponse, pagination_),
   PROTOBUF_FIELD_OFFSET(::palm::pi::v1::TtyRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::palm::pi::v1::TtyRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -139,56 +305,186 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_pi_2eproto::offsets[] PROTOBUF
   ~0u,
   ~0u,
   0,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::OpenVpnProfile_Auth, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::OpenVpnProfile_Auth, user_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::OpenVpnProfile_Auth, password_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::OpenVpnProfile, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::OpenVpnProfile, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::OpenVpnProfile, auth_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::OpenVpnProfile, body_),
+  0,
+  ~0u,
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_IpV4, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_IpV4, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_IpV4, address_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_IpV4, netmask_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_IpV4, gateway_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_IpV4, dns1_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_IpV4, dns2_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wifi, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wifi, _oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wifi, name_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wifi, ssid_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wifi, ip_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wifi, security_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wpa, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wpa, username_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Wpa, password_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Eap, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Eap, identify_),
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Eap, password_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Ethernet, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Ethernet, _oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Ethernet, name_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile_Ethernet, ip_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::pi::v1::NetworkProfile, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 7, sizeof(::palm::pi::v1::TtyRequest)},
-  { 9, -1, sizeof(::palm::pi::v1::TtyResponse)},
-  { 16, 24, sizeof(::palm::pi::v1::AudioPlayRequest)},
-  { 27, -1, sizeof(::palm::pi::v1::AudioTtsRequest_Message)},
-  { 33, 41, sizeof(::palm::pi::v1::AudioTtsRequest)},
+  { 0, -1, sizeof(::palm::pi::v1::UserProfile)},
+  { 7, -1, sizeof(::palm::pi::v1::UserLogsResponse_Item)},
+  { 14, -1, sizeof(::palm::pi::v1::UserLogsResponse)},
+  { 21, 28, sizeof(::palm::pi::v1::TtyRequest)},
+  { 30, -1, sizeof(::palm::pi::v1::TtyResponse)},
+  { 37, 45, sizeof(::palm::pi::v1::AudioPlayRequest)},
+  { 48, -1, sizeof(::palm::pi::v1::AudioTtsRequest_Message)},
+  { 54, 62, sizeof(::palm::pi::v1::AudioTtsRequest)},
+  { 65, -1, sizeof(::palm::pi::v1::OpenVpnProfile_Auth)},
+  { 72, 79, sizeof(::palm::pi::v1::OpenVpnProfile)},
+  { 81, 91, sizeof(::palm::pi::v1::NetworkProfile_IpV4)},
+  { 96, -1, sizeof(::palm::pi::v1::NetworkProfile_Wifi)},
+  { 110, -1, sizeof(::palm::pi::v1::NetworkProfile_Wpa)},
+  { 117, -1, sizeof(::palm::pi::v1::NetworkProfile_Eap)},
+  { 124, -1, sizeof(::palm::pi::v1::NetworkProfile_Ethernet)},
+  { 133, -1, sizeof(::palm::pi::v1::NetworkProfile)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_UserProfile_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_UserLogsResponse_Item_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_UserLogsResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_TtyRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_TtyResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_AudioPlayRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_AudioTtsRequest_Message_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_AudioTtsRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_OpenVpnProfile_Auth_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_OpenVpnProfile_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_NetworkProfile_IpV4_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_NetworkProfile_Wifi_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_NetworkProfile_Wpa_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_NetworkProfile_Eap_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_NetworkProfile_Ethernet_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::pi::v1::_NetworkProfile_default_instance_),
 };
 
 const char descriptor_table_protodef_pi_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\010pi.proto\022\npalm.pi.v1\032\033google/protobuf/"
   "empty.proto\032\036google/protobuf/duration.pr"
-  "oto\032\037google/protobuf/timestamp.proto\"T\n\n"
-  "TtyRequest\022\r\n\005items\030\001 \003(\t\022-\n\005delay\030\002 \001(\013"
-  "2\031.google.protobuf.DurationH\000\210\001\001B\010\n\006_del"
-  "ay\"M\n\013TtyResponse\022\017\n\007message\030\001 \001(\t\022-\n\tti"
-  "mestamp\030\002 \001(\0132\032.google.protobuf.Timestam"
-  "p\"h\n\020AudioPlayRequest\022\r\n\005files\030\001 \003(\t\022\014\n\004"
-  "loop\030\025 \003(\004\022-\n\005delay\030\026 \001(\0132\031.google.proto"
-  "buf.DurationH\000\210\001\001B\010\n\006_delay\"\253\001\n\017AudioTts"
-  "Request\0225\n\010messages\030\001 \003(\0132#.palm.pi.v1.A"
-  "udioTtsRequest.Message\022\014\n\004loop\030\025 \003(\004\022-\n\005"
-  "delay\030\026 \001(\0132\031.google.protobuf.DurationH\000"
-  "\210\001\001\032\032\n\007Message\022\017\n\007message\030\001 \001(\tB\010\n\006_dela"
-  "y2@\n\003Tty\0229\n\005Write\022\026.palm.pi.v1.TtyReques"
-  "t\032\026.google.protobuf.Empty\"\0002\277\001\n\005Audio\022>\n"
-  "\004Play\022\034.palm.pi.v1.AudioPlayRequest\032\026.go"
-  "ogle.protobuf.Empty\"\000\0228\n\004Stop\022\026.google.p"
-  "rotobuf.Empty\032\026.google.protobuf.Empty\"\000\022"
-  "<\n\003Tts\022\033.palm.pi.v1.AudioTtsRequest\032\026.go"
-  "ogle.protobuf.Empty\"\0002\010\n\006Button2\005\n\003Ledb\006"
-  "proto3"
+  "oto\032\037google/protobuf/timestamp.proto\032\nrb"
+  "ac.proto\"-\n\013UserProfile\022\014\n\004name\030\001 \001(\t\022\020\n"
+  "\010password\030\002 \001(\t\"\272\001\n\020UserLogsResponse\0220\n\005"
+  "items\030\001 \003(\0132!.palm.pi.v1.UserLogsRespons"
+  "e.Item\022,\n\npagination\030\002 \001(\0132\030.palm.rbac.v"
+  "1.Pagination\032F\n\004Item\022\017\n\007message\030\001 \001(\t\022-\n"
+  "\ttimestamp\030\002 \001(\0132\032.google.protobuf.Times"
+  "tamp\"T\n\nTtyRequest\022\r\n\005items\030\001 \003(\t\022-\n\005del"
+  "ay\030\002 \001(\0132\031.google.protobuf.DurationH\000\210\001\001"
+  "B\010\n\006_delay\"M\n\013TtyResponse\022\017\n\007message\030\001 \001"
+  "(\t\022-\n\ttimestamp\030\002 \001(\0132\032.google.protobuf."
+  "Timestamp\"h\n\020AudioPlayRequest\022\r\n\005files\030\001"
+  " \003(\t\022\014\n\004loop\030\025 \003(\004\022-\n\005delay\030\026 \001(\0132\031.goog"
+  "le.protobuf.DurationH\000\210\001\001B\010\n\006_delay\"\253\001\n\017"
+  "AudioTtsRequest\0225\n\010messages\030\001 \003(\0132#.palm"
+  ".pi.v1.AudioTtsRequest.Message\022\014\n\004loop\030\025"
+  " \003(\004\022-\n\005delay\030\026 \001(\0132\031.google.protobuf.Du"
+  "rationH\000\210\001\001\032\032\n\007Message\022\017\n\007message\030\001 \001(\tB"
+  "\010\n\006_delay\"\203\001\n\016OpenVpnProfile\0222\n\004auth\030\001 \001"
+  "(\0132\037.palm.pi.v1.OpenVpnProfile.AuthH\000\210\001\001"
+  "\022\014\n\004body\030\002 \001(\t\032&\n\004Auth\022\014\n\004user\030\001 \001(\t\022\020\n\010"
+  "password\030\002 \001(\tB\007\n\005_auth\"\226\004\n\016NetworkProfi"
+  "le\032c\n\004IpV4\022\017\n\007address\030\001 \001(\t\022\017\n\007netmask\030\002"
+  " \001(\t\022\017\n\007gateway\030\003 \001(\t\022\014\n\004dns1\030\004 \001(\t\022\021\n\004d"
+  "ns2\030\005 \001(\tH\000\210\001\001B\007\n\005_dns2\032\345\001\n\004Wifi\022\014\n\004name"
+  "\030\001 \001(\t\022\014\n\004ssid\030\002 \001(\t\022\016\n\004dhcp\030\013 \001(\010H\000\0221\n\006"
+  "static\030\014 \001(\0132\037.palm.pi.v1.NetworkProfile"
+  ".IpV4H\000\022\016\n\004open\030\025 \001(\010H\001\022-\n\003wpa\030\026 \001(\0132\036.p"
+  "alm.pi.v1.NetworkProfile.WpaH\001\022-\n\003eap\030\027 "
+  "\001(\0132\036.palm.pi.v1.NetworkProfile.EapH\001B\004\n"
+  "\002ipB\n\n\010security\032)\n\003Wpa\022\020\n\010username\030\001 \001(\t"
+  "\022\020\n\010password\030\002 \001(\t\032)\n\003Eap\022\020\n\010identify\030\001 "
+  "\001(\t\022\020\n\010password\030\002 \001(\t\032a\n\010Ethernet\022\014\n\004nam"
+  "e\030\001 \001(\t\022\016\n\004dhcp\030\013 \001(\010H\000\0221\n\006static\030\014 \001(\0132"
+  "\037.palm.pi.v1.NetworkProfile.IpV4H\000B\004\n\002ip"
+  "2\272\001\n\004User\0228\n\003Get\022\026.google.protobuf.Empty"
+  "\032\027.palm.pi.v1.UserProfile\"\000\0228\n\003Set\022\027.pal"
+  "m.pi.v1.UserProfile\032\026.google.protobuf.Em"
+  "pty\"\000\022>\n\004Logs\022\026.google.protobuf.Empty\032\034."
+  "palm.pi.v1.UserLogsResponse\"\0002@\n\003Tty\0229\n\005"
+  "Write\022\026.palm.pi.v1.TtyRequest\032\026.google.p"
+  "rotobuf.Empty\"\0002\277\001\n\005Audio\022>\n\004Play\022\034.palm"
+  ".pi.v1.AudioPlayRequest\032\026.google.protobu"
+  "f.Empty\"\000\0228\n\004Stop\022\026.google.protobuf.Empt"
+  "y\032\026.google.protobuf.Empty\"\000\022<\n\003Tts\022\033.pal"
+  "m.pi.v1.AudioTtsRequest\032\026.google.protobu"
+  "f.Empty\"\0002\010\n\006Button2\005\n\003Led2\203\001\n\007OpenVpn\022;"
+  "\n\003Get\022\026.google.protobuf.Empty\032\032.palm.pi."
+  "v1.OpenVpnProfile\"\000\022;\n\003Set\022\032.palm.pi.v1."
+  "OpenVpnProfile\032\026.google.protobuf.Empty\"\000"
+  "2\203\001\n\007Network\022;\n\003Get\022\026.google.protobuf.Em"
+  "pty\032\032.palm.pi.v1.NetworkProfile\"\000\022;\n\003Set"
+  "\022\032.palm.pi.v1.NetworkProfile\032\026.google.pr"
+  "otobuf.Empty\"\000b\006proto3"
   ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_pi_2eproto_deps[3] = {
+static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_pi_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
   &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
+  &::descriptor_table_rbac_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_pi_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_pi_2eproto = {
-  false, false, 846, descriptor_table_protodef_pi_2eproto, "pi.proto", 
-  &descriptor_table_pi_2eproto_once, descriptor_table_pi_2eproto_deps, 3, 5,
+  false, false, 2222, descriptor_table_protodef_pi_2eproto, "pi.proto", 
+  &descriptor_table_pi_2eproto_once, descriptor_table_pi_2eproto_deps, 4, 16,
   schemas, file_default_instances, TableStruct_pi_2eproto::offsets,
   file_level_metadata_pi_2eproto, file_level_enum_descriptors_pi_2eproto, file_level_service_descriptors_pi_2eproto,
 };
@@ -201,6 +497,749 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDe
 namespace palm {
 namespace pi {
 namespace v1 {
+
+// ===================================================================
+
+class UserProfile::_Internal {
+ public:
+};
+
+UserProfile::UserProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.UserProfile)
+}
+UserProfile::UserProfile(const UserProfile& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_password().empty()) {
+    password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_password(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.UserProfile)
+}
+
+void UserProfile::SharedCtor() {
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+UserProfile::~UserProfile() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.UserProfile)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void UserProfile::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void UserProfile::ArenaDtor(void* object) {
+  UserProfile* _this = reinterpret_cast< UserProfile* >(object);
+  (void)_this;
+}
+void UserProfile::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void UserProfile::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UserProfile::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.UserProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  password_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserProfile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.UserProfile.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string password = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_password();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.UserProfile.password"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* UserProfile::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.UserProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.UserProfile.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.UserProfile.password");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_password(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.UserProfile)
+  return target;
+}
+
+size_t UserProfile::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.UserProfile)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void UserProfile::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.UserProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UserProfile* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UserProfile>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.UserProfile)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.UserProfile)
+    MergeFrom(*source);
+  }
+}
+
+void UserProfile::MergeFrom(const UserProfile& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.UserProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from.password().empty()) {
+    _internal_set_password(from._internal_password());
+  }
+}
+
+void UserProfile::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.UserProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void UserProfile::CopyFrom(const UserProfile& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.UserProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserProfile::IsInitialized() const {
+  return true;
+}
+
+void UserProfile::InternalSwap(UserProfile* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &password_, GetArenaForAllocation(),
+      &other->password_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserProfile::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[0]);
+}
+
+// ===================================================================
+
+class UserLogsResponse_Item::_Internal {
+ public:
+  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const UserLogsResponse_Item* msg);
+};
+
+const PROTOBUF_NAMESPACE_ID::Timestamp&
+UserLogsResponse_Item::_Internal::timestamp(const UserLogsResponse_Item* msg) {
+  return *msg->timestamp_;
+}
+void UserLogsResponse_Item::clear_timestamp() {
+  if (GetArenaForAllocation() == nullptr && timestamp_ != nullptr) {
+    delete timestamp_;
+  }
+  timestamp_ = nullptr;
+}
+UserLogsResponse_Item::UserLogsResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.UserLogsResponse.Item)
+}
+UserLogsResponse_Item::UserLogsResponse_Item(const UserLogsResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_message().empty()) {
+    message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_message(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_timestamp()) {
+    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
+  } else {
+    timestamp_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.UserLogsResponse.Item)
+}
+
+void UserLogsResponse_Item::SharedCtor() {
+message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+timestamp_ = nullptr;
+}
+
+UserLogsResponse_Item::~UserLogsResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.UserLogsResponse.Item)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void UserLogsResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  message_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete timestamp_;
+}
+
+void UserLogsResponse_Item::ArenaDtor(void* object) {
+  UserLogsResponse_Item* _this = reinterpret_cast< UserLogsResponse_Item* >(object);
+  (void)_this;
+}
+void UserLogsResponse_Item::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void UserLogsResponse_Item::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UserLogsResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.UserLogsResponse.Item)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  message_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && timestamp_ != nullptr) {
+    delete timestamp_;
+  }
+  timestamp_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserLogsResponse_Item::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string message = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_message();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.UserLogsResponse.Item.message"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp timestamp = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* UserLogsResponse_Item::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.UserLogsResponse.Item)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string message = 1;
+  if (!this->message().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.UserLogsResponse.Item.message");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_message(), target);
+  }
+
+  // .google.protobuf.Timestamp timestamp = 2;
+  if (this->has_timestamp()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::timestamp(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.UserLogsResponse.Item)
+  return target;
+}
+
+size_t UserLogsResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.UserLogsResponse.Item)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 1;
+  if (!this->message().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
+  }
+
+  // .google.protobuf.Timestamp timestamp = 2;
+  if (this->has_timestamp()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *timestamp_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void UserLogsResponse_Item::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.UserLogsResponse.Item)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UserLogsResponse_Item* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UserLogsResponse_Item>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.UserLogsResponse.Item)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.UserLogsResponse.Item)
+    MergeFrom(*source);
+  }
+}
+
+void UserLogsResponse_Item::MergeFrom(const UserLogsResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.UserLogsResponse.Item)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.message().empty()) {
+    _internal_set_message(from._internal_message());
+  }
+  if (from.has_timestamp()) {
+    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  }
+}
+
+void UserLogsResponse_Item::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.UserLogsResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void UserLogsResponse_Item::CopyFrom(const UserLogsResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.UserLogsResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserLogsResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void UserLogsResponse_Item::InternalSwap(UserLogsResponse_Item* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &message_, GetArenaForAllocation(),
+      &other->message_, other->GetArenaForAllocation()
+  );
+  swap(timestamp_, other->timestamp_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserLogsResponse_Item::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[1]);
+}
+
+// ===================================================================
+
+class UserLogsResponse::_Internal {
+ public:
+  static const ::palm::rbac::v1::Pagination& pagination(const UserLogsResponse* msg);
+};
+
+const ::palm::rbac::v1::Pagination&
+UserLogsResponse::_Internal::pagination(const UserLogsResponse* msg) {
+  return *msg->pagination_;
+}
+void UserLogsResponse::clear_pagination() {
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+}
+UserLogsResponse::UserLogsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  items_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.UserLogsResponse)
+}
+UserLogsResponse::UserLogsResponse(const UserLogsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      items_(from.items_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_pagination()) {
+    pagination_ = new ::palm::rbac::v1::Pagination(*from.pagination_);
+  } else {
+    pagination_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.UserLogsResponse)
+}
+
+void UserLogsResponse::SharedCtor() {
+pagination_ = nullptr;
+}
+
+UserLogsResponse::~UserLogsResponse() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.UserLogsResponse)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void UserLogsResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete pagination_;
+}
+
+void UserLogsResponse::ArenaDtor(void* object) {
+  UserLogsResponse* _this = reinterpret_cast< UserLogsResponse* >(object);
+  (void)_this;
+}
+void UserLogsResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void UserLogsResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UserLogsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.UserLogsResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  items_.Clear();
+  if (GetArenaForAllocation() == nullptr && pagination_ != nullptr) {
+    delete pagination_;
+  }
+  pagination_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserLogsResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.pi.v1.UserLogsResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // .palm.rbac.v1.Pagination pagination = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_pagination(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* UserLogsResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.UserLogsResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.pi.v1.UserLogsResponse.Item items = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_items_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_items(i), target, stream);
+  }
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  if (this->has_pagination()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::pagination(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.UserLogsResponse)
+  return target;
+}
+
+size_t UserLogsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.UserLogsResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.pi.v1.UserLogsResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .palm.rbac.v1.Pagination pagination = 2;
+  if (this->has_pagination()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *pagination_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void UserLogsResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.UserLogsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UserLogsResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UserLogsResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.UserLogsResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.UserLogsResponse)
+    MergeFrom(*source);
+  }
+}
+
+void UserLogsResponse::MergeFrom(const UserLogsResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.UserLogsResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  items_.MergeFrom(from.items_);
+  if (from.has_pagination()) {
+    _internal_mutable_pagination()->::palm::rbac::v1::Pagination::MergeFrom(from._internal_pagination());
+  }
+}
+
+void UserLogsResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.UserLogsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void UserLogsResponse::CopyFrom(const UserLogsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.UserLogsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserLogsResponse::IsInitialized() const {
+  return true;
+}
+
+void UserLogsResponse::InternalSwap(UserLogsResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  items_.InternalSwap(&other->items_);
+  swap(pagination_, other->pagination_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserLogsResponse::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[2]);
+}
 
 // ===================================================================
 
@@ -456,7 +1495,7 @@ void TtyRequest::InternalSwap(TtyRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TtyRequest::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
-      file_level_metadata_pi_2eproto[0]);
+      file_level_metadata_pi_2eproto[3]);
 }
 
 // ===================================================================
@@ -709,7 +1748,7 @@ void TtyResponse::InternalSwap(TtyResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TtyResponse::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
-      file_level_metadata_pi_2eproto[1]);
+      file_level_metadata_pi_2eproto[4]);
 }
 
 // ===================================================================
@@ -1005,7 +2044,7 @@ void AudioPlayRequest::InternalSwap(AudioPlayRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AudioPlayRequest::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
-      file_level_metadata_pi_2eproto[2]);
+      file_level_metadata_pi_2eproto[5]);
 }
 
 // ===================================================================
@@ -1210,7 +2249,7 @@ void AudioTtsRequest_Message::InternalSwap(AudioTtsRequest_Message* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AudioTtsRequest_Message::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
-      file_level_metadata_pi_2eproto[3]);
+      file_level_metadata_pi_2eproto[6]);
 }
 
 // ===================================================================
@@ -1501,7 +2540,2417 @@ void AudioTtsRequest::InternalSwap(AudioTtsRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AudioTtsRequest::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
-      file_level_metadata_pi_2eproto[4]);
+      file_level_metadata_pi_2eproto[7]);
+}
+
+// ===================================================================
+
+class OpenVpnProfile_Auth::_Internal {
+ public:
+};
+
+OpenVpnProfile_Auth::OpenVpnProfile_Auth(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.OpenVpnProfile.Auth)
+}
+OpenVpnProfile_Auth::OpenVpnProfile_Auth(const OpenVpnProfile_Auth& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  user_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_user().empty()) {
+    user_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_user(), 
+      GetArenaForAllocation());
+  }
+  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_password().empty()) {
+    password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_password(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.OpenVpnProfile.Auth)
+}
+
+void OpenVpnProfile_Auth::SharedCtor() {
+user_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+OpenVpnProfile_Auth::~OpenVpnProfile_Auth() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.OpenVpnProfile.Auth)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void OpenVpnProfile_Auth::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  user_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void OpenVpnProfile_Auth::ArenaDtor(void* object) {
+  OpenVpnProfile_Auth* _this = reinterpret_cast< OpenVpnProfile_Auth* >(object);
+  (void)_this;
+}
+void OpenVpnProfile_Auth::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void OpenVpnProfile_Auth::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void OpenVpnProfile_Auth::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.OpenVpnProfile.Auth)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  user_.ClearToEmpty();
+  password_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* OpenVpnProfile_Auth::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_user();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.OpenVpnProfile.Auth.user"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string password = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_password();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.OpenVpnProfile.Auth.password"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* OpenVpnProfile_Auth::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.OpenVpnProfile.Auth)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string user = 1;
+  if (!this->user().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user().data(), static_cast<int>(this->_internal_user().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.OpenVpnProfile.Auth.user");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_user(), target);
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.OpenVpnProfile.Auth.password");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_password(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.OpenVpnProfile.Auth)
+  return target;
+}
+
+size_t OpenVpnProfile_Auth::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.OpenVpnProfile.Auth)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string user = 1;
+  if (!this->user().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user());
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void OpenVpnProfile_Auth::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.OpenVpnProfile.Auth)
+  GOOGLE_DCHECK_NE(&from, this);
+  const OpenVpnProfile_Auth* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<OpenVpnProfile_Auth>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.OpenVpnProfile.Auth)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.OpenVpnProfile.Auth)
+    MergeFrom(*source);
+  }
+}
+
+void OpenVpnProfile_Auth::MergeFrom(const OpenVpnProfile_Auth& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.OpenVpnProfile.Auth)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.user().empty()) {
+    _internal_set_user(from._internal_user());
+  }
+  if (!from.password().empty()) {
+    _internal_set_password(from._internal_password());
+  }
+}
+
+void OpenVpnProfile_Auth::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.OpenVpnProfile.Auth)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void OpenVpnProfile_Auth::CopyFrom(const OpenVpnProfile_Auth& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.OpenVpnProfile.Auth)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool OpenVpnProfile_Auth::IsInitialized() const {
+  return true;
+}
+
+void OpenVpnProfile_Auth::InternalSwap(OpenVpnProfile_Auth* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &user_, GetArenaForAllocation(),
+      &other->user_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &password_, GetArenaForAllocation(),
+      &other->password_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata OpenVpnProfile_Auth::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[8]);
+}
+
+// ===================================================================
+
+class OpenVpnProfile::_Internal {
+ public:
+  using HasBits = decltype(std::declval<OpenVpnProfile>()._has_bits_);
+  static const ::palm::pi::v1::OpenVpnProfile_Auth& auth(const OpenVpnProfile* msg);
+  static void set_has_auth(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::palm::pi::v1::OpenVpnProfile_Auth&
+OpenVpnProfile::_Internal::auth(const OpenVpnProfile* msg) {
+  return *msg->auth_;
+}
+OpenVpnProfile::OpenVpnProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.OpenVpnProfile)
+}
+OpenVpnProfile::OpenVpnProfile(const OpenVpnProfile& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  body_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_body().empty()) {
+    body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_body(), 
+      GetArenaForAllocation());
+  }
+  if (from._internal_has_auth()) {
+    auth_ = new ::palm::pi::v1::OpenVpnProfile_Auth(*from.auth_);
+  } else {
+    auth_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.OpenVpnProfile)
+}
+
+void OpenVpnProfile::SharedCtor() {
+body_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+auth_ = nullptr;
+}
+
+OpenVpnProfile::~OpenVpnProfile() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.OpenVpnProfile)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void OpenVpnProfile::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  body_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete auth_;
+}
+
+void OpenVpnProfile::ArenaDtor(void* object) {
+  OpenVpnProfile* _this = reinterpret_cast< OpenVpnProfile* >(object);
+  (void)_this;
+}
+void OpenVpnProfile::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void OpenVpnProfile::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void OpenVpnProfile::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.OpenVpnProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  body_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(auth_ != nullptr);
+    auth_->Clear();
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* OpenVpnProfile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .palm.pi.v1.OpenVpnProfile.Auth auth = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_auth(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string body = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_body();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.OpenVpnProfile.body"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* OpenVpnProfile::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.OpenVpnProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .palm.pi.v1.OpenVpnProfile.Auth auth = 1;
+  if (_internal_has_auth()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::auth(this), target, stream);
+  }
+
+  // string body = 2;
+  if (!this->body().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_body().data(), static_cast<int>(this->_internal_body().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.OpenVpnProfile.body");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_body(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.OpenVpnProfile)
+  return target;
+}
+
+size_t OpenVpnProfile::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.OpenVpnProfile)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string body = 2;
+  if (!this->body().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_body());
+  }
+
+  // optional .palm.pi.v1.OpenVpnProfile.Auth auth = 1;
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *auth_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void OpenVpnProfile::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.OpenVpnProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  const OpenVpnProfile* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<OpenVpnProfile>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.OpenVpnProfile)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.OpenVpnProfile)
+    MergeFrom(*source);
+  }
+}
+
+void OpenVpnProfile::MergeFrom(const OpenVpnProfile& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.OpenVpnProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.body().empty()) {
+    _internal_set_body(from._internal_body());
+  }
+  if (from._internal_has_auth()) {
+    _internal_mutable_auth()->::palm::pi::v1::OpenVpnProfile_Auth::MergeFrom(from._internal_auth());
+  }
+}
+
+void OpenVpnProfile::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.OpenVpnProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void OpenVpnProfile::CopyFrom(const OpenVpnProfile& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.OpenVpnProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool OpenVpnProfile::IsInitialized() const {
+  return true;
+}
+
+void OpenVpnProfile::InternalSwap(OpenVpnProfile* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &body_, GetArenaForAllocation(),
+      &other->body_, other->GetArenaForAllocation()
+  );
+  swap(auth_, other->auth_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata OpenVpnProfile::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[9]);
+}
+
+// ===================================================================
+
+class NetworkProfile_IpV4::_Internal {
+ public:
+  using HasBits = decltype(std::declval<NetworkProfile_IpV4>()._has_bits_);
+  static void set_has_dns2(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+NetworkProfile_IpV4::NetworkProfile_IpV4(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.NetworkProfile.IpV4)
+}
+NetworkProfile_IpV4::NetworkProfile_IpV4(const NetworkProfile_IpV4& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  address_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_address().empty()) {
+    address_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_address(), 
+      GetArenaForAllocation());
+  }
+  netmask_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_netmask().empty()) {
+    netmask_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_netmask(), 
+      GetArenaForAllocation());
+  }
+  gateway_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_gateway().empty()) {
+    gateway_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_gateway(), 
+      GetArenaForAllocation());
+  }
+  dns1_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_dns1().empty()) {
+    dns1_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_dns1(), 
+      GetArenaForAllocation());
+  }
+  dns2_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_dns2()) {
+    dns2_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_dns2(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.NetworkProfile.IpV4)
+}
+
+void NetworkProfile_IpV4::SharedCtor() {
+address_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+netmask_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+gateway_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+dns1_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+dns2_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+NetworkProfile_IpV4::~NetworkProfile_IpV4() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.NetworkProfile.IpV4)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void NetworkProfile_IpV4::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  address_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  netmask_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  gateway_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  dns1_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  dns2_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void NetworkProfile_IpV4::ArenaDtor(void* object) {
+  NetworkProfile_IpV4* _this = reinterpret_cast< NetworkProfile_IpV4* >(object);
+  (void)_this;
+}
+void NetworkProfile_IpV4::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void NetworkProfile_IpV4::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NetworkProfile_IpV4::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.NetworkProfile.IpV4)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  address_.ClearToEmpty();
+  netmask_.ClearToEmpty();
+  gateway_.ClearToEmpty();
+  dns1_.ClearToEmpty();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    dns2_.ClearNonDefaultToEmpty();
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NetworkProfile_IpV4::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string address = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_address();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.IpV4.address"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string netmask = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_netmask();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.IpV4.netmask"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string gateway = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_gateway();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.IpV4.gateway"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string dns1 = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_dns1();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.IpV4.dns1"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional string dns2 = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_dns2();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.IpV4.dns2"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* NetworkProfile_IpV4::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.NetworkProfile.IpV4)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string address = 1;
+  if (!this->address().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_address().data(), static_cast<int>(this->_internal_address().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.IpV4.address");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_address(), target);
+  }
+
+  // string netmask = 2;
+  if (!this->netmask().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_netmask().data(), static_cast<int>(this->_internal_netmask().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.IpV4.netmask");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_netmask(), target);
+  }
+
+  // string gateway = 3;
+  if (!this->gateway().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_gateway().data(), static_cast<int>(this->_internal_gateway().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.IpV4.gateway");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_gateway(), target);
+  }
+
+  // string dns1 = 4;
+  if (!this->dns1().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_dns1().data(), static_cast<int>(this->_internal_dns1().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.IpV4.dns1");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_dns1(), target);
+  }
+
+  // optional string dns2 = 5;
+  if (_internal_has_dns2()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_dns2().data(), static_cast<int>(this->_internal_dns2().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.IpV4.dns2");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_dns2(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.NetworkProfile.IpV4)
+  return target;
+}
+
+size_t NetworkProfile_IpV4::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.NetworkProfile.IpV4)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string address = 1;
+  if (!this->address().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_address());
+  }
+
+  // string netmask = 2;
+  if (!this->netmask().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_netmask());
+  }
+
+  // string gateway = 3;
+  if (!this->gateway().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_gateway());
+  }
+
+  // string dns1 = 4;
+  if (!this->dns1().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_dns1());
+  }
+
+  // optional string dns2 = 5;
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_dns2());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void NetworkProfile_IpV4::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.NetworkProfile.IpV4)
+  GOOGLE_DCHECK_NE(&from, this);
+  const NetworkProfile_IpV4* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NetworkProfile_IpV4>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.NetworkProfile.IpV4)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.NetworkProfile.IpV4)
+    MergeFrom(*source);
+  }
+}
+
+void NetworkProfile_IpV4::MergeFrom(const NetworkProfile_IpV4& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.NetworkProfile.IpV4)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.address().empty()) {
+    _internal_set_address(from._internal_address());
+  }
+  if (!from.netmask().empty()) {
+    _internal_set_netmask(from._internal_netmask());
+  }
+  if (!from.gateway().empty()) {
+    _internal_set_gateway(from._internal_gateway());
+  }
+  if (!from.dns1().empty()) {
+    _internal_set_dns1(from._internal_dns1());
+  }
+  if (from._internal_has_dns2()) {
+    _internal_set_dns2(from._internal_dns2());
+  }
+}
+
+void NetworkProfile_IpV4::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.NetworkProfile.IpV4)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void NetworkProfile_IpV4::CopyFrom(const NetworkProfile_IpV4& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.NetworkProfile.IpV4)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NetworkProfile_IpV4::IsInitialized() const {
+  return true;
+}
+
+void NetworkProfile_IpV4::InternalSwap(NetworkProfile_IpV4* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &address_, GetArenaForAllocation(),
+      &other->address_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &netmask_, GetArenaForAllocation(),
+      &other->netmask_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &gateway_, GetArenaForAllocation(),
+      &other->gateway_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &dns1_, GetArenaForAllocation(),
+      &other->dns1_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &dns2_, GetArenaForAllocation(),
+      &other->dns2_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NetworkProfile_IpV4::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[10]);
+}
+
+// ===================================================================
+
+class NetworkProfile_Wifi::_Internal {
+ public:
+  static const ::palm::pi::v1::NetworkProfile_IpV4& static_(const NetworkProfile_Wifi* msg);
+  static const ::palm::pi::v1::NetworkProfile_Wpa& wpa(const NetworkProfile_Wifi* msg);
+  static const ::palm::pi::v1::NetworkProfile_Eap& eap(const NetworkProfile_Wifi* msg);
+};
+
+const ::palm::pi::v1::NetworkProfile_IpV4&
+NetworkProfile_Wifi::_Internal::static_(const NetworkProfile_Wifi* msg) {
+  return *msg->ip_.static__;
+}
+const ::palm::pi::v1::NetworkProfile_Wpa&
+NetworkProfile_Wifi::_Internal::wpa(const NetworkProfile_Wifi* msg) {
+  return *msg->security_.wpa_;
+}
+const ::palm::pi::v1::NetworkProfile_Eap&
+NetworkProfile_Wifi::_Internal::eap(const NetworkProfile_Wifi* msg) {
+  return *msg->security_.eap_;
+}
+void NetworkProfile_Wifi::set_allocated_static_(::palm::pi::v1::NetworkProfile_IpV4* static_) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_ip();
+  if (static_) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::pi::v1::NetworkProfile_IpV4>::GetOwningArena(static_);
+    if (message_arena != submessage_arena) {
+      static_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, static_, submessage_arena);
+    }
+    set_has_static_();
+    ip_.static__ = static_;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.NetworkProfile.Wifi.static)
+}
+void NetworkProfile_Wifi::set_allocated_wpa(::palm::pi::v1::NetworkProfile_Wpa* wpa) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_security();
+  if (wpa) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::pi::v1::NetworkProfile_Wpa>::GetOwningArena(wpa);
+    if (message_arena != submessage_arena) {
+      wpa = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, wpa, submessage_arena);
+    }
+    set_has_wpa();
+    security_.wpa_ = wpa;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.NetworkProfile.Wifi.wpa)
+}
+void NetworkProfile_Wifi::set_allocated_eap(::palm::pi::v1::NetworkProfile_Eap* eap) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_security();
+  if (eap) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::pi::v1::NetworkProfile_Eap>::GetOwningArena(eap);
+    if (message_arena != submessage_arena) {
+      eap = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, eap, submessage_arena);
+    }
+    set_has_eap();
+    security_.eap_ = eap;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.NetworkProfile.Wifi.eap)
+}
+NetworkProfile_Wifi::NetworkProfile_Wifi(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.NetworkProfile.Wifi)
+}
+NetworkProfile_Wifi::NetworkProfile_Wifi(const NetworkProfile_Wifi& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  ssid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_ssid().empty()) {
+    ssid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_ssid(), 
+      GetArenaForAllocation());
+  }
+  clear_has_ip();
+  switch (from.ip_case()) {
+    case kDhcp: {
+      _internal_set_dhcp(from._internal_dhcp());
+      break;
+    }
+    case kStatic: {
+      _internal_mutable_static_()->::palm::pi::v1::NetworkProfile_IpV4::MergeFrom(from._internal_static_());
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+  clear_has_security();
+  switch (from.security_case()) {
+    case kOpen: {
+      _internal_set_open(from._internal_open());
+      break;
+    }
+    case kWpa: {
+      _internal_mutable_wpa()->::palm::pi::v1::NetworkProfile_Wpa::MergeFrom(from._internal_wpa());
+      break;
+    }
+    case kEap: {
+      _internal_mutable_eap()->::palm::pi::v1::NetworkProfile_Eap::MergeFrom(from._internal_eap());
+      break;
+    }
+    case SECURITY_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.NetworkProfile.Wifi)
+}
+
+void NetworkProfile_Wifi::SharedCtor() {
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+ssid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+clear_has_ip();
+clear_has_security();
+}
+
+NetworkProfile_Wifi::~NetworkProfile_Wifi() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.NetworkProfile.Wifi)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void NetworkProfile_Wifi::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ssid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (has_ip()) {
+    clear_ip();
+  }
+  if (has_security()) {
+    clear_security();
+  }
+}
+
+void NetworkProfile_Wifi::ArenaDtor(void* object) {
+  NetworkProfile_Wifi* _this = reinterpret_cast< NetworkProfile_Wifi* >(object);
+  (void)_this;
+}
+void NetworkProfile_Wifi::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void NetworkProfile_Wifi::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NetworkProfile_Wifi::clear_ip() {
+// @@protoc_insertion_point(one_of_clear_start:palm.pi.v1.NetworkProfile.Wifi)
+  switch (ip_case()) {
+    case kDhcp: {
+      // No need to clear
+      break;
+    }
+    case kStatic: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete ip_.static__;
+      }
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = IP_NOT_SET;
+}
+
+void NetworkProfile_Wifi::clear_security() {
+// @@protoc_insertion_point(one_of_clear_start:palm.pi.v1.NetworkProfile.Wifi)
+  switch (security_case()) {
+    case kOpen: {
+      // No need to clear
+      break;
+    }
+    case kWpa: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete security_.wpa_;
+      }
+      break;
+    }
+    case kEap: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete security_.eap_;
+      }
+      break;
+    }
+    case SECURITY_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[1] = SECURITY_NOT_SET;
+}
+
+
+void NetworkProfile_Wifi::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.NetworkProfile.Wifi)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  ssid_.ClearToEmpty();
+  clear_ip();
+  clear_security();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NetworkProfile_Wifi::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.Wifi.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string ssid = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_ssid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.Wifi.ssid"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool dhcp = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 88)) {
+          _internal_set_dhcp(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .palm.pi.v1.NetworkProfile.IpV4 static = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          ptr = ctx->ParseMessage(_internal_mutable_static_(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool open = 21;
+      case 21:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 168)) {
+          _internal_set_open(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .palm.pi.v1.NetworkProfile.Wpa wpa = 22;
+      case 22:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 178)) {
+          ptr = ctx->ParseMessage(_internal_mutable_wpa(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .palm.pi.v1.NetworkProfile.Eap eap = 23;
+      case 23:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 186)) {
+          ptr = ctx->ParseMessage(_internal_mutable_eap(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* NetworkProfile_Wifi::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.NetworkProfile.Wifi)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.Wifi.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // string ssid = 2;
+  if (!this->ssid().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_ssid().data(), static_cast<int>(this->_internal_ssid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.Wifi.ssid");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_ssid(), target);
+  }
+
+  // bool dhcp = 11;
+  if (_internal_has_dhcp()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(11, this->_internal_dhcp(), target);
+  }
+
+  // .palm.pi.v1.NetworkProfile.IpV4 static = 12;
+  if (_internal_has_static_()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        12, _Internal::static_(this), target, stream);
+  }
+
+  // bool open = 21;
+  if (_internal_has_open()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(21, this->_internal_open(), target);
+  }
+
+  // .palm.pi.v1.NetworkProfile.Wpa wpa = 22;
+  if (_internal_has_wpa()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        22, _Internal::wpa(this), target, stream);
+  }
+
+  // .palm.pi.v1.NetworkProfile.Eap eap = 23;
+  if (_internal_has_eap()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        23, _Internal::eap(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.NetworkProfile.Wifi)
+  return target;
+}
+
+size_t NetworkProfile_Wifi::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.NetworkProfile.Wifi)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string ssid = 2;
+  if (!this->ssid().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_ssid());
+  }
+
+  switch (ip_case()) {
+    // bool dhcp = 11;
+    case kDhcp: {
+      total_size += 1 + 1;
+      break;
+    }
+    // .palm.pi.v1.NetworkProfile.IpV4 static = 12;
+    case kStatic: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *ip_.static__);
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+  switch (security_case()) {
+    // bool open = 21;
+    case kOpen: {
+      total_size += 2 + 1;
+      break;
+    }
+    // .palm.pi.v1.NetworkProfile.Wpa wpa = 22;
+    case kWpa: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *security_.wpa_);
+      break;
+    }
+    // .palm.pi.v1.NetworkProfile.Eap eap = 23;
+    case kEap: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *security_.eap_);
+      break;
+    }
+    case SECURITY_NOT_SET: {
+      break;
+    }
+  }
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void NetworkProfile_Wifi::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.NetworkProfile.Wifi)
+  GOOGLE_DCHECK_NE(&from, this);
+  const NetworkProfile_Wifi* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NetworkProfile_Wifi>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.NetworkProfile.Wifi)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.NetworkProfile.Wifi)
+    MergeFrom(*source);
+  }
+}
+
+void NetworkProfile_Wifi::MergeFrom(const NetworkProfile_Wifi& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.NetworkProfile.Wifi)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  if (!from.ssid().empty()) {
+    _internal_set_ssid(from._internal_ssid());
+  }
+  switch (from.ip_case()) {
+    case kDhcp: {
+      _internal_set_dhcp(from._internal_dhcp());
+      break;
+    }
+    case kStatic: {
+      _internal_mutable_static_()->::palm::pi::v1::NetworkProfile_IpV4::MergeFrom(from._internal_static_());
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+  switch (from.security_case()) {
+    case kOpen: {
+      _internal_set_open(from._internal_open());
+      break;
+    }
+    case kWpa: {
+      _internal_mutable_wpa()->::palm::pi::v1::NetworkProfile_Wpa::MergeFrom(from._internal_wpa());
+      break;
+    }
+    case kEap: {
+      _internal_mutable_eap()->::palm::pi::v1::NetworkProfile_Eap::MergeFrom(from._internal_eap());
+      break;
+    }
+    case SECURITY_NOT_SET: {
+      break;
+    }
+  }
+}
+
+void NetworkProfile_Wifi::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.NetworkProfile.Wifi)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void NetworkProfile_Wifi::CopyFrom(const NetworkProfile_Wifi& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.NetworkProfile.Wifi)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NetworkProfile_Wifi::IsInitialized() const {
+  return true;
+}
+
+void NetworkProfile_Wifi::InternalSwap(NetworkProfile_Wifi* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &ssid_, GetArenaForAllocation(),
+      &other->ssid_, other->GetArenaForAllocation()
+  );
+  swap(ip_, other->ip_);
+  swap(security_, other->security_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
+  swap(_oneof_case_[1], other->_oneof_case_[1]);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NetworkProfile_Wifi::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[11]);
+}
+
+// ===================================================================
+
+class NetworkProfile_Wpa::_Internal {
+ public:
+};
+
+NetworkProfile_Wpa::NetworkProfile_Wpa(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.NetworkProfile.Wpa)
+}
+NetworkProfile_Wpa::NetworkProfile_Wpa(const NetworkProfile_Wpa& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  username_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_username().empty()) {
+    username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_username(), 
+      GetArenaForAllocation());
+  }
+  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_password().empty()) {
+    password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_password(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.NetworkProfile.Wpa)
+}
+
+void NetworkProfile_Wpa::SharedCtor() {
+username_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+NetworkProfile_Wpa::~NetworkProfile_Wpa() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.NetworkProfile.Wpa)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void NetworkProfile_Wpa::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  username_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void NetworkProfile_Wpa::ArenaDtor(void* object) {
+  NetworkProfile_Wpa* _this = reinterpret_cast< NetworkProfile_Wpa* >(object);
+  (void)_this;
+}
+void NetworkProfile_Wpa::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void NetworkProfile_Wpa::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NetworkProfile_Wpa::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.NetworkProfile.Wpa)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  username_.ClearToEmpty();
+  password_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NetworkProfile_Wpa::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string username = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_username();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.Wpa.username"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string password = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_password();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.Wpa.password"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* NetworkProfile_Wpa::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.NetworkProfile.Wpa)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string username = 1;
+  if (!this->username().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_username().data(), static_cast<int>(this->_internal_username().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.Wpa.username");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_username(), target);
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.Wpa.password");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_password(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.NetworkProfile.Wpa)
+  return target;
+}
+
+size_t NetworkProfile_Wpa::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.NetworkProfile.Wpa)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string username = 1;
+  if (!this->username().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_username());
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void NetworkProfile_Wpa::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.NetworkProfile.Wpa)
+  GOOGLE_DCHECK_NE(&from, this);
+  const NetworkProfile_Wpa* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NetworkProfile_Wpa>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.NetworkProfile.Wpa)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.NetworkProfile.Wpa)
+    MergeFrom(*source);
+  }
+}
+
+void NetworkProfile_Wpa::MergeFrom(const NetworkProfile_Wpa& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.NetworkProfile.Wpa)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.username().empty()) {
+    _internal_set_username(from._internal_username());
+  }
+  if (!from.password().empty()) {
+    _internal_set_password(from._internal_password());
+  }
+}
+
+void NetworkProfile_Wpa::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.NetworkProfile.Wpa)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void NetworkProfile_Wpa::CopyFrom(const NetworkProfile_Wpa& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.NetworkProfile.Wpa)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NetworkProfile_Wpa::IsInitialized() const {
+  return true;
+}
+
+void NetworkProfile_Wpa::InternalSwap(NetworkProfile_Wpa* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &username_, GetArenaForAllocation(),
+      &other->username_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &password_, GetArenaForAllocation(),
+      &other->password_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NetworkProfile_Wpa::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[12]);
+}
+
+// ===================================================================
+
+class NetworkProfile_Eap::_Internal {
+ public:
+};
+
+NetworkProfile_Eap::NetworkProfile_Eap(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.NetworkProfile.Eap)
+}
+NetworkProfile_Eap::NetworkProfile_Eap(const NetworkProfile_Eap& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  identify_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_identify().empty()) {
+    identify_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_identify(), 
+      GetArenaForAllocation());
+  }
+  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_password().empty()) {
+    password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_password(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.NetworkProfile.Eap)
+}
+
+void NetworkProfile_Eap::SharedCtor() {
+identify_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+NetworkProfile_Eap::~NetworkProfile_Eap() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.NetworkProfile.Eap)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void NetworkProfile_Eap::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  identify_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void NetworkProfile_Eap::ArenaDtor(void* object) {
+  NetworkProfile_Eap* _this = reinterpret_cast< NetworkProfile_Eap* >(object);
+  (void)_this;
+}
+void NetworkProfile_Eap::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void NetworkProfile_Eap::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NetworkProfile_Eap::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.NetworkProfile.Eap)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  identify_.ClearToEmpty();
+  password_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NetworkProfile_Eap::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string identify = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_identify();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.Eap.identify"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string password = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_password();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.Eap.password"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* NetworkProfile_Eap::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.NetworkProfile.Eap)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string identify = 1;
+  if (!this->identify().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_identify().data(), static_cast<int>(this->_internal_identify().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.Eap.identify");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_identify(), target);
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.Eap.password");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_password(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.NetworkProfile.Eap)
+  return target;
+}
+
+size_t NetworkProfile_Eap::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.NetworkProfile.Eap)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string identify = 1;
+  if (!this->identify().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_identify());
+  }
+
+  // string password = 2;
+  if (!this->password().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void NetworkProfile_Eap::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.NetworkProfile.Eap)
+  GOOGLE_DCHECK_NE(&from, this);
+  const NetworkProfile_Eap* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NetworkProfile_Eap>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.NetworkProfile.Eap)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.NetworkProfile.Eap)
+    MergeFrom(*source);
+  }
+}
+
+void NetworkProfile_Eap::MergeFrom(const NetworkProfile_Eap& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.NetworkProfile.Eap)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.identify().empty()) {
+    _internal_set_identify(from._internal_identify());
+  }
+  if (!from.password().empty()) {
+    _internal_set_password(from._internal_password());
+  }
+}
+
+void NetworkProfile_Eap::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.NetworkProfile.Eap)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void NetworkProfile_Eap::CopyFrom(const NetworkProfile_Eap& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.NetworkProfile.Eap)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NetworkProfile_Eap::IsInitialized() const {
+  return true;
+}
+
+void NetworkProfile_Eap::InternalSwap(NetworkProfile_Eap* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &identify_, GetArenaForAllocation(),
+      &other->identify_, other->GetArenaForAllocation()
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &password_, GetArenaForAllocation(),
+      &other->password_, other->GetArenaForAllocation()
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NetworkProfile_Eap::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[13]);
+}
+
+// ===================================================================
+
+class NetworkProfile_Ethernet::_Internal {
+ public:
+  static const ::palm::pi::v1::NetworkProfile_IpV4& static_(const NetworkProfile_Ethernet* msg);
+};
+
+const ::palm::pi::v1::NetworkProfile_IpV4&
+NetworkProfile_Ethernet::_Internal::static_(const NetworkProfile_Ethernet* msg) {
+  return *msg->ip_.static__;
+}
+void NetworkProfile_Ethernet::set_allocated_static_(::palm::pi::v1::NetworkProfile_IpV4* static_) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_ip();
+  if (static_) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::pi::v1::NetworkProfile_IpV4>::GetOwningArena(static_);
+    if (message_arena != submessage_arena) {
+      static_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, static_, submessage_arena);
+    }
+    set_has_static_();
+    ip_.static__ = static_;
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.pi.v1.NetworkProfile.Ethernet.static)
+}
+NetworkProfile_Ethernet::NetworkProfile_Ethernet(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.NetworkProfile.Ethernet)
+}
+NetworkProfile_Ethernet::NetworkProfile_Ethernet(const NetworkProfile_Ethernet& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArenaForAllocation());
+  }
+  clear_has_ip();
+  switch (from.ip_case()) {
+    case kDhcp: {
+      _internal_set_dhcp(from._internal_dhcp());
+      break;
+    }
+    case kStatic: {
+      _internal_mutable_static_()->::palm::pi::v1::NetworkProfile_IpV4::MergeFrom(from._internal_static_());
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.NetworkProfile.Ethernet)
+}
+
+void NetworkProfile_Ethernet::SharedCtor() {
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+clear_has_ip();
+}
+
+NetworkProfile_Ethernet::~NetworkProfile_Ethernet() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.NetworkProfile.Ethernet)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void NetworkProfile_Ethernet::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (has_ip()) {
+    clear_ip();
+  }
+}
+
+void NetworkProfile_Ethernet::ArenaDtor(void* object) {
+  NetworkProfile_Ethernet* _this = reinterpret_cast< NetworkProfile_Ethernet* >(object);
+  (void)_this;
+}
+void NetworkProfile_Ethernet::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void NetworkProfile_Ethernet::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NetworkProfile_Ethernet::clear_ip() {
+// @@protoc_insertion_point(one_of_clear_start:palm.pi.v1.NetworkProfile.Ethernet)
+  switch (ip_case()) {
+    case kDhcp: {
+      // No need to clear
+      break;
+    }
+    case kStatic: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete ip_.static__;
+      }
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = IP_NOT_SET;
+}
+
+
+void NetworkProfile_Ethernet::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.NetworkProfile.Ethernet)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  clear_ip();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NetworkProfile_Ethernet::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.pi.v1.NetworkProfile.Ethernet.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool dhcp = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 88)) {
+          _internal_set_dhcp(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .palm.pi.v1.NetworkProfile.IpV4 static = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          ptr = ctx->ParseMessage(_internal_mutable_static_(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* NetworkProfile_Ethernet::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.NetworkProfile.Ethernet)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.pi.v1.NetworkProfile.Ethernet.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // bool dhcp = 11;
+  if (_internal_has_dhcp()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(11, this->_internal_dhcp(), target);
+  }
+
+  // .palm.pi.v1.NetworkProfile.IpV4 static = 12;
+  if (_internal_has_static_()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        12, _Internal::static_(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.NetworkProfile.Ethernet)
+  return target;
+}
+
+size_t NetworkProfile_Ethernet::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.NetworkProfile.Ethernet)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  switch (ip_case()) {
+    // bool dhcp = 11;
+    case kDhcp: {
+      total_size += 1 + 1;
+      break;
+    }
+    // .palm.pi.v1.NetworkProfile.IpV4 static = 12;
+    case kStatic: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *ip_.static__);
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void NetworkProfile_Ethernet::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.NetworkProfile.Ethernet)
+  GOOGLE_DCHECK_NE(&from, this);
+  const NetworkProfile_Ethernet* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NetworkProfile_Ethernet>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.NetworkProfile.Ethernet)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.NetworkProfile.Ethernet)
+    MergeFrom(*source);
+  }
+}
+
+void NetworkProfile_Ethernet::MergeFrom(const NetworkProfile_Ethernet& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.NetworkProfile.Ethernet)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from.name().empty()) {
+    _internal_set_name(from._internal_name());
+  }
+  switch (from.ip_case()) {
+    case kDhcp: {
+      _internal_set_dhcp(from._internal_dhcp());
+      break;
+    }
+    case kStatic: {
+      _internal_mutable_static_()->::palm::pi::v1::NetworkProfile_IpV4::MergeFrom(from._internal_static_());
+      break;
+    }
+    case IP_NOT_SET: {
+      break;
+    }
+  }
+}
+
+void NetworkProfile_Ethernet::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.NetworkProfile.Ethernet)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void NetworkProfile_Ethernet::CopyFrom(const NetworkProfile_Ethernet& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.NetworkProfile.Ethernet)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NetworkProfile_Ethernet::IsInitialized() const {
+  return true;
+}
+
+void NetworkProfile_Ethernet::InternalSwap(NetworkProfile_Ethernet* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &name_, GetArenaForAllocation(),
+      &other->name_, other->GetArenaForAllocation()
+  );
+  swap(ip_, other->ip_);
+  swap(_oneof_case_[0], other->_oneof_case_[0]);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NetworkProfile_Ethernet::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[14]);
+}
+
+// ===================================================================
+
+class NetworkProfile::_Internal {
+ public:
+};
+
+NetworkProfile::NetworkProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.pi.v1.NetworkProfile)
+}
+NetworkProfile::NetworkProfile(const NetworkProfile& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:palm.pi.v1.NetworkProfile)
+}
+
+void NetworkProfile::SharedCtor() {
+}
+
+NetworkProfile::~NetworkProfile() {
+  // @@protoc_insertion_point(destructor:palm.pi.v1.NetworkProfile)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void NetworkProfile::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void NetworkProfile::ArenaDtor(void* object) {
+  NetworkProfile* _this = reinterpret_cast< NetworkProfile* >(object);
+  (void)_this;
+}
+void NetworkProfile::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void NetworkProfile::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NetworkProfile::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.pi.v1.NetworkProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NetworkProfile::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+        if ((tag == 0) || ((tag & 7) == 4)) {
+          CHK_(ptr);
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* NetworkProfile::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.pi.v1.NetworkProfile)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.pi.v1.NetworkProfile)
+  return target;
+}
+
+size_t NetworkProfile::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.pi.v1.NetworkProfile)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void NetworkProfile::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:palm.pi.v1.NetworkProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  const NetworkProfile* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<NetworkProfile>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.pi.v1.NetworkProfile)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.pi.v1.NetworkProfile)
+    MergeFrom(*source);
+  }
+}
+
+void NetworkProfile::MergeFrom(const NetworkProfile& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:palm.pi.v1.NetworkProfile)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void NetworkProfile::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:palm.pi.v1.NetworkProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void NetworkProfile::CopyFrom(const NetworkProfile& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.pi.v1.NetworkProfile)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NetworkProfile::IsInitialized() const {
+  return true;
+}
+
+void NetworkProfile::InternalSwap(NetworkProfile* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NetworkProfile::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_pi_2eproto_getter, &descriptor_table_pi_2eproto_once,
+      file_level_metadata_pi_2eproto[15]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -1509,6 +4958,15 @@ void AudioTtsRequest::InternalSwap(AudioTtsRequest* other) {
 }  // namespace pi
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::UserProfile* Arena::CreateMaybeMessage< ::palm::pi::v1::UserProfile >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::UserProfile >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::UserLogsResponse_Item* Arena::CreateMaybeMessage< ::palm::pi::v1::UserLogsResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::UserLogsResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::UserLogsResponse* Arena::CreateMaybeMessage< ::palm::pi::v1::UserLogsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::UserLogsResponse >(arena);
+}
 template<> PROTOBUF_NOINLINE ::palm::pi::v1::TtyRequest* Arena::CreateMaybeMessage< ::palm::pi::v1::TtyRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::pi::v1::TtyRequest >(arena);
 }
@@ -1523,6 +4981,30 @@ template<> PROTOBUF_NOINLINE ::palm::pi::v1::AudioTtsRequest_Message* Arena::Cre
 }
 template<> PROTOBUF_NOINLINE ::palm::pi::v1::AudioTtsRequest* Arena::CreateMaybeMessage< ::palm::pi::v1::AudioTtsRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::pi::v1::AudioTtsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::OpenVpnProfile_Auth* Arena::CreateMaybeMessage< ::palm::pi::v1::OpenVpnProfile_Auth >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::OpenVpnProfile_Auth >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::OpenVpnProfile* Arena::CreateMaybeMessage< ::palm::pi::v1::OpenVpnProfile >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::OpenVpnProfile >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::NetworkProfile_IpV4* Arena::CreateMaybeMessage< ::palm::pi::v1::NetworkProfile_IpV4 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::NetworkProfile_IpV4 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::NetworkProfile_Wifi* Arena::CreateMaybeMessage< ::palm::pi::v1::NetworkProfile_Wifi >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::NetworkProfile_Wifi >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::NetworkProfile_Wpa* Arena::CreateMaybeMessage< ::palm::pi::v1::NetworkProfile_Wpa >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::NetworkProfile_Wpa >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::NetworkProfile_Eap* Arena::CreateMaybeMessage< ::palm::pi::v1::NetworkProfile_Eap >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::NetworkProfile_Eap >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::NetworkProfile_Ethernet* Arena::CreateMaybeMessage< ::palm::pi::v1::NetworkProfile_Ethernet >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::NetworkProfile_Ethernet >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::pi::v1::NetworkProfile* Arena::CreateMaybeMessage< ::palm::pi::v1::NetworkProfile >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::pi::v1::NetworkProfile >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
