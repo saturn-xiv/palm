@@ -90,20 +90,20 @@ RUN sh -c ". $HOME/.profile \
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 # https://grpc.io/docs/languages/cpp/quickstart/
-ENV GRPC_VERSION "v1.39.1"
-RUN zsh -c "source $HOME/.zshrc \
-    && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
-RUN sudo apt install libssl-dev
-RUN zsh -c "source $HOME/.zshrc \
-    && mkdir -pv $HOME/build/grpc-amd64 \
-    && cd $HOME/build/grpc-amd64 \
-    && cmake -DCMAKE_BUILD_TYPE=Release \
-    -DgRPC_INSTALL=ON \
-    -DgRPC_SSL_PROVIDER=package \
-    -DgRPC_BUILD_TESTS=OFF \
-    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
-    && make \
-    && make install"
+# ENV GRPC_VERSION "v1.39.1"
+# RUN zsh -c "source $HOME/.zshrc \
+#     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
+# RUN sudo apt install libssl-dev
+# RUN zsh -c "source $HOME/.zshrc \
+#     && mkdir -pv $HOME/build/grpc-amd64 \
+#     && cd $HOME/build/grpc-amd64 \
+#     && cmake -DCMAKE_BUILD_TYPE=Release \
+#     -DgRPC_INSTALL=ON \
+#     -DgRPC_SSL_PROVIDER=package \
+#     -DgRPC_BUILD_TESTS=OFF \
+#     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
+#     && make \
+#     && make install"
 
 # https://github.com/llvm/llvm-project/releases
 # RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
