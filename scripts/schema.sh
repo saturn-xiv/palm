@@ -51,11 +51,11 @@ do
         rm -rfv clients/$l
     fi
     mkdir -pv clients/$l
-    $PROTOBUF_ROOT/bin/protoc -I protos \
+    $PROTOBUF_ROOT/bin/protoc -I ./protos \
         -I $PROTOBUF_ROOT/include/google/protobuf \
         --${l}_out=clients/$l --grpc_out=clients/$l \
         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_${l}_plugin \
-        protos/*.proto
+        ./protos/*.proto
 done
 
 echo 'done.'
