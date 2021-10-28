@@ -16,8 +16,13 @@ function build_grpc() {
     else
         git clone --recurse-submodules -b $1 https://github.com/grpc/grpc.git $HOME/downloads/grpc
     fi
+    
     cd $HOME/downloads/grpc/third_party/protobuf
     git checkout $2
+    # fix build for glibc 2.34: https://github.com/abseil/abseil-cpp/issues/952
+    cd $HOME/downloads/grpc/third_party/abseil-cpp
+    git checkout 20210324.2
+
     if [ -d $HOME/build/grpc-amd64 ]
     then
         rm -r $HOME/build/grpc-amd64
