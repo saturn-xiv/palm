@@ -47,20 +47,24 @@ declare -a languages=(
     "cpp"
 )
 
-build_grpc "v1.39.1" "v3.17.1"
+
+export WORKSPACE=$PWD
 export PROTOBUF_ROOT=$HOME/.local
+
+build_grpc "v1.39.1" "v3.17.1"
+
 for l in "${languages[@]}"
 do
-    if [ -d clients/$l ]
+    if [ -d $WORKSPACE/clients/$l ]
     then
-        rm -rfv clients/$l
+        rm -rfv $WORKSPACE/clients/$l
     fi
-    mkdir -pv clients/$l
-    $PROTOBUF_ROOT/bin/protoc -I ./protos \
+    mkdir -pv $WORKSPACE/clients/$l
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/protos \
         -I $PROTOBUF_ROOT/include/google/protobuf \
-        --${l}_out=clients/$l --grpc_out=clients/$l \
+        --${l}_out=$WORKSPACE/clients/$l --grpc_out=$WORKSPACE/clients/$l \
         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_${l}_plugin \
-        ./protos/*.proto
+        $WORKSPACE/protos/*.proto
 done
 
 echo 'done.'
