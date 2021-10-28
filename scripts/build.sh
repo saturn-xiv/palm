@@ -2,12 +2,6 @@
 
 set -e
 
-# CLANG_HOME=$HOME/local/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04
-# GCC_ARM_HOME=$HOME/local/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf
-# GCC_ARM64_HOME=$HOME/local/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu
-# export CLANG_HOME GCC_ARM_HOME GCC_ARM64_HOME
-
-
 export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export VCPKG_HOME=$HOME/local/vcpkg
@@ -103,19 +97,25 @@ build_deb(){
 # -----------------------------------------------------------------------------
 
 export OS_NAME=$(lsb_release -is)
+export OS_CODE=$(lsb_release -cs)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
     build_dashboard
     
-    build_backend amd64-clang Release
-    build_deb amd64 clang
-    
-    build_backend armhf-clang Release
-    # build_deb armhf clang
+    if [[ $OS_CODE == "focal" ]]
+    then
+        build_backend amd64-clang Release
+        build_deb amd64 clang
+        
+        build_backend armhf-clang Release
+        # build_deb armhf clang
 
-    build_backend arm64-clang Release
-    # build_deb arm64 clang
+        build_backend arm64-clang Release
+        # build_deb arm64 clang
+    else
+        build_backend amd64-clang Debug
+    fi
 elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard

@@ -4,6 +4,7 @@
         "ms-python.python",
         "redhat.ansible",
         "redhat.vscode-yaml",
+        "ms-ossdata.vscode-postgresql",
         "ms-vscode-remote.remote-ssh",
         "ms-azuretools.vscode-docker",
         "vscode-icons-team.vscode-icons",
