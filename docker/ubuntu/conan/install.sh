@@ -8,12 +8,12 @@ export OS_NAME=$(lsb_release -is)
 if [[ $OS_NAME == "Ubuntu" ]]
 then
     declare -a profiles=(
-        #"libstdc++/amd64"
-        #"libstdc++/arm64"
-        #"libstdc++/armhf"
+        "libstdc++/amd64"
+        "libstdc++/arm64"
+        "libstdc++/armhf"
         "libc++/amd64"
-        #"libc++/arm64"
-        #"libc++/armhf"
+        "libc++/arm64"
+        "libc++/armhf"
     )
 elif [[ $OS_NAME == "Arch" ]]
 then

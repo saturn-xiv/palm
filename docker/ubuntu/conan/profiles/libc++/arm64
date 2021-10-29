@@ -11,11 +11,6 @@ compiler.libcxx=libc++
 compiler.cppstd=20
 build_type=Release
 
-#boost:compiler=gcc
-#boost:compiler.cppstd=11
-#boost:compiler.version=$gcc_version
-#boost:compiler.libcxx=libstdc++11
-
 boost:compiler.cppstd=11
 protobuf:compiler.cppstd=11
 grpc:compiler.cppstd=17
@@ -26,11 +21,4 @@ CC=clang-$clang_version
 CXX=clang++-$clang_version
 CFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
 CXXFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
-LDFLAGS="--ld-path=ld.lld-$clang_version --rtlib=compiler-rt"
-
-#boost:CC=$target-gcc-$gcc_version
-#boost:CXX=$target-g++-$gcc_version
-#boost:CFLAGS=""
-#boost:CXXFLAGS=""
-#boost:LDFLAGS=""
-
+LDFLAGS="--ld-path=ld.lld-$clang_version"

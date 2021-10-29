@@ -19,4 +19,4 @@ CC=clang-$clang_version
 CXX=clang++-$clang_version
 CFLAGS="-target $target"
 CXXFLAGS="-target $target"
-LDFLAGS="--ld-path=ld.lld-$clang_version --rtlib=compiler-rt"
+LDFLAGS="--ld-path=ld.lld-$clang_version"
