@@ -99,27 +99,27 @@ RUN sudo apt install libssl-dev
 ENV PROTOC_VERSION "v3.17.1"
 RUN cd $HOME/downloads/grpc/third_party/protobuf \
     && git checkout ${PROTOC_VERSION}
-#RUN mkdir -pv $HOME/build/grpc-amd64
-#RUN zsh -c "source $HOME/.zshrc \
-#    && cd $HOME/build/grpc-amd64 \
-#    && cmake -DCMAKE_BUILD_TYPE=Release \
-#    -DgRPC_INSTALL=ON \
-#    -DgRPC_SSL_PROVIDER=package \
-#    -DgRPC_BUILD_TESTS=OFF \
-#    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc"
-#RUN zsh -c "source $HOME/.zshrc \
-#    && cd $HOME/build/grpc-amd64 \
-#    && make"
-#RUN zsh -c "source $HOME/.zshrc \
-#    && cd $HOME/build/grpc-amd64 \
-#    && make install"
+RUN mkdir -pv $HOME/build/grpc-amd64
+RUN zsh -c "source $HOME/.zshrc \
+    && cd $HOME/build/grpc-amd64 \
+    && cmake -DCMAKE_BUILD_TYPE=Release \
+    -DgRPC_INSTALL=ON \
+    -DgRPC_SSL_PROVIDER=package \
+    -DgRPC_BUILD_TESTS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc"
+RUN zsh -c "source $HOME/.zshrc \
+    && cd $HOME/build/grpc-amd64 \
+    && make"
+RUN zsh -c "source $HOME/.zshrc \
+    && cd $HOME/build/grpc-amd64 \
+    && make install"
 
-#RUN add conan /opt/conan
-#RUN zsh -c "source $HOME/.zshrc \
-#    && cd /opt/conan \
-#    && ./install.sh"
+RUN add conan /opt/conan
+# RUN zsh -c "source $HOME/.zshrc \
+#     && cd /opt/conan \
+#     && ./install.sh"
 
-#RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace
 WORKDIR /workspace
