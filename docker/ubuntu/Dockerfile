@@ -113,6 +113,10 @@ RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/build/grpc-amd64 \
     && make install"
 
+RUN add conan /opt/conan
+RUN zsh -c "source $HOME/.zshrc \
+    && cd /opt/conan \
+    && ./install.sh"
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
