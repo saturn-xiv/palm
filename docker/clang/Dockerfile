@@ -57,6 +57,11 @@ RUN echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/$(date +%Y%m%d%H%M%S).log ansible-
 # https://docs.conan.io/en/latest/getting_started.html#installing-dependencies
 RUN sh -c ". $HOME/.profile \
     && pip install --user conan"
+RUN sh -c ". $HOME/.profile \
+    && conan profile new default --detect"
+RUN sh -c ". $HOME/.profile \
+    && conan profile update settings.compiler.libcxx=libstdc++11 default"
+
 
 # https://github.com/nvm-sh/nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | sh
@@ -72,17 +77,35 @@ RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/downlo
 RUN tar xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
 
 # https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
-ENV GNU_TOOLCHAIN_VERSION "10.3-2021.10"
-RUN wget -P $HOME/downloads https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
+ENV GNU_TOOLCHAIN_VERSION "10.3-2021.07"
+RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
 RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local
-RUN wget -P $HOME/downloads https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
+RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
 RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
 
 
-# ADD grpc.sh /opt/
-# RUN sudo apt install libssl-dev
-# RUN zsh -c "source $HOME/.zshrc \
-#     && /opt/grpc.sh 'v1.39.1' 'v3.17.1'"
+# https://grpc.io/docs/languages/cpp/quickstart/
+ENV GRPC_VERSION "v1.39.1"
+RUN zsh -c "source $HOME/.zshrc \
+    && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
+RUN sudo apt install libssl-dev
+ENV PROTOC_VERSION "v3.17.1"
+RUN cd $HOME/downloads/grpc/third_party/protobuf \
+    && git checkout ${PROTOC_VERSION}
+RUN zsh -c "source $HOME/.zshrc \
+    && mkdir -pv $HOME/build/grpc-amd64 \
+    && cd $HOME/build/grpc-amd64 \
+    && cmake -DCMAKE_BUILD_TYPE=Release \
+    -DgRPC_INSTALL=ON \
+    -DgRPC_SSL_PROVIDER=package \
+    -DgRPC_BUILD_TESTS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc"
+RUN zsh -c "source $HOME/.zshrc \
+    && cd $HOME/build/grpc-amd64 \
+    && make"
+RUN zsh -c "source $HOME/.zshrc \
+    && cd $HOME/build/grpc-amd64 \
+    && make install"
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
