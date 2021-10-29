@@ -90,8 +90,9 @@ RUN sh -c ". $HOME/.profile \
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 ADD grpc.sh /opt/
+RUN sudo apt install libssl-dev
 RUN zsh -c "source $HOME/.zshrc \
-    && /opt/grpc.sh"
+    && /opt/grpc.sh 'v1.39.1' 'v3.17.1'"
 
 # https://grpc.io/docs/languages/cpp/quickstart/
 # ENV GRPC_VERSION "v1.39.1"

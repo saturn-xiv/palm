@@ -7,3 +7,5 @@
 
 /.env
 /*.properties
+
+.*.swp
