@@ -14,4 +14,4 @@ CC=clang
 CXX=clang++
 CFLAGS="-target $target"
 CXXFLAGS="-target $target"
-LDFLAGS="--ld-path=ld.lld -static"
+LDFLAGS="--ld-path=ld.lld"
