@@ -32,6 +32,7 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
     g++-11 clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
+    libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev \
     g++-10-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
     crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
     crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
@@ -98,27 +99,27 @@ RUN sudo apt install libssl-dev
 ENV PROTOC_VERSION "v3.17.1"
 RUN cd $HOME/downloads/grpc/third_party/protobuf \
     && git checkout ${PROTOC_VERSION}
-RUN zsh -c "source $HOME/.zshrc \
-    && mkdir -pv $HOME/build/grpc-amd64 \
-    && cd $HOME/build/grpc-amd64 \
-    && cmake -DCMAKE_BUILD_TYPE=Release \
-    -DgRPC_INSTALL=ON \
-    -DgRPC_SSL_PROVIDER=package \
-    -DgRPC_BUILD_TESTS=OFF \
-    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc"
-RUN zsh -c "source $HOME/.zshrc \
-    && cd $HOME/build/grpc-amd64 \
-    && make"
-RUN zsh -c "source $HOME/.zshrc \
-    && cd $HOME/build/grpc-amd64 \
-    && make install"
+#RUN mkdir -pv $HOME/build/grpc-amd64
+#RUN zsh -c "source $HOME/.zshrc \
+#    && cd $HOME/build/grpc-amd64 \
+#    && cmake -DCMAKE_BUILD_TYPE=Release \
+#    -DgRPC_INSTALL=ON \
+#    -DgRPC_SSL_PROVIDER=package \
+#    -DgRPC_BUILD_TESTS=OFF \
+#    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc"
+#RUN zsh -c "source $HOME/.zshrc \
+#    && cd $HOME/build/grpc-amd64 \
+#    && make"
+#RUN zsh -c "source $HOME/.zshrc \
+#    && cd $HOME/build/grpc-amd64 \
+#    && make install"
 
-RUN add conan /opt/conan
-RUN zsh -c "source $HOME/.zshrc \
-    && cd /opt/conan \
-    && ./install.sh"
+#RUN add conan /opt/conan
+#RUN zsh -c "source $HOME/.zshrc \
+#    && cd /opt/conan \
+#    && ./install.sh"
 
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
+#RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace
 WORKDIR /workspace

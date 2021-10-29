@@ -2,17 +2,18 @@
 
 set -e
 
+export WORKSPACE=$PWD
 export OS_NAME=$(lsb_release -is)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
     declare -a profiles=(
-        "libstdc++/amd64"
-        "libstdc++/arm64"
-        "libstdc++/armhf"
+        #"libstdc++/amd64"
+        #"libstdc++/arm64"
+        #"libstdc++/armhf"
         "libc++/amd64"
-        "libc++/arm64"
-        "libc++/armhf"
+        #"libc++/arm64"
+        #"libc++/armhf"
     )
 elif [[ $OS_NAME == "Arch" ]]
 then
@@ -27,7 +28,9 @@ fi
 
 for p in "${profiles[@]}"
 do
-    conan install --build --profile:build=default --profile:host=./profiles/$p .
+    mkdir -pv $HOME/build/$p
+    cd $HOME/build/$p
+    conan install --build --profile:build=default --profile:host=$WORKSPACE/profiles/$p $WORKSPACE
 done    
 
 echo 'done.'

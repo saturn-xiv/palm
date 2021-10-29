@@ -7,7 +7,7 @@ export CODE="palm-boost"
 
 buildah pull ubuntu:focal
 buildah bud --layers -t $CODE .
-podman save -o $CODE-$VERSION.tar $CODE
+#podman save -o $CODE-$VERSION.tar $CODE
 
 echo 'done.'
 
