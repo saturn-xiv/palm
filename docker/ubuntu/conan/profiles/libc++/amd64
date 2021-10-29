@@ -10,6 +10,10 @@ compiler.libcxx=libc++
 compiler.cppstd=20
 build_type=Release
 
+boost:compiler.cppstd=11
+protobuf:compiler.cppstd=11
+grpc:compiler.cppstd=17
+
 [env]
 CC=clang-$clang_version
 CXX=clang++-$clang_version
