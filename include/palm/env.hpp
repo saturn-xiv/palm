@@ -145,50 +145,6 @@ struct adl_serializer<std::filesystem::path> {
 };
 
 template <>
-struct adl_serializer<std::chrono::years> {
-  static void to_json(nlohmann::json &j, const std::chrono::years &opt) {
-    j = opt.count();
-  }
-
-  static void from_json(const nlohmann::json &j, std::chrono::years &opt) {
-    opt = std::chrono::years(j.get<long>());
-  }
-};
-
-template <>
-struct adl_serializer<std::chrono::months> {
-  static void to_json(nlohmann::json &j, const std::chrono::months &opt) {
-    j = opt.count();
-  }
-
-  static void from_json(const nlohmann::json &j, std::chrono::months &opt) {
-    opt = std::chrono::months(j.get<long>());
-  }
-};
-
-template <>
-struct adl_serializer<std::chrono::weeks> {
-  static void to_json(nlohmann::json &j, const std::chrono::weeks &opt) {
-    j = opt.count();
-  }
-
-  static void from_json(const nlohmann::json &j, std::chrono::weeks &opt) {
-    opt = std::chrono::weeks(j.get<long>());
-  }
-};
-
-template <>
-struct adl_serializer<std::chrono::days> {
-  static void to_json(nlohmann::json &j, const std::chrono::days &opt) {
-    j = opt.count();
-  }
-
-  static void from_json(const nlohmann::json &j, std::chrono::days &opt) {
-    opt = std::chrono::days(j.get<long>());
-  }
-};
-
-template <>
 struct adl_serializer<std::chrono::hours> {
   static void to_json(nlohmann::json &j, const std::chrono::hours &opt) {
     j = opt.count();
@@ -245,3 +201,55 @@ struct adl_serializer<std::shared_ptr<T>> {
 };
 
 }  // namespace nlohmann
+
+// ----------------------------------------------------------------------------
+#if __cplusplus >= 202002L
+
+namespace nlohmann {
+template <>
+struct adl_serializer<std::chrono::years> {
+  static void to_json(nlohmann::json &j, const std::chrono::years &opt) {
+    j = opt.count();
+  }
+
+  static void from_json(const nlohmann::json &j, std::chrono::years &opt) {
+    opt = std::chrono::years(j.get<long>());
+  }
+};
+
+template <>
+struct adl_serializer<std::chrono::months> {
+  static void to_json(nlohmann::json &j, const std::chrono::months &opt) {
+    j = opt.count();
+  }
+
+  static void from_json(const nlohmann::json &j, std::chrono::months &opt) {
+    opt = std::chrono::months(j.get<long>());
+  }
+};
+
+template <>
+struct adl_serializer<std::chrono::weeks> {
+  static void to_json(nlohmann::json &j, const std::chrono::weeks &opt) {
+    j = opt.count();
+  }
+
+  static void from_json(const nlohmann::json &j, std::chrono::weeks &opt) {
+    opt = std::chrono::weeks(j.get<long>());
+  }
+};
+
+template <>
+struct adl_serializer<std::chrono::days> {
+  static void to_json(nlohmann::json &j, const std::chrono::days &opt) {
+    j = opt.count();
+  }
+
+  static void from_json(const nlohmann::json &j, std::chrono::days &opt) {
+    opt = std::chrono::days(j.get<long>());
+  }
+};
+}  // namespace nlohmann
+
+#endif
+// ----------------------------------------------------------------------------

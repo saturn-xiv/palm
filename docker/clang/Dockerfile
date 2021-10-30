@@ -10,7 +10,7 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     vim sudo tzdata pwgen curl zip unzip tree tmux \
     net-tools dnsutils net-tools iputils-arping iputils-ping telnet \
     imagemagick ffmpeg \
-    build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
+    g++-10 build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
     python3 python3-distutils python3-pip python3-dev
 RUN apt -y autoremove

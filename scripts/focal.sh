@@ -50,8 +50,8 @@ build_dashboard
 
 build_backend amd64 Debug
 build_backend amd64 Release
-build_backend armhf Release
 build_backend arm64 Release
+build_backend armhf Release
 
 echo 'done.'
 exit 0
