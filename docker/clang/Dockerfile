@@ -28,7 +28,7 @@ RUN echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/101-deploy
 
 USER deploy
 
-RUN mkdir -p $HOME/downloads $HOME/local
+RUN mkdir -p $HOME/downloads $HOME/local $HOME/build
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
@@ -66,6 +66,40 @@ RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
+# https://github.com/llvm/llvm-project/releases
+ENV CLANG_VERSION "13.0.0"
+RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+RUN tar xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
+
+# https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
+ENV GNU_TOOLCHAIN_VERSION "10.3-2021.07"
+RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
+RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local
+RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
+RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
+
+RUN git clone -b "2021.08.1" https://github.com/buildroot/buildroot.git $HOME/build/buildroot
+# make list-defconfigs
+# make raspberrypi3_defconfig
+
+# https://musl.cc/#binaries
+RUN git clone https://github.com/richfelker/musl-cross-make.git $HOME/build/musl-cross-make
+RUN cd $HOME/build/musl-cross-make \
+    && echo "TARGET = x86_64-linux-musl" > config.mak \
+    && make \
+    && make install \
+    && mv output $HOME/local/x86_64-linux-musl
+RUN cd $HOME/build/musl-cross-make \
+    && echo "TARGET = aarch64-linux-musl" > config.mak \
+    && make \
+    && make install \
+    && mv output $HOME/local/aarch64-linux-musl
+RUN cd $HOME/build/musl-cross-make \
+    && echo "TARGET = arm-linux-musleabihf" > config.mak \
+    && make \
+    && make install \
+    && mv output $HOME/local/arm-linux-musleabihf
+
 # https://grpc.io/docs/languages/cpp/quickstart/
 ENV GRPC_VERSION "v1.39.1"
 RUN zsh -c "source $HOME/.zshrc \
@@ -89,17 +123,6 @@ RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/build/grpc-amd64 \
     && make install"
 
-# https://github.com/llvm/llvm-project/releases
-ENV CLANG_VERSION "13.0.0"
-RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-RUN tar xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
-
-# https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
-ENV GNU_TOOLCHAIN_VERSION "10.3-2021.07"
-RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
-RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local
-RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
-RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
 
 # ADD conan /opt/conan
 # RUN zsh -c "source $HOME/.zshrc \
