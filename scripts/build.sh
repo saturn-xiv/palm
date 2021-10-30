@@ -4,7 +4,6 @@ set -e
 
 export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
-export VCPKG_HOME=$HOME/local/vcpkg
 export CONAN_HOME=$WORKSPACE/docker/ubuntu/conan
 
 export CMAKE_LIBSERIAL_OPTIONS="-DINSTALL_SHARED=OFF \
