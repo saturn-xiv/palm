@@ -19,14 +19,14 @@ export CMAKE_LIBSERIAL_OPTIONS="-DINSTALL_SHARED=OFF \
     -DCASBIN_INSTALL=OFF"
 
 build_backend() {
-    echo "build $1@$2..."
-    mkdir -pv $WORKSPACE/build/$1-$2
-    cd $WORKSPACE/build/$1-$2
+    echo "build $1-$2@$3..."
+    mkdir -pv $WORKSPACE/build/$1-$2-$3
+    cd $WORKSPACE/build/$1-$2-$3
     conan install --build=missing --profile:build=default \
-        --profile:host=$CONAN_HOME/profiles/$1 $CONAN_HOME
-    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=$2 \
+        --profile:host=$CONAN_HOME/profiles/$1/$2 $CONAN_HOME
+    cmake $WORKSPACE -DCMAKE_BUILD_TYPE=$3 \
         $CMAKE_LIBSERIAL_OPTIONS \
-        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/$1.cmake
+        -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/$1/$2.cmake
     make
 }
 
@@ -46,7 +46,7 @@ build_dashboard(){
 }
 
 build_deb(){
-    local target=$WORKSPACE/tmp/palm-$1-$2-$GIT_VERSION/target
+    local target=$WORKSPACE/tmp/palm-$1-$2-$3-$GIT_VERSION/target
     if [ -d $target ]
     then
         rm -rf $(dirname $target)
@@ -55,7 +55,7 @@ build_deb(){
     cp -r $WORKSPACE/debian $target/
 
     mkdir -pv $target/usr/bin
-    cd $WORKSPACE/build/$1-$2-Release/bin/
+    cd $WORKSPACE/build/$1-$2-$3-Release/bin/
     cp -av fig mint pi $target/usr/bin/
 
     mkdir -pv $target/usr/share/palm
@@ -103,23 +103,19 @@ if [[ $OS_NAME == "Ubuntu" ]]
 then
     build_dashboard
     
-    if [[ $OS_CODE == "focal" ]]
-    then
-        build_backend amd64-clang Release
-        build_deb amd64 clang
-        
-        build_backend armhf-clang Release
-        # build_deb armhf clang
+    build_backend libstdc++ amd64 Debug
+    build_backend libstdc++ amd64 Release
+    build_deb libstdc++ amd64 clang
+    
+    build_backend libstdc++ armhf Release
+    # build_deb armhf clang
 
-        build_backend arm64-clang Release
-        # build_deb arm64 clang
-    else
-        build_backend amd64-clang Debug
-    fi
+    build_backend libstdc++ arm64 Release
+    # build_deb arm64 clang
 elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard
-    build_backend arch-clang Debug
+    build_backend libstdc++ arch Debug
 else
     echo "Unknowk os $OS_NAME"
     exit 1

@@ -32,7 +32,6 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
     g++-11 clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
-    libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev \
     g++-10-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
     crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
     crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
@@ -114,10 +113,20 @@ RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/build/grpc-amd64 \
     && make install"
 
-RUN add conan /opt/conan
+ADD conan /opt/conan
 # RUN zsh -c "source $HOME/.zshrc \
 #     && cd /opt/conan \
 #     && ./install.sh"
+
+# https://github.com/microsoft/vcpkg#quick-start-unix
+# RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
+# RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
+# RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
+# ADD vcpkg /opt/vcpkg
+# RUN ln -s /opt/vcpkg/triplets/* $HOME/local/vcpkg/triplets/
+# RUN ln -s /opt/vcpkg/toolchains/* $HOME/local/vcpkg/scripts/toolchains/
+# RUN sh -c ". $HOME/.profile \
+#     && /opt/vcpkg/install.sh"
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
