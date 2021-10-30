@@ -128,6 +128,19 @@ ADD conan /opt/conan
 # RUN sh -c ". $HOME/.profile \
 #     && /opt/vcpkg/install.sh"
 
+# https://github.com/llvm/llvm-project/releases
+# ENV CLANG_VERSION "13.0.0"
+# RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz
+# RUN tar xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
+
+# https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
+# ENV GNU_TOOLCHAIN_VERSION "10.3-2021.07"
+# RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
+# RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local
+# RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
+# RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
+
+
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace

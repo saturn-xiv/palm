@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NAME=palm-clang
+NAME=palm-buildroot
 
 if podman container exists $NAME
 then

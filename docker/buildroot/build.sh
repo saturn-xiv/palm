@@ -3,7 +3,7 @@
 set -e
 
 export VERSION=$(date "+%4Y%m%d%H%M%S")
-export CODE="palm-clang"
+export CODE="palm-buildroot"
 
 buildah pull ubuntu:focal
 buildah bud --layers -t $CODE .
