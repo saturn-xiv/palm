@@ -46,7 +46,7 @@ build_dashboard(){
 }
 
 build_deb(){
-    local target=$WORKSPACE/tmp/palm-$1-$2-$3-$GIT_VERSION/target
+    local target=$WORKSPACE/tmp/palm-$1-$2-Release-$GIT_VERSION/target
     if [ -d $target ]
     then
         rm -rf $(dirname $target)
@@ -55,7 +55,7 @@ build_deb(){
     cp -r $WORKSPACE/debian $target/
 
     mkdir -pv $target/usr/bin
-    cd $WORKSPACE/build/$1-$2-$3-Release/bin/
+    cd $WORKSPACE/build/$1-$2-Release/bin/
     cp -av fig mint pi $target/usr/bin/
 
     mkdir -pv $target/usr/share/palm
@@ -70,20 +70,20 @@ build_deb(){
     cp -r $WORKSPACE/LICENSE $WORKSPACE/README.md $WORKSPACE/package.json $target/etc/palm/
     echo "$GIT_VERSION $(date -R)" > $target/etc/palm/VERSION
 
-    if [ "$1" = "armhf" ]
+    if [ "$2" = "armhf" ]
     then
-        CC=arm-linux-gnueabihf-gcc
-        CXX=arm-linux-gnueabihf-g++
+        CC=arm-linux-gnueabihf-gcc-10
+        CXX=arm-linux-gnueabihf-g++-10
         export CC CXX
-    elif [ "$1" = "arm64" ]
+    elif [ "$2" = "arm64" ]
     then
-        CC=aarch64-linux-gnu-gcc
-        CXX=aarch64-linux-gnu-g++
+        CC=aarch64-linux-gnu-gcc-10
+        CXX=aarch64-linux-gnu-g++-10
         export CC CXX
-    elif [ "$1" = "amd64" ]
+    elif [ "$2" = "amd64" ]
     then
-        CC=gcc
-        CXX=g++
+        CC=gcc-11
+        CXX=g++-11
         export CC CXX
     else
         echo "unknown arch $1"
@@ -91,7 +91,7 @@ build_deb(){
     fi
     
     cd $target
-    dpkg-buildpackage -us -uc -b --host-arch $1
+    dpkg-buildpackage -us -uc -b --host-arch $2
 }
 
 # -----------------------------------------------------------------------------
@@ -105,7 +105,7 @@ then
     
     build_backend libstdc++ amd64 Debug
     build_backend libstdc++ amd64 Release
-    build_deb libstdc++ amd64 clang
+    build_deb libstdc++ amd64
     
     build_backend libstdc++ armhf Release
     # build_deb armhf clang
