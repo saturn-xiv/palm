@@ -1,0 +1,3 @@
+[submodule "vendors/tink"]
+	path = vendors/tink
+	url = https://github.com/google/tink.git
