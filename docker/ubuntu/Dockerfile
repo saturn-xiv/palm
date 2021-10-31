@@ -8,7 +8,7 @@ RUN apt -y upgrade
 RUN apt -y install debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
 
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
+# RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
 # https://apt.llvm.org/
 ENV CLANG_VERSION 13
 RUN echo "deb [arch=amd64] http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-${CLANG_VERSION} main" > /etc/apt/sources.list.d/llvm.list
@@ -25,14 +25,15 @@ RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-upd
 RUN apt update
 RUN apt -y upgrade
 
+ENV GCC_VERSION 10
 RUN apt -y install zsh git locales rsync openssh-client sshpass \
     vim sudo tzdata pwgen curl zip unzip tree tmux \
     net-tools dnsutils net-tools iputils-arping iputils-ping telnet \
     imagemagick ffmpeg \
     build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
-    g++-11 clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
-    g++-10-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
+    clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
+    g++-${GCC_VERSION} g++-${GCC_VERSION}-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
     crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
     crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
     python3 python3-distutils python3-pip python3-dev
@@ -113,32 +114,20 @@ RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/build/grpc-amd64 \
     && make install"
 
-ADD conan /opt/conan
-# RUN zsh -c "source $HOME/.zshrc \
-#     && cd /opt/conan \
-#     && ./install.sh"
-
 # https://github.com/microsoft/vcpkg#quick-start-unix
-# RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
-# RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
-# RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
+RUN git clone https://github.com/microsoft/vcpkg $HOME/local/vcpkg
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
+RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh
 # ADD vcpkg /opt/vcpkg
 # RUN ln -s /opt/vcpkg/triplets/* $HOME/local/vcpkg/triplets/
 # RUN ln -s /opt/vcpkg/toolchains/* $HOME/local/vcpkg/scripts/toolchains/
 # RUN sh -c ". $HOME/.profile \
 #     && /opt/vcpkg/install.sh"
 
-# https://github.com/llvm/llvm-project/releases
-# ENV CLANG_VERSION "13.0.0"
-# RUN wget -P $HOME/downloads https://github.com/llvm/llvm-project/releases/download/llvmorg-${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz
-# RUN tar xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
-
-# https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
-# ENV GNU_TOOLCHAIN_VERSION "10.3-2021.07"
-# RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
-# RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local
-# RUN wget -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu-a/${GNU_TOOLCHAIN_VERSION}/binrel/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
-# RUN tar xf $HOME/downloads/gcc-arm-${GNU_TOOLCHAIN_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
+# ADD conan /opt/conan
+# RUN zsh -c "source $HOME/.zshrc \
+#     && cd /opt/conan \
+#     && ./install.sh"
 
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
