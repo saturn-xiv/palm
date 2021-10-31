@@ -2,6 +2,7 @@
 libxcrypt/4.4.26
 # https://github.com/conan-io/conan-center-index/commit/0880e29dade6943e88c5b16aabc9b14d61d9a97c
 openssl/1.1.1l
+libsodium/1.0.18
 boost/1.77.0
 soci/4.0.2
 libpq/13.4
