@@ -1,7 +1,6 @@
 file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${palm_SOURCE_DIR}/include/palm/*.hpp")
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${palm_SOURCE_DIR}/src/*.cpp")
 
-
 add_library(palm STATIC ${SOURCE_LIST})
 
 # ----------------

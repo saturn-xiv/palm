@@ -1,5 +1,6 @@
 {
     "recommendations": [
+        "eamodio.gitlens",
         "ms-vscode.cpptools-extension-pack",
         "ms-python.python",
         "redhat.ansible",

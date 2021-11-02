@@ -24,6 +24,10 @@ string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
 configure_file(include/palm/version.h.in ${PROJECT_SOURCE_DIR}/include/palm/version.hpp)
 # --------------------------------------------------------
+
+# https://github.com/google/tink/blob/master/docs/CMAKE-HOWTO.md
+# add_subdirectory(vendors/tink)
+
 add_subdirectory(clients)
 add_subdirectory(src)
 add_subdirectory(apps)

@@ -7,6 +7,7 @@ A total free education &amp; translation &amp; ops solution.
 - Development
 
 ```bash
+git submodule update --init --recursive
 # start backend server
 ./scripts/build.sh
 cd build/arch-clang-Debug

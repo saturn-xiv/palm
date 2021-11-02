@@ -13,6 +13,7 @@
 #include <openssl/opensslv.h>
 #include <openssl/pem.h>
 #include <openssl/sha.h>
+#include <sodium.h>
 #include <cppcodec/base64_rfc4648.hpp>
 #include <cppcodec/base64_url.hpp>
 

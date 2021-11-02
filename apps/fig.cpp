@@ -5,12 +5,18 @@
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/health_check_service_interface.h>
 
+#include <sodium.h>
+
 void mount(httplib::Server& svr) {
   palm::forum::mount(svr);
   palm::nut::mount(svr);
 }
 
 int main(int ac, char** av) {
+  if (sodium_init() < 0) {
+    BOOST_LOG_TRIVIAL(error) << "failed to init sodium";
+    return EXIT_FAILURE;
+  }
   try {
     std::string config;
 
