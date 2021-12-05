@@ -1,0 +1,24 @@
+target=arm-linux-gnueabihf
+gcc_version=10
+clang_version=13
+
+[settings]
+os=Linux
+arch=armv7hf
+compiler=clang
+compiler.version=$clang_version
+compiler.libcxx=libstdc++11
+compiler.cppstd=20
+build_type=Release
+
+boost:compiler.cppstd=11
+protobuf:compiler.cppstd=11
+grpc:compiler.cppstd=17
+
+[env]
+CHOST=$target
+CC=clang-$clang_version
+CXX=clang++-$clang_version
+CFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
+CXXFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
+LDFLAGS="--ld-path=ld.lld-$clang_version"
