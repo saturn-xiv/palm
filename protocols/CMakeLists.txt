@@ -7,7 +7,7 @@ target_include_directories(lemon PUBLIC
   ${palm_SOURCE_DIR}/protocols/cpp/
 )
 
-target_link_libraries(protocols PUBLIC
+target_link_libraries(lemon PUBLIC
   dl crypt m ${CMAKE_THREAD_LIBS_INIT} ${CONAN_LIBS}
 )
 

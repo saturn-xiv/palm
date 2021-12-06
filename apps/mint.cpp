@@ -1,6 +1,10 @@
-#include <cstdlib>
 
 #include "palm/mint.hpp"
+#include "palm/version.hpp"
+
+#include <cstdlib>
+
+#include <boost/log/trivial.hpp>
 
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>

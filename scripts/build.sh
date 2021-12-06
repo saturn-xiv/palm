@@ -5,7 +5,7 @@ set -e
 export GCC_VERSION=10
 export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
-export CONAN_HOME=$WORKSPACE/docker/ubuntu/conan
+export CONAN_HOME=$WORKSPACE/docker/conan
 
 export CMAKE_LIBSERIAL_OPTIONS="-DINSTALL_SHARED=OFF \
     -DLIBSERIAL_BUILD_DOCS=OFF \
