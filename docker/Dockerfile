@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -92,11 +92,11 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 
 # https://grpc.io/docs/languages/cpp/quickstart/
+RUN sudo apt install -y libssl-dev
 ENV GRPC_VERSION "v1.39.1"
+ENV PROTOC_VERSION "v3.17.1"
 RUN zsh -c "source $HOME/.zshrc \
     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
-RUN sudo apt install libssl-dev
-ENV PROTOC_VERSION "v3.17.1"
 RUN cd $HOME/downloads/grpc/third_party/protobuf \
     && git checkout ${PROTOC_VERSION}
 RUN mkdir -pv $HOME/build/grpc-amd64
