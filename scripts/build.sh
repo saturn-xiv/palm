@@ -56,7 +56,7 @@ build_deb(){
 
     mkdir -pv $target/usr/bin
     cd $WORKSPACE/build/$1-$2-Release/bin/
-    cp -av fig mint pi $target/usr/bin/
+    cp -av fig mint $target/usr/bin/
 
     mkdir -pv $target/usr/share/palm
     cp -av $WORKSPACE/dashboard/dist $target/usr/share/palm/dashboard
@@ -122,10 +122,12 @@ then
     build_deb libstdc++ amd64
     
     build_backend libstdc++ armhf Release
-    # build_deb armhf clang
+    # FIXME
+    # build_deb libstdc++ armhf
 
     build_backend libstdc++ arm64 Release
-    # build_deb arm64 clang
+    # FIXME
+    # build_deb libstdc++ arm64
 elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard
