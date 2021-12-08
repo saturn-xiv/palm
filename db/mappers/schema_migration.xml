@@ -1,0 +1,10 @@
+<project namespace="palm::models">
+    <class name="Migration" table="schema_migrations">
+        <property name="version" type="string"/>
+        <property name="name" type="string"/>
+        <property name="up" type="string"/>
+        <property name="down" type="string"/>
+        <property name="run_on" type="dateTime" nullable="true"/>
+        <property name="created_at" type="dateTime"/>
+    </class>
+</project>

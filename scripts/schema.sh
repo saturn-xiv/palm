@@ -34,5 +34,19 @@ done
 
 # ---------------------------------------------------------
 
+if [ -d $WORKSPACE/models/src ]
+then
+    rm -f $WORKSPACE/models/src
+fi
+if [ -d $WORKSPACE/models/include ]
+then
+    rm -f $WORKSPACE/models/include
+fi
+
+cd $WORKSPACE/models
+arc ../mappers/*.xml
+
+# ---------------------------------------------------------
+ 
 echo 'done.'
 exit 0

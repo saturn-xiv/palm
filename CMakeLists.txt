@@ -26,6 +26,7 @@ configure_file(include/palm/version.h.in ${PROJECT_SOURCE_DIR}/include/palm/vers
 # --------------------------------------------------------
 
 add_subdirectory(protocols)
+add_subdirectory(models)
 add_subdirectory(src)
 add_subdirectory(apps)
 add_subdirectory(tests)

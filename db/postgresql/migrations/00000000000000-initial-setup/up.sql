@@ -1,5 +1,5 @@
 CREATE TABLE schema_migrations(
-    version BIGINT PRIMARY KEY,
+    version CHAR(14) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     up TEXT NOT NULL,
     down TEXT NOT NULL,
