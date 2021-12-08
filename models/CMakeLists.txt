@@ -4,7 +4,7 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${palm_SOURCE_DIR}/models/src/*.cpp")
 add_library(peony STATIC ${SOURCE_LIST})
 
 target_include_directories(peony PUBLIC
-  ${palm_SOURCE_DIR}/models/src/
+  ${palm_SOURCE_DIR}/models/include/
 )
 
 target_link_libraries(peony PUBLIC

@@ -44,7 +44,7 @@ then
 fi
 
 cd $WORKSPACE/models
-arc ../mappers/*.xml
+arc ../db/mappers/*.xml
 
 # ---------------------------------------------------------
  
