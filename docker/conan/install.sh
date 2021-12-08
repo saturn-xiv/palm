@@ -12,15 +12,15 @@ then
         "libstdc++/amd64"
         "libstdc++/arm64"
         "libstdc++/armhf"
-        # "libc++/amd64"
-        # "libc++/arm64"
-        # "libc++/armhf"
+        "libc++/amd64"
+        "libc++/arm64"
+        "libc++/armhf"
     )
 elif [[ $OS_NAME == "Arch" ]]
 then
     declare -a profiles=(
         "libstdc++/arch"
-        # "libc++/arch"
+        "libc++/arch"
     )
 else
     echo "Unknowk os $OS_NAME"
