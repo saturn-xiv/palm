@@ -7,9 +7,7 @@ target_include_directories(peony PUBLIC
   ${palm_SOURCE_DIR}/models/include/
 )
 
-target_link_libraries(peony PUBLIC
-  ${CMAKE_THREAD_LIBS_INIT} ${CONAN_LIBS}
-)
+target_link_libraries(peony PUBLIC ${CONAN_LIBS})
 
 source_group(
   TREE "${PROJECT_SOURCE_DIR}/models/include"

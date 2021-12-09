@@ -7,16 +7,7 @@ export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export CONAN_HOME=$WORKSPACE/docker/conan
 
-export CMAKE_LIBSERIAL_OPTIONS="-DINSTALL_SHARED=OFF \
-    -DLIBSERIAL_BUILD_DOCS=OFF \
-    -DLIBSERIAL_ENABLE_TESTING=OFF \
-    -DLIBSERIAL_PYTHON_ENABLE=OFF \
-    -DLIBSERIAL_BUILD_EXAMPLES=OFF \
-    -DCASBIN_BUILD_TEST=OFF \
-    -DCASBIN_BUILD_BENCHMARK=OFF \
-    -DCASBIN_BUILD_BINDINGS=OFF \
-    -DCASBIN_BUILD_PYTHON_BINDINGS=OFF \
-    -DCASBIN_INSTALL=OFF"
+export CMAKE_LIBSERIAL_OPTIONS=""
 
 build_backend() {
     echo "build $1-$2@$3..."
@@ -124,15 +115,19 @@ then
     build_backend libstdc++ armhf Release
     # FIXME
     # build_deb libstdc++ armhf
+    # build_backend libc++ armhf Release
 
     build_backend libstdc++ arm64 Release
     # FIXME
     # build_deb libstdc++ arm64
+    build_backend libc++ arm64 Release
+    
 elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard
     build_backend libstdc++ arch Debug
     build_backend libc++ arch Debug
+    build_backend libc++ arch Release
 else
     echo "Unknowk os $OS_NAME"
     exit 1

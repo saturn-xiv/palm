@@ -7,14 +7,16 @@ export OS_NAME=$(lsb_release -is)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    # sudo apt install -y libc++-13-dev libc++abi-13-dev
+    sudo apt install -y \
+        libc++-13-dev:amd64 libc++abi-13-dev:amd64 \
+        libc++-13-dev:arm64 libc++abi-13-dev:arm64
     declare -a profiles=(
         "libstdc++/amd64"
         "libstdc++/arm64"
         "libstdc++/armhf"
         "libc++/amd64"
         "libc++/arm64"
-        "libc++/armhf"
+        # "libc++/armhf"
     )
 elif [[ $OS_NAME == "Arch" ]]
 then
