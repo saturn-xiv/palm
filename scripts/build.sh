@@ -132,6 +132,7 @@ elif [[ $OS_NAME == "Arch" ]]
 then
     build_dashboard
     build_backend libstdc++ arch Debug
+    build_backend libc++ arch Debug
 else
     echo "Unknowk os $OS_NAME"
     exit 1
