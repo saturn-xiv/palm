@@ -35,8 +35,8 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} clang-format-${CLANG_VERSION} \
     libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev \
     g++-${GCC_VERSION} g++-${GCC_VERSION}-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
-    crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
-    crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
+    libc6-dev-armhf-cross crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
+    libc6-dev-arm64-cross crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
     python3 python3-distutils python3-pip python3-dev
 RUN apt -y autoremove
 RUN apt -y clean
