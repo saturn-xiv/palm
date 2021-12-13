@@ -37,7 +37,8 @@ RUN apt -y install zsh git locales rsync openssh-client sshpass \
     g++-${GCC_VERSION} g++-${GCC_VERSION}-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
     libc6-dev-armhf-cross crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
     libc6-dev-arm64-cross crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
-    python3 python3-distutils python3-pip python3-dev
+    python3 python3-distutils python3-pip python3-dev \
+    libssl-dev
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -93,7 +94,6 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 
 # https://grpc.io/docs/languages/cpp/quickstart/
-RUN sudo apt install -y libssl-dev
 ENV GRPC_VERSION "v1.39.1"
 ENV PROTOC_VERSION "v3.17.1"
 RUN zsh -c "source $HOME/.zshrc \
