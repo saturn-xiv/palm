@@ -1,14 +1,18 @@
 [requires]
 libxcrypt/4.4.26
 openssl/1.1.1l
-poco/1.11.1
 boost/1.77.0
+soci/4.0.2
+mongo-cxx-driver/3.6.6
+hiredis/1.0.2
 cpr/1.6.2
+cpp-httplib/0.9.10
+cpp-jwt/1.4
 inja/3.3.0
 nlohmann_json/3.10.3
 tomlplusplus/2.5.0
 yaml-cpp/0.7.0
-tinyxml/2.6.2
+expat/2.4.1
 cppcodec/0.2
 flatbuffers/2.0.0
 rabbitmq-c/0.11.0
@@ -21,7 +25,9 @@ zeromq:encryption=None
 sqlite3:build_executable=False
 boost:without_stacktrace=True
 boost:without_python=True
-poco:enable_data_mysql=False
+soci:with_sqlite3=True
+soci:with_postgresql=True
+soci:with_boost=True
 
 [generators]
 cmake
