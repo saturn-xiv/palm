@@ -43,8 +43,6 @@ then
     rm -r $WORKSPACE/models/include
 fi
 
-cd $WORKSPACE/models
-arc ../db/mappers/*.xml
 
 # ---------------------------------------------------------
  
