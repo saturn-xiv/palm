@@ -5,7 +5,7 @@
 #include "palm/snowflake.hpp"
 
 BOOST_AUTO_TEST_CASE(random_id) {
-  palm::Snowflake& it = palm::Snowflake::get();
+  palm::Snowflake& it = palm::Snowflake::instance();
   it.set(8, 8);
   for (int i = 0; i < 100; i++) {
     std::cout << i << ": " << it.next() << std::endl;

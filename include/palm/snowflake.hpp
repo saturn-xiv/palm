@@ -13,7 +13,7 @@ class Snowflake {
   Snowflake(Snowflake const&) = delete;
   void operator=(Snowflake const&) = delete;
 
-  static Snowflake& get() {
+  static Snowflake& instance() {
     static Snowflake it;
     return it;
   }
