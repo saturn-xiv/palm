@@ -1,5 +1,5 @@
-CREATE TABLE schema_migrations(
-    version CHAR(14) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS schema_migrations (
+    version VARCHAR(14) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     up TEXT NOT NULL,
     down TEXT NOT NULL,
@@ -7,4 +7,4 @@ CREATE TABLE schema_migrations(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX schema_migrations_name ON schema_migrations(name);
+CREATE INDEX IF NOT EXISTS schema_migrations_name ON schema_migrations(name);
