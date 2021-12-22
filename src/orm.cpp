@@ -2,7 +2,6 @@
 
 #include <soci/postgresql/soci-postgresql.h>
 #include <soci/sqlite3/soci-sqlite3.h>
-#include <boost/log/trivial.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 
 std::shared_ptr<soci::session> palm::sqlite3::open(
@@ -17,6 +16,7 @@ std::shared_ptr<soci::session> palm::sqlite3::open(
   }
   std::shared_ptr<soci::session> it =
       std::make_shared<soci::session>(soci::sqlite3, url.str());
+  it->set_logger(new palm::orm::Logger());
 
   (*it) << "PRAGMA foreign_keys = ON";
   if (wal_mode) {
@@ -44,6 +44,7 @@ std::shared_ptr<soci::session> palm::postgresql::open(
   }
   std::shared_ptr<soci::session> it =
       std::make_shared<soci::session>(soci::postgresql, url.str());
+  it->set_logger(new palm::orm::Logger());
   return it;
 }
 
@@ -70,6 +71,9 @@ palm::orm::Schema::Schema(const std::filesystem::path& root,
   const std::string sql_create = query.get("schema-migrations.create");
   for (const auto& it : std::filesystem::directory_iterator(top)) {
     const auto node = it.path();
+    if (!std::filesystem::is_directory(node)) {
+      continue;
+    }
     BOOST_LOG_TRIVIAL(info) << "load migration files from " << node;
 
     Migration mig;
@@ -83,27 +87,23 @@ palm::orm::Schema::Schema(const std::filesystem::path& root,
     mig.down = palm::file2str(node / "down.sql");
 
     {
-      Migration it;
+      boost::optional<Migration> cur;
 
-      soci::indicator ind;
-      (*db) << sql_by_version, soci::use(mig.version, "version"),
-          soci::into(it, ind);
+      (*db) << sql_by_version, soci::use(mig), soci::into(cur);
 
-      if (this->db->got_data()) {
-        if (ind == soci::i_ok) {
-          if (it.name != mig.name || it.up != mig.up || it.down != mig.down) {
-            std::stringstream ss;
-            ss << "bad migration record " << it.version;
-            throw std::runtime_error(ss.str());
-          }
-          continue;
+      if (cur.is_initialized()) {
+        if (cur->name != mig.name || cur->up != mig.up ||
+            cur->down != mig.down) {
+          std::stringstream ss;
+          ss << "bad migration record " << cur->version;
+          throw std::runtime_error(ss.str());
         }
+      } else {
+        BOOST_LOG_TRIVIAL(warning) << "can't found, save it";
+        (*db) << sql_create, soci::use(mig.version, "version"),
+            soci::use(mig.name, "name"), soci::use(mig.up, "up"),
+            soci::use(mig.down, "down");
       }
-
-      BOOST_LOG_TRIVIAL(info) << "save it";
-      (*db) << sql_create, soci::use(mig.version, "version"),
-          soci::use(mig.name, "name"), soci::use(mig.up, "up"),
-          soci::use(mig.down, "down");
     }
   }
 }
@@ -111,7 +111,7 @@ palm::orm::Schema::Schema(const std::filesystem::path& root,
 void palm::orm::Schema::migrate() {
   const palm::orm::Query& query = palm::orm::Query::instance();
   const std::string sql_all = query.get("schema-migrations.all");
-  const std::string sql_set_run_on = query.get("schema-migrations.set-run_on");
+  const std::string sql_set_run_on = query.get("schema-migrations.migrate");
   soci::rowset<palm::orm::Migration> rows = (this->db->prepare << sql_all);
 
   for (const auto& it : rows) {
@@ -131,22 +131,17 @@ void palm::orm::Schema::migrate() {
 void palm::orm::Schema::rollback() {
   const palm::orm::Query& query = palm::orm::Query::instance();
 
-  palm::orm::Migration it;
+  boost::optional<Migration> cur;
 
-  {
-    soci::indicator ind;
-    (*this->db) << query.get("schema-migrations.latest"), soci::into(it, ind);
-    if (ind != soci::i_ok) {
-      BOOST_LOG_TRIVIAL(info) << "database is empty";
-      return;
-    }
-  }
-  BOOST_LOG_TRIVIAL(info) << "rollback migration " << it;
-  {
+  (*this->db) << query.get("schema-migrations.latest"), soci::into(cur);
+  if (cur.is_initialized()) {
+    BOOST_LOG_TRIVIAL(info) << "rollback migration " << (*cur);
     soci::transaction tr(*this->db);
-    (*this->db) << it.down;
-    (*this->db) << query.get("schema-migrations.remove"), soci::use(it);
+    (*this->db) << cur->down;
+    (*this->db) << query.get("schema-migrations.rollback"), soci::use(cur);
     tr.commit();
+  } else {
+    BOOST_LOG_TRIVIAL(info) << "database is empty";
   }
 }
 
@@ -155,9 +150,15 @@ void palm::orm::Schema::status(std::ostream& out) {
   const std::string sql_all = query.get("schema-migrations.all");
 
   soci::rowset<palm::orm::Migration> rows = (this->db->prepare << sql_all);
-
+  const auto flags = out.flags();
+  out << std::setiosflags(std::ios::left);
   for (const auto& it : rows) {
-    // TODO
-    out << it << std::endl;
+    out << it.version << " " << std::setw(32) << it.name << " ";
+    if (it.run_on) {
+      out << std::asctime(&it.run_on.value());
+    } else {
+      out << "N/A" << std::endl;
+    }
   }
+  out << std::setiosflags(flags);
 }

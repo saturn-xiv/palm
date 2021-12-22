@@ -3,6 +3,10 @@ libxcrypt/4.4.26
 openssl/1.1.1l
 boost/1.77.0
 soci/4.0.2
+libpq/13.4
+#libpqxx/7.6.0
+sqlite3/3.37.0
+sqlitecpp/3.1.1
 mongo-cxx-driver/3.6.6
 hiredis/1.0.2
 cpr/1.6.2

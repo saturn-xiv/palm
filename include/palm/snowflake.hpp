@@ -32,11 +32,12 @@ class Snowflake {
 
     this->last_timestamp = it;
 
-    return ((it - 1640013999999L) << TIMESTAMP_LEFT_SHIFT) |
+    return ((it - this->started_epoch) << TIMESTAMP_LEFT_SHIFT) |
            (this->datacenter_id << DATACENTER_ID_SHIFT) |
            (this->worker_id << WORKER_ID_SHIFT) | this->sequence;
   }
-  void set(const uint8_t datacenter_id, const uint8_t worker_id);
+  void set(const std::chrono::year_month_day& begin,
+           const uint8_t datacenter_id, const uint8_t worker_id);
 
  private:
   Snowflake()
@@ -66,6 +67,7 @@ class Snowflake {
 
   uint8_t worker_id;
   uint8_t datacenter_id;
+  int64_t started_epoch;
   uint64_t last_timestamp;
   uint16_t sequence;
   int64_t started_millsecond;

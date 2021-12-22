@@ -12,8 +12,11 @@
 #include <unordered_map>
 #include <vector>
 
-#include <soci/soci.h>
+#include <boost/log/trivial.hpp>
 #include <boost/property_tree/ptree.hpp>
+
+#define SOCI_USE_BOOST
+#include <soci/soci.h>
 
 namespace palm {
 
@@ -60,6 +63,16 @@ std::shared_ptr<soci::session> open(
 }  // namespace postgresql
 
 namespace orm {
+class Logger : public soci::logger_impl {
+ public:
+  virtual void start_query(std::string const& query) {
+    BOOST_LOG_TRIVIAL(info) << query;
+  }
+
+ private:
+  virtual soci::logger_impl* do_clone() const { return new Logger(); }
+};
+
 class Query {
  public:
   Query(Query const&) = delete;
@@ -102,7 +115,7 @@ struct Migration {
   // LANG=C date +%Y%m%d%H%M%S
   std::string version;
   std::string name;
-  std::optional<std::tm> run_on;
+  boost::optional<std::tm> run_on;
   std::tm created_at;
 };
 class Schema {
@@ -124,17 +137,13 @@ template <>
 struct type_conversion<palm::orm::Migration> {
   typedef soci::values base_type;
 
-  static void from_base(const soci::values& v, soci::indicator,
+  static void from_base(const soci::values& v, soci::indicator i,
                         palm::orm::Migration& o) {
     o.version = v.get<std::string>("version");
     o.name = v.get<std::string>("name");
     o.up = v.get<std::string>("up");
     o.down = v.get<std::string>("down");
-    if (v.get_indicator("run_on") == soci::i_null) {
-      o.run_on = v.get<std::tm>("run_on");
-    } else {
-      o.run_on = std::nullopt;
-    }
+    o.run_on = v.get<boost::optional<std::tm>>("run_on");
     o.created_at = v.get<std::tm>("created_at");
   }
 
@@ -144,14 +153,8 @@ struct type_conversion<palm::orm::Migration> {
     v.set("name", o.name);
     v.set("up", o.up);
     v.set("down", o.down);
-
-    if (o.run_on) {
-      v.set("run_on", o.run_on.value(), soci::i_ok);
-    } else {
-      std::tm now;
-      v.set("run_on", now, soci::i_null);
-    }
-
+    v.set("run_on", o.run_on,
+          o.run_on.is_initialized() ? soci::i_ok : soci::i_null);
     v.set("created_at", o.created_at);
 
     i = soci::i_ok;

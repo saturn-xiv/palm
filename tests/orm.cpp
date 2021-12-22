@@ -1,4 +1,4 @@
-#define BOOST_TEST_MODULE rbac
+#define BOOST_TEST_MODULE orm
 #include <boost/test/unit_test.hpp>
 
 #include "palm/orm.hpp"
@@ -34,9 +34,9 @@ BOOST_AUTO_TEST_CASE(postgresql) {
     palm::orm::Schema it = palm::orm::Schema(DB_ROOT, db);
 
     it.status(std::cout);
-    // it.migrate();
-    // it.status(std::cout);
-    // it.rollback();
-    // it.status(std::cout);
+    it.migrate();
+    it.status(std::cout);
+    it.rollback();
+    it.status(std::cout);
   }
 }
