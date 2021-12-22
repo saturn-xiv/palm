@@ -157,7 +157,7 @@ void palm::orm::Schema::status(std::ostream& out) {
     if (it.run_on) {
       out << std::asctime(&it.run_on.value());
     } else {
-      out << "N/A" << std::endl;
+      out << "Pending" << std::endl;
     }
   }
   out << std::setiosflags(flags);

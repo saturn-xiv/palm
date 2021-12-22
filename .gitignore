@@ -6,6 +6,6 @@
 /yarn.lock
 
 /.env
-/*.properties
+/*.ini
 
 .*.swp
