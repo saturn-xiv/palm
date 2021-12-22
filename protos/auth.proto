@@ -9,11 +9,11 @@ import "google/protobuf/timestamp.proto";
 service User {
   rpc SignIn(SignInRequest) returns (google.protobuf.Empty) {}
   rpc SignUp(SignUpRequest) returns (google.protobuf.Empty) {}
-  rpc Confirm(EmailForm) returns (google.protobuf.Empty) {}
+  rpc Confirm(UserQuery) returns (google.protobuf.Empty) {}
   rpc ConfirmByToken(TokenForm) returns (google.protobuf.Empty) {}
-  rpc Unlock(EmailForm) returns (google.protobuf.Empty) {}
+  rpc Unlock(UserQuery) returns (google.protobuf.Empty) {}
   rpc UnlockByToken(TokenForm) returns (google.protobuf.Empty) {}
-  rpc ForgotPassword(EmailForm) returns (google.protobuf.Empty) {}
+  rpc ForgotPassword(UserQuery) returns (google.protobuf.Empty) {}
   rpc ResetPassword(ResetPasswordRequest) returns (google.protobuf.Empty) {}
   rpc ChangePassword(ChangePasswordRequest) returns (google.protobuf.Empty) {}
   rpc SetProfile(ProfileRequest) returns (google.protobuf.Empty) {}
@@ -24,7 +24,6 @@ service User {
   rpc Index(google.protobuf.Duration) returns (UserList) {}
   rpc Show(UserQuery) returns (UserList.Item) {}
   rpc Lock(UserQuery) returns (google.protobuf.Empty) {}
-  rpc Destory(UserQuery) returns (google.protobuf.Empty) {}
 }
 
 message LogList {
@@ -63,8 +62,10 @@ message SignUpRequest {
   string real_name = 3;
   string password = 4;
 }
-message EmailForm { string email = 1; }
-message TokenForm { string token = 1; }
+
+message TokenForm {
+  string token = 1;
+}
 message ResetPasswordRequest {
   string token = 1;
   string password = 2;
@@ -81,7 +82,6 @@ message ProfileRequest {
 }
 
 message UserList {
-
   message Provider {
     enum Type {
       Email = 0;
@@ -123,7 +123,6 @@ message UserList {
 
 message UserQuery {
   oneof who {
-    int64 id = 1;
     string nick_name = 2;
     string email = 3;
   }
@@ -147,7 +146,9 @@ message AttachmentList {
   repeated Item items = 1;
 }
 
-message AttachmentQuery { string code = 1; }
+message AttachmentQuery {
+  string code = 1;
+}
 
 message AttachmentUploadRequest {
   string code = 1;

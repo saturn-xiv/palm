@@ -6,7 +6,6 @@
 #include <cstdint>
 #include <ctime>
 #include <mutex>
-#include <optional>
 #include <sstream>
 #include <stdexcept>
 #include <unordered_map>
@@ -14,9 +13,6 @@
 
 #include <boost/log/trivial.hpp>
 #include <boost/property_tree/ptree.hpp>
-
-#define SOCI_USE_BOOST
-#include <soci/soci.h>
 
 namespace palm {
 
@@ -66,7 +62,7 @@ namespace orm {
 class Logger : public soci::logger_impl {
  public:
   virtual void start_query(std::string const& query) {
-    BOOST_LOG_TRIVIAL(info) << query;
+    BOOST_LOG_TRIVIAL(debug) << query;
   }
 
  private:
@@ -115,7 +111,7 @@ struct Migration {
   // LANG=C date +%Y%m%d%H%M%S
   std::string version;
   std::string name;
-  boost::optional<std::tm> run_on;
+  std::optional<std::tm> run_on;
   std::tm created_at;
 };
 class Schema {
@@ -143,7 +139,7 @@ struct type_conversion<palm::orm::Migration> {
     o.name = v.get<std::string>("name");
     o.up = v.get<std::string>("up");
     o.down = v.get<std::string>("down");
-    o.run_on = v.get<boost::optional<std::tm>>("run_on");
+    o.run_on = v.get<std::optional<std::tm>>("run_on");
     o.created_at = v.get<std::tm>("created_at");
   }
 
@@ -153,8 +149,7 @@ struct type_conversion<palm::orm::Migration> {
     v.set("name", o.name);
     v.set("up", o.up);
     v.set("down", o.down);
-    v.set("run_on", o.run_on,
-          o.run_on.is_initialized() ? soci::i_ok : soci::i_null);
+    v.set("run_on", o.run_on, o.run_on ? soci::i_ok : soci::i_null);
     v.set("created_at", o.created_at);
 
     i = soci::i_ok;

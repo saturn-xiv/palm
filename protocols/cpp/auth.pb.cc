@@ -91,18 +91,6 @@ struct SignUpRequestDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SignUpRequestDefaultTypeInternal _SignUpRequest_default_instance_;
-constexpr EmailForm::EmailForm(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : email_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
-struct EmailFormDefaultTypeInternal {
-  constexpr EmailFormDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~EmailFormDefaultTypeInternal() {}
-  union {
-    EmailForm _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT EmailFormDefaultTypeInternal _EmailForm_default_instance_;
 constexpr TokenForm::TokenForm(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : token_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
@@ -303,7 +291,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AttachmentUploadRequestDefaultT
 }  // namespace v1
 }  // namespace auth
 }  // namespace palm
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_auth_2eproto[20];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_auth_2eproto[19];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_auth_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_auth_2eproto = nullptr;
 
@@ -351,12 +339,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_auth_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::palm::auth::v1::SignUpRequest, nick_name_),
   PROTOBUF_FIELD_OFFSET(::palm::auth::v1::SignUpRequest, real_name_),
   PROTOBUF_FIELD_OFFSET(::palm::auth::v1::SignUpRequest, password_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::auth::v1::EmailForm, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::palm::auth::v1::EmailForm, email_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::palm::auth::v1::TokenForm, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -463,7 +445,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_auth_2eproto::offsets[] PROTOB
   ~0u,  // no _weak_field_map_
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::palm::auth::v1::UserQuery, who_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::palm::auth::v1::AttachmentList_Item, _internal_metadata_),
@@ -501,21 +482,20 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 17, -1, sizeof(::palm::auth::v1::SignInRequest)},
   { 27, -1, sizeof(::palm::auth::v1::SignInResponse)},
   { 34, -1, sizeof(::palm::auth::v1::SignUpRequest)},
-  { 43, -1, sizeof(::palm::auth::v1::EmailForm)},
-  { 49, -1, sizeof(::palm::auth::v1::TokenForm)},
-  { 55, -1, sizeof(::palm::auth::v1::ResetPasswordRequest)},
-  { 62, -1, sizeof(::palm::auth::v1::ChangePasswordRequest)},
-  { 69, -1, sizeof(::palm::auth::v1::ProfileRequest)},
-  { 77, -1, sizeof(::palm::auth::v1::UserList_Provider)},
-  { 84, 91, sizeof(::palm::auth::v1::UserList_Profile_DataEntry_DoNotUse)},
-  { 93, -1, sizeof(::palm::auth::v1::UserList_Profile)},
-  { 101, 124, sizeof(::palm::auth::v1::UserList_Item)},
-  { 142, -1, sizeof(::palm::auth::v1::UserList)},
-  { 148, -1, sizeof(::palm::auth::v1::UserQuery)},
-  { 157, -1, sizeof(::palm::auth::v1::AttachmentList_Item)},
-  { 167, -1, sizeof(::palm::auth::v1::AttachmentList)},
-  { 173, -1, sizeof(::palm::auth::v1::AttachmentQuery)},
-  { 179, -1, sizeof(::palm::auth::v1::AttachmentUploadRequest)},
+  { 43, -1, sizeof(::palm::auth::v1::TokenForm)},
+  { 49, -1, sizeof(::palm::auth::v1::ResetPasswordRequest)},
+  { 56, -1, sizeof(::palm::auth::v1::ChangePasswordRequest)},
+  { 63, -1, sizeof(::palm::auth::v1::ProfileRequest)},
+  { 71, -1, sizeof(::palm::auth::v1::UserList_Provider)},
+  { 78, 85, sizeof(::palm::auth::v1::UserList_Profile_DataEntry_DoNotUse)},
+  { 87, -1, sizeof(::palm::auth::v1::UserList_Profile)},
+  { 95, 118, sizeof(::palm::auth::v1::UserList_Item)},
+  { 136, -1, sizeof(::palm::auth::v1::UserList)},
+  { 142, -1, sizeof(::palm::auth::v1::UserQuery)},
+  { 150, -1, sizeof(::palm::auth::v1::AttachmentList_Item)},
+  { 160, -1, sizeof(::palm::auth::v1::AttachmentList)},
+  { 166, -1, sizeof(::palm::auth::v1::AttachmentQuery)},
+  { 172, -1, sizeof(::palm::auth::v1::AttachmentUploadRequest)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -524,7 +504,6 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::auth::v1::_SignInRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::auth::v1::_SignInResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::auth::v1::_SignUpRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::auth::v1::_EmailForm_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::auth::v1::_TokenForm_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::auth::v1::_ResetPasswordRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::palm::auth::v1::_ChangePasswordRequest_default_instance_),
@@ -559,84 +538,81 @@ const char descriptor_table_protodef_auth_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\034.palm.auth.v1.ProfileRequest\"V\n\rSignUpR"
   "equest\022\r\n\005email\030\001 \001(\t\022\021\n\tnick_name\030\002 \001(\t"
   "\022\021\n\treal_name\030\003 \001(\t\022\020\n\010password\030\004 \001(\t\"\032\n"
-  "\tEmailForm\022\r\n\005email\030\001 \001(\t\"\032\n\tTokenForm\022\r"
-  "\n\005token\030\001 \001(\t\"7\n\024ResetPasswordRequest\022\r\n"
-  "\005token\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"G\n\025Change"
-  "PasswordRequest\022\030\n\020current_password\030\001 \001("
-  "\t\022\024\n\014new_password\030\002 \001(\t\"\?\n\016ProfileReques"
-  "t\022\021\n\treal_name\030\001 \001(\t\022\014\n\004logo\030\002 \001(\t\022\014\n\004ho"
-  "me\030\003 \001(\t\"\311\010\n\010UserList\022*\n\005items\030\001 \003(\0132\033.p"
-  "alm.auth.v1.UserList.Item\032\203\001\n\010Provider\0222"
-  "\n\004type\030\001 \001(\0162$.palm.auth.v1.UserList.Pro"
-  "vider.Type\022\n\n\002id\030\002 \001(\t\"7\n\004Type\022\t\n\005Email\020"
-  "\000\022\n\n\006Google\020\001\022\014\n\010Factbook\020\002\022\n\n\006WeChat\020\003\032"
-  "\215\001\n\007Profile\022\014\n\004logo\030\001 \001(\t\022\017\n\007address\030\004 \001"
-  "(\t\0226\n\004data\030\t \003(\0132(.palm.auth.v1.UserList"
-  ".Profile.DataEntry\032+\n\tDataEntry\022\013\n\003key\030\001"
-  " \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032\372\005\n\004Item\022\n\n\002id\030\001"
-  " \001(\003\022\021\n\treal_name\030\002 \001(\t\022\021\n\tnick_name\030\003 \001"
-  "(\t\022\r\n\005email\030\004 \001(\t\022\013\n\003uid\030\005 \001(\t\0221\n\010provid"
-  "er\030\006 \001(\0132\037.palm.auth.v1.UserList.Provide"
-  "r\022\014\n\004lang\030\007 \001(\t\022\021\n\ttime_zone\030\010 \001(\t\022/\n\007pr"
-  "ofile\030\023 \001(\0132\036.palm.auth.v1.UserList.Prof"
-  "ile\022\025\n\rsign_in_count\030\025 \001(\005\022;\n\022current_si"
-  "gn_in_at\030\026 \001(\0132\032.google.protobuf.Timesta"
-  "mpH\000\210\001\001\022\037\n\022current_sign_in_ip\030\027 \001(\tH\001\210\001\001"
-  "\0228\n\017last_sign_in_at\030\030 \001(\0132\032.google.proto"
-  "buf.TimestampH\002\210\001\001\022\034\n\017last_sign_in_ip\030\031 "
-  "\001(\tH\003\210\001\001\0225\n\014confirmed_at\030\037 \001(\0132\032.google."
-  "protobuf.TimestampH\004\210\001\001\0222\n\tlocked_at\030  \001"
-  "(\0132\032.google.protobuf.TimestampH\005\210\001\001\0223\n\nd"
-  "eleted_at\030! \001(\0132\032.google.protobuf.Timest"
-  "ampH\006\210\001\001\022.\n\nupdated_at\030\' \001(\0132\032.google.pr"
-  "otobuf.TimestampB\025\n\023_current_sign_in_atB"
-  "\025\n\023_current_sign_in_ipB\022\n\020_last_sign_in_"
-  "atB\022\n\020_last_sign_in_ipB\017\n\r_confirmed_atB"
-  "\014\n\n_locked_atB\r\n\013_deleted_at\"F\n\tUserQuer"
-  "y\022\014\n\002id\030\001 \001(\003H\000\022\023\n\tnick_name\030\002 \001(\tH\000\022\017\n\005"
-  "email\030\003 \001(\tH\000B\005\n\003who\"\233\001\n\016AttachmentList\022"
-  "0\n\005items\030\001 \003(\0132!.palm.auth.v1.Attachment"
-  "List.Item\032W\n\004Item\022\014\n\004code\030\001 \001(\t\022\014\n\004user\030"
-  "\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\024\n\014content_type\030\004 \001"
-  "(\t\022\016\n\006length\030\005 \001(\004\"\037\n\017AttachmentQuery\022\014\n"
-  "\004code\030\001 \001(\t\"5\n\027AttachmentUploadRequest\022\014"
-  "\n\004code\030\001 \001(\t\022\014\n\004file\030\002 \001(\t2\343\010\n\004User\022\?\n\006S"
-  "ignIn\022\033.palm.auth.v1.SignInRequest\032\026.goo"
-  "gle.protobuf.Empty\"\000\022\?\n\006SignUp\022\033.palm.au"
-  "th.v1.SignUpRequest\032\026.google.protobuf.Em"
-  "pty\"\000\022<\n\007Confirm\022\027.palm.auth.v1.EmailFor"
-  "m\032\026.google.protobuf.Empty\"\000\022C\n\016ConfirmBy"
-  "Token\022\027.palm.auth.v1.TokenForm\032\026.google."
-  "protobuf.Empty\"\000\022;\n\006Unlock\022\027.palm.auth.v"
-  "1.EmailForm\032\026.google.protobuf.Empty\"\000\022B\n"
-  "\rUnlockByToken\022\027.palm.auth.v1.TokenForm\032"
-  "\026.google.protobuf.Empty\"\000\022C\n\016ForgotPassw"
-  "ord\022\027.palm.auth.v1.EmailForm\032\026.google.pr"
-  "otobuf.Empty\"\000\022M\n\rResetPassword\022\".palm.a"
-  "uth.v1.ResetPasswordRequest\032\026.google.pro"
-  "tobuf.Empty\"\000\022O\n\016ChangePassword\022#.palm.a"
-  "uth.v1.ChangePasswordRequest\032\026.google.pr"
-  "otobuf.Empty\"\000\022D\n\nSetProfile\022\034.palm.auth"
-  ".v1.ProfileRequest\032\026.google.protobuf.Emp"
-  "ty\"\000\022;\n\007SignOut\022\026.google.protobuf.Empty\032"
-  "\026.google.protobuf.Empty\"\000\022=\n\004Self\022\026.goog"
-  "le.protobuf.Empty\032\033.palm.auth.v1.UserLis"
-  "t.Item\"\000\0227\n\003Log\022\031.google.protobuf.Durati"
-  "on\032\025.palm.auth.v1.LogList\022<\n\005Index\022\031.goo"
-  "gle.protobuf.Duration\032\026.palm.auth.v1.Use"
-  "rList\"\000\022>\n\004Show\022\027.palm.auth.v1.UserQuery"
-  "\032\033.palm.auth.v1.UserList.Item\"\000\0229\n\004Lock\022"
-  "\027.palm.auth.v1.UserQuery\032\026.google.protob"
-  "uf.Empty\"\000\022<\n\007Destory\022\027.palm.auth.v1.Use"
-  "rQuery\032\026.google.protobuf.Empty\"\0002\251\002\n\nAtt"
-  "achment\022@\n\003All\022\031.google.protobuf.Duratio"
-  "n\032\034.palm.auth.v1.AttachmentList\"\000\022J\n\004Sho"
-  "w\022\035.palm.auth.v1.AttachmentQuery\032!.palm."
-  "auth.v1.AttachmentList.Item\"\000\022I\n\006Upload\022"
-  "%.palm.auth.v1.AttachmentUploadRequest\032\026"
-  ".google.protobuf.Empty\"\000\022B\n\007Destory\022\035.pa"
-  "lm.auth.v1.AttachmentQuery\032\026.google.prot"
-  "obuf.Empty\"\000B\002P\001b\006proto3"
+  "\tTokenForm\022\r\n\005token\030\001 \001(\t\"7\n\024ResetPasswo"
+  "rdRequest\022\r\n\005token\030\001 \001(\t\022\020\n\010password\030\002 \001"
+  "(\t\"G\n\025ChangePasswordRequest\022\030\n\020current_p"
+  "assword\030\001 \001(\t\022\024\n\014new_password\030\002 \001(\t\"\?\n\016P"
+  "rofileRequest\022\021\n\treal_name\030\001 \001(\t\022\014\n\004logo"
+  "\030\002 \001(\t\022\014\n\004home\030\003 \001(\t\"\311\010\n\010UserList\022*\n\005ite"
+  "ms\030\001 \003(\0132\033.palm.auth.v1.UserList.Item\032\203\001"
+  "\n\010Provider\0222\n\004type\030\001 \001(\0162$.palm.auth.v1."
+  "UserList.Provider.Type\022\n\n\002id\030\002 \001(\t\"7\n\004Ty"
+  "pe\022\t\n\005Email\020\000\022\n\n\006Google\020\001\022\014\n\010Factbook\020\002\022"
+  "\n\n\006WeChat\020\003\032\215\001\n\007Profile\022\014\n\004logo\030\001 \001(\t\022\017\n"
+  "\007address\030\004 \001(\t\0226\n\004data\030\t \003(\0132(.palm.auth"
+  ".v1.UserList.Profile.DataEntry\032+\n\tDataEn"
+  "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032\372\005\n\004"
+  "Item\022\n\n\002id\030\001 \001(\003\022\021\n\treal_name\030\002 \001(\t\022\021\n\tn"
+  "ick_name\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\013\n\003uid\030\005 \001"
+  "(\t\0221\n\010provider\030\006 \001(\0132\037.palm.auth.v1.User"
+  "List.Provider\022\014\n\004lang\030\007 \001(\t\022\021\n\ttime_zone"
+  "\030\010 \001(\t\022/\n\007profile\030\023 \001(\0132\036.palm.auth.v1.U"
+  "serList.Profile\022\025\n\rsign_in_count\030\025 \001(\005\022;"
+  "\n\022current_sign_in_at\030\026 \001(\0132\032.google.prot"
+  "obuf.TimestampH\000\210\001\001\022\037\n\022current_sign_in_i"
+  "p\030\027 \001(\tH\001\210\001\001\0228\n\017last_sign_in_at\030\030 \001(\0132\032."
+  "google.protobuf.TimestampH\002\210\001\001\022\034\n\017last_s"
+  "ign_in_ip\030\031 \001(\tH\003\210\001\001\0225\n\014confirmed_at\030\037 \001"
+  "(\0132\032.google.protobuf.TimestampH\004\210\001\001\0222\n\tl"
+  "ocked_at\030  \001(\0132\032.google.protobuf.Timesta"
+  "mpH\005\210\001\001\0223\n\ndeleted_at\030! \001(\0132\032.google.pro"
+  "tobuf.TimestampH\006\210\001\001\022.\n\nupdated_at\030\' \001(\013"
+  "2\032.google.protobuf.TimestampB\025\n\023_current"
+  "_sign_in_atB\025\n\023_current_sign_in_ipB\022\n\020_l"
+  "ast_sign_in_atB\022\n\020_last_sign_in_ipB\017\n\r_c"
+  "onfirmed_atB\014\n\n_locked_atB\r\n\013_deleted_at"
+  "\"8\n\tUserQuery\022\023\n\tnick_name\030\002 \001(\tH\000\022\017\n\005em"
+  "ail\030\003 \001(\tH\000B\005\n\003who\"\233\001\n\016AttachmentList\0220\n"
+  "\005items\030\001 \003(\0132!.palm.auth.v1.AttachmentLi"
+  "st.Item\032W\n\004Item\022\014\n\004code\030\001 \001(\t\022\014\n\004user\030\002 "
+  "\001(\t\022\r\n\005title\030\003 \001(\t\022\024\n\014content_type\030\004 \001(\t"
+  "\022\016\n\006length\030\005 \001(\004\"\037\n\017AttachmentQuery\022\014\n\004c"
+  "ode\030\001 \001(\t\"5\n\027AttachmentUploadRequest\022\014\n\004"
+  "code\030\001 \001(\t\022\014\n\004file\030\002 \001(\t2\245\010\n\004User\022\?\n\006Sig"
+  "nIn\022\033.palm.auth.v1.SignInRequest\032\026.googl"
+  "e.protobuf.Empty\"\000\022\?\n\006SignUp\022\033.palm.auth"
+  ".v1.SignUpRequest\032\026.google.protobuf.Empt"
+  "y\"\000\022<\n\007Confirm\022\027.palm.auth.v1.UserQuery\032"
+  "\026.google.protobuf.Empty\"\000\022C\n\016ConfirmByTo"
+  "ken\022\027.palm.auth.v1.TokenForm\032\026.google.pr"
+  "otobuf.Empty\"\000\022;\n\006Unlock\022\027.palm.auth.v1."
+  "UserQuery\032\026.google.protobuf.Empty\"\000\022B\n\rU"
+  "nlockByToken\022\027.palm.auth.v1.TokenForm\032\026."
+  "google.protobuf.Empty\"\000\022C\n\016ForgotPasswor"
+  "d\022\027.palm.auth.v1.UserQuery\032\026.google.prot"
+  "obuf.Empty\"\000\022M\n\rResetPassword\022\".palm.aut"
+  "h.v1.ResetPasswordRequest\032\026.google.proto"
+  "buf.Empty\"\000\022O\n\016ChangePassword\022#.palm.aut"
+  "h.v1.ChangePasswordRequest\032\026.google.prot"
+  "obuf.Empty\"\000\022D\n\nSetProfile\022\034.palm.auth.v"
+  "1.ProfileRequest\032\026.google.protobuf.Empty"
+  "\"\000\022;\n\007SignOut\022\026.google.protobuf.Empty\032\026."
+  "google.protobuf.Empty\"\000\022=\n\004Self\022\026.google"
+  ".protobuf.Empty\032\033.palm.auth.v1.UserList."
+  "Item\"\000\0227\n\003Log\022\031.google.protobuf.Duration"
+  "\032\025.palm.auth.v1.LogList\022<\n\005Index\022\031.googl"
+  "e.protobuf.Duration\032\026.palm.auth.v1.UserL"
+  "ist\"\000\022>\n\004Show\022\027.palm.auth.v1.UserQuery\032\033"
+  ".palm.auth.v1.UserList.Item\"\000\0229\n\004Lock\022\027."
+  "palm.auth.v1.UserQuery\032\026.google.protobuf"
+  ".Empty\"\0002\251\002\n\nAttachment\022@\n\003All\022\031.google."
+  "protobuf.Duration\032\034.palm.auth.v1.Attachm"
+  "entList\"\000\022J\n\004Show\022\035.palm.auth.v1.Attachm"
+  "entQuery\032!.palm.auth.v1.AttachmentList.I"
+  "tem\"\000\022I\n\006Upload\022%.palm.auth.v1.Attachmen"
+  "tUploadRequest\032\026.google.protobuf.Empty\"\000"
+  "\022B\n\007Destory\022\035.palm.auth.v1.AttachmentQue"
+  "ry\032\026.google.protobuf.Empty\"\000B\002P\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_auth_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -645,8 +621,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_auth_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_auth_2eproto = {
-  false, false, 3784, descriptor_table_protodef_auth_2eproto, "auth.proto", 
-  &descriptor_table_auth_2eproto_once, descriptor_table_auth_2eproto_deps, 3, 20,
+  false, false, 3680, descriptor_table_protodef_auth_2eproto, "auth.proto", 
+  &descriptor_table_auth_2eproto_once, descriptor_table_auth_2eproto_deps, 3, 19,
   schemas, file_default_instances, TableStruct_auth_2eproto::offsets,
   file_level_metadata_auth_2eproto, file_level_enum_descriptors_auth_2eproto, file_level_service_descriptors_auth_2eproto,
 };
@@ -2227,211 +2203,6 @@ void SignUpRequest::InternalSwap(SignUpRequest* other) {
 
 // ===================================================================
 
-class EmailForm::_Internal {
- public:
-};
-
-EmailForm::EmailForm(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.auth.v1.EmailForm)
-}
-EmailForm::EmailForm(const EmailForm& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  email_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_email().empty()) {
-    email_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_email(), 
-      GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(copy_constructor:palm.auth.v1.EmailForm)
-}
-
-void EmailForm::SharedCtor() {
-email_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-EmailForm::~EmailForm() {
-  // @@protoc_insertion_point(destructor:palm.auth.v1.EmailForm)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void EmailForm::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  email_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void EmailForm::ArenaDtor(void* object) {
-  EmailForm* _this = reinterpret_cast< EmailForm* >(object);
-  (void)_this;
-}
-void EmailForm::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void EmailForm::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void EmailForm::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.auth.v1.EmailForm)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  email_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* EmailForm::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string email = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_email();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "palm.auth.v1.EmailForm.email"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* EmailForm::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.auth.v1.EmailForm)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string email = 1;
-  if (!this->email().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.auth.v1.EmailForm.email");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_email(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.auth.v1.EmailForm)
-  return target;
-}
-
-size_t EmailForm::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.auth.v1.EmailForm)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string email = 1;
-  if (!this->email().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_email());
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void EmailForm::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:palm.auth.v1.EmailForm)
-  GOOGLE_DCHECK_NE(&from, this);
-  const EmailForm* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<EmailForm>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:palm.auth.v1.EmailForm)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:palm.auth.v1.EmailForm)
-    MergeFrom(*source);
-  }
-}
-
-void EmailForm::MergeFrom(const EmailForm& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:palm.auth.v1.EmailForm)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from.email().empty()) {
-    _internal_set_email(from._internal_email());
-  }
-}
-
-void EmailForm::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:palm.auth.v1.EmailForm)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void EmailForm::CopyFrom(const EmailForm& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.auth.v1.EmailForm)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool EmailForm::IsInitialized() const {
-  return true;
-}
-
-void EmailForm::InternalSwap(EmailForm* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &email_, GetArenaForAllocation(),
-      &other->email_, other->GetArenaForAllocation()
-  );
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata EmailForm::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
-      &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[5]);
-}
-
-// ===================================================================
-
 class TokenForm::_Internal {
  public:
 };
@@ -2632,7 +2403,7 @@ void TokenForm::InternalSwap(TokenForm* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TokenForm::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[6]);
+      file_level_metadata_auth_2eproto[5]);
 }
 
 // ===================================================================
@@ -2879,7 +2650,7 @@ void ResetPasswordRequest::InternalSwap(ResetPasswordRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ResetPasswordRequest::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[7]);
+      file_level_metadata_auth_2eproto[6]);
 }
 
 // ===================================================================
@@ -3126,7 +2897,7 @@ void ChangePasswordRequest::InternalSwap(ChangePasswordRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ChangePasswordRequest::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[8]);
+      file_level_metadata_auth_2eproto[7]);
 }
 
 // ===================================================================
@@ -3415,7 +3186,7 @@ void ProfileRequest::InternalSwap(ProfileRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ProfileRequest::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[9]);
+      file_level_metadata_auth_2eproto[8]);
 }
 
 // ===================================================================
@@ -3648,7 +3419,7 @@ void UserList_Provider::InternalSwap(UserList_Provider* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserList_Provider::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[10]);
+      file_level_metadata_auth_2eproto[9]);
 }
 
 // ===================================================================
@@ -3662,7 +3433,7 @@ void UserList_Profile_DataEntry_DoNotUse::MergeFrom(const UserList_Profile_DataE
 ::PROTOBUF_NAMESPACE_ID::Metadata UserList_Profile_DataEntry_DoNotUse::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[11]);
+      file_level_metadata_auth_2eproto[10]);
 }
 void UserList_Profile_DataEntry_DoNotUse::MergeFrom(
     const ::PROTOBUF_NAMESPACE_ID::Message& other) {
@@ -3990,7 +3761,7 @@ void UserList_Profile::InternalSwap(UserList_Profile* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserList_Profile::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[12]);
+      file_level_metadata_auth_2eproto[11]);
 }
 
 // ===================================================================
@@ -4943,7 +4714,7 @@ void UserList_Item::InternalSwap(UserList_Item* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserList_Item::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[13]);
+      file_level_metadata_auth_2eproto[12]);
 }
 
 // ===================================================================
@@ -5138,7 +4909,7 @@ void UserList::InternalSwap(UserList* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserList::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[14]);
+      file_level_metadata_auth_2eproto[13]);
 }
 
 // ===================================================================
@@ -5158,10 +4929,6 @@ UserQuery::UserQuery(const UserQuery& from)
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   clear_has_who();
   switch (from.who_case()) {
-    case kId: {
-      _internal_set_id(from._internal_id());
-      break;
-    }
     case kNickName: {
       _internal_set_nick_name(from._internal_nick_name());
       break;
@@ -5207,10 +4974,6 @@ void UserQuery::SetCachedSize(int size) const {
 void UserQuery::clear_who() {
 // @@protoc_insertion_point(one_of_clear_start:palm.auth.v1.UserQuery)
   switch (who_case()) {
-    case kId: {
-      // No need to clear
-      break;
-    }
     case kNickName: {
       who_.nick_name_.Destroy(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
       break;
@@ -5243,13 +5006,6 @@ const char* UserQuery::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int64 id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_id(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
       // string nick_name = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
@@ -5297,12 +5053,6 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int64 id = 1;
-  if (_internal_has_id()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_id(), target);
-  }
-
   // string nick_name = 2;
   if (_internal_has_nick_name()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
@@ -5340,13 +5090,6 @@ size_t UserQuery::ByteSizeLong() const {
   (void) cached_has_bits;
 
   switch (who_case()) {
-    // int64 id = 1;
-    case kId: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
-          this->_internal_id());
-      break;
-    }
     // string nick_name = 2;
     case kNickName: {
       total_size += 1 +
@@ -5397,10 +5140,6 @@ void UserQuery::MergeFrom(const UserQuery& from) {
   (void) cached_has_bits;
 
   switch (from.who_case()) {
-    case kId: {
-      _internal_set_id(from._internal_id());
-      break;
-    }
     case kNickName: {
       _internal_set_nick_name(from._internal_nick_name());
       break;
@@ -5443,7 +5182,7 @@ void UserQuery::InternalSwap(UserQuery* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserQuery::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[15]);
+      file_level_metadata_auth_2eproto[14]);
 }
 
 // ===================================================================
@@ -5801,7 +5540,7 @@ void AttachmentList_Item::InternalSwap(AttachmentList_Item* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AttachmentList_Item::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[16]);
+      file_level_metadata_auth_2eproto[15]);
 }
 
 // ===================================================================
@@ -5996,7 +5735,7 @@ void AttachmentList::InternalSwap(AttachmentList* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AttachmentList::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[17]);
+      file_level_metadata_auth_2eproto[16]);
 }
 
 // ===================================================================
@@ -6201,7 +5940,7 @@ void AttachmentQuery::InternalSwap(AttachmentQuery* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AttachmentQuery::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[18]);
+      file_level_metadata_auth_2eproto[17]);
 }
 
 // ===================================================================
@@ -6448,7 +6187,7 @@ void AttachmentUploadRequest::InternalSwap(AttachmentUploadRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AttachmentUploadRequest::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_auth_2eproto_getter, &descriptor_table_auth_2eproto_once,
-      file_level_metadata_auth_2eproto[19]);
+      file_level_metadata_auth_2eproto[18]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -6470,9 +6209,6 @@ template<> PROTOBUF_NOINLINE ::palm::auth::v1::SignInResponse* Arena::CreateMayb
 }
 template<> PROTOBUF_NOINLINE ::palm::auth::v1::SignUpRequest* Arena::CreateMaybeMessage< ::palm::auth::v1::SignUpRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::auth::v1::SignUpRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::auth::v1::EmailForm* Arena::CreateMaybeMessage< ::palm::auth::v1::EmailForm >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::auth::v1::EmailForm >(arena);
 }
 template<> PROTOBUF_NOINLINE ::palm::auth::v1::TokenForm* Arena::CreateMaybeMessage< ::palm::auth::v1::TokenForm >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::auth::v1::TokenForm >(arena);

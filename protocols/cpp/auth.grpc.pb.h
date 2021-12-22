@@ -51,11 +51,11 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSignUp(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSignUpRaw(context, request, cq));
     }
-    virtual ::grpc::Status Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncConfirmRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncConfirmRaw(context, request, cq));
     }
     virtual ::grpc::Status ConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::google::protobuf::Empty* response) = 0;
@@ -65,11 +65,11 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncConfirmByTokenRaw(context, request, cq));
     }
-    virtual ::grpc::Status Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncUnlockRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncUnlockRaw(context, request, cq));
     }
     virtual ::grpc::Status UnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::google::protobuf::Empty* response) = 0;
@@ -79,11 +79,11 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncUnlockByTokenRaw(context, request, cq));
     }
-    virtual ::grpc::Status ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncForgotPasswordRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncForgotPasswordRaw(context, request, cq));
     }
     virtual ::grpc::Status ResetPassword(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest& request, ::google::protobuf::Empty* response) = 0;
@@ -149,13 +149,6 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncLock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncLockRaw(context, request, cq));
     }
-    virtual ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
-    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -163,16 +156,16 @@ class User final {
       virtual void SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void SignUp(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SignUp(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void UnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void UnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ResetPassword(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ResetPassword(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ChangePassword(::grpc::ClientContext* context, const ::palm::auth::v1::ChangePasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
@@ -191,8 +184,6 @@ class User final {
       virtual void Show(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::palm::auth::v1::UserList_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Lock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Lock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Destory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Destory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -202,16 +193,16 @@ class User final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncChangePasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::ChangePasswordRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -230,8 +221,6 @@ class User final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::auth::v1::UserList_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncLockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncLockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -250,11 +239,11 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSignUp(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSignUpRaw(context, request, cq));
     }
-    ::grpc::Status Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncConfirmRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncConfirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncConfirmRaw(context, request, cq));
     }
     ::grpc::Status ConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::google::protobuf::Empty* response) override;
@@ -264,11 +253,11 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncConfirmByTokenRaw(context, request, cq));
     }
-    ::grpc::Status Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncUnlockRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUnlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncUnlockRaw(context, request, cq));
     }
     ::grpc::Status UnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::google::protobuf::Empty* response) override;
@@ -278,11 +267,11 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncUnlockByTokenRaw(context, request, cq));
     }
-    ::grpc::Status ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncForgotPasswordRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncForgotPasswordRaw(context, request, cq));
     }
     ::grpc::Status ResetPassword(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest& request, ::google::protobuf::Empty* response) override;
@@ -348,13 +337,6 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncLock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncLockRaw(context, request, cq));
     }
-    ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
-    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -362,16 +344,16 @@ class User final {
       void SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SignUp(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void SignUp(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Confirm(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void ConfirmByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Unlock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void UnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void UnlockByToken(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void ForgotPassword(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ResetPassword(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void ResetPassword(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ChangePassword(::grpc::ClientContext* context, const ::palm::auth::v1::ChangePasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
@@ -390,8 +372,6 @@ class User final {
       void Show(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::palm::auth::v1::UserList_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Lock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void Lock(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Destory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Destory(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -407,16 +387,16 @@ class User final {
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignUpRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::auth::v1::TokenForm& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::EmailForm& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::ResetPasswordRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncChangePasswordRaw(::grpc::ClientContext* context, const ::palm::auth::v1::ChangePasswordRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -435,8 +415,6 @@ class User final {
     ::grpc::ClientAsyncResponseReader< ::palm::auth::v1::UserList_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncLockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncLockRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::auth::v1::UserQuery& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SignIn_;
     const ::grpc::internal::RpcMethod rpcmethod_SignUp_;
     const ::grpc::internal::RpcMethod rpcmethod_Confirm_;
@@ -453,7 +431,6 @@ class User final {
     const ::grpc::internal::RpcMethod rpcmethod_Index_;
     const ::grpc::internal::RpcMethod rpcmethod_Show_;
     const ::grpc::internal::RpcMethod rpcmethod_Lock_;
-    const ::grpc::internal::RpcMethod rpcmethod_Destory_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -463,11 +440,11 @@ class User final {
     virtual ~Service();
     virtual ::grpc::Status SignIn(::grpc::ServerContext* context, const ::palm::auth::v1::SignInRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status SignUp(::grpc::ServerContext* context, const ::palm::auth::v1::SignUpRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Confirm(::grpc::ServerContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Confirm(::grpc::ServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status ConfirmByToken(::grpc::ServerContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Unlock(::grpc::ServerContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Unlock(::grpc::ServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status UnlockByToken(::grpc::ServerContext* context, const ::palm::auth::v1::TokenForm* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status ForgotPassword(::grpc::ServerContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status ForgotPassword(::grpc::ServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status ResetPassword(::grpc::ServerContext* context, const ::palm::auth::v1::ResetPasswordRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status ChangePassword(::grpc::ServerContext* context, const ::palm::auth::v1::ChangePasswordRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status SetProfile(::grpc::ServerContext* context, const ::palm::auth::v1::ProfileRequest* request, ::google::protobuf::Empty* response);
@@ -477,7 +454,6 @@ class User final {
     virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::google::protobuf::Duration* request, ::palm::auth::v1::UserList* response);
     virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::auth::v1::UserQuery* request, ::palm::auth::v1::UserList_Item* response);
     virtual ::grpc::Status Lock(::grpc::ServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Destory(::grpc::ServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SignIn : public BaseClass {
@@ -531,11 +507,11 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestConfirm(::grpc::ServerContext* context, ::palm::auth::v1::EmailForm* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestConfirm(::grpc::ServerContext* context, ::palm::auth::v1::UserQuery* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -571,11 +547,11 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUnlock(::grpc::ServerContext* context, ::palm::auth::v1::EmailForm* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUnlock(::grpc::ServerContext* context, ::palm::auth::v1::UserQuery* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -611,11 +587,11 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestForgotPassword(::grpc::ServerContext* context, ::palm::auth::v1::EmailForm* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestForgotPassword(::grpc::ServerContext* context, ::palm::auth::v1::UserQuery* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -799,27 +775,7 @@ class User final {
       ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  template <class BaseClass>
-  class WithAsyncMethod_Destory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Destory() {
-      ::grpc::Service::MarkMethodAsync(16);
-    }
-    ~WithAsyncMethod_Destory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDestory(::grpc::ServerContext* context, ::palm::auth::v1::UserQuery* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_SignIn<WithAsyncMethod_SignUp<WithAsyncMethod_Confirm<WithAsyncMethod_ConfirmByToken<WithAsyncMethod_Unlock<WithAsyncMethod_UnlockByToken<WithAsyncMethod_ForgotPassword<WithAsyncMethod_ResetPassword<WithAsyncMethod_ChangePassword<WithAsyncMethod_SetProfile<WithAsyncMethod_SignOut<WithAsyncMethod_Self<WithAsyncMethod_Log<WithAsyncMethod_Index<WithAsyncMethod_Show<WithAsyncMethod_Lock<WithAsyncMethod_Destory<Service > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_SignIn<WithAsyncMethod_SignUp<WithAsyncMethod_Confirm<WithAsyncMethod_ConfirmByToken<WithAsyncMethod_Unlock<WithAsyncMethod_UnlockByToken<WithAsyncMethod_ForgotPassword<WithAsyncMethod_ResetPassword<WithAsyncMethod_ChangePassword<WithAsyncMethod_SetProfile<WithAsyncMethod_SignOut<WithAsyncMethod_Self<WithAsyncMethod_Log<WithAsyncMethod_Index<WithAsyncMethod_Show<WithAsyncMethod_Lock<Service > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SignIn : public BaseClass {
    private:
@@ -881,25 +837,25 @@ class User final {
    public:
     WithCallbackMethod_Confirm() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response) { return this->Confirm(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response) { return this->Confirm(context, request, response); }));}
     void SetMessageAllocatorFor_Confirm(
-        ::grpc::MessageAllocator< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Confirm() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Confirm(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_ConfirmByToken : public BaseClass {
@@ -935,25 +891,25 @@ class User final {
    public:
     WithCallbackMethod_Unlock() {
       ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response) { return this->Unlock(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response) { return this->Unlock(context, request, response); }));}
     void SetMessageAllocatorFor_Unlock(
-        ::grpc::MessageAllocator< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Unlock() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Unlock(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_UnlockByToken : public BaseClass {
@@ -989,25 +945,25 @@ class User final {
    public:
     WithCallbackMethod_ForgotPassword() {
       ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::auth::v1::EmailForm* request, ::google::protobuf::Empty* response) { return this->ForgotPassword(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response) { return this->ForgotPassword(context, request, response); }));}
     void SetMessageAllocatorFor_ForgotPassword(
-        ::grpc::MessageAllocator< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_ForgotPassword() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ForgotPassword(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_ResetPassword : public BaseClass {
@@ -1252,34 +1208,7 @@ class User final {
     virtual ::grpc::ServerUnaryReactor* Lock(
       ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_Destory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Destory() {
-      ::grpc::Service::MarkMethodCallback(16,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::auth::v1::UserQuery* request, ::google::protobuf::Empty* response) { return this->Destory(context, request, response); }));}
-    void SetMessageAllocatorFor_Destory(
-        ::grpc::MessageAllocator< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(16);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Destory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Destory(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_SignIn<WithCallbackMethod_SignUp<WithCallbackMethod_Confirm<WithCallbackMethod_ConfirmByToken<WithCallbackMethod_Unlock<WithCallbackMethod_UnlockByToken<WithCallbackMethod_ForgotPassword<WithCallbackMethod_ResetPassword<WithCallbackMethod_ChangePassword<WithCallbackMethod_SetProfile<WithCallbackMethod_SignOut<WithCallbackMethod_Self<WithCallbackMethod_Log<WithCallbackMethod_Index<WithCallbackMethod_Show<WithCallbackMethod_Lock<WithCallbackMethod_Destory<Service > > > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_SignIn<WithCallbackMethod_SignUp<WithCallbackMethod_Confirm<WithCallbackMethod_ConfirmByToken<WithCallbackMethod_Unlock<WithCallbackMethod_UnlockByToken<WithCallbackMethod_ForgotPassword<WithCallbackMethod_ResetPassword<WithCallbackMethod_ChangePassword<WithCallbackMethod_SetProfile<WithCallbackMethod_SignOut<WithCallbackMethod_Self<WithCallbackMethod_Log<WithCallbackMethod_Index<WithCallbackMethod_Show<WithCallbackMethod_Lock<Service > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SignIn : public BaseClass {
@@ -1327,7 +1256,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1361,7 +1290,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1395,7 +1324,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1554,23 +1483,6 @@ class User final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_Destory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Destory() {
-      ::grpc::Service::MarkMethodGeneric(16);
-    }
-    ~WithGenericMethod_Destory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
   class WithRawMethod_SignIn : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1622,7 +1534,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1662,7 +1574,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1702,7 +1614,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1891,26 +1803,6 @@ class User final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Destory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Destory() {
-      ::grpc::Service::MarkMethodRaw(16);
-    }
-    ~WithRawMethod_Destory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDestory(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
   class WithRawCallbackMethod_SignIn : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1969,7 +1861,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2013,7 +1905,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2057,7 +1949,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2263,28 +2155,6 @@ class User final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Destory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Destory() {
-      ::grpc::Service::MarkMethodRawCallback(16,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Destory(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Destory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Destory(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_SignIn : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -2346,10 +2216,10 @@ class User final {
     WithStreamedUnaryMethod_Confirm() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>(
+          ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>* streamer) {
+                     ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedConfirm(context,
                          streamer);
                   }));
@@ -2358,12 +2228,12 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Confirm(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedConfirm(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::EmailForm,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedConfirm(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::UserQuery,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_ConfirmByToken : public BaseClass {
@@ -2400,10 +2270,10 @@ class User final {
     WithStreamedUnaryMethod_Unlock() {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>(
+          ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>* streamer) {
+                     ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedUnlock(context,
                          streamer);
                   }));
@@ -2412,12 +2282,12 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Unlock(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUnlock(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::EmailForm,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUnlock(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::UserQuery,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_UnlockByToken : public BaseClass {
@@ -2454,10 +2324,10 @@ class User final {
     WithStreamedUnaryMethod_ForgotPassword() {
       ::grpc::Service::MarkMethodStreamed(6,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>(
+          ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::auth::v1::EmailForm, ::google::protobuf::Empty>* streamer) {
+                     ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedForgotPassword(context,
                          streamer);
                   }));
@@ -2466,12 +2336,12 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::EmailForm* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status ForgotPassword(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedForgotPassword(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::EmailForm,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedForgotPassword(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::UserQuery,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_ResetPassword : public BaseClass {
@@ -2716,36 +2586,9 @@ class User final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedLock(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::UserQuery,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Destory : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Destory() {
-      ::grpc::Service::MarkMethodStreamed(16,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::auth::v1::UserQuery, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedDestory(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Destory() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::auth::v1::UserQuery* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDestory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::auth::v1::UserQuery,::google::protobuf::Empty>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignUp<WithStreamedUnaryMethod_Confirm<WithStreamedUnaryMethod_ConfirmByToken<WithStreamedUnaryMethod_Unlock<WithStreamedUnaryMethod_UnlockByToken<WithStreamedUnaryMethod_ForgotPassword<WithStreamedUnaryMethod_ResetPassword<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_SetProfile<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_Self<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Lock<WithStreamedUnaryMethod_Destory<Service > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignUp<WithStreamedUnaryMethod_Confirm<WithStreamedUnaryMethod_ConfirmByToken<WithStreamedUnaryMethod_Unlock<WithStreamedUnaryMethod_UnlockByToken<WithStreamedUnaryMethod_ForgotPassword<WithStreamedUnaryMethod_ResetPassword<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_SetProfile<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_Self<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Lock<Service > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignUp<WithStreamedUnaryMethod_Confirm<WithStreamedUnaryMethod_ConfirmByToken<WithStreamedUnaryMethod_Unlock<WithStreamedUnaryMethod_UnlockByToken<WithStreamedUnaryMethod_ForgotPassword<WithStreamedUnaryMethod_ResetPassword<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_SetProfile<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_Self<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Lock<WithStreamedUnaryMethod_Destory<Service > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SignIn<WithStreamedUnaryMethod_SignUp<WithStreamedUnaryMethod_Confirm<WithStreamedUnaryMethod_ConfirmByToken<WithStreamedUnaryMethod_Unlock<WithStreamedUnaryMethod_UnlockByToken<WithStreamedUnaryMethod_ForgotPassword<WithStreamedUnaryMethod_ResetPassword<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_SetProfile<WithStreamedUnaryMethod_SignOut<WithStreamedUnaryMethod_Self<WithStreamedUnaryMethod_Log<WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Lock<Service > > > > > > > > > > > > > > > > StreamedService;
 };
 
 class Attachment final {

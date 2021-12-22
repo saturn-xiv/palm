@@ -53,7 +53,7 @@ struct TableStruct_auth_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[20]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[19]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -78,9 +78,6 @@ extern AttachmentUploadRequestDefaultTypeInternal _AttachmentUploadRequest_defau
 class ChangePasswordRequest;
 struct ChangePasswordRequestDefaultTypeInternal;
 extern ChangePasswordRequestDefaultTypeInternal _ChangePasswordRequest_default_instance_;
-class EmailForm;
-struct EmailFormDefaultTypeInternal;
-extern EmailFormDefaultTypeInternal _EmailForm_default_instance_;
 class LogList;
 struct LogListDefaultTypeInternal;
 extern LogListDefaultTypeInternal _LogList_default_instance_;
@@ -132,7 +129,6 @@ template<> ::palm::auth::v1::AttachmentList_Item* Arena::CreateMaybeMessage<::pa
 template<> ::palm::auth::v1::AttachmentQuery* Arena::CreateMaybeMessage<::palm::auth::v1::AttachmentQuery>(Arena*);
 template<> ::palm::auth::v1::AttachmentUploadRequest* Arena::CreateMaybeMessage<::palm::auth::v1::AttachmentUploadRequest>(Arena*);
 template<> ::palm::auth::v1::ChangePasswordRequest* Arena::CreateMaybeMessage<::palm::auth::v1::ChangePasswordRequest>(Arena*);
-template<> ::palm::auth::v1::EmailForm* Arena::CreateMaybeMessage<::palm::auth::v1::EmailForm>(Arena*);
 template<> ::palm::auth::v1::LogList* Arena::CreateMaybeMessage<::palm::auth::v1::LogList>(Arena*);
 template<> ::palm::auth::v1::LogList_Item* Arena::CreateMaybeMessage<::palm::auth::v1::LogList_Item>(Arena*);
 template<> ::palm::auth::v1::ProfileRequest* Arena::CreateMaybeMessage<::palm::auth::v1::ProfileRequest>(Arena*);
@@ -1149,143 +1145,6 @@ class SignUpRequest final :
 };
 // -------------------------------------------------------------------
 
-class EmailForm final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.auth.v1.EmailForm) */ {
- public:
-  inline EmailForm() : EmailForm(nullptr) {}
-  ~EmailForm() override;
-  explicit constexpr EmailForm(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  EmailForm(const EmailForm& from);
-  EmailForm(EmailForm&& from) noexcept
-    : EmailForm() {
-    *this = ::std::move(from);
-  }
-
-  inline EmailForm& operator=(const EmailForm& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline EmailForm& operator=(EmailForm&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const EmailForm& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const EmailForm* internal_default_instance() {
-    return reinterpret_cast<const EmailForm*>(
-               &_EmailForm_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
-
-  friend void swap(EmailForm& a, EmailForm& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(EmailForm* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(EmailForm* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline EmailForm* New() const final {
-    return new EmailForm();
-  }
-
-  EmailForm* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<EmailForm>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const EmailForm& from);
-  void MergeFrom(const EmailForm& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(EmailForm* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.auth.v1.EmailForm";
-  }
-  protected:
-  explicit EmailForm(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kEmailFieldNumber = 1,
-  };
-  // string email = 1;
-  void clear_email();
-  const std::string& email() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_email(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_email();
-  PROTOBUF_FUTURE_MUST_USE_RESULT std::string* release_email();
-  void set_allocated_email(std::string* email);
-  private:
-  const std::string& _internal_email() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_email(const std::string& value);
-  std::string* _internal_mutable_email();
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.auth.v1.EmailForm)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_auth_2eproto;
-};
-// -------------------------------------------------------------------
-
 class TokenForm final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.auth.v1.TokenForm) */ {
  public:
@@ -1330,7 +1189,7 @@ class TokenForm final :
                &_TokenForm_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    5;
 
   friend void swap(TokenForm& a, TokenForm& b) {
     a.Swap(&b);
@@ -1467,7 +1326,7 @@ class ResetPasswordRequest final :
                &_ResetPasswordRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    6;
 
   friend void swap(ResetPasswordRequest& a, ResetPasswordRequest& b) {
     a.Swap(&b);
@@ -1620,7 +1479,7 @@ class ChangePasswordRequest final :
                &_ChangePasswordRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    7;
 
   friend void swap(ChangePasswordRequest& a, ChangePasswordRequest& b) {
     a.Swap(&b);
@@ -1773,7 +1632,7 @@ class ProfileRequest final :
                &_ProfileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    8;
 
   friend void swap(ProfileRequest& a, ProfileRequest& b) {
     a.Swap(&b);
@@ -1942,7 +1801,7 @@ class UserList_Provider final :
                &_UserList_Provider_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    9;
 
   friend void swap(UserList_Provider& a, UserList_Provider& b) {
     a.Swap(&b);
@@ -2151,7 +2010,7 @@ class UserList_Profile final :
                &_UserList_Profile_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    11;
 
   friend void swap(UserList_Profile& a, UserList_Profile& b) {
     a.Swap(&b);
@@ -2328,7 +2187,7 @@ class UserList_Item final :
                &_UserList_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    12;
 
   friend void swap(UserList_Item& a, UserList_Item& b) {
     a.Swap(&b);
@@ -2768,7 +2627,7 @@ class UserList final :
                &_UserList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    13;
 
   friend void swap(UserList& a, UserList& b) {
     a.Swap(&b);
@@ -2909,7 +2768,6 @@ class UserQuery final :
     return *internal_default_instance();
   }
   enum WhoCase {
-    kId = 1,
     kNickName = 2,
     kEmail = 3,
     WHO_NOT_SET = 0,
@@ -2920,7 +2778,7 @@ class UserQuery final :
                &_UserQuery_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    14;
 
   friend void swap(UserQuery& a, UserQuery& b) {
     a.Swap(&b);
@@ -2984,23 +2842,9 @@ class UserQuery final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kIdFieldNumber = 1,
     kNickNameFieldNumber = 2,
     kEmailFieldNumber = 3,
   };
-  // int64 id = 1;
-  bool has_id() const;
-  private:
-  bool _internal_has_id() const;
-  public:
-  void clear_id();
-  ::PROTOBUF_NAMESPACE_ID::int64 id() const;
-  void set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_id() const;
-  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
   // string nick_name = 2;
   bool has_nick_name() const;
   private:
@@ -3042,7 +2886,6 @@ class UserQuery final :
   // @@protoc_insertion_point(class_scope:palm.auth.v1.UserQuery)
  private:
   class _Internal;
-  void set_has_id();
   void set_has_nick_name();
   void set_has_email();
 
@@ -3055,7 +2898,6 @@ class UserQuery final :
   union WhoUnion {
     constexpr WhoUnion() : _constinit_{} {}
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-    ::PROTOBUF_NAMESPACE_ID::int64 id_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nick_name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
   } who_;
@@ -3110,7 +2952,7 @@ class AttachmentList_Item final :
                &_AttachmentList_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    15;
 
   friend void swap(AttachmentList_Item& a, AttachmentList_Item& b) {
     a.Swap(&b);
@@ -3306,7 +3148,7 @@ class AttachmentList final :
                &_AttachmentList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    16;
 
   friend void swap(AttachmentList& a, AttachmentList& b) {
     a.Swap(&b);
@@ -3449,7 +3291,7 @@ class AttachmentQuery final :
                &_AttachmentQuery_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    17;
 
   friend void swap(AttachmentQuery& a, AttachmentQuery& b) {
     a.Swap(&b);
@@ -3586,7 +3428,7 @@ class AttachmentUploadRequest final :
                &_AttachmentUploadRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    18;
 
   friend void swap(AttachmentUploadRequest& a, AttachmentUploadRequest& b) {
     a.Swap(&b);
@@ -4589,55 +4431,6 @@ inline void SignUpRequest::set_allocated_password(std::string* password) {
   password_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password,
       GetArenaForAllocation());
   // @@protoc_insertion_point(field_set_allocated:palm.auth.v1.SignUpRequest.password)
-}
-
-// -------------------------------------------------------------------
-
-// EmailForm
-
-// string email = 1;
-inline void EmailForm::clear_email() {
-  email_.ClearToEmpty();
-}
-inline const std::string& EmailForm::email() const {
-  // @@protoc_insertion_point(field_get:palm.auth.v1.EmailForm.email)
-  return _internal_email();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void EmailForm::set_email(ArgT0&& arg0, ArgT... args) {
- 
- email_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.auth.v1.EmailForm.email)
-}
-inline std::string* EmailForm::mutable_email() {
-  // @@protoc_insertion_point(field_mutable:palm.auth.v1.EmailForm.email)
-  return _internal_mutable_email();
-}
-inline const std::string& EmailForm::_internal_email() const {
-  return email_.Get();
-}
-inline void EmailForm::_internal_set_email(const std::string& value) {
-  
-  email_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* EmailForm::_internal_mutable_email() {
-  
-  return email_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* EmailForm::release_email() {
-  // @@protoc_insertion_point(field_release:palm.auth.v1.EmailForm.email)
-  return email_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void EmailForm::set_allocated_email(std::string* email) {
-  if (email != nullptr) {
-    
-  } else {
-    
-  }
-  email_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), email,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.auth.v1.EmailForm.email)
 }
 
 // -------------------------------------------------------------------
@@ -6335,44 +6128,6 @@ UserList::items() const {
 
 // UserQuery
 
-// int64 id = 1;
-inline bool UserQuery::_internal_has_id() const {
-  return who_case() == kId;
-}
-inline bool UserQuery::has_id() const {
-  return _internal_has_id();
-}
-inline void UserQuery::set_has_id() {
-  _oneof_case_[0] = kId;
-}
-inline void UserQuery::clear_id() {
-  if (_internal_has_id()) {
-    who_.id_ = int64_t{0};
-    clear_has_who();
-  }
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 UserQuery::_internal_id() const {
-  if (_internal_has_id()) {
-    return who_.id_;
-  }
-  return int64_t{0};
-}
-inline void UserQuery::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  if (!_internal_has_id()) {
-    clear_who();
-    set_has_id();
-  }
-  who_.id_ = value;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 UserQuery::id() const {
-  // @@protoc_insertion_point(field_get:palm.auth.v1.UserQuery.id)
-  return _internal_id();
-}
-inline void UserQuery::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.auth.v1.UserQuery.id)
-}
-
 // string nick_name = 2;
 inline bool UserQuery::_internal_has_nick_name() const {
   return who_case() == kNickName;
@@ -6937,8 +6692,6 @@ inline void AttachmentUploadRequest::set_allocated_file(std::string* file) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

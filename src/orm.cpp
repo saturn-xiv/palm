@@ -87,11 +87,11 @@ palm::orm::Schema::Schema(const std::filesystem::path& root,
     mig.down = palm::file2str(node / "down.sql");
 
     {
-      boost::optional<Migration> cur;
+      std::optional<Migration> cur;
 
       (*db) << sql_by_version, soci::use(mig), soci::into(cur);
 
-      if (cur.is_initialized()) {
+      if (cur) {
         if (cur->name != mig.name || cur->up != mig.up ||
             cur->down != mig.down) {
           std::stringstream ss;
@@ -131,10 +131,10 @@ void palm::orm::Schema::migrate() {
 void palm::orm::Schema::rollback() {
   const palm::orm::Query& query = palm::orm::Query::instance();
 
-  boost::optional<Migration> cur;
+  std::optional<Migration> cur;
 
   (*this->db) << query.get("schema-migrations.latest"), soci::into(cur);
-  if (cur.is_initialized()) {
+  if (cur) {
     BOOST_LOG_TRIVIAL(info) << "rollback migration " << (*cur);
     soci::transaction tr(*this->db);
     (*this->db) << cur->down;
