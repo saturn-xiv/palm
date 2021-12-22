@@ -26,21 +26,35 @@ std::shared_ptr<soci::session> palm::sqlite3::open(
   return it;
 }
 
-std::shared_ptr<soci::session> palm::postgresql::open(
-    const std::string& name, const std::string& host, const uint16_t port,
-    const std::string& user, const std::optional<std::string> password) {
+palm::postgresql::Factory::Factory(const boost::property_tree::ptree& config) {
+  this->host = config.get("postgresql.host", "127.0.0.1");
+  this->port = config.get("postgresql.port", 5432);
+  this->user = config.get("postgresql.user", "postgres");
+  {
+    auto it = config.get_optional<std::string>("postgresql.password");
+    if (it.has_value()) {
+      this->password = it.get();
+    }
+  }
+  this->name = config.get<std::string>("postgresql.db-name");
+  {
+    size_t it = config.get("postgresql.connection-timeout", 12);
+    this->timeout = std::chrono::seconds(it);
+  }
+}
+std::shared_ptr<soci::session> palm::postgresql::Factory::create() const {
   // https://www.postgresql.org/docs/14/libpq-connect.html#LIBPQ-CONNSTRING
   std::stringstream url;
   {
-    url << "host=" << host;
-    url << " port=" << port;
-    url << " dbname=" << name;
-    url << " user=" << user;
+    url << "host=" << this->host;
+    url << " port=" << this->port;
+    url << " dbname=" << this->name;
+    url << " user=" << this->user;
     if (password) {
       url << " password=" << password.value();
     }
     url << " sslmode=disable";
-    url << " connect_timeout=" << 12;
+    url << " connect_timeout=" << this->timeout.count();
   }
   std::shared_ptr<soci::session> it =
       std::make_shared<soci::session>(soci::postgresql, url.str());

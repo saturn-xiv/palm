@@ -23,7 +23,14 @@ BOOST_AUTO_TEST_CASE(sqlite3) {
 }
 
 BOOST_AUTO_TEST_CASE(postgresql) {
-  auto db = palm::postgresql::open("demo");
+  boost::property_tree::ptree cfg;
+  cfg.put("postgresql.db-name", "demo");
+  std::shared_ptr<palm::postgresql::Factory> factory =
+      std::make_shared<palm::postgresql::Factory>(cfg);
+  palm::orm::Pool::instance().open(factory, 12);
+
+  palm::orm::PooledConnection con;
+  auto db = con.get();
   {
     std::string version;
     (*db) << "SELECT VERSION()", soci::into(version);

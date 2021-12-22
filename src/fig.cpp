@@ -54,6 +54,16 @@ palm::fig::Application::Application(int argc, char** argv) {
   boost::property_tree::ptree config;
   boost::property_tree::read_ini(config_file, config);
 
+  if (vm.count("db-migrate")) {
+    return;
+  }
+  if (vm.count("db-rollback")) {
+    return;
+  }
+  if (vm.count("db-list")) {
+    return;
+  }
+
   if (vm.count("rpc")) {
     this->rpc(config);
     return;

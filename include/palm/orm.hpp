@@ -5,7 +5,9 @@
 #include <chrono>
 #include <cstdint>
 #include <ctime>
+#include <deque>
 #include <mutex>
+#include <set>
 #include <sstream>
 #include <stdexcept>
 #include <unordered_map>
@@ -45,18 +47,6 @@ SELECT table_name FROM information_schema.tables WHERE table_schema =
 'databasename' AND table_name = 'testtable'; SHOW TABLES LIKE 'tablename';
 */
 }
-
-namespace postgresql {
-/**
-https://www.postgresql.org/docs/current/runtime-config-logging.html
-/var/lib/postgres/data/postgresql.conf: log_statement = 'all'
-sudo journalctl -u postgresql -f
-*/
-std::shared_ptr<soci::session> open(
-    const std::string& name, const std::string& host = "127.0.0.1",
-    const uint16_t port = 5432, const std::string& user = "postgres",
-    const std::optional<std::string> password = std::nullopt);
-}  // namespace postgresql
 
 namespace orm {
 class Logger : public soci::logger_impl {
@@ -125,7 +115,107 @@ class Schema {
   std::vector<Migration> migrations;
   std::shared_ptr<soci::session> db;
 };
+
+class Factory {
+ public:
+  virtual std::shared_ptr<soci::session> create() const = 0;
+};
+
+class Pool {
+ public:
+  Pool(Query const&) = delete;
+  void operator=(Pool const&) = delete;
+
+  static Pool& instance() {
+    static Pool it;
+    return it;
+  }
+  inline std::shared_ptr<soci::session> borrow() {
+    const std::lock_guard<std::mutex> lock(this->locker);
+
+    if (this->pool.size() == 0) {
+      for (auto& it : this->borrowed) {
+        if (it.unique()) {
+          BOOST_LOG_TRIVIAL(warning)
+              << "creating new connection to replace discarded connection";
+          std::shared_ptr con = this->factory->create();
+          this->borrowed.erase(it);
+          this->borrowed.insert(con);
+          return con;
+        }
+      }
+
+      throw std::runtime_error("no available connection in database pool");
+    }
+
+    std::shared_ptr<soci::session> it = this->pool.front();
+    this->pool.pop_front();
+    this->borrowed.insert(it);
+    return it;
+  }
+
+  inline void release(std::shared_ptr<soci::session> it) {
+    const std::lock_guard<std::mutex> lock(this->locker);
+    this->pool.push_back(it);
+    this->borrowed.erase(it);
+  }
+
+  void open(std::shared_ptr<Factory> factory, const size_t size) {
+    const std::lock_guard<std::mutex> lock(this->locker);
+
+    while (this->pool.size() < size) {
+      this->pool.push_back(factory->create());
+    }
+    this->factory = factory;
+  }
+  size_t idle() {
+    const std::lock_guard<std::mutex> lock(this->locker);
+    return this->pool.size();
+  }
+
+ private:
+  Pool() {}
+
+  std::deque<std::shared_ptr<soci::session>> pool;
+  std::set<std::shared_ptr<soci::session>> borrowed;
+  std::shared_ptr<Factory> factory;
+  std::mutex locker;
+};
+
+class PooledConnection {
+ public:
+  PooledConnection() { this->db = Pool::instance().borrow(); }
+  ~PooledConnection() { Pool::instance().release(this->db); }
+  std::shared_ptr<soci::session> get() { return this->db; }
+
+ private:
+  std::shared_ptr<soci::session> db;
+};
+
 }  // namespace orm
+
+namespace postgresql {
+/**
+https://www.postgresql.org/docs/current/runtime-config-logging.html
+/var/lib/postgres/data/postgresql.conf: log_statement = 'all'
+sudo journalctl -u postgresql -f
+*/
+class Factory : public palm::orm::Factory {
+ public:
+  Factory(const boost::property_tree::ptree& config);
+  std::shared_ptr<soci::session> create() const override;
+
+ private:
+  std::string host;
+  uint16_t port;
+  std::string name;
+  std::string user;
+  std::optional<std::string> password;
+  std::chrono::seconds timeout;
+};
+
+}  // namespace postgresql
+
 }  // namespace palm
 
 namespace soci {
