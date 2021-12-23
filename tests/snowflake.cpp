@@ -1,8 +1,9 @@
 #define BOOST_TEST_MODULE snowflake
 #include <boost/test/unit_test.hpp>
 
-#include <iostream>
 #include "palm/snowflake.hpp"
+
+#include <iostream>
 
 BOOST_AUTO_TEST_CASE(random_id) {
   palm::Snowflake& it = palm::Snowflake::instance();

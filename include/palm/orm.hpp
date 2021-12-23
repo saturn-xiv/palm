@@ -119,11 +119,12 @@ class Schema {
 class Factory {
  public:
   virtual std::shared_ptr<soci::session> create() const = 0;
+  virtual size_t size() const = 0;
 };
 
 class Pool {
  public:
-  Pool(Query const&) = delete;
+  Pool(Pool const&) = delete;
   void operator=(Pool const&) = delete;
 
   static Pool& instance() {
@@ -137,7 +138,7 @@ class Pool {
       for (auto& it : this->borrowed) {
         if (it.unique()) {
           BOOST_LOG_TRIVIAL(warning)
-              << "creating new connection to replace discarded connection";
+              << R"(creating new database connection to replace discarded connection)";
           std::shared_ptr con = this->factory->create();
           this->borrowed.erase(it);
           this->borrowed.insert(con);
@@ -160,10 +161,10 @@ class Pool {
     this->borrowed.erase(it);
   }
 
-  void open(std::shared_ptr<Factory> factory, const size_t size) {
+  void open(std::shared_ptr<Factory> factory) {
     const std::lock_guard<std::mutex> lock(this->locker);
 
-    while (this->pool.size() < size) {
+    while (this->pool.size() < factory->size()) {
       this->pool.push_back(factory->create());
     }
     this->factory = factory;
@@ -205,6 +206,8 @@ class Factory : public palm::orm::Factory {
   Factory(const boost::property_tree::ptree& config);
   std::shared_ptr<soci::session> create() const override;
 
+  size_t size() const override { return this->pool_size; }
+
  private:
   std::string host;
   uint16_t port;
@@ -212,6 +215,7 @@ class Factory : public palm::orm::Factory {
   std::string user;
   std::optional<std::string> password;
   std::chrono::seconds timeout;
+  size_t pool_size;
 };
 
 }  // namespace postgresql

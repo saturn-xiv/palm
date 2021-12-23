@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(postgresql) {
   cfg.put("postgresql.db-name", "demo");
   std::shared_ptr<palm::postgresql::Factory> factory =
       std::make_shared<palm::postgresql::Factory>(cfg);
-  palm::orm::Pool::instance().open(factory, 12);
+  palm::orm::Pool::instance().open(factory);
 
   palm::orm::PooledConnection con;
   auto db = con.get();

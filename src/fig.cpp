@@ -1,5 +1,7 @@
 #include "palm/fig.hpp"
 #include "palm/auth.hpp"
+#include "palm/cache.hpp"
+#include "palm/orm.hpp"
 #include "palm/version.hpp"
 
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
@@ -13,24 +15,30 @@ palm::fig::Application::Application(int argc, char** argv) {
 
   boost::program_options::options_description generic("Generic options");
   generic.add_options()("version,v", "print version string")(
-      "help,h", "produce help message")("debug,d", "run on debug mode")(
-      "config,c",
-      boost::program_options::value<std::filesystem::path>(&config_file)
-          ->default_value("config.ini"),
-      "config file path");
+      "help,h",
+      "produce help message")("debug,d",
+                              "run on debug mode")("config,c",
+                                                   boost::program_options::
+                                                       value<std::filesystem::
+                                                                 path>(
+                                                           &config_file)
+                                                           ->default_value(
+                                                               "config.ini"),
+                                                   "config file path");
 
   boost::program_options::options_description db("PostgreSql");
   db.add_options()("db-migrate", "runs all pending migrations")(
-      "db-rollback", "reverts the latest run migration")(
-      "db-list", "lists all available migrations");
+      "db-rollback",
+      "reverts the latest run migration")("db-list",
+                                          "lists all available migrations");
 
   boost::program_options::options_description cache("Redis");
   cache.add_options()("cache-list", "lists all available cache items")(
       "cache-clear", "clear cache items");
 
   boost::program_options::options_description services("Services");
-  services.add_options()("rpc", "start rpc server")("web", "start web server")(
-      "worker", "start worker cosumer");
+  services.add_options()("rpc", "start rpc server")(
+      "web", "start web server")("worker", "start worker cosumer");
 
   boost::program_options::options_description args;
   args.add(generic).add(db).add(cache).add(services);
@@ -54,14 +62,53 @@ palm::fig::Application::Application(int argc, char** argv) {
   boost::property_tree::ptree config;
   boost::property_tree::read_ini(config_file, config);
 
-  if (vm.count("db-migrate")) {
-    return;
+  {
+    std::shared_ptr<palm::postgresql::Factory> factory =
+        std::make_shared<palm::postgresql::Factory>(config);
+    palm::orm::Pool::instance().open(factory);
   }
-  if (vm.count("db-rollback")) {
-    return;
+  {
+    const std::string root =
+        config.get("postgresql.schema-folder", "db/postgresql");
+    palm::orm::Query::instance().load(root);
+
+    palm::orm::PooledConnection con;
+    auto db = con.get();
+    palm::orm::Schema schema = palm::orm::Schema(root, db);
+
+    if (vm.count("db-migrate")) {
+      schema.migrate();
+      return;
+    }
+    if (vm.count("db-rollback")) {
+      schema.rollback();
+      return;
+    }
+    if (vm.count("db-list")) {
+      schema.status(std::cout);
+      return;
+    }
   }
-  if (vm.count("db-list")) {
-    return;
+  {
+    std::shared_ptr<palm::redis::Factory> factory =
+        std::make_shared<palm::redis::Factory>(config);
+    palm::redis::Pool::instance().open(factory);
+    palm::redis::PooledConnection db;
+    if (vm.count("cache-list")) {
+      const auto flags = std::cout.flags();
+      std::cout << std::setiosflags(std::ios::left);
+      std::cout << std::setw(12) << "TTL"
+                << " "
+                << "KEY" << std::endl;
+      for (const auto& it : db.all()) {
+        std::cout << std::setw(12) << it.second << " " << it.first << std::endl;
+      }
+      return;
+    }
+    if (vm.count("cache-clear")) {
+      db.clear();
+      return;
+    }
   }
 
   if (vm.count("rpc")) {

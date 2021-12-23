@@ -41,7 +41,9 @@ palm::postgresql::Factory::Factory(const boost::property_tree::ptree& config) {
     size_t it = config.get("postgresql.connection-timeout", 12);
     this->timeout = std::chrono::seconds(it);
   }
+  this->pool_size = config.get("postgresql.pool-size", 32);
 }
+
 std::shared_ptr<soci::session> palm::postgresql::Factory::create() const {
   // https://www.postgresql.org/docs/14/libpq-connect.html#LIBPQ-CONNSTRING
   std::stringstream url;
@@ -166,6 +168,10 @@ void palm::orm::Schema::status(std::ostream& out) {
   soci::rowset<palm::orm::Migration> rows = (this->db->prepare << sql_all);
   const auto flags = out.flags();
   out << std::setiosflags(std::ios::left);
+  out << std::setw(14) << "VERSION"
+      << " " << std::setw(32) << "NAME"
+      << " "
+      << "RUN ON" << std::endl;
   for (const auto& it : rows) {
     out << it.version << " " << std::setw(32) << it.name << " ";
     if (it.run_on) {
