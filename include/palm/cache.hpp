@@ -28,7 +28,6 @@ class Factory {
   std::string host;
   uint16_t port;
   uint8_t db;
-  std::string prefix;
   size_t pool_size;
 };
 

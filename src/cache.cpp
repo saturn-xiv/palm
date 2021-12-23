@@ -4,7 +4,6 @@ palm::redis::Factory::Factory(const boost::property_tree::ptree& config) {
   this->host = config.get("redis.host", "127.0.0.1");
   this->port = config.get("redis.port", 6379);
   this->db = config.get("redis.db", 0);
-  this->prefix = config.get("redis.prefix", "cache://");
   this->pool_size = config.get("redis.pool-size", 32);
 }
 
