@@ -7,7 +7,11 @@
 
 BOOST_AUTO_TEST_CASE(random_) {
   for (int i = 0; i < 10; i++) {
-    std::cout << "UUID: " << palm::uuid() << std::endl;
+    std::cout << "--------- " << i << " --------" << std::endl;
+    std::cout << "uuid:\t" << palm::uuid() << std::endl;
+    std::cout << "bytes:\t" << palm::base64::to(palm::random::bytes(32))
+              << std::endl;
+    std::cout << "string:\t" << palm::random::string(16) << std::endl;
   }
 }
 
