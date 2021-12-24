@@ -49,4 +49,22 @@ BOOST_AUTO_TEST_CASE(aes) {}
 
 BOOST_AUTO_TEST_CASE(hs512) {}
 
-BOOST_AUTO_TEST_CASE(ssha512) {}
+BOOST_AUTO_TEST_CASE(ssha512) {
+  const size_t salt_len = 16;
+  for (int i = 0; i < 10; i++) {
+    std::stringstream ss;
+    ss << "Hello, " << i << "!";
+    const std::string data = ss.str();
+    {
+      const auto passwd1 = palm::ssha512::sum(data, salt_len);
+      const auto passwd2 = palm::ssha512::sum(data, salt_len);
+      BOOST_TEST(passwd1 != passwd2);
+    }
+    const auto passwd = palm::ssha512::sum(data, salt_len);
+    BOOST_TEST(palm::ssha512::verify(passwd, data));
+    BOOST_TEST(!palm::ssha512::verify(passwd, "hi"));
+    std::cout << "doveadm pw -s SSHA512 -p '" << data << "'" << std::endl;
+    std::cout << "doveadm pw -p '" << data << "' -t '" << passwd << "'"
+              << std::endl;
+  }
+}

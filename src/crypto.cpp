@@ -3,7 +3,9 @@
 #include <algorithm>
 #include <climits>
 #include <functional>
+#include <iomanip>
 #include <random>
+#include <sstream>
 
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid.hpp>
@@ -53,14 +55,15 @@ std::vector<uint8_t> palm::Hmac::sum(const EVP_MD* engine,
                                      const size_t len) {
   unsigned char it[len];
 
-  std::vector<uint8_t> buf;
-  {
-    buf.insert(buf.end(), plain.begin(), plain.end());
-    buf.insert(buf.end(), salt.begin(), salt.end());
-  }
+  // std::vector<uint8_t> buf;
+  // {
+  //   buf.insert(buf.end(), plain.begin(), plain.end());
+  //   buf.insert(buf.end(), salt.begin(), salt.end());
+  // }
   HMAC_CTX* hmac = HMAC_CTX_new();
   HMAC_Init_ex(hmac, &*this->key.begin(), this->key.size(), engine, NULL);
-  HMAC_Update(hmac, &*buf.begin(), buf.size());
+  HMAC_Update(hmac, &*plain.begin(), plain.size());
+  HMAC_Update(hmac, &*salt.begin(), salt.size());
 
   unsigned int l = len;
   HMAC_Final(hmac, it, &l);
@@ -72,4 +75,43 @@ std::vector<uint8_t> palm::Hmac::sum(const EVP_MD* engine,
 
 palm::Hmac::Hmac(const std::string& key) {
   this->key = palm::base64::from(key);
+}
+bool palm::ssha512::verify(const std::string& secret,
+                           const std::string& plain) {
+  if (secret.size() <= HEADER.size()) {
+    return false;
+  }
+
+  const auto buf = palm::base64::from(secret.substr(HEADER.size()));
+  if (buf.size() <= SHA512_DIGEST_LENGTH) {
+    return false;
+  }
+  const std::vector<uint8_t> salt = {buf.begin() + SHA512_DIGEST_LENGTH,
+                                     buf.end()};
+  return palm::ssha512::sum(plain, salt) == secret;
+}
+
+std::string palm::ssha512::sum(const std::string& plain,
+                               const std::vector<uint8_t>& salt) {
+  uint8_t hash[SHA512_DIGEST_LENGTH];
+  SHA512_CTX ctx;
+  SHA512_Init(&ctx);
+  SHA512_Update(&ctx, plain.c_str(), plain.size());
+  SHA512_Update(&ctx, &*salt.begin(), salt.size());
+  SHA512_Final(hash, &ctx);
+
+  std::vector<uint8_t> buf;
+  {
+    std::copy(hash, hash + SHA512_DIGEST_LENGTH, std::back_inserter(buf));
+    buf.insert(buf.end(), salt.begin(), salt.end());
+  }
+  std::stringstream ss;
+  ss << HEADER << palm::base64::to(buf);
+
+  return ss.str();
+}
+std::string palm::ssha512::sum(const std::string& plain,
+                               const size_t salt_len) {
+  std::vector<uint8_t> salt = palm::random::bytes(salt_len);
+  return palm::ssha512::sum(plain, salt);
 }

@@ -55,12 +55,14 @@ class Hmac {
 };
 namespace ssha512 {
 
-std::vector<uint8_t> sum(const std::vector<uint8_t>& plain,
-                         const size_t salt_len);
-}  // namespace ssha512
 // https://wiki.dovecot.org/HowTo/ConvertPasswordSchemes
 // https://mad9scientist.com/dovecot-password-creation-php/
-std::string ssha(const EVP_MD* engine, const std::string& plain, const size_t);
+std::string sum(const std::string& plain, const size_t salt_len);
+std::string sum(const std::string& plain, const std::vector<uint8_t>& salt);
+bool verify(const std::string& secret, const std::string& plain);
+const static std::string HEADER = "{SSHA512}";
+}  // namespace ssha512
+
 class Jwt {};
 class Aes {};
 }  // namespace palm
