@@ -46,3 +46,30 @@ std::string palm::base64::to(const std::vector<uint8_t>& buf) {
 std::vector<uint8_t> palm::base64::from(const std::string& str) {
   return cppcodec::base64_rfc4648::decode(str);
 }
+
+std::vector<uint8_t> palm::Hmac::sum(const EVP_MD* engine,
+                                     const std::vector<uint8_t>& plain,
+                                     const std::vector<uint8_t>& salt,
+                                     const size_t len) {
+  unsigned char it[len];
+
+  std::vector<uint8_t> buf;
+  {
+    buf.insert(buf.end(), plain.begin(), plain.end());
+    buf.insert(buf.end(), salt.begin(), salt.end());
+  }
+  HMAC_CTX* hmac = HMAC_CTX_new();
+  HMAC_Init_ex(hmac, &*this->key.begin(), this->key.size(), engine, NULL);
+  HMAC_Update(hmac, &*buf.begin(), buf.size());
+
+  unsigned int l = len;
+  HMAC_Final(hmac, it, &l);
+  HMAC_CTX_free(hmac);
+
+  std::vector<uint8_t> tmp(it, it + len);
+  return tmp;
+}
+
+palm::Hmac::Hmac(const std::string& key) {
+  this->key = palm::base64::from(key);
+}
