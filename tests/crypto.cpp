@@ -43,12 +43,6 @@ BOOST_AUTO_TEST_CASE(hmac_512) {
   }
 }
 
-BOOST_AUTO_TEST_CASE(jwt) {}
-
-BOOST_AUTO_TEST_CASE(aes) {}
-
-BOOST_AUTO_TEST_CASE(hs512) {}
-
 BOOST_AUTO_TEST_CASE(ssha512) {
   const size_t salt_len = 16;
   for (int i = 0; i < 10; i++) {
@@ -68,3 +62,28 @@ BOOST_AUTO_TEST_CASE(ssha512) {
               << std::endl;
   }
 }
+
+BOOST_AUTO_TEST_CASE(aes) {
+  palm::Aes aes("+2Mhl9cH4MXsMsyTbvqETFg42IQiuDobw8SkQEXkVBE=");
+  for (int i = 0; i < 9; i++) {
+    const auto plain = palm::random::bytes(23 + i);
+    {
+      const auto code1 = aes.encrypt(plain);
+      const auto code2 = aes.encrypt(plain);
+      BOOST_TEST(code1.first.size() == code2.first.size());
+      BOOST_TEST(code1.second.size() == code2.second.size());
+      BOOST_TEST(palm::base64::to(code1.first) !=
+                 palm::base64::to(code2.first));
+      BOOST_TEST(palm::base64::to(code1.second) !=
+                 palm::base64::to(code2.second));
+    }
+    {
+      const auto code = aes.encrypt(plain);
+      const auto it = aes.decrypt(code.first, code.second);
+      BOOST_TEST(plain.size() == it.size());
+      BOOST_TEST(palm::base64::to(plain) == palm::base64::to(it));
+    }
+  }
+}
+
+BOOST_AUTO_TEST_CASE(jwt) {}

@@ -25,31 +25,32 @@ class Hmac {
  public:
   Hmac(const std::string& key);
   inline std::vector<uint8_t> sha512(const std::vector<uint8_t>& plain,
-                                     const std::vector<uint8_t>& salt) {
+                                     const std::vector<uint8_t>& salt) const {
     return this->sum(EVP_sha512(), plain, salt, SHA512_DIGEST_LENGTH);
   }
   inline std::vector<uint8_t> sha384(const std::vector<uint8_t>& plain,
-                                     const std::vector<uint8_t>& salt) {
+                                     const std::vector<uint8_t>& salt) const {
     return this->sum(EVP_sha384(), plain, salt, SHA384_DIGEST_LENGTH);
   }
   inline std::vector<uint8_t> sha256(const std::vector<uint8_t>& plain,
-                                     const std::vector<uint8_t>& salt) {
+                                     const std::vector<uint8_t>& salt) const {
     return this->sum(EVP_sha256(), plain, salt, SHA256_DIGEST_LENGTH);
   }
   inline std::vector<uint8_t> sha224(const std::vector<uint8_t>& plain,
-                                     const std::vector<uint8_t>& salt) {
+                                     const std::vector<uint8_t>& salt) const {
     return this->sum(EVP_sha224(), plain, salt, SHA224_DIGEST_LENGTH);
   }
 
   inline std::vector<uint8_t> md5(const std::vector<uint8_t>& plain,
-                                  const std::vector<uint8_t>& salt) {
+                                  const std::vector<uint8_t>& salt) const {
     return this->sum(EVP_md5(), plain, salt, MD5_DIGEST_LENGTH);
   }
 
  private:
   std::vector<uint8_t> sum(const EVP_MD* engine,
                            const std::vector<uint8_t>& plain,
-                           const std::vector<uint8_t>& salt, const size_t len);
+                           const std::vector<uint8_t>& salt,
+                           const size_t len) const;
 
   std::vector<uint8_t> key;
 };
@@ -64,5 +65,19 @@ const static std::string HEADER = "{SSHA512}";
 }  // namespace ssha512
 
 class Jwt {};
-class Aes {};
+// https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption
+class Aes {
+ public:
+  Aes(const std::string& key);
+
+  std::pair<std::vector<uint8_t>, std::vector<uint8_t>> encrypt(
+      const std::vector<uint8_t>& plain) const;
+  std::vector<uint8_t> decrypt(const std::vector<uint8_t>& code,
+                               const std::vector<uint8_t>& iv) const;
+
+ private:
+  std::vector<uint8_t> key;
+  static const size_t KEY_LEN = 256 / 8;
+  static const size_t IV_LEN = 256 / 8;
+};
 }  // namespace palm

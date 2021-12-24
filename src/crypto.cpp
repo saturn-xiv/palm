@@ -52,7 +52,7 @@ std::vector<uint8_t> palm::base64::from(const std::string& str) {
 std::vector<uint8_t> palm::Hmac::sum(const EVP_MD* engine,
                                      const std::vector<uint8_t>& plain,
                                      const std::vector<uint8_t>& salt,
-                                     const size_t len) {
+                                     const size_t len) const {
   unsigned char it[len];
 
   // std::vector<uint8_t> buf;
@@ -114,4 +114,70 @@ std::string palm::ssha512::sum(const std::string& plain,
                                const size_t salt_len) {
   std::vector<uint8_t> salt = palm::random::bytes(salt_len);
   return palm::ssha512::sum(plain, salt);
+}
+
+palm::Aes::Aes(const std::string& key) {
+  this->key = palm::base64::from(key);
+  if (this->key.size() != (KEY_LEN)) {
+    throw std::runtime_error("bad aes key");
+  }
+}
+std::pair<std::vector<uint8_t>, std::vector<uint8_t>> palm::Aes::encrypt(
+    const std::vector<uint8_t>& plain) const {
+  const auto iv = palm::random::bytes(IV_LEN);
+  EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
+  if (ctx == nullptr) {
+    throw std::runtime_error("init cipher context");
+  }
+  if (1 != EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
+                              &*this->key.begin(), &*iv.begin())) {
+    throw std::runtime_error("init encrypt");
+  }
+
+  std::vector<uint8_t> secret;
+  secret.resize(plain.size() + IV_LEN);
+  int len1 = secret.size();
+  if (1 != EVP_EncryptUpdate(ctx, &*secret.begin(), &len1, &*plain.begin(),
+                             plain.size())) {
+    throw std::runtime_error("update encrypt");
+  }
+  int len2 = secret.size() - len1;
+
+  if (1 != EVP_EncryptFinal_ex(ctx, &*secret.begin() + len1, &len2)) {
+    throw std::runtime_error("final encrypt");
+  }
+  EVP_CIPHER_CTX_free(ctx);
+  secret.resize(len1 + len2);
+  return std::make_pair(secret, iv);
+}
+std::vector<uint8_t> palm::Aes::decrypt(const std::vector<uint8_t>& code,
+                                        const std::vector<uint8_t>& iv) const {
+  if (iv.size() != IV_LEN) {
+    throw std::runtime_error("bad aes iv");
+  }
+
+  EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
+  if (ctx == nullptr) {
+    throw std::runtime_error("init cipher context");
+  }
+  if (1 != EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
+                              &*this->key.begin(), &*iv.begin())) {
+    throw std::runtime_error("init decrypt");
+  }
+
+  std::vector<uint8_t> plain;
+  plain.resize(plain.size() + IV_LEN);
+  int len1 = code.size();
+  if (1 != EVP_DecryptUpdate(ctx, &*plain.begin(), &len1, &*code.begin(),
+                             code.size())) {
+    throw std::runtime_error("update decrypt");
+  }
+  int len2 = plain.size() - len1;
+
+  if (1 != EVP_DecryptFinal_ex(ctx, &*plain.begin() + len1, &len2)) {
+    throw std::runtime_error("final decrypt");
+  }
+  EVP_CIPHER_CTX_free(ctx);
+  plain.resize(len1 + len2);
+  return plain;
 }
