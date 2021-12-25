@@ -224,7 +224,7 @@ class Enforcer final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-  private:
+   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDeleteUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UserList_Item& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDeleteUserRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::UserList_Item& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDeleteOperationRaw(::grpc::ClientContext* context, const ::palm::rbac::v1::OperationList_Item& request, ::grpc::CompletionQueue* cq) = 0;

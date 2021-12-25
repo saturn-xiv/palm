@@ -9,6 +9,7 @@
 #include <openssl/hmac.h>
 #include <openssl/md5.h>
 #include <openssl/sha.h>
+#include <nlohmann/json.hpp>
 
 // openssl rand -base64 32
 namespace palm {
@@ -68,14 +69,24 @@ const static std::string HEADER = "{SSHA512}";
 
 class Jwt {
  public:
-  Jwt(const std::string& key);
-  std::string signature(
-      const std::unordered_map<std::string, std::string>& payload,
-      const std::chrono::seconds& ttl) const;
-  std::unordered_map<std::string, std::string> decode(
+  Jwt(const std::string& key) : key(palm::base64::from(key)) {}
+  std::string encode(const std::string& audience, const std::string& subject,
+                     const nlohmann::json& payload,
+                     const std::chrono::seconds& ttl) const;
+  std::tuple<std::string, std::string, nlohmann::json> decode(
       const std::string& token) const;
 
  private:
+  std::string signature(const std::string& header,
+                        const std::string& payload) const;
+
+  inline static const std::string AUTHORIZATION = "Authorization";
+  inline static const std::string BEARER = "Bearer";
+  inline static const std::string POT = ".";
+  inline static const std::string AUDIENCE = "aud";
+  inline static const std::string SUBJECT = "sub";
+  inline static const std::string EXPIRE = "exp";
+  inline static const std::string NOT_BEFORE = "nbf";
   std::vector<uint8_t> key;
 };
 // https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption

@@ -4,6 +4,7 @@
 #include "palm/crypto.hpp"
 
 #include <iostream>
+#include <thread>
 
 BOOST_AUTO_TEST_CASE(random_) {
   for (int i = 0; i < 10; i++) {
@@ -18,7 +19,7 @@ BOOST_AUTO_TEST_CASE(random_) {
 #define PALM_TEST_SECRET_KEY "ticn2mE1i+TUZw9wIUbb2FjYzRfgaNWpijq7tqNzmAY="
 
 BOOST_AUTO_TEST_CASE(hmac_512) {
-  palm::Hmac it(PALM_TEST_SECRET_KEY);
+  const palm::Hmac it(PALM_TEST_SECRET_KEY);
   for (int i = 0; i < 10; i++) {
     const auto data1 = palm::random::bytes(64);
     const auto data2 = palm::random::bytes(64);
@@ -64,7 +65,7 @@ BOOST_AUTO_TEST_CASE(ssha512) {
 }
 
 BOOST_AUTO_TEST_CASE(aes) {
-  palm::Aes aes("+2Mhl9cH4MXsMsyTbvqETFg42IQiuDobw8SkQEXkVBE=");
+  const palm::Aes aes("+2Mhl9cH4MXsMsyTbvqETFg42IQiuDobw8SkQEXkVBE=");
   for (int i = 0; i < 9; i++) {
     const auto plain = palm::random::bytes(23 + i);
     {
@@ -86,4 +87,32 @@ BOOST_AUTO_TEST_CASE(aes) {
   }
 }
 
-BOOST_AUTO_TEST_CASE(jwt) {}
+BOOST_AUTO_TEST_CASE(jwt) {
+  const palm::Jwt jwt("wM7PfXLXdOhswHZcyNUbzBDEu6jt8FJPApt67tiY3Ko=");
+  const std::string uid = "uid";
+  const std::string aud = "palm";
+  const std::string sub = "unit test";
+  for (int i = 0; i < 9; i++) {
+    nlohmann::json payload;
+    std::stringstream ss;
+    ss << "hello, " << i << "!";
+    payload[uid] = ss.str();
+
+    std::string token1 = jwt.encode(aud, sub, payload, std::chrono::hours(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    {
+      std::string token2 = jwt.encode(aud, sub, payload, std::chrono::hours(1));
+      BOOST_TEST(token2 != token1);
+    }
+    auto [aud1, sub1, payload1] = jwt.decode(token1);
+    BOOST_TEST(aud == aud1);
+    BOOST_TEST(sub == sub1);
+    {
+      const std::string uid1 = payload1[uid];
+      const std::string uid0 = payload[uid];
+      BOOST_TEST(uid0 == uid1);
+    }
+
+    std::cout << "token: " << token1 << "\n" << payload1 << std::endl;
+  }
+}
