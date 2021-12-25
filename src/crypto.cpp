@@ -117,14 +117,15 @@ std::string palm::ssha512::sum(const std::string& plain,
 }
 
 palm::Aes::Aes(const std::string& key) {
+  EVP_add_cipher(EVP_aes_256_cbc());
   this->key = palm::base64::from(key);
-  if (this->key.size() != (KEY_LEN)) {
+  if (this->key.size() != KEY_SIZE) {
     throw std::runtime_error("bad aes key");
   }
 }
 std::pair<std::vector<uint8_t>, std::vector<uint8_t>> palm::Aes::encrypt(
     const std::vector<uint8_t>& plain) const {
-  const auto iv = palm::random::bytes(IV_LEN);
+  const auto iv = palm::random::bytes(BLOCK_SIZE);
   EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
   if (ctx == nullptr) {
     throw std::runtime_error("init cipher context");
@@ -135,7 +136,7 @@ std::pair<std::vector<uint8_t>, std::vector<uint8_t>> palm::Aes::encrypt(
   }
 
   std::vector<uint8_t> secret;
-  secret.resize(plain.size() + IV_LEN);
+  secret.resize(plain.size() + BLOCK_SIZE);
   int len1 = secret.size();
   if (1 != EVP_EncryptUpdate(ctx, &*secret.begin(), &len1, &*plain.begin(),
                              plain.size())) {
@@ -152,7 +153,7 @@ std::pair<std::vector<uint8_t>, std::vector<uint8_t>> palm::Aes::encrypt(
 }
 std::vector<uint8_t> palm::Aes::decrypt(const std::vector<uint8_t>& code,
                                         const std::vector<uint8_t>& iv) const {
-  if (iv.size() != IV_LEN) {
+  if (iv.size() != BLOCK_SIZE) {
     throw std::runtime_error("bad aes iv");
   }
 
@@ -166,8 +167,8 @@ std::vector<uint8_t> palm::Aes::decrypt(const std::vector<uint8_t>& code,
   }
 
   std::vector<uint8_t> plain;
-  plain.resize(plain.size() + IV_LEN);
-  int len1 = code.size();
+  plain.resize(code.size());
+  int len1 = plain.size();
   if (1 != EVP_DecryptUpdate(ctx, &*plain.begin(), &len1, &*code.begin(),
                              code.size())) {
     throw std::runtime_error("update decrypt");
@@ -180,4 +181,31 @@ std::vector<uint8_t> palm::Aes::decrypt(const std::vector<uint8_t>& code,
   EVP_CIPHER_CTX_free(ctx);
   plain.resize(len1 + len2);
   return plain;
+}
+
+palm::Jwt::Jwt(const std::string& key) { this->key = palm::base64::from(key); }
+
+std::unordered_map<std::string, std::string> palm::Jwt::decode(
+    const std::string& token) const {
+  // jwt::jwt_object obj =
+  //     jwt::decode(token, jwt::params::algorithms({jwt::algorithm::HS512}),
+  //     ec,
+  //               jwt::params::secret(this->key), jwt::params::verify(true));
+
+  std::unordered_map<std::string, std::string> payload;
+  return payload;
+}
+
+std::string palm::Jwt::signature(
+    const std::unordered_map<std::string, std::string>& payload,
+    const std::chrono::seconds& ttl) const {
+  // jwt::jwt_object obj{jwt::params::algorithm(jwt::algorithm::HS512),
+  //                     jwt::params::secret(this->key),
+  //                     jwt::params::payload({{}})};
+  // const auto now = std::chrono::system_clock::now();
+  // obj.add_claim("nbf", now).add_claim("exp", now + ttl);
+  // for (const auto& [key, val] : payload) {
+  //   obj.payload().add_claim(key, val);
+  // }
+  return "";
 }

@@ -1,7 +1,7 @@
 [requires]
 libxcrypt/4.4.26
 openssl/1.1.1l
-boost/1.77.0
+boost/1.78.0
 soci/4.0.2
 libpq/13.4
 #libpqxx/7.6.0
@@ -9,11 +9,10 @@ sqlite3/3.37.0
 sqlitecpp/3.1.1
 mongo-cxx-driver/3.6.6
 hiredis/1.0.2
-cpr/1.6.2
+cpr/1.7.2
 cpp-httplib/0.9.10
-cpp-jwt/1.4
 inja/3.3.0
-nlohmann_json/3.10.3
+nlohmann_json/3.10.4
 tomlplusplus/2.5.0
 yaml-cpp/0.7.0
 expat/2.4.1
@@ -22,7 +21,7 @@ flatbuffers/2.0.0
 rabbitmq-c/0.11.0
 cppzmq/4.8.1
 paho-mqtt-cpp/1.2.0
-grpc/1.39.1
+grpc/1.43.0
 
 [options]
 zeromq:encryption=None

@@ -85,7 +85,7 @@ RUN sh -c ". $HOME/.profile \
     && conan profile update settings.compiler.libcxx=libstdc++11 default"
 
 # https://github.com/nvm-sh/nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | sh
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | sh
 RUN sh -c ". $HOME/.profile \
     && nvm install node"
 RUN sh -c ". $HOME/.profile \
@@ -94,7 +94,7 @@ RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 
 # https://grpc.io/docs/languages/cpp/quickstart/
-ENV GRPC_VERSION "v1.39.1"
+ENV GRPC_VERSION "v1.43.0"
 ENV PROTOC_VERSION "v3.17.1"
 RUN zsh -c "source $HOME/.zshrc \
     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"

@@ -1,7 +1,9 @@
 #pragma once
 
+#include <chrono>
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include <openssl/hmac.h>
@@ -64,7 +66,18 @@ bool verify(const std::string& secret, const std::string& plain);
 const static std::string HEADER = "{SSHA512}";
 }  // namespace ssha512
 
-class Jwt {};
+class Jwt {
+ public:
+  Jwt(const std::string& key);
+  std::string signature(
+      const std::unordered_map<std::string, std::string>& payload,
+      const std::chrono::seconds& ttl) const;
+  std::unordered_map<std::string, std::string> decode(
+      const std::string& token) const;
+
+ private:
+  std::vector<uint8_t> key;
+};
 // https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption
 class Aes {
  public:
@@ -77,7 +90,7 @@ class Aes {
 
  private:
   std::vector<uint8_t> key;
-  static const size_t KEY_LEN = 256 / 8;
-  static const size_t IV_LEN = 256 / 8;
+  static const size_t KEY_SIZE = 256 / 8;
+  static const size_t BLOCK_SIZE = 128 / 8;
 };
 }  // namespace palm
