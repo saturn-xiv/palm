@@ -1,6 +1,6 @@
 [requires]
 libxcrypt/4.4.26
-openssl/1.1.1l
+openssl/1.1.1m
 boost/1.78.0
 soci/4.0.2
 libpq/13.4
@@ -21,7 +21,7 @@ flatbuffers/2.0.0
 rabbitmq-c/0.11.0
 cppzmq/4.8.1
 paho-mqtt-cpp/1.2.0
-grpc/1.43.0
+grpc/1.41.0
 
 [options]
 zeromq:encryption=None
