@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(jwt) {
   const std::string uid = "uid";
   const std::string aud = "palm";
   const std::string sub = "unit test";
-  for (int i = 0; i < 9; i++) {
+  for (int i = 0; i < 3; i++) {
     nlohmann::json payload;
     std::stringstream ss;
     ss << "hello, " << i << "!";
@@ -104,9 +104,8 @@ BOOST_AUTO_TEST_CASE(jwt) {
       std::string token2 = jwt.encode(aud, sub, payload, std::chrono::hours(1));
       BOOST_TEST(token2 != token1);
     }
-    auto [aud1, sub1, payload1] = jwt.decode(token1);
+    auto [aud1, _, payload1] = jwt.decode(token1, sub);
     BOOST_TEST(aud == aud1);
-    BOOST_TEST(sub == sub1);
     {
       const std::string uid1 = payload1[uid];
       const std::string uid0 = payload[uid];
@@ -115,4 +114,9 @@ BOOST_AUTO_TEST_CASE(jwt) {
 
     std::cout << "token: " << token1 << "\n" << payload1 << std::endl;
   }
+}
+
+BOOST_AUTO_TEST_CASE(gravatar) {
+  const std::string email = "MyEmailAddress@example.com ";
+  std::cout << palm::gravatar(email) << std::endl;
 }

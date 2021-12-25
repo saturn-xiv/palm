@@ -67,23 +67,23 @@ User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, cons
   , rpcmethod_Lock_(User_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status User::Stub::SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::auth::v1::SignInRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignIn_, context, request, response);
+::grpc::Status User::Stub::SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::palm::auth::v1::SignInResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::auth::v1::SignInRequest, ::palm::auth::v1::SignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignIn_, context, request, response);
 }
 
-void User::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::auth::v1::SignInRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignIn_, context, request, response, std::move(f));
+void User::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest* request, ::palm::auth::v1::SignInResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::auth::v1::SignInRequest, ::palm::auth::v1::SignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignIn_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+void User::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest* request, ::palm::auth::v1::SignInResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignIn_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::auth::v1::SignInRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignIn_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::auth::v1::SignInResponse>* User::Stub::PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::auth::v1::SignInResponse, ::palm::auth::v1::SignInRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignIn_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSignInRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::auth::v1::SignInResponse>* User::Stub::AsyncSignInRaw(::grpc::ClientContext* context, const ::palm::auth::v1::SignInRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncSignInRaw(context, request, cq);
   result->StartCall();
@@ -320,23 +320,23 @@ void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::
   return result;
 }
 
-::grpc::Status User::Stub::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::auth::v1::UserList_Item* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::auth::v1::UserList_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Self_, context, request, response);
+::grpc::Status User::Stub::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::auth::v1::SelfResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::auth::v1::SelfResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Self_, context, request, response);
 }
 
-void User::Stub::async::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::auth::v1::UserList_Item* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::auth::v1::UserList_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Self_, context, request, response, std::move(f));
+void User::Stub::async::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::auth::v1::SelfResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::auth::v1::SelfResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Self_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::auth::v1::UserList_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+void User::Stub::async::Self(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::auth::v1::SelfResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Self_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::auth::v1::UserList_Item>* User::Stub::PrepareAsyncSelfRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::auth::v1::UserList_Item, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Self_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::auth::v1::SelfResponse>* User::Stub::PrepareAsyncSelfRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::auth::v1::SelfResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Self_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::auth::v1::UserList_Item>* User::Stub::AsyncSelfRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::auth::v1::SelfResponse>* User::Stub::AsyncSelfRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncSelfRaw(context, request, cq);
   result->StartCall();
@@ -439,11 +439,11 @@ User::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::auth::v1::SignInRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::auth::v1::SignInRequest, ::palm::auth::v1::SignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
              const ::palm::auth::v1::SignInRequest* req,
-             ::google::protobuf::Empty* resp) {
+             ::palm::auth::v1::SignInResponse* resp) {
                return service->SignIn(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
@@ -549,11 +549,11 @@ User::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::palm::auth::v1::UserList_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::palm::auth::v1::SelfResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
              const ::google::protobuf::Empty* req,
-             ::palm::auth::v1::UserList_Item* resp) {
+             ::palm::auth::v1::SelfResponse* resp) {
                return service->Self(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
@@ -601,7 +601,7 @@ User::Service::Service() {
 User::Service::~Service() {
 }
 
-::grpc::Status User::Service::SignIn(::grpc::ServerContext* context, const ::palm::auth::v1::SignInRequest* request, ::google::protobuf::Empty* response) {
+::grpc::Status User::Service::SignIn(::grpc::ServerContext* context, const ::palm::auth::v1::SignInRequest* request, ::palm::auth::v1::SignInResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -678,7 +678,7 @@ User::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status User::Service::Self(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::auth::v1::UserList_Item* response) {
+::grpc::Status User::Service::Self(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::auth::v1::SelfResponse* response) {
   (void) context;
   (void) request;
   (void) response;

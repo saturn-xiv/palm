@@ -17,6 +17,9 @@
 // openssl rand -base64 32
 namespace palm {
 std::string uuid();
+// https://en.gravatar.com/site/implement/hash/
+std::string gravatar(const std::string& email);
+std::string md5hex(const std::string& s);
 
 namespace random {
 std::vector<uint8_t> bytes(const size_t len);
@@ -30,6 +33,15 @@ std::vector<uint8_t> from(const std::string& str);
 class Hmac {
  public:
   Hmac(const std::string& key);
+  Hmac(Hmac const&) = delete;
+  void operator=(Hmac const&) = delete;
+
+  void set_key(const std::string& key);
+
+  static Hmac& instance() {
+    static Hmac it;
+    return it;
+  }
   inline std::vector<uint8_t> sha512(const std::vector<uint8_t>& plain,
                                      const std::vector<uint8_t>& salt) const {
     return this->sum(EVP_sha512(), plain, salt, SHA512_DIGEST_LENGTH);
@@ -53,6 +65,7 @@ class Hmac {
   }
 
  private:
+  Hmac() {}
   std::vector<uint8_t> sum(const EVP_MD* engine,
                            const std::vector<uint8_t>& plain,
                            const std::vector<uint8_t>& salt,
@@ -72,12 +85,21 @@ const static std::string HEADER = "{SSHA512}";
 
 class Jwt {
  public:
-  Jwt(const std::string& key) : key(palm::base64::from(key)) {}
+  Jwt(const std::string& key);
+  Jwt(Jwt const&) = delete;
+  void operator=(Jwt const&) = delete;
+
+  void set_key(const std::string& key);
+
+  static Jwt& instance() {
+    static Jwt it;
+    return it;
+  }
   std::string encode(const std::string& audience, const std::string& subject,
                      const nlohmann::json& payload,
                      const std::chrono::seconds& ttl) const;
-  std::tuple<std::string, std::string, nlohmann::json> decode(
-      const std::string& token) const;
+  std::tuple<std::string, std::chrono::seconds, nlohmann::json> decode(
+      const std::string& token, const std::string& subject) const;
 
   inline static std::optional<std::string> token(
       const grpc::ServerContext* context) {
@@ -98,6 +120,7 @@ class Jwt {
   }
 
  private:
+  Jwt() {}
   std::string signature(const std::string& header,
                         const std::string& payload) const;
 
@@ -114,15 +137,25 @@ class Jwt {
 class Aes {
  public:
   Aes(const std::string& key);
+  Aes(Aes const&) = delete;
+  void operator=(Aes const&) = delete;
+
+  void set_key(const std::string& key);
+
+  static Aes& instance() {
+    static Aes it;
+    return it;
+  }
 
   std::pair<std::vector<uint8_t>, std::vector<uint8_t>> encrypt(
       const std::vector<uint8_t>& plain) const;
   std::vector<uint8_t> decrypt(const std::vector<uint8_t>& code,
                                const std::vector<uint8_t>& iv) const;
-
- private:
-  std::vector<uint8_t> key;
   static const size_t KEY_SIZE = 256 / 8;
   static const size_t BLOCK_SIZE = 128 / 8;
+
+ private:
+  Aes() {}
+  std::vector<uint8_t> key;
 };
 }  // namespace palm

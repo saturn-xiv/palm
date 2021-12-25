@@ -7,12 +7,39 @@
 #include <random>
 #include <sstream>
 
+#include <boost/algorithm/hex.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <cppcodec/base64_rfc4648.hpp>
 #include <cppcodec/base64_url_unpadded.hpp>
+
+std::string palm::gravatar(const std::string& email) {
+  std::string it = boost::algorithm::to_lower_copy(email);
+  boost::algorithm::trim(it);
+  std::stringstream ss;
+  ss << "https://www.gravatar.com/avatar/" << palm::md5hex(it);
+  return ss.str();
+}
+
+std::string palm::md5hex(const std::string& str) {
+  uint8_t buf[MD5_DIGEST_LENGTH];
+  {
+    MD5_CTX ctx;
+    MD5_Init(&ctx);
+    MD5_Update(&ctx, str.c_str(), str.size());
+    MD5_Final(buf, &ctx);
+  }
+  std::string hash;
+  {
+    hash.reserve(MD5_DIGEST_LENGTH * 2);
+    boost::algorithm::hex(buf, buf + MD5_DIGEST_LENGTH,
+                          std::back_inserter(hash));
+    boost::algorithm::to_lower(hash);
+  }
+  return hash;
+}
 
 std::string palm::uuid() {
   boost::uuids::uuid it = boost::uuids::random_generator()();
@@ -74,9 +101,12 @@ std::vector<uint8_t> palm::Hmac::sum(const EVP_MD* engine,
   return tmp;
 }
 
-palm::Hmac::Hmac(const std::string& key) {
+palm::Hmac::Hmac(const std::string& key) { this->set_key(key); }
+
+void palm::Hmac::set_key(const std::string& key) {
   this->key = palm::base64::from(key);
 }
+
 bool palm::ssha512::verify(const std::string& secret,
                            const std::string& plain) {
   if (secret.size() <= HEADER.size()) {
@@ -95,11 +125,13 @@ bool palm::ssha512::verify(const std::string& secret,
 std::string palm::ssha512::sum(const std::string& plain,
                                const std::vector<uint8_t>& salt) {
   uint8_t hash[SHA512_DIGEST_LENGTH];
-  SHA512_CTX ctx;
-  SHA512_Init(&ctx);
-  SHA512_Update(&ctx, plain.c_str(), plain.size());
-  SHA512_Update(&ctx, &*salt.begin(), salt.size());
-  SHA512_Final(hash, &ctx);
+  {
+    SHA512_CTX ctx;
+    SHA512_Init(&ctx);
+    SHA512_Update(&ctx, plain.c_str(), plain.size());
+    SHA512_Update(&ctx, &*salt.begin(), salt.size());
+    SHA512_Final(hash, &ctx);
+  }
 
   std::vector<uint8_t> buf;
   {
@@ -117,13 +149,16 @@ std::string palm::ssha512::sum(const std::string& plain,
   return palm::ssha512::sum(plain, salt);
 }
 
-palm::Aes::Aes(const std::string& key) {
+palm::Aes::Aes(const std::string& key) { this->set_key(key); }
+
+void palm::Aes::set_key(const std::string& key) {
   EVP_add_cipher(EVP_aes_256_cbc());
   this->key = palm::base64::from(key);
   if (this->key.size() != KEY_SIZE) {
     throw std::runtime_error("bad aes key");
   }
 }
+
 std::pair<std::vector<uint8_t>, std::vector<uint8_t>> palm::Aes::encrypt(
     const std::vector<uint8_t>& plain) const {
   const auto iv = palm::random::bytes(BLOCK_SIZE);
@@ -184,8 +219,14 @@ std::vector<uint8_t> palm::Aes::decrypt(const std::vector<uint8_t>& code,
   return plain;
 }
 
-std::tuple<std::string, std::string, nlohmann::json> palm::Jwt::decode(
-    const std::string& token) const {
+palm::Jwt::Jwt(const std::string& key) { this->set_key(key); }
+
+void palm::Jwt::set_key(const std::string& key) {
+  this->key = palm::base64::from(key);
+}
+
+std::tuple<std::string, std::chrono::seconds, nlohmann::json> palm::Jwt::decode(
+    const std::string& token, const std::string& subject) const {
   std::vector<std::string> lines;
   boost::split(lines, token, boost::is_any_of(POT));
   if (lines.size() != 3) {
@@ -198,22 +239,31 @@ std::tuple<std::string, std::string, nlohmann::json> palm::Jwt::decode(
 
   const nlohmann::json p =
       nlohmann::json::parse(cppcodec::base64_url_unpadded::decode(payload));
-  const std::string subject = p[SUBJECT];
-  const std::string audience = p[AUDIENCE];
+  {
+    const std::string it = p[SUBJECT];
+    if (it != subject) {
+      throw std::runtime_error("bad subject");
+    }
+  }
+
+  const int64_t now = std::chrono::duration_cast<std::chrono::seconds>(
+                          std::chrono::system_clock::now().time_since_epoch())
+                          .count();
+  const int64_t exp = p[EXPIRE];
   {
     const int64_t nbf = p[NOT_BEFORE];
-    const int64_t now = std::chrono::duration_cast<std::chrono::seconds>(
-                            std::chrono::system_clock::now().time_since_epoch())
-                            .count();
+
     if (now < nbf) {
       throw std::runtime_error("token isn't available");
     }
-    const int64_t exp = p[EXPIRE];
+
     if (now > exp) {
       throw std::runtime_error("token expired");
     }
   }
-  return std::make_tuple(audience, subject, p);
+
+  const std::string audience = p[AUDIENCE];
+  return std::make_tuple(audience, std::chrono::seconds{(exp - now)}, p);
 }
 
 std::string palm::Jwt::encode(const std::string& audience,

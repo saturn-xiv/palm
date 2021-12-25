@@ -1,6 +1,7 @@
 #include "palm/fig.hpp"
 #include "palm/auth.hpp"
 #include "palm/cache.hpp"
+#include "palm/crypto.hpp"
 #include "palm/orm.hpp"
 #include "palm/version.hpp"
 
@@ -15,30 +16,24 @@ palm::fig::Application::Application(int argc, char** argv) {
 
   boost::program_options::options_description generic("Generic options");
   generic.add_options()("version,v", "print version string")(
-      "help,h",
-      "produce help message")("debug,d",
-                              "run on debug mode")("config,c",
-                                                   boost::program_options::
-                                                       value<std::filesystem::
-                                                                 path>(
-                                                           &config_file)
-                                                           ->default_value(
-                                                               "config.ini"),
-                                                   "config file path");
+      "help,h", "produce help message")("debug,d", "run on debug mode")(
+      "config,c",
+      boost::program_options::value<std::filesystem::path>(&config_file)
+          ->default_value("config.ini"),
+      "config file path");
 
   boost::program_options::options_description db("PostgreSql");
   db.add_options()("db-migrate", "runs all pending migrations")(
-      "db-rollback",
-      "reverts the latest run migration")("db-list",
-                                          "lists all available migrations");
+      "db-rollback", "reverts the latest run migration")(
+      "db-list", "lists all available migrations");
 
   boost::program_options::options_description cache("Redis");
   cache.add_options()("cache-list", "lists all available cache items")(
       "cache-clear", "clear cache items");
 
   boost::program_options::options_description services("Services");
-  services.add_options()("rpc", "start rpc server")(
-      "web", "start web server")("worker", "start worker cosumer");
+  services.add_options()("rpc", "start rpc server")("web", "start web server")(
+      "worker", "start worker cosumer");
 
   boost::program_options::options_description args;
   args.add(generic).add(db).add(cache).add(services);
@@ -58,7 +53,7 @@ palm::fig::Application::Application(int argc, char** argv) {
   }
 
   palm::init_logger(vm.count("debug"));
-  BOOST_LOG_TRIVIAL(info) << "load config file from " << config_file;
+  BOOST_LOG_TRIVIAL(debug) << "load config file from " << config_file;
   boost::property_tree::ptree config;
   boost::property_tree::read_ini(config_file, config);
 
@@ -111,13 +106,30 @@ palm::fig::Application::Application(int argc, char** argv) {
     }
   }
 
+  {
+    const std::string secrets = config.get<std::string>("secrets");
+    palm::Jwt::instance().set_key(secrets);
+    palm::Aes::instance().set_key(secrets);
+    palm::Hmac::instance().set_key(secrets);
+  }
+
   if (vm.count("rpc")) {
     this->rpc(config);
     return;
   }
+  if (vm.count("web")) {
+    this->web(config);
+    return;
+  }
+  if (vm.count("worker")) {
+    this->worker(config);
+    return;
+  }
+  std::cout << args << std::endl;
 }
 
-void palm::fig::Application::rpc(const boost::property_tree::ptree& config) {
+void palm::fig::Application::rpc(
+    const boost::property_tree::ptree& config) const {
   std::stringstream address_s;
   {
     uint16_t port = config.get("rpc.port", 8086);
@@ -140,9 +152,11 @@ void palm::fig::Application::rpc(const boost::property_tree::ptree& config) {
   server->Wait();
 }
 
-void palm::fig::Application::web(const boost::property_tree::ptree& config) {
+void palm::fig::Application::web(
+    const boost::property_tree::ptree& config) const {
   // TODO
 }
-void palm::fig::Application::worker(const boost::property_tree::ptree& config) {
+void palm::fig::Application::worker(
+    const boost::property_tree::ptree& config) const {
   // TODO
 }

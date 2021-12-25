@@ -9,9 +9,9 @@ class Application {
   Application(int argc, char** argv);
 
  private:
-  void rpc(const boost::property_tree::ptree& config);
-  void web(const boost::property_tree::ptree& config);
-  void worker(const boost::property_tree::ptree& config);
+  void rpc(const boost::property_tree::ptree& config) const;
+  void web(const boost::property_tree::ptree& config) const;
+  void worker(const boost::property_tree::ptree& config) const;
 };
 }  // namespace fig
 }  // namespace palm

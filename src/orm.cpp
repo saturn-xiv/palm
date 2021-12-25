@@ -68,7 +68,7 @@ void palm::orm::Query::load(const std::filesystem::path& root) {
   const std::lock_guard<std::mutex> lock(this->locker);
   for (const auto& it : std::filesystem::directory_iterator(root / "queries")) {
     const std::string file = it.path().string();
-    BOOST_LOG_TRIVIAL(info) << "load query file from " << file;
+    BOOST_LOG_TRIVIAL(debug) << "load query file from " << file;
     boost::property_tree::ptree tree;
     boost::property_tree::read_ini(file, tree);
     this->trees[file] = tree;
@@ -90,7 +90,7 @@ palm::orm::Schema::Schema(const std::filesystem::path& root,
     if (!std::filesystem::is_directory(node)) {
       continue;
     }
-    BOOST_LOG_TRIVIAL(info) << "load migration files from " << node;
+    BOOST_LOG_TRIVIAL(debug) << "load migration files from " << node;
 
     Migration mig;
     {
