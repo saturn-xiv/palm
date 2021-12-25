@@ -2,13 +2,16 @@
 
 #include <chrono>
 #include <memory>
+#include <optional>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
+#include <grpcpp/grpcpp.h>
 #include <openssl/hmac.h>
 #include <openssl/md5.h>
 #include <openssl/sha.h>
+#include <boost/algorithm/string.hpp>
 #include <nlohmann/json.hpp>
 
 // openssl rand -base64 32
@@ -76,12 +79,30 @@ class Jwt {
   std::tuple<std::string, std::string, nlohmann::json> decode(
       const std::string& token) const;
 
+  inline static std::optional<std::string> token(
+      const grpc::ServerContext* context) {
+    const auto meta = context->client_metadata();
+    for (auto it = meta.find(boost::algorithm::to_lower_copy(AUTHORIZATION));
+         it != meta.end(); it++) {
+      std::string val = it->second.data();
+      if (val.find(BEARER) == 0) {
+        return val.substr(BEARER.size());
+      }
+    }
+    return std::nullopt;
+  }
+  inline static void token(grpc::ClientContext* context,
+                           const std::string& token) {
+    context->AddMetadata(boost::algorithm::to_lower_copy(AUTHORIZATION),
+                         BEARER + token);
+  }
+
  private:
   std::string signature(const std::string& header,
                         const std::string& payload) const;
 
   inline static const std::string AUTHORIZATION = "Authorization";
-  inline static const std::string BEARER = "Bearer";
+  inline static const std::string BEARER = "Bearer ";
   inline static const std::string POT = ".";
   inline static const std::string AUDIENCE = "aud";
   inline static const std::string SUBJECT = "sub";
