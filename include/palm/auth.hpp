@@ -6,6 +6,42 @@
 namespace palm {
 namespace auth {
 
+struct User {
+  static const size_t NICK_NAME_MAX = 32;
+  static const size_t REAL_NAME_MAX = 64;
+  inline void available() {
+    std::stringstream ss;
+    ss << "user " << this->real_name << " ";
+    if (!this->confirmed_at) {
+      ss << "didn't confirmed";
+      throw std::runtime_error(ss.str());
+    }
+    if (this->locked_at) {
+      ss << "didn't confirmed";
+      throw std::runtime_error(ss.str());
+    }
+    if (this->deleted_at) {
+      ss << "is deleted";
+      throw std::runtime_error(ss.str());
+    }
+  }
+  void verify(const std::string& password);
+
+  int64_t id;
+  std::string real_name;
+  std::string nick_name;
+  std::string email;
+  std::optional<std::string> password;
+  std::string salt;
+  std::string uid;
+  std::string logo;
+  std::string lang;
+  std::string time_zone;
+  std::optional<std::tm> confirmed_at;
+  std::optional<std::tm> locked_at;
+  std::optional<std::tm> deleted_at;
+  std::tm updated_at;
+};
 class UserService final : public palm::auth::v1::User::Service {
  public:
   grpc::Status SignIn(grpc::ServerContext* context,
@@ -60,44 +96,16 @@ class UserService final : public palm::auth::v1::User::Service {
                     google::protobuf::Empty* reply) override;
 
  private:
-  inline static const std::string ACTION_SIGN_IN = "sign-in";
-};
+  void send_email(const User& user, const std::string& action);
 
-struct User {
-  static const size_t NICK_NAME_MAX = 32;
-  static const size_t REAL_NAME_MAX = 64;
-  inline void available() {
-    std::stringstream ss;
-    ss << "user " << this->real_name << " ";
-    if (!this->confirmed_at) {
-      ss << "didn't confirmed";
-      throw std::runtime_error(ss.str());
-    }
-    if (this->locked_at) {
-      ss << "didn't confirmed";
-      throw std::runtime_error(ss.str());
-    }
-    if (this->deleted_at) {
-      ss << "is deleted";
-      throw std::runtime_error(ss.str());
-    }
-  }
-  void verify(const std::string& password);
+  std::optional<User> get_user_by_email(const std::string& email);
+  std::optional<User> get_user_by_uid(const std::string& uid);
+  std::optional<User> get_user_by_nick_name(const std::string& nick_name);
 
-  int64_t id;
-  std::string real_name;
-  std::string nick_name;
-  std::string email;
-  std::optional<std::string> password;
-  std::string salt;
-  std::string uid;
-  std::string logo;
-  std::string lang;
-  std::string time_zone;
-  std::optional<std::tm> confirmed_at;
-  std::optional<std::tm> locked_at;
-  std::optional<std::tm> deleted_at;
-  std::tm updated_at;
+  inline static const std::string ACTION_SIGN_IN = "user.sign-in";
+  inline static const std::string ACTION_CONFIRM = "user.confirm";
+  inline static const std::string ACTION_UNLOCK = "user.unlock";
+  inline static const std::string ACTION_RESET_PASSWORD = "user.reset-password";
 };
 
 }  // namespace auth

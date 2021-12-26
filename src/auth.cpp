@@ -17,40 +17,33 @@ grpc::Status palm::auth::UserService::SignIn(
     palm::auth::v1::SignInResponse* reply) {
   const auto who = request->who();
   std::optional<palm::auth::User> user;
+  if (who.has_email()) {
+    std::string it = who.email();
+    user = this->get_user_by_email(it);
+  }
+  if (!user && who.has_nick_name()) {
+    std::string it = who.nick_name();
+    user = this->get_user_by_nick_name(it);
+  }
+  user->available();
+  user->verify(request->password());
   {
+    const auto& query = palm::orm::Query::instance();
+
     palm::orm::PooledConnection con;
     auto db = con.get();
-    const auto& query = palm::orm::Query::instance();
-    if (who.has_email()) {
-      std::string email = who.email();
-      boost::algorithm::to_lower(email);
-      boost::algorithm::trim(email);
-      (*db) << query.get("users.by-email"), soci::use(email), soci::into(user);
-    }
-    if (who.has_nick_name()) {
-      std::string nick_name = who.nick_name();
-      boost::algorithm::to_lower(nick_name);
-      boost::algorithm::trim(nick_name);
-      (*db) << query.get("users.by-nick_name"), soci::use(nick_name),
-          soci::into(user);
-    }
 
-    user->available();
-    user->verify(request->password());
-
-    {
-      soci::transaction tr(*db);
-      const std::string level = palm::auth::v1::LogList_Level_Name(
-          palm::auth::v1::LogList_Level_INFO);
-      const std::string ip = context->peer();
-      const std::string message = "Sign In.";
-      (*db) << query.get("users.sign-in"), soci::use(user->id, "id"),
-          soci::use(ip, "ip");
-      (*db) << query.get("logs.create"), soci::use(level, "level"),
-          soci::use(user->id, "user_id"), soci::use(ip, "ip"),
-          soci::use(message, "message");
-      tr.commit();
-    }
+    soci::transaction tr(*db);
+    const std::string level =
+        palm::auth::v1::LogList_Level_Name(palm::auth::v1::LogList_Level_INFO);
+    const std::string ip = context->peer();
+    const std::string message = "Sign In.";
+    (*db) << query.get("users.sign-in"), soci::use(user->id, "id"),
+        soci::use(ip, "ip");
+    (*db) << query.get("logs.create"), soci::use(level, "level"),
+        soci::use(user->id, "user_id"), soci::use(ip, "ip"),
+        soci::use(message, "message");
+    tr.commit();
   }
   const std::string token = palm::Jwt::instance().encode(
       user->uid, ACTION_SIGN_IN, {}, std::chrono::days(1));
@@ -61,40 +54,29 @@ grpc::Status palm::auth::UserService::SignUp(
     grpc::ServerContext* context, const palm::auth::v1::SignUpRequest* request,
     google::protobuf::Empty* reply) {
   std::string email = request->email();
+  if (this->get_user_by_email(email)) {
+    std::stringstream ss;
+    ss << "user " << email << " already exists!";
+    throw std::runtime_error(ss.str());
+  }
+  std::string nick_name = request->nick_name();
+  if (this->get_user_by_nick_name(nick_name)) {
+    std::stringstream ss;
+    ss << "user " << nick_name << " already exists!";
+    throw std::runtime_error(ss.str());
+  }
+
   const auto& query = palm::orm::Query::instance();
   std::optional<palm::auth::User> user;
 
   {
     palm::orm::PooledConnection con;
     auto db = con.get();
-    {
-      boost::algorithm::to_lower(email);
-      boost::algorithm::trim(email);
-      palm::validator::email(email);
-      (*db) << query.get("users.by-email"), soci::use(email), soci::into(user);
-      if (user) {
-        std::stringstream ss;
-        ss << "user " << email << " already exists!";
-        throw std::runtime_error(ss.str());
-      }
-    }
+
     std::string real_name = request->real_name();
     {
       boost::algorithm::trim(real_name);
       palm::validator::string(real_name, 1, User::REAL_NAME_MAX);
-    }
-    std::string nick_name = request->nick_name();
-    {
-      boost::algorithm::to_lower(nick_name);
-      boost::algorithm::trim(nick_name);
-      palm::validator::string(nick_name, 1, User::NICK_NAME_MAX);
-      (*db) << query.get("users.by-nick_name"), soci::use(nick_name),
-          soci::into(user);
-      if (user) {
-        std::stringstream ss;
-        ss << "user " << nick_name << " already exists!";
-        throw std::runtime_error(ss.str());
-      }
     }
 
     std::vector<uint8_t> salt_b = palm::random::bytes(palm::Aes::BLOCK_SIZE);
@@ -130,8 +112,10 @@ grpc::Status palm::auth::UserService::SignUp(
     }
   }
 
-  // TODO send confirm email
-
+  {
+    auto it = user.value();
+    this->send_email(it, ACTION_CONFIRM);
+  }
   return grpc::Status::OK;
 }
 grpc::Status palm::auth::UserService::Confirm(
@@ -206,4 +190,41 @@ grpc::Status palm::auth::UserService::Lock(
     grpc::ServerContext* context, const palm::auth::v1::UserQuery* request,
     google::protobuf::Empty* reply) {
   return grpc::Status::OK;
+}
+
+void palm::auth::UserService::send_email(const palm::auth::User& user,
+                                         const std::string& action) {
+  //  TODO
+}
+
+std::optional<palm::auth::User> palm::auth::UserService::get_user_by_email(
+    const std::string& email) {
+  std::optional<User> user;
+  palm::orm::PooledConnection con;
+  auto db = con.get();
+  const auto& query = palm::orm::Query::instance();
+  std::string it = boost::algorithm::to_lower_copy(email);
+  boost::algorithm::trim(it);
+  (*db) << query.get("users.by-email"), soci::use(it), soci::into(user);
+  return user;
+}
+std::optional<palm::auth::User> palm::auth::UserService::get_user_by_uid(
+    const std::string& uid) {
+  std::optional<User> user;
+  palm::orm::PooledConnection con;
+  auto db = con.get();
+  const auto& query = palm::orm::Query::instance();
+  (*db) << query.get("users.by-uid"), soci::use(uid), soci::into(user);
+  return user;
+}
+std::optional<palm::auth::User> palm::auth::UserService::get_user_by_nick_name(
+    const std::string& nick_name) {
+  std::optional<User> user;
+  palm::orm::PooledConnection con;
+  auto db = con.get();
+  const auto& query = palm::orm::Query::instance();
+  std::string it = boost::algorithm::to_lower_copy(nick_name);
+  boost::algorithm::trim(it);
+  (*db) << query.get("users.by-nick_name"), soci::use(it), soci::into(user);
+  return user;
 }

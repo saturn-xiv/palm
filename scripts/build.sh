@@ -18,7 +18,7 @@ build_backend() {
     cmake $WORKSPACE -DCMAKE_BUILD_TYPE=$3 \
         $CMAKE_LIBSERIAL_OPTIONS \
         -DCMAKE_TOOLCHAIN_FILE=$CONAN_HOME/toolchains/$1/$2.cmake
-    make
+    make -j
 }
 
 build_dashboard(){
@@ -112,15 +112,16 @@ then
     build_backend libstdc++ amd64 Release
     build_deb libstdc++ amd64
     
+    build_backend libstdc++ arm64 Release
+    # FIXME
+    # build_deb libstdc++ arm64
+    # build_backend libc++ arm64 Release
+    
     build_backend libstdc++ armhf Release
     # FIXME
     # build_deb libstdc++ armhf
     # build_backend libc++ armhf Release
 
-    build_backend libstdc++ arm64 Release
-    # FIXME
-    # build_deb libstdc++ arm64
-    # build_backend libc++ arm64 Release
     
 elif [[ $OS_NAME == "Arch" ]]
 then

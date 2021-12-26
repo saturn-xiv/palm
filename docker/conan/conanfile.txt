@@ -21,7 +21,7 @@ flatbuffers/2.0.0
 rabbitmq-c/0.11.0
 cppzmq/4.8.1
 paho-mqtt-cpp/1.2.0
-grpc/1.41.0
+grpc/1.39.1
 
 [options]
 zeromq:encryption=None
