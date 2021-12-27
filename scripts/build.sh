@@ -110,7 +110,7 @@ if [[ $OS_NAME == "Ubuntu" ]]
 then
     build_backend libstdc++ amd64 Debug
 
-    local -a architectures=(
+    architectures=(
         "amd64"
         "arm64"
         "armhf"
