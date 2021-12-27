@@ -5,10 +5,13 @@ boost/1.78.0
 soci/4.0.2
 libpq/13.4
 #libpqxx/7.6.0
+mariadb-connector-c/3.1.12
+#libmysqlclient/8.0.25
 sqlite3/3.37.0
 sqlitecpp/3.1.1
 mongo-cxx-driver/3.6.6
 hiredis/1.0.2
+libcurl/7.80.0
 cpr/1.7.2
 cpp-httplib/0.9.10
 inja/3.3.0
@@ -23,6 +26,7 @@ cppzmq/4.8.1
 paho-mqtt-cpp/1.2.0
 grpc/1.39.1
 serial/1.2.1
+lua/5.4.3
 
 [options]
 zeromq:encryption=None
@@ -32,6 +36,7 @@ boost:without_python=True
 soci:with_sqlite3=True
 soci:with_postgresql=True
 soci:with_boost=True
+soci:with_mysql=False
 
 [generators]
 cmake
