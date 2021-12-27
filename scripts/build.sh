@@ -104,31 +104,27 @@ build_deb(){
 export OS_NAME=$(lsb_release -is)
 export OS_CODE=$(lsb_release -cs)
 
+build_dashboard
+    
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    build_dashboard
-    
     build_backend libstdc++ amd64 Debug
-    build_backend libstdc++ amd64 Release
-    build_deb libstdc++ amd64
-    
-    build_backend libstdc++ arm64 Release
-    # FIXME
-    # build_deb libstdc++ arm64
-    # build_backend libc++ arm64 Release
-    
-    build_backend libstdc++ armhf Release
-    # FIXME
-    # build_deb libstdc++ armhf
-    # build_backend libc++ armhf Release
 
+    local -a architectures=(
+        "amd64"
+        "arm64"
+        "armhf"
+    )
+    for a in "${architectures[@]}"
+    do
+        build_backend libstdc++ $a Release
+        build_deb libstdc++ $a
+    done
     
 elif [[ $OS_NAME == "Arch" ]]
 then
-    build_dashboard
     build_backend libstdc++ arch Debug
     # build_backend libc++ arch Debug
-    # build_backend libc++ arch Release
 else
     echo "Unknowk os $OS_NAME"
     exit 1

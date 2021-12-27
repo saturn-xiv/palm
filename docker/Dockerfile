@@ -93,7 +93,6 @@ RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
-
 # https://grpc.io/docs/languages/cpp/quickstart/
 ENV GRPC_VERSION "v1.41.0"
 ENV PROTOC_VERSION "v3.17.1"
