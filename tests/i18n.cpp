@@ -13,7 +13,7 @@ BOOST_AUTO_TEST_CASE(tr) {
   for (const auto it : locales) {
     const std::locale lc = i18n.get(it);
     std::cout << it << " " << lc.name() << ": "
-              << boost::locale::translate("languages.en-us").str(lc)
+              << boost::locale::translate("languages.en-us").str(lc, "nut")
               << std::endl;
   }
 }
