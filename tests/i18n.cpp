@@ -7,7 +7,7 @@
 
 BOOST_AUTO_TEST_CASE(tr) {
   auto& i18n = palm::I18n::instance();
-  i18n.load("./locales");
+  i18n.load("locales");
   const char* locales[] = {"en_US.UTF-8", "zh_CN.UTF-8", "zh_TW.UTF-8"};
 
   for (const auto it : locales) {

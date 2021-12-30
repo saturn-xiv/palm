@@ -13,7 +13,11 @@ declare -a languages=(
 
 
 declare -a domains=(
+    "auth"
+    "rbac"
     "nut"
+    "forum"
+    "erp"
 )
 
 for l in "${languages[@]}"

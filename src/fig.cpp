@@ -2,6 +2,7 @@
 #include "palm/auth.hpp"
 #include "palm/cache.hpp"
 #include "palm/crypto.hpp"
+#include "palm/i18n.hpp"
 #include "palm/orm.hpp"
 #include "palm/version.hpp"
 
@@ -54,6 +55,7 @@ palm::fig::Application::Application(int argc, char** argv) {
 
   palm::init_logger(vm.count("debug"));
   BOOST_LOG_TRIVIAL(debug) << "load config file from " << config_file;
+  palm::I18n::instance().load("locales");
   boost::property_tree::ptree config;
   boost::property_tree::read_ini(config_file, config);
 
