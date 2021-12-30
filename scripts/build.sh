@@ -37,7 +37,7 @@ build_dashboard(){
 }
 
 build_deb(){
-    local target=$WORKSPACE/tmp/palm-$1-$2-Release-$GIT_VERSION/target
+    local target=$WORKSPACE/tmp/palm-$1-$2-$GIT_VERSION/target
     if [ -d $target ]
     then
         rm -rf $(dirname $target)
@@ -48,9 +48,11 @@ build_deb(){
     mkdir -pv $target/usr/bin
     cd $WORKSPACE/build/$1-$2-Release/bin/
     cp -av fig mint $target/usr/bin/
-
+    
     mkdir -pv $target/usr/share/palm
-    cp -av $WORKSPACE/dashboard/dist $target/usr/share/palm/dashboard
+    cd $WORKSPACE
+    cp -av locales db $target/usr/share/palm/
+    cp -av dashboard/dist $target/usr/share/palm/dashboard
     local -a packages=(
         "bootstrap/dist"
         "bulma/css"
