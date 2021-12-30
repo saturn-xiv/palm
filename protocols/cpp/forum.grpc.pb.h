@@ -90,7 +90,7 @@ class Topic final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -925,7 +925,7 @@ class Post final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;

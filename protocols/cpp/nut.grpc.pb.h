@@ -54,7 +54,7 @@ class Site final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::AboutResponse>* AsyncAboutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::AboutResponse>* PrepareAsyncAboutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -270,7 +270,7 @@ class Locale final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::LocaleIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::LocaleIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::LocaleIndexRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::LocaleSetRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -634,7 +634,7 @@ class Stmp final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::StmpProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::StmpProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::StmpProfile& request, ::grpc::CompletionQueue* cq) = 0;
@@ -998,7 +998,7 @@ class Twilio final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::TwilioProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::TwilioProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::TwilioProfile& request, ::grpc::CompletionQueue* cq) = 0;
@@ -1362,7 +1362,7 @@ class Seo final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::SeoProfile>* AsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::SeoProfile>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::SeoProfile& request, ::grpc::CompletionQueue* cq) = 0;
@@ -1753,7 +1753,7 @@ class Tag final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::CreateTagRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::IndexTagResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -2588,7 +2588,7 @@ class Notification final {
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
-   private:
+  private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::CreateNotificationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::nut::v1::IndexNotificationResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;

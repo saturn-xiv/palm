@@ -94,7 +94,7 @@ RUN sh -c ". $HOME/.profile \
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
 # https://grpc.io/docs/languages/cpp/quickstart/
-ENV GRPC_VERSION "v1.41.0"
+ENV GRPC_VERSION "v1.39.1"
 ENV PROTOC_VERSION "v3.17.1"
 RUN zsh -c "source $HOME/.zshrc \
     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"

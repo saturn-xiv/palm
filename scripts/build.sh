@@ -55,9 +55,10 @@ build_deb(){
         "bootstrap/dist"
         "bulma/css"
         "marked/marked.min.js"
+        "d3/dist"
         "material-design-icons/iconfont"
-        "moment/dist"
-        "moment-timezone/builds/moment-timezone-with-data.min.js"
+        "moment/min"
+        "moment-timezone/builds"
         "@popperjs/core/dist"
     )
     for i in "${packages[@]}"
