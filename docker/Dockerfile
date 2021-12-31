@@ -114,6 +114,9 @@ RUN zsh -c "source $HOME/.zshrc \
 RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/build/grpc-amd64 \
     && make install"
+ENV GRPC_WEB_VERSION "1.3.0"
+RUN wget -q -O $HOME/.local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64
+RUN chmod +x $HOME/.local/bin/protoc-gen-grpc-web
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
