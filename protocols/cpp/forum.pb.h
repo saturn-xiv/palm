@@ -57,7 +57,6 @@ struct TableStruct_forum_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_forum_2eproto;
 namespace palm {
-namespace plugins {
 namespace forum {
 namespace v1 {
 class CreatePostRequest;
@@ -86,27 +85,25 @@ struct UpdateTopicRequestDefaultTypeInternal;
 extern UpdateTopicRequestDefaultTypeInternal _UpdateTopicRequest_default_instance_;
 }  // namespace v1
 }  // namespace forum
-}  // namespace plugins
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::palm::plugins::forum::v1::CreatePostRequest* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::CreatePostRequest>(Arena*);
-template<> ::palm::plugins::forum::v1::CreateTopicRequest* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::CreateTopicRequest>(Arena*);
-template<> ::palm::plugins::forum::v1::IndexPostResponse* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::IndexPostResponse>(Arena*);
-template<> ::palm::plugins::forum::v1::IndexPostResponse_Item* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::IndexPostResponse_Item>(Arena*);
-template<> ::palm::plugins::forum::v1::IndexTopicResponse* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::IndexTopicResponse>(Arena*);
-template<> ::palm::plugins::forum::v1::IndexTopicResponse_Item* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::IndexTopicResponse_Item>(Arena*);
-template<> ::palm::plugins::forum::v1::UpdatePostRequest* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::UpdatePostRequest>(Arena*);
-template<> ::palm::plugins::forum::v1::UpdateTopicRequest* Arena::CreateMaybeMessage<::palm::plugins::forum::v1::UpdateTopicRequest>(Arena*);
+template<> ::palm::forum::v1::CreatePostRequest* Arena::CreateMaybeMessage<::palm::forum::v1::CreatePostRequest>(Arena*);
+template<> ::palm::forum::v1::CreateTopicRequest* Arena::CreateMaybeMessage<::palm::forum::v1::CreateTopicRequest>(Arena*);
+template<> ::palm::forum::v1::IndexPostResponse* Arena::CreateMaybeMessage<::palm::forum::v1::IndexPostResponse>(Arena*);
+template<> ::palm::forum::v1::IndexPostResponse_Item* Arena::CreateMaybeMessage<::palm::forum::v1::IndexPostResponse_Item>(Arena*);
+template<> ::palm::forum::v1::IndexTopicResponse* Arena::CreateMaybeMessage<::palm::forum::v1::IndexTopicResponse>(Arena*);
+template<> ::palm::forum::v1::IndexTopicResponse_Item* Arena::CreateMaybeMessage<::palm::forum::v1::IndexTopicResponse_Item>(Arena*);
+template<> ::palm::forum::v1::UpdatePostRequest* Arena::CreateMaybeMessage<::palm::forum::v1::UpdatePostRequest>(Arena*);
+template<> ::palm::forum::v1::UpdateTopicRequest* Arena::CreateMaybeMessage<::palm::forum::v1::UpdateTopicRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
-namespace plugins {
 namespace forum {
 namespace v1 {
 
 // ===================================================================
 
 class CreateTopicRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.CreateTopicRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.CreateTopicRequest) */ {
  public:
   inline CreateTopicRequest() : CreateTopicRequest(nullptr) {}
   ~CreateTopicRequest() override;
@@ -197,7 +194,7 @@ class CreateTopicRequest final :
   void InternalSwap(CreateTopicRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.CreateTopicRequest";
+    return "palm.forum.v1.CreateTopicRequest";
   }
   protected:
   explicit CreateTopicRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -268,16 +265,16 @@ class CreateTopicRequest final :
   std::string* _internal_mutable_body();
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 3;
+  // .palm.nut.v1.MediaType body_content_type = 3;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.CreateTopicRequest)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.CreateTopicRequest)
  private:
   class _Internal;
 
@@ -295,7 +292,7 @@ class CreateTopicRequest final :
 // -------------------------------------------------------------------
 
 class UpdateTopicRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.UpdateTopicRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.UpdateTopicRequest) */ {
  public:
   inline UpdateTopicRequest() : UpdateTopicRequest(nullptr) {}
   ~UpdateTopicRequest() override;
@@ -386,7 +383,7 @@ class UpdateTopicRequest final :
   void InternalSwap(UpdateTopicRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.UpdateTopicRequest";
+    return "palm.forum.v1.UpdateTopicRequest";
   }
   protected:
   explicit UpdateTopicRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -467,16 +464,16 @@ class UpdateTopicRequest final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 4;
+  // .palm.nut.v1.MediaType body_content_type = 4;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.UpdateTopicRequest)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.UpdateTopicRequest)
  private:
   class _Internal;
 
@@ -495,7 +492,7 @@ class UpdateTopicRequest final :
 // -------------------------------------------------------------------
 
 class IndexTopicResponse_Item final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.IndexTopicResponse.Item) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.IndexTopicResponse.Item) */ {
  public:
   inline IndexTopicResponse_Item() : IndexTopicResponse_Item(nullptr) {}
   ~IndexTopicResponse_Item() override;
@@ -586,7 +583,7 @@ class IndexTopicResponse_Item final :
   void InternalSwap(IndexTopicResponse_Item* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.IndexTopicResponse.Item";
+    return "palm.forum.v1.IndexTopicResponse.Item";
   }
   protected:
   explicit IndexTopicResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -696,16 +693,16 @@ class IndexTopicResponse_Item final :
   void _internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 4;
+  // .palm.nut.v1.MediaType body_content_type = 4;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.IndexTopicResponse.Item)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.IndexTopicResponse.Item)
  private:
   class _Internal;
 
@@ -726,7 +723,7 @@ class IndexTopicResponse_Item final :
 // -------------------------------------------------------------------
 
 class IndexTopicResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.IndexTopicResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.IndexTopicResponse) */ {
  public:
   inline IndexTopicResponse() : IndexTopicResponse(nullptr) {}
   ~IndexTopicResponse() override;
@@ -817,7 +814,7 @@ class IndexTopicResponse final :
   void InternalSwap(IndexTopicResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.IndexTopicResponse";
+    return "palm.forum.v1.IndexTopicResponse";
   }
   protected:
   explicit IndexTopicResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -838,58 +835,58 @@ class IndexTopicResponse final :
     kItemsFieldNumber = 1,
     kPaginationFieldNumber = 2,
   };
-  // repeated .palm.plugins.forum.v1.IndexTopicResponse.Item items = 1;
+  // repeated .palm.forum.v1.IndexTopicResponse.Item items = 1;
   int items_size() const;
   private:
   int _internal_items_size() const;
   public:
   void clear_items();
-  ::palm::plugins::forum::v1::IndexTopicResponse_Item* mutable_items(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexTopicResponse_Item >*
+  ::palm::forum::v1::IndexTopicResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexTopicResponse_Item >*
       mutable_items();
   private:
-  const ::palm::plugins::forum::v1::IndexTopicResponse_Item& _internal_items(int index) const;
-  ::palm::plugins::forum::v1::IndexTopicResponse_Item* _internal_add_items();
+  const ::palm::forum::v1::IndexTopicResponse_Item& _internal_items(int index) const;
+  ::palm::forum::v1::IndexTopicResponse_Item* _internal_add_items();
   public:
-  const ::palm::plugins::forum::v1::IndexTopicResponse_Item& items(int index) const;
-  ::palm::plugins::forum::v1::IndexTopicResponse_Item* add_items();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexTopicResponse_Item >&
+  const ::palm::forum::v1::IndexTopicResponse_Item& items(int index) const;
+  ::palm::forum::v1::IndexTopicResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexTopicResponse_Item >&
       items() const;
 
-  // .palm.plugins.nut.v1.Pagination pagination = 2;
+  // .palm.nut.v1.Pagination pagination = 2;
   bool has_pagination() const;
   private:
   bool _internal_has_pagination() const;
   public:
   void clear_pagination();
-  const ::palm::plugins::nut::v1::Pagination& pagination() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::Pagination* release_pagination();
-  ::palm::plugins::nut::v1::Pagination* mutable_pagination();
-  void set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination);
+  const ::palm::nut::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::Pagination* release_pagination();
+  ::palm::nut::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::nut::v1::Pagination* pagination);
   private:
-  const ::palm::plugins::nut::v1::Pagination& _internal_pagination() const;
-  ::palm::plugins::nut::v1::Pagination* _internal_mutable_pagination();
+  const ::palm::nut::v1::Pagination& _internal_pagination() const;
+  ::palm::nut::v1::Pagination* _internal_mutable_pagination();
   public:
   void unsafe_arena_set_allocated_pagination(
-      ::palm::plugins::nut::v1::Pagination* pagination);
-  ::palm::plugins::nut::v1::Pagination* unsafe_arena_release_pagination();
+      ::palm::nut::v1::Pagination* pagination);
+  ::palm::nut::v1::Pagination* unsafe_arena_release_pagination();
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.IndexTopicResponse)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.IndexTopicResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexTopicResponse_Item > items_;
-  ::palm::plugins::nut::v1::Pagination* pagination_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexTopicResponse_Item > items_;
+  ::palm::nut::v1::Pagination* pagination_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_forum_2eproto;
 };
 // -------------------------------------------------------------------
 
 class CreatePostRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.CreatePostRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.CreatePostRequest) */ {
  public:
   inline CreatePostRequest() : CreatePostRequest(nullptr) {}
   ~CreatePostRequest() override;
@@ -980,7 +977,7 @@ class CreatePostRequest final :
   void InternalSwap(CreatePostRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.CreatePostRequest";
+    return "palm.forum.v1.CreatePostRequest";
   }
   protected:
   explicit CreatePostRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1047,16 +1044,16 @@ class CreatePostRequest final :
   void _internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 3;
+  // .palm.nut.v1.MediaType body_content_type = 3;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.CreatePostRequest)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.CreatePostRequest)
  private:
   class _Internal;
 
@@ -1075,7 +1072,7 @@ class CreatePostRequest final :
 // -------------------------------------------------------------------
 
 class UpdatePostRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.UpdatePostRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.UpdatePostRequest) */ {
  public:
   inline UpdatePostRequest() : UpdatePostRequest(nullptr) {}
   ~UpdatePostRequest() override;
@@ -1166,7 +1163,7 @@ class UpdatePostRequest final :
   void InternalSwap(UpdatePostRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.UpdatePostRequest";
+    return "palm.forum.v1.UpdatePostRequest";
   }
   protected:
   explicit UpdatePostRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1209,16 +1206,16 @@ class UpdatePostRequest final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 3;
+  // .palm.nut.v1.MediaType body_content_type = 3;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.UpdatePostRequest)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.UpdatePostRequest)
  private:
   class _Internal;
 
@@ -1234,7 +1231,7 @@ class UpdatePostRequest final :
 // -------------------------------------------------------------------
 
 class IndexPostResponse_Item final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.IndexPostResponse.Item) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.IndexPostResponse.Item) */ {
  public:
   inline IndexPostResponse_Item() : IndexPostResponse_Item(nullptr) {}
   ~IndexPostResponse_Item() override;
@@ -1325,7 +1322,7 @@ class IndexPostResponse_Item final :
   void InternalSwap(IndexPostResponse_Item* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.IndexPostResponse.Item";
+    return "palm.forum.v1.IndexPostResponse.Item";
   }
   protected:
   explicit IndexPostResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1421,16 +1418,16 @@ class IndexPostResponse_Item final :
   void _internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 4;
+  // .palm.nut.v1.MediaType body_content_type = 4;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.IndexPostResponse.Item)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.IndexPostResponse.Item)
  private:
   class _Internal;
 
@@ -1451,7 +1448,7 @@ class IndexPostResponse_Item final :
 // -------------------------------------------------------------------
 
 class IndexPostResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.forum.v1.IndexPostResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.forum.v1.IndexPostResponse) */ {
  public:
   inline IndexPostResponse() : IndexPostResponse(nullptr) {}
   ~IndexPostResponse() override;
@@ -1542,7 +1539,7 @@ class IndexPostResponse final :
   void InternalSwap(IndexPostResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.forum.v1.IndexPostResponse";
+    return "palm.forum.v1.IndexPostResponse";
   }
   protected:
   explicit IndexPostResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1563,51 +1560,51 @@ class IndexPostResponse final :
     kItemsFieldNumber = 1,
     kPaginationFieldNumber = 2,
   };
-  // repeated .palm.plugins.forum.v1.IndexPostResponse.Item items = 1;
+  // repeated .palm.forum.v1.IndexPostResponse.Item items = 1;
   int items_size() const;
   private:
   int _internal_items_size() const;
   public:
   void clear_items();
-  ::palm::plugins::forum::v1::IndexPostResponse_Item* mutable_items(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexPostResponse_Item >*
+  ::palm::forum::v1::IndexPostResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >*
       mutable_items();
   private:
-  const ::palm::plugins::forum::v1::IndexPostResponse_Item& _internal_items(int index) const;
-  ::palm::plugins::forum::v1::IndexPostResponse_Item* _internal_add_items();
+  const ::palm::forum::v1::IndexPostResponse_Item& _internal_items(int index) const;
+  ::palm::forum::v1::IndexPostResponse_Item* _internal_add_items();
   public:
-  const ::palm::plugins::forum::v1::IndexPostResponse_Item& items(int index) const;
-  ::palm::plugins::forum::v1::IndexPostResponse_Item* add_items();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexPostResponse_Item >&
+  const ::palm::forum::v1::IndexPostResponse_Item& items(int index) const;
+  ::palm::forum::v1::IndexPostResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >&
       items() const;
 
-  // .palm.plugins.nut.v1.Pagination pagination = 2;
+  // .palm.nut.v1.Pagination pagination = 2;
   bool has_pagination() const;
   private:
   bool _internal_has_pagination() const;
   public:
   void clear_pagination();
-  const ::palm::plugins::nut::v1::Pagination& pagination() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::Pagination* release_pagination();
-  ::palm::plugins::nut::v1::Pagination* mutable_pagination();
-  void set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination);
+  const ::palm::nut::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::Pagination* release_pagination();
+  ::palm::nut::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::nut::v1::Pagination* pagination);
   private:
-  const ::palm::plugins::nut::v1::Pagination& _internal_pagination() const;
-  ::palm::plugins::nut::v1::Pagination* _internal_mutable_pagination();
+  const ::palm::nut::v1::Pagination& _internal_pagination() const;
+  ::palm::nut::v1::Pagination* _internal_mutable_pagination();
   public:
   void unsafe_arena_set_allocated_pagination(
-      ::palm::plugins::nut::v1::Pagination* pagination);
-  ::palm::plugins::nut::v1::Pagination* unsafe_arena_release_pagination();
+      ::palm::nut::v1::Pagination* pagination);
+  ::palm::nut::v1::Pagination* unsafe_arena_release_pagination();
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.forum.v1.IndexPostResponse)
+  // @@protoc_insertion_point(class_scope:palm.forum.v1.IndexPostResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexPostResponse_Item > items_;
-  ::palm::plugins::nut::v1::Pagination* pagination_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item > items_;
+  ::palm::nut::v1::Pagination* pagination_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_forum_2eproto;
 };
@@ -1627,7 +1624,7 @@ inline void CreateTopicRequest::clear_title() {
   title_.ClearToEmpty();
 }
 inline const std::string& CreateTopicRequest::title() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreateTopicRequest.title)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreateTopicRequest.title)
   return _internal_title();
 }
 template <typename ArgT0, typename... ArgT>
@@ -1635,10 +1632,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void CreateTopicRequest::set_title(ArgT0&& arg0, ArgT... args) {
  
  title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreateTopicRequest.title)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreateTopicRequest.title)
 }
 inline std::string* CreateTopicRequest::mutable_title() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.CreateTopicRequest.title)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.CreateTopicRequest.title)
   return _internal_mutable_title();
 }
 inline const std::string& CreateTopicRequest::_internal_title() const {
@@ -1653,7 +1650,7 @@ inline std::string* CreateTopicRequest::_internal_mutable_title() {
   return title_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* CreateTopicRequest::release_title() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.CreateTopicRequest.title)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.CreateTopicRequest.title)
   return title_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void CreateTopicRequest::set_allocated_title(std::string* title) {
@@ -1664,7 +1661,7 @@ inline void CreateTopicRequest::set_allocated_title(std::string* title) {
   }
   title_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.CreateTopicRequest.title)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.CreateTopicRequest.title)
 }
 
 // string body = 2;
@@ -1672,7 +1669,7 @@ inline void CreateTopicRequest::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& CreateTopicRequest::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreateTopicRequest.body)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreateTopicRequest.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -1680,10 +1677,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void CreateTopicRequest::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreateTopicRequest.body)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreateTopicRequest.body)
 }
 inline std::string* CreateTopicRequest::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.CreateTopicRequest.body)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.CreateTopicRequest.body)
   return _internal_mutable_body();
 }
 inline const std::string& CreateTopicRequest::_internal_body() const {
@@ -1698,7 +1695,7 @@ inline std::string* CreateTopicRequest::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* CreateTopicRequest::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.CreateTopicRequest.body)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.CreateTopicRequest.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void CreateTopicRequest::set_allocated_body(std::string* body) {
@@ -1709,27 +1706,27 @@ inline void CreateTopicRequest::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.CreateTopicRequest.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.CreateTopicRequest.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 3;
+// .palm.nut.v1.MediaType body_content_type = 3;
 inline void CreateTopicRequest::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType CreateTopicRequest::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType CreateTopicRequest::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType CreateTopicRequest::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreateTopicRequest.body_content_type)
+inline ::palm::nut::v1::MediaType CreateTopicRequest::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreateTopicRequest.body_content_type)
   return _internal_body_content_type();
 }
-inline void CreateTopicRequest::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void CreateTopicRequest::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void CreateTopicRequest::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void CreateTopicRequest::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreateTopicRequest.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreateTopicRequest.body_content_type)
 }
 
 // repeated int64 tags = 4;
@@ -1746,19 +1743,19 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 CreateTopicRequest::_internal_tags(int ind
   return tags_.Get(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 CreateTopicRequest::tags(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreateTopicRequest.tags)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreateTopicRequest.tags)
   return _internal_tags(index);
 }
 inline void CreateTopicRequest::set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value) {
   tags_.Set(index, value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreateTopicRequest.tags)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreateTopicRequest.tags)
 }
 inline void CreateTopicRequest::_internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
   tags_.Add(value);
 }
 inline void CreateTopicRequest::add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_add_tags(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.forum.v1.CreateTopicRequest.tags)
+  // @@protoc_insertion_point(field_add:palm.forum.v1.CreateTopicRequest.tags)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
 CreateTopicRequest::_internal_tags() const {
@@ -1766,7 +1763,7 @@ CreateTopicRequest::_internal_tags() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
 CreateTopicRequest::tags() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.forum.v1.CreateTopicRequest.tags)
+  // @@protoc_insertion_point(field_list:palm.forum.v1.CreateTopicRequest.tags)
   return _internal_tags();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
@@ -1775,7 +1772,7 @@ CreateTopicRequest::_internal_mutable_tags() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
 CreateTopicRequest::mutable_tags() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.forum.v1.CreateTopicRequest.tags)
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.CreateTopicRequest.tags)
   return _internal_mutable_tags();
 }
 
@@ -1791,7 +1788,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTopicRequest::_internal_id() const {
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTopicRequest::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdateTopicRequest.id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdateTopicRequest.id)
   return _internal_id();
 }
 inline void UpdateTopicRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -1800,7 +1797,7 @@ inline void UpdateTopicRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 
 }
 inline void UpdateTopicRequest::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdateTopicRequest.id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdateTopicRequest.id)
 }
 
 // string title = 2;
@@ -1808,7 +1805,7 @@ inline void UpdateTopicRequest::clear_title() {
   title_.ClearToEmpty();
 }
 inline const std::string& UpdateTopicRequest::title() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdateTopicRequest.title)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdateTopicRequest.title)
   return _internal_title();
 }
 template <typename ArgT0, typename... ArgT>
@@ -1816,10 +1813,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void UpdateTopicRequest::set_title(ArgT0&& arg0, ArgT... args) {
  
  title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdateTopicRequest.title)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdateTopicRequest.title)
 }
 inline std::string* UpdateTopicRequest::mutable_title() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.UpdateTopicRequest.title)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.UpdateTopicRequest.title)
   return _internal_mutable_title();
 }
 inline const std::string& UpdateTopicRequest::_internal_title() const {
@@ -1834,7 +1831,7 @@ inline std::string* UpdateTopicRequest::_internal_mutable_title() {
   return title_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* UpdateTopicRequest::release_title() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.UpdateTopicRequest.title)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.UpdateTopicRequest.title)
   return title_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void UpdateTopicRequest::set_allocated_title(std::string* title) {
@@ -1845,7 +1842,7 @@ inline void UpdateTopicRequest::set_allocated_title(std::string* title) {
   }
   title_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.UpdateTopicRequest.title)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.UpdateTopicRequest.title)
 }
 
 // string body = 3;
@@ -1853,7 +1850,7 @@ inline void UpdateTopicRequest::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& UpdateTopicRequest::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdateTopicRequest.body)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdateTopicRequest.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -1861,10 +1858,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void UpdateTopicRequest::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdateTopicRequest.body)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdateTopicRequest.body)
 }
 inline std::string* UpdateTopicRequest::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.UpdateTopicRequest.body)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.UpdateTopicRequest.body)
   return _internal_mutable_body();
 }
 inline const std::string& UpdateTopicRequest::_internal_body() const {
@@ -1879,7 +1876,7 @@ inline std::string* UpdateTopicRequest::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* UpdateTopicRequest::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.UpdateTopicRequest.body)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.UpdateTopicRequest.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void UpdateTopicRequest::set_allocated_body(std::string* body) {
@@ -1890,27 +1887,27 @@ inline void UpdateTopicRequest::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.UpdateTopicRequest.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.UpdateTopicRequest.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 4;
+// .palm.nut.v1.MediaType body_content_type = 4;
 inline void UpdateTopicRequest::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType UpdateTopicRequest::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType UpdateTopicRequest::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType UpdateTopicRequest::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdateTopicRequest.body_content_type)
+inline ::palm::nut::v1::MediaType UpdateTopicRequest::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdateTopicRequest.body_content_type)
   return _internal_body_content_type();
 }
-inline void UpdateTopicRequest::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void UpdateTopicRequest::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void UpdateTopicRequest::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void UpdateTopicRequest::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdateTopicRequest.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdateTopicRequest.body_content_type)
 }
 
 // repeated int64 tags = 5;
@@ -1927,19 +1924,19 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTopicRequest::_internal_tags(int ind
   return tags_.Get(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTopicRequest::tags(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdateTopicRequest.tags)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdateTopicRequest.tags)
   return _internal_tags(index);
 }
 inline void UpdateTopicRequest::set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value) {
   tags_.Set(index, value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdateTopicRequest.tags)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdateTopicRequest.tags)
 }
 inline void UpdateTopicRequest::_internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
   tags_.Add(value);
 }
 inline void UpdateTopicRequest::add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_add_tags(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.forum.v1.UpdateTopicRequest.tags)
+  // @@protoc_insertion_point(field_add:palm.forum.v1.UpdateTopicRequest.tags)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
 UpdateTopicRequest::_internal_tags() const {
@@ -1947,7 +1944,7 @@ UpdateTopicRequest::_internal_tags() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
 UpdateTopicRequest::tags() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.forum.v1.UpdateTopicRequest.tags)
+  // @@protoc_insertion_point(field_list:palm.forum.v1.UpdateTopicRequest.tags)
   return _internal_tags();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
@@ -1956,7 +1953,7 @@ UpdateTopicRequest::_internal_mutable_tags() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
 UpdateTopicRequest::mutable_tags() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.forum.v1.UpdateTopicRequest.tags)
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.UpdateTopicRequest.tags)
   return _internal_mutable_tags();
 }
 
@@ -1972,7 +1969,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::_internal_id() co
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.Item.id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.id)
   return _internal_id();
 }
 inline void IndexTopicResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -1981,7 +1978,7 @@ inline void IndexTopicResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::i
 }
 inline void IndexTopicResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexTopicResponse.Item.id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.id)
 }
 
 // string title = 2;
@@ -1989,7 +1986,7 @@ inline void IndexTopicResponse_Item::clear_title() {
   title_.ClearToEmpty();
 }
 inline const std::string& IndexTopicResponse_Item::title() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.Item.title)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.title)
   return _internal_title();
 }
 template <typename ArgT0, typename... ArgT>
@@ -1997,10 +1994,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexTopicResponse_Item::set_title(ArgT0&& arg0, ArgT... args) {
  
  title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexTopicResponse.Item.title)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.title)
 }
 inline std::string* IndexTopicResponse_Item::mutable_title() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexTopicResponse.Item.title)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexTopicResponse.Item.title)
   return _internal_mutable_title();
 }
 inline const std::string& IndexTopicResponse_Item::_internal_title() const {
@@ -2015,7 +2012,7 @@ inline std::string* IndexTopicResponse_Item::_internal_mutable_title() {
   return title_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexTopicResponse_Item::release_title() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.IndexTopicResponse.Item.title)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexTopicResponse.Item.title)
   return title_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexTopicResponse_Item::set_allocated_title(std::string* title) {
@@ -2026,7 +2023,7 @@ inline void IndexTopicResponse_Item::set_allocated_title(std::string* title) {
   }
   title_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.IndexTopicResponse.Item.title)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexTopicResponse.Item.title)
 }
 
 // string body = 3;
@@ -2034,7 +2031,7 @@ inline void IndexTopicResponse_Item::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& IndexTopicResponse_Item::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.Item.body)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -2042,10 +2039,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexTopicResponse_Item::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexTopicResponse.Item.body)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.body)
 }
 inline std::string* IndexTopicResponse_Item::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexTopicResponse.Item.body)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexTopicResponse.Item.body)
   return _internal_mutable_body();
 }
 inline const std::string& IndexTopicResponse_Item::_internal_body() const {
@@ -2060,7 +2057,7 @@ inline std::string* IndexTopicResponse_Item::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexTopicResponse_Item::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.IndexTopicResponse.Item.body)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexTopicResponse.Item.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexTopicResponse_Item::set_allocated_body(std::string* body) {
@@ -2071,27 +2068,27 @@ inline void IndexTopicResponse_Item::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.IndexTopicResponse.Item.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexTopicResponse.Item.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 4;
+// .palm.nut.v1.MediaType body_content_type = 4;
 inline void IndexTopicResponse_Item::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType IndexTopicResponse_Item::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType IndexTopicResponse_Item::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType IndexTopicResponse_Item::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.Item.body_content_type)
+inline ::palm::nut::v1::MediaType IndexTopicResponse_Item::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.body_content_type)
   return _internal_body_content_type();
 }
-inline void IndexTopicResponse_Item::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void IndexTopicResponse_Item::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void IndexTopicResponse_Item::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void IndexTopicResponse_Item::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexTopicResponse.Item.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.body_content_type)
 }
 
 // int64 author_id = 5;
@@ -2102,7 +2099,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::_internal_author_
   return author_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::author_id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.Item.author_id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.author_id)
   return _internal_author_id();
 }
 inline void IndexTopicResponse_Item::_internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2111,7 +2108,7 @@ inline void IndexTopicResponse_Item::_internal_set_author_id(::PROTOBUF_NAMESPAC
 }
 inline void IndexTopicResponse_Item::set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_author_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexTopicResponse.Item.author_id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.author_id)
 }
 
 // repeated int64 tags = 6;
@@ -2128,19 +2125,19 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::_internal_tags(in
   return tags_.Get(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTopicResponse_Item::tags(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.Item.tags)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.tags)
   return _internal_tags(index);
 }
 inline void IndexTopicResponse_Item::set_tags(int index, ::PROTOBUF_NAMESPACE_ID::int64 value) {
   tags_.Set(index, value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexTopicResponse.Item.tags)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexTopicResponse.Item.tags)
 }
 inline void IndexTopicResponse_Item::_internal_add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
   tags_.Add(value);
 }
 inline void IndexTopicResponse_Item::add_tags(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_add_tags(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.forum.v1.IndexTopicResponse.Item.tags)
+  // @@protoc_insertion_point(field_add:palm.forum.v1.IndexTopicResponse.Item.tags)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
 IndexTopicResponse_Item::_internal_tags() const {
@@ -2148,7 +2145,7 @@ IndexTopicResponse_Item::_internal_tags() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >&
 IndexTopicResponse_Item::tags() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.forum.v1.IndexTopicResponse.Item.tags)
+  // @@protoc_insertion_point(field_list:palm.forum.v1.IndexTopicResponse.Item.tags)
   return _internal_tags();
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
@@ -2157,7 +2154,7 @@ IndexTopicResponse_Item::_internal_mutable_tags() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >*
 IndexTopicResponse_Item::mutable_tags() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.forum.v1.IndexTopicResponse.Item.tags)
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.IndexTopicResponse.Item.tags)
   return _internal_mutable_tags();
 }
 
@@ -2174,7 +2171,7 @@ inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexTopicResponse_Item::_interna
       PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexTopicResponse_Item::updated_at() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.Item.updated_at)
   return _internal_updated_at();
 }
 inline void IndexTopicResponse_Item::unsafe_arena_set_allocated_updated_at(
@@ -2188,7 +2185,7 @@ inline void IndexTopicResponse_Item::unsafe_arena_set_allocated_updated_at(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.forum.v1.IndexTopicResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.forum.v1.IndexTopicResponse.Item.updated_at)
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTopicResponse_Item::release_updated_at() {
   
@@ -2200,7 +2197,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTopicResponse_Item::release_update
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTopicResponse_Item::unsafe_arena_release_updated_at() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.IndexTopicResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexTopicResponse.Item.updated_at)
   
   PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
   updated_at_ = nullptr;
@@ -2215,7 +2212,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTopicResponse_Item::_internal_muta
   return updated_at_;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTopicResponse_Item::mutable_updated_at() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexTopicResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexTopicResponse.Item.updated_at)
   return _internal_mutable_updated_at();
 }
 inline void IndexTopicResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
@@ -2237,14 +2234,14 @@ inline void IndexTopicResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE
     
   }
   updated_at_ = updated_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.IndexTopicResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexTopicResponse.Item.updated_at)
 }
 
 // -------------------------------------------------------------------
 
 // IndexTopicResponse
 
-// repeated .palm.plugins.forum.v1.IndexTopicResponse.Item items = 1;
+// repeated .palm.forum.v1.IndexTopicResponse.Item items = 1;
 inline int IndexTopicResponse::_internal_items_size() const {
   return items_.size();
 }
@@ -2254,53 +2251,53 @@ inline int IndexTopicResponse::items_size() const {
 inline void IndexTopicResponse::clear_items() {
   items_.Clear();
 }
-inline ::palm::plugins::forum::v1::IndexTopicResponse_Item* IndexTopicResponse::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexTopicResponse.items)
+inline ::palm::forum::v1::IndexTopicResponse_Item* IndexTopicResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexTopicResponse.items)
   return items_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexTopicResponse_Item >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexTopicResponse_Item >*
 IndexTopicResponse::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.forum.v1.IndexTopicResponse.items)
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.IndexTopicResponse.items)
   return &items_;
 }
-inline const ::palm::plugins::forum::v1::IndexTopicResponse_Item& IndexTopicResponse::_internal_items(int index) const {
+inline const ::palm::forum::v1::IndexTopicResponse_Item& IndexTopicResponse::_internal_items(int index) const {
   return items_.Get(index);
 }
-inline const ::palm::plugins::forum::v1::IndexTopicResponse_Item& IndexTopicResponse::items(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.items)
+inline const ::palm::forum::v1::IndexTopicResponse_Item& IndexTopicResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.items)
   return _internal_items(index);
 }
-inline ::palm::plugins::forum::v1::IndexTopicResponse_Item* IndexTopicResponse::_internal_add_items() {
+inline ::palm::forum::v1::IndexTopicResponse_Item* IndexTopicResponse::_internal_add_items() {
   return items_.Add();
 }
-inline ::palm::plugins::forum::v1::IndexTopicResponse_Item* IndexTopicResponse::add_items() {
-  // @@protoc_insertion_point(field_add:palm.plugins.forum.v1.IndexTopicResponse.items)
+inline ::palm::forum::v1::IndexTopicResponse_Item* IndexTopicResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.forum.v1.IndexTopicResponse.items)
   return _internal_add_items();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexTopicResponse_Item >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexTopicResponse_Item >&
 IndexTopicResponse::items() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.forum.v1.IndexTopicResponse.items)
+  // @@protoc_insertion_point(field_list:palm.forum.v1.IndexTopicResponse.items)
   return items_;
 }
 
-// .palm.plugins.nut.v1.Pagination pagination = 2;
+// .palm.nut.v1.Pagination pagination = 2;
 inline bool IndexTopicResponse::_internal_has_pagination() const {
   return this != internal_default_instance() && pagination_ != nullptr;
 }
 inline bool IndexTopicResponse::has_pagination() const {
   return _internal_has_pagination();
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexTopicResponse::_internal_pagination() const {
-  const ::palm::plugins::nut::v1::Pagination* p = pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::Pagination&>(
-      ::palm::plugins::nut::v1::_Pagination_default_instance_);
+inline const ::palm::nut::v1::Pagination& IndexTopicResponse::_internal_pagination() const {
+  const ::palm::nut::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::Pagination&>(
+      ::palm::nut::v1::_Pagination_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexTopicResponse::pagination() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexTopicResponse.pagination)
+inline const ::palm::nut::v1::Pagination& IndexTopicResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexTopicResponse.pagination)
   return _internal_pagination();
 }
 inline void IndexTopicResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::plugins::nut::v1::Pagination* pagination) {
+    ::palm::nut::v1::Pagination* pagination) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
   }
@@ -2310,37 +2307,37 @@ inline void IndexTopicResponse::unsafe_arena_set_allocated_pagination(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.forum.v1.IndexTopicResponse.pagination)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.forum.v1.IndexTopicResponse.pagination)
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTopicResponse::release_pagination() {
+inline ::palm::nut::v1::Pagination* IndexTopicResponse::release_pagination() {
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTopicResponse::unsafe_arena_release_pagination() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.IndexTopicResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexTopicResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexTopicResponse.pagination)
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTopicResponse::_internal_mutable_pagination() {
+inline ::palm::nut::v1::Pagination* IndexTopicResponse::_internal_mutable_pagination() {
   
   if (pagination_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::Pagination>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::Pagination>(GetArenaForAllocation());
     pagination_ = p;
   }
   return pagination_;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTopicResponse::mutable_pagination() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexTopicResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexTopicResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexTopicResponse.pagination)
   return _internal_mutable_pagination();
 }
-inline void IndexTopicResponse::set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination) {
+inline void IndexTopicResponse::set_allocated_pagination(::palm::nut::v1::Pagination* pagination) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
@@ -2359,7 +2356,7 @@ inline void IndexTopicResponse::set_allocated_pagination(::palm::plugins::nut::v
     
   }
   pagination_ = pagination;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.IndexTopicResponse.pagination)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexTopicResponse.pagination)
 }
 
 // -------------------------------------------------------------------
@@ -2374,7 +2371,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::_internal_topic_id() co
   return topic_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::topic_id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreatePostRequest.topic_id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.topic_id)
   return _internal_topic_id();
 }
 inline void CreatePostRequest::_internal_set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2383,7 +2380,7 @@ inline void CreatePostRequest::_internal_set_topic_id(::PROTOBUF_NAMESPACE_ID::i
 }
 inline void CreatePostRequest::set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_topic_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreatePostRequest.topic_id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.topic_id)
 }
 
 // string body = 2;
@@ -2391,7 +2388,7 @@ inline void CreatePostRequest::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& CreatePostRequest::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreatePostRequest.body)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -2399,10 +2396,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void CreatePostRequest::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreatePostRequest.body)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.body)
 }
 inline std::string* CreatePostRequest::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.CreatePostRequest.body)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.CreatePostRequest.body)
   return _internal_mutable_body();
 }
 inline const std::string& CreatePostRequest::_internal_body() const {
@@ -2417,7 +2414,7 @@ inline std::string* CreatePostRequest::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* CreatePostRequest::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.CreatePostRequest.body)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.CreatePostRequest.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void CreatePostRequest::set_allocated_body(std::string* body) {
@@ -2428,27 +2425,27 @@ inline void CreatePostRequest::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.CreatePostRequest.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.CreatePostRequest.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 3;
+// .palm.nut.v1.MediaType body_content_type = 3;
 inline void CreatePostRequest::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType CreatePostRequest::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType CreatePostRequest::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType CreatePostRequest::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreatePostRequest.body_content_type)
+inline ::palm::nut::v1::MediaType CreatePostRequest::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.body_content_type)
   return _internal_body_content_type();
 }
-inline void CreatePostRequest::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void CreatePostRequest::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void CreatePostRequest::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void CreatePostRequest::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreatePostRequest.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.body_content_type)
 }
 
 // optional int64 parent_id = 4;
@@ -2467,7 +2464,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::_internal_parent_id() c
   return parent_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::parent_id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreatePostRequest.parent_id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.parent_id)
   return _internal_parent_id();
 }
 inline void CreatePostRequest::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2476,7 +2473,7 @@ inline void CreatePostRequest::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::
 }
 inline void CreatePostRequest::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_parent_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreatePostRequest.parent_id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.parent_id)
 }
 
 // int64 author_id = 5;
@@ -2487,7 +2484,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::_internal_author_id() c
   return author_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 CreatePostRequest::author_id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.CreatePostRequest.author_id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.CreatePostRequest.author_id)
   return _internal_author_id();
 }
 inline void CreatePostRequest::_internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2496,7 +2493,7 @@ inline void CreatePostRequest::_internal_set_author_id(::PROTOBUF_NAMESPACE_ID::
 }
 inline void CreatePostRequest::set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_author_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.CreatePostRequest.author_id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.CreatePostRequest.author_id)
 }
 
 // -------------------------------------------------------------------
@@ -2511,7 +2508,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 UpdatePostRequest::_internal_id() const {
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 UpdatePostRequest::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdatePostRequest.id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdatePostRequest.id)
   return _internal_id();
 }
 inline void UpdatePostRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2520,7 +2517,7 @@ inline void UpdatePostRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 v
 }
 inline void UpdatePostRequest::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdatePostRequest.id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdatePostRequest.id)
 }
 
 // string body = 2;
@@ -2528,7 +2525,7 @@ inline void UpdatePostRequest::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& UpdatePostRequest::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdatePostRequest.body)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdatePostRequest.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -2536,10 +2533,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void UpdatePostRequest::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdatePostRequest.body)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdatePostRequest.body)
 }
 inline std::string* UpdatePostRequest::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.UpdatePostRequest.body)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.UpdatePostRequest.body)
   return _internal_mutable_body();
 }
 inline const std::string& UpdatePostRequest::_internal_body() const {
@@ -2554,7 +2551,7 @@ inline std::string* UpdatePostRequest::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* UpdatePostRequest::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.UpdatePostRequest.body)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.UpdatePostRequest.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void UpdatePostRequest::set_allocated_body(std::string* body) {
@@ -2565,27 +2562,27 @@ inline void UpdatePostRequest::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.UpdatePostRequest.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.UpdatePostRequest.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 3;
+// .palm.nut.v1.MediaType body_content_type = 3;
 inline void UpdatePostRequest::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType UpdatePostRequest::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType UpdatePostRequest::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType UpdatePostRequest::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.UpdatePostRequest.body_content_type)
+inline ::palm::nut::v1::MediaType UpdatePostRequest::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.UpdatePostRequest.body_content_type)
   return _internal_body_content_type();
 }
-inline void UpdatePostRequest::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void UpdatePostRequest::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void UpdatePostRequest::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void UpdatePostRequest::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.UpdatePostRequest.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.UpdatePostRequest.body_content_type)
 }
 
 // -------------------------------------------------------------------
@@ -2600,7 +2597,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_id() con
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.Item.id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.id)
   return _internal_id();
 }
 inline void IndexPostResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2609,7 +2606,7 @@ inline void IndexPostResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::in
 }
 inline void IndexPostResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexPostResponse.Item.id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.id)
 }
 
 // int64 topic_id = 2;
@@ -2620,7 +2617,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_topic_id
   return topic_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::topic_id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.Item.topic_id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.topic_id)
   return _internal_topic_id();
 }
 inline void IndexPostResponse_Item::_internal_set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2629,7 +2626,7 @@ inline void IndexPostResponse_Item::_internal_set_topic_id(::PROTOBUF_NAMESPACE_
 }
 inline void IndexPostResponse_Item::set_topic_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_topic_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexPostResponse.Item.topic_id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.topic_id)
 }
 
 // string body = 3;
@@ -2637,7 +2634,7 @@ inline void IndexPostResponse_Item::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& IndexPostResponse_Item::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.Item.body)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -2645,10 +2642,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexPostResponse_Item::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexPostResponse.Item.body)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.body)
 }
 inline std::string* IndexPostResponse_Item::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexPostResponse.Item.body)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.Item.body)
   return _internal_mutable_body();
 }
 inline const std::string& IndexPostResponse_Item::_internal_body() const {
@@ -2663,7 +2660,7 @@ inline std::string* IndexPostResponse_Item::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexPostResponse_Item::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.IndexPostResponse.Item.body)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexPostResponse.Item.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexPostResponse_Item::set_allocated_body(std::string* body) {
@@ -2674,27 +2671,27 @@ inline void IndexPostResponse_Item::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.IndexPostResponse.Item.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexPostResponse.Item.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 4;
+// .palm.nut.v1.MediaType body_content_type = 4;
 inline void IndexPostResponse_Item::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType IndexPostResponse_Item::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType IndexPostResponse_Item::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType IndexPostResponse_Item::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.Item.body_content_type)
+inline ::palm::nut::v1::MediaType IndexPostResponse_Item::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.body_content_type)
   return _internal_body_content_type();
 }
-inline void IndexPostResponse_Item::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void IndexPostResponse_Item::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void IndexPostResponse_Item::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void IndexPostResponse_Item::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexPostResponse.Item.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.body_content_type)
 }
 
 // optional int64 parent_id = 5;
@@ -2713,7 +2710,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_parent_i
   return parent_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::parent_id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.Item.parent_id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.parent_id)
   return _internal_parent_id();
 }
 inline void IndexPostResponse_Item::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2722,7 +2719,7 @@ inline void IndexPostResponse_Item::_internal_set_parent_id(::PROTOBUF_NAMESPACE
 }
 inline void IndexPostResponse_Item::set_parent_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_parent_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexPostResponse.Item.parent_id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.parent_id)
 }
 
 // int64 author_id = 6;
@@ -2733,7 +2730,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::_internal_author_i
   return author_id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexPostResponse_Item::author_id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.Item.author_id)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.author_id)
   return _internal_author_id();
 }
 inline void IndexPostResponse_Item::_internal_set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2742,7 +2739,7 @@ inline void IndexPostResponse_Item::_internal_set_author_id(::PROTOBUF_NAMESPACE
 }
 inline void IndexPostResponse_Item::set_author_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_author_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.forum.v1.IndexPostResponse.Item.author_id)
+  // @@protoc_insertion_point(field_set:palm.forum.v1.IndexPostResponse.Item.author_id)
 }
 
 // .google.protobuf.Timestamp updated_at = 11;
@@ -2758,7 +2755,7 @@ inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexPostResponse_Item::_internal
       PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexPostResponse_Item::updated_at() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.Item.updated_at)
   return _internal_updated_at();
 }
 inline void IndexPostResponse_Item::unsafe_arena_set_allocated_updated_at(
@@ -2772,7 +2769,7 @@ inline void IndexPostResponse_Item::unsafe_arena_set_allocated_updated_at(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.forum.v1.IndexPostResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.forum.v1.IndexPostResponse.Item.updated_at)
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::release_updated_at() {
   
@@ -2784,7 +2781,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::release_updated
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::unsafe_arena_release_updated_at() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.IndexPostResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexPostResponse.Item.updated_at)
   
   PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
   updated_at_ = nullptr;
@@ -2799,7 +2796,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::_internal_mutab
   return updated_at_;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexPostResponse_Item::mutable_updated_at() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexPostResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.Item.updated_at)
   return _internal_mutable_updated_at();
 }
 inline void IndexPostResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
@@ -2821,14 +2818,14 @@ inline void IndexPostResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_
     
   }
   updated_at_ = updated_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.IndexPostResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexPostResponse.Item.updated_at)
 }
 
 // -------------------------------------------------------------------
 
 // IndexPostResponse
 
-// repeated .palm.plugins.forum.v1.IndexPostResponse.Item items = 1;
+// repeated .palm.forum.v1.IndexPostResponse.Item items = 1;
 inline int IndexPostResponse::_internal_items_size() const {
   return items_.size();
 }
@@ -2838,53 +2835,53 @@ inline int IndexPostResponse::items_size() const {
 inline void IndexPostResponse::clear_items() {
   items_.Clear();
 }
-inline ::palm::plugins::forum::v1::IndexPostResponse_Item* IndexPostResponse::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexPostResponse.items)
+inline ::palm::forum::v1::IndexPostResponse_Item* IndexPostResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.items)
   return items_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexPostResponse_Item >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >*
 IndexPostResponse::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.forum.v1.IndexPostResponse.items)
+  // @@protoc_insertion_point(field_mutable_list:palm.forum.v1.IndexPostResponse.items)
   return &items_;
 }
-inline const ::palm::plugins::forum::v1::IndexPostResponse_Item& IndexPostResponse::_internal_items(int index) const {
+inline const ::palm::forum::v1::IndexPostResponse_Item& IndexPostResponse::_internal_items(int index) const {
   return items_.Get(index);
 }
-inline const ::palm::plugins::forum::v1::IndexPostResponse_Item& IndexPostResponse::items(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.items)
+inline const ::palm::forum::v1::IndexPostResponse_Item& IndexPostResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.items)
   return _internal_items(index);
 }
-inline ::palm::plugins::forum::v1::IndexPostResponse_Item* IndexPostResponse::_internal_add_items() {
+inline ::palm::forum::v1::IndexPostResponse_Item* IndexPostResponse::_internal_add_items() {
   return items_.Add();
 }
-inline ::palm::plugins::forum::v1::IndexPostResponse_Item* IndexPostResponse::add_items() {
-  // @@protoc_insertion_point(field_add:palm.plugins.forum.v1.IndexPostResponse.items)
+inline ::palm::forum::v1::IndexPostResponse_Item* IndexPostResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.forum.v1.IndexPostResponse.items)
   return _internal_add_items();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::forum::v1::IndexPostResponse_Item >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::forum::v1::IndexPostResponse_Item >&
 IndexPostResponse::items() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.forum.v1.IndexPostResponse.items)
+  // @@protoc_insertion_point(field_list:palm.forum.v1.IndexPostResponse.items)
   return items_;
 }
 
-// .palm.plugins.nut.v1.Pagination pagination = 2;
+// .palm.nut.v1.Pagination pagination = 2;
 inline bool IndexPostResponse::_internal_has_pagination() const {
   return this != internal_default_instance() && pagination_ != nullptr;
 }
 inline bool IndexPostResponse::has_pagination() const {
   return _internal_has_pagination();
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexPostResponse::_internal_pagination() const {
-  const ::palm::plugins::nut::v1::Pagination* p = pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::Pagination&>(
-      ::palm::plugins::nut::v1::_Pagination_default_instance_);
+inline const ::palm::nut::v1::Pagination& IndexPostResponse::_internal_pagination() const {
+  const ::palm::nut::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::Pagination&>(
+      ::palm::nut::v1::_Pagination_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexPostResponse::pagination() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.forum.v1.IndexPostResponse.pagination)
+inline const ::palm::nut::v1::Pagination& IndexPostResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.forum.v1.IndexPostResponse.pagination)
   return _internal_pagination();
 }
 inline void IndexPostResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::plugins::nut::v1::Pagination* pagination) {
+    ::palm::nut::v1::Pagination* pagination) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
   }
@@ -2894,37 +2891,37 @@ inline void IndexPostResponse::unsafe_arena_set_allocated_pagination(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.forum.v1.IndexPostResponse.pagination)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.forum.v1.IndexPostResponse.pagination)
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexPostResponse::release_pagination() {
+inline ::palm::nut::v1::Pagination* IndexPostResponse::release_pagination() {
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexPostResponse::unsafe_arena_release_pagination() {
-  // @@protoc_insertion_point(field_release:palm.plugins.forum.v1.IndexPostResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexPostResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.forum.v1.IndexPostResponse.pagination)
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexPostResponse::_internal_mutable_pagination() {
+inline ::palm::nut::v1::Pagination* IndexPostResponse::_internal_mutable_pagination() {
   
   if (pagination_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::Pagination>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::Pagination>(GetArenaForAllocation());
     pagination_ = p;
   }
   return pagination_;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexPostResponse::mutable_pagination() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.forum.v1.IndexPostResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexPostResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.forum.v1.IndexPostResponse.pagination)
   return _internal_mutable_pagination();
 }
-inline void IndexPostResponse::set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination) {
+inline void IndexPostResponse::set_allocated_pagination(::palm::nut::v1::Pagination* pagination) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
@@ -2943,7 +2940,7 @@ inline void IndexPostResponse::set_allocated_pagination(::palm::plugins::nut::v1
     
   }
   pagination_ = pagination;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.forum.v1.IndexPostResponse.pagination)
+  // @@protoc_insertion_point(field_set_allocated:palm.forum.v1.IndexPostResponse.pagination)
 }
 
 #ifdef __GNUC__
@@ -2968,7 +2965,6 @@ inline void IndexPostResponse::set_allocated_pagination(::palm::plugins::nut::v1
 
 }  // namespace v1
 }  // namespace forum
-}  // namespace plugins
 }  // namespace palm
 
 // @@protoc_insertion_point(global_scope)

@@ -33,7 +33,7 @@ build_dashboard(){
         yarn install
     fi
     # FIXME https://github.com/webpack/webpack/issues/14532
-    NODE_OPTIONS=--openssl-legacy-provider yarn build
+    UMI_ENV=production NODE_OPTIONS=--openssl-legacy-provider yarn build
 }
 
 build_deb(){

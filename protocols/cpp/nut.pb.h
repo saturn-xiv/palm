@@ -37,6 +37,7 @@
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/empty.pb.h>
 #include <google/protobuf/timestamp.pb.h>
+#include "auth.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_nut_2eproto
@@ -60,7 +61,6 @@ struct TableStruct_nut_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_nut_2eproto;
 namespace palm {
-namespace plugins {
 namespace nut {
 namespace v1 {
 class AboutResponse;
@@ -140,37 +140,35 @@ struct UpdateTagRequestDefaultTypeInternal;
 extern UpdateTagRequestDefaultTypeInternal _UpdateTagRequest_default_instance_;
 }  // namespace v1
 }  // namespace nut
-}  // namespace plugins
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::palm::plugins::nut::v1::AboutResponse* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::AboutResponse>(Arena*);
-template<> ::palm::plugins::nut::v1::CreateNotificationRequest* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::CreateNotificationRequest>(Arena*);
-template<> ::palm::plugins::nut::v1::CreateTagRequest* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::CreateTagRequest>(Arena*);
-template<> ::palm::plugins::nut::v1::IdRequest* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::IdRequest>(Arena*);
-template<> ::palm::plugins::nut::v1::IndexNotificationResponse* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::IndexNotificationResponse>(Arena*);
-template<> ::palm::plugins::nut::v1::IndexNotificationResponse_Item* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::IndexNotificationResponse_Item>(Arena*);
-template<> ::palm::plugins::nut::v1::IndexTagResponse* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::IndexTagResponse>(Arena*);
-template<> ::palm::plugins::nut::v1::IndexTagResponse_Font* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::IndexTagResponse_Font>(Arena*);
-template<> ::palm::plugins::nut::v1::IndexTagResponse_Icon* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::IndexTagResponse_Icon>(Arena*);
-template<> ::palm::plugins::nut::v1::IndexTagResponse_Item* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::IndexTagResponse_Item>(Arena*);
-template<> ::palm::plugins::nut::v1::LocaleIndexRequest* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::LocaleIndexRequest>(Arena*);
-template<> ::palm::plugins::nut::v1::LocaleIndexResponse* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::LocaleIndexResponse>(Arena*);
-template<> ::palm::plugins::nut::v1::LocaleIndexResponse_Item* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::LocaleIndexResponse_Item>(Arena*);
-template<> ::palm::plugins::nut::v1::LocaleSetRequest* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::LocaleSetRequest>(Arena*);
-template<> ::palm::plugins::nut::v1::Pager* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::Pager>(Arena*);
-template<> ::palm::plugins::nut::v1::Pagination* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::Pagination>(Arena*);
-template<> ::palm::plugins::nut::v1::Point* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::Point>(Arena*);
-template<> ::palm::plugins::nut::v1::SeoProfile* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::SeoProfile>(Arena*);
-template<> ::palm::plugins::nut::v1::Size* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::Size>(Arena*);
-template<> ::palm::plugins::nut::v1::StmpProfile* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::StmpProfile>(Arena*);
-template<> ::palm::plugins::nut::v1::StmpTask* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::StmpTask>(Arena*);
-template<> ::palm::plugins::nut::v1::StmpTask_AttachmentsEntry_DoNotUse* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::StmpTask_AttachmentsEntry_DoNotUse>(Arena*);
-template<> ::palm::plugins::nut::v1::TwilioProfile* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::TwilioProfile>(Arena*);
-template<> ::palm::plugins::nut::v1::TwilioTask* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::TwilioTask>(Arena*);
-template<> ::palm::plugins::nut::v1::UpdateTagRequest* Arena::CreateMaybeMessage<::palm::plugins::nut::v1::UpdateTagRequest>(Arena*);
+template<> ::palm::nut::v1::AboutResponse* Arena::CreateMaybeMessage<::palm::nut::v1::AboutResponse>(Arena*);
+template<> ::palm::nut::v1::CreateNotificationRequest* Arena::CreateMaybeMessage<::palm::nut::v1::CreateNotificationRequest>(Arena*);
+template<> ::palm::nut::v1::CreateTagRequest* Arena::CreateMaybeMessage<::palm::nut::v1::CreateTagRequest>(Arena*);
+template<> ::palm::nut::v1::IdRequest* Arena::CreateMaybeMessage<::palm::nut::v1::IdRequest>(Arena*);
+template<> ::palm::nut::v1::IndexNotificationResponse* Arena::CreateMaybeMessage<::palm::nut::v1::IndexNotificationResponse>(Arena*);
+template<> ::palm::nut::v1::IndexNotificationResponse_Item* Arena::CreateMaybeMessage<::palm::nut::v1::IndexNotificationResponse_Item>(Arena*);
+template<> ::palm::nut::v1::IndexTagResponse* Arena::CreateMaybeMessage<::palm::nut::v1::IndexTagResponse>(Arena*);
+template<> ::palm::nut::v1::IndexTagResponse_Font* Arena::CreateMaybeMessage<::palm::nut::v1::IndexTagResponse_Font>(Arena*);
+template<> ::palm::nut::v1::IndexTagResponse_Icon* Arena::CreateMaybeMessage<::palm::nut::v1::IndexTagResponse_Icon>(Arena*);
+template<> ::palm::nut::v1::IndexTagResponse_Item* Arena::CreateMaybeMessage<::palm::nut::v1::IndexTagResponse_Item>(Arena*);
+template<> ::palm::nut::v1::LocaleIndexRequest* Arena::CreateMaybeMessage<::palm::nut::v1::LocaleIndexRequest>(Arena*);
+template<> ::palm::nut::v1::LocaleIndexResponse* Arena::CreateMaybeMessage<::palm::nut::v1::LocaleIndexResponse>(Arena*);
+template<> ::palm::nut::v1::LocaleIndexResponse_Item* Arena::CreateMaybeMessage<::palm::nut::v1::LocaleIndexResponse_Item>(Arena*);
+template<> ::palm::nut::v1::LocaleSetRequest* Arena::CreateMaybeMessage<::palm::nut::v1::LocaleSetRequest>(Arena*);
+template<> ::palm::nut::v1::Pager* Arena::CreateMaybeMessage<::palm::nut::v1::Pager>(Arena*);
+template<> ::palm::nut::v1::Pagination* Arena::CreateMaybeMessage<::palm::nut::v1::Pagination>(Arena*);
+template<> ::palm::nut::v1::Point* Arena::CreateMaybeMessage<::palm::nut::v1::Point>(Arena*);
+template<> ::palm::nut::v1::SeoProfile* Arena::CreateMaybeMessage<::palm::nut::v1::SeoProfile>(Arena*);
+template<> ::palm::nut::v1::Size* Arena::CreateMaybeMessage<::palm::nut::v1::Size>(Arena*);
+template<> ::palm::nut::v1::StmpProfile* Arena::CreateMaybeMessage<::palm::nut::v1::StmpProfile>(Arena*);
+template<> ::palm::nut::v1::StmpTask* Arena::CreateMaybeMessage<::palm::nut::v1::StmpTask>(Arena*);
+template<> ::palm::nut::v1::StmpTask_AttachmentsEntry_DoNotUse* Arena::CreateMaybeMessage<::palm::nut::v1::StmpTask_AttachmentsEntry_DoNotUse>(Arena*);
+template<> ::palm::nut::v1::TwilioProfile* Arena::CreateMaybeMessage<::palm::nut::v1::TwilioProfile>(Arena*);
+template<> ::palm::nut::v1::TwilioTask* Arena::CreateMaybeMessage<::palm::nut::v1::TwilioTask>(Arena*);
+template<> ::palm::nut::v1::UpdateTagRequest* Arena::CreateMaybeMessage<::palm::nut::v1::UpdateTagRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
-namespace plugins {
 namespace nut {
 namespace v1 {
 
@@ -203,7 +201,7 @@ inline bool MediaType_Parse(
 // ===================================================================
 
 class Pagination final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.Pagination) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.Pagination) */ {
  public:
   inline Pagination() : Pagination(nullptr) {}
   ~Pagination() override;
@@ -294,7 +292,7 @@ class Pagination final :
   void InternalSwap(Pagination* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.Pagination";
+    return "palm.nut.v1.Pagination";
   }
   protected:
   explicit Pagination(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -341,7 +339,7 @@ class Pagination final :
   void _internal_set_current(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.Pagination)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.Pagination)
  private:
   class _Internal;
 
@@ -357,7 +355,7 @@ class Pagination final :
 // -------------------------------------------------------------------
 
 class Pager final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.Pager) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.Pager) */ {
  public:
   inline Pager() : Pager(nullptr) {}
   ~Pager() override;
@@ -448,7 +446,7 @@ class Pager final :
   void InternalSwap(Pager* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.Pager";
+    return "palm.nut.v1.Pager";
   }
   protected:
   explicit Pager(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -485,7 +483,7 @@ class Pager final :
   void _internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.Pager)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.Pager)
  private:
   class _Internal;
 
@@ -500,7 +498,7 @@ class Pager final :
 // -------------------------------------------------------------------
 
 class IdRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.IdRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IdRequest) */ {
  public:
   inline IdRequest() : IdRequest(nullptr) {}
   ~IdRequest() override;
@@ -591,7 +589,7 @@ class IdRequest final :
   void InternalSwap(IdRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.IdRequest";
+    return "palm.nut.v1.IdRequest";
   }
   protected:
   explicit IdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -618,7 +616,7 @@ class IdRequest final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.IdRequest)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.IdRequest)
  private:
   class _Internal;
 
@@ -632,7 +630,7 @@ class IdRequest final :
 // -------------------------------------------------------------------
 
 class Size final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.Size) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.Size) */ {
  public:
   inline Size() : Size(nullptr) {}
   ~Size() override;
@@ -723,7 +721,7 @@ class Size final :
   void InternalSwap(Size* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.Size";
+    return "palm.nut.v1.Size";
   }
   protected:
   explicit Size(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -760,7 +758,7 @@ class Size final :
   void _internal_set_height(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.Size)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.Size)
  private:
   class _Internal;
 
@@ -775,7 +773,7 @@ class Size final :
 // -------------------------------------------------------------------
 
 class Point final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.Point) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.Point) */ {
  public:
   inline Point() : Point(nullptr) {}
   ~Point() override;
@@ -866,7 +864,7 @@ class Point final :
   void InternalSwap(Point* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.Point";
+    return "palm.nut.v1.Point";
   }
   protected:
   explicit Point(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -903,7 +901,7 @@ class Point final :
   void _internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.Point)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.Point)
  private:
   class _Internal;
 
@@ -918,7 +916,7 @@ class Point final :
 // -------------------------------------------------------------------
 
 class AboutResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.AboutResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.AboutResponse) */ {
  public:
   inline AboutResponse() : AboutResponse(nullptr) {}
   ~AboutResponse() override;
@@ -1009,7 +1007,7 @@ class AboutResponse final :
   void InternalSwap(AboutResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.AboutResponse";
+    return "palm.nut.v1.AboutResponse";
   }
   protected:
   explicit AboutResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1170,7 +1168,7 @@ class AboutResponse final :
       PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
   PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.AboutResponse)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.AboutResponse)
  private:
   class _Internal;
 
@@ -1191,7 +1189,7 @@ class AboutResponse final :
 // -------------------------------------------------------------------
 
 class LocaleIndexRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.LocaleIndexRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.LocaleIndexRequest) */ {
  public:
   inline LocaleIndexRequest() : LocaleIndexRequest(nullptr) {}
   ~LocaleIndexRequest() override;
@@ -1282,7 +1280,7 @@ class LocaleIndexRequest final :
   void InternalSwap(LocaleIndexRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.LocaleIndexRequest";
+    return "palm.nut.v1.LocaleIndexRequest";
   }
   protected:
   explicit LocaleIndexRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1314,7 +1312,7 @@ class LocaleIndexRequest final :
   std::string* _internal_mutable_lang();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.LocaleIndexRequest)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.LocaleIndexRequest)
  private:
   class _Internal;
 
@@ -1328,7 +1326,7 @@ class LocaleIndexRequest final :
 // -------------------------------------------------------------------
 
 class LocaleIndexResponse_Item final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.LocaleIndexResponse.Item) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.LocaleIndexResponse.Item) */ {
  public:
   inline LocaleIndexResponse_Item() : LocaleIndexResponse_Item(nullptr) {}
   ~LocaleIndexResponse_Item() override;
@@ -1419,7 +1417,7 @@ class LocaleIndexResponse_Item final :
   void InternalSwap(LocaleIndexResponse_Item* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.LocaleIndexResponse.Item";
+    return "palm.nut.v1.LocaleIndexResponse.Item";
   }
   protected:
   explicit LocaleIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1510,7 +1508,7 @@ class LocaleIndexResponse_Item final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.LocaleIndexResponse.Item)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.LocaleIndexResponse.Item)
  private:
   class _Internal;
 
@@ -1528,7 +1526,7 @@ class LocaleIndexResponse_Item final :
 // -------------------------------------------------------------------
 
 class LocaleIndexResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.LocaleIndexResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.LocaleIndexResponse) */ {
  public:
   inline LocaleIndexResponse() : LocaleIndexResponse(nullptr) {}
   ~LocaleIndexResponse() override;
@@ -1619,7 +1617,7 @@ class LocaleIndexResponse final :
   void InternalSwap(LocaleIndexResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.LocaleIndexResponse";
+    return "palm.nut.v1.LocaleIndexResponse";
   }
   protected:
   explicit LocaleIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1639,39 +1637,39 @@ class LocaleIndexResponse final :
   enum : int {
     kItemsFieldNumber = 1,
   };
-  // repeated .palm.plugins.nut.v1.LocaleIndexResponse.Item items = 1;
+  // repeated .palm.nut.v1.LocaleIndexResponse.Item items = 1;
   int items_size() const;
   private:
   int _internal_items_size() const;
   public:
   void clear_items();
-  ::palm::plugins::nut::v1::LocaleIndexResponse_Item* mutable_items(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::LocaleIndexResponse_Item >*
+  ::palm::nut::v1::LocaleIndexResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::LocaleIndexResponse_Item >*
       mutable_items();
   private:
-  const ::palm::plugins::nut::v1::LocaleIndexResponse_Item& _internal_items(int index) const;
-  ::palm::plugins::nut::v1::LocaleIndexResponse_Item* _internal_add_items();
+  const ::palm::nut::v1::LocaleIndexResponse_Item& _internal_items(int index) const;
+  ::palm::nut::v1::LocaleIndexResponse_Item* _internal_add_items();
   public:
-  const ::palm::plugins::nut::v1::LocaleIndexResponse_Item& items(int index) const;
-  ::palm::plugins::nut::v1::LocaleIndexResponse_Item* add_items();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::LocaleIndexResponse_Item >&
+  const ::palm::nut::v1::LocaleIndexResponse_Item& items(int index) const;
+  ::palm::nut::v1::LocaleIndexResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::LocaleIndexResponse_Item >&
       items() const;
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.LocaleIndexResponse)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.LocaleIndexResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::LocaleIndexResponse_Item > items_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::LocaleIndexResponse_Item > items_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_nut_2eproto;
 };
 // -------------------------------------------------------------------
 
 class LocaleSetRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.LocaleSetRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.LocaleSetRequest) */ {
  public:
   inline LocaleSetRequest() : LocaleSetRequest(nullptr) {}
   ~LocaleSetRequest() override;
@@ -1762,7 +1760,7 @@ class LocaleSetRequest final :
   void InternalSwap(LocaleSetRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.LocaleSetRequest";
+    return "palm.nut.v1.LocaleSetRequest";
   }
   protected:
   explicit LocaleSetRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1824,7 +1822,7 @@ class LocaleSetRequest final :
   std::string* _internal_mutable_message();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.LocaleSetRequest)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.LocaleSetRequest)
  private:
   class _Internal;
 
@@ -1840,7 +1838,7 @@ class LocaleSetRequest final :
 // -------------------------------------------------------------------
 
 class StmpProfile final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.StmpProfile) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.StmpProfile) */ {
  public:
   inline StmpProfile() : StmpProfile(nullptr) {}
   ~StmpProfile() override;
@@ -1931,7 +1929,7 @@ class StmpProfile final :
   void InternalSwap(StmpProfile* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.StmpProfile";
+    return "palm.nut.v1.StmpProfile";
   }
   protected:
   explicit StmpProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2053,7 +2051,7 @@ class StmpProfile final :
   void _internal_set_port(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.StmpProfile)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.StmpProfile)
  private:
   class _Internal;
 
@@ -2087,7 +2085,7 @@ public:
   void MergeFrom(const StmpTask_AttachmentsEntry_DoNotUse& other);
   static const StmpTask_AttachmentsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const StmpTask_AttachmentsEntry_DoNotUse*>(&_StmpTask_AttachmentsEntry_DoNotUse_default_instance_); }
   static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "palm.plugins.nut.v1.StmpTask.AttachmentsEntry.key");
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "palm.nut.v1.StmpTask.AttachmentsEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
@@ -2097,7 +2095,7 @@ public:
 // -------------------------------------------------------------------
 
 class StmpTask final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.StmpTask) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.StmpTask) */ {
  public:
   inline StmpTask() : StmpTask(nullptr) {}
   ~StmpTask() override;
@@ -2188,7 +2186,7 @@ class StmpTask final :
   void InternalSwap(StmpTask* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.StmpTask";
+    return "palm.nut.v1.StmpTask";
   }
   protected:
   explicit StmpTask(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2330,16 +2328,16 @@ class StmpTask final :
   std::string* _internal_mutable_body();
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 3;
+  // .palm.nut.v1.MediaType body_content_type = 3;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.StmpTask)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.StmpTask)
  private:
   class _Internal;
 
@@ -2363,7 +2361,7 @@ class StmpTask final :
 // -------------------------------------------------------------------
 
 class TwilioProfile final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.TwilioProfile) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.TwilioProfile) */ {
  public:
   inline TwilioProfile() : TwilioProfile(nullptr) {}
   ~TwilioProfile() override;
@@ -2454,7 +2452,7 @@ class TwilioProfile final :
   void InternalSwap(TwilioProfile* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.TwilioProfile";
+    return "palm.nut.v1.TwilioProfile";
   }
   protected:
   explicit TwilioProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2516,7 +2514,7 @@ class TwilioProfile final :
   std::string* _internal_mutable_from();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.TwilioProfile)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.TwilioProfile)
  private:
   class _Internal;
 
@@ -2532,7 +2530,7 @@ class TwilioProfile final :
 // -------------------------------------------------------------------
 
 class TwilioTask final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.TwilioTask) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.TwilioTask) */ {
  public:
   inline TwilioTask() : TwilioTask(nullptr) {}
   ~TwilioTask() override;
@@ -2623,7 +2621,7 @@ class TwilioTask final :
   void InternalSwap(TwilioTask* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.TwilioTask";
+    return "palm.nut.v1.TwilioTask";
   }
   protected:
   explicit TwilioTask(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2699,7 +2697,7 @@ class TwilioTask final :
   std::string* _internal_mutable_callback();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.TwilioTask)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.TwilioTask)
  private:
   class _Internal;
 
@@ -2716,7 +2714,7 @@ class TwilioTask final :
 // -------------------------------------------------------------------
 
 class SeoProfile final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.SeoProfile) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.SeoProfile) */ {
  public:
   inline SeoProfile() : SeoProfile(nullptr) {}
   ~SeoProfile() override;
@@ -2807,7 +2805,7 @@ class SeoProfile final :
   void InternalSwap(SeoProfile* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.SeoProfile";
+    return "palm.nut.v1.SeoProfile";
   }
   protected:
   explicit SeoProfile(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -2881,7 +2879,7 @@ class SeoProfile final :
   std::string* _internal_mutable_bingsiteverifyid();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.SeoProfile)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.SeoProfile)
  private:
   class _Internal;
 
@@ -2898,7 +2896,7 @@ class SeoProfile final :
 // -------------------------------------------------------------------
 
 class CreateTagRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.CreateTagRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.CreateTagRequest) */ {
  public:
   inline CreateTagRequest() : CreateTagRequest(nullptr) {}
   ~CreateTagRequest() override;
@@ -2989,7 +2987,7 @@ class CreateTagRequest final :
   void InternalSwap(CreateTagRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.CreateTagRequest";
+    return "palm.nut.v1.CreateTagRequest";
   }
   protected:
   explicit CreateTagRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3040,7 +3038,7 @@ class CreateTagRequest final :
   std::string* _internal_mutable_color();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.CreateTagRequest)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.CreateTagRequest)
  private:
   class _Internal;
 
@@ -3056,7 +3054,7 @@ class CreateTagRequest final :
 // -------------------------------------------------------------------
 
 class UpdateTagRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.UpdateTagRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.UpdateTagRequest) */ {
  public:
   inline UpdateTagRequest() : UpdateTagRequest(nullptr) {}
   ~UpdateTagRequest() override;
@@ -3147,7 +3145,7 @@ class UpdateTagRequest final :
   void InternalSwap(UpdateTagRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.UpdateTagRequest";
+    return "palm.nut.v1.UpdateTagRequest";
   }
   protected:
   explicit UpdateTagRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3208,7 +3206,7 @@ class UpdateTagRequest final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.UpdateTagRequest)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.UpdateTagRequest)
  private:
   class _Internal;
 
@@ -3225,7 +3223,7 @@ class UpdateTagRequest final :
 // -------------------------------------------------------------------
 
 class IndexTagResponse_Font final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.IndexTagResponse.Font) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IndexTagResponse.Font) */ {
  public:
   inline IndexTagResponse_Font() : IndexTagResponse_Font(nullptr) {}
   ~IndexTagResponse_Font() override;
@@ -3316,7 +3314,7 @@ class IndexTagResponse_Font final :
   void InternalSwap(IndexTagResponse_Font* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.IndexTagResponse.Font";
+    return "palm.nut.v1.IndexTagResponse.Font";
   }
   protected:
   explicit IndexTagResponse_Font(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3420,7 +3418,7 @@ class IndexTagResponse_Font final :
   void _internal_set_italic(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.IndexTagResponse.Font)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.IndexTagResponse.Font)
  private:
   class _Internal;
 
@@ -3440,7 +3438,7 @@ class IndexTagResponse_Font final :
 // -------------------------------------------------------------------
 
 class IndexTagResponse_Icon final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.IndexTagResponse.Icon) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IndexTagResponse.Icon) */ {
  public:
   inline IndexTagResponse_Icon() : IndexTagResponse_Icon(nullptr) {}
   ~IndexTagResponse_Icon() override;
@@ -3531,7 +3529,7 @@ class IndexTagResponse_Icon final :
   void InternalSwap(IndexTagResponse_Icon* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.IndexTagResponse.Icon";
+    return "palm.nut.v1.IndexTagResponse.Icon";
   }
   protected:
   explicit IndexTagResponse_Icon(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3564,25 +3562,25 @@ class IndexTagResponse_Icon final :
   std::string* _internal_mutable_name();
   public:
 
-  // optional .palm.plugins.nut.v1.Size size = 2;
+  // optional .palm.nut.v1.Size size = 2;
   bool has_size() const;
   private:
   bool _internal_has_size() const;
   public:
   void clear_size();
-  const ::palm::plugins::nut::v1::Size& size() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::Size* release_size();
-  ::palm::plugins::nut::v1::Size* mutable_size();
-  void set_allocated_size(::palm::plugins::nut::v1::Size* size);
+  const ::palm::nut::v1::Size& size() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::Size* release_size();
+  ::palm::nut::v1::Size* mutable_size();
+  void set_allocated_size(::palm::nut::v1::Size* size);
   private:
-  const ::palm::plugins::nut::v1::Size& _internal_size() const;
-  ::palm::plugins::nut::v1::Size* _internal_mutable_size();
+  const ::palm::nut::v1::Size& _internal_size() const;
+  ::palm::nut::v1::Size* _internal_mutable_size();
   public:
   void unsafe_arena_set_allocated_size(
-      ::palm::plugins::nut::v1::Size* size);
-  ::palm::plugins::nut::v1::Size* unsafe_arena_release_size();
+      ::palm::nut::v1::Size* size);
+  ::palm::nut::v1::Size* unsafe_arena_release_size();
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.IndexTagResponse.Icon)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.IndexTagResponse.Icon)
  private:
   class _Internal;
 
@@ -3592,13 +3590,13 @@ class IndexTagResponse_Icon final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::palm::plugins::nut::v1::Size* size_;
+  ::palm::nut::v1::Size* size_;
   friend struct ::TableStruct_nut_2eproto;
 };
 // -------------------------------------------------------------------
 
 class IndexTagResponse_Item final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.IndexTagResponse.Item) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IndexTagResponse.Item) */ {
  public:
   inline IndexTagResponse_Item() : IndexTagResponse_Item(nullptr) {}
   ~IndexTagResponse_Item() override;
@@ -3689,7 +3687,7 @@ class IndexTagResponse_Item final :
   void InternalSwap(IndexTagResponse_Item* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.IndexTagResponse.Item";
+    return "palm.nut.v1.IndexTagResponse.Item";
   }
   protected:
   explicit IndexTagResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3725,41 +3723,41 @@ class IndexTagResponse_Item final :
   std::string* _internal_mutable_name();
   public:
 
-  // optional .palm.plugins.nut.v1.IndexTagResponse.Icon icon = 3;
+  // optional .palm.nut.v1.IndexTagResponse.Icon icon = 3;
   bool has_icon() const;
   private:
   bool _internal_has_icon() const;
   public:
   void clear_icon();
-  const ::palm::plugins::nut::v1::IndexTagResponse_Icon& icon() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::IndexTagResponse_Icon* release_icon();
-  ::palm::plugins::nut::v1::IndexTagResponse_Icon* mutable_icon();
-  void set_allocated_icon(::palm::plugins::nut::v1::IndexTagResponse_Icon* icon);
+  const ::palm::nut::v1::IndexTagResponse_Icon& icon() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::IndexTagResponse_Icon* release_icon();
+  ::palm::nut::v1::IndexTagResponse_Icon* mutable_icon();
+  void set_allocated_icon(::palm::nut::v1::IndexTagResponse_Icon* icon);
   private:
-  const ::palm::plugins::nut::v1::IndexTagResponse_Icon& _internal_icon() const;
-  ::palm::plugins::nut::v1::IndexTagResponse_Icon* _internal_mutable_icon();
+  const ::palm::nut::v1::IndexTagResponse_Icon& _internal_icon() const;
+  ::palm::nut::v1::IndexTagResponse_Icon* _internal_mutable_icon();
   public:
   void unsafe_arena_set_allocated_icon(
-      ::palm::plugins::nut::v1::IndexTagResponse_Icon* icon);
-  ::palm::plugins::nut::v1::IndexTagResponse_Icon* unsafe_arena_release_icon();
+      ::palm::nut::v1::IndexTagResponse_Icon* icon);
+  ::palm::nut::v1::IndexTagResponse_Icon* unsafe_arena_release_icon();
 
-  // optional .palm.plugins.nut.v1.IndexTagResponse.Font font = 4;
+  // optional .palm.nut.v1.IndexTagResponse.Font font = 4;
   bool has_font() const;
   private:
   bool _internal_has_font() const;
   public:
   void clear_font();
-  const ::palm::plugins::nut::v1::IndexTagResponse_Font& font() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::IndexTagResponse_Font* release_font();
-  ::palm::plugins::nut::v1::IndexTagResponse_Font* mutable_font();
-  void set_allocated_font(::palm::plugins::nut::v1::IndexTagResponse_Font* font);
+  const ::palm::nut::v1::IndexTagResponse_Font& font() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::IndexTagResponse_Font* release_font();
+  ::palm::nut::v1::IndexTagResponse_Font* mutable_font();
+  void set_allocated_font(::palm::nut::v1::IndexTagResponse_Font* font);
   private:
-  const ::palm::plugins::nut::v1::IndexTagResponse_Font& _internal_font() const;
-  ::palm::plugins::nut::v1::IndexTagResponse_Font* _internal_mutable_font();
+  const ::palm::nut::v1::IndexTagResponse_Font& _internal_font() const;
+  ::palm::nut::v1::IndexTagResponse_Font* _internal_mutable_font();
   public:
   void unsafe_arena_set_allocated_font(
-      ::palm::plugins::nut::v1::IndexTagResponse_Font* font);
-  ::palm::plugins::nut::v1::IndexTagResponse_Font* unsafe_arena_release_font();
+      ::palm::nut::v1::IndexTagResponse_Font* font);
+  ::palm::nut::v1::IndexTagResponse_Font* unsafe_arena_release_font();
 
   // .google.protobuf.Timestamp updated_at = 11;
   bool has_updated_at() const;
@@ -3788,7 +3786,7 @@ class IndexTagResponse_Item final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.IndexTagResponse.Item)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.IndexTagResponse.Item)
  private:
   class _Internal;
 
@@ -3798,8 +3796,8 @@ class IndexTagResponse_Item final :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::palm::plugins::nut::v1::IndexTagResponse_Icon* icon_;
-  ::palm::plugins::nut::v1::IndexTagResponse_Font* font_;
+  ::palm::nut::v1::IndexTagResponse_Icon* icon_;
+  ::palm::nut::v1::IndexTagResponse_Font* font_;
   PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
   ::PROTOBUF_NAMESPACE_ID::int64 id_;
   friend struct ::TableStruct_nut_2eproto;
@@ -3807,7 +3805,7 @@ class IndexTagResponse_Item final :
 // -------------------------------------------------------------------
 
 class IndexTagResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.IndexTagResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IndexTagResponse) */ {
  public:
   inline IndexTagResponse() : IndexTagResponse(nullptr) {}
   ~IndexTagResponse() override;
@@ -3898,7 +3896,7 @@ class IndexTagResponse final :
   void InternalSwap(IndexTagResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.IndexTagResponse";
+    return "palm.nut.v1.IndexTagResponse";
   }
   protected:
   explicit IndexTagResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -3921,58 +3919,58 @@ class IndexTagResponse final :
     kItemsFieldNumber = 1,
     kPaginationFieldNumber = 2,
   };
-  // repeated .palm.plugins.nut.v1.IndexTagResponse.Item items = 1;
+  // repeated .palm.nut.v1.IndexTagResponse.Item items = 1;
   int items_size() const;
   private:
   int _internal_items_size() const;
   public:
   void clear_items();
-  ::palm::plugins::nut::v1::IndexTagResponse_Item* mutable_items(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexTagResponse_Item >*
+  ::palm::nut::v1::IndexTagResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexTagResponse_Item >*
       mutable_items();
   private:
-  const ::palm::plugins::nut::v1::IndexTagResponse_Item& _internal_items(int index) const;
-  ::palm::plugins::nut::v1::IndexTagResponse_Item* _internal_add_items();
+  const ::palm::nut::v1::IndexTagResponse_Item& _internal_items(int index) const;
+  ::palm::nut::v1::IndexTagResponse_Item* _internal_add_items();
   public:
-  const ::palm::plugins::nut::v1::IndexTagResponse_Item& items(int index) const;
-  ::palm::plugins::nut::v1::IndexTagResponse_Item* add_items();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexTagResponse_Item >&
+  const ::palm::nut::v1::IndexTagResponse_Item& items(int index) const;
+  ::palm::nut::v1::IndexTagResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexTagResponse_Item >&
       items() const;
 
-  // .palm.plugins.nut.v1.Pagination pagination = 2;
+  // .palm.nut.v1.Pagination pagination = 2;
   bool has_pagination() const;
   private:
   bool _internal_has_pagination() const;
   public:
   void clear_pagination();
-  const ::palm::plugins::nut::v1::Pagination& pagination() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::Pagination* release_pagination();
-  ::palm::plugins::nut::v1::Pagination* mutable_pagination();
-  void set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination);
+  const ::palm::nut::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::Pagination* release_pagination();
+  ::palm::nut::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::nut::v1::Pagination* pagination);
   private:
-  const ::palm::plugins::nut::v1::Pagination& _internal_pagination() const;
-  ::palm::plugins::nut::v1::Pagination* _internal_mutable_pagination();
+  const ::palm::nut::v1::Pagination& _internal_pagination() const;
+  ::palm::nut::v1::Pagination* _internal_mutable_pagination();
   public:
   void unsafe_arena_set_allocated_pagination(
-      ::palm::plugins::nut::v1::Pagination* pagination);
-  ::palm::plugins::nut::v1::Pagination* unsafe_arena_release_pagination();
+      ::palm::nut::v1::Pagination* pagination);
+  ::palm::nut::v1::Pagination* unsafe_arena_release_pagination();
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.IndexTagResponse)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.IndexTagResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexTagResponse_Item > items_;
-  ::palm::plugins::nut::v1::Pagination* pagination_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexTagResponse_Item > items_;
+  ::palm::nut::v1::Pagination* pagination_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_nut_2eproto;
 };
 // -------------------------------------------------------------------
 
 class CreateNotificationRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.CreateNotificationRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.CreateNotificationRequest) */ {
  public:
   inline CreateNotificationRequest() : CreateNotificationRequest(nullptr) {}
   ~CreateNotificationRequest() override;
@@ -4063,7 +4061,7 @@ class CreateNotificationRequest final :
   void InternalSwap(CreateNotificationRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.CreateNotificationRequest";
+    return "palm.nut.v1.CreateNotificationRequest";
   }
   protected:
   explicit CreateNotificationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4111,16 +4109,16 @@ class CreateNotificationRequest final :
   std::string* _internal_mutable_link();
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 3;
+  // .palm.nut.v1.MediaType body_content_type = 3;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.CreateNotificationRequest)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.CreateNotificationRequest)
  private:
   class _Internal;
 
@@ -4136,7 +4134,7 @@ class CreateNotificationRequest final :
 // -------------------------------------------------------------------
 
 class IndexNotificationResponse_Item final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.IndexNotificationResponse.Item) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IndexNotificationResponse.Item) */ {
  public:
   inline IndexNotificationResponse_Item() : IndexNotificationResponse_Item(nullptr) {}
   ~IndexNotificationResponse_Item() override;
@@ -4227,7 +4225,7 @@ class IndexNotificationResponse_Item final :
   void InternalSwap(IndexNotificationResponse_Item* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.IndexNotificationResponse.Item";
+    return "palm.nut.v1.IndexNotificationResponse.Item";
   }
   protected:
   explicit IndexNotificationResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4305,13 +4303,13 @@ class IndexNotificationResponse_Item final :
   void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // .palm.plugins.nut.v1.MediaType body_content_type = 3;
+  // .palm.nut.v1.MediaType body_content_type = 3;
   void clear_body_content_type();
-  ::palm::plugins::nut::v1::MediaType body_content_type() const;
-  void set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType body_content_type() const;
+  void set_body_content_type(::palm::nut::v1::MediaType value);
   private:
-  ::palm::plugins::nut::v1::MediaType _internal_body_content_type() const;
-  void _internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value);
+  ::palm::nut::v1::MediaType _internal_body_content_type() const;
+  void _internal_set_body_content_type(::palm::nut::v1::MediaType value);
   public:
 
   // bool read = 10;
@@ -4323,7 +4321,7 @@ class IndexNotificationResponse_Item final :
   void _internal_set_read(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.IndexNotificationResponse.Item)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.IndexNotificationResponse.Item)
  private:
   class _Internal;
 
@@ -4342,7 +4340,7 @@ class IndexNotificationResponse_Item final :
 // -------------------------------------------------------------------
 
 class IndexNotificationResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.plugins.nut.v1.IndexNotificationResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.nut.v1.IndexNotificationResponse) */ {
  public:
   inline IndexNotificationResponse() : IndexNotificationResponse(nullptr) {}
   ~IndexNotificationResponse() override;
@@ -4433,7 +4431,7 @@ class IndexNotificationResponse final :
   void InternalSwap(IndexNotificationResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.plugins.nut.v1.IndexNotificationResponse";
+    return "palm.nut.v1.IndexNotificationResponse";
   }
   protected:
   explicit IndexNotificationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -4454,51 +4452,51 @@ class IndexNotificationResponse final :
     kItemsFieldNumber = 1,
     kPaginationFieldNumber = 2,
   };
-  // repeated .palm.plugins.nut.v1.IndexNotificationResponse.Item items = 1;
+  // repeated .palm.nut.v1.IndexNotificationResponse.Item items = 1;
   int items_size() const;
   private:
   int _internal_items_size() const;
   public:
   void clear_items();
-  ::palm::plugins::nut::v1::IndexNotificationResponse_Item* mutable_items(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexNotificationResponse_Item >*
+  ::palm::nut::v1::IndexNotificationResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexNotificationResponse_Item >*
       mutable_items();
   private:
-  const ::palm::plugins::nut::v1::IndexNotificationResponse_Item& _internal_items(int index) const;
-  ::palm::plugins::nut::v1::IndexNotificationResponse_Item* _internal_add_items();
+  const ::palm::nut::v1::IndexNotificationResponse_Item& _internal_items(int index) const;
+  ::palm::nut::v1::IndexNotificationResponse_Item* _internal_add_items();
   public:
-  const ::palm::plugins::nut::v1::IndexNotificationResponse_Item& items(int index) const;
-  ::palm::plugins::nut::v1::IndexNotificationResponse_Item* add_items();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexNotificationResponse_Item >&
+  const ::palm::nut::v1::IndexNotificationResponse_Item& items(int index) const;
+  ::palm::nut::v1::IndexNotificationResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexNotificationResponse_Item >&
       items() const;
 
-  // .palm.plugins.nut.v1.Pagination pagination = 2;
+  // .palm.nut.v1.Pagination pagination = 2;
   bool has_pagination() const;
   private:
   bool _internal_has_pagination() const;
   public:
   void clear_pagination();
-  const ::palm::plugins::nut::v1::Pagination& pagination() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::Pagination* release_pagination();
-  ::palm::plugins::nut::v1::Pagination* mutable_pagination();
-  void set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination);
+  const ::palm::nut::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::Pagination* release_pagination();
+  ::palm::nut::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::nut::v1::Pagination* pagination);
   private:
-  const ::palm::plugins::nut::v1::Pagination& _internal_pagination() const;
-  ::palm::plugins::nut::v1::Pagination* _internal_mutable_pagination();
+  const ::palm::nut::v1::Pagination& _internal_pagination() const;
+  ::palm::nut::v1::Pagination* _internal_mutable_pagination();
   public:
   void unsafe_arena_set_allocated_pagination(
-      ::palm::plugins::nut::v1::Pagination* pagination);
-  ::palm::plugins::nut::v1::Pagination* unsafe_arena_release_pagination();
+      ::palm::nut::v1::Pagination* pagination);
+  ::palm::nut::v1::Pagination* unsafe_arena_release_pagination();
 
-  // @@protoc_insertion_point(class_scope:palm.plugins.nut.v1.IndexNotificationResponse)
+  // @@protoc_insertion_point(class_scope:palm.nut.v1.IndexNotificationResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexNotificationResponse_Item > items_;
-  ::palm::plugins::nut::v1::Pagination* pagination_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexNotificationResponse_Item > items_;
+  ::palm::nut::v1::Pagination* pagination_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_nut_2eproto;
 };
@@ -4521,7 +4519,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_total() const {
   return total_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::total() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Pagination.total)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Pagination.total)
   return _internal_total();
 }
 inline void Pagination::_internal_set_total(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4530,7 +4528,7 @@ inline void Pagination::_internal_set_total(::PROTOBUF_NAMESPACE_ID::int64 value
 }
 inline void Pagination::set_total(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_total(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Pagination.total)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Pagination.total)
 }
 
 // int64 size = 2;
@@ -4541,7 +4539,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_size() const {
   return size_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::size() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Pagination.size)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Pagination.size)
   return _internal_size();
 }
 inline void Pagination::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4550,7 +4548,7 @@ inline void Pagination::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value)
 }
 inline void Pagination::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Pagination.size)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Pagination.size)
 }
 
 // int64 current = 3;
@@ -4561,7 +4559,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::_internal_current() const {
   return current_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Pagination::current() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Pagination.current)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Pagination.current)
   return _internal_current();
 }
 inline void Pagination::_internal_set_current(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4570,7 +4568,7 @@ inline void Pagination::_internal_set_current(::PROTOBUF_NAMESPACE_ID::int64 val
 }
 inline void Pagination::set_current(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_current(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Pagination.current)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Pagination.current)
 }
 
 // -------------------------------------------------------------------
@@ -4585,7 +4583,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::_internal_index() const {
   return index_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::index() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Pager.index)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Pager.index)
   return _internal_index();
 }
 inline void Pager::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4594,7 +4592,7 @@ inline void Pager::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Pager::set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_index(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Pager.index)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Pager.index)
 }
 
 // int64 size = 2;
@@ -4605,7 +4603,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::_internal_size() const {
   return size_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Pager::size() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Pager.size)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Pager.size)
   return _internal_size();
 }
 inline void Pager::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4614,7 +4612,7 @@ inline void Pager::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Pager::set_size(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Pager.size)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Pager.size)
 }
 
 // -------------------------------------------------------------------
@@ -4629,7 +4627,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IdRequest::_internal_id() const {
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IdRequest::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IdRequest.id)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IdRequest.id)
   return _internal_id();
 }
 inline void IdRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4638,7 +4636,7 @@ inline void IdRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void IdRequest::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IdRequest.id)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IdRequest.id)
 }
 
 // -------------------------------------------------------------------
@@ -4653,7 +4651,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 Size::_internal_width() const {
   return width_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 Size::width() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Size.width)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Size.width)
   return _internal_width();
 }
 inline void Size::_internal_set_width(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -4662,7 +4660,7 @@ inline void Size::_internal_set_width(::PROTOBUF_NAMESPACE_ID::uint32 value) {
 }
 inline void Size::set_width(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_width(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Size.width)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Size.width)
 }
 
 // uint32 height = 2;
@@ -4673,7 +4671,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 Size::_internal_height() const {
   return height_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 Size::height() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Size.height)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Size.height)
   return _internal_height();
 }
 inline void Size::_internal_set_height(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -4682,7 +4680,7 @@ inline void Size::_internal_set_height(::PROTOBUF_NAMESPACE_ID::uint32 value) {
 }
 inline void Size::set_height(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_height(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Size.height)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Size.height)
 }
 
 // -------------------------------------------------------------------
@@ -4697,7 +4695,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 Point::_internal_x() const {
   return x_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 Point::x() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Point.x)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Point.x)
   return _internal_x();
 }
 inline void Point::_internal_set_x(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -4706,7 +4704,7 @@ inline void Point::_internal_set_x(::PROTOBUF_NAMESPACE_ID::int32 value) {
 }
 inline void Point::set_x(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_x(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Point.x)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Point.x)
 }
 
 // int32 y = 2;
@@ -4717,7 +4715,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 Point::_internal_y() const {
   return y_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 Point::y() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.Point.y)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.Point.y)
   return _internal_y();
 }
 inline void Point::_internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -4726,7 +4724,7 @@ inline void Point::_internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
 }
 inline void Point::set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_y(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.Point.y)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.Point.y)
 }
 
 // -------------------------------------------------------------------
@@ -4738,7 +4736,7 @@ inline void AboutResponse::clear_title() {
   title_.ClearToEmpty();
 }
 inline const std::string& AboutResponse::title() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.title)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.title)
   return _internal_title();
 }
 template <typename ArgT0, typename... ArgT>
@@ -4746,10 +4744,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void AboutResponse::set_title(ArgT0&& arg0, ArgT... args) {
  
  title_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.title)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.title)
 }
 inline std::string* AboutResponse::mutable_title() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.title)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.title)
   return _internal_mutable_title();
 }
 inline const std::string& AboutResponse::_internal_title() const {
@@ -4764,7 +4762,7 @@ inline std::string* AboutResponse::_internal_mutable_title() {
   return title_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* AboutResponse::release_title() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.AboutResponse.title)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.AboutResponse.title)
   return title_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void AboutResponse::set_allocated_title(std::string* title) {
@@ -4775,7 +4773,7 @@ inline void AboutResponse::set_allocated_title(std::string* title) {
   }
   title_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.AboutResponse.title)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.AboutResponse.title)
 }
 
 // string subhead = 2;
@@ -4783,7 +4781,7 @@ inline void AboutResponse::clear_subhead() {
   subhead_.ClearToEmpty();
 }
 inline const std::string& AboutResponse::subhead() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.subhead)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.subhead)
   return _internal_subhead();
 }
 template <typename ArgT0, typename... ArgT>
@@ -4791,10 +4789,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void AboutResponse::set_subhead(ArgT0&& arg0, ArgT... args) {
  
  subhead_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.subhead)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.subhead)
 }
 inline std::string* AboutResponse::mutable_subhead() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.subhead)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.subhead)
   return _internal_mutable_subhead();
 }
 inline const std::string& AboutResponse::_internal_subhead() const {
@@ -4809,7 +4807,7 @@ inline std::string* AboutResponse::_internal_mutable_subhead() {
   return subhead_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* AboutResponse::release_subhead() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.AboutResponse.subhead)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.AboutResponse.subhead)
   return subhead_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void AboutResponse::set_allocated_subhead(std::string* subhead) {
@@ -4820,7 +4818,7 @@ inline void AboutResponse::set_allocated_subhead(std::string* subhead) {
   }
   subhead_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), subhead,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.AboutResponse.subhead)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.AboutResponse.subhead)
 }
 
 // repeated string keywords = 3;
@@ -4834,66 +4832,66 @@ inline void AboutResponse::clear_keywords() {
   keywords_.Clear();
 }
 inline std::string* AboutResponse::add_keywords() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.AboutResponse.keywords)
   return _internal_add_keywords();
 }
 inline const std::string& AboutResponse::_internal_keywords(int index) const {
   return keywords_.Get(index);
 }
 inline const std::string& AboutResponse::keywords(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.keywords)
   return _internal_keywords(index);
 }
 inline std::string* AboutResponse::mutable_keywords(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.keywords)
   return keywords_.Mutable(index);
 }
 inline void AboutResponse::set_keywords(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.keywords)
   keywords_.Mutable(index)->assign(value);
 }
 inline void AboutResponse::set_keywords(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.keywords)
   keywords_.Mutable(index)->assign(std::move(value));
 }
 inline void AboutResponse::set_keywords(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   keywords_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.AboutResponse.keywords)
 }
 inline void AboutResponse::set_keywords(int index, const char* value, size_t size) {
   keywords_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.AboutResponse.keywords)
 }
 inline std::string* AboutResponse::_internal_add_keywords() {
   return keywords_.Add();
 }
 inline void AboutResponse::add_keywords(const std::string& value) {
   keywords_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.AboutResponse.keywords)
 }
 inline void AboutResponse::add_keywords(std::string&& value) {
   keywords_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.AboutResponse.keywords)
 }
 inline void AboutResponse::add_keywords(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   keywords_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.AboutResponse.keywords)
 }
 inline void AboutResponse::add_keywords(const char* value, size_t size) {
   keywords_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.AboutResponse.keywords)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 AboutResponse::keywords() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.AboutResponse.keywords)
   return keywords_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 AboutResponse::mutable_keywords() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.AboutResponse.keywords)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.AboutResponse.keywords)
   return &keywords_;
 }
 
@@ -4902,7 +4900,7 @@ inline void AboutResponse::clear_description() {
   description_.ClearToEmpty();
 }
 inline const std::string& AboutResponse::description() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.description)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.description)
   return _internal_description();
 }
 template <typename ArgT0, typename... ArgT>
@@ -4910,10 +4908,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void AboutResponse::set_description(ArgT0&& arg0, ArgT... args) {
  
  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.description)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.description)
 }
 inline std::string* AboutResponse::mutable_description() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.description)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.description)
   return _internal_mutable_description();
 }
 inline const std::string& AboutResponse::_internal_description() const {
@@ -4928,7 +4926,7 @@ inline std::string* AboutResponse::_internal_mutable_description() {
   return description_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* AboutResponse::release_description() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.AboutResponse.description)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.AboutResponse.description)
   return description_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void AboutResponse::set_allocated_description(std::string* description) {
@@ -4939,7 +4937,7 @@ inline void AboutResponse::set_allocated_description(std::string* description) {
   }
   description_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), description,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.AboutResponse.description)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.AboutResponse.description)
 }
 
 // string copyright = 5;
@@ -4947,7 +4945,7 @@ inline void AboutResponse::clear_copyright() {
   copyright_.ClearToEmpty();
 }
 inline const std::string& AboutResponse::copyright() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.copyright)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.copyright)
   return _internal_copyright();
 }
 template <typename ArgT0, typename... ArgT>
@@ -4955,10 +4953,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void AboutResponse::set_copyright(ArgT0&& arg0, ArgT... args) {
  
  copyright_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.copyright)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.copyright)
 }
 inline std::string* AboutResponse::mutable_copyright() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.copyright)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.copyright)
   return _internal_mutable_copyright();
 }
 inline const std::string& AboutResponse::_internal_copyright() const {
@@ -4973,7 +4971,7 @@ inline std::string* AboutResponse::_internal_mutable_copyright() {
   return copyright_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* AboutResponse::release_copyright() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.AboutResponse.copyright)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.AboutResponse.copyright)
   return copyright_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void AboutResponse::set_allocated_copyright(std::string* copyright) {
@@ -4984,7 +4982,7 @@ inline void AboutResponse::set_allocated_copyright(std::string* copyright) {
   }
   copyright_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), copyright,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.AboutResponse.copyright)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.AboutResponse.copyright)
 }
 
 // .google.protobuf.Timestamp created_at = 9;
@@ -5000,7 +4998,7 @@ inline const PROTOBUF_NAMESPACE_ID::Timestamp& AboutResponse::_internal_created_
       PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Timestamp& AboutResponse::created_at() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.created_at)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.created_at)
   return _internal_created_at();
 }
 inline void AboutResponse::unsafe_arena_set_allocated_created_at(
@@ -5014,7 +5012,7 @@ inline void AboutResponse::unsafe_arena_set_allocated_created_at(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.AboutResponse.created_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.AboutResponse.created_at)
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* AboutResponse::release_created_at() {
   
@@ -5026,7 +5024,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* AboutResponse::release_created_at() {
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* AboutResponse::unsafe_arena_release_created_at() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.AboutResponse.created_at)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.AboutResponse.created_at)
   
   PROTOBUF_NAMESPACE_ID::Timestamp* temp = created_at_;
   created_at_ = nullptr;
@@ -5041,7 +5039,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* AboutResponse::_internal_mutable_create
   return created_at_;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* AboutResponse::mutable_created_at() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.created_at)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.created_at)
   return _internal_mutable_created_at();
 }
 inline void AboutResponse::set_allocated_created_at(PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
@@ -5063,7 +5061,7 @@ inline void AboutResponse::set_allocated_created_at(PROTOBUF_NAMESPACE_ID::Times
     
   }
   created_at_ = created_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.AboutResponse.created_at)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.AboutResponse.created_at)
 }
 
 // string lang = 10;
@@ -5071,7 +5069,7 @@ inline void AboutResponse::clear_lang() {
   lang_.ClearToEmpty();
 }
 inline const std::string& AboutResponse::lang() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.lang)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.lang)
   return _internal_lang();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5079,10 +5077,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void AboutResponse::set_lang(ArgT0&& arg0, ArgT... args) {
  
  lang_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.lang)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.lang)
 }
 inline std::string* AboutResponse::mutable_lang() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.lang)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.lang)
   return _internal_mutable_lang();
 }
 inline const std::string& AboutResponse::_internal_lang() const {
@@ -5097,7 +5095,7 @@ inline std::string* AboutResponse::_internal_mutable_lang() {
   return lang_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* AboutResponse::release_lang() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.AboutResponse.lang)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.AboutResponse.lang)
   return lang_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void AboutResponse::set_allocated_lang(std::string* lang) {
@@ -5108,7 +5106,7 @@ inline void AboutResponse::set_allocated_lang(std::string* lang) {
   }
   lang_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), lang,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.AboutResponse.lang)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.AboutResponse.lang)
 }
 
 // repeated string languages = 11;
@@ -5122,66 +5120,66 @@ inline void AboutResponse::clear_languages() {
   languages_.Clear();
 }
 inline std::string* AboutResponse::add_languages() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.AboutResponse.languages)
   return _internal_add_languages();
 }
 inline const std::string& AboutResponse::_internal_languages(int index) const {
   return languages_.Get(index);
 }
 inline const std::string& AboutResponse::languages(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.AboutResponse.languages)
   return _internal_languages(index);
 }
 inline std::string* AboutResponse::mutable_languages(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.AboutResponse.languages)
   return languages_.Mutable(index);
 }
 inline void AboutResponse::set_languages(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.languages)
   languages_.Mutable(index)->assign(value);
 }
 inline void AboutResponse::set_languages(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.AboutResponse.languages)
   languages_.Mutable(index)->assign(std::move(value));
 }
 inline void AboutResponse::set_languages(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   languages_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.AboutResponse.languages)
 }
 inline void AboutResponse::set_languages(int index, const char* value, size_t size) {
   languages_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.AboutResponse.languages)
 }
 inline std::string* AboutResponse::_internal_add_languages() {
   return languages_.Add();
 }
 inline void AboutResponse::add_languages(const std::string& value) {
   languages_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.AboutResponse.languages)
 }
 inline void AboutResponse::add_languages(std::string&& value) {
   languages_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.AboutResponse.languages)
 }
 inline void AboutResponse::add_languages(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   languages_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.AboutResponse.languages)
 }
 inline void AboutResponse::add_languages(const char* value, size_t size) {
   languages_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.AboutResponse.languages)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 AboutResponse::languages() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.AboutResponse.languages)
   return languages_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 AboutResponse::mutable_languages() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.AboutResponse.languages)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.AboutResponse.languages)
   return &languages_;
 }
 
@@ -5194,7 +5192,7 @@ inline void LocaleIndexRequest::clear_lang() {
   lang_.ClearToEmpty();
 }
 inline const std::string& LocaleIndexRequest::lang() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleIndexRequest.lang)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleIndexRequest.lang)
   return _internal_lang();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5202,10 +5200,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void LocaleIndexRequest::set_lang(ArgT0&& arg0, ArgT... args) {
  
  lang_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleIndexRequest.lang)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleIndexRequest.lang)
 }
 inline std::string* LocaleIndexRequest::mutable_lang() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleIndexRequest.lang)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleIndexRequest.lang)
   return _internal_mutable_lang();
 }
 inline const std::string& LocaleIndexRequest::_internal_lang() const {
@@ -5220,7 +5218,7 @@ inline std::string* LocaleIndexRequest::_internal_mutable_lang() {
   return lang_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* LocaleIndexRequest::release_lang() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleIndexRequest.lang)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleIndexRequest.lang)
   return lang_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void LocaleIndexRequest::set_allocated_lang(std::string* lang) {
@@ -5231,7 +5229,7 @@ inline void LocaleIndexRequest::set_allocated_lang(std::string* lang) {
   }
   lang_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), lang,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleIndexRequest.lang)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleIndexRequest.lang)
 }
 
 // -------------------------------------------------------------------
@@ -5246,7 +5244,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 LocaleIndexResponse_Item::_internal_id() c
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 LocaleIndexResponse_Item::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleIndexResponse.Item.id)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleIndexResponse.Item.id)
   return _internal_id();
 }
 inline void LocaleIndexResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -5255,7 +5253,7 @@ inline void LocaleIndexResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::
 }
 inline void LocaleIndexResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleIndexResponse.Item.id)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleIndexResponse.Item.id)
 }
 
 // string code = 2;
@@ -5263,7 +5261,7 @@ inline void LocaleIndexResponse_Item::clear_code() {
   code_.ClearToEmpty();
 }
 inline const std::string& LocaleIndexResponse_Item::code() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleIndexResponse.Item.code)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleIndexResponse.Item.code)
   return _internal_code();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5271,10 +5269,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void LocaleIndexResponse_Item::set_code(ArgT0&& arg0, ArgT... args) {
  
  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleIndexResponse.Item.code)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleIndexResponse.Item.code)
 }
 inline std::string* LocaleIndexResponse_Item::mutable_code() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleIndexResponse.Item.code)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleIndexResponse.Item.code)
   return _internal_mutable_code();
 }
 inline const std::string& LocaleIndexResponse_Item::_internal_code() const {
@@ -5289,7 +5287,7 @@ inline std::string* LocaleIndexResponse_Item::_internal_mutable_code() {
   return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* LocaleIndexResponse_Item::release_code() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleIndexResponse.Item.code)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleIndexResponse.Item.code)
   return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void LocaleIndexResponse_Item::set_allocated_code(std::string* code) {
@@ -5300,7 +5298,7 @@ inline void LocaleIndexResponse_Item::set_allocated_code(std::string* code) {
   }
   code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleIndexResponse.Item.code)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleIndexResponse.Item.code)
 }
 
 // string lang = 3;
@@ -5308,7 +5306,7 @@ inline void LocaleIndexResponse_Item::clear_lang() {
   lang_.ClearToEmpty();
 }
 inline const std::string& LocaleIndexResponse_Item::lang() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleIndexResponse.Item.lang)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleIndexResponse.Item.lang)
   return _internal_lang();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5316,10 +5314,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void LocaleIndexResponse_Item::set_lang(ArgT0&& arg0, ArgT... args) {
  
  lang_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleIndexResponse.Item.lang)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleIndexResponse.Item.lang)
 }
 inline std::string* LocaleIndexResponse_Item::mutable_lang() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleIndexResponse.Item.lang)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleIndexResponse.Item.lang)
   return _internal_mutable_lang();
 }
 inline const std::string& LocaleIndexResponse_Item::_internal_lang() const {
@@ -5334,7 +5332,7 @@ inline std::string* LocaleIndexResponse_Item::_internal_mutable_lang() {
   return lang_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* LocaleIndexResponse_Item::release_lang() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleIndexResponse.Item.lang)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleIndexResponse.Item.lang)
   return lang_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void LocaleIndexResponse_Item::set_allocated_lang(std::string* lang) {
@@ -5345,7 +5343,7 @@ inline void LocaleIndexResponse_Item::set_allocated_lang(std::string* lang) {
   }
   lang_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), lang,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleIndexResponse.Item.lang)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleIndexResponse.Item.lang)
 }
 
 // string message = 4;
@@ -5353,7 +5351,7 @@ inline void LocaleIndexResponse_Item::clear_message() {
   message_.ClearToEmpty();
 }
 inline const std::string& LocaleIndexResponse_Item::message() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleIndexResponse.Item.message)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleIndexResponse.Item.message)
   return _internal_message();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5361,10 +5359,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void LocaleIndexResponse_Item::set_message(ArgT0&& arg0, ArgT... args) {
  
  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleIndexResponse.Item.message)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleIndexResponse.Item.message)
 }
 inline std::string* LocaleIndexResponse_Item::mutable_message() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleIndexResponse.Item.message)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleIndexResponse.Item.message)
   return _internal_mutable_message();
 }
 inline const std::string& LocaleIndexResponse_Item::_internal_message() const {
@@ -5379,7 +5377,7 @@ inline std::string* LocaleIndexResponse_Item::_internal_mutable_message() {
   return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* LocaleIndexResponse_Item::release_message() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleIndexResponse.Item.message)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleIndexResponse.Item.message)
   return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void LocaleIndexResponse_Item::set_allocated_message(std::string* message) {
@@ -5390,7 +5388,7 @@ inline void LocaleIndexResponse_Item::set_allocated_message(std::string* message
   }
   message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleIndexResponse.Item.message)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleIndexResponse.Item.message)
 }
 
 // .google.protobuf.Timestamp updated_at = 5;
@@ -5406,7 +5404,7 @@ inline const PROTOBUF_NAMESPACE_ID::Timestamp& LocaleIndexResponse_Item::_intern
       PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Timestamp& LocaleIndexResponse_Item::updated_at() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleIndexResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleIndexResponse.Item.updated_at)
   return _internal_updated_at();
 }
 inline void LocaleIndexResponse_Item::unsafe_arena_set_allocated_updated_at(
@@ -5420,7 +5418,7 @@ inline void LocaleIndexResponse_Item::unsafe_arena_set_allocated_updated_at(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.LocaleIndexResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.LocaleIndexResponse.Item.updated_at)
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* LocaleIndexResponse_Item::release_updated_at() {
   
@@ -5432,7 +5430,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* LocaleIndexResponse_Item::release_updat
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* LocaleIndexResponse_Item::unsafe_arena_release_updated_at() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleIndexResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleIndexResponse.Item.updated_at)
   
   PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
   updated_at_ = nullptr;
@@ -5447,7 +5445,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* LocaleIndexResponse_Item::_internal_mut
   return updated_at_;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* LocaleIndexResponse_Item::mutable_updated_at() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleIndexResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleIndexResponse.Item.updated_at)
   return _internal_mutable_updated_at();
 }
 inline void LocaleIndexResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
@@ -5469,14 +5467,14 @@ inline void LocaleIndexResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPAC
     
   }
   updated_at_ = updated_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleIndexResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleIndexResponse.Item.updated_at)
 }
 
 // -------------------------------------------------------------------
 
 // LocaleIndexResponse
 
-// repeated .palm.plugins.nut.v1.LocaleIndexResponse.Item items = 1;
+// repeated .palm.nut.v1.LocaleIndexResponse.Item items = 1;
 inline int LocaleIndexResponse::_internal_items_size() const {
   return items_.size();
 }
@@ -5486,32 +5484,32 @@ inline int LocaleIndexResponse::items_size() const {
 inline void LocaleIndexResponse::clear_items() {
   items_.Clear();
 }
-inline ::palm::plugins::nut::v1::LocaleIndexResponse_Item* LocaleIndexResponse::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleIndexResponse.items)
+inline ::palm::nut::v1::LocaleIndexResponse_Item* LocaleIndexResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleIndexResponse.items)
   return items_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::LocaleIndexResponse_Item >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::LocaleIndexResponse_Item >*
 LocaleIndexResponse::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.LocaleIndexResponse.items)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.LocaleIndexResponse.items)
   return &items_;
 }
-inline const ::palm::plugins::nut::v1::LocaleIndexResponse_Item& LocaleIndexResponse::_internal_items(int index) const {
+inline const ::palm::nut::v1::LocaleIndexResponse_Item& LocaleIndexResponse::_internal_items(int index) const {
   return items_.Get(index);
 }
-inline const ::palm::plugins::nut::v1::LocaleIndexResponse_Item& LocaleIndexResponse::items(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleIndexResponse.items)
+inline const ::palm::nut::v1::LocaleIndexResponse_Item& LocaleIndexResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleIndexResponse.items)
   return _internal_items(index);
 }
-inline ::palm::plugins::nut::v1::LocaleIndexResponse_Item* LocaleIndexResponse::_internal_add_items() {
+inline ::palm::nut::v1::LocaleIndexResponse_Item* LocaleIndexResponse::_internal_add_items() {
   return items_.Add();
 }
-inline ::palm::plugins::nut::v1::LocaleIndexResponse_Item* LocaleIndexResponse::add_items() {
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.LocaleIndexResponse.items)
+inline ::palm::nut::v1::LocaleIndexResponse_Item* LocaleIndexResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.nut.v1.LocaleIndexResponse.items)
   return _internal_add_items();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::LocaleIndexResponse_Item >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::LocaleIndexResponse_Item >&
 LocaleIndexResponse::items() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.LocaleIndexResponse.items)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.LocaleIndexResponse.items)
   return items_;
 }
 
@@ -5524,7 +5522,7 @@ inline void LocaleSetRequest::clear_code() {
   code_.ClearToEmpty();
 }
 inline const std::string& LocaleSetRequest::code() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleSetRequest.code)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleSetRequest.code)
   return _internal_code();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5532,10 +5530,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void LocaleSetRequest::set_code(ArgT0&& arg0, ArgT... args) {
  
  code_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleSetRequest.code)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleSetRequest.code)
 }
 inline std::string* LocaleSetRequest::mutable_code() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleSetRequest.code)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleSetRequest.code)
   return _internal_mutable_code();
 }
 inline const std::string& LocaleSetRequest::_internal_code() const {
@@ -5550,7 +5548,7 @@ inline std::string* LocaleSetRequest::_internal_mutable_code() {
   return code_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* LocaleSetRequest::release_code() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleSetRequest.code)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleSetRequest.code)
   return code_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void LocaleSetRequest::set_allocated_code(std::string* code) {
@@ -5561,7 +5559,7 @@ inline void LocaleSetRequest::set_allocated_code(std::string* code) {
   }
   code_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleSetRequest.code)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleSetRequest.code)
 }
 
 // string lang = 2;
@@ -5569,7 +5567,7 @@ inline void LocaleSetRequest::clear_lang() {
   lang_.ClearToEmpty();
 }
 inline const std::string& LocaleSetRequest::lang() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleSetRequest.lang)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleSetRequest.lang)
   return _internal_lang();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5577,10 +5575,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void LocaleSetRequest::set_lang(ArgT0&& arg0, ArgT... args) {
  
  lang_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleSetRequest.lang)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleSetRequest.lang)
 }
 inline std::string* LocaleSetRequest::mutable_lang() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleSetRequest.lang)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleSetRequest.lang)
   return _internal_mutable_lang();
 }
 inline const std::string& LocaleSetRequest::_internal_lang() const {
@@ -5595,7 +5593,7 @@ inline std::string* LocaleSetRequest::_internal_mutable_lang() {
   return lang_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* LocaleSetRequest::release_lang() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleSetRequest.lang)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleSetRequest.lang)
   return lang_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void LocaleSetRequest::set_allocated_lang(std::string* lang) {
@@ -5606,7 +5604,7 @@ inline void LocaleSetRequest::set_allocated_lang(std::string* lang) {
   }
   lang_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), lang,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleSetRequest.lang)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleSetRequest.lang)
 }
 
 // string message = 3;
@@ -5614,7 +5612,7 @@ inline void LocaleSetRequest::clear_message() {
   message_.ClearToEmpty();
 }
 inline const std::string& LocaleSetRequest::message() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.LocaleSetRequest.message)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.LocaleSetRequest.message)
   return _internal_message();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5622,10 +5620,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void LocaleSetRequest::set_message(ArgT0&& arg0, ArgT... args) {
  
  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.LocaleSetRequest.message)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.LocaleSetRequest.message)
 }
 inline std::string* LocaleSetRequest::mutable_message() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.LocaleSetRequest.message)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.LocaleSetRequest.message)
   return _internal_mutable_message();
 }
 inline const std::string& LocaleSetRequest::_internal_message() const {
@@ -5640,7 +5638,7 @@ inline std::string* LocaleSetRequest::_internal_mutable_message() {
   return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* LocaleSetRequest::release_message() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.LocaleSetRequest.message)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.LocaleSetRequest.message)
   return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void LocaleSetRequest::set_allocated_message(std::string* message) {
@@ -5651,7 +5649,7 @@ inline void LocaleSetRequest::set_allocated_message(std::string* message) {
   }
   message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.LocaleSetRequest.message)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.LocaleSetRequest.message)
 }
 
 // -------------------------------------------------------------------
@@ -5663,7 +5661,7 @@ inline void StmpProfile::clear_host() {
   host_.ClearToEmpty();
 }
 inline const std::string& StmpProfile::host() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpProfile.host)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpProfile.host)
   return _internal_host();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5671,10 +5669,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void StmpProfile::set_host(ArgT0&& arg0, ArgT... args) {
  
  host_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.host)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.host)
 }
 inline std::string* StmpProfile::mutable_host() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpProfile.host)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpProfile.host)
   return _internal_mutable_host();
 }
 inline const std::string& StmpProfile::_internal_host() const {
@@ -5689,7 +5687,7 @@ inline std::string* StmpProfile::_internal_mutable_host() {
   return host_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* StmpProfile::release_host() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.StmpProfile.host)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.StmpProfile.host)
   return host_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void StmpProfile::set_allocated_host(std::string* host) {
@@ -5700,7 +5698,7 @@ inline void StmpProfile::set_allocated_host(std::string* host) {
   }
   host_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), host,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.StmpProfile.host)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.StmpProfile.host)
 }
 
 // uint32 port = 2;
@@ -5711,7 +5709,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 StmpProfile::_internal_port() const {
   return port_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 StmpProfile::port() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpProfile.port)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpProfile.port)
   return _internal_port();
 }
 inline void StmpProfile::_internal_set_port(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -5720,7 +5718,7 @@ inline void StmpProfile::_internal_set_port(::PROTOBUF_NAMESPACE_ID::uint32 valu
 }
 inline void StmpProfile::set_port(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_port(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.port)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.port)
 }
 
 // string user = 3;
@@ -5728,7 +5726,7 @@ inline void StmpProfile::clear_user() {
   user_.ClearToEmpty();
 }
 inline const std::string& StmpProfile::user() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpProfile.user)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpProfile.user)
   return _internal_user();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5736,10 +5734,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void StmpProfile::set_user(ArgT0&& arg0, ArgT... args) {
  
  user_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.user)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.user)
 }
 inline std::string* StmpProfile::mutable_user() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpProfile.user)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpProfile.user)
   return _internal_mutable_user();
 }
 inline const std::string& StmpProfile::_internal_user() const {
@@ -5754,7 +5752,7 @@ inline std::string* StmpProfile::_internal_mutable_user() {
   return user_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* StmpProfile::release_user() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.StmpProfile.user)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.StmpProfile.user)
   return user_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void StmpProfile::set_allocated_user(std::string* user) {
@@ -5765,7 +5763,7 @@ inline void StmpProfile::set_allocated_user(std::string* user) {
   }
   user_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), user,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.StmpProfile.user)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.StmpProfile.user)
 }
 
 // string password = 4;
@@ -5773,7 +5771,7 @@ inline void StmpProfile::clear_password() {
   password_.ClearToEmpty();
 }
 inline const std::string& StmpProfile::password() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpProfile.password)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpProfile.password)
   return _internal_password();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5781,10 +5779,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void StmpProfile::set_password(ArgT0&& arg0, ArgT... args) {
  
  password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.password)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.password)
 }
 inline std::string* StmpProfile::mutable_password() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpProfile.password)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpProfile.password)
   return _internal_mutable_password();
 }
 inline const std::string& StmpProfile::_internal_password() const {
@@ -5799,7 +5797,7 @@ inline std::string* StmpProfile::_internal_mutable_password() {
   return password_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* StmpProfile::release_password() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.StmpProfile.password)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.StmpProfile.password)
   return password_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void StmpProfile::set_allocated_password(std::string* password) {
@@ -5810,7 +5808,7 @@ inline void StmpProfile::set_allocated_password(std::string* password) {
   }
   password_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.StmpProfile.password)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.StmpProfile.password)
 }
 
 // repeated string cc = 5;
@@ -5824,66 +5822,66 @@ inline void StmpProfile::clear_cc() {
   cc_.Clear();
 }
 inline std::string* StmpProfile::add_cc() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.StmpProfile.cc)
   return _internal_add_cc();
 }
 inline const std::string& StmpProfile::_internal_cc(int index) const {
   return cc_.Get(index);
 }
 inline const std::string& StmpProfile::cc(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpProfile.cc)
   return _internal_cc(index);
 }
 inline std::string* StmpProfile::mutable_cc(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpProfile.cc)
   return cc_.Mutable(index);
 }
 inline void StmpProfile::set_cc(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.cc)
   cc_.Mutable(index)->assign(value);
 }
 inline void StmpProfile::set_cc(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.cc)
   cc_.Mutable(index)->assign(std::move(value));
 }
 inline void StmpProfile::set_cc(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   cc_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.StmpProfile.cc)
 }
 inline void StmpProfile::set_cc(int index, const char* value, size_t size) {
   cc_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.StmpProfile.cc)
 }
 inline std::string* StmpProfile::_internal_add_cc() {
   return cc_.Add();
 }
 inline void StmpProfile::add_cc(const std::string& value) {
   cc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpProfile.cc)
 }
 inline void StmpProfile::add_cc(std::string&& value) {
   cc_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpProfile.cc)
 }
 inline void StmpProfile::add_cc(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   cc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.StmpProfile.cc)
 }
 inline void StmpProfile::add_cc(const char* value, size_t size) {
   cc_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.StmpProfile.cc)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 StmpProfile::cc() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.StmpProfile.cc)
   return cc_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 StmpProfile::mutable_cc() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.StmpProfile.cc)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.StmpProfile.cc)
   return &cc_;
 }
 
@@ -5898,66 +5896,66 @@ inline void StmpProfile::clear_bcc() {
   bcc_.Clear();
 }
 inline std::string* StmpProfile::add_bcc() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.StmpProfile.bcc)
   return _internal_add_bcc();
 }
 inline const std::string& StmpProfile::_internal_bcc(int index) const {
   return bcc_.Get(index);
 }
 inline const std::string& StmpProfile::bcc(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpProfile.bcc)
   return _internal_bcc(index);
 }
 inline std::string* StmpProfile::mutable_bcc(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpProfile.bcc)
   return bcc_.Mutable(index);
 }
 inline void StmpProfile::set_bcc(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.bcc)
   bcc_.Mutable(index)->assign(value);
 }
 inline void StmpProfile::set_bcc(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpProfile.bcc)
   bcc_.Mutable(index)->assign(std::move(value));
 }
 inline void StmpProfile::set_bcc(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   bcc_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.StmpProfile.bcc)
 }
 inline void StmpProfile::set_bcc(int index, const char* value, size_t size) {
   bcc_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.StmpProfile.bcc)
 }
 inline std::string* StmpProfile::_internal_add_bcc() {
   return bcc_.Add();
 }
 inline void StmpProfile::add_bcc(const std::string& value) {
   bcc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpProfile.bcc)
 }
 inline void StmpProfile::add_bcc(std::string&& value) {
   bcc_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpProfile.bcc)
 }
 inline void StmpProfile::add_bcc(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   bcc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.StmpProfile.bcc)
 }
 inline void StmpProfile::add_bcc(const char* value, size_t size) {
   bcc_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.StmpProfile.bcc)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 StmpProfile::bcc() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.StmpProfile.bcc)
   return bcc_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 StmpProfile::mutable_bcc() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.StmpProfile.bcc)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.StmpProfile.bcc)
   return &bcc_;
 }
 
@@ -5972,7 +5970,7 @@ inline void StmpTask::clear_subject() {
   subject_.ClearToEmpty();
 }
 inline const std::string& StmpTask::subject() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpTask.subject)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpTask.subject)
   return _internal_subject();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5980,10 +5978,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void StmpTask::set_subject(ArgT0&& arg0, ArgT... args) {
  
  subject_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.subject)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.subject)
 }
 inline std::string* StmpTask::mutable_subject() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpTask.subject)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpTask.subject)
   return _internal_mutable_subject();
 }
 inline const std::string& StmpTask::_internal_subject() const {
@@ -5998,7 +5996,7 @@ inline std::string* StmpTask::_internal_mutable_subject() {
   return subject_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* StmpTask::release_subject() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.StmpTask.subject)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.StmpTask.subject)
   return subject_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void StmpTask::set_allocated_subject(std::string* subject) {
@@ -6009,7 +6007,7 @@ inline void StmpTask::set_allocated_subject(std::string* subject) {
   }
   subject_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), subject,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.StmpTask.subject)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.StmpTask.subject)
 }
 
 // string body = 2;
@@ -6017,7 +6015,7 @@ inline void StmpTask::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& StmpTask::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpTask.body)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpTask.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6025,10 +6023,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void StmpTask::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.body)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.body)
 }
 inline std::string* StmpTask::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpTask.body)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpTask.body)
   return _internal_mutable_body();
 }
 inline const std::string& StmpTask::_internal_body() const {
@@ -6043,7 +6041,7 @@ inline std::string* StmpTask::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* StmpTask::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.StmpTask.body)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.StmpTask.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void StmpTask::set_allocated_body(std::string* body) {
@@ -6054,27 +6052,27 @@ inline void StmpTask::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.StmpTask.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.StmpTask.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 3;
+// .palm.nut.v1.MediaType body_content_type = 3;
 inline void StmpTask::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType StmpTask::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType StmpTask::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType StmpTask::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpTask.body_content_type)
+inline ::palm::nut::v1::MediaType StmpTask::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpTask.body_content_type)
   return _internal_body_content_type();
 }
-inline void StmpTask::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void StmpTask::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void StmpTask::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void StmpTask::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.body_content_type)
 }
 
 // map<string, bytes> attachments = 4;
@@ -6093,7 +6091,7 @@ StmpTask::_internal_attachments() const {
 }
 inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
 StmpTask::attachments() const {
-  // @@protoc_insertion_point(field_map:palm.plugins.nut.v1.StmpTask.attachments)
+  // @@protoc_insertion_point(field_map:palm.nut.v1.StmpTask.attachments)
   return _internal_attachments();
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
@@ -6102,7 +6100,7 @@ StmpTask::_internal_mutable_attachments() {
 }
 inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
 StmpTask::mutable_attachments() {
-  // @@protoc_insertion_point(field_mutable_map:palm.plugins.nut.v1.StmpTask.attachments)
+  // @@protoc_insertion_point(field_mutable_map:palm.nut.v1.StmpTask.attachments)
   return _internal_mutable_attachments();
 }
 
@@ -6117,66 +6115,66 @@ inline void StmpTask::clear_to() {
   to_.Clear();
 }
 inline std::string* StmpTask::add_to() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.StmpTask.to)
   return _internal_add_to();
 }
 inline const std::string& StmpTask::_internal_to(int index) const {
   return to_.Get(index);
 }
 inline const std::string& StmpTask::to(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpTask.to)
   return _internal_to(index);
 }
 inline std::string* StmpTask::mutable_to(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpTask.to)
   return to_.Mutable(index);
 }
 inline void StmpTask::set_to(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.to)
   to_.Mutable(index)->assign(value);
 }
 inline void StmpTask::set_to(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.to)
   to_.Mutable(index)->assign(std::move(value));
 }
 inline void StmpTask::set_to(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   to_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.StmpTask.to)
 }
 inline void StmpTask::set_to(int index, const char* value, size_t size) {
   to_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.StmpTask.to)
 }
 inline std::string* StmpTask::_internal_add_to() {
   return to_.Add();
 }
 inline void StmpTask::add_to(const std::string& value) {
   to_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpTask.to)
 }
 inline void StmpTask::add_to(std::string&& value) {
   to_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpTask.to)
 }
 inline void StmpTask::add_to(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   to_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.StmpTask.to)
 }
 inline void StmpTask::add_to(const char* value, size_t size) {
   to_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.StmpTask.to)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 StmpTask::to() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.StmpTask.to)
   return to_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 StmpTask::mutable_to() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.StmpTask.to)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.StmpTask.to)
   return &to_;
 }
 
@@ -6191,66 +6189,66 @@ inline void StmpTask::clear_cc() {
   cc_.Clear();
 }
 inline std::string* StmpTask::add_cc() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.StmpTask.cc)
   return _internal_add_cc();
 }
 inline const std::string& StmpTask::_internal_cc(int index) const {
   return cc_.Get(index);
 }
 inline const std::string& StmpTask::cc(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpTask.cc)
   return _internal_cc(index);
 }
 inline std::string* StmpTask::mutable_cc(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpTask.cc)
   return cc_.Mutable(index);
 }
 inline void StmpTask::set_cc(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.cc)
   cc_.Mutable(index)->assign(value);
 }
 inline void StmpTask::set_cc(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.cc)
   cc_.Mutable(index)->assign(std::move(value));
 }
 inline void StmpTask::set_cc(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   cc_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.StmpTask.cc)
 }
 inline void StmpTask::set_cc(int index, const char* value, size_t size) {
   cc_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.StmpTask.cc)
 }
 inline std::string* StmpTask::_internal_add_cc() {
   return cc_.Add();
 }
 inline void StmpTask::add_cc(const std::string& value) {
   cc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpTask.cc)
 }
 inline void StmpTask::add_cc(std::string&& value) {
   cc_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpTask.cc)
 }
 inline void StmpTask::add_cc(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   cc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.StmpTask.cc)
 }
 inline void StmpTask::add_cc(const char* value, size_t size) {
   cc_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.StmpTask.cc)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 StmpTask::cc() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.StmpTask.cc)
   return cc_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 StmpTask::mutable_cc() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.StmpTask.cc)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.StmpTask.cc)
   return &cc_;
 }
 
@@ -6265,66 +6263,66 @@ inline void StmpTask::clear_bcc() {
   bcc_.Clear();
 }
 inline std::string* StmpTask::add_bcc() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.StmpTask.bcc)
   return _internal_add_bcc();
 }
 inline const std::string& StmpTask::_internal_bcc(int index) const {
   return bcc_.Get(index);
 }
 inline const std::string& StmpTask::bcc(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.StmpTask.bcc)
   return _internal_bcc(index);
 }
 inline std::string* StmpTask::mutable_bcc(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.StmpTask.bcc)
   return bcc_.Mutable(index);
 }
 inline void StmpTask::set_bcc(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.bcc)
   bcc_.Mutable(index)->assign(value);
 }
 inline void StmpTask::set_bcc(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.StmpTask.bcc)
   bcc_.Mutable(index)->assign(std::move(value));
 }
 inline void StmpTask::set_bcc(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   bcc_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.StmpTask.bcc)
 }
 inline void StmpTask::set_bcc(int index, const char* value, size_t size) {
   bcc_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.StmpTask.bcc)
 }
 inline std::string* StmpTask::_internal_add_bcc() {
   return bcc_.Add();
 }
 inline void StmpTask::add_bcc(const std::string& value) {
   bcc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpTask.bcc)
 }
 inline void StmpTask::add_bcc(std::string&& value) {
   bcc_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.StmpTask.bcc)
 }
 inline void StmpTask::add_bcc(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   bcc_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.StmpTask.bcc)
 }
 inline void StmpTask::add_bcc(const char* value, size_t size) {
   bcc_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.StmpTask.bcc)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 StmpTask::bcc() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.StmpTask.bcc)
   return bcc_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 StmpTask::mutable_bcc() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.StmpTask.bcc)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.StmpTask.bcc)
   return &bcc_;
 }
 
@@ -6337,7 +6335,7 @@ inline void TwilioProfile::clear_account_sid() {
   account_sid_.ClearToEmpty();
 }
 inline const std::string& TwilioProfile::account_sid() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.TwilioProfile.account_sid)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.TwilioProfile.account_sid)
   return _internal_account_sid();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6345,10 +6343,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void TwilioProfile::set_account_sid(ArgT0&& arg0, ArgT... args) {
  
  account_sid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.TwilioProfile.account_sid)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.TwilioProfile.account_sid)
 }
 inline std::string* TwilioProfile::mutable_account_sid() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.TwilioProfile.account_sid)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.TwilioProfile.account_sid)
   return _internal_mutable_account_sid();
 }
 inline const std::string& TwilioProfile::_internal_account_sid() const {
@@ -6363,7 +6361,7 @@ inline std::string* TwilioProfile::_internal_mutable_account_sid() {
   return account_sid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TwilioProfile::release_account_sid() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.TwilioProfile.account_sid)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.TwilioProfile.account_sid)
   return account_sid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void TwilioProfile::set_allocated_account_sid(std::string* account_sid) {
@@ -6374,7 +6372,7 @@ inline void TwilioProfile::set_allocated_account_sid(std::string* account_sid) {
   }
   account_sid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), account_sid,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.TwilioProfile.account_sid)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.TwilioProfile.account_sid)
 }
 
 // string auto_token = 2;
@@ -6382,7 +6380,7 @@ inline void TwilioProfile::clear_auto_token() {
   auto_token_.ClearToEmpty();
 }
 inline const std::string& TwilioProfile::auto_token() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.TwilioProfile.auto_token)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.TwilioProfile.auto_token)
   return _internal_auto_token();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6390,10 +6388,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void TwilioProfile::set_auto_token(ArgT0&& arg0, ArgT... args) {
  
  auto_token_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.TwilioProfile.auto_token)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.TwilioProfile.auto_token)
 }
 inline std::string* TwilioProfile::mutable_auto_token() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.TwilioProfile.auto_token)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.TwilioProfile.auto_token)
   return _internal_mutable_auto_token();
 }
 inline const std::string& TwilioProfile::_internal_auto_token() const {
@@ -6408,7 +6406,7 @@ inline std::string* TwilioProfile::_internal_mutable_auto_token() {
   return auto_token_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TwilioProfile::release_auto_token() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.TwilioProfile.auto_token)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.TwilioProfile.auto_token)
   return auto_token_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void TwilioProfile::set_allocated_auto_token(std::string* auto_token) {
@@ -6419,7 +6417,7 @@ inline void TwilioProfile::set_allocated_auto_token(std::string* auto_token) {
   }
   auto_token_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), auto_token,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.TwilioProfile.auto_token)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.TwilioProfile.auto_token)
 }
 
 // string from = 3;
@@ -6427,7 +6425,7 @@ inline void TwilioProfile::clear_from() {
   from_.ClearToEmpty();
 }
 inline const std::string& TwilioProfile::from() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.TwilioProfile.from)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.TwilioProfile.from)
   return _internal_from();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6435,10 +6433,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void TwilioProfile::set_from(ArgT0&& arg0, ArgT... args) {
  
  from_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.TwilioProfile.from)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.TwilioProfile.from)
 }
 inline std::string* TwilioProfile::mutable_from() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.TwilioProfile.from)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.TwilioProfile.from)
   return _internal_mutable_from();
 }
 inline const std::string& TwilioProfile::_internal_from() const {
@@ -6453,7 +6451,7 @@ inline std::string* TwilioProfile::_internal_mutable_from() {
   return from_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TwilioProfile::release_from() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.TwilioProfile.from)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.TwilioProfile.from)
   return from_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void TwilioProfile::set_allocated_from(std::string* from) {
@@ -6464,7 +6462,7 @@ inline void TwilioProfile::set_allocated_from(std::string* from) {
   }
   from_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.TwilioProfile.from)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.TwilioProfile.from)
 }
 
 // -------------------------------------------------------------------
@@ -6482,66 +6480,66 @@ inline void TwilioTask::clear_to() {
   to_.Clear();
 }
 inline std::string* TwilioTask::add_to() {
-  // @@protoc_insertion_point(field_add_mutable:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_add_mutable:palm.nut.v1.TwilioTask.to)
   return _internal_add_to();
 }
 inline const std::string& TwilioTask::_internal_to(int index) const {
   return to_.Get(index);
 }
 inline const std::string& TwilioTask::to(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.TwilioTask.to)
   return _internal_to(index);
 }
 inline std::string* TwilioTask::mutable_to(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.TwilioTask.to)
   return to_.Mutable(index);
 }
 inline void TwilioTask::set_to(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.TwilioTask.to)
   to_.Mutable(index)->assign(value);
 }
 inline void TwilioTask::set_to(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.TwilioTask.to)
   to_.Mutable(index)->assign(std::move(value));
 }
 inline void TwilioTask::set_to(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   to_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_set_char:palm.nut.v1.TwilioTask.to)
 }
 inline void TwilioTask::set_to(int index, const char* value, size_t size) {
   to_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_set_pointer:palm.nut.v1.TwilioTask.to)
 }
 inline std::string* TwilioTask::_internal_add_to() {
   return to_.Add();
 }
 inline void TwilioTask::add_to(const std::string& value) {
   to_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.TwilioTask.to)
 }
 inline void TwilioTask::add_to(std::string&& value) {
   to_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_add:palm.nut.v1.TwilioTask.to)
 }
 inline void TwilioTask::add_to(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   to_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_add_char:palm.nut.v1.TwilioTask.to)
 }
 inline void TwilioTask::add_to(const char* value, size_t size) {
   to_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_add_pointer:palm.nut.v1.TwilioTask.to)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 TwilioTask::to() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.TwilioTask.to)
   return to_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 TwilioTask::mutable_to() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.TwilioTask.to)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.TwilioTask.to)
   return &to_;
 }
 
@@ -6550,7 +6548,7 @@ inline void TwilioTask::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& TwilioTask::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.TwilioTask.body)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.TwilioTask.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6558,10 +6556,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void TwilioTask::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.TwilioTask.body)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.TwilioTask.body)
 }
 inline std::string* TwilioTask::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.TwilioTask.body)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.TwilioTask.body)
   return _internal_mutable_body();
 }
 inline const std::string& TwilioTask::_internal_body() const {
@@ -6576,7 +6574,7 @@ inline std::string* TwilioTask::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TwilioTask::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.TwilioTask.body)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.TwilioTask.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void TwilioTask::set_allocated_body(std::string* body) {
@@ -6587,7 +6585,7 @@ inline void TwilioTask::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.TwilioTask.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.TwilioTask.body)
 }
 
 // optional string callback = 3;
@@ -6603,7 +6601,7 @@ inline void TwilioTask::clear_callback() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& TwilioTask::callback() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.TwilioTask.callback)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.TwilioTask.callback)
   return _internal_callback();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6611,10 +6609,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void TwilioTask::set_callback(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  callback_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.TwilioTask.callback)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.TwilioTask.callback)
 }
 inline std::string* TwilioTask::mutable_callback() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.TwilioTask.callback)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.TwilioTask.callback)
   return _internal_mutable_callback();
 }
 inline const std::string& TwilioTask::_internal_callback() const {
@@ -6629,7 +6627,7 @@ inline std::string* TwilioTask::_internal_mutable_callback() {
   return callback_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* TwilioTask::release_callback() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.TwilioTask.callback)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.TwilioTask.callback)
   if (!_internal_has_callback()) {
     return nullptr;
   }
@@ -6644,7 +6642,7 @@ inline void TwilioTask::set_allocated_callback(std::string* callback) {
   }
   callback_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), callback,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.TwilioTask.callback)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.TwilioTask.callback)
 }
 
 // -------------------------------------------------------------------
@@ -6664,7 +6662,7 @@ inline void SeoProfile::clear_googlesiteverifyid() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& SeoProfile::googlesiteverifyid() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.SeoProfile.googleSiteVerifyId)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.SeoProfile.googleSiteVerifyId)
   return _internal_googlesiteverifyid();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6672,10 +6670,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void SeoProfile::set_googlesiteverifyid(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  googlesiteverifyid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.SeoProfile.googleSiteVerifyId)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.SeoProfile.googleSiteVerifyId)
 }
 inline std::string* SeoProfile::mutable_googlesiteverifyid() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.SeoProfile.googleSiteVerifyId)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.SeoProfile.googleSiteVerifyId)
   return _internal_mutable_googlesiteverifyid();
 }
 inline const std::string& SeoProfile::_internal_googlesiteverifyid() const {
@@ -6690,7 +6688,7 @@ inline std::string* SeoProfile::_internal_mutable_googlesiteverifyid() {
   return googlesiteverifyid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* SeoProfile::release_googlesiteverifyid() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.SeoProfile.googleSiteVerifyId)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.SeoProfile.googleSiteVerifyId)
   if (!_internal_has_googlesiteverifyid()) {
     return nullptr;
   }
@@ -6705,7 +6703,7 @@ inline void SeoProfile::set_allocated_googlesiteverifyid(std::string* googlesite
   }
   googlesiteverifyid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), googlesiteverifyid,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.SeoProfile.googleSiteVerifyId)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.SeoProfile.googleSiteVerifyId)
 }
 
 // optional string baiduSiteVerifyId = 11;
@@ -6721,7 +6719,7 @@ inline void SeoProfile::clear_baidusiteverifyid() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline const std::string& SeoProfile::baidusiteverifyid() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.SeoProfile.baiduSiteVerifyId)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.SeoProfile.baiduSiteVerifyId)
   return _internal_baidusiteverifyid();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6729,10 +6727,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void SeoProfile::set_baidusiteverifyid(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000002u;
  baidusiteverifyid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.SeoProfile.baiduSiteVerifyId)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.SeoProfile.baiduSiteVerifyId)
 }
 inline std::string* SeoProfile::mutable_baidusiteverifyid() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.SeoProfile.baiduSiteVerifyId)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.SeoProfile.baiduSiteVerifyId)
   return _internal_mutable_baidusiteverifyid();
 }
 inline const std::string& SeoProfile::_internal_baidusiteverifyid() const {
@@ -6747,7 +6745,7 @@ inline std::string* SeoProfile::_internal_mutable_baidusiteverifyid() {
   return baidusiteverifyid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* SeoProfile::release_baidusiteverifyid() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.SeoProfile.baiduSiteVerifyId)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.SeoProfile.baiduSiteVerifyId)
   if (!_internal_has_baidusiteverifyid()) {
     return nullptr;
   }
@@ -6762,7 +6760,7 @@ inline void SeoProfile::set_allocated_baidusiteverifyid(std::string* baidusiteve
   }
   baidusiteverifyid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), baidusiteverifyid,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.SeoProfile.baiduSiteVerifyId)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.SeoProfile.baiduSiteVerifyId)
 }
 
 // optional string bingSiteVerifyId = 21;
@@ -6778,7 +6776,7 @@ inline void SeoProfile::clear_bingsiteverifyid() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline const std::string& SeoProfile::bingsiteverifyid() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.SeoProfile.bingSiteVerifyId)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.SeoProfile.bingSiteVerifyId)
   return _internal_bingsiteverifyid();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6786,10 +6784,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void SeoProfile::set_bingsiteverifyid(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000004u;
  bingsiteverifyid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.SeoProfile.bingSiteVerifyId)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.SeoProfile.bingSiteVerifyId)
 }
 inline std::string* SeoProfile::mutable_bingsiteverifyid() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.SeoProfile.bingSiteVerifyId)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.SeoProfile.bingSiteVerifyId)
   return _internal_mutable_bingsiteverifyid();
 }
 inline const std::string& SeoProfile::_internal_bingsiteverifyid() const {
@@ -6804,7 +6802,7 @@ inline std::string* SeoProfile::_internal_mutable_bingsiteverifyid() {
   return bingsiteverifyid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* SeoProfile::release_bingsiteverifyid() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.SeoProfile.bingSiteVerifyId)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.SeoProfile.bingSiteVerifyId)
   if (!_internal_has_bingsiteverifyid()) {
     return nullptr;
   }
@@ -6819,7 +6817,7 @@ inline void SeoProfile::set_allocated_bingsiteverifyid(std::string* bingsiteveri
   }
   bingsiteverifyid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), bingsiteverifyid,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.SeoProfile.bingSiteVerifyId)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.SeoProfile.bingSiteVerifyId)
 }
 
 // -------------------------------------------------------------------
@@ -6831,7 +6829,7 @@ inline void CreateTagRequest::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& CreateTagRequest::name() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.CreateTagRequest.name)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.CreateTagRequest.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6839,10 +6837,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void CreateTagRequest::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.CreateTagRequest.name)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.CreateTagRequest.name)
 }
 inline std::string* CreateTagRequest::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.CreateTagRequest.name)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.CreateTagRequest.name)
   return _internal_mutable_name();
 }
 inline const std::string& CreateTagRequest::_internal_name() const {
@@ -6857,7 +6855,7 @@ inline std::string* CreateTagRequest::_internal_mutable_name() {
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* CreateTagRequest::release_name() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.CreateTagRequest.name)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.CreateTagRequest.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void CreateTagRequest::set_allocated_name(std::string* name) {
@@ -6868,7 +6866,7 @@ inline void CreateTagRequest::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.CreateTagRequest.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.CreateTagRequest.name)
 }
 
 // optional string color = 2;
@@ -6884,7 +6882,7 @@ inline void CreateTagRequest::clear_color() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& CreateTagRequest::color() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.CreateTagRequest.color)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.CreateTagRequest.color)
   return _internal_color();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6892,10 +6890,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void CreateTagRequest::set_color(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  color_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.CreateTagRequest.color)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.CreateTagRequest.color)
 }
 inline std::string* CreateTagRequest::mutable_color() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.CreateTagRequest.color)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.CreateTagRequest.color)
   return _internal_mutable_color();
 }
 inline const std::string& CreateTagRequest::_internal_color() const {
@@ -6910,7 +6908,7 @@ inline std::string* CreateTagRequest::_internal_mutable_color() {
   return color_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* CreateTagRequest::release_color() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.CreateTagRequest.color)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.CreateTagRequest.color)
   if (!_internal_has_color()) {
     return nullptr;
   }
@@ -6925,7 +6923,7 @@ inline void CreateTagRequest::set_allocated_color(std::string* color) {
   }
   color_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), color,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.CreateTagRequest.color)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.CreateTagRequest.color)
 }
 
 // -------------------------------------------------------------------
@@ -6940,7 +6938,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTagRequest::_internal_id() const {
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 UpdateTagRequest::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.UpdateTagRequest.id)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.UpdateTagRequest.id)
   return _internal_id();
 }
 inline void UpdateTagRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -6949,7 +6947,7 @@ inline void UpdateTagRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 va
 }
 inline void UpdateTagRequest::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.UpdateTagRequest.id)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.UpdateTagRequest.id)
 }
 
 // string name = 2;
@@ -6957,7 +6955,7 @@ inline void UpdateTagRequest::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& UpdateTagRequest::name() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.UpdateTagRequest.name)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.UpdateTagRequest.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -6965,10 +6963,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void UpdateTagRequest::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.UpdateTagRequest.name)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.UpdateTagRequest.name)
 }
 inline std::string* UpdateTagRequest::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.UpdateTagRequest.name)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.UpdateTagRequest.name)
   return _internal_mutable_name();
 }
 inline const std::string& UpdateTagRequest::_internal_name() const {
@@ -6983,7 +6981,7 @@ inline std::string* UpdateTagRequest::_internal_mutable_name() {
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* UpdateTagRequest::release_name() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.UpdateTagRequest.name)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.UpdateTagRequest.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void UpdateTagRequest::set_allocated_name(std::string* name) {
@@ -6994,7 +6992,7 @@ inline void UpdateTagRequest::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.UpdateTagRequest.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.UpdateTagRequest.name)
 }
 
 // optional string color = 3;
@@ -7010,7 +7008,7 @@ inline void UpdateTagRequest::clear_color() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& UpdateTagRequest::color() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.UpdateTagRequest.color)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.UpdateTagRequest.color)
   return _internal_color();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7018,10 +7016,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void UpdateTagRequest::set_color(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  color_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.UpdateTagRequest.color)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.UpdateTagRequest.color)
 }
 inline std::string* UpdateTagRequest::mutable_color() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.UpdateTagRequest.color)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.UpdateTagRequest.color)
   return _internal_mutable_color();
 }
 inline const std::string& UpdateTagRequest::_internal_color() const {
@@ -7036,7 +7034,7 @@ inline std::string* UpdateTagRequest::_internal_mutable_color() {
   return color_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* UpdateTagRequest::release_color() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.UpdateTagRequest.color)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.UpdateTagRequest.color)
   if (!_internal_has_color()) {
     return nullptr;
   }
@@ -7051,7 +7049,7 @@ inline void UpdateTagRequest::set_allocated_color(std::string* color) {
   }
   color_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), color,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.UpdateTagRequest.color)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.UpdateTagRequest.color)
 }
 
 // -------------------------------------------------------------------
@@ -7063,7 +7061,7 @@ inline void IndexTagResponse_Font::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& IndexTagResponse_Font::name() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Font.name)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Font.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7071,10 +7069,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexTagResponse_Font::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Font.name)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Font.name)
 }
 inline std::string* IndexTagResponse_Font::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Font.name)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Font.name)
   return _internal_mutable_name();
 }
 inline const std::string& IndexTagResponse_Font::_internal_name() const {
@@ -7089,7 +7087,7 @@ inline std::string* IndexTagResponse_Font::_internal_mutable_name() {
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexTagResponse_Font::release_name() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Font.name)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Font.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexTagResponse_Font::set_allocated_name(std::string* name) {
@@ -7100,7 +7098,7 @@ inline void IndexTagResponse_Font::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Font.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Font.name)
 }
 
 // optional uint32 size = 2;
@@ -7119,7 +7117,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 IndexTagResponse_Font::_internal_size() c
   return size_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 IndexTagResponse_Font::size() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Font.size)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Font.size)
   return _internal_size();
 }
 inline void IndexTagResponse_Font::_internal_set_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -7128,7 +7126,7 @@ inline void IndexTagResponse_Font::_internal_set_size(::PROTOBUF_NAMESPACE_ID::u
 }
 inline void IndexTagResponse_Font::set_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Font.size)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Font.size)
 }
 
 // bool bold = 3;
@@ -7139,7 +7137,7 @@ inline bool IndexTagResponse_Font::_internal_bold() const {
   return bold_;
 }
 inline bool IndexTagResponse_Font::bold() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Font.bold)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Font.bold)
   return _internal_bold();
 }
 inline void IndexTagResponse_Font::_internal_set_bold(bool value) {
@@ -7148,7 +7146,7 @@ inline void IndexTagResponse_Font::_internal_set_bold(bool value) {
 }
 inline void IndexTagResponse_Font::set_bold(bool value) {
   _internal_set_bold(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Font.bold)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Font.bold)
 }
 
 // bool italic = 4;
@@ -7159,7 +7157,7 @@ inline bool IndexTagResponse_Font::_internal_italic() const {
   return italic_;
 }
 inline bool IndexTagResponse_Font::italic() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Font.italic)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Font.italic)
   return _internal_italic();
 }
 inline void IndexTagResponse_Font::_internal_set_italic(bool value) {
@@ -7168,7 +7166,7 @@ inline void IndexTagResponse_Font::_internal_set_italic(bool value) {
 }
 inline void IndexTagResponse_Font::set_italic(bool value) {
   _internal_set_italic(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Font.italic)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Font.italic)
 }
 
 // optional string background = 5;
@@ -7184,7 +7182,7 @@ inline void IndexTagResponse_Font::clear_background() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& IndexTagResponse_Font::background() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Font.background)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Font.background)
   return _internal_background();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7192,10 +7190,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexTagResponse_Font::set_background(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000001u;
  background_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Font.background)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Font.background)
 }
 inline std::string* IndexTagResponse_Font::mutable_background() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Font.background)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Font.background)
   return _internal_mutable_background();
 }
 inline const std::string& IndexTagResponse_Font::_internal_background() const {
@@ -7210,7 +7208,7 @@ inline std::string* IndexTagResponse_Font::_internal_mutable_background() {
   return background_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexTagResponse_Font::release_background() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Font.background)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Font.background)
   if (!_internal_has_background()) {
     return nullptr;
   }
@@ -7225,7 +7223,7 @@ inline void IndexTagResponse_Font::set_allocated_background(std::string* backgro
   }
   background_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), background,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Font.background)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Font.background)
 }
 
 // optional string foreground = 6;
@@ -7241,7 +7239,7 @@ inline void IndexTagResponse_Font::clear_foreground() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline const std::string& IndexTagResponse_Font::foreground() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Font.foreground)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Font.foreground)
   return _internal_foreground();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7249,10 +7247,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexTagResponse_Font::set_foreground(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000002u;
  foreground_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Font.foreground)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Font.foreground)
 }
 inline std::string* IndexTagResponse_Font::mutable_foreground() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Font.foreground)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Font.foreground)
   return _internal_mutable_foreground();
 }
 inline const std::string& IndexTagResponse_Font::_internal_foreground() const {
@@ -7267,7 +7265,7 @@ inline std::string* IndexTagResponse_Font::_internal_mutable_foreground() {
   return foreground_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexTagResponse_Font::release_foreground() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Font.foreground)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Font.foreground)
   if (!_internal_has_foreground()) {
     return nullptr;
   }
@@ -7282,7 +7280,7 @@ inline void IndexTagResponse_Font::set_allocated_foreground(std::string* foregro
   }
   foreground_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), foreground,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Font.foreground)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Font.foreground)
 }
 
 // -------------------------------------------------------------------
@@ -7294,7 +7292,7 @@ inline void IndexTagResponse_Icon::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& IndexTagResponse_Icon::name() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Icon.name)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Icon.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7302,10 +7300,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexTagResponse_Icon::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Icon.name)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Icon.name)
 }
 inline std::string* IndexTagResponse_Icon::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Icon.name)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Icon.name)
   return _internal_mutable_name();
 }
 inline const std::string& IndexTagResponse_Icon::_internal_name() const {
@@ -7320,7 +7318,7 @@ inline std::string* IndexTagResponse_Icon::_internal_mutable_name() {
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexTagResponse_Icon::release_name() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Icon.name)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Icon.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexTagResponse_Icon::set_allocated_name(std::string* name) {
@@ -7331,10 +7329,10 @@ inline void IndexTagResponse_Icon::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Icon.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Icon.name)
 }
 
-// optional .palm.plugins.nut.v1.Size size = 2;
+// optional .palm.nut.v1.Size size = 2;
 inline bool IndexTagResponse_Icon::_internal_has_size() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || size_ != nullptr);
@@ -7347,17 +7345,17 @@ inline void IndexTagResponse_Icon::clear_size() {
   if (size_ != nullptr) size_->Clear();
   _has_bits_[0] &= ~0x00000001u;
 }
-inline const ::palm::plugins::nut::v1::Size& IndexTagResponse_Icon::_internal_size() const {
-  const ::palm::plugins::nut::v1::Size* p = size_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::Size&>(
-      ::palm::plugins::nut::v1::_Size_default_instance_);
+inline const ::palm::nut::v1::Size& IndexTagResponse_Icon::_internal_size() const {
+  const ::palm::nut::v1::Size* p = size_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::Size&>(
+      ::palm::nut::v1::_Size_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::Size& IndexTagResponse_Icon::size() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Icon.size)
+inline const ::palm::nut::v1::Size& IndexTagResponse_Icon::size() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Icon.size)
   return _internal_size();
 }
 inline void IndexTagResponse_Icon::unsafe_arena_set_allocated_size(
-    ::palm::plugins::nut::v1::Size* size) {
+    ::palm::nut::v1::Size* size) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(size_);
   }
@@ -7367,44 +7365,44 @@ inline void IndexTagResponse_Icon::unsafe_arena_set_allocated_size(
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Icon.size)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.IndexTagResponse.Icon.size)
 }
-inline ::palm::plugins::nut::v1::Size* IndexTagResponse_Icon::release_size() {
+inline ::palm::nut::v1::Size* IndexTagResponse_Icon::release_size() {
   _has_bits_[0] &= ~0x00000001u;
-  ::palm::plugins::nut::v1::Size* temp = size_;
+  ::palm::nut::v1::Size* temp = size_;
   size_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::Size* IndexTagResponse_Icon::unsafe_arena_release_size() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Icon.size)
+inline ::palm::nut::v1::Size* IndexTagResponse_Icon::unsafe_arena_release_size() {
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Icon.size)
   _has_bits_[0] &= ~0x00000001u;
-  ::palm::plugins::nut::v1::Size* temp = size_;
+  ::palm::nut::v1::Size* temp = size_;
   size_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::Size* IndexTagResponse_Icon::_internal_mutable_size() {
+inline ::palm::nut::v1::Size* IndexTagResponse_Icon::_internal_mutable_size() {
   _has_bits_[0] |= 0x00000001u;
   if (size_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::Size>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::Size>(GetArenaForAllocation());
     size_ = p;
   }
   return size_;
 }
-inline ::palm::plugins::nut::v1::Size* IndexTagResponse_Icon::mutable_size() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Icon.size)
+inline ::palm::nut::v1::Size* IndexTagResponse_Icon::mutable_size() {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Icon.size)
   return _internal_mutable_size();
 }
-inline void IndexTagResponse_Icon::set_allocated_size(::palm::plugins::nut::v1::Size* size) {
+inline void IndexTagResponse_Icon::set_allocated_size(::palm::nut::v1::Size* size) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete size_;
   }
   if (size) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::plugins::nut::v1::Size>::GetOwningArena(size);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::nut::v1::Size>::GetOwningArena(size);
     if (message_arena != submessage_arena) {
       size = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, size, submessage_arena);
@@ -7414,7 +7412,7 @@ inline void IndexTagResponse_Icon::set_allocated_size(::palm::plugins::nut::v1::
     _has_bits_[0] &= ~0x00000001u;
   }
   size_ = size;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Icon.size)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Icon.size)
 }
 
 // -------------------------------------------------------------------
@@ -7429,7 +7427,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTagResponse_Item::_internal_id() cons
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexTagResponse_Item::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Item.id)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Item.id)
   return _internal_id();
 }
 inline void IndexTagResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -7438,7 +7436,7 @@ inline void IndexTagResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int
 }
 inline void IndexTagResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Item.id)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Item.id)
 }
 
 // string name = 2;
@@ -7446,7 +7444,7 @@ inline void IndexTagResponse_Item::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& IndexTagResponse_Item::name() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Item.name)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Item.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7454,10 +7452,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexTagResponse_Item::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexTagResponse.Item.name)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexTagResponse.Item.name)
 }
 inline std::string* IndexTagResponse_Item::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Item.name)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Item.name)
   return _internal_mutable_name();
 }
 inline const std::string& IndexTagResponse_Item::_internal_name() const {
@@ -7472,7 +7470,7 @@ inline std::string* IndexTagResponse_Item::_internal_mutable_name() {
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexTagResponse_Item::release_name() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Item.name)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Item.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexTagResponse_Item::set_allocated_name(std::string* name) {
@@ -7483,10 +7481,10 @@ inline void IndexTagResponse_Item::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Item.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Item.name)
 }
 
-// optional .palm.plugins.nut.v1.IndexTagResponse.Icon icon = 3;
+// optional .palm.nut.v1.IndexTagResponse.Icon icon = 3;
 inline bool IndexTagResponse_Item::_internal_has_icon() const {
   bool value = (_has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || icon_ != nullptr);
@@ -7499,17 +7497,17 @@ inline void IndexTagResponse_Item::clear_icon() {
   if (icon_ != nullptr) icon_->Clear();
   _has_bits_[0] &= ~0x00000001u;
 }
-inline const ::palm::plugins::nut::v1::IndexTagResponse_Icon& IndexTagResponse_Item::_internal_icon() const {
-  const ::palm::plugins::nut::v1::IndexTagResponse_Icon* p = icon_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::IndexTagResponse_Icon&>(
-      ::palm::plugins::nut::v1::_IndexTagResponse_Icon_default_instance_);
+inline const ::palm::nut::v1::IndexTagResponse_Icon& IndexTagResponse_Item::_internal_icon() const {
+  const ::palm::nut::v1::IndexTagResponse_Icon* p = icon_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::IndexTagResponse_Icon&>(
+      ::palm::nut::v1::_IndexTagResponse_Icon_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::IndexTagResponse_Icon& IndexTagResponse_Item::icon() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Item.icon)
+inline const ::palm::nut::v1::IndexTagResponse_Icon& IndexTagResponse_Item::icon() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Item.icon)
   return _internal_icon();
 }
 inline void IndexTagResponse_Item::unsafe_arena_set_allocated_icon(
-    ::palm::plugins::nut::v1::IndexTagResponse_Icon* icon) {
+    ::palm::nut::v1::IndexTagResponse_Icon* icon) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(icon_);
   }
@@ -7519,44 +7517,44 @@ inline void IndexTagResponse_Item::unsafe_arena_set_allocated_icon(
   } else {
     _has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Item.icon)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.IndexTagResponse.Item.icon)
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::release_icon() {
+inline ::palm::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::release_icon() {
   _has_bits_[0] &= ~0x00000001u;
-  ::palm::plugins::nut::v1::IndexTagResponse_Icon* temp = icon_;
+  ::palm::nut::v1::IndexTagResponse_Icon* temp = icon_;
   icon_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::unsafe_arena_release_icon() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Item.icon)
+inline ::palm::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::unsafe_arena_release_icon() {
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Item.icon)
   _has_bits_[0] &= ~0x00000001u;
-  ::palm::plugins::nut::v1::IndexTagResponse_Icon* temp = icon_;
+  ::palm::nut::v1::IndexTagResponse_Icon* temp = icon_;
   icon_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::_internal_mutable_icon() {
+inline ::palm::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::_internal_mutable_icon() {
   _has_bits_[0] |= 0x00000001u;
   if (icon_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::IndexTagResponse_Icon>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::IndexTagResponse_Icon>(GetArenaForAllocation());
     icon_ = p;
   }
   return icon_;
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::mutable_icon() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Item.icon)
+inline ::palm::nut::v1::IndexTagResponse_Icon* IndexTagResponse_Item::mutable_icon() {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Item.icon)
   return _internal_mutable_icon();
 }
-inline void IndexTagResponse_Item::set_allocated_icon(::palm::plugins::nut::v1::IndexTagResponse_Icon* icon) {
+inline void IndexTagResponse_Item::set_allocated_icon(::palm::nut::v1::IndexTagResponse_Icon* icon) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete icon_;
   }
   if (icon) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::plugins::nut::v1::IndexTagResponse_Icon>::GetOwningArena(icon);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::nut::v1::IndexTagResponse_Icon>::GetOwningArena(icon);
     if (message_arena != submessage_arena) {
       icon = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, icon, submessage_arena);
@@ -7566,10 +7564,10 @@ inline void IndexTagResponse_Item::set_allocated_icon(::palm::plugins::nut::v1::
     _has_bits_[0] &= ~0x00000001u;
   }
   icon_ = icon;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Item.icon)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Item.icon)
 }
 
-// optional .palm.plugins.nut.v1.IndexTagResponse.Font font = 4;
+// optional .palm.nut.v1.IndexTagResponse.Font font = 4;
 inline bool IndexTagResponse_Item::_internal_has_font() const {
   bool value = (_has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || font_ != nullptr);
@@ -7582,17 +7580,17 @@ inline void IndexTagResponse_Item::clear_font() {
   if (font_ != nullptr) font_->Clear();
   _has_bits_[0] &= ~0x00000002u;
 }
-inline const ::palm::plugins::nut::v1::IndexTagResponse_Font& IndexTagResponse_Item::_internal_font() const {
-  const ::palm::plugins::nut::v1::IndexTagResponse_Font* p = font_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::IndexTagResponse_Font&>(
-      ::palm::plugins::nut::v1::_IndexTagResponse_Font_default_instance_);
+inline const ::palm::nut::v1::IndexTagResponse_Font& IndexTagResponse_Item::_internal_font() const {
+  const ::palm::nut::v1::IndexTagResponse_Font* p = font_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::IndexTagResponse_Font&>(
+      ::palm::nut::v1::_IndexTagResponse_Font_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::IndexTagResponse_Font& IndexTagResponse_Item::font() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Item.font)
+inline const ::palm::nut::v1::IndexTagResponse_Font& IndexTagResponse_Item::font() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Item.font)
   return _internal_font();
 }
 inline void IndexTagResponse_Item::unsafe_arena_set_allocated_font(
-    ::palm::plugins::nut::v1::IndexTagResponse_Font* font) {
+    ::palm::nut::v1::IndexTagResponse_Font* font) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(font_);
   }
@@ -7602,44 +7600,44 @@ inline void IndexTagResponse_Item::unsafe_arena_set_allocated_font(
   } else {
     _has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Item.font)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.IndexTagResponse.Item.font)
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::release_font() {
+inline ::palm::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::release_font() {
   _has_bits_[0] &= ~0x00000002u;
-  ::palm::plugins::nut::v1::IndexTagResponse_Font* temp = font_;
+  ::palm::nut::v1::IndexTagResponse_Font* temp = font_;
   font_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::unsafe_arena_release_font() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Item.font)
+inline ::palm::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::unsafe_arena_release_font() {
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Item.font)
   _has_bits_[0] &= ~0x00000002u;
-  ::palm::plugins::nut::v1::IndexTagResponse_Font* temp = font_;
+  ::palm::nut::v1::IndexTagResponse_Font* temp = font_;
   font_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::_internal_mutable_font() {
+inline ::palm::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::_internal_mutable_font() {
   _has_bits_[0] |= 0x00000002u;
   if (font_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::IndexTagResponse_Font>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::IndexTagResponse_Font>(GetArenaForAllocation());
     font_ = p;
   }
   return font_;
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::mutable_font() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Item.font)
+inline ::palm::nut::v1::IndexTagResponse_Font* IndexTagResponse_Item::mutable_font() {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Item.font)
   return _internal_mutable_font();
 }
-inline void IndexTagResponse_Item::set_allocated_font(::palm::plugins::nut::v1::IndexTagResponse_Font* font) {
+inline void IndexTagResponse_Item::set_allocated_font(::palm::nut::v1::IndexTagResponse_Font* font) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete font_;
   }
   if (font) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::plugins::nut::v1::IndexTagResponse_Font>::GetOwningArena(font);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::nut::v1::IndexTagResponse_Font>::GetOwningArena(font);
     if (message_arena != submessage_arena) {
       font = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, font, submessage_arena);
@@ -7649,7 +7647,7 @@ inline void IndexTagResponse_Item::set_allocated_font(::palm::plugins::nut::v1::
     _has_bits_[0] &= ~0x00000002u;
   }
   font_ = font;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Item.font)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Item.font)
 }
 
 // .google.protobuf.Timestamp updated_at = 11;
@@ -7665,7 +7663,7 @@ inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexTagResponse_Item::_internal_
       PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexTagResponse_Item::updated_at() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.Item.updated_at)
   return _internal_updated_at();
 }
 inline void IndexTagResponse_Item::unsafe_arena_set_allocated_updated_at(
@@ -7679,7 +7677,7 @@ inline void IndexTagResponse_Item::unsafe_arena_set_allocated_updated_at(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.IndexTagResponse.Item.updated_at)
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTagResponse_Item::release_updated_at() {
   
@@ -7691,7 +7689,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTagResponse_Item::release_updated_
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTagResponse_Item::unsafe_arena_release_updated_at() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.Item.updated_at)
   
   PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
   updated_at_ = nullptr;
@@ -7706,7 +7704,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTagResponse_Item::_internal_mutabl
   return updated_at_;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexTagResponse_Item::mutable_updated_at() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.Item.updated_at)
   return _internal_mutable_updated_at();
 }
 inline void IndexTagResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
@@ -7728,14 +7726,14 @@ inline void IndexTagResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_I
     
   }
   updated_at_ = updated_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.Item.updated_at)
 }
 
 // -------------------------------------------------------------------
 
 // IndexTagResponse
 
-// repeated .palm.plugins.nut.v1.IndexTagResponse.Item items = 1;
+// repeated .palm.nut.v1.IndexTagResponse.Item items = 1;
 inline int IndexTagResponse::_internal_items_size() const {
   return items_.size();
 }
@@ -7745,36 +7743,36 @@ inline int IndexTagResponse::items_size() const {
 inline void IndexTagResponse::clear_items() {
   items_.Clear();
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Item* IndexTagResponse::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.items)
+inline ::palm::nut::v1::IndexTagResponse_Item* IndexTagResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.items)
   return items_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexTagResponse_Item >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexTagResponse_Item >*
 IndexTagResponse::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.IndexTagResponse.items)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.IndexTagResponse.items)
   return &items_;
 }
-inline const ::palm::plugins::nut::v1::IndexTagResponse_Item& IndexTagResponse::_internal_items(int index) const {
+inline const ::palm::nut::v1::IndexTagResponse_Item& IndexTagResponse::_internal_items(int index) const {
   return items_.Get(index);
 }
-inline const ::palm::plugins::nut::v1::IndexTagResponse_Item& IndexTagResponse::items(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.items)
+inline const ::palm::nut::v1::IndexTagResponse_Item& IndexTagResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.items)
   return _internal_items(index);
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Item* IndexTagResponse::_internal_add_items() {
+inline ::palm::nut::v1::IndexTagResponse_Item* IndexTagResponse::_internal_add_items() {
   return items_.Add();
 }
-inline ::palm::plugins::nut::v1::IndexTagResponse_Item* IndexTagResponse::add_items() {
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.IndexTagResponse.items)
+inline ::palm::nut::v1::IndexTagResponse_Item* IndexTagResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.nut.v1.IndexTagResponse.items)
   return _internal_add_items();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexTagResponse_Item >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexTagResponse_Item >&
 IndexTagResponse::items() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.IndexTagResponse.items)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.IndexTagResponse.items)
   return items_;
 }
 
-// .palm.plugins.nut.v1.Pagination pagination = 2;
+// .palm.nut.v1.Pagination pagination = 2;
 inline bool IndexTagResponse::_internal_has_pagination() const {
   return this != internal_default_instance() && pagination_ != nullptr;
 }
@@ -7787,17 +7785,17 @@ inline void IndexTagResponse::clear_pagination() {
   }
   pagination_ = nullptr;
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexTagResponse::_internal_pagination() const {
-  const ::palm::plugins::nut::v1::Pagination* p = pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::Pagination&>(
-      ::palm::plugins::nut::v1::_Pagination_default_instance_);
+inline const ::palm::nut::v1::Pagination& IndexTagResponse::_internal_pagination() const {
+  const ::palm::nut::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::Pagination&>(
+      ::palm::nut::v1::_Pagination_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexTagResponse::pagination() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexTagResponse.pagination)
+inline const ::palm::nut::v1::Pagination& IndexTagResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexTagResponse.pagination)
   return _internal_pagination();
 }
 inline void IndexTagResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::plugins::nut::v1::Pagination* pagination) {
+    ::palm::nut::v1::Pagination* pagination) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
   }
@@ -7807,44 +7805,44 @@ inline void IndexTagResponse::unsafe_arena_set_allocated_pagination(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.IndexTagResponse.pagination)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.IndexTagResponse.pagination)
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTagResponse::release_pagination() {
+inline ::palm::nut::v1::Pagination* IndexTagResponse::release_pagination() {
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTagResponse::unsafe_arena_release_pagination() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexTagResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexTagResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexTagResponse.pagination)
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTagResponse::_internal_mutable_pagination() {
+inline ::palm::nut::v1::Pagination* IndexTagResponse::_internal_mutable_pagination() {
   
   if (pagination_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::Pagination>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::Pagination>(GetArenaForAllocation());
     pagination_ = p;
   }
   return pagination_;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexTagResponse::mutable_pagination() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexTagResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexTagResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexTagResponse.pagination)
   return _internal_mutable_pagination();
 }
-inline void IndexTagResponse::set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination) {
+inline void IndexTagResponse::set_allocated_pagination(::palm::nut::v1::Pagination* pagination) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete pagination_;
   }
   if (pagination) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::plugins::nut::v1::Pagination>::GetOwningArena(pagination);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::nut::v1::Pagination>::GetOwningArena(pagination);
     if (message_arena != submessage_arena) {
       pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, pagination, submessage_arena);
@@ -7854,7 +7852,7 @@ inline void IndexTagResponse::set_allocated_pagination(::palm::plugins::nut::v1:
     
   }
   pagination_ = pagination;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexTagResponse.pagination)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexTagResponse.pagination)
 }
 
 // -------------------------------------------------------------------
@@ -7866,7 +7864,7 @@ inline void CreateNotificationRequest::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& CreateNotificationRequest::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.CreateNotificationRequest.body)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.CreateNotificationRequest.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7874,10 +7872,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void CreateNotificationRequest::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.CreateNotificationRequest.body)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.CreateNotificationRequest.body)
 }
 inline std::string* CreateNotificationRequest::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.CreateNotificationRequest.body)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.CreateNotificationRequest.body)
   return _internal_mutable_body();
 }
 inline const std::string& CreateNotificationRequest::_internal_body() const {
@@ -7892,7 +7890,7 @@ inline std::string* CreateNotificationRequest::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* CreateNotificationRequest::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.CreateNotificationRequest.body)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.CreateNotificationRequest.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void CreateNotificationRequest::set_allocated_body(std::string* body) {
@@ -7903,27 +7901,27 @@ inline void CreateNotificationRequest::set_allocated_body(std::string* body) {
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.CreateNotificationRequest.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.CreateNotificationRequest.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 3;
+// .palm.nut.v1.MediaType body_content_type = 3;
 inline void CreateNotificationRequest::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType CreateNotificationRequest::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType CreateNotificationRequest::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType CreateNotificationRequest::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.CreateNotificationRequest.body_content_type)
+inline ::palm::nut::v1::MediaType CreateNotificationRequest::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.CreateNotificationRequest.body_content_type)
   return _internal_body_content_type();
 }
-inline void CreateNotificationRequest::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void CreateNotificationRequest::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void CreateNotificationRequest::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void CreateNotificationRequest::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.CreateNotificationRequest.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.CreateNotificationRequest.body_content_type)
 }
 
 // string link = 4;
@@ -7931,7 +7929,7 @@ inline void CreateNotificationRequest::clear_link() {
   link_.ClearToEmpty();
 }
 inline const std::string& CreateNotificationRequest::link() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.CreateNotificationRequest.link)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.CreateNotificationRequest.link)
   return _internal_link();
 }
 template <typename ArgT0, typename... ArgT>
@@ -7939,10 +7937,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void CreateNotificationRequest::set_link(ArgT0&& arg0, ArgT... args) {
  
  link_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.CreateNotificationRequest.link)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.CreateNotificationRequest.link)
 }
 inline std::string* CreateNotificationRequest::mutable_link() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.CreateNotificationRequest.link)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.CreateNotificationRequest.link)
   return _internal_mutable_link();
 }
 inline const std::string& CreateNotificationRequest::_internal_link() const {
@@ -7957,7 +7955,7 @@ inline std::string* CreateNotificationRequest::_internal_mutable_link() {
   return link_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* CreateNotificationRequest::release_link() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.CreateNotificationRequest.link)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.CreateNotificationRequest.link)
   return link_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void CreateNotificationRequest::set_allocated_link(std::string* link) {
@@ -7968,7 +7966,7 @@ inline void CreateNotificationRequest::set_allocated_link(std::string* link) {
   }
   link_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), link,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.CreateNotificationRequest.link)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.CreateNotificationRequest.link)
 }
 
 // -------------------------------------------------------------------
@@ -7983,7 +7981,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 IndexNotificationResponse_Item::_internal_
   return id_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 IndexNotificationResponse_Item::id() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.Item.id)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.Item.id)
   return _internal_id();
 }
 inline void IndexNotificationResponse_Item::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -7992,7 +7990,7 @@ inline void IndexNotificationResponse_Item::_internal_set_id(::PROTOBUF_NAMESPAC
 }
 inline void IndexNotificationResponse_Item::set_id(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexNotificationResponse.Item.id)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexNotificationResponse.Item.id)
 }
 
 // string body = 2;
@@ -8000,7 +7998,7 @@ inline void IndexNotificationResponse_Item::clear_body() {
   body_.ClearToEmpty();
 }
 inline const std::string& IndexNotificationResponse_Item::body() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.Item.body)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.Item.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
@@ -8008,10 +8006,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexNotificationResponse_Item::set_body(ArgT0&& arg0, ArgT... args) {
  
  body_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexNotificationResponse.Item.body)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexNotificationResponse.Item.body)
 }
 inline std::string* IndexNotificationResponse_Item::mutable_body() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexNotificationResponse.Item.body)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexNotificationResponse.Item.body)
   return _internal_mutable_body();
 }
 inline const std::string& IndexNotificationResponse_Item::_internal_body() const {
@@ -8026,7 +8024,7 @@ inline std::string* IndexNotificationResponse_Item::_internal_mutable_body() {
   return body_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexNotificationResponse_Item::release_body() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexNotificationResponse.Item.body)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexNotificationResponse.Item.body)
   return body_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexNotificationResponse_Item::set_allocated_body(std::string* body) {
@@ -8037,27 +8035,27 @@ inline void IndexNotificationResponse_Item::set_allocated_body(std::string* body
   }
   body_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), body,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexNotificationResponse.Item.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexNotificationResponse.Item.body)
 }
 
-// .palm.plugins.nut.v1.MediaType body_content_type = 3;
+// .palm.nut.v1.MediaType body_content_type = 3;
 inline void IndexNotificationResponse_Item::clear_body_content_type() {
   body_content_type_ = 0;
 }
-inline ::palm::plugins::nut::v1::MediaType IndexNotificationResponse_Item::_internal_body_content_type() const {
-  return static_cast< ::palm::plugins::nut::v1::MediaType >(body_content_type_);
+inline ::palm::nut::v1::MediaType IndexNotificationResponse_Item::_internal_body_content_type() const {
+  return static_cast< ::palm::nut::v1::MediaType >(body_content_type_);
 }
-inline ::palm::plugins::nut::v1::MediaType IndexNotificationResponse_Item::body_content_type() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.Item.body_content_type)
+inline ::palm::nut::v1::MediaType IndexNotificationResponse_Item::body_content_type() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.Item.body_content_type)
   return _internal_body_content_type();
 }
-inline void IndexNotificationResponse_Item::_internal_set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void IndexNotificationResponse_Item::_internal_set_body_content_type(::palm::nut::v1::MediaType value) {
   
   body_content_type_ = value;
 }
-inline void IndexNotificationResponse_Item::set_body_content_type(::palm::plugins::nut::v1::MediaType value) {
+inline void IndexNotificationResponse_Item::set_body_content_type(::palm::nut::v1::MediaType value) {
   _internal_set_body_content_type(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexNotificationResponse.Item.body_content_type)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexNotificationResponse.Item.body_content_type)
 }
 
 // string link = 4;
@@ -8065,7 +8063,7 @@ inline void IndexNotificationResponse_Item::clear_link() {
   link_.ClearToEmpty();
 }
 inline const std::string& IndexNotificationResponse_Item::link() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.Item.link)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.Item.link)
   return _internal_link();
 }
 template <typename ArgT0, typename... ArgT>
@@ -8073,10 +8071,10 @@ inline PROTOBUF_ALWAYS_INLINE
 void IndexNotificationResponse_Item::set_link(ArgT0&& arg0, ArgT... args) {
  
  link_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexNotificationResponse.Item.link)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexNotificationResponse.Item.link)
 }
 inline std::string* IndexNotificationResponse_Item::mutable_link() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexNotificationResponse.Item.link)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexNotificationResponse.Item.link)
   return _internal_mutable_link();
 }
 inline const std::string& IndexNotificationResponse_Item::_internal_link() const {
@@ -8091,7 +8089,7 @@ inline std::string* IndexNotificationResponse_Item::_internal_mutable_link() {
   return link_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* IndexNotificationResponse_Item::release_link() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexNotificationResponse.Item.link)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexNotificationResponse.Item.link)
   return link_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void IndexNotificationResponse_Item::set_allocated_link(std::string* link) {
@@ -8102,7 +8100,7 @@ inline void IndexNotificationResponse_Item::set_allocated_link(std::string* link
   }
   link_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), link,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexNotificationResponse.Item.link)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexNotificationResponse.Item.link)
 }
 
 // bool read = 10;
@@ -8113,7 +8111,7 @@ inline bool IndexNotificationResponse_Item::_internal_read() const {
   return read_;
 }
 inline bool IndexNotificationResponse_Item::read() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.Item.read)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.Item.read)
   return _internal_read();
 }
 inline void IndexNotificationResponse_Item::_internal_set_read(bool value) {
@@ -8122,7 +8120,7 @@ inline void IndexNotificationResponse_Item::_internal_set_read(bool value) {
 }
 inline void IndexNotificationResponse_Item::set_read(bool value) {
   _internal_set_read(value);
-  // @@protoc_insertion_point(field_set:palm.plugins.nut.v1.IndexNotificationResponse.Item.read)
+  // @@protoc_insertion_point(field_set:palm.nut.v1.IndexNotificationResponse.Item.read)
 }
 
 // .google.protobuf.Timestamp updated_at = 11;
@@ -8138,7 +8136,7 @@ inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexNotificationResponse_Item::_
       PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
 inline const PROTOBUF_NAMESPACE_ID::Timestamp& IndexNotificationResponse_Item::updated_at() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.Item.updated_at)
   return _internal_updated_at();
 }
 inline void IndexNotificationResponse_Item::unsafe_arena_set_allocated_updated_at(
@@ -8152,7 +8150,7 @@ inline void IndexNotificationResponse_Item::unsafe_arena_set_allocated_updated_a
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.IndexNotificationResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.IndexNotificationResponse.Item.updated_at)
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexNotificationResponse_Item::release_updated_at() {
   
@@ -8164,7 +8162,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexNotificationResponse_Item::release
   return temp;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexNotificationResponse_Item::unsafe_arena_release_updated_at() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexNotificationResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexNotificationResponse.Item.updated_at)
   
   PROTOBUF_NAMESPACE_ID::Timestamp* temp = updated_at_;
   updated_at_ = nullptr;
@@ -8179,7 +8177,7 @@ inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexNotificationResponse_Item::_intern
   return updated_at_;
 }
 inline PROTOBUF_NAMESPACE_ID::Timestamp* IndexNotificationResponse_Item::mutable_updated_at() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexNotificationResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexNotificationResponse.Item.updated_at)
   return _internal_mutable_updated_at();
 }
 inline void IndexNotificationResponse_Item::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
@@ -8201,14 +8199,14 @@ inline void IndexNotificationResponse_Item::set_allocated_updated_at(PROTOBUF_NA
     
   }
   updated_at_ = updated_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexNotificationResponse.Item.updated_at)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexNotificationResponse.Item.updated_at)
 }
 
 // -------------------------------------------------------------------
 
 // IndexNotificationResponse
 
-// repeated .palm.plugins.nut.v1.IndexNotificationResponse.Item items = 1;
+// repeated .palm.nut.v1.IndexNotificationResponse.Item items = 1;
 inline int IndexNotificationResponse::_internal_items_size() const {
   return items_.size();
 }
@@ -8218,36 +8216,36 @@ inline int IndexNotificationResponse::items_size() const {
 inline void IndexNotificationResponse::clear_items() {
   items_.Clear();
 }
-inline ::palm::plugins::nut::v1::IndexNotificationResponse_Item* IndexNotificationResponse::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexNotificationResponse.items)
+inline ::palm::nut::v1::IndexNotificationResponse_Item* IndexNotificationResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexNotificationResponse.items)
   return items_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexNotificationResponse_Item >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexNotificationResponse_Item >*
 IndexNotificationResponse::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:palm.plugins.nut.v1.IndexNotificationResponse.items)
+  // @@protoc_insertion_point(field_mutable_list:palm.nut.v1.IndexNotificationResponse.items)
   return &items_;
 }
-inline const ::palm::plugins::nut::v1::IndexNotificationResponse_Item& IndexNotificationResponse::_internal_items(int index) const {
+inline const ::palm::nut::v1::IndexNotificationResponse_Item& IndexNotificationResponse::_internal_items(int index) const {
   return items_.Get(index);
 }
-inline const ::palm::plugins::nut::v1::IndexNotificationResponse_Item& IndexNotificationResponse::items(int index) const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.items)
+inline const ::palm::nut::v1::IndexNotificationResponse_Item& IndexNotificationResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.items)
   return _internal_items(index);
 }
-inline ::palm::plugins::nut::v1::IndexNotificationResponse_Item* IndexNotificationResponse::_internal_add_items() {
+inline ::palm::nut::v1::IndexNotificationResponse_Item* IndexNotificationResponse::_internal_add_items() {
   return items_.Add();
 }
-inline ::palm::plugins::nut::v1::IndexNotificationResponse_Item* IndexNotificationResponse::add_items() {
-  // @@protoc_insertion_point(field_add:palm.plugins.nut.v1.IndexNotificationResponse.items)
+inline ::palm::nut::v1::IndexNotificationResponse_Item* IndexNotificationResponse::add_items() {
+  // @@protoc_insertion_point(field_add:palm.nut.v1.IndexNotificationResponse.items)
   return _internal_add_items();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::plugins::nut::v1::IndexNotificationResponse_Item >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::nut::v1::IndexNotificationResponse_Item >&
 IndexNotificationResponse::items() const {
-  // @@protoc_insertion_point(field_list:palm.plugins.nut.v1.IndexNotificationResponse.items)
+  // @@protoc_insertion_point(field_list:palm.nut.v1.IndexNotificationResponse.items)
   return items_;
 }
 
-// .palm.plugins.nut.v1.Pagination pagination = 2;
+// .palm.nut.v1.Pagination pagination = 2;
 inline bool IndexNotificationResponse::_internal_has_pagination() const {
   return this != internal_default_instance() && pagination_ != nullptr;
 }
@@ -8260,17 +8258,17 @@ inline void IndexNotificationResponse::clear_pagination() {
   }
   pagination_ = nullptr;
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexNotificationResponse::_internal_pagination() const {
-  const ::palm::plugins::nut::v1::Pagination* p = pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::Pagination&>(
-      ::palm::plugins::nut::v1::_Pagination_default_instance_);
+inline const ::palm::nut::v1::Pagination& IndexNotificationResponse::_internal_pagination() const {
+  const ::palm::nut::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::Pagination&>(
+      ::palm::nut::v1::_Pagination_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::Pagination& IndexNotificationResponse::pagination() const {
-  // @@protoc_insertion_point(field_get:palm.plugins.nut.v1.IndexNotificationResponse.pagination)
+inline const ::palm::nut::v1::Pagination& IndexNotificationResponse::pagination() const {
+  // @@protoc_insertion_point(field_get:palm.nut.v1.IndexNotificationResponse.pagination)
   return _internal_pagination();
 }
 inline void IndexNotificationResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::plugins::nut::v1::Pagination* pagination) {
+    ::palm::nut::v1::Pagination* pagination) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
   }
@@ -8280,44 +8278,44 @@ inline void IndexNotificationResponse::unsafe_arena_set_allocated_pagination(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.plugins.nut.v1.IndexNotificationResponse.pagination)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.nut.v1.IndexNotificationResponse.pagination)
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexNotificationResponse::release_pagination() {
+inline ::palm::nut::v1::Pagination* IndexNotificationResponse::release_pagination() {
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexNotificationResponse::unsafe_arena_release_pagination() {
-  // @@protoc_insertion_point(field_release:palm.plugins.nut.v1.IndexNotificationResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexNotificationResponse::unsafe_arena_release_pagination() {
+  // @@protoc_insertion_point(field_release:palm.nut.v1.IndexNotificationResponse.pagination)
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexNotificationResponse::_internal_mutable_pagination() {
+inline ::palm::nut::v1::Pagination* IndexNotificationResponse::_internal_mutable_pagination() {
   
   if (pagination_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::Pagination>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::Pagination>(GetArenaForAllocation());
     pagination_ = p;
   }
   return pagination_;
 }
-inline ::palm::plugins::nut::v1::Pagination* IndexNotificationResponse::mutable_pagination() {
-  // @@protoc_insertion_point(field_mutable:palm.plugins.nut.v1.IndexNotificationResponse.pagination)
+inline ::palm::nut::v1::Pagination* IndexNotificationResponse::mutable_pagination() {
+  // @@protoc_insertion_point(field_mutable:palm.nut.v1.IndexNotificationResponse.pagination)
   return _internal_mutable_pagination();
 }
-inline void IndexNotificationResponse::set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination) {
+inline void IndexNotificationResponse::set_allocated_pagination(::palm::nut::v1::Pagination* pagination) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete pagination_;
   }
   if (pagination) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::plugins::nut::v1::Pagination>::GetOwningArena(pagination);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::palm::nut::v1::Pagination>::GetOwningArena(pagination);
     if (message_arena != submessage_arena) {
       pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, pagination, submessage_arena);
@@ -8327,7 +8325,7 @@ inline void IndexNotificationResponse::set_allocated_pagination(::palm::plugins:
     
   }
   pagination_ = pagination;
-  // @@protoc_insertion_point(field_set_allocated:palm.plugins.nut.v1.IndexNotificationResponse.pagination)
+  // @@protoc_insertion_point(field_set_allocated:palm.nut.v1.IndexNotificationResponse.pagination)
 }
 
 #ifdef __GNUC__
@@ -8386,15 +8384,14 @@ inline void IndexNotificationResponse::set_allocated_pagination(::palm::plugins:
 
 }  // namespace v1
 }  // namespace nut
-}  // namespace plugins
 }  // namespace palm
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::palm::plugins::nut::v1::MediaType> : ::std::true_type {};
+template <> struct is_proto_enum< ::palm::nut::v1::MediaType> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::palm::plugins::nut::v1::MediaType>() {
-  return ::palm::plugins::nut::v1::MediaType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::palm::nut::v1::MediaType>() {
+  return ::palm::nut::v1::MediaType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

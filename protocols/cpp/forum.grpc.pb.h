@@ -26,133 +26,132 @@
 #include <grpcpp/impl/codegen/sync_stream.h>
 
 namespace palm {
-namespace plugins {
 namespace forum {
 namespace v1 {
 
 class Topic final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.plugins.forum.v1.Topic";
+    return "palm.forum.v1.Topic";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
     }
-    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse_Item>>(AsyncShowRaw(context, request, cq));
+    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::palm::forum::v1::IndexTopicResponse_Item* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse_Item>>(AsyncShowRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
     }
-    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
-    virtual ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
     }
-    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::palm::plugins::forum::v1::IndexTopicResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse>>(AsyncIndexRaw(context, request, cq));
+    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::palm::forum::v1::IndexTopicResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse>>(AsyncIndexRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse>>(PrepareAsyncIndexRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexTopicResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexTopicResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexTopicResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexTopicResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
     }
-    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse_Item>>(AsyncShowRaw(context, request, cq));
+    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::palm::forum::v1::IndexTopicResponse_Item* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>>(AsyncShowRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
     }
-    ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
-    ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
     }
-    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::palm::plugins::forum::v1::IndexTopicResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse>>(AsyncIndexRaw(context, request, cq));
+    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::palm::forum::v1::IndexTopicResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>>(AsyncIndexRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>>(PrepareAsyncIndexRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response, std::function<void(::grpc::Status)>) override;
-      void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexTopicResponse* response, std::function<void(::grpc::Status)>) override;
-      void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexTopicResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, std::function<void(::grpc::Status)>) override;
+      void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response, std::function<void(::grpc::Status)>) override;
+      void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -164,16 +163,16 @@ class Topic final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexTopicResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreateTopicRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexTopicResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Create_;
     const ::grpc::internal::RpcMethod rpcmethod_Show_;
     const ::grpc::internal::RpcMethod rpcmethod_Update_;
@@ -186,11 +185,11 @@ class Topic final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response);
-    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Destory(::grpc::ServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexTopicResponse* response);
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response);
+    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Destory(::grpc::ServerContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Create : public BaseClass {
@@ -204,11 +203,11 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreate(::grpc::ServerContext* context, ::palm::plugins::forum::v1::CreateTopicRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestCreate(::grpc::ServerContext* context, ::palm::forum::v1::CreateTopicRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -224,11 +223,11 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexTopicResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestShow(::grpc::ServerContext* context, ::palm::plugins::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::plugins::forum::v1::IndexTopicResponse_Item>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestShow(::grpc::ServerContext* context, ::palm::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::forum::v1::IndexTopicResponse_Item>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -244,11 +243,11 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpdate(::grpc::ServerContext* context, ::palm::plugins::forum::v1::CreateTopicRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdate(::grpc::ServerContext* context, ::palm::forum::v1::CreateTopicRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -264,11 +263,11 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDestory(::grpc::ServerContext* context, ::palm::plugins::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDestory(::grpc::ServerContext* context, ::palm::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -284,11 +283,11 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexTopicResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestIndex(::grpc::ServerContext* context, ::palm::plugins::nut::v1::Pager* request, ::grpc::ServerAsyncResponseWriter< ::palm::plugins::forum::v1::IndexTopicResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestIndex(::grpc::ServerContext* context, ::palm::nut::v1::Pager* request, ::grpc::ServerAsyncResponseWriter< ::palm::forum::v1::IndexTopicResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -300,25 +299,25 @@ class Topic final {
    public:
     WithCallbackMethod_Create() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
     void SetMessageAllocatorFor_Create(
-        ::grpc::MessageAllocator< ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Create(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Show : public BaseClass {
@@ -327,25 +326,25 @@ class Topic final {
    public:
     WithCallbackMethod_Show() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexTopicResponse_Item>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexTopicResponse_Item* response) { return this->Show(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexTopicResponse_Item* response) { return this->Show(context, request, response); }));}
     void SetMessageAllocatorFor_Show(
-        ::grpc::MessageAllocator< ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexTopicResponse_Item>* allocator) {
+        ::grpc::MessageAllocator< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexTopicResponse_Item>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Show() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexTopicResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Show(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse_Item* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexTopicResponse_Item* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Update : public BaseClass {
@@ -354,25 +353,25 @@ class Topic final {
    public:
     WithCallbackMethod_Update() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response) { return this->Update(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::forum::v1::CreateTopicRequest* request, ::google::protobuf::Empty* response) { return this->Update(context, request, response); }));}
     void SetMessageAllocatorFor_Update(
-        ::grpc::MessageAllocator< ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Update(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Destory : public BaseClass {
@@ -381,25 +380,25 @@ class Topic final {
    public:
     WithCallbackMethod_Destory() {
       ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->Destory(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->Destory(context, request, response); }));}
     void SetMessageAllocatorFor_Destory(
-        ::grpc::MessageAllocator< ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Destory() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Destory(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Index : public BaseClass {
@@ -408,25 +407,25 @@ class Topic final {
    public:
     WithCallbackMethod_Index() {
       ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexTopicResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::Pager, ::palm::forum::v1::IndexTopicResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexTopicResponse* response) { return this->Index(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexTopicResponse* response) { return this->Index(context, request, response); }));}
     void SetMessageAllocatorFor_Index(
-        ::grpc::MessageAllocator< ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexTopicResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::nut::v1::Pager, ::palm::forum::v1::IndexTopicResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexTopicResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::Pager, ::palm::forum::v1::IndexTopicResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Index() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexTopicResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Index(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexTopicResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Create<WithCallbackMethod_Show<WithCallbackMethod_Update<WithCallbackMethod_Destory<WithCallbackMethod_Index<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -442,7 +441,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -459,7 +458,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexTopicResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -476,7 +475,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -493,7 +492,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -510,7 +509,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexTopicResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -527,7 +526,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -547,7 +546,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexTopicResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -567,7 +566,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -587,7 +586,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -607,7 +606,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexTopicResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -630,7 +629,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -652,7 +651,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexTopicResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -674,7 +673,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -696,7 +695,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -718,7 +717,7 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexTopicResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -733,10 +732,10 @@ class Topic final {
     WithStreamedUnaryMethod_Create() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
+          ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedCreate(context,
                          streamer);
                   }));
@@ -745,12 +744,12 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::forum::v1::CreateTopicRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::forum::v1::CreateTopicRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Show : public BaseClass {
@@ -760,10 +759,10 @@ class Topic final {
     WithStreamedUnaryMethod_Show() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexTopicResponse_Item>(
+          ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexTopicResponse_Item>* streamer) {
+                     ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexTopicResponse_Item>* streamer) {
                        return this->StreamedShow(context,
                          streamer);
                   }));
@@ -772,12 +771,12 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexTopicResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::nut::v1::IdRequest,::palm::plugins::forum::v1::IndexTopicResponse_Item>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::IdRequest,::palm::forum::v1::IndexTopicResponse_Item>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Update : public BaseClass {
@@ -787,10 +786,10 @@ class Topic final {
     WithStreamedUnaryMethod_Update() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
+          ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::forum::v1::CreateTopicRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedUpdate(context,
                          streamer);
                   }));
@@ -799,12 +798,12 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreateTopicRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::forum::v1::CreateTopicRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::forum::v1::CreateTopicRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Destory : public BaseClass {
@@ -814,10 +813,10 @@ class Topic final {
     WithStreamedUnaryMethod_Destory() {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>(
+          ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedDestory(context,
                          streamer);
                   }));
@@ -826,12 +825,12 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDestory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::nut::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedDestory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Index : public BaseClass {
@@ -841,10 +840,10 @@ class Topic final {
     WithStreamedUnaryMethod_Index() {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexTopicResponse>(
+          ::palm::nut::v1::Pager, ::palm::forum::v1::IndexTopicResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexTopicResponse>* streamer) {
+                     ::palm::nut::v1::Pager, ::palm::forum::v1::IndexTopicResponse>* streamer) {
                        return this->StreamedIndex(context,
                          streamer);
                   }));
@@ -853,12 +852,12 @@ class Topic final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexTopicResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexTopicResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::nut::v1::Pager,::palm::plugins::forum::v1::IndexTopicResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::Pager,::palm::forum::v1::IndexTopicResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Destory<WithStreamedUnaryMethod_Index<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -868,126 +867,126 @@ class Topic final {
 class Post final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.plugins.forum.v1.Post";
+    return "palm.forum.v1.Post";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
     }
-    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse_Item>>(AsyncShowRaw(context, request, cq));
+    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::palm::forum::v1::IndexPostResponse_Item* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse_Item>>(AsyncShowRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
     }
-    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
-    virtual ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
     }
-    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::palm::plugins::forum::v1::IndexPostResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse>>(AsyncIndexRaw(context, request, cq));
+    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::palm::forum::v1::IndexPostResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse>>(AsyncIndexRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse>>(PrepareAsyncIndexRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexPostResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexPostResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexPostResponse_Item* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexPostResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexPostResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexPostResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::plugins::forum::v1::IndexPostResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::forum::v1::IndexPostResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
     }
-    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse_Item>>(AsyncShowRaw(context, request, cq));
+    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::palm::forum::v1::IndexPostResponse_Item* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse_Item>> AsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse_Item>>(AsyncShowRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse_Item>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse_Item>>(PrepareAsyncShowRaw(context, request, cq));
     }
-    ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
-    ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDestoryRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDestory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDestoryRaw(context, request, cq));
     }
-    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::palm::plugins::forum::v1::IndexPostResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse>>(AsyncIndexRaw(context, request, cq));
+    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::palm::forum::v1::IndexPostResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse>>(AsyncIndexRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse>>(PrepareAsyncIndexRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse>>(PrepareAsyncIndexRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Create(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response, std::function<void(::grpc::Status)>) override;
-      void Show(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Update(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Destory(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexPostResponse* response, std::function<void(::grpc::Status)>) override;
-      void Index(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexPostResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Create(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexPostResponse_Item* response, std::function<void(::grpc::Status)>) override;
+      void Show(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexPostResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Update(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Destory(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexPostResponse* response, std::function<void(::grpc::Status)>) override;
+      void Index(::grpc::ClientContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexPostResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -999,16 +998,16 @@ class Post final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::plugins::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::plugins::forum::v1::IndexPostResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::plugins::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse_Item>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse_Item>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::palm::forum::v1::CreatePostRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDestoryRaw(::grpc::ClientContext* context, const ::palm::nut::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::forum::v1::IndexPostResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::nut::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Create_;
     const ::grpc::internal::RpcMethod rpcmethod_Show_;
     const ::grpc::internal::RpcMethod rpcmethod_Update_;
@@ -1021,11 +1020,11 @@ class Post final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response);
-    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Destory(::grpc::ServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexPostResponse* response);
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexPostResponse_Item* response);
+    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Destory(::grpc::ServerContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexPostResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Create : public BaseClass {
@@ -1039,11 +1038,11 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreate(::grpc::ServerContext* context, ::palm::plugins::forum::v1::CreatePostRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestCreate(::grpc::ServerContext* context, ::palm::forum::v1::CreatePostRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1059,11 +1058,11 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexPostResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestShow(::grpc::ServerContext* context, ::palm::plugins::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::plugins::forum::v1::IndexPostResponse_Item>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestShow(::grpc::ServerContext* context, ::palm::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::forum::v1::IndexPostResponse_Item>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1079,11 +1078,11 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpdate(::grpc::ServerContext* context, ::palm::plugins::forum::v1::CreatePostRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdate(::grpc::ServerContext* context, ::palm::forum::v1::CreatePostRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1099,11 +1098,11 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDestory(::grpc::ServerContext* context, ::palm::plugins::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDestory(::grpc::ServerContext* context, ::palm::nut::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1119,11 +1118,11 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexPostResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestIndex(::grpc::ServerContext* context, ::palm::plugins::nut::v1::Pager* request, ::grpc::ServerAsyncResponseWriter< ::palm::plugins::forum::v1::IndexPostResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestIndex(::grpc::ServerContext* context, ::palm::nut::v1::Pager* request, ::grpc::ServerAsyncResponseWriter< ::palm::forum::v1::IndexPostResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1135,25 +1134,25 @@ class Post final {
    public:
     WithCallbackMethod_Create() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
     void SetMessageAllocatorFor_Create(
-        ::grpc::MessageAllocator< ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Create(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Show : public BaseClass {
@@ -1162,25 +1161,25 @@ class Post final {
    public:
     WithCallbackMethod_Show() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexPostResponse_Item>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexPostResponse_Item>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::palm::plugins::forum::v1::IndexPostResponse_Item* response) { return this->Show(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::IdRequest* request, ::palm::forum::v1::IndexPostResponse_Item* response) { return this->Show(context, request, response); }));}
     void SetMessageAllocatorFor_Show(
-        ::grpc::MessageAllocator< ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexPostResponse_Item>* allocator) {
+        ::grpc::MessageAllocator< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexPostResponse_Item>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexPostResponse_Item>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexPostResponse_Item>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Show() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexPostResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Show(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse_Item* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexPostResponse_Item* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Update : public BaseClass {
@@ -1189,25 +1188,25 @@ class Post final {
    public:
     WithCallbackMethod_Update() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response) { return this->Update(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::forum::v1::CreatePostRequest* request, ::google::protobuf::Empty* response) { return this->Update(context, request, response); }));}
     void SetMessageAllocatorFor_Update(
-        ::grpc::MessageAllocator< ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Update(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Destory : public BaseClass {
@@ -1216,25 +1215,25 @@ class Post final {
    public:
     WithCallbackMethod_Destory() {
       ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::nut::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->Destory(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->Destory(context, request, response); }));}
     void SetMessageAllocatorFor_Destory(
-        ::grpc::MessageAllocator< ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Destory() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Destory(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Index : public BaseClass {
@@ -1243,25 +1242,25 @@ class Post final {
    public:
     WithCallbackMethod_Index() {
       ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexPostResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::Pager, ::palm::forum::v1::IndexPostResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::plugins::nut::v1::Pager* request, ::palm::plugins::forum::v1::IndexPostResponse* response) { return this->Index(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::nut::v1::Pager* request, ::palm::forum::v1::IndexPostResponse* response) { return this->Index(context, request, response); }));}
     void SetMessageAllocatorFor_Index(
-        ::grpc::MessageAllocator< ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexPostResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::nut::v1::Pager, ::palm::forum::v1::IndexPostResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexPostResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::nut::v1::Pager, ::palm::forum::v1::IndexPostResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Index() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexPostResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Index(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexPostResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Create<WithCallbackMethod_Show<WithCallbackMethod_Update<WithCallbackMethod_Destory<WithCallbackMethod_Index<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -1277,7 +1276,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1294,7 +1293,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexPostResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1311,7 +1310,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1328,7 +1327,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1345,7 +1344,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexPostResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1362,7 +1361,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1382,7 +1381,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexPostResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1402,7 +1401,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1422,7 +1421,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1442,7 +1441,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexPostResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1465,7 +1464,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1487,7 +1486,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexPostResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1509,7 +1508,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1531,7 +1530,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1553,7 +1552,7 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexPostResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1568,10 +1567,10 @@ class Post final {
     WithStreamedUnaryMethod_Create() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
+          ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedCreate(context,
                          streamer);
                   }));
@@ -1580,12 +1579,12 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::forum::v1::CreatePostRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::forum::v1::CreatePostRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Show : public BaseClass {
@@ -1595,10 +1594,10 @@ class Post final {
     WithStreamedUnaryMethod_Show() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexPostResponse_Item>(
+          ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexPostResponse_Item>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::nut::v1::IdRequest, ::palm::plugins::forum::v1::IndexPostResponse_Item>* streamer) {
+                     ::palm::nut::v1::IdRequest, ::palm::forum::v1::IndexPostResponse_Item>* streamer) {
                        return this->StreamedShow(context,
                          streamer);
                   }));
@@ -1607,12 +1606,12 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse_Item* /*response*/) override {
+    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::palm::forum::v1::IndexPostResponse_Item* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::nut::v1::IdRequest,::palm::plugins::forum::v1::IndexPostResponse_Item>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::IdRequest,::palm::forum::v1::IndexPostResponse_Item>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Update : public BaseClass {
@@ -1622,10 +1621,10 @@ class Post final {
     WithStreamedUnaryMethod_Update() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
+          ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::forum::v1::CreatePostRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedUpdate(context,
                          streamer);
                   }));
@@ -1634,12 +1633,12 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::plugins::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::palm::forum::v1::CreatePostRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::forum::v1::CreatePostRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::forum::v1::CreatePostRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Destory : public BaseClass {
@@ -1649,10 +1648,10 @@ class Post final {
     WithStreamedUnaryMethod_Destory() {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>(
+          ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::nut::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
+                     ::palm::nut::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedDestory(context,
                          streamer);
                   }));
@@ -1661,12 +1660,12 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status Destory(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDestory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::nut::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedDestory(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Index : public BaseClass {
@@ -1676,10 +1675,10 @@ class Post final {
     WithStreamedUnaryMethod_Index() {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexPostResponse>(
+          ::palm::nut::v1::Pager, ::palm::forum::v1::IndexPostResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::plugins::nut::v1::Pager, ::palm::plugins::forum::v1::IndexPostResponse>* streamer) {
+                     ::palm::nut::v1::Pager, ::palm::forum::v1::IndexPostResponse>* streamer) {
                        return this->StreamedIndex(context,
                          streamer);
                   }));
@@ -1688,12 +1687,12 @@ class Post final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::plugins::nut::v1::Pager* /*request*/, ::palm::plugins::forum::v1::IndexPostResponse* /*response*/) override {
+    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::nut::v1::Pager* /*request*/, ::palm::forum::v1::IndexPostResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::plugins::nut::v1::Pager,::palm::plugins::forum::v1::IndexPostResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::nut::v1::Pager,::palm::forum::v1::IndexPostResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Destory<WithStreamedUnaryMethod_Index<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -1702,7 +1701,6 @@ class Post final {
 
 }  // namespace v1
 }  // namespace forum
-}  // namespace plugins
 }  // namespace palm
 
 

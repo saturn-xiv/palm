@@ -18,4 +18,5 @@ export default {
   'users.unlock.submit': 'Resend unlock instructions',
   'users.forgot-password.title': 'Forgot your password?',
   'users.forgot-password.submit': 'Send me reset password instructions',
+  'install.title': 'Install',
 };

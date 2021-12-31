@@ -42,6 +42,33 @@ struct User {
   std::optional<std::tm> deleted_at;
   std::tm updated_at;
 };
+
+namespace dao {
+namespace user {
+
+palm::auth::User sign_up(soci::session& db, grpc::ServerContext* context,
+                         const palm::auth::v1::SignUpRequest* request);
+std::optional<palm::auth::User> by_uid(soci::session& db,
+                                       const std::string& uid);
+std::optional<palm::auth::User> by_nick_name(soci::session& db,
+                                             const std::string& nick_name);
+std::optional<palm::auth::User> by_email(soci::session& db,
+                                         const std::string& email);
+void confirm(soci::session& db, int64_t id);
+void lock(soci::session& db, int64_t id);
+void unlock(soci::session& db, int64_t id);
+void destroy(soci::session& db, int64_t id);
+void sign_in(soci::session& db, grpc::ServerContext* context, int64_t id);
+
+}  // namespace user
+namespace log {
+void create(soci::session& db, grpc::ServerContext* context, int64_t user,
+            const std::string& message,
+            const std::string& level = palm::auth::v1::LogList_Level_Name(
+                palm::auth::v1::LogList_Level_INFO));
+}
+}  // namespace dao
+
 class UserService final : public palm::auth::v1::User::Service {
  public:
   grpc::Status SignIn(grpc::ServerContext* context,
@@ -97,10 +124,6 @@ class UserService final : public palm::auth::v1::User::Service {
 
  private:
   void send_email(const User& user, const std::string& action);
-
-  std::optional<User> get_user_by_email(const std::string& email);
-  std::optional<User> get_user_by_uid(const std::string& uid);
-  std::optional<User> get_user_by_nick_name(const std::string& nick_name);
 
   inline static const std::string ACTION_SIGN_IN = "user.sign-in";
   inline static const std::string ACTION_CONFIRM = "user.confirm";

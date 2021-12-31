@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for palm.plugins.forum.v1
+ * @fileoverview gRPC-Web generated client stub for palm.forum.v1
  * @enhanceable
  * @public
  */
@@ -23,9 +23,8 @@ var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/time
 var nut_pb = require('./nut_pb.js')
 const proto = {};
 proto.palm = {};
-proto.palm.plugins = {};
-proto.palm.plugins.forum = {};
-proto.palm.plugins.forum.v1 = require('./forum_pb.js');
+proto.palm.forum = {};
+proto.palm.forum.v1 = require('./forum_pb.js');
 
 /**
  * @param {string} hostname
@@ -35,7 +34,7 @@ proto.palm.plugins.forum.v1 = require('./forum_pb.js');
  * @struct
  * @final
  */
-proto.palm.plugins.forum.v1.TopicClient =
+proto.palm.forum.v1.TopicClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -61,7 +60,7 @@ proto.palm.plugins.forum.v1.TopicClient =
  * @struct
  * @final
  */
-proto.palm.plugins.forum.v1.TopicPromiseClient =
+proto.palm.forum.v1.TopicPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -82,16 +81,16 @@ proto.palm.plugins.forum.v1.TopicPromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.forum.v1.CreateTopicRequest,
+ *   !proto.palm.forum.v1.CreateTopicRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Topic_Create = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Topic/Create',
+  '/palm.forum.v1.Topic/Create',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.forum.v1.CreateTopicRequest,
+  proto.palm.forum.v1.CreateTopicRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.forum.v1.CreateTopicRequest} request
+   * @param {!proto.palm.forum.v1.CreateTopicRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -102,7 +101,7 @@ const methodDescriptor_Topic_Create = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreateTopicRequest} request The
+ * @param {!proto.palm.forum.v1.CreateTopicRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -111,10 +110,10 @@ const methodDescriptor_Topic_Create = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.TopicClient.prototype.create =
+proto.palm.forum.v1.TopicClient.prototype.create =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Create',
+      '/palm.forum.v1.Topic/Create',
       request,
       metadata || {},
       methodDescriptor_Topic_Create,
@@ -123,17 +122,17 @@ proto.palm.plugins.forum.v1.TopicClient.prototype.create =
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreateTopicRequest} request The
+ * @param {!proto.palm.forum.v1.CreateTopicRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.create =
+proto.palm.forum.v1.TopicPromiseClient.prototype.create =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Create',
+      '/palm.forum.v1.Topic/Create',
       request,
       metadata || {},
       methodDescriptor_Topic_Create);
@@ -143,39 +142,39 @@ proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.create =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
- *   !proto.palm.plugins.forum.v1.IndexTopicResponse.Item>}
+ *   !proto.palm.nut.v1.IdRequest,
+ *   !proto.palm.forum.v1.IndexTopicResponse.Item>}
  */
 const methodDescriptor_Topic_Show = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Topic/Show',
+  '/palm.forum.v1.Topic/Show',
   grpc.web.MethodType.UNARY,
   nut_pb.IdRequest,
-  proto.palm.plugins.forum.v1.IndexTopicResponse.Item,
+  proto.palm.forum.v1.IndexTopicResponse.Item,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.forum.v1.IndexTopicResponse.Item.deserializeBinary
+  proto.palm.forum.v1.IndexTopicResponse.Item.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.forum.v1.IndexTopicResponse.Item)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.forum.v1.IndexTopicResponse.Item)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.forum.v1.IndexTopicResponse.Item>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.forum.v1.IndexTopicResponse.Item>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.TopicClient.prototype.show =
+proto.palm.forum.v1.TopicClient.prototype.show =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Show',
+      '/palm.forum.v1.Topic/Show',
       request,
       metadata || {},
       methodDescriptor_Topic_Show,
@@ -184,17 +183,17 @@ proto.palm.plugins.forum.v1.TopicClient.prototype.show =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.forum.v1.IndexTopicResponse.Item>}
+ * @return {!Promise<!proto.palm.forum.v1.IndexTopicResponse.Item>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.show =
+proto.palm.forum.v1.TopicPromiseClient.prototype.show =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Show',
+      '/palm.forum.v1.Topic/Show',
       request,
       metadata || {},
       methodDescriptor_Topic_Show);
@@ -204,16 +203,16 @@ proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.show =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.forum.v1.CreateTopicRequest,
+ *   !proto.palm.forum.v1.CreateTopicRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Topic_Update = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Topic/Update',
+  '/palm.forum.v1.Topic/Update',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.forum.v1.CreateTopicRequest,
+  proto.palm.forum.v1.CreateTopicRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.forum.v1.CreateTopicRequest} request
+   * @param {!proto.palm.forum.v1.CreateTopicRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -224,7 +223,7 @@ const methodDescriptor_Topic_Update = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreateTopicRequest} request The
+ * @param {!proto.palm.forum.v1.CreateTopicRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -233,10 +232,10 @@ const methodDescriptor_Topic_Update = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.TopicClient.prototype.update =
+proto.palm.forum.v1.TopicClient.prototype.update =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Update',
+      '/palm.forum.v1.Topic/Update',
       request,
       metadata || {},
       methodDescriptor_Topic_Update,
@@ -245,17 +244,17 @@ proto.palm.plugins.forum.v1.TopicClient.prototype.update =
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreateTopicRequest} request The
+ * @param {!proto.palm.forum.v1.CreateTopicRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.update =
+proto.palm.forum.v1.TopicPromiseClient.prototype.update =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Update',
+      '/palm.forum.v1.Topic/Update',
       request,
       metadata || {},
       methodDescriptor_Topic_Update);
@@ -265,16 +264,16 @@ proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.update =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
+ *   !proto.palm.nut.v1.IdRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Topic_Destory = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Topic/Destory',
+  '/palm.forum.v1.Topic/Destory',
   grpc.web.MethodType.UNARY,
   nut_pb.IdRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -285,7 +284,7 @@ const methodDescriptor_Topic_Destory = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -294,10 +293,10 @@ const methodDescriptor_Topic_Destory = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.TopicClient.prototype.destory =
+proto.palm.forum.v1.TopicClient.prototype.destory =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Destory',
+      '/palm.forum.v1.Topic/Destory',
       request,
       metadata || {},
       methodDescriptor_Topic_Destory,
@@ -306,17 +305,17 @@ proto.palm.plugins.forum.v1.TopicClient.prototype.destory =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.destory =
+proto.palm.forum.v1.TopicPromiseClient.prototype.destory =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Destory',
+      '/palm.forum.v1.Topic/Destory',
       request,
       metadata || {},
       methodDescriptor_Topic_Destory);
@@ -326,39 +325,39 @@ proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.destory =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.Pager,
- *   !proto.palm.plugins.forum.v1.IndexTopicResponse>}
+ *   !proto.palm.nut.v1.Pager,
+ *   !proto.palm.forum.v1.IndexTopicResponse>}
  */
 const methodDescriptor_Topic_Index = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Topic/Index',
+  '/palm.forum.v1.Topic/Index',
   grpc.web.MethodType.UNARY,
   nut_pb.Pager,
-  proto.palm.plugins.forum.v1.IndexTopicResponse,
+  proto.palm.forum.v1.IndexTopicResponse,
   /**
-   * @param {!proto.palm.plugins.nut.v1.Pager} request
+   * @param {!proto.palm.nut.v1.Pager} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.forum.v1.IndexTopicResponse.deserializeBinary
+  proto.palm.forum.v1.IndexTopicResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.forum.v1.IndexTopicResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.forum.v1.IndexTopicResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.forum.v1.IndexTopicResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.forum.v1.IndexTopicResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.TopicClient.prototype.index =
+proto.palm.forum.v1.TopicClient.prototype.index =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Index',
+      '/palm.forum.v1.Topic/Index',
       request,
       metadata || {},
       methodDescriptor_Topic_Index,
@@ -367,17 +366,17 @@ proto.palm.plugins.forum.v1.TopicClient.prototype.index =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.forum.v1.IndexTopicResponse>}
+ * @return {!Promise<!proto.palm.forum.v1.IndexTopicResponse>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.index =
+proto.palm.forum.v1.TopicPromiseClient.prototype.index =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Topic/Index',
+      '/palm.forum.v1.Topic/Index',
       request,
       metadata || {},
       methodDescriptor_Topic_Index);
@@ -392,7 +391,7 @@ proto.palm.plugins.forum.v1.TopicPromiseClient.prototype.index =
  * @struct
  * @final
  */
-proto.palm.plugins.forum.v1.PostClient =
+proto.palm.forum.v1.PostClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -418,7 +417,7 @@ proto.palm.plugins.forum.v1.PostClient =
  * @struct
  * @final
  */
-proto.palm.plugins.forum.v1.PostPromiseClient =
+proto.palm.forum.v1.PostPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -439,16 +438,16 @@ proto.palm.plugins.forum.v1.PostPromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.forum.v1.CreatePostRequest,
+ *   !proto.palm.forum.v1.CreatePostRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Post_Create = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Post/Create',
+  '/palm.forum.v1.Post/Create',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.forum.v1.CreatePostRequest,
+  proto.palm.forum.v1.CreatePostRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.forum.v1.CreatePostRequest} request
+   * @param {!proto.palm.forum.v1.CreatePostRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -459,7 +458,7 @@ const methodDescriptor_Post_Create = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreatePostRequest} request The
+ * @param {!proto.palm.forum.v1.CreatePostRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -468,10 +467,10 @@ const methodDescriptor_Post_Create = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.PostClient.prototype.create =
+proto.palm.forum.v1.PostClient.prototype.create =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Create',
+      '/palm.forum.v1.Post/Create',
       request,
       metadata || {},
       methodDescriptor_Post_Create,
@@ -480,17 +479,17 @@ proto.palm.plugins.forum.v1.PostClient.prototype.create =
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreatePostRequest} request The
+ * @param {!proto.palm.forum.v1.CreatePostRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.PostPromiseClient.prototype.create =
+proto.palm.forum.v1.PostPromiseClient.prototype.create =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Create',
+      '/palm.forum.v1.Post/Create',
       request,
       metadata || {},
       methodDescriptor_Post_Create);
@@ -500,39 +499,39 @@ proto.palm.plugins.forum.v1.PostPromiseClient.prototype.create =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
- *   !proto.palm.plugins.forum.v1.IndexPostResponse.Item>}
+ *   !proto.palm.nut.v1.IdRequest,
+ *   !proto.palm.forum.v1.IndexPostResponse.Item>}
  */
 const methodDescriptor_Post_Show = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Post/Show',
+  '/palm.forum.v1.Post/Show',
   grpc.web.MethodType.UNARY,
   nut_pb.IdRequest,
-  proto.palm.plugins.forum.v1.IndexPostResponse.Item,
+  proto.palm.forum.v1.IndexPostResponse.Item,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.forum.v1.IndexPostResponse.Item.deserializeBinary
+  proto.palm.forum.v1.IndexPostResponse.Item.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.forum.v1.IndexPostResponse.Item)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.forum.v1.IndexPostResponse.Item)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.forum.v1.IndexPostResponse.Item>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.forum.v1.IndexPostResponse.Item>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.PostClient.prototype.show =
+proto.palm.forum.v1.PostClient.prototype.show =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Show',
+      '/palm.forum.v1.Post/Show',
       request,
       metadata || {},
       methodDescriptor_Post_Show,
@@ -541,17 +540,17 @@ proto.palm.plugins.forum.v1.PostClient.prototype.show =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.forum.v1.IndexPostResponse.Item>}
+ * @return {!Promise<!proto.palm.forum.v1.IndexPostResponse.Item>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.PostPromiseClient.prototype.show =
+proto.palm.forum.v1.PostPromiseClient.prototype.show =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Show',
+      '/palm.forum.v1.Post/Show',
       request,
       metadata || {},
       methodDescriptor_Post_Show);
@@ -561,16 +560,16 @@ proto.palm.plugins.forum.v1.PostPromiseClient.prototype.show =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.forum.v1.CreatePostRequest,
+ *   !proto.palm.forum.v1.CreatePostRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Post_Update = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Post/Update',
+  '/palm.forum.v1.Post/Update',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.forum.v1.CreatePostRequest,
+  proto.palm.forum.v1.CreatePostRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.forum.v1.CreatePostRequest} request
+   * @param {!proto.palm.forum.v1.CreatePostRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -581,7 +580,7 @@ const methodDescriptor_Post_Update = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreatePostRequest} request The
+ * @param {!proto.palm.forum.v1.CreatePostRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -590,10 +589,10 @@ const methodDescriptor_Post_Update = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.PostClient.prototype.update =
+proto.palm.forum.v1.PostClient.prototype.update =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Update',
+      '/palm.forum.v1.Post/Update',
       request,
       metadata || {},
       methodDescriptor_Post_Update,
@@ -602,17 +601,17 @@ proto.palm.plugins.forum.v1.PostClient.prototype.update =
 
 
 /**
- * @param {!proto.palm.plugins.forum.v1.CreatePostRequest} request The
+ * @param {!proto.palm.forum.v1.CreatePostRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.PostPromiseClient.prototype.update =
+proto.palm.forum.v1.PostPromiseClient.prototype.update =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Update',
+      '/palm.forum.v1.Post/Update',
       request,
       metadata || {},
       methodDescriptor_Post_Update);
@@ -622,16 +621,16 @@ proto.palm.plugins.forum.v1.PostPromiseClient.prototype.update =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
+ *   !proto.palm.nut.v1.IdRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Post_Destory = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Post/Destory',
+  '/palm.forum.v1.Post/Destory',
   grpc.web.MethodType.UNARY,
   nut_pb.IdRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -642,7 +641,7 @@ const methodDescriptor_Post_Destory = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -651,10 +650,10 @@ const methodDescriptor_Post_Destory = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.PostClient.prototype.destory =
+proto.palm.forum.v1.PostClient.prototype.destory =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Destory',
+      '/palm.forum.v1.Post/Destory',
       request,
       metadata || {},
       methodDescriptor_Post_Destory,
@@ -663,17 +662,17 @@ proto.palm.plugins.forum.v1.PostClient.prototype.destory =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.PostPromiseClient.prototype.destory =
+proto.palm.forum.v1.PostPromiseClient.prototype.destory =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Destory',
+      '/palm.forum.v1.Post/Destory',
       request,
       metadata || {},
       methodDescriptor_Post_Destory);
@@ -683,39 +682,39 @@ proto.palm.plugins.forum.v1.PostPromiseClient.prototype.destory =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.Pager,
- *   !proto.palm.plugins.forum.v1.IndexPostResponse>}
+ *   !proto.palm.nut.v1.Pager,
+ *   !proto.palm.forum.v1.IndexPostResponse>}
  */
 const methodDescriptor_Post_Index = new grpc.web.MethodDescriptor(
-  '/palm.plugins.forum.v1.Post/Index',
+  '/palm.forum.v1.Post/Index',
   grpc.web.MethodType.UNARY,
   nut_pb.Pager,
-  proto.palm.plugins.forum.v1.IndexPostResponse,
+  proto.palm.forum.v1.IndexPostResponse,
   /**
-   * @param {!proto.palm.plugins.nut.v1.Pager} request
+   * @param {!proto.palm.nut.v1.Pager} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.forum.v1.IndexPostResponse.deserializeBinary
+  proto.palm.forum.v1.IndexPostResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.forum.v1.IndexPostResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.forum.v1.IndexPostResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.forum.v1.IndexPostResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.forum.v1.IndexPostResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.forum.v1.PostClient.prototype.index =
+proto.palm.forum.v1.PostClient.prototype.index =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Index',
+      '/palm.forum.v1.Post/Index',
       request,
       metadata || {},
       methodDescriptor_Post_Index,
@@ -724,22 +723,22 @@ proto.palm.plugins.forum.v1.PostClient.prototype.index =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.forum.v1.IndexPostResponse>}
+ * @return {!Promise<!proto.palm.forum.v1.IndexPostResponse>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.forum.v1.PostPromiseClient.prototype.index =
+proto.palm.forum.v1.PostPromiseClient.prototype.index =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.forum.v1.Post/Index',
+      '/palm.forum.v1.Post/Index',
       request,
       metadata || {},
       methodDescriptor_Post_Index);
 };
 
 
-module.exports = proto.palm.plugins.forum.v1;
+module.exports = proto.palm.forum.v1;
 

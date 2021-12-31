@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for palm.plugins.nut.v1
+ * @fileoverview gRPC-Web generated client stub for palm.nut.v1
  * @enhanceable
  * @public
  */
@@ -19,11 +19,12 @@ grpc.web = require('grpc-web');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
+
+var auth_pb = require('./auth_pb.js')
 const proto = {};
 proto.palm = {};
-proto.palm.plugins = {};
-proto.palm.plugins.nut = {};
-proto.palm.plugins.nut.v1 = require('./nut_pb.js');
+proto.palm.nut = {};
+proto.palm.nut.v1 = require('./nut_pb.js');
 
 /**
  * @param {string} hostname
@@ -33,7 +34,7 @@ proto.palm.plugins.nut.v1 = require('./nut_pb.js');
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.SiteClient =
+proto.palm.nut.v1.SiteClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -59,7 +60,7 @@ proto.palm.plugins.nut.v1.SiteClient =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.SitePromiseClient =
+proto.palm.nut.v1.SitePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -81,13 +82,13 @@ proto.palm.plugins.nut.v1.SitePromiseClient =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.google.protobuf.Empty,
- *   !proto.palm.plugins.nut.v1.AboutResponse>}
+ *   !proto.palm.nut.v1.AboutResponse>}
  */
 const methodDescriptor_Site_About = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Site/About',
+  '/palm.nut.v1.Site/About',
   grpc.web.MethodType.UNARY,
   google_protobuf_empty_pb.Empty,
-  proto.palm.plugins.nut.v1.AboutResponse,
+  proto.palm.nut.v1.AboutResponse,
   /**
    * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
@@ -95,7 +96,7 @@ const methodDescriptor_Site_About = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.AboutResponse.deserializeBinary
+  proto.palm.nut.v1.AboutResponse.deserializeBinary
 );
 
 
@@ -104,15 +105,15 @@ const methodDescriptor_Site_About = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.AboutResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.AboutResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.AboutResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.AboutResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.SiteClient.prototype.about =
+proto.palm.nut.v1.SiteClient.prototype.about =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Site/About',
+      '/palm.nut.v1.Site/About',
       request,
       metadata || {},
       methodDescriptor_Site_About,
@@ -125,13 +126,13 @@ proto.palm.plugins.nut.v1.SiteClient.prototype.about =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.AboutResponse>}
+ * @return {!Promise<!proto.palm.nut.v1.AboutResponse>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.SitePromiseClient.prototype.about =
+proto.palm.nut.v1.SitePromiseClient.prototype.about =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Site/About',
+      '/palm.nut.v1.Site/About',
       request,
       metadata || {},
       methodDescriptor_Site_About);
@@ -139,131 +140,18 @@ proto.palm.plugins.nut.v1.SitePromiseClient.prototype.about =
 
 
 /**
- * @param {string} hostname
- * @param {?Object} credentials
- * @param {?grpc.web.ClientOptions} options
- * @constructor
- * @struct
- * @final
- */
-proto.palm.plugins.nut.v1.LocaleClient =
-    function(hostname, credentials, options) {
-  if (!options) options = {};
-  options.format = 'text';
-
-  /**
-   * @private @const {!grpc.web.GrpcWebClientBase} The client
-   */
-  this.client_ = new grpc.web.GrpcWebClientBase(options);
-
-  /**
-   * @private @const {string} The hostname
-   */
-  this.hostname_ = hostname;
-
-};
-
-
-/**
- * @param {string} hostname
- * @param {?Object} credentials
- * @param {?grpc.web.ClientOptions} options
- * @constructor
- * @struct
- * @final
- */
-proto.palm.plugins.nut.v1.LocalePromiseClient =
-    function(hostname, credentials, options) {
-  if (!options) options = {};
-  options.format = 'text';
-
-  /**
-   * @private @const {!grpc.web.GrpcWebClientBase} The client
-   */
-  this.client_ = new grpc.web.GrpcWebClientBase(options);
-
-  /**
-   * @private @const {string} The hostname
-   */
-  this.hostname_ = hostname;
-
-};
-
-
-/**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.LocaleIndexRequest,
- *   !proto.palm.plugins.nut.v1.LocaleIndexResponse>}
- */
-const methodDescriptor_Locale_Index = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Locale/Index',
-  grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.LocaleIndexRequest,
-  proto.palm.plugins.nut.v1.LocaleIndexResponse,
-  /**
-   * @param {!proto.palm.plugins.nut.v1.LocaleIndexRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.palm.plugins.nut.v1.LocaleIndexResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.palm.plugins.nut.v1.LocaleIndexRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.LocaleIndexResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.LocaleIndexResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.palm.plugins.nut.v1.LocaleClient.prototype.index =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Locale/Index',
-      request,
-      metadata || {},
-      methodDescriptor_Locale_Index,
-      callback);
-};
-
-
-/**
- * @param {!proto.palm.plugins.nut.v1.LocaleIndexRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.LocaleIndexResponse>}
- *     Promise that resolves to the response
- */
-proto.palm.plugins.nut.v1.LocalePromiseClient.prototype.index =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Locale/Index',
-      request,
-      metadata || {},
-      methodDescriptor_Locale_Index);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.LocaleSetRequest,
+ *   !proto.palm.auth.v1.SignUpRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_Locale_Set = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Locale/Set',
+const methodDescriptor_Site_Install = new grpc.web.MethodDescriptor(
+  '/palm.nut.v1.Site/Install',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.LocaleSetRequest,
+  auth_pb.SignUpRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.LocaleSetRequest} request
+   * @param {!proto.palm.auth.v1.SignUpRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -274,7 +162,7 @@ const methodDescriptor_Locale_Set = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.LocaleSetRequest} request The
+ * @param {!proto.palm.auth.v1.SignUpRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -283,10 +171,184 @@ const methodDescriptor_Locale_Set = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.LocaleClient.prototype.set =
+proto.palm.nut.v1.SiteClient.prototype.install =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Locale/Set',
+      '/palm.nut.v1.Site/Install',
+      request,
+      metadata || {},
+      methodDescriptor_Site_Install,
+      callback);
+};
+
+
+/**
+ * @param {!proto.palm.auth.v1.SignUpRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.palm.nut.v1.SitePromiseClient.prototype.install =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/palm.nut.v1.Site/Install',
+      request,
+      metadata || {},
+      methodDescriptor_Site_Install);
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?grpc.web.ClientOptions} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.palm.nut.v1.LocaleClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options.format = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @param {string} hostname
+ * @param {?Object} credentials
+ * @param {?grpc.web.ClientOptions} options
+ * @constructor
+ * @struct
+ * @final
+ */
+proto.palm.nut.v1.LocalePromiseClient =
+    function(hostname, credentials, options) {
+  if (!options) options = {};
+  options.format = 'text';
+
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
+
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.palm.nut.v1.LocaleIndexRequest,
+ *   !proto.palm.nut.v1.LocaleIndexResponse>}
+ */
+const methodDescriptor_Locale_Index = new grpc.web.MethodDescriptor(
+  '/palm.nut.v1.Locale/Index',
+  grpc.web.MethodType.UNARY,
+  proto.palm.nut.v1.LocaleIndexRequest,
+  proto.palm.nut.v1.LocaleIndexResponse,
+  /**
+   * @param {!proto.palm.nut.v1.LocaleIndexRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.palm.nut.v1.LocaleIndexResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.palm.nut.v1.LocaleIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.LocaleIndexResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.LocaleIndexResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.palm.nut.v1.LocaleClient.prototype.index =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/palm.nut.v1.Locale/Index',
+      request,
+      metadata || {},
+      methodDescriptor_Locale_Index,
+      callback);
+};
+
+
+/**
+ * @param {!proto.palm.nut.v1.LocaleIndexRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.palm.nut.v1.LocaleIndexResponse>}
+ *     Promise that resolves to the response
+ */
+proto.palm.nut.v1.LocalePromiseClient.prototype.index =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/palm.nut.v1.Locale/Index',
+      request,
+      metadata || {},
+      methodDescriptor_Locale_Index);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.palm.nut.v1.LocaleSetRequest,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_Locale_Set = new grpc.web.MethodDescriptor(
+  '/palm.nut.v1.Locale/Set',
+  grpc.web.MethodType.UNARY,
+  proto.palm.nut.v1.LocaleSetRequest,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.palm.nut.v1.LocaleSetRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.palm.nut.v1.LocaleSetRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.palm.nut.v1.LocaleClient.prototype.set =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/palm.nut.v1.Locale/Set',
       request,
       metadata || {},
       methodDescriptor_Locale_Set,
@@ -295,17 +357,17 @@ proto.palm.plugins.nut.v1.LocaleClient.prototype.set =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.LocaleSetRequest} request The
+ * @param {!proto.palm.nut.v1.LocaleSetRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.LocalePromiseClient.prototype.set =
+proto.palm.nut.v1.LocalePromiseClient.prototype.set =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Locale/Set',
+      '/palm.nut.v1.Locale/Set',
       request,
       metadata || {},
       methodDescriptor_Locale_Set);
@@ -320,7 +382,7 @@ proto.palm.plugins.nut.v1.LocalePromiseClient.prototype.set =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.StmpClient =
+proto.palm.nut.v1.StmpClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -346,7 +408,7 @@ proto.palm.plugins.nut.v1.StmpClient =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.StmpPromiseClient =
+proto.palm.nut.v1.StmpPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -368,13 +430,13 @@ proto.palm.plugins.nut.v1.StmpPromiseClient =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.google.protobuf.Empty,
- *   !proto.palm.plugins.nut.v1.StmpProfile>}
+ *   !proto.palm.nut.v1.StmpProfile>}
  */
 const methodDescriptor_Stmp_Get = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Stmp/Get',
+  '/palm.nut.v1.Stmp/Get',
   grpc.web.MethodType.UNARY,
   google_protobuf_empty_pb.Empty,
-  proto.palm.plugins.nut.v1.StmpProfile,
+  proto.palm.nut.v1.StmpProfile,
   /**
    * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
@@ -382,7 +444,7 @@ const methodDescriptor_Stmp_Get = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.StmpProfile.deserializeBinary
+  proto.palm.nut.v1.StmpProfile.deserializeBinary
 );
 
 
@@ -391,15 +453,15 @@ const methodDescriptor_Stmp_Get = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.StmpProfile)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.StmpProfile)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.StmpProfile>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.StmpProfile>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.StmpClient.prototype.get =
+proto.palm.nut.v1.StmpClient.prototype.get =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Stmp/Get',
+      '/palm.nut.v1.Stmp/Get',
       request,
       metadata || {},
       methodDescriptor_Stmp_Get,
@@ -412,13 +474,13 @@ proto.palm.plugins.nut.v1.StmpClient.prototype.get =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.StmpProfile>}
+ * @return {!Promise<!proto.palm.nut.v1.StmpProfile>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.StmpPromiseClient.prototype.get =
+proto.palm.nut.v1.StmpPromiseClient.prototype.get =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Stmp/Get',
+      '/palm.nut.v1.Stmp/Get',
       request,
       metadata || {},
       methodDescriptor_Stmp_Get);
@@ -428,16 +490,16 @@ proto.palm.plugins.nut.v1.StmpPromiseClient.prototype.get =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.StmpProfile,
+ *   !proto.palm.nut.v1.StmpProfile,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Stmp_Set = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Stmp/Set',
+  '/palm.nut.v1.Stmp/Set',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.StmpProfile,
+  proto.palm.nut.v1.StmpProfile,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.StmpProfile} request
+   * @param {!proto.palm.nut.v1.StmpProfile} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -448,7 +510,7 @@ const methodDescriptor_Stmp_Set = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.StmpProfile} request The
+ * @param {!proto.palm.nut.v1.StmpProfile} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -457,10 +519,10 @@ const methodDescriptor_Stmp_Set = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.StmpClient.prototype.set =
+proto.palm.nut.v1.StmpClient.prototype.set =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Stmp/Set',
+      '/palm.nut.v1.Stmp/Set',
       request,
       metadata || {},
       methodDescriptor_Stmp_Set,
@@ -469,17 +531,17 @@ proto.palm.plugins.nut.v1.StmpClient.prototype.set =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.StmpProfile} request The
+ * @param {!proto.palm.nut.v1.StmpProfile} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.StmpPromiseClient.prototype.set =
+proto.palm.nut.v1.StmpPromiseClient.prototype.set =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Stmp/Set',
+      '/palm.nut.v1.Stmp/Set',
       request,
       metadata || {},
       methodDescriptor_Stmp_Set);
@@ -494,7 +556,7 @@ proto.palm.plugins.nut.v1.StmpPromiseClient.prototype.set =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.TwilioClient =
+proto.palm.nut.v1.TwilioClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -520,7 +582,7 @@ proto.palm.plugins.nut.v1.TwilioClient =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.TwilioPromiseClient =
+proto.palm.nut.v1.TwilioPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -542,13 +604,13 @@ proto.palm.plugins.nut.v1.TwilioPromiseClient =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.google.protobuf.Empty,
- *   !proto.palm.plugins.nut.v1.TwilioProfile>}
+ *   !proto.palm.nut.v1.TwilioProfile>}
  */
 const methodDescriptor_Twilio_Get = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Twilio/Get',
+  '/palm.nut.v1.Twilio/Get',
   grpc.web.MethodType.UNARY,
   google_protobuf_empty_pb.Empty,
-  proto.palm.plugins.nut.v1.TwilioProfile,
+  proto.palm.nut.v1.TwilioProfile,
   /**
    * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
@@ -556,7 +618,7 @@ const methodDescriptor_Twilio_Get = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.TwilioProfile.deserializeBinary
+  proto.palm.nut.v1.TwilioProfile.deserializeBinary
 );
 
 
@@ -565,15 +627,15 @@ const methodDescriptor_Twilio_Get = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.TwilioProfile)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.TwilioProfile)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.TwilioProfile>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.TwilioProfile>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.TwilioClient.prototype.get =
+proto.palm.nut.v1.TwilioClient.prototype.get =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Twilio/Get',
+      '/palm.nut.v1.Twilio/Get',
       request,
       metadata || {},
       methodDescriptor_Twilio_Get,
@@ -586,13 +648,13 @@ proto.palm.plugins.nut.v1.TwilioClient.prototype.get =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.TwilioProfile>}
+ * @return {!Promise<!proto.palm.nut.v1.TwilioProfile>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.TwilioPromiseClient.prototype.get =
+proto.palm.nut.v1.TwilioPromiseClient.prototype.get =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Twilio/Get',
+      '/palm.nut.v1.Twilio/Get',
       request,
       metadata || {},
       methodDescriptor_Twilio_Get);
@@ -602,16 +664,16 @@ proto.palm.plugins.nut.v1.TwilioPromiseClient.prototype.get =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.TwilioProfile,
+ *   !proto.palm.nut.v1.TwilioProfile,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Twilio_Set = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Twilio/Set',
+  '/palm.nut.v1.Twilio/Set',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.TwilioProfile,
+  proto.palm.nut.v1.TwilioProfile,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.TwilioProfile} request
+   * @param {!proto.palm.nut.v1.TwilioProfile} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -622,7 +684,7 @@ const methodDescriptor_Twilio_Set = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.TwilioProfile} request The
+ * @param {!proto.palm.nut.v1.TwilioProfile} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -631,10 +693,10 @@ const methodDescriptor_Twilio_Set = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.TwilioClient.prototype.set =
+proto.palm.nut.v1.TwilioClient.prototype.set =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Twilio/Set',
+      '/palm.nut.v1.Twilio/Set',
       request,
       metadata || {},
       methodDescriptor_Twilio_Set,
@@ -643,17 +705,17 @@ proto.palm.plugins.nut.v1.TwilioClient.prototype.set =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.TwilioProfile} request The
+ * @param {!proto.palm.nut.v1.TwilioProfile} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.TwilioPromiseClient.prototype.set =
+proto.palm.nut.v1.TwilioPromiseClient.prototype.set =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Twilio/Set',
+      '/palm.nut.v1.Twilio/Set',
       request,
       metadata || {},
       methodDescriptor_Twilio_Set);
@@ -668,7 +730,7 @@ proto.palm.plugins.nut.v1.TwilioPromiseClient.prototype.set =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.SeoClient =
+proto.palm.nut.v1.SeoClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -694,7 +756,7 @@ proto.palm.plugins.nut.v1.SeoClient =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.SeoPromiseClient =
+proto.palm.nut.v1.SeoPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -716,13 +778,13 @@ proto.palm.plugins.nut.v1.SeoPromiseClient =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.google.protobuf.Empty,
- *   !proto.palm.plugins.nut.v1.SeoProfile>}
+ *   !proto.palm.nut.v1.SeoProfile>}
  */
 const methodDescriptor_Seo_Get = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Seo/Get',
+  '/palm.nut.v1.Seo/Get',
   grpc.web.MethodType.UNARY,
   google_protobuf_empty_pb.Empty,
-  proto.palm.plugins.nut.v1.SeoProfile,
+  proto.palm.nut.v1.SeoProfile,
   /**
    * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
@@ -730,7 +792,7 @@ const methodDescriptor_Seo_Get = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.SeoProfile.deserializeBinary
+  proto.palm.nut.v1.SeoProfile.deserializeBinary
 );
 
 
@@ -739,15 +801,15 @@ const methodDescriptor_Seo_Get = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.SeoProfile)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.SeoProfile)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.SeoProfile>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.SeoProfile>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.SeoClient.prototype.get =
+proto.palm.nut.v1.SeoClient.prototype.get =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Seo/Get',
+      '/palm.nut.v1.Seo/Get',
       request,
       metadata || {},
       methodDescriptor_Seo_Get,
@@ -760,13 +822,13 @@ proto.palm.plugins.nut.v1.SeoClient.prototype.get =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.SeoProfile>}
+ * @return {!Promise<!proto.palm.nut.v1.SeoProfile>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.SeoPromiseClient.prototype.get =
+proto.palm.nut.v1.SeoPromiseClient.prototype.get =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Seo/Get',
+      '/palm.nut.v1.Seo/Get',
       request,
       metadata || {},
       methodDescriptor_Seo_Get);
@@ -776,16 +838,16 @@ proto.palm.plugins.nut.v1.SeoPromiseClient.prototype.get =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.SeoProfile,
+ *   !proto.palm.nut.v1.SeoProfile,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Seo_Set = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Seo/Set',
+  '/palm.nut.v1.Seo/Set',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.SeoProfile,
+  proto.palm.nut.v1.SeoProfile,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.SeoProfile} request
+   * @param {!proto.palm.nut.v1.SeoProfile} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -796,7 +858,7 @@ const methodDescriptor_Seo_Set = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.SeoProfile} request The
+ * @param {!proto.palm.nut.v1.SeoProfile} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -805,10 +867,10 @@ const methodDescriptor_Seo_Set = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.SeoClient.prototype.set =
+proto.palm.nut.v1.SeoClient.prototype.set =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Seo/Set',
+      '/palm.nut.v1.Seo/Set',
       request,
       metadata || {},
       methodDescriptor_Seo_Set,
@@ -817,17 +879,17 @@ proto.palm.plugins.nut.v1.SeoClient.prototype.set =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.SeoProfile} request The
+ * @param {!proto.palm.nut.v1.SeoProfile} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.SeoPromiseClient.prototype.set =
+proto.palm.nut.v1.SeoPromiseClient.prototype.set =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Seo/Set',
+      '/palm.nut.v1.Seo/Set',
       request,
       metadata || {},
       methodDescriptor_Seo_Set);
@@ -842,7 +904,7 @@ proto.palm.plugins.nut.v1.SeoPromiseClient.prototype.set =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.TagClient =
+proto.palm.nut.v1.TagClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -868,7 +930,7 @@ proto.palm.plugins.nut.v1.TagClient =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.TagPromiseClient =
+proto.palm.nut.v1.TagPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -889,16 +951,16 @@ proto.palm.plugins.nut.v1.TagPromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.CreateTagRequest,
+ *   !proto.palm.nut.v1.CreateTagRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Tag_Create = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Tag/Create',
+  '/palm.nut.v1.Tag/Create',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.CreateTagRequest,
+  proto.palm.nut.v1.CreateTagRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.CreateTagRequest} request
+   * @param {!proto.palm.nut.v1.CreateTagRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -909,7 +971,7 @@ const methodDescriptor_Tag_Create = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.CreateTagRequest} request The
+ * @param {!proto.palm.nut.v1.CreateTagRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -918,10 +980,10 @@ const methodDescriptor_Tag_Create = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.TagClient.prototype.create =
+proto.palm.nut.v1.TagClient.prototype.create =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Create',
+      '/palm.nut.v1.Tag/Create',
       request,
       metadata || {},
       methodDescriptor_Tag_Create,
@@ -930,17 +992,17 @@ proto.palm.plugins.nut.v1.TagClient.prototype.create =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.CreateTagRequest} request The
+ * @param {!proto.palm.nut.v1.CreateTagRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.TagPromiseClient.prototype.create =
+proto.palm.nut.v1.TagPromiseClient.prototype.create =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Create',
+      '/palm.nut.v1.Tag/Create',
       request,
       metadata || {},
       methodDescriptor_Tag_Create);
@@ -950,39 +1012,39 @@ proto.palm.plugins.nut.v1.TagPromiseClient.prototype.create =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
- *   !proto.palm.plugins.nut.v1.IndexTagResponse.Item>}
+ *   !proto.palm.nut.v1.IdRequest,
+ *   !proto.palm.nut.v1.IndexTagResponse.Item>}
  */
 const methodDescriptor_Tag_Show = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Tag/Show',
+  '/palm.nut.v1.Tag/Show',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.IdRequest,
-  proto.palm.plugins.nut.v1.IndexTagResponse.Item,
+  proto.palm.nut.v1.IdRequest,
+  proto.palm.nut.v1.IndexTagResponse.Item,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.IndexTagResponse.Item.deserializeBinary
+  proto.palm.nut.v1.IndexTagResponse.Item.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.IndexTagResponse.Item)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.IndexTagResponse.Item)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.IndexTagResponse.Item>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.IndexTagResponse.Item>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.TagClient.prototype.show =
+proto.palm.nut.v1.TagClient.prototype.show =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Show',
+      '/palm.nut.v1.Tag/Show',
       request,
       metadata || {},
       methodDescriptor_Tag_Show,
@@ -991,17 +1053,17 @@ proto.palm.plugins.nut.v1.TagClient.prototype.show =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.IndexTagResponse.Item>}
+ * @return {!Promise<!proto.palm.nut.v1.IndexTagResponse.Item>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.TagPromiseClient.prototype.show =
+proto.palm.nut.v1.TagPromiseClient.prototype.show =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Show',
+      '/palm.nut.v1.Tag/Show',
       request,
       metadata || {},
       methodDescriptor_Tag_Show);
@@ -1011,16 +1073,16 @@ proto.palm.plugins.nut.v1.TagPromiseClient.prototype.show =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.CreateTagRequest,
+ *   !proto.palm.nut.v1.CreateTagRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Tag_Update = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Tag/Update',
+  '/palm.nut.v1.Tag/Update',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.CreateTagRequest,
+  proto.palm.nut.v1.CreateTagRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.CreateTagRequest} request
+   * @param {!proto.palm.nut.v1.CreateTagRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -1031,7 +1093,7 @@ const methodDescriptor_Tag_Update = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.CreateTagRequest} request The
+ * @param {!proto.palm.nut.v1.CreateTagRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -1040,10 +1102,10 @@ const methodDescriptor_Tag_Update = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.TagClient.prototype.update =
+proto.palm.nut.v1.TagClient.prototype.update =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Update',
+      '/palm.nut.v1.Tag/Update',
       request,
       metadata || {},
       methodDescriptor_Tag_Update,
@@ -1052,17 +1114,17 @@ proto.palm.plugins.nut.v1.TagClient.prototype.update =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.CreateTagRequest} request The
+ * @param {!proto.palm.nut.v1.CreateTagRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.TagPromiseClient.prototype.update =
+proto.palm.nut.v1.TagPromiseClient.prototype.update =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Update',
+      '/palm.nut.v1.Tag/Update',
       request,
       metadata || {},
       methodDescriptor_Tag_Update);
@@ -1072,16 +1134,16 @@ proto.palm.plugins.nut.v1.TagPromiseClient.prototype.update =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
+ *   !proto.palm.nut.v1.IdRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Tag_Destory = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Tag/Destory',
+  '/palm.nut.v1.Tag/Destory',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.IdRequest,
+  proto.palm.nut.v1.IdRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -1092,7 +1154,7 @@ const methodDescriptor_Tag_Destory = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -1101,10 +1163,10 @@ const methodDescriptor_Tag_Destory = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.TagClient.prototype.destory =
+proto.palm.nut.v1.TagClient.prototype.destory =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Destory',
+      '/palm.nut.v1.Tag/Destory',
       request,
       metadata || {},
       methodDescriptor_Tag_Destory,
@@ -1113,17 +1175,17 @@ proto.palm.plugins.nut.v1.TagClient.prototype.destory =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.TagPromiseClient.prototype.destory =
+proto.palm.nut.v1.TagPromiseClient.prototype.destory =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Destory',
+      '/palm.nut.v1.Tag/Destory',
       request,
       metadata || {},
       methodDescriptor_Tag_Destory);
@@ -1133,39 +1195,39 @@ proto.palm.plugins.nut.v1.TagPromiseClient.prototype.destory =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.Pager,
- *   !proto.palm.plugins.nut.v1.IndexTagResponse>}
+ *   !proto.palm.nut.v1.Pager,
+ *   !proto.palm.nut.v1.IndexTagResponse>}
  */
 const methodDescriptor_Tag_Index = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Tag/Index',
+  '/palm.nut.v1.Tag/Index',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.Pager,
-  proto.palm.plugins.nut.v1.IndexTagResponse,
+  proto.palm.nut.v1.Pager,
+  proto.palm.nut.v1.IndexTagResponse,
   /**
-   * @param {!proto.palm.plugins.nut.v1.Pager} request
+   * @param {!proto.palm.nut.v1.Pager} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.IndexTagResponse.deserializeBinary
+  proto.palm.nut.v1.IndexTagResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.IndexTagResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.IndexTagResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.IndexTagResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.IndexTagResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.TagClient.prototype.index =
+proto.palm.nut.v1.TagClient.prototype.index =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Index',
+      '/palm.nut.v1.Tag/Index',
       request,
       metadata || {},
       methodDescriptor_Tag_Index,
@@ -1174,17 +1236,17 @@ proto.palm.plugins.nut.v1.TagClient.prototype.index =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.IndexTagResponse>}
+ * @return {!Promise<!proto.palm.nut.v1.IndexTagResponse>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.TagPromiseClient.prototype.index =
+proto.palm.nut.v1.TagPromiseClient.prototype.index =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Tag/Index',
+      '/palm.nut.v1.Tag/Index',
       request,
       metadata || {},
       methodDescriptor_Tag_Index);
@@ -1199,7 +1261,7 @@ proto.palm.plugins.nut.v1.TagPromiseClient.prototype.index =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.NotificationClient =
+proto.palm.nut.v1.NotificationClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -1225,7 +1287,7 @@ proto.palm.plugins.nut.v1.NotificationClient =
  * @struct
  * @final
  */
-proto.palm.plugins.nut.v1.NotificationPromiseClient =
+proto.palm.nut.v1.NotificationPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -1246,16 +1308,16 @@ proto.palm.plugins.nut.v1.NotificationPromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.CreateNotificationRequest,
+ *   !proto.palm.nut.v1.CreateNotificationRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Notification_Create = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Notification/Create',
+  '/palm.nut.v1.Notification/Create',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.CreateNotificationRequest,
+  proto.palm.nut.v1.CreateNotificationRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.CreateNotificationRequest} request
+   * @param {!proto.palm.nut.v1.CreateNotificationRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -1266,7 +1328,7 @@ const methodDescriptor_Notification_Create = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.CreateNotificationRequest} request The
+ * @param {!proto.palm.nut.v1.CreateNotificationRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -1275,10 +1337,10 @@ const methodDescriptor_Notification_Create = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.NotificationClient.prototype.create =
+proto.palm.nut.v1.NotificationClient.prototype.create =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Create',
+      '/palm.nut.v1.Notification/Create',
       request,
       metadata || {},
       methodDescriptor_Notification_Create,
@@ -1287,17 +1349,17 @@ proto.palm.plugins.nut.v1.NotificationClient.prototype.create =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.CreateNotificationRequest} request The
+ * @param {!proto.palm.nut.v1.CreateNotificationRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.create =
+proto.palm.nut.v1.NotificationPromiseClient.prototype.create =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Create',
+      '/palm.nut.v1.Notification/Create',
       request,
       metadata || {},
       methodDescriptor_Notification_Create);
@@ -1307,39 +1369,39 @@ proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.create =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
- *   !proto.palm.plugins.nut.v1.IndexNotificationResponse.Item>}
+ *   !proto.palm.nut.v1.IdRequest,
+ *   !proto.palm.nut.v1.IndexNotificationResponse.Item>}
  */
 const methodDescriptor_Notification_Show = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Notification/Show',
+  '/palm.nut.v1.Notification/Show',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.IdRequest,
-  proto.palm.plugins.nut.v1.IndexNotificationResponse.Item,
+  proto.palm.nut.v1.IdRequest,
+  proto.palm.nut.v1.IndexNotificationResponse.Item,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.IndexNotificationResponse.Item.deserializeBinary
+  proto.palm.nut.v1.IndexNotificationResponse.Item.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.IndexNotificationResponse.Item)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.IndexNotificationResponse.Item)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.IndexNotificationResponse.Item>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.IndexNotificationResponse.Item>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.NotificationClient.prototype.show =
+proto.palm.nut.v1.NotificationClient.prototype.show =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Show',
+      '/palm.nut.v1.Notification/Show',
       request,
       metadata || {},
       methodDescriptor_Notification_Show,
@@ -1348,17 +1410,17 @@ proto.palm.plugins.nut.v1.NotificationClient.prototype.show =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.IndexNotificationResponse.Item>}
+ * @return {!Promise<!proto.palm.nut.v1.IndexNotificationResponse.Item>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.show =
+proto.palm.nut.v1.NotificationPromiseClient.prototype.show =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Show',
+      '/palm.nut.v1.Notification/Show',
       request,
       metadata || {},
       methodDescriptor_Notification_Show);
@@ -1368,16 +1430,16 @@ proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.show =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
+ *   !proto.palm.nut.v1.IdRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Notification_SetRead = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Notification/SetRead',
+  '/palm.nut.v1.Notification/SetRead',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.IdRequest,
+  proto.palm.nut.v1.IdRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -1388,7 +1450,7 @@ const methodDescriptor_Notification_SetRead = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -1397,10 +1459,10 @@ const methodDescriptor_Notification_SetRead = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.NotificationClient.prototype.setRead =
+proto.palm.nut.v1.NotificationClient.prototype.setRead =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/SetRead',
+      '/palm.nut.v1.Notification/SetRead',
       request,
       metadata || {},
       methodDescriptor_Notification_SetRead,
@@ -1409,17 +1471,17 @@ proto.palm.plugins.nut.v1.NotificationClient.prototype.setRead =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.setRead =
+proto.palm.nut.v1.NotificationPromiseClient.prototype.setRead =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/SetRead',
+      '/palm.nut.v1.Notification/SetRead',
       request,
       metadata || {},
       methodDescriptor_Notification_SetRead);
@@ -1429,16 +1491,16 @@ proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.setRead =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.IdRequest,
+ *   !proto.palm.nut.v1.IdRequest,
  *   !proto.google.protobuf.Empty>}
  */
 const methodDescriptor_Notification_Destory = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Notification/Destory',
+  '/palm.nut.v1.Notification/Destory',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.IdRequest,
+  proto.palm.nut.v1.IdRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.palm.plugins.nut.v1.IdRequest} request
+   * @param {!proto.palm.nut.v1.IdRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -1449,7 +1511,7 @@ const methodDescriptor_Notification_Destory = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -1458,10 +1520,10 @@ const methodDescriptor_Notification_Destory = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.NotificationClient.prototype.destory =
+proto.palm.nut.v1.NotificationClient.prototype.destory =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Destory',
+      '/palm.nut.v1.Notification/Destory',
       request,
       metadata || {},
       methodDescriptor_Notification_Destory,
@@ -1470,17 +1532,17 @@ proto.palm.plugins.nut.v1.NotificationClient.prototype.destory =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.IdRequest} request The
+ * @param {!proto.palm.nut.v1.IdRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.destory =
+proto.palm.nut.v1.NotificationPromiseClient.prototype.destory =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Destory',
+      '/palm.nut.v1.Notification/Destory',
       request,
       metadata || {},
       methodDescriptor_Notification_Destory);
@@ -1490,39 +1552,39 @@ proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.destory =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.palm.plugins.nut.v1.Pager,
- *   !proto.palm.plugins.nut.v1.IndexNotificationResponse>}
+ *   !proto.palm.nut.v1.Pager,
+ *   !proto.palm.nut.v1.IndexNotificationResponse>}
  */
 const methodDescriptor_Notification_Index = new grpc.web.MethodDescriptor(
-  '/palm.plugins.nut.v1.Notification/Index',
+  '/palm.nut.v1.Notification/Index',
   grpc.web.MethodType.UNARY,
-  proto.palm.plugins.nut.v1.Pager,
-  proto.palm.plugins.nut.v1.IndexNotificationResponse,
+  proto.palm.nut.v1.Pager,
+  proto.palm.nut.v1.IndexNotificationResponse,
   /**
-   * @param {!proto.palm.plugins.nut.v1.Pager} request
+   * @param {!proto.palm.nut.v1.Pager} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.palm.plugins.nut.v1.IndexNotificationResponse.deserializeBinary
+  proto.palm.nut.v1.IndexNotificationResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.palm.plugins.nut.v1.IndexNotificationResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.palm.nut.v1.IndexNotificationResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.palm.plugins.nut.v1.IndexNotificationResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.palm.nut.v1.IndexNotificationResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.palm.plugins.nut.v1.NotificationClient.prototype.index =
+proto.palm.nut.v1.NotificationClient.prototype.index =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Index',
+      '/palm.nut.v1.Notification/Index',
       request,
       metadata || {},
       methodDescriptor_Notification_Index,
@@ -1531,22 +1593,22 @@ proto.palm.plugins.nut.v1.NotificationClient.prototype.index =
 
 
 /**
- * @param {!proto.palm.plugins.nut.v1.Pager} request The
+ * @param {!proto.palm.nut.v1.Pager} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.palm.plugins.nut.v1.IndexNotificationResponse>}
+ * @return {!Promise<!proto.palm.nut.v1.IndexNotificationResponse>}
  *     Promise that resolves to the response
  */
-proto.palm.plugins.nut.v1.NotificationPromiseClient.prototype.index =
+proto.palm.nut.v1.NotificationPromiseClient.prototype.index =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/palm.plugins.nut.v1.Notification/Index',
+      '/palm.nut.v1.Notification/Index',
       request,
       metadata || {},
       methodDescriptor_Notification_Index);
 };
 
 
-module.exports = proto.palm.plugins.nut.v1;
+module.exports = proto.palm.nut.v1;
 

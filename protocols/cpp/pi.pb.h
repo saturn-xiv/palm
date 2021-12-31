@@ -576,23 +576,23 @@ class UserLogsResponse final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::pi::v1::UserLogsResponse_Item >&
       items() const;
 
-  // .palm.plugins.nut.v1.Pagination pagination = 2;
+  // .palm.nut.v1.Pagination pagination = 2;
   bool has_pagination() const;
   private:
   bool _internal_has_pagination() const;
   public:
   void clear_pagination();
-  const ::palm::plugins::nut::v1::Pagination& pagination() const;
-  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::plugins::nut::v1::Pagination* release_pagination();
-  ::palm::plugins::nut::v1::Pagination* mutable_pagination();
-  void set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination);
+  const ::palm::nut::v1::Pagination& pagination() const;
+  PROTOBUF_FUTURE_MUST_USE_RESULT ::palm::nut::v1::Pagination* release_pagination();
+  ::palm::nut::v1::Pagination* mutable_pagination();
+  void set_allocated_pagination(::palm::nut::v1::Pagination* pagination);
   private:
-  const ::palm::plugins::nut::v1::Pagination& _internal_pagination() const;
-  ::palm::plugins::nut::v1::Pagination* _internal_mutable_pagination();
+  const ::palm::nut::v1::Pagination& _internal_pagination() const;
+  ::palm::nut::v1::Pagination* _internal_mutable_pagination();
   public:
   void unsafe_arena_set_allocated_pagination(
-      ::palm::plugins::nut::v1::Pagination* pagination);
-  ::palm::plugins::nut::v1::Pagination* unsafe_arena_release_pagination();
+      ::palm::nut::v1::Pagination* pagination);
+  ::palm::nut::v1::Pagination* unsafe_arena_release_pagination();
 
   // @@protoc_insertion_point(class_scope:palm.pi.v1.UserLogsResponse)
  private:
@@ -602,7 +602,7 @@ class UserLogsResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::pi::v1::UserLogsResponse_Item > items_;
-  ::palm::plugins::nut::v1::Pagination* pagination_;
+  ::palm::nut::v1::Pagination* pagination_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_pi_2eproto;
 };
@@ -3144,24 +3144,24 @@ UserLogsResponse::items() const {
   return items_;
 }
 
-// .palm.plugins.nut.v1.Pagination pagination = 2;
+// .palm.nut.v1.Pagination pagination = 2;
 inline bool UserLogsResponse::_internal_has_pagination() const {
   return this != internal_default_instance() && pagination_ != nullptr;
 }
 inline bool UserLogsResponse::has_pagination() const {
   return _internal_has_pagination();
 }
-inline const ::palm::plugins::nut::v1::Pagination& UserLogsResponse::_internal_pagination() const {
-  const ::palm::plugins::nut::v1::Pagination* p = pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::plugins::nut::v1::Pagination&>(
-      ::palm::plugins::nut::v1::_Pagination_default_instance_);
+inline const ::palm::nut::v1::Pagination& UserLogsResponse::_internal_pagination() const {
+  const ::palm::nut::v1::Pagination* p = pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::nut::v1::Pagination&>(
+      ::palm::nut::v1::_Pagination_default_instance_);
 }
-inline const ::palm::plugins::nut::v1::Pagination& UserLogsResponse::pagination() const {
+inline const ::palm::nut::v1::Pagination& UserLogsResponse::pagination() const {
   // @@protoc_insertion_point(field_get:palm.pi.v1.UserLogsResponse.pagination)
   return _internal_pagination();
 }
 inline void UserLogsResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::plugins::nut::v1::Pagination* pagination) {
+    ::palm::nut::v1::Pagination* pagination) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);
   }
@@ -3173,35 +3173,35 @@ inline void UserLogsResponse::unsafe_arena_set_allocated_pagination(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.pi.v1.UserLogsResponse.pagination)
 }
-inline ::palm::plugins::nut::v1::Pagination* UserLogsResponse::release_pagination() {
+inline ::palm::nut::v1::Pagination* UserLogsResponse::release_pagination() {
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   if (GetArenaForAllocation() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* UserLogsResponse::unsafe_arena_release_pagination() {
+inline ::palm::nut::v1::Pagination* UserLogsResponse::unsafe_arena_release_pagination() {
   // @@protoc_insertion_point(field_release:palm.pi.v1.UserLogsResponse.pagination)
   
-  ::palm::plugins::nut::v1::Pagination* temp = pagination_;
+  ::palm::nut::v1::Pagination* temp = pagination_;
   pagination_ = nullptr;
   return temp;
 }
-inline ::palm::plugins::nut::v1::Pagination* UserLogsResponse::_internal_mutable_pagination() {
+inline ::palm::nut::v1::Pagination* UserLogsResponse::_internal_mutable_pagination() {
   
   if (pagination_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::plugins::nut::v1::Pagination>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::nut::v1::Pagination>(GetArenaForAllocation());
     pagination_ = p;
   }
   return pagination_;
 }
-inline ::palm::plugins::nut::v1::Pagination* UserLogsResponse::mutable_pagination() {
+inline ::palm::nut::v1::Pagination* UserLogsResponse::mutable_pagination() {
   // @@protoc_insertion_point(field_mutable:palm.pi.v1.UserLogsResponse.pagination)
   return _internal_mutable_pagination();
 }
-inline void UserLogsResponse::set_allocated_pagination(::palm::plugins::nut::v1::Pagination* pagination) {
+inline void UserLogsResponse::set_allocated_pagination(::palm::nut::v1::Pagination* pagination) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(pagination_);

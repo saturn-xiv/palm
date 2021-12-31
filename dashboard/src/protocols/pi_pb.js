@@ -894,17 +894,17 @@ proto.palm.pi.v1.UserLogsResponse.prototype.clearItemsList = function() {
 
 
 /**
- * optional palm.plugins.nut.v1.Pagination pagination = 2;
- * @return {?proto.palm.plugins.nut.v1.Pagination}
+ * optional palm.nut.v1.Pagination pagination = 2;
+ * @return {?proto.palm.nut.v1.Pagination}
  */
 proto.palm.pi.v1.UserLogsResponse.prototype.getPagination = function() {
-  return /** @type{?proto.palm.plugins.nut.v1.Pagination} */ (
+  return /** @type{?proto.palm.nut.v1.Pagination} */ (
     jspb.Message.getWrapperField(this, nut_pb.Pagination, 2));
 };
 
 
 /**
- * @param {?proto.palm.plugins.nut.v1.Pagination|undefined} value
+ * @param {?proto.palm.nut.v1.Pagination|undefined} value
  * @return {!proto.palm.pi.v1.UserLogsResponse} returns this
 */
 proto.palm.pi.v1.UserLogsResponse.prototype.setPagination = function(value) {

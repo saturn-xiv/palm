@@ -422,58 +422,58 @@ const char descriptor_table_protodef_pi_2eproto[] PROTOBUF_SECTION_VARIABLE(prot
   "empty.proto\032\036google/protobuf/duration.pr"
   "oto\032\037google/protobuf/timestamp.proto\032\tnu"
   "t.proto\"-\n\013UserProfile\022\014\n\004name\030\001 \001(\t\022\020\n\010"
-  "password\030\002 \001(\t\"\301\001\n\020UserLogsResponse\0220\n\005i"
+  "password\030\002 \001(\t\"\271\001\n\020UserLogsResponse\0220\n\005i"
   "tems\030\001 \003(\0132!.palm.pi.v1.UserLogsResponse"
-  ".Item\0223\n\npagination\030\002 \001(\0132\037.palm.plugins"
-  ".nut.v1.Pagination\032F\n\004Item\022\017\n\007message\030\001 "
-  "\001(\t\022-\n\ttimestamp\030\002 \001(\0132\032.google.protobuf"
-  ".Timestamp\"T\n\nTtyRequest\022\r\n\005items\030\001 \003(\t\022"
-  "-\n\005delay\030\002 \001(\0132\031.google.protobuf.Duratio"
-  "nH\000\210\001\001B\010\n\006_delay\"M\n\013TtyResponse\022\017\n\007messa"
-  "ge\030\001 \001(\t\022-\n\ttimestamp\030\002 \001(\0132\032.google.pro"
-  "tobuf.Timestamp\"h\n\020AudioPlayRequest\022\r\n\005f"
-  "iles\030\001 \003(\t\022\014\n\004loop\030\025 \003(\004\022-\n\005delay\030\026 \001(\0132"
-  "\031.google.protobuf.DurationH\000\210\001\001B\010\n\006_dela"
-  "y\"\253\001\n\017AudioTtsRequest\0225\n\010messages\030\001 \003(\0132"
-  "#.palm.pi.v1.AudioTtsRequest.Message\022\014\n\004"
-  "loop\030\025 \003(\004\022-\n\005delay\030\026 \001(\0132\031.google.proto"
-  "buf.DurationH\000\210\001\001\032\032\n\007Message\022\017\n\007message\030"
-  "\001 \001(\tB\010\n\006_delay\"\203\001\n\016OpenVpnProfile\0222\n\004au"
-  "th\030\001 \001(\0132\037.palm.pi.v1.OpenVpnProfile.Aut"
-  "hH\000\210\001\001\022\014\n\004body\030\002 \001(\t\032&\n\004Auth\022\014\n\004user\030\001 \001"
-  "(\t\022\020\n\010password\030\002 \001(\tB\007\n\005_auth\"\226\004\n\016Networ"
-  "kProfile\032c\n\004IpV4\022\017\n\007address\030\001 \001(\t\022\017\n\007net"
-  "mask\030\002 \001(\t\022\017\n\007gateway\030\003 \001(\t\022\014\n\004dns1\030\004 \001("
-  "\t\022\021\n\004dns2\030\005 \001(\tH\000\210\001\001B\007\n\005_dns2\032\345\001\n\004Wifi\022\014"
-  "\n\004name\030\001 \001(\t\022\014\n\004ssid\030\002 \001(\t\022\016\n\004dhcp\030\013 \001(\010"
-  "H\000\0221\n\006static\030\014 \001(\0132\037.palm.pi.v1.NetworkP"
-  "rofile.IpV4H\000\022\016\n\004open\030\025 \001(\010H\001\022-\n\003wpa\030\026 \001"
-  "(\0132\036.palm.pi.v1.NetworkProfile.WpaH\001\022-\n\003"
-  "eap\030\027 \001(\0132\036.palm.pi.v1.NetworkProfile.Ea"
-  "pH\001B\004\n\002ipB\n\n\010security\032)\n\003Wpa\022\020\n\010username"
-  "\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\032)\n\003Eap\022\020\n\010ident"
-  "ify\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\032a\n\010Ethernet\022"
-  "\014\n\004name\030\001 \001(\t\022\016\n\004dhcp\030\013 \001(\010H\000\0221\n\006static\030"
-  "\014 \001(\0132\037.palm.pi.v1.NetworkProfile.IpV4H\000"
-  "B\004\n\002ip2\272\001\n\004User\0228\n\003Get\022\026.google.protobuf"
-  ".Empty\032\027.palm.pi.v1.UserProfile\"\000\0228\n\003Set"
-  "\022\027.palm.pi.v1.UserProfile\032\026.google.proto"
-  "buf.Empty\"\000\022>\n\004Logs\022\026.google.protobuf.Em"
-  "pty\032\034.palm.pi.v1.UserLogsResponse\"\0002@\n\003T"
-  "ty\0229\n\005Write\022\026.palm.pi.v1.TtyRequest\032\026.go"
-  "ogle.protobuf.Empty\"\0002\277\001\n\005Audio\022>\n\004Play\022"
-  "\034.palm.pi.v1.AudioPlayRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\0228\n\004Stop\022\026.google.protobu"
-  "f.Empty\032\026.google.protobuf.Empty\"\000\022<\n\003Tts"
-  "\022\033.palm.pi.v1.AudioTtsRequest\032\026.google.p"
-  "rotobuf.Empty\"\0002\010\n\006Button2\005\n\003Led2\203\001\n\007Ope"
-  "nVpn\022;\n\003Get\022\026.google.protobuf.Empty\032\032.pa"
-  "lm.pi.v1.OpenVpnProfile\"\000\022;\n\003Set\022\032.palm."
-  "pi.v1.OpenVpnProfile\032\026.google.protobuf.E"
-  "mpty\"\0002\203\001\n\007Network\022;\n\003Get\022\026.google.proto"
-  "buf.Empty\032\032.palm.pi.v1.NetworkProfile\"\000\022"
-  ";\n\003Set\022\032.palm.pi.v1.NetworkProfile\032\026.goo"
-  "gle.protobuf.Empty\"\000B\002P\001b\006proto3"
+  ".Item\022+\n\npagination\030\002 \001(\0132\027.palm.nut.v1."
+  "Pagination\032F\n\004Item\022\017\n\007message\030\001 \001(\t\022-\n\tt"
+  "imestamp\030\002 \001(\0132\032.google.protobuf.Timesta"
+  "mp\"T\n\nTtyRequest\022\r\n\005items\030\001 \003(\t\022-\n\005delay"
+  "\030\002 \001(\0132\031.google.protobuf.DurationH\000\210\001\001B\010"
+  "\n\006_delay\"M\n\013TtyResponse\022\017\n\007message\030\001 \001(\t"
+  "\022-\n\ttimestamp\030\002 \001(\0132\032.google.protobuf.Ti"
+  "mestamp\"h\n\020AudioPlayRequest\022\r\n\005files\030\001 \003"
+  "(\t\022\014\n\004loop\030\025 \003(\004\022-\n\005delay\030\026 \001(\0132\031.google"
+  ".protobuf.DurationH\000\210\001\001B\010\n\006_delay\"\253\001\n\017Au"
+  "dioTtsRequest\0225\n\010messages\030\001 \003(\0132#.palm.p"
+  "i.v1.AudioTtsRequest.Message\022\014\n\004loop\030\025 \003"
+  "(\004\022-\n\005delay\030\026 \001(\0132\031.google.protobuf.Dura"
+  "tionH\000\210\001\001\032\032\n\007Message\022\017\n\007message\030\001 \001(\tB\010\n"
+  "\006_delay\"\203\001\n\016OpenVpnProfile\0222\n\004auth\030\001 \001(\013"
+  "2\037.palm.pi.v1.OpenVpnProfile.AuthH\000\210\001\001\022\014"
+  "\n\004body\030\002 \001(\t\032&\n\004Auth\022\014\n\004user\030\001 \001(\t\022\020\n\010pa"
+  "ssword\030\002 \001(\tB\007\n\005_auth\"\226\004\n\016NetworkProfile"
+  "\032c\n\004IpV4\022\017\n\007address\030\001 \001(\t\022\017\n\007netmask\030\002 \001"
+  "(\t\022\017\n\007gateway\030\003 \001(\t\022\014\n\004dns1\030\004 \001(\t\022\021\n\004dns"
+  "2\030\005 \001(\tH\000\210\001\001B\007\n\005_dns2\032\345\001\n\004Wifi\022\014\n\004name\030\001"
+  " \001(\t\022\014\n\004ssid\030\002 \001(\t\022\016\n\004dhcp\030\013 \001(\010H\000\0221\n\006st"
+  "atic\030\014 \001(\0132\037.palm.pi.v1.NetworkProfile.I"
+  "pV4H\000\022\016\n\004open\030\025 \001(\010H\001\022-\n\003wpa\030\026 \001(\0132\036.pal"
+  "m.pi.v1.NetworkProfile.WpaH\001\022-\n\003eap\030\027 \001("
+  "\0132\036.palm.pi.v1.NetworkProfile.EapH\001B\004\n\002i"
+  "pB\n\n\010security\032)\n\003Wpa\022\020\n\010username\030\001 \001(\t\022\020"
+  "\n\010password\030\002 \001(\t\032)\n\003Eap\022\020\n\010identify\030\001 \001("
+  "\t\022\020\n\010password\030\002 \001(\t\032a\n\010Ethernet\022\014\n\004name\030"
+  "\001 \001(\t\022\016\n\004dhcp\030\013 \001(\010H\000\0221\n\006static\030\014 \001(\0132\037."
+  "palm.pi.v1.NetworkProfile.IpV4H\000B\004\n\002ip2\272"
+  "\001\n\004User\0228\n\003Get\022\026.google.protobuf.Empty\032\027"
+  ".palm.pi.v1.UserProfile\"\000\0228\n\003Set\022\027.palm."
+  "pi.v1.UserProfile\032\026.google.protobuf.Empt"
+  "y\"\000\022>\n\004Logs\022\026.google.protobuf.Empty\032\034.pa"
+  "lm.pi.v1.UserLogsResponse\"\0002@\n\003Tty\0229\n\005Wr"
+  "ite\022\026.palm.pi.v1.TtyRequest\032\026.google.pro"
+  "tobuf.Empty\"\0002\277\001\n\005Audio\022>\n\004Play\022\034.palm.p"
+  "i.v1.AudioPlayRequest\032\026.google.protobuf."
+  "Empty\"\000\0228\n\004Stop\022\026.google.protobuf.Empty\032"
+  "\026.google.protobuf.Empty\"\000\022<\n\003Tts\022\033.palm."
+  "pi.v1.AudioTtsRequest\032\026.google.protobuf."
+  "Empty\"\0002\010\n\006Button2\005\n\003Led2\203\001\n\007OpenVpn\022;\n\003"
+  "Get\022\026.google.protobuf.Empty\032\032.palm.pi.v1"
+  ".OpenVpnProfile\"\000\022;\n\003Set\022\032.palm.pi.v1.Op"
+  "enVpnProfile\032\026.google.protobuf.Empty\"\0002\203"
+  "\001\n\007Network\022;\n\003Get\022\026.google.protobuf.Empt"
+  "y\032\032.palm.pi.v1.NetworkProfile\"\000\022;\n\003Set\022\032"
+  ".palm.pi.v1.NetworkProfile\032\026.google.prot"
+  "obuf.Empty\"\000B\002P\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_pi_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -483,7 +483,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_pi_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_pi_2eproto = {
-  false, false, 2232, descriptor_table_protodef_pi_2eproto, "pi.proto", 
+  false, false, 2224, descriptor_table_protodef_pi_2eproto, "pi.proto", 
   &descriptor_table_pi_2eproto_once, descriptor_table_pi_2eproto_deps, 4, 16,
   schemas, file_default_instances, TableStruct_pi_2eproto::offsets,
   file_level_metadata_pi_2eproto, file_level_enum_descriptors_pi_2eproto, file_level_service_descriptors_pi_2eproto,
@@ -1002,10 +1002,10 @@ void UserLogsResponse_Item::InternalSwap(UserLogsResponse_Item* other) {
 
 class UserLogsResponse::_Internal {
  public:
-  static const ::palm::plugins::nut::v1::Pagination& pagination(const UserLogsResponse* msg);
+  static const ::palm::nut::v1::Pagination& pagination(const UserLogsResponse* msg);
 };
 
-const ::palm::plugins::nut::v1::Pagination&
+const ::palm::nut::v1::Pagination&
 UserLogsResponse::_Internal::pagination(const UserLogsResponse* msg) {
   return *msg->pagination_;
 }
@@ -1027,7 +1027,7 @@ UserLogsResponse::UserLogsResponse(const UserLogsResponse& from)
       items_(from.items_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_pagination()) {
-    pagination_ = new ::palm::plugins::nut::v1::Pagination(*from.pagination_);
+    pagination_ = new ::palm::nut::v1::Pagination(*from.pagination_);
   } else {
     pagination_ = nullptr;
   }
@@ -1091,7 +1091,7 @@ const char* UserLogsResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
         } else goto handle_unusual;
         continue;
-      // .palm.plugins.nut.v1.Pagination pagination = 2;
+      // .palm.nut.v1.Pagination pagination = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_pagination(), ptr);
@@ -1135,7 +1135,7 @@ failure:
       InternalWriteMessage(1, this->_internal_items(i), target, stream);
   }
 
-  // .palm.plugins.nut.v1.Pagination pagination = 2;
+  // .palm.nut.v1.Pagination pagination = 2;
   if (this->has_pagination()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1166,7 +1166,7 @@ size_t UserLogsResponse::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // .palm.plugins.nut.v1.Pagination pagination = 2;
+  // .palm.nut.v1.Pagination pagination = 2;
   if (this->has_pagination()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1206,7 +1206,7 @@ void UserLogsResponse::MergeFrom(const UserLogsResponse& from) {
 
   items_.MergeFrom(from.items_);
   if (from.has_pagination()) {
-    _internal_mutable_pagination()->::palm::plugins::nut::v1::Pagination::MergeFrom(from._internal_pagination());
+    _internal_mutable_pagination()->::palm::nut::v1::Pagination::MergeFrom(from._internal_pagination());
   }
 }
 
