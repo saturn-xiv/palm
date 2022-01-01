@@ -1,14 +1,15 @@
-target=aarch64-linux-gnu
+target=aarch64-none-linux-gnu
+clang_home=/home/deploy/local/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04
 gcc_version=10
-clang_version=13
+gcc_home=/home/deploy/local/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu
 
 [settings]
 os=Linux
 arch=armv8
 compiler=clang
-compiler.version=$clang_version
+compiler.version=13
 compiler.libcxx=libstdc++11
-compiler.cppstd=20
+compiler.cppstd=17
 build_type=Release
 
 boost:compiler=gcc
@@ -18,14 +19,15 @@ boost:compiler.libcxx=libstdc++11
 
 [env]
 CHOST=$target
-CC=clang-$clang_version
-CXX=clang++-$clang_version
-CFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
-CXXFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
-LDFLAGS="--ld-path=ld.lld-$clang_version"
+CC=$clang_home/bin/clang
+CXX=$clang_home/bin/clang++
+ 
+CFLAGS="-target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/libc"
+CXXFLAGS="-I$gcc_home/$target/include/c++/10.3.1/$target -I$gcc_home/$target/include/c++/10.3.1 -target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/libc"
+LDFLAGS="--ld-path=$clang_home/bin/ld.lld -gcc-toolchain $gcc_home --sysroot $gcc_home/$target/libc"
 
-boost:CC=$target-gcc-$gcc_version
-boost:CXX=$target-g++-$gcc_version
+boost:CC=$gcc_home/bin/$target-gcc
+boost:CXX=$gcc_home/bin/$target-g++
 boost:CFLAGS=""
 boost:CXXFLAGS=""
 boost:LDFLAGS=""

@@ -36,8 +36,9 @@ class Snowflake {
            (this->datacenter_id << DATACENTER_ID_SHIFT) |
            (this->worker_id << WORKER_ID_SHIFT) | this->sequence;
   }
-  void set(const std::chrono::year_month_day& begin,
-           const uint8_t datacenter_id, const uint8_t worker_id);
+  // FIXME
+  // void set(const std::chrono::year_month_day& begin,
+  //          const uint8_t datacenter_id, const uint8_t worker_id);
 
  private:
   Snowflake()

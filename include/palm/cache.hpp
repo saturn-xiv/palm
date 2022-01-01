@@ -111,10 +111,11 @@ class PooledConnection {
     freeReplyObject(reply);
     return it;
   }
+  // FIXME days
   inline void set(const std::string& key, const std::string& value,
                   const std::chrono::seconds& ttl =
                       std::chrono::duration_cast<std::chrono::seconds>(
-                          std::chrono::days(1))) {
+                          std::chrono::hours(24))) {
     redisReply* reply = (redisReply*)redisCommand(
         this->db, "SET %s %s EX %d", key.c_str(), value.c_str(), ttl.count());
     if (reply == nullptr) {

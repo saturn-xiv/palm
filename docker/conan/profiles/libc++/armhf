@@ -1,4 +1,4 @@
-target=arm-linux-gnueabihf
+target=armv7l-linux-gnueabihf
 gcc_version=10
 clang_version=12
 
@@ -21,4 +21,4 @@ CC=clang-$clang_version
 CXX=clang++-$clang_version
 CFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
 CXXFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
-LDFLAGS="--ld-path=ld.lld-$clang_version"
+LDFLAGS="--ld-path=ld.lld"

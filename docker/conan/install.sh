@@ -7,9 +7,6 @@ export OS_NAME=$(lsb_release -is)
 
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    # sudo apt install -y \
-    #     libc++-13-dev:amd64 libc++abi-13-dev:amd64 \
-    #     libc++-13-dev:arm64 libc++abi-13-dev:arm64
     declare -a profiles=(
         "libstdc++/amd64"
         "libstdc++/arm64"

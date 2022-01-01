@@ -36,7 +36,7 @@ grpc::Status palm::auth::UserService::SignIn(
     tr.commit();
 
     const std::string token = palm::Jwt::instance().encode(
-        user->uid, ACTION_SIGN_IN, {}, std::chrono::days(1));
+        user->uid, ACTION_SIGN_IN, {}, std::chrono::hours(24));  // FIXME days
     reply->set_token(token);
   }
   return grpc::Status::OK;

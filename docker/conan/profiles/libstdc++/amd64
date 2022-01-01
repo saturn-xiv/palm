@@ -1,11 +1,11 @@
 target=x86_64-linux-gnu
-clang_version=13
+clang_home=/home/deploy/local/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04
 
 [settings]
 os=Linux
 arch=x86_64
 compiler=clang
-compiler.version=$clang_version
+compiler.version=13
 compiler.libcxx=libstdc++11
 compiler.cppstd=20
 build_type=Release
@@ -13,8 +13,8 @@ build_type=Release
 libmysqlclient:compiler.cppstd=14
 
 [env]
-CC=clang-$clang_version
-CXX=clang++-$clang_version
+CC=$clang_home/bin/clang
+CXX=$clang_home/bin/clang++
 CFLAGS="-target $target"
 CXXFLAGS="-target $target"
-LDFLAGS="--ld-path=ld.lld-$clang_version"
+LDFLAGS="--ld-path=$clang_home/bin/ld.lld -Wl,-L$clang_home/lib -rpath $clang_home/lib"

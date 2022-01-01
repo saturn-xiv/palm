@@ -1,12 +1,14 @@
-target=aarch64-linux-gnu
-gcc_version=10
-clang_version=13
+target=aarch64-none-linux-gnu
+clang_home=/home/deploy/local/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04
+arm_clang_home=/home/deploy/local/clang+llvm-13.0.0-aarch64-linux-gnu
+gcc_home=/home/deploy/local/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu
+gcc_version=10.3.1
 
 [settings]
 os=Linux
 arch=armv8
 compiler=clang
-compiler.version=$clang_version
+compiler.version=13
 compiler.libcxx=libc++
 compiler.cppstd=20
 build_type=Release
@@ -17,8 +19,11 @@ grpc:compiler.cppstd=17
 
 [env]
 CHOST=$target
-CC=clang-$clang_version
-CXX=clang++-$clang_version
-CFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
-CXXFLAGS="-target $target -ccc-gcc-name $target-gcc-$gcc_version"
-LDFLAGS="--ld-path=ld.lld-$clang_version"
+CC=$clang_home/bin/clang
+CXX=$clang_home/bin/clang++
+CFLAGS="-target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/libc"
+CXXFLAGS="-target $target -ccc-gcc-name $gcc_home/bin/$target-gcc -I$clang_home/include/c++/v1 --sysroot $gcc_home/$target/libc"
+LDFLAGS="--rtlib=libgcc --stdlib=libc++ --ld-path=$clang_home/bin/ld.lld -Wl,-L$arm_clang_home/lib -rpath $arm_clang_home/lib -gcc-toolchain $gcc_home --sysroot $gcc_home/$target/libc"
+
+[options]
+libpng:neon=False

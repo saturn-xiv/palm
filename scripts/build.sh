@@ -33,7 +33,7 @@ build_dashboard(){
         yarn install
     fi
     # FIXME https://github.com/webpack/webpack/issues/14532
-    UMI_ENV=production NODE_OPTIONS=--openssl-legacy-provider yarn build
+    NODE_OPTIONS=--openssl-legacy-provider yarn build
 }
 
 build_deb(){
@@ -111,8 +111,6 @@ build_dashboard
     
 if [[ $OS_NAME == "Ubuntu" ]]
 then
-    build_backend libstdc++ amd64 Debug
-
     architectures=(
         "amd64"
         "arm64"
@@ -121,7 +119,7 @@ then
     for a in "${architectures[@]}"
     do
         build_backend libstdc++ $a Release
-        build_deb libstdc++ $a
+        # build_deb libstdc++ $a
     done
     
 elif [[ $OS_NAME == "Arch" ]]

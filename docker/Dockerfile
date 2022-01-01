@@ -5,41 +5,14 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update
 RUN apt -y upgrade
-RUN apt -y install debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
-
-# https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test -y
-# https://apt.llvm.org/
-ENV CLANG_VERSION 13
-RUN echo "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-${CLANG_VERSION} main" > /etc/apt/sources.list.d/llvm.list
-RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-# https://wiki.ubuntu.com/ToolChain
-RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs) main restricted universe multiverse" > /etc/apt/sources.list
-RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list
-RUN dpkg --add-architecture armhf
-RUN dpkg --add-architecture arm64
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
-RUN apt update
-RUN apt -y upgrade
-
-ENV GCC_VERSION 11
-RUN apt -y install zsh git locales rsync openssh-client sshpass \
+RUN apt -y install wget lsb-release zsh git locales rsync openssh-client sshpass \
     vim sudo tzdata pwgen curl zip unzip tree tmux \
     net-tools dnsutils net-tools iputils-arping iputils-ping telnet \
     imagemagick ffmpeg \
     build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     debhelper bison flex ninja-build \
-    clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} clang-format-${CLANG_VERSION} \
-    libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev \
-    g++-${GCC_VERSION} g++-10-arm-linux-gnueabihf g++-10-aarch64-linux-gnu \
-    libc6-dev-armhf-cross crossbuild-essential-armhf pkg-config-arm-linux-gnueabihf \
-    libc6-dev-arm64-cross crossbuild-essential-arm64 pkg-config-aarch64-linux-gnu \
-    python3 python3-distutils python3-pip python3-dev \
-    libstdc++-${GCC_VERSION}-dev:amd64 libstdc++-${GCC_VERSION}-dev:arm64 libstdc++-${GCC_VERSION}-dev:armhf \
-    libssl-dev
+    libc6-dev libc6-dev-arm64-cross libc6-armhf-cross \
+    python3 python3-distutils python3-pip python3-dev
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -93,30 +66,46 @@ RUN sh -c ". $HOME/.profile \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
 
+# https://github.com/llvm/llvm-project/tags
+ENV CLANG_VERSION "13.0.0"
+RUN wget -q -O $HOME/downloads/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz 
+RUN tar -xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-20.04.tar.xz -C $HOME/local
+# RUN wget -q -O $HOME/downloads/ https://github.com/llvm/llvm-project/releases/download/llvmorg-${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-aarch64-linux-gnu.tar.xz
+# RUN tar -xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-aarch64-linux-gnu.tar.xz -C $HOME/local
+# RUN wget -q -O $HOME/downloads/ https://github.com/llvm/llvm-project/releases/download/llvmorg-${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-armv7a-linux-gnueabihf.tar.xz
+# RUN tar -xf $HOME/downloads/clang+llvm-${CLANG_VERSION}-armv7a-linux-gnueabihf.tar.xz -C $HOME/local
+
+# https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
+ENV ARM_VERSION "10.3-2021.07"
+RUN wget -q -O $HOME/downloads/gcc-arm-${ARM_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/${ARM_VERSION}/binrel/gcc-arm-${ARM_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
+RUN tar -xf $HOME/downloads/gcc-arm-${ARM_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C $HOME/local
+RUN wget -q -O $HOME/downloads/gcc-arm-${ARM_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/${ARM_VERSION}/binrel/gcc-arm-${ARM_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
+RUN tar -xf $HOME/downloads/gcc-arm-${ARM_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
+
 # https://grpc.io/docs/languages/cpp/quickstart/
-ENV GRPC_VERSION "v1.39.1"
-ENV PROTOC_VERSION "v3.17.1"
-RUN zsh -c "source $HOME/.zshrc \
-    && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
-RUN cd $HOME/downloads/grpc/third_party/protobuf \
-    && git checkout ${PROTOC_VERSION}
-RUN mkdir -pv $HOME/build/grpc-amd64
-RUN zsh -c "source $HOME/.zshrc \
-    && cd $HOME/build/grpc-amd64 \
-    && cmake -DCMAKE_BUILD_TYPE=Release \
-    -DgRPC_INSTALL=ON \
-    -DgRPC_SSL_PROVIDER=package \
-    -DgRPC_BUILD_TESTS=OFF \
-    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc"
-RUN zsh -c "source $HOME/.zshrc \
-    && cd $HOME/build/grpc-amd64 \
-    && make"
-RUN zsh -c "source $HOME/.zshrc \
-    && cd $HOME/build/grpc-amd64 \
-    && make install"
-ENV GRPC_WEB_VERSION "1.3.0"
-RUN wget -q -O $HOME/.local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64
-RUN chmod +x $HOME/.local/bin/protoc-gen-grpc-web
+# ENV GRPC_VERSION "v1.39.1"
+# ENV PROTOC_VERSION "v3.17.1"
+# RUN zsh -c "source $HOME/.zshrc \
+#     && git clone --recurse-submodules -b ${GRPC_VERSION} https://github.com/grpc/grpc.git $HOME/downloads/grpc"
+# RUN cd $HOME/downloads/grpc/third_party/protobuf \
+#     && git checkout ${PROTOC_VERSION}
+# RUN mkdir -pv $HOME/build/grpc-amd64
+# RUN zsh -c "source $HOME/.zshrc \
+#     && cd $HOME/build/grpc-amd64 \
+#     && cmake -DCMAKE_BUILD_TYPE=Release \
+#     -DgRPC_INSTALL=ON \
+#     -DgRPC_SSL_PROVIDER=package \
+#     -DgRPC_BUILD_TESTS=OFF \
+#     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc"
+# RUN zsh -c "source $HOME/.zshrc \
+#     && cd $HOME/build/grpc-amd64 \
+#     && make"
+# RUN zsh -c "source $HOME/.zshrc \
+#     && cd $HOME/build/grpc-amd64 \
+#     && make install"
+# ENV GRPC_WEB_VERSION "1.3.0"
+# RUN wget -q -O $HOME/.local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64
+# RUN chmod +x $HOME/.local/bin/protoc-gen-grpc-web
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
