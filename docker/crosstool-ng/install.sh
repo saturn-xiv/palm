@@ -2,10 +2,12 @@
 
 set -e
 
+export WORKSPACE=$PWD
+
 declare -a triples=(
     "x86_64-unknown-linux-gnu"
     "aarch64-unknown-linux-gnu"
-    "armv8-rpi3-linux-gnueabihf"
+    "armv7-rpi2-linux-gnueabihf"
 )
 
 function build_toolchain(){
@@ -14,7 +16,7 @@ function build_toolchain(){
     then
         mkdir -pv $target
     fi
-    cp -v $1 $target/.config
+    cp -v $WORKSPACE/docker/crosstool-ng/$1 $target/.config
     cd $target
     ct-ng build
 }

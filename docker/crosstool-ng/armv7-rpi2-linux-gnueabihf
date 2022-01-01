@@ -6,8 +6,8 @@ CT_CONFIGURE_has_static_link=y
 CT_CONFIGURE_has_cxx11=y
 CT_CONFIGURE_has_wget=y
 CT_CONFIGURE_has_curl=y
+CT_CONFIGURE_has_meson=y
 CT_CONFIGURE_has_ninja=y
-CT_CONFIGURE_has_rsync=y
 CT_CONFIGURE_has_make_3_81_or_newer=y
 CT_CONFIGURE_has_make_4_0_or_newer=y
 CT_CONFIGURE_has_libtool_2_4_or_newer=y
@@ -19,6 +19,7 @@ CT_CONFIGURE_has_gnu_m4_1_4_12_or_newer=y
 CT_CONFIGURE_has_python_3_4_or_newer=y
 CT_CONFIGURE_has_bison_2_7_or_newer=y
 CT_CONFIGURE_has_python=y
+CT_CONFIGURE_has_dtc=y
 CT_CONFIGURE_has_git=y
 CT_CONFIGURE_has_md5sum=y
 CT_CONFIGURE_has_sha1sum=y
@@ -142,7 +143,7 @@ CT_ARCH_ARM=y
 # CT_ARCH_XTENSA is not set
 CT_ARCH="arm"
 CT_ARCH_CHOICE_KSYM="ARM"
-CT_ARCH_CPU="cortex-a53"
+CT_ARCH_CPU="cortex-a7"
 CT_ARCH_ARM_SHOW=y
 
 #
@@ -157,7 +158,7 @@ CT_ARCH_ARM_EABI_FORCE=y
 CT_ARCH_ARM_EABI=y
 CT_ARCH_ARM_TUPLE_USE_EABIHF=y
 CT_ALL_ARCH_CHOICES="ALPHA ARC ARM AVR C6X M68K MICROBLAZE MIPS MOXIE MSP430 NIOS2 POWERPC PRU RISCV S390 SH SPARC X86 XTENSA"
-CT_ARCH_SUFFIX="v8"
+CT_ARCH_SUFFIX="v7"
 # CT_OMIT_TARGET_VENDOR is not set
 
 #
@@ -222,7 +223,7 @@ CT_TOOLCHAIN_BUGURL=""
 #
 # Tuple completion and aliasing
 #
-CT_TARGET_VENDOR="rpi3"
+CT_TARGET_VENDOR="rpi2"
 CT_TARGET_ALIAS_SED_EXPR=""
 CT_TARGET_ALIAS=""
 
@@ -268,18 +269,7 @@ CT_LINUX_PKG_NAME="linux"
 CT_LINUX_SRC_RELEASE=y
 # CT_LINUX_SRC_DEVEL is not set
 CT_LINUX_PATCH_ORDER="global"
-CT_LINUX_V_5_15=y
-# CT_LINUX_V_5_14 is not set
-# CT_LINUX_V_5_13 is not set
-# CT_LINUX_V_5_12 is not set
-# CT_LINUX_V_5_11 is not set
-# CT_LINUX_V_5_10 is not set
-# CT_LINUX_V_5_9 is not set
-# CT_LINUX_V_5_8 is not set
-# CT_LINUX_V_5_7 is not set
-# CT_LINUX_V_5_4 is not set
-# CT_LINUX_V_5_3 is not set
-# CT_LINUX_V_5_2 is not set
+CT_LINUX_V_5_2=y
 # CT_LINUX_V_5_1 is not set
 # CT_LINUX_V_5_0 is not set
 # CT_LINUX_V_4_20 is not set
@@ -302,14 +292,15 @@ CT_LINUX_V_5_15=y
 # CT_LINUX_V_3_10 is not set
 # CT_LINUX_V_3_4 is not set
 # CT_LINUX_V_3_2 is not set
-CT_LINUX_VERSION="5.15.2"
+CT_LINUX_VERSION="5.2.17"
 CT_LINUX_MIRRORS="$(CT_Mirrors kernel.org linux ${CT_LINUX_VERSION})"
 CT_LINUX_ARCHIVE_FILENAME="@{pkg_name}-@{version}"
 CT_LINUX_ARCHIVE_DIRNAME="@{pkg_name}-@{version}"
 CT_LINUX_ARCHIVE_FORMATS=".tar.xz .tar.gz"
 CT_LINUX_SIGNATURE_FORMAT="unpacked/.sign"
-CT_LINUX_later_than_5_3=y
-CT_LINUX_5_3_or_later=y
+CT_LINUX_5_3_or_older=y
+CT_LINUX_older_than_5_3=y
+CT_LINUX_REQUIRE_older_than_5_3=y
 CT_LINUX_later_than_4_8=y
 CT_LINUX_4_8_or_later=y
 CT_LINUX_later_than_3_7=y
@@ -318,6 +309,10 @@ CT_LINUX_later_than_3_2=y
 CT_LINUX_3_2_or_later=y
 CT_LINUX_REQUIRE_3_2_or_later=y
 CT_KERNEL_DEP_RSYNC=y
+
+#
+# Linux >=5.3 requires rsync
+#
 CT_KERNEL_LINUX_VERBOSITY_0=y
 # CT_KERNEL_LINUX_VERBOSITY_1 is not set
 # CT_KERNEL_LINUX_VERBOSITY_2 is not set
@@ -485,7 +480,7 @@ CT_GLIBC_FORCE_UNWIND=y
 # CT_GLIBC_KERNEL_VERSION_NONE is not set
 CT_GLIBC_KERNEL_VERSION_AS_HEADERS=y
 # CT_GLIBC_KERNEL_VERSION_CHOSEN is not set
-CT_GLIBC_MIN_KERNEL="5.15.2"
+CT_GLIBC_MIN_KERNEL="5.2.17"
 CT_GLIBC_SSP_DEFAULT=y
 # CT_GLIBC_SSP_NO is not set
 # CT_GLIBC_SSP_YES is not set

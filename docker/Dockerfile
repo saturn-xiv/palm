@@ -12,7 +12,6 @@ RUN apt -y install wget lsb-release zsh git locales rsync openssh-client sshpass
     build-essential pkg-config libtool automake autoconf binutils cpio doxygen \
     texinfo help2man gawk libtool-bin libncurses-dev \
     debhelper bison flex ninja-build \
-    libc6-dev libc6-dev-arm64-cross libc6-armhf-cross \
     python3 python3-distutils python3-pip python3-dev
 RUN apt -y autoremove
 RUN apt -y clean

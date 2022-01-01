@@ -1,0 +1,36 @@
+target=armv7-rpi2-linux-gnueabihf
+clang_home=/home/deploy/local/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04
+gcc_version=11
+gcc_home=/home/deploy/x-tools/${target}
+
+[settings]
+os=Linux
+arch=armv7hf
+compiler=clang
+compiler.version=13
+compiler.libcxx=libstdc++11
+compiler.cppstd=20
+build_type=Release
+
+boost:compiler=gcc
+boost:compiler.cppstd=11
+boost:compiler.version=$gcc_version
+boost:compiler.libcxx=libstdc++11
+
+[env]
+CHOST=$target
+CC=$clang_home/bin/clang
+CXX=$clang_home/bin/clang++
+ 
+CFLAGS="-target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/sysroot"
+CXXFLAGS="-target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/sysroot"
+LDFLAGS="--ld-path=$clang_home/bin/ld.lld -gcc-toolchain $gcc_home --sysroot $gcc_home/$target/sysroot"
+
+boost:CC=$gcc_home/bin/$target-gcc
+boost:CXX=$gcc_home/bin/$target-g++
+boost:CFLAGS=""
+boost:CXXFLAGS=""
+boost:LDFLAGS=""
+
+[options]
+libpng:neon=False
