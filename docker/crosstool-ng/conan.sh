@@ -21,7 +21,7 @@ function build_conan() {
     conan install --build=missing \
         --profile:build=default \
         --profile:host=$WORKSPACE/docker/crosstool-ng/profiles/$1 \
-        $WORKSPACE/docker/conan
+        $WORKSPACE/docker
 }
 
 for p in "${profiles[@]}"

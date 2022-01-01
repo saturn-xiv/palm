@@ -11,6 +11,15 @@ declare -a triples=(
 )
 
 function build_toolchain(){
+    if [ -f $HOME/x-tools/$1/build.log.bz2 ]
+    then
+        echo "ignore $1"
+        return
+    fi
+    if [ -d $HOME/x-tools/$1 ]
+    then
+        rm -r $HOME/x-tools/$1
+    fi
     local target=$HOME/build/toolchains/$1
     if [ ! -d $target ]
     then
