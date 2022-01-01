@@ -5,6 +5,7 @@ set -e
 export GCC_VERSION=10
 export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
+export OS_NAME=$(lsb_release -is)
 
 # -----------------------------------------------------------------------------
 build_backend() {
@@ -36,15 +37,24 @@ build_dashboard(){
 
 build_dashboard
     
-architectures=(
-    "amd64"
-    "arm64"
-    "armhf"
-)
-for a in "${architectures[@]}"
-do
-    build_backend $a Release
-done
+if [[ $OS_NAME == "Ubuntu" ]]
+then
+    declare -a architectures=(
+        "amd64"
+        "arm64"
+        "armhf"
+    )
+    for a in "${architectures[@]}"
+    do
+        build_backend $a Release
+    done
+elif [[ $OS_NAME == "Arch" ]]
+    build_backend "arch" Debug
+then
+else
+    echo "unknown os $OS_NAME"
+    exit 1
+fi
 
 echo 'done.'
 exit 0

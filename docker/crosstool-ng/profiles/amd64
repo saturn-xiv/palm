@@ -1,6 +1,6 @@
 target=x86_64-unknown-linux-gnu
 clang_home=/home/deploy/local/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-20.04
-gcc_home=/home/deploy/x-tools/${target}
+gcc_home=/home/deploy/x-tools/x86_64-unknown-linux-gnu
 
 [settings]
 os=Linux
@@ -17,5 +17,5 @@ libmysqlclient:compiler.cppstd=14
 CC=$clang_home/bin/clang
 CXX=$clang_home/bin/clang++
 CFLAGS="-target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/sysroot"
-CXXFLAGS="-target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/sysroot"
+CXXFLAGS="-I$gcc_home/$target/include/c++/11.2.0 -I$gcc_home/$target/include/c++/11.2.0/$target -target $target -ccc-gcc-name $gcc_home/bin/$target-gcc --sysroot $gcc_home/$target/sysroot"
 LDFLAGS="--ld-path=$clang_home/bin/ld.lld -gcc-toolchain $gcc_home --sysroot $gcc_home/$target/sysroot"

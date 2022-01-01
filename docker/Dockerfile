@@ -28,7 +28,7 @@ RUN echo 'deploy ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/101-deploy
 
 USER deploy
 
-RUN mkdir -p $HOME/downloads $HOME/local $HOME/build
+RUN mkdir -p $HOME/downloads $HOME/local $HOME/build $HOME/src
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh

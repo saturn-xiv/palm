@@ -3,12 +3,7 @@
 set -e
 
 export WORKSPACE=$PWD
-
-declare -a profiles=(
-    "amd64"
-    "arm64"
-    "armhf"
-)
+export OS_NAME=$(lsb_release -is)
 
 function build_conan() {
     local target=$HOME/build/conan/$1
@@ -17,17 +12,31 @@ function build_conan() {
         rm -rv $target
     fi
     mkdir -pv $target
-    cd target
+    cd $target
     conan install --build=missing \
         --profile:build=default \
         --profile:host=$WORKSPACE/docker/crosstool-ng/profiles/$1 \
         $WORKSPACE/docker
 }
 
-for p in "${profiles[@]}"
-do
-    build_conan $p
-done    
+if [[ $OS_NAME == "Ubuntu" ]]
+then
+    declare -a profiles=(
+        "amd64"
+        "arm64"
+        "armhf"
+    )
+    for p in "${profiles[@]}"
+    do
+        build_conan $p
+    done   
+elif [[ $OS_NAME == "Arch" ]]
+    build_conan "arch"
+then
+else
+    echo "unknown os $OS_NAME"
+    exit 1
+fi
 
 echo 'done.'
 exit 0
