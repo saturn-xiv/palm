@@ -11,7 +11,7 @@ set(CMAKE_CXX_COMPILER ${clang_home}/bin/clang++)
 set(CMAKE_CXX_COMPILER_TARGET ${target})
 set(CMAKE_C_FLAGS "--sysroot ${gcc_home}/${target}/libc -ccc-gcc-name ${gcc_home}/bin/${target}-gcc")
 set(CMAKE_CXX_FLAGS "-I${gcc_home}/${target}/include/c++/10.3.1/${target} -I${gcc_home}/${target}/include/c++/10.3.1 --sysroot ${gcc_home}/${target}/libc -ccc-gcc-name ${gcc_home}/bin/${target}-gcc")
-set(CMAKE_EXE_LINKER_FLAGS "-stdlib=libstdc++ -gcc-toolchain ${gcc_home} --sysroot ${gcc_home}/${target}/libc --ld-path=${clang_home}/bin/ld.lld")
+set(CMAKE_EXE_LINKER_FLAGS "-stdlib=libstdc++ -gcc-toolchain ${gcc_home} --sysroot ${gcc_home}/${target}/libc --ld-path=${clang_home}/bin/ld.lld -Wl,--build-id")
 
 set(CMAKE_FIND_ROOT_PATH ${gcc_home}/${target}/libc)
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)

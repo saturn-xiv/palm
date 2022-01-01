@@ -82,6 +82,20 @@ RUN tar -xf $HOME/downloads/gcc-arm-${ARM_VERSION}-x86_64-arm-none-linux-gnueabi
 RUN wget -q -O $HOME/downloads/gcc-arm-${ARM_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/${ARM_VERSION}/binrel/gcc-arm-${ARM_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz
 RUN tar -xf $HOME/downloads/gcc-arm-${ARM_VERSION}-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local
 
+# https://crosstool-ng.github.io/docs/
+RUN git clone https://github.com/crosstool-ng/crosstool-ng.git $HOME/build/crosstool-ng
+RUN cd $HOME/build/crosstool-ng \
+    && ./bootstrap \
+    && ./configure --prefix=$HOME/.local \
+    && make \
+    && make install
+# RUN mkdir -p $HOME/build/x86_64-unknown-linux-gnu \
+#     && cd $HOME/build/x86_64-unknown-linux-gnu \
+#     && cd-ng x86_64-unknown-linux-gnu \
+#     && ct-ng list-samples \
+#     && ct-ng menuconfig \
+#     && ct-ng build
+
 # https://grpc.io/docs/languages/cpp/quickstart/
 # ENV GRPC_VERSION "v1.39.1"
 # ENV PROTOC_VERSION "v3.17.1"

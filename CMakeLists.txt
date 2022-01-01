@@ -8,7 +8,7 @@ project(
     DESCRIPTION "A total free education & translation & ops solution."
     LANGUAGES C CXX)
 # --------------------------------------------------------
-# FIXME
+# FIXME https://gcc.gnu.org/bugzilla/show_bug.cgi?id=100900
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
