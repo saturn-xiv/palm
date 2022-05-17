@@ -79,8 +79,12 @@ namespace sqlite3 {
 pragma compile_options;
 SELECT name FROM sqlite_master WHERE type='table' AND name='TABLE_NAME'
 */
-}
-namespace mysql {
+Poco::Data::Session open(
+    const std::filesystem::path& file,
+    const std::chrono::seconds& timeout = std::chrono::seconds(5),
+    const bool wal_mode = true);
+}  // namespace sqlite3
+
 /**
 use DB-NAME
 show tables;
@@ -88,22 +92,39 @@ desc TABLE-NAME;
 SELECT table_name FROM information_schema.tables WHERE table_schema =
 'databasename' AND table_name = 'testtable'; SHOW TABLES LIKE 'tablename';
 */
-}
-namespace postgresql {
+class MySQL {
+ public:
+  MySQL(const boost::property_tree::ptree& config);
+  std::shared_ptr<Poco::Data::SessionPool> open() const;
+
+ private:
+  std::string host;
+  uint16_t port;
+  std::string database;
+  std::string user;
+  std::optional<std::string> password;
+  std::chrono::seconds timeout;
+  size_t pool_size;
+};
+
 /**
 https://www.postgresql.org/docs/current/runtime-config-logging.html
 /var/lib/postgres/data/postgresql.conf: log_statement = 'all'
 sudo journalctl -u postgresql -f
 */
+class PostgreSQL {
+ public:
+  PostgreSQL(const boost::property_tree::ptree& config);
+  std::shared_ptr<Poco::Data::SessionPool> open() const;
 
-class Schema : public palm::orm::Schema {
- protected:
-  std::string latest() const override;
-  std::string down() const override;
-  std::string up() const override;
-  std::string select() const override;
-  std::string insert() const override;
+ private:
+  std::string host;
+  uint16_t port;
+  std::string database;
+  std::string user;
+  std::optional<std::string> password;
+  std::chrono::seconds timeout;
+  size_t pool_size;
 };
-}  // namespace postgresql
 
 }  // namespace palm

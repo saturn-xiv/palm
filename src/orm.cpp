@@ -7,22 +7,108 @@
 
 #include <Poco/Data/MySQL/Connector.h>
 #include <Poco/Data/PostgreSQL/Connector.h>
+#include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Data/Transaction.h>
 
-std::string palm::orm::Schema::latest() const {
-  return R"SQL(SELECT version, name, up, down, run_on, created_at FROM schema_migrations WHERE run_on IS NOT NULL ORDER BY version DESC)SQL";
+std::shared_ptr<Poco::Data::SessionPool> palm::PostgreSQL::open() const {
+  Poco::Data::PostgreSQL::Connector::registerConnector();
+  BOOST_LOG_TRIVIAL(info) << "open postgresql " << this->user << '@'
+                          << this->host << ':' << this->port << '/'
+                          << this->database;
+  // https://www.postgresql.org/docs/14/libpq-connect.html#LIBPQ-CONNSTRING
+  // https://docs.pocoproject.org/current/Poco.Data.PostgreSQL.SessionImpl.html
+  std::stringstream url;
+  {
+    url << "host=" << this->host;
+    url << " port=" << this->port;
+    url << " dbname=" << this->database;
+    url << " user=" << this->user;
+    if (this->password) {
+      url << " password=" << this->password.value();
+    }
+    url << " sslmode=disable";
+    url << " connect_timeout=" << this->timeout.count();
+  }
+
+  std::shared_ptr<Poco::Data::SessionPool> pool =
+      std::make_shared<Poco::Data::SessionPool>("PostgreSQL", url.str());
+  return pool;
 }
-std::string palm::orm::Schema::down() const {
-  return R"SQL(UPDATE schema_migrations SET run_on = NULL WHERE version = $1)SQL";
+
+palm::PostgreSQL::PostgreSQL(const boost::property_tree::ptree& config) {
+  this->host = config.get("postgresql.host", "127.0.0.1");
+  this->port = config.get("postgresql.port", 5432);
+  this->user = config.get("postgresql.user", "postgres");
+  {
+    auto it = config.get_optional<std::string>("postgresql.password");
+    if (it.has_value()) {
+      this->password = it.get();
+    }
+  }
+  this->database = config.get<std::string>("postgresql.db-name");
+  {
+    size_t it = config.get("postgresql.connection-timeout", 12);
+    this->timeout = std::chrono::seconds(it);
+  }
+  this->pool_size = config.get("postgresql.pool-size", 32);
 }
-std::string palm::orm::Schema::up() const {
-  return R"SQL(UPDATE schema_migrations SET run_on = CURRENT_TIMESTAMP WHERE version = $1)SQL";
+
+palm::MySQL::MySQL(const boost::property_tree::ptree& config) {
+  this->host = config.get("mysql.host", "127.0.0.1");
+  this->port = config.get("mysql.port", 3306);
+  this->user = config.get("mysql.user", "root");
+  {
+    auto it = config.get_optional<std::string>("mysql.password");
+    if (it.has_value()) {
+      this->password = it.get();
+    }
+  }
+  this->database = config.get<std::string>("mysql.db-name");
+  {
+    size_t it = config.get("mysql.connection-timeout", 12);
+    this->timeout = std::chrono::seconds(it);
+  }
+  this->pool_size = config.get("mysql.pool-size", 32);
 }
-std::string palm::orm::Schema::select() const {
-  return R"SQL(SELECT version, name, up, down, run_on, created_at FROM schema_migrations ORDER BY version ASC)SQL";
+
+// https://docs.pocoproject.org/current/Poco.Data.MySQL.SessionImpl.html
+std::shared_ptr<Poco::Data::SessionPool> palm::MySQL::open() const {
+  Poco::Data::MySQL::Connector::registerConnector();
+  BOOST_LOG_TRIVIAL(info) << "open mysql " << this->user << '@' << this->host
+                          << ':' << this->port << '/' << this->database;
+  std::stringstream url;
+  {
+    url << "host=" << this->host;
+    url << "; port=" << this->port;
+    url << "; db=" << this->database;
+    url << "; user=" << this->user;
+    if (this->password) {
+      url << "; password=" << this->password.value();
+    }
+    url << "; character-set=utf8";
+    url << "; auto-reconnect=true";
+  }
+
+  std::shared_ptr<Poco::Data::SessionPool> pool =
+      std::make_shared<Poco::Data::SessionPool>("MySQL", url.str());
+  return pool;
 }
-std::string palm::orm::Schema::insert() const {
-  return R"SQL(INSERT INTO schema_migrations(version, name, up, down) VALUES($1, $2, $3, $4))SQL";
+
+Poco::Data::Session palm::sqlite3::open(const std::filesystem::path& file,
+                                        const std::chrono::seconds& timeout,
+                                        const bool wal_mode) {
+  Poco::Data::SQLite::Connector::registerConnector();
+  std::stringstream url;
+  {
+    url << file.string();
+    // url << "db=" << file.string();
+    // url << " timeout=" << timeout.count();
+    // url << " shared_cache=true";
+    // url << " synchronous=off";
+  }
+  BOOST_LOG_TRIVIAL(info) << "open sqlite3 " << file;
+  Poco::Data::Session db("SQLite", url.str());
+  return db;
 }
 
 void palm::orm::Schema::migrate() {
