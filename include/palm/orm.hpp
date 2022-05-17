@@ -2,18 +2,108 @@
 
 #include <string>
 
+#include <chrono>
+#include <filesystem>
+#include <fstream>
 #include <iostream>
+#include <optional>
+#include <ostream>
+#include <string>
+#include <utility>
 #include <vector>
 
+#include <boost/property_tree/ptree.hpp>
+
 #include <Poco/Data/Session.h>
+#include <Poco/Data/SessionPool.h>
 
 namespace palm {
 namespace orm {
-struct Migration {
+boost::property_tree::ptree queries(const std::filesystem::path& root);
+
+class Migration {
+ public:
+  Migration(const std::filesystem::path& root);
+  friend std::ostream& operator<<(std::ostream& out, const Migration& it) {
+    out << it.version << "\t" << it.name;
+    return out;
+  }
+  friend class Schema;
+
+ private:
+  // LANG=C date +%Y%m%d%H%M%S
   int64_t version;
   std::string name;
   std::string up;
   std::string down;
+  Poco::Nullable<Poco::DateTime> run_at;
+  Poco::DateTime created_at;
+};
+
+class Schema {
+ public:
+  Schema(Poco::Data::Session& db, const std::filesystem::path& root)
+      : db(db), root(root) {}
+  void init();
+  void migrate();
+  void rollback();
+  friend std::ostream& operator<<(std::ostream& out, const Schema& it) {
+    out << "\t";
+    // TODO
+    return out;
+  }
+
+ protected:
+  virtual std::string latest() const = 0;
+  virtual std::string down() const = 0;
+  virtual std::string up() const = 0;
+  virtual std::string select() const = 0;
+  virtual std::string insert() const = 0;
+
+ private:
+  Poco::Data::Session db;
+  std::filesystem::path root;
 };
 }  // namespace orm
+
+namespace sqlite3 {
+/**
+.show Displays current settings for various parameters
+.databases Provides database names and files
+.quit Quit sqlite3 program
+.tables Show current tables
+.schema Display schema of table
+.header Display or hide the output table header
+.mode Select mode for the output table
+.dump Dump database in SQL text format
+pragma compile_options;
+SELECT name FROM sqlite_master WHERE type='table' AND name='TABLE_NAME'
+*/
+}
+namespace mysql {
+/**
+use DB-NAME
+show tables;
+desc TABLE-NAME;
+SELECT table_name FROM information_schema.tables WHERE table_schema =
+'databasename' AND table_name = 'testtable'; SHOW TABLES LIKE 'tablename';
+*/
+}
+namespace postgresql {
+/**
+https://www.postgresql.org/docs/current/runtime-config-logging.html
+/var/lib/postgres/data/postgresql.conf: log_statement = 'all'
+sudo journalctl -u postgresql -f
+*/
+
+class Schema : public palm::orm::Schema {
+ protected:
+  std::string latest() const override;
+  std::string down() const override;
+  std::string up() const override;
+  std::string select() const override;
+  std::string insert() const override;
+};
+}  // namespace postgresql
+
 }  // namespace palm

@@ -1,4 +1,4 @@
-#define BOOST_TEST_MODULE orm
+#define BOOST_TEST_MODULE crypto
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_CASE(jwt) { BOOST_TEST(4 == 2 * 2); }

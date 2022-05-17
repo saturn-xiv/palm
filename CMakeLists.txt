@@ -28,7 +28,10 @@ find_package(Boost REQUIRED COMPONENTS
     chrono date_time timer random system filesystem
     unit_test_framework
 )
-find_package(Poco REQUIRED COMPONENTS Crypto)
+find_package(Poco REQUIRED COMPONENTS 
+    Crypto JWT XML JSON Zip
+    Data DataSQLite DataMySQL DataPostgreSQL MongoDB Redis
+)
 
 add_subdirectory(src)
 add_subdirectory(apps)
