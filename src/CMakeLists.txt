@@ -8,6 +8,7 @@ target_include_directories(palm PUBLIC
 )
 
 target_link_libraries(palm PUBLIC dl crypt m
+  rabbitmq
   Boost::locale Boost::log Boost::log_setup
   Boost::chrono Boost::date_time Boost::timer Boost::random Boost::system Boost::filesystem
   Poco::Crypto Poco::JWT Poco::XML Poco::JSON Poco::Zip
