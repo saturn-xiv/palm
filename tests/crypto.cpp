@@ -102,4 +102,29 @@ BOOST_AUTO_TEST_CASE(ssha512) {
   }
 }
 
-BOOST_AUTO_TEST_CASE(aes) { BOOST_TEST(4 == 2 * 2); }
+BOOST_AUTO_TEST_CASE(aes) {
+  boost::property_tree::ptree tree;
+  boost::property_tree::read_ini("config.ini", tree);
+  palm::Aes aes(tree.get<std::string>("secret-key"));
+  const std::string hi = "hello, palm!";
+  for (auto i : boost::irange(1, 10)) {
+    const std::string plain = palm::random::alphanumeric(6) + hi;
+
+    const auto code = aes.encrypt(plain, 16);
+
+    BOOST_CHECK_NE(plain, code.first);
+    std::cout << plain << std::endl;
+    BOOST_CHECK_NE(plain, code.second);
+    std::cout << "aes(" << plain << ", " << code.second << ") = " << code.first
+              << std::endl;
+    {
+      const auto tmp = aes.encrypt(plain, 16);
+      BOOST_CHECK_NE(tmp.first, code.first);
+      BOOST_CHECK_NE(tmp.second, code.second);
+    }
+    {
+      const auto tmp = aes.decrypt(code.first, code.second);
+      BOOST_CHECK_EQUAL(tmp, plain);
+    }
+  }
+}

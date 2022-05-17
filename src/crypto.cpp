@@ -12,6 +12,9 @@
 
 #include <Poco/Base64Decoder.h>
 #include <Poco/Base64Encoder.h>
+#include <Poco/Crypto/Cipher.h>
+#include <Poco/Crypto/CipherFactory.h>
+#include <Poco/Crypto/CipherKey.h>
 #include <Poco/HMACEngine.h>
 #include <Poco/JWT/Signer.h>
 #include <Poco/JWT/Token.h>
@@ -182,4 +185,25 @@ std::string palm::ssha512::sign(const std::string& plain,
   }
 
   return ss.str();
+}
+
+std::pair<std::string, std::string> palm::Aes::encrypt(
+    const std::string& plain, const size_t salt_len) const {
+  const auto salt = palm::random::alphanumeric(32);
+  Poco::Crypto::CipherFactory& factory =
+      Poco::Crypto::CipherFactory::defaultFactory();
+  Poco::Crypto::Cipher::Ptr cipher = factory.createCipher(
+      Poco::Crypto::CipherKey(CIPHER_KEY_NAME, this->key, salt));
+  const std::string code =
+      cipher->encryptString(plain, Poco::Crypto::Cipher::ENC_BASE64);
+  return std::make_pair(code, salt);
+}
+
+std::string palm::Aes::decrypt(const std::string& code,
+                               const std::string& salt) const {
+  Poco::Crypto::CipherFactory& factory =
+      Poco::Crypto::CipherFactory::defaultFactory();
+  Poco::Crypto::Cipher::Ptr cipher = factory.createCipher(
+      Poco::Crypto::CipherKey(CIPHER_KEY_NAME, this->key, salt));
+  return cipher->decryptString(code, Poco::Crypto::Cipher::ENC_BASE64);
 }

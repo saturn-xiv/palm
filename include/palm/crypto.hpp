@@ -42,11 +42,23 @@ class Jwt {
   std::string key;
 };
 
+class Aes {
+ public:
+  Aes(const std::string& key) : key(key) {}
+  std::pair<std::string, std::string> encrypt(const std::string& plain,
+                                              const size_t salt_len = 32) const;
+  std::string decrypt(const std::string& code, const std::string& salt) const;
+
+ private:
+  std::string key;
+  inline const static std::string CIPHER_KEY_NAME = "aes-256-cbc";
+};
+
 class HMac {
  public:
   HMac(const std::string& key) : key(key) {}
   std::vector<uint8_t> sign(const std::vector<uint8_t>& plain,
-                            const size_t salt_len) const;
+                            const size_t salt_len = 16) const;
   bool verify(const std::vector<uint8_t>& code,
               const std::vector<uint8_t>& plain) const;
 
