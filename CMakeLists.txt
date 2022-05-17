@@ -23,6 +23,7 @@ string(TIMESTAMP BUILD_TIME UTC)
 configure_file(include/palm/version.h.in ${PROJECT_SOURCE_DIR}/include/palm/version.hpp)
 # --------------------------------------------------------
 
+find_package(PostgreSQL REQUIRED)
 find_package(Boost REQUIRED COMPONENTS
     locale log log_setup
     chrono date_time timer random system filesystem

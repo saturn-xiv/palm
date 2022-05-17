@@ -9,5 +9,5 @@ set(CMAKE_C_COMPILER_TARGET ${target})
 set(CMAKE_CXX_COMPILER clang++-${clang_version})
 set(CMAKE_CXX_COMPILER_TARGET ${target})
 set(CMAKE_CXX_FLAGS "-stdlib=libstdc++")
-set(CMAKE_EXE_LINKER_FLAGS "--ld-path=ld.lld-${clang_version}")
+set(CMAKE_EXE_LINKER_FLAGS "--ld-path=mold")
 

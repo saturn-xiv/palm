@@ -10,7 +10,8 @@ target_include_directories(palm PUBLIC
 target_link_libraries(palm PUBLIC dl crypt m
   Boost::locale Boost::log Boost::log_setup
   Boost::chrono Boost::date_time Boost::timer Boost::random Boost::system Boost::filesystem
-  Poco::Crypto
+  Poco::Crypto Poco::JWT Poco::XML Poco::JSON Poco::Zip
+  Poco::Data Poco::DataSQLite Poco::DataMySQL Poco::DataPostgreSQL Poco::MongoDB Poco::Redis
 )
 
 source_group(

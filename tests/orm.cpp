@@ -8,7 +8,7 @@
 BOOST_AUTO_TEST_CASE(queries) {
   const auto tree = palm::orm::queries("db");
 
-  for (const auto it : {"locales.count"}) {
+  for (const auto it : {"schema-migrations.latest", "locales.count"}) {
     const auto sql = tree.get<std::string>(it);
     std::cout << it << ": " << sql << std::endl;
   }

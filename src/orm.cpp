@@ -1,6 +1,7 @@
 #include "palm/orm.hpp"
 
 #include <boost/date_time/gregorian/formatters.hpp>
+#include <boost/foreach.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 
@@ -40,7 +41,9 @@ boost::property_tree::ptree palm::orm::queries(
   for (const auto& it : std::filesystem::directory_iterator(root / "queries")) {
     const std::string file = it.path();
     BOOST_LOG_TRIVIAL(debug) << "load query file from " << file;
-    boost::property_tree::read_ini(file, tree);
+    boost::property_tree::ptree pt;
+    boost::property_tree::read_ini(file, pt);
+    BOOST_FOREACH (auto& t, pt) { tree.put_child(t.first, t.second); }
   }
   return tree;
 }
