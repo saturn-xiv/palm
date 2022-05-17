@@ -1,2 +1,9 @@
-# palm
-A total free education &amp;amp; translation &amp;amp; ops solution.
+# PALM
+
+A total free education & translation & ops solution.
+
+## Usage
+
+```bash
+sudo apt install libpoco-dev libboost-all-dev
+```

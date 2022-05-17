@@ -28,7 +28,7 @@ find_package(Boost REQUIRED COMPONENTS
     chrono date_time timer random system filesystem
     unit_test_framework
 )
-find_package(Poco REQUIRED Crypto)
+find_package(Poco REQUIRED COMPONENTS Crypto)
 
 add_subdirectory(src)
 add_subdirectory(apps)
