@@ -8,6 +8,11 @@
 
 #include <boost/property_tree/ptree.hpp>
 
+#include <Poco/Crypto/DigestEngine.h>
+#include <openssl/hmac.h>
+#include <openssl/md5.h>
+#include <openssl/sha.h>
+
 namespace palm {
 
 std::string uuid();
@@ -36,4 +41,40 @@ class Jwt {
  private:
   std::string key;
 };
+
+class HMac {
+ public:
+  HMac(const std::string& key) : key(key) {}
+  std::vector<uint8_t> sign(const std::vector<uint8_t>& plain,
+                            const size_t salt_len) const;
+  bool verify(const std::vector<uint8_t>& code,
+              const std::vector<uint8_t>& plain) const;
+
+ private:
+  std::vector<uint8_t> sign(const std::vector<uint8_t>& plain,
+                            const std::vector<uint8_t>& salt) const;
+  std::string key;
+};
+
+class SHA512Engine : public Poco::Crypto::DigestEngine {
+ public:
+  enum { BLOCK_SIZE = 64, DIGEST_SIZE = SHA512_DIGEST_LENGTH };
+
+  SHA512Engine() : Poco::Crypto::DigestEngine("SHA512") {}
+};
+
+namespace ssha512 {
+// https://wiki.dovecot.org/HowTo/ConvertPasswordSchemes
+// https://mad9scientist.com/dovecot-password-creation-php/
+
+const static std::string HEADER = "{SSHA512}";
+
+std::string sign(const std::string& plain, const size_t salt_len);
+
+bool verify(const std::string& code, const std::string& plain);
+
+std::string sign(const std::string& plain, const std::string& salt);
+
+}  // namespace ssha512
+
 }  // namespace palm

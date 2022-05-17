@@ -5,12 +5,17 @@
 #include <random>
 
 #include <boost/beast/core/detail/base64.hpp>
+#include <boost/log/trivial.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
+#include <Poco/Base64Decoder.h>
+#include <Poco/Base64Encoder.h>
+#include <Poco/HMACEngine.h>
 #include <Poco/JWT/Signer.h>
 #include <Poco/JWT/Token.h>
+#include <Poco/SHA2Engine.h>
 
 std::string palm::uuid() {
   thread_local static auto gen = boost::uuids::random_generator();
@@ -96,4 +101,85 @@ palm::Jwt::verify(const std::string& token) const {
     payload[k] = v;
   }
   return std::make_pair(subject, payload);
+}
+
+std::vector<uint8_t> palm::HMac::sign(const std::vector<uint8_t>& plain,
+                                      const size_t salt_len) const {
+  const auto salt = palm::random::bytes(salt_len);
+  return this->sign(plain, salt);
+}
+bool palm::HMac::verify(const std::vector<uint8_t>& code,
+                        const std::vector<uint8_t>& plain) const {
+  if (code.size() <= SHA512_DIGEST_LENGTH) {
+    return false;
+  }
+  const std::vector<uint8_t> salt = {code.begin() + SHA512_DIGEST_LENGTH,
+                                     code.end()};
+
+  const auto buf = this->sign(plain, salt);
+  return buf == code;
+}
+
+std::vector<uint8_t> palm::HMac::sign(const std::vector<uint8_t>& plain,
+                                      const std::vector<uint8_t>& salt) const {
+  Poco::HMACEngine<palm::SHA512Engine> eng(this->key);
+  eng.update(&*plain.begin(), plain.size());
+  eng.update(&*salt.begin(), salt.size());
+  const auto hash = eng.digest();
+  std::vector<uint8_t> buf;
+  {
+    buf.insert(buf.end(), hash.begin(), hash.end());
+    buf.insert(buf.end(), salt.begin(), salt.end());
+  }
+  return buf;
+}
+
+std::string palm::ssha512::sign(const std::string& plain,
+                                const size_t salt_len) {
+  const auto salt = palm::random::alphanumeric(salt_len);
+  return palm::ssha512::sign(plain, salt);
+}
+bool palm::ssha512::verify(const std::string& code, const std::string& plain) {
+  if (code.size() <= HEADER.size()) {
+    return false;
+  }
+
+  std::ostringstream os;
+  {
+    const std::string body = code.substr(HEADER.size());
+    std::istringstream is(body);
+    Poco::Base64Decoder decoder(is);
+    std::copy(std::istreambuf_iterator<char>(decoder),
+              std::istreambuf_iterator<char>(),
+              std::ostreambuf_iterator<char>(os));
+  }
+
+  const std::string buf = os.str();
+  if (buf.size() <= SHA512_DIGEST_LENGTH) {
+    return false;
+  }
+  const std::string salt = buf.substr(SHA512_DIGEST_LENGTH);
+  return palm::ssha512::sign(plain, salt) == code;
+}
+std::string palm::ssha512::sign(const std::string& plain,
+                                const std::string& salt) {
+  Poco::SHA2Engine eng(Poco::SHA2Engine::ALGORITHM::SHA_512);
+  eng.update(plain);
+  eng.update(salt);
+  const auto hash = eng.digest();
+  std::vector<uint8_t> buf;
+  {
+    buf.insert(buf.end(), hash.begin(), hash.end());
+    buf.insert(buf.end(), salt.begin(), salt.end());
+  }
+  std::ostringstream ss;
+  ss << HEADER;
+
+  {
+    Poco::Base64Encoder encoder(ss);
+    encoder.write(reinterpret_cast<const char*>(&*buf.begin()), buf.size());
+    encoder.close();
+  }
+
+  return ss.str();
 }

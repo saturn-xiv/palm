@@ -61,8 +61,45 @@ BOOST_AUTO_TEST_CASE(jwt) {
   }
 }
 
-BOOST_AUTO_TEST_CASE(ssha512) { BOOST_TEST(4 == 2 * 2); }
+BOOST_AUTO_TEST_CASE(hmac) {
+  boost::property_tree::ptree tree;
+  boost::property_tree::read_ini("config.ini", tree);
+  palm::HMac hmac(tree.get<std::string>("secret-key"));
+
+  const std::string hi = "hello, palm!";
+  const std::vector<uint8_t> plain(hi.begin(), hi.end());
+  for (auto i : boost::irange(1, 10)) {
+    const auto code = hmac.sign(plain, 8);
+    std::cout << "hmac(" << i << "): " << palm::base64::encode(plain) << " => "
+              << palm::base64::encode(code) << std::endl;
+    BOOST_TEST(hmac.verify(code, plain));
+    {
+      const auto tmp = hmac.sign(plain, 8);
+      BOOST_TEST(hmac.verify(tmp, plain));
+      BOOST_TEST(!hmac.verify(tmp, code));
+      BOOST_TEST(tmp != plain);
+      BOOST_TEST(tmp != code);
+    }
+  }
+}
+
+BOOST_AUTO_TEST_CASE(ssha512) {
+  for (auto i : boost::irange(1, 10)) {
+    const std::string plain = palm::random::alphanumeric(12);
+    const auto code = palm::ssha512::sign(plain, 8);
+
+    std::cout << "doveadm pw -s SSHA512 -p '" << plain << "'" << std::endl;
+    std::cout << "doveadm pw -p '" << plain << "' -t '" << code << "'"
+              << std::endl;
+
+    BOOST_TEST(palm::ssha512::verify(code, plain));
+    {
+      const auto tmp = palm::ssha512::sign(plain, 8);
+      BOOST_CHECK_NE(code, tmp);
+      BOOST_TEST(palm::ssha512::verify(tmp, plain));
+      BOOST_TEST(!palm::ssha512::verify(tmp, code));
+    }
+  }
+}
 
 BOOST_AUTO_TEST_CASE(aes) { BOOST_TEST(4 == 2 * 2); }
-
-BOOST_AUTO_TEST_CASE(hmac) { BOOST_TEST(4 == 2 * 2); }
