@@ -2,10 +2,14 @@
 #include <boost/test/unit_test.hpp>
 
 #include "palm/cache.hpp"
+#include "palm/crypto.hpp"
 
 #include <iostream>
 
 #include <boost/property_tree/ini_parser.hpp>
+
+#include <Poco/Redis/Array.h>
+#include <Poco/Redis/Command.h>
 
 BOOST_AUTO_TEST_CASE(redis) {
   boost::property_tree::ptree tree;
@@ -13,7 +17,7 @@ BOOST_AUTO_TEST_CASE(redis) {
   palm::Redis redis(tree);
   auto pool = redis.open();
 
-  const std::string key = "hello";
+  const std::string key = palm::random::alphanumeric(8) + ".hello";
   const std::string val = "Hi, Palm!";
   {
     Poco::Redis::PooledConnection db(*pool);
@@ -31,7 +35,7 @@ BOOST_AUTO_TEST_CASE(redis) {
   }
   {
     Poco::Redis::PooledConnection db(*pool);
-    palm::Cache ch(db, "demo");
+    palm::Cache ch(db, redis.ns());
     ch.set(key, val);
     {
       const auto tmp = ch.get(key);

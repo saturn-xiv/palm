@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <optional>
 #include <ostream>
 #include <string>
@@ -13,9 +14,7 @@
 #include <boost/property_tree/ptree.hpp>
 
 #include <Poco/ObjectPool.h>
-#include <Poco/Redis/Array.h>
 #include <Poco/Redis/Client.h>
-#include <Poco/Redis/Command.h>
 #include <Poco/Redis/PoolableConnectionFactory.h>
 
 namespace palm {
@@ -25,6 +24,8 @@ class Redis {
   std::shared_ptr<
       Poco::ObjectPool<Poco::Redis::Client, Poco::Redis::Client::Ptr>>
   open() const;
+
+  std::string ns() const { return this->prefix; }
 
  private:
   std::string host;
@@ -41,6 +42,8 @@ class Cache {
            const std::chrono::seconds& ttl = std::chrono::days(1));
   Poco::Nullable<std::string> get(const std::string& key);
   std::string status();
+  void clear();
+  std::map<std::string, int64_t> keys();
 
  private:
   inline std::string key(const std::string& s) const {

@@ -25,7 +25,7 @@ configure_file(include/palm/version.h.in ${PROJECT_SOURCE_DIR}/include/palm/vers
 
 find_package(PostgreSQL REQUIRED)
 find_package(Boost REQUIRED COMPONENTS
-    locale log log_setup
+    locale log log_setup program_options
     chrono date_time timer random system filesystem
     unit_test_framework
 )
