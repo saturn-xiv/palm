@@ -28,7 +28,7 @@ RUN apt update
 RUN apt -y upgrade
 
 RUN apt -y install zsh git locales locales-all rsync openssh-client sshpass \
-    vim tzdata pwgen curl zip unzip tree tmux dialog \
+    vim tzdata pwgen zip unzip tree tmux dialog \
     net-tools dnsutils net-tools iputils-arping iputils-ping telnet \
     imagemagick ffmpeg fonts-dejavu \
     clang-${CLANG_VERSION} clang-format-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
@@ -88,6 +88,10 @@ RUN sh -c ". $HOME/.profile \
     && nvm use lts/fermium \
     && npm i yarn -g"
 RUN echo 'export PATH=$HOME/.yarn/bin:$PATH' >> $HOME/.profile
+
+# https://objects.githubusercontent.com/github-production-release-asset-2e65be/75821432/7d842c7a-4c2a-4f40-938f-25c2f30968ab?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20220519%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220519T213745Z&X-Amz-Expires=300&X-Amz-Signature=8654daae01d284ccf50c1ca5aa084fe1161d61277e2c7dd28961822fd2b233a3&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=75821432&response-content-disposition=attachment%3B%20filename%3Dclang%2Bllvm-14.0.3-powerpc64le-linux-ubuntu-18.04.tar.xz&response-content-type=application%2Foctet-stream
+# https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
+# https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf.tar.xz
 
 RUN curl -s "https://get.sdkman.io" | zsh
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
