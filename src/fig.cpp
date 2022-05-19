@@ -64,27 +64,36 @@ palm::fig::Application::Application(int argc, char** argv) {
   boost::property_tree::read_ini(config_file, config);
 
   BOOST_LOG_TRIVIAL(debug) << "connect postgresql server";
-  // TODO
+  const palm::PostgreSQL pgsql_c(config);
+  auto pgsql = pgsql_c.open();
+  std::string pgsql_schema_dir =
+      config.get<std::string>("postgresql.schema-dir");
+  const auto queries = palm::orm::queries(pgsql_schema_dir);
   BOOST_LOG_TRIVIAL(debug) << "connect redis server";
   const palm::Redis redis_c(config);
   auto redis = redis_c.open();
-  // TODO
   BOOST_LOG_TRIVIAL(debug) << "connect rabbitmq server";
   // TODO
   BOOST_LOG_TRIVIAL(debug) << "connect elasticsearch server";
   // TODO
-
   {
+    BOOST_LOG_TRIVIAL(debug) << "init postgresql migrations";
+    Poco::Data::Session db(pgsql->get());
+    palm::orm::Schema schema(db, queries);
+
     if (vm.count("db-migrate")) {
-      // TODO
+      schema.load(pgsql_schema_dir);
+      schema.migrate();
       return;
     }
     if (vm.count("db-rollback")) {
-      //  TODO
+      schema.load(pgsql_schema_dir);
+      schema.rollback();
       return;
     }
     if (vm.count("db-list")) {
-      // TODO
+      schema.load(pgsql_schema_dir);
+      std::cout << schema << std::endl;
       return;
     }
   }

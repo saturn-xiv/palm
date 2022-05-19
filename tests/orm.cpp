@@ -8,10 +8,13 @@
 #include <boost/property_tree/ini_parser.hpp>
 
 BOOST_AUTO_TEST_CASE(queries) {
-  const auto tree = palm::orm::queries("db");
+  boost::property_tree::ptree tree;
+  boost::property_tree::read_ini("config.ini", tree);
+  const auto q =
+      palm::orm::queries(tree.get<std::string>("postgresql.schema-dir"));
 
   for (const auto it : {"schema-migrations.latest", "locales.count"}) {
-    const auto sql = tree.get<std::string>(it);
+    const auto sql = q.get<std::string>(it);
     std::cout << it << ": " << sql << std::endl;
   }
 }

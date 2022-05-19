@@ -8,7 +8,6 @@
 #include <Poco/Data/MySQL/Connector.h>
 #include <Poco/Data/PostgreSQL/Connector.h>
 #include <Poco/Data/SQLite/Connector.h>
-#include <Poco/Data/Transaction.h>
 
 std::shared_ptr<Poco::Data::SessionPool> palm::PostgreSQL::open() const {
   Poco::Data::PostgreSQL::Connector::registerConnector();
@@ -112,13 +111,67 @@ Poco::Data::Session palm::sqlite3::open(const std::filesystem::path& file,
 }
 
 void palm::orm::Schema::migrate() {
-  Poco::Data::Transaction db(this->db);
   // TODO
-  db.commit();
 }
 
 void palm::orm::Schema::rollback() {
   // TODO
+}
+
+// FIXME: cannot insert multiple commands into a prepared statement
+void palm::orm::Schema::load(const std::filesystem::path& root) {
+  const auto top = root / "migrations";
+  BOOST_LOG_TRIVIAL(debug) << "load migrations from " << top;
+  this->db << "select version()" << Poco::Data::Keywords::now;
+  {
+    std::ifstream fs;
+    std::ios_base::iostate mask = fs.exceptions() | std::ios::failbit;
+    fs.exceptions(mask);
+    fs.open(top / "initial-setup.sql");
+    std::string sql((std::istreambuf_iterator<char>(fs)),
+                    std::istreambuf_iterator<char>());
+    this->db << sql, Poco::Data::Keywords::now;
+  }
+
+  const auto sql_by_version =
+      this->queries.get<std::string>("schema-migrations.by-version");
+  const auto sql_create =
+      this->queries.get<std::string>("schema-migrations.create");
+
+  for (const auto& it : std::filesystem::directory_iterator(top)) {
+    const auto node = it.path();
+    if (!std::filesystem::is_directory(node)) {
+      continue;
+    }
+    palm::orm::Migration mig(node);
+
+    {
+      Poco::Nullable<std::string> name;
+      Poco::Nullable<std::string> up;
+      Poco::Nullable<std::string> down;
+
+      {
+        Poco::Data::Statement st(db);
+        st << sql_by_version, Poco::Data::Keywords::use(mig.version),
+            Poco::Data::Keywords::into(up), Poco::Data::Keywords::into(down),
+            Poco::Data::Keywords::now;
+        st.execute();
+      }
+      if (up.isNull() && down.isNull()) {
+        Poco::Data::Statement st(db);
+        st << sql_create, Poco::Data::Keywords::use(mig.version),
+            Poco::Data::Keywords::use(mig.name),
+            Poco::Data::Keywords::use(mig.up),
+            Poco::Data::Keywords::use(mig.down), Poco::Data::Keywords::now;
+        st.execute();
+        continue;
+      }
+      if (name.value() != mig.name || up.value() != mig.up ||
+          down.value() != mig.down) {
+        throw std::invalid_argument("migration not match in db");
+      }
+    }
+  }
 }
 
 boost::property_tree::ptree palm::orm::queries(
@@ -132,56 +185,6 @@ boost::property_tree::ptree palm::orm::queries(
     BOOST_FOREACH (auto& t, pt) { tree.put_child(t.first, t.second); }
   }
   return tree;
-}
-
-void palm::orm::Schema::init() {
-  const auto top = this->root / "migrations";
-
-  {
-    std::ifstream fs;
-    std::ios_base::iostate mask = fs.exceptions() | std::ios::failbit;
-    fs.exceptions(mask);
-    fs.open(top / "initial-setup.sql");
-    std::string sql((std::istreambuf_iterator<char>(fs)),
-                    std::istreambuf_iterator<char>());
-    this->db << sql;
-  }
-
-  const auto sql_s = this->select();
-  const auto sql_i = this->insert();
-  for (const auto& it : std::filesystem::directory_iterator(top)) {
-    const auto node = it.path();
-    if (!std::filesystem::is_directory(node)) {
-      continue;
-    }
-    palm::orm::Migration mig(node);
-
-    {
-      Poco::Nullable<std::string> name;
-      Poco::Nullable<std::string> up;
-      Poco::Nullable<std::string> down;
-      {
-        Poco::Data::Statement st(db);
-        st << sql_s, Poco::Data::Keywords::use(mig.version),
-            Poco::Data::Keywords::into(up), Poco::Data::Keywords::into(down),
-            Poco::Data::Keywords::now;
-        st.execute();
-      }
-      if (up.isNull() && down.isNull()) {
-        Poco::Data::Statement st(db);
-        st << sql_i, Poco::Data::Keywords::use(mig.version),
-            Poco::Data::Keywords::use(mig.name),
-            Poco::Data::Keywords::use(mig.up),
-            Poco::Data::Keywords::use(mig.down), Poco::Data::Keywords::now;
-        st.execute();
-        continue;
-      }
-      if (name.value() != mig.name || up.value() != mig.up ||
-          down.value() != mig.down) {
-        throw std::invalid_argument("migration not match in db");
-      }
-    }
-  }
 }
 
 palm::orm::Migration::Migration(const std::filesystem::path& root) {

@@ -40,9 +40,9 @@ class Migration {
 
 class Schema {
  public:
-  Schema(Poco::Data::Session& db, const std::filesystem::path& root)
-      : db(db), root(root) {}
-  void init();
+  Schema(Poco::Data::Session& db, const boost::property_tree::ptree& queries)
+      : db(db), queries(queries) {}
+  void load(const std::filesystem::path& root);
   void migrate();
   void rollback();
   friend std::ostream& operator<<(std::ostream& out, const Schema& it) {
@@ -51,16 +51,10 @@ class Schema {
     return out;
   }
 
- protected:
-  virtual std::string latest() const = 0;
-  virtual std::string down() const = 0;
-  virtual std::string up() const = 0;
-  virtual std::string select() const = 0;
-  virtual std::string insert() const = 0;
-
  private:
   Poco::Data::Session db;
-  std::filesystem::path root;
+
+  const boost::property_tree::ptree queries;
 };
 }  // namespace orm
 
