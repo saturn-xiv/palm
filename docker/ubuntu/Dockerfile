@@ -10,9 +10,11 @@ RUN apt -y install zsh git locales locales-all rsync openssh-client sshpass \
     vim tzdata pwgen zip unzip tree tmux dialog \
     net-tools dnsutils net-tools iputils-arping iputils-ping telnet \
     imagemagick ffmpeg fonts-dejavu \
-    build-essential cmake pkg-config libtool automake autoconf binutils cpio mold \
+    build-essential cmake pkg-config libtool automake autoconf binutils cpio mold nasm \
     debhelper bison flex ninja-build \
-    python3 python3-distutils python3-dev python3-pip
+    clang clang-format lldb lld mariadb postgresql \
+    crossbuild-essential-armhf crossbuild-essential-arm64 \
+    python3 python3-distutils python3-dev python3-pip golang-go
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -27,8 +29,6 @@ RUN mkdir -p $HOME/downloads $HOME/build $HOME/local
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
 RUN cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
 RUN echo 'source $HOME/.profile' >> $HOME/.zshrc
-RUN echo 'export LANG=en_US.UTF-8' >> $HOME/.profile
-RUN echo 'export LC_ALL=en_US.UTF-8' >> $HOME/.profile
 
 RUN git config --global core.quotepath false
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf
@@ -77,7 +77,11 @@ RUN wget -q -P ${HOME}/downloads/ \
     https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/${GCC_ARM_VERSION}/binrel/gcc-arm-${GCC_ARM_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz
 RUN tar xf ${HOME}/downloads/gcc-arm-${GCC_ARM_VERSION}-x86_64-arm-none-linux-gnueabihf.tar.xz -C ${HOME}/local --no-same-owner
 
+RUN git clone https://github.com/microsoft/vcpkg.git ${HOME}/local/vcpkg
+RUN ${HOME}/local/vcpkg/bootstrap-vcpkg.sh
+
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 
 VOLUME /workspace
 WORKDIR /workspace

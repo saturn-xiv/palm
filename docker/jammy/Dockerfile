@@ -58,8 +58,6 @@ RUN mkdir -p $HOME/downloads $HOME/build $HOME/local
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
 RUN cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
 RUN echo 'source $HOME/.profile' >> $HOME/.zshrc
-RUN echo 'export LANG=en_US.UTF-8' >> $HOME/.profile
-RUN echo 'export LC_ALL=en_US.UTF-8' >> $HOME/.profile
 
 RUN git config --global core.quotepath false
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf
