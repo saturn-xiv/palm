@@ -41,7 +41,7 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 
 # https://github.com/buildroot/buildroot
 # https://buildroot.org/downloads/manual/manual.html#requirement
-ENV BUILDROOT_VERSION "2023.11"
+ENV BUILDROOT_VERSION "2023.11.1"
 RUN git clone -b ${BUILDROOT_VERSION} https://git.buildroot.net/buildroot $HOME/downloads/buildroot
 RUN echo 'export BR2_DL_DIR=$HOME/downloads' >> $HOME/.zshrc
 # make list-defconfigs

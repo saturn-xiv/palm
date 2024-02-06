@@ -36,7 +36,7 @@ RUN git clone -b "RELEASE_5_2_1" https://github.com/phpmyadmin/phpmyadmin.git /v
 RUN cd /var/www/localhost/htdocs/mysql && composer update --no-dev && yarn install --production
 # https://github.com/WordPress/WordPress
 # https://developer.wordpress.org/advanced-administration/before-install/howto-install/
-RUN git clone -b "6.4.2" https://github.com/WordPress/WordPress.git /var/www/localhost/htdocs/blog
+RUN git clone -b "6.4.3" https://github.com/WordPress/WordPress.git /var/www/localhost/htdocs/blog
 # https://github.com/magento/magento2
 # https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/composer.html?lang=en
 RUN git clone -b "2.4.6-p3" https://github.com/magento/magento2.git /var/www/localhost/htdocs/mall
