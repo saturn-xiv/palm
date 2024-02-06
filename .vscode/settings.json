@@ -41,6 +41,9 @@
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
