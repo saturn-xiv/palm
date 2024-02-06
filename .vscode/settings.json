@@ -61,5 +61,6 @@
   },
   "[phoenix-heex]": {
     "editor.defaultFormatter": "JakeBecker.elixir-ls"
-  }
+  },
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
