@@ -105,9 +105,9 @@ RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >>
 RUN zsh -c "source $HOME/.zshrc \
     && nvm install --lts"
 
-ENV JDK_VERSION "21.0.1-open"
+ENV JDK_VERSION "21.0.2-open"
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV GRADLE_VERSION "8.5"
+ENV GRADLE_VERSION "8.6"
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
 RUN zsh -c "source $HOME/.zshrc \
@@ -116,7 +116,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk install gradle ${GRADLE_VERSION}"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.21.5"
+ENV GO_VERSION "1.21.6"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
