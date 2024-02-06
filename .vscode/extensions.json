@@ -2,6 +2,7 @@
   "recommendations": [
     "ms-vscode.cpptools-extension-pack",
     "rust-lang.rust-analyzer",
+    "vscjava.vscode-java-pack",
     "golang.go",
     "ms-python.python",
     "jakebecker.elixir-ls",
