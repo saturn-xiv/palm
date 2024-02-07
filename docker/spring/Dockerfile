@@ -6,7 +6,7 @@ RUN pacman-key --init
 RUN pacman-key --recv-keys 9B7A287D9A2EC608
 RUN pacman -Syu --needed --noconfirm
 RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
-    vim git cmake thrift wget zsh man-db man-pages \
+    vim git cmake thrift capnproto wget zsh man-db man-pages \
     pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio \
     clang llvm lld lldb mold bison flex ninja bazel \
     imagemagick ffmpeg xorg-font-util \
@@ -32,9 +32,16 @@ RUN echo 'deploy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-deploy
 USER deploy
 RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp
 
+# https://pkl-lang.org/main/current/pkl-cli/index.html#linux-executable
+ENV PKL_VERSION="0.25.1"
+RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/download/$PKL_VERSION/pkl-linux-amd64 \
+    && sudo mv $HOME/downloads/pkl /usr/local/bin/pkl \
+    && chmod +x /usr/local/bin/pkl \
+    && sudo chown root:root /usr/local/bin/pkl
+
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION "1.28.0"
+ENV ENVOY_VERSION "1.29.0"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo mv $HOME/downloads/envoy /usr/local/bin/envoy \
     && sudo chmod +x /usr/local/bin/envoy \
