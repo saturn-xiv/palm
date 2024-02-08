@@ -131,28 +131,6 @@ export WORKSPACE=$PWD
 #         --grpc_out=grpc_js:$target $PALM_PROTOCOLS/morus.proto
 # }
 
-# function generate_lily() {
-#     echo "generate code for lily"
-#     local target=$WORKSPACE/lily/palm
-#     local -a files=(
-#         "lily_pb2.py"
-#         "lily_pb2_grpc.py"
-#     )
-
-#     for f in "${files[@]}"; do
-#         if [ -f $target/$f ]; then
-#             rm $target/$f
-#         fi
-#     done
-
-#     $PROTOBUF_ROOT/bin/protoc -I $PALM_PROTOCOLS \
-#         -I $PROTOBUF_ROOT/include/google/protobuf \
-#         --python_out=$target --grpc_out=$target \
-#         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_python_plugin \
-#         $PALM_PROTOCOLS/lily.proto
-#     sed -i 's/import lily_/from . import lily_/g' $target/lily_pb2_grpc.py
-# }
-
 # -----------------------------------------------------------------------------
 
 # generate_diesel_postgresql "postgres://www:change-me@127.0.0.1:5432/demo"
@@ -198,9 +176,47 @@ function generate_musa() {
         $WORKSPACE/musa/musa.proto
 
 }
+
+function generate_lily() {
+    echo "generate gRPC for lily"
+    local target=$WORKSPACE/lily/pumpkin
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    mkdir $target
+    touch $target/__init__.py
+
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/lily \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --python_out=$target --grpc_out=$target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_python_plugin \
+        $WORKSPACE/lily/lily.proto
+    sed -i 's/import lily_/from . import lily_/g' $target/lily_pb2_grpc.py
+
+    # echo "generate thrift for lily"
+    # local target=$WORKSPACE/tmp/lily-gen-python
+    # cd $WORKSPACE/tmp
+    # if [ -d $target ]; then
+    #     rm -r $target
+    # fi
+    # mkdir $target
+    # thrift -r -out $target --gen py $WORKSPACE/lily/lily.thrift
+
+    # local gourd_dir=$WORKSPACE/lily/gourd
+    # if [ -d $gourd_dir ]; then
+    #     rm -r $gourd_dir
+    # fi
+    # mv $target/lily/gourd $WORKSPACE/lily/gourd
+}
+
 # -----------------------------------------------------------------------------
 
 generate_musa
+generate_lily
+
+echo "generate lily requirements.txt"
+cd $WORKSPACE/lily
+pip freeze >requirements.txt
 
 # TODO
 # echo 'format rust code'

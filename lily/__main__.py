@@ -2,21 +2,29 @@ import logging
 import argparse
 import sys
 import tomllib
+import multiprocessing
 
 
-from palm import VERSION,   MinioClient, RabbitMqClient, SmtpClient, is_stopped
+from palm import VERSION, TwilioClient, MinioClient, RabbitMqClient, SmtpClient, is_stopped
 from palm.tex import TEX_TO_PDF_JOB, TEX_TO_WORD_JOB, create_tex2pdf_queue_callback
 from palm.excel import EXCEL_GENERATE_JOB, create_excel_generate_queue_callback
-from palm.sms import SEND_SMS_JOB
+from palm.sms import SEND_SMS_JOB, create_sms_send_queue_callback
 from palm.email import SEND_EMAIL_JOB, create_email_send_queue_callback
-from palm.server import Rpc as RpcServer
+from palm.rpc import Rpc as RpcServer
+from palm.controllers import launch_http_server
 
 NAME = 'lily'
 
+_NUMBER_OF_WORKERS = (multiprocessing.cpu_count() * 2) + 1
+
+
+def start_web_server(args):
+    launch_http_server(args.port, args.threads)
+
 
 def start_rpc_server(args):
-    rpc_server = RpcServer(args.port, args.threads)
-    rpc_server.start()
+    server = RpcServer(args.port, args.threads)
+    server.start()
 
 
 def start_worker(args):
@@ -37,6 +45,10 @@ def start_worker(args):
         smtp_client = SmtpClient(config['smtp'])
         callback = create_email_send_queue_callback(smtp_client)
         rabbitmq_client.start_consuming(SEND_EMAIL_JOB, callback)
+    elif args.job == SEND_SMS_JOB:
+        twilio_client = TwilioClient(config['twilio'])
+        callback = create_sms_send_queue_callback(twilio_client)
+        rabbitmq_client.start_consuming(SEND_SMS_JOB, callback)
     else:
         logging.error('unimplemented job handler for %s', args.job)
         sys.exit(1)
@@ -56,12 +68,21 @@ if __name__ == '__main__':
                         help=('print %s version' % NAME))
 
     subparsers = parser.add_subparsers(required=False)
+
+    web_rpc = subparsers.add_parser(
+        "web", help="start a HTTP server")
+    web_rpc.add_argument("-p", "--port", type=int,
+                         default=8080, help="listening port")
+    web_rpc.add_argument("-t", "--threads", type=int,
+                         default=_NUMBER_OF_WORKERS, help="number of workers")
+    web_rpc.set_defaults(func=start_web_server)
+
     cmd_rpc = subparsers.add_parser(
         "rpc", help="start a gRPC server")
     cmd_rpc.add_argument("-p", "--port", type=int,
                          default=9999, help="listening port")
     cmd_rpc.add_argument("-t", "--threads", type=int,
-                         default=1 << 5, help="max threads")
+                         default=_NUMBER_OF_WORKERS, help="number of workers")
     cmd_rpc.set_defaults(func=start_rpc_server)
 
     cmd_worker = subparsers.add_parser(

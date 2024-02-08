@@ -11,9 +11,11 @@ from datetime import timedelta, datetime
 
 
 import pika
+import psycopg
 from minio import Minio
 from minio.versioningconfig import VersioningConfig as MinioVersioningConfig
 from minio.commonconfig import ENABLED as MinioEnabled, Tags as MinioTags
+from twilio.rest import Client as TwilioRestClient
 
 
 VERSION = '2023.2.8'
@@ -53,11 +55,13 @@ class MinioClient:
 
     def bucket_exists(self, bucket, published=False):
         ok = self.connection.bucket_exists(bucket)
-        if not ok:
-            logging.warning("bucket %s isn't existed, try to create it")
-            self.connection.make_bucket(bucket)
-            self.connection.set_bucket_versioning(
-                bucket, MinioVersioningConfig(MinioEnabled))
+        if ok:
+            return
+
+        logging.warning("bucket %s isn't existed, try to create it")
+        self.connection.make_bucket(bucket)
+        self.connection.set_bucket_versioning(
+            bucket, MinioVersioningConfig(MinioEnabled))
 
         if published:
             policy = {
@@ -138,6 +142,24 @@ class SmtpClient:
             con.login(self.from_[0], self.password)
             con.send_message(message, self.from_, to)
 
+# https://www.twilio.com/docs/messaging/quickstart/python
+# https://github.com/twilio/twilio-python
+# https://www.twilio.com/docs/usage/webhooks/messaging-webhooks
+
+
+class TwilioClient:
+    def __init__(self, config):
+        self.account_sid = config['account-sid']
+        self.auth_token = config['auth-token']
+        self.from_ = config['from']
+
+    def send(self, to, body, status_callback=None):
+        logging.info("send sms to %s: %s", to, body)
+        client = TwilioRestClient(self.account_sid, self.auth_token)
+        response = client.messages.create(
+            body=body, to=to, from_=self.from_, status_callback=status_callback)
+        logging.info("%s", response.sid)
+        logging.debug("%s", json.dumps(response))
 
 # -----------------------------------------------------------------------------
 
