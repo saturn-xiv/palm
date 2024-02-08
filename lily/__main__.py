@@ -4,11 +4,11 @@ import sys
 import tomllib
 
 
-from palm import VERSION,   MinioClient, RabbitMqClient, is_stopped
+from palm import VERSION,   MinioClient, RabbitMqClient, SmtpClient, is_stopped
 from palm.tex import TEX_TO_PDF_JOB, TEX_TO_WORD_JOB, create_tex2pdf_queue_callback
 from palm.excel import EXCEL_GENERATE_JOB, create_excel_generate_queue_callback
 from palm.sms import SEND_SMS_JOB
-from palm.email import SEND_EMAIL_JOB
+from palm.email import SEND_EMAIL_JOB, create_email_send_queue_callback
 from palm.server import Rpc as RpcServer
 
 NAME = 'lily'
@@ -33,6 +33,10 @@ def start_worker(args):
         minio_client = MinioClient(config['minio'])
         callback = create_excel_generate_queue_callback(minio_client)
         rabbitmq_client.start_consuming(EXCEL_GENERATE_JOB, callback)
+    elif args.job == SEND_EMAIL_JOB:
+        smtp_client = SmtpClient(config['smtp'])
+        callback = create_email_send_queue_callback(smtp_client)
+        rabbitmq_client.start_consuming(SEND_EMAIL_JOB, callback)
     else:
         logging.error('unimplemented job handler for %s', args.job)
         sys.exit(1)

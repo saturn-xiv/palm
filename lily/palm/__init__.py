@@ -2,10 +2,12 @@ import logging
 import json
 import uuid
 import os.path
+import smtplib
+import pathlib
 
 
-from datetime import timedelta
-from datetime import datetime
+from email.utils import formataddr
+from datetime import timedelta, datetime
 
 
 import pika
@@ -123,6 +125,20 @@ class RabbitMqClient:
                 ch.stop_consuming()
 
 
+class SmtpClient:
+    def __init__(self, config):
+        self.host = config['host']
+        self.port = config['port']
+        self.from_ = formataddr(
+            (config['from']['name'], config['from']['email']))
+        self.password = config['password']
+
+    def send(self, to, message):
+        with smtplib.SMTP_SSL(self.host, self.port) as con:
+            con.login(self.from_[0], self.password)
+            con.send_message(message, self.from_, to)
+
+
 # -----------------------------------------------------------------------------
 
 
@@ -150,3 +166,52 @@ def save_s3_file(s3, file, data, size, content_type):
     if file.has_ttl:
         tags['ttl'] = file.ttl.seconds
     s3.set_object_tags(file.bucket, file.name, tags)
+
+
+# https://www.iana.org/assignments/media-types/media-types.xhtml
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+def detect_mime_type(title):
+    ext = pathlib.Path(title).suffix
+    if ext == ".pdf":
+        return ("application", "pdf")
+    if ext == ".mp4":
+        return ("application", "mp4")
+    if ext == ".doc" or ext == ".dot":
+        return ("application", "vnd.msword")
+    if ext == ".docx":
+        return ("application", "vnd.openxmlformats-officedocument.wordprocessingml.document")
+    if ext == ".doct":
+        return ("application", "vnd.openxmlformats-officedocument.wordprocessingml.template")
+    if ext == ".xls" or ext == ".xlt" or ext == ".xla":
+        return ("application", "vnd.ms-excel")
+    if ext == ".xlsx":
+        return ("application", "vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    if ext == ".xltx":
+        return ("application", "vnd.openxmlformats-officedocument.spreadsheetml.template")
+    if ext == ".ppt" or ext == ".pot" or ext == ".pps" or ext == ".ppa":
+        return ("application", "vnd.ms-powerpoint")
+    if ext == ".pptx":
+        return ("application", "vnd.openxmlformats-officedocument.presentationml.presentation")
+    if ext == ".ppsx":
+        return ("application", "vnd.openxmlformats-officedocument.presentationml.slideshow")
+    if ext == ".potx":
+        return ("application", "vnd.openxmlformats-officedocument.presentationml.template")
+    if ext == ".mdb":
+        return ("application", "vnd.ms-access")
+
+    if ext == ".png":
+        return ("image", "png")
+    if ext == ".jpg" or ext == ".jpeg":
+        return ("image", "jpeg")
+
+    if ext == ".htm" or ext == ".html":
+        return ("text", "html")
+    if ext == ".txt":
+        return ("text", "plain")
+    if ext == ".css":
+        return ("text", "css")
+    if ext == ".js":
+        return ("text", "javascript")
+
+    logging.warn("unknown extation %s", ext)
+    return ("application", "octet-stream")
