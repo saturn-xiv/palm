@@ -3,7 +3,7 @@ import io
 
 import pandas
 
-from . import lily_pb2, lily_pb2_grpc
+from pumpkin import lily_pb2, lily_pb2_grpc
 
 
 class Service(lily_pb2_grpc.ExcelServicer):

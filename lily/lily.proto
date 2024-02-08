@@ -5,11 +5,23 @@ package palm.lily.v1;
 
 import "google/protobuf/duration.proto";
 
+message S3FileRequest {
+  string bucket = 1;
+  string name = 2;
+}
+
+message S3FileResponse {
+  string bucket = 1;
+  string name = 2;
+
+  string content_type = 9;
+}
+
 // ----------------------------------------------------------------------------
 
 service Excel {
-  rpc Parse(S3File) returns (ExcelModel) {}
-  rpc Generate(ExcelModel) returns (S3File) {}
+  rpc Parse(S3FileRequest) returns (ExcelModel) {}
+  rpc Generate(ExcelModel) returns (S3FileResponse) {}
 }
 
 message ExcelModel {
@@ -24,32 +36,12 @@ message ExcelModel {
   }
   repeated Sheet sheets = 1;
 }
-// ----------------------------------------------------------------------------
 
-service S3 {
-  rpc GetFile(S3GetFileRequest) returns (S3GetFileResponse) {}
-}
-
-message S3File {
-  string bucket = 1;
-  string name = 2;
-
-  string content_type = 9;
-}
-
-message S3GetFileRequest {
-  string bucket = 1;
-  string name = 2;
-  google.protobuf.Duration ttl = 9;
-}
-message S3GetFileResponse {
-  string url = 1;
-}
 // ----------------------------------------------------------------------------
 
 service Tex {
-  rpc ToPdf(TexToRequest) returns (S3File) {}
-  rpc ToWord(TexToRequest) returns (S3File) {}
+  rpc ToPdf(TexToRequest) returns (S3FileResponse) {}
+  rpc ToWord(TexToRequest) returns (S3FileResponse) {}
 }
 
 message TexToRequest {
@@ -63,7 +55,7 @@ message TexToRequest {
 // ----------------------------------------------------------------------------
 
 service Epub {
-  rpc Build(EpubBuildRequest) returns (S3File) {}
+  rpc Build(EpubBuildRequest) returns (S3FileResponse) {}
 }
 
 message EpubBuildRequest {}

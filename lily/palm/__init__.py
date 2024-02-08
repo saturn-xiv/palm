@@ -8,45 +8,17 @@ from datetime import timedelta
 from datetime import datetime
 
 
-import psycopg
 import pika
-from redis import Redis
-from redis.cluster import RedisCluster
 from minio import Minio
 from minio.versioningconfig import VersioningConfig as MinioVersioningConfig
 from minio.commonconfig import ENABLED as MinioEnabled, Tags as MinioTags
 
 
-VERSION = '2023.11.10'
+VERSION = '2023.2.6'
 
 
 def is_stopped():
     return os.path.isfile('.stop')
-
-
-class RedisClient:
-    def __init__(self, config):
-        self.namespace = config['namespace']
-        if config["db"]:
-            self.connection = self.connection = Redis(
-                host=config['host'], port=config['port'], db=config['db'])
-            logging.info('connect redis single node tcp://%s:%d/%d with namespace(%s)',
-                         config['host'], config['port'], config['db'], self.namespace)
-        else:
-            self.connection = RedisCluster(
-                host=config['host'], port=config['port'])
-            logging.info('connect redis cluster nodes with namespace(%s) in %s', self.namespace, list(
-                map(lambda x: '%s:%d(%s)' % (x.host, x.port, x.server_type), self.connection.get_nodes())))
-        self.connection.ping()
-
-    def set(self, key, val, ttl=0):
-        self.connection.setex(self._key(key), timedelta(seconds=ttl), val)
-
-    def get(self, key):
-        return self.connection.get(self._key(key))
-
-    def _key(self, k):
-        return '%s://%s' % (self.namespace, k)
 
 
 class MinioClient:

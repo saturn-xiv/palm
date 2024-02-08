@@ -9,22 +9,22 @@ from io import BytesIO
 
 import msgpack
 
-from . import lily_pb2, lily_pb2_grpc
+from pumpkin import lily_pb2, lily_pb2_grpc
 
 from . import MinioClient
 
-TEX2PDF_QUEUE = 'palm.lily.tex-to-pdf'
+TEX2PDF_QUEUE = 'tex-to-pdf'
+TEX2WORD_QUEUE = 'tex-to-word'
 
 
 class Service(lily_pb2_grpc.TexServicer):
-    def __init__(self, s3, cache, queue):
+    def __init__(self, s3,  queue):
         super().__init__()
         self.s3 = s3
-        self.cache = cache
         self.queue = queue
 
     def ToPdf(self, request, context):
-        response = lily_pb2.S3File()
+        response = lily_pb2.S3FileResponse()
         response.content_type = 'application/pdf'
         response.name = MinioClient.random_filename('.pdf')
         response.bucket = self.s3.current_bucket(request.published)
@@ -36,7 +36,7 @@ class Service(lily_pb2_grpc.TexServicer):
 
     def ToWord(self, request, context):
         logging.info("convert tex to word %s" % request.content_type)
-        response = lily_pb2.S3File()
+        response = lily_pb2.S3FileResponse()
         # TODO
         return response
 
@@ -54,7 +54,7 @@ def _handle_tex2pdf_message(message, s3):
         message, use_list=False, raw=False)
     request = lily_pb2.TexToRequest()
     request.ParseFromString(request_b)
-    response = lily_pb2.S3File()
+    response = lily_pb2.S3FileResponse()
     response.ParseFromString(response_b)
     logging.info("convert tex to pdf(%d) ", len(request.files))
     with tempfile.TemporaryDirectory(prefix='tex-') as root:

@@ -4,16 +4,22 @@ import sys
 import tomllib
 
 
-from palm import VERSION,  RedisClient, MinioClient, RabbitMqClient, is_stopped
+from palm import VERSION,   MinioClient, RabbitMqClient, is_stopped
 from palm.tex import TEX2PDF_QUEUE, create_tex2pdf_queue_callback
 from palm.server import Rpc as RpcServer
+from gourd.v1.constants import SEND_EMAIL_QUEUE_NAME, SEND_SMS_QUEUE_NAME, TEX_TO_PDF_QUEUE_NAME, TEX_TO_WORD_QUEUE_NAME
 
 NAME = 'lily'
+
+
+def _queue_name(n):
+    return "palm.lily.%s.v%s" % (n, VERSION)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         prog=NAME,
-        description='A tex to pdf/word converter',
+        description='A Tex/Epub/Excel/ImageMagick handler',
         epilog='https://github.com/saturn-xiv/palm')
     parser.add_argument('-c', '--config',
                         type=argparse.FileType(mode='rb'),
@@ -22,8 +28,11 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--debug',
                         action='store_true',
                         help='run on debug mode')
+    parser.add_argument('-r', '--rpc',
+                        action='store_true',
+                        help='run a rpc server')
     parser.add_argument('-w', '--worker',
-                        help='run queue worker %s' % (TEX2PDF_QUEUE))
+                        help='run a queue worker: [%s, %s, %s, %s]' % (TEX_TO_WORD_QUEUE_NAME, TEX_TO_PDF_QUEUE_NAME, SEND_EMAIL_QUEUE_NAME, SEND_SMS_QUEUE_NAME))
     parser.add_argument('-v', '--version',
                         action='store_true',
                         help=('print %s version' % NAME))
@@ -42,17 +51,16 @@ if __name__ == '__main__':
     logging.info('load configuration from %s', args.config.name)
 
     config = tomllib.load(args.config)
-    redis_client = RedisClient(config['redis'])
     minio_client = MinioClient(config['minio'])
     rabbitmq_client = RabbitMqClient(config['rabbitmq'])
     if args.worker:
-        if args.worker == TEX2PDF_QUEUE:
+        if args.worker == TEX_TO_PDF_QUEUE_NAME:
             callback = create_tex2pdf_queue_callback(minio_client)
-            rabbitmq_client.start_consuming(TEX2PDF_QUEUE, callback)
+            rabbitmq_client.start_consuming(TEX_TO_PDF_QUEUE_NAME, callback)
         else:
             logging.error('unimplemented queue %s', args.worker)
             sys.exit(1)
         sys.exit()
     rpc_server = RpcServer(
-        config['rpc'], minio_client, redis_client, rabbitmq_client)
+        config['rpc'], minio_client, rabbitmq_client)
     rpc_server.start()
