@@ -18,13 +18,8 @@ class ExcelStub(object):
         """
         self.Parse = channel.unary_unary(
                 '/palm.lily.v1.Excel/Parse',
-                request_serializer=lily__pb2.S3FileRequest.SerializeToString,
-                response_deserializer=lily__pb2.ExcelModel.FromString,
-                )
-        self.Generate = channel.unary_unary(
-                '/palm.lily.v1.Excel/Generate',
-                request_serializer=lily__pb2.ExcelModel.SerializeToString,
-                response_deserializer=lily__pb2.S3FileResponse.FromString,
+                request_serializer=lily__pb2.ExcelParseRequest.SerializeToString,
+                response_deserializer=lily__pb2.ExcelDetails.FromString,
                 )
 
 
@@ -39,24 +34,13 @@ class ExcelServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Generate(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_ExcelServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Parse': grpc.unary_unary_rpc_method_handler(
                     servicer.Parse,
-                    request_deserializer=lily__pb2.S3FileRequest.FromString,
-                    response_serializer=lily__pb2.ExcelModel.SerializeToString,
-            ),
-            'Generate': grpc.unary_unary_rpc_method_handler(
-                    servicer.Generate,
-                    request_deserializer=lily__pb2.ExcelModel.FromString,
-                    response_serializer=lily__pb2.S3FileResponse.SerializeToString,
+                    request_deserializer=lily__pb2.ExcelParseRequest.FromString,
+                    response_serializer=lily__pb2.ExcelDetails.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -82,191 +66,7 @@ class Excel(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/palm.lily.v1.Excel/Parse',
-            lily__pb2.S3FileRequest.SerializeToString,
-            lily__pb2.ExcelModel.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def Generate(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/palm.lily.v1.Excel/Generate',
-            lily__pb2.ExcelModel.SerializeToString,
-            lily__pb2.S3FileResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-
-class TexStub(object):
-    """----------------------------------------------------------------------------
-
-    """
-
-    def __init__(self, channel):
-        """Constructor.
-
-        Args:
-            channel: A grpc.Channel.
-        """
-        self.ToPdf = channel.unary_unary(
-                '/palm.lily.v1.Tex/ToPdf',
-                request_serializer=lily__pb2.TexToRequest.SerializeToString,
-                response_deserializer=lily__pb2.S3FileResponse.FromString,
-                )
-        self.ToWord = channel.unary_unary(
-                '/palm.lily.v1.Tex/ToWord',
-                request_serializer=lily__pb2.TexToRequest.SerializeToString,
-                response_deserializer=lily__pb2.S3FileResponse.FromString,
-                )
-
-
-class TexServicer(object):
-    """----------------------------------------------------------------------------
-
-    """
-
-    def ToPdf(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ToWord(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-
-def add_TexServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-            'ToPdf': grpc.unary_unary_rpc_method_handler(
-                    servicer.ToPdf,
-                    request_deserializer=lily__pb2.TexToRequest.FromString,
-                    response_serializer=lily__pb2.S3FileResponse.SerializeToString,
-            ),
-            'ToWord': grpc.unary_unary_rpc_method_handler(
-                    servicer.ToWord,
-                    request_deserializer=lily__pb2.TexToRequest.FromString,
-                    response_serializer=lily__pb2.S3FileResponse.SerializeToString,
-            ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-            'palm.lily.v1.Tex', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
- # This class is part of an EXPERIMENTAL API.
-class Tex(object):
-    """----------------------------------------------------------------------------
-
-    """
-
-    @staticmethod
-    def ToPdf(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/palm.lily.v1.Tex/ToPdf',
-            lily__pb2.TexToRequest.SerializeToString,
-            lily__pb2.S3FileResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ToWord(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/palm.lily.v1.Tex/ToWord',
-            lily__pb2.TexToRequest.SerializeToString,
-            lily__pb2.S3FileResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-
-class EpubStub(object):
-    """----------------------------------------------------------------------------
-
-    """
-
-    def __init__(self, channel):
-        """Constructor.
-
-        Args:
-            channel: A grpc.Channel.
-        """
-        self.Build = channel.unary_unary(
-                '/palm.lily.v1.Epub/Build',
-                request_serializer=lily__pb2.EpubBuildRequest.SerializeToString,
-                response_deserializer=lily__pb2.S3FileResponse.FromString,
-                )
-
-
-class EpubServicer(object):
-    """----------------------------------------------------------------------------
-
-    """
-
-    def Build(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-
-def add_EpubServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-            'Build': grpc.unary_unary_rpc_method_handler(
-                    servicer.Build,
-                    request_deserializer=lily__pb2.EpubBuildRequest.FromString,
-                    response_serializer=lily__pb2.S3FileResponse.SerializeToString,
-            ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-            'palm.lily.v1.Epub', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
- # This class is part of an EXPERIMENTAL API.
-class Epub(object):
-    """----------------------------------------------------------------------------
-
-    """
-
-    @staticmethod
-    def Build(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/palm.lily.v1.Epub/Build',
-            lily__pb2.EpubBuildRequest.SerializeToString,
-            lily__pb2.S3FileResponse.FromString,
+            lily__pb2.ExcelParseRequest.SerializeToString,
+            lily__pb2.ExcelDetails.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

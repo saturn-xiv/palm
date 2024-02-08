@@ -7,38 +7,11 @@ import subprocess
 from io import BytesIO
 
 
-import msgpack
+from pumpkin import lily_pb2
+from . import save_s3_file
 
-from pumpkin import lily_pb2, lily_pb2_grpc
-
-from . import MinioClient
-
-TEX2PDF_QUEUE = 'tex-to-pdf'
-TEX2WORD_QUEUE = 'tex-to-word'
-
-
-class Service(lily_pb2_grpc.TexServicer):
-    def __init__(self, s3,  queue):
-        super().__init__()
-        self.s3 = s3
-        self.queue = queue
-
-    def ToPdf(self, request, context):
-        response = lily_pb2.S3FileResponse()
-        response.content_type = 'application/pdf'
-        response.name = MinioClient.random_filename('.pdf')
-        response.bucket = self.s3.current_bucket(request.published)
-
-        task = msgpack.packb(
-            [request.SerializeToString(), response.SerializeToString()], use_bin_type=True)
-        self.queue.produce(TEX2PDF_QUEUE, response.name, task)
-        return response
-
-    def ToWord(self, request, context):
-        logging.info("convert tex to word %s" % request.content_type)
-        response = lily_pb2.S3FileResponse()
-        # TODO
-        return response
+TEX_TO_PDF_JOB = 'tex-to-pdf'
+TEX_TO_WORD_JOB = 'tex-to-word'
 
 
 def create_tex2pdf_queue_callback(s3):
@@ -50,18 +23,14 @@ def create_tex2pdf_queue_callback(s3):
 
 
 def _handle_tex2pdf_message(message, s3):
-    (request_b, response_b) = msgpack.unpackb(
-        message, use_list=False, raw=False)
-    request = lily_pb2.TexToRequest()
-    request.ParseFromString(request_b)
-    response = lily_pb2.S3FileResponse()
-    response.ParseFromString(response_b)
-    logging.info("convert tex to pdf(%d) ", len(request.files))
+    task = lily_pb2.TexTask()
+    task.ParseFromString(message)
+    logging.info("convert tex to pdf(%d) %s ", len(task.files), task.title)
     with tempfile.TemporaryDirectory(prefix='tex-') as root:
-        for name in request.files:
+        for name in task.files:
             with open(os.path.join(root, name), mode='wb') as fd:
                 logging.debug("generate file %s/%s", root, name)
-                fd.write(request.files[name])
+                fd.write(task.files[name])
         for _ in range(2):
             try:
                 subprocess.run(
@@ -74,12 +43,4 @@ def _handle_tex2pdf_message(message, s3):
         pdf_size = os.path.getsize(pdf_file)
         with open(pdf_file, mode="rb") as fd:
             pdf_data = BytesIO(fd.read())
-            s3.bucket_exists(response.bucket, request.published)
-            s3.put_object(response.bucket, response.name,
-                          pdf_data, pdf_size, response.content_type)
-            tags = {'title': request.title}
-            if request.has_owner:
-                tags['owner'] = request.owner
-            if request.has_ttl:
-                tags['ttl'] = request.ttl.seconds
-            s3.set_object_tags(response.bucket, response.name, tags)
+            save_s3_file(s3, task.file, pdf_data, pdf_size, "application/pdf")

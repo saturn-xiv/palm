@@ -9,23 +9,19 @@ from grpc_health.v1 import health_pb2, health, health_pb2_grpc
 
 from pumpkin import lily_pb2_grpc
 
-from . import excel, tex
+from . import excel
 
 
 class Rpc:
-    def __init__(self, config, s3,  queue):
-        self.addr = '0.0.0.0:%d' % (config['port'])
-        self.max_workers = config['max-workers']
-        self.s3 = s3
-        self.queue = queue
+    def __init__(self, port, threads):
+        self.addr = '0.0.0.0:%d' % (port)
+        self.max_workers = threads
 
     def start(self):
         server = grpc.server(futures.ThreadPoolExecutor(
             max_workers=self.max_workers))
 
         lily_pb2_grpc.add_ExcelServicer_to_server(excel.Service(), server)
-        lily_pb2_grpc.add_TexServicer_to_server(
-            tex.Service(self.s3,  self.queue), server)
 
         Rpc._rpc_setup_health_thread(server)
         server.add_insecure_port(self.addr)

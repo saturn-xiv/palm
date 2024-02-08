@@ -5,26 +5,17 @@ package palm.lily.v1;
 
 import "google/protobuf/duration.proto";
 
-message S3FileRequest {
-  string bucket = 1;
-  string name = 2;
-}
-
-message S3FileResponse {
-  string bucket = 1;
-  string name = 2;
-
-  string content_type = 9;
-}
-
 // ----------------------------------------------------------------------------
 
 service Excel {
-  rpc Parse(S3FileRequest) returns (ExcelModel) {}
-  rpc Generate(ExcelModel) returns (S3FileResponse) {}
+  rpc Parse(ExcelParseRequest) returns (ExcelDetails) {}
 }
 
-message ExcelModel {
+message ExcelParseRequest {
+  bytes payload = 1;
+}
+
+message ExcelDetails {
   message Sheet {
     message Cell {
       uint32 row = 1;
@@ -39,23 +30,23 @@ message ExcelModel {
 
 // ----------------------------------------------------------------------------
 
-service Tex {
-  rpc ToPdf(TexToRequest) returns (S3FileResponse) {}
-  rpc ToWord(TexToRequest) returns (S3FileResponse) {}
+message S3File {
+  string bucket = 1;
+  string name = 2;
+
+  optional google.protobuf.Duration ttl = 11;
+  optional string owner = 12;
+  bool published = 19;
 }
 
-message TexToRequest {
+message TexTask {
   string title = 1;
   map<string, bytes> files = 2;
-  optional google.protobuf.Duration ttl = 7;
-  optional string owner = 8;
-  bool published = 9;
+
+  S3File file = 9;
 }
 
-// ----------------------------------------------------------------------------
-
-service Epub {
-  rpc Build(EpubBuildRequest) returns (S3FileResponse) {}
+message ExcelGenerateTask {
+  ExcelDetails excel = 1;
+  S3File file = 2;
 }
-
-message EpubBuildRequest {}

@@ -14,7 +14,7 @@ from minio.versioningconfig import VersioningConfig as MinioVersioningConfig
 from minio.commonconfig import ENABLED as MinioEnabled, Tags as MinioTags
 
 
-VERSION = '2023.2.6'
+VERSION = '2023.2.8'
 
 
 def is_stopped():
@@ -127,8 +127,6 @@ class RabbitMqClient:
 
 
 # https://www.postgresql.org/docs/current/libpq-connect.html
-
-
 def postgresql_url(config):
     logging.debug('open postgresql://%s@%s:%d/%s',
                   config['user'], config['host'], config['port'], config['name'])
@@ -141,3 +139,14 @@ def postgresql_url(config):
         if row:
             logging.debug("%s %s", row[0], row[1])
     return url
+
+
+def save_s3_file(s3, file, data, size, content_type):
+    s3.bucket_exists(file.bucket, file.published)
+    s3.put_object(file.bucket, file.name, data, size, content_type)
+    tags = {'title': file.title}
+    if file.has_owner:
+        tags['owner'] = file.owner
+    if file.has_ttl:
+        tags['ttl'] = file.ttl.seconds
+    s3.set_object_tags(file.bucket, file.name, tags)
