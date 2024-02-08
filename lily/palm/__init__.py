@@ -37,10 +37,19 @@ class MinioClient:
         logging.debug('found buckets: %s', self.list_buckets())
 
     def put_object(self, bucket, name, data, length, content_type):
-        logging.debug("try to upload(%s, %s, %s) with %d bytes",
-                      bucket, name, content_type, length)
+        logging.info("try to upload(%s, %s, %s) with %d bytes",
+                     bucket, name, content_type, length)
         result = self.connection.put_object(
             bucket, name, data, length, content_type=content_type)
+        logging.info("uploaded %s, etag: %s, version-id: %s",
+                     result.object_name, result.etag, result.version_id)
+
+    def upload_file(self, bucket, filename):
+        name = MinioClient.random_filename(pathlib.Path(filename).suffix)
+        logging.info("try to upload(%s, %s) with %s", bucket, name, filename)
+        mt, st = detect_mime_type(filename)
+        result = self.connection.fput_object(
+            bucket, name, filename, content_type="%s/%s" % (mt, st))
         logging.info("uploaded %s, etag: %s, version-id: %s",
                      result.object_name, result.etag, result.version_id)
 
@@ -86,7 +95,7 @@ class MinioClient:
         return '-' .join([self.namespace, datetime.now().strftime("%Y"), ('o' if published else 'p')])
 
     def random_filename(ext=''):
-        return str(uuid.uuid4())+ext
+        return str(uuid.uuid4()) + ext
 
 
 # https://pika.readthedocs.io/en/stable/modules/parameters.html

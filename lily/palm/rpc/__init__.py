@@ -8,11 +8,10 @@ import grpc
 from grpc_health.v1 import health_pb2, health, health_pb2_grpc
 
 from pumpkin import lily_pb2_grpc
-
 from . import excel
 
 
-class Rpc:
+class Server:
     def __init__(self, port, threads):
         self.addr = '0.0.0.0:%d' % (port)
         self.max_workers = threads
@@ -23,7 +22,7 @@ class Rpc:
 
         lily_pb2_grpc.add_ExcelServicer_to_server(excel.Service(), server)
 
-        Rpc._rpc_setup_health_thread(server)
+        Server._rpc_setup_health_thread(server)
         server.add_insecure_port(self.addr)
         server.start()
         logging.info(
@@ -46,7 +45,7 @@ class Rpc:
         )
         health_pb2_grpc.add_HealthServicer_to_server(servicer, server)
         health_checker_thread = threading.Thread(
-            target=Rpc._rpc_health_checker,
+            target=Server._rpc_health_checker,
             args=(servicer, 'palm.lily'),
             daemon=True
         )

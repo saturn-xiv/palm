@@ -6,12 +6,14 @@ import multiprocessing
 
 
 from palm import VERSION, TwilioClient, MinioClient, RabbitMqClient, SmtpClient, is_stopped
-from palm.tex import TEX_TO_PDF_JOB, TEX_TO_WORD_JOB, create_tex2pdf_queue_callback
-from palm.excel import EXCEL_GENERATE_JOB, create_excel_generate_queue_callback
-from palm.sms import SEND_SMS_JOB, create_sms_send_queue_callback
-from palm.email import SEND_EMAIL_JOB, create_email_send_queue_callback
-from palm.rpc import Rpc as RpcServer
-from palm.controllers import launch_http_server
+from palm.workers.tex_to_pdf import JOB as TEX_TO_PDF_JOB, create_callback as create_tex2pdf_queue_callback
+from palm.workers.excel_generate import JOB as EXCEL_GENERATE_JOB, create_callback as create_excel_generate_queue_callback
+from palm.workers.sms_send import JOB as SEND_SMS_JOB, create_callback as create_sms_send_queue_callback
+from palm.workers.email_send import JOB as SEND_EMAIL_JOB, create_callback as create_email_send_queue_callback
+from palm.workers.tex_to_word import JOB as TEX_TO_WORD_JOB
+from palm.workers.picture_convert import JOB as CONVERT_PICTURE_JOB
+from palm.rpc import Server as RpcServer
+from palm.controllers import launch_server as launch_http_server
 
 NAME = 'lily'
 
@@ -92,7 +94,7 @@ if __name__ == '__main__':
                             default='config.toml',
                             help='load configuration(toml)')
     cmd_worker.add_argument("-j", "--job", required=True, type=str, choices=[
-                            EXCEL_GENERATE_JOB, TEX_TO_PDF_JOB, TEX_TO_WORD_JOB, SEND_EMAIL_JOB, SEND_SMS_JOB], help="job name")
+                            EXCEL_GENERATE_JOB, TEX_TO_PDF_JOB, TEX_TO_WORD_JOB, CONVERT_PICTURE_JOB, SEND_EMAIL_JOB, SEND_SMS_JOB], help="job name")
     cmd_worker.add_argument("-q", "--queue", required=True,
                             type=str, help="queue name")
     cmd_worker.set_defaults(func=start_worker)

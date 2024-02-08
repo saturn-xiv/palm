@@ -8,21 +8,20 @@ from io import BytesIO
 
 
 from pumpkin import lily_pb2
-from . import save_s3_file
+from .. import save_s3_file
 
-TEX_TO_PDF_JOB = 'tex-to-pdf'
-TEX_TO_WORD_JOB = 'tex-to-word'
+JOB = 'tex-to-pdf'
 
 
-def create_tex2pdf_queue_callback(s3):
+def create_callback(s3):
     def it(ch, method, properties, body):
         logging.info("receive message %s", properties.message_id)
-        _handle_tex2pdf_message(body, s3)
+        _handle_message(body, s3)
         ch.basic_ack(delivery_tag=method.delivery_tag)
     return it
 
 
-def _handle_tex2pdf_message(message, s3):
+def _handle_message(message, s3):
     task = lily_pb2.TexTask()
     task.ParseFromString(message)
     logging.info("convert tex to pdf(%d) %s ", len(task.files), task.title)
