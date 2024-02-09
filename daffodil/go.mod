@@ -1,4 +1,4 @@
-module github.com/saturn-xiv/coconut
+module github.com/saturn-xiv/palm
 
 go 1.21.4
 
@@ -16,8 +16,10 @@ require (
 	github.com/tink-crypto/tink-go/v2 v2.1.0
 	google.golang.org/grpc v1.61.0
 	google.golang.org/protobuf v1.31.0
+	gorm.io/driver/mysql v1.4.1
 	gorm.io/driver/postgres v1.5.4
-	gorm.io/gorm v1.25.6
+	gorm.io/driver/sqlite v1.5.5
+	gorm.io/gorm v1.25.7-0.20240204074919-46816ad31dde
 )
 
 require (
@@ -50,6 +52,7 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
+	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/microsoft/go-mssqldb v0.17.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
@@ -65,7 +68,6 @@ require (
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231106174013-bbf56f31fb17 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/driver/mysql v1.4.1 // indirect
 	gorm.io/driver/sqlserver v1.4.1 // indirect
 	gorm.io/plugin/dbresolver v1.3.0 // indirect
 	modernc.org/libc v1.22.2 // indirect

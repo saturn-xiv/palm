@@ -21,6 +21,6 @@ func (p *PostgreSql) Url() string {
 	)
 }
 
-func (p *PostgreSql) Open() (*gorm.DB, error) {
-	return gorm.Open(postgres.Open(p.Url()), &gorm.Config{})
+func (p *PostgreSql) Open() gorm.Dialector {
+	return postgres.Open(p.Url())
 }

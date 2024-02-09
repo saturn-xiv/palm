@@ -6,10 +6,8 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/saturn-xiv/coconut/env"
-	metasequoia_tasks "github.com/saturn-xiv/coconut/metasequoia/tasks"
-	metasequoia_pb "github.com/saturn-xiv/coconut/metasequoia/v2"
-	"github.com/saturn-xiv/coconut/queue"
+	metasequoia_tasks "github.com/saturn-xiv/palm/metasequoia/tasks"
+	"github.com/saturn-xiv/palm/queue"
 )
 
 func launch_worker(rabbitmq string, queue_name string) error {
@@ -20,8 +18,8 @@ func launch_worker(rabbitmq string, queue_name string) error {
 	consumer_name := fmt.Sprintf("%s-%d-%d", hostname, os.Getuid(), os.Getpid())
 	log.Infof("start worker for %s", queue_name)
 	queue := queue.NewRabbitMq(rabbitmq)
-	if queue_name == env.QueueName(metasequoia_pb.EmailTask{}) {
-		queue.Consume(consumer_name, queue_name, &metasequoia_tasks.EmailConsumer{})
-	}
+
+	queue.Consume(consumer_name, queue_name, &metasequoia_tasks.EmailConsumer{})
+
 	return fmt.Errorf("unknown queue %s", queue_name)
 }

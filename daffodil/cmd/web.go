@@ -9,8 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/saturn-xiv/coconut/env"
-	"github.com/saturn-xiv/coconut/metasequoia/controllers"
+	"github.com/saturn-xiv/palm/env"
+	"github.com/saturn-xiv/palm/metasequoia/controllers"
 )
 
 //go:embed assets/*

@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/saturn-xiv/coconut/env"
+	"github.com/saturn-xiv/palm/env"
 	// metasequoia_services "github.com/saturn_xiv/fig/metasequoia/services"
 	// metasequoia_pb "github.com/saturn_xiv/fig/metasequoia/v2"
 )
