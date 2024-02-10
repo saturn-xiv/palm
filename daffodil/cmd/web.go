@@ -10,7 +10,7 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/saturn-xiv/palm/env"
-	"github.com/saturn-xiv/palm/metasequoia/controllers"
+	metasequoia_controllers "github.com/saturn-xiv/palm/metasequoia/controllers"
 )
 
 //go:embed assets/*
@@ -27,14 +27,19 @@ func launch_web_server(port int, config *env.Config) error {
 	router.SetHTMLTemplate(tpl)
 	router.StaticFS("/public", http.FS(gl_assets_fs))
 
-	router.GET("/robots.txt", controllers.RobotsTxt())
-	router.GET("/sitemap.xml", controllers.SitemapXml())
-	router.GET("/:lang/sitemap.xml", controllers.SitemapXmlByLang())
-	router.GET("/:lang/rss.xml", controllers.RssXml())
-	router.GET("/react-intl/locales", controllers.ReactIntlLocales())
-	router.GET("/google.html", controllers.GoogleSiteVerify())
-	router.GET("/baidu.html", controllers.BaiduSiteVerify())
-	router.GET("/index-now.html", controllers.IndexNowSiteVerify())
+	router.GET("/robots.txt", metasequoia_controllers.RobotsTxt())
+	router.GET("/sitemap.xml", metasequoia_controllers.SitemapXml())
+	router.GET("/:lang/sitemap.xml", metasequoia_controllers.SitemapXmlByLang())
+	router.GET("/:lang/rss.xml", metasequoia_controllers.RssXml())
+	router.GET("/google.html", metasequoia_controllers.GoogleSiteVerify())
+	router.GET("/baidu.html", metasequoia_controllers.BaiduSiteVerify())
+	router.GET("/index-now.html", metasequoia_controllers.IndexNowSiteVerify())
+
+	graphal_handler, err := metasequoia_controllers.Graphql()
+	if err != nil {
+		return err
+	}
+	router.Any("/graphql", gin.WrapH(graphal_handler))
 
 	log.Infof("listen on http://%s", address)
 	return router.Run(address)
