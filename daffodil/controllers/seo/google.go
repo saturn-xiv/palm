@@ -1,4 +1,4 @@
-package controllers
+package seo
 
 import (
 	"net/http"

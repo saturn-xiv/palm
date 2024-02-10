@@ -1,4 +1,4 @@
-package controllers
+package graphql
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 	"github.com/graphql-go/handler"
 )
 
-func Graphql() (http.Handler, error) {
+func Handler() (http.Handler, error) {
 	fields := graphql.Fields{
 		"hello": &graphql.Field{
 			Type: graphql.String,
@@ -27,5 +27,6 @@ func Graphql() (http.Handler, error) {
 		Schema:   &schema,
 		Pretty:   true,
 		GraphiQL: true,
+		// Playground: true,
 	}), nil
 }

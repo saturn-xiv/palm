@@ -86,18 +86,11 @@ func init() {
 				} else {
 					log.SetLevel(log.InfoLevel)
 				}
-
 				log.Debugf("run on debug mode")
-				log.Debugf("load configuration from %s", gl_config)
-				// config, err := env.NewRpc(gl_config)
-				// if err != nil {
-				// 	log.Fatalf("parse file: %s", err)
-				// }
 
-				// TODO
-				// if err := launch_rpc_server(config, gl_rpc_port); err != nil {
-				//         log.Fatalf("start gRPC server: %s", err)
-				// }
+				if err := launch_web_server(gl_web_port, gl_config); err != nil {
+					log.Fatalf("start HTTP server: %s", err)
+				}
 			},
 		}
 		cmd.Flags().IntVarP(&gl_web_port, "port", "p", 8080, "listen port")

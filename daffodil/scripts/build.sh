@@ -18,7 +18,7 @@ function build_backend() {
     echo "build for $2"
     GOOS=linux GOARCH=$1 go build -ldflags "$ldflags"
     mkdir -p $TARGET/bin/$2
-    mv palm $TARGET/bin/$2/palm
+    mv palm $TARGET/bin/$2/daffodil
 }
 
 # ---------------------------------------------------------

@@ -1,4 +1,4 @@
-package controllers
+package seo
 
 import (
 	"net/http"
@@ -6,11 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func IndexNowSiteVerify() gin.HandlerFunc {
+func Home() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// TODO
-		c.HTML(http.StatusOK, "index-now/site-verify.html", gin.H{
+		c.HTML(http.StatusOK, "google/site-verify.html", gin.H{
 			"title": "Hello palm",
 		})
 	}
 }
+

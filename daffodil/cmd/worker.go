@@ -31,12 +31,13 @@ func launch_worker(config_file string, job_name string, queue_name string) error
 		return queue.Consume(consumer_name, queue_name, &handler)
 	}
 	if job_name == env.QueueName((*gourd_pb.SendSms)(nil)) {
-		var config gourd_tasks.SmsConsumerConfig
+		var config gourd_tasks.TwilioSmsConsumerConfig
 		if _, err = toml.DecodeFile(config_file, &config); err != nil {
 			return err
 		}
 		queue := queue.NewRabbitMq(config.RabbitMq.URI())
-		return queue.Consume(consumer_name, queue_name, &gourd_tasks.TwilioSmsConsumerHandler{})
+		handler := config.Open()
+		return queue.Consume(consumer_name, queue_name, &handler)
 	}
-	return fmt.Errorf("unknown queue %s", queue_name)
+	return fmt.Errorf("unknown worker %s", queue_name)
 }

@@ -1,4 +1,4 @@
-package controllers
+package seo
 
 import (
 	"net/http"
@@ -6,10 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func TwilioMessagingStatusCallback() gin.HandlerFunc {
+func RobotsTxt() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// TODO
-		c.JSON(http.StatusOK, gin.H{
+		c.HTML(http.StatusOK, "google/site-verify.html", gin.H{
 			"title": "Hello palm",
 		})
 	}
