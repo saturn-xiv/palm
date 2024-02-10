@@ -3,6 +3,7 @@ module github.com/saturn-xiv/palm
 go 1.21.4
 
 require (
+	github.com/BurntSushi/toml v1.3.2
 	github.com/casbin/casbin/v2 v2.81.0
 	github.com/casbin/gorm-adapter/v3 v3.20.0
 	github.com/casbin/redis-watcher/v2 v2.5.0
@@ -18,6 +19,7 @@ require (
 	github.com/tink-crypto/tink-go/v2 v2.1.0
 	google.golang.org/grpc v1.61.0
 	google.golang.org/protobuf v1.31.0
+	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 	gorm.io/driver/mysql v1.4.1
 	gorm.io/driver/postgres v1.5.4
 	gorm.io/driver/sqlite v1.5.5
@@ -69,6 +71,7 @@ require (
 	golang.org/x/sys v0.14.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231106174013-bbf56f31fb17 // indirect
+	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/sqlserver v1.4.1 // indirect
 	gorm.io/plugin/dbresolver v1.3.0 // indirect

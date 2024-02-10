@@ -12,6 +12,5 @@ func RandomBytes(len int) []byte {
 }
 
 func QueueName(i any) string {
-	t := reflect.TypeOf(i)
-	return t.PkgPath() + "." + t.Name()
+	return reflect.TypeOf(i).Elem().Name()
 }

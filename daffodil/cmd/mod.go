@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"reflect"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
+	"github.com/saturn-xiv/palm/env"
 	gourd_pb "github.com/saturn-xiv/palm/gourd/v2"
 )
 
@@ -137,17 +137,15 @@ func init() {
 			Use:   "worker",
 			Short: "Start a queue consumer process",
 			Run: func(cmd *cobra.Command, args []string) {
-
+				if gl_debug {
+					log.SetLevel(log.DebugLevel)
+				} else {
+					log.SetLevel(log.InfoLevel)
+				}
 				log.Debugf("load configuration from %s", gl_config)
-				// config, err := env.NewRpc(gl_config)
-				// if err != nil {
-				// 	log.Fatalf("parse file: %s", err)
-				// }
-
-				// TODO
-				// if err := launch_rpc_server(config, gl_rpc_port); err != nil {
-				//         log.Fatalf("start gRPC server: %s", err)
-				// }
+				if err := launch_worker(gl_config, gl_worker_job, gl_worker_queue); err != nil {
+					log.Fatalf("start gRPC server: %s", err)
+				}
 			},
 		}
 		cmd.Flags().StringVarP(&gl_worker_queue, "queue", "q", "palm", "queue name")
@@ -155,11 +153,11 @@ func init() {
 			&gl_worker_job,
 			"job",
 			"j",
-			reflect.TypeOf((*gourd_pb.SendEmail)(nil)).Elem().Name(),
+			env.QueueName((*gourd_pb.SendEmail)(nil)),
 			fmt.Sprintf(
 				"job name, could be: %s, %s",
-				reflect.TypeOf((*gourd_pb.SendSms)(nil)).Elem().Name(),
-				reflect.TypeOf((*gourd_pb.SendEmail)(nil)).Elem().Name(),
+				env.QueueName((*gourd_pb.SendSms)(nil)),
+				env.QueueName((*gourd_pb.SendEmail)(nil)),
 			),
 		)
 		root_cmd.AddCommand(cmd)

@@ -16,7 +16,9 @@ import (
 type Config struct {
 	// openssl rand -base64 32
 	Redis      Redis      `toml:"redis"`
-	Postgresql PostgreSql `toml:"postgresql"`
+	PostgreSql PostgreSql `toml:"postgresql"`
+	MySql      PostgreSql `toml:"mysql"`
+	Sqlite3    PostgreSql `toml:"sqlite3"`
 	RabbitMq   RabbitMq   `toml:"rabbitmq"`
 }
 
