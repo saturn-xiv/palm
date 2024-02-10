@@ -34,7 +34,7 @@ RUN apt -y install zsh git locales locales-all \
     crossbuild-essential-arm64 g++-${GCC_VERSION}-aarch64-linux-gnu libstdc++-${GCC_VERSION}-dev:arm64 \
     crossbuild-essential-armhf g++-${GCC_VERSION}-arm-linux-gnueabihf libstdc++-${GCC_VERSION}-dev:armhf \
     crossbuild-essential-riscv64 g++-${GCC_VERSION}-riscv64-linux-gnu libstdc++-${GCC_VERSION}-dev:riscv64 \
-    clang-${CLANG_VERSION} clangd-${CLANG_VERSION} clang-tools-${CLANG_VERSION} clang-format-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
+    clang-${CLANG_VERSION} clangd-${CLANG_VERSION} clang-tools-${CLANG_VERSION} clang-format-${CLANG_VERSION} clang-tidy-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
     cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio mold \
     debhelper bison flex ninja-build \
     python3-full python3-dev
