@@ -66,4 +66,4 @@ A total free education & translation solution.
 - ~~morus~~: markdown => html services
 - ~~loquat~~: Aes/HMac/Jwt services
 - musa: WechatPay services
-- ~~daffodil~~: Rbac/Twilio services
+- ~~daffodil~~: Rbac/Twilio/SMTP services

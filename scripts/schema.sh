@@ -209,14 +209,30 @@ function generate_lily() {
     # mv $target/lily/gourd $WORKSPACE/lily/gourd
 }
 
+function generate_daffodil() {
+    echo "generate $1 for daffodil"
+    local target=$WORKSPACE/daffodil/$1/v2
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    mkdir -p $target
+    protoc -I $WORKSPACE/daffodil -I $PROTOBUF_ROOT/include/google/protobuf \
+        --go_out=$target --go_opt=paths=source_relative \
+        --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
+        $WORKSPACE/daffodil/$1.proto
+}
+
 # -----------------------------------------------------------------------------
 
 generate_musa
-generate_lily
 
+generate_lily
 echo "generate lily requirements.txt"
 cd $WORKSPACE/lily
 pip freeze >requirements.txt
+
+generate_daffodil metasequoia
+generate_daffodil gourd
 
 # TODO
 # echo 'format rust code'

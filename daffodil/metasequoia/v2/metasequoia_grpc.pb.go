@@ -20,8 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Token_Sum_FullMethodName    = "/coconut.metasequoia.v1.Token/Sum"
-	Token_Verify_FullMethodName = "/coconut.metasequoia.v1.Token/Verify"
+	Token_Sum_FullMethodName    = "/palm.metasequoia.v1.Token/Sum"
+	Token_Verify_FullMethodName = "/palm.metasequoia.v1.Token/Verify"
 )
 
 // TokenClient is the client API for Token service.
@@ -130,7 +130,7 @@ func _Token_Verify_Handler(srv interface{}, ctx context.Context, dec func(interf
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Token_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.Token",
+	ServiceName: "palm.metasequoia.v1.Token",
 	HandlerType: (*TokenServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -147,8 +147,8 @@ var Token_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Rbac_Can_FullMethodName = "/coconut.metasequoia.v1.Rbac/Can"
-	Rbac_Has_FullMethodName = "/coconut.metasequoia.v1.Rbac/Has"
+	Rbac_Can_FullMethodName = "/palm.metasequoia.v1.Rbac/Can"
+	Rbac_Has_FullMethodName = "/palm.metasequoia.v1.Rbac/Has"
 )
 
 // RbacClient is the client API for Rbac service.
@@ -257,7 +257,7 @@ func _Rbac_Has_Handler(srv interface{}, ctx context.Context, dec func(interface{
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Rbac_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.Rbac",
+	ServiceName: "palm.metasequoia.v1.Rbac",
 	HandlerType: (*RbacServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -274,7 +274,7 @@ var Rbac_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Log_Add_FullMethodName = "/coconut.metasequoia.v1.Log/Add"
+	Log_Add_FullMethodName = "/palm.metasequoia.v1.Log/Add"
 )
 
 // LogClient is the client API for Log service.
@@ -351,7 +351,7 @@ func _Log_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Log_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.Log",
+	ServiceName: "palm.metasequoia.v1.Log",
 	HandlerType: (*LogServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -364,8 +364,8 @@ var Log_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Setting_Set_FullMethodName = "/coconut.metasequoia.v1.Setting/Set"
-	Setting_Get_FullMethodName = "/coconut.metasequoia.v1.Setting/Get"
+	Setting_Set_FullMethodName = "/palm.metasequoia.v1.Setting/Set"
+	Setting_Get_FullMethodName = "/palm.metasequoia.v1.Setting/Get"
 )
 
 // SettingClient is the client API for Setting service.
@@ -474,7 +474,7 @@ func _Setting_Get_Handler(srv interface{}, ctx context.Context, dec func(interfa
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Setting_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.Setting",
+	ServiceName: "palm.metasequoia.v1.Setting",
 	HandlerType: (*SettingServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -491,8 +491,8 @@ var Setting_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Tag_Attach_FullMethodName = "/coconut.metasequoia.v1.Tag/Attach"
-	Tag_Detach_FullMethodName = "/coconut.metasequoia.v1.Tag/Detach"
+	Tag_Attach_FullMethodName = "/palm.metasequoia.v1.Tag/Attach"
+	Tag_Detach_FullMethodName = "/palm.metasequoia.v1.Tag/Detach"
 )
 
 // TagClient is the client API for Tag service.
@@ -601,7 +601,7 @@ func _Tag_Detach_Handler(srv interface{}, ctx context.Context, dec func(interfac
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Tag_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.Tag",
+	ServiceName: "palm.metasequoia.v1.Tag",
 	HandlerType: (*TagServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -618,8 +618,8 @@ var Tag_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Category_Attach_FullMethodName = "/coconut.metasequoia.v1.Category/Attach"
-	Category_Detach_FullMethodName = "/coconut.metasequoia.v1.Category/Detach"
+	Category_Attach_FullMethodName = "/palm.metasequoia.v1.Category/Attach"
+	Category_Detach_FullMethodName = "/palm.metasequoia.v1.Category/Detach"
 )
 
 // CategoryClient is the client API for Category service.
@@ -728,7 +728,7 @@ func _Category_Detach_Handler(srv interface{}, ctx context.Context, dec func(int
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Category_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.Category",
+	ServiceName: "palm.metasequoia.v1.Category",
 	HandlerType: (*CategoryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -745,8 +745,8 @@ var Category_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	ShorterLink_Attach_FullMethodName = "/coconut.metasequoia.v1.ShorterLink/Attach"
-	ShorterLink_Detach_FullMethodName = "/coconut.metasequoia.v1.ShorterLink/Detach"
+	ShorterLink_Attach_FullMethodName = "/palm.metasequoia.v1.ShorterLink/Attach"
+	ShorterLink_Detach_FullMethodName = "/palm.metasequoia.v1.ShorterLink/Detach"
 )
 
 // ShorterLinkClient is the client API for ShorterLink service.
@@ -855,7 +855,7 @@ func _ShorterLink_Detach_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ShorterLink_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.ShorterLink",
+	ServiceName: "palm.metasequoia.v1.ShorterLink",
 	HandlerType: (*ShorterLinkServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -872,7 +872,7 @@ var ShorterLink_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Notification_Add_FullMethodName = "/coconut.metasequoia.v1.Notification/Add"
+	Notification_Add_FullMethodName = "/palm.metasequoia.v1.Notification/Add"
 )
 
 // NotificationClient is the client API for Notification service.
@@ -949,7 +949,7 @@ func _Notification_Add_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Notification_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "coconut.metasequoia.v1.Notification",
+	ServiceName: "palm.metasequoia.v1.Notification",
 	HandlerType: (*NotificationServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

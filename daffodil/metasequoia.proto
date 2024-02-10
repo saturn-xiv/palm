@@ -1,8 +1,8 @@
 syntax = "proto3";
 option java_multiple_files = true;
-option java_package = "com.github.saturn_xiv.coconut.plugins.metasequoia.v1";
-option go_package = "github.com/saturn-xiv/coconut/metasequoia/v2";
-package coconut.metasequoia.v1;
+option java_package = "com.github.saturn_xiv.palm.plugins.metasequoia.v1";
+option go_package = "github.com/saturn-xiv/palm/metasequoia/v2";
+package palm.metasequoia.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
@@ -16,43 +16,6 @@ message S3File {
   optional google.protobuf.Duration ttl = 11;
   optional string owner = 12;
   bool published = 19;
-}
-
-message TexTask {
-  string title = 1;
-  map<string, bytes> files = 2;
-
-  S3File file = 9;
-}
-
-message EmailSendTask {
-  message Address {
-    string name = 1;
-    string email = 2;
-  }
-  message Body {
-    string payload = 1;
-    bool html = 2;
-  }
-  message Attachment {
-    string title = 1;
-    bytes payload = 2;
-    string content_type = 9;
-  }
-
-  Address to = 1;
-  repeated Address cc = 2;
-  repeated Address bcc = 3;
-
-  string subject = 11;
-  Body body = 12;
-  repeated Attachment attachments = 19;
-}
-
-message SmsSendTask {
-  repeated string to = 1;
-  string message = 2;
-  optional string callback = 3;
 }
 
 // ----------------------------------------------------------------------------

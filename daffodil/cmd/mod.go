@@ -2,9 +2,12 @@ package cmd
 
 import (
 	"fmt"
+	"reflect"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+
+	gourd_pb "github.com/saturn-xiv/palm/gourd/v2"
 )
 
 var (
@@ -39,6 +42,7 @@ var (
 	gl_rpc_port     int
 	gl_web_port     int
 	gl_worker_queue string
+	gl_worker_job   string
 )
 
 func init() {
@@ -124,14 +128,14 @@ func init() {
 				// }
 			},
 		}
-		cmd.Flags().IntVarP(&gl_rpc_port, "port", "p", 8080, "listen port")
+		cmd.Flags().IntVarP(&gl_rpc_port, "port", "p", 9999, "listen port")
 		root_cmd.AddCommand(cmd)
 	}
 
 	{
 		var cmd = &cobra.Command{
 			Use:   "worker",
-			Short: "Start a queue consumer",
+			Short: "Start a queue consumer process",
 			Run: func(cmd *cobra.Command, args []string) {
 
 				log.Debugf("load configuration from %s", gl_config)
@@ -146,7 +150,18 @@ func init() {
 				// }
 			},
 		}
-		cmd.Flags().StringVar(&gl_worker_queue, "queue", "q", "queue name")
+		cmd.Flags().StringVarP(&gl_worker_queue, "queue", "q", "palm", "queue name")
+		cmd.Flags().StringVarP(
+			&gl_worker_job,
+			"job",
+			"j",
+			reflect.TypeOf((*gourd_pb.SendEmail)(nil)).Elem().Name(),
+			fmt.Sprintf(
+				"job name, could be: %s, %s",
+				reflect.TypeOf((*gourd_pb.SendSms)(nil)).Elem().Name(),
+				reflect.TypeOf((*gourd_pb.SendEmail)(nil)).Elem().Name(),
+			),
+		)
 		root_cmd.AddCommand(cmd)
 	}
 

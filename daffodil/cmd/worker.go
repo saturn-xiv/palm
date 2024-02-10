@@ -6,7 +6,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	metasequoia_tasks "github.com/saturn-xiv/palm/metasequoia/tasks"
+	gourd_tasks "github.com/saturn-xiv/palm/gourd/tasks"
 	"github.com/saturn-xiv/palm/queue"
 )
 
@@ -19,7 +19,8 @@ func launch_worker(rabbitmq string, queue_name string) error {
 	log.Infof("start worker for %s", queue_name)
 	queue := queue.NewRabbitMq(rabbitmq)
 
-	queue.Consume(consumer_name, queue_name, &metasequoia_tasks.EmailConsumer{})
+	queue.Consume(consumer_name, queue_name, &gourd_tasks.TwilioSmsConsumer{})
+	queue.Consume(consumer_name, queue_name, &gourd_tasks.SmtpConsumer{})
 
 	return fmt.Errorf("unknown queue %s", queue_name)
 }
