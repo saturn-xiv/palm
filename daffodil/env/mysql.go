@@ -22,6 +22,6 @@ func (p *MySql) Url() string {
 	)
 }
 
-func (p *MySql) Open() gorm.Dialector {
-	return mysql.Open(p.Url())
+func (p *MySql) Open() (*gorm.DB, error) {
+	return gorm.Open(mysql.Open(p.Url()), &gorm.Config{})
 }

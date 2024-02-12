@@ -9,6 +9,6 @@ type Sqlite3 struct {
 	File string `toml:"file"`
 }
 
-func (p *Sqlite3) Open() gorm.Dialector {
-	return sqlite.Open(p.File)
+func (p *Sqlite3) Open() (*gorm.DB, error) {
+	return gorm.Open(sqlite.Open(p.File), &gorm.Config{})
 }

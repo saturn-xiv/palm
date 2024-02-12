@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	casbin "github.com/casbin/casbin/v2"
+	"github.com/BurntSushi/toml"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
@@ -15,7 +15,13 @@ import (
 	// metasequoia_pb "github.com/saturn_xiv/fig/metasequoia/v2"
 )
 
-func launch_rpc_server(port int, aes *env.Aes, hmac *env.HMac, jwt *env.Jwt, enforcer *casbin.Enforcer) error {
+func launch_rpc_server(port int, config_file string) error {
+	log.Debugf("load configuration from %s", config_file)
+	config := env.Config{}
+	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+
 	network := "tcp"
 	address := fmt.Sprintf("0.0.0.0:%d", port)
 	log.Infof("start gRPC on %s://%s", network, address)

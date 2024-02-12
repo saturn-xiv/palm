@@ -4,36 +4,36 @@ import (
 	"errors"
 	"os"
 
-	"github.com/pelletier/go-toml/v2"
 	log "github.com/sirupsen/logrus"
 	"github.com/tink-crypto/tink-go/v2/aead"
 	"github.com/tink-crypto/tink-go/v2/insecurecleartextkeyset"
 	"github.com/tink-crypto/tink-go/v2/jwt"
 	"github.com/tink-crypto/tink-go/v2/keyset"
 	"github.com/tink-crypto/tink-go/v2/mac"
+	"gorm.io/gorm"
 )
 
 type Config struct {
 	// openssl rand -base64 32
+	Secrets    string     `toml:"secrets"`
 	Redis      Redis      `toml:"redis"`
 	PostgreSql PostgreSql `toml:"postgresql"`
-	MySql      PostgreSql `toml:"mysql"`
-	Sqlite3    PostgreSql `toml:"sqlite3"`
+	MySql      MySql      `toml:"mysql"`
+	Sqlite3    Sqlite3    `toml:"sqlite3"`
 	RabbitMq   RabbitMq   `toml:"rabbitmq"`
 }
 
-func NewConfig(name string) (*Config, error) {
-	file, err := os.Open(name)
-	if err != nil {
-		return nil, err
+func (p *Config) OpenDatabase() (*gorm.DB, error) {
+	if p.PostgreSql.Host != "" {
+		return p.PostgreSql.Open()
 	}
-	defer file.Close()
-	decoder := toml.NewDecoder(file)
-	var config Config
-	if err = decoder.Decode(&config); err != nil {
-		return nil, err
+	if p.MySql.Host != "" {
+		return p.MySql.Open()
 	}
-	return &config, err
+	if p.Sqlite3.File != "" {
+		return p.Sqlite3.Open()
+	}
+	return nil, errors.ErrUnsupported
 }
 
 func (p *Config) OpenSecrets() (*Aes, *HMac, *Jwt, error) {
