@@ -209,13 +209,14 @@ function generate_lily() {
     # mv $target/lily/gourd $WORKSPACE/lily/gourd
 }
 
-function generate_almond() {
-    echo "generate $1 for almond"
-    local target=$WORKSPACE/almond/$1/v2
+function generate_grpc_go() {
+    echo "generate $2 for $1"
+    local target=$WORKSPACE/$1/$2/v2
+    mkdir -p $target
     protoc -I $WORKSPACE/almond -I $PROTOBUF_ROOT/include/google/protobuf \
         --go_out=$target --go_opt=paths=source_relative \
         --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
-        $WORKSPACE/almond/$1.proto
+        $WORKSPACE/$1/$2.proto
 }
 
 # -----------------------------------------------------------------------------
@@ -227,7 +228,10 @@ echo "generate lily requirements.txt"
 cd $WORKSPACE/lily
 pip freeze >requirements.txt
 
-generate_almond rbac
+generate_grpc_go almond rbac
+generate_grpc_go camelia s3
+generate_grpc_go cactus sms
+
 
 # TODO
 # echo 'format rust code'

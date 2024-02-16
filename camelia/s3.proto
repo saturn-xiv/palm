@@ -1,0 +1,43 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.camelia.s3.v1";
+option go_package = "github.com/saturn-xiv/palm/camelia/s3/v2";
+package palm.camelia.s3.v2;
+
+import "google/protobuf/duration.proto";
+
+service S3 {
+  rpc Upload(UploadRequest) returns (UploadResponse) {}
+  rpc PresignedUrl(PresignedUrlRequest) returns (UrlResponse) {}
+  rpc PermanentUrl(PermanentUrlRequest) returns (UrlResponse) {}
+}
+
+message UploadRequest {
+  string file = 1;
+
+  optional google.protobuf.Duration ttl = 11;
+  optional string owner = 12;
+  bool published = 19;
+}
+
+message UploadResponse {
+  string bucket = 1;
+  string name = 2;
+  string content_type = 3;
+}
+
+message PresignedUrlRequest {
+  string bucket = 1;
+  string name = 2;
+  google.protobuf.Duration ttl = 3;
+}
+
+message PermanentUrlRequest {
+  string bucket = 1;
+  string name = 2;
+}
+
+message UrlResponse {
+  string url = 1;
+  string content_type = 2;
+}

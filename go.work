@@ -1,3 +1,8 @@
 go 1.22.0
 
-use ./almond
+use (
+	./almond
+	./cactus
+	./camelia
+	./petunia
+)

@@ -66,8 +66,9 @@ A total free education & translation solution.
 - ~~morus~~: markdown => html services
 - ~~loquat~~: Aes/HMac/Jwt services
 - ~~daffodil~~: twilio/smtp services
-- ~~cactus~~: sms/email service
 - musa: WechatPay services
 - almond: rbac services
-- ~~camelia~~: auth service
+- camelia: s3 service
+- cactus: sms worker
+- petunia: email worker
 - ~~daffodil~~: tex, pdf, word, epub, excel, imagemagic services
