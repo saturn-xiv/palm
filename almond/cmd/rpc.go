@@ -11,6 +11,8 @@ import (
 	"google.golang.org/grpc/health/grpc_health_v1"
 
 	"github.com/saturn-xiv/palm/almond/env"
+	"github.com/saturn-xiv/palm/almond/rbac"
+	rbac_pb "github.com/saturn-xiv/palm/almond/rbac/v2"
 )
 
 func launch_rpc_server(port int, config_file string) error {
@@ -20,7 +22,7 @@ func launch_rpc_server(port int, config_file string) error {
 		return err
 	}
 
-	_, err := config.OpenCasbinEnforcer()
+	enforcer, err := config.OpenCasbinEnforcer()
 	if err != nil {
 		return err
 	}
@@ -35,10 +37,7 @@ func launch_rpc_server(port int, config_file string) error {
 	var opts []grpc.ServerOption
 
 	server := grpc.NewServer(opts...)
-	// metasequoia_pb.RegisterUserServer(server, metasequoia_services.NewUserService(aes, hmac, jwt, enforcer))
-	// metasequoia_pb.RegisterRbacServer(server, metasequoia_services.RbacService{})
-	// metasequoia_pb.RegisterSettingServer(server, metasequoia_services.SettingService{})
-	// metasequoia_pb.RegisterLocaleServer(server, metasequoia_services.LocaleService{})
+	rbac_pb.RegisterPolicyServer(server, rbac.NewPolicyService(enforcer))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
 	return server.Serve(socket)

@@ -209,17 +209,13 @@ function generate_lily() {
     # mv $target/lily/gourd $WORKSPACE/lily/gourd
 }
 
-function generate_daffodil() {
-    echo "generate $1 for daffodil"
-    local target=$WORKSPACE/daffodil/$1/v2
-    if [ -d $target ]; then
-        rm -r $target
-    fi
-    mkdir -p $target
-    protoc -I $WORKSPACE/daffodil -I $PROTOBUF_ROOT/include/google/protobuf \
+function generate_almond() {
+    echo "generate $1 for almond"
+    local target=$WORKSPACE/almond/$1/v2
+    protoc -I $WORKSPACE/almond -I $PROTOBUF_ROOT/include/google/protobuf \
         --go_out=$target --go_opt=paths=source_relative \
         --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
-        $WORKSPACE/daffodil/$1.proto
+        $WORKSPACE/almond/$1.proto
 }
 
 # -----------------------------------------------------------------------------
@@ -231,8 +227,7 @@ echo "generate lily requirements.txt"
 cd $WORKSPACE/lily
 pip freeze >requirements.txt
 
-generate_daffodil metasequoia
-generate_daffodil gourd
+generate_almond rbac
 
 # TODO
 # echo 'format rust code'
