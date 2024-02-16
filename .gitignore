@@ -1,3 +1,5 @@
 /tmp/
 /*.toml
 /.stop
+
+/go.work.sum

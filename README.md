@@ -62,8 +62,12 @@ A total free education & translation solution.
 
 ## Sub-projects
 
-- lily: tex => pdf/word, EPUB, Excel, ImageMagic services
+- ~~lily~~: tex => pdf/word, epub, Excel, ImageMagic services
 - ~~morus~~: markdown => html services
 - ~~loquat~~: Aes/HMac/Jwt services
+- ~~daffodil~~: twilio/smtp services
+- ~~cactus~~: sms/email service
 - musa: WechatPay services
-- ~~daffodil~~: Rbac/Twilio/SMTP services
+- almond: rbac services
+- ~~camelia~~: auth service
+- ~~daffodil~~: tex, pdf, word, epub, excel, imagemagic services
