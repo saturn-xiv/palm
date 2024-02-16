@@ -4,7 +4,7 @@ option java_package = "com.github.saturn_xiv.palm.plugins.petunia.email.v1";
 option go_package = "github.com/saturn-xiv/palm/petunia/email/v2";
 package palm.petunia.email.v2;
 
-message EmailTask {
+message SendEmailTask {
   message Address {
     string name = 1;
     string email = 2;

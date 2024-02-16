@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "github.com/saturn-xiv/palm/petunia/cmd"
 
+func main() {
+	cmd.Execute()
 }
