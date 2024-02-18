@@ -21,6 +21,6 @@ func launch_send_email_consumer(queue_name string, config_file string) error {
 	}
 
 	consumer := email.NewSendEmailConsumer(config.Smtp.From(), config.Smtp.Open())
-	return consumer.Consume(config.RabbitMq.URI(), fmt.Sprintf("consumer-%s-%d", hostname, os.Getpid()), queue_name)
+	return consumer.Consume(config.RabbitMq.URI(), fmt.Sprintf("smtp-consumer-%s-%d", hostname, os.Getpid()), queue_name)
 
 }
