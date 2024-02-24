@@ -39,7 +39,7 @@ RUN cd /var/www/localhost/htdocs/mysql && composer update --no-dev && yarn insta
 RUN git clone -b "6.4.3" https://github.com/WordPress/WordPress.git /var/www/localhost/htdocs/blog
 # https://github.com/magento/magento2
 # https://experienceleague.adobe.com/docs/commerce-operations/installation-guide/composer.html?lang=en
-RUN git clone -b "2.4.6-p3" https://github.com/magento/magento2.git /var/www/localhost/htdocs/mall
+RUN git clone -b "2.4.6-p4" https://github.com/magento/magento2.git /var/www/localhost/htdocs/mall
 # RUN echo 'export PATH=/var/www/localhost/htdocs/mall/bin:$PATH' >> $HOME/.zshrc
 
 COPY nginx/*.conf /etc/nginx/http.d/

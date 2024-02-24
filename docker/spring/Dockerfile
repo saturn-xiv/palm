@@ -198,7 +198,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
 
 
 # https://opensearch.org/downloads.html#opensearch
-ENV OPENSEARCH_VERSION "2.11.1"
+ENV OPENSEARCH_VERSION "2.12.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
 RUN cd $HOME/build \
