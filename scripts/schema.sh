@@ -209,29 +209,34 @@ function generate_lily() {
     # mv $target/lily/gourd $WORKSPACE/lily/gourd
 }
 
-function generate_grpc_go() {
-    echo "generate $2 for $1"
-    local target=$WORKSPACE/$1/$2/v2
-    mkdir -p $target
-    protoc -I $WORKSPACE/$1 -I $PROTOBUF_ROOT/include/google/protobuf \
-        --go_out=$target --go_opt=paths=source_relative \
-        --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
-        $WORKSPACE/$1/$2.proto
+function generate_petunia() {
+    local -a protocols=(
+        "email"
+        "sms"
+        "s3"
+        "rbac"
+    )
+    local protocols_dir=$WORKSPACE/petunia/protocols
+    for p in "${protocols[@]}"; do
+        echo "generate $p for petunia"
+        local target=$WORKSPACE/petunia/$p/v2
+        mkdir -p $target
+        protoc -I $protocols_dir -I $PROTOBUF_ROOT/include/google/protobuf \
+            --go_out=$target --go_opt=paths=source_relative \
+            --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
+            $protocols_dir/$p.proto
+    done
 }
 
 # -----------------------------------------------------------------------------
 
 generate_musa
+generate_petunia
 
 generate_lily
 echo "generate lily requirements.txt"
 cd $WORKSPACE/lily
 pip freeze >requirements.txt
-
-generate_grpc_go almond rbac
-generate_grpc_go camelia s3
-generate_grpc_go cactus sms
-generate_grpc_go petunia email
 
 # TODO
 # echo 'format rust code'
