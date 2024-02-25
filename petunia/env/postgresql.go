@@ -2,8 +2,6 @@ package env
 
 import (
 	"fmt"
-
-	
 )
 
 type PostgreSql struct {

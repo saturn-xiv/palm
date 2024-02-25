@@ -2,7 +2,6 @@ package env
 
 import (
 	"crypto/rand"
-	"reflect"
 )
 
 func RandomBytes(len int) []byte {
@@ -11,6 +10,6 @@ func RandomBytes(len int) []byte {
 	return buf
 }
 
-func QueueName(i any) string {
-	return reflect.TypeOf(i).Elem().Name()
-}
+// func QueueName(i any) string {
+// 	return reflect.TypeOf(i).Elem().Name()
+// }

@@ -3,7 +3,7 @@ package s3
 import (
 	"context"
 
-	pb "github.com/saturn-xiv/palm/camelia/s3/v2"
+	pb "github.com/saturn-xiv/palm/petunia/s3/v2"
 )
 
 type S3Service struct {

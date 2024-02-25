@@ -68,7 +68,5 @@ A total free education & translation solution.
 - ~~daffodil~~: twilio/smtp services
 - musa: WechatPay services
 - almond: rbac services
-- camelia: s3 service
-- cactus: sms worker
 - petunia: email worker
 - ~~daffodil~~: tex, pdf, word, epub, excel, imagemagic services

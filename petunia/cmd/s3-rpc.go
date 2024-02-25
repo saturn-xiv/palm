@@ -11,9 +11,9 @@ import (
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/saturn-xiv/palm/camelia/env"
-	"github.com/saturn-xiv/palm/camelia/s3"
-	s3_pb "github.com/saturn-xiv/palm/camelia/s3/v2"
+	"github.com/saturn-xiv/palm/petunia/env"
+	"github.com/saturn-xiv/palm/petunia/s3"
+	s3_pb "github.com/saturn-xiv/palm/petunia/s3/v2"
 )
 
 func launch_rpc_server(port int, config_file string) error {

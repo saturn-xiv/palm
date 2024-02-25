@@ -35,11 +35,11 @@ func Execute() {
 }
 
 var (
-	gl_debug            bool
-	gl_config           string
-	gl_send_email_queue string
-	gl_send_sms_queue   string
-	gl_web_port         int
+	gl_debug    bool
+	gl_config   string
+	gl_queue    string
+	gl_web_port int
+	gl_rpc_port int
 )
 
 func init() {
@@ -48,8 +48,8 @@ func init() {
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "web",
-			Short: "Start a HTTP server",
+			Use:   "twilio-callback",
+			Short: "Start a Twilio callback server(HTTP)",
 			Run: func(cmd *cobra.Command, args []string) {
 				if gl_debug {
 					log.SetLevel(log.DebugLevel)
@@ -79,12 +79,12 @@ func init() {
 				}
 				log.Debugf("run on debug mode")
 
-				if err := launch_send_sms_consumer(gl_send_sms_queue, gl_config); err != nil {
+				if err := launch_send_sms_consumer(gl_queue, gl_config); err != nil {
 					log.Fatalf("start send-sms consumer: %s", err)
 				}
 			},
 		}
-		cmd.Flags().StringVarP(&gl_send_sms_queue, "queue", "q", "send-sms", "queue name")
+		cmd.Flags().StringVarP(&gl_queue, "queue", "q", "send-sms", "queue name")
 		root_cmd.AddCommand(cmd)
 	}
 	{
@@ -99,12 +99,53 @@ func init() {
 				}
 				log.Debugf("run on debug mode")
 
-				if err := launch_send_email_consumer(gl_send_email_queue, gl_config); err != nil {
+				if err := launch_send_email_consumer(gl_queue, gl_config); err != nil {
 					log.Fatalf("start send-email consumer: %s", err)
 				}
 			},
 		}
-		cmd.Flags().StringVarP(&gl_send_email_queue, "queue", "q", "send-email", "queue name")
+		cmd.Flags().StringVarP(&gl_queue, "queue", "q", "send-email", "queue name")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "s3-rpc",
+			Short: "Start a s3 gRPC server",
+			Run: func(cmd *cobra.Command, args []string) {
+				if gl_debug {
+					log.SetLevel(log.DebugLevel)
+				} else {
+					log.SetLevel(log.InfoLevel)
+				}
+				log.Debugf("run on debug mode")
+
+				if err := launch_rpc_server(gl_rpc_port, gl_config); err != nil {
+					log.Fatalf("start s3 gRPC server: %s", err)
+				}
+			},
+		}
+		cmd.Flags().IntVarP(&gl_rpc_port, "port", "p", 9999, "listen port")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "s3-gc",
+			Short: "Start a s3 garbage-collection worker",
+			Run: func(cmd *cobra.Command, args []string) {
+				if gl_debug {
+					log.SetLevel(log.DebugLevel)
+				} else {
+					log.SetLevel(log.InfoLevel)
+				}
+				log.Debugf("run on debug mode")
+
+				if err := launch_gc_task(gl_config); err != nil {
+					log.Fatalf("gc: %s", err)
+				}
+			},
+		}
 		root_cmd.AddCommand(cmd)
 	}
 
