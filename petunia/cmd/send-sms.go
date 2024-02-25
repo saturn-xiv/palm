@@ -6,8 +6,8 @@ import (
 
 	"github.com/BurntSushi/toml"
 
-	"github.com/saturn-xiv/palm/cactus/env"
-	"github.com/saturn-xiv/palm/cactus/sms"
+	"github.com/saturn-xiv/palm/petunia/env/queue"
+	"github.com/saturn-xiv/palm/petunia/sms"
 )
 
 func launch_send_sms_consumer(queue_name string, config_file string) error {
@@ -15,12 +15,13 @@ func launch_send_sms_consumer(queue_name string, config_file string) error {
 	if err != nil {
 		return err
 	}
-	var config env.Config
+	var config sms.Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
 	}
 
 	consumer := sms.NewSendSmsConsumer(&config.Twilio)
-	return consumer.Consume(config.RabbitMq.URI(), fmt.Sprintf("twilio-sms-consumer-%s-%d", hostname, os.Getpid()), queue_name)
+	queue := queue.NewRabbitMq(config.RabbitMq.URI())
+	return queue.Consume(fmt.Sprintf("twilio-sms-consumer-%s-%d", hostname, os.Getpid()), queue_name, &consumer)
 
 }

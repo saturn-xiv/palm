@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
-	twilio_controllers "github.com/saturn-xiv/palm/cactus/controllers/twilio"
-	"github.com/saturn-xiv/palm/cactus/env"
+	twilio_controllers "github.com/saturn-xiv/palm/petunia/controllers/twilio"
+	"github.com/saturn-xiv/palm/petunia/env"
 )
 
 func launch_web_server(port int, config_file string) error {

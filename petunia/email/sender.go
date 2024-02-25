@@ -1,11 +1,8 @@
 package email
 
 import (
-	"context"
 	"os"
-	"time"
 
-	amqp "github.com/rabbitmq/amqp091-go"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/proto"
 	"gopkg.in/gomail.v2"
@@ -24,36 +21,8 @@ func NewSendEmailConsumer(from string, dialer *gomail.Dialer) SendEmailConsumer 
 		dialer: dialer,
 	}
 }
-func (p *SendEmailConsumer) Consume(rabbitmq string, consumer_name string, queue_name string) error {
-	con, err := amqp.Dial(rabbitmq)
-	if err != nil {
-		return err
-	}
-	defer con.Close()
 
-	ch, err := con.Channel()
-	if err != nil {
-		return err
-	}
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-
-	messages, err := ch.ConsumeWithContext(ctx, queue_name, consumer_name, true, false, false, false, nil)
-	if err != nil {
-		return err
-	}
-
-	for msg := range messages {
-		log.Infof("receive message %s@%s", msg.MessageId, msg.ContentType)
-		if err = p.consume(msg.MessageId, msg.ContentType, msg.Body); err != nil {
-			return err
-		}
-
-	}
-	return nil
-}
-
-func (p *SendEmailConsumer) consume(id string, content_type string, body []byte) error {
+func (p *SendEmailConsumer) Handle(id string, content_type string, body []byte) error {
 	var task pb.SendEmailTask
 	if err := proto.Unmarshal(body, &task); err != nil {
 		return err

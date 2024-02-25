@@ -7,6 +7,7 @@ import (
 	"github.com/BurntSushi/toml"
 
 	"github.com/saturn-xiv/palm/petunia/email"
+	"github.com/saturn-xiv/palm/petunia/env/queue"
 )
 
 func launch_send_email_consumer(queue_name string, config_file string) error {
@@ -20,6 +21,6 @@ func launch_send_email_consumer(queue_name string, config_file string) error {
 	}
 
 	consumer := email.NewSendEmailConsumer(config.Smtp.From(), config.Smtp.Open())
-	return consumer.Consume(config.RabbitMq.URI(), fmt.Sprintf("smtp-consumer-%s-%d", hostname, os.Getpid()), queue_name)
-
+	queue := queue.NewRabbitMq(config.RabbitMq.URI())
+	return queue.Consume(fmt.Sprintf("smtp-consumer-%s-%d", hostname, os.Getpid()), queue_name, &consumer)
 }

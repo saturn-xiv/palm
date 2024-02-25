@@ -17,7 +17,6 @@ type Config struct {
 	Secrets    string     `toml:"secrets"`
 	Redis      Redis      `toml:"redis"`
 	PostgreSql PostgreSql `toml:"postgresql"`
-	RabbitMq   RabbitMq   `toml:"rabbitmq"`
 }
 
 func (p *Config) OpenSecrets() (*Aes, *HMac, *Jwt, error) {
