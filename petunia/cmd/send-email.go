@@ -7,7 +7,6 @@ import (
 	"github.com/BurntSushi/toml"
 
 	"github.com/saturn-xiv/palm/petunia/email"
-	"github.com/saturn-xiv/palm/petunia/env"
 )
 
 func launch_send_email_consumer(queue_name string, config_file string) error {
@@ -15,7 +14,7 @@ func launch_send_email_consumer(queue_name string, config_file string) error {
 	if err != nil {
 		return err
 	}
-	var config env.Config
+	var config email.Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
 	}

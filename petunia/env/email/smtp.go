@@ -1,4 +1,4 @@
-package env
+package email
 
 import (
 	"crypto/tls"
@@ -18,13 +18,13 @@ type Smtp struct {
 	Password string  `toml:"password"`
 }
 
-func (p *Smtp) From() string {
-	msg := gomail.NewMessage()
-	return msg.FormatAddress(p.User.Email, p.User.Name)
-}
-
-func (p *Smtp) Open() *gomail.Dialer {
+func (p *Smtp) Open(messages ...*gomail.Message) *gomail.Dialer {
 	cli := gomail.NewDialer(p.Host, int(p.Port), p.User.Email, p.Password)
 	cli.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 	return cli
+}
+
+func (p *Smtp) From() string {
+	msg := gomail.NewMessage()
+	return msg.FormatAddress(p.User.Email, p.User.Name)
 }

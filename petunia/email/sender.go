@@ -68,7 +68,7 @@ func (p *SendEmailConsumer) consume(id string, content_type string, body []byte)
 		items := []string{}
 		for _, it := range task.Cc {
 			log.Debugf("cc %s<%s>", it.Name, it.Email)
-			items = append(items, msg.FormatAddress(it.Email, it.Name))
+			items = append(items, it.Address())
 		}
 		msg.SetHeader("Cc", items...)
 	}
@@ -76,7 +76,7 @@ func (p *SendEmailConsumer) consume(id string, content_type string, body []byte)
 		items := []string{}
 		for _, it := range task.Bcc {
 			log.Debugf("bcc %s<%s>", it.Name, it.Email)
-			items = append(items, msg.FormatAddress(it.Email, it.Name))
+			items = append(items, it.Address())
 		}
 		msg.SetHeader("Bcc", items...)
 	}
