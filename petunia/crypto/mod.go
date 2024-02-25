@@ -1,9 +1,12 @@
-package env
+package crypto
 
 import (
 	"errors"
+	"fmt"
 	"os"
+	"path"
 
+	"github.com/saturn-xiv/palm/petunia/env/crypto"
 	log "github.com/sirupsen/logrus"
 	"github.com/tink-crypto/tink-go/v2/aead"
 	"github.com/tink-crypto/tink-go/v2/insecurecleartextkeyset"
@@ -12,18 +15,25 @@ import (
 	"github.com/tink-crypto/tink-go/v2/mac"
 )
 
-type Config struct {
-	// openssl rand -base64 32
-	Secrets    string     `toml:"secrets"`
-	Redis      Redis      `toml:"redis"`
-	PostgreSql PostgreSql `toml:"postgresql"`
-}
-
-func (p *Config) OpenSecrets() (*Aes, *HMac, *Jwt, error) {
-	master_key_file_name := "master.bin"
-	jwt_key_file_name := "jwt.bin"
-	hmac_key_file_name := "hmac.bin"
-	aes_key_file_name := "aes.bin"
+func Open(root string) (*crypto.Aes, *crypto.HMac, *crypto.Jwt, error) {
+	{
+		stat, err := os.Stat(root)
+		if err == nil {
+			if !stat.IsDir() {
+				return nil, nil, nil, fmt.Errorf("%s is not a folder", root)
+			}
+		} else {
+			if os.IsNotExist(err) {
+				if err = os.MkdirAll(root, 0700); err != nil {
+					return nil, nil, nil, err
+				}
+			}
+		}
+	}
+	master_key_file_name := path.Join(root, "master.bin")
+	jwt_key_file_name := path.Join(root, "jwt.bin")
+	hmac_key_file_name := path.Join(root, "hmac.bin")
+	aes_key_file_name := path.Join(root, "aes.bin")
 	if _, err := os.Stat(master_key_file_name); errors.Is(err, os.ErrNotExist) {
 		master_key, err := keyset.NewHandle(aead.AES256GCMKeyTemplate())
 		if err != nil {
@@ -51,16 +61,16 @@ func (p *Config) OpenSecrets() (*Aes, *HMac, *Jwt, error) {
 			}
 		}
 		log.Warnf("generate a new aes key file %s", aes_key_file_name)
-		if err = dump_key(aes_key_file_name, secret, aead.AES256GCMKeyTemplate()); err != nil {
+		if err = crypto.Dump(aes_key_file_name, secret, aead.AES256GCMKeyTemplate()); err != nil {
 			return nil, nil, nil, err
 		}
 		log.Warnf("generate a new hmac key file %s", hmac_key_file_name)
-		if err = dump_key(hmac_key_file_name, secret, mac.HMACSHA512Tag512KeyTemplate()); err != nil {
+		if err = crypto.Dump(hmac_key_file_name, secret, mac.HMACSHA512Tag512KeyTemplate()); err != nil {
 			return nil, nil, nil, err
 		}
 
 		log.Warnf("generate a new jwt key file %s", jwt_key_file_name)
-		if err = dump_key(jwt_key_file_name, secret, jwt.HS512Template()); err != nil {
+		if err = crypto.Dump(jwt_key_file_name, secret, jwt.HS512Template()); err != nil {
 			return nil, nil, nil, err
 		}
 
@@ -83,19 +93,19 @@ func (p *Config) OpenSecrets() (*Aes, *HMac, *Jwt, error) {
 	}
 
 	log.Debugf("load aes key from %s", aes_key_file_name)
-	aes, err := newAes(aes_key_file_name, secret)
+	aes, err := crypto.NewAes(aes_key_file_name, secret)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
 	log.Debugf("load hmac key from %s", hmac_key_file_name)
-	hmac, err := newHMac(hmac_key_file_name, secret)
+	hmac, err := crypto.NewHMac(hmac_key_file_name, secret)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
 	log.Debugf("load jwt key from %s", jwt_key_file_name)
-	jwt, err := newJwt(jwt_key_file_name, secret)
+	jwt, err := crypto.NewJwt(jwt_key_file_name, secret)
 	if err != nil {
 		return nil, nil, nil, err
 	}

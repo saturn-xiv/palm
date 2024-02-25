@@ -4,25 +4,18 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/BurntSushi/toml"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/saturn-xiv/palm/almond/env"
-	"github.com/saturn-xiv/palm/almond/rbac"
-	rbac_pb "github.com/saturn-xiv/palm/almond/rbac/v2"
+	"github.com/saturn-xiv/palm/petunia/crypto"
+	crypto_pb "github.com/saturn-xiv/palm/petunia/crypto/v2"
 )
 
-func launch_rpc_server(port int, config_file string) error {
-	log.Debugf("load configuration from %s", config_file)
-	var config env.Config
-	if _, err := toml.DecodeFile(config_file, &config); err != nil {
-		return err
-	}
+func launch_crypto_rpc_server(port int, app_id string) error {
 
-	enforcer, err := config.OpenCasbinEnforcer()
+	aes, hmac, jwt, err := crypto.Open(app_id)
 	if err != nil {
 		return err
 	}
@@ -37,7 +30,9 @@ func launch_rpc_server(port int, config_file string) error {
 	var opts []grpc.ServerOption
 
 	server := grpc.NewServer(opts...)
-	rbac_pb.RegisterPolicyServer(server, rbac.NewPolicyService(enforcer))
+	crypto_pb.RegisterHmacServer(server, crypto.NewHmacService(hmac))
+	crypto_pb.RegisterAesServer(server, crypto.NewAesService(aes))
+	crypto_pb.RegisterJwtServer(server, crypto.NewJwtService(jwt))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
 	return server.Serve(socket)

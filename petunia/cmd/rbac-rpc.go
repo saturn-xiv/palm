@@ -1,32 +1,29 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
 	"net"
-	"os"
 
+	"github.com/BurntSushi/toml"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 
-	"github.com/saturn-xiv/palm/petunia/env"
-	"github.com/saturn-xiv/palm/petunia/s3"
-	s3_pb "github.com/saturn-xiv/palm/petunia/s3/v2"
+	"github.com/saturn-xiv/palm/petunia/rbac"
+	rbac_pb "github.com/saturn-xiv/palm/petunia/rbac/v2"
 )
 
-func launch_s3_rpc_server(port int, config_file string) error {
+func launch_rbac_rpc_server(port int, config_file string) error {
 	log.Debugf("load configuration from %s", config_file)
-	var config env.Minio
-	{
-		buf, err := os.ReadFile(config_file)
-		if err != nil {
-			return err
-		}
-		if err = json.Unmarshal(buf, &config); err != nil {
-			return err
-		}
+	var config rbac.Config
+	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+
+	enforcer, err := config.OpenCasbinEnforcer()
+	if err != nil {
+		return err
 	}
 
 	network := "tcp"
@@ -39,7 +36,7 @@ func launch_s3_rpc_server(port int, config_file string) error {
 	var opts []grpc.ServerOption
 
 	server := grpc.NewServer(opts...)
-	s3_pb.RegisterS3Server(server, s3.NewS3Service())
+	rbac_pb.RegisterPolicyServer(server, rbac.NewPolicyService(enforcer))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
 	return server.Serve(socket)

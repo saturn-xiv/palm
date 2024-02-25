@@ -40,15 +40,15 @@ var (
 	gl_queue    string
 	gl_web_port int
 	gl_rpc_port int
+	gl_app_id   string
 )
 
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
-	root_cmd.PersistentFlags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "twilio-callback",
+			Use:   "twilio-callback-server",
 			Short: "Start a Twilio callback server(HTTP)",
 			Run: func(cmd *cobra.Command, args []string) {
 				if gl_debug {
@@ -59,17 +59,18 @@ func init() {
 				}
 				log.Debugf("run on debug mode")
 
-				if err := launch_web_server(gl_web_port, gl_config); err != nil {
+				if err := launch_twilio_callback(gl_web_port); err != nil {
 					log.Fatalf("start HTTP server: %s", err)
 				}
 			},
 		}
 		cmd.Flags().IntVarP(&gl_web_port, "port", "p", 8080, "listen port")
+		cmd.Flags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
 		root_cmd.AddCommand(cmd)
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "send-sms",
+			Use:   "send-sms-consumer",
 			Short: "Start a send-sms consumer",
 			Run: func(cmd *cobra.Command, args []string) {
 				if gl_debug {
@@ -85,11 +86,12 @@ func init() {
 			},
 		}
 		cmd.Flags().StringVarP(&gl_queue, "queue", "q", "send-sms", "queue name")
+		cmd.Flags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
 		root_cmd.AddCommand(cmd)
 	}
 	{
 		var cmd = &cobra.Command{
-			Use:   "send-email",
+			Use:   "send-email-consumer",
 			Short: "Start a send-email consumer",
 			Run: func(cmd *cobra.Command, args []string) {
 				if gl_debug {
@@ -105,12 +107,13 @@ func init() {
 			},
 		}
 		cmd.Flags().StringVarP(&gl_queue, "queue", "q", "send-email", "queue name")
+		cmd.Flags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
 		root_cmd.AddCommand(cmd)
 	}
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "s3-rpc",
+			Use:   "s3-rpc-server",
 			Short: "Start a s3 gRPC server",
 			Run: func(cmd *cobra.Command, args []string) {
 				if gl_debug {
@@ -120,18 +123,19 @@ func init() {
 				}
 				log.Debugf("run on debug mode")
 
-				if err := launch_rpc_server(gl_rpc_port, gl_config); err != nil {
+				if err := launch_s3_rpc_server(gl_rpc_port, gl_config); err != nil {
 					log.Fatalf("start s3 gRPC server: %s", err)
 				}
 			},
 		}
 		cmd.Flags().IntVarP(&gl_rpc_port, "port", "p", 9999, "listen port")
+		cmd.Flags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
 		root_cmd.AddCommand(cmd)
 	}
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "s3-gc",
+			Use:   "s3-gc-worker",
 			Short: "Start a s3 garbage-collection worker",
 			Run: func(cmd *cobra.Command, args []string) {
 				if gl_debug {
@@ -146,6 +150,51 @@ func init() {
 				}
 			},
 		}
+		cmd.Flags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "crypto-rpc-server",
+			Short: "Start a crypto gRPC server(based on Google-Tink)",
+			Run: func(cmd *cobra.Command, args []string) {
+				if gl_debug {
+					log.SetLevel(log.DebugLevel)
+				} else {
+					log.SetLevel(log.InfoLevel)
+				}
+				log.Debugf("run on debug mode")
+
+				if err := launch_crypto_rpc_server(gl_rpc_port, gl_app_id); err != nil {
+					log.Fatalf("start tink gRPC server: %s", err)
+				}
+			},
+		}
+		cmd.Flags().IntVarP(&gl_rpc_port, "port", "p", 9999, "listen port")
+		cmd.Flags().StringVarP(&gl_app_id, "app-id", "I", "testing", "application id")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "rbac-rpc-server",
+			Short: "Start a rbac gRPC server",
+			Run: func(cmd *cobra.Command, args []string) {
+				if gl_debug {
+					log.SetLevel(log.DebugLevel)
+				} else {
+					log.SetLevel(log.InfoLevel)
+				}
+				log.Debugf("run on debug mode")
+
+				if err := launch_rbac_rpc_server(gl_rpc_port, gl_config); err != nil {
+					log.Fatalf("start gRPC server: %s", err)
+				}
+			},
+		}
+		cmd.Flags().IntVarP(&gl_rpc_port, "port", "p", 9999, "listen port")
+		cmd.Flags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
 		root_cmd.AddCommand(cmd)
 	}
 

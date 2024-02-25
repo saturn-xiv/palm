@@ -215,6 +215,7 @@ function generate_petunia() {
         "sms"
         "s3"
         "rbac"
+        "crypto"
     )
     local protocols_dir=$WORKSPACE/petunia/protocols
     for p in "${protocols[@]}"; do

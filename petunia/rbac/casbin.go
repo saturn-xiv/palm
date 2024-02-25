@@ -1,4 +1,4 @@
-package env
+package rbac
 
 import (
 	"fmt"
@@ -13,19 +13,19 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type CasbinLogger struct {
+type casbinLogger struct {
 	enabled bool
 }
 
-func (l *CasbinLogger) EnableLog(enable bool) {
+func (l *casbinLogger) EnableLog(enable bool) {
 	l.enabled = enable
 }
 
-func (l *CasbinLogger) IsEnabled() bool {
+func (l *casbinLogger) IsEnabled() bool {
 	return l.enabled
 }
 
-func (l *CasbinLogger) LogModel(model [][]string) {
+func (l *casbinLogger) LogModel(model [][]string) {
 	if !l.enabled {
 		return
 	}
@@ -38,35 +38,35 @@ func (l *CasbinLogger) LogModel(model [][]string) {
 	log.Info(str.String())
 }
 
-func (l *CasbinLogger) LogEnforce(matcher string, request []interface{}, result bool, explains [][]string) {
+func (l *casbinLogger) LogEnforce(matcher string, request []interface{}, result bool, explains [][]string) {
 	if !l.enabled {
 		return
 	}
 
-	var reqStr strings.Builder
-	reqStr.WriteString("Request: ")
+	var req_s strings.Builder
+	req_s.WriteString("Request: ")
 	for i, rval := range request {
 		if i != len(request)-1 {
-			reqStr.WriteString(fmt.Sprintf("%v, ", rval))
+			req_s.WriteString(fmt.Sprintf("%v, ", rval))
 		} else {
-			reqStr.WriteString(fmt.Sprintf("%v", rval))
+			req_s.WriteString(fmt.Sprintf("%v", rval))
 		}
 	}
-	reqStr.WriteString(fmt.Sprintf(" ---> %t\n", result))
+	req_s.WriteString(fmt.Sprintf(" ---> %t\n", result))
 
-	reqStr.WriteString("Hit Policy: ")
+	req_s.WriteString("Hit Policy: ")
 	for i, pval := range explains {
 		if i != len(explains)-1 {
-			reqStr.WriteString(fmt.Sprintf("%v, ", pval))
+			req_s.WriteString(fmt.Sprintf("%v, ", pval))
 		} else {
-			reqStr.WriteString(fmt.Sprintf("%v \n", pval))
+			req_s.WriteString(fmt.Sprintf("%v \n", pval))
 		}
 	}
 
-	log.Info(reqStr.String())
+	log.Info(req_s.String())
 }
 
-func (l *CasbinLogger) LogPolicy(policy map[string][][]string) {
+func (l *casbinLogger) LogPolicy(policy map[string][][]string) {
 	if !l.enabled {
 		return
 	}
@@ -80,7 +80,7 @@ func (l *CasbinLogger) LogPolicy(policy map[string][][]string) {
 	log.Info(str.String())
 }
 
-func (l *CasbinLogger) LogRole(roles []string) {
+func (l *casbinLogger) LogRole(roles []string) {
 	if !l.enabled {
 		return
 	}
@@ -88,7 +88,7 @@ func (l *CasbinLogger) LogRole(roles []string) {
 	log.Info("Roles: ", strings.Join(roles, "\n"))
 }
 
-func (l *CasbinLogger) LogError(err error, msg ...string) {
+func (l *casbinLogger) LogError(err error, msg ...string) {
 	if !l.enabled {
 		return
 	}
@@ -155,7 +155,7 @@ func (p *Config) OpenCasbinEnforcer() (*casbin.Enforcer, error) {
 	// }
 
 	mdl, err := casbin_model.NewModelFromString(gl_casbin_rbac_model)
-	mdl.SetLogger(&CasbinLogger{})
+	mdl.SetLogger(&casbinLogger{})
 	if err != nil {
 		return nil, err
 	}

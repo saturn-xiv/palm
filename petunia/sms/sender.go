@@ -17,8 +17,8 @@ type SendSmsConsumer struct {
 	from   string
 }
 
-func NewSendSmsConsumer(config *env.Twilio) SendSmsConsumer {
-	return SendSmsConsumer{
+func NewSendSmsConsumer(config *env.Twilio) *SendSmsConsumer {
+	return &SendSmsConsumer{
 		client: config.Open(),
 		from:   config.From,
 	}

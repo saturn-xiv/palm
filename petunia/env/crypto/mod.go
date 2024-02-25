@@ -1,4 +1,4 @@
-package env
+package crypto
 
 import (
 	"crypto/rand"
@@ -9,7 +9,3 @@ func RandomBytes(len int) []byte {
 	rand.Read(buf)
 	return buf
 }
-
-// func QueueName(i any) string {
-// 	return reflect.TypeOf(i).Elem().Name()
-// }

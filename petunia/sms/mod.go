@@ -2,10 +2,10 @@ package sms
 
 import (
 	"github.com/saturn-xiv/palm/petunia/env"
-	"github.com/saturn-xiv/palm/petunia/env/queue"
+	"github.com/saturn-xiv/palm/petunia/env/rabbitmq"
 )
 
 type Config struct {
-	Twilio   env.Twilio           `toml:"twilio"`
-	RabbitMq queue.RabbitMqConfig `toml:"rabbitmq"`
+	Twilio   env.Twilio      `toml:"twilio"`
+	RabbitMq rabbitmq.Config `toml:"rabbitmq"`
 }

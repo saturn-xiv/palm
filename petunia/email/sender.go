@@ -15,8 +15,8 @@ type SendEmailConsumer struct {
 	dialer *gomail.Dialer
 }
 
-func NewSendEmailConsumer(from string, dialer *gomail.Dialer) SendEmailConsumer {
-	return SendEmailConsumer{
+func NewSendEmailConsumer(from string, dialer *gomail.Dialer) *SendEmailConsumer {
+	return &SendEmailConsumer{
 		from:   from,
 		dialer: dialer,
 	}

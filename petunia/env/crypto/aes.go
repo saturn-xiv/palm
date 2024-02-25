@@ -1,4 +1,4 @@
-package env
+package crypto
 
 import (
 	"github.com/tink-crypto/tink-go/v2/aead"
@@ -23,8 +23,8 @@ func (p *Aes) Decrypt(code []byte, salt []byte) ([]byte, error) {
 	return p.aead.Decrypt(code, salt)
 }
 
-func newAes(file string, secret tink.AEAD) (*Aes, error) {
-	handle, err := restore_key(file, secret)
+func NewAes(file string, secret tink.AEAD) (*Aes, error) {
+	handle, err := Restore(file, secret)
 	if err != nil {
 		return nil, err
 	}

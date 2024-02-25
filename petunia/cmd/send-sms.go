@@ -6,7 +6,6 @@ import (
 
 	"github.com/BurntSushi/toml"
 
-	"github.com/saturn-xiv/palm/petunia/env/queue"
 	"github.com/saturn-xiv/palm/petunia/sms"
 )
 
@@ -21,7 +20,7 @@ func launch_send_sms_consumer(queue_name string, config_file string) error {
 	}
 
 	consumer := sms.NewSendSmsConsumer(&config.Twilio)
-	queue := queue.NewRabbitMq(config.RabbitMq.URI())
-	return queue.Consume(fmt.Sprintf("twilio-sms-consumer-%s-%d", hostname, os.Getpid()), queue_name, &consumer)
+	queue := config.RabbitMq.Open()
+	return queue.Consume(fmt.Sprintf("twilio-sms-consumer-%s-%d", hostname, os.Getpid()), queue_name, consumer)
 
 }

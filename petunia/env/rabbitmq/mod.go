@@ -1,4 +1,4 @@
-package queue
+package rabbitmq
 
 import (
 	"context"
@@ -7,9 +7,11 @@ import (
 
 	amqp "github.com/rabbitmq/amqp091-go"
 	log "github.com/sirupsen/logrus"
+
+	"github.com/saturn-xiv/palm/petunia/env/queue"
 )
 
-type RabbitMqConfig struct {
+type Config struct {
 	Host        string `toml:"host"`
 	Port        uint16 `toml:"port"`
 	User        string `toml:"user"`
@@ -17,15 +19,19 @@ type RabbitMqConfig struct {
 	VirtualHost string `toml:"virtual-host"`
 }
 
-func (p *RabbitMqConfig) URI() string {
+func (p *Config) Open() *Node {
+	return &Node{uri: p.URI()}
+}
+
+func (p *Config) URI() string {
 	return fmt.Sprintf("amqp://%s:%s@%s:%d/%s", p.User, p.Password, p.Host, p.Port, p.VirtualHost)
 }
 
-type RabbitMq struct {
+type Node struct {
 	uri string
 }
 
-func (p *RabbitMq) Consume(consumer_name string, queue_name string, consumer_handler Consumer) error {
+func (p *Node) Consume(consumer_name string, queue_name string, consumer_handler queue.Consumer) error {
 	con, err := amqp.Dial(p.uri)
 	if err != nil {
 		return err
@@ -53,15 +59,15 @@ func (p *RabbitMq) Consume(consumer_name string, queue_name string, consumer_han
 	return nil
 }
 
-func (p *RabbitMq) Produce(queue string, message *Message) error {
+func (p *Node) Produce(queue string, message *queue.Message) error {
 	return p.send("", queue, message)
 }
 
-func (p *RabbitMq) Publish(exchange string, message *Message) error {
+func (p *Node) Publish(exchange string, message *queue.Message) error {
 	return p.send(exchange, "", message)
 }
 
-func (p *RabbitMq) Bind(exchange_name string, exchange_type string, queue_name string, routing_key string) error {
+func (p *Node) Bind(exchange_name string, exchange_type string, queue_name string, routing_key string) error {
 	con, err := amqp.Dial(p.uri)
 	if err != nil {
 		return err
@@ -86,7 +92,7 @@ func (p *RabbitMq) Bind(exchange_name string, exchange_type string, queue_name s
 
 }
 
-func (p *RabbitMq) send(exchange string, routing_key string, message *Message) error {
+func (p *Node) send(exchange string, routing_key string, message *queue.Message) error {
 	con, err := amqp.Dial(p.uri)
 	if err != nil {
 		return err
@@ -112,8 +118,4 @@ func (p *RabbitMq) send(exchange string, routing_key string, message *Message) e
 			MessageId:   message.Id,
 		})
 
-}
-
-func NewRabbitMq(uri string) RabbitMq {
-	return RabbitMq{uri: uri}
 }

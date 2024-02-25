@@ -4,8 +4,9 @@ import (
 	"context"
 
 	"github.com/casbin/casbin/v2"
-	pb "github.com/saturn-xiv/palm/almond/rbac/v2"
 	"google.golang.org/protobuf/types/known/emptypb"
+
+	pb "github.com/saturn-xiv/palm/petunia/rbac/v2"
 )
 
 type PolicyService struct {

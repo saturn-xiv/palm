@@ -1,4 +1,4 @@
-package env
+package crypto
 
 import (
 	"github.com/tink-crypto/tink-go/v2/mac"
@@ -17,8 +17,8 @@ func (p *HMac) Verify(code []byte, plain []byte) error {
 	return p.mac.VerifyMAC(code, plain)
 }
 
-func newHMac(file string, secret tink.AEAD) (*HMac, error) {
-	handle, err := restore_key(file, secret)
+func NewHMac(file string, secret tink.AEAD) (*HMac, error) {
+	handle, err := Restore(file, secret)
 	if err != nil {
 		return nil, err
 	}

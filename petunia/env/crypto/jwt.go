@@ -1,4 +1,4 @@
-package env
+package crypto
 
 import (
 	"time"
@@ -57,8 +57,8 @@ func (p *Jwt) Sign(issuer string, subject string, audience string, claims map[st
 	return p.mac.ComputeMACAndEncode(raw)
 }
 
-func newJwt(file string, secret tink.AEAD) (*Jwt, error) {
-	handle, err := restore_key(file, secret)
+func NewJwt(file string, secret tink.AEAD) (*Jwt, error) {
+	handle, err := Restore(file, secret)
 	if err != nil {
 		return nil, err
 	}
