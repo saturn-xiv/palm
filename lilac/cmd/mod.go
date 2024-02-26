@@ -66,24 +66,4 @@ func init() {
 		root_cmd.AddCommand(cmd)
 	}
 
-	{
-		var cmd = &cobra.Command{
-			Use:   "minio-gc",
-			Short: "Start a Minio garbage-collection worker",
-			Run: func(cmd *cobra.Command, args []string) {
-				if gl_debug {
-					log.SetLevel(log.DebugLevel)
-				} else {
-					log.SetLevel(log.InfoLevel)
-				}
-				log.Debugf("run on debug mode")
-
-				if err := launch_minio_gc(gl_config); err != nil {
-					log.Fatalf("gc: %s", err)
-				}
-			},
-		}
-		root_cmd.AddCommand(cmd)
-	}
-
 }

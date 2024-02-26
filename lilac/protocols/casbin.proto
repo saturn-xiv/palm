@@ -30,7 +30,7 @@ message Role {
 }
 
 message Permission {
-  string operation = 1;
+  string action = 1;
   Resource resource = 2;
 }
 
@@ -38,28 +38,33 @@ service Policy {
   rpc Can(CanRequest) returns (google.protobuf.Empty) {}
   rpc Has(HasRequest) returns (google.protobuf.Empty) {}
 
-  rpc AddRolesForUser(RolesForUserRequest) returns (google.protobuf.Empty) {}
+  rpc AddRoleForUser(RoleForUserRequest) returns (google.protobuf.Empty) {}
   rpc GetImplicitRolesForUser(User) returns (RolesResponse) {}
+  rpc SetRolesForUser(RolesForUserRequest) returns (google.protobuf.Empty) {}
   rpc GetRolesForUser(User) returns (RolesResponse) {}
   rpc DeleteUser(User) returns (google.protobuf.Empty) {}
 
   rpc GetUsersForRole(Role) returns (UsersResponse) {}
   rpc GetImplicitUsersForRole(Role) returns (UsersResponse) {}
   rpc DeleteRole(Role) returns (google.protobuf.Empty) {}
-  rpc DeleteRolesForUser(RolesForUserRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteRoleForUser(RoleForUserRequest) returns (google.protobuf.Empty) {}
 
+  rpc AddPermissionForUser(PermissionForUserRequest)
+      returns (google.protobuf.Empty) {}
   rpc AddPermissionsForUser(PermissionsForUserRequest)
       returns (google.protobuf.Empty) {}
   rpc GetPermissionsForUser(User) returns (PermissionsResponse) {}
   rpc GetImplicitPermissionsForUser(User) returns (PermissionsResponse) {}
-  rpc DeletePermissionsForUser(PermissionsForUserRequest)
+  rpc DeletePermissionForUser(PermissionForUserRequest)
       returns (google.protobuf.Empty) {}
 
+  rpc AddPermissionForRole(PermissionForRoleRequest)
+      returns (google.protobuf.Empty) {}
   rpc AddPermissionsForRole(PermissionsForRoleRequest)
       returns (google.protobuf.Empty) {}
   rpc GetPermissionsForRole(Role) returns (PermissionsResponse) {}
   rpc GetImplicitPermissionsForRole(Role) returns (PermissionsResponse) {}
-  rpc DeletePermissionsForRole(PermissionsForRoleRequest)
+  rpc DeletePermissionForRole(PermissionForRoleRequest)
       returns (google.protobuf.Empty) {}
 }
 
@@ -70,6 +75,11 @@ message CanRequest {
 }
 
 message HasRequest {
+  User user = 1;
+  Role role = 2;
+}
+
+message RoleForUserRequest {
   User user = 1;
   Role role = 2;
 }
@@ -87,9 +97,19 @@ message UsersResponse {
   repeated User items = 1;
 }
 
+message PermissionForUserRequest {
+  User user = 1;
+  Permission permission = 2;
+}
+
 message PermissionsForUserRequest {
   User user = 1;
   repeated Permission permissions = 2;
+}
+
+message PermissionForRoleRequest {
+  Role role = 1;
+  Permission permission = 2;
 }
 
 message PermissionsForRoleRequest {

@@ -2,6 +2,8 @@ package v2
 
 import (
 	"encoding/base64"
+	"fmt"
+	"strings"
 
 	"google.golang.org/protobuf/proto"
 )
@@ -14,7 +16,7 @@ func (p *User) ToSubject() (string, error) {
 	return base64.StdEncoding.EncodeToString(buf), nil
 }
 
-func NewUserFromSubject(subject string) (*User, error) {
+func NewUser(subject string) (*User, error) {
 	buf, err := base64.StdEncoding.DecodeString(subject)
 	if err != nil {
 		return nil, err
@@ -34,7 +36,7 @@ func (p *Role) ToSubject() (string, error) {
 	return base64.StdEncoding.EncodeToString(buf), nil
 }
 
-func NewRoleSubject(subject string) (*Role, error) {
+func NewRole(subject string) (*Role, error) {
 	buf, err := base64.StdEncoding.DecodeString(subject)
 	if err != nil {
 		return nil, err
@@ -54,7 +56,7 @@ func (p *Resource) ToObject() (string, error) {
 	return base64.StdEncoding.EncodeToString(buf), nil
 }
 
-func NewResourceFromObject(object string) (*Resource, error) {
+func NewResource(object string) (*Resource, error) {
 	buf, err := base64.StdEncoding.DecodeString(object)
 	if err != nil {
 		return nil, err
@@ -64,4 +66,18 @@ func NewResourceFromObject(object string) (*Resource, error) {
 		return nil, err
 	}
 	return &it, nil
+}
+
+func NewPermission(args ...string) (*Permission, error) {
+	if len(args) != 3 {
+		return nil, fmt.Errorf("unknown permission(%s)", strings.Join(args, ","))
+	}
+	resource, err := NewResource(args[1])
+	if err != nil {
+		return nil, err
+	}
+	return &Permission{
+		Resource: resource,
+		Action:   args[2],
+	}, nil
 }
