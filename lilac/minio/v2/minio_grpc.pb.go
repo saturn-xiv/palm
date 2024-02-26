@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,18 +20,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	S3_Upload_FullMethodName       = "/palm.lilac.minio.v1.S3/Upload"
-	S3_PresignedUrl_FullMethodName = "/palm.lilac.minio.v1.S3/PresignedUrl"
-	S3_PermanentUrl_FullMethodName = "/palm.lilac.minio.v1.S3/PermanentUrl"
+	S3_CreateBucket_FullMethodName    = "/palm.lilac.minio.v1.S3/CreateBucket"
+	S3_UploadFile_FullMethodName      = "/palm.lilac.minio.v1.S3/UploadFile"
+	S3_GetPresignedUrl_FullMethodName = "/palm.lilac.minio.v1.S3/GetPresignedUrl"
+	S3_GetPermanentUrl_FullMethodName = "/palm.lilac.minio.v1.S3/GetPermanentUrl"
 )
 
 // S3Client is the client API for S3 service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type S3Client interface {
-	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
-	PresignedUrl(ctx context.Context, in *PresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
-	PermanentUrl(ctx context.Context, in *PermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
+	CreateBucket(ctx context.Context, in *CreateBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UploadFile(ctx context.Context, in *UploadFileRequest, opts ...grpc.CallOption) (*UploadFileResponse, error)
+	GetPresignedUrl(ctx context.Context, in *GetPresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
+	GetPermanentUrl(ctx context.Context, in *GetPermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
 }
 
 type s3Client struct {
@@ -41,27 +44,36 @@ func NewS3Client(cc grpc.ClientConnInterface) S3Client {
 	return &s3Client{cc}
 }
 
-func (c *s3Client) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error) {
-	out := new(UploadResponse)
-	err := c.cc.Invoke(ctx, S3_Upload_FullMethodName, in, out, opts...)
+func (c *s3Client) CreateBucket(ctx context.Context, in *CreateBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, S3_CreateBucket_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *s3Client) PresignedUrl(ctx context.Context, in *PresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
-	out := new(UrlResponse)
-	err := c.cc.Invoke(ctx, S3_PresignedUrl_FullMethodName, in, out, opts...)
+func (c *s3Client) UploadFile(ctx context.Context, in *UploadFileRequest, opts ...grpc.CallOption) (*UploadFileResponse, error) {
+	out := new(UploadFileResponse)
+	err := c.cc.Invoke(ctx, S3_UploadFile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *s3Client) PermanentUrl(ctx context.Context, in *PermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
+func (c *s3Client) GetPresignedUrl(ctx context.Context, in *GetPresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
 	out := new(UrlResponse)
-	err := c.cc.Invoke(ctx, S3_PermanentUrl_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, S3_GetPresignedUrl_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *s3Client) GetPermanentUrl(ctx context.Context, in *GetPermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
+	out := new(UrlResponse)
+	err := c.cc.Invoke(ctx, S3_GetPermanentUrl_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,9 +84,10 @@ func (c *s3Client) PermanentUrl(ctx context.Context, in *PermanentUrlRequest, op
 // All implementations must embed UnimplementedS3Server
 // for forward compatibility
 type S3Server interface {
-	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
-	PresignedUrl(context.Context, *PresignedUrlRequest) (*UrlResponse, error)
-	PermanentUrl(context.Context, *PermanentUrlRequest) (*UrlResponse, error)
+	CreateBucket(context.Context, *CreateBucketRequest) (*emptypb.Empty, error)
+	UploadFile(context.Context, *UploadFileRequest) (*UploadFileResponse, error)
+	GetPresignedUrl(context.Context, *GetPresignedUrlRequest) (*UrlResponse, error)
+	GetPermanentUrl(context.Context, *GetPermanentUrlRequest) (*UrlResponse, error)
 	mustEmbedUnimplementedS3Server()
 }
 
@@ -82,14 +95,17 @@ type S3Server interface {
 type UnimplementedS3Server struct {
 }
 
-func (UnimplementedS3Server) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
+func (UnimplementedS3Server) CreateBucket(context.Context, *CreateBucketRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBucket not implemented")
 }
-func (UnimplementedS3Server) PresignedUrl(context.Context, *PresignedUrlRequest) (*UrlResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PresignedUrl not implemented")
+func (UnimplementedS3Server) UploadFile(context.Context, *UploadFileRequest) (*UploadFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadFile not implemented")
 }
-func (UnimplementedS3Server) PermanentUrl(context.Context, *PermanentUrlRequest) (*UrlResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PermanentUrl not implemented")
+func (UnimplementedS3Server) GetPresignedUrl(context.Context, *GetPresignedUrlRequest) (*UrlResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPresignedUrl not implemented")
+}
+func (UnimplementedS3Server) GetPermanentUrl(context.Context, *GetPermanentUrlRequest) (*UrlResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPermanentUrl not implemented")
 }
 func (UnimplementedS3Server) mustEmbedUnimplementedS3Server() {}
 
@@ -104,56 +120,74 @@ func RegisterS3Server(s grpc.ServiceRegistrar, srv S3Server) {
 	s.RegisterService(&S3_ServiceDesc, srv)
 }
 
-func _S3_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadRequest)
+func _S3_CreateBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBucketRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(S3Server).Upload(ctx, in)
+		return srv.(S3Server).CreateBucket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: S3_Upload_FullMethodName,
+		FullMethod: S3_CreateBucket_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).Upload(ctx, req.(*UploadRequest))
+		return srv.(S3Server).CreateBucket(ctx, req.(*CreateBucketRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _S3_PresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PresignedUrlRequest)
+func _S3_UploadFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadFileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(S3Server).PresignedUrl(ctx, in)
+		return srv.(S3Server).UploadFile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: S3_PresignedUrl_FullMethodName,
+		FullMethod: S3_UploadFile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).PresignedUrl(ctx, req.(*PresignedUrlRequest))
+		return srv.(S3Server).UploadFile(ctx, req.(*UploadFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _S3_PermanentUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermanentUrlRequest)
+func _S3_GetPresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPresignedUrlRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(S3Server).PermanentUrl(ctx, in)
+		return srv.(S3Server).GetPresignedUrl(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: S3_PermanentUrl_FullMethodName,
+		FullMethod: S3_GetPresignedUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).PermanentUrl(ctx, req.(*PermanentUrlRequest))
+		return srv.(S3Server).GetPresignedUrl(ctx, req.(*GetPresignedUrlRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _S3_GetPermanentUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPermanentUrlRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).GetPermanentUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_GetPermanentUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).GetPermanentUrl(ctx, req.(*GetPermanentUrlRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -166,16 +200,20 @@ var S3_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*S3Server)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Upload",
-			Handler:    _S3_Upload_Handler,
+			MethodName: "CreateBucket",
+			Handler:    _S3_CreateBucket_Handler,
 		},
 		{
-			MethodName: "PresignedUrl",
-			Handler:    _S3_PresignedUrl_Handler,
+			MethodName: "UploadFile",
+			Handler:    _S3_UploadFile_Handler,
 		},
 		{
-			MethodName: "PermanentUrl",
-			Handler:    _S3_PermanentUrl_Handler,
+			MethodName: "GetPresignedUrl",
+			Handler:    _S3_GetPresignedUrl_Handler,
+		},
+		{
+			MethodName: "GetPermanentUrl",
+			Handler:    _S3_GetPermanentUrl_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

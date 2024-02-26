@@ -37,6 +37,11 @@ func launch_rpc_server(port int, config_file string, keys_dir string) error {
 		return err
 	}
 
+	minio_client, err := config.Minio.Open()
+	if err != nil {
+		return err
+	}
+
 	network := "tcp"
 	address := fmt.Sprintf("0.0.0.0:%d", port)
 	log.Infof("start gRPC on %s://%s", network, address)
@@ -50,7 +55,7 @@ func launch_rpc_server(port int, config_file string, keys_dir string) error {
 
 	casbin_pb.RegisterPolicyServer(server, casbin.NewPolicyService(enforcer))
 
-	minio_pb.RegisterS3Server(server, minio.NewS3Service())
+	minio_pb.RegisterS3Server(server, minio.NewS3Service(minio_client))
 
 	tink_pb.RegisterHmacServer(server, tink.NewHmacService(hmac))
 	tink_pb.RegisterAesServer(server, tink.NewAesService(aes))

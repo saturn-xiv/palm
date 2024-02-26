@@ -5,19 +5,29 @@ option go_package = "github.com/saturn-xiv/palm/lilac/minio/v2";
 package palm.lilac.minio.v1;
 
 import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
 
 service S3 {
-  rpc Upload(UploadRequest) returns (UploadResponse) {}
-  rpc PresignedUrl(PresignedUrlRequest) returns (UrlResponse) {}
-  rpc PermanentUrl(PermanentUrlRequest) returns (UrlResponse) {}
+  rpc CreateBucket(CreateBucketRequest) returns (google.protobuf.Empty) {}
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse) {}
+
+  rpc GetPresignedUrl(GetPresignedUrlRequest) returns (UrlResponse) {}
+  rpc GetPermanentUrl(GetPermanentUrlRequest) returns (UrlResponse) {}
+}
+message CreateBucketRequest {
+  string bucket = 1;
+  optional int32 expiration_days = 2;
+  bool published = 9;
 }
 
-message UploadRequest {
-  string file = 1;
+message UploadFileRequest {
+  string bucket = 1;
+  string object = 2;
+  google.protobuf.Duration ttl = 3;
+}
 
-  optional google.protobuf.Duration ttl = 11;
-  optional string owner = 12;
-  bool published = 19;
+message UploadFileResponse {
+  string url = 1;
 }
 
 message UploadResponse {
@@ -26,18 +36,18 @@ message UploadResponse {
   string content_type = 3;
 }
 
-message PresignedUrlRequest {
+message GetPresignedUrlRequest {
   string bucket = 1;
-  string name = 2;
-  google.protobuf.Duration ttl = 3;
+  string object = 2;
+  string title = 3;
+  google.protobuf.Duration ttl = 4;
 }
 
-message PermanentUrlRequest {
+message GetPermanentUrlRequest {
   string bucket = 1;
-  string name = 2;
+  string object = 2;
 }
 
 message UrlResponse {
   string url = 1;
-  string content_type = 2;
 }
