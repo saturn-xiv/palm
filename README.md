@@ -67,6 +67,6 @@ A total free education & translation solution.
 - ~~loquat~~: Aes/HMac/Jwt services
 - ~~daffodil~~: twilio/smtp services
 - musa: WechatPay services
-- almond: rbac services
+- lilac: rbac services
 - petunia: email worker
 - ~~daffodil~~: tex, pdf, word, epub, excel, imagemagic services

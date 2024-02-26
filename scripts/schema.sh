@@ -209,30 +209,24 @@ function generate_lily() {
     # mv $target/lily/gourd $WORKSPACE/lily/gourd
 }
 
-function generate_petunia() {
-    local -a protocols=(
-        "email"
-        "sms"
-        "s3"
-        "rbac"
-        "crypto"
-    )
-    local protocols_dir=$WORKSPACE/petunia/protocols
-    for p in "${protocols[@]}"; do
-        echo "generate $p for petunia"
-        local target=$WORKSPACE/petunia/$p/v2
-        mkdir -p $target
-        protoc -I $protocols_dir -I $PROTOBUF_ROOT/include/google/protobuf \
-            --go_out=$target --go_opt=paths=source_relative \
-            --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
-            $protocols_dir/$p.proto
-    done
+function generate_go() {
+    local protocols_dir=$WORKSPACE/$1/protocols
+    local target=$WORKSPACE/$1/$2/v2
+
+    echo "generate $2 for $1"
+    mkdir -p $target
+    protoc -I $protocols_dir -I $PROTOBUF_ROOT/include/google/protobuf \
+        --go_out=$target --go_opt=paths=source_relative \
+        --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
+        $protocols_dir/$2.proto
 }
 
 # -----------------------------------------------------------------------------
 
 generate_musa
-generate_petunia
+generate_go lilac casbin
+generate_go lilac tink
+generate_go lilac minio
 
 generate_lily
 echo "generate lily requirements.txt"
