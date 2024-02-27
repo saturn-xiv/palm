@@ -1,2 +1,0 @@
-
-JOB = 'tex-to-word'
