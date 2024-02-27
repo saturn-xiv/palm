@@ -51,26 +51,49 @@ function build_go_project() {
 }
 
 function copy_jdk() {
-    local x64_jdk_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz"
-    local aarch64_jdk_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-aarch64_bin.tar.gz"
+    local x64_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz"
+    local aarch64_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-aarch64_bin.tar.gz"
 
     local jdk_version="21.0.2"
-    local x64_jdk_file=$HOME/downloads/openjdk-${jdk_version}_linux-x64_bin.tar.gz
-    local aarch64_jdk_file=$HOME/downloads/openjdk-${jdk_version}_linux-aarch64_bin.tar.gz
+    local x64_file=$HOME/downloads/openjdk-${jdk_version}_linux-x64_bin.tar.gz
+    local aarch64_file=$HOME/downloads/openjdk-${jdk_version}_linux-aarch64_bin.tar.gz
 
-    if [ ! -f $x64_jdk_file ]; then
-        wget -P $HOME/downloads/ $x64_jdk_url
+    if [ ! -f $x64_file ]; then
+        wget -P $HOME/downloads/ $x64_url
     fi
-    if [ ! -f $aarch64_jdk_file ]; then
-        wget -P $HOME/downloads/ $aarch64_jdk_url
+    if [ ! -f $aarch64_file ]; then
+        wget -P $HOME/downloads/ $aarch64_url
     fi
 
     mkdir -p $TARGET_DIR/jdk
     cd $TARGET_DIR/jdk/
-    tar xf $x64_jdk_file
+    tar xf $x64_file
     mv jdk-$jdk_version x64
-    tar xf $aarch64_jdk_file
+    tar xf $aarch64_file
     mv jdk-$jdk_version aarch64
+}
+
+function copy_nodejs() {
+    local x64_url="https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz"
+    local arm64_url="https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-arm64.tar.xz"
+
+    local node_version="v20.11.1"
+    local x64_file=$HOME/downloads/node-${node_version}-linux-x64.tar.xz
+    local arm64_file=$HOME/downloads/node-${node_version}-linux-arm64.tar.xz
+
+    if [ ! -f $x64_file ]; then
+        wget -P $HOME/downloads/ $x64_url
+    fi
+    if [ ! -f $arm64_file ]; then
+        wget -P $HOME/downloads/ $arm64_url
+    fi
+
+    mkdir -p $TARGET_DIR/node
+    cd $TARGET_DIR/node/
+    tar xf $x64_file
+    mv node-${node_version}-linux-x64 x64
+    tar xf $arm64_file
+    mv node-${node_version}-linux-arm64 arm64
 }
 
 # -----------------------------------------------------------------------------
@@ -88,6 +111,7 @@ fi
 if [ -d $TARGET_DIR ]; then
     rm -r $TARGET_DIR
 fi
+mkdir -p $TARGET_DIR
 
 build_go_project lilac amd64 x86_64
 build_go_project lilac arm64 aarch64
@@ -95,6 +119,9 @@ build_go_project lilac riscv64 riscv64
 
 build_musa
 copy_jdk
+
+build_morus
+copy_nodejs
 
 cd $(dirname $TARGET_DIR)
 echo "compressing $PACKAGE_NAME..."
