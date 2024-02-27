@@ -118,19 +118,6 @@ export WORKSPACE=$PWD
 #         $PALM_PROTOCOLS/gardenia.proto
 # }
 
-# function generate_morus() {
-#     echo "generate code for morus"
-#     local target=$WORKSPACE/morus/src/protocols
-#     if [ -d $target ]; then
-#         rm -r $target
-#     fi
-#     mkdir -p $target
-#     grpc_tools_node_protoc -I $PALM_PROTOCOLS \
-#         -I $PROTOBUF_ROOT/include/google/protobuf \
-#         --js_out=import_style=commonjs,binary:$target \
-#         --grpc_out=grpc_js:$target $PALM_PROTOCOLS/morus.proto
-# }
-
 # -----------------------------------------------------------------------------
 
 # generate_diesel_postgresql "postgres://www:change-me@127.0.0.1:5432/demo"
@@ -221,9 +208,26 @@ function generate_go() {
         $protocols_dir/$2.proto
 }
 
+function generate_morus() {
+    echo "generate code for morus"
+    local protocols_dir=$WORKSPACE/morus/protocols
+    local target=$WORKSPACE/morus/src/protocols
+
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    mkdir -p $target
+    grpc_tools_node_protoc -I $protocols_dir \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$target \
+        --grpc_out=grpc_js:$target $protocols_dir/markdown.proto
+}
+
 # -----------------------------------------------------------------------------
 
 generate_musa
+generate_morus
+
 generate_go lilac casbin
 generate_go lilac tink
 generate_go lilac minio

@@ -2,39 +2,38 @@
 
 'use strict';
 var grpc = require('@grpc/grpc-js');
-var morus_pb = require('./morus_pb.js');
+var markdown_pb = require('./markdown_pb.js');
 
 function serialize_palm_morus_v1_MarkdownToHtmlRequest(arg) {
-  if (!(arg instanceof morus_pb.MarkdownToHtmlRequest)) {
+  if (!(arg instanceof markdown_pb.MarkdownToHtmlRequest)) {
     throw new Error('Expected argument of type palm.morus.v1.MarkdownToHtmlRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_palm_morus_v1_MarkdownToHtmlRequest(buffer_arg) {
-  return morus_pb.MarkdownToHtmlRequest.deserializeBinary(new Uint8Array(buffer_arg));
+  return markdown_pb.MarkdownToHtmlRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_palm_morus_v1_MarkdownToHtmlResponse(arg) {
-  if (!(arg instanceof morus_pb.MarkdownToHtmlResponse)) {
+  if (!(arg instanceof markdown_pb.MarkdownToHtmlResponse)) {
     throw new Error('Expected argument of type palm.morus.v1.MarkdownToHtmlResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_palm_morus_v1_MarkdownToHtmlResponse(buffer_arg) {
-  return morus_pb.MarkdownToHtmlResponse.deserializeBinary(new Uint8Array(buffer_arg));
+  return markdown_pb.MarkdownToHtmlResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
-// ----------------------------------------------------------------------------
 var MarkdownService = exports.MarkdownService = {
   toHtml: {
     path: '/palm.morus.v1.Markdown/ToHtml',
     requestStream: false,
     responseStream: false,
-    requestType: morus_pb.MarkdownToHtmlRequest,
-    responseType: morus_pb.MarkdownToHtmlResponse,
+    requestType: markdown_pb.MarkdownToHtmlRequest,
+    responseType: markdown_pb.MarkdownToHtmlResponse,
     requestSerialize: serialize_palm_morus_v1_MarkdownToHtmlRequest,
     requestDeserialize: deserialize_palm_morus_v1_MarkdownToHtmlRequest,
     responseSerialize: serialize_palm_morus_v1_MarkdownToHtmlResponse,

@@ -11,6 +11,21 @@ export TARGET_DIR=$WORKSPACE/tmp/$PACKAGE_NAME
 
 # -----------------------------------------------------------------------------
 
+function build_morus() {
+    echo "build morus project"
+    cd $WORKSPACE/morus/
+    if [ ! -d node_modules ]; then
+        npm install
+    fi
+    if [ -d dist ]; then
+        rm -r dist
+    fi
+    npx webpack --mode=production
+
+    mv dist $TARGET_DIR/morus
+    cp README.md config.json.orig $TARGET_DIR/morus/
+}
+
 function build_musa() {
     echo "build musa project"
     cd $WORKSPACE/musa/
@@ -60,6 +75,11 @@ function copy_jdk() {
 
 # -----------------------------------------------------------------------------
 
+if [ $ID != "ubuntu" ]; then
+    echo "unsupported system $ID"
+    exit 1
+fi
+
 if [ -f ${TARGET_DIR}.tar.xz ]; then
     echo "check passed(${TARGET_DIR}.tar.xz)."
     exit 0
@@ -69,17 +89,9 @@ if [ -d $TARGET_DIR ]; then
     rm -r $TARGET_DIR
 fi
 
-declare -a go_projects=(
-    "almond"
-    "cactus"
-    "camelia"
-    "petunia"
-)
-for p in "${go_projects[@]}"; do
-    build_go_project $p amd64 x86_64
-    build_go_project $p arm64 aarch64
-    build_go_project $p riscv64 riscv64
-done
+build_go_project lilac amd64 x86_64
+build_go_project lilac arm64 aarch64
+build_go_project lilac riscv64 riscv64
 
 build_musa
 copy_jdk
@@ -235,21 +247,6 @@ exit 0
 #     cp -a lily $TARGET_DIR/
 # }
 
-# function build_morus() {
-#     echo "build morus project"
-#     cd $WORKSPACE/morus/
-#     if [ ! -d node_modules ]; then
-#         npm install
-#     fi
-#     if [ -d dist ]; then
-#         rm -r dist
-#     fi
-#     npx webpack --mode=production
-
-#     mv dist $TARGET_DIR/morus
-#     cp README.md config.json.orig $TARGET_DIR/morus/
-# }
-
 # function build_gardenia() {
 #     echo "build gardenia project"
 #     cd $WORKSPACE/gardenia/
@@ -291,10 +288,6 @@ exit 0
 # }
 
 # # -----------------------------------------------------------------------------
-# if [ $ID != "ubuntu" ]; then
-#     echo "unsupported system $ID"
-#     exit 1
-# fi
 
 # if [ -f $TARGET_DIR.tar.xz ]; then
 #     echo "$PACKAGE_NAME.tar.xz already exists!"

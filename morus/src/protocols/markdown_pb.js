@@ -1,4 +1,4 @@
-// source: morus.proto
+// source: markdown.proto
 /**
  * @fileoverview
  * @enhanceable
