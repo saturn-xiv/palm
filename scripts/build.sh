@@ -51,6 +51,7 @@ function build_go_project() {
 }
 
 function copy_jdk() {
+    echo "install jdk..."
     local x64_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz"
     local aarch64_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-aarch64_bin.tar.gz"
 
@@ -73,7 +74,33 @@ function copy_jdk() {
     mv jdk-$jdk_version aarch64
 }
 
+function copy_envoy() {
+    echo "install envoy..."
+    local x86_64_url="https://github.com/envoyproxy/envoy/releases/download/v1.29.1/envoy-1.29.1-linux-x86_64"
+    local aarch64_url="https://github.com/envoyproxy/envoy/releases/download/v1.29.1/envoy-1.29.1-linux-aarch_64"
+
+    local envoy_version="1.29.1"
+    local x86_64_file=$HOME/downloads/envoy-${envoy_version}-linux-x86_64
+    local aarch64_file=$HOME/downloads/envoy-${envoy_version}-linux-aarch_64
+
+    if [ ! -f $x86_64_file ]; then
+        wget -P $HOME/downloads/ $x86_64_url
+    fi
+    if [ ! -f $aarch64_file ]; then
+        wget -P $HOME/downloads/ $aarch64_url
+    fi
+
+    mkdir -p $TARGET_DIR/bin/x86_64
+    cp $x86_64_file $TARGET_DIR/bin/x86_64/envoy
+    chmod +x $TARGET_DIR/bin/x86_64/envoy
+
+    mkdir -p $TARGET_DIR/bin/aarch64
+    cp $aarch64_file $TARGET_DIR/bin/aarch64/envoy
+    chmod +x $TARGET_DIR/bin/aarch64/envoy
+}
+
 function copy_nodejs() {
+    echo "install nodejs..."
     local x64_url="https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz"
     local arm64_url="https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-arm64.tar.xz"
 
@@ -122,6 +149,8 @@ copy_jdk
 
 build_morus
 copy_nodejs
+
+copy_envoy
 
 cd $(dirname $TARGET_DIR)
 echo "compressing $PACKAGE_NAME..."
