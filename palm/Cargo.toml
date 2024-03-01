@@ -1,0 +1,154 @@
+[package]
+name = "palm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+language-tags = "0.3"
+mime = "0.3"
+log = "0.4"
+rabbitmq-stream-protocol = "0.4"
+sitemap = "0.4"
+actix-files = "0.6"
+actix-multipart = "0.6"
+actix-cors = "0.7"
+actix-identity = "0.7"
+encoding_rs = "0.8"
+toml = "0.8"
+serde_yaml = "0.9"
+lettre = "0.11"
+askama = "0.12"
+paho-mqtt = "0.12"
+prost = "0.12"
+prost-types = "0.12"
+ring = "0.17"
+actix-web-lab = "0.20"
+aws-credential-types = "1"
+aws-sdk-s3 = "1"
+aws-sdk-sqs = "1"
+lazy_static = "1"
+serde_json = "1"
+flexbuffers = "2"
+opensearch = "2"
+tempfile = "3"
+handlebars = "5"
+google-youtube3 = "5"
+flatbuffers = "23"
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "std"]
+
+[dependencies.chrono-tz]
+version = "0.8"
+features = ["serde"]
+
+[dependencies.rand]
+version = "0.8"
+features = ["small_rng"]
+
+[dependencies.actix-session]
+version = "0.9"
+features = ["cookie-session", "redis-rs-session"]
+
+[dependencies.reqwest]
+version = "0.11"
+features = ["json", "cookies"]
+
+[dependencies.tonic]
+version = "0.11"
+features = ["transport"]
+
+[dependencies.snow]
+version = "0.9"
+features = ["ring-accelerated"]
+
+[dependencies.validator]
+version = "0.16"
+features = ["derive", "phone", "card", "unic"]
+
+[dependencies.cookie]
+version = "0.18"
+features = ["secure", "private", "percent-encode"]
+
+[dependencies.redis]
+version = "0.24"
+features = ["tokio-comp", "r2d2", "cluster", "connection-manager"]
+
+[dependencies.nix]
+version = "0.28"
+features = ["user", "process"]
+
+[dependencies.quick-xml]
+version = "0.31"
+features = ["serialize"]
+
+# [dependencies.aws-config]
+# version = 1
+# features = ["behavior-version-latest"]
+
+[dependencies.hyper]
+version = "1"
+features = ["full"]
+
+[dependencies.eui48]
+version = "1"
+default-features = false
+features = ["disp_hexstring", "serde_bytes"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher", "cached"]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = [
+    "bigdecimal",
+    "postgres",
+    "mysql",
+    "sqlite",
+    "extras",
+    "128-column-tables",
+]
+
+[dependencies.ipnet]
+version = "2"
+features = ["serde"]
+
+[dependencies.rss]
+version = "2"
+features = ["validation"]
+
+[dependencies.url]
+version = "2"
+features = ["serde"]
+
+[dependencies.actix-web]
+version = "4"
+features = ["cookies"]
+
+[dependencies.openssl]
+version = "*"
+features = ["vendored"]
+
+# [dependencies.minio]
+# git = "https://github.com/minio/minio-rs.git"
+# rev = "67d92a3"
+
+[build-dependencies]
+tonic-build = "0.11"

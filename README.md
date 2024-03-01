@@ -65,5 +65,7 @@ A total free education & translation solution.
 - ~~lily~~: tex => pdf/word, epub, Excel, ImageMagic services
 - morus: markdown => html services
 - musa: WechatPay services
-- lilac: casbin/miniotink services
+- lilac: casbin/minio/tink services
+- camelia: cms/forum services
+- daffodil: A whole application
 - ~~daffodil~~: tex, pdf, word, epub, excel, imagemagic services
