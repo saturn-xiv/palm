@@ -10,7 +10,7 @@ language-tags = "0.3"
 mime = "0.3"
 log = "0.4"
 rabbitmq-stream-protocol = "0.4"
-sitemap = "0.4"
+robotxt = "0.5"
 actix-files = "0.6"
 actix-multipart = "0.6"
 actix-cors = "0.7"
@@ -30,11 +30,13 @@ aws-sdk-s3 = "1"
 aws-sdk-sqs = "1"
 lazy_static = "1"
 serde_json = "1"
+sitewriter = "1"
 flexbuffers = "2"
 opensearch = "2"
 tempfile = "3"
 handlebars = "5"
 google-youtube3 = "5"
+jsonwebtoken = "9"
 flatbuffers = "23"
 
 [dependencies.chrono]
@@ -113,18 +115,6 @@ features = ["v4", "serde"]
 [dependencies.casbin]
 version = "2"
 features = ["watcher", "cached"]
-
-[dependencies.diesel]
-version = "2"
-default-features = false
-features = [
-    "bigdecimal",
-    "postgres",
-    "mysql",
-    "sqlite",
-    "extras",
-    "128-column-tables",
-]
 
 [dependencies.ipnet]
 version = "2"

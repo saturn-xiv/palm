@@ -1,24 +1,19 @@
 [package]
-name = "camelia"
-version = "2024.3.1"
+name = "aloe"
+version = "2023.3.1"
 edition = "2021"
+authors = ["Jeremy Zheng <jitang.zheng@gmail.com>"]
+description = "A router software inspired by OpenWrt"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-diesel-adapter = "1"
 
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = [
-    "bigdecimal",
-    "postgres",
-    "mysql",
-    "sqlite",
-    "extras",
-    "128-column-tables",
-]
+features = ["bigdecimal", "sqlite", "extras", "128-column-tables"]
+
 
 [dependencies.palm]
 path = '../palm'

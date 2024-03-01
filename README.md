@@ -67,5 +67,4 @@ A total free education & translation solution.
 - musa: WechatPay services
 - lilac: casbin/minio/tink services
 - camelia: cms/forum services
-- daffodil: A whole application
 - ~~daffodil~~: tex, pdf, word, epub, excel, imagemagic services
