@@ -232,10 +232,10 @@ generate_go lilac casbin
 generate_go lilac tink
 generate_go lilac minio
 
-generate_lily
-echo "generate lily requirements.txt"
-cd $WORKSPACE/lily
-pip freeze >requirements.txt
+# generate_lily
+# echo "generate lily requirements.txt"
+# cd $WORKSPACE/lily
+# pip freeze >requirements.txt
 
 # TODO
 # echo 'format rust code'
