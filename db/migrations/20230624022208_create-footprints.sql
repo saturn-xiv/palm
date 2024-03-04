@@ -6,8 +6,6 @@ CREATE TABLE footprints(
     resource_id INT NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE INDEX idx_footprints_resource_type ON footprints(resource_type);
-
 -- migrate:down
 DROP TABLE footprints;

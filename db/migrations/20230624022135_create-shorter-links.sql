@@ -7,10 +7,7 @@ CREATE TABLE shorter_links(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_shorter_links_url ON shorter_links("url");
-
 CREATE INDEX idx_shorter_links_summary ON shorter_links(summary);
-
 -- migrate:down
 DROP TABLE shorter_links;

@@ -11,12 +11,9 @@ CREATE TABLE issues(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE INDEX idx_issues_lang ON issues(lang);
-
 CREATE INDEX idx_issues_question ON issues(question);
-
 CREATE INDEX idx_issues_resource_type ON issues(resource_type);
-
+CREATE INDEX idx_issues_answer_editor ON issues(answer_editor);
 -- migrate:down
 DROP TABLE issues;

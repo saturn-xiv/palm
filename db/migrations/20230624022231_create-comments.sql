@@ -14,14 +14,9 @@ CREATE TABLE comments(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE INDEX idx_comments_ip ON comments(ip);
-
 CREATE INDEX idx_comments_username ON comments(username);
-
 CREATE INDEX idx_comments_resource_type ON comments(resource_type);
-
 CREATE INDEX idx_content_editor ON comments(content_editor);
-
 -- migrate:down
 DROP TABLE comments;

@@ -9,8 +9,6 @@ CREATE TABLE google_users(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_google_users_sub ON google_users("sub");
-
 -- migrate:down
 DROP TABLE google_users;

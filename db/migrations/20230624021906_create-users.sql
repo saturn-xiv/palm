@@ -22,27 +22,16 @@ CREATE TABLE users(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_users_nickname ON users(nickname);
-
 CREATE UNIQUE INDEX idx_users_email ON users(email);
-
 CREATE INDEX idx_users_real_name ON users(real_name);
-
 CREATE INDEX idx_users_lang ON users(lang);
-
 CREATE INDEX idx_users_timezone ON users(timezone);
-
 CREATE INDEX idx_users_status ON users("status");
-
 CREATE INDEX idx_users_current_sign_in_ip ON users(current_sign_in_ip)
-WHERE
-    current_sign_in_ip IS NOT NULL;
-
+WHERE current_sign_in_ip IS NOT NULL;
 CREATE INDEX idx_users_last_sign_in_ip ON users(last_sign_in_ip)
-WHERE
-    last_sign_in_ip IS NOT NULL;
-
+WHERE last_sign_in_ip IS NOT NULL;
 CREATE TABLE user_contacts(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -52,11 +41,8 @@ CREATE TABLE user_contacts(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_user_contacts_user_key ON user_contacts(user_id, "key");
-
 CREATE INDEX idx_user_contacts_key ON user_contacts("key");
-
 CREATE TABLE logs(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -67,11 +53,8 @@ CREATE TABLE logs(
     "message" TEXT NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE INDEX idx_logs_ip ON logs(ip);
-
 CREATE INDEX idx_logs_resource_type ON logs(resource_type);
-
 CREATE TABLE user_bans(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -81,11 +64,8 @@ CREATE TABLE user_bans(
     creator_id INT NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE INDEX idx_user_bans_ip ON user_bans(ip);
-
 CREATE INDEX idx_user_bans_reason ON user_bans(reason);
-
 CREATE TABLE user_sessions(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -96,20 +76,12 @@ CREATE TABLE user_sessions(
     expired_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_user_sessions_uid ON user_sessions("uid");
-
 CREATE INDEX idx_user_sessions_provider_type ON user_sessions(provider_type);
-
 CREATE INDEX idx_user_sessions_ip ON user_sessions(ip);
-
 -- migrate:down
 DROP TABLE user_sessions;
-
 DROP TABLE user_bans;
-
 DROP TABLE logs;
-
 DROP TABLE user_contacts;
-
 DROP TABLE users;

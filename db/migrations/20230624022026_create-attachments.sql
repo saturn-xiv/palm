@@ -13,17 +13,11 @@ CREATE TABLE attachments(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_attachments_bucket_name ON attachments(bucket, "name");
-
 CREATE INDEX idx_attachments_bucket ON attachments(bucket);
-
 CREATE INDEX idx_attachments_name ON attachments("name");
-
 CREATE INDEX idx_attachments_title ON attachments(title);
-
 CREATE INDEX idx_attachments_content_type ON attachments(content_type);
-
 CREATE TABLE attachment_resources(
     id SERIAL PRIMARY KEY,
     attachment_id INT NOT NULL,
@@ -31,12 +25,8 @@ CREATE TABLE attachment_resources(
     resource_id INT NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_attachment_resources ON attachment_resources(attachment_id, resource_type, resource_id);
-
 CREATE INDEX idx_attachment_resources_resource_type ON attachment_resources(resource_type);
-
 -- migrate:down
 DROP TABLE attachment_resources;
-
 DROP TABLE attachments;

@@ -9,14 +9,9 @@ CREATE TABLE settings(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_settings_key ON settings("key")
-WHERE
-    user_id IS NULL;
-
+WHERE user_id IS NULL;
 CREATE UNIQUE INDEX idx_setting_key ON settings("key", user_id)
-WHERE
-    user_id IS NOT NULL;
-
+WHERE user_id IS NOT NULL;
 -- migrate:down
 DROP TABLE settings;

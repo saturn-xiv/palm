@@ -5,8 +5,6 @@ CREATE TABLE crawler_logs(
     body BYTEA NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE INDEX idx_crawler_logs_url ON crawler_logs("url");
-
 -- migrate:down
 DROP TABLE crawler_logs;

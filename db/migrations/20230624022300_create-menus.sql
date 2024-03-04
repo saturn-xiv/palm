@@ -10,12 +10,8 @@ CREATE TABLE menus(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE UNIQUE INDEX idx_menus ON menus(code, "location");
-
 CREATE INDEX idx_menus_code ON menus(code);
-
 CREATE INDEX idx_menus_location ON menus("location");
-
 -- migrate:down
 DROP TABLE menus;

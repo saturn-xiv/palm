@@ -15,18 +15,11 @@ CREATE TABLE feedbacks(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE INDEX idx_feedbacks_username ON feedbacks(username);
-
 CREATE INDEX idx_feedbacks_mobile ON feedbacks(mobile);
-
 CREATE INDEX idx_feedbacks_email ON feedbacks(email);
-
 CREATE INDEX idx_feedbacks_content_editor ON feedbacks(content_editor);
-
 CREATE INDEX idx_feedbacks_resource_type ON feedbacks(resource_type);
-
 CREATE INDEX idx_feedbacks_status ON feedbacks("status");
-
 -- migrate:down
 DROP TABLE feedbacks;
