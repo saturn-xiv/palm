@@ -2,8 +2,8 @@ use std::path::Path;
 
 use hyper::StatusCode;
 use palm::{
-    cache::redis::Config as Redis, jwt::Jwt, parser::from_toml, session::Session,
-    thrift::loquat::Config as Loquat, wechat::Config as WechatConfig, HttpError, Result,
+    cache::redis::Config as Redis, parser::from_toml, session::Session,
+    wechat::Config as WechatConfig, HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
 use tonic::Request;
@@ -11,7 +11,7 @@ use tonic::Request;
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Config {
     pub redis: Redis,
-    pub loquat: Loquat,
+
     pub clients: Vec<String>,
 }
 
@@ -24,15 +24,12 @@ impl Config {
         Ok(it)
     }
     pub fn verify<T>(&self, req: &Request<T>) -> Result<String> {
+        // FIXME
         let ss = Session::new(req);
-        if let Some(ref token) = ss.token {
-            let subject = self.loquat.verify(token, Self::AUDIENCE)?;
-            if self.clients.contains(&subject) {
-                return Ok(subject);
-            }
+        if let Some(ref _token) = ss.token {
             return Err(Box::new(HttpError(
                 StatusCode::BAD_REQUEST,
-                Some(format!("unknown client {subject}")),
+                Some("unknown client ".to_string()),
             )));
         }
         Err(Box::new(HttpError(StatusCode::UNAUTHORIZED, None)))

@@ -1,12 +1,17 @@
 [package]
 name = "camelia"
-version = "2024.3.1"
+version = "2024.3.4"
 edition = "2021"
+description = "A portal application."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 diesel-adapter = "1"
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher", "cached"]
 
 [dependencies.diesel]
 version = "2"
