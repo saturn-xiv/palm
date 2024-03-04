@@ -14,7 +14,11 @@ use uuid::Uuid;
 use super::super::{is_stopped, HttpError, Result, FLATBUFFER, PROTOBUF};
 
 pub trait Handler: Sync + Send {
-    async fn handle(&self, content_type: &str, payload: &[u8]) -> Result<()>;
+    fn handle(
+        &self,
+        content_type: &str,
+        payload: &[u8],
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -66,7 +70,10 @@ pub struct RabbitMq {
 }
 
 pub trait Protobuf {
-    async fn publish<T: prost::Message>(&self, task: &T) -> Result<()>;
+    fn publish<T: prost::Message>(
+        &self,
+        task: &T,
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
 impl Protobuf for RabbitMq {
@@ -78,7 +85,10 @@ impl Protobuf for RabbitMq {
 }
 
 pub trait Flatbuffer {
-    async fn publish<T: Serialize + Debug + Send + Sync>(&self, task: &T) -> Result<()>;
+    fn publish<T: Serialize + Debug + Send + Sync>(
+        &self,
+        task: &T,
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
 impl Flatbuffer for RabbitMq {

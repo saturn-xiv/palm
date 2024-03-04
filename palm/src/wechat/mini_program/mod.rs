@@ -15,13 +15,20 @@ use super::{Config, Query};
 pub trait MiniProgram {
     // https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-login/code2Session.html
     // https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html
-    async fn code2session(&self, code: &str) -> Result<code2session::Response>;
+    fn code2session(
+        &self,
+        code: &str,
+    ) -> impl std::future::Future<Output = Result<code2session::Response>> + Send;
     // https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/mp-access-token/getAccessToken.html
-    async fn get_access_token(&self) -> Result<get_access_token::Response>;
+    fn get_access_token(
+        &self,
+    ) -> impl std::future::Future<Output = Result<get_access_token::Response>> + Send;
     // https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html
     // https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-info/phone-number/getPhoneNumber.html
-    async fn get_phone_number(code: &str, access_token: &str)
-        -> Result<get_phone_number::Response>;
+    fn get_phone_number(
+        code: &str,
+        access_token: &str,
+    ) -> impl std::future::Future<Output = Result<get_phone_number::Response>> + Send;
 }
 
 impl MiniProgram for Config {
@@ -78,7 +85,7 @@ impl MiniProgram for Config {
 }
 
 pub trait Client {
-    async fn access_token(&self) -> Result<String>;
+    fn access_token(&self) -> impl std::future::Future<Output = Result<String>> + Send;
 
     fn access_token_key(&self) -> String;
 }

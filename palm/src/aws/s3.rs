@@ -50,20 +50,32 @@ impl Config {
 }
 
 pub trait Adapter {
-    async fn bucket_exists(&self, _name: &str) -> Result<bool>;
-    async fn create_bucket(&self, name: &str) -> Result<()>;
-    async fn delete_bucket(&self, name: &str) -> Result<()>;
-    async fn list_buckets(&self) -> Result<Vec<String>>;
-    async fn put_object<P: AsRef<Path> + Send>(
+    fn bucket_exists(&self, _name: &str) -> impl std::future::Future<Output = Result<bool>> + Send;
+    fn create_bucket(&self, name: &str) -> impl std::future::Future<Output = Result<()>> + Send;
+    fn delete_bucket(&self, name: &str) -> impl std::future::Future<Output = Result<()>> + Send;
+    fn list_buckets(&self) -> impl std::future::Future<Output = Result<Vec<String>>> + Send;
+    fn put_object<P: AsRef<Path> + Send>(
         &self,
         bucket: &str,
         name: &str,
         content_type: &Mime,
         file: P,
-    ) -> Result<()>;
-    async fn delete_object(&self, bucket: &str, name: &str) -> Result<()>;
-    async fn list_objects(&self, bucket: &str) -> Result<Vec<String>>;
-    async fn get_object(&self, bucket: &str, name: &str, ttl: Duration) -> Result<String>;
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
+    fn delete_object(
+        &self,
+        bucket: &str,
+        name: &str,
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
+    fn list_objects(
+        &self,
+        bucket: &str,
+    ) -> impl std::future::Future<Output = Result<Vec<String>>> + Send;
+    fn get_object(
+        &self,
+        bucket: &str,
+        name: &str,
+        ttl: Duration,
+    ) -> impl std::future::Future<Output = Result<String>> + Send;
 }
 
 impl Adapter for Client {

@@ -12,7 +12,11 @@ use serde::{Deserialize, Serialize};
 use super::super::Result;
 
 pub trait Handler: Sync + Send {
-    async fn handle(&self, content_type: &str, payload: &[u8]) -> Result<()>;
+    fn handle(
+        &self,
+        content_type: &str,
+        payload: &[u8],
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
 // mosquitto_passwd -c <password file> <username>
@@ -99,7 +103,7 @@ impl Config {
                     .will_message(
                         MessageBuilder::new()
                             .topic(Self::LAST_WORD_TOPIC)
-                            .payload(flexbuffers::to_vec(&WillMessage {
+                            .payload(flexbuffers::to_vec(WillMessage {
                                 id: self.to_string(),
                             })?)
                             .finalize(),

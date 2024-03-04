@@ -8,7 +8,11 @@ use serde::{Deserialize, Serialize};
 use super::super::{HttpError, Result};
 
 pub trait Handler: Sync + Send {
-    async fn handle(&self, envelop: &str, payload: &[u8]) -> Result<()>;
+    fn handle(
+        &self,
+        envelop: &str,
+        payload: &[u8],
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
 pub struct ZeroMq {

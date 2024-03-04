@@ -138,7 +138,7 @@ pub struct Host {
 }
 
 impl Host {
-    pub fn load(file: &File) -> Result<Vec<Self>> {
+    pub fn load(_file: &File) -> Result<Vec<Self>> {
         // TODO
         todo!()
     }

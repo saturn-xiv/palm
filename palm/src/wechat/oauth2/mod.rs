@@ -21,7 +21,10 @@ pub trait Oauth2 {
         access_token: &str,
     ) -> impl std::future::Future<Output = Result<get_api_domain_ip::Response>> + Send;
     // https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html
-    fn access_token(&self, code: &str) -> Result<access_token::Response>;
+    fn access_token(
+        &self,
+        code: &str,
+    ) -> impl std::future::Future<Output = Result<access_token::Response>> + Send;
     fn refresh_token(
         &self,
         code: &str,
