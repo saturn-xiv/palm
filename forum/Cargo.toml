@@ -1,0 +1,19 @@
+[package]
+name = "forum"
+version = "2024.3.4"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = ["bigdecimal", "postgres", "extras", "128-column-tables"]
+
+[dependencies.palm]
+path = '../palm'
+
+[dependencies.camelia]
+path = '../camelia'
