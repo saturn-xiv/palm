@@ -4,7 +4,7 @@ import { Server, ServerCredentials } from "@grpc/grpc-js";
 
 import { Config } from "./env";
 import logger from "./logger";
-import { MarkdownService } from "./protocols/markdown_grpc_pb";
+import { MarkdownService } from "./protocols/morus_grpc_pb";
 import { to_html } from "./services/markdown";
 
 function main() {

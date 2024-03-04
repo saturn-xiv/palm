@@ -4,7 +4,7 @@ import createDOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 import { parse as parse_markdown } from "marked";
 
-import { MarkdownToHtmlResponse } from "../protocols/markdown_pb";
+import { MarkdownToHtmlResponse } from "../protocols/morus_pb";
 
 export const to_html = (call, callback) => {
   const request = call.request.getPayload();

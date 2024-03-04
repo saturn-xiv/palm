@@ -1,5 +1,6 @@
 # USAGE
 
 ```bash
-node morus-xxx.js config.json
+npx webpack --mode=production
+node dist/morus.xxx.bundle.js config.json
 ```
