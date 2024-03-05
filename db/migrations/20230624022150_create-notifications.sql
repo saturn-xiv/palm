@@ -13,5 +13,6 @@ CREATE TABLE notifications(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_notifications_subject ON notifications("subject");
+CREATE INDEX idx_notifications_status ON notifications("status");
 -- migrate:down
 DROP TABLE notifications;

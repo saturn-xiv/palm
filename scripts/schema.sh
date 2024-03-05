@@ -239,6 +239,7 @@ function generate_diesel_postgresql() {
         footprints feedbacks favorites issues comments search_histories \
         menus \
         >camelia/src/schema.rs
+    DATABASE_URL=$1 diesel print-schema -o schema_migrations >camelia/src/orm/postgresql/schema.rs
 
     DATABASE_URL=$1 diesel print-schema -o cms_* >cms/src/schema.rs
     DATABASE_URL=$1 diesel print-schema -o forum_* >forum/src/schema.rs

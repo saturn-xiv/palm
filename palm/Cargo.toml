@@ -65,6 +65,10 @@ features = ["small_rng"]
 version = "0.9"
 features = ["cookie-session", "redis-rs-session"]
 
+[dependencies.snow]
+version = "0.9"
+features = ["ring-accelerated"]
+
 [dependencies.reqwest]
 version = "0.11"
 features = ["json", "cookies"]
@@ -72,10 +76,6 @@ features = ["json", "cookies"]
 [dependencies.tonic]
 version = "0.11"
 features = ["transport"]
-
-[dependencies.snow]
-version = "0.9"
-features = ["ring-accelerated"]
 
 [dependencies.validator]
 version = "0.16"
@@ -88,6 +88,10 @@ features = ["secure", "private", "percent-encode"]
 [dependencies.redis]
 version = "0.24"
 features = ["tokio-comp", "r2d2", "cluster", "connection-manager"]
+
+[dependencies.strum]
+version = "0.26"
+features = ["derive"]
 
 [dependencies.nix]
 version = "0.28"

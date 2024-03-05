@@ -24,7 +24,8 @@ diesel::table! {
         size -> Int8,
         #[max_length = 63]
         content_type -> Varchar,
-        status -> Int4,
+        #[max_length = 15]
+        status -> Varchar,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -200,7 +201,8 @@ diesel::table! {
         body -> Text,
         #[max_length = 15]
         body_editor -> Varchar,
-        status -> Int4,
+        #[max_length = 15]
+        status -> Varchar,
         published_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
@@ -227,7 +229,10 @@ diesel::table! {
     logs (id) {
         id -> Int4,
         user_id -> Int4,
-        level -> Int4,
+        #[max_length = 15]
+        plugin -> Varchar,
+        #[max_length = 15]
+        level -> Varchar,
         #[max_length = 45]
         ip -> Varchar,
         #[max_length = 255]

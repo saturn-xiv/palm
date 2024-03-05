@@ -46,7 +46,8 @@ CREATE INDEX idx_user_contacts_key ON user_contacts("key");
 CREATE TABLE logs(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
-    "level" INT NOT NULL,
+    plugin VARCHAR(15) NOT NULL,
+    "level" VARCHAR(15) NOT NULL,
     ip VARCHAR(45) NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
     resource_id INT,
@@ -54,6 +55,8 @@ CREATE TABLE logs(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_logs_ip ON logs(ip);
+CREATE INDEX idx_logs_plugin ON logs(plugin);
+CREATE INDEX idx_logs_level ON logs("level");
 CREATE INDEX idx_logs_resource_type ON logs(resource_type);
 CREATE TABLE user_bans(
     id SERIAL PRIMARY KEY,
