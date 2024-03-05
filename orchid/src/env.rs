@@ -1,12 +1,9 @@
 use std::path::Path;
 
-use hyper::StatusCode;
 use palm::{
-    cache::redis::Config as Redis, parser::from_toml, session::Session,
-    wechat::Config as WechatConfig, HttpError, Result,
+    cache::redis::Config as Redis, parser::from_toml, wechat::Config as WechatConfig, Result,
 };
 use serde::{Deserialize, Serialize};
-use tonic::Request;
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Config {
@@ -22,16 +19,5 @@ impl Config {
         let file = Path::new("wechat").join(app_id).with_extension("toml");
         let it = from_toml(&file)?;
         Ok(it)
-    }
-    pub fn verify<T>(&self, req: &Request<T>) -> Result<String> {
-        // FIXME
-        let ss = Session::new(req);
-        if let Some(ref _token) = ss.token {
-            return Err(Box::new(HttpError(
-                StatusCode::BAD_REQUEST,
-                Some("unknown client ".to_string()),
-            )));
-        }
-        Err(Box::new(HttpError(StatusCode::UNAUTHORIZED, None)))
     }
 }
