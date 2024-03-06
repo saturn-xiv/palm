@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 
 pub use aws_sdk_s3::Client;
 
-use super::super::{minio::Config as Minio, Result};
+use super::super::Result;
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Config {
@@ -18,17 +18,6 @@ pub struct Config {
     pub access_key: String,
     #[serde(rename = "secret-key")]
     pub secret_key: String,
-}
-
-impl From<Minio> for Config {
-    fn from(item: Minio) -> Self {
-        Self {
-            url: item.url.clone(),
-            region: item.region.clone(),
-            access_key: item.access_key.clone(),
-            secret_key: item.secret_key,
-        }
-    }
 }
 
 impl Config {

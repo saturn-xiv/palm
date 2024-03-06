@@ -6,6 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+minio = "0.1"
 futures = "0.3"
 language-tags = "0.3"
 mime = "0.3"
@@ -31,11 +32,13 @@ ring = "0.17"
 actix-web-lab = "0.20"
 imageproc = "0.23"
 image = "0.24"
+amqprs = "1"
 aws-credential-types = "1"
 aws-sdk-config = "1"
 aws-sdk-s3 = "1"
 aws-sdk-sqs = "1"
 byteorder = "1"
+bytes = "1"
 lazy_static = "1"
 serde_json = "1"
 sitewriter = "1"
@@ -145,10 +148,6 @@ features = ["cookies"]
 [dependencies.openssl]
 version = "*"
 features = ["vendored"]
-
-# [dependencies.minio]
-# git = "https://github.com/minio/minio-rs.git"
-# rev = "67d92a3"
 
 [build-dependencies]
 tonic-build = "0.11"

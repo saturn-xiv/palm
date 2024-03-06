@@ -132,12 +132,12 @@ pub mod handlers;
 pub mod jwt;
 pub mod line;
 pub mod minio;
-pub mod musa;
 pub mod network;
 pub mod orchid;
 pub mod pagination;
 pub mod parser;
 pub mod queue;
+pub mod rbac;
 pub mod result;
 pub mod search;
 pub mod seo;
@@ -309,8 +309,13 @@ pub fn tar<P: AsRef<Path>>(root: P, name: &str, keep: usize) -> Result<()> {
 }
 
 pub mod morus {
-    #[allow(clippy::match_single_binding, clippy::derive_partial_eq_without_eq)]
     pub mod v1 {
         tonic::include_proto!("palm.morus.v1");
+    }
+}
+
+pub mod musa {
+    pub mod v1 {
+        tonic::include_proto!("palm.musa.v1");
     }
 }
