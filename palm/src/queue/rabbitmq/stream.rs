@@ -8,10 +8,10 @@ use rabbitmq_stream_client::{
     types::{Message, OffsetSpecification},
     Environment,
 };
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 use uuid::Uuid;
 
-use super::super::{is_stopped, HttpError, Result, FLATBUFFER, PROTOBUF};
+use super::super::super::{is_stopped, HttpError, Result, FLATBUFFER, PROTOBUF};
 
 pub trait Handler: Sync + Send {
     fn handle(
@@ -21,30 +21,12 @@ pub trait Handler: Sync + Send {
     ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct Config {
-    pub host: String,
-    pub port: u16,
-    pub user: String,
-    pub password: String,
-    #[serde(rename = "virtual-host")]
-    pub virtual_host: String,
+pub trait Stream {
+    fn open(&self) -> impl std::future::Future<Output = Result<Environment>> + Send;
 }
 
-impl Default for Config {
-    fn default() -> Self {
-        Self {
-            host: "127.0.0.1".to_string(),
-            port: 5672,
-            user: "guest".to_string(),
-            password: "guest".to_string(),
-            virtual_host: "dev".to_string(),
-        }
-    }
-}
-
-impl Config {
-    pub async fn open(&self) -> Result<Environment> {
+impl Stream for super::Config {
+    async fn open(&self) -> Result<Environment> {
         let it = Environment::builder()
             .host(&self.host)
             .port(self.port)
@@ -63,7 +45,6 @@ impl Config {
     }
 }
 
-#[derive(Clone)]
 pub struct RabbitMq {
     pub name: String,
     pub environment: Environment,

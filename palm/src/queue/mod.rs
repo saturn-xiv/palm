@@ -1,3 +1,3 @@
-pub mod amqp;
 pub mod mqtt;
+pub mod rabbitmq;
 pub mod zero;
