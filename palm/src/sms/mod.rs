@@ -15,12 +15,14 @@ pub struct Config {
 }
 
 impl Config {
-    pub async fn send_sms(&self, to: &str, message: &str) -> Result<()> {
+    pub async fn send_sms(&self, task: &v1::SendSmsTask) -> Result<()> {
         let client = self.open();
-        let message = client
-            .send_message(OutboundMessage::new(&self.from, to, message))
-            .await?;
-        info!("{:?}", message);
+        for to in task.to.iter() {
+            let message = client
+                .send_message(OutboundMessage::new(&self.from, to, &task.message))
+                .await?;
+            info!("{:?}", message);
+        }
         Ok(())
     }
     fn open(&self) -> Client {

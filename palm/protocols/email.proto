@@ -16,6 +16,7 @@ message SendEmailTask {
   message Attachment {
     string title = 1;
     bytes payload = 2;
+    bool inline = 8;
     string content_type = 9;
   }
 

@@ -1,13 +1,13 @@
+use hyper::StatusCode;
 use lettre::{
-    message::{header::ContentType, Attachment, Mailbox, MultiPart, SinglePart},
+    message::{Attachment, Mailbox, MultiPart, SinglePart},
     transport::smtp::authentication::Credentials,
     Message, SmtpTransport, Transport,
 };
-use mime::Mime;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-use super::Result;
+use super::{HttpError, Result};
 
 pub mod v1 {
     tonic::include_proto!("palm.email.v1");
@@ -31,6 +31,16 @@ impl Address {
     }
 }
 
+impl v1::send_email_task::Address {
+    pub fn mailbox(&self) -> Result<Mailbox> {
+        Address {
+            name: self.name.clone(),
+            email: self.email.clone(),
+        }
+        .mailbox()
+    }
+}
+
 // https://support.google.com/mail/answer/7126229#zippy=%2Cstep-change-smtp-other-settings-in-your-email-client
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
@@ -43,63 +53,64 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn send(
-        &self,
-        to: &Address,
-        cc: &[Address],
-        bcc: &[Address],
-        subject: &str,
-        body: (bool, String),
-        attachments: Vec<(String, Mime, Vec<u8>, bool)>,
-    ) -> Result<()> {
+    pub fn send(&self, task: &v1::SendEmailTask) -> Result<()> {
         let account = self.from.mailbox()?;
-        let to = to.mailbox()?;
+        let to = task
+            .to
+            .as_ref()
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("empty to address".to_string()),
+            )))?
+            .mailbox()?;
 
         let msg = {
             let mut builder = Message::builder()
                 .from(account.clone())
                 .reply_to(account)
                 .to(to)
-                .subject(subject);
+                .subject(&task.subject);
             // cc
             {
-                for it in cc.iter() {
+                for it in self.cc.iter() {
                     builder = builder.cc(it.mailbox()?);
                 }
-                for it in cc.iter() {
+                for it in task.cc.iter() {
                     builder = builder.cc(it.mailbox()?);
                 }
             }
             // bcc
             {
-                for it in bcc.iter() {
+                for it in self.bcc.iter() {
                     builder = builder.bcc(it.mailbox()?);
                 }
-                for it in bcc.iter() {
+                for it in task.bcc.iter() {
                     builder = builder.bcc(it.mailbox()?);
                 }
             }
             // attachments
             let mut part = MultiPart::alternative().build();
-            {
-                if body.0 {
-                    part = part.singlepart(SinglePart::html(body.1.clone()));
+            // add message body
+            if let Some(ref body) = task.body {
+                if body.html {
+                    part = part.singlepart(SinglePart::html(body.payload.clone()));
                 } else {
-                    part = part.singlepart(SinglePart::plain(body.1.clone()));
+                    part = part.singlepart(SinglePart::plain(body.payload.clone()));
                 }
-                for (name, content_type, content, inline) in attachments.iter() {
-                    let content_type: ContentType = content_type.clone().into();
-                    part = if *inline {
-                        part.singlepart(
-                            Attachment::new_inline(name.clone())
-                                .body(content.to_vec(), content_type),
-                        )
-                    } else {
-                        part.singlepart(
-                            Attachment::new(name.clone()).body(content.to_vec(), content_type),
-                        )
-                    };
-                }
+            }
+
+            for it in task.attachments.iter() {
+                part = if it.inline {
+                    part.singlepart(
+                        Attachment::new_inline(it.title.clone())
+                            .body(it.payload.to_vec(), it.content_type.parse()?),
+                    )
+                } else {
+                    part.singlepart(
+                        Attachment::new(it.title.clone())
+                            .body(it.payload.to_vec(), it.content_type.parse()?),
+                    )
+                };
             }
 
             builder.multipart(part)?
