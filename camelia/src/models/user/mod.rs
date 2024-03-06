@@ -1,9 +1,7 @@
 pub mod ban;
 pub mod session;
 
-use std::any::type_name;
 use std::fmt;
-use std::result::Result as StdResult;
 use std::string::ToString;
 
 use chrono::{NaiveDateTime, Utc};
@@ -14,7 +12,8 @@ use language_tags::LanguageTag;
 use openssl::hash::{hash, MessageDigest};
 use palm::{
     crypto::{random::bytes as random_bytes, Password},
-    to_timestamp, HttpError, Result,
+    email::Address,
+    HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -79,59 +78,9 @@ pub struct Item {
     pub updated_at: NaiveDateTime,
 }
 
-impl From<Item> for rbac_v1::users_response::Item {
-    fn from(x: Item) -> Self {
-        Self {
-            id: x.id,
-            nickname: x.nickname.clone(),
-            real_name: x.real_name.clone(),
-            email: x.email,
-        }
-    }
-}
-
-impl From<Item> for v1::user_index_response::Item {
-    fn from(x: Item) -> Self {
-        Self {
-            id: x.id,
-            nickname: x.nickname.clone(),
-            real_name: x.real_name.clone(),
-            email: x.email.clone(),
-            lang: x.lang.clone(),
-            timezone: x.timezone.clone(),
-            avatar: x.avatar.clone(),
-            confirmed_at: x.confirmed_at.map(|x| to_timestamp!(x)),
-            locked_at: x.locked_at.map(|x| to_timestamp!(x)),
-            deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
-            sign_in_count: x.sign_in_count,
-            last_sign_in_ip: x.last_sign_in_ip.clone(),
-            last_sign_in_at: x.last_sign_in_at.map(|x| to_timestamp!(x)),
-            current_sign_in_ip: x.current_sign_in_ip.clone(),
-            current_sign_in_at: x.current_sign_in_at.map(|x| to_timestamp!(x)),
-            updated_at: Some(to_timestamp!(x.updated_at)),
-        }
-    }
-}
 impl fmt::Display for Item {
     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
         write!(fmt, "{}<{}>", self.real_name, self.email)
-    }
-}
-
-impl RbacSubject for Item {
-    type ID = String;
-    type Err = HttpError;
-    fn to(&self) -> String {
-        format!("{}://{}", type_name::<Self>(), self.nickname)
-    }
-    fn from(s: &str) -> StdResult<Self::ID, Self::Err> {
-        match s.strip_prefix(&format!("{}://", type_name::<Self>())) {
-            Some(it) => Ok(it.to_string()),
-            None => Err(HttpError(
-                StatusCode::BAD_REQUEST,
-                Some(format!("unknown user {}", s)),
-            )),
-        }
     }
 }
 
@@ -239,7 +188,7 @@ pub trait Dao {
         timezone: &Tz,
     ) -> Result<()>;
     fn sign_in(&mut self, id: i32, ip: &str) -> Result<()>;
-
+    #[allow(clippy::too_many_arguments)]
     fn sign_up<P: Password>(
         &mut self,
         enc: &P,

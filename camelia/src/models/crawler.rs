@@ -6,7 +6,7 @@ use diesel::{
     prelude::*,
 };
 use hyper::StatusCode;
-use log::{debug, info};
+use log::{debug, error, info};
 use palm::{HttpError, Result};
 use rand::{rngs::SmallRng, seq::SliceRandom, SeedableRng};
 use serde::Serialize;
@@ -31,22 +31,21 @@ pub async fn pull(db: &mut Connection, url: &str) -> Result<()> {
     let client = reqwest::Client::builder().user_agent(agent).build()?;
     let response = client.get(url).send().await?;
     let status = response.status();
-    let body = response.bytes().await?;
-    // let body = body.replace(char::from(0), "");
-    match status {
-        StatusCode::OK => {
-            if let Ok(last) = db.latest(url) {
-                if last.body == body {
-                    debug!("ignore to save {}", url);
-                    return Ok(());
-                }
+
+    if status.is_success() {
+        let body = response.bytes().await?;
+        if let Ok(last) = db.latest(url) {
+            if last.body == body {
+                debug!("ignore to save {}", url);
+                return Ok(());
             }
-            info!("save {}", url);
-            db.create(url, &body)?;
-            Ok(())
         }
-        _ => Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None))),
+        info!("save {}", url);
+        db.create(url, &body)?;
+        return Ok(());
     }
+    error!("{} {}", status, response.text().await?);
+    Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)))
 }
 
 #[derive(Queryable, Serialize)]

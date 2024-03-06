@@ -25,7 +25,7 @@ pub struct Item {
     pub title: String,
     pub size: i64,
     pub content_type: String,
-    pub status: i32,
+    pub status: String,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
     pub created_at: NaiveDateTime,

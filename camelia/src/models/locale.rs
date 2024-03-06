@@ -1,12 +1,12 @@
-use std::fs::{read_dir, read_to_string};
+use std::fs::read_dir;
 use std::path::Path;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use log::{debug, error, info};
+use ini::Ini;
+use log::{debug, info};
 use palm::Result;
 use serde::{Deserialize, Serialize};
-use yaml_rust::{Yaml, YamlLoader};
 
 use super::super::{orm::postgresql::Connection, schema::locales};
 
@@ -45,74 +45,37 @@ pub trait Dao {
     fn update(&mut self, id: i32, message: &str) -> Result<()>;
 }
 
-fn loop_yaml(
+fn load_from_ini<P: AsRef<Path>>(
     db: &mut Connection,
     lang: &str,
-    prefix: Option<String>,
-    node: Yaml,
+    file: P,
 ) -> Result<(usize, usize)> {
-    let mut find = 0;
+    let mut found = 0;
     let mut inserted = 0;
-    let sep = ".";
-    match node {
-        Yaml::String(v) => {
-            let k = match prefix {
-                Some(p) => p,
-                None => "".to_string(),
-            };
-            debug!("find {} {} => {}", lang, k, v);
-            find += 1;
+    let file = file.as_ref();
+    info!("find file {}", file.display());
 
-            let cnt: i64 = locales::dsl::locales
-                .count()
-                .filter(locales::dsl::lang.eq(lang))
-                .filter(locales::dsl::code.eq(&k))
-                .get_result(db)?;
-            if cnt == 0 {
-                inserted += 1;
-                insert_into(locales::dsl::locales)
-                    .values(&New {
-                        lang,
-                        code: &k,
-                        message: &v,
-                        updated_at: &Utc::now().naive_utc(),
-                    })
-                    .execute(db)?;
-            }
-        }
-        Yaml::Hash(h) => {
-            for (k, v) in h {
-                match k {
-                    Yaml::String(k) => {
-                        let (i, f) = loop_yaml(
-                            db,
-                            lang,
-                            Some(match prefix {
-                                Some(ref p) => {
-                                    let mut v = String::new();
-                                    v.push_str(p);
-                                    v.push_str(sep);
-                                    v.push_str(&k);
-                                    v
-                                }
-                                None => k,
-                            }),
-                            v,
-                        )?;
-                        inserted += i;
-                        find += f;
-                    }
-                    k => {
-                        error!("bad key {:?}", k);
-                    }
+    for (sec, props) in Ini::load_from_file(file)?.iter() {
+        if let Some(sec) = sec {
+            debug!("find section {}", sec);
+            for (key, val) in props.iter() {
+                let code = format!("{}.{}", sec, key);
+                debug!("find {lang}.{code} = {val}");
+                found += 1;
+                let cnt: i64 = locales::dsl::locales
+                    .count()
+                    .filter(locales::dsl::lang.eq(lang))
+                    .filter(locales::dsl::code.eq(&code))
+                    .get_result(db)?;
+                if cnt == 0 {
+                    Dao::create(db, lang, &code, val)?;
+                    inserted += 1;
                 }
             }
         }
-        k => {
-            error!("bad key {:?}", k);
-        }
-    };
-    Ok((inserted, find))
+    }
+
+    Ok((found, inserted))
 }
 
 impl Dao for Connection {
@@ -120,7 +83,7 @@ impl Dao for Connection {
         let root = root.as_ref();
         info!("load items from {}", root.display());
 
-        let mut find = 0;
+        let mut found = 0;
         let mut inserted = 0;
 
         for it in read_dir(root)? {
@@ -135,42 +98,9 @@ impl Dao for Connection {
                             let it = it?;
                             let it = it.path();
                             if it.is_file() {
-                                info!("find file {}", it.display());
-                                if let Some(zone) = it.file_stem() {
-                                    if let Some(zone) = zone.to_str() {
-                                        let buf = read_to_string(&it)?;
-                                        for node in YamlLoader::load_from_str(&buf)? {
-                                            let (i, f) = loop_yaml(
-                                                self,
-                                                lang,
-                                                Some(zone.to_string()),
-                                                node,
-                                            )?;
-                                            inserted += i;
-                                            find += f;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        for it in read_dir(root)? {
-            let it = it?;
-            let it = it.path();
-
-            if it.is_file() {
-                if let Some(zone) = it.file_stem() {
-                    if let Some(zone) = zone.to_str() {
-                        for lang in self.languages()?.iter() {
-                            let buf = read_to_string(&it)?;
-                            for node in YamlLoader::load_from_str(&buf)? {
-                                let (i, f) = loop_yaml(self, lang, Some(zone.to_string()), node)?;
+                                let (f, i) = load_from_ini(self, lang, it)?;
+                                found += f;
                                 inserted += i;
-                                find += f;
                             }
                         }
                     }
@@ -178,8 +108,8 @@ impl Dao for Connection {
             }
         }
 
-        info!("sync {}/{} items", inserted, find);
-        Ok((inserted, find))
+        info!("sync {}/{} items", inserted, found);
+        Ok((inserted, found))
     }
 
     fn languages(&mut self) -> Result<Vec<String>> {

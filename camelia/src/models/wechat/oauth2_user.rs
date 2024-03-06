@@ -57,25 +57,6 @@ impl fmt::Display for Item {
     }
 }
 
-impl From<Item> for v1::wechat_all_oauth2_user_response::Item {
-    fn from(x: Item) -> Self {
-        Self {
-            id: x.id,
-            user_id: x.user_id,
-            app_id: x.app_id.clone(),
-            union_id: x.union_id.clone(),
-            open_id: x.open_id.clone(),
-            nickname: x.nickname.clone(),
-            head_img_url: x.head_img_url.clone(),
-            city: x.city.clone(),
-            country: x.country.clone(),
-            province: x.province.clone(),
-            lang: x.lang.clone(),
-            sex: x.sex,
-            privilege: x.privilege().unwrap_or_default(),
-        }
-    }
-}
 pub trait Dao {
     fn all(&mut self) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i32) -> Result<Item>;

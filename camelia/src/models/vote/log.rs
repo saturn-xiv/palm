@@ -29,6 +29,7 @@ pub trait Dao {
     fn count(&mut self) -> Result<i64>;
     fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count_by_user(&mut self, user: i32) -> Result<i64>;
+    #[allow(clippy::too_many_arguments)]
     fn create(
         &mut self,
         user: i32,

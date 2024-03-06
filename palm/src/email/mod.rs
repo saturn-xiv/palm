@@ -31,13 +31,19 @@ impl Address {
     }
 }
 
+impl From<v1::send_email_task::Address> for Address {
+    fn from(it: v1::send_email_task::Address) -> Self {
+        Self {
+            name: it.name.clone(),
+            email: it.email.clone(),
+        }
+    }
+}
+
 impl v1::send_email_task::Address {
     pub fn mailbox(&self) -> Result<Mailbox> {
-        Address {
-            name: self.name.clone(),
-            email: self.email.clone(),
-        }
-        .mailbox()
+        let it: Address = self.clone().into();
+        it.mailbox()
     }
 }
 
