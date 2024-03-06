@@ -24,7 +24,6 @@ toml = "0.8"
 rusttype = "0.9"
 serde_yaml = "0.9"
 zmq = "0.10"
-lettre = "0.11"
 askama = "0.12"
 paho-mqtt = "0.12"
 prost = "0.12"
@@ -43,6 +42,7 @@ bytes = "1"
 lazy_static = "1"
 serde_json = "1"
 sitewriter = "1"
+twilio = "1"
 data-encoding = "2"
 flexbuffers = "2"
 opensearch = "2"
@@ -72,6 +72,10 @@ features = ["cookie-session", "redis-rs-session"]
 [dependencies.snow]
 version = "0.9"
 features = ["ring-accelerated"]
+
+[dependencies.lettre]
+version = "0.11"
+features = ["mime03"]
 
 [dependencies.reqwest]
 version = "0.11"
