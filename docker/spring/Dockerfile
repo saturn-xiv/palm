@@ -269,7 +269,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
 
 # https://github.com/google/flatbuffers
-ENV FLATBUFFERS_VERSION "v23.5.26"
+ENV FLATBUFFERS_VERSION "v24.3.7"
 RUN git clone -b $FLATBUFFERS_VERSION https://github.com/google/flatbuffers.git $HOME/downloads/flatbuffers
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
