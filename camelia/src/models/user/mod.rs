@@ -269,7 +269,7 @@ impl Dao for Connection {
                 real_name,
                 nickname,
                 email,
-                password: Some(&enc.sign(password.as_bytes())?),
+                password: Some(&enc.compute(password.as_bytes())?),
                 salt: &random_bytes(New::SALT_SIZE),
                 avatar: &Item::gravatar(&email)?,
                 lang: &lang.to_string(),
@@ -369,7 +369,7 @@ impl Dao for Connection {
     }
     fn password<P: Password>(&mut self, enc: &P, id: i32, password: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
-        let password = enc.sign(password.as_bytes())?;
+        let password = enc.compute(password.as_bytes())?;
         let it = users::dsl::users.filter(users::dsl::id.eq(id));
         update(it)
             .set((

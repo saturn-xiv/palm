@@ -1,7 +1,15 @@
+use std::ops::DerefMut;
 use std::path::Path;
 
+use camelia::{models::user::Dao as UserDao, orm::postgresql::Config as PostgreSql};
 use clap::Parser;
-use palm::Result;
+use palm::{parser::from_toml, Result};
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Config {
+    pub postgresql: PostgreSql,
+}
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Create {
@@ -14,7 +22,7 @@ pub struct Create {
 }
 
 impl Create {
-    pub async fn launch<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
+    pub fn launch<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
         // TODO
         Ok(())
     }
@@ -29,7 +37,7 @@ pub struct Token {
 }
 
 impl Token {
-    pub async fn launch<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
+    pub fn launch<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
         // TODO
         Ok(())
     }
@@ -44,11 +52,11 @@ pub struct Role {
 }
 
 impl Role {
-    pub async fn apply<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
+    pub fn apply<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
         // TODO
         Ok(())
     }
-    pub async fn exempt<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
+    pub fn exempt<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
         // TODO
         Ok(())
     }
@@ -63,13 +71,30 @@ pub struct ResetPassword {
 }
 
 impl ResetPassword {
-    pub async fn launch<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
+    pub fn launch<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
         // TODO
         Ok(())
     }
 }
 
-pub async fn list<P: AsRef<Path>>(_config_file: P) -> Result<()> {
-    // TODO
+pub fn list<P: AsRef<Path>>(config_file: P) -> Result<()> {
+    let config: Config = from_toml(config_file)?;
+    {
+        let db = config.postgresql.open()?;
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+
+        let total = UserDao::count(db)?;
+        let page = 20;
+        println!("{:<6} ID", "USER");
+        for i in 1.. {
+            for it in UserDao::all(db, (i - 1) * page, page)?.iter() {
+                println!("{:<6} {}", it.id, it);
+            }
+            if i * page >= total {
+                break;
+            }
+        }
+    }
     Ok(())
 }

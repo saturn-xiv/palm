@@ -17,8 +17,8 @@ pub const BEARER: &str = "Bearer ";
 // https://jwt.io/
 // https://tools.ietf.org/html/rfc7519
 pub trait Jwt {
-    fn sign(&self, subject: &str, audience: &str, ttl: Duration) -> Result<String>;
-    fn verify(&self, token: &str, audience: &str) -> Result<String>;
+    fn sign(&self, issuer: &str, subject: &str, audience: &str, ttl: Duration) -> Result<String>;
+    fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)>;
 
     fn bearer(token: &str) -> String {
         format!("{}{}", BEARER, token)
@@ -40,10 +40,11 @@ pub trait Jwt {
         Ok(())
     }
 
-    fn timestamps(ttl: Duration) -> (i64, i64) {
-        let nbf = Utc::now().naive_utc();
-        let exp = nbf.add(ttl);
-        (nbf.timestamp(), exp.timestamp())
+    fn timestamps(ttl: Duration) -> (i64, i64, i64) {
+        let now = Utc::now().naive_utc();
+        let nbf = now.add(Duration::seconds(-1));
+        let exp = now.add(ttl);
+        (now.timestamp(), nbf.timestamp(), exp.timestamp())
     }
     fn years(y: i32) -> Result<(i64, i64)> {
         let nbf = Utc::now().naive_utc();

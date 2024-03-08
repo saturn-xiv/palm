@@ -71,26 +71,26 @@ pub async fn launch() -> Result<()> {
     }
 
     if let SubCommand::CacheClear = args.command {
-        return cache::clear(args.config).await;
+        return cache::clear(args.config);
     }
     if let SubCommand::CacheList = args.command {
-        return cache::list(args.config).await;
+        return cache::list(args.config);
     }
 
     if let SubCommand::UserList = args.command {
-        return user::list(args.config).await;
+        return user::list(args.config);
     }
     if let SubCommand::UserCreate(ref it) = args.command {
-        return it.launch(args.config).await;
+        return it.launch(args.config);
     }
     if let SubCommand::UserApplyRole(ref it) = args.command {
-        return it.apply(args.config).await;
+        return it.apply(args.config);
     }
     if let SubCommand::UserExemptRole(ref it) = args.command {
-        return it.exempt(args.config).await;
+        return it.exempt(args.config);
     }
     if let SubCommand::UserToken(ref it) = args.command {
-        return it.launch(args.config).await;
+        return it.launch(args.config);
     }
 
     if let SubCommand::I18nSync(ref it) = args.command {
