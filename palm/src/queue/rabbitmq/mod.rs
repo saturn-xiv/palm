@@ -2,6 +2,7 @@ pub mod amqp;
 pub mod stream;
 
 use serde::{Deserialize, Serialize};
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
     pub host: String,

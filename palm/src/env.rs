@@ -25,45 +25,25 @@ impl fmt::Display for Environment {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Http {
-    pub port: u16,
-    pub threads: usize,
     #[serde(rename = "allow-origins")]
     pub allow_origins: Vec<String>,
 }
 
 impl Http {
-    pub fn addr(&self) -> SocketAddr {
-        SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), self.port)
-    }
-}
-
-impl Default for Http {
-    fn default() -> Self {
-        Self {
-            port: 8080,
-            threads: 1 << 3,
-            allow_origins: Vec::new(),
-        }
+    pub fn addr(port: u16) -> SocketAddr {
+        SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), port)
     }
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
-pub struct Rpc {
-    pub port: u16,
-}
+pub struct Rpc;
 
 impl Rpc {
-    pub fn addr(&self) -> SocketAddr {
-        SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), self.port)
-    }
-}
-
-impl Default for Rpc {
-    fn default() -> Self {
-        Self { port: 10001 }
+    pub fn addr(port: u16) -> SocketAddr {
+        SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), port)
     }
 }
