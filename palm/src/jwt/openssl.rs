@@ -26,7 +26,7 @@ pub struct Token {
 
 impl super::Jwt for Jwt {
     fn sign(&self, issuer: &str, subject: &str, audience: &str, ttl: Duration) -> Result<String> {
-        let (iat, nbf, exp) = Self::timestamps(ttl);
+        let (iat, nbf, exp) = Self::timestamps(ttl)?;
         let token = Token {
             iss: issuer.to_string(),
             sub: subject.to_string(),

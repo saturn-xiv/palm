@@ -19,6 +19,7 @@ pub struct Aes {
 
 impl Aes {
     pub fn new<P: AsRef<Path>>(file: P) -> Result<Self> {
+        tink_aead::init();
         let key = load(file, &aes256_gcm_siv_key_template())?;
         Ok(Self {
             key: tink_aead::new(&key).map_err(map_tink_err)?,
@@ -48,6 +49,7 @@ pub struct HMac {
 
 impl HMac {
     pub fn new<P: AsRef<Path>>(file: P) -> Result<Self> {
+        tink_mac::init();
         let key = load(file, &hmac_sha512_tag512_key_template())?;
         Ok(Self {
             key: tink_mac::new(&key).map_err(map_tink_err)?,

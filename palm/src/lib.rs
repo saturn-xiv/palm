@@ -152,7 +152,7 @@ use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 use std::process::{Command, Output};
 
-use chrono::{DateTime, NaiveDateTime, Utc};
+use chrono::{DateTime, Utc};
 use chrono_tz::Tz;
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -184,9 +184,9 @@ pub enum TextEditor {
     Quill,
 }
 
-pub fn timestamp2datetime(ts: i64, tz: Tz) -> Option<DateTime<Tz>> {
-    if let Some(it) = NaiveDateTime::from_timestamp_opt(ts, 0) {
-        return it.and_local_timezone(tz).single();
+pub fn timestamp2datetime(ts: i64, tz: &Tz) -> Option<DateTime<Tz>> {
+    if let Some(it) = DateTime::from_timestamp(ts, 0) {
+        return Some(it.with_timezone(tz));
     }
     None
 }

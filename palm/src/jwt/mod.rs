@@ -40,20 +40,25 @@ pub trait Jwt {
         Ok(())
     }
 
-    fn timestamps(ttl: Duration) -> (i64, i64, i64) {
-        let now = Utc::now().naive_utc();
-        let nbf = now.add(Duration::seconds(-1));
-        let exp = now.add(ttl);
-        (now.timestamp(), nbf.timestamp(), exp.timestamp())
-    }
-    fn years(y: i32) -> Result<(i64, i64)> {
-        let nbf = Utc::now().naive_utc();
-        if let Some(exp) = nbf.with_year(nbf.year() + y) {
-            return Ok((nbf.timestamp(), exp.timestamp()));
-        }
-        Err(Box::new(HttpError(
+    fn timestamps(ttl: Duration) -> Result<(i64, i64, i64)> {
+        let now = Utc::now();
+        let nbf = now.add(Duration::try_seconds(-1).ok_or(Box::new(HttpError(
             StatusCode::BAD_REQUEST,
-            Some("bad year gap!".to_string()),
-        )))
+            Some("bad seconds".to_string()),
+        )))?);
+        let exp = now.add(ttl);
+        Ok((now.timestamp(), nbf.timestamp(), exp.timestamp()))
+    }
+    fn years(y: i32) -> Result<(i64, i64, i64)> {
+        let now = Utc::now();
+        let nbf = now.add(Duration::try_seconds(-1).ok_or(Box::new(HttpError(
+            StatusCode::BAD_REQUEST,
+            Some("bad seconds".to_string()),
+        )))?);
+        let exp = now.with_year(nbf.year() + y).ok_or(Box::new(HttpError(
+            StatusCode::BAD_REQUEST,
+            Some("bad years".to_string()),
+        )))?;
+        Ok((now.timestamp(), nbf.timestamp(), exp.timestamp()))
     }
 }

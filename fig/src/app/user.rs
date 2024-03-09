@@ -29,6 +29,7 @@ use super::super::NAME;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct TokenConfig {
+    #[serde(rename = "secret-key")]
     secret_key: Key,
     postgresql: PostgreSql,
 }
@@ -128,7 +129,10 @@ impl Token {
                 NAME,
                 &user.uid,
                 &Action::SignIn.to_string(),
-                Duration::weeks(self.weeks as i64),
+                Duration::try_weeks(self.weeks as i64).ok_or(Box::new(HttpError(
+                    StatusCode::BAD_REQUEST,
+                    Some("bad weeks for jwt".to_string()),
+                )))?,
             )?;
             println!("{token}");
         }

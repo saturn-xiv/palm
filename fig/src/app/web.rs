@@ -51,8 +51,8 @@ impl Default for Rpc {
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Config {
     pub env: Environment,
-    #[serde(rename = "cookie-key")]
-    pub cookie_key: Key,
+    #[serde(rename = "secret-key")]
+    pub secret_key: Key,
     pub musa: Rpc,
     pub orchid: Rpc,
     pub http: Http,
