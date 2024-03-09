@@ -13,6 +13,7 @@ use openssl::hash::{hash, MessageDigest};
 use palm::{
     crypto::{random::bytes as random_bytes, Password},
     email::Address,
+    rbac::v1 as rbac_v1,
     HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
@@ -21,29 +22,18 @@ use uuid::Uuid;
 
 use super::super::{orm::postgresql::Connection, schema::users};
 
-#[derive(Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
+#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub enum Action {
     SignIn,
     ResetPassword,
     Unlock,
     Confirm,
+    #[strum(to_string = "o-{0}")]
     Other(String),
 }
 
-impl fmt::Display for Action {
-    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
-        match *self {
-            Self::SignIn => write!(fmt, "user.sign-in"),
-            Self::ResetPassword => write!(fmt, "user.reset-password"),
-            Self::Unlock => write!(fmt, "user.unlock"),
-            Self::Confirm => write!(fmt, "user.confirm"),
-            Self::Other(ref it) => write!(fmt, "other.{}", it),
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, PartialEq, Eq, Debug, Clone, EnumString, EnumDisplay)]
+#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub enum Status {
     Email,
@@ -60,6 +50,7 @@ pub struct Item {
     pub nickname: String,
     pub email: String,
     pub password: Option<Vec<u8>>,
+    pub uid: String,
     pub salt: Vec<u8>,
     pub avatar: String,
     pub lang: String,
@@ -89,6 +80,21 @@ impl Item {
     pub const GUEST_LANG: &'static str = "en-US";
     pub const GUEST_TIMEZONE: &'static str = "UTC";
     pub const NIL: &'static str = "nil";
+
+    pub fn to_subject(&self) -> String {
+        let it = rbac_v1::User {
+            id: Some(rbac_v1::user::Id::I(self.id)),
+        };
+        it.to_string()
+    }
+    pub fn from_subject(db: &mut Connection, subject: &str) -> Result<Self> {
+        let it: rbac_v1::User = subject.parse()?;
+        match it.id {
+            Some(rbac_v1::user::Id::I(id)) => Dao::by_id(db, id),
+            Some(rbac_v1::user::Id::S(ref nickname)) => Dao::by_nickname(db, nickname),
+            _ => Err(Box::new(HttpError(StatusCode::NOT_FOUND, None))),
+        }
+    }
 
     pub fn guest_email() -> String {
         format!("{}@local", Uuid::new_v4().simple())
@@ -163,6 +169,7 @@ pub struct New<'a> {
     pub nickname: &'a str,
     pub email: &'a str,
     pub password: Option<&'a [u8]>,
+    pub uid: &'a str,
     pub salt: &'a [u8],
     pub avatar: &'a str,
     pub lang: &'a str,
@@ -270,6 +277,7 @@ impl Dao for Connection {
                 nickname,
                 email,
                 password: Some(&enc.compute(password.as_bytes())?),
+                uid: &Uuid::new_v4().to_string(),
                 salt: &random_bytes(New::SALT_SIZE),
                 avatar: &Item::gravatar(&email)?,
                 lang: &lang.to_string(),

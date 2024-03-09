@@ -1,3 +1,5 @@
+pub mod watcher;
+
 use std::any::type_name;
 use std::fmt::Debug;
 use std::time::{SystemTime, UNIX_EPOCH};
@@ -14,6 +16,7 @@ use amqprs::{
 };
 use async_trait::async_trait;
 use hyper::StatusCode;
+use log::info;
 use serde::Serialize;
 use uuid::Uuid;
 
@@ -50,20 +53,27 @@ pub struct RabbitMq {
 }
 
 impl RabbitMq {
-    pub async fn declare_queue(&self, name: &str) -> Result<()> {
-        self.channel
+    pub async fn declare_queue(&self, name: &str, durable: bool) -> Result<String> {
+        debug!("declare queue '{name}'");
+        let (name, _, _) = self
+            .channel
             .queue_declare(
                 QueueDeclareArguments::default()
                     .queue(name.to_string())
-                    .auto_delete(false)
-                    .durable(true)
+                    .auto_delete(!durable)
+                    .durable(durable)
+                    .no_wait(false)
                     .finish(),
             )
-            .await?;
-
-        Ok(())
+            .await?
+            .ok_or(Box::new(HttpError(
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Some("couldn't get queue name".to_string()),
+            )))?;
+        Ok(name)
     }
     pub async fn declare_exchange(&self, name: &str, type_: ExchangeType) -> Result<()> {
+        debug!("declare exchange {name} {type_}");
         self.channel
             .exchange_declare(
                 ExchangeDeclareArguments::of_type(name, type_)
@@ -75,6 +85,7 @@ impl RabbitMq {
         Ok(())
     }
     pub async fn bind(&self, exchange: &str, queue: &str, routing_key: &str) -> Result<()> {
+        debug!("bind exchange({exchange}) queue({queue})");
         self.channel
             .queue_bind(QueueBindArguments::new(queue, exchange, routing_key))
             .await?;

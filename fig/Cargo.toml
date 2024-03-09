@@ -12,6 +12,10 @@ log = "0.4"
 env_logger = "0.11"
 askama = "0.12"
 
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "std"]
+
 [dependencies.hyper]
 version = "1"
 features = ["full"]
@@ -20,6 +24,18 @@ features = ["full"]
 version = "0.28"
 features = ["user"]
 
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = [
+    "bigdecimal",
+    "postgres",
+    "mysql",
+    "sqlite",
+    "extras",
+    "128-column-tables",
+]
+
 [dependencies.serde]
 version = "1"
 features = ["derive"]
@@ -27,6 +43,10 @@ features = ["derive"]
 [dependencies.tokio]
 version = "1"
 features = ["full"]
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher", "cached"]
 
 [dependencies.clap]
 version = "4"

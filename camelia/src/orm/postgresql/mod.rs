@@ -2,10 +2,22 @@ pub mod schema;
 
 use std::default::Default;
 use std::fmt;
+use std::ops::Deref;
+use std::sync::Arc;
 
+use casbin::prelude::*;
 use diesel::{sql_query, RunQueryDsl};
-use palm::Result;
+use diesel_adapter::DieselAdapter;
+use log::{debug, error};
+use palm::{
+    queue::rabbitmq::amqp::{
+        watcher::{consume as consume_casbin_watcher, Watcher as RabbitCasbinWatcher},
+        RabbitMq,
+    },
+    Result,
+};
 use serde::{Deserialize, Serialize};
+use tokio::sync::Mutex;
 
 use super::Version;
 
@@ -33,6 +45,38 @@ impl Config {
     pub fn open(&self) -> Result<Pool> {
         let manager = diesel::r2d2::ConnectionManager::<Connection>::new(&self.to_string()[..]);
         Ok(Pool::builder().max_size(self.pool_size).build(manager)?)
+    }
+    pub async fn casbin_enforcer(&self, rabbitmq: Arc<RabbitMq>) -> Result<Arc<Mutex<Enforcer>>> {
+        debug!("init casbin postgresql enforcer");
+        let enforcer = {
+            let model =
+                DefaultModel::from_str(include_str!("rbac_with_resource_roles_model.conf")).await?;
+            let url = self.to_string();
+            debug!("init casbin rabbitmq enforcer");
+            let adapter = DieselAdapter::new(&url, 4)?;
+            let it = Enforcer::new(model, adapter).await?;
+            Arc::new(Mutex::new(it))
+        };
+
+        debug!("init casbin rabbitmq adapter");
+        let watcher = RabbitCasbinWatcher::new(rabbitmq.clone()).await?;
+        {
+            let rabbitmq = rabbitmq.clone();
+            let queue = watcher.queue.clone();
+            let enforcer = enforcer.clone();
+            tokio::task::spawn(async move {
+                let rabbitmq = rabbitmq.deref();
+                if let Err(e) = consume_casbin_watcher("", rabbitmq, &queue, enforcer).await {
+                    error!("consume casbin watcher message {:?}", e);
+                }
+            });
+        }
+        {
+            let enforcer = enforcer.clone();
+            let mut enf = enforcer.lock().await;
+            enf.set_watcher(Box::new(watcher));
+        }
+        Ok(enforcer)
     }
 }
 

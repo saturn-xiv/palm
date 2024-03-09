@@ -84,10 +84,10 @@ pub async fn launch() -> Result<()> {
         return it.launch(args.config);
     }
     if let SubCommand::UserApplyRole(ref it) = args.command {
-        return it.apply(args.config);
+        return it.apply(args.config).await;
     }
     if let SubCommand::UserExemptRole(ref it) = args.command {
-        return it.exempt(args.config);
+        return it.exempt(args.config).await;
     }
     if let SubCommand::UserToken(ref it) = args.command {
         return it.launch(args.config);

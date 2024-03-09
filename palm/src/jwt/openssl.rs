@@ -6,10 +6,9 @@ use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use uuid::Uuid;
 
 use super::super::Result;
-use super::Jwt;
 
 #[derive(Clone)]
-pub struct OpenSsl {
+pub struct Jwt {
     key: String,
 }
 
@@ -25,7 +24,7 @@ pub struct Token {
     pub iat: i64,
 }
 
-impl Jwt for OpenSsl {
+impl super::Jwt for Jwt {
     fn sign(&self, issuer: &str, subject: &str, audience: &str, ttl: Duration) -> Result<String> {
         let (iat, nbf, exp) = Self::timestamps(ttl);
         let token = Token {
@@ -45,9 +44,11 @@ impl Jwt for OpenSsl {
     }
 }
 
-impl OpenSsl {
-    pub fn new(key: String) -> Self {
-        Self { key }
+impl Jwt {
+    pub fn new(key: &str) -> Self {
+        Self {
+            key: key.to_string(),
+        }
     }
 
     fn sum<T: Serialize>(&self, kid: Option<String>, claims: &T) -> Result<String> {
