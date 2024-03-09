@@ -29,8 +29,8 @@ use super::super::NAME;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct TokenConfig {
-    #[serde(rename = "secret-key")]
-    secret_key: Key,
+    #[serde(rename = "jwt-key")]
+    jwt_key: Key,
     postgresql: PostgreSql,
 }
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -119,7 +119,7 @@ pub struct Token {
 impl Token {
     pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let config: TokenConfig = from_toml(config_file)?;
-        let jwt = Jwt::new(&config.secret_key.0);
+        let jwt = Jwt::new(&config.jwt_key.0);
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;

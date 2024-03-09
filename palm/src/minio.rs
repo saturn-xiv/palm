@@ -89,9 +89,29 @@ impl NginxConfig<'_> {
 }
 
 impl Config {
+    pub fn open(&self) -> Result<Connection> {
+        let cred = StaticProvider::new(&self.access_key, &self.access_key, None);
+        let base_url: BaseUrl = self.endpoint.parse()?;
+
+        let client = ClientBuilder::new(base_url)
+            .provider(Some(Box::new(cred)))
+            .ignore_cert_check(Some(true))
+            .build()?;
+        let base_url = self.endpoint.parse()?;
+        Ok(Connection { client, base_url })
+    }
+}
+
+pub struct Connection {
+    base_url: BaseUrl,
+    client: Client,
+}
+impl Connection {
     pub async fn bucket_exists(&self, name: &str) -> Result<bool> {
-        let cli = self.open()?;
-        let ok = cli.bucket_exists(&BucketExistsArgs::new(name)?).await?;
+        let ok = self
+            .client
+            .bucket_exists(&BucketExistsArgs::new(name)?)
+            .await?;
         Ok(ok)
     }
     pub async fn create_bucket(
@@ -100,9 +120,8 @@ impl Config {
         public: bool,
         expiration_days: Option<usize>,
     ) -> Result<()> {
-        let cli = self.open()?;
         debug!("create bucket {}", name);
-        cli.make_bucket(&MakeBucketArgs::new(name)?).await?;
+        self.client.make_bucket(&MakeBucketArgs::new(name)?).await?;
         if public {
             debug!("Set bucket {} to public", name);
             let policy = {
@@ -114,46 +133,48 @@ impl Config {
                 it.render()?
             };
             debug!("{policy}");
-            cli.set_bucket_policy(&SetBucketPolicyArgs::new(name, &policy)?)
+            self.client
+                .set_bucket_policy(&SetBucketPolicyArgs::new(name, &policy)?)
                 .await?;
         }
         if expiration_days.is_some() {
-            cli.set_bucket_lifecycle(&SetBucketLifecycleArgs::new(
-                name,
-                &LifecycleConfig {
-                    rules: vec![LifecycleRule {
-                        id: "expire-bucket".to_string(),
-                        status: true,
-                        expiration_days,
-                        expiration_date: None,
-                        filter: Filter {
-                            and_operator: None,
-                            prefix: None,
-                            tag: None,
-                        },
-                        abort_incomplete_multipart_upload_days_after_initiation: None,
-                        expiration_expired_object_delete_marker: None,
-                        noncurrent_version_expiration_noncurrent_days: None,
-                        noncurrent_version_transition_noncurrent_days: None,
-                        noncurrent_version_transition_storage_class: None,
-                        transition_date: None,
-                        transition_days: None,
-                        transition_storage_class: None,
-                    }],
-                },
-            )?)
-            .await?;
+            self.client
+                .set_bucket_lifecycle(&SetBucketLifecycleArgs::new(
+                    name,
+                    &LifecycleConfig {
+                        rules: vec![LifecycleRule {
+                            id: "expire-bucket".to_string(),
+                            status: true,
+                            expiration_days,
+                            expiration_date: None,
+                            filter: Filter {
+                                and_operator: None,
+                                prefix: None,
+                                tag: None,
+                            },
+                            abort_incomplete_multipart_upload_days_after_initiation: None,
+                            expiration_expired_object_delete_marker: None,
+                            noncurrent_version_expiration_noncurrent_days: None,
+                            noncurrent_version_transition_noncurrent_days: None,
+                            noncurrent_version_transition_storage_class: None,
+                            transition_date: None,
+                            transition_days: None,
+                            transition_storage_class: None,
+                        }],
+                    },
+                )?)
+                .await?;
         }
         Ok(())
     }
     pub async fn delete_bucket(&self, name: &str) -> Result<()> {
-        let cli = self.open()?;
-        cli.remove_bucket(&RemoveBucketArgs::new(name)?).await?;
+        self.client
+            .remove_bucket(&RemoveBucketArgs::new(name)?)
+            .await?;
         Ok(())
     }
     pub async fn list_buckets(&self) -> Result<Vec<(String, DateTime<Utc>)>> {
-        let cli = self.open()?;
-        let res = cli.list_buckets(&ListBucketsArgs::new()).await?;
+        let res = self.client.list_buckets(&ListBucketsArgs::new()).await?;
         let items = res
             .buckets
             .iter()
@@ -169,23 +190,21 @@ impl Config {
         stream: &'a mut dyn Read,
         size: usize,
     ) -> Result<()> {
-        let cli = self.open()?;
         let mut req = PutObjectArgs::new(bucket, name, stream, Some(size), None)?;
         req.content_type = content_type;
-        cli.put_object(&mut req).await?;
+        self.client.put_object(&mut req).await?;
         Ok(())
     }
     pub async fn remove_object(&self, bucket: &str, name: &str) -> Result<()> {
-        let cli = self.open()?;
-        cli.remove_object(&RemoveObjectArgs::new(bucket, name)?)
+        self.client
+            .remove_object(&RemoveObjectArgs::new(bucket, name)?)
             .await?;
 
         Ok(())
     }
     pub async fn list_objects(&self, bucket: &str) -> Result<Vec<String>> {
-        let cli = self.open()?;
-
-        let res = cli
+        let res = self
+            .client
             .list_objects_v2(&ListObjectsV2Args::new(bucket)?)
             .await?;
         let items = res.contents.iter().map(|x| x.name.clone()).collect();
@@ -204,14 +223,13 @@ impl Config {
             it.expiry_seconds = Some(ttl.num_seconds() as u32);
             it
         };
-        let cli = self.open()?;
-        let res = cli.get_presigned_object_url(&arg).await?;
+
+        let res = self.client.get_presigned_object_url(&arg).await?;
 
         Ok(res.url)
     }
     pub fn get_permanent_object_url(&self, bucket: &str, name: &str) -> Result<String> {
-        let base_url: BaseUrl = self.endpoint.parse()?;
-        let url = base_url.build_url(
+        let url = self.base_url.build_url(
             &Method::GET,
             &"".to_string(),
             &Multimap::new(),
@@ -220,17 +238,6 @@ impl Config {
         )?;
 
         Ok(url.to_string())
-    }
-    fn open(&self) -> Result<Client> {
-        let cred = StaticProvider::new(&self.access_key, &self.access_key, None);
-        let base_url: BaseUrl = self.endpoint.parse()?;
-
-        let cli = ClientBuilder::new(base_url)
-            .provider(Some(Box::new(cred)))
-            .ignore_cert_check(Some(true))
-            .build()?;
-
-        Ok(cli)
     }
 }
 

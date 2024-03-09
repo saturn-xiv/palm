@@ -16,9 +16,9 @@ language-tags = "0.3"
 mime = "0.3"
 log = "0.4"
 rabbitmq-stream-client = "0.4"
-robotxt = "0.5"
 actix-files = "0.6"
 actix-multipart = "0.6"
+robotxt = "0.6"
 actix-cors = "0.7"
 actix-identity = "0.7"
 encoding_rs = "0.8"
@@ -91,9 +91,13 @@ features = ["json", "cookies"]
 version = "0.11"
 features = ["transport"]
 
+[dependencies.juniper]
+version = "0.15"
+features = ["chrono"]
+
 [dependencies.validator]
 version = "0.16"
-features = ["derive", "phone", "card", "unic"]
+features = ["derive", "card", "unic"]
 
 [dependencies.cookie]
 version = "0.18"

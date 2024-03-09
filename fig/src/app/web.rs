@@ -1,7 +1,29 @@
+use std::ops::Deref;
 use std::path::Path;
+use std::sync::Arc;
 
-use camelia::orm::postgresql::Config as PostgreSql;
+use actix_cors::Cors;
+use actix_identity::IdentityMiddleware;
+use actix_session::{
+    config::{BrowserSession, CookieContentSecurity, SessionLifecycle},
+    storage::CookieSessionStore,
+    SessionMiddleware,
+};
+use actix_web::{
+    cookie::{time::Duration as CookieDuration, Key as CookieKey, SameSite},
+    http::{
+        header::{ACCEPT, ACCEPT_LANGUAGE, AUTHORIZATION, CONTENT_TYPE, COOKIE},
+        Method,
+    },
+    middleware, web, App, HttpServer,
+};
+use camelia::{controllers as camelia_controllers, orm::postgresql::Config as PostgreSql};
+use chrono::Duration;
 use clap::Parser;
+use data_encoding::BASE64;
+use hyper::StatusCode;
+use juniper::EmptySubscription;
+use log::info;
 use palm::{
     cache::redis::Config as Redis,
     crypto::{
@@ -10,11 +32,14 @@ use palm::{
     },
     env::{Environment, Http},
     minio::Config as Minio,
-    queue::rabbitmq::Config as RabbitMq,
+    parser::from_toml,
+    queue::rabbitmq::{amqp::Amqp, Config as RabbitMq},
     search::Config as OpenSearch,
-    Result,
+    HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
+
+use super::super::{graphql, NAME};
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Server {
@@ -25,8 +50,90 @@ pub struct Server {
 }
 
 impl Server {
-    pub async fn launch<P: AsRef<Path>>(&self, _config_file: P) -> Result<()> {
-        // TODO
+    pub async fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
+        let config: Config = from_toml(config_file)?;
+
+        let cookie_key = BASE64.decode(config.cookie_key.0.as_bytes())?;
+        let is_prod = config.env == Environment::Production;
+
+        let pg_pool = config.postgresql.open()?;
+
+        let pgsql = web::Data::new(pg_pool);
+        let redis = web::Data::new(config.redis.open()?);
+        let rabbitmq = web::Data::new(config.rabbitmq.open().await?);
+        let minio = web::Data::new(config.minio.open()?);
+        let opensearch = web::Data::new(config.opensearch.open()?);
+        let enforcer = {
+            let rabbitmq = rabbitmq.deref();
+            let rabbitmq = rabbitmq.clone();
+            config.postgresql.casbin_enforcer(rabbitmq).await?
+        };
+
+        let schema = Arc::new(graphql::Schema::new(
+            graphql::query::Query {},
+            graphql::mutation::Mutation {},
+            EmptySubscription::new(),
+        ));
+        let cookie_max_age = Duration::try_hours(1)
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("bad cookie max age".to_string()),
+            )))?
+            .num_seconds() as usize;
+
+        info!("listen on http://127.0.0.1:{}", self.port);
+        HttpServer::new(move || {
+            App::new()
+                .app_data(pgsql.clone())
+                .app_data(redis.clone())
+                .app_data(rabbitmq.clone())
+                .app_data(minio.clone())
+                .app_data(opensearch.clone())
+                .app_data(enforcer.clone())
+                .app_data(web::Data::from(schema.clone()))
+                // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+                .wrap(
+                    Cors::default()
+                        .allow_any_origin()
+                        .allowed_methods(vec![Method::POST, Method::GET])
+                        .allowed_headers(vec![
+                            AUTHORIZATION,
+                            ACCEPT,
+                            CONTENT_TYPE,
+                            ACCEPT_LANGUAGE,
+                            COOKIE,
+                        ])
+                        .allowed_header("X-Requested-With")
+                        .supports_credentials()
+                        .allow_any_origin()
+                        .max_age(cookie_max_age),
+                )
+                .wrap(middleware::Logger::default())
+                .wrap(IdentityMiddleware::default())
+                .wrap(
+                    SessionMiddleware::builder(
+                        CookieSessionStore::default(),
+                        CookieKey::from(&cookie_key),
+                    )
+                    .cookie_name(format!("{}.ss", NAME))
+                    .cookie_same_site(SameSite::Strict)
+                    .cookie_http_only(true)
+                    .cookie_content_security(CookieContentSecurity::Private)
+                    .cookie_path("/".to_string())
+                    .session_lifecycle(SessionLifecycle::BrowserSession(
+                        BrowserSession::default().state_ttl(CookieDuration::hours(1)),
+                    ))
+                    .cookie_secure(is_prod)
+                    .build(),
+                )
+                .configure(graphql::controllers::register)
+                .configure(camelia_controllers::register)
+        })
+        .workers(self.threads)
+        .bind(("127.0.0.1", self.port))?
+        .run()
+        .await?;
+
         Ok(())
     }
 }
@@ -49,8 +156,10 @@ impl Default for Rpc {
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Config {
     pub env: Environment,
-    #[serde(rename = "secret-key")]
-    pub secret_key: Key,
+    #[serde(rename = "cookie-key")]
+    pub cookie_key: Key,
+    #[serde(rename = "jwt-key")]
+    pub jwt_key: Key,
     pub musa: Rpc,
     pub orchid: Rpc,
     pub http: Http,

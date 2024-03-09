@@ -12,7 +12,7 @@ use log::{debug, error};
 use palm::{
     queue::rabbitmq::amqp::{
         watcher::{consume as consume_casbin_watcher, Watcher as RabbitCasbinWatcher},
-        RabbitMq,
+        Connection as RabbitMq,
     },
     Result,
 };

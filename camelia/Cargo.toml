@@ -10,6 +10,7 @@ description = "A portal application."
 language-tags = "0.3"
 mime = "0.3"
 log = "0.4"
+actix-files = "0.6"
 serde_yaml = "0.9"
 prost = "0.12"
 rust-ini = "0.20"
@@ -32,6 +33,14 @@ features = ["small_rng"]
 [dependencies.reqwest]
 version = "0.11"
 features = ["json", "cookies"]
+
+[dependencies.juniper]
+version = "0.15"
+features = ["chrono"]
+
+[dependencies.validator]
+version = "0.16"
+features = ["derive", "card", "unic"]
 
 [dependencies.strum]
 version = "0.26"
@@ -72,6 +81,10 @@ features = [
     "extras",
     "128-column-tables",
 ]
+
+[dependencies.actix-web]
+version = "4"
+features = ["cookies"]
 
 [dependencies.openssl]
 version = "*"

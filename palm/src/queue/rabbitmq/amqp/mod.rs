@@ -10,7 +10,7 @@ use amqprs::{
         BasicAckArguments, BasicConsumeArguments, BasicPublishArguments, Channel,
         ExchangeDeclareArguments, ExchangeType, QueueBindArguments, QueueDeclareArguments,
     },
-    connection::{Connection, OpenConnectionArguments},
+    connection::{Connection as RabbitMqConnection, OpenConnectionArguments},
     consumer::AsyncConsumer,
     BasicProperties, Deliver,
 };
@@ -28,12 +28,12 @@ pub trait Handler: Sync + Send {
 }
 
 pub trait Amqp {
-    fn open(&self) -> impl std::future::Future<Output = Result<RabbitMq>> + Send;
+    fn open(&self) -> impl std::future::Future<Output = Result<Connection>> + Send;
 }
 
 impl Amqp for super::Config {
-    async fn open(&self) -> Result<RabbitMq> {
-        let con = Connection::open(
+    async fn open(&self) -> Result<Connection> {
+        let con = RabbitMqConnection::open(
             &OpenConnectionArguments::new(&self.host, self.port, &self.user, &self.password)
                 .virtual_host(&self.virtual_host)
                 .heartbeat(20)
@@ -41,15 +41,15 @@ impl Amqp for super::Config {
         )
         .await?;
 
-        Ok(RabbitMq { connection: con })
+        Ok(Connection { connection: con })
     }
 }
 
-pub struct RabbitMq {
-    connection: Connection,
+pub struct Connection {
+    connection: RabbitMqConnection,
 }
 
-impl RabbitMq {
+impl Connection {
     async fn open_channel(&self) -> Result<Channel> {
         let it = self.connection.open_channel(None).await?;
         it.register_callback(DefaultChannelCallback).await?;
@@ -106,7 +106,7 @@ pub trait Protobuf {
     ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
-impl Protobuf for RabbitMq {
+impl Protobuf for Connection {
     async fn produce<T: prost::Message>(&self, task: &T) -> Result<()> {
         let payload = task.encode_to_vec();
         self.produce(type_name::<T>(), PROTOBUF, &payload).await
@@ -128,7 +128,7 @@ pub trait Flatbuffer {
     ) -> impl std::future::Future<Output = Result<()>> + Send;
 }
 
-impl Flatbuffer for RabbitMq {
+impl Flatbuffer for Connection {
     async fn produce<T: Serialize + Debug + Send + Sync>(&self, task: &T) -> Result<()> {
         let payload = flexbuffers::to_vec(task)?;
         self.produce(type_name::<T>(), FLATBUFFER, &payload).await
@@ -139,7 +139,7 @@ impl Flatbuffer for RabbitMq {
     }
 }
 
-impl RabbitMq {
+impl Connection {
     // https://www.rabbitmq.com/tutorials/tutorial-three-python.html
     pub async fn publish(&self, queue: &str, content_type: &str, task: &[u8]) -> Result<()> {
         self.send(queue, "", content_type, task).await

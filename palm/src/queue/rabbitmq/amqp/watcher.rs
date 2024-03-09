@@ -13,20 +13,20 @@ use serde::{Deserialize, Serialize};
 use tokio::sync::Mutex;
 
 use super::super::super::super::{HttpError, Result};
-use super::{Flatbuffer, RabbitMq};
+use super::{Connection, Flatbuffer};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SyncTask;
 
 pub struct Watcher {
-    rabbitmq: Arc<RabbitMq>,
+    rabbitmq: Arc<Connection>,
     callback: Box<dyn FnMut() + Send + Sync>,
     pub queue: String,
 }
 
 impl Watcher {
     const EXCHANGE_NAME: &'static str = "ex.casbin";
-    pub async fn new(rabbitmq: Arc<RabbitMq>) -> Result<Self> {
+    pub async fn new(rabbitmq: Arc<Connection>) -> Result<Self> {
         rabbitmq
             .declare_exchange(Self::EXCHANGE_NAME, ExchangeType::Fanout)
             .await?;
@@ -63,7 +63,7 @@ impl CasbinWatcher for Watcher {
 
 pub async fn consume(
     name: &str,
-    rabbitmq: &RabbitMq,
+    rabbitmq: &Connection,
     queue: &str,
     enforcer: Arc<Mutex<Enforcer>>,
 ) -> Result<()> {
