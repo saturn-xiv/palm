@@ -14,13 +14,13 @@ use chrono::Duration;
 use clap::Parser;
 use diesel::Connection as DieselConntection;
 use hyper::StatusCode;
-use log::info;
+use log::{info, warn};
 use palm::{
     crypto::Key,
     jwt::{openssl::Jwt, Jwt as JwtProvider},
     parser::from_toml,
     queue::rabbitmq::{amqp::Amqp, Config as RabbitMq},
-    rbac::v1::Role as RbacRole,
+    rbac::v1 as rbac_v1,
     Error, HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
@@ -106,7 +106,7 @@ impl Create {
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Token {
-    #[clap(short, long)]
+    #[clap(short, long, help = "UID")]
     pub user: String,
     #[clap(short, long)]
     pub issuer: String,
@@ -142,15 +142,29 @@ impl Token {
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Role {
-    #[clap(short, long)]
+    #[clap(short, long, help = "Nickname")]
     pub user: String,
     #[clap(short, long)]
     pub role: String,
 }
 
 impl Role {
+    fn role(&self) -> String {
+        let it = match &self.role[..] {
+            "admin" => rbac_v1::Role {
+                by: Some(rbac_v1::role::By::Administrator(())),
+            },
+            "root" => rbac_v1::Role {
+                by: Some(rbac_v1::role::By::Root(())),
+            },
+            other => rbac_v1::Role {
+                by: Some(rbac_v1::role::By::Member(other.to_string())),
+            },
+        };
+        it.to_string()
+    }
     pub async fn apply<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let _: RbacRole = self.role.parse()?;
+        let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
         let rabbitmq = Arc::new(config.rabbitmq.open().await?);
         let enforcer = config.postgresql.casbin_enforcer(rabbitmq).await?;
@@ -162,12 +176,15 @@ impl Role {
             let user = UserDao::by_nickname(db, &self.user)?;
 
             {
+                let user = user.to_subject();
                 let mut enforcer = enforcer.lock().await;
-                enforcer
-                    .add_role_for_user(&user.to_subject(), &self.role, None)
-                    .await?;
-            }
 
+                if enforcer.has_role_for_user(&user, &role, None) {
+                    warn!("user({}) already has role({})", self.user, self.role);
+                    return Ok(());
+                }
+                enforcer.add_role_for_user(&user, &role, None).await?;
+            }
             LogDao::add::<String, User>(
                 db,
                 user.id,
@@ -183,7 +200,7 @@ impl Role {
         Ok(())
     }
     pub async fn exempt<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let _: RbacRole = self.role.parse()?;
+        let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
         let rabbitmq = Arc::new(config.rabbitmq.open().await?);
         let enforcer = config.postgresql.casbin_enforcer(rabbitmq).await?;
@@ -195,10 +212,13 @@ impl Role {
             let user = UserDao::by_nickname(db, &self.user)?;
 
             {
+                let user = user.to_subject();
                 let mut enforcer = enforcer.lock().await;
-                enforcer
-                    .delete_role_for_user(&user.to_subject(), &self.role, None)
-                    .await?;
+                if !enforcer.has_role_for_user(&user, &role, None) {
+                    warn!("user({}) didn't has role({})", self.user, self.role);
+                    return Ok(());
+                }
+                enforcer.delete_role_for_user(&user, &role, None).await?;
             }
 
             LogDao::add::<String, User>(
@@ -214,7 +234,7 @@ impl Role {
                     current_user()
                 ),
             )?;
-            info!("apple role {} to user {}", self.role, user);
+            info!("exempt role {} to user {}", self.role, user);
         }
 
         Ok(())
@@ -267,10 +287,10 @@ pub fn list<P: AsRef<Path>>(config_file: P) -> Result<()> {
 
         let total = UserDao::count(db)?;
         let page = 20;
-        println!("{:<6} ID", "USER");
+        println!("{:<6} {:<32} USER", "ID", "NICKNAME");
         for i in 1.. {
             for it in UserDao::all(db, (i - 1) * page, page)?.iter() {
-                println!("{:<6} {}", it.id, it);
+                println!("{:<6} {:<32} {}", it.id, it.nickname, it);
             }
             if i * page >= total {
                 break;

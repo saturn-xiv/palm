@@ -9,7 +9,6 @@ edition = "2021"
 async-trait = "0.1"
 minio = "0.1"
 tink-aead = "0.2"
-tink-core = "0.2"
 tink-mac = "0.2"
 tink-proto = "0.2"
 futures = "0.3"
@@ -55,6 +54,10 @@ handlebars = "5"
 google-youtube3 = "5"
 jsonwebtoken = "9"
 flatbuffers = "23"
+
+[dependencies.tink-core]
+version = "0.2"
+features = ["insecure"]
 
 [dependencies.chrono]
 version = "0.4"

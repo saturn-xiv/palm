@@ -3,9 +3,12 @@ use std::os::unix::fs::OpenOptionsExt;
 use std::path::Path;
 
 use hyper::StatusCode;
-use tink_aead::aes256_gcm_siv_key_template;
+use tink_aead::aes256_gcm_key_template;
 use tink_core::{
-    keyset::{BinaryReader, BinaryWriter, Handle},
+    keyset::{
+        insecure::{read as insecure_read, write as insecure_write},
+        BinaryReader, BinaryWriter, Handle,
+    },
     Aead, Mac, TinkError,
 };
 use tink_mac::hmac_sha512_tag512_key_template;
@@ -20,7 +23,7 @@ pub struct Aes {
 impl Aes {
     pub fn new<P: AsRef<Path>>(file: P) -> Result<Self> {
         tink_aead::init();
-        let key = load(file, &aes256_gcm_siv_key_template())?;
+        let key = load(file, &aes256_gcm_key_template())?;
         Ok(Self {
             key: tink_aead::new(&key).map_err(map_tink_err)?,
         })
@@ -68,7 +71,6 @@ impl super::Password for HMac {
 }
 
 fn load<P: AsRef<Path>>(file: P, tpl: &KeyTemplate) -> Result<Handle> {
-    tink_aead::init();
     {
         let file = file.as_ref();
         if !file.exists() {
@@ -81,14 +83,14 @@ fn load<P: AsRef<Path>>(file: P, tpl: &KeyTemplate) -> Result<Handle> {
                     .mode(0o600)
                     .open(file)?;
                 let mut fbw = BinaryWriter::new(file);
-                key.write_with_no_secrets(&mut fbw).map_err(map_tink_err)?;
+                insecure_write(&key, &mut fbw).map_err(map_tink_err)?;
             }
         }
     }
     let key = {
         let file = File::open(file)?;
         let mut fbr = BinaryReader::new(file);
-        Handle::read_with_no_secrets(&mut fbr).map_err(map_tink_err)?
+        insecure_read(&mut fbr).map_err(map_tink_err)?
     };
     Ok(key)
 }

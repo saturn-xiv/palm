@@ -52,7 +52,7 @@ impl Config {
             let model =
                 DefaultModel::from_str(include_str!("rbac_with_resource_roles_model.conf")).await?;
             let url = self.to_string();
-            debug!("init casbin rabbitmq enforcer");
+
             let adapter = DieselAdapter::new(&url, 4)?;
             let it = Enforcer::new(model, adapter).await?;
             Arc::new(Mutex::new(it))

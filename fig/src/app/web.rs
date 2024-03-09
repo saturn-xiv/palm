@@ -16,8 +16,6 @@ use palm::{
 };
 use serde::{Deserialize, Serialize};
 
-use super::super::NAME;
-
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Server {
     #[clap(short, long)]
@@ -65,9 +63,9 @@ pub struct Config {
 
 impl Config {
     pub fn hmac() -> Result<HMac> {
-        HMac::new(format!("{}-hmac.bin", NAME))
+        HMac::new("hmac.bin")
     }
     pub fn aes() -> Result<Aes> {
-        Aes::new(format!("{}-aes.bin", NAME))
+        Aes::new("aes.bin")
     }
 }

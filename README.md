@@ -59,6 +59,7 @@ A total free education & translation solution.
 - [The RBAC96 Model](https://profsandhu.com/cs6393_s12/lecture-rbac96.pdf)
 - [Password Hashing Competition](https://www.password-hashing.net/)
 - [Security DO's and DON'Ts](https://quasar.dev/security/dos-and-donts)
+- [Tinkey overview](https://developers.google.com/tink/tinkey-overview)
 
 ## Sub-projects
 

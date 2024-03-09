@@ -36,27 +36,29 @@ impl Amqp for super::Config {
         let con = Connection::open(
             &OpenConnectionArguments::new(&self.host, self.port, &self.user, &self.password)
                 .virtual_host(&self.virtual_host)
+                .heartbeat(20)
                 .finish(),
         )
         .await?;
-        let ch = {
-            let it = con.open_channel(None).await?;
-            it.register_callback(DefaultChannelCallback).await?;
-            it
-        };
-        Ok(RabbitMq { channel: ch })
+
+        Ok(RabbitMq { connection: con })
     }
 }
 
 pub struct RabbitMq {
-    channel: Channel,
+    connection: Connection,
 }
 
 impl RabbitMq {
+    async fn open_channel(&self) -> Result<Channel> {
+        let it = self.connection.open_channel(None).await?;
+        it.register_callback(DefaultChannelCallback).await?;
+        Ok(it)
+    }
     pub async fn declare_queue(&self, name: &str, durable: bool) -> Result<String> {
         debug!("declare queue '{name}'");
-        let (name, _, _) = self
-            .channel
+        let ch = self.open_channel().await?;
+        let (name, _, _) = ch
             .queue_declare(
                 QueueDeclareArguments::default()
                     .queue(name.to_string())
@@ -73,21 +75,21 @@ impl RabbitMq {
         Ok(name)
     }
     pub async fn declare_exchange(&self, name: &str, type_: ExchangeType) -> Result<()> {
+        let ch = self.open_channel().await?;
         debug!("declare exchange {name} {type_}");
-        self.channel
-            .exchange_declare(
-                ExchangeDeclareArguments::of_type(name, type_)
-                    .durable(true)
-                    .auto_delete(false)
-                    .finish(),
-            )
-            .await?;
+        ch.exchange_declare(
+            ExchangeDeclareArguments::of_type(name, type_)
+                .durable(true)
+                .auto_delete(false)
+                .finish(),
+        )
+        .await?;
         Ok(())
     }
     pub async fn bind(&self, exchange: &str, queue: &str, routing_key: &str) -> Result<()> {
         debug!("bind exchange({exchange}) queue({queue})");
-        self.channel
-            .queue_bind(QueueBindArguments::new(queue, exchange, routing_key))
+        let ch = self.open_channel().await?;
+        ch.queue_bind(QueueBindArguments::new(queue, exchange, routing_key))
             .await?;
         Ok(())
     }
@@ -153,19 +155,19 @@ impl RabbitMq {
         content_type: &str,
         payload: &[u8],
     ) -> Result<()> {
+        let ch = self.open_channel().await?;
         let message_id = Uuid::new_v4().to_string();
         debug!("send message {message_id}@({exchange}, {routing_key})");
-        self.channel
-            .basic_publish(
-                BasicProperties::default()
-                    .with_message_id(&message_id)
-                    .with_content_type(content_type)
-                    .with_timestamp(SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs())
-                    .finish(),
-                payload.to_vec(),
-                BasicPublishArguments::new(exchange, routing_key),
-            )
-            .await?;
+        ch.basic_publish(
+            BasicProperties::default()
+                .with_message_id(&message_id)
+                .with_content_type(content_type)
+                .with_timestamp(SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs())
+                .finish(),
+            payload.to_vec(),
+            BasicPublishArguments::new(exchange, routing_key),
+        )
+        .await?;
         Ok(())
     }
 
@@ -176,15 +178,16 @@ impl RabbitMq {
         handler: Box<dyn Handler>,
         exclusive: bool,
     ) -> Result<()> {
-        self.channel
-            .basic_consume(
-                Consumer { handler },
-                BasicConsumeArguments::new(queue, consumer)
-                    .manual_ack(true)
-                    .exclusive(exclusive)
-                    .finish(),
-            )
-            .await?;
+        let ch = self.open_channel().await?;
+        info!("start consumer({consumer}) for queue({queue})");
+        ch.basic_consume(
+            Consumer { handler },
+            BasicConsumeArguments::new(queue, consumer)
+                .manual_ack(true)
+                .exclusive(exclusive)
+                .finish(),
+        )
+        .await?;
         Ok(())
     }
 }
