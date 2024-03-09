@@ -15,12 +15,12 @@ pub type PooledConnection = r2d2::PooledConnection<Connection>;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
-pub struct Host {
+pub struct Node {
     host: String,
     port: u16,
 }
 
-impl fmt::Display for Host {
+impl fmt::Display for Node {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "redis://{}:{}", self.host, self.port)
     }
@@ -28,9 +28,9 @@ impl fmt::Display for Host {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
-    pub pool: Option<u32>,
+    pub pool_size: Option<u32>,
     pub namespace: String,
-    pub nodes: Vec<Host>,
+    pub nodes: Vec<Node>,
 }
 
 impl Config {
@@ -41,7 +41,7 @@ impl Config {
         };
 
         let pool = r2d2::Pool::builder()
-            .max_size(self.pool.unwrap_or(32))
+            .max_size(self.pool_size.unwrap_or(32))
             .build(client)?;
         Ok(pool)
     }
@@ -51,33 +51,33 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             nodes: vec![
-                Host {
+                Node {
                     host: "127.0.0.1".to_string(),
                     port: 6371,
                 },
-                Host {
+                Node {
                     host: "127.0.0.1".to_string(),
                     port: 6372,
                 },
-                Host {
+                Node {
                     host: "127.0.0.1".to_string(),
                     port: 6373,
                 },
-                Host {
+                Node {
                     host: "127.0.0.1".to_string(),
                     port: 6374,
                 },
-                Host {
+                Node {
                     host: "127.0.0.1".to_string(),
                     port: 6375,
                 },
-                Host {
+                Node {
                     host: "127.0.0.1".to_string(),
                     port: 6376,
                 },
             ],
             namespace: "demo://".to_string(),
-            pool: Some(32),
+            pool_size: Some(32),
         }
     }
 }

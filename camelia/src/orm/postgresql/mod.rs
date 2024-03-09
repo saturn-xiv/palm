@@ -38,13 +38,15 @@ pub struct Config {
     pub user: String,
     pub password: Option<String>,
     #[serde(rename = "pool-size")]
-    pub pool_size: u32,
+    pub pool_size: Option<u32>,
 }
 
 impl Config {
     pub fn open(&self) -> Result<Pool> {
         let manager = diesel::r2d2::ConnectionManager::<Connection>::new(&self.to_string()[..]);
-        Ok(Pool::builder().max_size(self.pool_size).build(manager)?)
+        Ok(Pool::builder()
+            .max_size(self.pool_size.unwrap_or(32))
+            .build(manager)?)
     }
     pub async fn casbin_enforcer(&self, rabbitmq: Arc<RabbitMq>) -> Result<Arc<Mutex<Enforcer>>> {
         debug!("init casbin postgresql enforcer");
@@ -88,7 +90,7 @@ impl Default for Config {
             user: "postgres".to_string(),
             name: "demo".to_string(),
             password: None,
-            pool_size: 32,
+            pool_size: Some(32),
         }
     }
 }
