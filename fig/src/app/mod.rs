@@ -94,7 +94,7 @@ pub async fn launch() -> Result<()> {
     }
 
     if let SubCommand::I18nSync(ref it) = args.command {
-        return it.launch(args.config).await;
+        return it.launch(args.config);
     }
 
     if is_stopped() {

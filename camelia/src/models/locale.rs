@@ -107,6 +107,18 @@ impl Dao for Connection {
                 }
             }
         }
+        for lang in self.languages()?.iter() {
+            for it in read_dir(root)? {
+                let it = it?;
+                let it = it.path();
+
+                if it.is_file() {
+                    let (f, i) = load_from_ini(self, lang, it)?;
+                    found += f;
+                    inserted += i;
+                }
+            }
+        }
 
         info!("sync {}/{} items", inserted, found);
         Ok((inserted, found))
