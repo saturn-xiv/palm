@@ -11,7 +11,7 @@ impl fmt::Display for ClientIp {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self.0 {
             Some(ref it) => write!(f, "{it}"),
-            None => write!(f, "n/a"),
+            None => write!(f, ""),
         }
     }
 }

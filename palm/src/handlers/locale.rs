@@ -14,7 +14,6 @@ impl fmt::Display for Locale {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self.0 {
             Some(ref it) => {
-                // TODO
                 write!(f, "{it}")
             }
             None => write!(f, "en-US"),

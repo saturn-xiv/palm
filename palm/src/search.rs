@@ -28,18 +28,18 @@ impl Default for Config {
     }
 }
 impl Config {
-    pub fn open(&self) -> Result<OpenSearch> {
+    pub fn open(&self) -> Result<Pool> {
         let url = format!("http://{}:{}", self.host, self.port).parse()?;
         let pool = SingleNodeConnectionPool::new(url);
 
-        Ok(OpenSearch {
+        Ok(Pool {
             pool,
             namespace: self.namespace.clone(),
         })
     }
 }
 
-pub struct OpenSearch {
+pub struct Pool {
     pool: SingleNodeConnectionPool,
     namespace: String,
 }
@@ -58,7 +58,7 @@ macro_rules! check_response {
     }};
 }
 
-impl OpenSearch {
+impl Pool {
     pub async fn check_index<T>(&self) -> Result<()> {
         let index = self.index::<T>();
         let transport = TransportBuilder::new(self.pool.clone())

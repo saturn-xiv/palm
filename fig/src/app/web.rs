@@ -1,3 +1,4 @@
+use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::ops::Deref;
 use std::path::Path;
 use std::sync::Arc;
@@ -26,11 +27,9 @@ use juniper::EmptySubscription;
 use log::info;
 use palm::{
     cache::redis::Config as Redis,
-    crypto::{
-        tink::{Aes, HMac},
-        Key,
-    },
-    env::{Environment, Http},
+    crypto::{aes::Aes, hmac::Hmac, Key},
+    env::Environment,
+    jwt::openssl::Jwt,
     minio::Config as Minio,
     parser::from_toml,
     queue::rabbitmq::{amqp::Amqp, Config as RabbitMq},
@@ -43,9 +42,9 @@ use super::super::{graphql, NAME};
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Server {
-    #[clap(short, long)]
+    #[clap(short, long, default_value_t = 8080)]
     pub port: u16,
-    #[clap(short, long)]
+    #[clap(short, long, default_value_t = 4)]
     pub threads: usize,
 }
 
@@ -63,6 +62,9 @@ impl Server {
         let rabbitmq = web::Data::new(config.rabbitmq.open().await?);
         let minio = web::Data::new(config.minio.open()?);
         let opensearch = web::Data::new(config.opensearch.open()?);
+        let jwt = web::Data::new(Jwt::new(&config.cookie_key.0));
+        let hmac = web::Data::new(Hmac::new(&config.secret_key.0)?);
+        let aes = web::Data::new(Aes::new(&config.secret_key.0)?);
         let enforcer = {
             let rabbitmq = rabbitmq.deref();
             let rabbitmq = rabbitmq.clone();
@@ -81,9 +83,20 @@ impl Server {
             )))?
             .num_seconds() as usize;
 
-        info!("listen on http://127.0.0.1:{}", self.port);
+        let addr = SocketAddr::new(
+            IpAddr::V4(if is_prod {
+                Ipv4Addr::new(127, 0, 0, 1)
+            } else {
+                Ipv4Addr::new(0, 0, 0, 0)
+            }),
+            self.port,
+        );
+        info!("listen on http://{}", addr);
         HttpServer::new(move || {
             App::new()
+                .app_data(jwt.clone())
+                .app_data(aes.clone())
+                .app_data(hmac.clone())
                 .app_data(pgsql.clone())
                 .app_data(redis.clone())
                 .app_data(rabbitmq.clone())
@@ -130,7 +143,7 @@ impl Server {
                 .configure(camelia_controllers::register)
         })
         .workers(self.threads)
-        .bind(("127.0.0.1", self.port))?
+        .bind(addr)?
         .run()
         .await?;
 
@@ -156,25 +169,17 @@ impl Default for Rpc {
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Config {
     pub env: Environment,
+    // openssl rand -base64 128
     #[serde(rename = "cookie-key")]
     pub cookie_key: Key,
-    #[serde(rename = "jwt-key")]
-    pub jwt_key: Key,
-    pub musa: Rpc,
-    pub orchid: Rpc,
-    pub http: Http,
+    // openssl rand -base64 32
+    #[serde(rename = "secret-key")]
+    pub secret_key: Key,
+    // pub musa: Rpc,
+    // pub orchid: Rpc,
     pub postgresql: PostgreSql,
     pub redis: Redis,
     pub rabbitmq: RabbitMq,
     pub opensearch: OpenSearch,
     pub minio: Minio,
-}
-
-impl Config {
-    pub fn hmac() -> Result<HMac> {
-        HMac::new("hmac.bin")
-    }
-    pub fn aes() -> Result<Aes> {
-        Aes::new("aes.bin")
-    }
 }

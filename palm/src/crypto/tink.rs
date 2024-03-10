@@ -30,15 +30,15 @@ impl Aes {
     }
 }
 
-impl super::Secret for Aes {
-    fn encrypt(&self, plain_text: &[u8], additional_data: &[u8]) -> Result<Vec<u8>> {
+impl Aes {
+    pub fn encrypt(&self, plain_text: &[u8], additional_data: &[u8]) -> Result<Vec<u8>> {
         let it = self
             .key
             .encrypt(plain_text, additional_data)
             .map_err(map_tink_err)?;
         Ok(it)
     }
-    fn decrypt(&self, cipher_text: &[u8], additional_data: &[u8]) -> Result<Vec<u8>> {
+    pub fn decrypt(&self, cipher_text: &[u8], additional_data: &[u8]) -> Result<Vec<u8>> {
         let it = self
             .key
             .decrypt(cipher_text, additional_data)

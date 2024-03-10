@@ -16,7 +16,7 @@ use diesel::Connection as DieselConntection;
 use hyper::StatusCode;
 use log::{info, warn};
 use palm::{
-    crypto::Key,
+    crypto::{hmac::Hmac, Key},
     jwt::{openssl::Jwt, Jwt as JwtProvider},
     parser::from_toml,
     queue::rabbitmq::{amqp::Amqp, Config as RabbitMq},
@@ -35,11 +35,15 @@ struct TokenConfig {
 }
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct CreateConfig {
+    #[serde(rename = "secret-key")]
+    pub secret_key: Key,
     postgresql: PostgreSql,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct RoleConfig {
+    #[serde(rename = "secret-key")]
+    pub secret_key: Key,
     postgresql: PostgreSql,
     rabbitmq: RabbitMq,
 }
@@ -57,7 +61,7 @@ pub struct Create {
 impl Create {
     pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let config: CreateConfig = from_toml(config_file)?;
-        let mac = super::web::Config::hmac()?;
+        let mac = Hmac::new(&config.secret_key.0)?;
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;
@@ -252,7 +256,7 @@ pub struct ResetPassword {
 impl ResetPassword {
     pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let config: CreateConfig = from_toml(config_file)?;
-        let mac = super::web::Config::hmac()?;
+        let mac = Hmac::new(&config.secret_key.0)?;
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;

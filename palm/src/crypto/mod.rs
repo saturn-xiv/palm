@@ -1,3 +1,5 @@
+pub mod aes;
+pub mod hmac;
 pub mod random;
 pub mod sha1;
 pub mod ssha512;
@@ -14,8 +16,8 @@ pub trait Password {
 }
 
 pub trait Secret {
-    fn encrypt(&self, plain_text: &[u8], additional_dataassociated: &[u8]) -> Result<Vec<u8>>;
-    fn decrypt(&self, cipher_text: &[u8], additional_data: &[u8]) -> Result<Vec<u8>>;
+    fn encrypt(&self, plain_text: &[u8]) -> Result<(Vec<u8>, Vec<u8>)>;
+    fn decrypt(&self, cipher_text: &[u8], iv: &[u8]) -> Result<Vec<u8>>;
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

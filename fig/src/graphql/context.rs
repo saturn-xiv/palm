@@ -1,16 +1,29 @@
 use std::sync::Arc;
 
-use camelia::orm::postgresql::PooledConnection as PostgreSql;
+use camelia::orm::postgresql::Pool as PostgreSql;
 use palm::{
-    cache::redis::Pool as Redis, minio::Connection as Minio,
+    cache::redis::Pool as Redis,
+    crypto::{aes::Aes, hmac::Hmac},
+    jwt::openssl::Jwt,
+    minio::Connection as Minio,
     queue::rabbitmq::amqp::Connection as RabbitMq,
+    search::Pool as OpenSearch,
 };
 
 pub struct Context {
+    pub jwt: Arc<Jwt>,
+    pub aes: Arc<Aes>,
+    pub hmac: Arc<Hmac>,
     pub postgresql: PostgreSql,
     pub redis: Redis,
     pub minio: Arc<Minio>,
     pub rabbitmq: Arc<RabbitMq>,
+    pub opensearch: Arc<OpenSearch>,
+
+    pub home: String,
+    pub client_ip: String,
+    pub token: Option<String>,
+    pub lang: String,
 }
 
 impl juniper::Context for Context {}

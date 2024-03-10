@@ -3,10 +3,7 @@ use std::fmt::Display;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use palm::{
-    crypto::{random::bytes as random_bytes, Secret},
-    Result,
-};
+use palm::{crypto::Secret, Result};
 use serde::{de::DeserializeOwned, ser::Serialize};
 
 use super::super::{orm::postgresql::Connection, schema::settings};
@@ -139,8 +136,7 @@ impl Dao for Connection {
         let k = k.to_string();
 
         let (val, salt) = if f {
-            let salt = random_bytes(32);
-            let val = e.encrypt(v, &salt)?;
+            let (val, salt) = e.encrypt(v)?;
             (val, Some(salt))
         } else {
             (v.to_vec(), None)
