@@ -1,6 +1,6 @@
 use actix_web::{get, route, web, HttpResponse, Responder};
 use actix_web_lab::respond::Html;
-use camelia::orm::postgresql::Pool as PostgreSql;
+use camelia::{models::user::Item as User, orm::postgresql::Pool as PostgreSql};
 use juniper::http::{graphiql::graphiql_source, GraphQLRequest};
 use palm::{
     cache::redis::Pool as Redis,
@@ -34,11 +34,11 @@ type Context = (
     web::Data<Minio>,
     web::Data<OpenSearch>,
 );
-type Session = (Home, Locale, ClientIp, Token);
+type Session = (Home, Locale, ClientIp, Token, Option<User>);
 
 #[route("/graphql", method = "GET", method = "POST")]
 async fn handler(
-    (home, locale, client_ip, token): Session,
+    (home, locale, client_ip, token, user): Session,
     (jwt, aes, hmac, postgresql, redis, schema, rabbitmq, minio, opensearch): Context,
     request: web::Json<GraphQLRequest>,
 ) -> impl Responder {
@@ -56,6 +56,7 @@ async fn handler(
         lang: locale.to_string(),
         token: token.0,
         client_ip: client_ip.to_string(),
+        user,
     };
     let response = request.execute(&schema, &context).await;
     HttpResponse::Ok().json(response)

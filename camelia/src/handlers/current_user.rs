@@ -15,8 +15,8 @@ use super::super::{
 };
 
 fn user_from_token<P: JwtProvider>(token: &str, db: &mut Db, jwt: &P) -> Result<User> {
-    let (_, nickname) = jwt.verify(token, NAME, &Action::SignIn.to_string())?;
-    let user = UserDao::by_nickname(db, &nickname)?;
+    let (_, uid) = jwt.verify(token, NAME, &Action::SignIn.to_string())?;
+    let user = UserDao::by_uid(db, &uid)?;
     user.available()?;
     Ok(user)
 }

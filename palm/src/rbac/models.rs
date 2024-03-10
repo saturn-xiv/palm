@@ -1,3 +1,4 @@
+use std::any::type_name;
 use std::fmt;
 use std::str::FromStr;
 
@@ -7,6 +8,21 @@ use prost::Message;
 
 use super::super::{Error, Result};
 use super::v1;
+
+impl v1::Resource {
+    pub fn by_i<T>(id: Option<i32>) -> Self {
+        Self {
+            r#type: type_name::<T>().to_string(),
+            id: id.map(v1::resource::Id::I),
+        }
+    }
+    pub fn by_s<T>(id: &str) -> Self {
+        Self {
+            r#type: type_name::<T>().to_string(),
+            id: Some(v1::resource::Id::S(id.to_string())),
+        }
+    }
+}
 
 impl fmt::Display for v1::Resource {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

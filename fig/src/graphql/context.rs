@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use camelia::orm::postgresql::Pool as PostgreSql;
+use camelia::{models::user::Item as User, orm::postgresql::Pool as PostgreSql};
 use palm::{
     cache::redis::Pool as Redis,
     crypto::{aes::Aes, hmac::Hmac},
@@ -23,6 +23,7 @@ pub struct Context {
     pub home: String,
     pub client_ip: String,
     pub token: Option<String>,
+    pub user: Option<User>,
     pub lang: String,
 }
 
