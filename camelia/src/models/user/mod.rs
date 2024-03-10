@@ -10,12 +10,7 @@ use diesel::{insert_into, prelude::*, update};
 use hyper::StatusCode;
 use language_tags::LanguageTag;
 use openssl::hash::{hash, MessageDigest};
-use palm::{
-    crypto::{random::bytes as random_bytes, Password},
-    email::Address,
-    rbac::v1 as rbac_v1,
-    HttpError, Result,
-};
+use palm::{crypto::Password, email::Address, rbac::v1 as rbac_v1, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 use uuid::Uuid;
@@ -133,7 +128,7 @@ impl Item {
     }
     pub fn auth<P: Password>(&self, enc: &P, password: &str) -> Result<()> {
         if let Some(ref v) = self.password {
-            if enc.verify(v, password.as_bytes()) {
+            if enc.verify(v, password.as_bytes(), &self.salt) {
                 return Ok(());
             }
         }
@@ -271,14 +266,15 @@ impl Dao for Connection {
         lang: &LanguageTag,
         timezone: &Tz,
     ) -> Result<()> {
+        let (password, salt) = enc.compute(password.as_bytes(), New::SALT_SIZE)?;
         insert_into(users::dsl::users)
             .values(&New {
                 real_name,
                 nickname,
                 email,
-                password: Some(&enc.compute(password.as_bytes())?),
+                password: Some(&password),
                 uid: &Uuid::new_v4().to_string(),
-                salt: &random_bytes(New::SALT_SIZE),
+                salt: &salt,
                 avatar: &Item::gravatar(&email)?,
                 lang: &lang.to_string(),
                 status: &Status::Email.to_string(),
@@ -377,11 +373,12 @@ impl Dao for Connection {
     }
     fn password<P: Password>(&mut self, enc: &P, id: i32, password: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
-        let password = enc.compute(password.as_bytes())?;
+        let (password, salt) = enc.compute(password.as_bytes(), New::SALT_SIZE)?;
         let it = users::dsl::users.filter(users::dsl::id.eq(id));
         update(it)
             .set((
                 users::dsl::password.eq(&Some(password)),
+                users::dsl::salt.eq(&salt),
                 users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

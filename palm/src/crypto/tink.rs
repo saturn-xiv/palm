@@ -60,12 +60,12 @@ impl HMac {
     }
 }
 
-impl super::Password for HMac {
-    fn compute(&self, plain_text: &[u8]) -> Result<Vec<u8>> {
+impl HMac {
+    pub fn compute(&self, plain_text: &[u8]) -> Result<Vec<u8>> {
         let it = self.key.compute_mac(plain_text).map_err(map_tink_err)?;
         Ok(it)
     }
-    fn verify(&self, cipher_text: &[u8], plain_text: &[u8]) -> bool {
+    pub fn verify(&self, cipher_text: &[u8], plain_text: &[u8]) -> bool {
         self.key.verify_mac(cipher_text, plain_text).is_ok()
     }
 }

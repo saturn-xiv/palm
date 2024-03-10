@@ -11,8 +11,8 @@ use serde::{Deserialize, Serialize};
 use super::Result;
 
 pub trait Password {
-    fn compute(&self, plain_text: &[u8]) -> Result<Vec<u8>>;
-    fn verify(&self, cipher_text: &[u8], plain_text: &[u8]) -> bool;
+    fn compute(&self, plain_text: &[u8], salt_len: usize) -> Result<(Vec<u8>, Vec<u8>)>;
+    fn verify(&self, cipher_text: &[u8], plain_text: &[u8], salt: &[u8]) -> bool;
 }
 
 pub trait Secret {

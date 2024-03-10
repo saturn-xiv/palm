@@ -92,6 +92,9 @@ pub async fn launch() -> Result<()> {
     if let SubCommand::UserToken(ref it) = args.command {
         return it.launch(args.config);
     }
+    if let SubCommand::UserResetPassword(ref it) = args.command {
+        return it.launch(args.config);
+    }
 
     if let SubCommand::I18nSync(ref it) = args.command {
         return it.launch(args.config);
