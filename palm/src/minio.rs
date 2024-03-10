@@ -18,6 +18,7 @@ use ::minio::s3::{
 use askama::Template;
 use chrono::{DateTime, Duration, Utc};
 use log::{debug, info};
+use mime::Mime;
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
 
@@ -186,12 +187,13 @@ impl Connection {
         &self,
         bucket: &str,
         name: &str,
-        content_type: &str,
+        content_type: &Mime,
         stream: &'a mut dyn Read,
         size: usize,
     ) -> Result<()> {
         let mut req = PutObjectArgs::new(bucket, name, stream, Some(size), None)?;
-        req.content_type = content_type;
+        let content_type = content_type.to_string();
+        req.content_type = &content_type;
         self.client.put_object(&mut req).await?;
         Ok(())
     }

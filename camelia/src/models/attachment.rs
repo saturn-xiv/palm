@@ -1,7 +1,8 @@
 use std::path::Path;
 use std::string::ToString;
 
-use chrono::{Datelike, NaiveDateTime, Utc};
+use actix_files::file_extension_to_mime;
+use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use log::warn;
 use mime::Mime;
@@ -36,10 +37,7 @@ impl Item {
     pub fn size(body: &[u8]) -> usize {
         body.len() / (1 << 10)
     }
-    pub fn bucket_by_year_month() -> String {
-        let now = Utc::now();
-        format!("{}-{:02}", now.year(), now.month())
-    }
+
     pub fn name(title: &str) -> String {
         let id = Uuid::new_v4();
         if let Some(it) = Path::new(&title).extension() {
@@ -52,24 +50,10 @@ impl Item {
     pub fn content_type(title: &str) -> Mime {
         if let Some(it) = Path::new(&title).extension() {
             if let Some(it) = it.to_str() {
-                let ct = match it {
-                    "png" => mime::IMAGE_PNG,
-                    "svg" => mime::IMAGE_SVG,
-                    "jpg" | "jpeg" => mime::IMAGE_JPEG,
-                    "js" => mime::APPLICATION_JAVASCRIPT_UTF_8,
-                    "css" => mime::TEXT_CSS_UTF_8,
-                    "csv" => mime::TEXT_CSV_UTF_8,
-                    "pdf" => mime::APPLICATION_PDF,
-                    "txt" | "md" => mime::TEXT_PLAIN_UTF_8,
-                    v => {
-                        warn!("unknown file extension: {}", v);
-                        mime::APPLICATION_OCTET_STREAM
-                    }
-                };
-                return ct;
+                return file_extension_to_mime(it);
             }
         }
-        warn!("unknown file type: {}", title);
+        warn!("empty extension {}", title);
         mime::APPLICATION_OCTET_STREAM
     }
 }
