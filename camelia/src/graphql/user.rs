@@ -21,7 +21,7 @@ use super::super::{
     i18n::I18n,
     models::{
         google::user::Dao as GoogleUserDao,
-        log::{Dao as LogDao, Item as Log, Level as LogLevel},
+        log::{Dao as LogDao, Level as LogLevel},
         user::{
             session::{Dao as UserSessionDao, ProviderType as UserProviderType},
             Action as UserAction, Dao as UserDao, Item as User,
@@ -171,7 +171,7 @@ pub struct ByToken {
 }
 
 impl ByToken {
-    pub fn unlock_by_token<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<()> {
+    pub fn unlock<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<()> {
         self.validate()?;
 
         let (_, nickname) = jwt.verify(&self.token, NAME, &UserAction::Unlock.to_string())?;
@@ -199,7 +199,7 @@ impl ByToken {
 
         Ok(())
     }
-    pub fn confirm_by_token<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<()> {
+    pub fn confirm<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<()> {
         self.validate()?;
 
         let (_, nickname) = jwt.verify(&self.token, NAME, &UserAction::Confirm.to_string())?;
@@ -333,12 +333,7 @@ impl ByEmail {
         .await?;
         Ok(())
     }
-    pub async fn unlock_by_email<J: Jwt>(
-        &self,
-        db: &mut Db,
-        jwt: &J,
-        queue: &RabbitMq,
-    ) -> Result<()> {
+    pub async fn unlock<J: Jwt>(&self, db: &mut Db, jwt: &J, queue: &RabbitMq) -> Result<()> {
         self.validate()?;
 
         let user = user_by_nickname_or_email(db, &self.user)?;
@@ -351,12 +346,7 @@ impl ByEmail {
         Self::send_email(db, jwt, queue, &self.home, &user, &UserAction::Unlock).await?;
         Ok(())
     }
-    pub async fn confirm_by_email<J: Jwt>(
-        &self,
-        db: &mut Db,
-        jwt: &J,
-        queue: &RabbitMq,
-    ) -> Result<()> {
+    pub async fn confirm<J: Jwt>(&self, db: &mut Db, jwt: &J, queue: &RabbitMq) -> Result<()> {
         self.validate()?;
 
         let user = user_by_nickname_or_email(db, &self.user)?;
@@ -424,64 +414,6 @@ impl ByEmail {
 
         ProtobufQueue::produce(queue, &task).await?;
         Ok(())
-    }
-}
-
-#[derive(GraphQLObject)]
-#[graphql(name = "UserLogsResponseItem")]
-pub struct LogsResponseItem {
-    pub id: i32,
-    pub plugin: String,
-    pub level: String,
-    pub ip: String,
-    pub resource_type: String,
-    pub resource_id: Option<i32>,
-    pub message: String,
-    pub created_at: NaiveDateTime,
-}
-
-impl From<Log> for LogsResponseItem {
-    fn from(x: Log) -> Self {
-        Self {
-            id: x.id,
-            plugin: x.plugin.clone(),
-            level: x.level.clone(),
-            ip: x.ip.clone(),
-            message: x.message.clone(),
-            resource_type: x.resource_type.clone(),
-            resource_id: x.resource_id,
-            created_at: x.created_at,
-        }
-    }
-}
-
-#[derive(GraphQLObject)]
-#[graphql(name = "UserLogsResponse")]
-pub struct LogsResponse {
-    pub items: Vec<LogsResponseItem>,
-    pub pagination: Pagination,
-}
-
-impl LogsResponse {
-    pub fn new<J: Jwt>(
-        ss: &Session,
-        db: &mut Db,
-        ch: &mut Cache,
-        jwt: &J,
-        pager: &Pager,
-    ) -> Result<Self> {
-        let (user, _, _) = ss.current_user(db, ch, jwt)?;
-
-        let total = LogDao::count(db, user.id)?;
-        let items = LogDao::all(db, user.id, pager.offset(total), pager.size())?
-            .into_iter()
-            .map(|x| x.into())
-            .collect();
-
-        Ok(Self {
-            items,
-            pagination: Pagination::new(pager, total),
-        })
     }
 }
 
