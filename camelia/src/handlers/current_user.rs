@@ -6,17 +6,19 @@ use futures::future::{err, ok, Ready};
 use palm::{
     handlers::token::Token,
     jwt::{openssl::Jwt, Jwt as JwtProvider},
-    try_web, Result, NAME,
+    try_web, Result,
 };
 
 use super::super::{
-    models::user::{Action, Dao as UserDao, Item as User},
+    models::user::{session::Dao as UserSessionDao, Action, Dao as UserDao, Item as User},
     orm::postgresql::{Connection as Db, Pool as DbPool},
+    NAME,
 };
 
 fn user_from_token<P: JwtProvider>(token: &str, db: &mut Db, jwt: &P) -> Result<User> {
     let (_, uid) = jwt.verify(token, NAME, &Action::SignIn.to_string())?;
-    let user = UserDao::by_uid(db, &uid)?;
+    let ss = UserSessionDao::by_uid(db, &uid)?;
+    let user = UserDao::by_id(db, ss.user_id)?;
     user.available()?;
     Ok(user)
 }

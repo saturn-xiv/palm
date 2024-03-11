@@ -8,7 +8,6 @@ use palm::{
     Result,
 };
 use serde::{Deserialize, Serialize};
-use uuid::Uuid;
 
 use super::super::super::{
     orm::postgresql::Connection,
@@ -137,7 +136,6 @@ impl Dao for Connection {
                                 email: &email,
                                 password: None,
                                 salt: &random_bytes(NewUser::SALT_SIZE),
-                                uid: &Uuid::new_v4().to_string(),
                                 lang: User::GUEST_LANG,
                                 timezone: User::GUEST_TIMEZONE,
                                 avatar: &match token.picture {

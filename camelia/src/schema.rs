@@ -417,8 +417,6 @@ diesel::table! {
         #[max_length = 127]
         email -> Varchar,
         password -> Nullable<Bytea>,
-        #[max_length = 36]
-        uid -> Varchar,
         salt -> Bytea,
         #[max_length = 255]
         avatar -> Varchar,

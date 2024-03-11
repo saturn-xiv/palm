@@ -1,6 +1,7 @@
 use std::sync::Arc;
 
-use camelia::{models::user::Item as User, orm::postgresql::Pool as PostgreSql};
+use camelia::orm::postgresql::Pool as PostgreSql;
+use casbin::Enforcer;
 use palm::{
     cache::redis::Pool as Redis,
     crypto::{aes::Aes, hmac::Hmac},
@@ -8,7 +9,9 @@ use palm::{
     minio::Connection as Minio,
     queue::rabbitmq::amqp::Connection as RabbitMq,
     search::Pool as OpenSearch,
+    session::Session,
 };
+use tokio::sync::Mutex;
 
 pub struct Context {
     pub jwt: Arc<Jwt>,
@@ -19,12 +22,10 @@ pub struct Context {
     pub minio: Arc<Minio>,
     pub rabbitmq: Arc<RabbitMq>,
     pub opensearch: Arc<OpenSearch>,
+    pub enforcer: Arc<Mutex<Enforcer>>,
 
     pub home: String,
-    pub client_ip: String,
-    pub token: Option<String>,
-    pub user: Option<User>,
-    pub lang: String,
+    pub session: Session,
 }
 
 impl juniper::Context for Context {}

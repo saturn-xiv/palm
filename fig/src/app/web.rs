@@ -68,7 +68,7 @@ impl Server {
         let enforcer = {
             let rabbitmq = rabbitmq.deref();
             let rabbitmq = rabbitmq.clone();
-            config.postgresql.casbin_enforcer(rabbitmq).await?
+            web::Data::from(config.postgresql.casbin_enforcer(rabbitmq).await?)
         };
 
         let schema = Arc::new(graphql::Schema::new(

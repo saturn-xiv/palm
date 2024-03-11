@@ -5,7 +5,6 @@ CREATE TABLE users(
     nickname VARCHAR(63) NOT NULL,
     email VARCHAR(127) NOT NULL,
     "password" BYTEA,
-    "uid" VARCHAR(36) NOT NULL,
     salt BYTEA NOT NULL,
     avatar VARCHAR(255) NOT NULL,
     lang VARCHAR(8) NOT NULL DEFAULT 'en-US',
@@ -25,7 +24,6 @@ CREATE TABLE users(
 );
 CREATE UNIQUE INDEX idx_users_nickname ON users(nickname);
 CREATE UNIQUE INDEX idx_users_email ON users(email);
-CREATE UNIQUE INDEX idx_users_uid ON users("uid");
 CREATE INDEX idx_users_real_name ON users(real_name);
 CREATE INDEX idx_users_lang ON users(lang);
 CREATE INDEX idx_users_timezone ON users(timezone);

@@ -4,7 +4,6 @@ use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use palm::{crypto::random::bytes as random_bytes, Result};
 use serde::{Deserialize, Serialize};
-use uuid::Uuid;
 
 use super::super::super::{
     orm::postgresql::Connection,
@@ -133,7 +132,6 @@ impl Dao for Connection {
                         nickname: &User::guest_nickname(),
                         email: &email,
                         password: None,
-                        uid: &Uuid::new_v4().to_string(),
                         salt: &random_bytes(NewUser::SALT_SIZE),
                         lang: User::GUEST_LANG,
                         timezone: User::GUEST_TIMEZONE,

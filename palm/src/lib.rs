@@ -66,6 +66,16 @@ macro_rules! try_thrift {
 }
 
 #[macro_export]
+macro_rules! try_graphql {
+    ($r:expr, $e:expr) => {{
+        $r.map_err($e)
+    }};
+    ($r:expr) => {{
+        try_grpc!($r, |e| tonic::Status::internal(e.to_string()))
+    }};
+}
+
+#[macro_export]
 macro_rules! try_grpc {
     ($r:expr, $e:expr) => {{
         $r.map_err($e)
@@ -152,8 +162,9 @@ use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 use std::process::{Command, Output};
 
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, NaiveDateTime, Utc};
 use chrono_tz::Tz;
+use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 
@@ -176,6 +187,20 @@ lazy_static! {
 // https://developers.cloudflare.com/support/speed/optimization-file-size/what-will-cloudflare-compress/
 pub const PROTOBUF: &str = "application/x-protobuf";
 pub const FLATBUFFER: &str = "application/x-flatbuffer";
+
+#[derive(GraphQLObject)]
+#[graphql(name = "Succeed")]
+pub struct Succeed {
+    pub created_at: NaiveDateTime,
+}
+
+impl Default for Succeed {
+    fn default() -> Self {
+        Self {
+            created_at: Utc::now().naive_utc(),
+        }
+    }
+}
 
 #[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
 pub enum TextEditor {

@@ -79,3 +79,36 @@ impl FromStr for v1::Role {
         Ok(it)
     }
 }
+
+impl v1::Role {
+    pub fn administrator() -> Self {
+        Self {
+            by: Some(v1::role::By::Administrator(())),
+        }
+    }
+    pub fn root() -> Self {
+        Self {
+            by: Some(v1::role::By::Root(())),
+        }
+    }
+    pub fn member(member: String) -> Self {
+        Self {
+            by: Some(v1::role::By::Member(member)),
+        }
+    }
+}
+
+impl v1::Permission {
+    pub fn all(rules: &[Vec<String>]) -> Vec<Self> {
+        let mut items = Vec::new();
+        for rule in rules.iter() {
+            if rule.len() == 4 && rule[0] == "p" {
+                items.push(Self {
+                    resource: rule[2].parse::<v1::Resource>().ok(),
+                    action: rule[3].clone(),
+                });
+            }
+        }
+        items
+    }
+}

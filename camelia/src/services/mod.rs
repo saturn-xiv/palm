@@ -66,31 +66,14 @@ impl User {
         )))
     }
     pub async fn is_member(&self, enforcer: &Mutex<Enforcer>, name: &str) -> Result<()> {
-        self.has(
-            enforcer,
-            &rbac_v1::Role {
-                by: Some(rbac_v1::role::By::Member(name.to_string())),
-            },
-        )
-        .await
+        self.has(enforcer, &rbac_v1::Role::member(name.to_string()))
+            .await
     }
     pub async fn is_administrator(&self, enforcer: &Mutex<Enforcer>) -> Result<()> {
-        self.has(
-            enforcer,
-            &rbac_v1::Role {
-                by: Some(rbac_v1::role::By::Administrator(())),
-            },
-        )
-        .await
+        self.has(enforcer, &rbac_v1::Role::administrator()).await
     }
     pub async fn is_root(&self, enforcer: &Mutex<Enforcer>) -> Result<()> {
-        self.has(
-            enforcer,
-            &rbac_v1::Role {
-                by: Some(rbac_v1::role::By::Root(())),
-            },
-        )
-        .await
+        self.has(enforcer, &rbac_v1::Role::root()).await
     }
     pub async fn can<R, O: Display>(
         &self,

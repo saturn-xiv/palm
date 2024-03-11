@@ -1,16 +1,19 @@
 use actix_web::{get, route, web, HttpResponse, Responder};
 use actix_web_lab::respond::Html;
-use camelia::{models::user::Item as User, orm::postgresql::Pool as PostgreSql};
+use camelia::orm::postgresql::Pool as PostgreSql;
+use casbin::Enforcer;
 use juniper::http::{graphiql::graphiql_source, GraphQLRequest};
 use palm::{
     cache::redis::Pool as Redis,
     crypto::{aes::Aes, hmac::Hmac},
-    handlers::{home::Home, locale::Locale, peer::ClientIp, token::Token},
+    handlers::home::Home,
     jwt::openssl::Jwt,
     minio::Connection as Minio,
     queue::rabbitmq::amqp::Connection as RabbitMq,
     search::Pool as OpenSearch,
+    session::Session,
 };
+use tokio::sync::Mutex;
 
 use super::Schema;
 
@@ -33,13 +36,13 @@ type Context = (
     web::Data<RabbitMq>,
     web::Data<Minio>,
     web::Data<OpenSearch>,
+    web::Data<Mutex<Enforcer>>,
 );
-type Session = (Home, Locale, ClientIp, Token, Option<User>);
 
 #[route("/graphql", method = "GET", method = "POST")]
 async fn handler(
-    (home, locale, client_ip, token, user): Session,
-    (jwt, aes, hmac, postgresql, redis, schema, rabbitmq, minio, opensearch): Context,
+    (home, session): (Home, Session),
+    (jwt, aes, hmac, postgresql, redis, schema, rabbitmq, minio, opensearch, enforcer): Context,
     request: web::Json<GraphQLRequest>,
 ) -> impl Responder {
     let context = super::context::Context {
@@ -51,12 +54,10 @@ async fn handler(
         minio: minio.into_inner(),
         rabbitmq: rabbitmq.into_inner(),
         opensearch: opensearch.into_inner(),
+        enforcer: enforcer.into_inner(),
 
         home: home.to_string(),
-        lang: locale.to_string(),
-        token: token.0,
-        client_ip: client_ip.to_string(),
-        user,
+        session,
     };
     let response = request.execute(&schema, &context).await;
     HttpResponse::Ok().json(response)

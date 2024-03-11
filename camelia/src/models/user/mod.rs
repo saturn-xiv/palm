@@ -45,7 +45,6 @@ pub struct Item {
     pub nickname: String,
     pub email: String,
     pub password: Option<Vec<u8>>,
-    pub uid: String,
     pub salt: Vec<u8>,
     pub avatar: String,
     pub lang: String,
@@ -164,7 +163,6 @@ pub struct New<'a> {
     pub nickname: &'a str,
     pub email: &'a str,
     pub password: Option<&'a [u8]>,
-    pub uid: &'a str,
     pub salt: &'a [u8],
     pub avatar: &'a str,
     pub lang: &'a str,
@@ -180,7 +178,6 @@ impl<'a> New<'a> {
 pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_email(&mut self, email: &str) -> Result<Item>;
-    fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn by_nickname(&mut self, nickname: &str) -> Result<Item>;
     fn set_profile(
         &mut self,
@@ -234,12 +231,6 @@ impl Dao for Connection {
             .first(self)?;
         Ok(it)
     }
-    fn by_uid(&mut self, uid: &str) -> Result<Item> {
-        let it = users::dsl::users
-            .filter(users::dsl::uid.eq(uid))
-            .first(self)?;
-        Ok(it)
-    }
     fn sign_in(&mut self, id: i32, ip: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         let (current_sign_in_at, current_sign_in_ip, sign_in_count) = users::dsl::users
@@ -279,7 +270,7 @@ impl Dao for Connection {
                 nickname,
                 email,
                 password: Some(&password),
-                uid: &Uuid::new_v4().to_string(),
+
                 salt: &salt,
                 avatar: &Item::gravatar(&email)?,
                 lang: &lang.to_string(),

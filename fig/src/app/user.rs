@@ -29,9 +29,8 @@ use super::super::NAME;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct TokenConfig {
-    #[serde(rename = "jwt-key")]
-    jwt_key: Key,
-    postgresql: PostgreSql,
+    #[serde(rename = "secret-key")]
+    secret_key: Key,
 }
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct CreateConfig {
@@ -115,6 +114,8 @@ pub struct Token {
     #[clap(short, long)]
     pub issuer: String,
     #[clap(short, long)]
+    pub subject: String,
+    #[clap(short, long)]
     pub audience: String,
     #[clap(short, long, default_value_t = 1<<12)]
     pub weeks: u32,
@@ -123,15 +124,12 @@ pub struct Token {
 impl Token {
     pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let config: TokenConfig = from_toml(config_file)?;
-        let jwt = Jwt::new(&config.jwt_key.0);
-        let db = config.postgresql.open()?;
+        let jwt = Jwt::new(&config.secret_key.0);
+
         {
-            let mut db = db.get()?;
-            let db = db.deref_mut();
-            let user = UserDao::by_nickname(db, &self.user)?;
             let token = jwt.sign(
                 NAME,
-                &user.uid,
+                &self.subject,
                 &Action::SignIn.to_string(),
                 Duration::try_weeks(self.weeks as i64).ok_or(Box::new(HttpError(
                     StatusCode::BAD_REQUEST,
@@ -155,15 +153,9 @@ pub struct Role {
 impl Role {
     fn role(&self) -> String {
         let it = match &self.role[..] {
-            "admin" => rbac_v1::Role {
-                by: Some(rbac_v1::role::By::Administrator(())),
-            },
-            "root" => rbac_v1::Role {
-                by: Some(rbac_v1::role::By::Root(())),
-            },
-            other => rbac_v1::Role {
-                by: Some(rbac_v1::role::By::Member(other.to_string())),
-            },
+            "admin" => rbac_v1::Role::administrator(),
+            "root" => rbac_v1::Role::root(),
+            other => rbac_v1::Role::member(other.to_string()),
         };
         it.to_string()
     }
