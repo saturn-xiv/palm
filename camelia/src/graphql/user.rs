@@ -51,9 +51,9 @@ impl SignInRequest {
         &self,
         ss: &Session,
         db: &mut Db,
+        enforcer: &Mutex<Enforcer>,
         jwt: &J,
         mac: &P,
-        enforcer: &Mutex<Enforcer>,
     ) -> Result<SignInResponse> {
         self.validate()?;
         let user = user_by_nickname_or_email(db, &self.user)?;

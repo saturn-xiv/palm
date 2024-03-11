@@ -25,10 +25,8 @@ impl Mutation {
         let db = db.deref_mut();
         let jwt = context.jwt.deref();
         let mac = context.hmac.deref();
-        let enforcer = context.enforcer.deref();
-        let it = request
-            .handle(&context.session, db, jwt, mac, enforcer)
-            .await?;
+        let enf = context.enforcer.deref();
+        let it = request.handle(&context.session, db, enf, jwt, mac).await?;
         Ok(it)
     }
     async fn sign_up_user_by_email(
@@ -275,6 +273,19 @@ impl Mutation {
         request
             .handle(&context.session, db, ch, enf, jwt, mac)
             .await?;
+
+        Ok(Succeed::default())
+    }
+
+    async fn destroy_attachment(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::attachment::destroy(&context.session, db, ch, enf, jwt, id).await?;
 
         Ok(Succeed::default())
     }

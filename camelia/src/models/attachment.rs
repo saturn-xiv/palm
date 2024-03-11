@@ -1,12 +1,14 @@
+use std::fmt;
 use std::path::Path;
 use std::string::ToString;
 
 use actix_files::file_extension_to_mime;
-use chrono::{NaiveDateTime, Utc};
+use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
+use hyper::StatusCode;
 use log::warn;
 use mime::Mime;
-use palm::Result;
+use palm::{minio::Connection as Minio, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 use uuid::Uuid;
@@ -33,7 +35,28 @@ pub struct Item {
     pub updated_at: NaiveDateTime,
 }
 
+impl fmt::Display for Item {
+    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+        write!(fmt, "{}<{},{}>", self.title, self.bucket, self.name)
+    }
+}
 impl Item {
+    pub async fn url(&self, s3: &Minio, ttl: Option<i64>) -> Result<String> {
+        let it = match self.status.parse::<Status>()? {
+            Status::Public => s3.get_permanent_object_url(&self.bucket, &self.name)?,
+            Status::Private => {
+                s3.get_presigned_object_url(
+                    &self.bucket,
+                    &self.name,
+                    Duration::try_seconds(ttl.unwrap_or(60 * 60 * 24)).ok_or(Box::new(
+                        HttpError(StatusCode::BAD_REQUEST, Some("bad ttl".to_string())),
+                    ))?,
+                )
+                .await?
+            }
+        };
+        Ok(it)
+    }
     pub fn size(body: &[u8]) -> usize {
         body.len() / (1 << 10)
     }
@@ -67,6 +90,7 @@ pub enum Status {
 
 pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_bucket_and_name(&mut self, bucket: &str, name: &str) -> Result<Item>;
     fn create(
         &mut self,
         user: i32,
@@ -90,6 +114,13 @@ impl Dao for Connection {
     fn by_id(&mut self, id: i32) -> Result<Item> {
         let it = attachments::dsl::attachments
             .filter(attachments::dsl::id.eq(id))
+            .first::<Item>(self)?;
+        Ok(it)
+    }
+    fn by_bucket_and_name(&mut self, bucket: &str, name: &str) -> Result<Item> {
+        let it = attachments::dsl::attachments
+            .filter(attachments::dsl::bucket.eq(bucket))
+            .filter(attachments::dsl::name.eq(name))
             .first::<Item>(self)?;
         Ok(it)
     }
@@ -146,6 +177,7 @@ impl Dao for Connection {
     fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = attachments::dsl::attachments
             .filter(attachments::dsl::user_id.eq(user))
+            .filter(attachments::dsl::deleted_at.is_null())
             .order(attachments::dsl::updated_at.desc())
             .offset(offset)
             .limit(limit)

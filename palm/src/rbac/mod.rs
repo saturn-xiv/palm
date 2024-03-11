@@ -3,7 +3,10 @@ pub mod models;
 pub mod v1 {
     tonic::include_proto!("palm.rbac.v1");
 }
+
 use juniper::GraphQLObject;
+use serde::{Deserialize, Serialize};
+use strum::{Display as EnumDisplay, EnumString};
 
 #[derive(GraphQLObject)]
 #[graphql(name = "Permission")]
@@ -47,4 +50,11 @@ impl Resource {
             },
         }
     }
+}
+
+#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
+pub enum Operation {
+    Show,
+    Edit,
+    Delete,
 }
