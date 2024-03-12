@@ -51,6 +51,8 @@ diesel::table! {
     daffodil_ledgers (id) {
         id -> Int4,
         owner_id -> Int4,
+        #[max_length = 36]
+        uid -> Varchar,
         #[max_length = 255]
         name -> Varchar,
         #[max_length = 511]

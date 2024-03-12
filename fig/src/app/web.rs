@@ -21,6 +21,7 @@ use actix_web::{
 use camelia::{controllers as camelia_controllers, orm::postgresql::Config as PostgreSql};
 use chrono::Duration;
 use clap::Parser;
+use daffodil::controllers as daffodil_controllers;
 use data_encoding::BASE64;
 use hyper::StatusCode;
 use juniper::EmptySubscription;
@@ -141,6 +142,7 @@ impl Server {
                 )
                 .configure(graphql::controllers::register)
                 .configure(camelia_controllers::register)
+                .configure(daffodil_controllers::register)
         })
         .workers(self.threads)
         .bind(addr)?

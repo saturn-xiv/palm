@@ -1,6 +1,7 @@
 use std::ops::{Deref, DerefMut};
 
 use camelia::graphql as camelia_graphql;
+use daffodil::graphql as daffodil_graphql;
 use juniper::{graphql_object, FieldResult};
 use palm::Succeed;
 
@@ -286,6 +287,69 @@ impl Mutation {
         let enf = context.enforcer.deref();
 
         camelia_graphql::attachment::destroy(&context.session, db, ch, enf, jwt, id).await?;
+
+        Ok(Succeed::default())
+    }
+
+    fn daffodil_create_ledger(
+        context: &Context,
+        name: String,
+        summary: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+
+        let request = daffodil_graphql::ledger::Form { name, summary };
+
+        request.create(&context.session, db, ch, jwt)?;
+
+        Ok(Succeed::default())
+    }
+    async fn daffodil_update_ledger(
+        context: &Context,
+        id: i32,
+        name: String,
+        summary: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let request = daffodil_graphql::ledger::Form { name, summary };
+
+        request
+            .update(&context.session, db, ch, enf, jwt, id)
+            .await?;
+
+        Ok(Succeed::default())
+    }
+    async fn daffodil_enable_ledger(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        daffodil_graphql::ledger::enable(&context.session, db, ch, enf, jwt, id, true).await?;
+
+        Ok(Succeed::default())
+    }
+    async fn daffodil_disable_ledger(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        daffodil_graphql::ledger::enable(&context.session, db, ch, enf, jwt, id, false).await?;
 
         Ok(Succeed::default())
     }

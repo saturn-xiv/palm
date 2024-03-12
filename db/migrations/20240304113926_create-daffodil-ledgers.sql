@@ -2,6 +2,7 @@
 CREATE TABLE daffodil_ledgers(
     id SERIAL PRIMARY KEY,
     owner_id INT NOT NULL,
+    "uid" VARCHAR(36) NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     summary VARCHAR(511) NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
@@ -9,6 +10,7 @@ CREATE TABLE daffodil_ledgers(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_daffodil_ledgers_uid ON daffodil_ledgers("uid");
 CREATE UNIQUE INDEX idx_daffodil_ledgers_owner_name ON daffodil_ledgers(owner_id, "name");
 CREATE INDEX idx_daffodil_ledgers_name ON daffodil_ledgers("name");
 CREATE TABLE daffodil_bills(
