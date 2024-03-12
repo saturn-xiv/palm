@@ -3,11 +3,11 @@
 diesel::table! {
     daffodil_bills (id) {
         id -> Int4,
-        author_id -> Int4,
+        user_id -> Int4,
         ledger_id -> Int4,
         #[max_length = 511]
         summary -> Varchar,
-        total -> Money,
+        price -> Money,
         #[max_length = 3]
         currency -> Bpchar,
         #[max_length = 64]
@@ -20,6 +20,29 @@ diesel::table! {
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
+    daffodil_bills_history (id) {
+        id -> Int4,
+        bill_id -> Int4,
+        user_id -> Int4,
+        #[max_length = 511]
+        summary -> Varchar,
+        price -> Money,
+        #[max_length = 3]
+        currency -> Bpchar,
+        #[max_length = 64]
+        merchant -> Varchar,
+        #[max_length = 32]
+        category -> Varchar,
+        paid_at -> Timestamp,
+        #[max_length = 32]
+        paid_by -> Varchar,
+        #[max_length = 255]
+        reason -> Varchar,
         created_at -> Timestamp,
     }
 }
@@ -41,5 +64,6 @@ diesel::table! {
 
 diesel::allow_tables_to_appear_in_same_query!(
     daffodil_bills,
+    daffodil_bills_history,
     daffodil_ledgers,
 );

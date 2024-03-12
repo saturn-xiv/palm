@@ -8,10 +8,10 @@ resolver = "2"
 
 members = [
     "palm",
-    "cms",
-    "forum",
     "orchid",
     "camelia",
+    "cms",
+    "forum",
     "daffodil",
 
     "fig",
