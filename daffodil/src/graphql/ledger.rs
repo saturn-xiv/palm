@@ -1,7 +1,7 @@
 use camelia::{
     models::{
         log::{Dao as LogDao, Level as LogLevel},
-        user::Item as User,
+        user::{Details as UserDetails, Item as User},
     },
     orm::postgresql::Connection as Db,
     services::CurrentUserAdapter,
@@ -28,21 +28,24 @@ use super::super::{
 #[graphql(name = "DaffodilLedgerIndexResponseItem")]
 pub struct IndexResponseItem {
     pub id: i32,
+    pub owner: UserDetails,
     pub name: String,
     pub summary: String,
     pub deleted_at: Option<NaiveDateTime>,
     pub updated_at: NaiveDateTime,
 }
 
-impl From<Ledger> for IndexResponseItem {
-    fn from(x: Ledger) -> Self {
-        Self {
+impl IndexResponseItem {
+    fn new(db: &mut Db, x: &Ledger) -> Result<Self> {
+        let it = Self {
             id: x.id,
+            owner: UserDetails::new(db, x.owner_id)?,
             name: x.name.clone(),
             summary: x.summary.clone(),
             deleted_at: x.deleted_at,
             updated_at: x.updated_at,
-        }
+        };
+        Ok(it)
     }
 }
 
@@ -55,11 +58,10 @@ pub struct IndexResponse {
 impl IndexResponse {
     pub fn new<J: Jwt>(ss: &Session, db: &mut Db, ch: &mut Cache, jwt: &J) -> Result<Self> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
-
-        let items = LedgerDao::by_user(db, user.id)?
-            .into_iter()
-            .map(|x| x.into())
-            .collect();
+        let mut items = Vec::new();
+        for it in LedgerDao::by_user(db, user.id)?.iter() {
+            items.push(IndexResponseItem::new(db, it)?);
+        }
 
         Ok(Self { items })
     }
@@ -79,15 +81,15 @@ impl Form {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         debug!("create ledger {}({})", self.name, self.summary);
         db.transaction::<_, Error, _>(move |db| {
-            LedgerDao::create(db, user.id, &self.name, &self.summary)?;
-            let it = LedgerDao::by_user_and_name(db, user.id, &self.name)?;
+            let id = LedgerDao::create(db, user.id, &self.name, &self.summary)?;
+            // let it = LedgerDao::by_user_and_name(db, user.id, &self.name)?;
             LogDao::add::<_, Ledger>(
                 db,
                 user.id,
                 NAME,
                 LogLevel::Info,
                 &ss.client_ip,
-                Some(it.id),
+                Some(id),
                 &format!("create ledger {}", self.name),
             )?;
             Ok(())
@@ -108,9 +110,6 @@ impl Form {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
 
         let it = LedgerDao::by_id(db, id)?;
-        if it.deleted_at.is_some() {
-            return Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)));
-        }
         it.can_edit(enf, &user).await?;
         debug!(
             "update ledger {}({}) => {}({})",
@@ -132,6 +131,7 @@ impl Form {
         Ok(())
     }
 }
+
 pub async fn enable<J: Jwt>(
     ss: &Session,
     db: &mut Db,

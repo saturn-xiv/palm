@@ -140,7 +140,7 @@ impl Mutation {
         Ok(Succeed::default())
     }
 
-    fn sign_out(context: &Context) -> FieldResult<Succeed> {
+    fn sign_out_user(context: &Context) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
         let mut ch = context.redis.get()?;
@@ -350,6 +350,57 @@ impl Mutation {
         let enf = context.enforcer.deref();
 
         daffodil_graphql::ledger::enable(&context.session, db, ch, enf, jwt, id, false).await?;
+
+        Ok(Succeed::default())
+    }
+    async fn daffodil_create_bill(
+        context: &Context,
+        ledger: i32,
+        form: daffodil_graphql::bill::Form,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        form.create(&context.session, db, ch, enf, jwt, ledger)
+            .await?;
+
+        Ok(Succeed::default())
+    }
+    async fn daffodil_update_bill(
+        context: &Context,
+        id: i32,
+        form: daffodil_graphql::bill::Form,
+        reason: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        form.update(&context.session, db, ch, enf, jwt, (id, &reason))
+            .await?;
+
+        Ok(Succeed::default())
+    }
+    async fn daffodil_destroy_bill(
+        context: &Context,
+        id: i32,
+        reason: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        daffodil_graphql::bill::delete(&context.session, db, ch, enf, jwt, (id, &reason)).await?;
 
         Ok(Succeed::default())
     }

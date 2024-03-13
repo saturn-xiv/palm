@@ -9,6 +9,7 @@ use super::Item as Bill;
 #[derive(Queryable)]
 pub struct Item {
     pub id: i32,
+    pub ledger_id: i32,
     pub bill_id: i32,
     pub user_id: i32,
     pub summary: String,
@@ -25,7 +26,8 @@ pub struct Item {
 pub trait Dao {
     fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
     fn by_bill(&mut self, bill: i32) -> Result<Vec<Item>>;
-    fn create(&mut self, user: i32, bill: &Bill, reason: &str) -> Result<()>;
+    fn by_ledger(&mut self, ledger: i32) -> Result<Vec<Item>>;
+    fn create(&mut self, bill: &Bill, reason: &str) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -41,10 +43,17 @@ impl Dao for Connection {
             .order(daffodil_bills_history::dsl::created_at.desc())
             .load::<Item>(self)?)
     }
-    fn create(&mut self, user: i32, bill: &Bill, reason: &str) -> Result<()> {
+    fn by_ledger(&mut self, ledger: i32) -> Result<Vec<Item>> {
+        Ok(daffodil_bills_history::dsl::daffodil_bills_history
+            .filter(daffodil_bills_history::dsl::ledger_id.eq(ledger))
+            .order(daffodil_bills_history::dsl::created_at.desc())
+            .load::<Item>(self)?)
+    }
+    fn create(&mut self, bill: &Bill, reason: &str) -> Result<()> {
         insert_into(daffodil_bills_history::dsl::daffodil_bills_history)
             .values((
-                daffodil_bills_history::dsl::user_id.eq(user),
+                daffodil_bills_history::dsl::ledger_id.eq(bill.ledger_id),
+                daffodil_bills_history::dsl::user_id.eq(bill.user_id),
                 daffodil_bills_history::dsl::bill_id.eq(bill.id),
                 daffodil_bills_history::dsl::summary.eq(&bill.summary),
                 daffodil_bills_history::dsl::price.eq(bill.price),

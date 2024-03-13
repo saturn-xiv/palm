@@ -8,7 +8,14 @@ use palm::{
     try_web,
 };
 
-use super::super::{graphql::ledger::ExportRequest, models::ledger::Dao as LedgerDao, NAME};
+use super::super::{
+    graphql::ledger::ExportRequest,
+    models::{
+        bill::{Dao as BillDao, Item as Bill},
+        ledger::{Dao as LedgerDao, Item as Ledger},
+    },
+    NAME,
+};
 
 #[get("/{token}")]
 pub async fn show(
@@ -20,10 +27,14 @@ pub async fn show(
     let (_, uid) = try_web!(jwt.verify(&token, NAME, ExportRequest::AUDIENCE))?;
     let mut db = try_web!(db.get())?;
     let db = db.deref_mut();
-    let item = try_web!(LedgerDao::by_uid(db, &uid))?;
+    let ledger = try_web!(LedgerDao::by_uid(db, &uid))?;
+    let bills = try_web!(BillDao::by_ledger(db, ledger.id))?;
 
-    // TODO
-    let body = try_web!(Show { name: &item.name }.render())?;
+    let body = try_web!(Show {
+        ledger: &ledger,
+        bills: &bills
+    }
+    .render())?;
     Ok(HttpResponse::Ok()
         .content_type(ContentType::html())
         .body(body))
@@ -32,5 +43,6 @@ pub async fn show(
 #[derive(Template)]
 #[template(path = "ledgers/show.html")]
 pub struct Show<'a> {
-    pub name: &'a str,
+    pub ledger: &'a Ledger,
+    pub bills: &'a [Bill],
 }

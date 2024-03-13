@@ -20,10 +20,10 @@ CREATE TABLE daffodil_bills(
     summary VARCHAR(511) NOT NULL,
     price MONEY NOT NULL,
     currency CHAR(3) NOT NULL,
-    merchant VARCHAR(64) NOT NULL,
-    category VARCHAR(32) NOT NULL,
+    merchant VARCHAR(63) NOT NULL,
+    category VARCHAR(31) NOT NULL,
     paid_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    paid_by VARCHAR(32) NOT NULL,
+    paid_by VARCHAR(31) NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
@@ -35,16 +35,17 @@ CREATE INDEX idx_daffodil_bills_summary ON daffodil_bills(summary);
 CREATE INDEX idx_daffodil_bills_category ON daffodil_bills(category);
 CREATE INDEX idx_daffodil_bills_paid_by ON daffodil_bills(paid_by);
 CREATE TABLE daffodil_bills_history(
-    id SERIAL PRIMARY KEY,    
+    id SERIAL PRIMARY KEY,   
+    ledger_id INT NOT NULL,   
     bill_id INT NOT NULL,
     user_id INT NOT NULL,
     summary VARCHAR(511) NOT NULL,
     price MONEY NOT NULL,
     currency CHAR(3) NOT NULL,
-    merchant VARCHAR(64) NOT NULL,
-    category VARCHAR(32) NOT NULL,
+    merchant VARCHAR(63) NOT NULL,
+    category VARCHAR(31) NOT NULL,
     paid_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    paid_by VARCHAR(32) NOT NULL,   
+    paid_by VARCHAR(31) NOT NULL,   
     reason VARCHAR(255) NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

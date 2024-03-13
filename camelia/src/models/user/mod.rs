@@ -8,6 +8,7 @@ use chrono::{NaiveDateTime, Utc};
 use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, update};
 use hyper::StatusCode;
+use juniper::GraphQLObject;
 use language_tags::LanguageTag;
 use openssl::hash::{hash, MessageDigest};
 use palm::{crypto::Password, email::Address, rbac::v1 as rbac_v1, HttpError, Result};
@@ -35,6 +36,32 @@ pub enum Status {
     Google,
     WechatMiniProgram,
     WechatOauth2,
+}
+
+#[derive(GraphQLObject)]
+#[graphql(name = "UserDetails")]
+pub struct Details {
+    pub nickname: String,
+    pub real_name: String,
+    pub avatar: String,
+}
+
+impl Details {
+    pub fn new(db: &mut Connection, id: i32) -> Result<Self> {
+        let (nickname, real_name, avatar): (String, String, String) = users::dsl::users
+            .select((
+                users::dsl::nickname,
+                users::dsl::real_name,
+                users::dsl::avatar,
+            ))
+            .filter(users::dsl::id.eq(id))
+            .first(db)?;
+        Ok(Self {
+            nickname,
+            real_name,
+            avatar,
+        })
+    }
 }
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]

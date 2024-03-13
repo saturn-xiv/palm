@@ -161,4 +161,77 @@ impl Query {
 
         Ok(response)
     }
+    async fn daffodil_index_bill(
+        context: &Context,
+        ledger: i32,
+    ) -> FieldResult<daffodil_graphql::bill::IndexResponse> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let response =
+            daffodil_graphql::bill::IndexResponse::new(&context.session, db, ch, enf, jwt, ledger)
+                .await?;
+
+        Ok(response)
+    }
+    async fn daffodil_index_bill_history(
+        context: &Context,
+        ledger: i32,
+    ) -> FieldResult<daffodil_graphql::bill::history::IndexResponse> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let response = daffodil_graphql::bill::history::IndexResponse::new(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            ledger,
+        )
+        .await?;
+
+        Ok(response)
+    }
+    fn daffodil_bill_merchants(context: &Context) -> FieldResult<Vec<String>> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+
+        let response = daffodil_graphql::bill::merchants(&context.session, db, ch, jwt)?;
+
+        Ok(response)
+    }
+    fn daffodil_bill_categories(context: &Context) -> FieldResult<Vec<String>> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+
+        let response = daffodil_graphql::bill::categories(&context.session, db, ch, jwt)?;
+
+        Ok(response)
+    }
+    fn daffodil_bill_payment_methods(context: &Context) -> FieldResult<Vec<String>> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+
+        let response = daffodil_graphql::bill::payment_methods(&context.session, db, ch, jwt)?;
+
+        Ok(response)
+    }
 }

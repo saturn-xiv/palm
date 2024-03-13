@@ -10,12 +10,12 @@ diesel::table! {
         price -> Money,
         #[max_length = 3]
         currency -> Bpchar,
-        #[max_length = 64]
+        #[max_length = 63]
         merchant -> Varchar,
-        #[max_length = 32]
+        #[max_length = 31]
         category -> Varchar,
         paid_at -> Timestamp,
-        #[max_length = 32]
+        #[max_length = 31]
         paid_by -> Varchar,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
@@ -27,6 +27,7 @@ diesel::table! {
 diesel::table! {
     daffodil_bills_history (id) {
         id -> Int4,
+        ledger_id -> Int4,
         bill_id -> Int4,
         user_id -> Int4,
         #[max_length = 511]

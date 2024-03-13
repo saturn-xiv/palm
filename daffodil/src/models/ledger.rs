@@ -24,7 +24,7 @@ pub trait Dao {
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn by_user_and_name(&mut self, user: i32, name: &str) -> Result<Item>;
     fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
-    fn create(&mut self, user: i32, name: &str, summary: &str) -> Result<()>;
+    fn create(&mut self, user: i32, name: &str, summary: &str) -> Result<i32>;
     fn update(&mut self, id: i32, name: &str, summary: &str) -> Result<()>;
     fn enable(&mut self, id: i32, on: bool) -> Result<()>;
 }
@@ -52,10 +52,10 @@ impl Dao for Connection {
             .order(daffodil_ledgers::dsl::updated_at.desc())
             .load::<Item>(self)?)
     }
-    fn create(&mut self, user: i32, name: &str, summary: &str) -> Result<()> {
+    fn create(&mut self, user: i32, name: &str, summary: &str) -> Result<i32> {
         let now = Utc::now().naive_utc();
         let uid = Uuid::new_v4().to_string();
-        insert_into(daffodil_ledgers::dsl::daffodil_ledgers)
+        let id = insert_into(daffodil_ledgers::dsl::daffodil_ledgers)
             .values((
                 daffodil_ledgers::dsl::owner_id.eq(user),
                 daffodil_ledgers::dsl::uid.eq(&uid),
@@ -63,8 +63,9 @@ impl Dao for Connection {
                 daffodil_ledgers::dsl::summary.eq(summary),
                 daffodil_ledgers::dsl::updated_at.eq(&now),
             ))
+            .returning(daffodil_ledgers::dsl::id)
             .execute(self)?;
-        Ok(())
+        Ok(id as i32)
     }
     fn update(&mut self, id: i32, name: &str, summary: &str) -> Result<()> {
         let now = Utc::now().naive_utc();

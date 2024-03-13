@@ -2,7 +2,7 @@ pub mod history;
 
 use camelia::orm::postgresql::Connection;
 use chrono::{NaiveDateTime, Utc};
-use diesel::{data_types::Cents, insert_into, prelude::*, update};
+use diesel::{data_types::Cents, delete, insert_into, prelude::*, update};
 use palm::Result;
 
 use super::super::schema::daffodil_bills;
@@ -52,16 +52,21 @@ pub trait Dao {
         price: (i64, &str),
         category: &str,
         paid: (&str, &NaiveDateTime, &str),
-    ) -> Result<()>;
+    ) -> Result<i32>;
     fn update(
         &mut self,
         id: i32,
+        user: i32,
         summary: &str,
         price: (i64, &str),
         category: &str,
         paid: (&str, &NaiveDateTime, &str),
     ) -> Result<()>;
     fn delete(&mut self, id: i32) -> Result<()>;
+
+    fn merchants(&mut self, user: i32) -> Result<Vec<String>>;
+    fn categories(&mut self, user: i32) -> Result<Vec<String>>;
+    fn payment_methods(&mut self, user: i32) -> Result<Vec<String>>;
 }
 
 impl Dao for Connection {
@@ -90,8 +95,8 @@ impl Dao for Connection {
         (price, currency): (i64, &str),
         category: &str,
         (merchant, paid_at, paid_by): (&str, &NaiveDateTime, &str),
-    ) -> Result<()> {
-        insert_into(daffodil_bills::dsl::daffodil_bills)
+    ) -> Result<i32> {
+        let id = insert_into(daffodil_bills::dsl::daffodil_bills)
             .values(&New {
                 user_id: user,
                 ledger_id: ledger,
@@ -104,12 +109,14 @@ impl Dao for Connection {
                 paid_by,
                 updated_at: &Utc::now().naive_utc(),
             })
+            .returning(daffodil_bills::dsl::id)
             .execute(self)?;
-        Ok(())
+        Ok(id as i32)
     }
     fn update(
         &mut self,
         id: i32,
+        user: i32,
         summary: &str,
         (price, currency): (i64, &str),
         category: &str,
@@ -119,6 +126,7 @@ impl Dao for Connection {
         update(daffodil_bills::dsl::daffodil_bills)
             .filter(daffodil_bills::dsl::id.eq(id))
             .set((
+                daffodil_bills::dsl::user_id.eq(user),
                 daffodil_bills::dsl::summary.eq(summary),
                 daffodil_bills::dsl::price.eq(Cents(price)),
                 daffodil_bills::dsl::currency.eq(currency),
@@ -133,15 +141,33 @@ impl Dao for Connection {
         Ok(())
     }
     fn delete(&mut self, id: i32) -> Result<()> {
-        let now = Utc::now().naive_utc();
-        update(daffodil_bills::dsl::daffodil_bills)
-            .filter(daffodil_bills::dsl::id.eq(id))
-            .set((
-                daffodil_bills::dsl::deleted_at.eq(&now),
-                daffodil_bills::dsl::version.eq(daffodil_bills::dsl::version + 1),
-                daffodil_bills::dsl::updated_at.eq(&now),
-            ))
+        delete(daffodil_bills::dsl::daffodil_bills.filter(daffodil_bills::dsl::id.eq(id)))
             .execute(self)?;
         Ok(())
+    }
+
+    fn merchants(&mut self, user: i32) -> Result<Vec<String>> {
+        Ok(daffodil_bills::dsl::daffodil_bills
+            .select(daffodil_bills::dsl::merchant)
+            .filter(daffodil_bills::dsl::user_id.eq(user))
+            .distinct()
+            .order(daffodil_bills::dsl::updated_at.desc())
+            .load::<String>(self)?)
+    }
+    fn categories(&mut self, user: i32) -> Result<Vec<String>> {
+        Ok(daffodil_bills::dsl::daffodil_bills
+            .select(daffodil_bills::dsl::category)
+            .filter(daffodil_bills::dsl::user_id.eq(user))
+            .distinct()
+            .order(daffodil_bills::dsl::updated_at.desc())
+            .load::<String>(self)?)
+    }
+    fn payment_methods(&mut self, user: i32) -> Result<Vec<String>> {
+        Ok(daffodil_bills::dsl::daffodil_bills
+            .select(daffodil_bills::dsl::paid_by)
+            .filter(daffodil_bills::dsl::user_id.eq(user))
+            .distinct()
+            .order(daffodil_bills::dsl::updated_at.desc())
+            .load::<String>(self)?)
     }
 }
