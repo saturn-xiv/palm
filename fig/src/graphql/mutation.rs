@@ -11,6 +11,27 @@ pub struct Mutation;
 
 #[graphql_object(Context = Context)]
 impl Mutation {
+    async fn set_locale(
+        context: &Context,
+        lang: String,
+        code: String,
+        message: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let request = camelia_graphql::locale::Form {
+            lang,
+            code,
+            message,
+        };
+
+        request.handle(&context.session, db, ch, enf, jwt).await?;
+        Ok(Succeed::default())
+    }
     async fn sign_in_user_by_email(
         context: &Context,
         user: String,

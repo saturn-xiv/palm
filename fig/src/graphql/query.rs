@@ -15,6 +15,25 @@ impl Query {
         GIT_VERSION
     }
 
+    fn index_locale(
+        context: &Context,
+        pager: Pager,
+    ) -> FieldResult<camelia_graphql::locale::IndexResponse> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let response = camelia_graphql::locale::IndexResponse::new(db, &pager)?;
+        Ok(response)
+    }
+    fn index_locale_by_lang(
+        context: &Context,
+        lang: String,
+    ) -> FieldResult<Vec<camelia_graphql::locale::IndexResponseItem>> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let response = camelia_graphql::locale::IndexResponseItem::by_lang(db, &lang)?;
+        Ok(response)
+    }
+
     fn logs(context: &Context, pager: Pager) -> FieldResult<camelia_graphql::log::IndexResponse> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
