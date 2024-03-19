@@ -50,8 +50,6 @@ const router = createBrowserRouter(
   }
 );
 
-const Widget = () => {
-  return <RouterProvider router={router} />;
-};
+const Widget = () => <RouterProvider router={router} />;
 
 export default Widget;
