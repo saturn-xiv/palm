@@ -167,7 +167,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && make install"
 
 # https://github.com/rui314/mold
-RUN git clone -b v2.4.0 https://github.com/rui314/mold.git $HOME/downloads/mold
+RUN git clone -b v2.30.0 https://github.com/rui314/mold.git $HOME/downloads/mold
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir $HOME/build/mold \
     && cd $HOME/build/mold \
