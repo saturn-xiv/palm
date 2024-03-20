@@ -11,8 +11,20 @@ pub struct Query;
 
 #[graphql_object(Context = Context)]
 impl Query {
-    fn apiVersion(_context: &Context) -> &str {
+    fn api_version(_context: &Context) -> &str {
         GIT_VERSION
+    }
+    fn site_info(
+        context: &Context,
+        lang: String,
+    ) -> FieldResult<camelia_graphql::site::InfoResponse> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let aes = context.aes.deref();
+        let response = camelia_graphql::site::InfoResponse::new(db, ch, aes, &lang)?;
+        Ok(response)
     }
 
     fn index_locale(
