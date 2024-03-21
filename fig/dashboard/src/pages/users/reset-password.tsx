@@ -84,7 +84,6 @@ export const Component = () => {
           name="password"
           label={intl.formatMessage({ id: "form.fields.password.label" })}
           type="password"
-          autoFocus
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}

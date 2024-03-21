@@ -93,7 +93,6 @@ export const Component = () => {
           fullWidth
           label={intl.formatMessage({ id: "form.fields.real-name.label" })}
           name="real_name"
-          autoFocus
           value={formik.values.real_name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
 import { FormattedMessage } from "react-intl";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
@@ -9,17 +8,19 @@ import {
   selectSiteInfo,
 } from "../reducers/site-info";
 import { fetch_layout, current_user } from "../api/camelia";
-import { get as get_locale } from "../locales";
+import { get as get_locale, set as set_locale } from "../locales";
 import {
   get as get_token,
   refresh as refreshUser,
   selectIsSignedIn,
   signOut,
 } from "../reducers/current-user";
-import { home_url } from "../utils";
-import LanguageBar from "./LanguageBar";
 
-const Widget = () => {
+interface IProps {
+  languages: string[];
+}
+
+const Widget = ({ languages }: IProps) => {
   const site_info = useAppSelector(selectSiteInfo);
   const is_signed_in = useAppSelector(selectIsSignedIn);
   const dispatch = useAppDispatch();
@@ -42,21 +43,22 @@ const Widget = () => {
   }, [is_signed_in, dispatch, site_info]);
 
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      sx={{ mt: 8, mb: 4 }}
-    >
-      <FormattedMessage id="layouts.copyright" />
-      &nbsp;
-      <Link color="inherit" href={home_url()}>
-        {site_info.title}
-      </Link>
-      &nbsp; 2024~{new Date().getFullYear()}({site_info.version}).
-      <br />
-      <LanguageBar languages={site_info.languages} />
-    </Typography>
+    <>
+      <FormattedMessage id="layouts.language-bar.other-languages" />
+      {languages.map((l, i) => (
+        <span key={i} style={{ paddingLeft: "4px" }}>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              set_locale(l, true);
+            }}
+            underline="hover"
+          >
+            <FormattedMessage id={`languages.${l}`} />
+          </Link>
+        </span>
+      ))}
+    </>
   );
 };
 

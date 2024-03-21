@@ -69,7 +69,6 @@ export const Component = () => {
           fullWidth
           label={intl.formatMessage({ id: "form.fields.account.label" })}
           name="user"
-          autoFocus
           value={formik.values.user}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}

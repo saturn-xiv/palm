@@ -63,7 +63,6 @@ export const Component = () => {
           name="content"
           multiline
           rows={4}
-          autoFocus
           value={formik.values.content}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
