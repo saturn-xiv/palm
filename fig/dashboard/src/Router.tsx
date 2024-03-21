@@ -44,6 +44,7 @@ const router = createBrowserRouter(
         },
       ],
     },
+    { path: "*", lazy: () => import("./pages/not-found") },
   ],
   {
     basename: import.meta.env.BASE_URL,
