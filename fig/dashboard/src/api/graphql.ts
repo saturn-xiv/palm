@@ -24,9 +24,9 @@ export const query = async <R>(
   data.body = JSON.stringify({ query, variables });
   const response = await fetch(GRAPHQL_PATH, data);
   const res: IResponse<R> = await response.json();
-  if ("data" in res) {
-    return res.data;
+  if ("errors" in res) {
+    return Promise.reject(res.errors);
   }
 
-  return Promise.reject(res.errors);
+  return res.data;
 };

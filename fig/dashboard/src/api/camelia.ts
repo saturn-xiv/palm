@@ -1,10 +1,39 @@
+import moment from "moment-timezone";
+
 import { query } from "./graphql";
+import { home_url } from "../utils";
 
 export const EDITOR_TEXTAREA = "TEXTAREA";
 
 export interface ISucceed {
   createdAt: Date;
 }
+
+export const sign_up_by_email = async (
+  realName: string,
+  nickname: string,
+  email: string,
+  password: string
+): Promise<ISucceed> => {
+  const res = await query<ISucceed>(
+    `
+mutation call($realName: String!, $nickname: String!, $email: String!, $password: String!, $home: String!, $timezone: String!){
+  signUpUserByEmail(realName: $realName, nickname: $nickname, email: $email, password: $password, home: $home, timezone: $timezone){
+    createdAt
+  }
+}
+`,
+    {
+      realName,
+      nickname,
+      email,
+      password,
+      home: home_url(),
+      timezone: moment.tz.guess(),
+    }
+  );
+  return res;
+};
 
 export const create_leave_word = async (
   content: string,

@@ -58,7 +58,6 @@ impl Mutation {
         email: String,
         password: String,
         home: String,
-        lang: String,
         timezone: String,
     ) -> FieldResult<Succeed> {
         let request = camelia_graphql::user::SignUpRequest {
@@ -66,7 +65,6 @@ impl Mutation {
             nickname,
             email,
             password,
-            lang,
             timezone,
             home,
         };

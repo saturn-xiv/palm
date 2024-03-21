@@ -113,8 +113,7 @@ pub struct SignUpRequest {
     pub email: String,
     #[validate(length(min = 6, max = 31))]
     pub password: String,
-    #[validate(length(min = 1, max = 17))]
-    pub lang: String,
+
     #[validate(length(min = 3, max = 31))]
     pub timezone: String,
     #[validate(url, length(min = 6, max = 64))]
@@ -143,7 +142,7 @@ impl SignUpRequest {
                 &nickname,
                 &email,
                 &self.password,
-                &self.lang.parse()?,
+                &ss.lang.parse()?,
                 &self.timezone.parse()?,
             )?;
             let user = UserDao::by_email(db, &email)?;
