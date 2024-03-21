@@ -5,6 +5,7 @@ import { home_url } from "../utils";
 import { IPermission } from "../reducers/current-user";
 
 export const EDITOR_TEXTAREA = "TEXTAREA";
+export const UTC = "UTC";
 
 export interface ISucceed {
   createdAt: Date;
@@ -20,6 +21,8 @@ export interface ICurrentUser {
   hasWechatOauth2: boolean;
   hasGoogle: boolean;
   providerType: string;
+  lang: string;
+  timezone: string;
 }
 
 export interface ISignInResponse {
@@ -32,7 +35,7 @@ export const current_user = async (): Promise<ICurrentUser> => {
     `
 query call{
   currentUser{
-    realName, providerType,
+    realName, providerType, lang, timezone,
     isAdministrator, isRoot,
     roles, 
     permissions{ 
@@ -58,7 +61,7 @@ mutation call($user: String!, $password: String!){
   signInUserByEmail(user: $user, password: $password){    
     token, 
     user{
-      realName, providerType,
+      realName, providerType, lang, timezone,
       isAdministrator, isRoot,
       roles, 
       permissions{ 

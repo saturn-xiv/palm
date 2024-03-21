@@ -5,6 +5,7 @@ import {
   ICurrentUser,
   ISignInResponse,
   ICurrentUser as IState,
+  UTC,
 } from "../api/camelia";
 
 const KEY = "token";
@@ -61,6 +62,8 @@ const initialState: IState = {
   hasWechatOauth2: false,
   hasGoogle: false,
   providerType: "",
+  lang: import.meta.env.VITE_DEFAULT_LOCALE,
+  timezone: UTC,
 };
 
 export const currentUserSlice = createSlice({
@@ -77,6 +80,8 @@ export const currentUserSlice = createSlice({
       state.hasWechatOauth2 = action.payload.hasWechatOauth2;
       state.hasGoogle = action.payload.hasGoogle;
       state.providerType = action.payload.providerType;
+      state.lang = action.payload.lang;
+      state.timezone = action.payload.timezone;
     },
     signIn: (state, action: PayloadAction<ISignInResponse>) => {
       set(action.payload.token);
@@ -89,6 +94,8 @@ export const currentUserSlice = createSlice({
       state.hasWechatOauth2 = action.payload.user.hasWechatOauth2;
       state.hasGoogle = action.payload.user.hasGoogle;
       state.providerType = action.payload.user.providerType;
+      state.lang = action.payload.user.lang;
+      state.timezone = action.payload.user.timezone;
     },
     signOut: (state) => {
       remove();
@@ -101,6 +108,8 @@ export const currentUserSlice = createSlice({
       state.hasWechatOauth2 = false;
       state.hasGoogle = false;
       state.providerType = "";
+      state.lang = import.meta.env.VITE_DEFAULT_LOCALE;
+      state.timezone = UTC;
     },
   },
 });

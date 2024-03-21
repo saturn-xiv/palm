@@ -129,6 +129,8 @@ pub struct CurrentUser {
     pub has_wechat_oauth2: bool,
     pub has_google: bool,
     pub provider_type: String,
+    pub lang: String,
+    pub timezone: String,
 }
 
 impl CurrentUser {
@@ -182,6 +184,8 @@ impl CurrentUser {
         };
         Ok(Self {
             real_name: user.real_name.clone(),
+            lang: user.lang.clone(),
+            timezone: user.timezone.clone(),
             roles,
             permissions,
             has_google,
