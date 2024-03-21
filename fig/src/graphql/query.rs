@@ -154,6 +154,29 @@ impl Query {
 
         Ok(response)
     }
+    async fn index_leave_word(
+        context: &Context,
+        pager: Pager,
+    ) -> FieldResult<camelia_graphql::leave_words::IndexResponse> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let response = camelia_graphql::leave_words::IndexResponse::new(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            &pager,
+        )
+        .await?;
+
+        Ok(response)
+    }
 
     fn daffodil_index_ledger(
         context: &Context,

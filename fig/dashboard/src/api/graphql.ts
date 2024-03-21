@@ -2,11 +2,13 @@ import { options } from "./";
 
 const GRAPHQL_PATH = "/graphql";
 
+export interface IErrorMessage {
+  message: string;
+  locations: { line: number; column: number }[];
+}
+
 interface IError {
-  errors: {
-    message: string;
-    locations: { line: number; column: number }[];
-  }[];
+  errors: IErrorMessage[];
 }
 interface ISucceed<R> {
   data: R;
@@ -25,5 +27,6 @@ export const query = async <R>(
   if ("data" in res) {
     return res.data;
   }
+
   return Promise.reject(res.errors);
 };

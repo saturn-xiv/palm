@@ -1,8 +1,27 @@
 import { query } from "./graphql";
 
+export const EDITOR_TEXTAREA = "TEXTAREA";
+
 export interface ISucceed {
   createdAt: Date;
 }
+
+export const create_leave_word = async (
+  content: string,
+  editor: string
+): Promise<ISucceed> => {
+  const res = await query<ISucceed>(
+    `
+mutation call($content: String!, $editor: MediaTextEditor!){
+  createLeaveWord(content: $content, editor: $editor){
+    createdAt
+  }
+}
+`,
+    { content, editor }
+  );
+  return res;
+};
 
 export interface IAuthor {
   name: string;

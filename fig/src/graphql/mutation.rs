@@ -3,7 +3,7 @@ use std::ops::{Deref, DerefMut};
 use camelia::graphql as camelia_graphql;
 use daffodil::graphql as daffodil_graphql;
 use juniper::{graphql_object, FieldResult};
-use palm::Succeed;
+use palm::{Succeed, TextEditor};
 
 use super::context::Context;
 
@@ -308,6 +308,32 @@ impl Mutation {
         let enf = context.enforcer.deref();
 
         camelia_graphql::attachment::destroy(&context.session, db, ch, enf, jwt, id).await?;
+
+        Ok(Succeed::default())
+    }
+    async fn create_leave_word(
+        context: &Context,
+        content: String,
+        editor: TextEditor,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+
+        let request = camelia_graphql::leave_words::Form { content, editor };
+
+        request.handle(&context.session, db).await?;
+
+        Ok(Succeed::default())
+    }
+    async fn destroy_leave_word(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::leave_words::destroy(&context.session, db, ch, enf, jwt, id).await?;
 
         Ok(Succeed::default())
     }

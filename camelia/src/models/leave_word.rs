@@ -31,7 +31,7 @@ pub enum Status {
 
 pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;
-    fn create(&mut self, lang: &str, ip: &str, body: &str, editor: TextEditor) -> Result<()>;
+    fn create(&mut self, lang: &str, ip: &str, body: &str, editor: &TextEditor) -> Result<()>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
     fn destroy(&mut self, id: i32) -> Result<()>;
@@ -44,7 +44,7 @@ impl Dao for Connection {
             .first::<Item>(self)?)
     }
 
-    fn create(&mut self, lang: &str, ip: &str, body: &str, editor: TextEditor) -> Result<()> {
+    fn create(&mut self, lang: &str, ip: &str, body: &str, editor: &TextEditor) -> Result<()> {
         let now = Utc::now().naive_utc();
         insert_into(leave_words::dsl::leave_words)
             .values((

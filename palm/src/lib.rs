@@ -164,7 +164,7 @@ use std::process::{Command, Output};
 
 use chrono::{DateTime, NaiveDateTime, Utc};
 use chrono_tz::Tz;
-use juniper::GraphQLObject;
+use juniper::{GraphQLEnum, GraphQLObject};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 
@@ -202,9 +202,12 @@ impl Default for Succeed {
     }
 }
 
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
+#[derive(
+    GraphQLEnum, EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone,
+)]
+#[graphql(name = "MediaTextEditor")]
 pub enum TextEditor {
-    Plain,
+    Textarea,
     Markdown,
     Quill,
 }
