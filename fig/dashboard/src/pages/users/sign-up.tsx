@@ -8,11 +8,13 @@ import {
   ref as yup_ref,
   object as yup_object,
 } from "yup";
+import { useNavigate } from "react-router-dom";
 
 import AnonymousForm from "../../layouts/application/Form";
 import { sign_up_by_email } from "../../api/camelia";
 import { IErrorMessage } from "../../api/graphql";
 import MessageBox, { IState as IMessageBox } from "../../components/MessageBox";
+import { SIGN_IN_PATH } from "../../reducers/current-user";
 
 const validationSchema = yup_object({
   email: yup_string().email().required().min(5).max(127),
@@ -29,6 +31,7 @@ export const Component = () => {
   });
 
   const intl = useIntl();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       real_name: "",
@@ -67,7 +70,10 @@ export const Component = () => {
       <MessageBox
         severity={messageBox.severity}
         messages={messageBox.messages}
-        handleClose={() => setMessageBox({ messages: [], severity: "info" })}
+        handleClose={() => {
+          setMessageBox({ messages: [], severity: "info" });
+          navigate(SIGN_IN_PATH);
+        }}
       />
       <AnonymousForm
         icon={<HowToRegOutlinedIcon />}

@@ -4,11 +4,13 @@ import { string as yup_string, object as yup_object } from "yup";
 import TextField from "@mui/material/TextField";
 import { useIntl } from "react-intl";
 import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
+import { useNavigate } from "react-router-dom";
 
 import AnonymousForm from "../../layouts/application/Form";
 import { forgot_password } from "../../api/camelia";
 import { IErrorMessage } from "../../api/graphql";
 import MessageBox, { IState as IMessageBox } from "../../components/MessageBox";
+import { SIGN_IN_PATH } from "../../reducers/current-user";
 
 const validationSchema = yup_object({
   user: yup_string().required(),
@@ -21,6 +23,7 @@ export const Component = () => {
   });
 
   const intl = useIntl();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       user: "",
@@ -50,7 +53,10 @@ export const Component = () => {
       <MessageBox
         severity={messageBox.severity}
         messages={messageBox.messages}
-        handleClose={() => setMessageBox({ messages: [], severity: "info" })}
+        handleClose={() => {
+          setMessageBox({ messages: [], severity: "info" });
+          navigate(SIGN_IN_PATH);
+        }}
       />
       <AnonymousForm
         icon={<PasswordOutlinedIcon />}

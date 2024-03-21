@@ -1,6 +1,8 @@
 const KEY = "token";
 export const DURATION = 60 * 60 * 24;
 
+export const SIGN_IN_PATH = "/anonymous/users/sign-in";
+
 const ENABLE_LOCAL_TOKEN = import.meta.env.VITE_ENABLE_LOCAL_TOKEN === "true";
 
 export const get = (): string | null => {

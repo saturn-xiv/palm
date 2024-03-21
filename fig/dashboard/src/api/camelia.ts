@@ -9,6 +9,25 @@ export interface ISucceed {
   createdAt: Date;
 }
 
+export const reset_password = async (
+  token: string,
+  password: string
+): Promise<ISucceed> => {
+  const res = await query<ISucceed>(
+    `
+mutation call($token: String!, $password: String!){
+  resetUserPassword(token: $token, password: $password){
+    createdAt
+  }
+}
+`,
+    {
+      token,
+      password,
+    }
+  );
+  return res;
+};
 export const forgot_password = async (user: string): Promise<ISucceed> => {
   const res = await query<ISucceed>(
     `
@@ -42,6 +61,21 @@ mutation call($user: String!, $home: String!){
   return res;
 };
 
+export const unlock_by_token = async (token: string): Promise<ISucceed> => {
+  const res = await query<ISucceed>(
+    `
+mutation call($token: String!){
+  unlockUserByToken(token: $token){
+    createdAt
+  }
+}
+`,
+    {
+      token,
+    }
+  );
+  return res;
+};
 export const confirm_by_email = async (user: string): Promise<ISucceed> => {
   const res = await query<ISucceed>(
     `
@@ -59,6 +93,21 @@ mutation call($user: String!, $home: String!){
   return res;
 };
 
+export const confirm_by_token = async (token: string): Promise<ISucceed> => {
+  const res = await query<ISucceed>(
+    `
+mutation call($token: String!){
+  confirmUserByToken(token: $token){
+    createdAt
+  }
+}
+`,
+    {
+      token,
+    }
+  );
+  return res;
+};
 export const sign_up_by_email = async (
   realName: string,
   nickname: string,
