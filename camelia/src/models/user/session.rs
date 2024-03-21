@@ -80,6 +80,7 @@ impl Dao for Connection {
         let provider_type = provider_type.to_string();
         insert_into(user_sessions::dsl::user_sessions)
             .values((
+                user_sessions::dsl::uid.eq(&uid),
                 user_sessions::dsl::user_id.eq(user),
                 user_sessions::dsl::provider_type.eq(provider_type),
                 user_sessions::dsl::provider_id.eq(provider_id),

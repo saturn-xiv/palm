@@ -2,12 +2,54 @@ import moment from "moment-timezone";
 
 import { query } from "./graphql";
 import { home_url } from "../utils";
+import { IPermission } from "../reducers/current-user";
 
 export const EDITOR_TEXTAREA = "TEXTAREA";
 
 export interface ISucceed {
   createdAt: Date;
 }
+
+export interface ISignInResponse {
+  token: string;
+  realName: string;
+  isAdministrator: boolean;
+  isRoot: boolean;
+  roles: string[];
+  permissions: IPermission[];
+  hasWechatMiniProgram: boolean;
+  hasWechatOauth2: boolean;
+  hasGoogle: boolean;
+  providerType: string;
+}
+
+export const sign_in_by_email = async (
+  user: string,
+  password: string
+): Promise<ISignInResponse> => {
+  const res = await query<{ signInUserByEmail: ISignInResponse }>(
+    `
+mutation call($user: String!, $password: String!){
+  signInUserByEmail(user: $user, password: $password){    
+    token, realName, providerType,
+    isAdministrator, isRoot,
+    roles, 
+    permissions{ 
+      resource{type, sid, iid},
+      action
+    },
+    hasWechatMiniProgram, hasWechatOauth2, hasGoogle    
+  }
+}
+`,
+    {
+      user,
+      password,
+      ttl: 60 * 60 * 24,
+    }
+  );
+  return res.signInUserByEmail;
+};
 
 export const reset_password = async (
   token: string,

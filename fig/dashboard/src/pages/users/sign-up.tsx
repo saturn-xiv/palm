@@ -14,13 +14,20 @@ import AnonymousForm from "../../layouts/application/Form";
 import { sign_up_by_email } from "../../api/camelia";
 import { IErrorMessage } from "../../api/graphql";
 import MessageBox, { IState as IMessageBox } from "../../components/MessageBox";
-import { SIGN_IN_PATH } from "../../reducers/current-user";
+import {
+  SIGN_IN_PATH,
+  MAX_PASSWORD_LENGTH,
+  MIN_PASSWORD_LENGTH,
+} from "../../reducers/current-user";
 
 const validationSchema = yup_object({
   email: yup_string().email().required().min(5).max(127),
   real_name: yup_string().required().min(2).max(63),
   nickname: yup_string().required().min(2).max(31),
-  password: yup_string().required().min(6).max(31),
+  password: yup_string()
+    .required()
+    .min(MIN_PASSWORD_LENGTH)
+    .max(MAX_PASSWORD_LENGTH),
   password_confirmation: yup_string().oneOf([yup_ref("password")]),
 });
 
