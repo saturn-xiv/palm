@@ -64,6 +64,7 @@ pub trait Dao {
     fn by_ip(&mut self, ip: &str) -> Result<Vec<Item>>;
     fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
     fn clean(&mut self) -> Result<()>;
+    fn delete(&mut self, id: i32) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -129,6 +130,11 @@ impl Dao for Connection {
     fn clean(&mut self) -> Result<()> {
         let now = Utc::now().naive_utc();
         delete(user_sessions::dsl::user_sessions.filter(user_sessions::dsl::expired_at.lt(now)))
+            .execute(self)?;
+        Ok(())
+    }
+    fn delete(&mut self, id: i32) -> Result<()> {
+        delete(user_sessions::dsl::user_sessions.filter(user_sessions::dsl::id.eq(id)))
             .execute(self)?;
         Ok(())
     }

@@ -3,6 +3,7 @@ use chrono::{Duration, NaiveDateTime};
 use diesel::Connection as DieselConntection;
 use hyper::StatusCode;
 use juniper::GraphQLObject;
+use log::info;
 use palm::{
     cache::redis::ClusterConnection as Cache,
     crypto::Password,
@@ -71,7 +72,7 @@ impl SignInRequest {
             )?;
             Ok(())
         })?;
-        let it = new_sign_in_response(
+        let it = SignInResponse::new(
             db,
             enforcer,
             &user,
@@ -91,8 +92,35 @@ impl SignInRequest {
 #[derive(GraphQLObject)]
 #[graphql(name = "UserSignInResponse")]
 pub struct SignInResponse {
-    pub real_name: String,
     pub token: String,
+    pub user: CurrentUser,
+}
+
+impl SignInResponse {
+    async fn new<J: Jwt>(
+        db: &mut Db,
+        enforcer: &Mutex<Enforcer>,
+        user: &User,
+        jwt: &J,
+        ttl: Duration,
+        provider: (UserProviderType, i32),
+        ip: &str,
+    ) -> Result<Self> {
+        let token = {
+            let uid = UserSessionDao::create(db, user.id, &provider.0, provider.1, ip, ttl)?;
+            info!("create user session {uid}");
+            jwt.sign(NAME, &uid, &UserAction::SignIn.to_string(), ttl)?
+        };
+        let user = CurrentUser::new(db, enforcer, user, provider).await?;
+
+        Ok(Self { token, user })
+    }
+}
+
+#[derive(GraphQLObject)]
+#[graphql(name = "CurrentUser")]
+pub struct CurrentUser {
+    pub real_name: String,
     pub is_administrator: bool,
     pub is_root: bool,
     pub roles: Vec<String>,
@@ -101,6 +129,69 @@ pub struct SignInResponse {
     pub has_wechat_oauth2: bool,
     pub has_google: bool,
     pub provider_type: String,
+}
+
+impl CurrentUser {
+    pub async fn refresh<J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        enf: &Mutex<Enforcer>,
+        jwt: &J,
+    ) -> Result<Self> {
+        let (user, _, provider) = ss.current_user(db, ch, jwt)?;
+        Self::new(db, enf, &user, provider).await
+    }
+    async fn new(
+        db: &mut Db,
+        enforcer: &Mutex<Enforcer>,
+        user: &User,
+        provider: (UserProviderType, i32),
+    ) -> Result<Self> {
+        let is_administrator = user.is_administrator(enforcer).await.is_ok();
+        let is_root = user.is_root(enforcer).await.is_ok();
+        let has_wechat_mini_program = WechatMiniProgramUserDao::count_by_user(db, user.id)? > 0;
+        let has_wechat_oauth2 = WechatOauth2UserDao::count_by_user(db, user.id)? > 0;
+        let has_google = GoogleUserDao::count_by_user(db, user.id)? > 0;
+
+        let user_s = user.to_subject();
+        let mut enforcer = enforcer.lock().await;
+
+        let mut roles = Vec::new();
+        {
+            let items = enforcer.get_implicit_roles_for_user(&user_s, None);
+            for it in items.iter() {
+                if let Ok(ref it) = it.parse::<rbac_v1::Role>() {
+                    if let Some(rbac_v1::role::By::Member(ref it)) = it.by {
+                        roles.push(it.clone());
+                    }
+                }
+            }
+        }
+        let permissions = {
+            let mut items = Vec::new();
+            for it in
+                rbac_v1::Permission::all(&enforcer.get_implicit_permissions_for_user(&user_s, None))
+                    .iter()
+            {
+                if let Some(it) = Permission::new(it) {
+                    items.push(it);
+                }
+            }
+            items
+        };
+        Ok(Self {
+            real_name: user.real_name.clone(),
+            roles,
+            permissions,
+            has_google,
+            has_wechat_mini_program,
+            has_wechat_oauth2,
+            provider_type: provider.0.to_string(),
+            is_administrator,
+            is_root,
+        })
+    }
 }
 
 #[derive(Validate)]
@@ -182,6 +273,7 @@ impl ByToken {
             )));
         }
 
+        info!("unlock user {user}");
         db.transaction::<_, Error, _>(move |db| {
             UserDao::lock(db, user.id, false)?;
             LogDao::add::<String, User>(
@@ -210,6 +302,7 @@ impl ByToken {
             )));
         }
 
+        info!("confirm user {user}");
         db.transaction::<_, Error, _>(move |db| {
             UserDao::confirm(db, user.id)?;
             LogDao::add::<String, User>(
@@ -250,6 +343,7 @@ impl ResetPassword {
             jwt.verify(&self.token, NAME, &UserAction::ResetPassword.to_string())?;
         let user = UserDao::by_nickname(db, &nickname)?;
 
+        info!("reset {user}'s password");
         db.transaction::<_, Error, _>(move |db| {
             UserDao::password(db, hmac, user.id, &self.password)?;
             LogDao::add::<String, User>(
@@ -287,7 +381,7 @@ impl RefreshToken {
 
         let (user, _, (provider_type, provider_id)) = ss.current_user(db, ch, jwt)?;
 
-        let it = new_sign_in_response(
+        let it = SignInResponse::new(
             db,
             enf,
             &user,
@@ -417,16 +511,24 @@ impl ByEmail {
 }
 
 pub fn sign_out<J: Jwt>(ss: &Session, db: &mut Db, ch: &mut Cache, jwt: &J) -> Result<()> {
-    let (user, _, _) = ss.current_user(db, ch, jwt)?;
-    LogDao::add::<_, User>(
-        db,
-        user.id,
-        NAME,
-        LogLevel::Info,
-        &ss.client_ip,
-        Some(user.id),
-        "Sign out.",
-    )?;
+    let (user, uid, _) = ss.current_user(db, ch, jwt)?;
+    db.transaction::<_, Error, _>(move |db| {
+        {
+            info!("remove session {uid}");
+            let it = UserSessionDao::by_uid(db, &uid)?;
+            UserSessionDao::delete(db, it.id)?;
+        }
+        LogDao::add::<_, User>(
+            db,
+            user.id,
+            NAME,
+            LogLevel::Info,
+            &ss.client_ip,
+            Some(user.id),
+            "Sign out.",
+        )?;
+        Ok(())
+    })?;
     Ok(())
 }
 
@@ -814,64 +916,4 @@ fn user_by_nickname_or_email(db: &mut Db, user: &str) -> Result<User> {
         return Ok(it);
     }
     UserDao::by_email(db, user)
-}
-
-async fn new_sign_in_response<J: Jwt>(
-    db: &mut Db,
-    enforcer: &Mutex<Enforcer>,
-    user: &User,
-    jwt: &J,
-    ttl: Duration,
-    provider: (UserProviderType, i32),
-    ip: &str,
-) -> Result<SignInResponse> {
-    let is_administrator = user.is_administrator(enforcer).await.is_ok();
-    let is_root = user.is_root(enforcer).await.is_ok();
-    let has_wechat_mini_program = WechatMiniProgramUserDao::count_by_user(db, user.id)? > 0;
-    let has_wechat_oauth2 = WechatOauth2UserDao::count_by_user(db, user.id)? > 0;
-    let has_google = GoogleUserDao::count_by_user(db, user.id)? > 0;
-
-    let token = {
-        let uid = UserSessionDao::create(db, user.id, &provider.0, provider.1, ip, ttl)?;
-        jwt.sign(NAME, &uid, &UserAction::SignIn.to_string(), ttl)?
-    };
-
-    let user_s = user.to_subject();
-    let mut enforcer = enforcer.lock().await;
-
-    let mut roles = Vec::new();
-    {
-        let items = enforcer.get_implicit_roles_for_user(&user_s, None);
-        for it in items.iter() {
-            if let Ok(ref it) = it.parse::<rbac_v1::Role>() {
-                if let Some(rbac_v1::role::By::Member(ref it)) = it.by {
-                    roles.push(it.clone());
-                }
-            }
-        }
-    }
-    let permissions = {
-        let mut items = Vec::new();
-        for it in
-            rbac_v1::Permission::all(&enforcer.get_implicit_permissions_for_user(&user_s, None))
-                .iter()
-        {
-            if let Some(it) = Permission::new(it) {
-                items.push(it);
-            }
-        }
-        items
-    };
-    Ok(SignInResponse {
-        real_name: user.real_name.clone(),
-        token,
-        roles,
-        permissions,
-        has_google,
-        has_wechat_mini_program,
-        has_wechat_oauth2,
-        provider_type: provider.0.to_string(),
-        is_administrator,
-        is_root,
-    })
 }

@@ -7,7 +7,7 @@ use hyper::StatusCode;
 use log::error;
 use palm::{
     cache::redis::ClusterConnection as Cache, has_permission, has_role, jwt::Jwt,
-    rbac::v1 as rbac_v1, session::Session, to_code, Error, HttpError, Result, NAME,
+    rbac::v1 as rbac_v1, session::Session, to_code, Error, HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
 use tokio::sync::Mutex;
@@ -18,6 +18,7 @@ use super::{
         Action, Dao as UserDao, Item as User,
     },
     orm::postgresql::Connection as Db,
+    NAME,
 };
 
 pub trait CurrentUserAdapter {

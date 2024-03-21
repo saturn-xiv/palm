@@ -4,20 +4,40 @@ import Typography from "@mui/material/Typography";
 import { FormattedMessage } from "react-intl";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
-import { refresh, selectSiteInfo } from "../reducers/site-info";
-import { fetch_layout, ILayoutResponse } from "../api/camelia";
+import {
+  refresh as refreshLayout,
+  selectSiteInfo,
+} from "../reducers/site-info";
+import { fetch_layout, current_user } from "../api/camelia";
 import { get as get_locale } from "../locales";
+import {
+  get as get_token,
+  refresh as refreshUser,
+  selectIsSignedIn,
+  signOut,
+} from "../reducers/current-user";
 
 const Widget = () => {
   const site_info = useAppSelector(selectSiteInfo);
+  const is_signed_in = useAppSelector(selectIsSignedIn);
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (site_info.version === "") {
-      fetch_layout(get_locale()).then((res: ILayoutResponse) => {
-        dispatch(refresh(res));
+      fetch_layout(get_locale()).then((res) => {
+        dispatch(refreshLayout(res));
       });
     }
-  });
+    const token = get_token();
+    if (!is_signed_in && token !== null) {
+      current_user()
+        .then((res) => {
+          dispatch(refreshUser(res));
+        })
+        .catch(() => {
+          dispatch(signOut());
+        });
+    }
+  }, [is_signed_in, dispatch, site_info]);
 
   const home = "change-me";
   return (

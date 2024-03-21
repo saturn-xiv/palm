@@ -45,7 +45,18 @@ impl Query {
         let response = camelia_graphql::locale::IndexResponseItem::by_lang(db, &lang)?;
         Ok(response)
     }
+    async fn current_user(context: &Context) -> FieldResult<camelia_graphql::user::CurrentUser> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
 
+        let response =
+            camelia_graphql::user::CurrentUser::refresh(&context.session, db, ch, enf, jwt).await?;
+        Ok(response)
+    }
     fn logs(context: &Context, pager: Pager) -> FieldResult<camelia_graphql::log::IndexResponse> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();

@@ -10,8 +10,7 @@ export interface ISucceed {
   createdAt: Date;
 }
 
-export interface ISignInResponse {
-  token: string;
+export interface ICurrentUser {
   realName: string;
   isAdministrator: boolean;
   isRoot: boolean;
@@ -23,6 +22,32 @@ export interface ISignInResponse {
   providerType: string;
 }
 
+export interface ISignInResponse {
+  token: string;
+  user: ICurrentUser;
+}
+
+export const current_user = async (): Promise<ICurrentUser> => {
+  const res = await query<{ currentUser: ICurrentUser }>(
+    `
+query call{
+  currentUser{
+    realName, providerType,
+    isAdministrator, isRoot,
+    roles, 
+    permissions{ 
+      resource{type, sid, iid},
+      action
+    },
+    hasWechatMiniProgram, hasWechatOauth2, hasGoogle
+  }
+}
+`,
+    {}
+  );
+  return res.currentUser;
+};
+
 export const sign_in_by_email = async (
   user: string,
   password: string
@@ -31,14 +56,17 @@ export const sign_in_by_email = async (
     `
 mutation call($user: String!, $password: String!){
   signInUserByEmail(user: $user, password: $password){    
-    token, realName, providerType,
-    isAdministrator, isRoot,
-    roles, 
-    permissions{ 
-      resource{type, sid, iid},
-      action
-    },
-    hasWechatMiniProgram, hasWechatOauth2, hasGoogle    
+    token, 
+    user{
+      realName, providerType,
+      isAdministrator, isRoot,
+      roles, 
+      permissions{ 
+        resource{type, sid, iid},
+        action
+      },
+      hasWechatMiniProgram, hasWechatOauth2, hasGoogle
+    }
   }
 }
 `,

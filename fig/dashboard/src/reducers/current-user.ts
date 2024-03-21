@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "../store";
-import { ISignInResponse } from "../api/camelia";
+import {
+  ICurrentUser,
+  ISignInResponse,
+  ICurrentUser as IState,
+} from "../api/camelia";
 
 const KEY = "token";
 export const DURATION = 60 * 60 * 24;
@@ -47,18 +51,6 @@ export const remove = () => {
   localStorage.removeItem(KEY);
 };
 
-export interface IState {
-  realName: string;
-  isAdministrator: boolean;
-  isRoot: boolean;
-  roles: string[];
-  permissions: IPermission[];
-  hasWechatMiniProgram: boolean;
-  hasWechatOauth2: boolean;
-  hasGoogle: boolean;
-  providerType: string | null;
-}
-
 const initialState: IState = {
   realName: "",
   isAdministrator: false,
@@ -68,16 +60,14 @@ const initialState: IState = {
   hasWechatMiniProgram: false,
   hasWechatOauth2: false,
   hasGoogle: false,
-  providerType: null,
+  providerType: "",
 };
 
 export const currentUserSlice = createSlice({
   name: "current-user",
   initialState,
   reducers: {
-    signIn: (state, action: PayloadAction<ISignInResponse>) => {
-      console.log(action.payload);
-      set(action.payload.token);
+    refresh: (state, action: PayloadAction<ICurrentUser>) => {
       state.realName = action.payload.realName;
       state.isAdministrator = action.payload.isAdministrator;
       state.isRoot = action.payload.isRoot;
@@ -87,6 +77,18 @@ export const currentUserSlice = createSlice({
       state.hasWechatOauth2 = action.payload.hasWechatOauth2;
       state.hasGoogle = action.payload.hasGoogle;
       state.providerType = action.payload.providerType;
+    },
+    signIn: (state, action: PayloadAction<ISignInResponse>) => {
+      set(action.payload.token);
+      state.realName = action.payload.user.realName;
+      state.isAdministrator = action.payload.user.isAdministrator;
+      state.isRoot = action.payload.user.isRoot;
+      state.roles = [...action.payload.user.roles];
+      state.permissions = [...action.payload.user.permissions];
+      state.hasWechatMiniProgram = action.payload.user.hasWechatMiniProgram;
+      state.hasWechatOauth2 = action.payload.user.hasWechatOauth2;
+      state.hasGoogle = action.payload.user.hasGoogle;
+      state.providerType = action.payload.user.providerType;
     },
     signOut: (state) => {
       remove();
@@ -98,15 +100,15 @@ export const currentUserSlice = createSlice({
       state.hasWechatMiniProgram = false;
       state.hasWechatOauth2 = false;
       state.hasGoogle = false;
-      state.providerType = null;
+      state.providerType = "";
     },
   },
 });
 
-export const { signIn, signOut } = currentUserSlice.actions;
+export const { refresh, signIn, signOut } = currentUserSlice.actions;
 
-export const selectIsSignIn = (state: RootState) =>
-  state.currentUser.providerType !== null;
+export const selectIsSignedIn = (state: RootState) =>
+  state.currentUser.providerType !== "";
 export const selectCurrentUser = (state: RootState) => state.currentUser;
 
 export default currentUserSlice.reducer;
