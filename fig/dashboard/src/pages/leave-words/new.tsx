@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import { useIntl } from "react-intl";
-import { useFormik } from "formik";
 import { string as yup_string, object as yup_object } from "yup";
 
 import AnonymousForm from "../../layouts/application/Form";
