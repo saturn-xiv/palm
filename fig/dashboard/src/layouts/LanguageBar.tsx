@@ -6,14 +6,14 @@ import { useConfirm } from "material-ui-confirm";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import {
   refresh as refreshLayout,
-  selectSiteInfo,
+  siteInfo as selectSiteInfo,
 } from "../reducers/site-info";
 import { fetch_layout, current_user } from "../api/camelia";
 import { get as get_locale, set as set_locale } from "../locales";
 import {
   get as get_token,
   refresh as refreshUser,
-  selectIsSignedIn,
+  isSignedIn as selectIsSignedIn,
   signOut,
 } from "../reducers/current-user";
 

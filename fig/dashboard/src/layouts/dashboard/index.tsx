@@ -20,7 +20,7 @@ import { mainListItems, secondaryListItems } from "./menus";
 import Copyright from "../Copyright";
 import { theme as defaultTheme } from "..";
 import { useAppSelector } from "../../hooks";
-import { selectSiteInfo } from "../../reducers/site-info";
+import { siteInfo as selectSiteInfo } from "../../reducers/site-info";
 import NotificationBar from "./NotificationBar";
 import SignOutIcon from "./SignOut";
 

@@ -11,8 +11,50 @@ export interface ISucceed {
   createdAt: Date;
 }
 
+interface IPagination {
+  page: number;
+  size: number;
+  total: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+interface ILog {
+  id: number;
+  plugin: string;
+  level: string;
+  ip: string;
+  resourceType: string;
+  resourceId: number;
+  message: string;
+  createdAt: number;
+}
+export interface IIndexLogResponse {
+  items: ILog[];
+  pagination: IPagination;
+}
+export const logs = async (
+  page: number,
+  size: number
+): Promise<IIndexLogResponse> => {
+  const res = await query<{ logs: IIndexLogResponse }>(
+    `
+query call($pager: Pager!){
+  logs(pager: $pager){
+    items{id, plugin, level, ip, resourceType, resourceId, message, createdAt},
+    pagination{page, size, total, hasNext, hasPrevious}
+  }
+}
+`,
+    {
+      pager: { page, size },
+    }
+  );
+  return res.logs;
+};
+
 export interface ICurrentUser {
   realName: string;
+  avatar: string;
   isAdministrator: boolean;
   isRoot: boolean;
   roles: string[];
@@ -30,12 +72,67 @@ export interface ISignInResponse {
   user: ICurrentUser;
 }
 
+export const update_profile = async (
+  realName: string,
+  avatar: string,
+  lang: string,
+  timezone: string
+): Promise<ISucceed> => {
+  const res = await query<{ updateUserProfile: ISucceed }>(
+    `
+mutation call($realName: String!, $avatar: String!, $lang: String!, $timezone: String!){
+  updateUserProfile(realName: $realName, avatar: $avatar, lang: $lang, timezone: $timezone){
+    createdAt
+  }
+}
+`,
+    {
+      realName,
+      avatar,
+      lang,
+      timezone,
+    }
+  );
+  return res.updateUserProfile;
+};
+export const change_password = async (
+  currentPassword: string,
+  newPassword: string
+): Promise<ISucceed> => {
+  const res = await query<{ changeUserPassword: ISucceed }>(
+    `
+mutation call($currentPassword: String!, $newPassword: String!){
+  changeUserPassword(currentPassword: $currentPassword, newPassword: $newPassword){
+    createdAt
+  }
+}
+`,
+    {
+      currentPassword,
+      newPassword,
+    }
+  );
+  return res.changeUserPassword;
+};
+
+export const sign_out = async (): Promise<ISucceed> => {
+  const res = await query<{ signOutUser: ISucceed }>(
+    `
+mutation call{
+  signOutUser{ createdAt }
+}
+`,
+    {}
+  );
+  return res.signOutUser;
+};
+
 export const current_user = async (): Promise<ICurrentUser> => {
   const res = await query<{ currentUser: ICurrentUser }>(
     `
 query call{
   currentUser{
-    realName, providerType, lang, timezone,
+    realName, avatar, providerType, lang, timezone,
     isAdministrator, isRoot,
     roles, 
     permissions{ 
@@ -61,7 +158,7 @@ mutation call($user: String!, $password: String!){
   signInUserByEmail(user: $user, password: $password){    
     token, 
     user{
-      realName, providerType, lang, timezone,
+      realName, avatar, providerType, lang, timezone,
       isAdministrator, isRoot,
       roles, 
       permissions{ 
@@ -86,7 +183,7 @@ export const reset_password = async (
   token: string,
   password: string
 ): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ resetUserPassword: ISucceed }>(
     `
 mutation call($token: String!, $password: String!){
   resetUserPassword(token: $token, password: $password){
@@ -99,10 +196,10 @@ mutation call($token: String!, $password: String!){
       password,
     }
   );
-  return res;
+  return res.resetUserPassword;
 };
 export const forgot_password = async (user: string): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ forgotUserPassword: ISucceed }>(
     `
 mutation call($user: String!, $home: String!){
   forgotUserPassword(user: $user, home: $home){
@@ -115,10 +212,10 @@ mutation call($user: String!, $home: String!){
       home: home_url(),
     }
   );
-  return res;
+  return res.forgotUserPassword;
 };
 export const unlock_by_email = async (user: string): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ unlockUserByEmail: ISucceed }>(
     `
 mutation call($user: String!, $home: String!){
   unlockUserByEmail(user: $user, home: $home){
@@ -131,11 +228,11 @@ mutation call($user: String!, $home: String!){
       home: home_url(),
     }
   );
-  return res;
+  return res.unlockUserByEmail;
 };
 
 export const unlock_by_token = async (token: string): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ unlockUserByToken: ISucceed }>(
     `
 mutation call($token: String!){
   unlockUserByToken(token: $token){
@@ -147,10 +244,10 @@ mutation call($token: String!){
       token,
     }
   );
-  return res;
+  return res.unlockUserByToken;
 };
 export const confirm_by_email = async (user: string): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ confirmUserByEmail: ISucceed }>(
     `
 mutation call($user: String!, $home: String!){
   confirmUserByEmail(user: $user, home: $home){
@@ -163,11 +260,11 @@ mutation call($user: String!, $home: String!){
       home: home_url(),
     }
   );
-  return res;
+  return res.confirmUserByEmail;
 };
 
 export const confirm_by_token = async (token: string): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ confirmUserByToken: ISucceed }>(
     `
 mutation call($token: String!){
   confirmUserByToken(token: $token){
@@ -179,7 +276,7 @@ mutation call($token: String!){
       token,
     }
   );
-  return res;
+  return res.confirmUserByToken;
 };
 export const sign_up_by_email = async (
   realName: string,
@@ -187,7 +284,7 @@ export const sign_up_by_email = async (
   email: string,
   password: string
 ): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ signUpUserByEmail: ISucceed }>(
     `
 mutation call($realName: String!, $nickname: String!, $email: String!, $password: String!, $home: String!, $timezone: String!){
   signUpUserByEmail(realName: $realName, nickname: $nickname, email: $email, password: $password, home: $home, timezone: $timezone){
@@ -204,14 +301,14 @@ mutation call($realName: String!, $nickname: String!, $email: String!, $password
       timezone: moment.tz.guess(),
     }
   );
-  return res;
+  return res.signUpUserByEmail;
 };
 
 export const create_leave_word = async (
   content: string,
   editor: string
 ): Promise<ISucceed> => {
-  const res = await query<ISucceed>(
+  const res = await query<{ createLeaveWord: ISucceed }>(
     `
 mutation call($content: String!, $editor: MediaTextEditor!){
   createLeaveWord(content: $content, editor: $editor){
@@ -221,7 +318,7 @@ mutation call($content: String!, $editor: MediaTextEditor!){
 `,
     { content, editor }
   );
-  return res;
+  return res.createLeaveWord;
 };
 
 export interface IAuthor {

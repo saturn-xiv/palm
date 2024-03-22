@@ -121,6 +121,7 @@ impl SignInResponse {
 #[graphql(name = "CurrentUser")]
 pub struct CurrentUser {
     pub real_name: String,
+    pub avatar: String,
     pub is_administrator: bool,
     pub is_root: bool,
     pub roles: Vec<String>,
@@ -184,6 +185,7 @@ impl CurrentUser {
         };
         Ok(Self {
             real_name: user.real_name.clone(),
+            avatar: user.avatar.clone(),
             lang: user.lang.clone(),
             timezone: user.timezone.clone(),
             roles,

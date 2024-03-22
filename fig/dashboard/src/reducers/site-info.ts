@@ -41,6 +41,6 @@ export const siteInfoSlice = createSlice({
 
 export const { refresh } = siteInfoSlice.actions;
 
-export const selectSiteInfo = (state: RootState) => state.siteInfo;
+export const siteInfo = (state: RootState) => state.siteInfo;
 
 export default siteInfoSlice.reducer;

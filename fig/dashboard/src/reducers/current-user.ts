@@ -54,6 +54,7 @@ export const remove = () => {
 
 const initialState: IState = {
   realName: "",
+  avatar: "",
   isAdministrator: false,
   isRoot: false,
   roles: [],
@@ -66,12 +67,26 @@ const initialState: IState = {
   timezone: UTC,
 };
 
+interface IProfile {
+  realName: string;
+  avatar: string;
+  lang: string;
+  timezone: string;
+}
+
 export const currentUserSlice = createSlice({
   name: "current-user",
   initialState,
   reducers: {
+    updateProfile: (state, action: PayloadAction<IProfile>) => {
+      state.realName = action.payload.realName;
+      state.avatar = action.payload.avatar;
+      state.lang = action.payload.lang;
+      state.timezone = action.payload.timezone;
+    },
     refresh: (state, action: PayloadAction<ICurrentUser>) => {
       state.realName = action.payload.realName;
+      state.avatar = action.payload.avatar;
       state.isAdministrator = action.payload.isAdministrator;
       state.isRoot = action.payload.isRoot;
       state.roles = [...action.payload.roles];
@@ -86,6 +101,7 @@ export const currentUserSlice = createSlice({
     signIn: (state, action: PayloadAction<ISignInResponse>) => {
       set(action.payload.token);
       state.realName = action.payload.user.realName;
+      state.avatar = action.payload.user.avatar;
       state.isAdministrator = action.payload.user.isAdministrator;
       state.isRoot = action.payload.user.isRoot;
       state.roles = [...action.payload.user.roles];
@@ -100,6 +116,7 @@ export const currentUserSlice = createSlice({
     signOut: (state) => {
       remove();
       state.realName = "";
+      state.avatar = "";
       state.isAdministrator = false;
       state.isRoot = false;
       state.roles = [];
@@ -114,10 +131,11 @@ export const currentUserSlice = createSlice({
   },
 });
 
-export const { refresh, signIn, signOut } = currentUserSlice.actions;
+export const { refresh, updateProfile, signIn, signOut } =
+  currentUserSlice.actions;
 
-export const selectIsSignedIn = (state: RootState) =>
+export const isSignedIn = (state: RootState) =>
   state.currentUser.providerType !== "";
-export const selectCurrentUser = (state: RootState) => state.currentUser;
+export const currentUser = (state: RootState) => state.currentUser;
 
 export default currentUserSlice.reducer;
