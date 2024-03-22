@@ -58,7 +58,7 @@ install_fluent_ui() {
 install_material_design() {
     npm install --save @mui/material @emotion/react @emotion/styled \
         @mui/icons-material @fontsource/roboto \
-        @mui/x-date-pickers
+        @mui/x-date-pickers material-ui-confirm
 }
 
 # https://react-bootstrap.github.io/getting-started/introduction

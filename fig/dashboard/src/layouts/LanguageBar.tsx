@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Link from "@mui/material/Link";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
+import { useConfirm } from "material-ui-confirm";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import {
@@ -24,6 +25,8 @@ const Widget = ({ languages }: IProps) => {
   const site_info = useAppSelector(selectSiteInfo);
   const is_signed_in = useAppSelector(selectIsSignedIn);
   const dispatch = useAppDispatch();
+  const confirm = useConfirm();
+  const intl = useIntl();
   useEffect(() => {
     if (site_info.version === "") {
       fetch_layout(get_locale()).then((res) => {
@@ -50,7 +53,22 @@ const Widget = ({ languages }: IProps) => {
           <Link
             onClick={(e) => {
               e.preventDefault();
-              set_locale(l, true);
+              const lang = intl.formatMessage({ id: `languages.${l}` });
+              confirm({
+                title: intl.formatMessage({
+                  id: "layouts.are-you-sure",
+                }),
+                description: intl.formatMessage(
+                  {
+                    id: "layouts.language-bar.confirm",
+                  },
+                  { lang }
+                ),
+              })
+                .then(() => {
+                  set_locale(l, true);
+                })
+                .catch(() => {});
             }}
             underline="hover"
           >
