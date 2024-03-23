@@ -2,10 +2,9 @@ use std::io::BufReader;
 use std::ops::DerefMut;
 
 use actix_multipart::form::{tempfile::TempFile, MultipartForm};
-use actix_web::{post, web, HttpResponse, Responder, Result as WebResult};
+use actix_web::{post, web, Responder, Result as WebResult};
 use mime::APPLICATION_OCTET_STREAM;
-use palm::{minio::Connection as Minio, try_web, Result};
-use serde::Deserialize;
+use palm::{minio::Client as Minio, try_web, Result, Succeed};
 
 use super::super::{
     models::{
@@ -14,11 +13,6 @@ use super::super::{
     },
     orm::postgresql::{Connection as Db, Pool as DbPool},
 };
-
-#[derive(Deserialize)]
-struct Query {
-    bucket: String,
-}
 
 #[derive(Debug, MultipartForm)]
 pub struct UploadForm {
@@ -29,7 +23,6 @@ pub struct UploadForm {
 #[post("/attachments")]
 pub async fn create(
     user: User,
-    query: web::Query<Query>,
     db: web::Data<DbPool>,
     s3: web::Data<Minio>,
     MultipartForm(form): MultipartForm<UploadForm>,
@@ -38,14 +31,13 @@ pub async fn create(
     let db = db.deref_mut();
 
     for it in form.files.iter() {
-        // it.file.persist(path)?;
-        try_web!(save(db, user.id, &s3, &query.bucket, it).await)?;
+        try_web!(save(db, user.id, &s3, it).await)?;
     }
 
-    Ok(HttpResponse::Ok())
+    Ok(web::Json(Succeed::default()))
 }
 
-async fn save(db: &mut Db, user: i32, s3: &Minio, bucket: &str, file: &TempFile) -> Result<()> {
+async fn save(db: &mut Db, user: i32, s3: &Minio, file: &TempFile) -> Result<()> {
     let content_type = file
         .content_type
         .as_ref()
@@ -53,12 +45,14 @@ async fn save(db: &mut Db, user: i32, s3: &Minio, bucket: &str, file: &TempFile)
     let title = file.file_name.clone().unwrap_or("unknown".to_string());
     let name = Attachment::name(&title);
     let mut reader = BufReader::new(&file.file);
-    s3.put_object(bucket, &name, content_type, &mut reader, file.size)
+    let bucket = s3.bucket(false, None).await?;
+    s3.connection
+        .put_object(&bucket, &name, content_type, &mut reader, file.size)
         .await?;
     AttachmentDao::create(
         db,
         user,
-        bucket,
+        &bucket,
         &name,
         &title,
         content_type,

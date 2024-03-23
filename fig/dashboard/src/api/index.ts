@@ -3,17 +3,10 @@ import { Metadata } from "grpc-web";
 import { get as getLocale } from "../locales";
 import { get as getToken } from "../reducers/current-user";
 
-
 export const grpc_metadata = (): Metadata => {
   return {
     authorization: `Bearer ${getToken()}`,
     "accept-language": getLocale(),
-  };
-};
-
-export const upload = () => {
-  return {
-    Authorization: `Bearer ${getToken()}`,
   };
 };
 
@@ -37,6 +30,24 @@ export const get = async <R>(path: string): Promise<R> => {
 
 export const delete_ = async <R>(path: string): Promise<R> => {
   const response = await fetch(path, options("DELETE"));
+  const res: R = await response.json();
+  return res;
+};
+
+export const upload = async <R>(path: string, file: File): Promise<R> => {
+  const form = new FormData();
+  form.append("file", file);
+
+  const data: RequestInit = {
+    credentials: "include",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+    mode: "cors",
+    method: "POST",
+  };
+  data.body = form;
+  const response = await fetch(path, data);
   const res: R = await response.json();
   return res;
 };

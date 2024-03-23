@@ -3,6 +3,7 @@ import moment from "moment-timezone";
 import { query } from "./graphql";
 import { home_url } from "../utils";
 import { IPermission } from "../reducers/current-user";
+import { upload } from ".";
 
 export const EDITOR_TEXTAREA = "TEXTAREA";
 export const UTC = "UTC";
@@ -29,8 +30,35 @@ export interface IAttachment {
   status: string;
   updatedAt: number;
 }
+export const upload_attachment = async (file: File): Promise<ISucceed> => {
+  const res = await upload<ISucceed>("/api/attachments", file);
+  return res;
+};
 
-export const index_pictures = async (): Promise<IAttachment[]> => {
+export interface IIndexAttachmentResponse {
+  items: IAttachment[];
+  pagination: IPagination;
+}
+export const index_attachment = async (
+  page: number,
+  size: number
+): Promise<IIndexAttachmentResponse> => {
+  const res = await query<{ indexAttachment: IIndexAttachmentResponse }>(
+    `
+query index_attachment($pager: Pager!){
+  indexAttachment(pager: $pager){
+    items{id, title, bucket, name, size, contentType, status, updatedAt},
+    pagination{page, size, total, hasNext, hasPrevious}
+  }
+}
+`,
+    {
+      pager: { page, size },
+    }
+  );
+  return res.indexAttachment;
+};
+export const index_picture = async (): Promise<IAttachment[]> => {
   const res = await query<{ indexPicture: IAttachment[] }>(
     `
 query call{

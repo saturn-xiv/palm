@@ -6,7 +6,7 @@ use log::warn;
 use palm::{
     cache::redis::ClusterConnection as Cache,
     jwt::Jwt,
-    minio::Connection as Minio,
+    minio::Client as Minio,
     pagination::{Pager, Pagination},
     rbac::Operation,
     session::Session,
@@ -169,7 +169,7 @@ impl ShowResponse {
     ) -> Result<Self> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         item.can_delete(enf, &user).await?;
-        let url = item.url(s3, ttl).await?;
+        let url = item.url(&s3.connection, ttl).await?;
 
         Ok(Self {
             url,

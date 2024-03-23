@@ -189,8 +189,9 @@ lazy_static! {
 pub const PROTOBUF: &str = "application/x-protobuf";
 pub const FLATBUFFER: &str = "application/x-flatbuffer";
 
-#[derive(GraphQLObject)]
+#[derive(GraphQLObject, Serialize, Deserialize)]
 #[graphql(name = "Succeed")]
+#[serde(rename_all = "camelCase")]
 pub struct Succeed {
     pub created_at: NaiveDateTime,
 }

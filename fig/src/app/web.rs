@@ -25,7 +25,7 @@ use daffodil::controllers as daffodil_controllers;
 use data_encoding::BASE64;
 use hyper::StatusCode;
 use juniper::EmptySubscription;
-use log::info;
+use log::{debug, info};
 use palm::{
     cache::redis::Config as Redis,
     crypto::{aes::Aes, hmac::Hmac, Key},
@@ -62,6 +62,10 @@ impl Server {
         let redis = web::Data::new(config.redis.open()?);
         let rabbitmq = web::Data::new(config.rabbitmq.open().await?);
         let minio = web::Data::new(config.minio.open()?);
+        {
+            let items = minio.connection.list_buckets().await?;
+            debug!("found buckets: {:?}", items);
+        }
         let opensearch = web::Data::new(config.opensearch.open()?);
         let jwt = web::Data::new(Jwt::new(&config.cookie_key.0));
         let hmac = web::Data::new(Hmac::new(&config.secret_key.0)?);

@@ -15,7 +15,7 @@ use juniper::{GraphQLEnum, GraphQLObject};
 use log::{debug, warn};
 use palm::{
     cache::redis::ClusterConnection as Cache, duration_from_seconds, jwt::Jwt,
-    minio::Connection as Minio, rbac::Operation, session::Session, Error, HttpError, Result,
+    minio::Client as Minio, rbac::Operation, session::Session, Error, HttpError, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -43,6 +43,7 @@ impl IndexResponseItem {
             match AttachmentDao::by_resource::<Ledger>(db, x.id)?.first() {
                 Some(it) => {
                     let it = s3
+                        .connection
                         .get_presigned_object_url(
                             &it.bucket,
                             &it.name,

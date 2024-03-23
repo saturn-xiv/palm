@@ -9,14 +9,14 @@ use ::minio::s3::{
         MakeBucketArgs, PutObjectArgs, RemoveBucketArgs, RemoveObjectArgs, SetBucketLifecycleArgs,
         SetBucketPolicyArgs,
     },
-    client::{Client, ClientBuilder},
+    client::{Client as MinioClient, ClientBuilder},
     creds::StaticProvider,
     http::BaseUrl,
     types::{Filter, LifecycleConfig, LifecycleRule},
     utils::Multimap,
 };
 use askama::Template;
-use chrono::{DateTime, Duration, Utc};
+use chrono::{DateTime, Datelike, Duration, Utc};
 use log::{debug, info};
 use mime::Mime;
 use reqwest::Method;
@@ -32,6 +32,7 @@ pub struct Config {
     pub access_key: String,
     #[serde(rename = "secret-key")]
     pub secret_key: String,
+    pub bucket: String,
 }
 
 #[derive(Template)]
@@ -90,22 +91,53 @@ impl NginxConfig<'_> {
 }
 
 impl Config {
-    pub fn open(&self) -> Result<Connection> {
-        let cred = StaticProvider::new(&self.access_key, &self.access_key, None);
+    pub fn open(&self) -> Result<Client> {
+        let cred = StaticProvider::new(&self.access_key, &self.secret_key, None);
         let base_url: BaseUrl = self.endpoint.parse()?;
 
-        let client = ClientBuilder::new(base_url)
-            .provider(Some(Box::new(cred)))
-            .ignore_cert_check(Some(true))
-            .build()?;
-        let base_url = self.endpoint.parse()?;
-        Ok(Connection { client, base_url })
+        let connection = Connection {
+            client: ClientBuilder::new(base_url.clone())
+                .provider(Some(Box::new(cred)))
+                .ignore_cert_check(Some(true))
+                .build()?,
+            base_url,
+        };
+
+        Ok(Client {
+            connection,
+            bucket: self.bucket.clone(),
+        })
+    }
+}
+
+pub struct Client {
+    pub connection: Connection,
+    bucket: String,
+}
+
+impl Client {
+    pub async fn bucket(&self, public: bool, expiration_days: Option<usize>) -> Result<String> {
+        let name = format!(
+            "{}.{}.{}{}",
+            self.bucket,
+            Utc::now().year(),
+            if public { "o" } else { "p" },
+            expiration_days
+                .map(|x| format!(".{x}"))
+                .unwrap_or("".to_string())
+        );
+        if !self.connection.bucket_exists(&name).await? {
+            self.connection
+                .create_bucket(&name, public, expiration_days)
+                .await?;
+        }
+        Ok(name)
     }
 }
 
 pub struct Connection {
     base_url: BaseUrl,
-    client: Client,
+    client: MinioClient,
 }
 impl Connection {
     pub async fn bucket_exists(&self, name: &str) -> Result<bool> {

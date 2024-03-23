@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { FormattedMessage } from "react-intl";
 
-import { IAttachment, index_pictures } from "../../api/camelia";
+import { IAttachment, index_picture } from "../../api/camelia";
 
 interface IProps {
   form: string;
@@ -21,7 +21,7 @@ const Widget = ({ form, id, label, handleChange }: IProps) => {
   const [items, setItems] = useState<IAttachment[]>([]);
   const label_id = `${form}-attachment-select-label`;
   useEffect(() => {
-    index_pictures().then((res) => {
+    index_picture().then((res) => {
       setItems(res);
     });
   }, []);
@@ -55,15 +55,15 @@ const Widget = ({ form, id, label, handleChange }: IProps) => {
             onChange={({ target }) => {
               if (target.files) {
                 console.log(`upload file ${target.files[0].name}`);
-                const fileReader = new FileReader();
-                const name = target.accept;
+                // const fileReader = new FileReader();
+                // const name = target.accept;
 
-                fileReader.readAsDataURL(target.files[0]);
-                fileReader.onload = (e) => {
-                  this.setState((prevState) => ({
-                    [name]: [...prevState[name], e.target.result],
-                  }));
-                };
+                // fileReader.readAsDataURL(target.files[0]);
+                // fileReader.onload = (e) => {
+                //   this.setState((prevState) => ({
+                //     [name]: [...prevState[name], e.target.result],
+                //   }));
+                // };
               }
             }}
             accept="image/*"
