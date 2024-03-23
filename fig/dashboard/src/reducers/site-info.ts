@@ -18,7 +18,7 @@ const initialState: IState = {
   subhead: "",
   description: "",
   keywords: [],
-  languages: [],
+  languages: ["en-US", "zh-Hans"],
   authors: [],
   version: "",
 };

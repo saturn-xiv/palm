@@ -8,8 +8,8 @@ export const create_ledger = async (
 ): Promise<ISucceed> => {
   const res = await query<{ daffodilCreateLedger: ISucceed }>(
     `
-  mutation call(name: String!, summary: String!, cover: Int!){
-    daffodilCreateLedger(name: $name, summary: $summary, cover: Int){
+  mutation call($name: String!, $summary: String!, $cover: Int!){
+    daffodilCreateLedger(name: $name, summary: $summary, cover: $cover){
       createdAt
     }
   }

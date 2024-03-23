@@ -34,9 +34,11 @@ export const delete_ = async <R>(path: string): Promise<R> => {
   return res;
 };
 
-export const upload = async <R>(path: string, file: File): Promise<R> => {
+export const upload = async <R>(path: string, files: File[]): Promise<R> => {
   const form = new FormData();
-  form.append("file", file);
+  for (const file of files) {
+    form.append("file", file);
+  }
 
   const data: RequestInit = {
     credentials: "include",

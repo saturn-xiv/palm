@@ -108,15 +108,16 @@ impl Form {
         debug!("create ledger {}({})", self.name, self.summary);
         db.transaction::<_, Error, _>(move |db| {
             AttachmentDao::by_id(db, self.cover)?;
-            let id = LedgerDao::create(db, user.id, &self.name, &self.summary)?;
-            AttachmentDao::associate::<Ledger>(db, self.cover, id)?;
+            LedgerDao::create(db, user.id, &self.name, &self.summary)?;
+            let it = LedgerDao::by_user_and_name(db, user.id, &self.name)?;
+            AttachmentDao::associate::<Ledger>(db, self.cover, it.id)?;
             LogDao::add::<_, Ledger>(
                 db,
                 user.id,
                 NAME,
                 LogLevel::Info,
                 &ss.client_ip,
-                Some(id),
+                Some(it.id),
                 &format!("create ledger {}", self.name),
             )?;
             Ok(())

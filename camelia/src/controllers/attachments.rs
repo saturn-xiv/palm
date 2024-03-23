@@ -4,7 +4,7 @@ use std::ops::DerefMut;
 use actix_multipart::form::{tempfile::TempFile, MultipartForm};
 use actix_web::{post, web, Responder, Result as WebResult};
 use mime::APPLICATION_OCTET_STREAM;
-use palm::{minio::Client as Minio, try_web, Result, Succeed};
+use palm::{minio::Client as Minio, try_web, Result};
 
 use super::super::{
     models::{
@@ -30,14 +30,16 @@ pub async fn create(
     let mut db = try_web!(db.get())?;
     let db = db.deref_mut();
 
+    let mut items = Vec::new();
     for it in form.files.iter() {
-        try_web!(save(db, user.id, &s3, it).await)?;
+        let it = try_web!(save(db, user.id, &s3, it).await)?;
+        items.push(it);
     }
 
-    Ok(web::Json(Succeed::default()))
+    Ok(web::Json(items))
 }
 
-async fn save(db: &mut Db, user: i32, s3: &Minio, file: &TempFile) -> Result<()> {
+async fn save(db: &mut Db, user: i32, s3: &Minio, file: &TempFile) -> Result<Attachment> {
     let content_type = file
         .content_type
         .as_ref()
@@ -58,5 +60,6 @@ async fn save(db: &mut Db, user: i32, s3: &Minio, file: &TempFile) -> Result<()>
         content_type,
         file.size as u64,
     )?;
-    Ok(())
+    let it = AttachmentDao::by_bucket_and_name(db, &bucket, &name)?;
+    Ok(it)
 }

@@ -30,8 +30,10 @@ export interface IAttachment {
   status: string;
   updatedAt: number;
 }
-export const upload_attachment = async (file: File): Promise<ISucceed> => {
-  const res = await upload<ISucceed>("/api/attachments", file);
+export const upload_attachment = async (
+  files: File[]
+): Promise<IAttachment[]> => {
+  const res = await upload<IAttachment[]>("/api/attachments", files);
   return res;
 };
 

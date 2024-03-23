@@ -24,9 +24,9 @@ impl Mutation {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
         let request = camelia_graphql::locale::Form {
-            lang,
-            code,
-            message,
+            lang: lang.trim().to_string(),
+            code: code.trim().to_string(),
+            message: message.trim().to_string(),
         };
 
         request.handle(&context.session, db, ch, enf, jwt).await?;
@@ -39,7 +39,7 @@ impl Mutation {
         ttl: Option<i32>,
     ) -> FieldResult<camelia_graphql::user::SignInResponse> {
         let request = camelia_graphql::user::SignInRequest {
-            user,
+            user: user.trim().to_string(),
             password,
             ttl: ttl.unwrap_or(60 * 60 * 24) as i64,
         };
@@ -61,9 +61,9 @@ impl Mutation {
         timezone: String,
     ) -> FieldResult<Succeed> {
         let request = camelia_graphql::user::SignUpRequest {
-            real_name,
-            nickname,
-            email,
+            real_name: real_name.trim().to_string(),
+            nickname: nickname.trim().to_string(),
+            email: email.trim().to_string(),
             password,
             timezone,
             home,
@@ -184,9 +184,9 @@ impl Mutation {
         let jwt = context.jwt.deref();
 
         let request = camelia_graphql::user::UpdateProfile {
-            real_name,
+            real_name: real_name.trim().to_string(),
             avatar,
-            lang,
+            lang: lang.trim().to_string(),
             timezone,
         };
         request.handle(&context.session, db, ch, jwt)?;
@@ -349,7 +349,7 @@ impl Mutation {
         let jwt = context.jwt.deref();
 
         let request = daffodil_graphql::ledger::Form {
-            name,
+            name: name.trim().to_string(),
             summary,
             cover,
         };
@@ -373,7 +373,7 @@ impl Mutation {
         let enf = context.enforcer.deref();
 
         let request = daffodil_graphql::ledger::Form {
-            name,
+            name: name.trim().to_string(),
             summary,
             cover,
         };

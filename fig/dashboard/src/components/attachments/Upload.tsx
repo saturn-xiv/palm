@@ -13,11 +13,9 @@ const Widget = ({ accept, handleRefresh }: IProps) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept,
     onDrop: (files: File[]): void => {
-      for (const file of files) {
-        upload("/api/attachments", file).then(() => {
-          handleRefresh();
-        });
-      }
+      upload("/api/attachments", files).then(() => {
+        handleRefresh();
+      });
     },
   });
 

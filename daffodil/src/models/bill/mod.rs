@@ -52,7 +52,7 @@ pub trait Dao {
         price: (i64, &str),
         category: &str,
         paid: (&str, &NaiveDateTime, &str),
-    ) -> Result<i32>;
+    ) -> Result<()>;
     fn update(
         &mut self,
         id: i32,
@@ -95,8 +95,8 @@ impl Dao for Connection {
         (price, currency): (i64, &str),
         category: &str,
         (merchant, paid_at, paid_by): (&str, &NaiveDateTime, &str),
-    ) -> Result<i32> {
-        let id = insert_into(daffodil_bills::dsl::daffodil_bills)
+    ) -> Result<()> {
+        insert_into(daffodil_bills::dsl::daffodil_bills)
             .values(&New {
                 user_id: user,
                 ledger_id: ledger,
@@ -109,9 +109,8 @@ impl Dao for Connection {
                 paid_by,
                 updated_at: &Utc::now().naive_utc(),
             })
-            .returning(daffodil_bills::dsl::id)
             .execute(self)?;
-        Ok(id as i32)
+        Ok(())
     }
     fn update(
         &mut self,

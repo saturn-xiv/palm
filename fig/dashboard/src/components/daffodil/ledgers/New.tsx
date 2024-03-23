@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { string as yup_string, object as yup_object } from "yup";
 import { useNavigate } from "react-router-dom";
+import FormControl from "@mui/material/FormControl";
 
 import { IErrorMessage } from "../../../api/graphql";
 import { create_ledger } from "../../../api/daffodil";
 import MessageBox, {
   IState as IMessageBox,
 } from "../../../components/MessageBox";
-import PictureSelect from "../../../components/attachments/PictureSelect";
+import { IAttachment, index_picture } from "../../../api/camelia";
 
 const validationSchema = yup_object({
   name: yup_string().required().min(1).max(31),
@@ -22,21 +26,27 @@ const validationSchema = yup_object({
 
 function Widget() {
   const navigate = useNavigate();
-  const [cover, setCover] = useState<number | null>(null);
   const [messageBox, setMessageBox] = useState<IMessageBox>({
     messages: [],
     severity: "info",
   });
   const intl = useIntl();
+  const [pictures, setPictures] = useState<IAttachment[]>([]);
+  useEffect(() => {
+    index_picture().then((res) => {
+      setPictures(res);
+    });
+  }, []);
 
   const formik = useFormik({
     initialValues: {
       name: "",
       summary: "",
+      cover: undefined,
     },
     validationSchema,
     onSubmit: (values) => {
-      if (cover === null) {
+      if (values.cover === undefined) {
         setMessageBox({
           messages: [
             intl.formatMessage({
@@ -47,7 +57,7 @@ function Widget() {
         });
         return;
       }
-      create_ledger(values.name, values.summary, cover)
+      create_ledger(values.name, values.summary, values.cover)
         .then(() => {
           setMessageBox({
             messages: [intl.formatMessage({ id: "flashes.succeed" })],
@@ -107,12 +117,25 @@ function Widget() {
           error={formik.touched.summary && Boolean(formik.errors.summary)}
           helperText={formik.touched.summary && formik.errors.summary}
         />
-        <PictureSelect
-          id={null}
-          label={intl.formatMessage({ id: "form.fields.cover.label" })}
-          form="daffodil.ledgers.new"
-          handleChange={setCover}
-        />
+        <FormControl margin="normal" required fullWidth>
+          <InputLabel id="ledger-cover-select-label">
+            <FormattedMessage id="form.fields.cover.label" />
+          </InputLabel>
+          <Select
+            labelId="ledger-cover-select-label"
+            name="cover"
+            value={formik.values.cover || ""}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          >
+            {pictures.map((x, i) => (
+              <MenuItem key={i} value={x.id}>
+                {x.title}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
         <Button
           type="submit"
           fullWidth

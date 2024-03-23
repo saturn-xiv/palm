@@ -128,7 +128,7 @@ impl Form {
             self.price, self.currency, self.paid_by, self.paid_at, ledger.name
         );
         db.transaction::<_, Error, _>(move |db| {
-            let id = BillDao::create(
+            BillDao::create(
                 db,
                 user.id,
                 ledger.id,
@@ -138,14 +138,14 @@ impl Form {
                 (&self.merchant, &self.paid_at, &self.paid_by),
             )?;
 
-            LogDao::add::<_, Bill>(
+            LogDao::add::<_, Ledger>(
                 db,
                 user.id,
                 NAME,
                 LogLevel::Info,
                 &ss.client_ip,
-                Some(id),
-                &format!("create bill {}", self.summary),
+                Some(ledger.id),
+                &format!("add bill to ledger {}", ledger.name),
             )?;
             Ok(())
         })?;
