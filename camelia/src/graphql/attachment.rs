@@ -37,6 +37,22 @@ pub struct IndexResponseItem {
     pub updated_at: NaiveDateTime,
 }
 
+impl IndexResponseItem {
+    pub fn pictures<J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        jwt: &J,
+    ) -> Result<Vec<Self>> {
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
+        let items = AttachmentDao::pictures_by_user(db, user.id)?
+            .into_iter()
+            .map(|x| x.into())
+            .collect();
+        Ok(items)
+    }
+}
+
 impl From<Attachment> for IndexResponseItem {
     fn from(x: Attachment) -> Self {
         Self {

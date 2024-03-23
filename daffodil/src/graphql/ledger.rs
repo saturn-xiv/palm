@@ -1,5 +1,6 @@
 use camelia::{
     models::{
+        attachment::Dao as AttachmentDao,
         log::{Dao as LogDao, Level as LogLevel},
         user::{Details as UserDetails, Item as User},
     },
@@ -13,8 +14,8 @@ use hyper::StatusCode;
 use juniper::{GraphQLEnum, GraphQLObject};
 use log::{debug, warn};
 use palm::{
-    cache::redis::ClusterConnection as Cache, jwt::Jwt, rbac::Operation, session::Session, Error,
-    HttpError, Result,
+    cache::redis::ClusterConnection as Cache, duration_from_seconds, jwt::Jwt,
+    minio::Connection as Minio, rbac::Operation, session::Session, Error, HttpError, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -29,6 +30,7 @@ use super::super::{
 pub struct IndexResponseItem {
     pub id: i32,
     pub owner: UserDetails,
+    pub cover: Option<String>,
     pub name: String,
     pub summary: String,
     pub deleted_at: Option<NaiveDateTime>,
@@ -36,10 +38,26 @@ pub struct IndexResponseItem {
 }
 
 impl IndexResponseItem {
-    fn new(db: &mut Db, x: &Ledger) -> Result<Self> {
+    async fn new(db: &mut Db, s3: &Minio, x: &Ledger) -> Result<Self> {
+        let cover = {
+            match AttachmentDao::by_resource::<Ledger>(db, x.id)?.first() {
+                Some(it) => {
+                    let it = s3
+                        .get_presigned_object_url(
+                            &it.bucket,
+                            &it.name,
+                            duration_from_seconds(60 * 60)?,
+                        )
+                        .await?;
+                    Some(it)
+                }
+                None => None,
+            }
+        };
         let it = Self {
             id: x.id,
             owner: UserDetails::new(db, x.owner_id)?,
+            cover,
             name: x.name.clone(),
             summary: x.summary.clone(),
             deleted_at: x.deleted_at,
@@ -56,11 +74,17 @@ pub struct IndexResponse {
 }
 
 impl IndexResponse {
-    pub fn new<J: Jwt>(ss: &Session, db: &mut Db, ch: &mut Cache, jwt: &J) -> Result<Self> {
+    pub async fn new<J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        jwt: &J,
+        s3: &Minio,
+    ) -> Result<Self> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         let mut items = Vec::new();
         for it in LedgerDao::by_user(db, user.id)?.iter() {
-            items.push(IndexResponseItem::new(db, it)?);
+            items.push(IndexResponseItem::new(db, s3, it).await?);
         }
 
         Ok(Self { items })
@@ -73,6 +97,7 @@ pub struct Form {
     pub name: String,
     #[validate(length(min = 1, max = 511))]
     pub summary: String,
+    pub cover: i32,
 }
 
 impl Form {
@@ -81,8 +106,9 @@ impl Form {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         debug!("create ledger {}({})", self.name, self.summary);
         db.transaction::<_, Error, _>(move |db| {
+            AttachmentDao::by_id(db, self.cover)?;
             let id = LedgerDao::create(db, user.id, &self.name, &self.summary)?;
-            // let it = LedgerDao::by_user_and_name(db, user.id, &self.name)?;
+            AttachmentDao::associate::<Ledger>(db, self.cover, id)?;
             LogDao::add::<_, Ledger>(
                 db,
                 user.id,
@@ -116,6 +142,9 @@ impl Form {
             it.name, it.summary, self.name, self.summary
         );
         db.transaction::<_, Error, _>(move |db| {
+            AttachmentDao::by_id(db, self.cover)?;
+            AttachmentDao::clear::<Ledger>(db, it.id)?;
+            AttachmentDao::associate::<Ledger>(db, self.cover, id)?;
             LedgerDao::update(db, id, &self.name, &self.summary)?;
             LogDao::add::<_, Ledger>(
                 db,

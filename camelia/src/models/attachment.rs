@@ -1,3 +1,4 @@
+use std::any::type_name;
 use std::fmt;
 use std::path::Path;
 use std::string::ToString;
@@ -103,11 +104,18 @@ pub trait Dao {
     fn update(&mut self, id: i32, title: &str) -> Result<()>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
+    fn pictures_by_user(&mut self, user: i32) -> Result<Vec<Item>>;
     fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count_by_user(&mut self, user: i32) -> Result<i64>;
     fn delete(&mut self, id: i32) -> Result<()>;
-    fn associate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
-    fn dissociate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
+    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
+    fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
+    fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>>;
+    fn clear_(&mut self, resource_type: &str, resource_id: i32) -> Result<()>;
+    fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
+    fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
+    fn clear<T>(&mut self, resource_id: i32) -> Result<()>;
+    fn by_resource<T>(&mut self, resource_id: i32) -> Result<Vec<Item>>;
 }
 
 impl Dao for Connection {
@@ -184,6 +192,14 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
+    fn pictures_by_user(&mut self, user: i32) -> Result<Vec<Item>> {
+        let items = attachments::dsl::attachments
+            .filter(attachments::dsl::user_id.eq(user))
+            .filter(attachments::dsl::content_type.like("image%"))
+            .order(attachments::dsl::updated_at.desc())
+            .load(self)?;
+        Ok(items)
+    }
     fn count_by_user(&mut self, user: i32) -> Result<i64> {
         let it = attachments::dsl::attachments
             .filter(attachments::dsl::user_id.eq(user))
@@ -200,7 +216,7 @@ impl Dao for Connection {
         delete(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }
-    fn associate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
         let cnt: i64 = attachment_resources::dsl::attachment_resources
             .filter(attachment_resources::dsl::attachment_id.eq(id))
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
@@ -218,7 +234,7 @@ impl Dao for Connection {
         }
         Ok(())
     }
-    fn dissociate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
         delete(
             attachment_resources::dsl::attachment_resources
                 .filter(attachment_resources::dsl::attachment_id.eq(id))
@@ -227,5 +243,37 @@ impl Dao for Connection {
         )
         .execute(self)?;
         Ok(())
+    }
+    fn clear_(&mut self, resource_type: &str, resource_id: i32) -> Result<()> {
+        delete(
+            attachment_resources::dsl::attachment_resources
+                .filter(attachment_resources::dsl::resource_type.eq(resource_type))
+                .filter(attachment_resources::dsl::resource_id.eq(resource_id)),
+        )
+        .execute(self)?;
+        Ok(())
+    }
+    fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>> {
+        let ids: Vec<i32> = attachment_resources::dsl::attachment_resources
+            .select(attachment_resources::dsl::id)
+            .filter(attachment_resources::dsl::resource_type.eq(resource_type))
+            .filter(attachment_resources::dsl::resource_id.eq(resource_id))
+            .load(self)?;
+        let items = attachments::dsl::attachments
+            .filter(attachments::dsl::id.eq_any(ids))
+            .load::<Item>(self)?;
+        Ok(items)
+    }
+    fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()> {
+        self.associate_(id, type_name::<T>(), resource_id)
+    }
+    fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()> {
+        self.dissociate_(id, type_name::<T>(), resource_id)
+    }
+    fn clear<T>(&mut self, resource_id: i32) -> Result<()> {
+        self.clear_(type_name::<T>(), resource_id)
+    }
+    fn by_resource<T>(&mut self, resource_id: i32) -> Result<Vec<Item>> {
+        self.by_resource_(type_name::<T>(), resource_id)
     }
 }

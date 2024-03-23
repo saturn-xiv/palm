@@ -27,6 +27,9 @@ const Widget = () => {
           title: intl.formatMessage({
             id: "layouts.are-you-sure",
           }),
+          description: intl.formatMessage({
+            id: "users.sign-out.confirm",
+          }),
         })
           .then(() => {
             sign_out()

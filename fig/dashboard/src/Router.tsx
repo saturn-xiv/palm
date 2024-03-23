@@ -6,7 +6,18 @@ const router = createBrowserRouter(
     {
       path: "/dashboard",
       lazy: () => import("./layouts/dashboard"),
-      children: [{ path: "self", lazy: () => import("./pages/self") }],
+      children: [
+        { path: "main", lazy: () => import("./pages/main") },
+        { path: "self", lazy: () => import("./pages/self") },
+        {
+          path: "daffodil/ledgers",
+          lazy: () => import("./pages/daffodil/ledgers/index"),
+        },
+        {
+          path: "daffodil/ledgers/new",
+          lazy: () => import("./pages/daffodil/ledgers/new"),
+        },
+      ],
     },
     {
       path: "/anonymous",

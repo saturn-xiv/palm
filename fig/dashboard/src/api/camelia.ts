@@ -18,6 +18,31 @@ interface IPagination {
   hasNext: boolean;
   hasPrevious: boolean;
 }
+
+export interface IAttachment {
+  id: number;
+  title: string;
+  bucket: string;
+  name: string;
+  size: number;
+  contentType: string;
+  status: string;
+  updatedAt: number;
+}
+
+export const index_pictures = async (): Promise<IAttachment[]> => {
+  const res = await query<{ indexPicture: IAttachment[] }>(
+    `
+query call{
+  indexPicture{
+    id, title, bucket, name, size, contentType, status, updatedAt
+  }
+}
+`,
+    {}
+  );
+  return res.indexPicture;
+};
 interface ILog {
   id: number;
   plugin: string;

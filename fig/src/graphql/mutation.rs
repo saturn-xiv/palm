@@ -340,6 +340,7 @@ impl Mutation {
         context: &Context,
         name: String,
         summary: String,
+        cover: i32,
     ) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
@@ -347,7 +348,11 @@ impl Mutation {
         let ch = ch.deref_mut();
         let jwt = context.jwt.deref();
 
-        let request = daffodil_graphql::ledger::Form { name, summary };
+        let request = daffodil_graphql::ledger::Form {
+            name,
+            summary,
+            cover,
+        };
 
         request.create(&context.session, db, ch, jwt)?;
 
@@ -358,6 +363,7 @@ impl Mutation {
         id: i32,
         name: String,
         summary: String,
+        cover: i32,
     ) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
@@ -366,7 +372,11 @@ impl Mutation {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
 
-        let request = daffodil_graphql::ledger::Form { name, summary };
+        let request = daffodil_graphql::ledger::Form {
+            name,
+            summary,
+            cover,
+        };
 
         request
             .update(&context.session, db, ch, enf, jwt, id)

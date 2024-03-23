@@ -102,6 +102,24 @@ impl Query {
 
         Ok(response)
     }
+    fn index_picture(
+        context: &Context,
+    ) -> FieldResult<Vec<camelia_graphql::attachment::IndexResponseItem>> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+
+        let response = camelia_graphql::attachment::IndexResponseItem::pictures(
+            &context.session,
+            db,
+            ch,
+            jwt,
+        )?;
+
+        Ok(response)
+    }
     fn index_attachment(
         context: &Context,
         pager: Pager,
@@ -189,7 +207,7 @@ impl Query {
         Ok(response)
     }
 
-    fn daffodil_index_ledger(
+    async fn daffodil_index_ledger(
         context: &Context,
     ) -> FieldResult<daffodil_graphql::ledger::IndexResponse> {
         let mut db = context.postgresql.get()?;
@@ -197,8 +215,10 @@ impl Query {
         let mut ch = context.redis.get()?;
         let ch = ch.deref_mut();
         let jwt = context.jwt.deref();
+        let s3 = context.minio.deref();
 
-        let response = daffodil_graphql::ledger::IndexResponse::new(&context.session, db, ch, jwt)?;
+        let response =
+            daffodil_graphql::ledger::IndexResponse::new(&context.session, db, ch, jwt, s3).await?;
 
         Ok(response)
     }

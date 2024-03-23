@@ -162,8 +162,9 @@ use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 use std::process::{Command, Output};
 
-use chrono::{DateTime, NaiveDateTime, Utc};
+use chrono::{DateTime, Duration, NaiveDateTime, Utc};
 use chrono_tz::Tz;
+use hyper::StatusCode;
 use juniper::{GraphQLEnum, GraphQLObject};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -210,6 +211,13 @@ pub enum TextEditor {
     Textarea,
     Markdown,
     Quill,
+}
+
+pub fn duration_from_seconds(i: i64) -> Result<Duration> {
+    Duration::try_seconds(i).ok_or(Box::new(HttpError(
+        StatusCode::BAD_REQUEST,
+        Some(format!("bad seconds {i}")),
+    )))
 }
 
 pub fn timestamp2datetime(ts: i64, tz: &Tz) -> Option<DateTime<Tz>> {

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { styled, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -16,11 +16,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { ConfirmProvider } from "material-ui-confirm";
 
-import { mainListItems, secondaryListItems } from "./menus";
+import { Main as MainMenu, Secondary as SecondaryMenu } from "./menus";
 import Copyright from "../Copyright";
 import { theme as defaultTheme } from "..";
 import { useAppSelector } from "../../hooks";
 import { siteInfo as selectSiteInfo } from "../../reducers/site-info";
+import { SIGN_IN_PATH, get as get_token } from "../../reducers/current-user";
 import NotificationBar from "./NotificationBar";
 import SignOutIcon from "./SignOut";
 
@@ -82,6 +83,16 @@ export function Component() {
     setOpen(!open);
   };
 
+  const token = get_token();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token === null) {
+      navigate(SIGN_IN_PATH);
+      return;
+    }
+  }, [token, navigate]);
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <ConfirmProvider>
@@ -133,9 +144,9 @@ export function Component() {
             </Toolbar>
             <Divider />
             <List component="nav">
-              {mainListItems}
+              <MainMenu />
               <Divider sx={{ my: 1 }} />
-              {secondaryListItems}
+              <SecondaryMenu />
             </List>
           </Drawer>
           <Box
