@@ -11,16 +11,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import { useNavigate } from "react-router-dom";
 
 import { ILedger } from "../../../api/daffodil";
 import { timestamp_to_str } from "../../../utils";
-import ledger_cover_img from "../../../assets/market.svg";
 
 interface IProps {
   item: ILedger;
 }
 
 const Widget = ({ item }: IProps) => {
+  const navigate = useNavigate();
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -40,8 +41,11 @@ const Widget = ({ item }: IProps) => {
       <CardMedia
         component="img"
         height="194"
-        image={item.cover || ledger_cover_img}
-        alt={item.name}
+        image={item.cover.url}
+        alt={item.cover.title}
+        onClick={() => {
+          navigate(`/dashboard/daffodil/ledgers/${item.id}`);
+        }}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

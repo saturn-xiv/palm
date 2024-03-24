@@ -19,7 +19,11 @@ interface IPagination {
   hasNext: boolean;
   hasPrevious: boolean;
 }
-
+export interface IAttachmentShow {
+  id: number;
+  title: string;
+  url: string;
+}
 export interface IAttachment {
   id: number;
   title: string;

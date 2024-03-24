@@ -17,6 +17,14 @@ const router = createBrowserRouter(
           path: "daffodil/ledgers/new",
           lazy: () => import("./pages/daffodil/ledgers/new"),
         },
+        {
+          path: "daffodil/ledgers/:id/edit",
+          lazy: () => import("./pages/daffodil/ledgers/edit"),
+        },
+        {
+          path: "daffodil/ledgers/:id",
+          lazy: () => import("./pages/daffodil/ledgers/show"),
+        },
       ],
     },
     {

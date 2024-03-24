@@ -8,16 +8,12 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import { FormattedMessage, useIntl } from "react-intl";
-import {
-  string as yup_string,
-  number as yup_number,
-  object as yup_object,
-} from "yup";
+import { string as yup_string, object as yup_object } from "yup";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 
 import { IErrorMessage } from "../../../api/graphql";
-import { create_ledger } from "../../../api/daffodil";
+import { update_ledger, ILedger } from "../../../api/daffodil";
 import MessageBox, {
   IState as IMessageBox,
 } from "../../../components/MessageBox";
@@ -26,10 +22,13 @@ import { IAttachment, index_picture } from "../../../api/camelia";
 const validationSchema = yup_object({
   name: yup_string().required().min(1).max(31),
   summary: yup_string().required().min(1).max(511),
-  cover: yup_number().required(),
 });
 
-function Widget() {
+interface IProps {
+  item: ILedger;
+}
+
+function Widget({ item }: IProps) {
   const navigate = useNavigate();
   const [messageBox, setMessageBox] = useState<IMessageBox>({
     messages: [],
@@ -45,24 +44,20 @@ function Widget() {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      summary: "",
-      cover: undefined,
+      name: item.name,
+      summary: item.summary,
+      cover: item.cover.id,
     },
     validationSchema,
     onSubmit: (values) => {
-      if (values.cover === undefined) {
-        setMessageBox({
-          messages: [
-            intl.formatMessage({
-              id: "attachments.select-picture.required",
-            }),
-          ],
-          severity: "error",
-        });
+      if (
+        values.summary === undefined ||
+        values.name === undefined ||
+        values.cover === undefined
+      ) {
         return;
       }
-      create_ledger(values.name, values.summary, values.cover)
+      update_ledger(values.name, values.summary, values.cover)
         .then(() => {
           setMessageBox({
             messages: [intl.formatMessage({ id: "flashes.succeed" })],
@@ -129,7 +124,7 @@ function Widget() {
           <Select
             labelId="ledger-cover-select-label"
             name="cover"
-            value={formik.values.cover || ""}
+            value={formik.values.cover}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >

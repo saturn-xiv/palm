@@ -1,6 +1,23 @@
 import { query } from "./graphql";
-import { ISucceed } from "./camelia";
+import { IAttachmentShow, ISucceed } from "./camelia";
 
+export const update_ledger = async (
+  name: string,
+  summary: string,
+  cover: number
+): Promise<ISucceed> => {
+  const res = await query<{ daffodilUpdateLedger: ISucceed }>(
+    `
+  mutation call($name: String!, $summary: String!, $cover: Int!){
+    daffodilUpdateLedger(name: $name, summary: $summary, cover: $cover){
+      createdAt
+    }
+  }
+  `,
+    { name, summary, cover }
+  );
+  return res.daffodilUpdateLedger;
+};
 export const create_ledger = async (
   name: string,
   summary: string,
@@ -23,17 +40,34 @@ export interface ILedger {
   id: number;
   name: string;
   summary: string;
-  cover: string | null;
+  cover: IAttachmentShow;
   updatedAt: number;
 }
 
+export const show_ledger = async (id: number): Promise<ILedger> => {
+  const res = await query<{ daffodilShowLedger: ILedger }>(
+    `
+  query call{
+    daffodilShowLedger{      
+      id, name, 
+      cover{id, title, url},
+      summary, updatedAt      
+    }
+  }
+  `,
+    { id }
+  );
+  return res.daffodilShowLedger;
+};
 export const index_ledger = async (): Promise<ILedger[]> => {
   const res = await query<{ daffodilIndexLedger: { items: ILedger[] } }>(
     `
   query call{
     daffodilIndexLedger{
       items{
-        id, name, cover, summary, updatedAt
+        id, name, 
+        cover{id, title, url}, 
+        summary, updatedAt
       }
     }
   }
