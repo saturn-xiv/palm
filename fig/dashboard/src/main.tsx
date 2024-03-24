@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { IntlProvider } from "react-intl";
 import { Provider as ReduxProvider } from "react-redux";
 
-import "./main.css";
+import "./assets/dropzone.css";
 
 import Router from "./Router";
 import { store } from "./store";

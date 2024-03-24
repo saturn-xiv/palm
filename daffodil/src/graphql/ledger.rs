@@ -27,7 +27,7 @@ use super::super::{
 };
 
 #[derive(GraphQLObject)]
-#[graphql(name = "DaffodilLedgerIndexResponseItem")]
+#[graphql(name = "DaffodilIndexLedgerResponseItem")]
 pub struct IndexResponseItem {
     pub id: i32,
     pub owner: UserDetails,
@@ -59,10 +59,27 @@ impl IndexResponseItem {
         };
         Ok(it)
     }
+
+    pub async fn show<J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        enf: &Mutex<Enforcer>,
+        jwt: &J,
+        s3: &Minio,
+        id: i32,
+    ) -> Result<Self, Error> {
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
+
+        let it = LedgerDao::by_id(db, id)?;
+        it.can_show(enf, &user).await?;
+
+        Self::new(db, s3, &it).await
+    }
 }
 
 #[derive(GraphQLObject)]
-#[graphql(name = "DaffodilLedgerIndexResponse")]
+#[graphql(name = "DaffodilIndexLedgerResponse")]
 pub struct IndexResponse {
     pub items: Vec<IndexResponseItem>,
 }

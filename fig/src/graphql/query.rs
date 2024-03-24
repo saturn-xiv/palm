@@ -206,7 +206,31 @@ impl Query {
 
         Ok(response)
     }
+    async fn daffodil_show_ledger(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<daffodil_graphql::ledger::IndexResponseItem> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let s3 = context.minio.deref();
+        let enf = context.enforcer.deref();
 
+        let response = daffodil_graphql::ledger::IndexResponseItem::show(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            s3,
+            id,
+        )
+        .await?;
+
+        Ok(response)
+    }
     async fn daffodil_index_ledger(
         context: &Context,
     ) -> FieldResult<daffodil_graphql::ledger::IndexResponse> {

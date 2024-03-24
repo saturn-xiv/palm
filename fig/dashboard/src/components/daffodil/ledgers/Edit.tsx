@@ -57,7 +57,7 @@ function Widget({ item }: IProps) {
       ) {
         return;
       }
-      update_ledger(values.name, values.summary, values.cover)
+      update_ledger(item.id, values.name, values.summary, values.cover)
         .then(() => {
           setMessageBox({
             messages: [intl.formatMessage({ id: "flashes.succeed" })],
@@ -83,7 +83,10 @@ function Widget({ item }: IProps) {
         }}
       />
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
-        <FormattedMessage id="daffodil.ledgers.new.title" />
+        <FormattedMessage
+          id="daffodil.ledgers.edit.title"
+          values={{ name: item.name }}
+        />
       </Typography>
       <Box
         component="form"

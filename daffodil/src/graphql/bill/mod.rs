@@ -26,7 +26,7 @@ use super::super::{
 };
 
 #[derive(GraphQLObject)]
-#[graphql(name = "DaffodilBillIndexResponseItem")]
+#[graphql(name = "DaffodilIndexBillResponseItem")]
 pub struct IndexResponseItem {
     pub id: i32,
     pub user: UserDetails,
@@ -59,7 +59,7 @@ impl IndexResponseItem {
 }
 
 #[derive(GraphQLObject)]
-#[graphql(name = "DaffodilBillIndexResponse")]
+#[graphql(name = "DaffodilIndexBillResponse")]
 pub struct IndexResponse {
     pub items: Vec<IndexResponseItem>,
 }

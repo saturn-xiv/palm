@@ -14,7 +14,7 @@ use super::super::super::models::{
 };
 
 #[derive(GraphQLObject)]
-#[graphql(name = "DaffodilBillHistoryIndexResponseItem")]
+#[graphql(name = "DaffodilIndexBillHistoryResponseItem")]
 pub struct IndexResponseItem {
     pub id: i32,
     pub user: UserDetails,
@@ -49,7 +49,7 @@ impl IndexResponseItem {
 }
 
 #[derive(GraphQLObject)]
-#[graphql(name = "DaffodilBillHistoryIndexResponse")]
+#[graphql(name = "DaffodilIndexBillHistoryResponse")]
 pub struct IndexResponse {
     pub items: Vec<IndexResponseItem>,
 }
