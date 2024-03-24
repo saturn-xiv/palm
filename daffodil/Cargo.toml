@@ -22,11 +22,11 @@ version = "0.8"
 features = ["serde"]
 
 [dependencies.juniper]
-version = "0.15"
+version = "0.16"
 features = ["chrono"]
 
 [dependencies.validator]
-version = "0.16"
+version = "0.17"
 features = ["derive", "card", "unic"]
 
 [dependencies.hyper]

@@ -32,8 +32,8 @@ paho-mqtt = "0.12"
 prost = "0.12"
 prost-types = "0.12"
 actix-web-lab = "0.20"
-imageproc = "0.23"
-image = "0.24"
+imageproc = "0.24"
+image = "0.25"
 amqprs = "1"
 aws-credential-types = "1"
 aws-sdk-config = "1"
@@ -83,20 +83,20 @@ features = ["ring-accelerated"]
 version = "0.11"
 features = ["mime03"]
 
-[dependencies.reqwest]
-version = "0.11"
-features = ["json", "cookies"]
-
 [dependencies.tonic]
 version = "0.11"
 features = ["transport"]
 
+[dependencies.reqwest]
+version = "0.12"
+features = ["json", "cookies"]
+
 [dependencies.juniper]
-version = "0.15"
+version = "0.16"
 features = ["chrono"]
 
 [dependencies.validator]
-version = "0.16"
+version = "0.17"
 features = ["derive", "card", "unic"]
 
 [dependencies.cookie]
@@ -104,7 +104,7 @@ version = "0.18"
 features = ["secure", "private", "percent-encode"]
 
 [dependencies.redis]
-version = "0.24"
+version = "0.25"
 features = ["tokio-comp", "r2d2", "cluster", "connection-manager"]
 
 [dependencies.strum]

@@ -1,4 +1,5 @@
 use camelia::{
+    graphql::attachment::Show as ShowAttachment,
     models::{
         attachment::Dao as AttachmentDao,
         log::{Dao as LogDao, Level as LogLevel},
@@ -14,8 +15,8 @@ use hyper::StatusCode;
 use juniper::{GraphQLEnum, GraphQLObject};
 use log::{debug, warn};
 use palm::{
-    cache::redis::ClusterConnection as Cache, duration_from_seconds, jwt::Jwt,
-    minio::Client as Minio, rbac::Operation, session::Session, Error, HttpError, Result,
+    cache::redis::ClusterConnection as Cache, jwt::Jwt, minio::Client as Minio, rbac::Operation,
+    session::Session, Error, HttpError, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -30,7 +31,7 @@ use super::super::{
 pub struct IndexResponseItem {
     pub id: i32,
     pub owner: UserDetails,
-    pub cover: Option<String>,
+    pub cover: ShowAttachment,
     pub name: String,
     pub summary: String,
     pub deleted_at: Option<NaiveDateTime>,
@@ -39,26 +40,18 @@ pub struct IndexResponseItem {
 
 impl IndexResponseItem {
     async fn new(db: &mut Db, s3: &Minio, x: &Ledger) -> Result<Self> {
-        let cover = {
-            match AttachmentDao::by_resource::<Ledger>(db, x.id)?.first() {
-                Some(it) => {
-                    let it = s3
-                        .connection
-                        .get_presigned_object_url(
-                            &it.bucket,
-                            &it.name,
-                            duration_from_seconds(60 * 60)?,
-                        )
-                        .await?;
-                    Some(it)
-                }
-                None => None,
-            }
-        };
+        let cover = AttachmentDao::by_resource::<Ledger>(db, x.id)?
+            .into_iter()
+            .nth(0)
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("empty cover".to_string()),
+            )))?;
+
         let it = Self {
             id: x.id,
             owner: UserDetails::new(db, x.owner_id)?,
-            cover,
+            cover: ShowAttachment::new(s3, &cover).await?,
             name: x.name.clone(),
             summary: x.summary.clone(),
             deleted_at: x.deleted_at,

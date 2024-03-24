@@ -5,6 +5,7 @@ use juniper::GraphQLObject;
 use log::warn;
 use palm::{
     cache::redis::ClusterConnection as Cache,
+    duration_from_seconds,
     jwt::Jwt,
     minio::Client as Minio,
     pagination::{Pager, Pagination},
@@ -23,6 +24,28 @@ use super::super::{
     orm::postgresql::Connection as Db,
     services::CurrentUserAdapter,
 };
+
+#[derive(GraphQLObject)]
+#[graphql(name = "AttachmentShowItem")]
+pub struct Show {
+    pub id: i32,
+    pub url: String,
+    pub title: String,
+}
+
+impl Show {
+    pub async fn new(s3: &Minio, it: &Attachment) -> Result<Self> {
+        let url = s3
+            .connection
+            .get_presigned_object_url(&it.bucket, &it.name, duration_from_seconds(60 * 60)?)
+            .await?;
+        Ok(Self {
+            id: it.id,
+            url,
+            title: it.title.clone(),
+        })
+    }
+}
 
 #[derive(GraphQLObject)]
 #[graphql(name = "AttachmentIndexResponseItem")]

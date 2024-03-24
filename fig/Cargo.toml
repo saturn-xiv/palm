@@ -8,8 +8,8 @@ description = "A total free education & translation solution."
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-juniper_actix = "0.4"
 log = "0.4"
+juniper_actix = "0.5"
 actix-cors = "0.7"
 actix-identity = "0.7"
 env_logger = "0.11"
@@ -26,7 +26,7 @@ version = "0.9"
 features = ["cookie-session", "redis-rs-session"]
 
 [dependencies.juniper]
-version = "0.15"
+version = "0.16"
 features = ["chrono"]
 
 [dependencies.hyper]
