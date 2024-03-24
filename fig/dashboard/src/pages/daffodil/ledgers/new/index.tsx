@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-import New from "../../../components/daffodil/ledgers/New";
+import New from "../NewForm";
 
 export function Component() {
   return (

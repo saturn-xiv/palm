@@ -10,7 +10,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import { FormattedMessage } from "react-intl";
 
-import { ILedger, show_ledger } from "../../../api/daffodil";
+import { ILedger, show_ledger } from "../../../../../api/daffodil";
 
 export function Component() {
   const navigate = useNavigate();

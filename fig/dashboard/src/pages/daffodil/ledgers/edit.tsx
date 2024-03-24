@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { useParams } from "react-router-dom";
 
-import Edit from "../../../components/daffodil/ledgers/Edit";
+import Edit from "./:id/show/Edit";
 import { ILedger, show_ledger } from "../../../api/daffodil";
 
 export function Component() {

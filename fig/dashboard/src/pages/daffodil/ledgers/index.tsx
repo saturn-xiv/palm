@@ -1,10 +1,16 @@
+import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-import NavBar from "../../../components/daffodil/ledgers/NavBar";
-import Index from "../../../components/daffodil/ledgers/Index";
+import NavBar from "./NavBar";
+import Show from "./ItemCard";
+import { index_ledger, ILedger } from "../../../api/daffodil";
 
 export function Component() {
+  const [items, setItems] = useState<ILedger[]>([]);
+  useEffect(() => {
+    index_ledger().then((res) => setItems(res));
+  }, []);
   return (
     <>
       <Grid item xs={12}>
@@ -12,8 +18,11 @@ export function Component() {
           <NavBar />
         </Paper>
       </Grid>
-
-      <Index />
+      {items.map((it, id) => (
+        <Grid key={id} item xs={12} md={4}>
+          <Show item={it} />
+        </Grid>
+      ))}
     </>
   );
 }
