@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -19,8 +18,11 @@ import {
 } from "../../reducers/current-user";
 import { IErrorMessage } from "../../api/graphql";
 import { update_profile } from "../../api/camelia";
-import MessageBox, { IState as IMessageBox } from "../../components/MessageBox";
 import { siteInfo as selectSiteInfo } from "../../reducers/site-info";
+import {
+  success as success_box,
+  error as error_box,
+} from "../../reducers/message-box";
 
 const validationSchema = yup_object({
   real_name: yup_string().required().min(2).max(31),
@@ -32,10 +34,6 @@ const validationSchema = yup_object({
 function Widget() {
   const current_user = useAppSelector(selectCurrentUser);
   const site_info = useAppSelector(selectSiteInfo);
-  const [messageBox, setMessageBox] = useState<IMessageBox>({
-    messages: [],
-    severity: "info",
-  });
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -57,10 +55,6 @@ function Widget() {
         values.timezone
       )
         .then(() => {
-          setMessageBox({
-            messages: [intl.formatMessage({ id: "flashes.succeed" })],
-            severity: "success",
-          });
           dispatch(
             updateProfile({
               realName: values.real_name,
@@ -69,25 +63,18 @@ function Widget() {
               timezone: values.timezone,
             })
           );
+          dispatch(
+            success_box([intl.formatMessage({ id: "flashes.succeed" })])
+          );
         })
         .catch((reason: IErrorMessage[]) => {
-          setMessageBox({
-            messages: reason.map((x) => x.message),
-            severity: "error",
-          });
+          dispatch(error_box(reason.map((x) => x.message)));
         });
     },
   });
 
   return (
     <>
-      <MessageBox
-        severity={messageBox.severity}
-        messages={messageBox.messages}
-        handleClose={() => {
-          setMessageBox({ messages: [], severity: "info" });
-        }}
-      />
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         <FormattedMessage id="users.update-profile.title" />
       </Typography>

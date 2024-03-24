@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
 import { useIntl } from "react-intl";
@@ -13,12 +12,16 @@ import {
 import AnonymousForm from "../../layouts/application/Form";
 import { reset_password } from "../../api/camelia";
 import { IErrorMessage } from "../../api/graphql";
-import MessageBox, { IState as IMessageBox } from "../../components/MessageBox";
 import {
   SIGN_IN_PATH,
   MAX_PASSWORD_LENGTH,
   MIN_PASSWORD_LENGTH,
 } from "../../reducers/current-user";
+import { useAppDispatch } from "../../hooks";
+import {
+  success as success_box,
+  error as error_box,
+} from "../../reducers/message-box";
 
 const validationSchema = yup_object({
   password: yup_string()
@@ -29,10 +32,7 @@ const validationSchema = yup_object({
 });
 
 export const Component = () => {
-  const [messageBox, setMessageBox] = useState<IMessageBox>({
-    messages: [],
-    severity: "info",
-  });
+  const dispatch = useAppDispatch();
   const { token } = useParams();
   const intl = useIntl();
   const navigate = useNavigate();
@@ -46,72 +46,59 @@ export const Component = () => {
     onSubmit: (values) => {
       reset_password(token || "", values.password)
         .then(() => {
-          setMessageBox({
-            messages: [
+          dispatch(
+            success_box([
               intl.formatMessage({ id: "users.reset-password.succeed" }),
-            ],
-            severity: "success",
-          });
+            ])
+          );
+          navigate(SIGN_IN_PATH);
         })
         .catch((reason: IErrorMessage[]) => {
-          setMessageBox({
-            messages: reason.map((x) => x.message),
-            severity: "error",
-          });
+          dispatch(error_box(reason.map((x) => x.message)));
         });
     },
   });
 
   return (
-    <>
-      <MessageBox
-        severity={messageBox.severity}
-        messages={messageBox.messages}
-        handleClose={() => {
-          setMessageBox({ messages: [], severity: "info" });
-          navigate(SIGN_IN_PATH);
-        }}
+    <AnonymousForm
+      icon={<PasswordOutlinedIcon />}
+      handleSubmit={formik.handleSubmit}
+      title="users.reset-password.title"
+    >
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        name="password"
+        label={intl.formatMessage({ id: "form.fields.password.label" })}
+        type="password"
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.password && Boolean(formik.errors.password)}
+        helperText={formik.touched.password && formik.errors.password}
       />
-      <AnonymousForm
-        icon={<PasswordOutlinedIcon />}
-        handleSubmit={formik.handleSubmit}
-        title="users.reset-password.title"
-      >
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          name="password"
-          label={intl.formatMessage({ id: "form.fields.password.label" })}
-          type="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          name="password_confirmation"
-          label={intl.formatMessage({
-            id: "form.fields.password-confirmation.label",
-          })}
-          type="password"
-          value={formik.values.password_confirmation}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={
-            formik.touched.password_confirmation &&
-            Boolean(formik.errors.password_confirmation)
-          }
-          helperText={
-            formik.touched.password_confirmation &&
-            formik.errors.password_confirmation
-          }
-        />
-      </AnonymousForm>
-    </>
+      <TextField
+        margin="normal"
+        required
+        fullWidth
+        name="password_confirmation"
+        label={intl.formatMessage({
+          id: "form.fields.password-confirmation.label",
+        })}
+        type="password"
+        value={formik.values.password_confirmation}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={
+          formik.touched.password_confirmation &&
+          Boolean(formik.errors.password_confirmation)
+        }
+        helperText={
+          formik.touched.password_confirmation &&
+          formik.errors.password_confirmation
+        }
+      />
+    </AnonymousForm>
   );
 };

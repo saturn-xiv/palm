@@ -14,10 +14,12 @@ import FormControl from "@mui/material/FormControl";
 
 import { IErrorMessage } from "../../../api/graphql";
 import { update_ledger, ILedger } from "../../../api/daffodil";
-import MessageBox, {
-  IState as IMessageBox,
-} from "../../../components/MessageBox";
 import { IAttachment, index_picture } from "../../../api/camelia";
+import { useAppDispatch } from "../../../hooks";
+import {
+  success as success_box,
+  error as error_box,
+} from "../../../reducers/message-box";
 
 const validationSchema = yup_object({
   name: yup_string().required().min(1).max(31),
@@ -30,10 +32,7 @@ interface IProps {
 
 function Widget({ item }: IProps) {
   const navigate = useNavigate();
-  const [messageBox, setMessageBox] = useState<IMessageBox>({
-    messages: [],
-    severity: "info",
-  });
+  const dispatch = useAppDispatch();
   const intl = useIntl();
   const [pictures, setPictures] = useState<IAttachment[]>([]);
   useEffect(() => {
@@ -59,29 +58,18 @@ function Widget({ item }: IProps) {
       }
       update_ledger(item.id, values.name, values.summary, values.cover)
         .then(() => {
-          setMessageBox({
-            messages: [intl.formatMessage({ id: "flashes.succeed" })],
-            severity: "success",
-          });
+          dispatch(
+            success_box([intl.formatMessage({ id: "flashes.succeed" })])
+          );
+          navigate("/dashboard/daffodil/ledgers");
         })
         .catch((reason: IErrorMessage[]) => {
-          setMessageBox({
-            messages: reason.map((x) => x.message),
-            severity: "error",
-          });
+          dispatch(error_box(reason.map((x) => x.message)));
         });
     },
   });
   return (
     <>
-      <MessageBox
-        severity={messageBox.severity}
-        messages={messageBox.messages}
-        handleClose={() => {
-          setMessageBox({ messages: [], severity: "info" });
-          navigate("/dashboard/daffodil/ledgers");
-        }}
-      />
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         <FormattedMessage
           id="daffodil.ledgers.edit.title"

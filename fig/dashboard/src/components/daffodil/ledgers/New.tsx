@@ -18,10 +18,12 @@ import FormControl from "@mui/material/FormControl";
 
 import { IErrorMessage } from "../../../api/graphql";
 import { create_ledger } from "../../../api/daffodil";
-import MessageBox, {
-  IState as IMessageBox,
-} from "../../../components/MessageBox";
 import { IAttachment, index_picture } from "../../../api/camelia";
+import { useAppDispatch } from "../../../hooks";
+import {
+  success as success_box,
+  error as error_box,
+} from "../../../reducers/message-box";
 
 const validationSchema = yup_object({
   name: yup_string().required().min(1).max(31),
@@ -31,10 +33,7 @@ const validationSchema = yup_object({
 
 function Widget() {
   const navigate = useNavigate();
-  const [messageBox, setMessageBox] = useState<IMessageBox>({
-    messages: [],
-    severity: "info",
-  });
+  const dispatch = useAppDispatch();
   const intl = useIntl();
   const [pictures, setPictures] = useState<IAttachment[]>([]);
   useEffect(() => {
@@ -52,41 +51,29 @@ function Widget() {
     validationSchema,
     onSubmit: (values) => {
       if (values.cover === undefined) {
-        setMessageBox({
-          messages: [
+        dispatch(
+          error_box([
             intl.formatMessage({
               id: "attachments.select-picture.required",
             }),
-          ],
-          severity: "error",
-        });
+          ])
+        );
         return;
       }
       create_ledger(values.name, values.summary, values.cover)
         .then(() => {
-          setMessageBox({
-            messages: [intl.formatMessage({ id: "flashes.succeed" })],
-            severity: "success",
-          });
+          dispatch(
+            success_box([intl.formatMessage({ id: "flashes.succeed" })])
+          );
+          navigate("/dashboard/daffodil/ledgers");
         })
         .catch((reason: IErrorMessage[]) => {
-          setMessageBox({
-            messages: reason.map((x) => x.message),
-            severity: "error",
-          });
+          dispatch(error_box(reason.map((x) => x.message)));
         });
     },
   });
   return (
     <>
-      <MessageBox
-        severity={messageBox.severity}
-        messages={messageBox.messages}
-        handleClose={() => {
-          setMessageBox({ messages: [], severity: "info" });
-          navigate("/dashboard/daffodil/ledgers");
-        }}
-      />
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         <FormattedMessage id="daffodil.ledgers.new.title" />
       </Typography>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -17,7 +16,11 @@ import {
 } from "../../reducers/current-user";
 import { IErrorMessage } from "../../api/graphql";
 import { change_password } from "../../api/camelia";
-import MessageBox, { IState as IMessageBox } from "../../components/MessageBox";
+import { useAppDispatch } from "../../hooks";
+import {
+  success as success_box,
+  error as error_box,
+} from "../../reducers/message-box";
 
 const validationSchema = yup_object({
   current_password: yup_string().required(),
@@ -29,10 +32,7 @@ const validationSchema = yup_object({
 });
 
 function Widget() {
-  const [messageBox, setMessageBox] = useState<IMessageBox>({
-    messages: [],
-    severity: "info",
-  });
+  const dispatch = useAppDispatch();
   const intl = useIntl();
 
   const formik = useFormik({
@@ -45,28 +45,17 @@ function Widget() {
     onSubmit: (values) => {
       change_password(values.current_password, values.new_password)
         .then(() => {
-          setMessageBox({
-            messages: [intl.formatMessage({ id: "flashes.succeed" })],
-            severity: "success",
-          });
+          dispatch(
+            success_box([intl.formatMessage({ id: "flashes.succeed" })])
+          );
         })
         .catch((reason: IErrorMessage[]) => {
-          setMessageBox({
-            messages: reason.map((x) => x.message),
-            severity: "error",
-          });
+          dispatch(error_box(reason.map((x) => x.message)));
         });
     },
   });
   return (
     <>
-      <MessageBox
-        severity={messageBox.severity}
-        messages={messageBox.messages}
-        handleClose={() => {
-          setMessageBox({ messages: [], severity: "info" });
-        }}
-      />
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         <FormattedMessage id="users.change-password.title" />
       </Typography>

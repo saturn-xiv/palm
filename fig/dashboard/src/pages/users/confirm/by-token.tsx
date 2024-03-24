@@ -1,19 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
 
 import { confirm_by_token } from "../../../api/camelia";
-import MessageBox, {
-  IState as IMessageBox,
-} from "../../../components/MessageBox";
 import { IErrorMessage } from "../../../api/graphql";
 import { SIGN_IN_PATH } from "../../../reducers/current-user";
+import { useAppDispatch } from "../../../hooks";
+import {
+  success as success_box,
+  error as error_box,
+} from "../../../reducers/message-box";
 
 export function Component() {
-  const [messageBox, setMessageBox] = useState<IMessageBox>({
-    messages: [],
-    severity: "info",
-  });
+  const dispatch = useAppDispatch();
   const { token } = useParams();
   const intl = useIntl();
   const navigate = useNavigate();
@@ -21,28 +20,16 @@ export function Component() {
   useEffect(() => {
     confirm_by_token(token || "")
       .then(() => {
-        setMessageBox({
-          messages: [
+        dispatch(
+          success_box([
             intl.formatMessage({ id: "users.confirm.by-token.succeed" }),
-          ],
-          severity: "success",
-        });
+          ])
+        );
+        navigate(SIGN_IN_PATH);
       })
       .catch((reason: IErrorMessage[]) => {
-        setMessageBox({
-          messages: reason.map((x) => x.message),
-          severity: "error",
-        });
+        dispatch(error_box(reason.map((x) => x.message)));
       });
   });
-  return (
-    <MessageBox
-      severity={messageBox.severity}
-      messages={messageBox.messages}
-      handleClose={() => {
-        setMessageBox({ messages: [], severity: "info" });
-        navigate(SIGN_IN_PATH);
-      }}
-    />
-  );
+  return <></>;
 }

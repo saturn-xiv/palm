@@ -1,4 +1,3 @@
-import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useConfirm } from "material-ui-confirm";
@@ -9,13 +8,12 @@ import { useAppDispatch } from "../../hooks";
 import { signOut, SIGN_IN_PATH } from "../../reducers/current-user";
 import { sign_out } from "../../api/camelia";
 import { IErrorMessage } from "../../api/graphql";
-import MessageBox, { IState as IMessageBox } from "../../components/MessageBox";
+import {
+  success as success_box,
+  error as error_box,
+} from "../../reducers/message-box";
 
 const Widget = () => {
-  const [messageBox, setMessageBox] = useState<IMessageBox>({
-    messages: [],
-    severity: "info",
-  });
   const dispatch = useAppDispatch();
   const confirm = useConfirm();
   const intl = useIntl();
@@ -35,13 +33,15 @@ const Widget = () => {
             sign_out()
               .then(() => {
                 dispatch(signOut());
+                dispatch(
+                  success_box([
+                    intl.formatMessage({ id: "users.sign-out.succeed" }),
+                  ])
+                );
                 navigate(SIGN_IN_PATH);
               })
               .catch((reason: IErrorMessage[]) => {
-                setMessageBox({
-                  messages: reason.map((x) => x.message),
-                  severity: "error",
-                });
+                dispatch(error_box(reason.map((x) => x.message)));
               });
           })
           .catch(() => {});
@@ -49,11 +49,6 @@ const Widget = () => {
       color="inherit"
     >
       <LogoutOutlinedIcon />
-      <MessageBox
-        severity={messageBox.severity}
-        messages={messageBox.messages}
-        handleClose={() => setMessageBox({ messages: [], severity: "info" })}
-      />
     </IconButton>
   );
 };
