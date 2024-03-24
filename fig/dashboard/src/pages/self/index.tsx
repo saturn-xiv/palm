@@ -1,10 +1,9 @@
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-import UserLogs from "../components/users/Logs";
-import UserUpdateProfile from "../components/users/UpdateProfile";
-import UserChangePassword from "../components/users/ChangePassword";
-import IndexAttachment from "../components/attachments/Index";
+import UserLogs from "./Logs";
+import UserUpdateProfile from "./UpdateProfile";
+import UserChangePassword from "./ChangePassword";
 
 export function Component() {
   return (
@@ -36,11 +35,6 @@ export function Component() {
           }}
         >
           <UserChangePassword />
-        </Paper>
-      </Grid>
-      <Grid item xs={12}>
-        <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-          <IndexAttachment />
         </Paper>
       </Grid>
     </>

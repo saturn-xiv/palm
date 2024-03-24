@@ -6,7 +6,6 @@ import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -16,7 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { ConfirmProvider } from "material-ui-confirm";
 
-import { Main as MainMenu, Secondary as SecondaryMenu } from "./menus";
+import SideBar from "./SideBar";
 import Copyright from "../Copyright";
 import { theme as defaultTheme } from "..";
 import { useAppSelector } from "../../hooks";
@@ -143,11 +142,7 @@ export function Component() {
               </IconButton>
             </Toolbar>
             <Divider />
-            <List component="nav">
-              <MainMenu />
-              <Divider sx={{ my: 1 }} />
-              <SecondaryMenu />
-            </List>
+            <SideBar />
           </Drawer>
           <Box
             component="main"

@@ -11,6 +11,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { string as yup_string, object as yup_object } from "yup";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
+import Stack from "@mui/material/Stack";
 
 import { IErrorMessage } from "../../../api/graphql";
 import { update_ledger, ILedger } from "../../../api/daffodil";
@@ -61,14 +62,14 @@ function Widget({ item }: IProps) {
           dispatch(
             success_box([intl.formatMessage({ id: "flashes.succeed" })])
           );
-          navigate("/dashboard/daffodil/ledgers");
+          navigate(`/dashboard/daffodil/ledgers/${item.id}`);
         })
         .catch((reason: IErrorMessage[]) => {
           dispatch(error_box(reason.map((x) => x.message)));
         });
     },
   });
-  return (
+  return pictures.length > 0 ? (
     <>
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
         <FormattedMessage
@@ -127,16 +128,24 @@ function Widget({ item }: IProps) {
           </Select>
         </FormControl>
 
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          <FormattedMessage id="buttons.submit" />
-        </Button>
+        <Stack spacing={2} direction="row" justifyContent="flex-end">
+          <Button
+            variant="contained"
+            color="inherit"
+            onClick={() => {
+              navigate(`/dashboard/daffodil/ledgers/${item.id}`);
+            }}
+          >
+            <FormattedMessage id="buttons.go-back" />
+          </Button>
+          <Button variant="contained" type="submit">
+            <FormattedMessage id="buttons.submit" />
+          </Button>
+        </Stack>
       </Box>
     </>
+  ) : (
+    <></>
   );
 }
 

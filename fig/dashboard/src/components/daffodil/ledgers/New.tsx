@@ -15,6 +15,7 @@ import {
 } from "yup";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
+import Stack from "@mui/material/Stack";
 
 import { IErrorMessage } from "../../../api/graphql";
 import { create_ledger } from "../../../api/daffodil";
@@ -128,14 +129,20 @@ function Widget() {
           </Select>
         </FormControl>
 
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          <FormattedMessage id="buttons.submit" />
-        </Button>
+        <Stack spacing={2} direction="row" justifyContent="flex-end">
+          <Button
+            variant="contained"
+            color="inherit"
+            onClick={() => {
+              navigate(`/dashboard/daffodil/ledgers`);
+            }}
+          >
+            <FormattedMessage id="buttons.go-back" />
+          </Button>
+          <Button variant="contained" type="submit">
+            <FormattedMessage id="buttons.submit" />
+          </Button>
+        </Stack>
       </Box>
     </>
   );

@@ -9,6 +9,7 @@ const router = createBrowserRouter(
       children: [
         { path: "main", lazy: () => import("./pages/main") },
         { path: "self", lazy: () => import("./pages/self") },
+        { path: "attachments", lazy: () => import("./pages/attachments") },
         {
           path: "daffodil/ledgers",
           lazy: () => import("./pages/daffodil/ledgers/index"),

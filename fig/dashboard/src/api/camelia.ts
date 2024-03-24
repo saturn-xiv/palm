@@ -32,7 +32,7 @@ export interface IAttachment {
   size: number;
   contentType: string;
   status: string;
-  updatedAt: number;
+  updatedAt: Date;
 }
 export const upload_attachment = async (
   files: File[]
@@ -85,7 +85,7 @@ interface ILog {
   resourceType: string;
   resourceId: number;
   message: string;
-  createdAt: number;
+  createdAt: Date;
 }
 export interface IIndexLogResponse {
   items: ILog[];

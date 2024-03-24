@@ -14,7 +14,7 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import { useNavigate } from "react-router-dom";
 
 import { ILedger } from "../../../api/daffodil";
-import { timestamp_to_str } from "../../../utils";
+import Timestamp from "../../../components/Timestamp";
 
 interface IProps {
   item: ILedger;
@@ -23,11 +23,11 @@ interface IProps {
 const Widget = ({ item }: IProps) => {
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 420 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {item.name.charAt(0)}
           </Avatar>
         }
         action={
@@ -36,7 +36,7 @@ const Widget = ({ item }: IProps) => {
           </IconButton>
         }
         title={item.name}
-        subheader={timestamp_to_str(item.updatedAt)}
+        subheader={<Timestamp value={item.updatedAt} />}
       />
       <CardMedia
         component="img"

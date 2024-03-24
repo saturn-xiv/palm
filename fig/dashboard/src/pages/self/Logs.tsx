@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import { FormattedMessage } from "react-intl";
 
 import { logs as fetch_logs, IIndexLogResponse } from "../../api/camelia";
-import { timestamp_to_str } from "../../utils";
+import Timestamp from "../../components/Timestamp";
 import TablePagination from "../../components/TablePagination";
 
 function Widget() {
@@ -56,7 +56,9 @@ function Widget() {
                 <TableCell align="center">{it.id}</TableCell>
                 <TableCell>{it.ip}</TableCell>
                 <TableCell>{it.message}</TableCell>
-                <TableCell>{timestamp_to_str(it.createdAt)}</TableCell>
+                <TableCell>
+                  <Timestamp value={it.createdAt} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

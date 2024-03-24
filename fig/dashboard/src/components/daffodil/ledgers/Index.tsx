@@ -12,7 +12,7 @@ const Widget = () => {
   return (
     <>
       {items.map((it, id) => (
-        <Grid key={id} item xs={12} md={3}>
+        <Grid key={id} item xs={12} md={4}>
           <Show item={it} />
         </Grid>
       ))}

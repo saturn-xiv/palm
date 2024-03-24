@@ -42,7 +42,7 @@ export interface ILedger {
   name: string;
   summary: string;
   cover: IAttachmentShow;
-  updatedAt: number;
+  updatedAt: Date;
 }
 
 export const show_ledger = async (id: number): Promise<ILedger> => {
