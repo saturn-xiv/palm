@@ -16,7 +16,7 @@ use juniper::{GraphQLEnum, GraphQLObject};
 use log::{debug, warn};
 use palm::{
     cache::redis::ClusterConnection as Cache, jwt::Jwt, minio::Client as Minio, rbac::Operation,
-    session::Session, Error, HttpError, Result,
+    session::Session, Error, HttpError,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -39,7 +39,7 @@ pub struct IndexResponseItem {
 }
 
 impl IndexResponseItem {
-    async fn new(db: &mut Db, s3: &Minio, x: &Ledger) -> Result<Self> {
+    async fn new(db: &mut Db, s3: &Minio, x: &Ledger) -> Result<Self, Error> {
         let cover = AttachmentDao::by_resource::<Ledger>(db, x.id)?
             .into_iter()
             .nth(0)
@@ -74,7 +74,7 @@ impl IndexResponse {
         ch: &mut Cache,
         jwt: &J,
         s3: &Minio,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         let mut items = Vec::new();
         for it in LedgerDao::by_user(db, user.id)?.iter() {
@@ -95,7 +95,13 @@ pub struct Form {
 }
 
 impl Form {
-    pub fn create<J: Jwt>(&self, ss: &Session, db: &mut Db, ch: &mut Cache, jwt: &J) -> Result<()> {
+    pub fn create<J: Jwt>(
+        &self,
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        jwt: &J,
+    ) -> Result<(), Error> {
         self.validate()?;
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         debug!("create ledger {}({})", self.name, self.summary);
@@ -126,7 +132,7 @@ impl Form {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         id: i32,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         self.validate()?;
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
 
@@ -164,7 +170,7 @@ pub async fn enable<J: Jwt>(
     jwt: &J,
     id: i32,
     on: bool,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
 
     let it = LedgerDao::by_id(db, id)?;
@@ -215,7 +221,7 @@ impl ExportRequest {
         ch: &mut Cache,
         enf: &Mutex<Enforcer>,
         jwt: &J,
-    ) -> Result<String> {
+    ) -> Result<String, Error> {
         self.validate()?;
         let ttl = Duration::try_seconds(self.ttl).ok_or(Box::new(HttpError(
             StatusCode::BAD_REQUEST,
@@ -232,7 +238,7 @@ impl ExportRequest {
 }
 
 impl Ledger {
-    pub async fn can_show(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<()> {
+    pub async fn can_show(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<(), Error> {
         if self.deleted_at.is_some() {
             return Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)));
         }
@@ -259,7 +265,7 @@ impl Ledger {
         Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)))
     }
 
-    pub async fn can_edit(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<()> {
+    pub async fn can_edit(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<(), Error> {
         if self.deleted_at.is_some() {
             return Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)));
         }

@@ -6,7 +6,7 @@ use palm::{
     jwt::Jwt,
     pagination::{Pager, Pagination},
     session::Session,
-    Result, TextEditor,
+    Error, TextEditor,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -62,7 +62,7 @@ impl IndexResponse {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         pager: &Pager,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         user.is_administrator(enf).await?;
 
@@ -87,7 +87,7 @@ pub struct Form {
 }
 
 impl Form {
-    pub async fn handle(&self, ss: &Session, db: &mut Db) -> Result<()> {
+    pub async fn handle(&self, ss: &Session, db: &mut Db) -> Result<(), Error> {
         self.validate()?;
         LeaveWordDao::create(db, &ss.lang, &ss.client_ip, &self.content, &self.editor)?;
         Ok(())
@@ -101,7 +101,7 @@ pub async fn destroy<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     id: i32,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     user.is_administrator(enf).await?;
 

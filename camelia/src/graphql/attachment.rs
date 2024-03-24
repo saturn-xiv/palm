@@ -11,7 +11,7 @@ use palm::{
     pagination::{Pager, Pagination},
     rbac::Operation,
     session::Session,
-    HttpError, Result,
+    Error, HttpError,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -34,7 +34,7 @@ pub struct Show {
 }
 
 impl Show {
-    pub async fn new(s3: &Minio, it: &Attachment) -> Result<Self> {
+    pub async fn new(s3: &Minio, it: &Attachment) -> Result<Self, Error> {
         let url = s3
             .connection
             .get_presigned_object_url(&it.bucket, &it.name, duration_from_seconds(60 * 60)?)
@@ -66,7 +66,7 @@ impl IndexResponseItem {
         db: &mut Db,
         ch: &mut Cache,
         jwt: &J,
-    ) -> Result<Vec<Self>> {
+    ) -> Result<Vec<Self>, Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         let items = AttachmentDao::pictures_by_user(db, user.id)?
             .into_iter()
@@ -105,7 +105,7 @@ impl IndexResponse {
         ch: &mut Cache,
         jwt: &J,
         pager: &Pager,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
 
         let total = AttachmentDao::count_by_user(db, user.id)?;
@@ -140,7 +140,7 @@ impl ByBucketAndNameRequest {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         s3: &Minio,
-    ) -> Result<ShowResponse> {
+    ) -> Result<ShowResponse, Error> {
         self.validate()?;
         let item = AttachmentDao::by_bucket_and_name(db, &self.bucket, &self.name)?;
         ShowResponse::new(ss, db, ch, enf, jwt, s3, (&item, self.ttl)).await
@@ -164,7 +164,7 @@ impl ByIdRequest {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         s3: &Minio,
-    ) -> Result<ShowResponse> {
+    ) -> Result<ShowResponse, Error> {
         self.validate()?;
         let item = AttachmentDao::by_id(db, self.id)?;
         ShowResponse::new(ss, db, ch, enf, jwt, s3, (&item, self.ttl)).await
@@ -189,7 +189,7 @@ impl ShowResponse {
         jwt: &J,
         s3: &Minio,
         (item, ttl): (&Attachment, Option<i64>),
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         item.can_delete(enf, &user).await?;
         let url = item.url(&s3.connection, ttl).await?;
@@ -211,7 +211,7 @@ pub async fn destroy<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     id: i32,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     let item = AttachmentDao::by_id(db, id)?;
     item.can_delete(enf, &user).await?;
@@ -221,7 +221,7 @@ pub async fn destroy<J: Jwt>(
 }
 
 impl Attachment {
-    pub async fn can_show(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<()> {
+    pub async fn can_show(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<(), Error> {
         if self.deleted_at.is_some() {
             return Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)));
         }
@@ -248,7 +248,7 @@ impl Attachment {
         Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)))
     }
 
-    pub async fn can_delete(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<()> {
+    pub async fn can_delete(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<(), Error> {
         if self.deleted_at.is_some() {
             return Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)));
         }

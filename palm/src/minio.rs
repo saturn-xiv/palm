@@ -22,7 +22,7 @@ use mime::Mime;
 use reqwest::Method;
 use serde::{Deserialize, Serialize};
 
-use super::Result;
+use super::Error;
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -46,7 +46,7 @@ pub struct SystemdConfig<'a> {
 }
 
 impl SystemdConfig<'_> {
-    pub fn write<P: AsRef<Path>>(&self, file: P) -> Result<()> {
+    pub fn write<P: AsRef<Path>>(&self, file: P) -> Result<(), Error> {
         let file = file.as_ref();
         info!("generate file {}", file.display());
         let tpl = self.render()?;
@@ -76,7 +76,7 @@ pub struct Node<'a> {
 }
 
 impl NginxConfig<'_> {
-    pub fn write<P: AsRef<Path>>(&self, file: P) -> Result<()> {
+    pub fn write<P: AsRef<Path>>(&self, file: P) -> Result<(), Error> {
         let file = file.as_ref();
         info!("generate file {}", file.display());
         let tpl = self.render()?;
@@ -91,7 +91,7 @@ impl NginxConfig<'_> {
 }
 
 impl Config {
-    pub fn open(&self) -> Result<Client> {
+    pub fn open(&self) -> Result<Client, Error> {
         let cred = StaticProvider::new(&self.access_key, &self.secret_key, None);
         let base_url: BaseUrl = self.endpoint.parse()?;
 
@@ -116,7 +116,11 @@ pub struct Client {
 }
 
 impl Client {
-    pub async fn bucket(&self, public: bool, expiration_days: Option<usize>) -> Result<String> {
+    pub async fn bucket(
+        &self,
+        public: bool,
+        expiration_days: Option<usize>,
+    ) -> Result<String, Error> {
         let name = format!(
             "{}.{}.{}{}",
             self.bucket,
@@ -140,7 +144,7 @@ pub struct Connection {
     client: MinioClient,
 }
 impl Connection {
-    pub async fn bucket_exists(&self, name: &str) -> Result<bool> {
+    pub async fn bucket_exists(&self, name: &str) -> Result<bool, Error> {
         let ok = self
             .client
             .bucket_exists(&BucketExistsArgs::new(name)?)
@@ -152,7 +156,7 @@ impl Connection {
         name: &str,
         public: bool,
         expiration_days: Option<usize>,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         debug!("create bucket {}", name);
         self.client.make_bucket(&MakeBucketArgs::new(name)?).await?;
         if public {
@@ -200,13 +204,13 @@ impl Connection {
         }
         Ok(())
     }
-    pub async fn delete_bucket(&self, name: &str) -> Result<()> {
+    pub async fn delete_bucket(&self, name: &str) -> Result<(), Error> {
         self.client
             .remove_bucket(&RemoveBucketArgs::new(name)?)
             .await?;
         Ok(())
     }
-    pub async fn list_buckets(&self) -> Result<Vec<(String, DateTime<Utc>)>> {
+    pub async fn list_buckets(&self) -> Result<Vec<(String, DateTime<Utc>)>, Error> {
         let res = self.client.list_buckets(&ListBucketsArgs::new()).await?;
         let items = res
             .buckets
@@ -222,21 +226,21 @@ impl Connection {
         content_type: &Mime,
         stream: &'a mut dyn Read,
         size: usize,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         let mut req = PutObjectArgs::new(bucket, name, stream, Some(size), None)?;
         let content_type = content_type.to_string();
         req.content_type = &content_type;
         self.client.put_object(&mut req).await?;
         Ok(())
     }
-    pub async fn remove_object(&self, bucket: &str, name: &str) -> Result<()> {
+    pub async fn remove_object(&self, bucket: &str, name: &str) -> Result<(), Error> {
         self.client
             .remove_object(&RemoveObjectArgs::new(bucket, name)?)
             .await?;
 
         Ok(())
     }
-    pub async fn list_objects(&self, bucket: &str) -> Result<Vec<String>> {
+    pub async fn list_objects(&self, bucket: &str) -> Result<Vec<String>, Error> {
         let res = self
             .client
             .list_objects_v2(&ListObjectsV2Args::new(bucket)?)
@@ -251,9 +255,10 @@ impl Connection {
         bucket: &str,
         name: &str,
         ttl: Duration,
-    ) -> Result<String> {
+    ) -> Result<String, Error> {
         let arg = {
-            let mut it = GetPresignedObjectUrlArgs::new(bucket, name, Method::GET)?;
+            let mut it =
+                GetPresignedObjectUrlArgs::new(bucket, name, Method::GET.to_string().parse()?)?;
             it.expiry_seconds = Some(ttl.num_seconds() as u32);
             it
         };
@@ -262,9 +267,9 @@ impl Connection {
 
         Ok(res.url)
     }
-    pub fn get_permanent_object_url(&self, bucket: &str, name: &str) -> Result<String> {
+    pub fn get_permanent_object_url(&self, bucket: &str, name: &str) -> Result<String, Error> {
         let url = self.base_url.build_url(
-            &Method::GET,
+            &Method::GET.to_string().parse()?,
             &"".to_string(),
             &Multimap::new(),
             Some(bucket),

@@ -3,7 +3,7 @@ use hyper::StatusCode;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-use super::super::{HttpError, Result};
+use super::super::{Error, HttpError};
 
 #[derive(Template, Validate, Serialize, Deserialize)]
 #[template(path = "google/verify.html", escape = "none")]
@@ -33,7 +33,7 @@ pub struct ReCaptcha {
 }
 
 // https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap#addsitemap
-pub async fn ping(home: &str) -> Result<()> {
+pub async fn ping(home: &str) -> Result<(), Error> {
     let cli = reqwest::Client::new();
     let res = cli
         .get("https://www.google.com/ping")

@@ -5,7 +5,7 @@ use reqwest::header::CONTENT_TYPE;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-use super::super::{HttpError, Result};
+use super::super::{Error, HttpError};
 
 #[derive(Template, Validate, Serialize, Deserialize)]
 #[template(path = "baidu/verify.html", escape = "none")]
@@ -42,7 +42,7 @@ pub struct Body {
 }
 
 // https://help.baidu.com/question?prod_id=99&class=0&id=3046
-pub async fn ping(home: &str, title: &str, lang: &str) -> Result<()> {
+pub async fn ping(home: &str, title: &str, lang: &str) -> Result<(), Error> {
     let body = to_xml_string(&Body {
         title: title.to_string(),
         home: home.to_string(),

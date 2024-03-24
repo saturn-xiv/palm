@@ -15,7 +15,7 @@ pub struct VerifyRequest {
 impl VerifyRequest {
     pub fn check(&self, token: &str) -> Result<()> {
         let buf = {
-            let mut items = vec![
+            let mut items = [
                 token.to_string(),
                 format!("{}", self.nonce),
                 format!("{}", self.timestamp),

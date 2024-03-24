@@ -3,7 +3,7 @@ use hyper::StatusCode;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-use super::super::{HttpError, Result};
+use super::super::{Error, HttpError};
 
 #[derive(Template, Validate, Serialize, Deserialize)]
 #[template(path = "index-now/verify.txt", escape = "none")]
@@ -30,7 +30,7 @@ pub struct Body {
 }
 
 // https://www.indexnow.org/documentation
-pub async fn ping(home: &str, key: &str, links: &[String]) -> Result<()> {
+pub async fn ping(home: &str, key: &str, links: &[String]) -> Result<(), Error> {
     let limit = 10_000;
     let mut i = 0;
     loop {

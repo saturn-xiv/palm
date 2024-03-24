@@ -13,7 +13,7 @@ use palm::{
     queue::rabbitmq::amqp::{Connection as RabbitMq, Protobuf as ProtobufQueue},
     rbac::{v1 as rbac_v1, Permission},
     session::Session,
-    to_code, Error, HttpError, Result,
+    to_code, Error, HttpError,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -55,7 +55,7 @@ impl SignInRequest {
         enforcer: &Mutex<Enforcer>,
         jwt: &J,
         mac: &P,
-    ) -> Result<SignInResponse> {
+    ) -> Result<SignInResponse, Error> {
         self.validate()?;
         let user = user_by_nickname_or_email(db, &self.user)?;
         user.auth(mac, &self.password)?;
@@ -105,7 +105,7 @@ impl SignInResponse {
         ttl: Duration,
         provider: (UserProviderType, i32),
         ip: &str,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let token = {
             let uid = UserSessionDao::create(db, user.id, &provider.0, provider.1, ip, ttl)?;
             info!("create user session {uid}");
@@ -141,7 +141,7 @@ impl CurrentUser {
         ch: &mut Cache,
         enf: &Mutex<Enforcer>,
         jwt: &J,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let (user, _, provider) = ss.current_user(db, ch, jwt)?;
         Self::new(db, enf, &user, provider).await
     }
@@ -150,7 +150,7 @@ impl CurrentUser {
         enforcer: &Mutex<Enforcer>,
         user: &User,
         provider: (UserProviderType, i32),
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let is_administrator = user.is_administrator(enforcer).await.is_ok();
         let is_root = user.is_root(enforcer).await.is_ok();
         let has_wechat_mini_program = WechatMiniProgramUserDao::count_by_user(db, user.id)? > 0;
@@ -225,7 +225,7 @@ impl SignUpRequest {
         jwt: &J,
         mac: &P,
         rabbitmq: &RabbitMq,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         self.validate()?;
         let nickname = to_code!(self.nickname);
         let email = to_code!(self.email);
@@ -267,7 +267,7 @@ pub struct ByToken {
 }
 
 impl ByToken {
-    pub fn unlock<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<()> {
+    pub fn unlock<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<(), Error> {
         self.validate()?;
 
         let (_, nickname) = jwt.verify(&self.token, NAME, &UserAction::Unlock.to_string())?;
@@ -296,7 +296,7 @@ impl ByToken {
 
         Ok(())
     }
-    pub fn confirm<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<()> {
+    pub fn confirm<J: Jwt>(&self, ss: &Session, db: &mut Db, jwt: &J) -> Result<(), Error> {
         self.validate()?;
 
         let (_, nickname) = jwt.verify(&self.token, NAME, &UserAction::Confirm.to_string())?;
@@ -342,7 +342,7 @@ impl ResetPassword {
         db: &mut Db,
         jwt: &J,
         hmac: &P,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         self.validate()?;
 
         let (_, nickname) =
@@ -382,7 +382,7 @@ impl RefreshToken {
         ch: &mut Cache,
         enf: &Mutex<Enforcer>,
         jwt: &J,
-    ) -> Result<SignInResponse> {
+    ) -> Result<SignInResponse, Error> {
         self.validate()?;
 
         let (user, _, (provider_type, provider_id)) = ss.current_user(db, ch, jwt)?;
@@ -418,7 +418,7 @@ impl ByEmail {
         db: &mut Db,
         jwt: &J,
         queue: &RabbitMq,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         self.validate()?;
         let user = user_by_nickname_or_email(db, &self.user)?;
         Self::send_email(
@@ -432,7 +432,12 @@ impl ByEmail {
         .await?;
         Ok(())
     }
-    pub async fn unlock<J: Jwt>(&self, db: &mut Db, jwt: &J, queue: &RabbitMq) -> Result<()> {
+    pub async fn unlock<J: Jwt>(
+        &self,
+        db: &mut Db,
+        jwt: &J,
+        queue: &RabbitMq,
+    ) -> Result<(), Error> {
         self.validate()?;
 
         let user = user_by_nickname_or_email(db, &self.user)?;
@@ -445,7 +450,12 @@ impl ByEmail {
         Self::send_email(db, jwt, queue, &self.home, &user, &UserAction::Unlock).await?;
         Ok(())
     }
-    pub async fn confirm<J: Jwt>(&self, db: &mut Db, jwt: &J, queue: &RabbitMq) -> Result<()> {
+    pub async fn confirm<J: Jwt>(
+        &self,
+        db: &mut Db,
+        jwt: &J,
+        queue: &RabbitMq,
+    ) -> Result<(), Error> {
         self.validate()?;
 
         let user = user_by_nickname_or_email(db, &self.user)?;
@@ -468,7 +478,7 @@ impl ByEmail {
         home: &str,
         user: &User,
         act: &UserAction,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         let act = act.to_string();
         let token = jwt.sign(
             NAME,
@@ -516,7 +526,7 @@ impl ByEmail {
     }
 }
 
-pub fn sign_out<J: Jwt>(ss: &Session, db: &mut Db, ch: &mut Cache, jwt: &J) -> Result<()> {
+pub fn sign_out<J: Jwt>(ss: &Session, db: &mut Db, ch: &mut Cache, jwt: &J) -> Result<(), Error> {
     let (user, uid, _) = ss.current_user(db, ch, jwt)?;
     db.transaction::<_, Error, _>(move |db| {
         {
@@ -551,7 +561,13 @@ pub struct UpdateProfile {
 }
 
 impl UpdateProfile {
-    pub fn handle<J: Jwt>(&self, ss: &Session, db: &mut Db, ch: &mut Cache, jwt: &J) -> Result<()> {
+    pub fn handle<J: Jwt>(
+        &self,
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        jwt: &J,
+    ) -> Result<(), Error> {
         self.validate()?;
 
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
@@ -596,7 +612,7 @@ impl ChangePassword {
         ch: &mut Cache,
         jwt: &J,
         hmac: &P,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         self.validate()?;
 
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
@@ -674,7 +690,7 @@ impl IndexResponseItem {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         user: i32,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         {
             let (user, _, _) = ss.current_user(db, ch, jwt)?;
             user.is_administrator(enf).await?;
@@ -700,7 +716,7 @@ impl IndexResponse {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         pager: &Pager,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         {
             let (user, _, _) = ss.current_user(db, ch, jwt)?;
             user.is_administrator(enf).await?;
@@ -725,7 +741,7 @@ pub async fn enable<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     id: i32,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     user.is_administrator(enf).await?;
 
@@ -756,7 +772,7 @@ pub async fn disable<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     id: i32,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     user.is_administrator(enf).await?;
 
@@ -787,7 +803,7 @@ pub async fn lock<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     id: i32,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     user.is_administrator(enf).await?;
 
@@ -818,7 +834,7 @@ pub async fn unlock<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     id: i32,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     user.is_administrator(enf).await?;
 
@@ -849,7 +865,7 @@ pub async fn confirm<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     id: i32,
-) -> Result<()> {
+) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     user.is_administrator(enf).await?;
 
@@ -889,7 +905,7 @@ impl SetPassword {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         hmac: &P,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
 
         user.is_administrator(enf).await?;
@@ -917,7 +933,7 @@ impl SetPassword {
 }
 // ----------------------------------------------------------------------------
 
-fn user_by_nickname_or_email(db: &mut Db, user: &str) -> Result<User> {
+fn user_by_nickname_or_email(db: &mut Db, user: &str) -> Result<User, Error> {
     if let Ok(it) = UserDao::by_nickname(db, user) {
         return Ok(it);
     }

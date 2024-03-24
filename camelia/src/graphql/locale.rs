@@ -7,7 +7,7 @@ use palm::{
     jwt::Jwt,
     pagination::{Pager, Pagination},
     session::Session,
-    Error, Result,
+    Error,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -41,7 +41,7 @@ impl From<Locale> for IndexResponseItem {
 }
 
 impl IndexResponseItem {
-    pub fn by_lang(db: &mut Db, lang: &str) -> Result<Vec<Self>> {
+    pub fn by_lang(db: &mut Db, lang: &str) -> Result<Vec<Self>, Error> {
         let items = LocaleDao::by_lang(db, lang)?
             .into_iter()
             .map(|x| x.into())
@@ -58,7 +58,7 @@ pub struct IndexResponse {
 }
 
 impl IndexResponse {
-    pub fn new(db: &mut Db, pager: &Pager) -> Result<Self> {
+    pub fn new(db: &mut Db, pager: &Pager) -> Result<Self, Error> {
         let total = LocaleDao::count(db)?;
         let items = LocaleDao::all(db, pager.offset(total), pager.size())?
             .into_iter()
@@ -90,7 +90,7 @@ impl Form {
         ch: &mut Cache,
         enf: &Mutex<Enforcer>,
         jwt: &J,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         self.validate()?;
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         user.is_administrator(enf).await?;

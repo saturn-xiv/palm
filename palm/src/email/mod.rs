@@ -7,7 +7,7 @@ use lettre::{
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-use super::{HttpError, Result};
+use super::{Error, HttpError};
 
 pub mod v1 {
     tonic::include_proto!("palm.email.v1");
@@ -21,7 +21,7 @@ pub struct Address {
     pub email: String,
 }
 impl Address {
-    pub fn mailbox(&self) -> Result<Mailbox> {
+    pub fn mailbox(&self) -> Result<Mailbox, Error> {
         self.validate()?;
         let it = Mailbox {
             name: Some(self.name.clone()),
@@ -41,7 +41,7 @@ impl From<v1::send_email_task::Address> for Address {
 }
 
 impl v1::send_email_task::Address {
-    pub fn mailbox(&self) -> Result<Mailbox> {
+    pub fn mailbox(&self) -> Result<Mailbox, Error> {
         let it: Address = self.clone().into();
         it.mailbox()
     }
@@ -59,7 +59,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn send(&self, task: &v1::SendEmailTask) -> Result<()> {
+    pub fn send(&self, task: &v1::SendEmailTask) -> Result<(), Error> {
         let account = self.from.mailbox()?;
         let to = task
             .to

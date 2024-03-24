@@ -1,9 +1,9 @@
 use std::io::Cursor;
 
-use image::{imageops, ImageBuffer, ImageOutputFormat, Rgb, RgbImage};
+use ab_glyph::{FontRef, PxScale};
+use image::{imageops, ImageBuffer, ImageFormat, Rgb, RgbImage};
 use imageproc::drawing::{draw_cross_mut, draw_text_mut, text_size};
 use rand::{thread_rng, Rng};
-use rusttype::{Font, Scale};
 
 use super::Result;
 
@@ -19,7 +19,7 @@ impl Captcha {
     pub fn png(&self) -> Result<Vec<u8>> {
         let mut buf = Vec::new();
         let it = self.build()?;
-        it.write_to(&mut Cursor::new(&mut buf), ImageOutputFormat::Png)?;
+        it.write_to(&mut Cursor::new(&mut buf), ImageFormat::Png)?;
         Ok(buf)
     }
     fn build(&self) -> Result<RgbImage> {
@@ -29,9 +29,9 @@ impl Captcha {
 
         let (w, h) = {
             // https://www.fontsquirrel.com/fonts/dejavu-sans
-            let font = Font::try_from_bytes(FONT_DEJAVUSANS).ok_or("parse font")?;
+            let font = FontRef::try_from_slice(FONT_DEJAVUSANS)?;
 
-            let scale = Scale {
+            let scale = PxScale {
                 x: self.height as f32,
                 y: self.height as f32,
             };
@@ -48,13 +48,7 @@ impl Captcha {
             text_size(scale, &font, &self.text)
         };
 
-        let it = imageops::crop(
-            &mut img,
-            0,
-            0,
-            (w as u32) + self.gap * 2,
-            (h as u32) + self.gap * 2,
-        );
+        let it = imageops::crop(&mut img, 0, 0, w + self.gap * 2, h + self.gap * 2);
         let it = it.to_image();
         Ok(it)
     }

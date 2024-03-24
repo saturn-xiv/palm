@@ -13,7 +13,7 @@ use chrono::NaiveDateTime;
 use diesel::Connection as DieselConntection;
 use juniper::{GraphQLInputObject, GraphQLObject};
 use log::debug;
-use palm::{cache::redis::ClusterConnection as Cache, jwt::Jwt, session::Session, Error, Result};
+use palm::{cache::redis::ClusterConnection as Cache, jwt::Jwt, session::Session, Error};
 use tokio::sync::Mutex;
 use validator::Validate;
 
@@ -41,7 +41,7 @@ pub struct IndexResponseItem {
 }
 
 impl IndexResponseItem {
-    pub fn new(db: &mut Db, x: &Bill) -> Result<Self> {
+    pub fn new(db: &mut Db, x: &Bill) -> Result<Self, Error> {
         let it = Self {
             id: x.id,
             user: UserDetails::new(db, x.user_id)?,
@@ -72,7 +72,7 @@ impl IndexResponse {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         ledger: i32,
-    ) -> Result<Self> {
+    ) -> Result<Self, Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         let ledger = LedgerDao::by_id(db, ledger)?;
         ledger.can_show(enf, &user).await?;
@@ -117,7 +117,7 @@ impl Form {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         ledger: i32,
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         self.validate()?;
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         let ledger = LedgerDao::by_id(db, ledger)?;
@@ -160,7 +160,7 @@ impl Form {
         enf: &Mutex<Enforcer>,
         jwt: &J,
         (id, reason): (i32, &str),
-    ) -> Result<()> {
+    ) -> Result<(), Error> {
         Reason { text: reason }.validate()?;
         self.validate()?;
 
@@ -208,7 +208,7 @@ pub async fn delete<J: Jwt>(
     enf: &Mutex<Enforcer>,
     jwt: &J,
     (id, reason): (i32, &str),
-) -> Result<()> {
+) -> Result<(), Error> {
     Reason { text: reason }.validate()?;
 
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
@@ -241,7 +241,7 @@ pub fn merchants<J: Jwt>(
     db: &mut Db,
     ch: &mut Cache,
     jwt: &J,
-) -> Result<Vec<String>> {
+) -> Result<Vec<String>, Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     let items = BillDao::merchants(db, user.id)?;
     Ok(items)
@@ -252,7 +252,7 @@ pub fn categories<J: Jwt>(
     db: &mut Db,
     ch: &mut Cache,
     jwt: &J,
-) -> Result<Vec<String>> {
+) -> Result<Vec<String>, Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     let items = BillDao::categories(db, user.id)?;
     Ok(items)
@@ -263,7 +263,7 @@ pub fn payment_methods<J: Jwt>(
     db: &mut Db,
     ch: &mut Cache,
     jwt: &J,
-) -> Result<Vec<String>> {
+) -> Result<Vec<String>, Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     let items = BillDao::payment_methods(db, user.id)?;
     Ok(items)
