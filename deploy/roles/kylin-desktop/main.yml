@@ -1,0 +1,13 @@
+- name: Install packages
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - chromium-browser
+      - microsoft-edge-stable
+      - wechat-devtools
+      - wechat-beta
+      - linuxqq
+      - kylin-tencentmeeting
+      - wps-office
+
+- include_tasks: third.yml

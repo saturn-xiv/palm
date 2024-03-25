@@ -1,0 +1,22 @@
+# https://go.dev/doc/install
+# https://www.jetbrains.com/help/go/configuring-goroot-and-gopath.html
+- name: Go
+  hosts: all
+  tasks:
+    - name: Onstall {{ app_go_version }}
+      ansible.builtin.unarchive:
+        src: "https://go.dev/dl/go{{ app_go_version }}.linux-{{ app_go_architecture }}.tar.gz"
+        dest: "{{ ansible_env.HOME }}/local"
+        remote_src: true
+    - name: Setup GOROOT
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        line: "export GOROOT=$HOME/local/go"
+    - name: Setup GOPATH
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        line: "export GOPATH=$HOME/go"
+    - name: Setup PATH
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        line: "export PATH=$GOPATH/bin:$GOROOT/bin:$PATH"

@@ -1,0 +1,4 @@
+- name: Setup snmpd
+  hosts: all
+  roles:
+    - snmpd
