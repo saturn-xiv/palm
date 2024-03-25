@@ -28,6 +28,8 @@ pub struct InfoResponse {
     pub keywords: Vec<String>,
     pub authors: Vec<Author>,
     pub languages: Vec<String>,
+    pub icp_code: Option<String>,
+    pub gab_code: Option<String>,
     pub created_at: NaiveDateTime,
 }
 
@@ -37,6 +39,8 @@ impl InfoResponse {
     pub const DESCRIPTION: &'static str = "site.description";
     pub const KEYWORDS: &'static str = "site.keywords";
     pub const AUTHORS: &'static str = "site.authors";
+    pub const ICP_CODE: &'static str = "site.icp-code";
+    pub const GAB_CODE: &'static str = "site.gab-code";
 
     fn get<V: Default + DeserializeOwned, S: Secret>(db: &mut Db, aes: &S, key: &str) -> Result<V> {
         let buf = SettingDao::get(db, aes, &key.to_string(), None)?;
@@ -50,6 +54,8 @@ impl InfoResponse {
             subhead: I18n::t(db, lang, Self::SUBHEAD, &None::<String>),
             description: I18n::t(db, lang, Self::DESCRIPTION, &None::<String>),
             keywords: Self::get(db, aes, Self::KEYWORDS).unwrap_or_default(),
+            icp_code: Self::get(db, aes, Self::ICP_CODE).ok(),
+            gab_code: Self::get(db, aes, Self::GAB_CODE).ok(),
             authors: Self::get(db, aes, Self::AUTHORS).unwrap_or_default(),
             languages: LocaleDao::languages(db)?,
             created_at: Utc::now().naive_utc(),

@@ -392,6 +392,8 @@ interface ISiteInfoResponse {
   keywords: string[];
   languages: string[];
   authors: IAuthor[];
+  icpCode?: string;
+  gabCode?: string;
 }
 export interface ILayoutResponse {
   apiVersion: string;

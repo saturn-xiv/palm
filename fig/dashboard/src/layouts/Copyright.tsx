@@ -19,6 +19,8 @@ import {
 import { home_url } from "../utils";
 import LanguageBar from "./LanguageBar";
 import MessageBox from "./MessageBox";
+import IcpCode from "./IcpCode";
+import GabCode from "./GabCode";
 
 const Widget = () => {
   const site_info = useAppSelector(selectSiteInfo);
@@ -56,6 +58,18 @@ const Widget = () => {
           {site_info.title}
         </Link>
         &nbsp; 2024~{new Date().getFullYear()}({site_info.version}).
+        {site_info.gabCode && (
+          <>
+            &nbsp;
+            <GabCode code={site_info.gabCode} />
+          </>
+        )}
+        {site_info.icpCode && (
+          <>
+            &nbsp;
+            <IcpCode code={site_info.icpCode} />
+          </>
+        )}
         <br />
         <LanguageBar languages={site_info.languages} />
       </Typography>

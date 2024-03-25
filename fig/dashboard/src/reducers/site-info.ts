@@ -11,6 +11,8 @@ interface IState {
   languages: string[];
   authors: IAuthor[];
   version: string;
+  icpCode?: string;
+  gabCode?: string;
 }
 
 const initialState: IState = {
@@ -35,6 +37,8 @@ export const siteInfoSlice = createSlice({
       state.keywords = action.payload.siteInfo.keywords;
       state.languages = action.payload.siteInfo.languages;
       state.authors = action.payload.siteInfo.authors;
+      state.icpCode = action.payload.siteInfo.icpCode;
+      state.gabCode = action.payload.siteInfo.gabCode;
     },
   },
 });
