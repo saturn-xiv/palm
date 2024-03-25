@@ -13,9 +13,9 @@ import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import { useNavigate } from "react-router-dom";
+import Moment from "react-moment";
 
 import { ILedger } from "../../../api/daffodil";
-import Timestamp from "../../../components/Timestamp";
 import ExportDialog from "./:id/ExportDialog";
 import ShareDialog from "./:id/ShareDialog";
 
@@ -41,7 +41,7 @@ const Widget = ({ item }: IProps) => {
           </IconButton>
         }
         title={item.name}
-        subheader={<Timestamp value={item.updatedAt} />}
+        subheader={<Moment date={item.updatedAt} toNow trim />}
       />
       <CardMedia
         component="img"

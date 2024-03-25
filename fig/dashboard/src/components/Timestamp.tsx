@@ -1,13 +1,10 @@
-import moment from "moment";
-
-const DATETIME_FORMAT = "llll";
+import Moment from "react-moment";
 
 interface IProps {
   value: Date;
 }
 
 const Widget = ({ value }: IProps) => {
-  // return moment.unix(it).format(DATETIME_FORMAT);
-  return <>{moment(value).format(DATETIME_FORMAT)}</>;
+  return <Moment date={value} format="llll" />;
 };
 export default Widget;

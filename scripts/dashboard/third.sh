@@ -13,7 +13,7 @@ install_oauth() {
 # dayjs date-fns
 install_react() {
     npm install --save grpc-web filesize timezones-list \
-        moment moment-timezone \
+        moment moment-timezone react-moment \
         marked \
         diff @types/diff \
         lodash @types/lodash \
