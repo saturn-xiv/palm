@@ -3,7 +3,7 @@ use std::ops::{Deref, DerefMut};
 use camelia::graphql as camelia_graphql;
 use daffodil::graphql as daffodil_graphql;
 use juniper::{graphql_object, FieldResult};
-use palm::{pagination::Pager, GIT_VERSION};
+use palm::{pagination::Pager, Succeed, GIT_VERSION};
 
 use super::context::Context;
 
@@ -231,6 +231,25 @@ impl Query {
 
         Ok(response)
     }
+    async fn daffodil_share_ledger(
+        context: &Context,
+        id: i32,
+        begin: String,
+        end: String,
+    ) -> FieldResult<String> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let response =
+            daffodil_graphql::ledger::share(&context.session, db, ch, enf, jwt, id, (&begin, &end))
+                .await?;
+
+        Ok(response)
+    }
     async fn daffodil_index_ledger(
         context: &Context,
     ) -> FieldResult<daffodil_graphql::ledger::IndexResponse> {
@@ -250,9 +269,7 @@ impl Query {
         context: &Context,
         id: i32,
         r#type: daffodil_graphql::ledger::ExportType,
-        home: String,
-        ttl: i32,
-    ) -> FieldResult<String> {
+    ) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
         let mut ch = context.redis.get()?;
@@ -260,15 +277,10 @@ impl Query {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
 
-        let request = daffodil_graphql::ledger::ExportRequest {
-            id,
-            ttl: ttl as i64,
-            home,
-            r#type,
-        };
-        let response = request.handle(&context.session, db, ch, enf, jwt).await?;
+        let request = daffodil_graphql::ledger::ExportRequest { id, r#type };
+        request.handle(&context.session, db, ch, enf, jwt).await?;
 
-        Ok(response)
+        Ok(Succeed::default())
     }
     async fn daffodil_index_bill(
         context: &Context,

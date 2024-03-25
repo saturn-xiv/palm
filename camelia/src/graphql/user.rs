@@ -109,7 +109,7 @@ impl SignInResponse {
         let token = {
             let uid = UserSessionDao::create(db, user.id, &provider.0, provider.1, ip, ttl)?;
             info!("create user session {uid}");
-            jwt.sign(NAME, &uid, &UserAction::SignIn.to_string(), ttl)?
+            jwt.sign_by_duration(NAME, &uid, &UserAction::SignIn.to_string(), ttl)?
         };
         let user = CurrentUser::new(db, enforcer, user, provider).await?;
 
@@ -480,7 +480,7 @@ impl ByEmail {
         act: &UserAction,
     ) -> Result<(), Error> {
         let act = act.to_string();
-        let token = jwt.sign(
+        let token = jwt.sign_by_duration(
             NAME,
             &user.nickname,
             &act,

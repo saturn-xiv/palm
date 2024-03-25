@@ -19,6 +19,10 @@ pub struct Item {
     pub created_at: NaiveDateTime,
 }
 
+impl Item {
+    pub const SHOW: &'static str = "ledger-show";
+}
+
 pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;

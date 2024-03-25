@@ -2,7 +2,7 @@ pub mod openssl;
 
 use std::ops::Add;
 
-use chrono::{Datelike, Duration, Utc};
+use chrono::{Datelike, Duration, NaiveDateTime, Utc};
 use hyper::{header::AUTHORIZATION, http::StatusCode};
 use tonic::{
     metadata::{Ascii, MetadataKey, MetadataValue},
@@ -17,7 +17,21 @@ pub const BEARER: &str = "Bearer ";
 // https://jwt.io/
 // https://tools.ietf.org/html/rfc7519
 pub trait Jwt {
-    fn sign(&self, issuer: &str, subject: &str, audience: &str, ttl: Duration) -> Result<String>;
+    fn sign_by_duration(
+        &self,
+        issuer: &str,
+        subject: &str,
+        audience: &str,
+        ttl: Duration,
+    ) -> Result<String>;
+    fn sign_by_range(
+        &self,
+        issuer: &str,
+        subject: &str,
+        audience: &str,
+        not_before: NaiveDateTime,
+        expiration_time: NaiveDateTime,
+    ) -> Result<String>;
     fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)>;
 
     fn bearer(token: &str) -> String {

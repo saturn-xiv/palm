@@ -1,4 +1,4 @@
-use chrono::Duration;
+use chrono::{Duration, NaiveDateTime, Utc};
 use jsonwebtoken::{
     decode, encode, Algorithm, DecodingKey, EncodingKey, Header, TokenData, Validation,
 };
@@ -25,7 +25,13 @@ pub struct Token {
 }
 
 impl super::Jwt for Jwt {
-    fn sign(&self, issuer: &str, subject: &str, audience: &str, ttl: Duration) -> Result<String> {
+    fn sign_by_duration(
+        &self,
+        issuer: &str,
+        subject: &str,
+        audience: &str,
+        ttl: Duration,
+    ) -> Result<String> {
         let (iat, nbf, exp) = Self::timestamps(ttl)?;
         let token = Token {
             iss: issuer.to_string(),
@@ -35,6 +41,25 @@ impl super::Jwt for Jwt {
             iat,
             exp,
             nbf,
+        };
+        self.sum(None, &token)
+    }
+    fn sign_by_range(
+        &self,
+        issuer: &str,
+        subject: &str,
+        audience: &str,
+        not_before: NaiveDateTime,
+        expiration_time: NaiveDateTime,
+    ) -> Result<String> {
+        let token = Token {
+            iss: issuer.to_string(),
+            sub: subject.to_string(),
+            aud: audience.to_string(),
+            jti: Uuid::new_v4().to_string(),
+            iat: Utc::now().timestamp(),
+            exp: expiration_time.and_utc().timestamp(),
+            nbf: not_before.and_utc().timestamp(),
         };
         self.sum(None, &token)
     }

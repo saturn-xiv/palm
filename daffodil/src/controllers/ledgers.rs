@@ -9,7 +9,6 @@ use palm::{
 };
 
 use super::super::{
-    graphql::ledger::ExportRequest,
     models::{
         bill::{Dao as BillDao, Item as Bill},
         ledger::{Dao as LedgerDao, Item as Ledger},
@@ -24,7 +23,7 @@ pub async fn show(
     token: web::Path<String>,
 ) -> Result<impl Responder> {
     let token = token.into_inner();
-    let (_, uid) = try_web!(jwt.verify(&token, NAME, ExportRequest::AUDIENCE))?;
+    let (_, uid) = try_web!(jwt.verify(&token, NAME, Ledger::SHOW))?;
     let mut db = try_web!(db.get())?;
     let db = db.deref_mut();
     let ledger = try_web!(LedgerDao::by_uid(db, &uid))?;

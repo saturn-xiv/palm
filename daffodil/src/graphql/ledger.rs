@@ -9,7 +9,7 @@ use camelia::{
     services::CurrentUserAdapter,
 };
 use casbin::Enforcer;
-use chrono::{Duration, NaiveDateTime};
+use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
 use diesel::Connection as DieselConntection;
 use hyper::StatusCode;
 use juniper::{GraphQLEnum, GraphQLObject};
@@ -25,6 +25,41 @@ use super::super::{
     models::ledger::{Dao as LedgerDao, Item as Ledger},
     NAME,
 };
+
+pub async fn share<J: Jwt>(
+    ss: &Session,
+    db: &mut Db,
+    ch: &mut Cache,
+    enf: &Mutex<Enforcer>,
+    jwt: &J,
+    id: i32,
+    (begin, end): (&str, &str),
+) -> Result<String, Error> {
+    let (user, _, _) = ss.current_user(db, ch, jwt)?;
+
+    let it = LedgerDao::by_id(db, id)?;
+    it.can_show(enf, &user).await?;
+
+    let format = "%Y-%m-%d";
+
+    let token = jwt.sign_by_range(
+        NAME,
+        &it.uid,
+        Ledger::SHOW,
+        NaiveDate::parse_from_str(begin, format)?.and_time(NaiveTime::MIN),
+        NaiveDate::parse_from_str(end, format)?
+            .and_hms_opt(23, 59, 59)
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("bad time".to_string()),
+            )))?,
+    )?;
+    debug!(
+        "generate {token} for share ledger ({}, {}) ({begin},{end}) by {}",
+        it.id, it.name, user
+    );
+    Ok(format!("/daffodil/ledgers/{token}"))
+}
 
 #[derive(GraphQLObject)]
 #[graphql(name = "DaffodilIndexLedgerResponseItem")]
@@ -222,15 +257,10 @@ pub enum ExportType {
 }
 #[derive(Validate)]
 pub struct ExportRequest {
-    #[validate(url, length(min = 1, max = 127))]
-    pub home: String,
     pub r#type: ExportType,
     pub id: i32,
-    #[validate(range(min = 60))]
-    pub ttl: i64,
 }
 impl ExportRequest {
-    pub const AUDIENCE: &'static str = "daffodil.ledgers.export";
     pub async fn handle<J: Jwt>(
         &self,
         ss: &Session,
@@ -238,19 +268,15 @@ impl ExportRequest {
         ch: &mut Cache,
         enf: &Mutex<Enforcer>,
         jwt: &J,
-    ) -> Result<String, Error> {
+    ) -> Result<(), Error> {
         self.validate()?;
-        let ttl = Duration::try_seconds(self.ttl).ok_or(Box::new(HttpError(
-            StatusCode::BAD_REQUEST,
-            Some("bad ttl".to_string()),
-        )))?;
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
 
         let it = LedgerDao::by_id(db, self.id)?;
         it.can_show(enf, &user).await?;
-        let token = jwt.sign(NAME, &it.uid, Self::AUDIENCE, ttl)?;
+        // TODO send email
 
-        Ok(format!("{}/daffodil/ledgers/{}", self.home, token))
+        Ok(())
     }
 }
 

@@ -45,6 +45,35 @@ export interface ILedger {
   updatedAt: Date;
 }
 
+export const export_ledger = async (
+  id: number,
+  type: string
+): Promise<ISucceed> => {
+  const res = await query<{ daffodilExportLedger: ISucceed }>(
+    `
+  query call($id: Int!, $type: DaffodilLedgerExportType!){
+    daffodilExportLedger(id: $id, type: $type){ createdAt }
+  }
+  `,
+    { id, type }
+  );
+  return res.daffodilExportLedger;
+};
+export const share_ledger = async (
+  id: number,
+  begin: string,
+  end: string
+): Promise<string> => {
+  const res = await query<{ daffodilShareLedger: string }>(
+    `
+  query call($id: Int!, $begin: String!, $end: String!){
+    daffodilShareLedger(id: $id, begin: $begin, end: $end)
+  }
+  `,
+    { id, begin, end }
+  );
+  return res.daffodilShareLedger;
+};
 export const show_ledger = async (id: number): Promise<ILedger> => {
   const res = await query<{ daffodilShowLedger: ILedger }>(
     `

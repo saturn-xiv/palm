@@ -127,7 +127,7 @@ impl Token {
         let jwt = Jwt::new(&config.secret_key.0);
 
         {
-            let token = jwt.sign(
+            let token = jwt.sign_by_duration(
                 NAME,
                 &self.subject,
                 &Action::SignIn.to_string(),
