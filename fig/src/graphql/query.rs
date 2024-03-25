@@ -268,7 +268,7 @@ impl Query {
     async fn daffodil_export_ledger(
         context: &Context,
         id: i32,
-        r#type: daffodil_graphql::ledger::ExportType,
+        format: daffodil_graphql::ledger::ExportFormat,
     ) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
@@ -277,7 +277,7 @@ impl Query {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
 
-        let request = daffodil_graphql::ledger::ExportRequest { id, r#type };
+        let request = daffodil_graphql::ledger::ExportRequest { id, format };
         request.handle(&context.session, db, ch, enf, jwt).await?;
 
         Ok(Succeed::default())

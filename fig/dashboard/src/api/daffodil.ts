@@ -47,15 +47,15 @@ export interface ILedger {
 
 export const export_ledger = async (
   id: number,
-  type: string
+  format: string
 ): Promise<ISucceed> => {
   const res = await query<{ daffodilExportLedger: ISucceed }>(
     `
-  query call($id: Int!, $type: DaffodilLedgerExportType!){
-    daffodilExportLedger(id: $id, type: $type){ createdAt }
+  query call($id: Int!, $format: DaffodilLedgerExportFormat!){
+    daffodilExportLedger(id: $id, format: $format){ createdAt }
   }
   `,
-    { id, type }
+    { id, format }
   );
   return res.daffodilExportLedger;
 };

@@ -29,6 +29,10 @@ features = ["chrono"]
 version = "0.17"
 features = ["derive", "card", "unic"]
 
+[dependencies.strum]
+version = "0.26"
+features = ["derive"]
+
 [dependencies.hyper]
 version = "1"
 features = ["full"]

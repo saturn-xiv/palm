@@ -13,11 +13,13 @@ use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
 use diesel::Connection as DieselConntection;
 use hyper::StatusCode;
 use juniper::{GraphQLEnum, GraphQLObject};
-use log::{debug, warn};
+use log::{debug, info, warn};
 use palm::{
     cache::redis::ClusterConnection as Cache, jwt::Jwt, minio::Client as Minio, rbac::Operation,
     session::Session, Error, HttpError,
 };
+use serde::{Deserialize, Serialize};
+use strum::{Display as EnumDisplay, EnumString};
 use tokio::sync::Mutex;
 use validator::Validate;
 
@@ -249,15 +251,17 @@ pub async fn enable<J: Jwt>(
     Ok(())
 }
 
-#[derive(GraphQLEnum)]
-#[graphql(name = "DaffodilLedgerExportType")]
-pub enum ExportType {
+#[derive(
+    GraphQLEnum, EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone,
+)]
+#[graphql(name = "DaffodilLedgerExportFormat")]
+pub enum ExportFormat {
     Pdf,
     Html,
 }
 #[derive(Validate)]
 pub struct ExportRequest {
-    pub r#type: ExportType,
+    pub format: ExportFormat,
     pub id: i32,
 }
 impl ExportRequest {
@@ -275,6 +279,10 @@ impl ExportRequest {
         let it = LedgerDao::by_id(db, self.id)?;
         it.can_show(enf, &user).await?;
         // TODO send email
+        info!(
+            "export ledger({},{},{}) by {user}",
+            it.id, it.name, self.format
+        );
 
         Ok(())
     }
