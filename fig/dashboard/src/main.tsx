@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { IntlProvider } from "react-intl";
 import { Provider as ReduxProvider } from "react-redux";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import "./assets/dropzone.css";
 
@@ -17,7 +19,9 @@ index_locale(locale).then((messages) => {
     <React.StrictMode>
       <ReduxProvider store={store}>
         <IntlProvider locale={locale} messages={messages}>
-          <Router />
+          <LocalizationProvider dateAdapter={AdapterMoment}>
+            <Router />
+          </LocalizationProvider>
         </IntlProvider>
       </ReduxProvider>
     </React.StrictMode>

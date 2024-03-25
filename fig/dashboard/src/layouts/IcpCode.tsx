@@ -4,7 +4,7 @@ interface IProps {
 
 const Widget = ({ code }: IProps) => {
   return (
-    <a href="https://beian.miit.gov.cn/" target="_blank">
+    <a href="https://beian.miit.gov.cn/" rel="noreferrer" target="_blank">
       {code}
     </a>
   );

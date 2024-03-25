@@ -29,8 +29,15 @@ pub struct InfoResponse {
     pub authors: Vec<Author>,
     pub languages: Vec<String>,
     pub icp_code: Option<String>,
-    pub gab_code: Option<String>,
+    pub gab_code: Option<GabCode>,
     pub created_at: NaiveDateTime,
+}
+
+#[derive(GraphQLObject, Serialize, Deserialize, Default)]
+#[graphql(name = "WebSiteGabCode")]
+pub struct GabCode {
+    pub code: String,
+    pub name: String,
 }
 
 impl InfoResponse {

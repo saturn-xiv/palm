@@ -385,6 +385,10 @@ export interface IAuthor {
   email: string;
 }
 
+export interface IGabCode {
+  code: string;
+  name: string;
+}
 interface ISiteInfoResponse {
   title: string;
   subhead: string;
@@ -393,7 +397,7 @@ interface ISiteInfoResponse {
   languages: string[];
   authors: IAuthor[];
   icpCode?: string;
-  gabCode?: string;
+  gabCode?: IGabCode;
 }
 export interface ILayoutResponse {
   apiVersion: string;

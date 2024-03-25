@@ -58,10 +58,11 @@ const Widget = () => {
           {site_info.title}
         </Link>
         &nbsp; 2024~{new Date().getFullYear()}({site_info.version}).
+        <br />
         {site_info.gabCode && (
           <>
             &nbsp;
-            <GabCode code={site_info.gabCode} />
+            <GabCode value={site_info.gabCode} />
           </>
         )}
         {site_info.icpCode && (

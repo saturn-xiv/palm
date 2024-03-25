@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-import New from "../NewForm";
+import New from "./Form";
 
 export function Component() {
   return (

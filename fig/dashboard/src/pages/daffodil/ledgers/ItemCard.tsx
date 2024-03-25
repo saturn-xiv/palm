@@ -1,3 +1,4 @@
+import { useState, Fragment } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -15,12 +16,16 @@ import { useNavigate } from "react-router-dom";
 
 import { ILedger } from "../../../api/daffodil";
 import Timestamp from "../../../components/Timestamp";
+import ExportDialog from "./:id/ExportDialog";
+import ShareDialog from "./:id/ShareDialog";
 
 interface IProps {
   item: ILedger;
 }
 
 const Widget = ({ item }: IProps) => {
+  const [exportOpen, setExportOpen] = useState<boolean>(false);
+  const [shareOpen, setShareOpen] = useState<boolean>(false);
   const navigate = useNavigate();
   return (
     <Card sx={{ maxWidth: 420 }}>
@@ -56,12 +61,40 @@ const Widget = ({ item }: IProps) => {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton aria-label="export">
-          <FileDownloadIcon />
-        </IconButton>
+        <Fragment>
+          <IconButton
+            aria-label="share"
+            onClick={() => {
+              setShareOpen(true);
+            }}
+          >
+            <ShareIcon />
+          </IconButton>
+          <ShareDialog
+            item={item}
+            open={shareOpen}
+            handleClose={() => {
+              setShareOpen(false);
+            }}
+          />
+        </Fragment>
+        <Fragment>
+          <IconButton
+            aria-label="export"
+            onClick={() => {
+              setExportOpen(true);
+            }}
+          >
+            <FileDownloadIcon />
+          </IconButton>
+          <ExportDialog
+            item={item}
+            open={exportOpen}
+            handleClose={() => {
+              setExportOpen(false);
+            }}
+          />
+        </Fragment>
       </CardActions>
     </Card>
   );

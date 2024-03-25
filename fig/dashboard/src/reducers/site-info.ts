@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "../store";
-import { ILayoutResponse, IAuthor } from "../api/camelia";
+import { ILayoutResponse, IGabCode, IAuthor } from "../api/camelia";
 
 interface IState {
   title: string;
@@ -12,7 +12,7 @@ interface IState {
   authors: IAuthor[];
   version: string;
   icpCode?: string;
-  gabCode?: string;
+  gabCode?: IGabCode;
 }
 
 const initialState: IState = {

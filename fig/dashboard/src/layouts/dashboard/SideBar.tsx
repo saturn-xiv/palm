@@ -10,6 +10,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import SettingsAccessibilityOutlinedIcon from "@mui/icons-material/SettingsAccessibilityOutlined";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
+import SettingsApplicationsOutlinedIcon from "@mui/icons-material/SettingsApplicationsOutlined";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import { FormattedMessage } from "react-intl";
@@ -63,6 +64,14 @@ const Widget = () => {
           </ListItemIcon>
           <ListItemText
             primary={<FormattedMessage id="menus.dashboard.title" />}
+          />
+        </ListItemButton>
+        <ListItemButton onClick={() => navigate("/dashboard/settings")}>
+          <ListItemIcon>
+            <SettingsApplicationsOutlinedIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={<FormattedMessage id="menus.settings.title" />}
           />
         </ListItemButton>
         <ListItemButton onClick={() => navigate("/dashboard/self")}>

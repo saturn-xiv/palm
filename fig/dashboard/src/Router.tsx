@@ -8,23 +8,28 @@ const router = createBrowserRouter(
       lazy: () => import("./layouts/dashboard"),
       children: [
         { path: "main", lazy: () => import("./pages/main") },
+        { path: "settings", lazy: () => import("./pages/settings") },
         { path: "self", lazy: () => import("./pages/self") },
         { path: "attachments", lazy: () => import("./pages/attachments") },
         {
           path: "daffodil/ledgers",
-          lazy: () => import("./pages/daffodil/ledgers/index"),
+          lazy: () => import("./pages/daffodil/ledgers"),
         },
         {
           path: "daffodil/ledgers/new",
           lazy: () => import("./pages/daffodil/ledgers/new"),
         },
         {
-          path: "daffodil/ledgers/:id/edit",
-          lazy: () => import("./pages/daffodil/ledgers/edit"),
-        },
-        {
           path: "daffodil/ledgers/:id",
           lazy: () => import("./pages/daffodil/ledgers/:id/show"),
+        },
+        {
+          path: "daffodil/ledgers/:id/edit",
+          lazy: () => import("./pages/daffodil/ledgers/:id/edit"),
+        },
+        {
+          path: "daffodil/ledgers/:id/add-bill",
+          lazy: () => import("./pages/daffodil/ledgers/:id/add-bill"),
         },
       ],
     },
