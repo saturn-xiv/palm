@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import { FormattedMessage } from "react-intl";
 
 import { index_attachment, IIndexAttachmentResponse } from "../../api/camelia";
-import Timestamp from "../../components/Timestamp";
+import Moment from "../../components/Moment";
 import TablePagination from "../../components/TablePagination";
 import Upload from "./Upload";
 
@@ -61,7 +61,7 @@ export function Component() {
                   <TableCell>{it.title}</TableCell>
                   <TableCell>{it.contentType}</TableCell>
                   <TableCell>
-                    <Timestamp value={it.updatedAt} />{" "}
+                    <Moment date={it.updatedAt} />
                   </TableCell>
                 </TableRow>
               ))}

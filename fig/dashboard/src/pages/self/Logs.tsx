@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import { FormattedMessage } from "react-intl";
 
 import { logs as fetch_logs, IIndexLogResponse } from "../../api/camelia";
-import Timestamp from "../../components/Timestamp";
+import Moment from "../../components/Moment";
 import TablePagination from "../../components/TablePagination";
 
 function Widget() {
@@ -57,7 +57,7 @@ function Widget() {
                 <TableCell>{it.ip}</TableCell>
                 <TableCell>{it.message}</TableCell>
                 <TableCell>
-                  <Timestamp value={it.createdAt} />
+                  <Moment date={it.createdAt} />
                 </TableCell>
               </TableRow>
             ))}
