@@ -30,5 +30,17 @@
 
 - name: Install intellij-idea
   ansible.builtin.unarchive:
-    src: ideaIC-{{ app_kylin_intelij_idea_version }}.tar.gz
+    src: ideaIC-{{ app_kylin_intellij_idea_version }}.tar.gz
     dest: "{{ ansible_env.HOME }}/local"
+
+- name: iron.sh
+  ansible.builtin.template:
+    src: iron.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/iron.sh"
+    mode: "0755"
+
+- name: fermium.sh
+  ansible.builtin.template:
+    src: iron.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/fermium.sh"
+    mode: "0755"
