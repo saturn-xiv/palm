@@ -140,6 +140,7 @@ pub mod email;
 pub mod env;
 pub mod google;
 pub mod handlers;
+pub mod iso4217;
 pub mod jwt;
 pub mod line;
 pub mod minio;
