@@ -33,14 +33,26 @@
     src: ideaIC-{{ app_kylin_intellij_idea_version }}.tar.gz
     dest: "{{ ansible_env.HOME }}/local"
 
-- name: iron.sh
+- name: Upload iron.sh
   ansible.builtin.template:
     src: iron.sh.j2
     dest: "{{ ansible_env.HOME }}/local/iron.sh"
     mode: "0755"
 
-- name: fermium.sh
+- name: Upload fermium.sh
   ansible.builtin.template:
     src: fermium.sh.j2
     dest: "{{ ansible_env.HOME }}/local/fermium.sh"
+    mode: "0755"
+
+- name: Upload vscode.desktop
+  ansible.builtin.template:
+    src: vscode.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/vscode.desktop"
+    mode: "0755"
+
+- name: Upload intellij-idea.desktop
+  ansible.builtin.template:
+    src: intellij-idea.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/intellij-idea.desktop"
     mode: "0755"
