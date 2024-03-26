@@ -1,6 +1,31 @@
 import { query } from "./graphql";
 import { IAttachmentShow, ISucceed } from "./camelia";
 
+export const create_bill = async (
+  ledger: number,
+  summary: string,
+  price: number,
+  currency: string,
+  merchant: string,
+  category: string,
+  paidAt: string,
+  paidBy: string
+): Promise<ISucceed> => {
+  const res = await query<{ daffodilCreateBill: ISucceed }>(
+    `
+  mutation call($ledger: Int!, $summary: String!, $price: Int!, $currency: String!, $merchant: String!, $category: String!, $paidAt: String!, $paidBy: String!){
+    daffodilCreateBill(
+      ledger: $ledger, 
+      form: {summary: $summary, price: $price, currency: $currency, merchant: $merchant, category: $category, paidAt: $paidAt, paidBy: $paidBy}
+    ){
+      createdAt
+    }
+  }
+  `,
+    { ledger, summary, price, currency, merchant, category, paidAt, paidBy }
+  );
+  return res.daffodilCreateBill;
+};
 export const update_ledger = async (
   id: number,
   name: string,

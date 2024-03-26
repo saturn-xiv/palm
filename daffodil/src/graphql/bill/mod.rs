@@ -97,7 +97,7 @@ pub struct Form {
     #[validate(length(min = 1, max = 511))]
     pub summary: String,
     pub price: i32,
-    #[validate(length(equal = 3))]
+    #[validate(length(equal = 1))]
     pub currency: String,
     #[validate(length(min = 1, max = 63))]
     pub merchant: String,

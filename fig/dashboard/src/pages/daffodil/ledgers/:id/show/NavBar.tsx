@@ -35,7 +35,7 @@ const Widget = ({ item }: IProps) => {
         startIcon={<ReceiptLongOutlinedIcon />}
         color="secondary"
         onClick={() =>
-          navigate(`/dashboard/daffodil/ledgers/${item.id}/add-bill`)
+          navigate(`/dashboard/daffodil/ledgers/${item.id}/append-bill`)
         }
       >
         <FormattedMessage id="daffodil.ledgers.show.add-receipt" />

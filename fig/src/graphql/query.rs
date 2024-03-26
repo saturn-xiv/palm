@@ -3,7 +3,7 @@ use std::ops::{Deref, DerefMut};
 use camelia::graphql as camelia_graphql;
 use daffodil::graphql as daffodil_graphql;
 use juniper::{graphql_object, FieldResult};
-use palm::{pagination::Pager, Succeed, GIT_VERSION};
+use palm::{iso4217, pagination::Pager, Succeed, GIT_VERSION};
 
 use super::context::Context;
 
@@ -13,6 +13,14 @@ pub struct Query;
 impl Query {
     fn api_version(_context: &Context) -> &str {
         GIT_VERSION
+    }
+    fn currencies(_context: &Context) -> FieldResult<Vec<iso4217::list_one::Item>> {
+        let items = iso4217::list_one::Item::all()?;
+        Ok(items)
+    }
+    fn currency_options(_context: &Context) -> FieldResult<Vec<iso4217::Currency>> {
+        let items = iso4217::Currency::all()?;
+        Ok(items)
     }
     fn site_info(
         context: &Context,

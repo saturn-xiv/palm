@@ -50,8 +50,8 @@ CREATE TABLE daffodil_bills_history(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_daffodil_bills_history_reason ON daffodil_bills_history(reason);
-CREATE INDEX idx_daffodil_bills_history_currency ON daffodil_bills_history(currency);
 CREATE INDEX idx_daffodil_bills_history_merchant ON daffodil_bills_history(merchant);
+CREATE INDEX idx_daffodil_bill_historys_currency ON daffodil_bills_history(currency);
 CREATE INDEX idx_daffodil_bill_historys_summary ON daffodil_bills_history(summary);
 CREATE INDEX idx_daffodil_bills_history_category ON daffodil_bills_history(category);
 CREATE INDEX idx_daffodil_bills_history_paid_by ON daffodil_bills_history(paid_by);

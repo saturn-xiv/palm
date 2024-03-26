@@ -28,8 +28,8 @@ const router = createBrowserRouter(
           lazy: () => import("./pages/daffodil/ledgers/:id/edit"),
         },
         {
-          path: "daffodil/ledgers/:id/add-bill",
-          lazy: () => import("./pages/daffodil/ledgers/:id/add-bill"),
+          path: "daffodil/ledgers/:id/append-bill",
+          lazy: () => import("./pages/daffodil/ledgers/:id/append-bill"),
         },
       ],
     },

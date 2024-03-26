@@ -4,7 +4,7 @@ use std::path::Path;
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use ini::Ini;
-use log::{debug, info};
+use log::{debug, info, warn};
 use palm::Result;
 use serde::{Deserialize, Serialize};
 
@@ -70,6 +70,8 @@ fn load_from_ini<P: AsRef<Path>>(
                 if cnt == 0 {
                     Dao::create(db, lang, &code, val)?;
                     inserted += 1;
+                } else {
+                    warn!("{lang}.{code} already exists!");
                 }
             }
         }

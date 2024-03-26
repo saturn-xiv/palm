@@ -12,19 +12,29 @@ interface IProps {
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
   accept: Accept;
   handleRefresh: () => void;
+  resource?: IResource;
+}
+interface IResource {
+  type: string;
+  id: number;
 }
 
 interface IItem {
   title: string;
 }
 
-const Widget = ({ accept, handleRefresh }: IProps) => {
+const Widget = ({ accept, handleRefresh, resource }: IProps) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept,
     onDrop: (files: File[]): void => {
-      upload<IItem[]>("/api/attachments", files)
+      upload<IItem[]>(
+        `/api/attachments${
+          resource ? `?type=${resource.type}&id=${resource.id}` : ""
+        }`,
+        files
+      )
         .then((res: IItem[]) => {
           handleRefresh();
           dispatch(

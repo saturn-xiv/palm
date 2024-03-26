@@ -23,7 +23,8 @@ install_react() {
         google-protobuf @types/google-protobuf \
         js-cookie @types/js-cookie \
         mermaid \
-        jwt-decode dinero.js@alpha \
+        jwt-decode \
+        dinero.js@alpha @dinero.js/currencies@alpha \
         video.js @types/video.js \
         react-copy-to-clipboard @types/react-copy-to-clipboard \
         react-quill react-dropzone \

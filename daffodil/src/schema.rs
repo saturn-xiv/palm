@@ -35,12 +35,12 @@ diesel::table! {
         price -> Money,
         #[max_length = 3]
         currency -> Bpchar,
-        #[max_length = 64]
+        #[max_length = 63]
         merchant -> Varchar,
-        #[max_length = 32]
+        #[max_length = 31]
         category -> Varchar,
         paid_at -> Timestamp,
-        #[max_length = 32]
+        #[max_length = 31]
         paid_by -> Varchar,
         #[max_length = 255]
         reason -> Varchar,

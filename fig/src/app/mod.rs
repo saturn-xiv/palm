@@ -2,6 +2,7 @@ pub mod cache;
 pub mod generate;
 pub mod i18n;
 pub mod rpc;
+pub mod seed;
 pub mod user;
 pub mod web;
 pub mod worker;
@@ -33,6 +34,8 @@ pub enum SubCommand {
     CacheList,
     #[clap(about = "Clear cache items")]
     CacheClear,
+    #[clap(about = "Data seeding")]
+    Seed,
     #[clap(about = "Create a new user")]
     UserCreate(user::Create),
     #[clap(about = "List all users")]
@@ -75,6 +78,9 @@ pub async fn launch() -> Result<()> {
     }
     if let SubCommand::CacheList = args.command {
         return cache::list(args.config);
+    }
+    if let SubCommand::Seed = args.command {
+        return seed::seed(args.config);
     }
 
     if let SubCommand::UserList = args.command {

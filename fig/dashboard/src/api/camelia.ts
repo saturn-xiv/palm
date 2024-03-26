@@ -19,6 +19,30 @@ interface IPagination {
   hasNext: boolean;
   hasPrevious: boolean;
 }
+
+export interface ICurrencyOption {
+  id: number;
+  code: string;
+  name: string;
+  unit: number;
+}
+
+export const currency_options = async (): Promise<ICurrencyOption[]> => {
+  const res = await query<{
+    currencyOptions: ICurrencyOption[];
+  }>(
+    `
+query call{
+  currencyOptions{
+    id, code, name, unit
+  }
+}
+`,
+    {}
+  );
+  return res.currencyOptions;
+};
+
 export interface IAttachmentShow {
   id: number;
   title: string;
@@ -51,7 +75,7 @@ export const index_attachment = async (
 ): Promise<IIndexAttachmentResponse> => {
   const res = await query<{ indexAttachment: IIndexAttachmentResponse }>(
     `
-query index_attachment($pager: Pager!){
+query call($pager: Pager!){
   indexAttachment(pager: $pager){
     items{id, title, bucket, name, size, contentType, status, updatedAt},
     pagination{page, size, total, hasNext, hasPrevious}
