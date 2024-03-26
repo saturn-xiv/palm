@@ -69,13 +69,19 @@
 - name: Upload dbeaver-ce.desktop
   ansible.builtin.template:
     src: io.dbeaver.DBeaver.desktop.j2
-    dest: "{{ ansible_env.HOME }}/.local/share/applications/io.dbeaver.DBeaver.desktop.desktop"
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/io.dbeaver.DBeaver.desktop"
     mode: "0644"
+
+- name: Upload sqldeveloper.sh
+  ansible.builtin.template:
+    src: oracle-sqldeveloper/run.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/oracle-sqldeveloper.sh"
+    mode: "755"
 
 - name: Upload sqldeveloper.desktop
   ansible.builtin.template:
-    src: oracle-sqldeveloper.desktop.j2
-    dest: "{{ ansible_env.HOME }}/.local/share/applications/oracle-sqldeveloper.desktop.desktop"
+    src: oracle-sqldeveloper/desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/oracle-sqldeveloper.desktop"
     mode: "0644"
 
 - name: Upload intellij-idea.desktop
