@@ -20,7 +20,7 @@ export const get = (): string => {
   return (
     localStorage.getItem(KEY) ||
     Cookies.get(KEY) ||
-    import.meta.env.VITE_APP_DEFAULT_LOCALE ||
+    import.meta.env.VITE_DEFAULT_LOCALE ||
     "en-US"
   );
 };

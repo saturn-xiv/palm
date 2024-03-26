@@ -31,7 +31,7 @@ pub struct IndexResponseItem {
     pub id: i32,
     pub user: UserDetails,
     pub summary: String,
-    pub price: i32,
+    pub amount: i32,
     pub currency: String,
     pub merchant: String,
     pub category: String,
@@ -46,7 +46,7 @@ impl IndexResponseItem {
             id: x.id,
             user: UserDetails::new(db, x.user_id)?,
             summary: x.summary.clone(),
-            price: x.price.0 as i32,
+            amount: x.amount.0 as i32,
             currency: x.currency.clone(),
             merchant: x.merchant.clone(),
             category: x.category.clone(),
@@ -96,8 +96,8 @@ pub struct Reason<'a> {
 pub struct Form {
     #[validate(length(min = 1, max = 511))]
     pub summary: String,
-    pub price: i32,
-    #[validate(length(equal = 1))]
+    pub amount: i32,
+    #[validate(length(equal = 3))]
     pub currency: String,
     #[validate(length(min = 1, max = 63))]
     pub merchant: String,
@@ -125,7 +125,7 @@ impl Form {
 
         debug!(
             "create bill {}({}) {}({}) for {}",
-            self.price, self.currency, self.paid_by, self.paid_at, ledger.name
+            self.amount, self.currency, self.paid_by, self.paid_at, ledger.name
         );
         db.transaction::<_, Error, _>(move |db| {
             BillDao::create(
@@ -133,7 +133,7 @@ impl Form {
                 user.id,
                 ledger.id,
                 &self.summary,
-                (self.price as i64, &self.currency),
+                (self.amount as i64, &self.currency),
                 &self.category,
                 (&self.merchant, &self.paid_at, &self.paid_by),
             )?;
@@ -173,7 +173,7 @@ impl Form {
 
         debug!(
             "update bill({}) {}({}) {}({}) for {}",
-            bill.id, self.price, self.currency, self.paid_by, self.paid_at, ledger.name
+            bill.id, self.amount, self.currency, self.paid_by, self.paid_at, ledger.name
         );
         db.transaction::<_, Error, _>(move |db| {
             BillDao::update(
@@ -181,7 +181,7 @@ impl Form {
                 bill.id,
                 user.id,
                 &self.summary,
-                (self.price as i64, &self.currency),
+                (self.amount as i64, &self.currency),
                 &self.category,
                 (&self.merchant, &self.paid_at, &self.paid_by),
             )?;

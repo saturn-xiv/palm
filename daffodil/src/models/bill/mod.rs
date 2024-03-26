@@ -13,7 +13,7 @@ pub struct Item {
     pub user_id: i32,
     pub ledger_id: i32,
     pub summary: String,
-    pub price: Cents,
+    pub amount: Cents,
     pub currency: String,
     pub merchant: String,
     pub category: String,
@@ -31,7 +31,7 @@ pub struct New<'a> {
     pub user_id: i32,
     pub ledger_id: i32,
     pub summary: &'a str,
-    pub price: Cents,
+    pub amount: Cents,
     pub currency: &'a str,
     pub merchant: &'a str,
     pub category: &'a str,
@@ -49,7 +49,7 @@ pub trait Dao {
         user: i32,
         ledger: i32,
         summary: &str,
-        price: (i64, &str),
+        amount: (i64, &str),
         category: &str,
         paid: (&str, &NaiveDateTime, &str),
     ) -> Result<()>;
@@ -58,7 +58,7 @@ pub trait Dao {
         id: i32,
         user: i32,
         summary: &str,
-        price: (i64, &str),
+        amount: (i64, &str),
         category: &str,
         paid: (&str, &NaiveDateTime, &str),
     ) -> Result<()>;
@@ -92,7 +92,7 @@ impl Dao for Connection {
         user: i32,
         ledger: i32,
         summary: &str,
-        (price, currency): (i64, &str),
+        (amount, currency): (i64, &str),
         category: &str,
         (merchant, paid_at, paid_by): (&str, &NaiveDateTime, &str),
     ) -> Result<()> {
@@ -101,7 +101,7 @@ impl Dao for Connection {
                 user_id: user,
                 ledger_id: ledger,
                 summary,
-                price: Cents(price),
+                amount: Cents(amount),
                 merchant,
                 currency,
                 category,
@@ -117,7 +117,7 @@ impl Dao for Connection {
         id: i32,
         user: i32,
         summary: &str,
-        (price, currency): (i64, &str),
+        (amount, currency): (i64, &str),
         category: &str,
         (merchant, paid_at, paid_by): (&str, &NaiveDateTime, &str),
     ) -> Result<()> {
@@ -127,7 +127,7 @@ impl Dao for Connection {
             .set((
                 daffodil_bills::dsl::user_id.eq(user),
                 daffodil_bills::dsl::summary.eq(summary),
-                daffodil_bills::dsl::price.eq(Cents(price)),
+                daffodil_bills::dsl::amount.eq(Cents(amount)),
                 daffodil_bills::dsl::currency.eq(currency),
                 daffodil_bills::dsl::category.eq(category),
                 daffodil_bills::dsl::merchant.eq(merchant),
@@ -150,7 +150,6 @@ impl Dao for Connection {
             .select(daffodil_bills::dsl::merchant)
             .filter(daffodil_bills::dsl::user_id.eq(user))
             .distinct()
-            .order(daffodil_bills::dsl::updated_at.desc())
             .load::<String>(self)?)
     }
     fn categories(&mut self, user: i32) -> Result<Vec<String>> {
@@ -158,7 +157,6 @@ impl Dao for Connection {
             .select(daffodil_bills::dsl::category)
             .filter(daffodil_bills::dsl::user_id.eq(user))
             .distinct()
-            .order(daffodil_bills::dsl::updated_at.desc())
             .load::<String>(self)?)
     }
     fn payment_methods(&mut self, user: i32) -> Result<Vec<String>> {
@@ -166,7 +164,6 @@ impl Dao for Connection {
             .select(daffodil_bills::dsl::paid_by)
             .filter(daffodil_bills::dsl::user_id.eq(user))
             .distinct()
-            .order(daffodil_bills::dsl::updated_at.desc())
             .load::<String>(self)?)
     }
 }

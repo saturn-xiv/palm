@@ -7,7 +7,7 @@ diesel::table! {
         ledger_id -> Int4,
         #[max_length = 511]
         summary -> Varchar,
-        price -> Money,
+        amount -> Money,
         #[max_length = 3]
         currency -> Bpchar,
         #[max_length = 63]
@@ -32,7 +32,7 @@ diesel::table! {
         user_id -> Int4,
         #[max_length = 511]
         summary -> Varchar,
-        price -> Money,
+        amount -> Money,
         #[max_length = 3]
         currency -> Bpchar,
         #[max_length = 63]

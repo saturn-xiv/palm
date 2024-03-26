@@ -1,10 +1,42 @@
 import { query } from "./graphql";
-import { IAttachmentShow, ISucceed } from "./camelia";
+import { ICurrencyOption, IAttachmentShow, ISucceed } from "./camelia";
+
+export const bill_form_options = async (): Promise<{
+  currencies: ICurrencyOption[];
+  categories: string[];
+  payment_methods: string[];
+  merchants: string[];
+}> => {
+  const res = await query<{
+    currencyOptions: ICurrencyOption[];
+    daffodilBillCategories: string[];
+    daffodilBillMerchants: string[];
+    daffodilBillPaymentMethods: string[];
+  }>(
+    `
+query call{
+  currencyOptions{
+    id, code, name, unit
+  },
+  daffodilBillCategories,
+  daffodilBillMerchants,
+  daffodilBillPaymentMethods,
+}
+`,
+    {}
+  );
+  return {
+    currencies: res.currencyOptions,
+    categories: res.daffodilBillCategories,
+    merchants: res.daffodilBillMerchants,
+    payment_methods: res.daffodilBillPaymentMethods,
+  };
+};
 
 export const create_bill = async (
   ledger: number,
   summary: string,
-  price: number,
+  amount: number,
   currency: string,
   merchant: string,
   category: string,
@@ -13,16 +45,16 @@ export const create_bill = async (
 ): Promise<ISucceed> => {
   const res = await query<{ daffodilCreateBill: ISucceed }>(
     `
-  mutation call($ledger: Int!, $summary: String!, $price: Int!, $currency: String!, $merchant: String!, $category: String!, $paidAt: String!, $paidBy: String!){
+  mutation call($ledger: Int!, $summary: String!, $amount: Int!, $currency: String!, $merchant: String!, $category: String!, $paidAt: LocalDateTime!, $paidBy: String!){
     daffodilCreateBill(
       ledger: $ledger, 
-      form: {summary: $summary, price: $price, currency: $currency, merchant: $merchant, category: $category, paidAt: $paidAt, paidBy: $paidBy}
+      form: {summary: $summary, amount: $amount, currency: $currency, merchant: $merchant, category: $category, paidAt: $paidAt, paidBy: $paidBy}
     ){
       createdAt
     }
   }
   `,
-    { ledger, summary, price, currency, merchant, category, paidAt, paidBy }
+    { ledger, summary, amount, currency, merchant, category, paidAt, paidBy }
   );
   return res.daffodilCreateBill;
 };

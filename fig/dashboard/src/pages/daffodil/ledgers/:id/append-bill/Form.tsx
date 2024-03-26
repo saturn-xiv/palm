@@ -4,16 +4,9 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
 import Autocomplete from "@mui/material/Autocomplete";
 import { FormattedMessage, useIntl } from "react-intl";
-import {
-  string as yup_string,
-  number as yup_number,
-  object as yup_object,
-} from "yup";
+import { string as yup_string, object as yup_object } from "yup";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Stack from "@mui/material/Stack";
@@ -21,20 +14,28 @@ import moment, { Moment } from "moment";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 import { IErrorMessage } from "../../../../../api/graphql";
-import { create_bill, ILedger } from "../../../../../api/daffodil";
+import {
+  create_bill,
+  bill_form_options,
+  ILedger,
+} from "../../../../../api/daffodil";
 import { useAppDispatch } from "../../../../../hooks";
-import { currency_options, ICurrencyOption } from "../../../../../api/camelia";
+import { ICurrencyOption } from "../../../../../api/camelia";
 import {
   success as success_box,
   error as error_box,
 } from "../../../../../reducers/message-box";
 import Upload from "../../../../attachments/Upload";
-import { DATETIME_PICKER_FORMAT } from "../../../../../components";
+import {
+  DATETIME_PICKER_FORMAT,
+  LOCAL_DATETIME_FORMAT,
+} from "../../../../../components";
+import AmountInput, {
+  IForm as IAmount,
+} from "../../../../../components/AmountInput";
 
 const validationSchema = yup_object({
   summary: yup_string().required().min(1).max(511),
-  price: yup_number().required(),
-  currency: yup_string().required().length(3),
   merchant: yup_string().required().min(1).max(63),
   category: yup_string().required().min(1).max(31),
   paidBy: yup_string().required().min(1).max(31),
@@ -53,37 +54,39 @@ function Widget({ item }: IProps) {
   const [merchants, setMerchants] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [currencies, setCurrencies] = useState<ICurrencyOption[]>([]);
+  const [amount, setAmount] = useState<IAmount | undefined>();
 
   useEffect(() => {
-    setPaymentMethods(["p1", "p2"]);
-    setMerchants(["m1", "m2"]);
-    setCategories(["c1", "c2"]);
-    currency_options().then((res) => {
-      setCurrencies(res);
+    bill_form_options().then((res) => {
+      setCurrencies(res.currencies);
+      setMerchants(res.merchants);
+      setPaymentMethods(res.payment_methods);
+      setCategories(res.categories);
     });
   }, []);
 
   const formik = useFormik({
     initialValues: {
       summary: "",
-      price: 0.0,
-      currency: "USD",
       merchant: "",
       category: "",
       paidBy: "",
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log(paidAt.format(DATETIME_PICKER_FORMAT), values);
-      return;
+      if (amount === undefined) {
+        return;
+      }
+      // console.log(paidAt.format(DATETIME_PICKER_FORMAT), amount, values);
+
       create_bill(
         item.id,
         values.summary,
-        values.price,
-        values.currency,
+        amount?.amount,
+        amount?.currency,
         values.merchant,
         values.category,
-        paidAt.format(DATETIME_PICKER_FORMAT),
+        paidAt.format(LOCAL_DATETIME_FORMAT),
         values.paidBy
       )
         .then(() => {
@@ -112,25 +115,68 @@ function Widget({ item }: IProps) {
         noValidate
         sx={{ mt: 1 }}
       >
-        <TextField
+        <AmountInput
+          value={amount}
+          handleChange={(a, c) => {
+            console.log(a, c);
+            setAmount({ amount: a, currency: c });
+          }}
+          currencies={currencies}
+        />
+        {/* <TextField
           margin="normal"
           required
-          label={intl.formatMessage({ id: "form.fields.price.label" })}
-          name="price"
+          label={intl.formatMessage({ id: "form.fields.amount.label" })}
+          name="amount"
           type="number"
-          value={formik.values.price}
+          value={formik.values.amount}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.price && Boolean(formik.errors.price)}
-          helperText={formik.touched.price && formik.errors.price}
-        />
-        <FormControl margin="normal" required fullWidth>
+          error={formik.touched.amount && Boolean(formik.errors.amount)}
+          helperText={
+            <>
+              {formik.touched.amount && formik.errors.amount}
+              <Amount
+                value={formik.values.amount}
+                currency={{ id: 840, name: "USDal", code: "USD", unit: 2 }}
+              />
+            </>
+          }
+        /> */}
+
+        {/* <Autocomplete
+          disablePortal
+          options={currencies}
+          getOptionLabel={(x) => `${x.code}-${x.name}`}
+          fullWidth
+          isOptionEqualToValue={(option, value): boolean => {
+            return option.code === value.code;
+          }}
+          onChange={(_e, v) => {
+            if (v !== null) {
+              formik.setFieldValue("currency", v.code, true);
+            }
+          }}
+          renderInput={(params) => (
+            <TextField
+              required
+              name="currency"
+              {...params}
+              label={<FormattedMessage id="form.fields.currency.label" />}
+              value={formik.values.currency}
+              onBlur={formik.handleBlur}
+              error={formik.touched.currency && Boolean(formik.errors.currency)}
+              helperText={formik.touched.currency && formik.errors.currency}
+            />
+          )}
+        /> */}
+        {/* <FormControl margin="normal" required fullWidth>
           <InputLabel id="daffodil-append-bill-currency-select-label">
             <FormattedMessage id="form.fields.currency.label" />
           </InputLabel>
           <Select
             labelId="daffodil-append-bill-currency-select-label"
-            name="currency"
+            name="currency1"
             value={formik.values.currency}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -141,7 +187,7 @@ function Widget({ item }: IProps) {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
         <TextField
           margin="normal"
           required
@@ -179,7 +225,6 @@ function Widget({ item }: IProps) {
             />
           )}
         />
-
         <Autocomplete
           disablePortal
           freeSolo
@@ -215,7 +260,6 @@ function Widget({ item }: IProps) {
             format={DATETIME_PICKER_FORMAT}
           />
         </FormControl>
-
         <Autocomplete
           disablePortal
           freeSolo
@@ -238,7 +282,6 @@ function Widget({ item }: IProps) {
             />
           )}
         />
-
         <Upload
           accept={{
             "image/png": [".png"],
@@ -249,7 +292,6 @@ function Widget({ item }: IProps) {
             // TODO
           }}
         />
-
         <Stack spacing={2} direction="row" justifyContent="flex-end">
           <Button
             variant="contained"

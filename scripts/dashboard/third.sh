@@ -24,7 +24,7 @@ install_react() {
         js-cookie @types/js-cookie \
         mermaid \
         jwt-decode \
-        dinero.js@alpha @dinero.js/currencies@alpha \
+        dinero.js@alpha @dinero.js/currencies@alpha react-currency-input-field \
         video.js @types/video.js \
         react-copy-to-clipboard @types/react-copy-to-clipboard \
         react-quill react-dropzone \
