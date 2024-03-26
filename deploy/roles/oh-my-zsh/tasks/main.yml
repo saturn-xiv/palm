@@ -4,20 +4,20 @@
     dest: "{{ansible_env.HOME}}/.oh-my-zsh"
     args:
       creates: "{{ansible_env.HOME}}/.oh-my-zsh"
-  when: not oh_my_zsh_using_zip
+  when: not app_oh_my_zsh_using_zip
 
 - name: Extract ohmyzsh
   unarchive:
     src: ohmyzsh-master.zip
     dest: "{{ ansible_env.HOME }}/"
-  when: oh_my_zsh_using_zip
+  when: app_oh_my_zsh_using_zip
 
 - name: Rename ohmyzsh
   command: mv ohmyzsh-master .oh-my-zsh
   args:
     chdir: "{{ ansible_env.HOME }}"
     creates: .oh-my-zsh
-  when: oh_my_zsh_using_zip
+  when: app_oh_my_zsh_using_zip
 
 - name: Setup .zshrc
   copy:

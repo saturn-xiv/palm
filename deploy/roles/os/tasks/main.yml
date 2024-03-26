@@ -5,7 +5,7 @@
 - name: Update system
   become: true
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Kylin'
 
@@ -23,6 +23,7 @@
       - pwgen
       - zsh
       - git
+      - tmux
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Kylin'
 
 - name: Set timezone

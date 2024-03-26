@@ -41,6 +41,6 @@
 
 - name: fermium.sh
   ansible.builtin.template:
-    src: iron.sh.j2
+    src: fermium.sh.j2
     dest: "{{ ansible_env.HOME }}/local/fermium.sh"
     mode: "0755"
