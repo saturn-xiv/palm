@@ -28,6 +28,21 @@
     src: code-stable-x64-{{ app_kylin_vscode_version }}.tar.gz
     dest: "{{ ansible_env.HOME }}/local"
 
+- name: Install jdk for sqldevelper
+  ansible.builtin.unarchive:
+    src: jdk-{{ app_kylin_sql_developer_jdk_version }}_linux-x64_bin.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install sqldevelper
+  ansible.builtin.unarchive:
+    src: sqldeveloper-{{ app_kylin_sql_developer_version }}-no-jre.zip
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install dbeaver-ce
+  ansible.builtin.unarchive:
+    src: dbeaver-ce-{{ app_kylin_dbeaver_version }}-linux.gtk.x86_64.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
 - name: Install intellij-idea
   ansible.builtin.unarchive:
     src: ideaIC-{{ app_kylin_intellij_idea_version }}.tar.gz
@@ -49,6 +64,18 @@
   ansible.builtin.template:
     src: vscode.desktop.j2
     dest: "{{ ansible_env.HOME }}/.local/share/applications/vscode.desktop"
+    mode: "0644"
+
+- name: Upload dbeaver-ce.desktop
+  ansible.builtin.template:
+    src: io.dbeaver.DBeaver.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/io.dbeaver.DBeaver.desktop.desktop"
+    mode: "0644"
+
+- name: Upload sqldeveloper.desktop
+  ansible.builtin.template:
+    src: oracle-sqldeveloper.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/oracle-sqldeveloper.desktop.desktop"
     mode: "0644"
 
 - name: Upload intellij-idea.desktop
