@@ -1,6 +1,6 @@
 use camelia::orm::postgresql::Connection;
 use chrono::NaiveDateTime;
-use diesel::{data_types::Cents, insert_into, prelude::*};
+use diesel::{insert_into, prelude::*};
 use palm::Result;
 
 use super::super::super::schema::daffodil_bills_history;
@@ -13,7 +13,7 @@ pub struct Item {
     pub bill_id: i32,
     pub user_id: i32,
     pub summary: String,
-    pub amount: Cents,
+    pub amount: i32,
     pub currency: String,
     pub merchant: String,
     pub category: String,

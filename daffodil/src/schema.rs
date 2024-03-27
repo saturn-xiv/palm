@@ -7,7 +7,7 @@ diesel::table! {
         ledger_id -> Int4,
         #[max_length = 511]
         summary -> Varchar,
-        amount -> Money,
+        amount -> Int4,
         #[max_length = 3]
         currency -> Bpchar,
         #[max_length = 63]
@@ -17,7 +17,6 @@ diesel::table! {
         paid_at -> Timestamp,
         #[max_length = 31]
         paid_by -> Varchar,
-        deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
@@ -32,7 +31,7 @@ diesel::table! {
         user_id -> Int4,
         #[max_length = 511]
         summary -> Varchar,
-        amount -> Money,
+        amount -> Int4,
         #[max_length = 3]
         currency -> Bpchar,
         #[max_length = 63]

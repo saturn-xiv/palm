@@ -41,7 +41,7 @@ impl IndexResponseItem {
             bill: x.bill_id,
             user: UserDetails::new(db, x.user_id)?,
             summary: x.summary.clone(),
-            amount: x.amount.0 as i32,
+            amount: x.amount,
             currency: Currency::new(&x.currency)?,
             merchant: x.merchant.clone(),
             category: x.category.clone(),

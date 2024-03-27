@@ -53,7 +53,7 @@ impl IndexResponseItem {
             ledger: x.ledger_id,
             user: UserDetails::new(db, x.user_id)?,
             summary: x.summary.clone(),
-            amount: x.amount.0 as i32,
+            amount: x.amount,
             currency: Currency::new(&x.currency)?,
             merchant: x.merchant.clone(),
             category: x.category.clone(),
@@ -159,7 +159,7 @@ impl Form {
                 user.id,
                 ledger.id,
                 &self.summary,
-                (self.amount as i64, &self.currency),
+                (self.amount, &self.currency),
                 &self.category,
                 (&self.merchant, &self.paid_at, &self.paid_by),
             )?;
@@ -207,7 +207,7 @@ impl Form {
                 bill.id,
                 user.id,
                 &self.summary,
-                (self.amount as i64, &self.currency),
+                (self.amount, &self.currency),
                 &self.category,
                 (&self.merchant, &self.paid_at, &self.paid_by),
             )?;
