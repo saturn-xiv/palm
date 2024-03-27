@@ -3,11 +3,11 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { FormattedMessage } from "react-intl";
 import Typography from "@mui/material/Typography";
-import { dinero, toDecimal } from "dinero.js";
 import Autocomplete from "@mui/material/Autocomplete";
 import FormControl from "@mui/material/FormControl";
 
 import { ICurrencyOption } from "../api/camelia";
+import AmountShow from "./AmountShow";
 
 export interface IForm {
   amount: number;
@@ -19,23 +19,6 @@ interface IProps {
   currencies: ICurrencyOption[];
   handleChange: (amount: number, currency: string) => void;
 }
-
-const detect_base = (code: string): number => {
-  switch (code) {
-    default:
-      return 10;
-  }
-};
-const detect_exponent = (
-  code: string,
-  currencies: ICurrencyOption[]
-): number => {
-  const items = currencies.filter((x) => x.code === code);
-  if (items.length > 0) {
-    return items[0].unit;
-  }
-  return 2;
-};
 
 const Widget = ({ value, currencies, handleChange }: IProps) => {
   const [item, setItem] = useState<IForm>({
@@ -52,23 +35,18 @@ const Widget = ({ value, currencies, handleChange }: IProps) => {
           type="number"
           value={item.amount}
           onChange={(e) => {
-            const v = parseInt(e.target.value, 10);
-            setItem({ amount: v, currency: item.currency });
-            handleChange(v, item.currency);
+            if (e.target.value) {
+              const v = parseInt(e.target.value, 10);
+              setItem({ amount: v, currency: item.currency });
+              handleChange(v, item.currency);
+            }
           }}
           helperText={
             <Typography variant="caption" display="block" gutterBottom>
-              {item.currency}: &nbsp;
-              {toDecimal(
-                dinero({
-                  amount: Math.trunc(item.amount),
-                  currency: {
-                    code: item.currency,
-                    base: detect_base(item.currency),
-                    exponent: detect_exponent(item.currency, currencies),
-                  },
-                })
-              )}
+              <AmountShow
+                amount={item.amount}
+                currency={currencies.filter((x) => x.code === item.currency)[0]}
+              />
             </Typography>
           }
         />
@@ -92,7 +70,7 @@ const Widget = ({ value, currencies, handleChange }: IProps) => {
               required
               {...params}
               label={<FormattedMessage id="form.fields.currency.label" />}
-              value={item?.amount}
+              value={item?.amount || 0}
             />
           )}
         />

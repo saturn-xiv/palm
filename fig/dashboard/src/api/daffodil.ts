@@ -1,5 +1,45 @@
 import { query } from "./graphql";
-import { ICurrencyOption, IAttachmentShow, ISucceed } from "./camelia";
+import {
+  ICurrencyOption,
+  IAttachmentShow,
+  IUserDetails,
+  ISucceed,
+} from "./camelia";
+
+export interface IBill {
+  id: number;
+  user: IUserDetails;
+  summary: string;
+  amount: number;
+  currency: ICurrencyOption;
+  merchant: string;
+  category: string;
+  paidAt: Date;
+  paidBy: string;
+  updatedAt: Date;
+}
+
+export const bills_by_ledger = async (ledger: number): Promise<IBill[]> => {
+  const res = await query<{
+    daffodilIndexBill: { items: IBill[] };
+  }>(
+    `
+query call($ledger: Int!){
+  daffodilIndexBill(ledger: $ledger){
+    items{
+      id,
+      user{nickname, realName, avatar},
+      summary, amount, 
+      currency{id, code, name, unit},
+      merchant, category, paidAt, paidBy, updatedAt,
+    }
+  },
+}
+`,
+    { ledger }
+  );
+  return res.daffodilIndexBill.items;
+};
 
 export const bill_form_options = async (): Promise<{
   currencies: ICurrencyOption[];

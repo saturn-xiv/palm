@@ -1,23 +1,23 @@
 import { dinero, toDecimal } from "dinero.js";
-import Typography from "@mui/material/Typography";
 
 import { ICurrencyOption } from "../api/camelia";
 
-interface IProps {
-  value: number;
+export interface IProps {
+  amount: number;
   currency: ICurrencyOption;
 }
-const Widget = ({ value, currency }: IProps) => {
+
+const Widget = ({ amount, currency }: IProps) => {
   return (
-    <Typography variant="caption" display="block" gutterBottom>
-      {currency.name}: &nbsp;
+    <>
+      {currency.code}:
       {toDecimal(
         dinero({
-          amount: Math.trunc(value),
+          amount: Math.trunc(amount),
           currency: { code: currency.code, base: 10, exponent: currency.unit },
         })
       )}
-    </Typography>
+    </>
   );
 };
 

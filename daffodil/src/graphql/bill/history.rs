@@ -5,7 +5,9 @@ use camelia::{
 use casbin::Enforcer;
 use chrono::NaiveDateTime;
 use juniper::GraphQLObject;
-use palm::{cache::redis::ClusterConnection as Cache, jwt::Jwt, session::Session, Result};
+use palm::{
+    cache::redis::ClusterConnection as Cache, iso4217::Currency, jwt::Jwt, session::Session, Result,
+};
 use tokio::sync::Mutex;
 
 use super::super::super::models::{
@@ -20,7 +22,7 @@ pub struct IndexResponseItem {
     pub user: UserDetails,
     pub summary: String,
     pub amount: i32,
-    pub currency: String,
+    pub currency: Currency,
     pub merchant: String,
     pub category: String,
     pub paid_at: NaiveDateTime,
@@ -36,7 +38,7 @@ impl IndexResponseItem {
             user: UserDetails::new(db, x.user_id)?,
             summary: x.summary.clone(),
             amount: x.amount.0 as i32,
-            currency: x.currency.clone(),
+            currency: Currency::new(&x.currency)?,
             merchant: x.merchant.clone(),
             category: x.category.clone(),
             paid_at: x.paid_at,

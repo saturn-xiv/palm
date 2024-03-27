@@ -118,76 +118,11 @@ function Widget({ item }: IProps) {
         <AmountInput
           value={amount}
           handleChange={(a, c) => {
-            console.log(a, c);
             setAmount({ amount: a, currency: c });
           }}
           currencies={currencies}
         />
-        {/* <TextField
-          margin="normal"
-          required
-          label={intl.formatMessage({ id: "form.fields.amount.label" })}
-          name="amount"
-          type="number"
-          value={formik.values.amount}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.amount && Boolean(formik.errors.amount)}
-          helperText={
-            <>
-              {formik.touched.amount && formik.errors.amount}
-              <Amount
-                value={formik.values.amount}
-                currency={{ id: 840, name: "USDal", code: "USD", unit: 2 }}
-              />
-            </>
-          }
-        /> */}
 
-        {/* <Autocomplete
-          disablePortal
-          options={currencies}
-          getOptionLabel={(x) => `${x.code}-${x.name}`}
-          fullWidth
-          isOptionEqualToValue={(option, value): boolean => {
-            return option.code === value.code;
-          }}
-          onChange={(_e, v) => {
-            if (v !== null) {
-              formik.setFieldValue("currency", v.code, true);
-            }
-          }}
-          renderInput={(params) => (
-            <TextField
-              required
-              name="currency"
-              {...params}
-              label={<FormattedMessage id="form.fields.currency.label" />}
-              value={formik.values.currency}
-              onBlur={formik.handleBlur}
-              error={formik.touched.currency && Boolean(formik.errors.currency)}
-              helperText={formik.touched.currency && formik.errors.currency}
-            />
-          )}
-        /> */}
-        {/* <FormControl margin="normal" required fullWidth>
-          <InputLabel id="daffodil-append-bill-currency-select-label">
-            <FormattedMessage id="form.fields.currency.label" />
-          </InputLabel>
-          <Select
-            labelId="daffodil-append-bill-currency-select-label"
-            name="currency1"
-            value={formik.values.currency}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          >
-            {currencies.map((x, i) => (
-              <MenuItem key={i} value={x.code}>
-                {x.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl> */}
         <TextField
           margin="normal"
           required

@@ -4,10 +4,11 @@ pub mod list_one;
 
 use std::collections::HashSet;
 
+use hyper::StatusCode;
 use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 
-use super::Result;
+use super::{HttpError, Result};
 
 #[derive(GraphQLObject)]
 #[graphql(name = "CurrencySelectOption")]
@@ -39,5 +40,15 @@ impl Currency {
         }
 
         Ok(items.into_iter().collect())
+    }
+    pub fn new(code: &str) -> Result<Self> {
+        Self::all()?
+            .into_iter()
+            .filter(|x| x.code == code)
+            .nth(0)
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some(format!("unknown currency code {code}")),
+            )))
     }
 }

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import { ILedger, show_ledger } from "../../../../../api/daffodil";
 import NavBar from "./NavBar";
+import Bills from "../../../bills/Table";
 
 export function Component() {
   const [item, setItem] = useState<ILedger | undefined>(undefined);
@@ -17,11 +18,18 @@ export function Component() {
     }
   }, [id]);
   return item ? (
-    <Grid item xs={12}>
-      <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-        <NavBar item={item} />
-      </Paper>
-    </Grid>
+    <>
+      <Grid item xs={12}>
+        <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+          <NavBar item={item} />
+        </Paper>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+          <Bills ledger={item} />
+        </Paper>
+      </Grid>
+    </>
   ) : (
     <></>
   );

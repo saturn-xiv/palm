@@ -31,6 +31,14 @@ const router = createBrowserRouter(
           path: "daffodil/ledgers/:id/append-bill",
           lazy: () => import("./pages/daffodil/ledgers/:id/append-bill"),
         },
+        {
+          path: "daffodil/bills/:id",
+          lazy: () => import("./pages/daffodil/bills/:id/show"),
+        },
+        {
+          path: "daffodil/bills/:id/edit",
+          lazy: () => import("./pages/daffodil/bills/:id/edit"),
+        },
       ],
     },
     {

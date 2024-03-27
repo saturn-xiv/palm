@@ -1,3 +1,3 @@
 export function Component() {
-  return <>edit bills</>;
+  return <>edit bill</>;
 }

@@ -20,6 +20,12 @@ interface IPagination {
   hasPrevious: boolean;
 }
 
+export interface IUserDetails {
+  nickname: string;
+  realName: string;
+  avatar: string;
+}
+
 export interface ICurrencyOption {
   id: number;
   code: string;

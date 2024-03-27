@@ -13,7 +13,9 @@ use chrono::NaiveDateTime;
 use diesel::Connection as DieselConntection;
 use juniper::{GraphQLInputObject, GraphQLObject};
 use log::debug;
-use palm::{cache::redis::ClusterConnection as Cache, jwt::Jwt, session::Session, Error};
+use palm::{
+    cache::redis::ClusterConnection as Cache, iso4217::Currency, jwt::Jwt, session::Session, Error,
+};
 use tokio::sync::Mutex;
 use validator::Validate;
 
@@ -32,7 +34,7 @@ pub struct IndexResponseItem {
     pub user: UserDetails,
     pub summary: String,
     pub amount: i32,
-    pub currency: String,
+    pub currency: Currency,
     pub merchant: String,
     pub category: String,
     pub paid_at: NaiveDateTime,
@@ -47,7 +49,7 @@ impl IndexResponseItem {
             user: UserDetails::new(db, x.user_id)?,
             summary: x.summary.clone(),
             amount: x.amount.0 as i32,
-            currency: x.currency.clone(),
+            currency: Currency::new(&x.currency)?,
             merchant: x.merchant.clone(),
             category: x.category.clone(),
             paid_at: x.paid_at,
