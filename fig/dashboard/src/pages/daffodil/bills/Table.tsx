@@ -33,9 +33,6 @@ const Widget = ({ ledger }: IProps) => {
         <Table sx={{ minWidth: 650 }} size="small">
           <TableHead>
             <TableRow>
-              <TableCell align="center">
-                <FormattedMessage id="form.fields.id.label" />
-              </TableCell>
               <TableCell>
                 <FormattedMessage id="form.fields.amount.label" />
               </TableCell>
@@ -56,7 +53,6 @@ const Widget = ({ ledger }: IProps) => {
                 }}
                 key={id}
               >
-                <TableCell align="center">{it.id}</TableCell>
                 <TableCell>
                   <AmountShow
                     amount={it.amount}

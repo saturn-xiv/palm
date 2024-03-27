@@ -12,7 +12,7 @@ export interface ISucceed {
   createdAt: Date;
 }
 
-interface IPagination {
+export interface IPagination {
   page: number;
   size: number;
   total: number;

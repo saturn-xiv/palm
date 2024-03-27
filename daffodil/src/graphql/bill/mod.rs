@@ -1,7 +1,9 @@
 pub mod history;
 
 use camelia::{
+    graphql::attachment::IndexResponseItem as AttachmentItem,
     models::{
+        attachment::Dao as AttachmentDao,
         log::{Dao as LogDao, Level as LogLevel},
         user::Details as UserDetails,
     },
@@ -31,6 +33,7 @@ use super::super::{
 #[graphql(name = "DaffodilIndexBillResponseItem")]
 pub struct IndexResponseItem {
     pub id: i32,
+    pub ledger: i32,
     pub user: UserDetails,
     pub summary: String,
     pub amount: i32,
@@ -39,6 +42,7 @@ pub struct IndexResponseItem {
     pub category: String,
     pub paid_at: NaiveDateTime,
     pub paid_by: String,
+    pub attachments: Vec<AttachmentItem>,
     pub updated_at: NaiveDateTime,
 }
 
@@ -46,6 +50,7 @@ impl IndexResponseItem {
     pub fn new(db: &mut Db, x: &Bill) -> Result<Self, Error> {
         let it = Self {
             id: x.id,
+            ledger: x.ledger_id,
             user: UserDetails::new(db, x.user_id)?,
             summary: x.summary.clone(),
             amount: x.amount.0 as i32,
@@ -54,9 +59,28 @@ impl IndexResponseItem {
             category: x.category.clone(),
             paid_at: x.paid_at,
             paid_by: x.paid_by.clone(),
+            attachments: AttachmentDao::by_resource::<Bill>(db, x.id)?
+                .into_iter()
+                .map(|x| x.into())
+                .collect(),
             updated_at: x.updated_at,
         };
         Ok(it)
+    }
+
+    pub async fn show<J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        enf: &Mutex<Enforcer>,
+        jwt: &J,
+        id: i32,
+    ) -> Result<Self, Error> {
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
+        let it = BillDao::by_id(db, id)?;
+        let ledger = LedgerDao::by_id(db, it.ledger_id)?;
+        ledger.can_show(enf, &user).await?;
+        Self::new(db, &it)
     }
 }
 

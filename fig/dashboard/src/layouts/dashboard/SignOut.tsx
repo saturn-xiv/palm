@@ -23,7 +23,7 @@ const Widget = () => {
       onClick={() => {
         confirm({
           title: intl.formatMessage({
-            id: "layouts.are-you-sure",
+            id: "flashes.are-you-sure",
           }),
           description: intl.formatMessage({
             id: "users.sign-out.confirm",

@@ -143,6 +143,32 @@ impl Query {
 
         Ok(response)
     }
+    async fn index_attachment_by_resource(
+        context: &Context,
+        operation: String,
+        resource_type: String,
+        resource_id: i32,
+    ) -> FieldResult<Vec<camelia_graphql::attachment::IndexResponseItem>> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let response = camelia_graphql::attachment::IndexResponseItem::by_resource(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            &operation,
+            (&resource_type, resource_id),
+        )
+        .await?;
+
+        Ok(response)
+    }
     async fn show_attachment_by_id(
         context: &Context,
         id: i32,
@@ -289,6 +315,23 @@ impl Query {
         request.handle(&context.session, db, ch, enf, jwt).await?;
 
         Ok(Succeed::default())
+    }
+    async fn daffodil_show_bill(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<daffodil_graphql::bill::IndexResponseItem> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let response =
+            daffodil_graphql::bill::IndexResponseItem::show(&context.session, db, ch, enf, jwt, id)
+                .await?;
+
+        Ok(response)
     }
     async fn daffodil_index_bill(
         context: &Context,

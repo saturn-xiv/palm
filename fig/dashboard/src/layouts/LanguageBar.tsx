@@ -56,7 +56,7 @@ const Widget = ({ languages }: IProps) => {
               const lang = intl.formatMessage({ id: `languages.${l}` });
               confirm({
                 title: intl.formatMessage({
-                  id: "layouts.are-you-sure",
+                  id: "flashes.are-you-sure",
                 }),
                 description: intl.formatMessage(
                   {

@@ -76,11 +76,33 @@ impl User {
     pub async fn is_root(&self, enforcer: &Mutex<Enforcer>) -> Result<()> {
         self.has(enforcer, &rbac_v1::Role::root()).await
     }
+    pub async fn can_<O: Display>(
+        &self,
+        enforcer: &Mutex<Enforcer>,
+        operation: O,
+        resource_type: &str,
+        resource_id: Option<i32>,
+    ) -> Result<()> {
+        let resource = rbac_v1::Resource {
+            r#type: resource_type.to_string(),
+            id: resource_id.map(rbac_v1::resource::Id::I),
+        };
+        self.can_object(enforcer, operation, &resource).await
+    }
     pub async fn can<R, O: Display>(
         &self,
         enforcer: &Mutex<Enforcer>,
         operation: O,
         resource_id: Option<i32>,
+    ) -> Result<()> {
+        let resource = rbac_v1::Resource::by_i::<R>(resource_id);
+        self.can_object(enforcer, operation, &resource).await
+    }
+    async fn can_object<O: Display>(
+        &self,
+        enforcer: &Mutex<Enforcer>,
+        operation: O,
+        resource: &rbac_v1::Resource,
     ) -> Result<()> {
         if self.is_administrator(enforcer).await.is_ok() {
             return Ok(());
@@ -90,12 +112,10 @@ impl User {
             let it = operation.to_string();
             to_code!(it)
         };
-
-        let object = rbac_v1::Resource::by_i::<R>(resource_id).to_string();
+        let object = resource.to_string();
         if has_permission!(enforcer, &user, &object, &action) {
             return Ok(());
         }
-
         Err(Box::new(HttpError(
             StatusCode::FORBIDDEN,
             Some(format!(

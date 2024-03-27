@@ -19,6 +19,8 @@ use super::super::super::models::{
 #[graphql(name = "DaffodilIndexBillHistoryResponseItem")]
 pub struct IndexResponseItem {
     pub id: i32,
+    pub ledger: i32,
+    pub bill: i32,
     pub user: UserDetails,
     pub summary: String,
     pub amount: i32,
@@ -35,6 +37,8 @@ impl IndexResponseItem {
     pub fn new(db: &mut Db, x: &BillHistory) -> Result<Self> {
         let it = Self {
             id: x.id,
+            ledger: x.ledger_id,
+            bill: x.bill_id,
             user: UserDetails::new(db, x.user_id)?,
             summary: x.summary.clone(),
             amount: x.amount.0 as i32,

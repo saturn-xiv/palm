@@ -7,7 +7,7 @@ import Edit from "./Form";
 import { ILedger, show_ledger } from "../../../../../api/daffodil";
 
 export function Component() {
-  const [item, setItem] = useState<ILedger | undefined>(undefined);
+  const [item, setItem] = useState<ILedger | undefined>();
   const { id } = useParams();
   useEffect(() => {
     if (id) {

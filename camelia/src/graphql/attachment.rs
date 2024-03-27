@@ -74,6 +74,25 @@ impl IndexResponseItem {
             .collect();
         Ok(items)
     }
+
+    pub async fn by_resource<J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        enf: &Mutex<Enforcer>,
+        jwt: &J,
+        operation: &str,
+        (resource_type, resource_id): (&str, i32),
+    ) -> Result<Vec<Self>, Error> {
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
+        user.can_(enf, operation, resource_type, Some(resource_id))
+            .await?;
+        let items = AttachmentDao::by_resource_(db, resource_type, resource_id)?
+            .into_iter()
+            .map(|x| x.into())
+            .collect();
+        Ok(items)
+    }
 }
 
 impl From<Attachment> for IndexResponseItem {
@@ -142,8 +161,10 @@ impl ByBucketAndNameRequest {
         s3: &Minio,
     ) -> Result<ShowResponse, Error> {
         self.validate()?;
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
         let item = AttachmentDao::by_bucket_and_name(db, &self.bucket, &self.name)?;
-        ShowResponse::new(ss, db, ch, enf, jwt, s3, (&item, self.ttl)).await
+        item.can_show(enf, &user).await?;
+        ShowResponse::new(s3, &item, self.ttl).await
     }
 }
 
@@ -166,8 +187,10 @@ impl ByIdRequest {
         s3: &Minio,
     ) -> Result<ShowResponse, Error> {
         self.validate()?;
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
         let item = AttachmentDao::by_id(db, self.id)?;
-        ShowResponse::new(ss, db, ch, enf, jwt, s3, (&item, self.ttl)).await
+        item.can_show(enf, &user).await?;
+        ShowResponse::new(s3, &item, self.ttl).await
     }
 }
 #[derive(GraphQLObject)]
@@ -181,17 +204,7 @@ pub struct ShowResponse {
 }
 
 impl ShowResponse {
-    async fn new<J: Jwt>(
-        ss: &Session,
-        db: &mut Db,
-        ch: &mut Cache,
-        enf: &Mutex<Enforcer>,
-        jwt: &J,
-        s3: &Minio,
-        (item, ttl): (&Attachment, Option<i64>),
-    ) -> Result<Self, Error> {
-        let (user, _, _) = ss.current_user(db, ch, jwt)?;
-        item.can_delete(enf, &user).await?;
+    pub async fn new(s3: &Minio, item: &Attachment, ttl: Option<i64>) -> Result<Self, Error> {
         let url = item.url(&s3.connection, ttl).await?;
 
         Ok(Self {

@@ -4,10 +4,29 @@ import {
   IAttachmentShow,
   IUserDetails,
   ISucceed,
+  IAttachment,
 } from "./camelia";
+
+export const destroy_bill = async (
+  id: number,
+  reason: string
+): Promise<ISucceed> => {
+  const res = await query<{ daffodilDestroyBill: ISucceed }>(
+    `
+  mutation call($id: Int!, $reason: String!){
+    daffodilDestroyBill(id: $id, reason: $reason){
+      createdAt
+    }
+  }
+  `,
+    { id, reason }
+  );
+  return res.daffodilDestroyBill;
+};
 
 export interface IBill {
   id: number;
+  ledger: number;
   user: IUserDetails;
   summary: string;
   amount: number;
@@ -16,8 +35,31 @@ export interface IBill {
   category: string;
   paidAt: Date;
   paidBy: string;
+  attachments: IAttachment[];
   updatedAt: Date;
 }
+
+export const show_bill = async (id: number): Promise<IBill> => {
+  const res = await query<{
+    daffodilShowBill: IBill;
+  }>(
+    `
+query call($id: Int!){
+  daffodilShowBill(id: $id){    
+    id, ledger,
+    user{nickname, realName, avatar},
+    summary, amount, 
+    currency{id, code, name, unit},
+    merchant, category, paidAt, paidBy, 
+    attachments{id, title, bucket, name, size, contentType, status, updatedAt},
+    updatedAt,    
+  },
+}
+`,
+    { id }
+  );
+  return res.daffodilShowBill;
+};
 
 export const bills_by_ledger = async (ledger: number): Promise<IBill[]> => {
   const res = await query<{
@@ -27,11 +69,13 @@ export const bills_by_ledger = async (ledger: number): Promise<IBill[]> => {
 query call($ledger: Int!){
   daffodilIndexBill(ledger: $ledger){
     items{
-      id,
+      id, ledger,
       user{nickname, realName, avatar},
       summary, amount, 
       currency{id, code, name, unit},
-      merchant, category, paidAt, paidBy, updatedAt,
+      merchant, category, paidAt, paidBy, 
+      attachments{id, title, bucket, name, size, contentType, status, updatedAt},
+      updatedAt,
     }
   },
 }
