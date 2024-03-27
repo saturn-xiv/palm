@@ -69,7 +69,7 @@
 - name: Upload jdk19-fermium.sh
   ansible.builtin.template:
     src: jdk19-fermium.sh.j2
-    dest: "{{ ansible_env.HOME }}/local/jdk-19fermium.sh"
+    dest: "{{ ansible_env.HOME }}/local/jdk19-fermium.sh"
     mode: "0755"
 
 - name: Upload vscode.desktop
