@@ -1,8 +1,19 @@
-<html>
-  <head>
-    <title>{{ ledger.name }}</title>
-  </head>
-  <body>
-    <h1>show {{ ledger.name }}</h1>
-  </body>
-</html>
+{% extends "bootstrap/application.html" %} {% block title %} {{ ledger.name }}
+{% endblock %} {% block content %}
+
+<main class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">{{ ledger.name }}</h1>
+    <p class="lead">
+      {{ ledger.summary }}
+      <br />
+      <code class="small">
+        {% if let Some(v) = i18n.get("form.fields.updated-at.label") %}{{ v }}{% endif %}
+        :
+        {{ ledger.updated_at }}
+      </code>
+    </p>
+  </div>
+</main>
+
+{% endblock %}

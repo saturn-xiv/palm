@@ -22,9 +22,11 @@ pub struct Author {
 #[derive(GraphQLObject)]
 #[graphql(name = "SiteInfoResponse")]
 pub struct InfoResponse {
+    pub locale: String,
     pub title: String,
     pub subhead: String,
     pub description: String,
+    pub copyright: String,
     pub keywords: Vec<String>,
     pub authors: Vec<Author>,
     pub languages: Vec<String>,
@@ -46,6 +48,7 @@ impl InfoResponse {
     pub const DESCRIPTION: &'static str = "site.description";
     pub const KEYWORDS: &'static str = "site.keywords";
     pub const AUTHORS: &'static str = "site.authors";
+    pub const COPYRIGHT: &'static str = "site.copyright";
     pub const ICP_CODE: &'static str = "site.icp-code";
     pub const GAB_CODE: &'static str = "site.gab-code";
 
@@ -56,7 +59,8 @@ impl InfoResponse {
     }
     pub fn new(db: &mut Db, _ch: &mut Cache, aes: &Aes, lang: &str) -> Result<Self> {
         // TODO cache
-        Ok(Self {
+        let it = Self {
+            locale: lang.to_string(),
             title: I18n::t(db, lang, Self::TITLE, &None::<String>),
             subhead: I18n::t(db, lang, Self::SUBHEAD, &None::<String>),
             description: I18n::t(db, lang, Self::DESCRIPTION, &None::<String>),
@@ -64,8 +68,11 @@ impl InfoResponse {
             icp_code: Self::get(db, aes, Self::ICP_CODE).ok(),
             gab_code: Self::get(db, aes, Self::GAB_CODE).ok(),
             authors: Self::get(db, aes, Self::AUTHORS).unwrap_or_default(),
+            copyright: Self::get(db, aes, Self::COPYRIGHT).unwrap_or_default(),
             languages: LocaleDao::languages(db)?,
             created_at: Utc::now().naive_utc(),
-        })
+        };
+
+        Ok(it)
     }
 }
