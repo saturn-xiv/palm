@@ -11,6 +11,7 @@ import Paper from "@mui/material/Paper";
 import Moment from "../../components/Moment";
 import TablePagination from "../../components/TablePagination";
 import { IAttachment, IPagination } from "../../api/camelia";
+import ShowButton from "./:id/ShowButton";
 
 interface IProps {
   items: IAttachment[];
@@ -40,6 +41,7 @@ const Widget = ({ items, pagination, handleRefresh }: IProps) => {
               <TableCell>
                 <FormattedMessage id="form.fields.updated-at.label" />
               </TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -50,6 +52,9 @@ const Widget = ({ items, pagination, handleRefresh }: IProps) => {
                 <TableCell>{it.contentType}</TableCell>
                 <TableCell>
                   <Moment date={it.updatedAt} />
+                </TableCell>
+                <TableCell>
+                  <ShowButton item={it} small />
                 </TableCell>
               </TableRow>
             ))}

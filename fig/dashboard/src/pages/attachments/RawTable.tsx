@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 
 import Moment from "../../components/Moment";
 import { IAttachment } from "../../api/camelia";
+import ShowButton from "./:id/ShowButton";
 
 interface IProps {
   items: IAttachment[];
@@ -37,6 +38,7 @@ const Widget = ({ items }: IProps) => {
               <TableCell>
                 <FormattedMessage id="form.fields.updated-at.label" />
               </TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,6 +49,9 @@ const Widget = ({ items }: IProps) => {
                 <TableCell>{it.contentType}</TableCell>
                 <TableCell>
                   <Moment date={it.updatedAt} />
+                </TableCell>
+                <TableCell>
+                  <ShowButton item={it} small />
                 </TableCell>
               </TableRow>
             ))}

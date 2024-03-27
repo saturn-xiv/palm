@@ -7,6 +7,9 @@ import {
   IAttachment,
 } from "./camelia";
 
+export const LEDGER_RESOURCE_TYPE = "daffodil::models::ledger::Item";
+export const BILL_RESOURCE_TYPE = "daffodil::models::bill::Item";
+
 export const destroy_bill = async (
   id: number,
   reason: string

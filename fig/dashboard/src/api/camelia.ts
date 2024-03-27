@@ -54,6 +54,33 @@ export interface IAttachmentShow {
   title: string;
   url: string;
 }
+
+export interface IAttachmentShowResponse {
+  url: string;
+  title: string;
+  size: number;
+  contentType: string;
+  updatedAt: Date;
+}
+export const show_attachment_by_id = async (
+  id: number,
+  ttl: number
+): Promise<IAttachmentShowResponse> => {
+  const res = await query<{ showAttachmentById: IAttachmentShowResponse }>(
+    `
+query call($id: Int!, $ttl: Int){
+  showAttachmentById(id: $id, ttl: $ttl){
+    url, title, size, contentType, updatedAt
+  }
+}
+`,
+    {
+      id,
+      ttl,
+    }
+  );
+  return res.showAttachmentById;
+};
 export interface IAttachment {
   id: number;
   title: string;

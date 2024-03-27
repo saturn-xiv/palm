@@ -1,3 +1,4 @@
+use std::any::type_name;
 use std::ops::{Deref, DerefMut};
 
 use camelia::graphql as camelia_graphql;
@@ -13,6 +14,12 @@ pub struct Query;
 impl Query {
     fn api_version(_context: &Context) -> &str {
         GIT_VERSION
+    }
+    fn resource_types(_context: &Context) -> Vec<&str> {
+        vec![
+            type_name::<daffodil::models::ledger::Item>(),
+            type_name::<daffodil::models::bill::Item>(),
+        ]
     }
     fn currencies(_context: &Context) -> FieldResult<Vec<iso4217::list_one::Item>> {
         let items = iso4217::list_one::Item::all()?;

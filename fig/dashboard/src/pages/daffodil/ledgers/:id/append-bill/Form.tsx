@@ -25,7 +25,6 @@ import {
   success as success_box,
   error as error_box,
 } from "../../../../../reducers/message-box";
-import Upload from "../../../../attachments/Upload";
 import {
   DATETIME_PICKER_FORMAT,
   LOCAL_DATETIME_FORMAT,
@@ -217,16 +216,7 @@ function Widget({ item }: IProps) {
             />
           )}
         />
-        <Upload
-          accept={{
-            "image/png": [".png"],
-            "image/jpeg": [".jpg", ".jpeg"],
-            "application/pdf": [".pdf"],
-          }}
-          handleRefresh={() => {
-            // TODO
-          }}
-        />
+
         <Stack spacing={2} direction="row" justifyContent="flex-end">
           <Button
             variant="contained"
