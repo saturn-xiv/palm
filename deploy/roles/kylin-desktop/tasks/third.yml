@@ -1,3 +1,5 @@
+# update-desktop-database ~/.local/share/applications
+
 - name: Install nodejs iron
   ansible.builtin.unarchive:
     src: node-v{{ app_kylin_nodejs_iron_version }}-linux-x64.tar.xz
@@ -8,14 +10,24 @@
     src: node-v{{ app_kylin_nodejs_fermium_version }}-linux-x64.tar.xz
     dest: "{{ ansible_env.HOME }}/local"
 
-- name: Install openjdk
+- name: Install openjdk-lts
   ansible.builtin.unarchive:
-    src: openjdk-{{ app_kylin_jdk_version }}_linux-x64_bin.tar.gz
+    src: openjdk-{{ app_kylin_jdk_lts_version }}_linux-x64_bin.tar.gz
     dest: "{{ ansible_env.HOME }}/local"
 
-- name: Install gradle
+- name: Install openjdk-19
   ansible.builtin.unarchive:
-    src: gradle-{{ app_kylin_gradle_version }}-bin.zip
+    src: jdk-{{ app_kylin_jdk19_version }}_linux-x64_bin.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install gradle-lts
+  ansible.builtin.unarchive:
+    src: gradle-{{ app_kylin_gradle_lts_version }}-bin.zip
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install gradle-7
+  ansible.builtin.unarchive:
+    src: gradle-{{ app_kylin_gradle7_version }}-bin.zip
     dest: "{{ ansible_env.HOME }}/local"
 
 - name: Install maven
@@ -48,16 +60,16 @@
     src: ideaIC-{{ app_kylin_intellij_idea_version }}.tar.gz
     dest: "{{ ansible_env.HOME }}/local"
 
-- name: Upload iron.sh
+- name: Upload lts.sh
   ansible.builtin.template:
-    src: iron.sh.j2
-    dest: "{{ ansible_env.HOME }}/local/iron.sh"
+    src: lts.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/lts.sh"
     mode: "0755"
 
-- name: Upload fermium.sh
+- name: Upload jdk19-fermium.sh
   ansible.builtin.template:
-    src: fermium.sh.j2
-    dest: "{{ ansible_env.HOME }}/local/fermium.sh"
+    src: jdk19-fermium.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/jdk-19fermium.sh"
     mode: "0755"
 
 - name: Upload vscode.desktop
@@ -89,4 +101,3 @@
     src: intellij-idea.desktop.j2
     dest: "{{ ansible_env.HOME }}/.local/share/applications/intellij-idea.desktop"
     mode: "0644"
-# update-desktop-database ~/.local/share/applications

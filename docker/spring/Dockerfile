@@ -140,10 +140,10 @@ RUN zsh -c "source $HOME/.zshrc \
 
 # https://github.com/sdkman/sdkman-cli
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV JDK_VERSION "21.0.2-open"
-ENV GRADLE_VERSION "8.6"
+ENV JDK_VERSION "22-open"
+ENV GRADLE_VERSION "8.7"
 ENV THRIFT_JAVA_VERSION "19.0.2-open"
-ENV THRIFT_GRADLE_VERSION "7.6.2"
+ENV THRIFT_GRADLE_VERSION "7.6.4"
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
 RUN zsh -c "source $HOME/.zshrc \
