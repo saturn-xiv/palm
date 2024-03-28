@@ -27,6 +27,7 @@ pub struct InfoResponse {
     pub subhead: String,
     pub description: String,
     pub copyright: String,
+    pub favicon: String,
     pub keywords: Vec<String>,
     pub authors: Vec<Author>,
     pub languages: Vec<String>,
@@ -52,6 +53,7 @@ impl InfoResponse {
     pub const COPYRIGHT: &'static str = "site.copyright";
     pub const ICP_CODE: &'static str = "site.icp-code";
     pub const GAB_CODE: &'static str = "site.gab-code";
+    pub const FAVICON: &'static str = "site.favicon";
 
     fn get<V: Default + DeserializeOwned, S: Secret>(db: &mut Db, aes: &S, key: &str) -> Result<V> {
         let buf = SettingDao::get(db, aes, &key.to_string(), None)?;
@@ -70,6 +72,7 @@ impl InfoResponse {
             gab_code: Self::get(db, aes, Self::GAB_CODE).ok(),
             authors: Self::get(db, aes, Self::AUTHORS).unwrap_or_default(),
             copyright: Self::get(db, aes, Self::COPYRIGHT).unwrap_or_default(),
+            favicon: Self::get(db, aes, Self::FAVICON).unwrap_or("/public/favicon.svg".to_string()),
             languages: LocaleDao::languages(db)?,
             version: GIT_VERSION.to_string(),
             created_at: Utc::now().naive_utc(),

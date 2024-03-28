@@ -3,6 +3,7 @@
 <html lang="{{ site.locale }}">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="{{ site.favicon }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       {% block title %}{% endblock %} | {{ site.subhead }} | {{ site.title }}
@@ -46,9 +47,7 @@
                 placeholder='{% call scope::tr(i18n, "form.fields.search-box.placeholder") %}'
                 aria-label="Search" 
               />
-              <button class="btn btn-outline-success" type="submit">
-                {% call scope::tr(i18n, "buttons.search") %}
-              </button>
+              <button class="btn btn-outline-success" type="submit">{% call scope::tr(i18n, "buttons.search") %}</button>
             </form>
           </div>
         </div>
