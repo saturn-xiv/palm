@@ -30,9 +30,14 @@ pub struct Show {
     pub id: i32,
     pub url: String,
     pub title: String,
+    pub content_type: String,
+    pub size: i32,
 }
 
 impl Show {
+    pub fn is_image(&self) -> bool {
+        self.content_type.starts_with("image/")
+    }
     pub async fn new(s3: &Minio, it: &Attachment, ttl: Duration) -> Result<Self, Error> {
         let url = s3
             .connection
@@ -42,6 +47,8 @@ impl Show {
             id: it.id,
             url,
             title: it.title.clone(),
+            content_type: it.content_type.clone(),
+            size: it.size as i32,
         })
     }
 }

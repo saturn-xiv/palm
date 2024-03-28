@@ -1,7 +1,7 @@
 use camelia::{
     graphql::attachment::Show as ShowAttachment,
     models::{
-        attachment::Dao as AttachmentDao,
+        attachment::{cover as get_cover, Dao as AttachmentDao},
         log::{Dao as LogDao, Level as LogLevel},
         user::{Details as UserDetails, Item as User},
     },
@@ -77,14 +77,7 @@ pub struct IndexResponseItem {
 
 impl IndexResponseItem {
     async fn new(db: &mut Db, s3: &Minio, x: &Ledger) -> Result<Self, Error> {
-        let cover = AttachmentDao::by_resource::<Ledger>(db, x.id)?
-            .into_iter()
-            .nth(0)
-            .ok_or(Box::new(HttpError(
-                StatusCode::BAD_REQUEST,
-                Some("empty cover".to_string()),
-            )))?;
-
+        let cover = get_cover::<Ledger>(db, x.id)?;
         let it = Self {
             id: x.id,
             owner: UserDetails::new(db, x.owner_id)?,

@@ -19,6 +19,17 @@ use super::super::{
     schema::{attachment_resources, attachments},
 };
 
+pub fn cover<T>(db: &mut Connection, id: i32) -> Result<Item> {
+    let it = Dao::by_resource::<T>(db, id)?
+        .into_iter()
+        .find(|x| x.content_type.starts_with("image/"))
+        .ok_or(Box::new(HttpError(
+            StatusCode::BAD_REQUEST,
+            Some("empty cover".to_string()),
+        )))?;
+    Ok(it)
+}
+
 #[derive(Queryable, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {

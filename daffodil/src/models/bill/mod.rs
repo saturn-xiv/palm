@@ -161,7 +161,7 @@ impl Dao for Connection {
             .first(self)?;
         Ok((
             income.unwrap_or_default(),
-            expense.unwrap_or_default(),
+            0 - expense.unwrap_or_default(),
             balance.unwrap_or_default(),
         ))
     }

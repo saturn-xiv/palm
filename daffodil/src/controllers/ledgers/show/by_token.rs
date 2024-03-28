@@ -8,10 +8,13 @@ use askama::Template;
 use camelia::{
     controllers::i18n as tpl_i18n,
     graphql::{attachment::Show as Attachment, site::InfoResponse as SiteInfo},
-    models::{attachment::Dao as AttachmentDao, user::Details as UserDetails},
+    models::{
+        attachment::{cover as get_cover, Dao as AttachmentDao},
+        user::Details as UserDetails,
+    },
     orm::postgresql::{Connection as Db, Pool as DbPool},
 };
-use chrono::{Datelike, Days, Duration, Months, NaiveDate, NaiveDateTime, NaiveTime};
+use chrono::{Datelike, Days, Duration, Months, NaiveDate, NaiveDateTime, NaiveTime, Utc};
 use hyper::StatusCode;
 use log::debug;
 use palm::{
@@ -54,7 +57,7 @@ pub async fn index(
 
     let item = try_web!(LedgerDao::by_uid(db, &uid))?;
     let from = try_web!(BillDao::first_by_ledger(db, item.id))?.paid_at;
-    let to = try_web!(BillDao::latest_by_ledger(db, item.id))?.paid_at;
+    let to = Utc::now().naive_utc();
 
     let tpl = {
         let mut it = try_web!(Show::new(db, ch, s3, aes, &lang, &item, (from, to)).await)?;
@@ -299,6 +302,7 @@ pub struct Ledger {
     pub owner: UserDetails,
     pub name: String,
     pub summary: String,
+    pub cover: Attachment,
     pub currencies: Vec<ByCurrency>,
     pub deleted_at: Option<NaiveDateTime>,
     pub updated_at: NaiveDateTime,
@@ -317,10 +321,15 @@ impl Ledger {
             let it = ByCurrency::new(db, s3, it.id, currency, args).await?;
             currencies.push(it);
         }
+        let cover = {
+            let it = get_cover::<LedgerItem>(db, it.id)?;
+            Attachment::new(s3, &it, args.2).await?
+        };
         let it = Self {
             owner: UserDetails::new(db, it.owner_id)?,
             name: it.name.clone(),
             summary: it.summary.clone(),
+            cover,
             currencies,
             deleted_at: it.deleted_at,
             updated_at: it.updated_at,
@@ -357,9 +366,9 @@ impl ByCurrency {
 }
 
 pub struct Inventory {
-    pub income: i64,
-    pub expense: i64,
-    pub balance: i64,
+    pub income: String,
+    pub expense: String,
+    pub balance: String,
     pub currency: CurrencyItem,
 }
 
@@ -371,22 +380,26 @@ impl Inventory {
         from: NaiveDateTime,
         to: NaiveDateTime,
     ) -> Result<Self> {
+        let currency = CurrencyItem::new(currency)?;
         let (income, expense, balance) =
-            BillDao::inventory_by_currency_ledger_and_dates(db, ledger, currency, from, to)?;
+            BillDao::inventory_by_currency_ledger_and_dates(db, ledger, &currency.code, from, to)?;
         let it = Self {
-            income,
-            expense,
-            balance,
-            currency: CurrencyItem::new(currency)?,
+            income: Self::i2f(income, currency.unit),
+            expense: Self::i2f(expense, currency.unit),
+            balance: Self::i2f(balance, currency.unit),
+            currency,
         };
         Ok(it)
+    }
+    fn i2f(v: i64, u: i32) -> String {
+        format!("{}", (v as f32) / (10_i32.pow(u as u32) as f32))
     }
 }
 
 pub struct Bill {
     pub user: UserDetails,
     pub summary: String,
-    pub amount: i32,
+    pub amount: String,
     pub merchant: String,
     pub category: String,
     pub paid_at: NaiveDateTime,
@@ -397,6 +410,10 @@ pub struct Bill {
 
 impl Bill {
     pub async fn new(db: &mut Db, s3: &Minio, it: &BillItem, ttl: Duration) -> Result<Self> {
+        let amount = {
+            let c = CurrencyItem::new(&it.currency)?;
+            Inventory::i2f(it.amount as i64, c.unit)
+        };
         let attachments = {
             let mut items = Vec::new();
             for it in AttachmentDao::by_resource::<BillItem>(db, it.id)?.iter() {
@@ -408,7 +425,7 @@ impl Bill {
         let it = Self {
             user: UserDetails::new(db, it.user_id)?,
             summary: it.summary.clone(),
-            amount: it.amount,
+            amount,
             merchant: it.merchant.clone(),
             category: it.category.clone(),
             paid_at: it.paid_at,
