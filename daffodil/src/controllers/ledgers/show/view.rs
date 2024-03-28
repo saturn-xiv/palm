@@ -2,15 +2,18 @@ use std::collections::HashMap;
 
 use askama::Template;
 use camelia::{
-    controllers::i18n as tpl_i18n, graphql::site::InfoResponse as SiteInfo,
-    models::user::Details as UserDetails, orm::postgresql::Connection as Db,
+    controllers::i18n as tpl_i18n,
+    graphql::{attachment::Show as Attachment, site::InfoResponse as SiteInfo},
+    models::{attachment::Dao as AttachmentDao, user::Details as UserDetails},
+    orm::postgresql::Connection as Db,
 };
+use chrono::Duration;
 use chrono::{Datelike, Days, Months, NaiveDate, NaiveDateTime, NaiveTime};
 use hyper::StatusCode;
 use log::debug;
 use palm::{
     cache::redis::ClusterConnection as Cache, crypto::aes::Aes, iso4217::Currency as CurrencyItem,
-    HttpError, Result,
+    minio::Client as Minio, HttpError, Result,
 };
 
 use super::super::super::super::models::{
@@ -27,15 +30,17 @@ pub struct Show {
 }
 
 impl Show {
-    pub fn new(
+    pub async fn new(
         db: &mut Db,
         ch: &mut Cache,
+        s3: &Minio,
         aes: &Aes,
         lang: &str,
         item: &LedgerItem,
+        ttl: Duration,
     ) -> Result<Self> {
         let it = Self {
-            ledger: Ledger::new(db, item)?,
+            ledger: Ledger::new(db, s3, item, ttl).await?,
             site: SiteInfo::new(db, ch, aes, lang)?,
             i18n: tpl_i18n(db, lang)?,
         };
@@ -54,10 +59,10 @@ pub struct Ledger {
 }
 
 impl Ledger {
-    pub fn new(db: &mut Db, it: &LedgerItem) -> Result<Self> {
+    pub async fn new(db: &mut Db, s3: &Minio, it: &LedgerItem, ttl: Duration) -> Result<Self> {
         let mut currencies = Vec::new();
         for currency in BillDao::currencies(db, it.id)?.iter() {
-            let it = Currency::new(db, it.id, currency)?;
+            let it = Currency::new(db, s3, it.id, currency, ttl).await?;
             currencies.push(it);
         }
         let it = Self {
@@ -79,14 +84,20 @@ pub struct Currency {
 }
 
 impl Currency {
-    pub fn new(db: &mut Db, ledger: i32, currency: &str) -> Result<Self> {
+    pub async fn new(
+        db: &mut Db,
+        s3: &Minio,
+        ledger: i32,
+        currency: &str,
+        ttl: Duration,
+    ) -> Result<Self> {
         let from = BillDao::first_by_ledger_and_currency(db, ledger, currency)?.paid_at;
         let to = BillDao::latest_by_ledger_and_currency(db, ledger, currency)?.paid_at;
 
         debug!("select {currency} bills from {from} to {to}");
         let mut years = Vec::new();
         for year in from.year()..=to.year() {
-            let it = Year::new(db, ledger, currency, year)?;
+            let it = Year::new(db, s3, ledger, currency, year, ttl).await?;
             if !it.months.is_empty() {
                 years.push(it);
             }
@@ -131,7 +142,14 @@ pub struct Year {
 }
 
 impl Year {
-    pub fn new(db: &mut Db, ledger: i32, currency: &str, year: i32) -> Result<Self> {
+    pub async fn new(
+        db: &mut Db,
+        s3: &Minio,
+        ledger: i32,
+        currency: &str,
+        year: i32,
+        ttl: Duration,
+    ) -> Result<Self> {
         let from = NaiveDate::from_ymd_opt(year, 1, 1)
             .ok_or(Box::new(HttpError(
                 StatusCode::BAD_REQUEST,
@@ -150,7 +168,7 @@ impl Year {
         {
             let mut cur = from;
             loop {
-                let it = Month::new(db, ledger, currency, year, cur.month())?;
+                let it = Month::new(db, s3, ledger, currency, year, cur.month(), ttl).await?;
                 if !it.days.is_empty() {
                     months.push(it);
                 }
@@ -182,7 +200,15 @@ pub struct Month {
 }
 
 impl Month {
-    pub fn new(db: &mut Db, ledger: i32, currency: &str, year: i32, month: u32) -> Result<Self> {
+    pub async fn new(
+        db: &mut Db,
+        s3: &Minio,
+        ledger: i32,
+        currency: &str,
+        year: i32,
+        month: u32,
+        ttl: Duration,
+    ) -> Result<Self> {
         let from = NaiveDate::from_ymd_opt(year, month, 1)
             .ok_or(Box::new(HttpError(
                 StatusCode::BAD_REQUEST,
@@ -201,7 +227,7 @@ impl Month {
         {
             let mut cur = from;
             loop {
-                let it = Day::new(db, ledger, currency, year, month, cur.day())?;
+                let it = Day::new(db, s3, ledger, currency, (year, month, cur.day()), ttl).await?;
                 if !it.bills.is_empty() {
                     days.push(it);
                 }
@@ -233,13 +259,13 @@ pub struct Day {
 }
 
 impl Day {
-    pub fn new(
+    pub async fn new(
         db: &mut Db,
+        s3: &Minio,
         ledger: i32,
         currency: &str,
-        year: i32,
-        month: u32,
-        day: u32,
+        (year, month, day): (i32, u32, u32),
+        ttl: Duration,
     ) -> Result<Self> {
         let from = NaiveDate::from_ymd_opt(year, month, day)
             .ok_or(Box::new(HttpError(
@@ -257,7 +283,7 @@ impl Day {
 
         let mut bills = Vec::new();
         for it in BillDao::by_currency_ledger_and_dates(db, ledger, currency, from, to)?.iter() {
-            let it = Bill::new(db, it)?;
+            let it = Bill::new(db, s3, it, ttl).await?;
             bills.push(it);
         }
         Ok(Self {
@@ -277,11 +303,20 @@ pub struct Bill {
     pub category: String,
     pub paid_at: NaiveDateTime,
     pub paid_by: String,
+    pub attachments: Vec<Attachment>,
     pub updated_at: NaiveDateTime,
 }
 
 impl Bill {
-    pub fn new(db: &mut Db, it: &BillItem) -> Result<Self> {
+    pub async fn new(db: &mut Db, s3: &Minio, it: &BillItem, ttl: Duration) -> Result<Self> {
+        let attachments = {
+            let mut items = Vec::new();
+            for it in AttachmentDao::by_resource::<BillItem>(db, it.id)?.iter() {
+                let it = Attachment::new(s3, it, ttl).await?;
+                items.push(it);
+            }
+            items
+        };
         let it = Self {
             user: UserDetails::new(db, it.user_id)?,
             summary: it.summary.clone(),
@@ -291,6 +326,7 @@ impl Bill {
             category: it.category.clone(),
             paid_at: it.paid_at,
             paid_by: it.paid_by.clone(),
+            attachments,
             updated_at: it.updated_at,
         };
         Ok(it)

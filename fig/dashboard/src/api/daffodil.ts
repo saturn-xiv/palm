@@ -10,6 +10,44 @@ import {
 export const LEDGER_RESOURCE_TYPE = "daffodil::models::ledger::Item";
 export const BILL_RESOURCE_TYPE = "daffodil::models::bill::Item";
 
+export const update_bill = async (
+  id: number,
+  summary: string,
+  amount: number,
+  currency: string,
+  merchant: string,
+  category: string,
+  paidAt: string,
+  paidBy: string,
+  reason: string
+): Promise<ISucceed> => {
+  const res = await query<{ daffodilCreateBill: ISucceed }>(
+    `
+  mutation call($id: Int!, $summary: String!, $amount: Int!, $currency: String!, $merchant: String!, $category: String!, $paidAt: LocalDateTime!, $paidBy: String!, $reason: String!){
+    daffodilUpdateBill(
+      id: $id, 
+      form: {summary: $summary, amount: $amount, currency: $currency, merchant: $merchant, category: $category, paidAt: $paidAt, paidBy: $paidBy},
+      reason: $reason,
+    ){
+      createdAt
+    }
+  }
+  `,
+    {
+      id,
+      summary,
+      amount,
+      currency,
+      merchant,
+      category,
+      paidAt,
+      paidBy,
+      reason,
+    }
+  );
+  return res.daffodilCreateBill;
+};
+
 export const destroy_bill = async (
   id: number,
   reason: string

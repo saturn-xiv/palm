@@ -215,6 +215,13 @@ pub enum TextEditor {
     Quill,
 }
 
+pub fn duration_from_days(i: i64) -> Result<Duration> {
+    Duration::try_days(i).ok_or(Box::new(HttpError(
+        StatusCode::BAD_REQUEST,
+        Some(format!("bad days {i}")),
+    )))
+}
+
 pub fn duration_from_seconds(i: i64) -> Result<Duration> {
     Duration::try_seconds(i).ok_or(Box::new(HttpError(
         StatusCode::BAD_REQUEST,

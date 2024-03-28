@@ -15,8 +15,8 @@ use hyper::StatusCode;
 use juniper::{GraphQLEnum, GraphQLObject};
 use log::{debug, info, warn};
 use palm::{
-    cache::redis::ClusterConnection as Cache, jwt::Jwt, minio::Client as Minio, rbac::Operation,
-    session::Session, Error, HttpError,
+    cache::redis::ClusterConnection as Cache, duration_from_days, jwt::Jwt, minio::Client as Minio,
+    rbac::Operation, session::Session, Error, HttpError,
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -88,7 +88,7 @@ impl IndexResponseItem {
         let it = Self {
             id: x.id,
             owner: UserDetails::new(db, x.owner_id)?,
-            cover: ShowAttachment::new(s3, &cover).await?,
+            cover: ShowAttachment::new(s3, &cover, duration_from_days(1)?).await?,
             name: x.name.clone(),
             summary: x.summary.clone(),
             deleted_at: x.deleted_at,

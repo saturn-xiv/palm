@@ -111,7 +111,7 @@ impl IndexResponse {
         Ok(Self { items })
     }
 }
-#[derive(Validate)]
+#[derive(Validate, Debug)]
 pub struct Reason<'a> {
     #[validate(length(min = 1, max = 255))]
     pub text: &'a str,

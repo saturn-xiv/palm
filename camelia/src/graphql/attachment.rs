@@ -1,11 +1,10 @@
 use casbin::Enforcer;
-use chrono::NaiveDateTime;
+use chrono::{Duration, NaiveDateTime};
 use hyper::StatusCode;
 use juniper::GraphQLObject;
 use log::warn;
 use palm::{
     cache::redis::ClusterConnection as Cache,
-    duration_from_seconds,
     jwt::Jwt,
     minio::Client as Minio,
     pagination::{Pager, Pagination},
@@ -34,10 +33,10 @@ pub struct Show {
 }
 
 impl Show {
-    pub async fn new(s3: &Minio, it: &Attachment) -> Result<Self, Error> {
+    pub async fn new(s3: &Minio, it: &Attachment, ttl: Duration) -> Result<Self, Error> {
         let url = s3
             .connection
-            .get_presigned_object_url(&it.bucket, &it.name, duration_from_seconds(60 * 60)?)
+            .get_presigned_object_url(&it.bucket, &it.name, ttl)
             .await?;
         Ok(Self {
             id: it.id,

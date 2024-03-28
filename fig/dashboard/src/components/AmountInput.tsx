@@ -54,11 +54,11 @@ const Widget = ({ value, currencies, handleChange }: IProps) => {
           disablePortal
           sx={{ width: 300 }}
           options={currencies}
+          value={currencies.filter((x) => x.code === item.currency)[0]}
           getOptionLabel={(x) => `${x.code}-${x.name}`}
           isOptionEqualToValue={(option, value): boolean => {
             return option.code === value.code;
           }}
-          //   defaultValue={currencies.filter((x) => x.code === item.currency)[0]}
           onChange={(_e, v) => {
             if (v !== null) {
               setItem({ amount: item.amount, currency: v.code });
@@ -70,7 +70,6 @@ const Widget = ({ value, currencies, handleChange }: IProps) => {
               required
               {...params}
               label={<FormattedMessage id="form.fields.currency.label" />}
-              value={item?.amount || 0}
             />
           )}
         />
