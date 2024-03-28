@@ -1,3 +1,4 @@
+{%- import "macros.html" as scope -%}
 <!DOCTYPE html>
 <html lang="{{ site.locale }}">
   <head>
@@ -34,7 +35,7 @@
                   target="_blank"
                   href="/"
                 >
-                  {% if let Some(v) = i18n.get("home.title") %}{{ v }}{% endif %}
+                  {% call scope::tr(i18n, "home.title") %}                  
                 </a>
               </li>
             </ul>
@@ -42,23 +43,38 @@
               <input
                 class="form-control me-2"
                 type="search"
-                placeholder='{% if let Some(v) = i18n.get("form.fields.search-box.placeholder") %}{{ v }}{% endif %}'
+                placeholder='{% call scope::tr(i18n, "form.fields.search-box.placeholder") %}'
                 aria-label="Search" 
               />
               <button class="btn btn-outline-success" type="submit">
-                {% if let Some(v) = i18n.get("buttons.search") %}{{ v }}{% endif %}
+                {% call scope::tr(i18n, "buttons.search") %}
               </button>
             </form>
           </div>
         </div>
       </nav>
     </header>
-
-    {% block content %}{% endblock %}
-
+    <main>
+      <div class="container">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
     <footer class="footer mt-auto py-3 bg-body-tertiary">
       <div class="container">
-        <span class="text-body-secondary">{{ site.copyright }}</span>
+        <div class="text-body-secondary">
+          {% call scope::tr(i18n, "layouts.copyright") %}          
+          {{ site.copyright }}          
+          {{ site.title }}          
+          2024~{{ site.created_at.year() }}({{ site.version }})
+        </div>        
+        <div class="text-body-secondary">
+          {% call scope::tr(i18n, "layouts.language-bar.other-languages") %}
+          {% for it in site.languages.iter() %}
+            <a href="#" onclick='switch_language("{{ it }}")' class="link-opacity-75 p-1">
+              {% call scope::tr(i18n, format!("languages.{it}")) %}
+            </a>
+          {% endfor %}
+        </div>
       </div>
     </footer>
 

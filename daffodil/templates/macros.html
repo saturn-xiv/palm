@@ -1,0 +1,9 @@
+{% macro tr(m, k) %}
+    {% let k_ = format!("{}", k) %}
+    {% match m.get(k_) %}    
+    {% when Some with (v) %}
+        {{ v }}
+    {% when None %}
+        {{ k_ }}
+    {% endmatch %}
+{% endmacro %}

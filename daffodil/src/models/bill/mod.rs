@@ -40,8 +40,8 @@ pub struct New<'a> {
 }
 
 pub trait Dao {
-    fn first_by_ledger_and_currency(&mut self, ledger: i32, currency: &str) -> Result<Item>;
-    fn latest_by_ledger_and_currency(&mut self, ledger: i32, currency: &str) -> Result<Item>;
+    fn first_by_ledger(&mut self, ledger: i32) -> Result<Item>;
+    fn latest_by_ledger(&mut self, ledger: i32) -> Result<Item>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
     fn by_ledger(&mut self, ledger: i32) -> Result<Vec<Item>>;
@@ -58,7 +58,7 @@ pub trait Dao {
         currency: &str,
         from: NaiveDateTime,
         to: NaiveDateTime,
-    ) -> Result<(i64, i64)>;
+    ) -> Result<(i64, i64, i64)>;
     fn create(
         &mut self,
         user: i32,
@@ -78,7 +78,6 @@ pub trait Dao {
         paid: (&str, &NaiveDateTime, &str),
     ) -> Result<()>;
     fn delete(&mut self, id: i32) -> Result<()>;
-
     fn merchants(&mut self, user: i32) -> Result<Vec<String>>;
     fn currencies(&mut self, ledger: i32) -> Result<Vec<String>>;
     fn categories(&mut self, user: i32) -> Result<Vec<String>>;
@@ -103,17 +102,15 @@ impl Dao for Connection {
             .order(daffodil_bills::dsl::paid_at.desc())
             .load::<Item>(self)?)
     }
-    fn first_by_ledger_and_currency(&mut self, ledger: i32, currency: &str) -> Result<Item> {
+    fn first_by_ledger(&mut self, ledger: i32) -> Result<Item> {
         Ok(daffodil_bills::dsl::daffodil_bills
             .filter(daffodil_bills::dsl::ledger_id.eq(ledger))
-            .filter(daffodil_bills::dsl::currency.eq(currency))
             .order(daffodil_bills::dsl::paid_at.asc())
             .first::<Item>(self)?)
     }
-    fn latest_by_ledger_and_currency(&mut self, ledger: i32, currency: &str) -> Result<Item> {
+    fn latest_by_ledger(&mut self, ledger: i32) -> Result<Item> {
         Ok(daffodil_bills::dsl::daffodil_bills
             .filter(daffodil_bills::dsl::ledger_id.eq(ledger))
-            .filter(daffodil_bills::dsl::currency.eq(currency))
             .order(daffodil_bills::dsl::paid_at.desc())
             .first::<Item>(self)?)
     }
@@ -138,7 +135,7 @@ impl Dao for Connection {
         currency: &str,
         from: NaiveDateTime,
         to: NaiveDateTime,
-    ) -> Result<(i64, i64)> {
+    ) -> Result<(i64, i64, i64)> {
         let income: Option<i64> = daffodil_bills::dsl::daffodil_bills
             .select(sum(daffodil_bills::dsl::version))
             .filter(daffodil_bills::dsl::ledger_id.eq(ledger))
@@ -155,7 +152,18 @@ impl Dao for Connection {
             .filter(daffodil_bills::dsl::paid_at.lt(to))
             .filter(daffodil_bills::dsl::amount.lt(0))
             .first(self)?;
-        Ok((income.unwrap_or_default(), expense.unwrap_or_default()))
+        let balance: Option<i64> = daffodil_bills::dsl::daffodil_bills
+            .select(sum(daffodil_bills::dsl::version))
+            .filter(daffodil_bills::dsl::ledger_id.eq(ledger))
+            .filter(daffodil_bills::dsl::currency.eq(currency))
+            .filter(daffodil_bills::dsl::paid_at.ge(from))
+            .filter(daffodil_bills::dsl::paid_at.lt(to))
+            .first(self)?;
+        Ok((
+            income.unwrap_or_default(),
+            expense.unwrap_or_default(),
+            balance.unwrap_or_default(),
+        ))
     }
     fn create(
         &mut self,

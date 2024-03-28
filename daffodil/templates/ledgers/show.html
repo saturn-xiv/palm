@@ -1,19 +1,43 @@
-{% extends "bootstrap/application.html" %} {% block title %} {{ ledger.name }}
-{% endblock %} {% block content %}
+{%- import "macros.html" as scope -%}
 
-<main class="flex-shrink-0">
-  <div class="container">
-    <h1 class="mt-5">{{ ledger.name }}</h1>
-    <p class="lead">
-      {{ ledger.summary }}
-      <br />
-      <code class="small">
-        {% if let Some(v) = i18n.get("form.fields.updated-at.label") %}{{ v }}{% endif %}
-        :
-        {{ ledger.updated_at }}
-      </code>
-    </p>
+{% extends "bootstrap/application.html" %}
+
+{% block title %}
+  {{ ledger.name }}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-md-12">    
+    <h1>{{ ledger.name }}</h1>
+    <figure>
+      <blockquote class="blockquote">
+        <p>{{ ledger.summary }}</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        {% call scope::tr(i18n, "form.fields.by.label") %} {{ ledger.owner.real_name }}
+        <cite title="Date range">  
+          {% call scope::tr(i18n, "form.fields.from.label") %} {{ from }}
+          {% call scope::tr(i18n, "form.fields.to.label") %} {{ to }}          
+        </cite>
+      </figcaption>
+    </figure>
   </div>
-</main>
+  <div class="col-md-9">
+    <h1>aaa</h1>
+  </div>
+  <div class="col-md-3">
+    <h2>{% call scope::tr(i18n, "layouts.archives.label") %}</h2>
+    <div class="list-group">
+      {% for it in archives.iter() %}
+        <a href="./{{ it }}" class="list-group-item list-group-item-action">
+          {{ it }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div> 
 
 {% endblock %}

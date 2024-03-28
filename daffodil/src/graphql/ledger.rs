@@ -60,7 +60,7 @@ pub async fn share<J: Jwt>(
         "generate {token} for share ledger ({}, {}) ({begin},{end}) by {}",
         it.id, it.name, user
     );
-    Ok(format!("/daffodil/ledgers/{token}"))
+    Ok(format!("/{}/daffodil/ledgers/{token}/", ss.lang))
 }
 
 #[derive(GraphQLObject)]

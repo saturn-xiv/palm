@@ -3,7 +3,7 @@ use juniper::GraphQLObject;
 use palm::{
     cache::redis::ClusterConnection as Cache,
     crypto::{aes::Aes, Secret},
-    Result,
+    Result, GIT_VERSION,
 };
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 
@@ -33,6 +33,7 @@ pub struct InfoResponse {
     pub icp_code: Option<String>,
     pub gab_code: Option<GabCode>,
     pub created_at: NaiveDateTime,
+    pub version: String,
 }
 
 #[derive(GraphQLObject, Serialize, Deserialize, Default)]
@@ -70,6 +71,7 @@ impl InfoResponse {
             authors: Self::get(db, aes, Self::AUTHORS).unwrap_or_default(),
             copyright: Self::get(db, aes, Self::COPYRIGHT).unwrap_or_default(),
             languages: LocaleDao::languages(db)?,
+            version: GIT_VERSION.to_string(),
             created_at: Utc::now().naive_utc(),
         };
 
