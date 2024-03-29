@@ -7,7 +7,7 @@ use palm::{
 };
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 
-use super::super::{
+use super::super::super::{
     i18n::I18n,
     models::{locale::Dao as LocaleDao, setting::Dao as SettingDao},
     orm::postgresql::Connection as Db,
@@ -21,7 +21,7 @@ pub struct Author {
 }
 #[derive(GraphQLObject)]
 #[graphql(name = "SiteInfoResponse")]
-pub struct InfoResponse {
+pub struct Response {
     pub locale: String,
     pub title: String,
     pub subhead: String,
@@ -44,7 +44,7 @@ pub struct GabCode {
     pub name: String,
 }
 
-impl InfoResponse {
+impl Response {
     pub const TITLE: &'static str = "site.title";
     pub const SUBHEAD: &'static str = "site.subhead";
     pub const DESCRIPTION: &'static str = "site.description";
@@ -72,7 +72,7 @@ impl InfoResponse {
             gab_code: Self::get(db, aes, Self::GAB_CODE).ok(),
             authors: Self::get(db, aes, Self::AUTHORS).unwrap_or_default(),
             copyright: Self::get(db, aes, Self::COPYRIGHT).unwrap_or_default(),
-            favicon: Self::get(db, aes, Self::FAVICON).unwrap_or("/public/favicon.svg".to_string()),
+            favicon: Self::get(db, aes, Self::FAVICON).unwrap_or("/my/palm.svg".to_string()),
             languages: LocaleDao::languages(db)?,
             version: GIT_VERSION.to_string(),
             created_at: Utc::now().naive_utc(),

@@ -32,14 +32,37 @@ impl Query {
     fn site_info(
         context: &Context,
         lang: String,
-    ) -> FieldResult<camelia_graphql::site::InfoResponse> {
+    ) -> FieldResult<camelia_graphql::site::info::Response> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
         let mut ch = context.redis.get()?;
         let ch = ch.deref_mut();
         let aes = context.aes.deref();
-        let response = camelia_graphql::site::InfoResponse::new(db, ch, aes, &lang)?;
+        let response = camelia_graphql::site::info::Response::new(db, ch, aes, &lang)?;
         Ok(response)
+    }
+
+    async fn get_baidu_site_verification(
+        context: &Context,
+    ) -> FieldResult<camelia_graphql::site::seo::BaiduSiteVerification> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let it = camelia_graphql::site::seo::BaiduSiteVerification::get(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+        )
+        .await?;
+        Ok(it)
     }
 
     fn index_locale(

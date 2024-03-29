@@ -33,6 +33,42 @@ export interface ICurrencyOption {
   unit: number;
 }
 
+interface IBaiduVerification {
+  contentCode: string;
+}
+export const set_baidu_verification = async (
+  contentCode: string
+): Promise<ISucceed> => {
+  const res = await query<{
+    setBaiduSiteVerification: ISucceed;
+  }>(
+    `
+mutation call($contentCode: String!){
+  setBaiduSiteVerification(contentCode: $contentCode){
+    createdAt
+  }
+}
+`,
+    { contentCode }
+  );
+  return res.setBaiduSiteVerification;
+};
+export const get_baidu_verification = async (): Promise<IBaiduVerification> => {
+  const res = await query<{
+    getBaiduSiteVerification: IBaiduVerification;
+  }>(
+    `
+query call{
+  getBaiduSiteVerification{
+    contentCode
+  }
+}
+`,
+    {}
+  );
+  return res.getBaiduSiteVerification;
+};
+
 export const currency_options = async (): Promise<ICurrencyOption[]> => {
   const res = await query<{
     currencyOptions: ICurrencyOption[];

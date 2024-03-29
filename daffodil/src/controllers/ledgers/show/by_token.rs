@@ -7,7 +7,7 @@ use actix_web::{
 use askama::Template;
 use camelia::{
     controllers::i18n as tpl_i18n,
-    graphql::{attachment::Show as Attachment, site::InfoResponse as SiteInfo},
+    graphql::{attachment::Show as Attachment, site::info::Response as SiteInfo},
     models::{
         attachment::{cover as get_cover, Dao as AttachmentDao},
         user::Details as UserDetails,

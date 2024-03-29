@@ -7,8 +7,12 @@ A total free education & translation solution.
 - Clone source codes
 
   ```bash
-  # clone source code
+  # clone source codes
   $ git clone --recurse-submodules https://github.com/saturn-xiv/palm.git
+
+  # OR upgrade source codes
+  $ cd palm
+  $ git submodule update --init --recursive
   ```
 
 - install dejavu fonts
