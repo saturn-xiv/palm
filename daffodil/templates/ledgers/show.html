@@ -34,9 +34,9 @@
       <h2>{{ ic.inventory.currency.name }}({{ ic.inventory.currency.code }})</h2>
       <hr />      
       <div class="alert alert-info" role="alert">
-        <span class="p-1">{% call scope::tr(i18n, "daffodil.fields.income.label") %}: {{ ic.inventory.income }}</span>        
-        <span class="p-1">{% call scope::tr(i18n, "daffodil.fields.expense.label") %}: {{ ic.inventory.expense }}</span>        
-        <span class="p-1">{% call scope::tr(i18n, "daffodil.fields.balance.label") %}: {{ ic.inventory.balance }}</span>
+        <span class="p-1">{% call scope::tr(i18n, "form.fields.income.label") %}: {{ ic.inventory.income }}</span>        
+        <span class="p-1">{% call scope::tr(i18n, "form.fields.expense.label") %}: {{ ic.inventory.expense }}</span>        
+        <span class="p-1">{% call scope::tr(i18n, "form.fields.balance.label") %}: {{ ic.inventory.balance }}</span>
       </div>
       {% for ib in ic.bills.iter() %}
         <h3>{{ib.summary}}</h3>

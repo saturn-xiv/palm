@@ -30,7 +30,9 @@ import {
   LOCAL_DATETIME_FORMAT,
 } from "../../../../../components";
 import AmountInput, {
+  EXPENSE,
   IForm as IAmount,
+  INCOME,
 } from "../../../../../components/AmountInput";
 
 const validationSchema = yup_object({
@@ -53,7 +55,11 @@ function Widget({ item }: IProps) {
   const [merchants, setMerchants] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [currencies, setCurrencies] = useState<ICurrencyOption[]>([]);
-  const [amount, setAmount] = useState<IAmount | undefined>();
+  const [amount, setAmount] = useState<IAmount>({
+    type: EXPENSE,
+    amount: 0,
+    currency: import.meta.env.VITE_DEFAULT_CURRENCY,
+  });
 
   useEffect(() => {
     bill_form_options().then((res) => {
@@ -73,16 +79,12 @@ function Widget({ item }: IProps) {
     },
     validationSchema,
     onSubmit: (values) => {
-      if (amount === undefined) {
-        return;
-      }
       // console.log(paidAt.format(DATETIME_PICKER_FORMAT), amount, values);
-
       create_bill(
         item.id,
         values.summary,
-        amount?.amount,
-        amount?.currency,
+        amount.type === INCOME ? amount.amount : 0 - amount.amount,
+        amount.currency,
         values.merchant,
         values.category,
         paidAt.format(LOCAL_DATETIME_FORMAT),
@@ -116,8 +118,8 @@ function Widget({ item }: IProps) {
       >
         <AmountInput
           value={amount}
-          handleChange={(a, c) => {
-            setAmount({ amount: a, currency: c });
+          handleChange={(a, c, t) => {
+            setAmount({ amount: a, currency: c, type: t });
           }}
           currencies={currencies}
         />

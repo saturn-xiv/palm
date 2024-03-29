@@ -31,6 +31,8 @@ import {
 } from "../../../../../components";
 import AmountInput, {
   IForm as IAmount,
+  INCOME,
+  EXPENSE,
 } from "../../../../../components/AmountInput";
 
 const validationSchema = yup_object({
@@ -55,8 +57,9 @@ function Widget({ item }: IProps) {
   const [categories, setCategories] = useState<string[]>([]);
   const [currencies, setCurrencies] = useState<ICurrencyOption[]>([]);
   const [amount, setAmount] = useState<IAmount>({
-    amount: item.amount,
+    amount: Math.abs(item.amount),
     currency: item.currency.code,
+    type: item.amount >= 0 ? INCOME : EXPENSE,
   });
 
   useEffect(() => {
@@ -84,8 +87,8 @@ function Widget({ item }: IProps) {
       update_bill(
         item.id,
         values.summary,
-        amount?.amount,
-        amount?.currency,
+        amount.type === INCOME ? amount.amount : 0 - amount.amount,
+        amount.currency,
         values.merchant,
         values.category,
         paidAt.format(LOCAL_DATETIME_FORMAT),
@@ -120,8 +123,8 @@ function Widget({ item }: IProps) {
       >
         <AmountInput
           value={amount}
-          handleChange={(a, c) => {
-            setAmount({ amount: a, currency: c });
+          handleChange={(a, c, t) => {
+            setAmount({ amount: a, currency: c, type: t });
           }}
           currencies={currencies}
         />
