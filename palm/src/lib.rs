@@ -178,6 +178,8 @@ pub const HOMEPAGE: &str = env!("CARGO_PKG_HOMEPAGE");
 pub const AUTHORS: &str = env!("CARGO_PKG_AUTHORS");
 pub const BANNER: &str = include_str!("banner.txt");
 
+pub const XML_HEADER: &str = r#"<?xml version="1.0" encoding="UTF-8"?>"#;
+
 include!(concat!(env!("OUT_DIR"), "/env.rs"));
 
 lazy_static! {

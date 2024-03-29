@@ -65,7 +65,8 @@ impl Query {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
 
-        camelia_graphql::site::seo::baidu::ping(&context.session, db, ch, enf, jwt, &home).await?;
+        let request = camelia_graphql::site::seo::Ping { home };
+        request.baidu(&context.session, db, ch, enf, jwt).await?;
         Ok(Succeed::default())
     }
 

@@ -21,7 +21,7 @@ const Widget = ({ languages }: IProps) => {
           <ListItem key={x}>
             <ListItemButton
               component="a"
-              href={`/rss/${x}.xml`}
+              href={`/${x}/rss.xml`}
               target="_blank"
             >
               <ListItemText

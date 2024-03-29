@@ -38,7 +38,7 @@ export const ping_baidu = async (home: string): Promise<ISucceed> => {
     pingBaidu: ISucceed;
   }>(
     `
-mutation call($home: String!){
+query call($home: String!){
   pingBaidu(home: $home){
     createdAt
   }
@@ -54,7 +54,7 @@ export const ping_google = async (home: string): Promise<ISucceed> => {
     pingGoogle: ISucceed;
   }>(
     `
-mutation call($home: String!){
+query call($home: String!){
   pingGoogle(home: $home){
     createdAt
   }
@@ -70,7 +70,7 @@ export const ping_index_now = async (home: string): Promise<ISucceed> => {
     pingIndexNow: ISucceed;
   }>(
     `
-mutation call($home: String!){
+query call($home: String!){
   pingIndexNow(home: $home){
     createdAt
   }
