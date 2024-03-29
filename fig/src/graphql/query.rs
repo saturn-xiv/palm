@@ -69,6 +69,94 @@ impl Query {
         request.baidu(&context.session, db, ch, enf, jwt).await?;
         Ok(Succeed::default())
     }
+    async fn get_google_site_verification(
+        context: &Context,
+    ) -> FieldResult<palm::seo::google::SiteVerification> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let it = camelia_graphql::site::seo::google::get_site_verification(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+        )
+        .await
+        .unwrap_or_default();
+        Ok(it)
+    }
+    async fn get_google_recaptcha(context: &Context) -> FieldResult<palm::seo::google::ReCaptcha> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let it = camelia_graphql::site::seo::google::get_recaptcha(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+        )
+        .await
+        .unwrap_or_default();
+        Ok(it)
+    }
+    async fn ping_google(context: &Context, home: String) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let request = camelia_graphql::site::seo::Ping { home };
+        request.google(&context.session, db, ch, enf, jwt).await?;
+        Ok(Succeed::default())
+    }
+    async fn get_index_now_site_verification(
+        context: &Context,
+    ) -> FieldResult<palm::seo::index_now::SiteVerification> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let it =
+            camelia_graphql::site::seo::index_now::get(&context.session, db, ch, enf, jwt, aes)
+                .await
+                .unwrap_or_default();
+        Ok(it)
+    }
+    async fn ping_index_now(context: &Context, home: String) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let request = camelia_graphql::site::seo::Ping { home };
+        request
+            .index_now(&context.session, db, ch, enf, jwt, aes)
+            .await?;
+        Ok(Succeed::default())
+    }
 
     fn index_locale(
         context: &Context,

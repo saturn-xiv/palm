@@ -81,11 +81,11 @@ query call($home: String!){
   return res.pingIndexNow;
 };
 
-interface IBaiduVerification {
+interface IBaiduSiteVerification {
   content: string;
   code: string;
 }
-export const set_baidu_verification = async (
+export const set_baidu_site_verification = async (
   content: string,
   code: string
 ): Promise<ISucceed> => {
@@ -103,21 +103,134 @@ mutation call($content: String!, $code: String!){
   );
   return res.setBaiduSiteVerification;
 };
-export const get_baidu_verification = async (): Promise<IBaiduVerification> => {
-  const res = await query<{
-    getBaiduSiteVerification: IBaiduVerification;
-  }>(
-    `
+export const get_baidu_site_verification =
+  async (): Promise<IBaiduSiteVerification> => {
+    const res = await query<{
+      getBaiduSiteVerification: IBaiduSiteVerification;
+    }>(
+      `
 query call{
   getBaiduSiteVerification{
     content, code
   }
 }
 `,
+      {}
+    );
+    return res.getBaiduSiteVerification;
+  };
+
+interface IGoogleSiteVerification {
+  code: string;
+}
+export const set_google_site_verification = async (
+  code: string
+): Promise<ISucceed> => {
+  const res = await query<{
+    setGoogleSiteVerification: ISucceed;
+  }>(
+    `
+mutation call($code: String!){
+  setGoogleSiteVerification(code: $code){
+    createdAt
+  }
+}
+`,
+    { code }
+  );
+  return res.setGoogleSiteVerification;
+};
+export const get_google_site_verification =
+  async (): Promise<IGoogleSiteVerification> => {
+    const res = await query<{
+      getGoogleSiteVerification: IGoogleSiteVerification;
+    }>(
+      `
+query call{
+  getGoogleSiteVerification{
+    code
+  }
+}
+`,
+      {}
+    );
+    return res.getGoogleSiteVerification;
+  };
+
+interface IGoogleRecaptcha {
+  siteKey: string;
+  secret: string;
+}
+export const set_google_recaptcha = async (
+  siteKey: string,
+  secret: string
+): Promise<ISucceed> => {
+  const res = await query<{
+    setGoogleRecaptcha: ISucceed;
+  }>(
+    `
+  mutation call($siteKey: String!, $secret: String!){
+    setGoogleRecaptcha(siteKey: $siteKey, secret: $secret){
+      createdAt
+    }
+  }
+  `,
+    { siteKey, secret }
+  );
+  return res.setGoogleRecaptcha;
+};
+export const get_google_recaptcha = async (): Promise<IGoogleRecaptcha> => {
+  const res = await query<{
+    getGoogleRecaptcha: IGoogleRecaptcha;
+  }>(
+    `
+  query call{
+    getGoogleRecaptcha{
+      siteKey, secret
+    }
+  }
+  `,
     {}
   );
-  return res.getBaiduSiteVerification;
+  return res.getGoogleRecaptcha;
 };
+
+interface IIndexNowSiteVerification {
+  key: string;
+}
+export const set_index_now_site_verification = async (
+  key: string
+): Promise<ISucceed> => {
+  const res = await query<{
+    setIndexNowSiteVerification: ISucceed;
+  }>(
+    `
+  mutation call($key: String!){
+    setIndexNowSiteVerification(key: $key){
+      createdAt
+    }
+  }
+  `,
+    { key }
+  );
+  return res.setIndexNowSiteVerification;
+};
+export const get_index_now_site_verification =
+  async (): Promise<IIndexNowSiteVerification> => {
+    const res = await query<{
+      getIndexNowSiteVerification: IIndexNowSiteVerification;
+    }>(
+      `
+  query call{
+    getIndexNowSiteVerification{
+      key
+    }
+  }
+  `,
+      {}
+    );
+    return res.getIndexNowSiteVerification;
+  };
 
 export const currency_options = async (): Promise<ICurrencyOption[]> => {
   const res = await query<{

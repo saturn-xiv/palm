@@ -317,6 +317,74 @@ impl Mutation {
             .await?;
         Ok(Succeed::default())
     }
+    async fn set_google_site_verification(context: &Context, code: String) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let form = palm::seo::google::SiteVerification { code };
+
+        camelia_graphql::site::seo::google::set_site_verification(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+            &form,
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_google_recaptcha(
+        context: &Context,
+        site_key: String,
+        secret: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let form = palm::seo::google::ReCaptcha { site_key, secret };
+
+        camelia_graphql::site::seo::google::set_recaptcha(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+            &form,
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_index_now_site_verification(
+        context: &Context,
+        key: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let form = palm::seo::index_now::SiteVerification { key };
+
+        camelia_graphql::site::seo::index_now::set(&context.session, db, ch, enf, jwt, aes, &form)
+            .await?;
+        Ok(Succeed::default())
+    }
 
     async fn destroy_attachment(context: &Context, id: i32) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;

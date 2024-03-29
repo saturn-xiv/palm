@@ -13,14 +13,11 @@ import {
 } from "../../reducers/message-box";
 import { useAppDispatch } from "../../hooks";
 import { IErrorMessage } from "../../api/graphql";
-import {
-  set_baidu_site_verification,
-  get_baidu_site_verification,
-} from "../../api/camelia";
+import { get_google_recaptcha, set_google_recaptcha } from "../../api/camelia";
 
 const validationSchema = yup_object({
-  content: yup_string().required().min(1).max(127),
-  code: yup_string().required().min(1).max(127),
+  site_key: yup_string().required().min(1).max(127),
+  secret: yup_string().required().min(1).max(127),
 });
 
 const Widget = () => {
@@ -36,12 +33,12 @@ const Widget = () => {
     handleBlur,
   } = useFormik({
     initialValues: {
-      content: "",
-      code: "",
+      site_key: "",
+      secret: "",
     },
     validationSchema,
     onSubmit: (form) => {
-      set_baidu_site_verification(form.content, form.code)
+      set_google_recaptcha(form.site_key, form.secret)
         .then(() => {
           dispatch(
             success_box([intl.formatMessage({ id: "flashes.succeed" })])
@@ -53,15 +50,15 @@ const Widget = () => {
     },
   });
   useEffect(() => {
-    get_baidu_site_verification().then((res) => {
-      setFieldValue("code", res.code);
-      setFieldValue("content", res.content);
+    get_google_recaptcha().then((res) => {
+      setFieldValue("site_key", res.siteKey);
+      setFieldValue("secret", res.secret);
     });
   }, [setFieldValue]);
   return (
     <>
       <Typography variant="h6" gutterBottom>
-        <FormattedMessage id="settings.seo.baidu.title" />
+        <FormattedMessage id="settings.seo.recaptcha.title" />
       </Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField
@@ -69,28 +66,28 @@ const Widget = () => {
           required
           fullWidth
           label={intl.formatMessage({
-            id: "form.fields.content.label",
+            id: "settings.seo.recaptcha.form.fields.site-key.label",
           })}
-          name="content"
-          value={values.content}
+          name="site_key"
+          value={values.site_key}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={touched.content && Boolean(errors.content)}
-          helperText={touched.content && errors.content}
+          error={touched.site_key && Boolean(errors.site_key)}
+          helperText={touched.site_key && errors.site_key}
         />
         <TextField
           margin="normal"
           required
           fullWidth
           label={intl.formatMessage({
-            id: "form.fields.code.label",
+            id: "form.fields.secret.label",
           })}
-          name="code"
-          value={values.code}
+          name="secret"
+          value={values.secret}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={touched.code && Boolean(errors.code)}
-          helperText={touched.code && errors.code}
+          error={touched.secret && Boolean(errors.secret)}
+          helperText={touched.secret && errors.secret}
         />
         <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
           <FormattedMessage id="buttons.submit" />

@@ -18,6 +18,7 @@ import SeoIndexNow from "./SeoIndexNow";
 import SeoRss from "./SeoRss";
 import SeoSitemap from "./SeoSitemap";
 import SeoPing from "./SeoPing";
+import SeoReCaptcha from "./SeoReCaptcha";
 import SiteAuthor from "./SiteAuthor";
 import SiteBaseInfo from "./SiteBaseInfo";
 import SiteCopyright from "./SiteCopyright";
@@ -96,19 +97,22 @@ export function Component() {
                 <SeoGoogle />
               </Grid>
               <Grid item xs={12} md={6}>
+                <SeoIndexNow />
+              </Grid>
+              <Grid item xs={12} md={6}>
                 <SeoBaidu />
               </Grid>
               <Grid item xs={12} md={6}>
-                <SeoIndexNow />
+                <SeoReCaptcha />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <SeoPing />
               </Grid>
               <Grid item xs={12} md={6}>
                 <SeoSitemap languages={site_info.languages} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <SeoRss languages={site_info.languages} />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <SeoPing />
               </Grid>
             </Grid>
           </TabPanel>

@@ -16,7 +16,7 @@ const Widget = ({ languages }: IProps) => {
       </Typography>
       <List>
         {["/robots.txt", "/sitemap.xml"]
-          .concat(languages.map((x) => `/sitemap/${x}.xml`))
+          .concat(languages.map((x) => `/${x}/sitemap.xml`))
           .map((x) => (
             <ListItem key={x}>
               <ListItemButton component="a" href={x} target="_blank">
