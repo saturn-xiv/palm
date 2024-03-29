@@ -1,94 +1,109 @@
-import { useState } from "react";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import { useFormik } from "formik";
+import TextField from "@mui/material/TextField";
+import { FormattedMessage, useIntl } from "react-intl";
+import { string as yup_string, object as yup_object } from "yup";
+import { useConfirm } from "material-ui-confirm";
 
-import { IErrorMessage } from "../..api/graphql";
-import { bill_form_options, update_bill, IBill } from "../..api/daffodil";
-import { useAppDispatch } from "../..hooks";
-import { ICurrencyOption } from "../..api/camelia";
+import { IErrorMessage } from "../../api/graphql";
+import { useAppDispatch } from "../../hooks";
 import {
   success as success_box,
   error as error_box,
-} from "../..reducers/message-box";
+} from "../../reducers/message-box";
+import { delete_site_icp_code, set_site_icp_code } from "../../api/camelia";
 
 interface IProps {
   code?: string;
   handleRefresh: () => void;
 }
 
-const Widget = ({ code }: IProps) => {
-  const [value, setValue] = useState<string | undefined>();
+const validationSchema = yup_object({
+  code: yup_string().required().min(1).max(63),
+});
+
+const Widget = ({ code, handleRefresh }: IProps) => {
+  const confirm = useConfirm();
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      code: code || "",
+    },
+    validationSchema,
+
+    onSubmit: (values) => {
+      set_site_icp_code(values.code)
+        .then(() => {
+          handleRefresh();
+          dispatch(
+            success_box([intl.formatMessage({ id: "flashes.succeed" })])
+          );
+        })
+        .catch((reason: IErrorMessage[]) => {
+          dispatch(error_box(reason.map((x) => x.message)));
+        });
+    },
+  });
+
   return (
     <>
-      <Typography component="h2" variant="h6" color="primary" gutterBottom>
-        <FormattedMessage id="users.update-profile.title" />
+      <Typography variant="h6" gutterBottom>
+        <FormattedMessage id="settings.info.icp-code.title" />
       </Typography>
-      <Box component="form" onSubmit={(e) => {}} noValidate sx={{ mt: 1 }}>
+      <Box
+        component="form"
+        onSubmit={formik.handleSubmit}
+        noValidate
+        sx={{ mt: 1 }}
+      >
         <TextField
           margin="normal"
           required
           fullWidth
-          label={intl.formatMessage({ id: "form.fields.real-name.label" })}
-          name="real_name"
-          value={formik.values.real_name}
+          label={intl.formatMessage({ id: "form.fields.code.label" })}
+          name="code"
+          value={formik.values.code}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.real_name && Boolean(formik.errors.real_name)}
-          helperText={formik.touched.real_name && formik.errors.real_name}
+          error={formik.touched.code && Boolean(formik.errors.code)}
+          helperText={formik.touched.code && formik.errors.code}
         />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label={intl.formatMessage({ id: "form.fields.avatar.label" })}
-          name="avatar"
-          value={formik.values.avatar}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.avatar && Boolean(formik.errors.avatar)}
-          helperText={formik.touched.avatar && formik.errors.avatar}
-        />
-        <FormControl margin="normal" required fullWidth>
-          <InputLabel id="user-profile-lang-select-label">
-            <FormattedMessage id="form.fields.language.label" />
-          </InputLabel>
-          <Select
-            labelId="user-profile-lang-select-label"
-            name="lang"
-            value={formik.values.lang}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          >
-            {site_info.languages.map((x, i) => (
-              <MenuItem key={i} value={x}>
-                <FormattedMessage id={`languages.${x}`} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl margin="normal" required fullWidth>
-          <InputLabel id="user-profile-timezone-select-label">
-            <FormattedMessage id="form.fields.timezone.label" />
-          </InputLabel>
-          <Select
-            labelId="user-profile-timezone-select-label"
-            name="timezone"
-            value={formik.values.timezone}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          >
-            {moment.tz.names().map((x, i) => (
-              <MenuItem key={i} value={x}>
-                {x}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
+
+        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
           <FormattedMessage id="buttons.submit" />
+        </Button>
+        <Button
+          color="error"
+          variant="text"
+          sx={{ mt: 3, mb: 2 }}
+          onClick={() => {
+            confirm({
+              title: intl.formatMessage({
+                id: "flashes.are-you-sure",
+              }),
+            })
+              .then(() => {
+                delete_site_icp_code()
+                  .then(() => {
+                    dispatch(
+                      success_box([
+                        intl.formatMessage({ id: "flashes.succeed" }),
+                      ])
+                    );
+                    handleRefresh();
+                  })
+                  .catch((reason: IErrorMessage[]) => {
+                    dispatch(error_box(reason.map((x) => x.message)));
+                  });
+              })
+              .catch(() => {});
+          }}
+        >
+          <FormattedMessage id="buttons.delete" />
         </Button>
       </Box>
     </>

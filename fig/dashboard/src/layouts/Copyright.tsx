@@ -54,23 +54,14 @@ const Widget = () => {
       >
         <FormattedMessage id="layouts.copyright" />
         &nbsp;
+        {site_info.copyright}
+        &nbsp;
         <Link color="inherit" href={home_url()}>
           {site_info.title}
         </Link>
         &nbsp; 2024~{new Date().getFullYear()}({site_info.version}).
-        <br />
-        {site_info.gabCode && (
-          <>
-            &nbsp;
-            <GabCode value={site_info.gabCode} />
-          </>
-        )}
-        {site_info.icpCode && (
-          <>
-            &nbsp;
-            <IcpCode code={site_info.icpCode} />
-          </>
-        )}
+        {site_info.icpCode && <IcpCode code={site_info.icpCode} />}
+        {site_info.gabCode && <GabCode value={site_info.gabCode} />}
         <br />
         <LanguageBar languages={site_info.languages} />
       </Typography>

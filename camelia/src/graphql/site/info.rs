@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use casbin::Enforcer;
 use chrono::{NaiveDateTime, Utc};
 use juniper::{GraphQLInputObject, GraphQLObject};
@@ -60,11 +62,14 @@ impl Response {
             subhead: I18n::t(db, lang, InfoRequest::SUBHEAD, &None::<String>),
             description: I18n::t(db, lang, InfoRequest::DESCRIPTION, &None::<String>),
             copyright: I18n::t(db, lang, InfoRequest::COPYRIGHT, &None::<String>),
-            keywords: FlatBuffer::get::<Keywords, _>(db, aes, None)
-                .map(|x| x.items)
-                .unwrap_or_default(),
-            icp_code: FlatBuffer::get(db, aes, None).ok(),
-            gab_code: FlatBuffer::get(db, aes, None).ok(),
+            keywords: {
+                let items = FlatBuffer::get::<Keywords, _>(db, aes, None)
+                    .map(|x| x.items)
+                    .unwrap_or_default();
+                Vec::from_iter(items)
+            },
+            icp_code: FlatBuffer::get::<IcpCode, _>(db, aes, None).ok(),
+            gab_code: FlatBuffer::get::<GabCode, _>(db, aes, None).ok(),
             authors: FlatBuffer::get::<Authors, _>(db, aes, None)
                 .map(|x| x.items)
                 .unwrap_or_default(),
@@ -98,7 +103,16 @@ pub struct IcpCode {
 
 #[derive(Validate, Serialize, Deserialize, Default)]
 pub struct Keywords {
-    pub items: Vec<String>,
+    pub items: HashSet<String>,
+}
+
+impl Keywords {
+    pub fn new(items: &[String]) -> Self {
+        let items: Vec<String> = items.iter().map(|x| x.trim().to_lowercase()).collect();
+        Self {
+            items: HashSet::from_iter(items),
+        }
+    }
 }
 
 #[derive(Validate, Serialize, Deserialize, Default)]
@@ -108,7 +122,7 @@ pub struct Authors {
 
 #[derive(Validate, Serialize, Deserialize, Default)]
 pub struct Favicon {
-    #[validate(url, length(min = 1, max = 127))]
+    #[validate(length(min = 1, max = 127))]
     pub url: String,
 }
 

@@ -861,7 +861,9 @@ query call($lang: String!){
   apiVersion
   siteInfo(lang: $lang){
     favicon, title, subhead, description, keywords, copyright, languages, 
-    authors{name, email}
+    authors{name, email}, 
+    icpCode{code}, 
+    gabCode{code, name},
   }
 }
 `,

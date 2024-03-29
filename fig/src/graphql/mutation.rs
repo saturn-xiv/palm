@@ -421,8 +421,8 @@ impl Mutation {
             items: items
                 .into_iter()
                 .map(|x| camelia_graphql::site::info::Author {
-                    name: x.name.clone(),
-                    email: x.email,
+                    name: x.name.trim().to_string(),
+                    email: x.email.trim().to_lowercase(),
                 })
                 .collect(),
         };
@@ -440,7 +440,7 @@ impl Mutation {
         let aes = context.aes.deref();
         let enf = context.enforcer.deref();
 
-        let form = camelia_graphql::site::info::Keywords { items };
+        let form = camelia_graphql::site::info::Keywords::new(&items);
 
         camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
         Ok(Succeed::default())
