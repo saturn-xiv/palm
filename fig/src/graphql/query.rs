@@ -44,7 +44,7 @@ impl Query {
 
     async fn get_baidu_site_verification(
         context: &Context,
-    ) -> FieldResult<camelia_graphql::site::seo::BaiduSiteVerification> {
+    ) -> FieldResult<palm::seo::baidu::SiteVerification> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
         let mut ch = context.redis.get()?;
@@ -53,16 +53,20 @@ impl Query {
         let aes = context.aes.deref();
         let enf = context.enforcer.deref();
 
-        let it = camelia_graphql::site::seo::BaiduSiteVerification::get(
-            &context.session,
-            db,
-            ch,
-            enf,
-            jwt,
-            aes,
-        )
-        .await?;
+        let it =
+            camelia_graphql::site::seo::baidu::get(&context.session, db, ch, enf, jwt, aes).await?;
         Ok(it)
+    }
+    async fn ping_baidu(context: &Context, home: String) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::site::seo::baidu::ping(&context.session, db, ch, enf, jwt, &home).await?;
+        Ok(Succeed::default())
     }
 
     fn index_locale(

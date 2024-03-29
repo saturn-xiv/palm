@@ -33,23 +33,73 @@ export interface ICurrencyOption {
   unit: number;
 }
 
+export const ping_baidu = async (home: string): Promise<ISucceed> => {
+  const res = await query<{
+    pingBaidu: ISucceed;
+  }>(
+    `
+mutation call($home: String!){
+  pingBaidu(home: $home){
+    createdAt
+  }
+}
+`,
+    { home }
+  );
+  return res.pingBaidu;
+};
+
+export const ping_google = async (home: string): Promise<ISucceed> => {
+  const res = await query<{
+    pingGoogle: ISucceed;
+  }>(
+    `
+mutation call($home: String!){
+  pingGoogle(home: $home){
+    createdAt
+  }
+}
+`,
+    { home }
+  );
+  return res.pingGoogle;
+};
+
+export const ping_index_now = async (home: string): Promise<ISucceed> => {
+  const res = await query<{
+    pingIndexNow: ISucceed;
+  }>(
+    `
+mutation call($home: String!){
+  pingIndexNow(home: $home){
+    createdAt
+  }
+}
+`,
+    { home }
+  );
+  return res.pingIndexNow;
+};
+
 interface IBaiduVerification {
-  contentCode: string;
+  content: string;
+  code: string;
 }
 export const set_baidu_verification = async (
-  contentCode: string
+  content: string,
+  code: string
 ): Promise<ISucceed> => {
   const res = await query<{
     setBaiduSiteVerification: ISucceed;
   }>(
     `
-mutation call($contentCode: String!){
-  setBaiduSiteVerification(contentCode: $contentCode){
+mutation call($content: String!, $code: String!){
+  setBaiduSiteVerification(content: $content, code: $code){
     createdAt
   }
 }
 `,
-    { contentCode }
+    { content, code }
   );
   return res.setBaiduSiteVerification;
 };
@@ -60,7 +110,7 @@ export const get_baidu_verification = async (): Promise<IBaiduVerification> => {
     `
 query call{
   getBaiduSiteVerification{
-    contentCode
+    content, code
   }
 }
 `,

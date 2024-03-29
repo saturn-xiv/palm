@@ -17,6 +17,7 @@ import SeoGoogle from "./SeoGoogle";
 import SeoIndexNow from "./SeoIndexNow";
 import SeoRss from "./SeoRss";
 import SeoSitemap from "./SeoSitemap";
+import SeoPing from "./SeoPing";
 import SiteAuthor from "./SiteAuthor";
 import SiteBaseInfo from "./SiteBaseInfo";
 import SiteCopyright from "./SiteCopyright";
@@ -105,6 +106,9 @@ export function Component() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <SeoRss languages={site_info.languages} />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <SeoPing />
               </Grid>
             </Grid>
           </TabPanel>

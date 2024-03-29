@@ -300,7 +300,8 @@ impl Mutation {
 
     async fn set_baidu_site_verification(
         context: &Context,
-        content_code: String,
+        content: String,
+        code: String,
     ) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();
@@ -309,9 +310,11 @@ impl Mutation {
         let jwt = context.jwt.deref();
         let aes = context.aes.deref();
         let enf = context.enforcer.deref();
-        let request = camelia_graphql::site::seo::BaiduSiteVerification { content_code };
 
-        request.set(&context.session, db, ch, enf, jwt, aes).await?;
+        let form = palm::seo::baidu::SiteVerification { content, code };
+
+        camelia_graphql::site::seo::baidu::set(&context.session, db, ch, enf, jwt, aes, &form)
+            .await?;
         Ok(Succeed::default())
     }
 
