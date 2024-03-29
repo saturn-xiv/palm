@@ -40,7 +40,7 @@ function build_musa() {
 
 function install_deb() {
     apt -y install libc6-dev:$1 libudev-dev:$1 libssl-dev:$1 \
-        libpq5:$1 libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1
+        libpq5:$1 libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 libczmq-dev:$1
 }
 
 function build_go_project() {
@@ -56,7 +56,7 @@ function build_go_project() {
 }
 
 function build_cargo_x86_64() {
-    echo "build palm for x84-64"
+    echo "build $1 for x84-64"
     cd $WORKSPACE
 
     local CC=gcc
@@ -66,15 +66,13 @@ function build_cargo_x86_64() {
 
     local target="x86_64-unknown-linux-gnu"
 
-    cargo clean
-    cargo build --release --target $target
-    cd target/$target/release/
+    cargo build --release --target $target -p $1
     mkdir -p $TARGET_DIR/bin/x86_64/
-    cp aloe fig $TARGET_DIR/bin/x86_64/
+    cp target/$target/release/$1 $TARGET_DIR/bin/x86_64/
 }
 
 function build_cargo_aarch64() {
-    echo "build palm for aarch64"
+    echo "build $1 for aarch64"
     cd $WORKSPACE
 
     local CC=aarch64-linux-gnu-gcc
@@ -88,15 +86,13 @@ function build_cargo_aarch64() {
 
     local target="aarch64-unknown-linux-gnu"
 
-    cargo clean
-    cargo build --release --target $target
-    cd target/$target/release/
+    cargo build --release --target $target -p $1
     mkdir -p $TARGET_DIR/bin/aarch64/
-    cp aloe fig $TARGET_DIR/bin/aarch64/
+    cp target/$target/release/$1 $TARGET_DIR/bin/aarch64/
 }
 
 function build_cargo_armhf() {
-    echo "build palm for armhf"
+    echo "build $1 for armhf"
     cd $WORKSPACE
 
     local CC=arm-linux-gnueabihf-gcc
@@ -110,19 +106,17 @@ function build_cargo_armhf() {
 
     local target="armv7-unknown-linux-gnueabihf"
 
-    cargo clean
-    cargo build --release --target $target
-    cd target/$target/release/
+    cargo build --release --target $target -p $1
     mkdir -p $TARGET_DIR/bin/armhf/
-    cp aloe fig $TARGET_DIR/bin/armhf/
+    cp target/$target/release/$1 $TARGET_DIR/bin/armhf/
 }
 
 function copy_jdk() {
     echo "install jdk..."
-    local x64_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz"
-    local aarch64_url="https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-aarch64_bin.tar.gz"
+    local x64_url="https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz"
+    local aarch64_url="https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-aarch64_bin.tar.gz"
 
-    local jdk_version="21.0.2"
+    local jdk_version="22"
     local x64_file=$HOME/downloads/openjdk-${jdk_version}_linux-x64_bin.tar.gz
     local aarch64_file=$HOME/downloads/openjdk-${jdk_version}_linux-aarch64_bin.tar.gz
 
@@ -143,10 +137,10 @@ function copy_jdk() {
 
 function copy_envoy() {
     echo "install envoy..."
-    local x86_64_url="https://github.com/envoyproxy/envoy/releases/download/v1.29.1/envoy-1.29.1-linux-x86_64"
-    local aarch64_url="https://github.com/envoyproxy/envoy/releases/download/v1.29.1/envoy-1.29.1-linux-aarch_64"
+    local envoy_version="1.29.2"
+    local x86_64_url="https://github.com/envoyproxy/envoy/releases/download/v${envoy_version}/envoy-${envoy_version}-linux-x86_64"
+    local aarch64_url="https://github.com/envoyproxy/envoy/releases/download/v${envoy_version}/envoy-${envoy_version}-linux-aarch_64"
 
-    local envoy_version="1.29.1"
     local x86_64_file=$HOME/downloads/envoy-${envoy_version}-linux-x86_64
     local aarch64_file=$HOME/downloads/envoy-${envoy_version}-linux-aarch_64
 
@@ -168,12 +162,12 @@ function copy_envoy() {
 
 function copy_nodejs() {
     echo "install nodejs..."
-    local x64_url="https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz"
-    local arm64_url="https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-arm64.tar.xz"
+    local node_version="20.12.0"
+    local x64_url="https://nodejs.org/dist/v${node_version}/node-v${node_version}-linux-x64.tar.xz"
+    local arm64_url="https://nodejs.org/dist/v${node_version}/node-v${node_version}-linux-arm64.tar.xz"
 
-    local node_version="v20.11.1"
-    local x64_file=$HOME/downloads/node-${node_version}-linux-x64.tar.xz
-    local arm64_file=$HOME/downloads/node-${node_version}-linux-arm64.tar.xz
+    local x64_file=$HOME/downloads/node-v${node_version}-linux-x64.tar.xz
+    local arm64_file=$HOME/downloads/node-v${node_version}-linux-arm64.tar.xz
 
     if [ ! -f $x64_file ]; then
         wget -P $HOME/downloads/ $x64_url
@@ -185,14 +179,14 @@ function copy_nodejs() {
     mkdir -p $TARGET_DIR/node
     cd $TARGET_DIR/node/
     tar xf $x64_file
-    mv node-${node_version}-linux-x64 x64
+    mv node-v${node_version}-linux-x64 x64
     tar xf $arm64_file
-    mv node-${node_version}-linux-arm64 arm64
+    mv node-v${node_version}-linux-arm64 arm64
 }
 
 copy_assets() {
     echo "copy fig assets"
-    cd $WORKSPACE/fig/
+    cd $WORKSPACE/
     if [ ! -d node_modules ]; then
         npm install
     fi
