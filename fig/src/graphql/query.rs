@@ -53,8 +53,9 @@ impl Query {
         let aes = context.aes.deref();
         let enf = context.enforcer.deref();
 
-        let it =
-            camelia_graphql::site::seo::baidu::get(&context.session, db, ch, enf, jwt, aes).await?;
+        let it = camelia_graphql::site::get(&context.session, db, ch, enf, jwt, aes)
+            .await
+            .unwrap_or_default();
         Ok(it)
     }
     async fn ping_baidu(context: &Context, home: String) -> FieldResult<Succeed> {
@@ -80,16 +81,9 @@ impl Query {
         let aes = context.aes.deref();
         let enf = context.enforcer.deref();
 
-        let it = camelia_graphql::site::seo::google::get_site_verification(
-            &context.session,
-            db,
-            ch,
-            enf,
-            jwt,
-            aes,
-        )
-        .await
-        .unwrap_or_default();
+        let it = camelia_graphql::site::get(&context.session, db, ch, enf, jwt, aes)
+            .await
+            .unwrap_or_default();
         Ok(it)
     }
     async fn get_google_recaptcha(context: &Context) -> FieldResult<palm::seo::google::ReCaptcha> {
@@ -101,16 +95,9 @@ impl Query {
         let aes = context.aes.deref();
         let enf = context.enforcer.deref();
 
-        let it = camelia_graphql::site::seo::google::get_recaptcha(
-            &context.session,
-            db,
-            ch,
-            enf,
-            jwt,
-            aes,
-        )
-        .await
-        .unwrap_or_default();
+        let it = camelia_graphql::site::get(&context.session, db, ch, enf, jwt, aes)
+            .await
+            .unwrap_or_default();
         Ok(it)
     }
     async fn ping_google(context: &Context, home: String) -> FieldResult<Succeed> {
@@ -136,10 +123,9 @@ impl Query {
         let aes = context.aes.deref();
         let enf = context.enforcer.deref();
 
-        let it =
-            camelia_graphql::site::seo::index_now::get(&context.session, db, ch, enf, jwt, aes)
-                .await
-                .unwrap_or_default();
+        let it = camelia_graphql::site::get(&context.session, db, ch, enf, jwt, aes)
+            .await
+            .unwrap_or_default();
         Ok(it)
     }
     async fn ping_index_now(context: &Context, home: String) -> FieldResult<Succeed> {

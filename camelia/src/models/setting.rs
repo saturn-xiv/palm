@@ -2,7 +2,7 @@ use std::any::type_name;
 use std::fmt::Display;
 
 use chrono::{NaiveDateTime, Utc};
-use diesel::{insert_into, prelude::*, update};
+use diesel::{delete, insert_into, prelude::*, update};
 use palm::{crypto::Secret, Result};
 use serde::{de::DeserializeOwned, ser::Serialize};
 
@@ -29,7 +29,7 @@ impl Protobuf for Connection {
         enc: &E,
         user: Option<i32>,
     ) -> Result<V> {
-        let buf: Vec<u8> = Dao::get(self, enc, &type_name::<V>().to_string(), user)?;
+        let (_, buf) = Dao::get(self, enc, &type_name::<V>().to_string(), user)?;
         let it = V::decode(&buf[..])?;
         Ok(it)
     }
@@ -61,7 +61,7 @@ pub trait FlatBuffer {
 
 impl FlatBuffer for Connection {
     fn get<V: DeserializeOwned, E: Secret>(&mut self, enc: &E, user: Option<i32>) -> Result<V> {
-        let buf: Vec<u8> = Dao::get(self, enc, &type_name::<V>().to_string(), user)?;
+        let (_, buf) = Dao::get(self, enc, &type_name::<V>().to_string(), user)?;
         let it = flexbuffers::from_slice(&buf)?;
         Ok(it)
     }
@@ -92,7 +92,12 @@ pub struct Item {
 }
 
 pub trait Dao {
-    fn get<K: Display, E: Secret>(&mut self, e: &E, k: &K, u: Option<i32>) -> Result<Vec<u8>>;
+    fn get<K: Display, E: Secret>(
+        &mut self,
+        e: &E,
+        k: &K,
+        u: Option<i32>,
+    ) -> Result<(i32, Vec<u8>)>;
     fn set<K: Display, E: Secret>(
         &mut self,
         e: &E,
@@ -101,10 +106,16 @@ pub trait Dao {
         v: &[u8],
         f: bool,
     ) -> Result<()>;
+    fn delete(&mut self, id: i32) -> Result<()>;
 }
 
 impl Dao for Connection {
-    fn get<K: Display, E: Secret>(&mut self, e: &E, k: &K, u: Option<i32>) -> Result<Vec<u8>> {
+    fn get<K: Display, E: Secret>(
+        &mut self,
+        e: &E,
+        k: &K,
+        u: Option<i32>,
+    ) -> Result<(i32, Vec<u8>)> {
         let k = k.to_string();
 
         let it = match u {
@@ -122,7 +133,7 @@ impl Dao for Connection {
             Some(ref salt) => e.decrypt(&it.value, salt)?,
             None => it.value,
         };
-        Ok(val)
+        Ok((it.id, val))
     }
 
     fn set<K: Display, E: Secret>(
@@ -180,6 +191,11 @@ impl Dao for Connection {
                     .execute(self)?;
             }
         };
+        Ok(())
+    }
+
+    fn delete(&mut self, id: i32) -> Result<()> {
+        delete(settings::dsl::settings.filter(settings::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }
 }

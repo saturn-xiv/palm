@@ -1,22 +1,36 @@
+use casbin::Enforcer;
 use chrono::{NaiveDateTime, Utc};
-use juniper::GraphQLObject;
+use juniper::{GraphQLInputObject, GraphQLObject};
 use palm::{
-    cache::redis::ClusterConnection as Cache,
-    crypto::{aes::Aes, Secret},
-    Result, GIT_VERSION,
+    cache::redis::ClusterConnection as Cache, crypto::aes::Aes, jwt::Jwt, session::Session, Error,
+    GIT_VERSION,
 };
-use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use serde::{Deserialize, Serialize};
+use tokio::sync::Mutex;
+use validator::Validate;
 
 use super::super::super::{
     i18n::I18n,
-    models::{locale::Dao as LocaleDao, setting::Dao as SettingDao},
+    models::{locale::Dao as LocaleDao, setting::FlatBuffer},
     orm::postgresql::Connection as Db,
+    services::CurrentUserAdapter,
 };
 
-#[derive(GraphQLObject, Serialize, Deserialize)]
+#[derive(GraphQLInputObject, Validate)]
+#[graphql(name = "SiteAuthorRequestItem")]
+pub struct AuthorRequest {
+    #[validate(length(min = 1, max = 32))]
+    pub name: String,
+    #[validate(email, length(min = 1, max = 63))]
+    pub email: String,
+}
+
+#[derive(Validate, GraphQLObject, Serialize, Deserialize, Default)]
 #[graphql(name = "SiteAuthor")]
 pub struct Author {
+    #[validate(length(min = 1, max = 32))]
     pub name: String,
+    #[validate(email, length(min = 1, max = 63))]
     pub email: String,
 }
 #[derive(GraphQLObject)]
@@ -31,53 +45,106 @@ pub struct Response {
     pub keywords: Vec<String>,
     pub authors: Vec<Author>,
     pub languages: Vec<String>,
-    pub icp_code: Option<String>,
+    pub icp_code: Option<IcpCode>,
     pub gab_code: Option<GabCode>,
     pub created_at: NaiveDateTime,
     pub version: String,
 }
 
-#[derive(GraphQLObject, Serialize, Deserialize, Default)]
-#[graphql(name = "WebSiteGabCode")]
-pub struct GabCode {
-    pub code: String,
-    pub name: String,
-}
-
 impl Response {
-    pub const TITLE: &'static str = "site.title";
-    pub const SUBHEAD: &'static str = "site.subhead";
-    pub const DESCRIPTION: &'static str = "site.description";
-    pub const KEYWORDS: &'static str = "site.keywords";
-    pub const AUTHORS: &'static str = "site.authors";
-    pub const COPYRIGHT: &'static str = "site.copyright";
-    pub const ICP_CODE: &'static str = "site.icp-code";
-    pub const GAB_CODE: &'static str = "site.gab-code";
-    pub const FAVICON: &'static str = "site.favicon";
-
-    fn get<V: Default + DeserializeOwned, S: Secret>(db: &mut Db, aes: &S, key: &str) -> Result<V> {
-        let buf = SettingDao::get(db, aes, &key.to_string(), None)?;
-        let it = flexbuffers::from_slice(&buf)?;
-        Ok(it)
-    }
-    pub fn new(db: &mut Db, _ch: &mut Cache, aes: &Aes, lang: &str) -> Result<Self> {
+    pub fn new(db: &mut Db, _ch: &mut Cache, aes: &Aes, lang: &str) -> Result<Self, Error> {
         // TODO cache
         let it = Self {
             locale: lang.to_string(),
-            title: I18n::t(db, lang, Self::TITLE, &None::<String>),
-            subhead: I18n::t(db, lang, Self::SUBHEAD, &None::<String>),
-            description: I18n::t(db, lang, Self::DESCRIPTION, &None::<String>),
-            keywords: Self::get(db, aes, Self::KEYWORDS).unwrap_or_default(),
-            icp_code: Self::get(db, aes, Self::ICP_CODE).ok(),
-            gab_code: Self::get(db, aes, Self::GAB_CODE).ok(),
-            authors: Self::get(db, aes, Self::AUTHORS).unwrap_or_default(),
-            copyright: Self::get(db, aes, Self::COPYRIGHT).unwrap_or_default(),
-            favicon: Self::get(db, aes, Self::FAVICON).unwrap_or("/my/palm.svg".to_string()),
+            title: I18n::t(db, lang, InfoRequest::TITLE, &None::<String>),
+            subhead: I18n::t(db, lang, InfoRequest::SUBHEAD, &None::<String>),
+            description: I18n::t(db, lang, InfoRequest::DESCRIPTION, &None::<String>),
+            copyright: I18n::t(db, lang, InfoRequest::COPYRIGHT, &None::<String>),
+            keywords: FlatBuffer::get::<Keywords, _>(db, aes, None)
+                .map(|x| x.items)
+                .unwrap_or_default(),
+            icp_code: FlatBuffer::get(db, aes, None).ok(),
+            gab_code: FlatBuffer::get(db, aes, None).ok(),
+            authors: FlatBuffer::get::<Authors, _>(db, aes, None)
+                .map(|x| x.items)
+                .unwrap_or_default(),
+            favicon: FlatBuffer::get::<Favicon, _>(db, aes, None)
+                .map(|x| x.url)
+                .unwrap_or("/my/palm.svg".to_string()),
             languages: LocaleDao::languages(db)?,
             version: GIT_VERSION.to_string(),
             created_at: Utc::now().naive_utc(),
         };
 
         Ok(it)
+    }
+}
+
+#[derive(Validate, GraphQLObject, Serialize, Deserialize, Default)]
+#[graphql(name = "WebSiteGabCode")]
+pub struct GabCode {
+    #[validate(length(min = 1, max = 63))]
+    pub code: String,
+    #[validate(length(min = 1, max = 63))]
+    pub name: String,
+}
+
+#[derive(Validate, GraphQLObject, Serialize, Deserialize, Default)]
+#[graphql(name = "WebSiteIcpCode")]
+pub struct IcpCode {
+    #[validate(length(min = 1, max = 63))]
+    pub code: String,
+}
+
+#[derive(Validate, Serialize, Deserialize, Default)]
+pub struct Keywords {
+    pub items: Vec<String>,
+}
+
+#[derive(Validate, Serialize, Deserialize, Default)]
+pub struct Authors {
+    pub items: Vec<Author>,
+}
+
+#[derive(Validate, Serialize, Deserialize, Default)]
+pub struct Favicon {
+    #[validate(url, length(min = 1, max = 127))]
+    pub url: String,
+}
+
+#[derive(Validate)]
+pub struct InfoRequest {
+    #[validate(length(min = 1, max = 63))]
+    pub title: String,
+    #[validate(length(min = 1, max = 31))]
+    pub subhead: String,
+    #[validate(length(min = 1, max = 511))]
+    pub description: String,
+    #[validate(length(min = 1, max = 31))]
+    pub copyright: String,
+}
+impl InfoRequest {
+    pub const TITLE: &'static str = "site.title";
+    pub const SUBHEAD: &'static str = "site.subhead";
+    pub const DESCRIPTION: &'static str = "site.description";
+    pub const COPYRIGHT: &'static str = "site.copyright";
+
+    pub async fn handle<J: Jwt>(
+        &self,
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        enf: &Mutex<Enforcer>,
+        jwt: &J,
+    ) -> Result<(), Error> {
+        self.validate()?;
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
+        user.is_administrator(enf).await?;
+
+        I18n::set(db, &ss.lang, Self::TITLE, &self.title)?;
+        I18n::set(db, &ss.lang, Self::SUBHEAD, &self.subhead)?;
+        I18n::set(db, &ss.lang, Self::DESCRIPTION, &self.description)?;
+        I18n::set(db, &ss.lang, Self::COPYRIGHT, &self.copyright)?;
+        Ok(())
     }
 }

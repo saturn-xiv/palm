@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useIntl, FormattedMessage } from "react-intl";
 import { useFormik } from "formik";
+import { useConfirm } from "material-ui-confirm";
 import { string as yup_string, object as yup_object } from "yup";
 
 import {
@@ -16,6 +17,7 @@ import { IErrorMessage } from "../../api/graphql";
 import {
   set_baidu_site_verification,
   get_baidu_site_verification,
+  delete_baidu_site_verification,
 } from "../../api/camelia";
 
 const validationSchema = yup_object({
@@ -24,6 +26,7 @@ const validationSchema = yup_object({
 });
 
 const Widget = () => {
+  const confirm = useConfirm();
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const {
@@ -94,6 +97,36 @@ const Widget = () => {
         />
         <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
           <FormattedMessage id="buttons.submit" />
+        </Button>
+        <Button
+          color="error"
+          variant="text"
+          sx={{ mt: 3, mb: 2 }}
+          onClick={() => {
+            confirm({
+              title: intl.formatMessage({
+                id: "flashes.are-you-sure",
+              }),
+            })
+              .then(() => {
+                delete_baidu_site_verification()
+                  .then(() => {
+                    dispatch(
+                      success_box([
+                        intl.formatMessage({ id: "flashes.succeed" }),
+                      ])
+                    );
+                    setFieldValue("code", "");
+                    setFieldValue("content", "");
+                  })
+                  .catch((reason: IErrorMessage[]) => {
+                    dispatch(error_box(reason.map((x) => x.message)));
+                  });
+              })
+              .catch(() => {});
+          }}
+        >
+          <FormattedMessage id="buttons.delete" />
         </Button>
       </Box>
     </>

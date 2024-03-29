@@ -298,6 +298,174 @@ impl Mutation {
         Ok(Succeed::default())
     }
 
+    async fn set_site_info(
+        context: &Context,
+        title: String,
+        subhead: String,
+        description: String,
+        copyright: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let request = camelia_graphql::site::info::InfoRequest {
+            title,
+            subhead,
+            description,
+            copyright,
+        };
+        request.handle(&context.session, db, ch, enf, jwt).await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_favicon(context: &Context, url: String) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+        let form = camelia_graphql::site::info::Favicon { url };
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+    async fn delete_site_gab_code(context: &Context) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::site::delete::<_, _, camelia_graphql::site::info::GabCode>(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_gab_code(
+        context: &Context,
+        code: String,
+        name: String,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let form = camelia_graphql::site::info::GabCode { code, name };
+
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+    async fn delete_site_icp_code(context: &Context) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::site::delete::<_, _, camelia_graphql::site::info::IcpCode>(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_icp_code(context: &Context, code: String) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let form = camelia_graphql::site::info::IcpCode { code };
+
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_authors(
+        context: &Context,
+        items: Vec<camelia_graphql::site::info::AuthorRequest>,
+    ) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let form = camelia_graphql::site::info::Authors {
+            items: items
+                .into_iter()
+                .map(|x| camelia_graphql::site::info::Author {
+                    name: x.name.clone(),
+                    email: x.email,
+                })
+                .collect(),
+        };
+
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn set_site_keywords(context: &Context, items: Vec<String>) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        let form = camelia_graphql::site::info::Keywords { items };
+
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn delete_baidu_site_verification(context: &Context) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::site::delete::<_, _, palm::seo::baidu::SiteVerification>(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
     async fn set_baidu_site_verification(
         context: &Context,
         content: String,
@@ -313,8 +481,27 @@ impl Mutation {
 
         let form = palm::seo::baidu::SiteVerification { content, code };
 
-        camelia_graphql::site::seo::baidu::set(&context.session, db, ch, enf, jwt, aes, &form)
-            .await?;
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+    async fn delete_google_site_verification(context: &Context) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::site::delete::<_, _, palm::seo::google::SiteVerification>(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+            aes,
+        )
+        .await?;
         Ok(Succeed::default())
     }
     async fn set_google_site_verification(context: &Context, code: String) -> FieldResult<Succeed> {
@@ -328,14 +515,25 @@ impl Mutation {
 
         let form = palm::seo::google::SiteVerification { code };
 
-        camelia_graphql::site::seo::google::set_site_verification(
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+    async fn delete_google_recaptcha(context: &Context) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::site::delete::<_, _, palm::seo::google::ReCaptcha>(
             &context.session,
             db,
             ch,
             enf,
             jwt,
             aes,
-            &form,
         )
         .await?;
         Ok(Succeed::default())
@@ -355,14 +553,25 @@ impl Mutation {
 
         let form = palm::seo::google::ReCaptcha { site_key, secret };
 
-        camelia_graphql::site::seo::google::set_recaptcha(
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
+        Ok(Succeed::default())
+    }
+    async fn delete_index_now_site_verification(context: &Context) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let aes = context.aes.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::site::delete::<_, _, palm::seo::index_now::SiteVerification>(
             &context.session,
             db,
             ch,
             enf,
             jwt,
             aes,
-            &form,
         )
         .await?;
         Ok(Succeed::default())
@@ -381,8 +590,7 @@ impl Mutation {
 
         let form = palm::seo::index_now::SiteVerification { key };
 
-        camelia_graphql::site::seo::index_now::set(&context.session, db, ch, enf, jwt, aes, &form)
-            .await?;
+        camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
         Ok(Succeed::default())
     }
 

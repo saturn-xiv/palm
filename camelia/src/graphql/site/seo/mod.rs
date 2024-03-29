@@ -1,7 +1,3 @@
-pub mod baidu;
-pub mod google;
-pub mod index_now;
-
 use casbin::Enforcer;
 use palm::{
     cache::redis::ClusterConnection as Cache,
@@ -26,7 +22,7 @@ use super::super::super::{
     orm::postgresql::Connection as Db,
     services::CurrentUserAdapter,
 };
-use super::info::Response;
+use super::info::InfoRequest;
 
 #[derive(Validate)]
 pub struct Ping {
@@ -47,7 +43,7 @@ impl Ping {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
         user.is_administrator(enf).await?;
         for lang in LocaleDao::languages(db)?.iter() {
-            let title = I18n::t(db, lang, Response::TITLE, &None::<String>);
+            let title = I18n::t(db, lang, InfoRequest::TITLE, &None::<String>);
             let it = BaiduPingRequest::new(&self.home, &title, lang);
             it.ping().await?;
         }

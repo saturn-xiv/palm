@@ -33,6 +33,135 @@ export interface ICurrencyOption {
   unit: number;
 }
 
+export const set_site_favicon = async (url: string): Promise<ISucceed> => {
+  const res = await query<{
+    setSiteFavicon: ISucceed;
+  }>(
+    `
+mutation call($url: String!){
+  setSiteFavicon(url: $url){
+    createdAt
+  }
+}
+`,
+    { url }
+  );
+  return res.setSiteFavicon;
+};
+export const delete_site_gab_code = async (): Promise<ISucceed> => {
+  const res = await query<{
+    deleteSiteGabCode: ISucceed;
+  }>(
+    `
+mutation call{
+  deleteSiteGabCode{
+    createdAt
+  }
+}
+`,
+    {}
+  );
+  return res.deleteSiteGabCode;
+};
+export const set_site_gab_code = async (
+  code: string,
+  name: string
+): Promise<ISucceed> => {
+  const res = await query<{
+    setSiteGabCode: ISucceed;
+  }>(
+    `
+mutation call($code: String!, $name: String!){
+  setSiteGabCode(code: $code, name: $name){
+    createdAt
+  }
+}
+`,
+    { code, name }
+  );
+  return res.setSiteGabCode;
+};
+export const delete_site_icp_code = async (): Promise<ISucceed> => {
+  const res = await query<{
+    deleteSiteIcpCode: ISucceed;
+  }>(
+    `
+mutation call{
+  deleteSiteIcpCode{
+    createdAt
+  }
+}
+`,
+    {}
+  );
+  return res.deleteSiteIcpCode;
+};
+export const set_site_icp_code = async (code: string): Promise<ISucceed> => {
+  const res = await query<{
+    setSiteIcpCode: ISucceed;
+  }>(
+    `
+mutation call($code: String!){
+  setSiteIcpCode(code: $code){
+    createdAt
+  }
+}
+`,
+    { code }
+  );
+  return res.setSiteIcpCode;
+};
+export const set_site_keywords = async (items: string[]): Promise<ISucceed> => {
+  const res = await query<{
+    setSiteKeywords: ISucceed;
+  }>(
+    `
+mutation call($items: [String!]!){
+  setSiteKeywords(items: $items){
+    createdAt
+  }
+}
+`,
+    { items }
+  );
+  return res.setSiteKeywords;
+};
+export const set_site_authors = async (items: IAuthor[]): Promise<ISucceed> => {
+  const res = await query<{
+    setSiteAuthors: ISucceed;
+  }>(
+    `
+mutation call($items: [SiteAuthorRequestItem!]!){
+  setSiteAuthors(items: $items){
+    createdAt
+  }
+}
+`,
+    { items }
+  );
+  return res.setSiteAuthors;
+};
+export const set_site_info = async (
+  title: string,
+  subhead: string,
+  description: string,
+  copyright: string
+): Promise<ISucceed> => {
+  const res = await query<{
+    setSiteInfo: ISucceed;
+  }>(
+    `
+mutation call($title: String!, $subhead: String!, $description: String!, $copyright: String!){
+  setSiteInfo(title: $title, subhead: $subhead, description: $description, copyright: $copyright){
+    createdAt
+  }
+}
+`,
+    { title, subhead, description, copyright }
+  );
+  return res.setSiteInfo;
+};
+
 export const ping_baidu = async (home: string): Promise<ISucceed> => {
   const res = await query<{
     pingBaidu: ISucceed;
@@ -103,6 +232,21 @@ mutation call($content: String!, $code: String!){
   );
   return res.setBaiduSiteVerification;
 };
+export const delete_baidu_site_verification = async (): Promise<ISucceed> => {
+  const res = await query<{
+    deleteBaiduSiteVerification: ISucceed;
+  }>(
+    `
+mutation call{
+  deleteBaiduSiteVerification{
+    createdAt
+  }
+}
+`,
+    {}
+  );
+  return res.deleteBaiduSiteVerification;
+};
 export const get_baidu_site_verification =
   async (): Promise<IBaiduSiteVerification> => {
     const res = await query<{
@@ -139,6 +283,21 @@ mutation call($code: String!){
     { code }
   );
   return res.setGoogleSiteVerification;
+};
+export const delete_google_site_verification = async (): Promise<ISucceed> => {
+  const res = await query<{
+    deleteGoogleSiteVerification: ISucceed;
+  }>(
+    `
+mutation call{
+  deleteGoogleSiteVerification{
+    createdAt
+  }
+}
+`,
+    {}
+  );
+  return res.deleteGoogleSiteVerification;
 };
 export const get_google_site_verification =
   async (): Promise<IGoogleSiteVerification> => {
@@ -179,6 +338,21 @@ export const set_google_recaptcha = async (
   );
   return res.setGoogleRecaptcha;
 };
+export const delete_google_recaptcha = async (): Promise<ISucceed> => {
+  const res = await query<{
+    deleteGoogleRecaptcha: ISucceed;
+  }>(
+    `
+  mutation call{
+    deleteGoogleRecaptcha{
+      createdAt
+    }
+  }
+  `,
+    {}
+  );
+  return res.deleteGoogleRecaptcha;
+};
 export const get_google_recaptcha = async (): Promise<IGoogleRecaptcha> => {
   const res = await query<{
     getGoogleRecaptcha: IGoogleRecaptcha;
@@ -215,6 +389,22 @@ export const set_index_now_site_verification = async (
   );
   return res.setIndexNowSiteVerification;
 };
+export const delete_index_now_site_verification =
+  async (): Promise<ISucceed> => {
+    const res = await query<{
+      deleteIndexNowSiteVerification: ISucceed;
+    }>(
+      `
+  mutation call{
+    deleteIndexNowSiteVerification{
+      createdAt
+    }
+  }
+  `,
+      {}
+    );
+    return res.deleteIndexNowSiteVerification;
+  };
 export const get_index_now_site_verification =
   async (): Promise<IIndexNowSiteVerification> => {
     const res = await query<{
@@ -645,14 +835,19 @@ export interface IGabCode {
   code: string;
   name: string;
 }
+export interface IIcpCode {
+  code: string;
+}
 interface ISiteInfoResponse {
+  favicon: string;
   title: string;
   subhead: string;
   description: string;
+  copyright: string;
   keywords: string[];
   languages: string[];
   authors: IAuthor[];
-  icpCode?: string;
+  icpCode?: IIcpCode;
   gabCode?: IGabCode;
 }
 export interface ILayoutResponse {
@@ -665,7 +860,7 @@ export const fetch_layout = async (lang: string): Promise<ILayoutResponse> => {
 query call($lang: String!){
   apiVersion
   siteInfo(lang: $lang){
-    title, subhead, description, keywords, languages, 
+    favicon, title, subhead, description, keywords, copyright, languages, 
     authors{name, email}
   }
 }

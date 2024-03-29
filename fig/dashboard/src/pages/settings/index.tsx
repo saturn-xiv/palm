@@ -8,8 +8,13 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { FormattedMessage } from "react-intl";
 
-import { siteInfo as selectSiteInfo } from "../../reducers/site-info";
-import { useAppSelector } from "../../hooks";
+import {
+  siteInfo as selectSiteInfo,
+  refresh as refreshLayout,
+} from "../../reducers/site-info";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { fetch_layout } from "../../api/camelia";
+import { get as get_locale } from "../../locales";
 import StatusPostgreSql from "./StatusPostgreSql";
 import StatusRedis from "./StatusRedis";
 import SeoBaidu from "./SeoBaidu";
@@ -19,20 +24,26 @@ import SeoRss from "./SeoRss";
 import SeoSitemap from "./SeoSitemap";
 import SeoPing from "./SeoPing";
 import SeoReCaptcha from "./SeoReCaptcha";
-import SiteAuthor from "./SiteAuthor";
+import SiteAuthors from "./SiteAuthors";
 import SiteBaseInfo from "./SiteBaseInfo";
-import SiteCopyright from "./SiteCopyright";
 import SiteGabCode from "./SiteGabCode";
 import SiteIcpCode from "./SiteIcpCode";
 import SiteKeywords from "./SiteKeywords";
+import SiteFavicon from "./SiteFavicon";
 
 const STATUS = "status";
 const INFO = "info";
 const SEO = "seo";
 
 export function Component() {
+  const dispatch = useAppDispatch();
   const site_info = useAppSelector(selectSiteInfo);
   const [open, setOpen] = useState(STATUS);
+  const handleRefresh = () => {
+    fetch_layout(get_locale()).then((res) => {
+      dispatch(refreshLayout(res));
+    });
+  };
 
   return (
     <Grid item xs={12}>
@@ -72,22 +83,43 @@ export function Component() {
           <TabPanel value={INFO}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
-                <SiteBaseInfo />
+                <SiteBaseInfo
+                  subhead={site_info.subhead}
+                  title={site_info.title}
+                  copyright={site_info.copyright}
+                  description={site_info.description}
+                  handleRefresh={handleRefresh}
+                />
               </Grid>
               <Grid item xs={12} md={6}>
-                <SiteAuthor />
+                <SiteAuthors
+                  authors={site_info.authors}
+                  handleRefresh={handleRefresh}
+                />
               </Grid>
               <Grid item xs={12} md={6}>
-                <SiteKeywords />
+                <SiteKeywords
+                  keywords={site_info.keywords}
+                  handleRefresh={handleRefresh}
+                />
               </Grid>
               <Grid item xs={12} md={6}>
-                <SiteCopyright />
+                <SiteFavicon
+                  url={site_info.favicon}
+                  handleRefresh={handleRefresh}
+                />
               </Grid>
               <Grid item xs={12} md={6}>
-                <SiteIcpCode />
+                <SiteIcpCode
+                  code={site_info.icpCode}
+                  handleRefresh={handleRefresh}
+                />
               </Grid>
               <Grid item xs={12} md={6}>
-                <SiteGabCode />
+                <SiteGabCode
+                  item={site_info.gabCode}
+                  handleRefresh={handleRefresh}
+                />
               </Grid>
             </Grid>
           </TabPanel>
