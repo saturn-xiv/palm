@@ -33,6 +33,10 @@ pub trait Amqp {
 
 impl Amqp for super::Config {
     async fn open(&self) -> Result<Connection> {
+        debug!(
+            "open rabbitmq://{}@{}:{}/{}",
+            self.user, self.host, self.port, self.virtual_host
+        );
         let con = RabbitMqConnection::open(
             &OpenConnectionArguments::new(&self.host, self.port, &self.user, &self.password)
                 .virtual_host(&self.virtual_host)

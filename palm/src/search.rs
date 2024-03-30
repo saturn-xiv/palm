@@ -30,6 +30,7 @@ impl Default for Config {
 impl Config {
     pub fn open(&self) -> Result<Pool> {
         let url = format!("http://{}:{}", self.host, self.port).parse()?;
+        debug!("open opensearch {url}");
         let pool = SingleNodeConnectionPool::new(url);
 
         Ok(Pool {

@@ -43,6 +43,10 @@ pub struct Config {
 
 impl Config {
     pub fn open(&self) -> Result<Pool> {
+        debug!(
+            "open postgresql://{}@{}:{}/{}",
+            self.user, self.host, self.port, self.name
+        );
         let manager = diesel::r2d2::ConnectionManager::<Connection>::new(&self.to_string()[..]);
         Ok(Pool::builder()
             .max_size(self.pool_size.unwrap_or(32))

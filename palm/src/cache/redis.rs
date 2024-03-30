@@ -37,6 +37,7 @@ impl Config {
     pub fn open(&self) -> Result<Pool> {
         let client = {
             let hosts: Vec<String> = self.nodes.iter().map(|x| x.to_string()).collect();
+            debug!("open redis cluster {}", hosts.join(","));
             ClusterClient::new(hosts)?
         };
 

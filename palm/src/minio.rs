@@ -32,7 +32,7 @@ pub struct Config {
     pub access_key: String,
     #[serde(rename = "secret-key")]
     pub secret_key: String,
-    pub bucket: String,
+    pub namespace: String,
 }
 
 #[derive(Template)]
@@ -92,6 +92,7 @@ impl NginxConfig<'_> {
 
 impl Config {
     pub fn open(&self) -> Result<Client, Error> {
+        debug!("open minio {}", self.endpoint);
         let cred = StaticProvider::new(&self.access_key, &self.secret_key, None);
         let base_url: BaseUrl = self.endpoint.parse()?;
 
@@ -105,14 +106,14 @@ impl Config {
 
         Ok(Client {
             connection,
-            bucket: self.bucket.clone(),
+            namespace: self.namespace.clone(),
         })
     }
 }
 
 pub struct Client {
     pub connection: Connection,
-    bucket: String,
+    namespace: String,
 }
 
 impl Client {
@@ -123,7 +124,7 @@ impl Client {
     ) -> Result<String, Error> {
         let name = format!(
             "{}.{}.{}{}",
-            self.bucket,
+            self.namespace,
             Utc::now().year(),
             if public { "o" } else { "p" },
             expiration_days
