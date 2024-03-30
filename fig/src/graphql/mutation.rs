@@ -593,7 +593,18 @@ impl Mutation {
         camelia_graphql::site::set(&context.session, db, ch, enf, jwt, aes, &form).await?;
         Ok(Succeed::default())
     }
+    async fn update_attachment(context: &Context, id: i32, title: String) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let request = camelia_graphql::attachment::UpdateRequest { id, title };
+        request.handle(&context.session, db, ch, enf, jwt).await?;
 
+        Ok(Succeed::default())
+    }
     async fn destroy_attachment(context: &Context, id: i32) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();

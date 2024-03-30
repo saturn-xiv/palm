@@ -470,6 +470,25 @@ query call($id: Int!, $ttl: Int){
   );
   return res.showAttachmentById;
 };
+
+export const update_attachment = async (
+  id: number,
+  title: string
+): Promise<ISucceed> => {
+  const res = await query<{
+    updateAttachment: ISucceed;
+  }>(
+    `
+  mutation call($id: Int!, $title: String!){
+    updateAttachment(id: $id, title: $title){
+      createdAt
+    }
+  }
+  `,
+    { id, title }
+  );
+  return res.updateAttachment;
+};
 export interface IAttachment {
   id: number;
   title: string;

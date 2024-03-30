@@ -24,6 +24,32 @@ use super::super::{
     services::CurrentUserAdapter,
 };
 
+#[derive(Validate)]
+pub struct UpdateRequest {
+    #[validate(range(min = 1))]
+    pub id: i32,
+    #[validate(length(min = 1, max = 127))]
+    pub title: String,
+}
+
+impl UpdateRequest {
+    pub async fn handle<J: Jwt>(
+        &self,
+        ss: &Session,
+        db: &mut Db,
+        ch: &mut Cache,
+        enf: &Mutex<Enforcer>,
+        jwt: &J,
+    ) -> Result<(), Error> {
+        self.validate()?;
+        let (user, _, _) = ss.current_user(db, ch, jwt)?;
+        let item = AttachmentDao::by_id(db, self.id)?;
+        item.can_edit(enf, &user).await?;
+        AttachmentDao::update(db, self.id, &self.title)?;
+        Ok(())
+    }
+}
+
 #[derive(GraphQLObject)]
 #[graphql(name = "AttachmentShowItem")]
 pub struct Show {
@@ -233,7 +259,7 @@ pub async fn destroy<J: Jwt>(
 ) -> Result<(), Error> {
     let (user, _, _) = ss.current_user(db, ch, jwt)?;
     let item = AttachmentDao::by_id(db, id)?;
-    item.can_delete(enf, &user).await?;
+    item.can_edit(enf, &user).await?;
     warn!("delete attachment {item}");
     AttachmentDao::delete(db, id)?;
     Ok(())
@@ -267,7 +293,7 @@ impl Attachment {
         Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)))
     }
 
-    pub async fn can_delete(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<(), Error> {
+    pub async fn can_edit(&self, enf: &Mutex<Enforcer>, user: &User) -> Result<(), Error> {
         if self.deleted_at.is_some() {
             return Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)));
         }

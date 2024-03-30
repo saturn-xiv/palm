@@ -11,12 +11,14 @@ import Paper from "@mui/material/Paper";
 import Moment from "../../components/Moment";
 import { IAttachment } from "../../api/camelia";
 import ShowButton from "./:id/ShowButton";
+import EditButton from "./:id/EditButton";
 
 interface IProps {
   items: IAttachment[];
+  handleRefresh: () => void;
 }
 
-const Widget = ({ items }: IProps) => {
+const Widget = ({ items, handleRefresh }: IProps) => {
   return (
     <>
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
@@ -52,6 +54,7 @@ const Widget = ({ items }: IProps) => {
                 </TableCell>
                 <TableCell>
                   <ShowButton item={it} small />
+                  <EditButton item={it} handleRefresh={handleRefresh} small />
                 </TableCell>
               </TableRow>
             ))}

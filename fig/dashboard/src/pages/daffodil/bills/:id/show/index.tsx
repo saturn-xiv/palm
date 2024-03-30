@@ -35,7 +35,14 @@ export function Component() {
       </Grid>
       <Grid item xs={12} md={9}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-          <AttachmentTable items={item.attachments} />
+          <AttachmentTable
+            handleRefresh={() => {
+              show_bill(item.id).then((res) => {
+                setItem(res);
+              });
+            }}
+            items={item.attachments}
+          />
           <br />
           <Upload
             accept={{

@@ -12,6 +12,7 @@ import Moment from "../../components/Moment";
 import TablePagination from "../../components/TablePagination";
 import { IAttachment, IPagination } from "../../api/camelia";
 import ShowButton from "./:id/ShowButton";
+import EditButton from "./:id/EditButton";
 
 interface IProps {
   items: IAttachment[];
@@ -55,6 +56,11 @@ const Widget = ({ items, pagination, handleRefresh }: IProps) => {
                 </TableCell>
                 <TableCell>
                   <ShowButton item={it} small />
+                  <EditButton
+                    item={it}
+                    handleRefresh={() => handleRefresh(1, 20)}
+                    small
+                  />
                 </TableCell>
               </TableRow>
             ))}
