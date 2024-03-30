@@ -22,7 +22,7 @@ use super::super::{
 pub fn cover<T>(db: &mut Connection, id: i32) -> Result<Item> {
     let it = Dao::by_resource::<T>(db, id)?
         .into_iter()
-        .find(|x| x.content_type.starts_with("image/"))
+        .find(|x| x.is_picture())
         .ok_or(Box::new(HttpError(
             StatusCode::BAD_REQUEST,
             Some("empty cover".to_string()),
@@ -90,6 +90,9 @@ impl Item {
         }
         warn!("empty extension {}", title);
         mime::APPLICATION_OCTET_STREAM
+    }
+    pub fn is_picture(&self) -> bool {
+        return self.content_type.starts_with("image/");
     }
 }
 
@@ -266,10 +269,12 @@ impl Dao for Connection {
     }
     fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>> {
         let ids: Vec<i32> = attachment_resources::dsl::attachment_resources
-            .select(attachment_resources::dsl::id)
+            .select(attachment_resources::dsl::attachment_id)
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
             .filter(attachment_resources::dsl::resource_id.eq(resource_id))
+            .order(attachment_resources::dsl::created_at.desc())
             .load(self)?;
+
         let items = attachments::dsl::attachments
             .filter(attachments::dsl::id.eq_any(ids))
             .load::<Item>(self)?;
