@@ -2,8 +2,8 @@ pub mod schema;
 
 use std::default::Default;
 use std::fmt;
-use std::ops::Deref;
 use std::sync::Arc;
+use std::time::Duration as StdDuration;
 
 use casbin::prelude::*;
 use diesel::{sql_query, RunQueryDsl};
@@ -12,7 +12,7 @@ use log::{debug, error};
 use palm::{
     queue::rabbitmq::amqp::{
         watcher::{consume as consume_casbin_watcher, Watcher as RabbitCasbinWatcher},
-        Connection as RabbitMq,
+        Connection as RabbitMqConnection,
     },
     Result,
 };
@@ -52,7 +52,10 @@ impl Config {
             .max_size(self.pool_size.unwrap_or(32))
             .build(manager)?)
     }
-    pub async fn casbin_enforcer(&self, rabbitmq: Arc<RabbitMq>) -> Result<Arc<Mutex<Enforcer>>> {
+    pub async fn casbin_enforcer(
+        &self,
+        connection: Arc<RabbitMqConnection>,
+    ) -> Result<Arc<Mutex<Enforcer>>> {
         debug!("init casbin postgresql enforcer");
         let enforcer = {
             let model =
@@ -65,15 +68,21 @@ impl Config {
         };
 
         debug!("init casbin rabbitmq adapter");
-        let watcher = RabbitCasbinWatcher::new(rabbitmq.clone()).await?;
+        let watcher = RabbitCasbinWatcher::new(connection.clone()).await?;
         {
-            let rabbitmq = rabbitmq.clone();
             let queue = watcher.queue.clone();
             let enforcer = enforcer.clone();
+
             tokio::task::spawn(async move {
-                let rabbitmq = rabbitmq.deref();
-                if let Err(e) = consume_casbin_watcher("", rabbitmq, &queue, enforcer).await {
-                    error!("consume casbin watcher message {:?}", e);
+                loop {
+                    let enforcer = enforcer.clone();
+                    if let Err(e) =
+                        consume_casbin_watcher(&connection, "casbin-watcher", &queue, enforcer)
+                            .await
+                    {
+                        error!("consume casbin watcher message {:?}", e);
+                        tokio::time::sleep(StdDuration::from_secs(1)).await
+                    }
                 }
             });
         }

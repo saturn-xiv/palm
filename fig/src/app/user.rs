@@ -162,6 +162,7 @@ impl Role {
     pub async fn apply<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
+
         let rabbitmq = Arc::new(config.rabbitmq.open().await?);
         let enforcer = config.postgresql.casbin_enforcer(rabbitmq).await?;
 
@@ -198,6 +199,7 @@ impl Role {
     pub async fn exempt<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
+
         let rabbitmq = Arc::new(config.rabbitmq.open().await?);
         let enforcer = config.postgresql.casbin_enforcer(rabbitmq).await?;
 

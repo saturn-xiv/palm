@@ -70,6 +70,7 @@ impl Server {
         let jwt = web::Data::new(Jwt::new(&config.cookie_key.0));
         let hmac = web::Data::new(Hmac::new(&config.secret_key.0)?);
         let aes = web::Data::new(Aes::new(&config.secret_key.0)?);
+
         let enforcer = {
             let rabbitmq = rabbitmq.deref();
             let rabbitmq = rabbitmq.clone();

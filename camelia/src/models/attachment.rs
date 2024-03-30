@@ -8,7 +8,7 @@ use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use hyper::StatusCode;
 use log::warn;
-use mime::Mime;
+use mime::{Mime, IMAGE};
 use palm::{minio::Connection as Minio, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -92,7 +92,10 @@ impl Item {
         mime::APPLICATION_OCTET_STREAM
     }
     pub fn is_picture(&self) -> bool {
-        return self.content_type.starts_with("image/");
+        if let Ok(ref it) = self.content_type.parse::<Mime>() {
+            return it.type_() == IMAGE;
+        }
+        false
     }
 }
 
@@ -118,7 +121,6 @@ pub trait Dao {
     fn update(&mut self, id: i32, title: &str) -> Result<()>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
-    fn pictures_by_user(&mut self, user: i32) -> Result<Vec<Item>>;
     fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count_by_user(&mut self, user: i32) -> Result<i64>;
     fn delete(&mut self, id: i32) -> Result<()>;
@@ -206,14 +208,7 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn pictures_by_user(&mut self, user: i32) -> Result<Vec<Item>> {
-        let items = attachments::dsl::attachments
-            .filter(attachments::dsl::user_id.eq(user))
-            .filter(attachments::dsl::content_type.like("image%"))
-            .order(attachments::dsl::updated_at.desc())
-            .load(self)?;
-        Ok(items)
-    }
+
     fn count_by_user(&mut self, user: i32) -> Result<i64> {
         let it = attachments::dsl::attachments
             .filter(attachments::dsl::user_id.eq(user))

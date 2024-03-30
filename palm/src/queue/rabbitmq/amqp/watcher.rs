@@ -62,14 +62,19 @@ impl CasbinWatcher for Watcher {
 }
 
 pub async fn consume(
+    connection: &Connection,
     name: &str,
-    rabbitmq: &Connection,
     queue: &str,
     enforcer: Arc<Mutex<Enforcer>>,
 ) -> Result<()> {
-    rabbitmq
-        .consume(name, queue, Box::new(Handler { enforcer }), true)
-        .await
+    super::consume(
+        connection,
+        name,
+        queue,
+        Box::new(Handler { enforcer }),
+        true,
+    )
+    .await
 }
 
 struct Handler {

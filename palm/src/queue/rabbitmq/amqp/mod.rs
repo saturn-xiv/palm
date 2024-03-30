@@ -5,7 +5,7 @@ use std::fmt::Debug;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use amqprs::{
-    callbacks::DefaultChannelCallback,
+    callbacks::{DefaultChannelCallback, DefaultConnectionCallback},
     channel::{
         BasicAckArguments, BasicConsumeArguments, BasicPublishArguments, Channel,
         ExchangeDeclareArguments, ExchangeType, QueueBindArguments, QueueDeclareArguments,
@@ -44,7 +44,7 @@ impl Amqp for super::Config {
                 .finish(),
         )
         .await?;
-
+        con.register_callback(DefaultConnectionCallback).await?;
         Ok(Connection { connection: con })
     }
 }
@@ -57,6 +57,7 @@ impl Connection {
     async fn open_channel(&self) -> Result<Channel> {
         let it = self.connection.open_channel(None).await?;
         it.register_callback(DefaultChannelCallback).await?;
+        debug!("open rabbitmq channel {}", it.channel_id());
         Ok(it)
     }
     pub async fn declare_queue(&self, name: &str, durable: bool) -> Result<String> {
@@ -174,17 +175,19 @@ impl Connection {
         .await?;
         Ok(())
     }
+}
 
-    pub async fn consume(
-        &self,
-        consumer: &str,
-        queue: &str,
-        handler: Box<dyn Handler>,
-        exclusive: bool,
-    ) -> Result<()> {
-        let ch = self.open_channel().await?;
-        info!("start consumer({consumer}) for queue({queue})");
-        ch.basic_consume(
+pub async fn consume(
+    connection: &Connection,
+    consumer: &str,
+    queue: &str,
+    handler: Box<dyn Handler>,
+    exclusive: bool,
+) -> Result<()> {
+    let channel = connection.open_channel().await?;
+    info!("start consumer({consumer}) for queue({queue})");
+    channel
+        .basic_consume(
             Consumer { handler },
             BasicConsumeArguments::new(queue, consumer)
                 .manual_ack(true)
@@ -192,8 +195,7 @@ impl Connection {
                 .finish(),
         )
         .await?;
-        Ok(())
-    }
+    Ok(())
 }
 
 pub struct Consumer {

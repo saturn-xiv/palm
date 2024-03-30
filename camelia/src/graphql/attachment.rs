@@ -3,6 +3,7 @@ use chrono::{Duration, NaiveDateTime};
 use hyper::StatusCode;
 use juniper::GraphQLObject;
 use log::warn;
+use mime::{Mime, IMAGE};
 use palm::{
     cache::redis::ClusterConnection as Cache,
     jwt::Jwt,
@@ -62,7 +63,10 @@ pub struct Show {
 
 impl Show {
     pub fn is_image(&self) -> bool {
-        self.content_type.starts_with("image/")
+        if let Ok(ref it) = self.content_type.parse::<Mime>() {
+            return it.type_() == IMAGE;
+        }
+        false
     }
     pub async fn new(s3: &Minio, it: &Attachment, ttl: Duration) -> Result<Self, Error> {
         let url = s3
@@ -100,10 +104,26 @@ impl IndexResponseItem {
         jwt: &J,
     ) -> Result<Vec<Self>, Error> {
         let (user, _, _) = ss.current_user(db, ch, jwt)?;
-        let items = AttachmentDao::pictures_by_user(db, user.id)?
-            .into_iter()
-            .map(|x| x.into())
-            .collect();
+        let mut items = Vec::new();
+        {
+            let limit = 1 << 10;
+            let total = AttachmentDao::count_by_user(db, user.id)?;
+            let mut offset = 0;
+            loop {
+                let batch: Vec<Self> = AttachmentDao::by_user(db, user.id, offset, limit)?
+                    .into_iter()
+                    .filter(|x| x.is_picture())
+                    .map(|x| x.into())
+                    .collect();
+                items.extend(batch);
+
+                offset += limit;
+                if offset >= total {
+                    break;
+                }
+            }
+        }
+
         Ok(items)
     }
 
