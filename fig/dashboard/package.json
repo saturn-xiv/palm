@@ -12,7 +12,7 @@
   "dependencies": {
     "@dinero.js/currencies": "^2.0.0-alpha.14",
     "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/styled": "^11.11.5",
     "@fontsource/roboto": "^5.0.12",
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@mui/icons-material": "^5.15.14",
@@ -60,7 +60,7 @@
     "react-helmet-async": "^2.0.4",
     "react-highlight-words": "^0.20.0",
     "react-image-crop": "^11.0.5",
-    "react-intl": "^6.6.3",
+    "react-intl": "^6.6.4",
     "react-markdown": "^9.0.1",
     "react-number-format": "^5.3.4",
     "react-pdf": "^7.7.1",
