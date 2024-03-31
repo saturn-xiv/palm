@@ -10,7 +10,7 @@ use palm::{
     jwt::openssl::Jwt,
     minio::Connection as Minio,
     queue::rabbitmq::stream::Client as RabbitMq,
-    search::Pool as OpenSearch,
+    search::Client as OpenSearch,
     session::Session,
 };
 use tokio::sync::Mutex;

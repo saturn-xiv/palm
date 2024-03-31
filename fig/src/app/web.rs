@@ -71,6 +71,12 @@ impl Server {
             debug!("found buckets: {:?}", items);
         }
         let opensearch = web::Data::new(config.opensearch.open()?);
+        {
+            debug!("{:?}", opensearch.info().await?);
+            // for it in opensearch.info().await?.iter() {
+            //     debug!("{:?}", it);
+            // }
+        }
         let jwt = web::Data::new(Jwt::new(&config.cookie_key.0));
         let hmac = web::Data::new(Hmac::new(&config.secret_key.0)?);
         let aes = web::Data::new(Aes::new(&config.secret_key.0)?);

@@ -4,11 +4,14 @@ use hyper::StatusCode;
 use opensearch::{
     http::transport::{SingleNodeConnectionPool, TransportBuilder},
     indices::{IndicesCreateParts, IndicesDeleteParts, IndicesExistsParts},
-    IndexParts,
+    models::InfoResponse,
+    IndexParts, OpenSearch as OpenSearchClient,
 };
 use serde::{Deserialize, Serialize};
 
 use super::{HttpError, Result};
+
+pub type Pool = SingleNodeConnectionPool;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
@@ -24,16 +27,11 @@ impl Default for Config {
     }
 }
 impl Config {
-    pub fn open(&self) -> Result<SingleNodeConnectionPool> {
+    pub fn open(&self) -> Result<Client> {
         debug!("open opensearch {}", self.url);
-        let it = SingleNodeConnectionPool::new(self.url.parse()?);
-        Ok(it)
+        let pool = SingleNodeConnectionPool::new(self.url.parse()?);
+        Ok(Client { pool })
     }
-}
-
-pub struct Pool {
-    pool: SingleNodeConnectionPool,
-    namespace: String,
 }
 
 #[macro_export]
@@ -50,13 +48,15 @@ macro_rules! check_response {
     }};
 }
 
-impl Pool {
+pub struct Client {
+    pool: SingleNodeConnectionPool,
+}
+
+impl Client {
     pub async fn check_index<T>(&self) -> Result<()> {
         let index = self.index::<T>();
-        let transport = TransportBuilder::new(self.pool.clone())
-            .disable_proxy()
-            .build()?;
-        let client = opensearch::OpenSearch::new(transport);
+
+        let client = self.open()?;
         {
             let response = client
                 .indices()
@@ -78,10 +78,8 @@ impl Pool {
     }
     pub async fn delete_index<T>(&self) -> Result<()> {
         let index = self.index::<T>();
-        let transport = TransportBuilder::new(self.pool.clone())
-            .disable_proxy()
-            .build()?;
-        let client = opensearch::OpenSearch::new(transport);
+
+        let client = self.open()?;
 
         let response = client
             .indices()
@@ -95,10 +93,7 @@ impl Pool {
         let index = self.index::<T>();
         let body = json!(object);
 
-        let transport = TransportBuilder::new(self.pool.clone())
-            .disable_proxy()
-            .build()?;
-        let client = opensearch::OpenSearch::new(transport);
+        let client = self.open()?;
         let response = client
             .index(IndexParts::Index(&index))
             .body(body)
@@ -107,20 +102,24 @@ impl Pool {
         check_response!(response)
     }
 
-    pub async fn info(&self) -> Result<(String, String)> {
-        let transport = TransportBuilder::new(self.pool.clone())
-            .disable_proxy()
-            .build()?;
-        let client = opensearch::OpenSearch::new(transport);
+    pub async fn info(&self) -> Result<InfoResponse> {
+        let client = self.open()?;
         let response = client.info().human(true).pretty(true).send().await?;
-        let url = response.url().to_string();
-        let body = response.text().await?;
-        Ok((url, body))
+
+        debug!("{:?} {}", response.method(), response.url());
+        let body = response.json().await?;
+        Ok(body)
     }
 
     fn index<T>(&self) -> String {
-        format!("{}.{}", self.namespace, type_name::<T>())
-            .replace("::", "-")
-            .to_lowercase()
+        // type_name::<T>().replace("::", "-").to_lowercase()
+        type_name::<T>().to_string()
+    }
+    fn open(&self) -> Result<OpenSearchClient> {
+        let transport = TransportBuilder::new(self.pool.clone())
+            .disable_proxy()
+            .build()?;
+        let it = opensearch::OpenSearch::new(transport);
+        Ok(it)
     }
 }
