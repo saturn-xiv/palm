@@ -7,7 +7,7 @@ use mime::{Mime, IMAGE};
 use palm::{
     cache::redis::ClusterConnection as Cache,
     jwt::Jwt,
-    minio::Client as Minio,
+    minio::Connection as Minio,
     pagination::{Pager, Pagination},
     rbac::Operation,
     session::Session,
@@ -70,7 +70,6 @@ impl Show {
     }
     pub async fn new(s3: &Minio, it: &Attachment, ttl: Duration) -> Result<Self, Error> {
         let url = s3
-            .connection
             .get_presigned_object_url(&it.bucket, &it.name, ttl)
             .await?;
         Ok(Self {
@@ -257,7 +256,7 @@ pub struct ShowResponse {
 
 impl ShowResponse {
     pub async fn new(s3: &Minio, item: &Attachment, ttl: Option<i64>) -> Result<Self, Error> {
-        let url = item.url(&s3.connection, ttl).await?;
+        let url = item.url(s3, ttl).await?;
 
         Ok(Self {
             url,

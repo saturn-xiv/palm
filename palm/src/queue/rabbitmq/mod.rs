@@ -24,3 +24,6 @@ impl Default for Config {
         }
     }
 }
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct CasbinSyncTask;

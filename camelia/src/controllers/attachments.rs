@@ -5,7 +5,7 @@ use actix_multipart::form::{tempfile::TempFile, MultipartForm};
 use actix_web::{post, web, Responder, Result as WebResult};
 use diesel::Connection as DieselConntection;
 use mime::APPLICATION_OCTET_STREAM;
-use palm::{minio::Client as Minio, try_web, Error, Result};
+use palm::{minio::Connection as Minio, try_web, Error, Result};
 use serde::Deserialize;
 
 use super::super::{
@@ -64,8 +64,7 @@ async fn save(
     let name = Attachment::name(&title);
     let mut reader = BufReader::new(&file.file);
     let bucket = s3.bucket(false, None).await?;
-    s3.connection
-        .put_object(&bucket, &name, content_type, &mut reader, file.size)
+    s3.put_object(&bucket, &name, content_type, &mut reader, file.size)
         .await?;
     let it = db.transaction::<_, Error, _>(move |db| {
         AttachmentDao::create(

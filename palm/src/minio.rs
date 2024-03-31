@@ -32,7 +32,6 @@ pub struct Config {
     pub access_key: String,
     #[serde(rename = "secret-key")]
     pub secret_key: String,
-    pub namespace: String,
 }
 
 #[derive(Template)]
@@ -91,52 +90,19 @@ impl NginxConfig<'_> {
 }
 
 impl Config {
-    pub fn open(&self) -> Result<Client, Error> {
+    pub fn open(&self) -> Result<Connection, Error> {
         debug!("open minio {}", self.endpoint);
         let cred = StaticProvider::new(&self.access_key, &self.secret_key, None);
         let base_url: BaseUrl = self.endpoint.parse()?;
 
-        let connection = Connection {
+        let it = Connection {
             client: ClientBuilder::new(base_url.clone())
                 .provider(Some(Box::new(cred)))
                 .ignore_cert_check(Some(true))
                 .build()?,
             base_url,
         };
-
-        Ok(Client {
-            connection,
-            namespace: self.namespace.clone(),
-        })
-    }
-}
-
-pub struct Client {
-    pub connection: Connection,
-    namespace: String,
-}
-
-impl Client {
-    pub async fn bucket(
-        &self,
-        public: bool,
-        expiration_days: Option<usize>,
-    ) -> Result<String, Error> {
-        let name = format!(
-            "{}.{}.{}{}",
-            self.namespace,
-            Utc::now().year(),
-            if public { "o" } else { "p" },
-            expiration_days
-                .map(|x| format!(".{x}"))
-                .unwrap_or("".to_string())
-        );
-        if !self.connection.bucket_exists(&name).await? {
-            self.connection
-                .create_bucket(&name, public, expiration_days)
-                .await?;
-        }
-        Ok(name)
+        Ok(it)
     }
 }
 
@@ -278,6 +244,25 @@ impl Connection {
         )?;
 
         Ok(url.to_string())
+    }
+
+    pub async fn bucket(
+        &self,
+        public: bool,
+        expiration_days: Option<usize>,
+    ) -> Result<String, Error> {
+        let name = format!(
+            "{}.{}{}",
+            Utc::now().year(),
+            if public { "o" } else { "p" },
+            expiration_days
+                .map(|x| format!(".{x}"))
+                .unwrap_or("".to_string())
+        );
+        if !self.bucket_exists(&name).await? {
+            self.create_bucket(&name, public, expiration_days).await?;
+        }
+        Ok(name)
     }
 }
 

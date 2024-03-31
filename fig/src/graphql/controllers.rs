@@ -8,8 +8,8 @@ use palm::{
     crypto::{aes::Aes, hmac::Hmac},
     handlers::home::Home,
     jwt::openssl::Jwt,
-    minio::Client as Minio,
-    queue::rabbitmq::amqp::Connection as RabbitMq,
+    minio::Connection as Minio,
+    queue::rabbitmq::stream::Client as RabbitMq,
     search::Pool as OpenSearch,
     session::Session,
 };

@@ -9,14 +9,11 @@ use amqprs::{
 use async_trait::async_trait;
 use casbin::{CoreApi, Enforcer, EventData, Watcher as CasbinWatcher};
 use hyper::StatusCode;
-use serde::{Deserialize, Serialize};
 use tokio::sync::Mutex;
 
 use super::super::super::super::{HttpError, Result};
+use super::super::CasbinSyncTask;
 use super::{Connection, Flatbuffer};
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct SyncTask;
 
 pub struct Watcher {
     rabbitmq: Arc<Connection>,
@@ -54,7 +51,7 @@ impl CasbinWatcher for Watcher {
         let queue = self.rabbitmq.clone();
         tokio::spawn(async move {
             let queue = queue.deref();
-            if let Err(e) = Flatbuffer::publish(queue, &SyncTask).await {
+            if let Err(e) = Flatbuffer::publish(queue, &CasbinSyncTask).await {
                 error!("{:?}", e);
             }
         });
@@ -128,7 +125,7 @@ impl Consumer {
         info!("reload casbin policies message {}", message_id);
 
         {
-            let _: SyncTask = flexbuffers::from_slice(&content)?;
+            let _: CasbinSyncTask = flexbuffers::from_slice(&content)?;
             let mut enforcer = self.enforcer.lock().await;
             enforcer.load_policy().await?;
         }

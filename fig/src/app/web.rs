@@ -1,3 +1,4 @@
+use std::any::type_name;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::ops::Deref;
 use std::path::Path;
@@ -33,7 +34,10 @@ use palm::{
     jwt::openssl::Jwt,
     minio::Config as Minio,
     parser::from_toml,
-    queue::rabbitmq::{amqp::Amqp, Config as RabbitMq},
+    queue::rabbitmq::{
+        stream::{watcher::start_consumer as start_casbin_rabbitmq_stream_watcher, Stream},
+        Config as RabbitMq,
+    },
     search::Config as OpenSearch,
     HttpError, Result,
 };
@@ -57,13 +61,13 @@ impl Server {
         let is_prod = config.env == Environment::Production;
 
         let pg_pool = config.postgresql.open()?;
-
         let pgsql = web::Data::new(pg_pool);
+
         let redis = web::Data::new(config.redis.open()?);
-        let rabbitmq = web::Data::new(config.rabbitmq.open().await?);
+        let rabbitmq = web::Data::new(config.rabbitmq.open(type_name::<Server>()).await?);
         let minio = web::Data::new(config.minio.open()?);
         {
-            let items = minio.connection.list_buckets().await?;
+            let items = minio.list_buckets().await?;
             debug!("found buckets: {:?}", items);
         }
         let opensearch = web::Data::new(config.opensearch.open()?);
@@ -74,8 +78,17 @@ impl Server {
         let enforcer = {
             let rabbitmq = rabbitmq.deref();
             let rabbitmq = rabbitmq.clone();
+
             web::Data::from(config.postgresql.casbin_enforcer(rabbitmq).await?)
         };
+        {
+            let rabbitmq = rabbitmq.deref();
+            let rabbitmq = rabbitmq.clone();
+
+            let enforcer = enforcer.deref();
+            let enforcer = enforcer.clone();
+            start_casbin_rabbitmq_stream_watcher(rabbitmq, enforcer).await?;
+        }
 
         let schema = Arc::new(graphql::Schema::new(
             graphql::query::Query {},

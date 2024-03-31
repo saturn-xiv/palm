@@ -10,7 +10,7 @@ use palm::{
     email::v1 as email_v1,
     jwt::Jwt,
     pagination::{Pager, Pagination},
-    queue::rabbitmq::amqp::{Connection as RabbitMq, Protobuf as ProtobufQueue},
+    queue::rabbitmq::stream::{Client as RabbitMq, Protobuf as ProtobufQueue},
     rbac::{v1 as rbac_v1, Permission},
     session::Session,
     to_code, Error, HttpError,

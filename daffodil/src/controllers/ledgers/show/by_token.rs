@@ -23,7 +23,7 @@ use palm::{
     duration_from_days,
     iso4217::Currency as CurrencyItem,
     jwt::{openssl::Jwt, Jwt as JwtProvider},
-    minio::Client as Minio,
+    minio::Connection as Minio,
     try_web, HttpError, Result,
 };
 

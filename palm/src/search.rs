@@ -13,30 +13,21 @@ use super::{HttpError, Result};
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Config {
-    pub host: String,
-    pub port: u16,
-    pub namespace: String,
+    pub url: String,
 }
 
 impl Default for Config {
     fn default() -> Self {
         Self {
-            host: "127.0.0.1".to_string(),
-            port: 9200,
-            namespace: "demo://".to_string(),
+            url: "http://127.0.0.1:9200".to_string(),
         }
     }
 }
 impl Config {
-    pub fn open(&self) -> Result<Pool> {
-        let url = format!("http://{}:{}", self.host, self.port).parse()?;
-        debug!("open opensearch {url}");
-        let pool = SingleNodeConnectionPool::new(url);
-
-        Ok(Pool {
-            pool,
-            namespace: self.namespace.clone(),
-        })
+    pub fn open(&self) -> Result<SingleNodeConnectionPool> {
+        debug!("open opensearch {}", self.url);
+        let it = SingleNodeConnectionPool::new(self.url.parse()?);
+        Ok(it)
     }
 }
 

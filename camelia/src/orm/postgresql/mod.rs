@@ -3,17 +3,13 @@ pub mod schema;
 use std::default::Default;
 use std::fmt;
 use std::sync::Arc;
-use std::time::Duration as StdDuration;
 
 use casbin::prelude::*;
 use diesel::{sql_query, RunQueryDsl};
 use diesel_adapter::DieselAdapter;
-use log::{debug, error};
+use log::debug;
 use palm::{
-    queue::rabbitmq::amqp::{
-        watcher::{consume as consume_casbin_watcher, Watcher as RabbitCasbinWatcher},
-        Connection as RabbitMqConnection,
-    },
+    queue::rabbitmq::stream::{watcher::Watcher as RabbitCasbinWatcher, Client as RabbitMqClient},
     Result,
 };
 use serde::{Deserialize, Serialize};
@@ -54,7 +50,7 @@ impl Config {
     }
     pub async fn casbin_enforcer(
         &self,
-        connection: Arc<RabbitMqConnection>,
+        client: Arc<RabbitMqClient>,
     ) -> Result<Arc<Mutex<Enforcer>>> {
         debug!("init casbin postgresql enforcer");
         let enforcer = {
@@ -67,25 +63,9 @@ impl Config {
             Arc::new(Mutex::new(it))
         };
 
-        debug!("init casbin rabbitmq adapter");
-        let watcher = RabbitCasbinWatcher::new(connection.clone()).await?;
-        {
-            let queue = watcher.queue.clone();
-            let enforcer = enforcer.clone();
+        debug!("init casbin rabbitmq stream adapter");
+        let watcher = RabbitCasbinWatcher::new(client.clone()).await?;
 
-            tokio::task::spawn(async move {
-                loop {
-                    let enforcer = enforcer.clone();
-                    if let Err(e) =
-                        consume_casbin_watcher(&connection, "casbin-watcher", &queue, enforcer)
-                            .await
-                    {
-                        error!("consume casbin watcher message {:?}", e);
-                        tokio::time::sleep(StdDuration::from_secs(1)).await
-                    }
-                }
-            });
-        }
         {
             let enforcer = enforcer.clone();
             let mut enf = enforcer.lock().await;

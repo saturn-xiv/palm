@@ -1,8 +1,7 @@
 use std::default::Default;
-use std::fmt;
 use std::fmt::Display;
 
-use ::redis::{cluster::ClusterClient, cmd, Commands, RedisResult, Value};
+use ::redis::{cluster::ClusterClient, cmd, Commands, IntoConnectionInfo, RedisResult, Value};
 use chrono::Duration;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 
@@ -14,31 +13,23 @@ pub type Pool = r2d2::Pool<Connection>;
 pub type PooledConnection = r2d2::PooledConnection<Connection>;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct Node {
-    host: String,
-    port: u16,
-}
-
-impl fmt::Display for Node {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "redis://{}:{}", self.host, self.port)
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
     pub pool_size: Option<u32>,
-    pub namespace: String,
-    pub nodes: Vec<Node>,
+    pub nodes: Vec<String>,
 }
 
 impl Config {
     pub fn open(&self) -> Result<Pool> {
         let client = {
-            let hosts: Vec<String> = self.nodes.iter().map(|x| x.to_string()).collect();
-            debug!("open redis cluster {}", hosts.join(","));
-            ClusterClient::new(hosts)?
+            debug!("open redis cluster {}", self.nodes.join(","));
+
+            let mut nodes = Vec::new();
+            for it in self.nodes.iter() {
+                let it = IntoConnectionInfo::into_connection_info(&it[..])?;
+                nodes.push(it);
+            }
+            // let nodes = self.nodes.clone();
+            ClusterClient::new(nodes)?
         };
 
         let pool = r2d2::Pool::builder()
@@ -51,33 +42,7 @@ impl Config {
 impl Default for Config {
     fn default() -> Self {
         Self {
-            nodes: vec![
-                Node {
-                    host: "127.0.0.1".to_string(),
-                    port: 6371,
-                },
-                Node {
-                    host: "127.0.0.1".to_string(),
-                    port: 6372,
-                },
-                Node {
-                    host: "127.0.0.1".to_string(),
-                    port: 6373,
-                },
-                Node {
-                    host: "127.0.0.1".to_string(),
-                    port: 6374,
-                },
-                Node {
-                    host: "127.0.0.1".to_string(),
-                    port: 6375,
-                },
-                Node {
-                    host: "127.0.0.1".to_string(),
-                    port: 6376,
-                },
-            ],
-            namespace: "demo://".to_string(),
+            nodes: vec!["redis://127.0.0.1:6371".to_string()],
             pool_size: Some(32),
         }
     }

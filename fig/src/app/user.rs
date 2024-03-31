@@ -1,3 +1,4 @@
+use std::any::type_name;
 use std::ops::DerefMut;
 use std::path::Path;
 use std::sync::Arc;
@@ -19,7 +20,7 @@ use palm::{
     crypto::{hmac::Hmac, Key},
     jwt::{openssl::Jwt, Jwt as JwtProvider},
     parser::from_toml,
-    queue::rabbitmq::{amqp::Amqp, Config as RabbitMq},
+    queue::rabbitmq::{stream::Stream, Config as RabbitMq},
     rbac::v1 as rbac_v1,
     Error, HttpError, Result,
 };
@@ -103,6 +104,7 @@ impl Create {
             })?;
             info!("create user {}", user);
         }
+
         Ok(())
     }
 }
@@ -163,8 +165,8 @@ impl Role {
         let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
 
-        let rabbitmq = Arc::new(config.rabbitmq.open().await?);
-        let enforcer = config.postgresql.casbin_enforcer(rabbitmq).await?;
+        let rabbitmq = Arc::new(config.rabbitmq.open(type_name::<Role>()).await?);
+        let enforcer = config.postgresql.casbin_enforcer(rabbitmq.clone()).await?;
 
         let db = config.postgresql.open()?;
         {
@@ -193,15 +195,14 @@ impl Role {
             )?;
             info!("apple role {} to user {}", self.role, user);
         }
-
         Ok(())
     }
     pub async fn exempt<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
 
-        let rabbitmq = Arc::new(config.rabbitmq.open().await?);
-        let enforcer = config.postgresql.casbin_enforcer(rabbitmq).await?;
+        let rabbitmq = Arc::new(config.rabbitmq.open(type_name::<Role>()).await?);
+        let enforcer = config.postgresql.casbin_enforcer(rabbitmq.clone()).await?;
 
         let db = config.postgresql.open()?;
         {
@@ -234,7 +235,6 @@ impl Role {
             )?;
             info!("exempt role {} to user {}", self.role, user);
         }
-
         Ok(())
     }
 }

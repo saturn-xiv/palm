@@ -15,8 +15,8 @@ use hyper::StatusCode;
 use juniper::{GraphQLEnum, GraphQLObject};
 use log::{debug, info, warn};
 use palm::{
-    cache::redis::ClusterConnection as Cache, duration_from_days, jwt::Jwt, minio::Client as Minio,
-    rbac::Operation, session::Session, Error, HttpError,
+    cache::redis::ClusterConnection as Cache, duration_from_days, jwt::Jwt,
+    minio::Connection as Minio, rbac::Operation, session::Session, Error, HttpError,
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
