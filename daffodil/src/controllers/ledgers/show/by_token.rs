@@ -42,9 +42,9 @@ pub async fn index(
     jwt: web::Data<Jwt>,
     aes: web::Data<Aes>,
     s3: web::Data<Minio>,
-    token: web::Path<(String, String)>,
+    params: web::Path<(String, String)>,
 ) -> WebResult<impl Responder> {
-    let (lang, token) = token.into_inner();
+    let (lang, token) = params.into_inner();
     let (_, uid) = try_web!(jwt.verify(&token, NAME, LedgerItem::SHOW))?;
     let mut db = try_web!(db.get())?;
     let db = db.deref_mut();
