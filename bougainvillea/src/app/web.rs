@@ -15,7 +15,10 @@ use data_encoding::BASE64;
 use log::info;
 use palm::{env::Environment, jwt::openssl::Jwt, Result};
 
-use super::super::{controllers, NAME};
+use super::super::{
+    controllers::{self, logs::Journal},
+    NAME,
+};
 use super::Config;
 
 #[derive(Parser, PartialEq, Eq, Debug)]
@@ -24,8 +27,8 @@ pub struct Server {
     pub port: u16,
     #[clap(short, long, default_value_t = 4)]
     pub threads: usize,
-    #[clap(short, long)]
-    pub file: Option<PathBuf>,
+    #[clap(short = 'D', long)]
+    pub directory: Option<PathBuf>,
 }
 
 impl Server {
@@ -34,6 +37,7 @@ impl Server {
         let is_prod = config.env == Environment::Production;
 
         let jwt = web::Data::new(Jwt::new(&config.cookie_key.0));
+        let journal = web::Data::new(Journal(self.directory.clone()));
 
         let addr = SocketAddr::new(
             IpAddr::V4(if is_prod {
@@ -47,6 +51,7 @@ impl Server {
         HttpServer::new(move || {
             App::new()
                 .app_data(jwt.clone())
+                .app_data(journal.clone())
                 .wrap(middleware::Logger::default())
                 .wrap(
                     SessionMiddleware::builder(
