@@ -7,7 +7,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import "./assets/dropzone.css";
 
-import Router from "./Router";
+import Router from "./v1/Router";
 import { store } from "./store";
 import { get as get_locale } from "./locales";
 import { index_locale } from "./api/camelia";
