@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { PageContainer, ProCard, ProLayout } from "@ant-design/pro-components";
 import {
@@ -12,25 +11,39 @@ import {
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-import { SIGN_IN_PATH as USER_SIGN_IN_PATH } from "../../reducers/current-user";
 import Footer from "../Footer";
 import SwitchLanguage from "../SwitchLanguage";
-import { useAppSelector } from "../../hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 import { siteInfo as selectSiteInfo } from "../../reducers/site-info";
+import {
+  set_pathname,
+  sideBar as selectSideBar,
+} from "../../reducers/side-bar";
+import {
+  LEAVE_WORDS_NEW_PATH,
+  USERS_CONFIRM_BY_EMAIL_PATH,
+  USERS_CONFIRM_BY_TOKEN_PATH,
+  USERS_FORGOT_PASSWORD_PATH,
+  USERS_RESET_PASSWORD_PATH,
+  USERS_SIGN_IN_PATH,
+  USERS_SIGN_UP_PATH,
+  USERS_UNLOCK_BY_EMAIL_PATH,
+  USERS_UNLOCK_BY_TOKEN_PATH,
+} from "../../Router";
 
 export const Component = () => {
   const navigate = useNavigate();
   const intl = useIntl();
   const site_info = useAppSelector(selectSiteInfo);
-
-  const [pathname, setPathname] = useState(USER_SIGN_IN_PATH);
+  const side_bar = useAppSelector(selectSideBar);
+  const dispatch = useAppDispatch();
 
   return (
     <ProLayout
       title={site_info.subhead}
       logo={site_info.favicon}
       location={{
-        pathname,
+        pathname: side_bar.pathname,
       }}
       siderMenuType="group"
       menu={{
@@ -47,7 +60,7 @@ export const Component = () => {
         <a
           onClick={() => {
             if (item.path) {
-              setPathname(item.path);
+              dispatch(set_pathname(item.path));
               navigate(item.path);
             }
           }}
@@ -59,34 +72,51 @@ export const Component = () => {
         path: "/anonymous",
         routes: [
           {
-            path: USER_SIGN_IN_PATH,
+            path: USERS_SIGN_IN_PATH,
             name: intl.formatMessage({ id: "users.sign-in.title" }),
             icon: <LoginOutlined />,
           },
           {
-            path: "/anonymous/users/sign-up",
+            path: USERS_SIGN_UP_PATH,
             name: intl.formatMessage({ id: "users.sign-up.title" }),
             icon: <UserAddOutlined />,
           },
           {
-            path: "/anonymous/users/confirm",
+            path: USERS_CONFIRM_BY_EMAIL_PATH,
             name: intl.formatMessage({ id: "users.confirm.by-email.title" }),
             icon: <MailOutlined />,
           },
           {
-            path: "/anonymous/users/unlock",
+            path: USERS_CONFIRM_BY_TOKEN_PATH,
+            name: intl.formatMessage({ id: "users.confirm.by-token.title" }),
+            hideInMenu: true,
+          },
+          {
+            path: USERS_UNLOCK_BY_EMAIL_PATH,
             name: intl.formatMessage({ id: "users.unlock.by-email.title" }),
             icon: <UnlockOutlined />,
           },
           {
-            path: "/anonymous/users/forgot-password",
+            path: USERS_UNLOCK_BY_TOKEN_PATH,
+            name: intl.formatMessage({ id: "users.unlock.by-token.title" }),
+            hideInMenu: true,
+          },
+          {
+            path: USERS_FORGOT_PASSWORD_PATH,
             name: intl.formatMessage({
               id: "users.forgot-password.title",
             }),
             icon: <IdcardOutlined />,
           },
           {
-            path: "/anonymous/leave-words/new.title",
+            path: USERS_RESET_PASSWORD_PATH,
+            name: intl.formatMessage({
+              id: "users.reset-password.title",
+            }),
+            hideInMenu: true,
+          },
+          {
+            path: LEAVE_WORDS_NEW_PATH,
             name: intl.formatMessage({
               id: "leave-words.new.title",
             }),

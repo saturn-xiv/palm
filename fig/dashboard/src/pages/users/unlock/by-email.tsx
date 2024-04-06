@@ -4,40 +4,41 @@ import { Row, Col, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-import { sign_in_by_email } from "../../api/camelia";
-import { useAppDispatch } from "../../hooks";
-import { signIn } from "../../reducers/current-user";
-import { IErrorMessage } from "../../api/graphql";
-import { SELF_PATH, USERS_SIGN_IN_PATH } from "../../Router";
-import { set_pathname } from "../../reducers/side-bar";
+import { unlock_by_email } from "../../../api/camelia";
+import { IErrorMessage } from "../../../api/graphql";
+import { useAppDispatch } from "../../../hooks";
+import { set_pathname } from "../../../reducers/side-bar";
+import {
+  USERS_SIGN_IN_PATH,
+  USERS_UNLOCK_BY_EMAIL_PATH,
+} from "../../../Router";
 
 interface IForm {
   user: string;
-  password: string;
 }
 
 export const Component = () => {
   const [messageApi, contextHolder] = message.useMessage();
-  const dispatch = useAppDispatch();
   const intl = useIntl();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(set_pathname(USERS_SIGN_IN_PATH));
+    dispatch(set_pathname(USERS_UNLOCK_BY_EMAIL_PATH));
   }, [dispatch]);
+
   return (
     <Row>
       <Col sm={24} md={{ span: 8, offset: 8 }}>
         {contextHolder}
         <ProForm<IForm>
           onFinish={async (values) => {
-            sign_in_by_email(values.user, values.password)
-              .then((res) => {
+            unlock_by_email(values.user)
+              .then(() => {
                 messageApi.success(
-                  intl.formatMessage({ id: "users.sign-in.succeed" })
+                  intl.formatMessage({ id: "users.unlock.by-email.succeed" })
                 );
-                dispatch(signIn(res));
-                navigate(SELF_PATH);
+                navigate(USERS_SIGN_IN_PATH);
               })
               .catch((reason: IErrorMessage[]) => {
                 messageApi.error(reason.map((x) => x.message).join("\n"));
@@ -49,16 +50,6 @@ export const Component = () => {
             name="user"
             label={<FormattedMessage id="form.fields.account.label" />}
             rules={[{ required: true }]}
-          />
-          <ProFormText.Password
-            width="sm"
-            name="password"
-            label={<FormattedMessage id="form.fields.password.label" />}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
           />
         </ProForm>
       </Col>

@@ -11,9 +11,6 @@ import {
 const KEY = "token";
 export const DURATION = 60 * 60 * 24;
 
-export const SIGN_IN_PATH = "/anonymous/users/sign-in";
-export const PERSONAL_PATH = "/dashboard/self";
-
 export const MAX_PASSWORD_LENGTH = 31;
 export const MIN_PASSWORD_LENGTH = 6;
 

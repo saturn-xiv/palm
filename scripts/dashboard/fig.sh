@@ -28,7 +28,6 @@ npm install --save filesize timezones-list \
     react-big-calendar @types/react-big-calendar \
     react-intl \
     react-router-dom@latest \
-    react-helmet-async \
     @reduxjs/toolkit react-redux
 
 npm install --save \
