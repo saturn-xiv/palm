@@ -2,26 +2,40 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { IntlProvider } from "react-intl";
 import { Provider as ReduxProvider } from "react-redux";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { ConfigProvider as AntdConfigProvider } from "antd";
+import { ProConfigProvider as AntdProConfigProvider } from "@ant-design/pro-components";
 
-import "./assets/dropzone.css";
-
-import Router from "./v1/Router";
+import Router from "./Router";
 import { store } from "./store";
-import { get as get_locale } from "./locales";
+import { get as get_locale, antd as antd_locale } from "./locales";
 import { index_locale } from "./api/camelia";
 
-const locale = get_locale();
+const lang = get_locale();
+const LAYOUT_ID = "root-pro-layout";
 
-index_locale(locale).then((messages) => {
+index_locale(lang).then((messages) => {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <ReduxProvider store={store}>
-        <IntlProvider locale={locale} messages={messages}>
-          <LocalizationProvider dateAdapter={AdapterMoment}>
-            <Router />
-          </LocalizationProvider>
+        <IntlProvider locale={lang} messages={messages}>
+          <div
+            id={LAYOUT_ID}
+            style={{
+              height: "100vh",
+              overflow: "auto",
+            }}
+          >
+            <AntdProConfigProvider hashed={false}>
+              <AntdConfigProvider
+                locale={antd_locale(lang)}
+                getTargetContainer={() => {
+                  return document.getElementById(LAYOUT_ID) || document.body;
+                }}
+              >
+                <Router />
+              </AntdConfigProvider>
+            </AntdProConfigProvider>
+          </div>
         </IntlProvider>
       </ReduxProvider>
     </React.StrictMode>

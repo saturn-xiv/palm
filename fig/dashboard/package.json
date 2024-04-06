@@ -23,7 +23,7 @@
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/video.js": "^7.3.57",
     "@uiw/react-md-editor": "^4.0.4",
-    "antd": "^5.16.0",
+    "antd": "^5.16.1",
     "diff": "^5.2.0",
     "dinero.js": "^2.0.0-alpha.14",
     "emoji-mart": "^5.5.2",

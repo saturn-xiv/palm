@@ -1,11 +1,9 @@
 import Cookies from "js-cookie";
 
-import "moment/locale/zh-cn";
-import "moment/locale/zh-tw";
-import "moment/locale/es";
-import "moment/locale/fr";
-import "moment/locale/ja";
-import "moment/locale/ko";
+import antdZhCN from "antd/locale/zh_CN";
+import antdZhTW from "antd/locale/zh_TW";
+import antdEnUS from "antd/locale/en_US";
+import { Locale as AntdLocale } from "antd/lib/locale";
 
 const KEY = "locale";
 
@@ -15,6 +13,17 @@ export interface IItem {
   message: string;
   updatedAt: Date;
 }
+
+export const antd = (lang: string): AntdLocale => {
+  switch (lang) {
+    case "zh-Hans":
+      return antdZhCN;
+    case "zh-Hant":
+      return antdZhTW;
+    default:
+      return antdEnUS;
+  }
+};
 
 export const get = (): string => {
   return (
