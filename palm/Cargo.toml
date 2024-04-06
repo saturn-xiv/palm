@@ -63,10 +63,6 @@ features = ["insecure"]
 version = "0.4"
 features = ["serde", "std"]
 
-[dependencies.chrono-tz]
-version = "0.8"
-features = ["serde"]
-
 [dependencies.rand]
 version = "0.8"
 features = ["small_rng"]
@@ -74,6 +70,10 @@ features = ["small_rng"]
 [dependencies.actix-session]
 version = "0.9"
 features = ["cookie-session", "redis-rs-session"]
+
+[dependencies.chrono-tz]
+version = "0.9"
+features = ["serde"]
 
 [dependencies.snow]
 version = "0.9"
@@ -95,13 +95,13 @@ features = ["json", "cookies"]
 version = "0.16"
 features = ["chrono"]
 
-[dependencies.validator]
-version = "0.17"
-features = ["derive", "card", "unic"]
-
 [dependencies.cookie]
 version = "0.18"
 features = ["secure", "private", "percent-encode"]
+
+[dependencies.validator]
+version = "0.18"
+features = ["derive", "card", "unic"]
 
 [dependencies.redis]
 version = "0.25"

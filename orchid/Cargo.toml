@@ -28,7 +28,7 @@ version = "0.12"
 features = ["json", "cookies"]
 
 [dependencies.validator]
-version = "0.17"
+version = "0.18"
 features = ["derive", "card", "unic"]
 
 [dependencies.redis]
