@@ -20,6 +20,34 @@ export interface IPagination {
   hasPrevious: boolean;
 }
 
+export interface IRoute {
+  path: string;
+  name: string;
+  routes: IRoute[];
+}
+
+export const routes = async (): Promise<IRoute[]> => {
+  const res = await query<{
+    routes: IRoute[];
+  }>(
+    `
+query call{
+  routes{
+    path, name,
+    routes {
+      path, name, routes{
+        path, name, routes{
+          path, name
+        }
+      }
+    }
+  }
+}
+`,
+    {}
+  );
+  return res.routes;
+};
 export interface IUserDetails {
   nickname: string;
   realName: string;

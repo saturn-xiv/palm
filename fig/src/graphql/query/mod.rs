@@ -1,3 +1,5 @@
+pub mod menu;
+
 use std::any::type_name;
 use std::ops::{Deref, DerefMut};
 
@@ -39,6 +41,16 @@ impl Query {
         let ch = ch.deref_mut();
         let aes = context.aes.deref();
         let response = camelia_graphql::site::info::Response::new(db, ch, aes, &lang)?;
+        Ok(response)
+    }
+    async fn routes(context: &Context) -> FieldResult<Vec<menu::Route>> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let response = menu::Route::load(&context.session, db, ch, enf, jwt).await?;
         Ok(response)
     }
 

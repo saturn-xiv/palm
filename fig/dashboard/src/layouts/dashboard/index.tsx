@@ -4,24 +4,43 @@ import {
   InfoCircleFilled,
   QuestionCircleFilled,
 } from "@ant-design/icons";
-import { PageContainer, ProLayout } from "@ant-design/pro-components";
-import { useState } from "react";
+import {
+  MenuDataItem,
+  PageContainer,
+  ProLayout,
+} from "@ant-design/pro-components";
+import { useNavigate } from "react-router-dom";
 
 import Footer from "../Footer";
 import MenuFooter from "./MenuFooter";
 import MenuCard from "./MenuCard";
 import SearchInput from "./SearchInput";
 import app_list from "./app-list";
-import route from "./route";
 import SignOut from "./SignOut";
-import { useAppSelector } from "../../hooks";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 import { currentUser as selectCurrentUser } from "../../reducers/current-user";
 import { siteInfo as selectSiteInfo } from "../../reducers/site-info";
+import {
+  set_pathname,
+  sideBar as selectSideBar,
+} from "../../reducers/side-bar";
+import { routes as fetch_routes, IRoute } from "../../api/camelia";
+
+const to_route_menu = (rt: IRoute): MenuDataItem => {
+  const it: MenuDataItem = {
+    name: rt.name,
+    path: rt.path,
+    children: rt.routes.map(to_route_menu),
+  };
+  return it;
+};
 
 export const Component = () => {
-  const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
   const current_user = useAppSelector(selectCurrentUser);
   const site_info = useAppSelector(selectSiteInfo);
+  const side_bar = useAppSelector(selectSideBar);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
     <ProLayout
@@ -31,10 +50,9 @@ export const Component = () => {
       prefixCls="my-prefix"
       title={site_info.subhead}
       logo={site_info.favicon}
-      route={route}
       appList={app_list}
       location={{
-        pathname,
+        pathname: side_bar.pathname,
       }}
       token={{
         header: {
@@ -44,6 +62,11 @@ export const Component = () => {
       siderMenuType="group"
       menu={{
         collapsedShowGroupTitle: true,
+        request: async () => {
+          const items = await fetch_routes();
+          // console.log(items);
+          return items.map(to_route_menu);
+        },
       }}
       avatarProps={{
         src: current_user.avatar,
@@ -95,7 +118,11 @@ export const Component = () => {
       menuItemRender={(item, dom) => (
         <div
           onClick={() => {
-            setPathname(item.path || "/welcome");
+            if (item.path) {
+              // console.log(item);
+              dispatch(set_pathname(item.path));
+              navigate(item.path);
+            }
           }}
         >
           {dom}

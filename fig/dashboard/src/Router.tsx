@@ -11,19 +11,57 @@ export const USERS_RESET_PASSWORD_PATH =
   "/anonymous/users/reset-password/:token";
 export const LEAVE_WORDS_NEW_PATH = "/anonymous/leave-words/new";
 
-export const SELF_PATH = "/dashboard/self";
+export const PERSONAL_LOGS_PATH = "/dashboard/personal/logs";
+export const PERSONAL_PROFILE_PATH = "/dashboard/personal/profile";
+export const PERSONAL_ATTACHMENTS_PATH = "/dashboard/personal/attachments";
+
+export const SETTINGS_SITE_SEO_PATH = "/dashboard/settings/site/seo";
+export const SETTINGS_SITE_INFO_PATH = "/dashboard/settings/site/info";
+export const SETTINGS_SITE_STATUS_PATH = "/dashboard/settings/site/status";
+export const SETTINGS_LOCALES_PATH = "/dashboard/settings/locales";
 
 const router = createBrowserRouter(
   [
     { path: "/", lazy: () => import("./pages/home") },
     {
-      path: "/dashboard",
+      path: "dashboard",
       lazy: () => import("./layouts/dashboard"),
       children: [
-        // { path: "main", lazy: () => import("./pages/main") },
-        // { path: "settings", lazy: () => import("./pages/settings") },
-        { path: "self", lazy: () => import("./pages/self") },
-        // { path: "attachments", lazy: () => import("./pages/attachments") },
+        {
+          path: "personal",
+          lazy: () => import("./pages/personal"),
+          children: [
+            { path: "logs", lazy: () => import("./pages/personal/logs") },
+            { path: "profile", lazy: () => import("./pages/personal/profile") },
+            {
+              path: "attachments",
+              lazy: () => import("./pages/personal/attachments"),
+            },
+          ],
+        },
+        {
+          path: "settings",
+          lazy: () => import("./pages/settings"),
+          children: [
+            {
+              path: "site/seo",
+              lazy: () => import("./pages/settings/site/info"),
+            },
+            {
+              path: "site/info",
+              lazy: () => import("./pages/settings/site/info"),
+            },
+            {
+              path: "site/status",
+              lazy: () => import("./pages/settings/site/status"),
+            },
+            {
+              path: "locales",
+              lazy: () => import("./pages/settings/locales"),
+            },
+          ],
+        },
+
         // {
         //   path: "daffodil/ledgers",
         //   lazy: () => import("./pages/daffodil/ledgers"),

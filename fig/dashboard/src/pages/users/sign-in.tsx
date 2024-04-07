@@ -7,7 +7,7 @@ import { sign_in_by_email } from "../../api/camelia";
 import { useAppDispatch } from "../../hooks";
 import { signIn } from "../../reducers/current-user";
 import { IErrorMessage } from "../../api/graphql";
-import { SELF_PATH } from "../../Router";
+import { PERSONAL_LOGS_PATH } from "../../Router";
 
 interface IForm {
   user: string;
@@ -31,7 +31,7 @@ export const Component = () => {
                 intl.formatMessage({ id: "users.sign-in.succeed" })
               );
               dispatch(signIn(res));
-              navigate(SELF_PATH);
+              navigate(PERSONAL_LOGS_PATH);
             })
             .catch((reason: IErrorMessage[]) => {
               messageApi.error(reason.map((x) => x.message).join("\n"));
