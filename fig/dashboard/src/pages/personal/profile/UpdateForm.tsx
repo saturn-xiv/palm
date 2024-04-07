@@ -111,7 +111,7 @@ const Widget = () => {
           width="md"
           cacheForSwr
           name="timezone"
-          label="合同约定生效方式"
+          label={<FormattedMessage id="form.fields.timezone.label" />}
         />
         <ProFormSelect
           options={site_info.languages.map((x: string) => {
@@ -123,7 +123,7 @@ const Widget = () => {
           width="md"
           cacheForSwr
           name="lang"
-          label="合同约定生效方式"
+          label={<FormattedMessage id="form.fields.language.label" />}
         />
       </ProForm>
     </Card>
