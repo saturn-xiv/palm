@@ -5,6 +5,8 @@ import { Provider as ReduxProvider } from "react-redux";
 import { ConfigProvider as AntdConfigProvider } from "antd";
 import { ProConfigProvider as AntdProConfigProvider } from "@ant-design/pro-components";
 
+import "./main.css";
+
 import Router from "./Router";
 import { store } from "./store";
 import { get as get_locale, antd as antd_locale } from "./locales";
