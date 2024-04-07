@@ -16,6 +16,7 @@ import {
 } from "../reducers/current-user";
 import { home_url } from "../utils";
 import icon_img from "../assets/beian/1.jpg";
+import SwitchLanguage from "./SwitchLanguage";
 
 const Widget = () => {
   const site_info = useAppSelector(selectSiteInfo);
@@ -63,12 +64,27 @@ const Widget = () => {
       title: (
         <>
           <img src={icon_img} style={{ width: "12px" }} />
+          &nbsp;
           {site_info.gabCode.name}
         </>
       ),
       blankTarget: true,
     });
   }
+  links.push({
+    key: "switch-language",
+    href: "/",
+    title: (
+      <span
+        onClick={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <SwitchLanguage />
+      </span>
+    ),
+    blankTarget: false,
+  });
 
   return <DefaultFooter links={links} copyright={site_info.copyright} />;
 };

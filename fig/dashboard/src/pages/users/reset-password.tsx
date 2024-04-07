@@ -51,7 +51,7 @@ export const Component = () => {
         }}
       >
         <ProFormText.Password
-          width="sm"
+          width="md"
           name="password"
           label={<FormattedMessage id="form.fields.password.label" />}
           rules={[
@@ -63,7 +63,7 @@ export const Component = () => {
           ]}
         />
         <ProFormText.Password
-          width="sm"
+          width="md"
           name="password_confirmation"
           label={
             <FormattedMessage id="form.fields.password-confirmation.label" />

@@ -59,7 +59,7 @@ export const Component = () => {
         }}
       >
         <ProFormText
-          width="sm"
+          width="md"
           name="real_name"
           label={<FormattedMessage id="form.fields.real-name.label" />}
           rules={[
@@ -71,7 +71,7 @@ export const Component = () => {
           ]}
         />
         <ProFormText
-          width="sm"
+          width="md"
           name="nickname"
           label={<FormattedMessage id="form.fields.nickname.label" />}
           rules={[
@@ -83,13 +83,13 @@ export const Component = () => {
           ]}
         />
         <ProFormText
-          width="sm"
+          width="md"
           name="email"
           label={<FormattedMessage id="form.fields.email.label" />}
           rules={[{ type: "email", required: true, max: EMAIL_MAX_LENGTH }]}
         />
         <ProFormText.Password
-          width="sm"
+          width="md"
           name="password"
           label={<FormattedMessage id="form.fields.password.label" />}
           rules={[
@@ -101,7 +101,7 @@ export const Component = () => {
           ]}
         />
         <ProFormText.Password
-          width="sm"
+          width="md"
           name="password_confirmation"
           label={
             <FormattedMessage id="form.fields.password-confirmation.label" />

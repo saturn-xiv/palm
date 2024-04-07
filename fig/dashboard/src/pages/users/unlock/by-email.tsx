@@ -37,7 +37,7 @@ export const Component = () => {
         }}
       >
         <ProFormText
-          width="sm"
+          width="md"
           name="user"
           label={<FormattedMessage id="form.fields.account.label" />}
           rules={[{ required: true }]}

@@ -39,13 +39,13 @@ export const Component = () => {
         }}
       >
         <ProFormText
-          width="sm"
+          width="md"
           name="user"
           label={<FormattedMessage id="form.fields.account.label" />}
           rules={[{ required: true }]}
         />
         <ProFormText.Password
-          width="sm"
+          width="md"
           name="password"
           label={<FormattedMessage id="form.fields.password.label" />}
           rules={[

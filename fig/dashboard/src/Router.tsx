@@ -90,10 +90,10 @@ const router = createBrowserRouter(
           path: USERS_UNLOCK_BY_TOKEN_PATH,
           lazy: () => import("./pages/users/unlock/by-token"),
         },
-        // {
-        //   path: "leave-words/new",
-        //   lazy: () => import("./pages/leave-words/new"),
-        // },
+        {
+          path: "leave-words/new",
+          lazy: () => import("./pages/leave-words/new"),
+        },
       ],
     },
     { path: "*", lazy: () => import("./pages/not-found") },

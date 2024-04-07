@@ -31,7 +31,8 @@ npm install --save filesize timezones-list \
     @reduxjs/toolkit react-redux
 
 npm install --save \
-    antd @ant-design/pro-components @ant-design/charts
+    antd @ant-design/pro-components @ant-design/charts \
+    @emotion/css
 
 echo 'done.'
 exit 0
