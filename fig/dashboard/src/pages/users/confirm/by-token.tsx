@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Row, Col, message } from "antd";
-import { useIntl } from "react-intl";
+import { Card, message } from "antd";
+import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { confirm_by_token } from "../../../api/camelia";
@@ -36,10 +36,11 @@ export const Component = () => {
   }, [dispatch, intl, messageApi, navigate, token]);
 
   return (
-    <Row>
-      <Col sm={24} md={{ span: 8, offset: 8 }}>
-        {contextHolder}
-      </Col>
-    </Row>
+    <Card
+      title={<FormattedMessage id="users.confirm.by-token.title" />}
+      hoverable
+    >
+      {contextHolder}
+    </Card>
   );
 };

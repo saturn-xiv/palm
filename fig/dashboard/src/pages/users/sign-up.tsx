@@ -1,14 +1,11 @@
-import { useEffect } from "react";
 import { ProForm, ProFormText } from "@ant-design/pro-components";
-import { Row, Col, message } from "antd";
+import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
 import { sign_up_by_email } from "../../api/camelia";
 import { IErrorMessage } from "../../api/graphql";
-import { useAppDispatch } from "../../hooks";
-import { set_pathname } from "../../reducers/side-bar";
-import { USERS_SIGN_IN_PATH, USERS_SIGN_UP_PATH } from "../../Router";
+import { USERS_SIGN_IN_PATH } from "../../Router";
 
 export const PASSWORD_MIN_LENGTH = 6;
 export const PASSWORD_MAX_LENGTH = 31;
@@ -28,101 +25,94 @@ interface IForm {
 
 export const Component = () => {
   const [messageApi, contextHolder] = message.useMessage();
-  const dispatch = useAppDispatch();
   const intl = useIntl();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(set_pathname(USERS_SIGN_UP_PATH));
-  }, [dispatch]);
-
   return (
-    <Row>
-      <Col sm={24} md={{ span: 8, offset: 8 }}>
-        {contextHolder}
-        <ProForm<IForm>
-          onFinish={async (values) => {
-            if (values.password !== values.password_confirmation) {
-              messageApi.error(
-                intl.formatMessage({
-                  id: "form.fields.password-confirmation.error",
-                })
-              );
-              return;
-            }
-            sign_up_by_email(
-              values.real_name,
-              values.nickname,
-              values.email,
-              values.password
-            )
-              .then(() => {
-                messageApi.success(
-                  intl.formatMessage({ id: "users.confirm.by-email.succeed" })
-                );
-                navigate(USERS_SIGN_IN_PATH);
+    <Card title={<FormattedMessage id="users.sign-up.title" />} hoverable>
+      {contextHolder}
+      <ProForm<IForm>
+        onFinish={async (values) => {
+          if (values.password !== values.password_confirmation) {
+            messageApi.error(
+              intl.formatMessage({
+                id: "form.fields.password-confirmation.error",
               })
-              .catch((reason: IErrorMessage[]) => {
-                messageApi.error(reason.map((x) => x.message).join("\n"));
-              });
-          }}
-        >
-          <ProFormText
-            width="sm"
-            name="real_name"
-            label={<FormattedMessage id="form.fields.real-name.label" />}
-            rules={[
-              {
-                required: true,
-                min: REAL_NAME_MIN_LENGTH,
-                max: REAL_NAME_MAX_LENGTH,
-              },
-            ]}
-          />
-          <ProFormText
-            width="sm"
-            name="nickname"
-            label={<FormattedMessage id="form.fields.nickname.label" />}
-            rules={[
-              {
-                required: true,
-                min: NICKNAME_MIN_LENGTH,
-                max: NICKNAME_MAX_LENGTH,
-              },
-            ]}
-          />
-          <ProFormText
-            width="sm"
-            name="email"
-            label={<FormattedMessage id="form.fields.email.label" />}
-            rules={[{ type: "email", required: true, max: EMAIL_MAX_LENGTH }]}
-          />
-          <ProFormText.Password
-            width="sm"
-            name="password"
-            label={<FormattedMessage id="form.fields.password.label" />}
-            rules={[
-              {
-                required: true,
-                min: PASSWORD_MIN_LENGTH,
-                max: PASSWORD_MAX_LENGTH,
-              },
-            ]}
-          />
-          <ProFormText.Password
-            width="sm"
-            name="password_confirmation"
-            label={
-              <FormattedMessage id="form.fields.password-confirmation.label" />
-            }
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          />
-        </ProForm>
-      </Col>
-    </Row>
+            );
+            return;
+          }
+          sign_up_by_email(
+            values.real_name,
+            values.nickname,
+            values.email,
+            values.password
+          )
+            .then(() => {
+              messageApi.success(
+                intl.formatMessage({ id: "users.confirm.by-email.succeed" })
+              );
+              navigate(USERS_SIGN_IN_PATH);
+            })
+            .catch((reason: IErrorMessage[]) => {
+              messageApi.error(reason.map((x) => x.message).join("\n"));
+            });
+        }}
+      >
+        <ProFormText
+          width="sm"
+          name="real_name"
+          label={<FormattedMessage id="form.fields.real-name.label" />}
+          rules={[
+            {
+              required: true,
+              min: REAL_NAME_MIN_LENGTH,
+              max: REAL_NAME_MAX_LENGTH,
+            },
+          ]}
+        />
+        <ProFormText
+          width="sm"
+          name="nickname"
+          label={<FormattedMessage id="form.fields.nickname.label" />}
+          rules={[
+            {
+              required: true,
+              min: NICKNAME_MIN_LENGTH,
+              max: NICKNAME_MAX_LENGTH,
+            },
+          ]}
+        />
+        <ProFormText
+          width="sm"
+          name="email"
+          label={<FormattedMessage id="form.fields.email.label" />}
+          rules={[{ type: "email", required: true, max: EMAIL_MAX_LENGTH }]}
+        />
+        <ProFormText.Password
+          width="sm"
+          name="password"
+          label={<FormattedMessage id="form.fields.password.label" />}
+          rules={[
+            {
+              required: true,
+              min: PASSWORD_MIN_LENGTH,
+              max: PASSWORD_MAX_LENGTH,
+            },
+          ]}
+        />
+        <ProFormText.Password
+          width="sm"
+          name="password_confirmation"
+          label={
+            <FormattedMessage id="form.fields.password-confirmation.label" />
+          }
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        />
+      </ProForm>
+    </Card>
   );
 };
