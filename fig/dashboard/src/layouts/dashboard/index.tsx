@@ -114,7 +114,9 @@ export const Component = () => {
         return <MenuFooter />;
       }}
       footerRender={() => <Footer />}
-      onMenuHeaderClick={(e) => console.log(e)}
+      onMenuHeaderClick={(e) => {
+        console.log(e);
+      }}
       menuItemRender={(item, dom) => (
         <div
           onClick={() => {

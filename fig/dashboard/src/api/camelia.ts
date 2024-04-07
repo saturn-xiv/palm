@@ -570,7 +570,7 @@ query call{
   );
   return res.indexPicture;
 };
-interface ILog {
+export interface ILog {
   id: number;
   plugin: string;
   level: string;
@@ -605,6 +605,8 @@ query call($pager: Pager!){
 };
 
 export interface ICurrentUser {
+  nickname: string;
+  email: string;
   realName: string;
   avatar: string;
   isAdministrator: boolean;
@@ -684,7 +686,7 @@ export const current_user = async (): Promise<ICurrentUser> => {
     `
 query call{
   currentUser{
-    realName, avatar, providerType, lang, timezone,
+    nickname, email, realName, avatar, providerType, lang, timezone,
     isAdministrator, isRoot,
     roles, 
     permissions{ 

@@ -62,6 +62,8 @@ const initialState: IState = {
   providerType: "",
   lang: import.meta.env.VITE_DEFAULT_LOCALE,
   timezone: UTC,
+  email: "who-am-i@change-me.org",
+  nickname: "nill-gate",
 };
 
 interface IProfile {
@@ -94,6 +96,8 @@ export const currentUserSlice = createSlice({
       state.providerType = action.payload.providerType;
       state.lang = action.payload.lang;
       state.timezone = action.payload.timezone;
+      state.email = action.payload.email;
+      state.nickname = action.payload.nickname;
     },
     signIn: (state, action: PayloadAction<ISignInResponse>) => {
       set(action.payload.token);
@@ -109,6 +113,8 @@ export const currentUserSlice = createSlice({
       state.providerType = action.payload.user.providerType;
       state.lang = action.payload.user.lang;
       state.timezone = action.payload.user.timezone;
+      state.email = action.payload.user.email;
+      state.nickname = action.payload.user.nickname;
     },
     signOut: (state) => {
       remove();

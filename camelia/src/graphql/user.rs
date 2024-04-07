@@ -120,6 +120,8 @@ impl SignInResponse {
 #[derive(GraphQLObject)]
 #[graphql(name = "CurrentUser")]
 pub struct CurrentUser {
+    pub nickname: String,
+    pub email: String,
     pub real_name: String,
     pub avatar: String,
     pub is_administrator: bool,
@@ -184,6 +186,8 @@ impl CurrentUser {
             items
         };
         Ok(Self {
+            email: user.email.clone(),
+            nickname: user.nickname.clone(),
             real_name: user.real_name.clone(),
             avatar: user.avatar.clone(),
             lang: user.lang.clone(),
