@@ -480,8 +480,8 @@ impl Mutation {
     }
     async fn set_baidu_site_verification(
         context: &Context,
-        content: String,
         code: String,
+        content: String,
     ) -> FieldResult<Succeed> {
         let mut db = context.postgresql.get()?;
         let db = db.deref_mut();

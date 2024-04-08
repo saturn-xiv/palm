@@ -115,7 +115,8 @@ export const Component = () => {
       }}
       footerRender={() => <Footer />}
       onMenuHeaderClick={(e) => {
-        console.log(e);
+        e.preventDefault();
+        window.open("/", "_blank")?.focus();
       }}
       menuItemRender={(item, dom) => (
         <div

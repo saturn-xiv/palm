@@ -45,7 +45,7 @@ const router = createBrowserRouter(
           children: [
             {
               path: "site/seo",
-              lazy: () => import("./pages/settings/site/info"),
+              lazy: () => import("./pages/settings/site/seo"),
             },
             {
               path: "site/info",

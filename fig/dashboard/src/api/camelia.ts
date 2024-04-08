@@ -243,15 +243,15 @@ interface IBaiduSiteVerification {
   code: string;
 }
 export const set_baidu_site_verification = async (
+  code: string,
   content: string,
-  code: string
 ): Promise<ISucceed> => {
   const res = await query<{
     setBaiduSiteVerification: ISucceed;
   }>(
     `
-mutation call($content: String!, $code: String!){
-  setBaiduSiteVerification(content: $content, code: $code){
+mutation call($code: String!, $content: String!){
+  setBaiduSiteVerification(code: $code, content: $content){
     createdAt
   }
 }
