@@ -298,6 +298,18 @@ impl Mutation {
         Ok(Succeed::default())
     }
 
+    async fn destroy_locale(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        camelia_graphql::locale::destroy(&context.session, db, ch, enf, jwt, id).await?;
+        Ok(Succeed::default())
+    }
+
     async fn set_site_info(
         context: &Context,
         title: String,

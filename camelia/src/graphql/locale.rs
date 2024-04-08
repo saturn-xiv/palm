@@ -106,3 +106,17 @@ impl Form {
         Ok(())
     }
 }
+
+pub async fn destroy<J: Jwt>(
+    ss: &Session,
+    db: &mut Db,
+    ch: &mut Cache,
+    enf: &Mutex<Enforcer>,
+    jwt: &J,
+    id: i32,
+) -> Result<(), Error> {
+    let (user, _, _) = ss.current_user(db, ch, jwt)?;
+    user.is_administrator(enf).await?;
+    LocaleDao::delete(db, id)?;
+    Ok(())
+}

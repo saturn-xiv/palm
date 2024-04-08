@@ -938,6 +938,20 @@ mutation call($lang: String!, $code: String!, $message: String!){
   );
   return res.setLocale;
 };
+
+export const destroy_locale = async (id: number): Promise<ISucceed> => {
+  const res = await query<{ destroyLocale: ISucceed }>(
+    `
+mutation call($id: Int!){
+  destroyLocale(id: $id){
+    createdAt
+  }
+}
+`,
+    { id }
+  );
+  return res.destroyLocale;
+};
 export interface ILocale {
   id: number;
   lang: string;

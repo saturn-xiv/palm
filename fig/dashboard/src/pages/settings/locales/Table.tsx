@@ -7,6 +7,7 @@ import { index_locale, ILocale } from "../../../api/camelia";
 import { useAppSelector } from "../../../hooks";
 import { currentUser as selectCurrentUser } from "../../../reducers/current-user";
 import Form from "./Form";
+import DeleteButton from "./DeleteButton";
 
 const columns: ProColumns<ILocale>[] = [
   {
@@ -60,6 +61,13 @@ const columns: ProColumns<ILocale>[] = [
           message: record.message,
         }}
         edit
+        handleRefresh={() => {
+          action?.reload();
+        }}
+      />,
+      <DeleteButton
+        key={`delete-${record.id}`}
+        item={record}
         handleRefresh={() => {
           action?.reload();
         }}
