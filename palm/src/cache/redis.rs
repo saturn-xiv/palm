@@ -170,3 +170,9 @@ impl super::Provider for ClusterConnection {
         Ok(())
     }
 }
+
+pub fn nodes(con: &mut ClusterConnection) -> Result<Vec<String>> {
+    let val: String = ::redis::cmd("CLUSTER").arg("NODES").query(con)?;
+    let items = val.split('\n').map(|x| x.to_string()).collect();
+    Ok(items)
+}

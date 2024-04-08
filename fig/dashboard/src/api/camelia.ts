@@ -20,6 +20,39 @@ export interface IPagination {
   hasPrevious: boolean;
 }
 
+export interface IPostgreSqlStatus {
+  version: string;
+  migrations: string[];
+}
+export interface IRedisStatus {
+  nodes: string[];
+}
+
+export interface ISystemStatusResponse {
+  postgresql: IPostgreSqlStatus;
+  redis: IRedisStatus;
+}
+
+export const system_status = async (): Promise<ISystemStatusResponse> => {
+  const res = await query<{
+    postgresqlStatus: IPostgreSqlStatus;
+    redisStatus: IRedisStatus;
+  }>(
+    `
+query call{
+  postgresqlStatus{
+    version, migrations
+  }
+  redisStatus{
+    nodes
+  }
+}
+`,
+    {}
+  );
+  return { postgresql: res.postgresqlStatus, redis: res.redisStatus };
+};
+
 export interface IRoute {
   path: string;
   name: string;
@@ -244,7 +277,7 @@ interface IBaiduSiteVerification {
 }
 export const set_baidu_site_verification = async (
   code: string,
-  content: string,
+  content: string
 ): Promise<ISucceed> => {
   const res = await query<{
     setBaiduSiteVerification: ISucceed;

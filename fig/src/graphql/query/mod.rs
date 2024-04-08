@@ -53,6 +53,41 @@ impl Query {
         let response = menu::Route::load(&context.session, db, ch, enf, jwt).await?;
         Ok(response)
     }
+    async fn postgresql_status(
+        context: &Context,
+    ) -> FieldResult<camelia_graphql::site::status::postgresql::Status> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let it = camelia_graphql::site::status::postgresql::Status::new(
+            &context.session,
+            db,
+            ch,
+            enf,
+            jwt,
+        )
+        .await?;
+        Ok(it)
+    }
+    async fn redis_status(
+        context: &Context,
+    ) -> FieldResult<camelia_graphql::site::status::redis::Status> {
+        let mut db = context.postgresql.get()?;
+        let db = db.deref_mut();
+        let mut ch = context.redis.get()?;
+        let ch = ch.deref_mut();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let it =
+            camelia_graphql::site::status::redis::Status::new(&context.session, db, ch, enf, jwt)
+                .await?;
+        Ok(it)
+    }
 
     async fn get_baidu_site_verification(
         context: &Context,
