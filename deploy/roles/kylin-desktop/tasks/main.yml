@@ -15,7 +15,6 @@
       - linuxqq
       - kylin-tencentmeeting
       - wps-office
-      - virtualbox
-      - virtualbox-guest-additions-iso
+      - virtualbox-7.0
 
 - include_tasks: third.yml
