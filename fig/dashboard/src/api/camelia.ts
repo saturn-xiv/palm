@@ -921,14 +921,63 @@ query call($lang: String!){
   return res;
 };
 
+export const set_locale = async (
+  lang: string,
+  code: string,
+  message: string
+): Promise<ISucceed> => {
+  const res = await query<{ setLocale: ISucceed }>(
+    `
+mutation call($lang: String!, $code: String!, $message: String!){
+  setLocale(lang: $lang, code: $code, message: $message){
+    createdAt
+  }
+}
+`,
+    { lang, code, message }
+  );
+  return res.setLocale;
+};
+export interface ILocale {
+  id: number;
+  lang: string;
+  code: string;
+  message: string;
+  updatedAt: string;
+}
+
 interface IIndexLocaleResponse {
+  items: ILocale[];
+  pagination: IPagination;
+}
+export const index_locale = async (
+  page: number,
+  size: number
+): Promise<IIndexLocaleResponse> => {
+  const res = await query<{ indexLocale: IIndexLocaleResponse }>(
+    `
+query call($pager: Pager!){
+  indexLocale(pager: $pager){
+    items{id, lang, code, message, updatedAt},
+    pagination{page, size, total, hasNext, hasPrevious}
+  }
+}
+`,
+    {
+      pager: { page, size },
+    }
+  );
+  return res.indexLocale;
+};
+
+interface IIndexLocaleByLangResponse {
   indexLocaleByLang: { code: string; message: string }[];
 }
 
-export const index_locale = async (
+export const locales = async (
   lang: string
 ): Promise<Record<string, string>> => {
-  const res = await query<IIndexLocaleResponse>(
+  const res = await query<IIndexLocaleByLangResponse>(
     `
 query call($lang: String!){
   indexLocaleByLang(lang: $lang){

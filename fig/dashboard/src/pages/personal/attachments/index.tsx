@@ -5,7 +5,6 @@ import { useAppDispatch } from "../../../hooks";
 import { set_pathname } from "../../../reducers/side-bar";
 import { PERSONAL_ATTACHMENTS_PATH } from "../../../Router";
 import Table from "./PaginationTable";
-import UploadButton from "./UploadButton";
 
 export const Component = () => {
   const dispatch = useAppDispatch();
@@ -13,13 +12,8 @@ export const Component = () => {
     dispatch(set_pathname(PERSONAL_ATTACHMENTS_PATH));
   }, [dispatch]);
   return (
-    <>
-      <Col sm={24} md={{ span: 22 }}>
-        <UploadButton />
-      </Col>
-      <Col sm={24} md={{ span: 22 }}>
-        <Table />
-      </Col>
-    </>
+    <Col sm={24} md={{ span: 22 }}>
+      <Table />
+    </Col>
   );
 };

@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { index_attachment, IAttachment } from "../../../api/camelia";
 import ShareButton from "./ShareButton";
 import EditButton from "./EditButton";
+import UploadButton from "./UploadButton";
 
 const columns: ProColumns<IAttachment>[] = [
   {
@@ -73,6 +74,9 @@ const Widget = () => {
         },
       }}
       dateFormatter="string"
+      toolBarRender={() => {
+        return [<UploadButton key="upload" />];
+      }}
     />
   );
 };

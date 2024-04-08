@@ -161,7 +161,7 @@ impl Dao for Connection {
     }
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = locales::dsl::locales
-            .order((locales::dsl::code.asc(), locales::dsl::lang.asc()))
+            .order(locales::dsl::updated_at.desc())
             .offset(offset)
             .limit(limit)
             .load::<Item>(self)?;

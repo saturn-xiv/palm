@@ -10,12 +10,12 @@ import "./main.css";
 import Router from "./Router";
 import { store } from "./store";
 import { get as get_locale, antd as antd_locale } from "./locales";
-import { index_locale } from "./api/camelia";
+import { locales as fetch_locales_by_lang } from "./api/camelia";
 
 const lang = get_locale();
 const LAYOUT_ID = "root-pro-layout";
 
-index_locale(lang).then((messages) => {
+fetch_locales_by_lang(lang).then((messages) => {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <ReduxProvider store={store}>
