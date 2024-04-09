@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:noble
 LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -6,11 +6,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt update
 RUN apt install -y lsb-release apt-utils \
     debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
-# https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
-RUN add-apt-repository -y ppa:deadsnakes/ppa
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
-ENV AMD64_GCC_VERSION 11
-ENV GCC_VERSION 8
+ENV AMD64_GCC_VERSION 13
+ENV GCC_VERSION 12
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs) main restricted universe multiverse" > /etc/apt/sources.list
 RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
@@ -22,22 +20,25 @@ RUN wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.
 # https://wiki.debian.org/ToolChain/Cross
 RUN dpkg --add-architecture armhf
 RUN dpkg --add-architecture arm64
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=armhf,arm64] http://ports.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
-RUN apt update && apt -y upgrade
+RUN dpkg --add-architecture riscv64
+RUN echo "deb [arch=armhf,arm64,riscv64] http://ports.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb [arch=armhf,arm64,riscv64] http://ports.ubuntu.com/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb [arch=armhf,arm64,riscv64] http://ports.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
+RUN apt update
+RUN apt -y upgrade
 
 RUN apt -y install zsh git locales locales-all \
     vim tzdata zip unzip tree tmux \
-    g++-${AMD64_GCC_VERSION} libstdc++-${AMD64_GCC_VERSION}-dev \
     build-essential g++-${GCC_VERSION} libstdc++-${GCC_VERSION}-dev \
+    g++-${AMD64_GCC_VERSION} libstdc++-${AMD64_GCC_VERSION}-dev \
     crossbuild-essential-arm64 g++-${GCC_VERSION}-aarch64-linux-gnu libstdc++-${GCC_VERSION}-dev:arm64 \
     crossbuild-essential-armhf g++-${GCC_VERSION}-arm-linux-gnueabihf libstdc++-${GCC_VERSION}-dev:armhf \
-    g++-${GCC_VERSION}-riscv64-linux-gnu \
-    libstdc++-13-dev clang-${CLANG_VERSION} clangd-${CLANG_VERSION} clang-tools-${CLANG_VERSION} clang-format-${CLANG_VERSION} clang-tidy-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
-    cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio \
+    crossbuild-essential-riscv64 g++-${GCC_VERSION}-riscv64-linux-gnu libstdc++-${GCC_VERSION}-dev:riscv64 \
+    clang-${CLANG_VERSION} clangd-${CLANG_VERSION} clang-tools-${CLANG_VERSION} clang-format-${CLANG_VERSION} clang-tidy-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
+    cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio mold \
     debhelper bison flex ninja-build \
-    python3 python3-pip python3-distutils python3-dev python3-venv
+    python3-full python3-dev
+
 RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} 100 \
     && update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} 100 \
     && update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${CLANG_VERSION} 100 \
@@ -53,8 +54,8 @@ RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CL
     && update-alternatives --install /usr/bin/riscv64-linux-gnu-gcc riscv64-linux-gnu-gcc /usr/bin/riscv64-linux-gnu-gcc-${GCC_VERSION} 100 \
     && update-alternatives --install /usr/bin/riscv64-linux-gnu-g++ riscv64-linux-gnu-g++ /usr/bin/riscv64-linux-gnu-g++-${GCC_VERSION} 100
 
-
-RUN apt -y autoremove && apt -y clean
+RUN apt -y autoremove
+RUN apt -y clean
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 RUN locale-gen
@@ -95,24 +96,14 @@ RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/riscv64-li
     && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz \
     && echo 'export PATH=/opt/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 
-# https://pip.pypa.io/en/stable/installation/
-RUN sh -c ". $HOME/.profile \
-    && python3 -m venv $HOME/local/python3 \
-    && . $HOME/local/python3/bin/activate \
-    && pip install --upgrade pip \
-    && pip install cmake scikit-build"
-RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
-
 # https://github.com/nvm-sh/nvm
 ENV NVM_VERSION "v0.39.7"
 RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.zshrc
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.zshrc
 RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.zshrc
-# version `GLIBC_2.28' not found (required by node)
 RUN zsh -c "source $HOME/.zshrc \
-    && nvm install lts/gallium"
-
+    && nvm install --lts"
 
 ENV JDK_VERSION "22-open"
 # https://docs.gradle.org/current/userguide/compatibility.html
@@ -165,17 +156,6 @@ RUN zsh -c "source $HOME/.zshrc \
     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
     && make \
     && make install"
-
-# https://github.com/rui314/mold
-RUN git clone -b v2.30.0 https://github.com/rui314/mold.git $HOME/downloads/mold
-RUN zsh -c "source $HOME/.zshrc \
-    && mkdir $HOME/build/mold \
-    && cd $HOME/build/mold \
-    && $HOME/downloads/mold/install-build-deps.sh \
-    && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ $HOME/downloads/mold \
-    && make \
-    && make install"
-RUN ln -s /usr/local/bin/mold /usr/bin/mold
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
