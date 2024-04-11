@@ -163,6 +163,18 @@ function generate_musa() {
         $PALM_PROTOCOLS/musa.proto
 }
 
+function generate_loquat() {
+    cd $WORKSPACE
+
+    echo 'generate code for loquat'
+    local cpp_target=loquat/gourd/src
+    if [ -d $cpp_target ]; then
+        rm -r $cpp_target
+    fi
+    mkdir -p $cpp_target
+    thrift -out $cpp_target --gen cpp:no_skeleton -r $PALM_PROTOCOLS/loquat.thrift
+}
+
 # function generate_lily() {
 #     echo "generate gRPC for lily"
 #     local target=$WORKSPACE/lily/pumpkin
@@ -248,6 +260,7 @@ function generate_diesel_postgresql() {
 }
 # -----------------------------------------------------------------------------
 
+generate_loquat
 generate_musa
 generate_morus
 
