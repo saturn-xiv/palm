@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 )
 
-type PostgreSql struct {
+type SqlServer struct {
 	Host     string `toml:"host"`
 	Port     uint16 `toml:"port"`
 	DbName   string `toml:"dbname"`
@@ -17,14 +17,14 @@ type PostgreSql struct {
 	PoolSize int    `toml:"pool-size"`
 }
 
-func (p *PostgreSql) Url() string {
-	return fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable TimeZone=UTC",
-		p.Host, p.Port, p.User, p.Password, p.DbName,
+func (p *SqlServer) Url() string {
+	return fmt.Sprintf("sqlserver://%s:%s@%s:%d?database=%s",
+		p.User, p.Password, p.Host, p.Port, p.DbName,
 	)
 }
 
-func (p *PostgreSql) Open() (*gorm.DB, error) {
-	db, err := gorm.Open(postgres.Open(p.Url()), &gorm.Config{})
+func (p *SqlServer) Open() (*gorm.DB, error) {
+	db, err := gorm.Open(sqlserver.Open(p.Url()), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}

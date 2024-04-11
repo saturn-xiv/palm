@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"strings"
 
-	pgadapter "github.com/casbin/casbin-pg-adapter"
 	"github.com/casbin/casbin/v2"
 	casbin_model "github.com/casbin/casbin/v2/model"
+	gormadapter "github.com/casbin/gorm-adapter/v3"
 	rediswatcher "github.com/casbin/redis-watcher/v2"
-	"github.com/go-pg/pg/v10"
 	"github.com/redis/go-redis/v9"
 	log "github.com/sirupsen/logrus"
+	"gorm.io/gorm"
 )
 
 type Logger struct {
@@ -116,29 +116,23 @@ func updateCallback(msg string) {
 	log.Debugf("%s", msg)
 }
 
-func (p *Config) OpenCasbinEnforcer() (*casbin.Enforcer, error) {
+func OpenCasbinEnforcer(db *gorm.DB, redis_addrs []string, redis_channel string) (*casbin.Enforcer, error) {
+	log.Debugf("open casbin redis watcher")
 	wtc, err := rediswatcher.NewWatcherWithCluster(
-		strings.Join(p.Redis.Addrs(), ","),
+		strings.Join(redis_addrs, ","),
 		rediswatcher.WatcherOptions{
 			ClusterOptions: redis.ClusterOptions{
-				ClientName: "casbin",
+				ClientName: "casbin-watcher",
 			},
-			Channel:    fmt.Sprintf("/%s-casbin", p.Redis.Namespace),
+			Channel:    fmt.Sprintf("/%s-casbin", redis_channel),
 			IgnoreSelf: false,
 		})
 	if err != nil {
 		return nil, err
 	}
 
-	db := pg.Connect(&pg.Options{
-		User:     p.PostgreSql.User,
-		Password: p.PostgreSql.User,
-		Database: p.PostgreSql.DbName,
-		Addr:     fmt.Sprintf("%s:%d", p.PostgreSql.Host, p.PostgreSql.Port),
-	})
-	defer db.Close()
-
-	adp, err := pgadapter.NewAdapterByDB(db)
+	log.Debugf("open casbin gorm adapter")
+	adp, err := gormadapter.NewAdapterByDB(db)
 	if err != nil {
 		return nil, err
 	}

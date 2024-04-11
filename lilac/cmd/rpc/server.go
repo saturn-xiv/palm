@@ -1,4 +1,4 @@
-package cmd
+package rpc
 
 import (
 	"fmt"
@@ -20,14 +20,18 @@ import (
 	tink_pb "github.com/saturn-xiv/palm/lilac/tink/v2"
 )
 
-func launch_rpc_server(port int, config_file string, keys_dir string) error {
+func Launch(port int, config_file string, keys_dir string) error {
 	log.Debugf("load configuration from %s", config_file)
-	var config env.Config
+	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
 	}
 
-	enforcer, err := config.OpenCasbinEnforcer()
+	db, err := config.OpenDb()
+	if err != nil {
+		return err
+	}
+	enforcer, err := env.OpenCasbinEnforcer(db, config.Redis.Options().Addrs, config.Redis.Namespace)
 	if err != nil {
 		return err
 	}

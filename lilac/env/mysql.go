@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"gorm.io/driver/postgres"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-type PostgreSql struct {
+type MySql struct {
 	Host     string `toml:"host"`
 	Port     uint16 `toml:"port"`
 	DbName   string `toml:"dbname"`
@@ -17,14 +17,15 @@ type PostgreSql struct {
 	PoolSize int    `toml:"pool-size"`
 }
 
-func (p *PostgreSql) Url() string {
-	return fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable TimeZone=UTC",
-		p.Host, p.Port, p.User, p.Password, p.DbName,
+// https://github.com/go-sql-driver/mysql#dsn-data-source-name
+func (p *MySql) Url() string {
+	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=UTC",
+		p.User, p.Password, p.Host, p.Port, p.DbName,
 	)
 }
 
-func (p *PostgreSql) Open() (*gorm.DB, error) {
-	db, err := gorm.Open(postgres.Open(p.Url()), &gorm.Config{})
+func (p *MySql) Open() (*gorm.DB, error) {
+	db, err := gorm.Open(mysql.Open(p.Url()), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}

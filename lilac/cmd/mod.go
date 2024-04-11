@@ -5,6 +5,8 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+
+	"github.com/saturn-xiv/palm/lilac/cmd/rpc"
 )
 
 var (
@@ -56,7 +58,7 @@ func init() {
 				}
 				log.Debugf("run on debug mode")
 
-				if err := launch_rpc_server(gl_rpc_port, gl_config, gl_keys_dir); err != nil {
+				if err := rpc.Launch(gl_rpc_port, gl_config, gl_keys_dir); err != nil {
 					log.Fatalf("start gRPC server: %s", err)
 				}
 			},

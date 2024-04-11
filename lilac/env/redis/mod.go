@@ -1,6 +1,7 @@
 package redis
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/redis/go-redis/v9"
@@ -21,6 +22,17 @@ func (p *Cluster) Addrs() []string {
 
 func (p *Cluster) Options() redis.ClusterOptions {
 	return redis.ClusterOptions{Addrs: p.Addrs()}
+}
+
+func (p *Cluster) Open(ctx context.Context) (*redis.ClusterClient, error) {
+	options := p.Options()
+	db := redis.NewClusterClient(&options)
+	if err := db.ForEachShard(ctx, func(ctx context.Context, shard *redis.Client) error {
+		return shard.Ping(ctx).Err()
+	}); err != nil {
+		return nil, err
+	}
+	return db, nil
 }
 
 type Node struct {
