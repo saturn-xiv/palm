@@ -59,8 +59,18 @@ FetchContent_Declare(leveldb
   GIT_REPOSITORY  "https://github.com/google/leveldb.git"
   GIT_TAG         "1.23"
 )
+# https://github.com/alanxz/rabbitmq-c
+FetchContent_Declare(rabbitmq
+  GIT_REPOSITORY  "https://github.com/alanxz/rabbitmq-c.git"
+  GIT_TAG         "v0.14.0"
+)
+# https://github.com/confluentinc/librdkafka
+FetchContent_Declare(librdkafka
+  GIT_REPOSITORY  "https://github.com/confluentinc/librdkafka.git"
+  GIT_TAG         "v2.3.0"
+)
 
-FetchContent_MakeAvailable(spdlog argparse tomlplusplus tink casbin leveldb)
+FetchContent_MakeAvailable(spdlog argparse tomlplusplus tink casbin leveldb rabbitmq librdkafka)
 
 # --------------------------------------------------------
 
