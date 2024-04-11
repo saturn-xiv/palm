@@ -61,6 +61,20 @@ const router = createBrowserRouter(
             },
           ],
         },
+        {
+          path: "daffodil",
+          lazy: () => import("./pages/daffodil"),
+          children: [
+            {
+              path: "ledgers",
+              lazy: () => import("./pages/daffodil/ledgers"),
+            },
+            {
+              path: "ledgers/:id",
+              lazy: () => import("./pages/daffodil/ledgers/:id/show"),
+            },
+          ],
+        },
 
         // {
         //   path: "daffodil/ledgers",
