@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.24)
 include(ExternalProject)
 include(FetchContent)
 
@@ -47,7 +47,7 @@ FetchContent_Declare(argparse
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
-  GIT_TAG         "v2.1.2"
+  GIT_TAG         "ac71903"
 )
 # https://github.com/casbin/casbin-cpp
 FetchContent_Declare(casbin
