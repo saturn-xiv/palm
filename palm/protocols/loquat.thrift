@@ -20,6 +20,9 @@ service Auth {
     void change_password(1:string user, 2:string current_password, 3:string new_password);
     void reset_password(1:string token, 2:string user, 3:string password);
     
+    void set_(1:string token, 2:string key, 3:binary value);
+    binary get(1:string token, 2:string key);
+
     bool has(1:string token, 2:string role);
     bool can(1:string token, 2:string operation, 3:string resource);
     set<string> roles(1:string token);
@@ -45,4 +48,20 @@ service Policy {
 service Token{
     string sign(1:string token, 2:string issuer, 3:string subject, 4:string audience, 5:i64 ttl);
     string verify(1:string token, 2:string issuer, 3:string audience);
+}
+
+enum TaskContentType{
+    PROTOBUF = 1,
+    FLATBUFFERS = 2,
+    JSON = 3,
+    MSGPACK = 4,
+    CAPNPROTO = 5,
+}
+
+service Queue{
+    void publish(1:string queue, 2:string id, 3:TaskContentType content_type, 4:binary task);
+}
+
+service Consumer {
+    void handle(1:string id, 2:TaskContentType content_type, 3:binary task);
 }
