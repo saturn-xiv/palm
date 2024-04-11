@@ -34,6 +34,24 @@ A total free education & translation solution.
 - Start casbin-server `CONNECTION_CONFIG_PATH=./casbin/config.json ./bin/\$(uname -p)/bin/casbin -port 8080
 `
 
+## Build
+
+- loquat
+
+```bash
+$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:jammy
+> cd /workspace/loquat
+> ./build.sh
+```
+
+- lilac
+
+```bash
+$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:jammy
+> cd /workspace
+> ./scripts/go.sh lilac
+```
+
 ## Documents
 
 - [Install WSL](https://docs.microsoft.com/en-us/windows/wsl/install)
