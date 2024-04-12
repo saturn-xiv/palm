@@ -47,7 +47,7 @@ $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z 
 - lilac
 
 ```bash
-$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:jammy
+$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
 > cd /workspace
 > ./scripts/go.sh lilac
 ```
