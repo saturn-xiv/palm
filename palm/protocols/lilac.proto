@@ -42,6 +42,8 @@ service User {
   rpc ChangePassword(UserChangePasswordRequest)
       returns (google.protobuf.Empty) {}
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Set(UserSetRequest) returns (google.protobuf.Empty) {}
+  rpc Get(UserGetRequest) returns (UserGetResponse) {}
 
   rpc Index(Pager) returns (UserIndexResponse) {}
   rpc Sessions(Pager) returns (UserSessionsResponse) {}
@@ -51,6 +53,8 @@ service User {
   rpc Enable(UserQuery) returns (google.protobuf.Empty) {}
   rpc Lock(UserQuery) returns (google.protobuf.Empty) {}
   rpc Unlock(UserQuery) returns (google.protobuf.Empty) {}
+  rpc SetGlobal(UserSetRequest) returns (google.protobuf.Empty) {}
+  rpc GetGlobal(UserGetRequest) returns (UserGetResponse) {}
 }
 
 message UserQuery {
@@ -193,6 +197,17 @@ message UserAttachmentsResponse {
   Pagination pagination = 2;
 }
 
+message UserSetRequest {
+  string key = 1;
+  bytes value = 2;
+  bool encrypt = 3;
+}
+message UserGetRequest {
+  string key = 1;
+}
+message UserGetResponse {
+  bytes value = 1;
+}
 // ----------------------------------------------------------------------------
 
 service Policy {

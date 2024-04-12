@@ -33,6 +33,8 @@ const (
 	User_UpdateProfile_FullMethodName  = "/palm.lilac.auth.v1.User/UpdateProfile"
 	User_ChangePassword_FullMethodName = "/palm.lilac.auth.v1.User/ChangePassword"
 	User_SignOut_FullMethodName        = "/palm.lilac.auth.v1.User/SignOut"
+	User_Set_FullMethodName            = "/palm.lilac.auth.v1.User/Set"
+	User_Get_FullMethodName            = "/palm.lilac.auth.v1.User/Get"
 	User_Index_FullMethodName          = "/palm.lilac.auth.v1.User/Index"
 	User_Sessions_FullMethodName       = "/palm.lilac.auth.v1.User/Sessions"
 	User_SetPassword_FullMethodName    = "/palm.lilac.auth.v1.User/SetPassword"
@@ -41,6 +43,8 @@ const (
 	User_Enable_FullMethodName         = "/palm.lilac.auth.v1.User/Enable"
 	User_Lock_FullMethodName           = "/palm.lilac.auth.v1.User/Lock"
 	User_Unlock_FullMethodName         = "/palm.lilac.auth.v1.User/Unlock"
+	User_SetGlobal_FullMethodName      = "/palm.lilac.auth.v1.User/SetGlobal"
+	User_GetGlobal_FullMethodName      = "/palm.lilac.auth.v1.User/GetGlobal"
 )
 
 // UserClient is the client API for User service.
@@ -60,6 +64,8 @@ type UserClient interface {
 	UpdateProfile(ctx context.Context, in *UserUpdateProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ChangePassword(ctx context.Context, in *UserChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Set(ctx context.Context, in *UserSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Get(ctx context.Context, in *UserGetRequest, opts ...grpc.CallOption) (*UserGetResponse, error)
 	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserIndexResponse, error)
 	Sessions(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserSessionsResponse, error)
 	SetPassword(ctx context.Context, in *UserSetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -68,6 +74,8 @@ type UserClient interface {
 	Enable(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Lock(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Unlock(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetGlobal(ctx context.Context, in *UserSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetGlobal(ctx context.Context, in *UserGetRequest, opts ...grpc.CallOption) (*UserGetResponse, error)
 }
 
 type userClient struct {
@@ -195,6 +203,24 @@ func (c *userClient) SignOut(ctx context.Context, in *emptypb.Empty, opts ...grp
 	return out, nil
 }
 
+func (c *userClient) Set(ctx context.Context, in *UserSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Set_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Get(ctx context.Context, in *UserGetRequest, opts ...grpc.CallOption) (*UserGetResponse, error) {
+	out := new(UserGetResponse)
+	err := c.cc.Invoke(ctx, User_Get_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserIndexResponse, error) {
 	out := new(UserIndexResponse)
 	err := c.cc.Invoke(ctx, User_Index_FullMethodName, in, out, opts...)
@@ -267,6 +293,24 @@ func (c *userClient) Unlock(ctx context.Context, in *UserQuery, opts ...grpc.Cal
 	return out, nil
 }
 
+func (c *userClient) SetGlobal(ctx context.Context, in *UserSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SetGlobal_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetGlobal(ctx context.Context, in *UserGetRequest, opts ...grpc.CallOption) (*UserGetResponse, error) {
+	out := new(UserGetResponse)
+	err := c.cc.Invoke(ctx, User_GetGlobal_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
@@ -284,6 +328,8 @@ type UserServer interface {
 	UpdateProfile(context.Context, *UserUpdateProfileRequest) (*emptypb.Empty, error)
 	ChangePassword(context.Context, *UserChangePasswordRequest) (*emptypb.Empty, error)
 	SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	Set(context.Context, *UserSetRequest) (*emptypb.Empty, error)
+	Get(context.Context, *UserGetRequest) (*UserGetResponse, error)
 	Index(context.Context, *Pager) (*UserIndexResponse, error)
 	Sessions(context.Context, *Pager) (*UserSessionsResponse, error)
 	SetPassword(context.Context, *UserSetPasswordRequest) (*emptypb.Empty, error)
@@ -292,6 +338,8 @@ type UserServer interface {
 	Enable(context.Context, *UserQuery) (*emptypb.Empty, error)
 	Lock(context.Context, *UserQuery) (*emptypb.Empty, error)
 	Unlock(context.Context, *UserQuery) (*emptypb.Empty, error)
+	SetGlobal(context.Context, *UserSetRequest) (*emptypb.Empty, error)
+	GetGlobal(context.Context, *UserGetRequest) (*UserGetResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -338,6 +386,12 @@ func (UnimplementedUserServer) ChangePassword(context.Context, *UserChangePasswo
 func (UnimplementedUserServer) SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignOut not implemented")
 }
+func (UnimplementedUserServer) Set(context.Context, *UserSetRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
+}
+func (UnimplementedUserServer) Get(context.Context, *UserGetRequest) (*UserGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
 func (UnimplementedUserServer) Index(context.Context, *Pager) (*UserIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
 }
@@ -361,6 +415,12 @@ func (UnimplementedUserServer) Lock(context.Context, *UserQuery) (*emptypb.Empty
 }
 func (UnimplementedUserServer) Unlock(context.Context, *UserQuery) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unlock not implemented")
+}
+func (UnimplementedUserServer) SetGlobal(context.Context, *UserSetRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetGlobal not implemented")
+}
+func (UnimplementedUserServer) GetGlobal(context.Context, *UserGetRequest) (*UserGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGlobal not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 
@@ -609,6 +669,42 @@ func _User_SignOut_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Set(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Set_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Set(ctx, req.(*UserSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Get_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Get(ctx, req.(*UserGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Pager)
 	if err := dec(in); err != nil {
@@ -753,6 +849,42 @@ func _User_Unlock_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_SetGlobal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetGlobal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetGlobal_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetGlobal(ctx, req.(*UserSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetGlobal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetGlobal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetGlobal_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetGlobal(ctx, req.(*UserGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -813,6 +945,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _User_SignOut_Handler,
 		},
 		{
+			MethodName: "Set",
+			Handler:    _User_Set_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _User_Get_Handler,
+		},
+		{
 			MethodName: "Index",
 			Handler:    _User_Index_Handler,
 		},
@@ -843,6 +983,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Unlock",
 			Handler:    _User_Unlock_Handler,
+		},
+		{
+			MethodName: "SetGlobal",
+			Handler:    _User_SetGlobal_Handler,
+		},
+		{
+			MethodName: "GetGlobal",
+			Handler:    _User_GetGlobal_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

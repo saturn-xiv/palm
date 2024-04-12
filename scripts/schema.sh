@@ -208,7 +208,7 @@ function generate_loquat() {
 # }
 
 function generate_lilac() {
-    local target=$WORKSPACE/lilac/protocols/v2
+    local target=$WORKSPACE/lilac/services/v2
 
     echo "generate for lilac"
     if [ -d $target ]; then

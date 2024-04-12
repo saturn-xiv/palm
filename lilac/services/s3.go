@@ -1,4 +1,4 @@
-package minio
+package services
 
 import (
 	"context"
@@ -11,20 +11,22 @@ import (
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	pb "github.com/saturn-xiv/palm/lilac/minio/v2"
+	"github.com/saturn-xiv/palm/lilac/env/crypto"
+	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
 
 type S3Service struct {
 	pb.UnimplementedS3Server
 
 	client *minio.Client
+	jwt    *crypto.Jwt
 }
 
-func NewS3Service(client *minio.Client) *S3Service {
-	return &S3Service{client: client}
+func NewS3Service(client *minio.Client, jwt *crypto.Jwt) *S3Service {
+	return &S3Service{client: client, jwt: jwt}
 }
 
-func (p S3Service) CreateBucket(ctx context.Context, req *pb.CreateBucketRequest) (*emptypb.Empty, error) {
+func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*emptypb.Empty, error) {
 	found, err := p.client.BucketExists(ctx, req.Bucket)
 	if err != nil {
 		return nil, err
@@ -51,7 +53,7 @@ func (p S3Service) CreateBucket(ctx context.Context, req *pb.CreateBucketRequest
 			"Resource": "arn:aws:s3:::%s/*",
 		},
 	],
-}			
+}
 			`, now.Format("2006-01-02"), req.Bucket)
 			log.Debugf("%s", policy)
 			if err = p.client.SetBucketPolicy(ctx, req.Bucket, policy); err != nil {
@@ -81,17 +83,17 @@ func (p S3Service) CreateBucket(ctx context.Context, req *pb.CreateBucketRequest
 	return &emptypb.Empty{}, nil
 }
 
-func (p S3Service) UploadFile(ctx context.Context, req *pb.UploadFileRequest) (*pb.UploadFileResponse, error) {
+func (p S3Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest) (*pb.S3UploadFileResponse, error) {
 	expiry := time.Second * time.Duration(req.Ttl.Seconds)
 	url, err := p.client.PresignedPutObject(ctx, req.Bucket, req.Object, expiry)
 	if err != nil {
 		return nil, err
 	}
-	return &pb.UploadFileResponse{
+	return &pb.S3UploadFileResponse{
 		Url: url.String(),
 	}, nil
 }
-func (p S3Service) GetPresignedUrl(ctx context.Context, req *pb.GetPresignedUrlRequest) (*pb.UrlResponse, error) {
+func (p S3Service) GetPresignedUrl(ctx context.Context, req *pb.S3GetPresignedUrlRequest) (*pb.S3UrlResponse, error) {
 	expiry := time.Second * time.Duration(req.Ttl.Seconds)
 	params := make(url.Values)
 	params.Set("response-content-disposition", fmt.Sprintf(`attachment; filename="%s"`, req.Title))
@@ -100,11 +102,11 @@ func (p S3Service) GetPresignedUrl(ctx context.Context, req *pb.GetPresignedUrlR
 	if err != nil {
 		return nil, err
 	}
-	return &pb.UrlResponse{Url: url.String()}, nil
+	return &pb.S3UrlResponse{Url: url.String()}, nil
 }
 
-func (p S3Service) GetPermanentUrl(_ctx context.Context, req *pb.GetPermanentUrlRequest) (*pb.UrlResponse, error) {
-	return &pb.UrlResponse{
+func (p S3Service) GetPermanentUrl(_ctx context.Context, req *pb.S3GetPermanentUrlRequest) (*pb.S3UrlResponse, error) {
+	return &pb.S3UrlResponse{
 		Url: fmt.Sprintf("%s/%s/%s", p.client.EndpointURL(), req.Bucket, req.Bucket),
 	}, nil
 }
