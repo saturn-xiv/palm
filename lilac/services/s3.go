@@ -9,7 +9,6 @@ import (
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/lifecycle"
 	log "github.com/sirupsen/logrus"
-	"google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
@@ -18,27 +17,32 @@ import (
 type S3Service struct {
 	pb.UnimplementedS3Server
 
-	client *minio.Client
-	jwt    *crypto.Jwt
+	namespace string
+	client    *minio.Client
+	jwt       *crypto.Jwt
 }
 
-func NewS3Service(client *minio.Client, jwt *crypto.Jwt) *S3Service {
-	return &S3Service{client: client, jwt: jwt}
+func NewS3Service(namespace string, jwt *crypto.Jwt, client *minio.Client) *S3Service {
+	return &S3Service{namespace: namespace, client: client, jwt: jwt}
 }
 
-func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*emptypb.Empty, error) {
-	found, err := p.client.BucketExists(ctx, req.Bucket)
+func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*pb.S3CreateBucketResponse, error) {
+	bucket, err := req.BucketName(p.namespace)
+	if err != nil {
+		return nil, err
+	}
+	found, err := p.client.BucketExists(ctx, bucket)
 	if err != nil {
 		return nil, err
 	}
 	if !found {
-		log.Infof("create bucket %s", req.Bucket)
+		log.Infof("create bucket %s", bucket)
 
-		if err = p.client.MakeBucket(ctx, req.Bucket, minio.MakeBucketOptions{}); err != nil {
+		if err = p.client.MakeBucket(ctx, bucket, minio.MakeBucketOptions{}); err != nil {
 			return nil, err
 		}
-		if req.Published {
-			log.Infof("set bucket %s to public", req.Bucket)
+		if req.Public {
+			log.Infof("set bucket %s to public", bucket)
 			now := time.Now()
 			policy := fmt.Sprintf(`
 {
@@ -54,15 +58,15 @@ func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketReque
 		},
 	],
 }
-			`, now.Format("2006-01-02"), req.Bucket)
+			`, now.Format("2006-01-02"), bucket)
 			log.Debugf("%s", policy)
-			if err = p.client.SetBucketPolicy(ctx, req.Bucket, policy); err != nil {
+			if err = p.client.SetBucketPolicy(ctx, bucket, policy); err != nil {
 				return nil, err
 			}
 		}
 
 		if req.ExpirationDays != nil {
-			log.Infof("set bucket %s expiration-days %d", req.Bucket, *req.ExpirationDays)
+			log.Infof("set bucket %s expiration-days %d", bucket, *req.ExpirationDays)
 			config := lifecycle.NewConfiguration()
 			config.Rules = []lifecycle.Rule{
 				{
@@ -74,13 +78,13 @@ func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketReque
 				},
 			}
 
-			if err = p.client.SetBucketLifecycle(ctx, req.Bucket, config); err != nil {
+			if err = p.client.SetBucketLifecycle(ctx, bucket, config); err != nil {
 				return nil, err
 			}
 		}
 	}
 
-	return &emptypb.Empty{}, nil
+	return &pb.S3CreateBucketResponse{Name: bucket}, nil
 }
 
 func (p S3Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest) (*pb.S3UploadFileResponse, error) {

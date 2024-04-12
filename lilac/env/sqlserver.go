@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 )
@@ -24,6 +25,7 @@ func (p *SqlServer) Url() string {
 }
 
 func (p *SqlServer) Open() (*gorm.DB, error) {
+	log.Infof("open sqlserver://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName)
 	db, err := gorm.Open(sqlserver.Open(p.Url()), &gorm.Config{})
 	if err != nil {
 		return nil, err

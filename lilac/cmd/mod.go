@@ -3,10 +3,12 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
 	"github.com/saturn-xiv/palm/lilac/cmd/rpc"
+	"github.com/saturn-xiv/palm/lilac/cmd/web"
 )
 
 var (
@@ -36,10 +38,11 @@ func Execute() {
 }
 
 var (
-	gl_debug    bool
-	gl_config   string
-	gl_rpc_port int
-	gl_keys_dir string
+	gl_debug     bool
+	gl_config    string
+	gl_rpc_port  int
+	gl_http_port int
+	gl_keys_dir  string
 )
 
 func init() {
@@ -49,7 +52,7 @@ func init() {
 	{
 		var cmd = &cobra.Command{
 			Use:   "rpc",
-			Short: "Start a rbac gRPC server",
+			Short: "Start a gRPC server",
 			Run: func(cmd *cobra.Command, args []string) {
 				if gl_debug {
 					log.SetLevel(log.DebugLevel)
@@ -64,6 +67,29 @@ func init() {
 			},
 		}
 		cmd.Flags().IntVarP(&gl_rpc_port, "port", "p", 9999, "listen port")
+		cmd.Flags().StringVarP(&gl_keys_dir, "keys-dir", "k", "staging", "load keys from")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "web",
+			Short: "Start a HTTP server",
+			Run: func(cmd *cobra.Command, args []string) {
+				if gl_debug {
+					log.SetLevel(log.DebugLevel)
+				} else {
+					log.SetLevel(log.InfoLevel)
+					gin.SetMode(gin.ReleaseMode)
+				}
+				log.Debugf("run on debug mode")
+
+				if err := web.Launch(gl_http_port, gl_config, gl_keys_dir); err != nil {
+					log.Fatalf("start HTTP server: %s", err)
+				}
+			},
+		}
+		cmd.Flags().IntVarP(&gl_http_port, "port", "p", 8080, "listen port")
 		cmd.Flags().StringVarP(&gl_keys_dir, "keys-dir", "k", "staging", "load keys from")
 		root_cmd.AddCommand(cmd)
 	}

@@ -1796,7 +1796,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type S3Client interface {
-	CreateBucket(ctx context.Context, in *S3CreateBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateBucket(ctx context.Context, in *S3CreateBucketRequest, opts ...grpc.CallOption) (*S3CreateBucketResponse, error)
 	UploadFile(ctx context.Context, in *S3UploadFileRequest, opts ...grpc.CallOption) (*S3UploadFileResponse, error)
 	GetPresignedUrl(ctx context.Context, in *S3GetPresignedUrlRequest, opts ...grpc.CallOption) (*S3UrlResponse, error)
 	GetPermanentUrl(ctx context.Context, in *S3GetPermanentUrlRequest, opts ...grpc.CallOption) (*S3UrlResponse, error)
@@ -1810,8 +1810,8 @@ func NewS3Client(cc grpc.ClientConnInterface) S3Client {
 	return &s3Client{cc}
 }
 
-func (c *s3Client) CreateBucket(ctx context.Context, in *S3CreateBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *s3Client) CreateBucket(ctx context.Context, in *S3CreateBucketRequest, opts ...grpc.CallOption) (*S3CreateBucketResponse, error) {
+	out := new(S3CreateBucketResponse)
 	err := c.cc.Invoke(ctx, S3_CreateBucket_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1850,7 +1850,7 @@ func (c *s3Client) GetPermanentUrl(ctx context.Context, in *S3GetPermanentUrlReq
 // All implementations must embed UnimplementedS3Server
 // for forward compatibility
 type S3Server interface {
-	CreateBucket(context.Context, *S3CreateBucketRequest) (*emptypb.Empty, error)
+	CreateBucket(context.Context, *S3CreateBucketRequest) (*S3CreateBucketResponse, error)
 	UploadFile(context.Context, *S3UploadFileRequest) (*S3UploadFileResponse, error)
 	GetPresignedUrl(context.Context, *S3GetPresignedUrlRequest) (*S3UrlResponse, error)
 	GetPermanentUrl(context.Context, *S3GetPermanentUrlRequest) (*S3UrlResponse, error)
@@ -1861,7 +1861,7 @@ type S3Server interface {
 type UnimplementedS3Server struct {
 }
 
-func (UnimplementedS3Server) CreateBucket(context.Context, *S3CreateBucketRequest) (*emptypb.Empty, error) {
+func (UnimplementedS3Server) CreateBucket(context.Context, *S3CreateBucketRequest) (*S3CreateBucketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBucket not implemented")
 }
 func (UnimplementedS3Server) UploadFile(context.Context, *S3UploadFileRequest) (*S3UploadFileResponse, error) {

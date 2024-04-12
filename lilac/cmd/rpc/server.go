@@ -23,11 +23,15 @@ func Launch(port int, config_file string, keys_dir string) error {
 		return err
 	}
 
-	db, err := config.OpenDb()
+	cache, err := config.Redis.Open(config.Namespace)
 	if err != nil {
 		return err
 	}
-	enforcer, err := env.OpenCasbinEnforcer(db, config.Redis.Options().Addrs, config.Redis.Namespace)
+	db, err := config.Database.Open()
+	if err != nil {
+		return err
+	}
+	enforcer, err := env.OpenCasbinEnforcer(config.Namespace, db, config.Redis.Options().Addrs)
 	if err != nil {
 		return err
 	}
@@ -37,7 +41,7 @@ func Launch(port int, config_file string, keys_dir string) error {
 		return err
 	}
 
-	minio, err := config.Minio.Open()
+	s3, err := config.Minio.Open()
 	if err != nil {
 		return err
 	}
@@ -53,11 +57,11 @@ func Launch(port int, config_file string, keys_dir string) error {
 
 	server := grpc.NewServer(opts...)
 
-	pb.RegisterUserServer(server, services.NewUserService(aes, mac, jwt, enforcer))
+	pb.RegisterUserServer(server, services.NewUserService(db, cache, aes, mac, jwt, enforcer, &config.RabbitMq, s3))
 	pb.RegisterPolicyServer(server, services.NewPolicyService(jwt))
-	pb.RegisterSmsServer(server, services.NewSmsService(jwt))
-	pb.RegisterEmailServer(server, services.NewEmailService(jwt))
-	pb.RegisterS3Server(server, services.NewS3Service(minio, jwt))
+	pb.RegisterSmsServer(server, services.NewSmsService(jwt, &config.RabbitMq))
+	pb.RegisterEmailServer(server, services.NewEmailService(jwt, &config.RabbitMq))
+	pb.RegisterS3Server(server, services.NewS3Service(config.Namespace, jwt, s3))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
 	return server.Serve(socket)

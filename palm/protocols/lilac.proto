@@ -351,16 +351,20 @@ service Email {
 // ----------------------------------------------------------------------------
 
 service S3 {
-  rpc CreateBucket(S3CreateBucketRequest) returns (google.protobuf.Empty) {}
+  rpc CreateBucket(S3CreateBucketRequest) returns (S3CreateBucketResponse) {}
   rpc UploadFile(S3UploadFileRequest) returns (S3UploadFileResponse) {}
 
   rpc GetPresignedUrl(S3GetPresignedUrlRequest) returns (S3UrlResponse) {}
   rpc GetPermanentUrl(S3GetPermanentUrlRequest) returns (S3UrlResponse) {}
 }
 message S3CreateBucketRequest {
-  string bucket = 1;
-  optional int32 expiration_days = 2;
-  bool published = 9;
+  string name = 1;
+  optional uint32 expiration_days = 2;
+  bool public = 9;
+}
+
+message S3CreateBucketResponse {
+  string name = 1;
 }
 
 message S3UploadFileRequest {

@@ -116,7 +116,7 @@ func updateCallback(msg string) {
 	log.Debugf("%s", msg)
 }
 
-func OpenCasbinEnforcer(db *gorm.DB, redis_addrs []string, redis_channel string) (*casbin.Enforcer, error) {
+func OpenCasbinEnforcer(namespace string, db *gorm.DB, redis_addrs []string) (*casbin.Enforcer, error) {
 	log.Debugf("open casbin redis watcher")
 	wtc, err := rediswatcher.NewWatcherWithCluster(
 		strings.Join(redis_addrs, ","),
@@ -124,7 +124,7 @@ func OpenCasbinEnforcer(db *gorm.DB, redis_addrs []string, redis_channel string)
 			ClusterOptions: redis.ClusterOptions{
 				ClientName: "casbin-watcher",
 			},
-			Channel:    fmt.Sprintf("/%s-casbin", redis_channel),
+			Channel:    fmt.Sprintf("%s://casbin-watcher", namespace),
 			IgnoreSelf: false,
 		})
 	if err != nil {

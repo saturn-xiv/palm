@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -25,6 +26,7 @@ func (p *MySql) Url() string {
 }
 
 func (p *MySql) Open() (*gorm.DB, error) {
+	log.Infof("open mysql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName)
 	db, err := gorm.Open(mysql.Open(p.Url()), &gorm.Config{})
 	if err != nil {
 		return nil, err
