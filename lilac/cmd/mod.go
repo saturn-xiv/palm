@@ -22,7 +22,7 @@ var (
 var root_cmd = &cobra.Command{
 	Use:     "lilac",
 	Short:   "Lilac",
-	Long:    fmt.Sprintf("A rbac service based on Casbin.(%s).", repo_url),
+	Long:    fmt.Sprintf("A collection of user services based on Casbin & Tink.(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {

@@ -6,9 +6,11 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/casbin/casbin/v2"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/lifecycle"
 	log "github.com/sirupsen/logrus"
+	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
@@ -18,12 +20,14 @@ type S3Service struct {
 	pb.UnimplementedS3Server
 
 	namespace string
+	db        *gorm.DB
 	client    *minio.Client
 	jwt       *crypto.Jwt
+	enforcer  *casbin.Enforcer
 }
 
-func NewS3Service(namespace string, jwt *crypto.Jwt, client *minio.Client) *S3Service {
-	return &S3Service{namespace: namespace, client: client, jwt: jwt}
+func NewS3Service(namespace string, db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, client *minio.Client) *S3Service {
+	return &S3Service{namespace: namespace, db: db, client: client, jwt: jwt, enforcer: enforcer}
 }
 
 func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*pb.S3CreateBucketResponse, error) {

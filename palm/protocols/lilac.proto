@@ -9,6 +9,10 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 // ----------------------------------------------------------------------------
+enum Editor {
+  Textarea = 0;
+  Quill = 1;
+}
 
 message Pager {
   int32 page = 1;
@@ -22,7 +26,9 @@ message Pagination {
   bool has_next = 8;
   bool has_previous = 9;
 }
-
+message IdRequest {
+  int32 id = 1;
+}
 // ----------------------------------------------------------------------------
 
 service User {
@@ -42,19 +48,18 @@ service User {
   rpc ChangePassword(UserChangePasswordRequest)
       returns (google.protobuf.Empty) {}
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-  rpc Set(UserSetRequest) returns (google.protobuf.Empty) {}
-  rpc Get(UserGetRequest) returns (UserGetResponse) {}
+  rpc Set(KvSetRequest) returns (google.protobuf.Empty) {}
+  rpc Get(KvGetRequest) returns (KvGetResponse) {}
 
+  rpc Create(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
   rpc Index(Pager) returns (UserIndexResponse) {}
   rpc Sessions(Pager) returns (UserSessionsResponse) {}
   rpc SetPassword(UserSetPasswordRequest) returns (google.protobuf.Empty) {}
-  rpc Confirm(UserQuery) returns (google.protobuf.Empty) {}
-  rpc Disable(UserQuery) returns (google.protobuf.Empty) {}
-  rpc Enable(UserQuery) returns (google.protobuf.Empty) {}
-  rpc Lock(UserQuery) returns (google.protobuf.Empty) {}
-  rpc Unlock(UserQuery) returns (google.protobuf.Empty) {}
-  rpc SetGlobal(UserSetRequest) returns (google.protobuf.Empty) {}
-  rpc GetGlobal(UserGetRequest) returns (UserGetResponse) {}
+  rpc Confirm(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Lock(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Unlock(IdRequest) returns (google.protobuf.Empty) {}
 }
 
 message UserQuery {
@@ -177,7 +182,7 @@ message UserSessionsResponse {
 }
 
 message UserSetPasswordRequest {
-  UserQuery user = 1;
+  int32 user = 1;
   string password = 2;
 }
 
@@ -197,17 +202,6 @@ message UserAttachmentsResponse {
   Pagination pagination = 2;
 }
 
-message UserSetRequest {
-  string key = 1;
-  bytes value = 2;
-  bool encrypt = 3;
-}
-message UserGetRequest {
-  string key = 1;
-}
-message UserGetResponse {
-  bytes value = 1;
-}
 // ----------------------------------------------------------------------------
 
 service Policy {
@@ -397,4 +391,243 @@ message S3GetPermanentUrlRequest {
 
 message S3UrlResponse {
   string url = 1;
+}
+
+// ----------------------------------------------------------------------------
+service Locale {
+  rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
+  rpc Index(Pager) returns (LocaleIndexResponse) {}
+  rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
+}
+message LocaleByLangRequest {
+  string lang = 1;
+}
+message LocaleByLangResponse {
+  message Item {
+    string code = 1;
+    string message = 2;
+  }
+  repeated Item items = 1;
+}
+message LocaleIndexResponse {
+  message Item {
+    int32 id = 1;
+    string lang = 2;
+    string code = 3;
+    string message = 4;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
+}
+message LocaleSetRequest {
+  string lang = 1;
+  string code = 2;
+  string message = 3;
+}
+// ----------------------------------------------------------------------------
+
+service Site {
+  rpc Set(KvSetRequest) returns (google.protobuf.Empty) {}
+  rpc Get(KvGetRequest) returns (KvGetResponse) {}
+
+  rpc SetInfo(SiteInfo) returns (google.protobuf.Empty) {}
+  rpc GetInfo(google.protobuf.Empty) returns (SiteInfo) {}
+  rpc SetFavicon(SiteFavicon) returns (google.protobuf.Empty) {}
+  rpc GetFavicon(google.protobuf.Empty) returns (SiteFavicon) {}
+  rpc SetAuthors(SiteAuthors) returns (google.protobuf.Empty) {}
+  rpc GetAuthors(google.protobuf.Empty) returns (SiteAuthors) {}
+  rpc SetKeywords(SiteKeywords) returns (google.protobuf.Empty) {}
+  rpc GetKeywords(google.protobuf.Empty) returns (SiteKeywords) {}
+
+  rpc SetIcpCode(SiteIcpCode) returns (google.protobuf.Empty) {}
+  rpc GetIcpCode(google.protobuf.Empty) returns (SiteIcpCode) {}
+  rpc DeleteIcpCode(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc SetGabCode(SiteGabCode) returns (google.protobuf.Empty) {}
+  rpc GetGabCode(google.protobuf.Empty) returns (SiteGabCode) {}
+  rpc DeleteGabCode(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc SetBaidu(SiteBaidu) returns (google.protobuf.Empty) {}
+  rpc GetBaidu(google.protobuf.Empty) returns (SiteBaidu) {}
+  rpc DeleteBaidu(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc PingBaidu(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc SetGoogle(SiteGoogle) returns (google.protobuf.Empty) {}
+  rpc GetGoogle(google.protobuf.Empty) returns (SiteGoogle) {}
+  rpc DeleteGoogle(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc PingGoogle(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc SetIndexNow(SiteIndexNow) returns (google.protobuf.Empty) {}
+  rpc GetIndexNow(google.protobuf.Empty) returns (SiteIndexNow) {}
+  rpc DeleteIndexNow(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc PingIndexNow(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc SetGoogleReCaptcha(SiteGoogleReCaptcha) returns (google.protobuf.Empty) {}
+  rpc GetSiteGoogleReCaptcha(google.protobuf.Empty)
+      returns (SiteGoogleReCaptcha) {}
+  rpc DeleteSiteGoogleReCaptcha(google.protobuf.Empty)
+      returns (google.protobuf.Empty) {}
+}
+
+message KvSetRequest {
+  string key = 1;
+  bytes value = 2;
+  bool encrypt = 3;
+}
+message KvGetRequest {
+  string key = 1;
+}
+message KvGetResponse {
+  bytes value = 1;
+}
+message SiteIcpCode {
+  string code = 1;
+}
+message SiteGabCode {
+  string code = 1;
+  string name = 2;
+}
+
+message SiteBaidu {
+  string code = 1;
+  string content = 2;
+}
+message SiteGoogle {
+  string code = 1;
+}
+
+message SiteIndexNow {
+  string key = 1;
+}
+
+message SiteGoogleReCaptcha {
+  string site_key = 1;
+  string secret = 2;
+}
+
+message SiteAuthors {
+  message Item {
+    string name = 1;
+    string email = 2;
+  }
+  repeated Item ites = 1;
+}
+
+message SiteKeywords {
+  repeated string items = 1;
+}
+message SiteInfo {
+  string title = 1;
+  string subhead = 2;
+  string description = 3;
+  string copyright = 4;
+}
+message SiteFavicon {
+  string url = 1;
+}
+// ----------------------------------------------------------------------------
+service LeaveWord {
+  rpc Create(LeaveWordCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (LeaveWordIndexResponse) {}
+  rpc Delete(IdRequest) returns (google.protobuf.Empty) {}
+}
+message LeaveWordCreateRequest {
+  string content = 1;
+  Editor editor = 2;
+  string ip = 3;
+  string lang = 4;
+}
+message LeaveWordIndexResponse {
+  message Item {
+    int32 id = 1;
+    string ip = 2;
+    string lang = 3;
+    string content = 4;
+    Editor editor = 5;
+    optional google.protobuf.Timestamp published_at = 7;
+    optional google.protobuf.Timestamp deleted_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
+}
+// ----------------------------------------------------------------------------
+service Tag {
+  rpc Create(TagCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Edit(TagEditRequest) returns (google.protobuf.Empty) {}
+  rpc Index(google.protobuf.Empty) returns (TagIndexResponse) {}
+  rpc Delete(IdRequest) returns (google.protobuf.Empty) {}
+}
+message TagCreateRequest {
+  string name = 1;
+}
+message TagEditRequest {
+  int32 id = 1;
+  string name = 2;
+}
+message TagIndexResponse {
+  message Item {
+    int32 id = 1;
+    string name = 2;
+    int32 sort_order = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+}
+// ----------------------------------------------------------------------------
+service Category {
+  rpc Create(CategoryCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Edit(CategoryEditRequest) returns (google.protobuf.Empty) {}
+  rpc Index(google.protobuf.Empty) returns (CategoryIndexResponse) {}
+  rpc Delete(IdRequest) returns (google.protobuf.Empty) {}
+}
+message CategoryCreateRequest {
+  string code = 1;
+  int32 left = 11;
+  int32 right = 12;
+}
+message CategoryEditRequest {
+  int32 id = 1;
+  string code = 2;
+  int32 left = 11;
+  int32 right = 12;
+}
+message CategoryIndexResponse {
+  message Item {
+    int32 id = 1;
+    string code = 2;
+    int32 left = 3;
+    int32 right = 4;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+}
+
+// ----------------------------------------------------------------------------
+service Notification {
+  rpc Create(NotificationCreateRequest) returns (google.protobuf.Empty) {}
+  rpc SetRead(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Unread(google.protobuf.Empty) returns (NotificationIndexResponse) {}
+  rpc Index(google.protobuf.Empty) returns (NotificationIndexResponse) {}
+  rpc Delete(IdRequest) returns (google.protobuf.Empty) {}
+}
+message NotificationCreateRequest {
+  string title = 1;
+  string body = 2;
+  string summary = 3;
+  string url = 4;
+}
+
+message NotificationIndexResponse {
+  message Item {
+    int32 id = 1;
+    string title = 2;
+    string body = 3;
+    string summary = 4;
+    string url = 5;
+    optional google.protobuf.Timestamp read_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
 }

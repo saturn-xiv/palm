@@ -1,6 +1,9 @@
 package services
 
 import (
+	"github.com/casbin/casbin/v2"
+	"gorm.io/gorm"
+
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
@@ -8,9 +11,11 @@ import (
 type PolicyService struct {
 	pb.UnimplementedPolicyServer
 
-	jwt *crypto.Jwt
+	db       *gorm.DB
+	jwt      *crypto.Jwt
+	enforcer *casbin.Enforcer
 }
 
-func NewPolicyService(jwt *crypto.Jwt) *PolicyService {
-	return &PolicyService{jwt: jwt}
+func NewPolicyService(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) *PolicyService {
+	return &PolicyService{db: db, jwt: jwt, enforcer: enforcer}
 }
