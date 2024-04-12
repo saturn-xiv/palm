@@ -8,10 +8,10 @@ function build() {
     cd $WORKSPACE/$1
 
     local pkg="github.com/saturn-xiv/palm/$1/cmd"
-    local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
+    local ldflags="-extldflags=-static -s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
     echo "build $1.$2"
-    GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORKSPACE/$1/tmp/$1.$2
+    GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -tags sqlite_omit_load_extension -o $WORKSPACE/$1/tmp/$1.$2
 }
 
 if [ "$#" -ne 1 ]; then
