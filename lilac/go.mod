@@ -7,6 +7,7 @@ require (
 	github.com/casbin/casbin/v2 v2.87.1
 	github.com/casbin/gorm-adapter/v3 v3.24.0
 	github.com/casbin/redis-watcher/v2 v2.5.0
+	github.com/eduncan911/podcast v1.4.2
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/validator/v10 v10.19.0
@@ -14,6 +15,7 @@ require (
 	github.com/minio/minio-go/v7 v7.0.69
 	github.com/rabbitmq/amqp091-go v1.9.0
 	github.com/redis/go-redis/v9 v9.5.1
+	github.com/sabloger/sitemap-generator v1.3.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.0
 	github.com/tink-crypto/tink-go/v2 v2.1.0
@@ -35,6 +37,7 @@ require (
 	cloud.google.com/go/compute v1.25.1 // indirect
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
 	filippo.io/edwards25519 v1.1.0 // indirect
+	github.com/beevik/etree v1.1.0 // indirect
 	github.com/bytedance/sonic v1.11.3 // indirect
 	github.com/casbin/govaluate v1.1.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
