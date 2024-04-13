@@ -5,10 +5,15 @@ import (
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/gob"
+	"fmt"
 	"time"
 
 	"google.golang.org/protobuf/proto"
 )
+
+func (p *EmailSendRequest_Address) Display() string {
+	return fmt.Sprintf("%s<%s>", p.Name, p.Email)
+}
 
 func (p *PolicyUserRequest) Code() (string, error) {
 	buf, err := proto.Marshal(p)

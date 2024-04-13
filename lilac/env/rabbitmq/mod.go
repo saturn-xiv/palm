@@ -9,7 +9,11 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type HandlerFunc func(id string, content_type string, body []byte) error
+type Consumer interface {
+	Handle(id string, content_type string, body []byte) error
+}
+
+// type HandlerFunc func(id string, content_type string, body []byte) error
 
 type Config struct {
 	Host        string `toml:"host"`
@@ -42,7 +46,7 @@ func (p *Config) Produce(ctx context.Context, exchange string, routing_key strin
 
 }
 
-func (p *Config) Consume(ctx context.Context, name string, queue string, handler HandlerFunc) error {
+func (p *Config) Consume(ctx context.Context, name string, queue string, consumer Consumer) error {
 	log.Debugf("open rabbitmq://%s@%s:%d/%s", p.User, p.Host, p.Port, p.VirtualHost)
 	con, err := amqp.Dial(p.Url())
 	if err != nil {
@@ -61,7 +65,7 @@ func (p *Config) Consume(ctx context.Context, name string, queue string, handler
 	}
 	for it := range messages {
 		log.Infof("receive message (%s,%s)", it.MessageId, it.ContentType)
-		if err = handler(it.MessageId, it.ContentType, it.Body); err != nil {
+		if err = consumer.Handle(it.MessageId, it.ContentType, it.Body); err != nil {
 			return err
 		}
 	}

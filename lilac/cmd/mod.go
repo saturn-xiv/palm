@@ -7,7 +7,9 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
+	email_send_consumer "github.com/saturn-xiv/palm/lilac/cmd/email-send-consumer"
 	"github.com/saturn-xiv/palm/lilac/cmd/rpc"
+	sms_send_consumer "github.com/saturn-xiv/palm/lilac/cmd/sms-send-consumer"
 	"github.com/saturn-xiv/palm/lilac/cmd/web"
 )
 
@@ -43,6 +45,11 @@ var (
 	gl_rpc_listen_address string
 	gl_web_listen_address string
 	gl_keys_dir           string
+
+	gl_email_send_queue    string
+	gl_email_send_consumer string
+	gl_sms_send_queue      string
+	gl_sms_send_consumer   string
 )
 
 func init() {
@@ -54,12 +61,7 @@ func init() {
 			Use:   "rpc",
 			Short: "Start a gRPC server",
 			Run: func(cmd *cobra.Command, args []string) {
-				if gl_debug {
-					log.SetLevel(log.DebugLevel)
-				} else {
-					log.SetLevel(log.InfoLevel)
-				}
-				log.Debugf("run on debug mode")
+				set_log(gl_debug)
 
 				if err := rpc.Launch(gl_rpc_listen_address, gl_config, gl_keys_dir); err != nil {
 					log.Fatalf("start gRPC server: %s", err)
@@ -77,13 +79,10 @@ func init() {
 			Use:   "web",
 			Short: "Start a HTTP server",
 			Run: func(cmd *cobra.Command, args []string) {
-				if gl_debug {
-					log.SetLevel(log.DebugLevel)
-				} else {
-					log.SetLevel(log.InfoLevel)
+				set_log(gl_debug)
+				if !gl_debug {
 					gin.SetMode(gin.ReleaseMode)
 				}
-				log.Debugf("run on debug mode")
 
 				if err := web.Launch(gl_web_listen_address, gl_config, gl_keys_dir); err != nil {
 					log.Fatalf("start HTTP server: %s", err)
@@ -95,4 +94,43 @@ func init() {
 		root_cmd.AddCommand(cmd)
 	}
 
+	{
+		var cmd = &cobra.Command{
+			Use:   "email-send-consumer",
+			Short: "Start an email-send consumer",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := email_send_consumer.Launch(gl_email_send_consumer, gl_email_send_queue, gl_config); err != nil {
+					log.Fatalf("%s", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_email_send_consumer, "consumer", "C", "email-send-consumer", "consumer name")
+		cmd.Flags().StringVarP(&gl_email_send_queue, "queue", "q", "email-send", "queue name")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "sms-send-consumer",
+			Short: "Start a sms-send consumer",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := sms_send_consumer.Launch(gl_sms_send_consumer, gl_sms_send_queue, gl_config); err != nil {
+					log.Fatalf("%s", err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_sms_send_consumer, "consumer", "C", "sms-send-consumer", "consumer name")
+		cmd.Flags().StringVarP(&gl_sms_send_queue, "queue", "q", "sms-send", "queue name")
+		root_cmd.AddCommand(cmd)
+	}
+}
+
+func set_log(debug bool) {
+	if debug {
+		log.SetLevel(log.DebugLevel)
+	} else {
+		log.SetLevel(log.InfoLevel)
+	}
+	log.Debugf("run on debug mode")
 }
