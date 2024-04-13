@@ -9,7 +9,7 @@ import (
 )
 
 type CategoryService struct {
-	pb.UnimplementedLocaleServer
+	pb.UnimplementedCategoryServer
 
 	jwt      *crypto.Jwt
 	db       *gorm.DB

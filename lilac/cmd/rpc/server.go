@@ -12,6 +12,7 @@ import (
 
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
+	"github.com/saturn-xiv/palm/lilac/models"
 	"github.com/saturn-xiv/palm/lilac/services"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
@@ -29,6 +30,9 @@ func Launch(port int, config_file string, keys_dir string) error {
 	}
 	db, err := config.Database.Open()
 	if err != nil {
+		return err
+	}
+	if err = models.AutoMigrate(db); err != nil {
 		return err
 	}
 	enforcer, err := env.OpenCasbinEnforcer(config.Namespace, db, config.Redis.Options().Addrs)
@@ -66,7 +70,7 @@ func Launch(port int, config_file string, keys_dir string) error {
 	pb.RegisterLeaveWordServer(server, services.NewLeaveWordService(db, jwt, enforcer))
 	pb.RegisterNotificationServer(server, services.NewNotificationService(db, jwt, enforcer))
 	pb.RegisterTagServer(server, services.NewTagService(db, jwt, enforcer))
-	pb.RegisterNotificationServer(server, services.NewNotificationService(db, jwt, enforcer))
+	pb.RegisterCategoryServer(server, services.NewCategoryService(db, jwt, enforcer))
 	pb.RegisterSiteServer(server, services.NewSiteService(db, aes, jwt, enforcer))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
