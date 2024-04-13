@@ -3,7 +3,6 @@ package web
 import (
 	"embed"
 	"html/template"
-	"io"
 	"net/http"
 	text_tpl "text/template"
 
@@ -56,14 +55,14 @@ func Launch(address string, config_file string, keys_dir string) error {
 	router.Use(errorHandler)
 	router.Use(gin.Recovery())
 
-	router.POST("/attachments", controllers.AttachmentUpload(db, jwt, s3))
-	router.GET("/twilio/sms-status-callback/:token", controllers.TwilioSmsStatusCallback(db, jwt))
-	router.GET("/robots.txt", RobotsTxt())
-	router.GET("/sitemap.xml", controllers.SiteMap(db))
+	router.POST("/attachments", controllers.Warp(controllers.AttachmentUpload(db, jwt, s3)))
+	router.GET("/twilio/sms-status-callback/:token", controllers.Warp(controllers.TwilioSmsStatusCallback(db, jwt)))
+	router.GET("/robots.txt", controllers.Warp(robotsTxt()))
+	router.GET("/sitemap.xml", controllers.Warp(controllers.SiteMap(db)))
 	{
 		group := router.Group("/:lang")
-		group.GET("/sitemap.xml", controllers.SiteMapByLang(db))
-		group.GET("/rss.xml", controllers.RssByLang(db))
+		group.GET("/sitemap.xml", controllers.Warp(controllers.SiteMapByLang(db)))
+		group.GET("/rss.xml", controllers.Warp(controllers.RssByLang(db)))
 	}
 
 	router.StaticFS("/public", http.FS(gl_assets_fs))
@@ -74,27 +73,22 @@ func Launch(address string, config_file string, keys_dir string) error {
 }
 
 // https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt
-func RobotsTxt() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		// TODO
-		if err := robots_txt(c.Writer, "change-me"); err != nil {
-			c.AbortWithError(http.StatusInternalServerError, err)
-			return
+func robotsTxt() controllers.HandlerFunc {
+	return func(c *gin.Context) error {
+		tpl, err := text_tpl.ParseFS(gl_templates_fs, "templates/robots.txt")
+		if err != nil {
+			return err
 		}
+		if err = tpl.Execute(c.Writer, gin.H{
+			"home": "https://change-me.org",
+		}); err != nil {
+			return err
+		}
+
 		c.Header(controllers.CONTENT_TYPE_HEADER, controllers.TEXT_CONTENT_TYPE)
 		c.Status(http.StatusOK)
+		return nil
 	}
-}
-
-func robots_txt(writer io.Writer, domain string) error {
-	tpl, err := text_tpl.ParseFS(gl_templates_fs, "templates/robots.txt")
-	if err != nil {
-
-		return err
-	}
-	return tpl.Execute(writer, gin.H{
-		"domain": domain,
-	})
 }
 
 func errorHandler(c *gin.Context) {

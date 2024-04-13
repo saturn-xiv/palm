@@ -11,8 +11,8 @@ import (
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 )
 
-func TwilioSmsStatusCallback(db *gorm.DB, jwt *crypto.Jwt) gin.HandlerFunc {
-	return func(c *gin.Context) {
+func TwilioSmsStatusCallback(db *gorm.DB, jwt *crypto.Jwt) HandlerFunc {
+	return func(c *gin.Context) error {
 		// TODO verify token
 		var msg = &twiml.MessagingMessage{}
 
@@ -21,10 +21,10 @@ func TwilioSmsStatusCallback(db *gorm.DB, jwt *crypto.Jwt) gin.HandlerFunc {
 
 		twiml, err := twiml.Messages([]twiml.Element{msg})
 		if err != nil {
-			c.AbortWithError(http.StatusInternalServerError, err)
-			return
+			return err
 		}
 		c.Header(CONTENT_TYPE_HEADER, XML_CONTENT_TYPE)
 		c.String(http.StatusOK, twiml)
+		return nil
 	}
 }
