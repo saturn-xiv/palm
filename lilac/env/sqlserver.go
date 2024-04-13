@@ -24,9 +24,9 @@ func (p *SqlServer) Url() string {
 	)
 }
 
-func (p *SqlServer) Open() (*gorm.DB, error) {
+func (p *SqlServer) Open(config *gorm.Config) (*gorm.DB, error) {
 	log.Infof("open sqlserver://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName)
-	db, err := gorm.Open(sqlserver.Open(p.Url()), &gorm.Config{})
+	db, err := gorm.Open(sqlserver.Open(p.Url()), config)
 	if err != nil {
 		return nil, err
 	}

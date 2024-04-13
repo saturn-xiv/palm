@@ -10,7 +10,7 @@ type Sqlite3 struct {
 	File string `toml:"file"`
 }
 
-func (p *Sqlite3) Open() (*gorm.DB, error) {
+func (p *Sqlite3) Open(config *gorm.Config) (*gorm.DB, error) {
 	log.Infof("open file://%s", p.File)
-	return gorm.Open(sqlite.Open(p.File), &gorm.Config{})
+	return gorm.Open(sqlite.Open(p.File), config)
 }

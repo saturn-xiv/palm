@@ -25,9 +25,9 @@ func (p *MySql) Url() string {
 	)
 }
 
-func (p *MySql) Open() (*gorm.DB, error) {
+func (p *MySql) Open(config *gorm.Config) (*gorm.DB, error) {
 	log.Infof("open mysql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName)
-	db, err := gorm.Open(mysql.Open(p.Url()), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(p.Url()), config)
 	if err != nil {
 		return nil, err
 	}

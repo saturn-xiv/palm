@@ -1,7 +1,6 @@
 package rpc
 
 import (
-	"fmt"
 	"net"
 
 	"github.com/BurntSushi/toml"
@@ -17,7 +16,7 @@ import (
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
 
-func Launch(port int, config_file string, keys_dir string) error {
+func Launch(address string, config_file string, keys_dir string) error {
 	log.Debugf("load configuration from %s", config_file)
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
@@ -51,7 +50,6 @@ func Launch(port int, config_file string, keys_dir string) error {
 	}
 
 	network := "tcp"
-	address := fmt.Sprintf("0.0.0.0:%d", port)
 	log.Infof("start gRPC on %s://%s", network, address)
 	socket, err := net.Listen(network, address)
 	if err != nil {
