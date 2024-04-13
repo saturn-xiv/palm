@@ -1,6 +1,7 @@
 package rpc
 
 import (
+	"context"
 	"net"
 
 	"github.com/BurntSushi/toml"
@@ -55,9 +56,31 @@ func Launch(address string, config_file string, keys_dir string) error {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	var opts []grpc.ServerOption
+	var options []grpc.ServerOption
 
-	server := grpc.NewServer(opts...)
+	server := grpc.NewServer(options...)
+
+	if config.GoogleOauth2.ClientID != "" {
+		log.Warnf("register google-oauth2 service")
+		pb.RegisterGoogleOauth2Server(server, services.NewGoogleOauth2Service(db, jwt, enforcer))
+	}
+	if config.WechatOauth2.AppID != "" {
+		log.Warnf("register wechat-oauth2 service")
+		pb.RegisterWechatOauth2Server(server, services.NewWechatOauth2Service(db, jwt, enforcer))
+	}
+	if config.WechatMiniProgram.AppID != "" {
+		log.Warnf("register wechat-mini-program service")
+		pb.RegisterWechatMiniProgramServer(server, services.NewWechatMiniProgramService(db, jwt, enforcer))
+	}
+	if config.WeChatPayMerchant.ID != "" {
+		log.Warnf("register wechat-pay service")
+		ctx := context.Background()
+		client, err := config.WeChatPayMerchant.Open(ctx)
+		if err != nil {
+			return err
+		}
+		pb.RegisterWechatPayServer(server, services.NewWechatPayService(db, jwt, enforcer, client))
+	}
 
 	pb.RegisterUserServer(server, services.NewUserService(db, cache, aes, mac, jwt, enforcer, &config.RabbitMq, s3))
 	pb.RegisterPolicyServer(server, services.NewPolicyService(db, jwt, enforcer))

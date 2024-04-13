@@ -4116,3 +4116,207 @@ var Notification_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "lilac.proto",
 }
+
+const ()
+
+// WechatPayClient is the client API for WechatPay service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type WechatPayClient interface {
+}
+
+type wechatPayClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWechatPayClient(cc grpc.ClientConnInterface) WechatPayClient {
+	return &wechatPayClient{cc}
+}
+
+// WechatPayServer is the server API for WechatPay service.
+// All implementations must embed UnimplementedWechatPayServer
+// for forward compatibility
+type WechatPayServer interface {
+	mustEmbedUnimplementedWechatPayServer()
+}
+
+// UnimplementedWechatPayServer must be embedded to have forward compatible implementations.
+type UnimplementedWechatPayServer struct {
+}
+
+func (UnimplementedWechatPayServer) mustEmbedUnimplementedWechatPayServer() {}
+
+// UnsafeWechatPayServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WechatPayServer will
+// result in compilation errors.
+type UnsafeWechatPayServer interface {
+	mustEmbedUnimplementedWechatPayServer()
+}
+
+func RegisterWechatPayServer(s grpc.ServiceRegistrar, srv WechatPayServer) {
+	s.RegisterService(&WechatPay_ServiceDesc, srv)
+}
+
+// WechatPay_ServiceDesc is the grpc.ServiceDesc for WechatPay service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var WechatPay_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.lilac.auth.v1.WechatPay",
+	HandlerType: (*WechatPayServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams:     []grpc.StreamDesc{},
+	Metadata:    "lilac.proto",
+}
+
+const ()
+
+// WechatOauth2Client is the client API for WechatOauth2 service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type WechatOauth2Client interface {
+}
+
+type wechatOauth2Client struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWechatOauth2Client(cc grpc.ClientConnInterface) WechatOauth2Client {
+	return &wechatOauth2Client{cc}
+}
+
+// WechatOauth2Server is the server API for WechatOauth2 service.
+// All implementations must embed UnimplementedWechatOauth2Server
+// for forward compatibility
+type WechatOauth2Server interface {
+	mustEmbedUnimplementedWechatOauth2Server()
+}
+
+// UnimplementedWechatOauth2Server must be embedded to have forward compatible implementations.
+type UnimplementedWechatOauth2Server struct {
+}
+
+func (UnimplementedWechatOauth2Server) mustEmbedUnimplementedWechatOauth2Server() {}
+
+// UnsafeWechatOauth2Server may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WechatOauth2Server will
+// result in compilation errors.
+type UnsafeWechatOauth2Server interface {
+	mustEmbedUnimplementedWechatOauth2Server()
+}
+
+func RegisterWechatOauth2Server(s grpc.ServiceRegistrar, srv WechatOauth2Server) {
+	s.RegisterService(&WechatOauth2_ServiceDesc, srv)
+}
+
+// WechatOauth2_ServiceDesc is the grpc.ServiceDesc for WechatOauth2 service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var WechatOauth2_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.lilac.auth.v1.WechatOauth2",
+	HandlerType: (*WechatOauth2Server)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams:     []grpc.StreamDesc{},
+	Metadata:    "lilac.proto",
+}
+
+const ()
+
+// WechatMiniProgramClient is the client API for WechatMiniProgram service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type WechatMiniProgramClient interface {
+}
+
+type wechatMiniProgramClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWechatMiniProgramClient(cc grpc.ClientConnInterface) WechatMiniProgramClient {
+	return &wechatMiniProgramClient{cc}
+}
+
+// WechatMiniProgramServer is the server API for WechatMiniProgram service.
+// All implementations must embed UnimplementedWechatMiniProgramServer
+// for forward compatibility
+type WechatMiniProgramServer interface {
+	mustEmbedUnimplementedWechatMiniProgramServer()
+}
+
+// UnimplementedWechatMiniProgramServer must be embedded to have forward compatible implementations.
+type UnimplementedWechatMiniProgramServer struct {
+}
+
+func (UnimplementedWechatMiniProgramServer) mustEmbedUnimplementedWechatMiniProgramServer() {}
+
+// UnsafeWechatMiniProgramServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WechatMiniProgramServer will
+// result in compilation errors.
+type UnsafeWechatMiniProgramServer interface {
+	mustEmbedUnimplementedWechatMiniProgramServer()
+}
+
+func RegisterWechatMiniProgramServer(s grpc.ServiceRegistrar, srv WechatMiniProgramServer) {
+	s.RegisterService(&WechatMiniProgram_ServiceDesc, srv)
+}
+
+// WechatMiniProgram_ServiceDesc is the grpc.ServiceDesc for WechatMiniProgram service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var WechatMiniProgram_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.lilac.auth.v1.WechatMiniProgram",
+	HandlerType: (*WechatMiniProgramServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams:     []grpc.StreamDesc{},
+	Metadata:    "lilac.proto",
+}
+
+const ()
+
+// GoogleOauth2Client is the client API for GoogleOauth2 service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GoogleOauth2Client interface {
+}
+
+type googleOauth2Client struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGoogleOauth2Client(cc grpc.ClientConnInterface) GoogleOauth2Client {
+	return &googleOauth2Client{cc}
+}
+
+// GoogleOauth2Server is the server API for GoogleOauth2 service.
+// All implementations must embed UnimplementedGoogleOauth2Server
+// for forward compatibility
+type GoogleOauth2Server interface {
+	mustEmbedUnimplementedGoogleOauth2Server()
+}
+
+// UnimplementedGoogleOauth2Server must be embedded to have forward compatible implementations.
+type UnimplementedGoogleOauth2Server struct {
+}
+
+func (UnimplementedGoogleOauth2Server) mustEmbedUnimplementedGoogleOauth2Server() {}
+
+// UnsafeGoogleOauth2Server may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GoogleOauth2Server will
+// result in compilation errors.
+type UnsafeGoogleOauth2Server interface {
+	mustEmbedUnimplementedGoogleOauth2Server()
+}
+
+func RegisterGoogleOauth2Server(s grpc.ServiceRegistrar, srv GoogleOauth2Server) {
+	s.RegisterService(&GoogleOauth2_ServiceDesc, srv)
+}
+
+// GoogleOauth2_ServiceDesc is the grpc.ServiceDesc for GoogleOauth2 service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var GoogleOauth2_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.lilac.auth.v1.GoogleOauth2",
+	HandlerType: (*GoogleOauth2Server)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams:     []grpc.StreamDesc{},
+	Metadata:    "lilac.proto",
+}
