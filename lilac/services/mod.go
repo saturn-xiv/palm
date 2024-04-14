@@ -118,11 +118,30 @@ func (p *CurrentUser) can(enforcer *casbin.Enforcer, permission *pb.PolicyPermis
 }
 
 const (
-	gl_user_sign_in_audience = "users.sign-in"
+	users_SIGN_IN_AUDIENCE = "users.sign-in"
 )
 
-func NewCurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*CurrentUser, error) {
+func CurrentUserFromToken(token string, db *gorm.DB, jwt *crypto.Jwt) (*CurrentUser, error) {
 	issuer := reflect.TypeOf(CurrentUser{}).PkgPath()
+	_, subject, _, err := jwt.Verify(token, issuer, users_SIGN_IN_AUDIENCE)
+	if err != nil {
+		return nil, err
+	}
+	var it models.Session
+
+	if rst := db.Where("uid = @uid", map[string]interface{}{"uid": subject}).First(&it); rst.Error != nil {
+		return nil, rst.Error
+	}
+
+	return &CurrentUser{
+		ID:           it.UserID,
+		ProviderType: it.ProviderType,
+		ProviderId:   it.ProviderId,
+	}, nil
+}
+
+func NewCurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*CurrentUser, error) {
+
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return nil, status.Errorf(codes.Unauthenticated, "metadata is not provided")
@@ -133,21 +152,7 @@ func NewCurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*Current
 		if !ok {
 			continue
 		}
-		_, subject, _, err := jwt.Verify(token, issuer, gl_user_sign_in_audience)
-		if err != nil {
-			return nil, err
-		}
-		var it models.Session
-
-		if rst := db.Where("uid = @uid", map[string]interface{}{"uid": subject}).First(&it); rst.Error != nil {
-			return nil, rst.Error
-		}
-
-		return &CurrentUser{
-			ID:           it.UserID,
-			ProviderType: it.ProviderType,
-			ProviderId:   it.ProviderId,
-		}, nil
+		return CurrentUserFromToken(token, db, jwt)
 	}
 
 	return nil, status.Errorf(codes.Unauthenticated, "authorization token is not provided")

@@ -398,6 +398,7 @@ service Locale {
   rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
   rpc Index(Pager) returns (LocaleIndexResponse) {}
   rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
+  rpc Destroy(IdRequest) returns (google.protobuf.Empty) {}
 }
 message LocaleByLangRequest {
   string lang = 1;

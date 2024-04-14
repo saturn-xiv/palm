@@ -1950,9 +1950,10 @@ var S3_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Locale_ByLang_FullMethodName = "/palm.lilac.auth.v1.Locale/ByLang"
-	Locale_Index_FullMethodName  = "/palm.lilac.auth.v1.Locale/Index"
-	Locale_Set_FullMethodName    = "/palm.lilac.auth.v1.Locale/Set"
+	Locale_ByLang_FullMethodName  = "/palm.lilac.auth.v1.Locale/ByLang"
+	Locale_Index_FullMethodName   = "/palm.lilac.auth.v1.Locale/Index"
+	Locale_Set_FullMethodName     = "/palm.lilac.auth.v1.Locale/Set"
+	Locale_Destroy_FullMethodName = "/palm.lilac.auth.v1.Locale/Destroy"
 )
 
 // LocaleClient is the client API for Locale service.
@@ -1962,6 +1963,7 @@ type LocaleClient interface {
 	ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleByLangResponse, error)
 	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
 	Set(ctx context.Context, in *LocaleSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type localeClient struct {
@@ -1999,6 +2001,15 @@ func (c *localeClient) Set(ctx context.Context, in *LocaleSetRequest, opts ...gr
 	return out, nil
 }
 
+func (c *localeClient) Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Locale_Destroy_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LocaleServer is the server API for Locale service.
 // All implementations must embed UnimplementedLocaleServer
 // for forward compatibility
@@ -2006,6 +2017,7 @@ type LocaleServer interface {
 	ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error)
 	Index(context.Context, *Pager) (*LocaleIndexResponse, error)
 	Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error)
+	Destroy(context.Context, *IdRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedLocaleServer()
 }
 
@@ -2021,6 +2033,9 @@ func (UnimplementedLocaleServer) Index(context.Context, *Pager) (*LocaleIndexRes
 }
 func (UnimplementedLocaleServer) Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
+}
+func (UnimplementedLocaleServer) Destroy(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Destroy not implemented")
 }
 func (UnimplementedLocaleServer) mustEmbedUnimplementedLocaleServer() {}
 
@@ -2089,6 +2104,24 @@ func _Locale_Set_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Locale_Destroy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).Destroy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_Destroy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).Destroy(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Locale_ServiceDesc is the grpc.ServiceDesc for Locale service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2107,6 +2140,10 @@ var Locale_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Set",
 			Handler:    _Locale_Set_Handler,
+		},
+		{
+			MethodName: "Destroy",
+			Handler:    _Locale_Destroy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

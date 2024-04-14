@@ -11,7 +11,10 @@ type Database struct {
 }
 
 func (p *Database) Open() (*gorm.DB, error) {
-	config := gorm.Config{Logger: &gormLogger{}}
+	config := gorm.Config{
+		Logger: &gormLogger{},
+		// QueryFields: true,
+	}
 	if len(p.PostgreSql.DbName) > 0 {
 		return p.PostgreSql.Open(&config)
 	}

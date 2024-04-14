@@ -30,5 +30,6 @@ func AutoMigrate(db *gorm.DB) error {
 		&Tag{}, &TagResource{},
 		&Category{}, &CategoryResource{},
 		&Notification{},
+		&ShorterLink{},
 	)
 }

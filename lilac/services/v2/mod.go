@@ -6,9 +6,17 @@ import (
 	"encoding/base64"
 	"encoding/gob"
 	"fmt"
+	"strings"
 	"time"
 
+	"github.com/go-playground/validator/v10"
 	"google.golang.org/protobuf/proto"
+)
+
+var (
+	gl_validate *validator.Validate = validator.New(validator.WithRequiredStructEnabled())
+
+	gl_bucket_name_validator_tag = "required,min=3,max=63"
 )
 
 func (p *PolicyRolesResponse_Item) Display() string {
@@ -39,7 +47,7 @@ func (p *PolicyUserRequest) Code() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return base64.StdEncoding.EncodeToString(buf), nil
+	return base64.StdEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
 
 func (p *PolicyRolesResponse_Item) Code() (string, error) {
@@ -47,7 +55,7 @@ func (p *PolicyRolesResponse_Item) Code() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return base64.StdEncoding.EncodeToString(buf), nil
+	return base64.StdEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
 
 func (p *PolicyPermissionsResponse_Item_Resource) Code() (string, error) {
@@ -55,10 +63,10 @@ func (p *PolicyPermissionsResponse_Item_Resource) Code() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return base64.StdEncoding.EncodeToString(buf), nil
+	return base64.StdEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
 func NewPolicyResource(code string) (*PolicyPermissionsResponse_Item_Resource, error) {
-	buf, err := base64.StdEncoding.DecodeString(code)
+	buf, err := base64.StdEncoding.WithPadding(base64.NoPadding).DecodeString(code)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +77,7 @@ func NewPolicyResource(code string) (*PolicyPermissionsResponse_Item_Resource, e
 	return &it, nil
 }
 func NewPolicyRole(code string) (*PolicyRolesResponse_Item, error) {
-	buf, err := base64.StdEncoding.DecodeString(code)
+	buf, err := base64.StdEncoding.WithPadding(base64.NoPadding).DecodeString(code)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +89,7 @@ func NewPolicyRole(code string) (*PolicyRolesResponse_Item, error) {
 }
 
 func NewPolicyUser(code string) (*PolicyUserRequest, error) {
-	buf, err := base64.StdEncoding.DecodeString(code)
+	buf, err := base64.StdEncoding.WithPadding(base64.NoPadding).DecodeString(code)
 	if err != nil {
 		return nil, err
 	}
@@ -100,13 +108,31 @@ type s3Bucket struct {
 	year            int
 }
 
+func IsS3BucketPublic(bucket string) (bool, error) {
+	bin, err := base32.StdEncoding.WithPadding(base32.NoPadding).DecodeString(strings.ToUpper(bucket))
+	if err != nil {
+		return false, err
+	}
+	buf := bytes.NewBuffer(bin)
+	dec := gob.NewDecoder(buf)
+	var it s3Bucket
+	if err := dec.Decode(&it); err != nil {
+		return false, err
+	}
+	return it.public, nil
+}
+
 func (p *s3Bucket) code() (string, error) {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	if err := enc.Encode(p); err != nil {
 		return "", err
 	}
-	return base32.StdEncoding.EncodeToString(buf.Bytes()), nil
+	code := strings.ToLower(base32.StdEncoding.WithPadding(base32.NoPadding).EncodeToString(buf.Bytes()))
+	if err := gl_validate.Var(code, gl_bucket_name_validator_tag); err != nil {
+		return "", err
+	}
+	return code, nil
 }
 
 func (p *S3CreateBucketRequest) BucketName(namespace string) (string, error) {
@@ -120,12 +146,12 @@ func (p *S3CreateBucketRequest) BucketName(namespace string) (string, error) {
 	return bucket.code()
 }
 
-func (p *Pager) Offset(total int64) int64 {
-	return (p.Page_(total) - 1) * p.Size_()
+func (p *Pager) Offset(total int64) int {
+	return (int(p.Page_(total)) - 1) * p.Size_()
 }
 
 func (p *Pager) Page_(total int64) int64 {
-	size := p.Size_()
+	size := int64(p.Size_())
 	if total < size || p.Page < 1 {
 		return 1
 	}
@@ -142,7 +168,7 @@ func (p *Pager) Page_(total int64) int64 {
 	return p.Page
 }
 
-func (p *Pager) Size_() int64 {
+func (p *Pager) Size_() int {
 	const MIN_SIZE = 1 << 2
 	const MAX_SIZE = 1 << 12
 	if p.Size < MIN_SIZE {
@@ -151,15 +177,15 @@ func (p *Pager) Size_() int64 {
 	if p.Size > MAX_SIZE {
 		return MAX_SIZE
 	}
-	return p.Size
+	return int(p.Size)
 }
 
 func NewPagination(pager *Pager, total int64) *Pagination {
-	size := pager.Size_()
-	page := pager.Page_(total)
+	size := int64(pager.Size_())
+	page := int64(pager.Page_(total))
 
 	return &Pagination{
-		Size:        size,
+		Size:        int64(size),
 		Page:        page,
 		Total:       total,
 		HasNext:     (page*size < total),
