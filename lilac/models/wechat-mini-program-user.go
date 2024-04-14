@@ -3,7 +3,7 @@ package models
 type WechatMiniProgramUser struct {
 	Model `gorm:"embedded"`
 
-	UserID    uint    `gorm:"uniqueIndex;not null"`
+	UserID    uint32  `gorm:"uniqueIndex;not null"`
 	UnionId   string  `gorm:"uniqueIndex;not null;size:127"`
 	AppId     string  `gorm:"index;index:,unique,composite:app_open_ids;not null;size:63"`
 	OpenId    string  `gorm:"index;index:,unique,composite:app_open_ids;not null;size:127"`

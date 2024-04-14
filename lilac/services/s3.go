@@ -30,7 +30,7 @@ func NewS3Service(namespace string, db *gorm.DB, jwt *crypto.Jwt, enforcer *casb
 	return &S3Service{namespace: namespace, db: db, client: client, jwt: jwt, enforcer: enforcer}
 }
 
-func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*pb.S3CreateBucketResponse, error) {
+func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*pb.S3CreateBucketResponse, error) {
 	bucket, err := req.BucketName(p.namespace)
 	if err != nil {
 		return nil, err
@@ -91,7 +91,7 @@ func (p S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketReque
 	return &pb.S3CreateBucketResponse{Name: bucket}, nil
 }
 
-func (p S3Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest) (*pb.S3UploadFileResponse, error) {
+func (p *S3Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest) (*pb.S3UploadFileResponse, error) {
 	expiry := time.Second * time.Duration(req.Ttl.Seconds)
 	url, err := p.client.PresignedPutObject(ctx, req.Bucket, req.Object, expiry)
 	if err != nil {
@@ -101,7 +101,7 @@ func (p S3Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest) 
 		Url: url.String(),
 	}, nil
 }
-func (p S3Service) GetPresignedUrl(ctx context.Context, req *pb.S3GetPresignedUrlRequest) (*pb.S3UrlResponse, error) {
+func (p *S3Service) GetPresignedUrl(ctx context.Context, req *pb.S3GetPresignedUrlRequest) (*pb.S3UrlResponse, error) {
 	expiry := time.Second * time.Duration(req.Ttl.Seconds)
 	params := make(url.Values)
 	params.Set("response-content-disposition", fmt.Sprintf(`attachment; filename="%s"`, req.Title))
@@ -113,7 +113,7 @@ func (p S3Service) GetPresignedUrl(ctx context.Context, req *pb.S3GetPresignedUr
 	return &pb.S3UrlResponse{Url: url.String()}, nil
 }
 
-func (p S3Service) GetPermanentUrl(_ctx context.Context, req *pb.S3GetPermanentUrlRequest) (*pb.S3UrlResponse, error) {
+func (p *S3Service) GetPermanentUrl(_ctx context.Context, req *pb.S3GetPermanentUrlRequest) (*pb.S3UrlResponse, error) {
 	return &pb.S3UrlResponse{
 		Url: fmt.Sprintf("%s/%s/%s", p.client.EndpointURL(), req.Bucket, req.Bucket),
 	}, nil

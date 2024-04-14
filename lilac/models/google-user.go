@@ -6,7 +6,7 @@ package models
 type GoogleUser struct {
 	Model `gorm:"embedded"`
 
-	UserID     uint   `gorm:"uniqueIndex;not null"`
+	UserID     uint32   `gorm:"uniqueIndex;not null"`
 	Email      string `gorm:"uniqueIndex;not null;size:127"`
 	GivenName  string `gorm:"index;not null;size:31"`
 	FamilyName string `gorm:"index;not null;size:31"`

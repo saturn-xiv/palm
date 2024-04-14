@@ -3,7 +3,7 @@ package models
 type Setting struct {
 	Model `gorm:"embedded"`
 
-	UserID uint
+	UserID uint32
 	Key    string `gorm:"index;not null;size:255"`
 	Salt   string `gorm:"size:32"`
 	Value  []byte `gorm:"not null"`

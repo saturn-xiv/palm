@@ -11,8 +11,27 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+func (p *PolicyRolesResponse_Item) Display() string {
+	switch it := p.By.(type) {
+	case *PolicyRolesResponse_Item_Administrator_:
+		return "Administrator"
+	case *PolicyRolesResponse_Item_Root_:
+		return "Root"
+	case *PolicyRolesResponse_Item_Member:
+		return it.Member
+	default:
+		return "Unknown"
+	}
+}
 func (p *EmailSendRequest_Address) Display() string {
 	return fmt.Sprintf("%s<%s>", p.Name, p.Email)
+}
+
+func (p *PolicyPermissionsResponse_Item_Resource) Display() string {
+	if p.Id == nil {
+		return fmt.Sprintf("%s://*", p.Type)
+	}
+	return fmt.Sprintf("%s://%d", p.Type, *p.Id)
 }
 
 func (p *PolicyUserRequest) Code() (string, error) {
@@ -31,6 +50,24 @@ func (p *PolicyRolesResponse_Item) Code() (string, error) {
 	return base64.StdEncoding.EncodeToString(buf), nil
 }
 
+func (p *PolicyPermissionsResponse_Item_Resource) Code() (string, error) {
+	buf, err := proto.Marshal(p)
+	if err != nil {
+		return "", err
+	}
+	return base64.StdEncoding.EncodeToString(buf), nil
+}
+func NewPolicyResource(code string) (*PolicyPermissionsResponse_Item_Resource, error) {
+	buf, err := base64.StdEncoding.DecodeString(code)
+	if err != nil {
+		return nil, err
+	}
+	var it PolicyPermissionsResponse_Item_Resource
+	if err = proto.Unmarshal(buf, &it); err != nil {
+		return nil, err
+	}
+	return &it, nil
+}
 func NewPolicyRole(code string) (*PolicyRolesResponse_Item, error) {
 	buf, err := base64.StdEncoding.DecodeString(code)
 	if err != nil {
@@ -81,4 +118,51 @@ func (p *S3CreateBucketRequest) BucketName(namespace string) (string, error) {
 		year:            time.Now().Year(),
 	}
 	return bucket.code()
+}
+
+func (p *Pager) Offset(total int64) int64 {
+	return (p.Page_(total) - 1) * p.Size_()
+}
+
+func (p *Pager) Page_(total int64) int64 {
+	size := p.Size_()
+	if total < size || p.Page < 1 {
+		return 1
+	}
+
+	if p.Page*size > total {
+		it := total / size
+		if total%size == 0 {
+			return it
+		} else {
+			return it + 1
+		}
+
+	}
+	return p.Page
+}
+
+func (p *Pager) Size_() int64 {
+	const MIN_SIZE = 1 << 2
+	const MAX_SIZE = 1 << 12
+	if p.Size < MIN_SIZE {
+		return MIN_SIZE
+	}
+	if p.Size > MAX_SIZE {
+		return MAX_SIZE
+	}
+	return p.Size
+}
+
+func NewPagination(pager *Pager, total int64) *Pagination {
+	size := pager.Size_()
+	page := pager.Page_(total)
+
+	return &Pagination{
+		Size:        size,
+		Page:        page,
+		Total:       total,
+		HasNext:     (page*size < total),
+		HasPrevious: (page > 1),
+	}
 }

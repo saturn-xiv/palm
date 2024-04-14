@@ -15,19 +15,19 @@ enum Editor {
 }
 
 message Pager {
-  int32 page = 1;
-  int32 size = 2;
+  int64 page = 1;
+  int64 size = 2;
 }
 
 message Pagination {
-  int32 page = 1;
-  int32 size = 2;
-  int32 total = 3;
+  int64 page = 1;
+  int64 size = 2;
+  int64 total = 3;
   bool has_next = 8;
   bool has_previous = 9;
 }
 message IdRequest {
-  int32 id = 1;
+  uint32 id = 1;
 }
 // ----------------------------------------------------------------------------
 
@@ -115,7 +115,7 @@ message UserLogsResponse {
       Warn = 1;
       Error = 2;
     }
-    int32 id = 1;
+    uint32 id = 1;
     string ip = 2;
     Level level = 3;
     PolicyPermissionsResponse.Item.Resource resource = 4;
@@ -159,7 +159,7 @@ message UserIndexResponse {
 
     string last_sign_in_ip = 21;
     google.protobuf.Timestamp last_sign_in_at = 22;
-    int32 sign_in_count = 23;
+    uint32 sign_in_count = 23;
     optional google.protobuf.Timestamp confirmed_at = 31;
     optional google.protobuf.Timestamp locked_at = 32;
     optional google.protobuf.Timestamp deleted_at = 33;
@@ -182,7 +182,7 @@ message UserSessionsResponse {
 }
 
 message UserSetPasswordRequest {
-  int32 user = 1;
+  uint32 user = 1;
   string password = 2;
 }
 
@@ -191,7 +191,7 @@ message UserAttachmentsResponse {
     string bucket = 1;
     string name = 2;
     string title = 3;
-    int32 size = 4;
+    uint32 size = 4;
     string content_type = 5;
 
     optional google.protobuf.Timestamp deleted_at = 8;
@@ -237,7 +237,7 @@ service Policy {
 }
 
 message PolicyUserRequest {
-  int32 id = 1;
+  uint32 id = 1;
 }
 
 message PolicyRoleRequest {
@@ -245,18 +245,18 @@ message PolicyRoleRequest {
 }
 
 message PolicyRolesForUserRequest {
-  int32 user = 1;
+  uint32 user = 1;
   repeated PolicyRolesResponse.Item roles = 2;
 }
 
 message PolicyPermissionsForUserRequest {
-  int32 user = 1;
+  uint32 user = 1;
   repeated PolicyPermissionsResponse.Item permissions = 2;
 }
 
 message PolicyUsersForRoleRequest {
   PolicyRolesResponse.Item role = 1;
-  repeated int32 users = 2;
+  repeated uint32 users = 2;
 }
 message PolicyPermissionsForRoleRequest {
   PolicyRolesResponse.Item role = 1;
@@ -279,7 +279,7 @@ message PolicyRolesResponse {
 
 message PolicyUsersResponse {
   message Item {
-    int32 id = 1;
+    uint32 id = 1;
     string real_name = 2;
     UserIndexResponse.Item.ProviderType provider_type = 3;
     string provider_id = 4;
@@ -291,7 +291,7 @@ message PolicyPermissionsResponse {
   message Item {
     message Resource {
       string type = 1;
-      optional int32 id = 2;
+      optional uint32 id = 2;
     }
     string operation = 1;
     Resource resource = 2;
@@ -411,7 +411,7 @@ message LocaleByLangResponse {
 }
 message LocaleIndexResponse {
   message Item {
-    int32 id = 1;
+    uint32 id = 1;
     string lang = 2;
     string code = 3;
     string message = 4;
@@ -540,7 +540,7 @@ message LeaveWordCreateRequest {
 }
 message LeaveWordIndexResponse {
   message Item {
-    int32 id = 1;
+    uint32 id = 1;
     string ip = 2;
     string lang = 3;
     string content = 4;
@@ -563,12 +563,12 @@ message TagCreateRequest {
   string name = 1;
 }
 message TagEditRequest {
-  int32 id = 1;
+  uint32 id = 1;
   string name = 2;
 }
 message TagIndexResponse {
   message Item {
-    int32 id = 1;
+    uint32 id = 1;
     string name = 2;
     int32 sort_order = 8;
     google.protobuf.Timestamp updated_at = 9;
@@ -588,14 +588,14 @@ message CategoryCreateRequest {
   int32 right = 12;
 }
 message CategoryEditRequest {
-  int32 id = 1;
+  uint32 id = 1;
   string code = 2;
   int32 left = 11;
   int32 right = 12;
 }
 message CategoryIndexResponse {
   message Item {
-    int32 id = 1;
+    uint32 id = 1;
     string code = 2;
     int32 left = 3;
     int32 right = 4;
@@ -621,7 +621,7 @@ message NotificationCreateRequest {
 
 message NotificationIndexResponse {
   message Item {
-    int32 id = 1;
+    uint32 id = 1;
     string title = 2;
     string body = 3;
     string summary = 4;

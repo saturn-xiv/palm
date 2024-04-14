@@ -7,7 +7,7 @@ type User struct {
 
 	Lang              string `gorm:"index:,not null;size:15"`
 	Timezone          string `gorm:"index:,not null;size:31"`
-	SignInCount       uint   `gorm:"not null"`
+	SignInCount       uint32 `gorm:"not null"`
 	CurrentSignedInAt *time.Time
 	CurrentSignedInIp *string `gorm:"size:45"`
 	LastSignedInAt    *time.Time

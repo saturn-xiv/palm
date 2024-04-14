@@ -5,7 +5,7 @@ import "time"
 type EmailUser struct {
 	Model `gorm:"embedded"`
 
-	UserID      uint   `gorm:"uniqueIndex;not null"`
+	UserID      uint32 `gorm:"uniqueIndex;not null"`
 	Nickname    string `gorm:"uniqueIndex;not null;size:31"`
 	Email       string `gorm:"uniqueIndex;not null;size:127"`
 	RealName    string `gorm:"index;not null;size:63"`
