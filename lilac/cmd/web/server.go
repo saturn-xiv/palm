@@ -1,13 +1,18 @@
 package web
 
 import (
+	"context"
 	"embed"
+	"errors"
 	"html/template"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 	text_tpl "text/template"
+	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 
@@ -68,7 +73,29 @@ func Launch(address string, config_file string, keys_dir string) error {
 	router.StaticFS("/public", http.FS(gl_assets_fs))
 
 	log.Infof("listen on http://%s", address)
-	endless.ListenAndServe(address, router)
+	server := &http.Server{
+		Addr:    address,
+		Handler: router,
+	}
+	go func() {
+		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+			log.Errorf("listen: %s\n", err)
+		}
+	}()
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+	log.Warn("shutting down server...")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	if err := server.Shutdown(ctx); err != nil {
+		return err
+	}
+
+	log.Info("server exiting")
 	return nil
 }
 

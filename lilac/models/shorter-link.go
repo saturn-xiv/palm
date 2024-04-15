@@ -10,7 +10,8 @@ import (
 
 type ShorterLink struct {
 	ID        uint32    `gorm:"primaryKey"`
-	Url       string    `gorm:"uniqueIndex;not null;size:255"`
+	UserID    uint32    `gorm:"index:,unique,composite:user_url;not null"`
+	Url       string    `gorm:"index;index:,unique,composite:user_url;not null;size:255"`
 	Summary   string    `gorm:"index;not null;size:511"`
 	CreatedAt time.Time `gorm:"not null"`
 }

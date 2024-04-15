@@ -8,7 +8,6 @@ require (
 	github.com/casbin/gorm-adapter/v3 v3.24.0
 	github.com/casbin/redis-watcher/v2 v2.5.0
 	github.com/eduncan911/podcast v1.4.2
-	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/validator/v10 v10.19.0
 	github.com/google/uuid v1.6.0
