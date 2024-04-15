@@ -8,9 +8,11 @@ import (
 	"github.com/eduncan911/podcast"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+
+	"github.com/saturn-xiv/palm/lilac/i18n"
 )
 
-func RssByLang(db *gorm.DB) HandlerFunc {
+func RssByLang(db *gorm.DB, i18n *i18n.I18n) HandlerFunc {
 	return func(c *gin.Context) error {
 		// TODO
 		home := "https://change-me.org"

@@ -20,6 +20,7 @@ import (
 	"github.com/saturn-xiv/palm/lilac/controllers"
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
+	"github.com/saturn-xiv/palm/lilac/i18n"
 )
 
 //go:embed templates/*
@@ -48,6 +49,10 @@ func Launch(address string, config_file string, keys_dir string) error {
 	if err != nil {
 		return err
 	}
+	i18n, err := i18n.New(db)
+	if err != nil {
+		return err
+	}
 
 	tpl, err := template.New("").ParseFS(gl_templates_fs, "templates/*")
 	if err != nil {
@@ -68,7 +73,7 @@ func Launch(address string, config_file string, keys_dir string) error {
 	{
 		group := router.Group("/:lang")
 		group.GET("/sitemap.xml", controllers.Warp(controllers.SiteMapByLang(db)))
-		group.GET("/rss.xml", controllers.Warp(controllers.RssByLang(db)))
+		group.GET("/rss.xml", controllers.Warp(controllers.RssByLang(db, i18n)))
 	}
 
 	router.StaticFS("/public", http.FS(gl_assets_fs))

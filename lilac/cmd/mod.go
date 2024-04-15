@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"log/slog"
-	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
@@ -129,15 +128,22 @@ func init() {
 }
 
 func set_log(debug bool) {
-	options := slog.HandlerOptions{
-		AddSource: true,
-	}
+	// options := slog.HandlerOptions{
+	// 	AddSource: true,
+	// }
+	// if debug {
+	// 	options.Level = slog.LevelDebug
+	// } else {
+	// 	options.Level = slog.LevelInfo
+	// }
+	// logger := slog.New(slog.NewTextHandler(os.Stdout, &options))
+	// slog.SetDefault(logger)
+
 	if debug {
-		options.Level = slog.LevelDebug
+		slog.SetLogLoggerLevel(slog.LevelDebug)
 	} else {
-		options.Level = slog.LevelInfo
+		slog.SetLogLoggerLevel(slog.LevelInfo)
 	}
-	logger := slog.New(slog.NewTextHandler(os.Stdout, &options))
-	slog.SetDefault(logger)
+
 	slog.Debug("run on debug mode")
 }
