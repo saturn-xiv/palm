@@ -4,10 +4,10 @@ import (
 	"crypto/rand"
 	"errors"
 	"fmt"
+	"log/slog"
 	"os"
 	"path"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/tink-crypto/tink-go/v2/aead"
 	"github.com/tink-crypto/tink-go/v2/insecurecleartextkeyset"
 	"github.com/tink-crypto/tink-go/v2/jwt"
@@ -50,7 +50,7 @@ func Open(root string) (*Aes, *HMac, *Jwt, error) {
 			return nil, nil, nil, err
 		}
 
-		log.Warnf("generate a new master key file %s", master_key_file_name)
+		slog.Warn(fmt.Sprintf("generate a new master key file %s", master_key_file_name))
 		{
 			file, err := os.Create(master_key_file_name)
 			if err != nil {
@@ -66,22 +66,22 @@ func Open(root string) (*Aes, *HMac, *Jwt, error) {
 				return nil, nil, nil, err
 			}
 		}
-		log.Warnf("generate a new aes key file %s", aes_key_file_name)
+		slog.Warn(fmt.Sprintf("generate a new aes key file %s", aes_key_file_name))
 		if err = Dump(aes_key_file_name, secret, aead.AES256GCMKeyTemplate()); err != nil {
 			return nil, nil, nil, err
 		}
-		log.Warnf("generate a new hmac key file %s", hmac_key_file_name)
+		slog.Warn(fmt.Sprintf("generate a new hmac key file %s", hmac_key_file_name))
 		if err = Dump(hmac_key_file_name, secret, mac.HMACSHA512Tag512KeyTemplate()); err != nil {
 			return nil, nil, nil, err
 		}
 
-		log.Warnf("generate a new jwt key file %s", jwt_key_file_name)
+		slog.Warn(fmt.Sprintf("generate a new jwt key file %s", jwt_key_file_name))
 		if err = Dump(jwt_key_file_name, secret, jwt.HS512Template()); err != nil {
 			return nil, nil, nil, err
 		}
 
 	}
-	log.Debugf("load master key from %s", master_key_file_name)
+	slog.Debug(fmt.Sprintf("load master key from %s", master_key_file_name))
 	master_key_file, err := os.Open(master_key_file_name)
 	if err != nil {
 		return nil, nil, nil, err
@@ -98,19 +98,19 @@ func Open(root string) (*Aes, *HMac, *Jwt, error) {
 		return nil, nil, nil, err
 	}
 
-	log.Debugf("load aes key from %s", aes_key_file_name)
+	slog.Debug(fmt.Sprintf("load aes key from %s", aes_key_file_name))
 	aes, err := NewAes(aes_key_file_name, secret)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
-	log.Debugf("load hmac key from %s", hmac_key_file_name)
+	slog.Debug(fmt.Sprintf("load hmac key from %s", hmac_key_file_name))
 	hmac, err := NewHMac(hmac_key_file_name, secret)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
-	log.Debugf("load jwt key from %s", jwt_key_file_name)
+	slog.Debug(fmt.Sprintf("load jwt key from %s", jwt_key_file_name))
 	jwt, err := NewJwt(jwt_key_file_name, secret)
 	if err != nil {
 		return nil, nil, nil, err

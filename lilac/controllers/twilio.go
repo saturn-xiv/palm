@@ -1,10 +1,11 @@
 package controllers
 
 import (
+	"fmt"
+	"log/slog"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 	"github.com/twilio/twilio-go/twiml"
 	"gorm.io/gorm"
 
@@ -17,7 +18,7 @@ func TwilioSmsStatusCallback(db *gorm.DB, jwt *crypto.Jwt) HandlerFunc {
 		var msg = &twiml.MessagingMessage{}
 
 		body := c.PostForm("Body")
-		log.Infof("receive message: %s", body)
+		slog.Info(fmt.Sprintf("receive message: %s", body))
 
 		twiml, err := twiml.Messages([]twiml.Element{msg})
 		if err != nil {

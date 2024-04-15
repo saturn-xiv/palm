@@ -1,7 +1,9 @@
 package env
 
 import (
-	log "github.com/sirupsen/logrus"
+	"fmt"
+	"log/slog"
+
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -11,6 +13,6 @@ type Sqlite3 struct {
 }
 
 func (p *Sqlite3) Open(config *gorm.Config) (*gorm.DB, error) {
-	log.Infof("open file://%s", p.File)
+	slog.Info(fmt.Sprintf("open file://%s", p.File))
 	return gorm.Open(sqlite.Open(p.File), config)
 }

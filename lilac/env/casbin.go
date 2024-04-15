@@ -2,6 +2,7 @@ package env
 
 import (
 	"fmt"
+	"log/slog"
 	"strings"
 
 	"github.com/casbin/casbin/v2"
@@ -9,7 +10,6 @@ import (
 	gormadapter "github.com/casbin/gorm-adapter/v3"
 	rediswatcher "github.com/casbin/redis-watcher/v2"
 	"github.com/redis/go-redis/v9"
-	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
@@ -35,7 +35,7 @@ func (l *Logger) LogModel(model [][]string) {
 		str.WriteString(fmt.Sprintf("%v\n", v))
 	}
 
-	log.Info(str.String())
+	slog.Info(str.String())
 }
 
 func (l *Logger) LogEnforce(matcher string, request []interface{}, result bool, explains [][]string) {
@@ -63,7 +63,7 @@ func (l *Logger) LogEnforce(matcher string, request []interface{}, result bool, 
 		}
 	}
 
-	log.Info(req_s.String())
+	slog.Info(req_s.String())
 }
 
 func (l *Logger) LogPolicy(policy map[string][][]string) {
@@ -77,7 +77,7 @@ func (l *Logger) LogPolicy(policy map[string][][]string) {
 		str.WriteString(fmt.Sprintf("%s : %v\n", k, v))
 	}
 
-	log.Info(str.String())
+	slog.Info(str.String())
 }
 
 func (l *Logger) LogRole(roles []string) {
@@ -85,14 +85,17 @@ func (l *Logger) LogRole(roles []string) {
 		return
 	}
 
-	log.Info("Roles: ", strings.Join(roles, "\n"))
+	slog.Info(fmt.Sprintf("Roles: %s", strings.Join(roles, ",")))
 }
 
 func (l *Logger) LogError(err error, msg ...string) {
 	if !l.enabled {
 		return
 	}
-	log.Error(msg, err)
+	var it []string
+	it = append(it, err.Error())
+	it = append(it, msg...)
+	slog.Error(strings.Join(it, ", "))
 }
 
 var gl_casbin_rbac_model string = `
@@ -113,11 +116,11 @@ m = g(r.sub, p.sub) && r.obj == p.obj && r.act == p.act
 `
 
 func updateCallback(msg string) {
-	log.Debugf("%s", msg)
+	slog.Debug(msg)
 }
 
 func OpenCasbinEnforcer(namespace string, db *gorm.DB, redis_addrs []string) (*casbin.Enforcer, error) {
-	log.Debugf("open casbin redis watcher")
+	slog.Debug("open casbin redis watcher")
 	wtc, err := rediswatcher.NewWatcherWithCluster(
 		strings.Join(redis_addrs, ","),
 		rediswatcher.WatcherOptions{
@@ -131,7 +134,7 @@ func OpenCasbinEnforcer(namespace string, db *gorm.DB, redis_addrs []string) (*c
 		return nil, err
 	}
 
-	log.Debugf("open casbin gorm adapter")
+	slog.Debug("open casbin gorm adapter")
 	adp, err := gormadapter.NewAdapterByDB(db)
 	if err != nil {
 		return nil, err

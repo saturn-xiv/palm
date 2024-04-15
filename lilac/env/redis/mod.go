@@ -3,10 +3,10 @@ package redis
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"strings"
 
 	"github.com/redis/go-redis/v9"
-	log "github.com/sirupsen/logrus"
 )
 
 type Cluster struct {
@@ -26,7 +26,7 @@ func (p *Cluster) Options() redis.ClusterOptions {
 }
 
 func (p *Cluster) Open(namespace string) (*Client, error) {
-	log.Infof("open redis %s", strings.Join(p.Addrs(), ","))
+	slog.Info(fmt.Sprintf("open redis %s", strings.Join(p.Addrs(), ",")))
 	options := p.Options()
 	db := redis.NewClusterClient(&options)
 	{
@@ -35,18 +35,14 @@ func (p *Cluster) Open(namespace string) (*Client, error) {
 		if err := status.Err(); err != nil {
 			return nil, err
 		}
-		log.Debugf("redis nodes:\n%s", status.Val())
+		slog.Debug(fmt.Sprintf("redis nodes:\n%s", status.Val()))
 
-		// if err := db.ForEachShard(ctx, func(ctx context.Context, shard *redis.Client) error {
-		// 	status := shard.Ping(ctx)
-		// 	err := status.Err()
-		// 	if err == nil {
-		// 		log.Debugf("pong %s", status.String())
-		// 	}
-		// 	return err
-		// }); err != nil {
-		// 	return nil, err
-		// }
+		if err := db.ForEachShard(ctx, func(ctx context.Context, shard *redis.Client) error {
+			status := shard.Ping(ctx)
+			return status.Err()
+		}); err != nil {
+			return nil, err
+		}
 	}
 	return &Client{
 		namespace: namespace,

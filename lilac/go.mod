@@ -15,7 +15,6 @@ require (
 	github.com/rabbitmq/amqp091-go v1.9.0
 	github.com/redis/go-redis/v9 v9.5.1
 	github.com/sabloger/sitemap-generator v1.3.0
-	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.0
 	github.com/tink-crypto/tink-go/v2 v2.1.0
 	github.com/twilio/twilio-go v1.20.0

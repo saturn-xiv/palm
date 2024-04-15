@@ -2,9 +2,9 @@ package env
 
 import (
 	"fmt"
+	"log/slog"
 	"time"
 
-	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 )
@@ -25,7 +25,7 @@ func (p *SqlServer) Url() string {
 }
 
 func (p *SqlServer) Open(config *gorm.Config) (*gorm.DB, error) {
-	log.Infof("open sqlserver://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName)
+	slog.Info(fmt.Sprintf("open sqlserver://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName))
 	db, err := gorm.Open(sqlserver.Open(p.Url()), config)
 	if err != nil {
 		return nil, err

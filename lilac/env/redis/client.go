@@ -5,10 +5,10 @@ import (
 	"context"
 	"encoding/gob"
 	"fmt"
+	"log/slog"
 	"time"
 
 	"github.com/redis/go-redis/v9"
-	log "github.com/sirupsen/logrus"
 )
 
 type HandlerFunc func(value interface{}) error
@@ -23,7 +23,7 @@ func (p *Client) Get(ctx context.Context, key string, handler HandlerFunc, value
 	status := p.db.Get(ctx, k)
 	err := status.Err()
 	if err != nil {
-		log.Warnf("coun't catch %s %s", k, err)
+		slog.Warn(fmt.Sprintf("coun't catch %s %s", k, err))
 		if err = handler(value); err != nil {
 			return err
 		}

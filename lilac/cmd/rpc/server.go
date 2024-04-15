@@ -2,13 +2,14 @@ package rpc
 
 import (
 	"context"
+	"fmt"
+	"log/slog"
 	"net"
 	"os"
 	"os/signal"
 	"syscall"
 
 	"github.com/BurntSushi/toml"
-	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
@@ -21,7 +22,7 @@ import (
 )
 
 func Launch(address string, config_file string, keys_dir string) error {
-	log.Debugf("load configuration from %s", config_file)
+	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
@@ -54,29 +55,29 @@ func Launch(address string, config_file string, keys_dir string) error {
 	}
 
 	network := "tcp"
-	log.Infof("start gRPC on %s://%s", network, address)
+	slog.Info(fmt.Sprintf("start gRPC on %s://%s", network, address))
 	socket, err := net.Listen(network, address)
 	if err != nil {
-		log.Fatalln(err)
+		return err
 	}
 	var options []grpc.ServerOption
 
 	server := grpc.NewServer(options...)
 
 	if config.GoogleOauth2.ClientID != "" {
-		log.Warnf("register google-oauth2 service")
+		slog.Warn("register google-oauth2 service")
 		pb.RegisterGoogleOauth2Server(server, services.NewGoogleOauth2Service(db, jwt, enforcer))
 	}
 	if config.WechatOauth2.AppID != "" {
-		log.Warnf("register wechat-oauth2 service")
+		slog.Warn("register wechat-oauth2 service")
 		pb.RegisterWechatOauth2Server(server, services.NewWechatOauth2Service(db, jwt, enforcer))
 	}
 	if config.WechatMiniProgram.AppID != "" {
-		log.Warnf("register wechat-mini-program service")
+		slog.Warn("register wechat-mini-program service")
 		pb.RegisterWechatMiniProgramServer(server, services.NewWechatMiniProgramService(db, jwt, enforcer))
 	}
 	if config.WeChatPayMerchant.ID != "" {
-		log.Warnf("register wechat-pay service")
+		slog.Warn("register wechat-pay service")
 		ctx := context.Background()
 		client, err := config.WeChatPayMerchant.Open(ctx)
 		if err != nil {
@@ -101,16 +102,16 @@ func Launch(address string, config_file string, keys_dir string) error {
 
 	go func() {
 		if err := server.Serve(socket); err != nil {
-			log.Errorf("%v", err)
+			slog.Error(err.Error())
 		}
 	}()
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	log.Warn("shutting down gRPC server...")
+	slog.Warn("shutting down gRPC server...")
 
 	server.GracefulStop()
-	log.Info("server exiting")
+	slog.Info("server exiting")
 	return nil
 }

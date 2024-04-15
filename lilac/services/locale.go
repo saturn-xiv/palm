@@ -3,10 +3,11 @@ package services
 import (
 	"context"
 	"errors"
+	"fmt"
+	"log/slog"
 	"time"
 
 	"github.com/casbin/casbin/v2"
-	log "github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
@@ -89,7 +90,7 @@ func (p *LocaleService) Set(ctx context.Context, req *pb.LocaleSetRequest) (*emp
 
 		it, err := models.GetLocaleByLangAndCode(tx, req.Lang, req.Code)
 		if err == nil {
-			log.Debugf("update locale %s.%s", req.Lang, req.Code)
+			slog.Debug(fmt.Sprintf("update locale %s.%s", req.Lang, req.Code))
 			it.Message = req.Message
 			it.UpdatedAt = now
 			it.Version += 1
@@ -98,7 +99,7 @@ func (p *LocaleService) Set(ctx context.Context, req *pb.LocaleSetRequest) (*emp
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
 			return err
 		}
-		log.Debugf("create locale %s.%s", req.Lang, req.Code)
+		slog.Debug(fmt.Sprintf("create locale %s.%s", req.Lang, req.Code))
 		return tx.Create(&models.Locale{
 			Lang:      req.Lang,
 			Code:      req.Code,
@@ -122,7 +123,7 @@ func (p *LocaleService) Destroy(ctx context.Context, req *pb.IdRequest) (*emptyp
 		return nil, err
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
-		log.Debugf("delete locale %d", req.Id)
+		slog.Debug(fmt.Sprintf("delete locale %d", req.Id))
 		return tx.Delete(&models.Locale{}, req.Id).Error
 	}); err != nil {
 		return nil, err

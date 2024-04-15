@@ -2,9 +2,9 @@ package env
 
 import (
 	"fmt"
+	"log/slog"
 	"time"
 
-	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -26,7 +26,7 @@ func (p *MySql) Url() string {
 }
 
 func (p *MySql) Open(config *gorm.Config) (*gorm.DB, error) {
-	log.Infof("open mysql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName)
+	slog.Info(fmt.Sprintf("open mysql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName))
 	db, err := gorm.Open(mysql.Open(p.Url()), config)
 	if err != nil {
 		return nil, err

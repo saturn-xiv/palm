@@ -2,10 +2,11 @@ package env
 
 import (
 	"crypto/tls"
+	"fmt"
+	"log/slog"
 	"os"
 	"path/filepath"
 
-	log "github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/proto"
 	"gopkg.in/gomail.v2"
 
@@ -42,7 +43,7 @@ func (p *SendEmailWorker) Handle(_id string, _content_type string, body []byte) 
 	if err := proto.Unmarshal(body, &task); err != nil {
 		return err
 	}
-	log.Infof("send email(%s) => %s", task.Subject, task.To.Display())
+	slog.Info(fmt.Sprintf("send email(%s) => %s", task.Subject, task.To.Display()))
 
 	msg := gomail.NewMessage()
 	msg.SetHeader("From", p.from)

@@ -4,7 +4,9 @@ import (
 	"context"
 	"embed"
 	"errors"
+	"fmt"
 	"html/template"
+	"log/slog"
 	"net/http"
 	"os"
 	"os/signal"
@@ -14,7 +16,6 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 
 	"github.com/saturn-xiv/palm/lilac/controllers"
 	"github.com/saturn-xiv/palm/lilac/env"
@@ -28,7 +29,7 @@ var gl_templates_fs embed.FS
 var gl_assets_fs embed.FS
 
 func Launch(address string, config_file string, keys_dir string) error {
-	log.Debugf("load configuration from %s", config_file)
+	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
@@ -72,21 +73,21 @@ func Launch(address string, config_file string, keys_dir string) error {
 
 	router.StaticFS("/public", http.FS(gl_assets_fs))
 
-	log.Infof("listen on http://%s", address)
+	slog.Info(fmt.Sprintf("listen on http://%s", address))
 	server := &http.Server{
 		Addr:    address,
 		Handler: router,
 	}
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			log.Errorf("%v", err)
+			slog.Error(err.Error())
 		}
 	}()
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	log.Warn("shutting down http server...")
+	slog.Warn("shutting down http server...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -95,7 +96,7 @@ func Launch(address string, config_file string, keys_dir string) error {
 		return err
 	}
 
-	log.Info("http server exiting")
+	slog.Info("http server exiting")
 	return nil
 }
 
@@ -123,7 +124,7 @@ func errorHandler(c *gin.Context) {
 
 	if len(c.Errors) > 0 {
 		for _, err := range c.Errors {
-			log.Errorf("%s", err)
+			slog.Error(err.Error())
 		}
 		status := c.Writer.Status()
 		if status == 0 {

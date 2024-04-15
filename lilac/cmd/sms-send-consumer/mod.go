@@ -2,9 +2,10 @@ package sms_send_consumer
 
 import (
 	"context"
+	"fmt"
+	"log/slog"
 
 	"github.com/BurntSushi/toml"
-	log "github.com/sirupsen/logrus"
 
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
@@ -16,7 +17,7 @@ type Config struct {
 }
 
 func Launch(name string, queue string, config_file string) error {
-	log.Debugf("load configuration from %s", config_file)
+	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err

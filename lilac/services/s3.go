@@ -3,13 +3,13 @@ package services
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"net/url"
 	"time"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/lifecycle"
-	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
@@ -46,13 +46,13 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequ
 		return nil, err
 	}
 	if !found {
-		log.Infof("create bucket %s", bucket)
+		slog.Info(fmt.Sprintf("create bucket %s", bucket))
 
 		if err = p.client.MakeBucket(ctx, bucket, minio.MakeBucketOptions{}); err != nil {
 			return nil, err
 		}
 		if req.Public {
-			log.Infof("set bucket %s to public", bucket)
+			slog.Info(fmt.Sprintf("set bucket %s to public", bucket))
 			now := time.Now()
 			policy := fmt.Sprintf(`
 {
@@ -69,14 +69,14 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequ
 	],
 }
 			`, now.Format("2006-01-02"), bucket)
-			log.Debugf("%s", policy)
+			slog.Debug(policy)
 			if err = p.client.SetBucketPolicy(ctx, bucket, policy); err != nil {
 				return nil, err
 			}
 		}
 
 		if req.ExpirationDays != nil {
-			log.Infof("set bucket %s expiration-days %d", bucket, *req.ExpirationDays)
+			slog.Info(fmt.Sprintf("set bucket %s expiration-days %d", bucket, *req.ExpirationDays))
 			config := lifecycle.NewConfiguration()
 			config.Rules = []lifecycle.Rule{
 				{

@@ -2,9 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"log"
+	"log/slog"
+	"os"
 
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
 	email_send_consumer "github.com/saturn-xiv/palm/lilac/cmd/email-send-consumer"
@@ -101,7 +103,7 @@ func init() {
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 				if err := email_send_consumer.Launch(gl_email_send_consumer, gl_email_send_queue, gl_config); err != nil {
-					log.Fatalf("%s", err)
+					log.Fatal(err)
 				}
 			},
 		}
@@ -116,7 +118,7 @@ func init() {
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 				if err := sms_send_consumer.Launch(gl_sms_send_consumer, gl_sms_send_queue, gl_config); err != nil {
-					log.Fatalf("%s", err)
+					log.Fatal(err)
 				}
 			},
 		}
@@ -127,10 +129,15 @@ func init() {
 }
 
 func set_log(debug bool) {
-	if debug {
-		log.SetLevel(log.DebugLevel)
-	} else {
-		log.SetLevel(log.InfoLevel)
+	options := slog.HandlerOptions{
+		AddSource: true,
 	}
-	log.Debugf("run on debug mode")
+	if debug {
+		options.Level = slog.LevelDebug
+	} else {
+		options.Level = slog.LevelInfo
+	}
+	logger := slog.New(slog.NewTextHandler(os.Stdout, &options))
+	slog.SetDefault(logger)
+	slog.Debug("run on debug mode")
 }

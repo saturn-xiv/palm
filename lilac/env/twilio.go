@@ -1,7 +1,9 @@
 package env
 
 import (
-	log "github.com/sirupsen/logrus"
+	"fmt"
+	"log/slog"
+
 	"github.com/twilio/twilio-go"
 	twilio_api "github.com/twilio/twilio-go/rest/api/v2010"
 	"google.golang.org/protobuf/proto"
@@ -43,10 +45,10 @@ func (p *SendSmsWorker) Handle(_id string, _content_type string, body []byte) er
 		if task.Callback != nil {
 			params.SetStatusCallback(*task.Callback)
 		}
-		log.Infof("send sms(%s) => %s", task.Message, to)
+		slog.Info(fmt.Sprintf("send sms(%s) => %s", task.Message, to))
 		res, err := p.client.Api.CreateMessage(params)
 		if err != nil {
-			log.Errorf("%d %s", *res.ErrorCode, *res.ErrorMessage)
+			slog.Error(fmt.Sprintf("%d %s", *res.ErrorCode, *res.ErrorMessage))
 			return err
 		}
 	}

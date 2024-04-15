@@ -2,9 +2,9 @@ package env
 
 import (
 	"fmt"
+	"log/slog"
 	"time"
 
-	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -25,7 +25,7 @@ func (p *PostgreSql) Url() string {
 }
 
 func (p *PostgreSql) Open(config *gorm.Config) (*gorm.DB, error) {
-	log.Infof("open postgresql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName)
+	slog.Info(fmt.Sprintf("open postgresql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName))
 	db, err := gorm.Open(postgres.Open(p.Url()), config)
 	if err != nil {
 		return nil, err
