@@ -3,6 +3,9 @@ package rpc
 import (
 	"context"
 	"net"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/BurntSushi/toml"
 	log "github.com/sirupsen/logrus"
@@ -95,5 +98,19 @@ func Launch(address string, config_file string, keys_dir string) error {
 	pb.RegisterSiteServer(server, services.NewSiteService(db, aes, jwt, enforcer))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
-	return server.Serve(socket)
+
+	go func() {
+		if err := server.Serve(socket); err != nil {
+			log.Errorf("%v", err)
+		}
+	}()
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+	log.Warn("shutting down gRPC server...")
+
+	server.GracefulStop()
+	log.Info("server exiting")
+	return nil
 }

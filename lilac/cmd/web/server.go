@@ -79,14 +79,14 @@ func Launch(address string, config_file string, keys_dir string) error {
 	}
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			log.Errorf("listen: %s\n", err)
+			log.Errorf("%v", err)
 		}
 	}()
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	log.Warn("shutting down server...")
+	log.Warn("shutting down http server...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -95,7 +95,7 @@ func Launch(address string, config_file string, keys_dir string) error {
 		return err
 	}
 
-	log.Info("server exiting")
+	log.Info("http server exiting")
 	return nil
 }
 
