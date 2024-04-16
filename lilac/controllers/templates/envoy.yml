@@ -1,2 +1,153 @@
 # https://min.io/docs/minio/linux/integrations/setup-nginx-proxy-with-minio.html
-name: "{{ .domain }}"
+# https://github.com/grpc/grpc-web/blob/master/net/grpc/gateway/examples/echo/envoy.yaml
+admin:
+  access_log:
+    - name: envoy.admin_access_loggers.stdout
+      typed_config:
+        "@type": type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog
+  address:
+    socket_address: { address: 0.0.0.0, port_value: 9090 }
+
+overload_manager:
+  resource_monitors:
+    - name: "envoy.resource_monitors.global_downstream_max_connections"
+      typed_config:
+        "@type": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig
+        max_active_downstream_connections: 1000
+
+static_resources:
+  listeners:
+    - name: listener_0
+      address:
+        socket_address:
+          address: 0.0.0.0
+          port_value: 443
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: ingress_http
+                upgrade_configs:
+                  - upgrade_type: websocket
+                access_log:
+                  - name: envoy.access_loggers.stdout
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog
+                http_filters:
+                  - name: envoy.filters.http.grpc_web
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.grpc_web.v3.GrpcWeb
+                  - name: envoy.filters.http.cors
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.cors.v3.Cors
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+                route_config:
+                  name: web_route
+                  virtual_hosts:
+                    - name: s3.{{ .domain }}_service
+                      domains: ["s3.{{ .domain }}"]
+                      routes:
+                        - match:
+                            prefix: "/"
+                          route:
+                            cluster: s3.{{ .domain }}_io
+                    - name: assets.{{ .domain }}_service
+                      domains: ["assets.{{ .domain }}"]
+                      routes:
+                        - match:
+                            prefix: "/"
+                          route:
+                            cluster: assets.{{ .domain }}_io
+                    - name: www.{{ .domain }}_service
+                      domains: ["www.{{ .domain }}"]
+                      routes:
+                        - match:
+                            prefix: "/"
+                          route:
+                            cluster: www.{{ .domain }}_io
+                    - name: lilac.{{ .domain }}_service
+                      domains: ["lilac.{{ .domain }}_io"]
+                      routes:
+                        - match: { prefix: "/" }
+                          route:
+                            cluster: lilac.{{ .domain }}_service
+                            timeout: 0s
+                            max_stream_duration:
+                              grpc_timeout_header_max: 0s
+                      cors:
+                        allow_origin_string_match:
+                          - prefix: "*"
+                        allow_methods: GET, PUT, DELETE, POST, OPTIONS
+                        allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout
+                        max_age: "1728000"
+                        expose_headers: custom-header-1,grpc-status,grpc-message
+          transport_socket:
+            name: envoy.transport_sockets.tls
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+              common_tls_context:
+                tls_certificates:
+                  - certificate_chain:
+                      filename: /etc/letsencrypt/live/assets.{{ .domain }}/fullchain.pem
+                    private_key:
+                      filename: /etc/letsencrypt/live/assets.{{ .domain }}/privkey.pem
+
+  clusters:
+    - name: s3.{{ .domain }}_io
+      type: STRICT_DNS
+      dns_lookup_family: V4_ONLY
+      load_assignment:
+        cluster_name: s3.{{ .domain }}_io
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: 127.0.0.1
+                      port_value: 9001
+    - name: assets.{{ .domain }}_io
+      type: STRICT_DNS
+      dns_lookup_family: V4_ONLY
+      load_assignment:
+        cluster_name: assets.{{ .domain }}_io
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: 127.0.0.1
+                      port_value: 9000
+    - name: www.{{ .domain }}_io
+      type: STRICT_DNS
+      dns_lookup_family: V4_ONLY
+      load_assignment:
+        cluster_name: www.{{ .domain }}_io
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: 127.0.0.1
+                      port_value: 10001
+    - name: lilac.{{ .domain }}_service
+      connect_timeout: 0.25s
+      type: STRICT_DNS
+      dns_lookup_family: V4_ONLY
+      typed_extension_protocol_options:
+        envoy.extensions.upstreams.http.v3.HttpProtocolOptions:
+          "@type": type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions
+          explicit_http_config:
+            http2_protocol_options: {}
+      lb_policy: round_robin
+      load_assignment:
+        cluster_name: lilac.{{ .domain }}_service_0
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: 127.0.0.1
+                      port_value: 10002
