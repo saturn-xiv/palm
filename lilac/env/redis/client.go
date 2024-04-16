@@ -6,6 +6,7 @@ import (
 	"encoding/gob"
 	"fmt"
 	"log/slog"
+	"strings"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -50,17 +51,17 @@ func (p *Client) key(k string) string {
 	return fmt.Sprintf("%s://%s", p.namespace, k)
 }
 
-func (p *Client) Heartbeat(ctx context.Context) (string, error) {
+func (p *Client) Heartbeat(ctx context.Context) ([]string, error) {
 	if err := p.db.ForEachShard(ctx, func(ctx context.Context, shard *redis.Client) error {
 		status := shard.Ping(ctx)
 		return status.Err()
 
 	}); err != nil {
-		return "", err
+		return nil, err
 	}
 	status := p.db.ClusterNodes(ctx)
 	if err := status.Err(); err != nil {
-		return "", err
+		return nil, err
 	}
-	return status.Val(), nil
+	return strings.Split(status.Val(), "\n"), nil
 }

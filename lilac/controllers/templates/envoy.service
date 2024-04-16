@@ -1,0 +1,12 @@
+[Unit]
+Description=An open source edge and service proxy, designed for cloud-native applications
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nobody
+ExecStart=/usr/local/bin/envoy -c /etc/envoy/main.yaml
+
+[Install]
+WantedBy=multi-user.target

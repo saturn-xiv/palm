@@ -30,6 +30,10 @@ func Launch(address string, config_file string, keys_dir string) error {
 	if err != nil {
 		return err
 	}
+	cache, err := config.Redis.Open(config.Namespace)
+	if err != nil {
+		return err
+	}
 
 	_, _, jwt, err := crypto.Open(keys_dir)
 	if err != nil {
@@ -46,7 +50,7 @@ func Launch(address string, config_file string, keys_dir string) error {
 
 	gin.DisableConsoleColor()
 	router := gin.New()
-	if err = controllers.Mount(router, db, jwt, i18n, s3); err != nil {
+	if err = controllers.Mount(router, db, cache, jwt, i18n, s3); err != nil {
 		return err
 	}
 

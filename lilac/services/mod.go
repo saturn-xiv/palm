@@ -2,17 +2,26 @@ package services
 
 import (
 	"context"
+	"log/slog"
 	"reflect"
 	"strings"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/go-playground/validator/v10"
+	"github.com/minio/minio-go/v7"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/health"
+	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
+	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
+	"github.com/saturn-xiv/palm/lilac/env/redis"
+	"github.com/saturn-xiv/palm/lilac/i18n"
 	"github.com/saturn-xiv/palm/lilac/models"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
@@ -161,4 +170,49 @@ func NewCurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*Current
 	}
 
 	return nil, status.Errorf(codes.Unauthenticated, "authorization token is not provided")
+}
+
+func Mount(server *grpc.Server, namespace string,
+	db *gorm.DB, cache *redis.Client,
+	aes *crypto.Aes, mac *crypto.HMac, jwt *crypto.Jwt, enforcer *casbin.Enforcer,
+	i18n *i18n.I18n, queue *rabbitmq.Config, s3 *minio.Client,
+	google_oauth2 *env.GoogleOauth2,
+	wechat_oauth2 *env.WechatOauth2, wechat_mini_program *env.WechatMiniProgram, wechat_pay_merchant *env.WechatPayMerchant,
+) error {
+	pb.RegisterUserServer(server, NewUserService(db, cache, aes, mac, jwt, enforcer, i18n, queue, s3))
+	pb.RegisterPolicyServer(server, NewPolicyService(db, jwt, enforcer))
+	pb.RegisterSmsServer(server, NewSmsService(db, jwt, enforcer, queue))
+	pb.RegisterEmailServer(server, NewEmailService(db, jwt, enforcer, queue))
+	pb.RegisterS3Server(server, NewS3Service(namespace, db, jwt, enforcer, s3))
+	pb.RegisterLocaleServer(server, NewLocaleService(db, jwt, enforcer))
+	pb.RegisterLeaveWordServer(server, NewLeaveWordService(db, jwt, enforcer))
+	pb.RegisterNotificationServer(server, NewNotificationService(db, jwt, enforcer))
+	pb.RegisterTagServer(server, NewTagService(db, jwt, enforcer))
+	pb.RegisterCategoryServer(server, NewCategoryService(db, jwt, enforcer))
+	pb.RegisterSiteServer(server, NewSiteService(db, aes, jwt, enforcer))
+
+	if google_oauth2.ClientID != "" {
+		slog.Warn("register google-oauth2 service")
+		pb.RegisterGoogleOauth2Server(server, NewGoogleOauth2Service(db, jwt, enforcer))
+	}
+	if wechat_oauth2.AppID != "" {
+		slog.Warn("register wechat-oauth2 service")
+		pb.RegisterWechatOauth2Server(server, NewWechatOauth2Service(db, jwt, enforcer))
+	}
+	if wechat_mini_program.AppID != "" {
+		slog.Warn("register wechat-mini-program service")
+		pb.RegisterWechatMiniProgramServer(server, NewWechatMiniProgramService(db, jwt, enforcer))
+	}
+	if wechat_pay_merchant.ID != "" {
+		slog.Warn("register wechat-pay service")
+		ctx := context.Background()
+		client, err := wechat_pay_merchant.Open(ctx)
+		if err != nil {
+			return err
+		}
+		pb.RegisterWechatPayServer(server, NewWechatPayService(db, jwt, enforcer, client))
+	}
+
+	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
+	return nil
 }

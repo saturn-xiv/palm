@@ -12,6 +12,7 @@ import (
 	"github.com/minio/minio-go/v7"
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
+	"github.com/saturn-xiv/palm/lilac/env/redis"
 	"github.com/saturn-xiv/palm/lilac/i18n"
 	"github.com/saturn-xiv/palm/lilac/services"
 	"gorm.io/gorm"
@@ -46,7 +47,7 @@ func NewCurrentUser(c *gin.Context, db *gorm.DB, jwt *crypto.Jwt) (*services.Cur
 	return services.CurrentUserFromToken(token, db, jwt)
 }
 
-func Mount(router *gin.Engine, db *gorm.DB, jwt *crypto.Jwt, i18n *i18n.I18n, s3 *minio.Client) error {
+func Mount(router *gin.Engine, db *gorm.DB, cache *redis.Client, jwt *crypto.Jwt, i18n *i18n.I18n, s3 *minio.Client) error {
 	tpl, err := template.New("").ParseFS(gl_templates_fs, "templates/*")
 	if err != nil {
 		return err
@@ -61,6 +62,8 @@ func Mount(router *gin.Engine, db *gorm.DB, jwt *crypto.Jwt, i18n *i18n.I18n, s3
 	router.GET("/robots.txt", Warp(RobotsTxt()))
 	router.GET("/sitemap.xml", Warp(SiteMap(db)))
 	router.GET("/envoy.yaml", Warp(EnvoyYaml()))
+	router.GET("/envoy-proxy.service", Warp(EnvoyService()))
+	router.GET("/heartbeat/:token", Warp(Heartbeat(db, cache, jwt, s3)))
 	{
 		group := router.Group("/:lang")
 		group.GET("/sitemap.xml", Warp(SiteMapByLang(db)))
