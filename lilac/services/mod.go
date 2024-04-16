@@ -24,9 +24,14 @@ var (
 	gl_code_validator_tag     = "required,alphanum,lowercase,min=2,max=31"
 	gl_name_validator_tag     = "required,min=2,max=63"
 	gl_password_validator_tag = "required,min=6,max=31"
+	gl_domain_validator_tag   = "required,fqdn,min=3,max=127"
 	// gl_title_validator_tag    = "required,min=1,max=63"
 	// gl_summary_validator_tag  = "required,min=2,max=511"
 )
+
+func IsDomain(s string) error {
+	return gl_validate.Var(s, gl_domain_validator_tag)
+}
 
 type CurrentUser struct {
 	ID           uint32
