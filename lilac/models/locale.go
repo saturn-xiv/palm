@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 
 	"gorm.io/gorm"
@@ -16,6 +17,10 @@ type Locale struct {
 	Version   uint32    `gorm:"not null"`
 	UpdatedAt time.Time `gorm:"not null"`
 	CreatedAt time.Time `gorm:"not null"`
+}
+
+func (p *Locale) Key() string {
+	return fmt.Sprintf("%s.%s", p.Lang, p.Code)
 }
 
 func GetLocaleByLangAndCode(db *gorm.DB, lang string, code string) (*Locale, error) {

@@ -16,6 +16,7 @@ import (
 
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
+	"github.com/saturn-xiv/palm/lilac/i18n"
 	"github.com/saturn-xiv/palm/lilac/models"
 	"github.com/saturn-xiv/palm/lilac/services"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
@@ -33,6 +34,10 @@ func Launch(address string, config_file string, keys_dir string) error {
 		return err
 	}
 	db, err := config.Database.Open()
+	if err != nil {
+		return err
+	}
+	i18n, err := i18n.New(db)
 	if err != nil {
 		return err
 	}
@@ -86,7 +91,7 @@ func Launch(address string, config_file string, keys_dir string) error {
 		pb.RegisterWechatPayServer(server, services.NewWechatPayService(db, jwt, enforcer, client))
 	}
 
-	pb.RegisterUserServer(server, services.NewUserService(db, cache, aes, mac, jwt, enforcer, &config.RabbitMq, s3))
+	pb.RegisterUserServer(server, services.NewUserService(db, cache, aes, mac, jwt, enforcer, i18n, &config.RabbitMq, s3))
 	pb.RegisterPolicyServer(server, services.NewPolicyService(db, jwt, enforcer))
 	pb.RegisterSmsServer(server, services.NewSmsService(db, jwt, enforcer, &config.RabbitMq))
 	pb.RegisterEmailServer(server, services.NewEmailService(db, jwt, enforcer, &config.RabbitMq))

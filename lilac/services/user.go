@@ -12,6 +12,7 @@ import (
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
 	"github.com/saturn-xiv/palm/lilac/env/redis"
+	"github.com/saturn-xiv/palm/lilac/i18n"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
 
@@ -26,6 +27,7 @@ type UserService struct {
 	cache    *redis.Client
 	queue    *rabbitmq.Config
 	s3       *minio.Client
+	i18n     *i18n.I18n
 }
 
 func (p UserService) SignUpByEmail(_ctx context.Context, req *pb.UserSignUpByEmailRequest) (*emptypb.Empty, error) {
@@ -47,6 +49,6 @@ func (p UserService) SignUpByEmail(_ctx context.Context, req *pb.UserSignUpByEma
 	return &emptypb.Empty{}, nil
 }
 
-func NewUserService(db *gorm.DB, cache *redis.Client, aes *crypto.Aes, mac *crypto.HMac, jwt *crypto.Jwt, enforcer *casbin.Enforcer, queue *rabbitmq.Config, s3 *minio.Client) *UserService {
-	return &UserService{db: db, cache: cache, jwt: jwt, aes: aes, mac: mac, enforcer: enforcer, queue: queue, s3: s3}
+func NewUserService(db *gorm.DB, cache *redis.Client, aes *crypto.Aes, mac *crypto.HMac, jwt *crypto.Jwt, enforcer *casbin.Enforcer, i18n *i18n.I18n, queue *rabbitmq.Config, s3 *minio.Client) *UserService {
+	return &UserService{db: db, cache: cache, jwt: jwt, aes: aes, mac: mac, enforcer: enforcer, i18n: i18n, queue: queue, s3: s3}
 }

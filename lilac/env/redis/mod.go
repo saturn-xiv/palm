@@ -28,26 +28,19 @@ func (p *Cluster) Options() redis.ClusterOptions {
 func (p *Cluster) Open(namespace string) (*Client, error) {
 	slog.Info(fmt.Sprintf("open redis %s", strings.Join(p.Addrs(), ",")))
 	options := p.Options()
-	db := redis.NewClusterClient(&options)
+	client := Client{
+		namespace: namespace,
+		db:        redis.NewClusterClient(&options),
+	}
 	{
 		ctx := context.Background()
-		status := db.ClusterNodes(ctx)
-		if err := status.Err(); err != nil {
+		status, err := client.Heartbeat(ctx)
+		if err != nil {
 			return nil, err
 		}
-		slog.Debug(fmt.Sprintf("redis nodes:\n%s", status.Val()))
-
-		if err := db.ForEachShard(ctx, func(ctx context.Context, shard *redis.Client) error {
-			status := shard.Ping(ctx)
-			return status.Err()
-		}); err != nil {
-			return nil, err
-		}
+		slog.Debug(fmt.Sprintf("redis nodes:\n%s", status))
 	}
-	return &Client{
-		namespace: namespace,
-		db:        db,
-	}, nil
+	return &client, nil
 }
 
 type Node struct {
