@@ -4,8 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=nobody
-Group=nobody
+User=root
+Restart=on-failure
+RestartSec=3
 ExecStart=/usr/local/bin/envoy -c /etc/envoy/main.yaml
 
 [Install]
