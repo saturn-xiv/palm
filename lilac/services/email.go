@@ -1,7 +1,10 @@
 package services
 
 import (
+	"context"
+
 	"github.com/casbin/casbin/v2"
+	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
@@ -16,6 +19,18 @@ type EmailService struct {
 	db       *gorm.DB
 	queue    *rabbitmq.Config
 	enforcer *casbin.Enforcer
+}
+
+func (p *EmailService) Send(ctx context.Context, req *pb.EmailSendRequest) (*emptypb.Empty, error) {
+	user, err := NewCurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err := user.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+	p.queue.Produce(ctx, pb.TaskQueueName((*pb.EmailSendRequest)(nil)), req)
+	return &emptypb.Empty{}, nil
 }
 
 func NewEmailService(

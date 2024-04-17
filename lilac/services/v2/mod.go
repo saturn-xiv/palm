@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"encoding/gob"
 	"fmt"
+	reflect "reflect"
 	"strings"
 	"time"
 
@@ -191,4 +192,8 @@ func NewPagination(pager *Pager, total int64) *Pagination {
 		HasNext:     (page*size < total),
 		HasPrevious: (page > 1),
 	}
+}
+
+func TaskQueueName(it proto.Message) string {
+	return fmt.Sprintf("%s/%s", reflect.TypeOf(it).Elem().PkgPath(), reflect.TypeOf(it).Elem().Name())
 }
