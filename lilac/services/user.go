@@ -37,8 +37,29 @@ type UserService struct {
 	i18n     *i18n.I18n
 }
 
-func (p *UserService) SignInByEmail(ctx context.Context, req *pb.UserSignInByEmailRequest) (*pb.UserSignInResponse, error) {
+func (p *UserService) Can(ctx context.Context, req *pb.PolicyPermissionsResponse_Item) (*emptypb.Empty, error) {
+	user, err := NewCurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err = user.Payload.HasPermission(p.enforcer, req); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
+}
 
+func (p *UserService) Has(ctx context.Context, req *pb.PolicyRolesResponse_Item) (*emptypb.Empty, error) {
+	user, err := NewCurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err = user.Payload.HasRole(p.enforcer, req); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
+}
+
+func (p *UserService) SignInByEmail(ctx context.Context, req *pb.UserSignInByEmailRequest) (*pb.UserSignInResponse, error) {
 	var res pb.UserSignInResponse
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		now := time.Now()

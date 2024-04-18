@@ -20,6 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	User_Can_FullMethodName            = "/palm.lilac.auth.v1.User/Can"
+	User_Has_FullMethodName            = "/palm.lilac.auth.v1.User/Has"
 	User_SignInByEmail_FullMethodName  = "/palm.lilac.auth.v1.User/SignInByEmail"
 	User_SignUpByEmail_FullMethodName  = "/palm.lilac.auth.v1.User/SignUpByEmail"
 	User_ConfirmByEmail_FullMethodName = "/palm.lilac.auth.v1.User/ConfirmByEmail"
@@ -51,6 +53,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
+	Can(ctx context.Context, in *PolicyPermissionsResponse_Item, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Has(ctx context.Context, in *PolicyRolesResponse_Item, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SignInByEmail(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
 	SignUpByEmail(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfirmByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -84,6 +88,24 @@ type userClient struct {
 
 func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 	return &userClient{cc}
+}
+
+func (c *userClient) Can(ctx context.Context, in *PolicyPermissionsResponse_Item, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Can_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Has(ctx context.Context, in *PolicyRolesResponse_Item, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Has_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *userClient) SignInByEmail(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error) {
@@ -315,6 +337,8 @@ func (c *userClient) Unlock(ctx context.Context, in *IdRequest, opts ...grpc.Cal
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
 type UserServer interface {
+	Can(context.Context, *PolicyPermissionsResponse_Item) (*emptypb.Empty, error)
+	Has(context.Context, *PolicyRolesResponse_Item) (*emptypb.Empty, error)
 	SignInByEmail(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error)
 	SignUpByEmail(context.Context, *UserSignUpByEmailRequest) (*emptypb.Empty, error)
 	ConfirmByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
@@ -347,6 +371,12 @@ type UserServer interface {
 type UnimplementedUserServer struct {
 }
 
+func (UnimplementedUserServer) Can(context.Context, *PolicyPermissionsResponse_Item) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Can not implemented")
+}
+func (UnimplementedUserServer) Has(context.Context, *PolicyRolesResponse_Item) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Has not implemented")
+}
 func (UnimplementedUserServer) SignInByEmail(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignInByEmail not implemented")
 }
@@ -433,6 +463,42 @@ type UnsafeUserServer interface {
 
 func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
 	s.RegisterService(&User_ServiceDesc, srv)
+}
+
+func _User_Can_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PolicyPermissionsResponse_Item)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Can(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Can_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Can(ctx, req.(*PolicyPermissionsResponse_Item))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Has_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PolicyRolesResponse_Item)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Has(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Has_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Has(ctx, req.(*PolicyRolesResponse_Item))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _User_SignInByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -893,6 +959,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Can",
+			Handler:    _User_Can_Handler,
+		},
+		{
+			MethodName: "Has",
+			Handler:    _User_Has_Handler,
+		},
+		{
 			MethodName: "SignInByEmail",
 			Handler:    _User_SignInByEmail_Handler,
 		},
@@ -1000,6 +1074,7 @@ var User_ServiceDesc = grpc.ServiceDesc{
 const (
 	Policy_Users_FullMethodName                    = "/palm.lilac.auth.v1.Policy/Users"
 	Policy_Roles_FullMethodName                    = "/palm.lilac.auth.v1.Policy/Roles"
+	Policy_Permissions_FullMethodName              = "/palm.lilac.auth.v1.Policy/Permissions"
 	Policy_AddRolesForUser_FullMethodName          = "/palm.lilac.auth.v1.Policy/AddRolesForUser"
 	Policy_DeleteRolesForUser_FullMethodName       = "/palm.lilac.auth.v1.Policy/DeleteRolesForUser"
 	Policy_GetRolesForUser_FullMethodName          = "/palm.lilac.auth.v1.Policy/GetRolesForUser"
@@ -1010,9 +1085,11 @@ const (
 	Policy_AddPermissionsForUser_FullMethodName    = "/palm.lilac.auth.v1.Policy/AddPermissionsForUser"
 	Policy_DeletePermissionsForUser_FullMethodName = "/palm.lilac.auth.v1.Policy/DeletePermissionsForUser"
 	Policy_GetPermissionsForUser_FullMethodName    = "/palm.lilac.auth.v1.Policy/GetPermissionsForUser"
+	Policy_SetPermissionsForUser_FullMethodName    = "/palm.lilac.auth.v1.Policy/SetPermissionsForUser"
 	Policy_AddPermissionsForRole_FullMethodName    = "/palm.lilac.auth.v1.Policy/AddPermissionsForRole"
 	Policy_DeletePermissionsForRole_FullMethodName = "/palm.lilac.auth.v1.Policy/DeletePermissionsForRole"
 	Policy_GetPermissionsForRole_FullMethodName    = "/palm.lilac.auth.v1.Policy/GetPermissionsForRole"
+	Policy_SetPermissionsForRole_FullMethodName    = "/palm.lilac.auth.v1.Policy/SetPermissionsForRole"
 )
 
 // PolicyClient is the client API for Policy service.
@@ -1021,19 +1098,22 @@ const (
 type PolicyClient interface {
 	Users(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PolicyUsersResponse, error)
 	Roles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PolicyRolesResponse, error)
+	Permissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PolicyPermissionsResponse, error)
 	AddRolesForUser(ctx context.Context, in *PolicyRolesForUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteRolesForUser(ctx context.Context, in *PolicyRolesForUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetRolesForUser(ctx context.Context, in *PolicyUserRequest, opts ...grpc.CallOption) (*PolicyRolesResponse, error)
 	AddUsersForRole(ctx context.Context, in *PolicyUsersForRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUsersForRole(ctx context.Context, in *PolicyUsersForRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetUsersForRole(ctx context.Context, in *PolicyRolesResponse_Item, opts ...grpc.CallOption) (*PolicyUsersResponse, error)
+	GetUsersForRole(ctx context.Context, in *PolicyRoleRequest, opts ...grpc.CallOption) (*PolicyUsersResponse, error)
 	DeleteRole(ctx context.Context, in *PolicyRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddPermissionsForUser(ctx context.Context, in *PolicyPermissionsForUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeletePermissionsForUser(ctx context.Context, in *PolicyPermissionsForUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetPermissionsForUser(ctx context.Context, in *PolicyUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetPermissionsForUser(ctx context.Context, in *PolicyUserRequest, opts ...grpc.CallOption) (*PolicyPermissionsResponse, error)
+	SetPermissionsForUser(ctx context.Context, in *PolicyPermissionsForUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	AddPermissionsForRole(ctx context.Context, in *PolicyPermissionsForRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeletePermissionsForRole(ctx context.Context, in *PolicyPermissionsForRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetPermissionsForRole(ctx context.Context, in *PolicyRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetPermissionsForRole(ctx context.Context, in *PolicyRoleRequest, opts ...grpc.CallOption) (*PolicyPermissionsResponse, error)
+	SetPermissionsForRole(ctx context.Context, in *PolicyPermissionsForRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type policyClient struct {
@@ -1056,6 +1136,15 @@ func (c *policyClient) Users(ctx context.Context, in *emptypb.Empty, opts ...grp
 func (c *policyClient) Roles(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PolicyRolesResponse, error) {
 	out := new(PolicyRolesResponse)
 	err := c.cc.Invoke(ctx, Policy_Roles_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *policyClient) Permissions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PolicyPermissionsResponse, error) {
+	out := new(PolicyPermissionsResponse)
+	err := c.cc.Invoke(ctx, Policy_Permissions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1107,7 +1196,7 @@ func (c *policyClient) DeleteUsersForRole(ctx context.Context, in *PolicyUsersFo
 	return out, nil
 }
 
-func (c *policyClient) GetUsersForRole(ctx context.Context, in *PolicyRolesResponse_Item, opts ...grpc.CallOption) (*PolicyUsersResponse, error) {
+func (c *policyClient) GetUsersForRole(ctx context.Context, in *PolicyRoleRequest, opts ...grpc.CallOption) (*PolicyUsersResponse, error) {
 	out := new(PolicyUsersResponse)
 	err := c.cc.Invoke(ctx, Policy_GetUsersForRole_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -1143,9 +1232,18 @@ func (c *policyClient) DeletePermissionsForUser(ctx context.Context, in *PolicyP
 	return out, nil
 }
 
-func (c *policyClient) GetPermissionsForUser(ctx context.Context, in *PolicyUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *policyClient) GetPermissionsForUser(ctx context.Context, in *PolicyUserRequest, opts ...grpc.CallOption) (*PolicyPermissionsResponse, error) {
+	out := new(PolicyPermissionsResponse)
 	err := c.cc.Invoke(ctx, Policy_GetPermissionsForUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *policyClient) SetPermissionsForUser(ctx context.Context, in *PolicyPermissionsForUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Policy_SetPermissionsForUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1170,9 +1268,18 @@ func (c *policyClient) DeletePermissionsForRole(ctx context.Context, in *PolicyP
 	return out, nil
 }
 
-func (c *policyClient) GetPermissionsForRole(ctx context.Context, in *PolicyRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *policyClient) GetPermissionsForRole(ctx context.Context, in *PolicyRoleRequest, opts ...grpc.CallOption) (*PolicyPermissionsResponse, error) {
+	out := new(PolicyPermissionsResponse)
 	err := c.cc.Invoke(ctx, Policy_GetPermissionsForRole_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *policyClient) SetPermissionsForRole(ctx context.Context, in *PolicyPermissionsForRoleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Policy_SetPermissionsForRole_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1185,19 +1292,22 @@ func (c *policyClient) GetPermissionsForRole(ctx context.Context, in *PolicyRole
 type PolicyServer interface {
 	Users(context.Context, *emptypb.Empty) (*PolicyUsersResponse, error)
 	Roles(context.Context, *emptypb.Empty) (*PolicyRolesResponse, error)
+	Permissions(context.Context, *emptypb.Empty) (*PolicyPermissionsResponse, error)
 	AddRolesForUser(context.Context, *PolicyRolesForUserRequest) (*emptypb.Empty, error)
 	DeleteRolesForUser(context.Context, *PolicyRolesForUserRequest) (*emptypb.Empty, error)
 	GetRolesForUser(context.Context, *PolicyUserRequest) (*PolicyRolesResponse, error)
 	AddUsersForRole(context.Context, *PolicyUsersForRoleRequest) (*emptypb.Empty, error)
 	DeleteUsersForRole(context.Context, *PolicyUsersForRoleRequest) (*emptypb.Empty, error)
-	GetUsersForRole(context.Context, *PolicyRolesResponse_Item) (*PolicyUsersResponse, error)
+	GetUsersForRole(context.Context, *PolicyRoleRequest) (*PolicyUsersResponse, error)
 	DeleteRole(context.Context, *PolicyRoleRequest) (*emptypb.Empty, error)
 	AddPermissionsForUser(context.Context, *PolicyPermissionsForUserRequest) (*emptypb.Empty, error)
 	DeletePermissionsForUser(context.Context, *PolicyPermissionsForUserRequest) (*emptypb.Empty, error)
-	GetPermissionsForUser(context.Context, *PolicyUserRequest) (*emptypb.Empty, error)
+	GetPermissionsForUser(context.Context, *PolicyUserRequest) (*PolicyPermissionsResponse, error)
+	SetPermissionsForUser(context.Context, *PolicyPermissionsForUserRequest) (*emptypb.Empty, error)
 	AddPermissionsForRole(context.Context, *PolicyPermissionsForRoleRequest) (*emptypb.Empty, error)
 	DeletePermissionsForRole(context.Context, *PolicyPermissionsForRoleRequest) (*emptypb.Empty, error)
-	GetPermissionsForRole(context.Context, *PolicyRoleRequest) (*emptypb.Empty, error)
+	GetPermissionsForRole(context.Context, *PolicyRoleRequest) (*PolicyPermissionsResponse, error)
+	SetPermissionsForRole(context.Context, *PolicyPermissionsForRoleRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedPolicyServer()
 }
 
@@ -1210,6 +1320,9 @@ func (UnimplementedPolicyServer) Users(context.Context, *emptypb.Empty) (*Policy
 }
 func (UnimplementedPolicyServer) Roles(context.Context, *emptypb.Empty) (*PolicyRolesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Roles not implemented")
+}
+func (UnimplementedPolicyServer) Permissions(context.Context, *emptypb.Empty) (*PolicyPermissionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Permissions not implemented")
 }
 func (UnimplementedPolicyServer) AddRolesForUser(context.Context, *PolicyRolesForUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRolesForUser not implemented")
@@ -1226,7 +1339,7 @@ func (UnimplementedPolicyServer) AddUsersForRole(context.Context, *PolicyUsersFo
 func (UnimplementedPolicyServer) DeleteUsersForRole(context.Context, *PolicyUsersForRoleRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUsersForRole not implemented")
 }
-func (UnimplementedPolicyServer) GetUsersForRole(context.Context, *PolicyRolesResponse_Item) (*PolicyUsersResponse, error) {
+func (UnimplementedPolicyServer) GetUsersForRole(context.Context, *PolicyRoleRequest) (*PolicyUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsersForRole not implemented")
 }
 func (UnimplementedPolicyServer) DeleteRole(context.Context, *PolicyRoleRequest) (*emptypb.Empty, error) {
@@ -1238,8 +1351,11 @@ func (UnimplementedPolicyServer) AddPermissionsForUser(context.Context, *PolicyP
 func (UnimplementedPolicyServer) DeletePermissionsForUser(context.Context, *PolicyPermissionsForUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePermissionsForUser not implemented")
 }
-func (UnimplementedPolicyServer) GetPermissionsForUser(context.Context, *PolicyUserRequest) (*emptypb.Empty, error) {
+func (UnimplementedPolicyServer) GetPermissionsForUser(context.Context, *PolicyUserRequest) (*PolicyPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPermissionsForUser not implemented")
+}
+func (UnimplementedPolicyServer) SetPermissionsForUser(context.Context, *PolicyPermissionsForUserRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPermissionsForUser not implemented")
 }
 func (UnimplementedPolicyServer) AddPermissionsForRole(context.Context, *PolicyPermissionsForRoleRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddPermissionsForRole not implemented")
@@ -1247,8 +1363,11 @@ func (UnimplementedPolicyServer) AddPermissionsForRole(context.Context, *PolicyP
 func (UnimplementedPolicyServer) DeletePermissionsForRole(context.Context, *PolicyPermissionsForRoleRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePermissionsForRole not implemented")
 }
-func (UnimplementedPolicyServer) GetPermissionsForRole(context.Context, *PolicyRoleRequest) (*emptypb.Empty, error) {
+func (UnimplementedPolicyServer) GetPermissionsForRole(context.Context, *PolicyRoleRequest) (*PolicyPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPermissionsForRole not implemented")
+}
+func (UnimplementedPolicyServer) SetPermissionsForRole(context.Context, *PolicyPermissionsForRoleRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPermissionsForRole not implemented")
 }
 func (UnimplementedPolicyServer) mustEmbedUnimplementedPolicyServer() {}
 
@@ -1295,6 +1414,24 @@ func _Policy_Roles_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PolicyServer).Roles(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Policy_Permissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PolicyServer).Permissions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Policy_Permissions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PolicyServer).Permissions(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1390,7 +1527,7 @@ func _Policy_DeleteUsersForRole_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _Policy_GetUsersForRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PolicyRolesResponse_Item)
+	in := new(PolicyRoleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1402,7 +1539,7 @@ func _Policy_GetUsersForRole_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: Policy_GetUsersForRole_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PolicyServer).GetUsersForRole(ctx, req.(*PolicyRolesResponse_Item))
+		return srv.(PolicyServer).GetUsersForRole(ctx, req.(*PolicyRoleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1479,6 +1616,24 @@ func _Policy_GetPermissionsForUser_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Policy_SetPermissionsForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PolicyPermissionsForUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PolicyServer).SetPermissionsForUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Policy_SetPermissionsForUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PolicyServer).SetPermissionsForUser(ctx, req.(*PolicyPermissionsForUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Policy_AddPermissionsForRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PolicyPermissionsForRoleRequest)
 	if err := dec(in); err != nil {
@@ -1533,6 +1688,24 @@ func _Policy_GetPermissionsForRole_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Policy_SetPermissionsForRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PolicyPermissionsForRoleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PolicyServer).SetPermissionsForRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Policy_SetPermissionsForRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PolicyServer).SetPermissionsForRole(ctx, req.(*PolicyPermissionsForRoleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Policy_ServiceDesc is the grpc.ServiceDesc for Policy service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1547,6 +1720,10 @@ var Policy_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Roles",
 			Handler:    _Policy_Roles_Handler,
+		},
+		{
+			MethodName: "Permissions",
+			Handler:    _Policy_Permissions_Handler,
 		},
 		{
 			MethodName: "AddRolesForUser",
@@ -1589,6 +1766,10 @@ var Policy_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Policy_GetPermissionsForUser_Handler,
 		},
 		{
+			MethodName: "SetPermissionsForUser",
+			Handler:    _Policy_SetPermissionsForUser_Handler,
+		},
+		{
 			MethodName: "AddPermissionsForRole",
 			Handler:    _Policy_AddPermissionsForRole_Handler,
 		},
@@ -1599,6 +1780,10 @@ var Policy_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPermissionsForRole",
 			Handler:    _Policy_GetPermissionsForRole_Handler,
+		},
+		{
+			MethodName: "SetPermissionsForRole",
+			Handler:    _Policy_SetPermissionsForRole_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
