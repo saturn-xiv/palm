@@ -212,7 +212,7 @@ message UserAttachmentsResponse {
     string bucket = 2;
     string name = 3;
     string title = 4;
-    uint32 size = 5;
+    int64 size = 5;
     string content_type = 6;
 
     optional google.protobuf.Timestamp deleted_at = 8;

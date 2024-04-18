@@ -3,17 +3,16 @@ package services
 import (
 	"context"
 	"fmt"
-	"log/slog"
 	"net/url"
 	"time"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/minio/minio-go/v7"
-	"github.com/minio/minio-go/v7/pkg/lifecycle"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
@@ -37,63 +36,11 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequ
 	if err != nil {
 		return nil, err
 	}
-	bucket, err := req.BucketName(p.namespace)
+
+	bucket, err := env.CreateBucket(ctx, p.client, p.namespace, req)
 	if err != nil {
 		return nil, err
 	}
-	found, err := p.client.BucketExists(ctx, bucket)
-	if err != nil {
-		return nil, err
-	}
-	if !found {
-		slog.Info(fmt.Sprintf("create bucket %s", bucket))
-
-		if err = p.client.MakeBucket(ctx, bucket, minio.MakeBucketOptions{}); err != nil {
-			return nil, err
-		}
-		if req.Public {
-			slog.Info(fmt.Sprintf("set bucket %s to public", bucket))
-			now := time.Now()
-			policy := fmt.Sprintf(`
-{
-	"Version": "%s",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Principal": {"AWS": "*"},
-			"Action": [
-				"s3:GetObject"
-			],
-			"Resource": "arn:aws:s3:::%s/*",
-		},
-	],
-}
-			`, now.Format("2006-01-02"), bucket)
-			slog.Debug(policy)
-			if err = p.client.SetBucketPolicy(ctx, bucket, policy); err != nil {
-				return nil, err
-			}
-		}
-
-		if req.ExpirationDays != nil {
-			slog.Info(fmt.Sprintf("set bucket %s expiration-days %d", bucket, *req.ExpirationDays))
-			config := lifecycle.NewConfiguration()
-			config.Rules = []lifecycle.Rule{
-				{
-					ID:     "expire-bucket",
-					Status: "Enabled",
-					Expiration: lifecycle.Expiration{
-						Days: lifecycle.ExpirationDays(*req.ExpirationDays),
-					},
-				},
-			}
-
-			if err = p.client.SetBucketLifecycle(ctx, bucket, config); err != nil {
-				return nil, err
-			}
-		}
-	}
-
 	return &pb.S3CreateBucketResponse{Name: bucket}, nil
 }
 

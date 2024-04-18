@@ -9,7 +9,7 @@ type Attachment struct {
 	Bucket      string `gorm:"index;index:,unique,composite:bucket_name;not null;size:63"`
 	Name        string `gorm:"index;index:,unique,composite:bucket_name;not null;size:63"`
 	Title       string `gorm:"index;not null;size:127"`
-	Size        uint32 `gorm:"not null"`
+	Size        int64  `gorm:"not null"`
 	ContentType string `gorm:"index;not null;size:63"`
 }
 

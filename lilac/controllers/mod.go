@@ -56,8 +56,9 @@ func Mount(router *gin.Engine, db *gorm.DB, cache *redis.Client, jwt *crypto.Jwt
 	router.Use(env.GinLogger())
 	router.Use(errorHandler)
 	router.Use(gin.Recovery())
+	router.MaxMultipartMemory = 64 << 20
 
-	router.POST("/attachments", Warp(AttachmentUpload(db, jwt, s3)))
+	router.POST("/attachments/:bucket", Warp(AttachmentUpload(db, jwt, s3)))
 	router.GET("/twilio/sms-status-callback/:token", Warp(TwilioSmsStatusCallback(db, jwt)))
 	router.GET("/robots.txt", Warp(RobotsTxt()))
 	router.GET("/sitemap.xml", Warp(SiteMap(db)))
