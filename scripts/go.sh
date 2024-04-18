@@ -26,6 +26,7 @@ declare -a packages=(
 )
 
 apt update
+apt upgrade -y
 for p in "${packages[@]}"; do
     apt install -y $p
 done
@@ -38,10 +39,12 @@ fi
 
 export PATH=/opt/go/bin:$PATH
 
+# https://go.dev/src/internal/goarch/goarch.go
 declare -a targets=(
     "amd64"
     "arm64"
     "riscv64"
+    # "loong64"
 )
 
 cd $WORKSPACE/$1
