@@ -6,7 +6,7 @@ type Log struct {
 	ID           uint32 `gorm:"primaryKey"`
 	UserID       uint32 `gorm:"not null"`
 	Plugin       string `gorm:"index;not null;size:31"`
-	Level        string `gorm:"index;not null;size:8"`
+	Level        int32  `gorm:"not null"`
 	Ip           string `gorm:"index;not null;size:45"`
 	ResourceType string `gorm:"index;not null;size:127"`
 	ResourceID   *uint32

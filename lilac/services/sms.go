@@ -26,7 +26,7 @@ func (p *SmsService) Send(ctx context.Context, req *pb.SmsSendRequest) (*emptypb
 	if err != nil {
 		return nil, err
 	}
-	if err := user.IsAdministrator(p.enforcer); err != nil {
+	if err := user.Payload.IsAdministrator(p.enforcer); err != nil {
 		return nil, err
 	}
 	p.queue.Produce(ctx, pb.TaskQueueName((*pb.SmsSendRequest)(nil)), req)

@@ -3,7 +3,6 @@ package services
 import (
 	"context"
 	"log/slog"
-	"reflect"
 	"strings"
 
 	"github.com/casbin/casbin/v2"
@@ -29,133 +28,86 @@ import (
 var (
 	gl_validate *validator.Validate = validator.New(validator.WithRequiredStructEnabled())
 
-	gl_email_validator_tag    = "required,email,lowercase,max=127"
-	gl_code_validator_tag     = "required,alphanum,lowercase,min=2,max=31"
-	gl_name_validator_tag     = "required,min=2,max=63"
 	gl_password_validator_tag = "required,min=6,max=31"
-	gl_domain_validator_tag   = "required,fqdn,min=3,max=127"
-	// gl_title_validator_tag    = "required,min=1,max=63"
-	// gl_summary_validator_tag  = "required,min=2,max=511"
 )
 
-func IsDomain(s string) error {
-	return gl_validate.Var(s, gl_domain_validator_tag)
+func IsDomain(s string) (string, error) {
+	v := strings.ToLower(strings.TrimSpace(s))
+	if err := gl_validate.Var(s, "required,fqdn,min=3,max=127"); err != nil {
+		return "", err
+	}
+	return v, nil
+}
+
+func IsEmail(s string) (string, error) {
+	v := strings.ToLower(strings.TrimSpace(s))
+	if err := gl_validate.Var(s, "required,email,lowercase,max=127"); err != nil {
+		return "", err
+	}
+	return v, nil
+}
+
+func IsUrl(s string) (string, error) {
+	v := strings.TrimSpace(s)
+	if err := gl_validate.Var(s, "required,url,max=127"); err != nil {
+		return "", err
+	}
+	return v, nil
+}
+func IsCode(s string) (string, error) {
+	v := strings.ToLower(strings.TrimSpace(s))
+	if err := gl_validate.Var(s, "required,alphanum,lowercase,min=2,max=31"); err != nil {
+		return "", err
+	}
+	return v, nil
+}
+
+func IsUsername(s string) (string, error) {
+	v := strings.TrimSpace(s)
+	if err := gl_validate.Var(s, "required,min=2,max=63"); err != nil {
+		return "", err
+	}
+	return v, nil
 }
 
 type CurrentUser struct {
-	ID           uint32
-	ProviderType string
+	Payload      *models.User
+	ProviderType pb.UserIndexResponse_Item_ProviderType
 	ProviderId   uint32
-}
-
-func (p *CurrentUser) IsRoot(enforcer *casbin.Enforcer) error {
-	return p.has(enforcer, &pb.PolicyRolesResponse_Item{
-		By: &pb.PolicyRolesResponse_Item_Root_{},
-	})
-}
-
-func (p *CurrentUser) IsAdministrator(enforcer *casbin.Enforcer) error {
-	return p.has(enforcer, &pb.PolicyRolesResponse_Item{
-		By: &pb.PolicyRolesResponse_Item_Administrator_{},
-	})
-}
-func (p *CurrentUser) Has(enforcer *casbin.Enforcer, role string) error {
-	return p.has(enforcer, &pb.PolicyRolesResponse_Item{
-		By: &pb.PolicyRolesResponse_Item_Member{
-			Member: role,
-		},
-	})
-}
-
-func (p *CurrentUser) has(enforcer *casbin.Enforcer, role *pb.PolicyRolesResponse_Item) error {
-	user := pb.PolicyUserRequest{Id: p.ID}
-	user_c, err := user.Code()
-	if err != nil {
-		return status.Errorf(codes.Internal, "%v", err)
-	}
-	role_c, err := role.Code()
-	if err != nil {
-		return status.Errorf(codes.Internal, "%v", err)
-	}
-	ok, err := enforcer.HasRoleForUser(user_c, role_c)
-	if err != nil {
-		return status.Errorf(codes.Internal, "%v", err)
-	}
-	if !ok {
-		return status.Errorf(codes.PermissionDenied, "user didn't have role of %s", role.Display())
-	}
-	return nil
-}
-func (p *CurrentUser) Can(enforcer *casbin.Enforcer, operation string, resource_type string) error {
-	return p.can(enforcer, &pb.PolicyPermissionsResponse_Item{
-		Operation: operation,
-		Resource: &pb.PolicyPermissionsResponse_Item_Resource{
-			Type: resource_type,
-		},
-	})
-}
-
-func (p *CurrentUser) Can_(enforcer *casbin.Enforcer, operation string, resource_type string, resource_id uint32) error {
-	return p.can(enforcer, &pb.PolicyPermissionsResponse_Item{
-		Operation: operation,
-		Resource: &pb.PolicyPermissionsResponse_Item_Resource{
-			Type: resource_type,
-			Id:   &resource_id,
-		},
-	})
-}
-
-func (p *CurrentUser) can(enforcer *casbin.Enforcer, permission *pb.PolicyPermissionsResponse_Item) error {
-	user := pb.PolicyUserRequest{Id: p.ID}
-	subject, err := user.Code()
-	if err != nil {
-		return status.Errorf(codes.Internal, "%v", err)
-	}
-	object, err := permission.Resource.Code()
-	if err != nil {
-		return status.Errorf(codes.Internal, "%v", err)
-	}
-
-	items, err := enforcer.GetImplicitPermissionsForUser(subject)
-	if err != nil {
-		return status.Errorf(codes.Internal, "%v", err)
-	}
-	for _, it := range items {
-		if len(it) != 3 {
-			continue
-		}
-		if it[1] == object && it[2] == permission.Operation {
-			return nil
-		}
-	}
-	return status.Errorf(codes.PermissionDenied, "user didn't have permission(%s, %s)", permission.Operation, permission.Resource.Display())
+	Session      string
 }
 
 const (
-	users_SIGN_IN_AUDIENCE = "users.sign-in"
+	gl_jwt_issuer                       = "palm.lilac"
+	gl_jwt_audience_user_sign_in        = "user.sign-in"
+	gl_jwt_audience_user_confirm        = "user.confirm"
+	gl_jwt_audience_user_unlock         = "user.unlock"
+	gl_jwt_audience_user_reset_password = "user.reset-password"
 )
 
 func CurrentUserFromToken(token string, db *gorm.DB, jwt *crypto.Jwt) (*CurrentUser, error) {
-	issuer := reflect.TypeOf(CurrentUser{}).PkgPath()
-	_, subject, _, err := jwt.Verify(token, issuer, users_SIGN_IN_AUDIENCE)
+	_, subject, _, err := jwt.Verify(token, gl_jwt_issuer, gl_jwt_audience_user_sign_in)
 	if err != nil {
 		return nil, err
 	}
-	var it models.Session
-
-	if rst := db.Where("uid = @uid", map[string]interface{}{"uid": subject}).First(&it); rst.Error != nil {
+	var ss models.Session
+	if rst := db.Where(&models.Session{Uid: subject}).First(&ss); rst.Error != nil {
 		return nil, rst.Error
+	}
+	it, ud, err := models.UserFromSession(db, &ss)
+	if err != nil {
+		return nil, err
 	}
 
 	return &CurrentUser{
-		ID:           it.UserID,
-		ProviderType: it.ProviderType,
-		ProviderId:   it.ProviderId,
+		Payload:      it,
+		ProviderType: ud.ProviderType,
+		ProviderId:   ss.ProviderId,
+		Session:      ss.Uid,
 	}, nil
 }
 
 func NewCurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*CurrentUser, error) {
-
 	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return nil, status.Errorf(codes.Unauthenticated, "metadata is not provided")

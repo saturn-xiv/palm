@@ -35,6 +35,7 @@ const (
 	User_SignOut_FullMethodName        = "/palm.lilac.auth.v1.User/SignOut"
 	User_Set_FullMethodName            = "/palm.lilac.auth.v1.User/Set"
 	User_Get_FullMethodName            = "/palm.lilac.auth.v1.User/Get"
+	User_Refresh_FullMethodName        = "/palm.lilac.auth.v1.User/Refresh"
 	User_Create_FullMethodName         = "/palm.lilac.auth.v1.User/Create"
 	User_Index_FullMethodName          = "/palm.lilac.auth.v1.User/Index"
 	User_Sessions_FullMethodName       = "/palm.lilac.auth.v1.User/Sessions"
@@ -52,11 +53,11 @@ const (
 type UserClient interface {
 	SignInByEmail(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
 	SignUpByEmail(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ConfirmByEmail(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfirmByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfirmByToken(ctx context.Context, in *UserConfirmByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	UnlockByEmail(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UnlockByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UnlockByToken(ctx context.Context, in *UserUnlockByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ForgotPassword(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ForgotPassword(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ResetPassword(ctx context.Context, in *UserResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Attachments(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserAttachmentsResponse, error)
 	Logs(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserLogsResponse, error)
@@ -65,8 +66,9 @@ type UserClient interface {
 	SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Set(ctx context.Context, in *KvSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Get(ctx context.Context, in *KvGetRequest, opts ...grpc.CallOption) (*KvGetResponse, error)
+	Refresh(ctx context.Context, in *UserRefreshRequest, opts ...grpc.CallOption) (*UserRefreshResponse, error)
 	Create(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserIndexResponse, error)
+	Index(ctx context.Context, in *UserIndexRequest, opts ...grpc.CallOption) (*UserIndexResponse, error)
 	Sessions(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserSessionsResponse, error)
 	SetPassword(ctx context.Context, in *UserSetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Confirm(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -102,7 +104,7 @@ func (c *userClient) SignUpByEmail(ctx context.Context, in *UserSignUpByEmailReq
 	return out, nil
 }
 
-func (c *userClient) ConfirmByEmail(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *userClient) ConfirmByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, User_ConfirmByEmail_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -120,7 +122,7 @@ func (c *userClient) ConfirmByToken(ctx context.Context, in *UserConfirmByTokenR
 	return out, nil
 }
 
-func (c *userClient) UnlockByEmail(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *userClient) UnlockByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, User_UnlockByEmail_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -138,7 +140,7 @@ func (c *userClient) UnlockByToken(ctx context.Context, in *UserUnlockByTokenReq
 	return out, nil
 }
 
-func (c *userClient) ForgotPassword(ctx context.Context, in *UserQuery, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *userClient) ForgotPassword(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, User_ForgotPassword_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -219,6 +221,15 @@ func (c *userClient) Get(ctx context.Context, in *KvGetRequest, opts ...grpc.Cal
 	return out, nil
 }
 
+func (c *userClient) Refresh(ctx context.Context, in *UserRefreshRequest, opts ...grpc.CallOption) (*UserRefreshResponse, error) {
+	out := new(UserRefreshResponse)
+	err := c.cc.Invoke(ctx, User_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) Create(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, User_Create_FullMethodName, in, out, opts...)
@@ -228,7 +239,7 @@ func (c *userClient) Create(ctx context.Context, in *UserSignUpByEmailRequest, o
 	return out, nil
 }
 
-func (c *userClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserIndexResponse, error) {
+func (c *userClient) Index(ctx context.Context, in *UserIndexRequest, opts ...grpc.CallOption) (*UserIndexResponse, error) {
 	out := new(UserIndexResponse)
 	err := c.cc.Invoke(ctx, User_Index_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -306,11 +317,11 @@ func (c *userClient) Unlock(ctx context.Context, in *IdRequest, opts ...grpc.Cal
 type UserServer interface {
 	SignInByEmail(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error)
 	SignUpByEmail(context.Context, *UserSignUpByEmailRequest) (*emptypb.Empty, error)
-	ConfirmByEmail(context.Context, *UserQuery) (*emptypb.Empty, error)
+	ConfirmByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
 	ConfirmByToken(context.Context, *UserConfirmByTokenRequest) (*emptypb.Empty, error)
-	UnlockByEmail(context.Context, *UserQuery) (*emptypb.Empty, error)
+	UnlockByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
 	UnlockByToken(context.Context, *UserUnlockByTokenRequest) (*emptypb.Empty, error)
-	ForgotPassword(context.Context, *UserQuery) (*emptypb.Empty, error)
+	ForgotPassword(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
 	ResetPassword(context.Context, *UserResetPasswordRequest) (*emptypb.Empty, error)
 	Attachments(context.Context, *Pager) (*UserAttachmentsResponse, error)
 	Logs(context.Context, *Pager) (*UserLogsResponse, error)
@@ -319,8 +330,9 @@ type UserServer interface {
 	SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	Set(context.Context, *KvSetRequest) (*emptypb.Empty, error)
 	Get(context.Context, *KvGetRequest) (*KvGetResponse, error)
+	Refresh(context.Context, *UserRefreshRequest) (*UserRefreshResponse, error)
 	Create(context.Context, *UserSignUpByEmailRequest) (*emptypb.Empty, error)
-	Index(context.Context, *Pager) (*UserIndexResponse, error)
+	Index(context.Context, *UserIndexRequest) (*UserIndexResponse, error)
 	Sessions(context.Context, *Pager) (*UserSessionsResponse, error)
 	SetPassword(context.Context, *UserSetPasswordRequest) (*emptypb.Empty, error)
 	Confirm(context.Context, *IdRequest) (*emptypb.Empty, error)
@@ -341,19 +353,19 @@ func (UnimplementedUserServer) SignInByEmail(context.Context, *UserSignInByEmail
 func (UnimplementedUserServer) SignUpByEmail(context.Context, *UserSignUpByEmailRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUpByEmail not implemented")
 }
-func (UnimplementedUserServer) ConfirmByEmail(context.Context, *UserQuery) (*emptypb.Empty, error) {
+func (UnimplementedUserServer) ConfirmByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmByEmail not implemented")
 }
 func (UnimplementedUserServer) ConfirmByToken(context.Context, *UserConfirmByTokenRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmByToken not implemented")
 }
-func (UnimplementedUserServer) UnlockByEmail(context.Context, *UserQuery) (*emptypb.Empty, error) {
+func (UnimplementedUserServer) UnlockByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnlockByEmail not implemented")
 }
 func (UnimplementedUserServer) UnlockByToken(context.Context, *UserUnlockByTokenRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnlockByToken not implemented")
 }
-func (UnimplementedUserServer) ForgotPassword(context.Context, *UserQuery) (*emptypb.Empty, error) {
+func (UnimplementedUserServer) ForgotPassword(context.Context, *UserByEmailRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
 func (UnimplementedUserServer) ResetPassword(context.Context, *UserResetPasswordRequest) (*emptypb.Empty, error) {
@@ -380,10 +392,13 @@ func (UnimplementedUserServer) Set(context.Context, *KvSetRequest) (*emptypb.Emp
 func (UnimplementedUserServer) Get(context.Context, *KvGetRequest) (*KvGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
+func (UnimplementedUserServer) Refresh(context.Context, *UserRefreshRequest) (*UserRefreshResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
+}
 func (UnimplementedUserServer) Create(context.Context, *UserSignUpByEmailRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedUserServer) Index(context.Context, *Pager) (*UserIndexResponse, error) {
+func (UnimplementedUserServer) Index(context.Context, *UserIndexRequest) (*UserIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
 }
 func (UnimplementedUserServer) Sessions(context.Context, *Pager) (*UserSessionsResponse, error) {
@@ -457,7 +472,7 @@ func _User_SignUpByEmail_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _User_ConfirmByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserQuery)
+	in := new(UserByEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -469,7 +484,7 @@ func _User_ConfirmByEmail_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: User_ConfirmByEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ConfirmByEmail(ctx, req.(*UserQuery))
+		return srv.(UserServer).ConfirmByEmail(ctx, req.(*UserByEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -493,7 +508,7 @@ func _User_ConfirmByToken_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _User_UnlockByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserQuery)
+	in := new(UserByEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -505,7 +520,7 @@ func _User_UnlockByEmail_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: User_UnlockByEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).UnlockByEmail(ctx, req.(*UserQuery))
+		return srv.(UserServer).UnlockByEmail(ctx, req.(*UserByEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -529,7 +544,7 @@ func _User_UnlockByToken_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _User_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserQuery)
+	in := new(UserByEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -541,7 +556,7 @@ func _User_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: User_ForgotPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).ForgotPassword(ctx, req.(*UserQuery))
+		return srv.(UserServer).ForgotPassword(ctx, req.(*UserByEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -690,6 +705,24 @@ func _User_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserRefreshRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Refresh(ctx, req.(*UserRefreshRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserSignUpByEmailRequest)
 	if err := dec(in); err != nil {
@@ -709,7 +742,7 @@ func _User_Create_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _User_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Pager)
+	in := new(UserIndexRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -721,7 +754,7 @@ func _User_Index_Handler(srv interface{}, ctx context.Context, dec func(interfac
 		FullMethod: User_Index_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Index(ctx, req.(*Pager))
+		return srv.(UserServer).Index(ctx, req.(*UserIndexRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -918,6 +951,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _User_Get_Handler,
+		},
+		{
+			MethodName: "Refresh",
+			Handler:    _User_Refresh_Handler,
 		},
 		{
 			MethodName: "Create",

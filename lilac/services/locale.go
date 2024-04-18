@@ -50,7 +50,7 @@ func (p *LocaleService) Index(ctx context.Context, req *pb.Pager) (*pb.LocaleInd
 	if err != nil {
 		return nil, err
 	}
-	if err := user.IsAdministrator(p.enforcer); err != nil {
+	if err := user.Payload.IsAdministrator(p.enforcer); err != nil {
 		return nil, err
 	}
 
@@ -61,13 +61,11 @@ func (p *LocaleService) Index(ctx context.Context, req *pb.Pager) (*pb.LocaleInd
 	var items []*pb.LocaleIndexResponse_Item
 	for _, it := range tmp {
 		items = append(items, &pb.LocaleIndexResponse_Item{
-			Id:      it.ID,
-			Lang:    it.Lang,
-			Code:    it.Code,
-			Message: it.Message,
-			UpdatedAt: &timestamppb.Timestamp{
-				Seconds: it.UpdatedAt.Unix(),
-			},
+			Id:        it.ID,
+			Lang:      it.Lang,
+			Code:      it.Code,
+			Message:   it.Message,
+			UpdatedAt: timestamppb.New(it.UpdatedAt),
 		})
 	}
 
@@ -82,7 +80,7 @@ func (p *LocaleService) Set(ctx context.Context, req *pb.LocaleSetRequest) (*emp
 	if err != nil {
 		return nil, err
 	}
-	if err := user.IsAdministrator(p.enforcer); err != nil {
+	if err := user.Payload.IsAdministrator(p.enforcer); err != nil {
 		return nil, err
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
@@ -119,7 +117,7 @@ func (p *LocaleService) Destroy(ctx context.Context, req *pb.IdRequest) (*emptyp
 	if err != nil {
 		return nil, err
 	}
-	if err := user.IsAdministrator(p.enforcer); err != nil {
+	if err := user.Payload.IsAdministrator(p.enforcer); err != nil {
 		return nil, err
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {

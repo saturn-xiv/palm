@@ -12,18 +12,22 @@ import (
 )
 
 type GoogleOauth2 struct {
-	ClientID     string   `toml:"client-id"`
-	ClientSecret string   `toml:"client-secret"`
-	Scopes       []string `toml:"scopes"`
+	ClientID     string `toml:"client-id"`
+	ClientSecret string `toml:"client-secret"`
 }
 
+// https://developers.google.com/identity/protocols/oauth2/scopes#oauth2
 func (p *GoogleOauth2) AuthUrl(domain string, state string) string {
 	config := oauth2.Config{
 		ClientID:     p.ClientID,
 		ClientSecret: p.ClientID,
 		Endpoint:     google.Endpoint,
-		Scopes:       p.Scopes,
-		RedirectURL:  fmt.Sprintf("https://%s/google-oauth2/callback", domain),
+		Scopes: []string{
+			"https://www.googleapis.com/auth/userinfo.email",
+			"https://www.googleapis.com/auth/userinfo.profile",
+			"openid",
+		},
+		RedirectURL: fmt.Sprintf("https://%s/google-oauth2/callback", domain),
 	}
 	url := config.AuthCodeURL(state)
 	slog.Debug(fmt.Sprintf("google redirect url: %s", url))

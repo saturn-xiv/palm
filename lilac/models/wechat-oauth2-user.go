@@ -1,5 +1,10 @@
 package models
 
+import (
+	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	"google.golang.org/protobuf/types/known/timestamppb"
+)
+
 type WechatOauth2User struct {
 	Model `gorm:"embedded"`
 
@@ -15,4 +20,18 @@ type WechatOauth2User struct {
 	HeadImgUrl *string  `gorm:"size:255"`
 	Privilege  []string `gorm:"not null;serializer:json"`
 	Lang       string   `gorm:"index;not null;size:15"`
+}
+
+func (p *WechatOauth2User) Detail() *pb.UserIndexResponse_Item_Detail {
+	it := pb.UserIndexResponse_Item_Detail{
+		ProviderType: pb.UserIndexResponse_Item_WeChatOauth,
+		Uid:          p.OpenId,
+		Name:         p.Nickname,
+		ConfirmedAt:  timestamppb.New(p.Model.CreatedAt),
+	}
+	if p.HeadImgUrl != nil {
+		it.Avatar = *p.HeadImgUrl
+	}
+
+	return &it
 }

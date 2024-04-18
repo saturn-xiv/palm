@@ -46,10 +46,7 @@ func GetLocaleByPager(db *gorm.DB, pager *pb.Pager) ([]Locale, *pb.Pagination, e
 	}
 
 	var items []Locale
-	offset := pager.Offset(total)
-	limit := pager.Size_()
-
-	if rst := db.Order("updated_at desc").Offset(offset).Limit(limit).Find(&items); rst.Error != nil {
+	if rst := db.Order("updated_at desc").Offset(pager.Offset(total)).Limit(pager.Size_()).Find(&items); rst.Error != nil {
 		return nil, nil, rst.Error
 	}
 	return items, pb.NewPagination(pager, total), nil

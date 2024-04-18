@@ -10,8 +10,8 @@ import (
 
 func EnvoyYaml() HandlerFunc {
 	return func(c *gin.Context) error {
-		domain := c.Query("domain")
-		if err := services.IsDomain(domain); err != nil {
+		domain, err := services.IsDomain(c.Query("domain"))
+		if err != nil {
 			return err
 		}
 		tpl, err := template.ParseFS(gl_templates_fs, "templates/envoy.yaml")

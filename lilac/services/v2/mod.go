@@ -194,6 +194,14 @@ func NewPagination(pager *Pager, total int64) *Pagination {
 	}
 }
 
+func NewUserProviderType(code string) (UserIndexResponse_Item_ProviderType, error) {
+	it, ok := UserIndexResponse_Item_ProviderType_value[code]
+	if !ok {
+		return 0, fmt.Errorf("unknown user provider type %s", code)
+	}
+	return UserIndexResponse_Item_ProviderType(it), nil
+}
+
 func TaskQueueName(it proto.Message) string {
 	return fmt.Sprintf("%s/%s", reflect.TypeOf(it).Elem().PkgPath(), reflect.TypeOf(it).Elem().Name())
 }

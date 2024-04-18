@@ -34,12 +34,12 @@ message IdRequest {
 service User {
   rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
   rpc SignUpByEmail(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
-  rpc ConfirmByEmail(UserQuery) returns (google.protobuf.Empty) {}
+  rpc ConfirmByEmail(UserByEmailRequest) returns (google.protobuf.Empty) {}
   rpc ConfirmByToken(UserConfirmByTokenRequest)
       returns (google.protobuf.Empty) {}
-  rpc UnlockByEmail(UserQuery) returns (google.protobuf.Empty) {}
+  rpc UnlockByEmail(UserByEmailRequest) returns (google.protobuf.Empty) {}
   rpc UnlockByToken(UserUnlockByTokenRequest) returns (google.protobuf.Empty) {}
-  rpc ForgotPassword(UserQuery) returns (google.protobuf.Empty) {}
+  rpc ForgotPassword(UserByEmailRequest) returns (google.protobuf.Empty) {}
   rpc ResetPassword(UserResetPasswordRequest) returns (google.protobuf.Empty) {}
 
   rpc Attachments(Pager) returns (UserAttachmentsResponse) {}
@@ -50,9 +50,10 @@ service User {
   rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
   rpc Set(KvSetRequest) returns (google.protobuf.Empty) {}
   rpc Get(KvGetRequest) returns (KvGetResponse) {}
+  rpc Refresh(UserRefreshRequest) returns (UserRefreshResponse) {}
 
   rpc Create(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
-  rpc Index(Pager) returns (UserIndexResponse) {}
+  rpc Index(UserIndexRequest) returns (UserIndexResponse) {}
   rpc Sessions(Pager) returns (UserSessionsResponse) {}
   rpc SetPassword(UserSetPasswordRequest) returns (google.protobuf.Empty) {}
   rpc Confirm(IdRequest) returns (google.protobuf.Empty) {}
@@ -62,7 +63,12 @@ service User {
   rpc Unlock(IdRequest) returns (google.protobuf.Empty) {}
 }
 
-message UserQuery {
+message UserByEmailRequest {
+  EmailUserQuery user = 1;
+  string home = 9;
+}
+
+message EmailUserQuery {
   oneof by {
     string email = 1;
     string nickname = 2;
@@ -70,7 +76,7 @@ message UserQuery {
 }
 
 message UserSignInByEmailRequest {
-  UserQuery user = 1;
+  EmailUserQuery user = 1;
   string password = 2;
   google.protobuf.Duration ttl = 9;
 }
@@ -116,10 +122,11 @@ message UserLogsResponse {
       Error = 2;
     }
     uint32 id = 1;
-    string ip = 2;
-    Level level = 3;
-    PolicyPermissionsResponse.Item.Resource resource = 4;
-    string message = 5;
+    string plugin = 2;
+    string ip = 3;
+    Level level = 4;
+    PolicyPermissionsResponse.Item.Resource resource = 5;
+    string message = 6;
     google.protobuf.Timestamp created_at = 9;
   }
   repeated Item items = 1;
@@ -138,6 +145,10 @@ message UserUpdateProfileRequest {
   string timezone = 4;
 }
 
+message UserIndexRequest {
+  UserIndexResponse.Item.ProviderType provider_type = 1;
+  Pager pager = 9;
+}
 message UserIndexResponse {
   message Item {
     enum ProviderType {
@@ -149,20 +160,25 @@ message UserIndexResponse {
       WeChatMiniProgram = 91;
       WeChatOauth = 92;
     }
+    message Detail {
+      ProviderType provider_type = 1;
+      string uid = 2;
+      string name = 3;
+      string avatar = 4;
+      optional google.protobuf.Timestamp confirmed_at = 9;
+    }
+    Detail detail = 1;
+    string lang = 2;
+    string timezone = 3;
 
-    ProviderType provider_type = 1;
-    string provider_id = 2;
-    string real_name = 11;
-    string avatar = 12;
-    string lang = 13;
-    string timezone = 14;
+    uint32 sign_in_count = 21;
+    string current_signed_in_ip = 22;
+    google.protobuf.Timestamp current_signed_in_at = 23;
+    string last_signed_in_ip = 24;
+    google.protobuf.Timestamp last_signed_in_at = 25;
 
-    string last_sign_in_ip = 21;
-    google.protobuf.Timestamp last_sign_in_at = 22;
-    uint32 sign_in_count = 23;
-    optional google.protobuf.Timestamp confirmed_at = 31;
-    optional google.protobuf.Timestamp locked_at = 32;
-    optional google.protobuf.Timestamp deleted_at = 33;
+    optional google.protobuf.Timestamp locked_at = 31;
+    optional google.protobuf.Timestamp deleted_at = 32;
   }
   repeated Item items = 1;
   Pagination pagination = 2;
@@ -188,20 +204,26 @@ message UserSetPasswordRequest {
 
 message UserAttachmentsResponse {
   message Item {
-    string bucket = 1;
-    string name = 2;
-    string title = 3;
-    uint32 size = 4;
-    string content_type = 5;
+    uint32 id = 1;
+    string bucket = 2;
+    string name = 3;
+    string title = 4;
+    uint32 size = 5;
+    string content_type = 6;
 
     optional google.protobuf.Timestamp deleted_at = 8;
-    google.protobuf.Timestamp created_at = 9;
+    google.protobuf.Timestamp updated_at = 9;
   }
 
   repeated Item items = 1;
   Pagination pagination = 2;
 }
-
+message UserRefreshRequest {
+  google.protobuf.Duration ttl = 1;
+}
+message UserRefreshResponse {
+  string token = 1;
+}
 // ----------------------------------------------------------------------------
 
 service Policy {
