@@ -25,19 +25,19 @@ func Launch(address string, config_file string, keys_dir string) error {
 		return err
 	}
 
-	cache, err := config.Redis.Open(config.Namespace)
+	db, err := config.Database.Open()
 	if err != nil {
 		return err
 	}
-	db, err := config.Database.Open()
+	if err = models.AutoMigrate(db); err != nil {
+		return err
+	}
+	cache, err := config.Redis.Open(config.Namespace)
 	if err != nil {
 		return err
 	}
 	i18n, err := i18n.New(db)
 	if err != nil {
-		return err
-	}
-	if err = models.AutoMigrate(db); err != nil {
 		return err
 	}
 	enforcer, err := env.OpenCasbinEnforcer(config.Namespace, db, config.Redis.Options().Addrs)

@@ -38,7 +38,7 @@ func (p *Cluster) Open(namespace string) (*Client, error) {
 		if err != nil {
 			return nil, err
 		}
-		slog.Debug(fmt.Sprintf("redis nodes:\n%s", status))
+		slog.Debug(fmt.Sprintf("redis nodes:\n%s", strings.Join(status, "\n")))
 	}
 	return &client, nil
 }

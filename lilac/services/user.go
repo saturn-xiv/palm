@@ -38,11 +38,89 @@ type UserService struct {
 }
 
 func (p *UserService) SignInByEmail(ctx context.Context, req *pb.UserSignInByEmailRequest) (*pb.UserSignInResponse, error) {
-	// TODO
-	return &pb.UserSignInResponse{}, nil
+
+	var res pb.UserSignInResponse
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		now := time.Now()
+		user, eu, err := email_user_from_query(tx, req.User)
+		if err != nil {
+			return err
+		}
+		if err = models.VerifyPassword(p.mac, req.Password, eu.Password, eu.Salt); err != nil {
+			return err
+		}
+		token, err := models.NewSession(tx, p.jwt, gl_jwt_issuer, gl_jwt_audience_user_sign_in, pb.UserIndexResponse_Item_Email, eu.ID, req.Ttl.AsDuration())
+		if err != nil {
+			return err
+		}
+		{
+			user.SignInCount += 1
+			user.CurrentSignedInAt = user.LastSignedInAt
+			user.CurrentSignedInIp = user.LastSignedInIp
+			user.LastSignedInAt = &now
+			user.Version += 1
+			user.UpdatedAt = now
+			if rst := tx.Save(user); rst.Error != nil {
+				return rst.Error
+			}
+		}
+		if rst := tx.Create(&models.Log{
+			UserID:    user.ID,
+			Level:     int32(pb.UserLogsResponse_Item_Warn),
+			Message:   "Sign in by email",
+			CreatedAt: now,
+		}); rst.Error != nil {
+			return rst.Error
+		}
+
+		res.Token = token
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+	return &res, nil
 }
 func (p *UserService) SignUpByEmail(ctx context.Context, req *pb.UserSignUpByEmailRequest) (*emptypb.Empty, error) {
-	// TODO
+	email, err := IsEmail(req.Email)
+	if err != nil {
+		return nil, err
+	}
+	nickname, err := IsCode(req.Nickname)
+	if err != nil {
+		return nil, err
+	}
+	real_name, err := IsUsername(req.RealName)
+	if err != nil {
+		return nil, err
+	}
+	if err = gl_validate.Var(req.Password, gl_password_validator_tag); err != nil {
+		return nil, err
+	}
+
+	var eu models.EmailUser
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		now := time.Now()
+		if err := models.CreateUserByEmail(tx, p.mac, real_name, nickname, real_name, req.Password, req.Lang, req.Timezone); err != nil {
+			return err
+		}
+		if rst := tx.Where(&models.EmailUser{Email: email}).First(&eu); rst.Error != nil {
+			return rst.Error
+		}
+		if rst := tx.Create(&models.Log{
+			Level:     int32(pb.UserLogsResponse_Item_Info),
+			UserID:    eu.UserID,
+			Message:   "Sign up.",
+			CreatedAt: now,
+		}); rst.Error != nil {
+			return rst.Error
+		}
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+	if err := p.send_email(ctx, &eu, req.Home, req.Lang, gl_jwt_audience_user_confirm); err != nil {
+		return nil, err
+	}
 	return &emptypb.Empty{}, nil
 }
 
@@ -569,6 +647,7 @@ func (p *UserService) Create(ctx context.Context, req *pb.UserSignUpByEmailReque
 		if rst := tx.Create(&models.Log{
 			Level:     int32(pb.UserLogsResponse_Item_Info),
 			UserID:    eu.UserID,
+			Message:   "Created by administrator",
 			CreatedAt: now,
 		}); rst.Error != nil {
 			return rst.Error
@@ -741,7 +820,7 @@ func (p *UserService) SetPassword(ctx context.Context, req *pb.UserSetPasswordRe
 		return tx.Create(&models.Log{
 			UserID:    it.ID,
 			Level:     int32(pb.UserLogsResponse_Item_Warn),
-			Message:   "Confirmed by administrator",
+			Message:   "Set password by administrator",
 			CreatedAt: now,
 		}).Error
 	}); err != nil {

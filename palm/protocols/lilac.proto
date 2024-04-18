@@ -100,6 +100,7 @@ message UserSignUpByEmailRequest {
   string password = 4;
   string lang = 8;
   string timezone = 9;
+  string home = 11;
 }
 
 message UserConfirmByTokenRequest {
@@ -570,7 +571,7 @@ message LeaveWordIndexResponse {
     Editor editor = 5;
     optional google.protobuf.Timestamp published_at = 7;
     optional google.protobuf.Timestamp deleted_at = 8;
-    google.protobuf.Timestamp updated_at = 9;
+    google.protobuf.Timestamp created_at = 9;
   }
   repeated Item items = 1;
   Pagination pagination = 2;
