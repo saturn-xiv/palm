@@ -3,6 +3,7 @@ package controllers
 import (
 	"errors"
 	"log/slog"
+	"net/http"
 	"path/filepath"
 	"strconv"
 	"time"
@@ -32,7 +33,6 @@ func resource_from_query(c *gin.Context) (*models.Resource, error) {
 
 func AttachmentUpload(db *gorm.DB, jwt *crypto.Jwt, s3 *minio.Client) HandlerFunc {
 	return func(c *gin.Context) error {
-
 		bucket := c.Param("bucket")
 		resource, _ := resource_from_query(c)
 		user, err := NewCurrentUser(c, db, jwt)
@@ -45,6 +45,7 @@ func AttachmentUpload(db *gorm.DB, jwt *crypto.Jwt, s3 *minio.Client) HandlerFun
 		}
 		files := form.File["file[]"]
 
+		var items []models.Attachment
 		for _, file := range files {
 			slog.Debug("upload", slog.String("file", file.Filename), slog.Int64("size", file.Size))
 			fd, err := file.Open()
@@ -94,11 +95,13 @@ func AttachmentUpload(db *gorm.DB, jwt *crypto.Jwt, s3 *minio.Client) HandlerFun
 						return rst.Error
 					}
 				}
+				items = append(items, it)
 				return nil
 			}); err != nil {
 				return err
 			}
 		}
+		c.JSON(http.StatusOK, items)
 		return nil
 	}
 }
