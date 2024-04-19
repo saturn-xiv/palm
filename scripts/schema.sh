@@ -208,9 +208,9 @@ function generate_loquat() {
 # }
 
 function generate_go() {
-    echo "generate $2 for $1"
+    echo "generate $3 for $1"
     local protocols=$WORKSPACE/$1/protocols
-    local target=$WORKSPACE/$1/$2/v2
+    local target=$WORKSPACE/$1/$3/v2
 
     if [ -d $target ]; then
         rm $target/*.pb.go
@@ -272,7 +272,15 @@ generate_loquat
 generate_musa
 generate_morus
 
-generate_go lilac sms
+generate_go lilac sms sms
+generate_go lilac email email
+generate_go lilac s3 s3
+generate_go lilac rbac rbac
+generate_go lilac google-oauth2 google/oauth2
+generate_go lilac wechat-oauth2 wechat/oauth2
+generate_go lilac wechat-mini-program wechat/mini-program
+generate_go lilac wechat-pay wechat/pay
+generate_go lilac auth auth
 
 # generate_lily
 # echo "generate lily requirements.txt"
