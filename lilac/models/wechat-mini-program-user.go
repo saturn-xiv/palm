@@ -3,7 +3,8 @@ package models
 import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	auth_pb "github.com/saturn-xiv/palm/lilac/auth/v2"
+	rbac_pb "github.com/saturn-xiv/palm/lilac/rbac/v2"
 )
 
 type WechatMiniProgramUser struct {
@@ -17,10 +18,10 @@ type WechatMiniProgramUser struct {
 	AvatarUrl *string `gorm:"size:255"`
 }
 
-func (p *WechatMiniProgramUser) Detail() *pb.UserIndexResponse_Item_Detail {
-	it := pb.UserIndexResponse_Item_Detail{
-		ProviderType: pb.UserIndexResponse_Item_WeChatMiniProgram,
-		Uid:          p.OpenId,
+func (p *WechatMiniProgramUser) Detail() *auth_pb.UserIndexResponse_Item_Detail {
+	it := auth_pb.UserIndexResponse_Item_Detail{
+		ProviderType: rbac_pb.UserDetail_Provider_WeChatMiniProgram,
+		ProviderId:   p.OpenId,
 		ConfirmedAt:  timestamppb.New(p.Model.CreatedAt),
 	}
 	if p.AvatarUrl != nil {

@@ -7,9 +7,9 @@ import (
 
 	"github.com/BurntSushi/toml"
 
+	pb "github.com/saturn-xiv/palm/lilac/email/v2"
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
 
 type Config struct {
@@ -26,5 +26,5 @@ func Launch(name string, config_file string) error {
 
 	worker := config.Smtp.Open()
 	ctx := context.Background()
-	return config.RabbitMq.Consume(ctx, name, pb.TaskQueueName((*pb.EmailSendRequest)(nil)), worker)
+	return config.RabbitMq.Consume(ctx, name, env.TaskQueueName((*pb.EmailSendRequest)(nil)), worker)
 }

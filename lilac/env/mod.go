@@ -1,6 +1,10 @@
 package env
 
 import (
+	"fmt"
+	"reflect"
+
+	"google.golang.org/protobuf/proto"
 	"gorm.io/gorm"
 )
 
@@ -28,4 +32,8 @@ func (p *Database) Open() (*gorm.DB, error) {
 	}
 	it := Sqlite3{File: "tmp/db"}
 	return it.Open(&config)
+}
+
+func TaskQueueName(it proto.Message) string {
+	return fmt.Sprintf("%s/%s", reflect.TypeOf(it).Elem().PkgPath(), reflect.TypeOf(it).Elem().Name())
 }

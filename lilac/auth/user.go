@@ -1,4 +1,4 @@
-package services
+package auth
 
 import (
 	"context"
@@ -15,12 +15,15 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
 
+	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
+	email_pb "github.com/saturn-xiv/palm/lilac/email/v2"
+	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
 	"github.com/saturn-xiv/palm/lilac/env/redis"
 	"github.com/saturn-xiv/palm/lilac/i18n"
 	"github.com/saturn-xiv/palm/lilac/models"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	rbac_pb "github.com/saturn-xiv/palm/lilac/rbac/v2"
 )
 
 type UserService struct {
@@ -37,7 +40,7 @@ type UserService struct {
 	i18n     *i18n.I18n
 }
 
-func (p *UserService) Can(ctx context.Context, req *pb.PolicyPermissionsResponse_Item) (*emptypb.Empty, error) {
+func (p *UserService) Can(ctx context.Context, req *rbac_pb.Permission) (*emptypb.Empty, error) {
 	user, err := NewCurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
@@ -48,7 +51,7 @@ func (p *UserService) Can(ctx context.Context, req *pb.PolicyPermissionsResponse
 	return &emptypb.Empty{}, nil
 }
 
-func (p *UserService) Has(ctx context.Context, req *pb.PolicyRolesResponse_Item) (*emptypb.Empty, error) {
+func (p *UserService) Has(ctx context.Context, req *rbac_pb.Role) (*emptypb.Empty, error) {
 	user, err := NewCurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
@@ -70,7 +73,7 @@ func (p *UserService) SignInByEmail(ctx context.Context, req *pb.UserSignInByEma
 		if err = models.VerifyPassword(p.mac, req.Password, eu.Password, eu.Salt); err != nil {
 			return err
 		}
-		token, err := models.NewSession(tx, p.jwt, gl_jwt_issuer, gl_jwt_audience_user_sign_in, pb.UserIndexResponse_Item_Email, eu.ID, req.Ttl.AsDuration())
+		token, err := models.NewSession(tx, p.jwt, gl_jwt_issuer, gl_jwt_audience_user_sign_in, rbac_pb.UserDetail_Provider_Email, eu.ID, req.Ttl.AsDuration())
 		if err != nil {
 			return err
 		}
@@ -426,7 +429,7 @@ func (p *UserService) Logs(ctx context.Context, req *pb.Pager) (*pb.UserLogsResp
 			Level:  pb.UserLogsResponse_Item_Level(it.Level),
 			Ip:     it.Ip,
 			Plugin: it.Plugin,
-			Resource: &pb.PolicyPermissionsResponse_Item_Resource{
+			Resource: &rbac_pb.Resource{
 				Type: it.ResourceType,
 				Id:   it.ResourceID,
 			},
@@ -447,7 +450,7 @@ func (p *UserService) UpdateProfile(ctx context.Context, req *pb.UserUpdateProfi
 
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		now := time.Now()
-		if su.ProviderType == pb.UserIndexResponse_Item_Email {
+		if su.ProviderType == rbac_pb.UserDetail_Provider_Email {
 			avatar, err := IsUrl(req.Avatar)
 			if err != nil {
 				return err
@@ -501,7 +504,7 @@ func (p *UserService) ChangePassword(ctx context.Context, req *pb.UserChangePass
 	if err != nil {
 		return nil, err
 	}
-	if su.ProviderType != pb.UserIndexResponse_Item_Email {
+	if su.ProviderType != rbac_pb.UserDetail_Provider_Email {
 		return nil, errors.New("can't change password for current user")
 	}
 	if err = gl_validate.Var(req.NewPassword, gl_password_validator_tag); err != nil {
@@ -693,7 +696,7 @@ func (p *UserService) Index(ctx context.Context, req *pb.UserIndexRequest) (*pb.
 	var items []*pb.UserIndexResponse_Item
 
 	switch req.ProviderType {
-	case pb.UserIndexResponse_Item_Email:
+	case rbac_pb.UserDetail_Provider_Email:
 		if rst := p.db.Model(&models.EmailUser{}).Count(&total); rst.Error != nil {
 			return nil, rst.Error
 		}
@@ -708,7 +711,7 @@ func (p *UserService) Index(ctx context.Context, req *pb.UserIndexRequest) (*pb.
 			}
 			items = append(items, new_user_index_response_item(&it, eu.Detail()))
 		}
-	case pb.UserIndexResponse_Item_Google:
+	case rbac_pb.UserDetail_Provider_Google:
 		if rst := p.db.Model(&models.GoogleUser{}).Count(&total); rst.Error != nil {
 			return nil, rst.Error
 		}
@@ -723,7 +726,7 @@ func (p *UserService) Index(ctx context.Context, req *pb.UserIndexRequest) (*pb.
 			}
 			items = append(items, new_user_index_response_item(&it, eu.Detail()))
 		}
-	case pb.UserIndexResponse_Item_WeChatOauth:
+	case rbac_pb.UserDetail_Provider_WeChatOauth:
 		if rst := p.db.Model(&models.WechatOauth2User{}).Count(&total); rst.Error != nil {
 			return nil, rst.Error
 		}
@@ -738,7 +741,7 @@ func (p *UserService) Index(ctx context.Context, req *pb.UserIndexRequest) (*pb.
 			}
 			items = append(items, new_user_index_response_item(&it, eu.Detail()))
 		}
-	case pb.UserIndexResponse_Item_WeChatMiniProgram:
+	case rbac_pb.UserDetail_Provider_WeChatMiniProgram:
 		if rst := p.db.Model(&models.WechatMiniProgramUser{}).Count(&total); rst.Error != nil {
 			return nil, rst.Error
 		}
@@ -1078,10 +1081,10 @@ func (p *UserService) send_email(ctx context.Context, eu *models.EmailUser, home
 		"token":    token,
 		"home":     home,
 	})
-	return p.queue.Produce(ctx, pb.TaskQueueName((*pb.EmailSendRequest)(nil)), &pb.EmailSendRequest{
-		To:      &pb.EmailSendRequest_Address{Name: eu.RealName, Email: eu.Email},
+	return p.queue.Produce(ctx, env.TaskQueueName((*email_pb.EmailSendRequest)(nil)), &email_pb.EmailSendRequest{
+		To:      &email_pb.EmailSendRequest_Address{Name: eu.RealName, Email: eu.Email},
 		Subject: subject,
-		Body: &pb.EmailSendRequest_Body{
+		Body: &email_pb.EmailSendRequest_Body{
 			Html:    true,
 			Payload: body,
 		},

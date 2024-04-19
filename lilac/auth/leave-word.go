@@ -1,4 +1,4 @@
-package services
+package auth
 
 import (
 	"context"
@@ -11,7 +11,7 @@ import (
 
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/models"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 )
 
 type LeaveWordService struct {

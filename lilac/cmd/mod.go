@@ -12,7 +12,9 @@ import (
 	"github.com/saturn-xiv/palm/lilac/cmd/rpc"
 	sms_send_consumer "github.com/saturn-xiv/palm/lilac/cmd/sms-send-consumer"
 	"github.com/saturn-xiv/palm/lilac/cmd/web"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	email_pb "github.com/saturn-xiv/palm/lilac/email/v2"
+	"github.com/saturn-xiv/palm/lilac/env"
+	sms_pb "github.com/saturn-xiv/palm/lilac/sms/v2"
 )
 
 var (
@@ -97,7 +99,7 @@ func init() {
 	{
 		var cmd = &cobra.Command{
 			Use:   "email-send-consumer",
-			Short: fmt.Sprintf("Start an email-send consumer(%s)", pb.TaskQueueName((*pb.EmailSendRequest)(nil))),
+			Short: fmt.Sprintf("Start an email-send consumer(%s)", env.TaskQueueName((*email_pb.EmailSendRequest)(nil))),
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 				if err := email_send_consumer.Launch(gl_email_send_consumer, gl_config); err != nil {
@@ -111,7 +113,7 @@ func init() {
 	{
 		var cmd = &cobra.Command{
 			Use:   "sms-send-consumer",
-			Short: fmt.Sprintf("Start a sms-send consumer(%s)", pb.TaskQueueName((*pb.SmsSendRequest)(nil))),
+			Short: fmt.Sprintf("Start a sms-send consumer(%s)", env.TaskQueueName((*sms_pb.SmsSendRequest)(nil))),
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 				if err := sms_send_consumer.Launch(gl_sms_send_consumer, gl_config); err != nil {

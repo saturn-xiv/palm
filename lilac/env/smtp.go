@@ -10,7 +10,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	"gopkg.in/gomail.v2"
 
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	pb "github.com/saturn-xiv/palm/lilac/email/v2"
 )
 
 type Smtp struct {

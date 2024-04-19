@@ -1,4 +1,4 @@
-package services
+package s3
 
 import (
 	"context"
@@ -12,12 +12,13 @@ import (
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/lilac/auth"
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	pb "github.com/saturn-xiv/palm/lilac/s3/v2"
 )
 
-type S3Service struct {
+type Service struct {
 	pb.UnimplementedS3Server
 
 	namespace string
@@ -27,12 +28,8 @@ type S3Service struct {
 	enforcer  *casbin.Enforcer
 }
 
-func NewS3Service(namespace string, db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, client *minio.Client) *S3Service {
-	return &S3Service{namespace: namespace, db: db, client: client, jwt: jwt, enforcer: enforcer}
-}
-
-func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*pb.S3CreateBucketResponse, error) {
-	_, err := NewCurrentUser(ctx, p.db, p.jwt)
+func (p *Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequest) (*pb.S3CreateBucketResponse, error) {
+	_, err := auth.NewCurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -44,8 +41,8 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequ
 	return &pb.S3CreateBucketResponse{Name: bucket}, nil
 }
 
-func (p *S3Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest) (*pb.S3UploadFileResponse, error) {
-	_, err := NewCurrentUser(ctx, p.db, p.jwt)
+func (p *Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest) (*pb.S3UploadFileResponse, error) {
+	_, err := auth.NewCurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -58,8 +55,8 @@ func (p *S3Service) UploadFile(ctx context.Context, req *pb.S3UploadFileRequest)
 		Url: url.String(),
 	}, nil
 }
-func (p *S3Service) GetPresignedUrl(ctx context.Context, req *pb.S3GetPresignedUrlRequest) (*pb.S3UrlResponse, error) {
-	_, err := NewCurrentUser(ctx, p.db, p.jwt)
+func (p *Service) GetPresignedUrl(ctx context.Context, req *pb.S3GetPresignedUrlRequest) (*pb.S3UrlResponse, error) {
+	_, err := auth.NewCurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -81,8 +78,8 @@ func (p *S3Service) GetPresignedUrl(ctx context.Context, req *pb.S3GetPresignedU
 	return &pb.S3UrlResponse{Url: url.String()}, nil
 }
 
-func (p *S3Service) GetPermanentUrl(ctx context.Context, req *pb.S3GetPermanentUrlRequest) (*pb.S3UrlResponse, error) {
-	_, err := NewCurrentUser(ctx, p.db, p.jwt)
+func (p *Service) GetPermanentUrl(ctx context.Context, req *pb.S3GetPermanentUrlRequest) (*pb.S3UrlResponse, error) {
+	_, err := auth.NewCurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
 	}
@@ -96,4 +93,8 @@ func (p *S3Service) GetPermanentUrl(ctx context.Context, req *pb.S3GetPermanentU
 	return &pb.S3UrlResponse{
 		Url: fmt.Sprintf("%s/%s/%s", p.client.EndpointURL(), req.Bucket, req.Bucket),
 	}, nil
+}
+
+func NewService(namespace string, db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, client *minio.Client) *Service {
+	return &Service{namespace: namespace, db: db, client: client, jwt: jwt, enforcer: enforcer}
 }

@@ -1,4 +1,4 @@
-package services
+package auth
 
 import (
 	"context"
@@ -12,9 +12,9 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
 
+	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/models"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
 
 type LocaleService struct {

@@ -1,11 +1,11 @@
-package services
+package auth
 
 import (
 	"github.com/casbin/casbin/v2"
 	"gorm.io/gorm"
 
+	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 )
 
 type NotificationService struct {

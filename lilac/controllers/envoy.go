@@ -5,12 +5,12 @@ import (
 	"text/template"
 
 	"github.com/gin-gonic/gin"
-	"github.com/saturn-xiv/palm/lilac/services"
+	"github.com/saturn-xiv/palm/lilac/auth"
 )
 
 func EnvoyYaml() HandlerFunc {
 	return func(c *gin.Context) error {
-		domain, err := services.IsDomain(c.Query("domain"))
+		domain, err := auth.IsDomain(c.Query("domain"))
 		if err != nil {
 			return err
 		}

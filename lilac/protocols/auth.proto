@@ -152,13 +152,13 @@ message UserUpdateProfileRequest {
 }
 
 message UserIndexRequest {
-  palm.lilac.rbac.v1.User.Provider.Type provider_type = 1;
+  palm.lilac.rbac.v1.UserDetail.Provider.Type provider_type = 1;
   Pager pager = 9;
 }
 message UserIndexResponse {
   message Item {
     message Detail {
-      palm.lilac.rbac.v1.User.Provider.Type provider_type = 1;
+      palm.lilac.rbac.v1.UserDetail.Provider.Type provider_type = 1;
       string provider_id = 2;
       string name = 3;
       string avatar = 4;

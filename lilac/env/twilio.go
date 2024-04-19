@@ -8,7 +8,7 @@ import (
 	twilio_api "github.com/twilio/twilio-go/rest/api/v2010"
 	"google.golang.org/protobuf/proto"
 
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	pb "github.com/saturn-xiv/palm/lilac/sms/v2"
 )
 
 type Twilio struct {

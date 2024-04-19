@@ -9,8 +9,9 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
 
+	auth_pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	rbac_pb "github.com/saturn-xiv/palm/lilac/rbac/v2"
 )
 
 type EmailUser struct {
@@ -26,10 +27,10 @@ type EmailUser struct {
 	ConfirmedAt *time.Time
 }
 
-func (p *EmailUser) Detail() *pb.UserIndexResponse_Item_Detail {
-	it := pb.UserIndexResponse_Item_Detail{
-		ProviderType: pb.UserIndexResponse_Item_Email,
-		Uid:          p.Nickname,
+func (p *EmailUser) Detail() *auth_pb.UserIndexResponse_Item_Detail {
+	it := auth_pb.UserIndexResponse_Item_Detail{
+		ProviderType: rbac_pb.UserDetail_Provider_Email,
+		ProviderId:   p.Nickname,
 		Name:         p.RealName,
 		Avatar:       p.Avatar,
 	}
@@ -120,7 +121,7 @@ func CreateUserByEmail(db *gorm.DB, mac *crypto.HMac, real_name string, nickname
 	}
 	if rst := db.Create(&Log{
 		UserID:    user.ID,
-		Level:     int32(pb.UserLogsResponse_Item_Info),
+		Level:     int32(auth_pb.UserLogsResponse_Item_Info),
 		Message:   "Sign up",
 		CreatedAt: now,
 	}); rst.Error != nil {

@@ -1,11 +1,11 @@
-package services
+package auth
 
 import (
 	"github.com/casbin/casbin/v2"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 )
 
 type TagService struct {

@@ -8,15 +8,15 @@ import (
 	"github.com/minio/minio-go/v7"
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/lilac/auth"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/env/redis"
-	"github.com/saturn-xiv/palm/lilac/services"
 )
 
 func Heartbeat(db *gorm.DB, cache *redis.Client, jwt *crypto.Jwt, s3 *minio.Client) HandlerFunc {
 	return func(c *gin.Context) error {
 		token := c.Param("token")
-		_, sub, _, err := jwt.Verify(token, reflect.TypeOf(services.CurrentUser{}).PkgPath(), "heartbeat")
+		_, sub, _, err := jwt.Verify(token, reflect.TypeOf(auth.CurrentUser{}).PkgPath(), "heartbeat")
 		if err != nil {
 			return err
 		}

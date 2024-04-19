@@ -10,12 +10,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/minio/minio-go/v7"
+	"gorm.io/gorm"
+
+	"github.com/saturn-xiv/palm/lilac/auth"
 	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/env/redis"
 	"github.com/saturn-xiv/palm/lilac/i18n"
-	"github.com/saturn-xiv/palm/lilac/services"
-	"gorm.io/gorm"
 )
 
 // https://www.iana.org/assignments/media-types/media-types.xhtml
@@ -38,13 +39,13 @@ func Warp(f HandlerFunc) gin.HandlerFunc {
 	}
 }
 
-func NewCurrentUser(c *gin.Context, db *gorm.DB, jwt *crypto.Jwt) (*services.CurrentUser, error) {
-	auth := c.GetHeader("Authorization")
-	token, ok := strings.CutPrefix(auth, "Bearer ")
+func NewCurrentUser(c *gin.Context, db *gorm.DB, jwt *crypto.Jwt) (*auth.CurrentUser, error) {
+	auth_ := c.GetHeader("Authorization")
+	token, ok := strings.CutPrefix(auth_, "Bearer ")
 	if !ok {
 		return nil, errors.New("authorization token is not provided")
 	}
-	return services.CurrentUserFromToken(token, db, jwt)
+	return auth.CurrentUserFromToken(db, jwt, token)
 }
 
 func Mount(router *gin.Engine, db *gorm.DB, cache *redis.Client, jwt *crypto.Jwt, i18n *i18n.I18n, s3 *minio.Client) error {

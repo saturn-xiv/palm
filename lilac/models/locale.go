@@ -6,7 +6,7 @@ import (
 
 	"gorm.io/gorm"
 
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 )
 
 type Locale struct {

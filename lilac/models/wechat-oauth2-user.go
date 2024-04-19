@@ -1,8 +1,10 @@
 package models
 
 import (
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
 	"google.golang.org/protobuf/types/known/timestamppb"
+
+	auth_pb "github.com/saturn-xiv/palm/lilac/auth/v2"
+	rbac_pb "github.com/saturn-xiv/palm/lilac/rbac/v2"
 )
 
 type WechatOauth2User struct {
@@ -22,10 +24,10 @@ type WechatOauth2User struct {
 	Lang       string   `gorm:"index;not null;size:15"`
 }
 
-func (p *WechatOauth2User) Detail() *pb.UserIndexResponse_Item_Detail {
-	it := pb.UserIndexResponse_Item_Detail{
-		ProviderType: pb.UserIndexResponse_Item_WeChatOauth,
-		Uid:          p.OpenId,
+func (p *WechatOauth2User) Detail() *auth_pb.UserIndexResponse_Item_Detail {
+	it := auth_pb.UserIndexResponse_Item_Detail{
+		ProviderType: rbac_pb.UserDetail_Provider_WeChatOauth,
+		ProviderId:   p.OpenId,
 		Name:         p.Nickname,
 		ConfirmedAt:  timestamppb.New(p.Model.CreatedAt),
 	}

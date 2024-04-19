@@ -7,6 +7,10 @@ package palm.lilac.rbac.v1;
 import "google/protobuf/empty.proto";
 
 message User {
+  uint32 id = 1;
+}
+
+message UserDetail {
   message Provider {
     enum Type {
       Email = 0;
@@ -55,7 +59,7 @@ service Policy {
       returns (google.protobuf.Empty) {}
   rpc DeleteRolesForUser(PolicyRolesForUserRequest)
       returns (google.protobuf.Empty) {}
-  rpc GetRolesForUser(PolicyUserRequest) returns (PolicyRolesResponse) {}
+  rpc GetRolesForUser(User) returns (PolicyRolesResponse) {}
 
   rpc AddUsersForRole(PolicyUsersForRoleRequest)
       returns (google.protobuf.Empty) {}
@@ -68,8 +72,7 @@ service Policy {
       returns (google.protobuf.Empty) {}
   rpc DeletePermissionsForUser(PolicyPermissionsForUserRequest)
       returns (google.protobuf.Empty) {}
-  rpc GetPermissionsForUser(PolicyUserRequest)
-      returns (PolicyPermissionsResponse) {}
+  rpc GetPermissionsForUser(User) returns (PolicyPermissionsResponse) {}
   rpc SetPermissionsForUser(PolicyPermissionsForUserRequest)
       returns (google.protobuf.Empty) {}
 
@@ -81,10 +84,6 @@ service Policy {
       returns (PolicyPermissionsResponse) {}
   rpc SetPermissionsForRole(PolicyPermissionsForRoleRequest)
       returns (google.protobuf.Empty) {}
-}
-
-message PolicyUserRequest {
-  uint32 id = 1;
 }
 
 message PolicyRoleRequest {
@@ -115,7 +114,7 @@ message PolicyRolesResponse {
 }
 
 message PolicyUsersResponse {
-  repeated User items = 1;
+  repeated UserDetail items = 1;
 }
 
 message PolicyPermissionsResponse {

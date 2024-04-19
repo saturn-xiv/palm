@@ -3,7 +3,8 @@ package models
 import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	pb "github.com/saturn-xiv/palm/lilac/services/v2"
+	auth_pb "github.com/saturn-xiv/palm/lilac/auth/v2"
+	rbac_pb "github.com/saturn-xiv/palm/lilac/rbac/v2"
 )
 
 // https://developers.google.com/identity/protocols/oauth2
@@ -25,13 +26,13 @@ type GoogleUser struct {
 	Token      string `gorm:"not null;size:127"`
 }
 
-func (p *GoogleUser) Detail() *pb.UserIndexResponse_Item_Detail {
-	it := pb.UserIndexResponse_Item_Detail{
-		ProviderType: pb.UserIndexResponse_Item_Google,
-		Uid:          p.Sub,
+func (p *GoogleUser) Detail() *auth_pb.UserIndexResponse_Item_Detail {
+	it := auth_pb.UserIndexResponse_Item_Detail{
+		ProviderType: rbac_pb.UserDetail_Provider_Google,
+		ProviderId:   p.Sub,
 		Name:         p.Name,
 		Avatar:       p.Picture,
-		ConfirmedAt: timestamppb.New(p.Model.CreatedAt),
+		ConfirmedAt:  timestamppb.New(p.Model.CreatedAt),
 	}
 
 	return &it
