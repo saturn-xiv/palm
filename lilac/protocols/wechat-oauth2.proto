@@ -1,0 +1,7 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.lilac.wechat.oauth2.v1";
+option go_package = "github.com/saturn-xiv/palm/lilac/wechat/oauth2/v2";
+package palm.lilac.wechat.oauth2.v1;
+
+service WechatOauth2 {}

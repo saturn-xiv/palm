@@ -8,6 +8,8 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
+import "rbac.proto";
+
 // ----------------------------------------------------------------------------
 enum Editor {
   Textarea = 0;
@@ -32,8 +34,8 @@ message IdRequest {
 // ----------------------------------------------------------------------------
 
 service User {
-  rpc Can(PolicyPermissionsResponse.Item) returns (google.protobuf.Empty) {}
-  rpc Has(PolicyRolesResponse.Item) returns (google.protobuf.Empty) {}
+  rpc Can(palm.lilac.rbac.v1.Permission) returns (google.protobuf.Empty) {}
+  rpc Has(palm.lilac.rbac.v1.Role) returns (google.protobuf.Empty) {}
 
   rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
   rpc SignUpByEmail(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
@@ -92,8 +94,8 @@ message UserSignInResponse {
   string avatar = 17;
   string lang = 18;
   string timezone = 19;
-  repeated PolicyRolesResponse.Item roles = 21;
-  repeated PolicyPermissionsResponse.Item permissions = 22;
+  repeated palm.lilac.rbac.v1.Role roles = 21;
+  repeated palm.lilac.rbac.v1.Permission permissions = 22;
 }
 
 message UserSignUpByEmailRequest {
@@ -129,7 +131,7 @@ message UserLogsResponse {
     string plugin = 2;
     string ip = 3;
     Level level = 4;
-    PolicyPermissionsResponse.Item.Resource resource = 5;
+    palm.lilac.rbac.v1.Resource resource = 5;
     string message = 6;
     google.protobuf.Timestamp created_at = 9;
   }
@@ -150,23 +152,14 @@ message UserUpdateProfileRequest {
 }
 
 message UserIndexRequest {
-  UserIndexResponse.Item.ProviderType provider_type = 1;
+  palm.lilac.rbac.v1.User.Provider.Type provider_type = 1;
   Pager pager = 9;
 }
 message UserIndexResponse {
   message Item {
-    enum ProviderType {
-      Email = 0;
-      Google = 1;
-      Facebook = 2;
-      Apple = 3;
-
-      WeChatMiniProgram = 91;
-      WeChatOauth = 92;
-    }
     message Detail {
-      ProviderType provider_type = 1;
-      string uid = 2;
+      palm.lilac.rbac.v1.User.Provider.Type provider_type = 1;
+      string provider_id = 2;
       string name = 3;
       string avatar = 4;
       optional google.protobuf.Timestamp confirmed_at = 9;
@@ -227,201 +220,6 @@ message UserRefreshRequest {
 }
 message UserRefreshResponse {
   string token = 1;
-}
-// ----------------------------------------------------------------------------
-
-service Policy {
-  rpc Users(google.protobuf.Empty) returns (PolicyUsersResponse) {}
-  rpc Roles(google.protobuf.Empty) returns (PolicyRolesResponse) {}
-  rpc Permissions(google.protobuf.Empty) returns (PolicyPermissionsResponse) {}
-
-  rpc AddRolesForUser(PolicyRolesForUserRequest)
-      returns (google.protobuf.Empty) {}
-  rpc DeleteRolesForUser(PolicyRolesForUserRequest)
-      returns (google.protobuf.Empty) {}
-  rpc GetRolesForUser(PolicyUserRequest) returns (PolicyRolesResponse) {}
-
-  rpc AddUsersForRole(PolicyUsersForRoleRequest)
-      returns (google.protobuf.Empty) {}
-  rpc DeleteUsersForRole(PolicyUsersForRoleRequest)
-      returns (google.protobuf.Empty) {}
-  rpc GetUsersForRole(PolicyRoleRequest) returns (PolicyUsersResponse) {}
-  rpc DeleteRole(PolicyRoleRequest) returns (google.protobuf.Empty) {}
-
-  rpc AddPermissionsForUser(PolicyPermissionsForUserRequest)
-      returns (google.protobuf.Empty) {}
-  rpc DeletePermissionsForUser(PolicyPermissionsForUserRequest)
-      returns (google.protobuf.Empty) {}
-  rpc GetPermissionsForUser(PolicyUserRequest)
-      returns (PolicyPermissionsResponse) {}
-  rpc SetPermissionsForUser(PolicyPermissionsForUserRequest)
-      returns (google.protobuf.Empty) {}
-
-  rpc AddPermissionsForRole(PolicyPermissionsForRoleRequest)
-      returns (google.protobuf.Empty) {}
-  rpc DeletePermissionsForRole(PolicyPermissionsForRoleRequest)
-      returns (google.protobuf.Empty) {}
-  rpc GetPermissionsForRole(PolicyRoleRequest)
-      returns (PolicyPermissionsResponse) {}
-  rpc SetPermissionsForRole(PolicyPermissionsForRoleRequest)
-      returns (google.protobuf.Empty) {}
-}
-
-message PolicyUserRequest {
-  uint32 id = 1;
-}
-
-message PolicyRoleRequest {
-  string name = 1;
-}
-
-message PolicyRolesForUserRequest {
-  uint32 user = 1;
-  repeated PolicyRolesResponse.Item roles = 2;
-}
-
-message PolicyPermissionsForUserRequest {
-  uint32 user = 1;
-  repeated PolicyPermissionsResponse.Item permissions = 2;
-}
-
-message PolicyUsersForRoleRequest {
-  PolicyRolesResponse.Item role = 1;
-  repeated uint32 users = 2;
-}
-message PolicyPermissionsForRoleRequest {
-  string role = 1;
-  repeated PolicyPermissionsResponse.Item permissions = 2;
-}
-
-message PolicyRolesResponse {
-  message Item {
-    message Root {}
-    message Administrator {}
-    oneof by {
-      Root root = 1;
-      Administrator administrator = 2;
-      string member = 3;
-    }
-  }
-
-  repeated Item items = 1;
-}
-
-message PolicyUsersResponse {
-  message Item {
-    uint32 id = 1;
-    string real_name = 2;
-    UserIndexResponse.Item.ProviderType provider_type = 3;
-    string provider_id = 4;
-  }
-  repeated Item items = 1;
-}
-
-message PolicyPermissionsResponse {
-  message Item {
-    message Resource {
-      string type = 1;
-      optional uint32 id = 2;
-    }
-    string operation = 1;
-    Resource resource = 2;
-  }
-  repeated Item items = 1;
-}
-
-// ----------------------------------------------------------------------------
-
-message SmsSendRequest {
-  repeated string to = 1;
-  string message = 2;
-  optional string callback = 3;
-}
-
-service Sms {
-  rpc Send(SmsSendRequest) returns (google.protobuf.Empty) {}
-}
-
-// ----------------------------------------------------------------------------
-
-message EmailSendRequest {
-  message Address {
-    string name = 1;
-    string email = 2;
-  }
-  message Body {
-    string payload = 1;
-    bool html = 2;
-  }
-  message Attachment {
-    string title = 1;
-    bytes payload = 2;
-    bool inline = 8;
-    string content_type = 9;
-  }
-
-  Address to = 1;
-  repeated Address cc = 2;
-  repeated Address bcc = 3;
-
-  string subject = 11;
-  Body body = 12;
-  repeated Attachment attachments = 19;
-}
-
-service Email {
-  rpc Send(EmailSendRequest) returns (google.protobuf.Empty) {}
-}
-
-// ----------------------------------------------------------------------------
-
-service S3 {
-  rpc CreateBucket(S3CreateBucketRequest) returns (S3CreateBucketResponse) {}
-  rpc UploadFile(S3UploadFileRequest) returns (S3UploadFileResponse) {}
-
-  rpc GetPresignedUrl(S3GetPresignedUrlRequest) returns (S3UrlResponse) {}
-  rpc GetPermanentUrl(S3GetPermanentUrlRequest) returns (S3UrlResponse) {}
-}
-message S3CreateBucketRequest {
-  string name = 1;
-  optional uint32 expiration_days = 2;
-  bool public = 9;
-}
-
-message S3CreateBucketResponse {
-  string name = 1;
-}
-
-message S3UploadFileRequest {
-  string bucket = 1;
-  string object = 2;
-  google.protobuf.Duration ttl = 3;
-}
-
-message S3UploadFileResponse {
-  string url = 1;
-}
-
-message S3UploadResponse {
-  string bucket = 1;
-  string name = 2;
-  string content_type = 3;
-}
-
-message S3GetPresignedUrlRequest {
-  string bucket = 1;
-  string object = 2;
-  string title = 3;
-  google.protobuf.Duration ttl = 4;
-}
-
-message S3GetPermanentUrlRequest {
-  string bucket = 1;
-  string object = 2;
-}
-
-message S3UrlResponse {
-  string url = 1;
 }
 
 // ----------------------------------------------------------------------------
@@ -665,17 +463,3 @@ message NotificationIndexResponse {
 }
 
 // ----------------------------------------------------------------------------
-
-service WechatPay {}
-
-// ----------------------------------------------------------------------------
-
-service WechatOauth2 {}
-
-// ----------------------------------------------------------------------------
-
-service WechatMiniProgram {}
-
-// ----------------------------------------------------------------------------
-
-service GoogleOauth2 {}

@@ -1,0 +1,123 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.lilac.rbac.v1";
+option go_package = "github.com/saturn-xiv/palm/lilac/rbac/v2";
+package palm.lilac.rbac.v1;
+
+import "google/protobuf/empty.proto";
+
+message User {
+  message Provider {
+    enum Type {
+      Email = 0;
+      Google = 1;
+      Facebook = 2;
+      Apple = 3;
+
+      WeChatMiniProgram = 91;
+      WeChatOauth = 92;
+    }
+    Type type = 1;
+    string id = 2;
+  }
+  uint32 id = 1;
+  Provider provider = 2;
+  string real_name = 8;
+  optional string avatar = 9;
+}
+
+message Role {
+  message Root {}
+  message Administrator {}
+  oneof by {
+    Root root = 1;
+    Administrator administrator = 2;
+    string member = 3;
+  }
+}
+
+message Resource {
+  string type = 1;
+  optional uint32 id = 2;
+}
+
+message Permission {
+  string operation = 1;
+  Resource resource = 2;
+}
+
+service Policy {
+  rpc Users(google.protobuf.Empty) returns (PolicyUsersResponse) {}
+  rpc Roles(google.protobuf.Empty) returns (PolicyRolesResponse) {}
+  rpc Permissions(google.protobuf.Empty) returns (PolicyPermissionsResponse) {}
+
+  rpc AddRolesForUser(PolicyRolesForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeleteRolesForUser(PolicyRolesForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetRolesForUser(PolicyUserRequest) returns (PolicyRolesResponse) {}
+
+  rpc AddUsersForRole(PolicyUsersForRoleRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeleteUsersForRole(PolicyUsersForRoleRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetUsersForRole(PolicyRoleRequest) returns (PolicyUsersResponse) {}
+  rpc DeleteRole(PolicyRoleRequest) returns (google.protobuf.Empty) {}
+
+  rpc AddPermissionsForUser(PolicyPermissionsForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionsForUser(PolicyPermissionsForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetPermissionsForUser(PolicyUserRequest)
+      returns (PolicyPermissionsResponse) {}
+  rpc SetPermissionsForUser(PolicyPermissionsForUserRequest)
+      returns (google.protobuf.Empty) {}
+
+  rpc AddPermissionsForRole(PolicyPermissionsForRoleRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionsForRole(PolicyPermissionsForRoleRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetPermissionsForRole(PolicyRoleRequest)
+      returns (PolicyPermissionsResponse) {}
+  rpc SetPermissionsForRole(PolicyPermissionsForRoleRequest)
+      returns (google.protobuf.Empty) {}
+}
+
+message PolicyUserRequest {
+  uint32 id = 1;
+}
+
+message PolicyRoleRequest {
+  string name = 1;
+}
+
+message PolicyRolesForUserRequest {
+  uint32 user = 1;
+  repeated Role roles = 2;
+}
+
+message PolicyPermissionsForUserRequest {
+  uint32 user = 1;
+  repeated Permission permissions = 2;
+}
+
+message PolicyUsersForRoleRequest {
+  Role role = 1;
+  repeated uint32 users = 2;
+}
+message PolicyPermissionsForRoleRequest {
+  string role = 1;
+  repeated Permission permissions = 2;
+}
+
+message PolicyRolesResponse {
+  repeated Role items = 1;
+}
+
+message PolicyUsersResponse {
+  repeated User items = 1;
+}
+
+message PolicyPermissionsResponse {
+  repeated Permission items = 1;
+}

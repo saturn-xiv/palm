@@ -1,0 +1,56 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.lilac.s3.v1";
+option go_package = "github.com/saturn-xiv/palm/lilac/s3/v2";
+package palm.lilac.s3.v1;
+
+import "google/protobuf/duration.proto";
+
+service S3 {
+  rpc CreateBucket(S3CreateBucketRequest) returns (S3CreateBucketResponse) {}
+  rpc UploadFile(S3UploadFileRequest) returns (S3UploadFileResponse) {}
+
+  rpc GetPresignedUrl(S3GetPresignedUrlRequest) returns (S3UrlResponse) {}
+  rpc GetPermanentUrl(S3GetPermanentUrlRequest) returns (S3UrlResponse) {}
+}
+message S3CreateBucketRequest {
+  string name = 1;
+  optional uint32 expiration_days = 2;
+  bool public = 9;
+}
+
+message S3CreateBucketResponse {
+  string name = 1;
+}
+
+message S3UploadFileRequest {
+  string bucket = 1;
+  string object = 2;
+  google.protobuf.Duration ttl = 3;
+}
+
+message S3UploadFileResponse {
+  string url = 1;
+}
+
+message S3UploadResponse {
+  string bucket = 1;
+  string name = 2;
+  string content_type = 3;
+}
+
+message S3GetPresignedUrlRequest {
+  string bucket = 1;
+  string object = 2;
+  string title = 3;
+  google.protobuf.Duration ttl = 4;
+}
+
+message S3GetPermanentUrlRequest {
+  string bucket = 1;
+  string object = 2;
+}
+
+message S3UrlResponse {
+  string url = 1;
+}

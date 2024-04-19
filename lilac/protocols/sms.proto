@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.lilac.sms.v1";
+option go_package = "github.com/saturn-xiv/palm/lilac/sms/v2";
+package palm.lilac.sms.v1;
+
+import "google/protobuf/empty.proto";
+
+message SmsSendRequest {
+  repeated string to = 1;
+  string message = 2;
+  optional string callback = 3;
+}
+
+service Sms {
+  rpc Send(SmsSendRequest) returns (google.protobuf.Empty) {}
+}

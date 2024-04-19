@@ -207,10 +207,11 @@ function generate_loquat() {
 #     # mv $target/lily/gourd $WORKSPACE/lily/gourd
 # }
 
-function generate_lilac() {
-    local target=$WORKSPACE/lilac/services/v2
+function generate_go() {
+    echo "generate $2 for $1"
+    local protocols=$WORKSPACE/$1/protocols
+    local target=$WORKSPACE/$1/$2/v2
 
-    echo "generate for lilac"
     if [ -d $target ]; then
         rm $target/*.pb.go
     else
@@ -220,10 +221,10 @@ function generate_lilac() {
     if [ ! -f $target/mod.go ]; then
         echo "package v2" >$target/mod.go
     fi
-    protoc -I $PALM_PROTOCOLS -I $PROTOBUF_ROOT/include/google/protobuf \
+    protoc -I $protocols -I $PROTOBUF_ROOT/include/google/protobuf \
         --go_out=$target --go_opt=paths=source_relative \
         --go-grpc_out=$target --go-grpc_opt=paths=source_relative \
-        $PALM_PROTOCOLS/lilac.proto
+        $protocols/$2.proto
 }
 
 function generate_morus() {
@@ -271,7 +272,7 @@ generate_loquat
 generate_musa
 generate_morus
 
-generate_lilac
+generate_go lilac sms
 
 # generate_lily
 # echo "generate lily requirements.txt"
