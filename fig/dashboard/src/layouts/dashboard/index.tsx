@@ -90,7 +90,7 @@ export const Component = () => {
       }}
       headerTitleRender={(logo, title, _) => {
         const defaultDom = (
-          <a>
+          <a href="/">
             {logo}
             {title}
           </a>

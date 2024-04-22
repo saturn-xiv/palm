@@ -132,7 +132,10 @@ const Widget = () => {
                       }
                     `}
                   >
-                    <img src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg" />
+                    <img
+                      alt="bianzu"
+                      src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg"
+                    />
                     <div
                       style={{
                         marginInlineStart: 14,

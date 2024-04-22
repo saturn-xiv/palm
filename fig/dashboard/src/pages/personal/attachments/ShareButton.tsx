@@ -74,7 +74,7 @@ const Widget = ({ item }: IProps) => {
       <ProForm.Group>
         {attachment && (
           <div>
-            <a href={attachment.url} target="_blank">
+            <a href={attachment.url} target="_blank" rel="noreferrer">
               {attachment.title}
             </a>
             &nbsp; ({attachment.contentType}) &nbsp;

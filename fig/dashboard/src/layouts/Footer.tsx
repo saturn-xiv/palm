@@ -63,7 +63,7 @@ const Widget = () => {
       href: `https://beian.mps.gov.cn/#/query/webSearch?code=${site_info.gabCode.code}`,
       title: (
         <>
-          <img src={icon_img} style={{ width: "12px" }} />
+          <img alt="gab" src={icon_img} style={{ width: "12px" }} />
           &nbsp;
           {site_info.gabCode.name}
         </>
