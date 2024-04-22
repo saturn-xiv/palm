@@ -15,6 +15,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
+	"google.golang.org/grpc/reflection"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/lilac/auth"
@@ -97,6 +98,7 @@ func Launch(address string, config_file string, keys_dir string) error {
 		&config.GoogleOauth2,
 		&config.WechatOauth2, &config.WechatMiniProgram, &config.WeChatPayMerchant,
 	)
+	reflection.Register(server)
 
 	go func() {
 		if err := server.Serve(socket); err != nil {

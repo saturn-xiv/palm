@@ -4,7 +4,7 @@ admin:
       typed_config:
         "@type": type.googleapis.com/envoy.extensions.access_loggers.stream.v3.StdoutAccessLog
   address:
-    socket_address: { address: 0.0.0.0, port_value: 9090 }
+    socket_address: { address: 0.0.0.0, port_value: 18081 }
 
 overload_manager:
   resource_monitors:
@@ -53,7 +53,7 @@ static_resources:
                           allow_origin_string_match:
                             - prefix: "*"
                           allow_methods: GET, PUT, DELETE, POST, OPTIONS
-                          allow_headers: keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout
+                          allow_headers: accept-language,authorization,keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web,grpc-timeout
                           allow_credentials: true
                           max_age: "1728000"
                           expose_headers: custom-header-1,grpc-status,grpc-message
@@ -67,7 +67,7 @@ static_resources:
   clusters:
     - name: lilac_service
       connect_timeout: 0.25s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       dns_lookup_family: V4_ONLY
       typed_extension_protocol_options:
         envoy.extensions.upstreams.http.v3.HttpProtocolOptions:
@@ -83,4 +83,4 @@ static_resources:
                   address:
                     socket_address:
                       address: 127.0.0.1
-                      port_value: 10002
+                      port_value: 10001

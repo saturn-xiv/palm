@@ -26,7 +26,7 @@ const client = new LocaleClient(GRPC_HOST);
 const request = new LocaleByLangRequest();
 request.setLang(lang);
 client.byLang(request, grpc_metadata()).then((res) => {
-  console.log(res);
+  console.log("locales by lang", res);
   const messages = {};
   root.render(
     <React.StrictMode>
