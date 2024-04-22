@@ -41,20 +41,20 @@ export PALM_PROTOCOLS=$WORKSPACE/palm/protocols
 #     mv $1/src/*.h $1/include/
 # }
 
-# # https://github.com/grpc/grpc-web#code-generator-plugin
-# function generate_grpc_for_typescript() {
-#     echo "generate typescript sdk($1)"
-#     if [ -d $1 ]; then
-#         rm -r $1
-#     fi
-#     mkdir -p $1
+# https://github.com/grpc/grpc-web#code-generator-plugin
+function generate_grpc_for_typescript() {
+    echo "generate typescript sdk $1 => $2"
+    if [ -d $2 ]; then
+        rm -r $2
+    fi
+    mkdir -p $2
 
-#     $PROTOBUF_ROOT/bin/protoc -I $PALM_PROTOCOLS \
-#         -I $PROTOBUF_ROOT/include/google/protobuf \
-#         --js_out=import_style=commonjs,binary:$1 \
-#         --grpc-web_out=import_style=typescript,mode=grpcweb:$1 \
-#         $PALM_PROTOCOLS/*.proto
-# }
+    $PROTOBUF_ROOT/bin/protoc -I $1 \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$2 \
+        --grpc-web_out=import_style=typescript,mode=grpcweb:$2 \
+        $1/*.proto
+}
 
 # function generate_grpc_for_php() {
 #     local target=$WORKSPACE/sdk/php
@@ -281,6 +281,8 @@ generate_go lilac wechat-oauth2 wechat/oauth2
 generate_go lilac wechat-mini-program wechat/mini-program
 generate_go lilac wechat-pay wechat/pay
 generate_go lilac auth auth
+
+generate_grpc_for_typescript lilac/protocols fig/dashboard/src/protocols/lilac
 
 # generate_lily
 # echo "generate lily requirements.txt"

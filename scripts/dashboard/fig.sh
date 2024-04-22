@@ -2,6 +2,8 @@
 
 set -e
 
+# https://create-react-app.dev/docs/adding-typescript/#installation
+
 npm install --save filesize timezones-list \
     moment moment-timezone \
     marked \
@@ -29,6 +31,8 @@ npm install --save filesize timezones-list \
     react-intl \
     react-router-dom@latest \
     @reduxjs/toolkit react-redux
+
+npm install --save grpc-web google-protobuf @types/google-protobuf
 
 npm install --save \
     antd @ant-design/pro-components @ant-design/charts \
