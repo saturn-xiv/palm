@@ -1,16 +1,4 @@
-import { Metadata } from "grpc-web";
-
 import { get as getToken } from "../reducers/current-user";
-import { get as getLocale } from "../locales";
-
-export const GRPC_HOST: string = import.meta.env.VITE_GRPC_HOST;
-
-export const grpc_metadata = (): Metadata => {
-  return {
-    authorization: `Bearer ${getToken()}`,
-    "accept-language": getLocale() || "en-US",
-  };
-};
 
 export const options = (method: string): RequestInit => {
   return {

@@ -29,13 +29,13 @@ export const get = (): string => {
   return (
     localStorage.getItem(KEY) ||
     Cookies.get(KEY) ||
-    import.meta.env.VITE_DEFAULT_LOCALE ||
+    process.env.REACT_APP_DEFAULT_LOCALE ||
     "en-US"
   );
 };
 
 export const available_languages: string[] = (
-  import.meta.env.VITE_APP_AVAILABLE_LANGUAGES || "en-US,zh-Hans,zh-Hant"
+  process.env.REACT_APP_AVAILABLE_LANGUAGES || "en-US,zh-Hans,zh-Hant"
 ).split(",");
 
 export const set = (lang: string, reload: boolean) => {

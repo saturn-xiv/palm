@@ -19,3 +19,7 @@ export const home_url = (): string => {
 export const timezones = (): string[] => {
   return moment.tz.names();
 };
+
+export const guess_timezone = (): string => {
+  return dayjs.tz.guess();
+};

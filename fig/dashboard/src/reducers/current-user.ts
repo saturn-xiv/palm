@@ -5,8 +5,9 @@ import {
   ICurrentUser,
   ISignInResponse,
   ICurrentUser as IState,
-  UTC,
 } from "../api/camelia";
+import { get as getLocale } from "../locales";
+import { guess_timezone } from "../utils";
 
 const KEY = "token";
 export const DURATION = 60 * 60 * 24;
@@ -14,7 +15,7 @@ export const DURATION = 60 * 60 * 24;
 export const MAX_PASSWORD_LENGTH = 31;
 export const MIN_PASSWORD_LENGTH = 6;
 
-const ENABLE_LOCAL_TOKEN = import.meta.env.VITE_ENABLE_LOCAL_TOKEN === "true";
+const ENABLE_LOCAL_TOKEN = process.env.REACT_APP_ENABLE_LOCAL_TOKEN === "true";
 
 export interface IResource {
   type: string;
@@ -60,8 +61,8 @@ const initialState: IState = {
   hasWechatOauth2: false,
   hasGoogle: false,
   providerType: "",
-  lang: import.meta.env.VITE_DEFAULT_LOCALE,
-  timezone: UTC,
+  lang: getLocale(),
+  timezone: guess_timezone(),
   email: "who-am-i@change-me.org",
   nickname: "nill-gate",
 };
@@ -128,8 +129,8 @@ export const currentUserSlice = createSlice({
       state.hasWechatOauth2 = false;
       state.hasGoogle = false;
       state.providerType = "";
-      state.lang = import.meta.env.VITE_DEFAULT_LOCALE;
-      state.timezone = UTC;
+      state.lang = getLocale();
+      state.timezone = guess_timezone();
     },
   },
 });
