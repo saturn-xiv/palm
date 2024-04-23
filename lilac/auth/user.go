@@ -116,7 +116,7 @@ func (p *UserService) SignUpByEmail(ctx context.Context, req *pb.UserSignUpByEma
 	if err != nil {
 		return nil, err
 	}
-	if err = gl_validate.Var(req.Password, gl_password_validator_tag); err != nil {
+	if err = IsPassword(req.Password); err != nil {
 		return nil, err
 	}
 
@@ -312,7 +312,7 @@ func (p *UserService) ForgotPassword(ctx context.Context, req *pb.UserByEmailReq
 	return &emptypb.Empty{}, nil
 }
 func (p *UserService) ResetPassword(ctx context.Context, req *pb.UserResetPasswordRequest) (*emptypb.Empty, error) {
-	if err := gl_validate.Var(req.Password, gl_password_validator_tag); err != nil {
+	if err := IsPassword(req.Password); err != nil {
 		return nil, err
 	}
 	_, nickname, _, err := p.jwt.Verify(req.Token, gl_jwt_issuer, gl_jwt_audience_user_reset_password)
@@ -506,7 +506,7 @@ func (p *UserService) ChangePassword(ctx context.Context, req *pb.UserChangePass
 	if su.ProviderType != rbac_pb.UserDetail_Provider_Email {
 		return nil, errors.New("can't change password for current user")
 	}
-	if err = gl_validate.Var(req.NewPassword, gl_password_validator_tag); err != nil {
+	if err = IsPassword(req.NewPassword); err != nil {
 		return nil, err
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
@@ -649,7 +649,7 @@ func (p *UserService) Create(ctx context.Context, req *pb.UserSignUpByEmailReque
 	if err != nil {
 		return nil, err
 	}
-	if err = gl_validate.Var(req.Password, gl_password_validator_tag); err != nil {
+	if err = IsPassword(req.Password); err != nil {
 		return nil, err
 	}
 

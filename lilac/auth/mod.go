@@ -17,8 +17,6 @@ import (
 
 var (
 	gl_validate *validator.Validate = validator.New(validator.WithRequiredStructEnabled())
-
-	gl_password_validator_tag = "required,min=6,max=31"
 )
 
 func IsDomain(s string) (string, error) {
@@ -29,6 +27,12 @@ func IsDomain(s string) (string, error) {
 	return v, nil
 }
 
+func IsPassword(s string) error {
+	if err := gl_validate.Var(s, "required,min=6,max=31"); err != nil {
+		return err
+	}
+	return nil
+}
 func IsEmail(s string) (string, error) {
 	v := strings.ToLower(strings.TrimSpace(s))
 	if err := gl_validate.Var(s, "required,email,lowercase,max=127"); err != nil {

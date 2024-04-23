@@ -3,6 +3,7 @@ package auth
 import (
 	"context"
 	"log/slog"
+	"time"
 
 	"github.com/casbin/casbin/v2"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -55,6 +56,7 @@ func (p *SiteService) Get(ctx context.Context, req *pb.KvGetRequest) (*pb.KvGetR
 }
 
 func (p *SiteService) Layout(ctx context.Context, req *pb.SiteLayoutRequest) (*pb.SiteLayoutResponse, error) {
+	now := time.Now()
 	var keywords pb.SiteKeywords
 	if err := models.GetPB_(p.db, p.aes, &keywords); err != nil {
 		slog.Error(err.Error())
@@ -71,13 +73,15 @@ func (p *SiteService) Layout(ctx context.Context, req *pb.SiteLayoutRequest) (*p
 		Title:       p.i18n.Tr(req.Lang, gl_site_title, map[string]interface{}{}),
 		Subhead:     p.i18n.Tr(req.Lang, gl_site_subhead, map[string]interface{}{}),
 		Description: p.i18n.Tr(req.Lang, gl_site_description, map[string]interface{}{}),
-		Copyright:   p.i18n.Tr(req.Lang, gl_site_copyright, map[string]interface{}{}),
-		Favicon:     favicon.Url,
-		Keywords:    keywords.Items,
-		Authors:     authors.Items,
-		Locale:      req.Lang,
-		Languages:   p.i18n.Languages(),
-		Version:     p.version,
+		Copyright: p.i18n.Tr(req.Lang, gl_site_copyright, map[string]interface{}{
+			"year": now.Year(),
+		}),
+		Favicon:   favicon.Url,
+		Keywords:  keywords.Items,
+		Authors:   authors.Items,
+		Locale:    req.Lang,
+		Languages: p.i18n.Languages(),
+		Version:   p.version,
 	}
 	var gab pb.SiteLayoutResponse_Gab
 	if err := models.GetPB_(p.db, p.aes, &gab); err != nil {

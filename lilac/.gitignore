@@ -1,5 +1,6 @@
 /go.sum
 
 /tmp/
+/staging/
 /lilac
 /config.toml

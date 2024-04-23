@@ -11,6 +11,7 @@ import (
 	email_send_consumer "github.com/saturn-xiv/palm/lilac/cmd/email-send-consumer"
 	"github.com/saturn-xiv/palm/lilac/cmd/rpc"
 	sms_send_consumer "github.com/saturn-xiv/palm/lilac/cmd/sms-send-consumer"
+	"github.com/saturn-xiv/palm/lilac/cmd/user"
 	"github.com/saturn-xiv/palm/lilac/cmd/web"
 	email_pb "github.com/saturn-xiv/palm/lilac/email/v2"
 	"github.com/saturn-xiv/palm/lilac/env"
@@ -52,6 +53,10 @@ var (
 
 	gl_email_send_consumer string
 	gl_sms_send_consumer   string
+
+	gl_user_email    string
+	gl_user_password string
+	gl_user_role     string
 )
 
 func init() {
@@ -122,6 +127,85 @@ func init() {
 			},
 		}
 		cmd.Flags().StringVarP(&gl_sms_send_consumer, "consumer", "C", "sms-send-consumer", "consumer name")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "user-list",
+			Short: "List all users",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				hnd, err := user.Open(gl_config, gl_keys_dir)
+				if err != nil {
+					log.Fatal(err)
+					return
+				}
+				if err := hnd.List(); err != nil {
+					log.Fatal(err)
+				}
+			},
+		}
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "user-apply-role",
+			Short: "Apply role to user(by email)",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				hnd, err := user.Open(gl_config, gl_keys_dir)
+				if err != nil {
+					log.Fatal(err)
+					return
+				}
+				if err := hnd.Apply(gl_user_email, gl_user_role); err != nil {
+					log.Fatal(err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_user_email, "user", "u", "", "user's email")
+		cmd.Flags().StringVarP(&gl_user_role, "role", "r", "", "role's name")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "user-exempt-role",
+			Short: "Exempt role from user(by email)",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				hnd, err := user.Open(gl_config, gl_keys_dir)
+				if err != nil {
+					log.Fatal(err)
+					return
+				}
+				if err := hnd.Exempt(gl_user_email, gl_user_role); err != nil {
+					log.Fatal(err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_user_email, "user", "u", "", "user's email")
+		cmd.Flags().StringVarP(&gl_user_role, "role", "r", "", "role's name")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "user-reset-password",
+			Short: "Reset user's password(by email)",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				hnd, err := user.Open(gl_config, gl_keys_dir)
+				if err != nil {
+					log.Fatal(err)
+					return
+				}
+				if err := hnd.Password(gl_user_email, gl_user_password); err != nil {
+					log.Fatal(err)
+				}
+			},
+		}
+		cmd.Flags().StringVarP(&gl_user_email, "user", "u", "", "user's email")
+		cmd.Flags().StringVarP(&gl_user_password, "password", "p", "", "user's password")
 		root_cmd.AddCommand(cmd)
 	}
 }

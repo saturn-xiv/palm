@@ -3,6 +3,7 @@ import { DefaultFooter } from "@ant-design/pro-components";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import {
+  layout2state,
   refresh as refreshLayout,
   siteInfo as selectSiteInfo,
 } from "../reducers/site-info";
@@ -30,7 +31,8 @@ const Widget = () => {
       const request = new SiteLayoutRequest();
       request.setLang(get_locale());
       client.layout(request, grpc_metadata()).then((res) => {
-        dispatch(refreshLayout(res));
+        const data = layout2state(res);
+        dispatch(refreshLayout(data));
       });
     }
     const token = get_token();

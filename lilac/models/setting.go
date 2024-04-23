@@ -95,7 +95,7 @@ func Set(db *gorm.DB, aes *crypto.Aes, user uint32, key string, value []byte, en
 
 func Get_(db *gorm.DB, aes *crypto.Aes, key string) ([]byte, error) {
 	var it Setting
-	if rst := db.Where(&Setting{Key: key}).First(&it); rst.Error != nil {
+	if rst := db.Where(map[string]interface{}{"key": key, "user_id": nil}).First(&it); rst.Error != nil {
 		return nil, rst.Error
 	}
 	if it.Salt == nil {
@@ -110,7 +110,7 @@ func Get_(db *gorm.DB, aes *crypto.Aes, key string) ([]byte, error) {
 func Set_(db *gorm.DB, aes *crypto.Aes, key string, value []byte, encrypt bool) error {
 	now := time.Now()
 	var it Setting
-	rst := db.Where(&Setting{Key: key, UserID: nil}).First(&it)
+	rst := db.Where(map[string]interface{}{"key": key, "user_id": nil}).First(&it)
 	if rst.Error == nil {
 		if encrypt {
 			val, salt, err := aes.Encrypt(value)
@@ -172,7 +172,7 @@ func Delete(db *gorm.DB, user uint32, key string) error {
 }
 func Delete_(db *gorm.DB, key string) error {
 	var it Setting
-	if rst := db.Where(&Setting{Key: key, UserID: nil}).Delete(&it); rst.Error != nil {
+	if rst := db.Where(map[string]interface{}{"key": key, "user_id": nil}).Delete(&it); rst.Error != nil {
 		return rst.Error
 	}
 

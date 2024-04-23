@@ -32,32 +32,54 @@ const initialState: IState = {
   description: "",
   copyright: "",
   keywords: [],
-  languages: ["en-US", "zh-Hans"],
+  languages: [],
   authors: [],
   version: "",
+};
+
+export const layout2state = (res: SiteLayoutResponse): IState => {
+  var it: IState = {
+    favicon: res.getFavicon(),
+    version: res.getVersion(),
+    title: res.getTitle(),
+    subhead: res.getSubhead(),
+    description: res.getDescription(),
+    copyright: res.getCopyright(),
+    languages: res.getLanguagesList(),
+    keywords: res.getKeywordsList(),
+    authors: res.getAuthorsList().map((x) => {
+      return { name: x.getName(), email: x.getEmail() };
+    }),
+    icp: res.getIcp()?.getCode(),
+  };
+  {
+    const g = res.getGab();
+    if (g) {
+      it.gab = { code: g.getCode(), name: g.getName() };
+    }
+  }
+  return it;
 };
 
 export const siteInfoSlice = createSlice({
   name: "site-info",
   initialState,
   reducers: {
-    refresh: (state, action: PayloadAction<SiteLayoutResponse>) => {
-      state.favicon = action.payload.getFavicon();
-      state.version = action.payload.getVersion();
-      state.title = action.payload.getTitle();
-      state.subhead = action.payload.getSubhead();
-      state.description = action.payload.getDescription();
-      state.copyright = action.payload.getCopyright();
-      state.keywords = action.payload.getKeywordsList();
-      state.languages = action.payload.getLanguagesList();
-      for (var it of action.payload.getAuthorsList()) {
-        state.authors.push({ email: it.getEmail(), name: it.getName() });
-      }
-      state.icp = action.payload.getIcp()?.getCode();
+    refresh: (state, action: PayloadAction<IState>) => {
+      state.favicon = action.payload.favicon;
+      state.version = action.payload.version;
+      state.title = action.payload.title;
+      state.subhead = action.payload.subhead;
+      state.description = action.payload.description;
+      state.copyright = action.payload.copyright;
+      state.keywords = action.payload.keywords;
+      state.languages = action.payload.languages;
+      state.authors = action.payload.authors;
+      state.icp = action.payload.icp;
       {
-        const it = action.payload.getGab();
+        const it = action.payload.gab;
         if (it) {
-          state.gab = { code: it.getCode(), name: it.getName() };
+          state.gab = { code: it.code, name: it.name };
         }
       }
     },
