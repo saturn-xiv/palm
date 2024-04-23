@@ -1041,46 +1041,6 @@ export namespace KvGetResponse {
   }
 }
 
-export class SiteIcpCode extends jspb.Message {
-  getCode(): string;
-  setCode(value: string): SiteIcpCode;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SiteIcpCode.AsObject;
-  static toObject(includeInstance: boolean, msg: SiteIcpCode): SiteIcpCode.AsObject;
-  static serializeBinaryToWriter(message: SiteIcpCode, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SiteIcpCode;
-  static deserializeBinaryFromReader(message: SiteIcpCode, reader: jspb.BinaryReader): SiteIcpCode;
-}
-
-export namespace SiteIcpCode {
-  export type AsObject = {
-    code: string,
-  }
-}
-
-export class SiteGabCode extends jspb.Message {
-  getCode(): string;
-  setCode(value: string): SiteGabCode;
-
-  getName(): string;
-  setName(value: string): SiteGabCode;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SiteGabCode.AsObject;
-  static toObject(includeInstance: boolean, msg: SiteGabCode): SiteGabCode.AsObject;
-  static serializeBinaryToWriter(message: SiteGabCode, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SiteGabCode;
-  static deserializeBinaryFromReader(message: SiteGabCode, reader: jspb.BinaryReader): SiteGabCode;
-}
-
-export namespace SiteGabCode {
-  export type AsObject = {
-    code: string,
-    name: string,
-  }
-}
-
 export class SiteBaidu extends jspb.Message {
   getCode(): string;
   setCode(value: string): SiteBaidu;
@@ -1162,10 +1122,10 @@ export namespace SiteGoogleReCaptcha {
 }
 
 export class SiteAuthors extends jspb.Message {
-  getItesList(): Array<SiteAuthors.Item>;
-  setItesList(value: Array<SiteAuthors.Item>): SiteAuthors;
-  clearItesList(): SiteAuthors;
-  addItes(value?: SiteAuthors.Item, index?: number): SiteAuthors.Item;
+  getItemsList(): Array<SiteLayoutResponse.Author>;
+  setItemsList(value: Array<SiteLayoutResponse.Author>): SiteAuthors;
+  clearItemsList(): SiteAuthors;
+  addItems(value?: SiteLayoutResponse.Author, index?: number): SiteLayoutResponse.Author;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SiteAuthors.AsObject;
@@ -1177,31 +1137,173 @@ export class SiteAuthors extends jspb.Message {
 
 export namespace SiteAuthors {
   export type AsObject = {
-    itesList: Array<SiteAuthors.Item.AsObject>,
+    itemsList: Array<SiteLayoutResponse.Author.AsObject>,
+  }
+}
+
+export class SiteLayoutRequest extends jspb.Message {
+  getLang(): string;
+  setLang(value: string): SiteLayoutRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SiteLayoutRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SiteLayoutRequest): SiteLayoutRequest.AsObject;
+  static serializeBinaryToWriter(message: SiteLayoutRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SiteLayoutRequest;
+  static deserializeBinaryFromReader(message: SiteLayoutRequest, reader: jspb.BinaryReader): SiteLayoutRequest;
+}
+
+export namespace SiteLayoutRequest {
+  export type AsObject = {
+    lang: string,
+  }
+}
+
+export class SiteLayoutResponse extends jspb.Message {
+  getLocale(): string;
+  setLocale(value: string): SiteLayoutResponse;
+
+  getTitle(): string;
+  setTitle(value: string): SiteLayoutResponse;
+
+  getSubhead(): string;
+  setSubhead(value: string): SiteLayoutResponse;
+
+  getDescription(): string;
+  setDescription(value: string): SiteLayoutResponse;
+
+  getCopyright(): string;
+  setCopyright(value: string): SiteLayoutResponse;
+
+  getFavicon(): string;
+  setFavicon(value: string): SiteLayoutResponse;
+
+  getKeywordsList(): Array<string>;
+  setKeywordsList(value: Array<string>): SiteLayoutResponse;
+  clearKeywordsList(): SiteLayoutResponse;
+  addKeywords(value: string, index?: number): SiteLayoutResponse;
+
+  getAuthorsList(): Array<SiteLayoutResponse.Author>;
+  setAuthorsList(value: Array<SiteLayoutResponse.Author>): SiteLayoutResponse;
+  clearAuthorsList(): SiteLayoutResponse;
+  addAuthors(value?: SiteLayoutResponse.Author, index?: number): SiteLayoutResponse.Author;
+
+  getIcp(): SiteLayoutResponse.Icp | undefined;
+  setIcp(value?: SiteLayoutResponse.Icp): SiteLayoutResponse;
+  hasIcp(): boolean;
+  clearIcp(): SiteLayoutResponse;
+
+  getGab(): SiteLayoutResponse.Gab | undefined;
+  setGab(value?: SiteLayoutResponse.Gab): SiteLayoutResponse;
+  hasGab(): boolean;
+  clearGab(): SiteLayoutResponse;
+
+  getLanguagesList(): Array<string>;
+  setLanguagesList(value: Array<string>): SiteLayoutResponse;
+  clearLanguagesList(): SiteLayoutResponse;
+  addLanguages(value: string, index?: number): SiteLayoutResponse;
+
+  getVersion(): string;
+  setVersion(value: string): SiteLayoutResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SiteLayoutResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SiteLayoutResponse): SiteLayoutResponse.AsObject;
+  static serializeBinaryToWriter(message: SiteLayoutResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SiteLayoutResponse;
+  static deserializeBinaryFromReader(message: SiteLayoutResponse, reader: jspb.BinaryReader): SiteLayoutResponse;
+}
+
+export namespace SiteLayoutResponse {
+  export type AsObject = {
+    locale: string,
+    title: string,
+    subhead: string,
+    description: string,
+    copyright: string,
+    favicon: string,
+    keywordsList: Array<string>,
+    authorsList: Array<SiteLayoutResponse.Author.AsObject>,
+    icp?: SiteLayoutResponse.Icp.AsObject,
+    gab?: SiteLayoutResponse.Gab.AsObject,
+    languagesList: Array<string>,
+    version: string,
   }
 
-  export class Item extends jspb.Message {
+  export class Author extends jspb.Message {
     getName(): string;
-    setName(value: string): Item;
+    setName(value: string): Author;
 
     getEmail(): string;
-    setEmail(value: string): Item;
+    setEmail(value: string): Author;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Item.AsObject;
-    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
-    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Item;
-    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+    toObject(includeInstance?: boolean): Author.AsObject;
+    static toObject(includeInstance: boolean, msg: Author): Author.AsObject;
+    static serializeBinaryToWriter(message: Author, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Author;
+    static deserializeBinaryFromReader(message: Author, reader: jspb.BinaryReader): Author;
   }
 
-  export namespace Item {
+  export namespace Author {
     export type AsObject = {
       name: string,
       email: string,
     }
   }
 
+
+  export class Icp extends jspb.Message {
+    getCode(): string;
+    setCode(value: string): Icp;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Icp.AsObject;
+    static toObject(includeInstance: boolean, msg: Icp): Icp.AsObject;
+    static serializeBinaryToWriter(message: Icp, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Icp;
+    static deserializeBinaryFromReader(message: Icp, reader: jspb.BinaryReader): Icp;
+  }
+
+  export namespace Icp {
+    export type AsObject = {
+      code: string,
+    }
+  }
+
+
+  export class Gab extends jspb.Message {
+    getCode(): string;
+    setCode(value: string): Gab;
+
+    getName(): string;
+    setName(value: string): Gab;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Gab.AsObject;
+    static toObject(includeInstance: boolean, msg: Gab): Gab.AsObject;
+    static serializeBinaryToWriter(message: Gab, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Gab;
+    static deserializeBinaryFromReader(message: Gab, reader: jspb.BinaryReader): Gab;
+  }
+
+  export namespace Gab {
+    export type AsObject = {
+      code: string,
+      name: string,
+    }
+  }
+
+
+  export enum IcpCase { 
+    _ICP_NOT_SET = 0,
+    ICP = 13,
+  }
+
+  export enum GabCase { 
+    _GAB_NOT_SET = 0,
+    GAB = 14,
+  }
 }
 
 export class SiteKeywords extends jspb.Message {
@@ -1224,33 +1326,85 @@ export namespace SiteKeywords {
   }
 }
 
-export class SiteInfo extends jspb.Message {
-  getTitle(): string;
-  setTitle(value: string): SiteInfo;
-
-  getSubhead(): string;
-  setSubhead(value: string): SiteInfo;
-
-  getDescription(): string;
-  setDescription(value: string): SiteInfo;
-
-  getCopyright(): string;
-  setCopyright(value: string): SiteInfo;
+export class GetSiteInfoRequest extends jspb.Message {
+  getLang(): string;
+  setLang(value: string): GetSiteInfoRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): SiteInfo.AsObject;
-  static toObject(includeInstance: boolean, msg: SiteInfo): SiteInfo.AsObject;
-  static serializeBinaryToWriter(message: SiteInfo, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): SiteInfo;
-  static deserializeBinaryFromReader(message: SiteInfo, reader: jspb.BinaryReader): SiteInfo;
+  toObject(includeInstance?: boolean): GetSiteInfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSiteInfoRequest): GetSiteInfoRequest.AsObject;
+  static serializeBinaryToWriter(message: GetSiteInfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSiteInfoRequest;
+  static deserializeBinaryFromReader(message: GetSiteInfoRequest, reader: jspb.BinaryReader): GetSiteInfoRequest;
 }
 
-export namespace SiteInfo {
+export namespace GetSiteInfoRequest {
+  export type AsObject = {
+    lang: string,
+  }
+}
+
+export class GetSiteInfoResponse extends jspb.Message {
+  getTitle(): string;
+  setTitle(value: string): GetSiteInfoResponse;
+
+  getSubhead(): string;
+  setSubhead(value: string): GetSiteInfoResponse;
+
+  getDescription(): string;
+  setDescription(value: string): GetSiteInfoResponse;
+
+  getCopyright(): string;
+  setCopyright(value: string): GetSiteInfoResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSiteInfoResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSiteInfoResponse): GetSiteInfoResponse.AsObject;
+  static serializeBinaryToWriter(message: GetSiteInfoResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSiteInfoResponse;
+  static deserializeBinaryFromReader(message: GetSiteInfoResponse, reader: jspb.BinaryReader): GetSiteInfoResponse;
+}
+
+export namespace GetSiteInfoResponse {
   export type AsObject = {
     title: string,
     subhead: string,
     description: string,
     copyright: string,
+  }
+}
+
+export class SetSiteInfoRequest extends jspb.Message {
+  getTitle(): string;
+  setTitle(value: string): SetSiteInfoRequest;
+
+  getSubhead(): string;
+  setSubhead(value: string): SetSiteInfoRequest;
+
+  getDescription(): string;
+  setDescription(value: string): SetSiteInfoRequest;
+
+  getCopyright(): string;
+  setCopyright(value: string): SetSiteInfoRequest;
+
+  getLang(): string;
+  setLang(value: string): SetSiteInfoRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetSiteInfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetSiteInfoRequest): SetSiteInfoRequest.AsObject;
+  static serializeBinaryToWriter(message: SetSiteInfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetSiteInfoRequest;
+  static deserializeBinaryFromReader(message: SetSiteInfoRequest, reader: jspb.BinaryReader): SetSiteInfoRequest;
+}
+
+export namespace SetSiteInfoRequest {
+  export type AsObject = {
+    title: string,
+    subhead: string,
+    description: string,
+    copyright: string,
+    lang: string,
   }
 }
 

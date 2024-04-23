@@ -17,7 +17,6 @@ import (
 
 	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 	email_pb "github.com/saturn-xiv/palm/lilac/email/v2"
-	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
 	"github.com/saturn-xiv/palm/lilac/env/redis"
@@ -1081,7 +1080,7 @@ func (p *UserService) send_email(ctx context.Context, eu *models.EmailUser, home
 		"token":    token,
 		"home":     home,
 	})
-	return p.queue.Produce(ctx, env.TaskQueueName((*email_pb.EmailSendRequest)(nil)), &email_pb.EmailSendRequest{
+	return p.queue.ProducePB(ctx, &email_pb.EmailSendRequest{
 		To:      &email_pb.EmailSendRequest_Address{Name: eu.RealName, Email: eu.Email},
 		Subject: subject,
 		Body: &email_pb.EmailSendRequest_Body{

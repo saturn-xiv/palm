@@ -9,6 +9,8 @@ import (
 	"gorm.io/gorm"
 )
 
+// https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping
+// https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
 func SiteMap(db *gorm.DB) HandlerFunc {
 	return func(c *gin.Context) error {
 		home := "https://www.change-me.org"

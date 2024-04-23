@@ -65,7 +65,7 @@ func init() {
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 
-				if err := rpc.Launch(gl_rpc_listen_address, gl_config, gl_keys_dir); err != nil {
+				if err := rpc.Launch(gl_rpc_listen_address, gl_config, gl_keys_dir, git_version); err != nil {
 					log.Fatalf("start gRPC server: %s", err)
 				}
 			},
@@ -99,7 +99,7 @@ func init() {
 	{
 		var cmd = &cobra.Command{
 			Use:   "email-send-consumer",
-			Short: fmt.Sprintf("Start an email-send consumer(%s)", env.TaskQueueName((*email_pb.EmailSendRequest)(nil))),
+			Short: fmt.Sprintf("Start an email-send consumer(%s)", env.TypeNamePB((*email_pb.EmailSendRequest)(nil))),
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 				if err := email_send_consumer.Launch(gl_email_send_consumer, gl_config); err != nil {
@@ -113,7 +113,7 @@ func init() {
 	{
 		var cmd = &cobra.Command{
 			Use:   "sms-send-consumer",
-			Short: fmt.Sprintf("Start a sms-send consumer(%s)", env.TaskQueueName((*sms_pb.SmsSendRequest)(nil))),
+			Short: fmt.Sprintf("Start a sms-send consumer(%s)", env.TypeNamePB((*sms_pb.SmsSendRequest)(nil))),
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 				if err := sms_send_consumer.Launch(gl_sms_send_consumer, gl_config); err != nil {

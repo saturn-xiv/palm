@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -50,4 +51,26 @@ func GetLocaleByPager(db *gorm.DB, pager *pb.Pager) ([]Locale, *pb.Pagination, e
 		return nil, nil, rst.Error
 	}
 	return items, pb.NewPagination(pager, total), nil
+}
+
+func SetLocale(db *gorm.DB, lang string, code string, message string) error {
+	now := time.Now()
+	var it Locale
+	rst := db.Where(&Locale{Code: code, Lang: lang}).First(&it)
+	if errors.Is(rst.Error, gorm.ErrRecordNotFound) {
+		return db.Create(&Locale{
+			Code:      code,
+			Lang:      lang,
+			Message:   message,
+			UpdatedAt: now,
+			CreatedAt: now,
+		}).Error
+	}
+	if rst.Error == nil {
+		it.Message = message
+		it.UpdatedAt = now
+		it.Version += 1
+		return db.Save(&it).Error
+	}
+	return rst.Error
 }

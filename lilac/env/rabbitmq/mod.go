@@ -8,6 +8,7 @@ import (
 
 	"github.com/google/uuid"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/saturn-xiv/palm/lilac/env"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -24,8 +25,9 @@ type Config struct {
 }
 
 // https://www.rabbitmq.com/tutorials/tutorial-two-go
-func (p *Config) Produce(ctx context.Context, queue string, message proto.Message) error {
+func (p *Config) ProducePB(ctx context.Context, message proto.Message) error {
 	slog.Debug(fmt.Sprintf("open producer rabbitmq://%s@%s:%d/%s", p.User, p.Host, p.Port, p.VirtualHost))
+	queue := env.TypeNamePB(message)
 	con, err := amqp.Dial(p.Url())
 	if err != nil {
 		return err
@@ -43,9 +45,9 @@ func (p *Config) Produce(ctx context.Context, queue string, message proto.Messag
 }
 
 // https://www.rabbitmq.com/tutorials/tutorial-three-go
-func (p *Config) Publish(ctx context.Context, exchange string, message proto.Message) error {
-
+func (p *Config) Publish(ctx context.Context, message proto.Message) error {
 	slog.Debug(fmt.Sprintf("open publisher rabbitmq://%s@%s:%d/%s", p.User, p.Host, p.Port, p.VirtualHost))
+	exchange := env.TypeNamePB(message)
 	con, err := amqp.Dial(p.Url())
 	if err != nil {
 		return err

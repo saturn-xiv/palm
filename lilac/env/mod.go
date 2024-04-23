@@ -34,6 +34,6 @@ func (p *Database) Open() (*gorm.DB, error) {
 	return it.Open(&config)
 }
 
-func TaskQueueName(it proto.Message) string {
+func TypeNamePB(it proto.Message) string {
 	return fmt.Sprintf("%s/%s", reflect.TypeOf(it).Elem().PkgPath(), reflect.TypeOf(it).Elem().Name())
 }

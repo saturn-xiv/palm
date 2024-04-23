@@ -261,8 +261,10 @@ service Site {
   rpc Set(KvSetRequest) returns (google.protobuf.Empty) {}
   rpc Get(KvGetRequest) returns (KvGetResponse) {}
 
-  rpc SetInfo(SiteInfo) returns (google.protobuf.Empty) {}
-  rpc GetInfo(google.protobuf.Empty) returns (SiteInfo) {}
+  rpc Layout(SiteLayoutRequest) returns (SiteLayoutResponse) {}
+
+  rpc SetInfo(SetSiteInfoRequest) returns (google.protobuf.Empty) {}
+  rpc GetInfo(GetSiteInfoRequest) returns (GetSiteInfoResponse) {}
   rpc SetFavicon(SiteFavicon) returns (google.protobuf.Empty) {}
   rpc GetFavicon(google.protobuf.Empty) returns (SiteFavicon) {}
   rpc SetAuthors(SiteAuthors) returns (google.protobuf.Empty) {}
@@ -270,12 +272,12 @@ service Site {
   rpc SetKeywords(SiteKeywords) returns (google.protobuf.Empty) {}
   rpc GetKeywords(google.protobuf.Empty) returns (SiteKeywords) {}
 
-  rpc SetIcpCode(SiteIcpCode) returns (google.protobuf.Empty) {}
-  rpc GetIcpCode(google.protobuf.Empty) returns (SiteIcpCode) {}
+  rpc SetIcpCode(SiteLayoutResponse.Icp) returns (google.protobuf.Empty) {}
+  rpc GetIcpCode(google.protobuf.Empty) returns (SiteLayoutResponse.Icp) {}
   rpc DeleteIcpCode(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 
-  rpc SetGabCode(SiteGabCode) returns (google.protobuf.Empty) {}
-  rpc GetGabCode(google.protobuf.Empty) returns (SiteGabCode) {}
+  rpc SetGabCode(SiteLayoutResponse.Gab) returns (google.protobuf.Empty) {}
+  rpc GetGabCode(google.protobuf.Empty) returns (SiteLayoutResponse.Gab) {}
   rpc DeleteGabCode(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 
   rpc SetBaidu(SiteBaidu) returns (google.protobuf.Empty) {}
@@ -286,7 +288,6 @@ service Site {
   rpc SetGoogle(SiteGoogle) returns (google.protobuf.Empty) {}
   rpc GetGoogle(google.protobuf.Empty) returns (SiteGoogle) {}
   rpc DeleteGoogle(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-  rpc PingGoogle(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 
   rpc SetIndexNow(SiteIndexNow) returns (google.protobuf.Empty) {}
   rpc GetIndexNow(google.protobuf.Empty) returns (SiteIndexNow) {}
@@ -311,14 +312,6 @@ message KvGetRequest {
 message KvGetResponse {
   bytes value = 1;
 }
-message SiteIcpCode {
-  string code = 1;
-}
-message SiteGabCode {
-  string code = 1;
-  string name = 2;
-}
-
 message SiteBaidu {
   string code = 1;
   string content = 2;
@@ -337,21 +330,58 @@ message SiteGoogleReCaptcha {
 }
 
 message SiteAuthors {
-  message Item {
+  repeated SiteLayoutResponse.Author items = 1;
+}
+
+message SiteLayoutRequest {
+  string lang = 1;
+}
+
+message SiteLayoutResponse {
+  message Author {
     string name = 1;
     string email = 2;
   }
-  repeated Item ites = 1;
+  message Icp {
+    string code = 1;
+  }
+  message Gab {
+    string code = 1;
+    string name = 2;
+  }
+  string locale = 1;
+  string title = 2;
+  string subhead = 3;
+  string description = 4;
+  string copyright = 5;
+  string favicon = 6;
+  repeated string keywords = 11;
+  repeated Author authors = 12;
+  optional Icp icp = 13;
+  optional Gab gab = 14;
+  repeated string languages = 98;
+  string version = 99;
 }
 
 message SiteKeywords {
   repeated string items = 1;
 }
-message SiteInfo {
+
+message GetSiteInfoRequest {
+  string lang = 1;
+}
+message GetSiteInfoResponse {
   string title = 1;
   string subhead = 2;
   string description = 3;
   string copyright = 4;
+}
+message SetSiteInfoRequest {
+  string title = 1;
+  string subhead = 2;
+  string description = 3;
+  string copyright = 4;
+  string lang = 9;
 }
 message SiteFavicon {
   string url = 1;

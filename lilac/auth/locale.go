@@ -27,10 +27,6 @@ type LocaleService struct {
 	i18n     *i18n.I18n
 }
 
-func NewLocaleService(db *gorm.DB, jwt *crypto.Jwt, i18n *i18n.I18n, enforcer *casbin.Enforcer) *LocaleService {
-	return &LocaleService{db: db, jwt: jwt, i18n: i18n, enforcer: enforcer}
-}
-
 func (p *LocaleService) ByLang(ctx context.Context, req *pb.LocaleByLangRequest) (*pb.LocaleByLangResponse, error) {
 	var items []*pb.LocaleByLangResponse_Item
 
@@ -141,4 +137,8 @@ func (p *LocaleService) Destroy(ctx context.Context, req *pb.IdRequest) (*emptyp
 		return nil, err
 	}
 	return &emptypb.Empty{}, nil
+}
+
+func NewLocaleService(db *gorm.DB, jwt *crypto.Jwt, i18n *i18n.I18n, enforcer *casbin.Enforcer) *LocaleService {
+	return &LocaleService{db: db, jwt: jwt, i18n: i18n, enforcer: enforcer}
 }

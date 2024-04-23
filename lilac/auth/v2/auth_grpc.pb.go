@@ -1276,6 +1276,7 @@ var Locale_ServiceDesc = grpc.ServiceDesc{
 const (
 	Site_Set_FullMethodName                       = "/palm.lilac.auth.v1.Site/Set"
 	Site_Get_FullMethodName                       = "/palm.lilac.auth.v1.Site/Get"
+	Site_Layout_FullMethodName                    = "/palm.lilac.auth.v1.Site/Layout"
 	Site_SetInfo_FullMethodName                   = "/palm.lilac.auth.v1.Site/SetInfo"
 	Site_GetInfo_FullMethodName                   = "/palm.lilac.auth.v1.Site/GetInfo"
 	Site_SetFavicon_FullMethodName                = "/palm.lilac.auth.v1.Site/SetFavicon"
@@ -1297,7 +1298,6 @@ const (
 	Site_SetGoogle_FullMethodName                 = "/palm.lilac.auth.v1.Site/SetGoogle"
 	Site_GetGoogle_FullMethodName                 = "/palm.lilac.auth.v1.Site/GetGoogle"
 	Site_DeleteGoogle_FullMethodName              = "/palm.lilac.auth.v1.Site/DeleteGoogle"
-	Site_PingGoogle_FullMethodName                = "/palm.lilac.auth.v1.Site/PingGoogle"
 	Site_SetIndexNow_FullMethodName               = "/palm.lilac.auth.v1.Site/SetIndexNow"
 	Site_GetIndexNow_FullMethodName               = "/palm.lilac.auth.v1.Site/GetIndexNow"
 	Site_DeleteIndexNow_FullMethodName            = "/palm.lilac.auth.v1.Site/DeleteIndexNow"
@@ -1313,19 +1313,20 @@ const (
 type SiteClient interface {
 	Set(ctx context.Context, in *KvSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Get(ctx context.Context, in *KvGetRequest, opts ...grpc.CallOption) (*KvGetResponse, error)
-	SetInfo(ctx context.Context, in *SiteInfo, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteInfo, error)
+	Layout(ctx context.Context, in *SiteLayoutRequest, opts ...grpc.CallOption) (*SiteLayoutResponse, error)
+	SetInfo(ctx context.Context, in *SetSiteInfoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetInfo(ctx context.Context, in *GetSiteInfoRequest, opts ...grpc.CallOption) (*GetSiteInfoResponse, error)
 	SetFavicon(ctx context.Context, in *SiteFavicon, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetFavicon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteFavicon, error)
 	SetAuthors(ctx context.Context, in *SiteAuthors, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetAuthors(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteAuthors, error)
 	SetKeywords(ctx context.Context, in *SiteKeywords, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetKeywords(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteKeywords, error)
-	SetIcpCode(ctx context.Context, in *SiteIcpCode, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetIcpCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteIcpCode, error)
+	SetIcpCode(ctx context.Context, in *SiteLayoutResponse_Icp, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetIcpCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteLayoutResponse_Icp, error)
 	DeleteIcpCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	SetGabCode(ctx context.Context, in *SiteGabCode, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetGabCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteGabCode, error)
+	SetGabCode(ctx context.Context, in *SiteLayoutResponse_Gab, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetGabCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteLayoutResponse_Gab, error)
 	DeleteGabCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SetBaidu(ctx context.Context, in *SiteBaidu, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetBaidu(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteBaidu, error)
@@ -1334,7 +1335,6 @@ type SiteClient interface {
 	SetGoogle(ctx context.Context, in *SiteGoogle, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetGoogle(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteGoogle, error)
 	DeleteGoogle(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	PingGoogle(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SetIndexNow(ctx context.Context, in *SiteIndexNow, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetIndexNow(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteIndexNow, error)
 	DeleteIndexNow(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -1370,7 +1370,16 @@ func (c *siteClient) Get(ctx context.Context, in *KvGetRequest, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *siteClient) SetInfo(ctx context.Context, in *SiteInfo, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *siteClient) Layout(ctx context.Context, in *SiteLayoutRequest, opts ...grpc.CallOption) (*SiteLayoutResponse, error) {
+	out := new(SiteLayoutResponse)
+	err := c.cc.Invoke(ctx, Site_Layout_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetInfo(ctx context.Context, in *SetSiteInfoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Site_SetInfo_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -1379,8 +1388,8 @@ func (c *siteClient) SetInfo(ctx context.Context, in *SiteInfo, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *siteClient) GetInfo(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteInfo, error) {
-	out := new(SiteInfo)
+func (c *siteClient) GetInfo(ctx context.Context, in *GetSiteInfoRequest, opts ...grpc.CallOption) (*GetSiteInfoResponse, error) {
+	out := new(GetSiteInfoResponse)
 	err := c.cc.Invoke(ctx, Site_GetInfo_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1442,7 +1451,7 @@ func (c *siteClient) GetKeywords(ctx context.Context, in *emptypb.Empty, opts ..
 	return out, nil
 }
 
-func (c *siteClient) SetIcpCode(ctx context.Context, in *SiteIcpCode, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *siteClient) SetIcpCode(ctx context.Context, in *SiteLayoutResponse_Icp, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Site_SetIcpCode_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -1451,8 +1460,8 @@ func (c *siteClient) SetIcpCode(ctx context.Context, in *SiteIcpCode, opts ...gr
 	return out, nil
 }
 
-func (c *siteClient) GetIcpCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteIcpCode, error) {
-	out := new(SiteIcpCode)
+func (c *siteClient) GetIcpCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteLayoutResponse_Icp, error) {
+	out := new(SiteLayoutResponse_Icp)
 	err := c.cc.Invoke(ctx, Site_GetIcpCode_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1469,7 +1478,7 @@ func (c *siteClient) DeleteIcpCode(ctx context.Context, in *emptypb.Empty, opts 
 	return out, nil
 }
 
-func (c *siteClient) SetGabCode(ctx context.Context, in *SiteGabCode, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *siteClient) SetGabCode(ctx context.Context, in *SiteLayoutResponse_Gab, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Site_SetGabCode_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -1478,8 +1487,8 @@ func (c *siteClient) SetGabCode(ctx context.Context, in *SiteGabCode, opts ...gr
 	return out, nil
 }
 
-func (c *siteClient) GetGabCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteGabCode, error) {
-	out := new(SiteGabCode)
+func (c *siteClient) GetGabCode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteLayoutResponse_Gab, error) {
+	out := new(SiteLayoutResponse_Gab)
 	err := c.cc.Invoke(ctx, Site_GetGabCode_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -1559,15 +1568,6 @@ func (c *siteClient) DeleteGoogle(ctx context.Context, in *emptypb.Empty, opts .
 	return out, nil
 }
 
-func (c *siteClient) PingGoogle(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Site_PingGoogle_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *siteClient) SetIndexNow(ctx context.Context, in *SiteIndexNow, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Site_SetIndexNow_FullMethodName, in, out, opts...)
@@ -1637,19 +1637,20 @@ func (c *siteClient) DeleteSiteGoogleReCaptcha(ctx context.Context, in *emptypb.
 type SiteServer interface {
 	Set(context.Context, *KvSetRequest) (*emptypb.Empty, error)
 	Get(context.Context, *KvGetRequest) (*KvGetResponse, error)
-	SetInfo(context.Context, *SiteInfo) (*emptypb.Empty, error)
-	GetInfo(context.Context, *emptypb.Empty) (*SiteInfo, error)
+	Layout(context.Context, *SiteLayoutRequest) (*SiteLayoutResponse, error)
+	SetInfo(context.Context, *SetSiteInfoRequest) (*emptypb.Empty, error)
+	GetInfo(context.Context, *GetSiteInfoRequest) (*GetSiteInfoResponse, error)
 	SetFavicon(context.Context, *SiteFavicon) (*emptypb.Empty, error)
 	GetFavicon(context.Context, *emptypb.Empty) (*SiteFavicon, error)
 	SetAuthors(context.Context, *SiteAuthors) (*emptypb.Empty, error)
 	GetAuthors(context.Context, *emptypb.Empty) (*SiteAuthors, error)
 	SetKeywords(context.Context, *SiteKeywords) (*emptypb.Empty, error)
 	GetKeywords(context.Context, *emptypb.Empty) (*SiteKeywords, error)
-	SetIcpCode(context.Context, *SiteIcpCode) (*emptypb.Empty, error)
-	GetIcpCode(context.Context, *emptypb.Empty) (*SiteIcpCode, error)
+	SetIcpCode(context.Context, *SiteLayoutResponse_Icp) (*emptypb.Empty, error)
+	GetIcpCode(context.Context, *emptypb.Empty) (*SiteLayoutResponse_Icp, error)
 	DeleteIcpCode(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	SetGabCode(context.Context, *SiteGabCode) (*emptypb.Empty, error)
-	GetGabCode(context.Context, *emptypb.Empty) (*SiteGabCode, error)
+	SetGabCode(context.Context, *SiteLayoutResponse_Gab) (*emptypb.Empty, error)
+	GetGabCode(context.Context, *emptypb.Empty) (*SiteLayoutResponse_Gab, error)
 	DeleteGabCode(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	SetBaidu(context.Context, *SiteBaidu) (*emptypb.Empty, error)
 	GetBaidu(context.Context, *emptypb.Empty) (*SiteBaidu, error)
@@ -1658,7 +1659,6 @@ type SiteServer interface {
 	SetGoogle(context.Context, *SiteGoogle) (*emptypb.Empty, error)
 	GetGoogle(context.Context, *emptypb.Empty) (*SiteGoogle, error)
 	DeleteGoogle(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	PingGoogle(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	SetIndexNow(context.Context, *SiteIndexNow) (*emptypb.Empty, error)
 	GetIndexNow(context.Context, *emptypb.Empty) (*SiteIndexNow, error)
 	DeleteIndexNow(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
@@ -1679,10 +1679,13 @@ func (UnimplementedSiteServer) Set(context.Context, *KvSetRequest) (*emptypb.Emp
 func (UnimplementedSiteServer) Get(context.Context, *KvGetRequest) (*KvGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedSiteServer) SetInfo(context.Context, *SiteInfo) (*emptypb.Empty, error) {
+func (UnimplementedSiteServer) Layout(context.Context, *SiteLayoutRequest) (*SiteLayoutResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Layout not implemented")
+}
+func (UnimplementedSiteServer) SetInfo(context.Context, *SetSiteInfoRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetInfo not implemented")
 }
-func (UnimplementedSiteServer) GetInfo(context.Context, *emptypb.Empty) (*SiteInfo, error) {
+func (UnimplementedSiteServer) GetInfo(context.Context, *GetSiteInfoRequest) (*GetSiteInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetInfo not implemented")
 }
 func (UnimplementedSiteServer) SetFavicon(context.Context, *SiteFavicon) (*emptypb.Empty, error) {
@@ -1703,19 +1706,19 @@ func (UnimplementedSiteServer) SetKeywords(context.Context, *SiteKeywords) (*emp
 func (UnimplementedSiteServer) GetKeywords(context.Context, *emptypb.Empty) (*SiteKeywords, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKeywords not implemented")
 }
-func (UnimplementedSiteServer) SetIcpCode(context.Context, *SiteIcpCode) (*emptypb.Empty, error) {
+func (UnimplementedSiteServer) SetIcpCode(context.Context, *SiteLayoutResponse_Icp) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetIcpCode not implemented")
 }
-func (UnimplementedSiteServer) GetIcpCode(context.Context, *emptypb.Empty) (*SiteIcpCode, error) {
+func (UnimplementedSiteServer) GetIcpCode(context.Context, *emptypb.Empty) (*SiteLayoutResponse_Icp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIcpCode not implemented")
 }
 func (UnimplementedSiteServer) DeleteIcpCode(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteIcpCode not implemented")
 }
-func (UnimplementedSiteServer) SetGabCode(context.Context, *SiteGabCode) (*emptypb.Empty, error) {
+func (UnimplementedSiteServer) SetGabCode(context.Context, *SiteLayoutResponse_Gab) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetGabCode not implemented")
 }
-func (UnimplementedSiteServer) GetGabCode(context.Context, *emptypb.Empty) (*SiteGabCode, error) {
+func (UnimplementedSiteServer) GetGabCode(context.Context, *emptypb.Empty) (*SiteLayoutResponse_Gab, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGabCode not implemented")
 }
 func (UnimplementedSiteServer) DeleteGabCode(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
@@ -1741,9 +1744,6 @@ func (UnimplementedSiteServer) GetGoogle(context.Context, *emptypb.Empty) (*Site
 }
 func (UnimplementedSiteServer) DeleteGoogle(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteGoogle not implemented")
-}
-func (UnimplementedSiteServer) PingGoogle(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PingGoogle not implemented")
 }
 func (UnimplementedSiteServer) SetIndexNow(context.Context, *SiteIndexNow) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetIndexNow not implemented")
@@ -1815,8 +1815,26 @@ func _Site_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Site_Layout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteLayoutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).Layout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_Layout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).Layout(ctx, req.(*SiteLayoutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Site_SetInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SiteInfo)
+	in := new(SetSiteInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1828,13 +1846,13 @@ func _Site_SetInfo_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: Site_SetInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SiteServer).SetInfo(ctx, req.(*SiteInfo))
+		return srv.(SiteServer).SetInfo(ctx, req.(*SetSiteInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Site_GetInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetSiteInfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1846,7 +1864,7 @@ func _Site_GetInfo_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: Site_GetInfo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SiteServer).GetInfo(ctx, req.(*emptypb.Empty))
+		return srv.(SiteServer).GetInfo(ctx, req.(*GetSiteInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1960,7 +1978,7 @@ func _Site_GetKeywords_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _Site_SetIcpCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SiteIcpCode)
+	in := new(SiteLayoutResponse_Icp)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1972,7 +1990,7 @@ func _Site_SetIcpCode_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Site_SetIcpCode_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SiteServer).SetIcpCode(ctx, req.(*SiteIcpCode))
+		return srv.(SiteServer).SetIcpCode(ctx, req.(*SiteLayoutResponse_Icp))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2014,7 +2032,7 @@ func _Site_DeleteIcpCode_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Site_SetGabCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SiteGabCode)
+	in := new(SiteLayoutResponse_Gab)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2026,7 +2044,7 @@ func _Site_SetGabCode_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: Site_SetGabCode_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SiteServer).SetGabCode(ctx, req.(*SiteGabCode))
+		return srv.(SiteServer).SetGabCode(ctx, req.(*SiteLayoutResponse_Gab))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2193,24 +2211,6 @@ func _Site_DeleteGoogle_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Site_PingGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SiteServer).PingGoogle(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Site_PingGoogle_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SiteServer).PingGoogle(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Site_SetIndexNow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SiteIndexNow)
 	if err := dec(in); err != nil {
@@ -2353,6 +2353,10 @@ var Site_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Site_Get_Handler,
 		},
 		{
+			MethodName: "Layout",
+			Handler:    _Site_Layout_Handler,
+		},
+		{
 			MethodName: "SetInfo",
 			Handler:    _Site_SetInfo_Handler,
 		},
@@ -2435,10 +2439,6 @@ var Site_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteGoogle",
 			Handler:    _Site_DeleteGoogle_Handler,
-		},
-		{
-			MethodName: "PingGoogle",
-			Handler:    _Site_PingGoogle_Handler,
 		},
 		{
 			MethodName: "SetIndexNow",

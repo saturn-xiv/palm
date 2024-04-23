@@ -6,7 +6,6 @@ import {
   refresh as refreshLayout,
   siteInfo as selectSiteInfo,
 } from "../reducers/site-info";
-import { fetch_layout, current_user } from "../api/camelia";
 import { get as get_locale } from "../locales";
 import {
   get as get_token,
@@ -17,26 +16,32 @@ import {
 import { home_url } from "../utils";
 import icon_img from "../assets/beian/1.jpg";
 import SwitchLanguage from "./SwitchLanguage";
+import { HOST as GRPC_HOST, metadata as grpc_metadata } from "../api/grpc";
+import { SiteClient } from "../protocols/lilac/AuthServiceClientPb";
+import { SiteLayoutRequest } from "../protocols/lilac/auth_pb";
 
 const Widget = () => {
   const site_info = useAppSelector(selectSiteInfo);
   const is_signed_in = useAppSelector(selectIsSignedIn);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (site_info.version === "") {
-      fetch_layout(get_locale()).then((res) => {
+    if (site_info.languages.length === 0) {
+      const client = new SiteClient(GRPC_HOST);
+      const request = new SiteLayoutRequest();
+      request.setLang(get_locale());
+      client.layout(request, grpc_metadata()).then((res) => {
         dispatch(refreshLayout(res));
       });
     }
     const token = get_token();
     if (!is_signed_in && token !== null) {
-      current_user()
-        .then((res) => {
-          dispatch(refreshUser(res));
-        })
-        .catch(() => {
-          dispatch(signOut());
-        });
+      // current_user()
+      //   .then((res) => {
+      //     dispatch(refreshUser(res));
+      //   })
+      //   .catch(() => {
+      //     dispatch(signOut());
+      //   });
     }
   }, [is_signed_in, dispatch, site_info]);
 
@@ -49,23 +54,23 @@ const Widget = () => {
     },
   ];
 
-  if (site_info.icpCode) {
+  if (site_info.icp) {
     links.push({
       key: "icp-code",
       href: "https://beian.miit.gov.cn/",
-      title: <>{site_info.icpCode}</>,
+      title: <>{site_info.icp}</>,
       blankTarget: true,
     });
   }
-  if (site_info.gabCode) {
+  if (site_info.gab) {
     links.push({
       key: "gab-code",
-      href: `https://beian.mps.gov.cn/#/query/webSearch?code=${site_info.gabCode.code}`,
+      href: `https://beian.mps.gov.cn/#/query/webSearch?code=${site_info.gab.code}`,
       title: (
         <>
           <img alt="gab" src={icon_img} style={{ width: "12px" }} />
           &nbsp;
-          {site_info.gabCode.name}
+          {site_info.gab.name}
         </>
       ),
       blankTarget: true,

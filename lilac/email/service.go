@@ -9,7 +9,6 @@ import (
 
 	"github.com/saturn-xiv/palm/lilac/auth"
 	pb "github.com/saturn-xiv/palm/lilac/email/v2"
-	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
 )
@@ -31,7 +30,7 @@ func (p *Service) Send(ctx context.Context, req *pb.EmailSendRequest) (*emptypb.
 	if err := user.Payload.IsAdministrator(p.enforcer); err != nil {
 		return nil, err
 	}
-	p.queue.Produce(ctx, env.TaskQueueName((*pb.EmailSendRequest)(nil)), req)
+	p.queue.ProducePB(ctx, req)
 	return &emptypb.Empty{}, nil
 }
 

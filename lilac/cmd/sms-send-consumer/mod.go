@@ -26,5 +26,5 @@ func Launch(name string, config_file string) error {
 
 	worker := config.Twilio.Open()
 	ctx := context.Background()
-	return config.RabbitMq.Consume(ctx, name, env.TaskQueueName((*pb.SmsSendRequest)(nil)), worker)
+	return config.RabbitMq.Consume(ctx, name, env.TypeNamePB((*pb.SmsSendRequest)(nil)), worker)
 }

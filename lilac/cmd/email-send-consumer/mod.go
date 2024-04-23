@@ -26,5 +26,5 @@ func Launch(name string, config_file string) error {
 
 	worker := config.Smtp.Open()
 	ctx := context.Background()
-	return config.RabbitMq.Consume(ctx, name, env.TaskQueueName((*pb.EmailSendRequest)(nil)), worker)
+	return config.RabbitMq.Consume(ctx, name, env.TypeNamePB((*pb.EmailSendRequest)(nil)), worker)
 }

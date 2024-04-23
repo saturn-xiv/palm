@@ -5,8 +5,10 @@ import (
 	"errors"
 	"time"
 
+	"google.golang.org/protobuf/proto"
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 )
 
@@ -108,7 +110,7 @@ func Get_(db *gorm.DB, aes *crypto.Aes, key string) ([]byte, error) {
 func Set_(db *gorm.DB, aes *crypto.Aes, key string, value []byte, encrypt bool) error {
 	now := time.Now()
 	var it Setting
-	rst := db.Where(&Setting{Key: key}).First(&it)
+	rst := db.Where(&Setting{Key: key, UserID: nil}).First(&it)
 	if rst.Error == nil {
 		if encrypt {
 			val, salt, err := aes.Encrypt(value)
@@ -159,4 +161,62 @@ func Set_(db *gorm.DB, aes *crypto.Aes, key string, value []byte, encrypt bool) 
 		return rst.Error
 	}
 	return nil
+}
+
+func Delete(db *gorm.DB, user uint32, key string) error {
+	var it Setting
+	if rst := db.Where(&Setting{Key: key, UserID: &user}).Delete(&it); rst.Error != nil {
+		return rst.Error
+	}
+	return nil
+}
+func Delete_(db *gorm.DB, key string) error {
+	var it Setting
+	if rst := db.Where(&Setting{Key: key, UserID: nil}).Delete(&it); rst.Error != nil {
+		return rst.Error
+	}
+
+	return nil
+}
+func SetPB(db *gorm.DB, aes *crypto.Aes, user uint32, value proto.Message, encrypt bool) error {
+	key := env.TypeNamePB(value)
+	buf, err := proto.Marshal(value)
+	if err != nil {
+		return err
+	}
+	return Set(db, aes, user, key, buf, encrypt)
+}
+func SetPB_(db *gorm.DB, aes *crypto.Aes, value proto.Message, encrypt bool) error {
+	key := env.TypeNamePB(value)
+	buf, err := proto.Marshal(value)
+	if err != nil {
+		return err
+	}
+	return Set_(db, aes, key, buf, encrypt)
+}
+
+func GetPB(db *gorm.DB, aes *crypto.Aes, user uint32, value proto.Message) error {
+	key := env.TypeNamePB(value)
+	buf, err := Get(db, aes, user, key)
+	if err != nil {
+		return err
+	}
+	return proto.Unmarshal(buf, value)
+}
+func GetPB_(db *gorm.DB, aes *crypto.Aes, value proto.Message) error {
+	key := env.TypeNamePB(value)
+	buf, err := Get_(db, aes, key)
+	if err != nil {
+		return err
+	}
+	return proto.Unmarshal(buf, value)
+}
+
+func DeletePB(db *gorm.DB, user uint32, value proto.Message) error {
+	key := env.TypeNamePB(value)
+	return Delete(db, user, key)
+}
+func DeletePB_(db *gorm.DB, value proto.Message) error {
+	key := env.TypeNamePB(value)
+	return Delete_(db, key)
 }

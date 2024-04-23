@@ -22,6 +22,15 @@ type I18n struct {
 	items map[string]map[string]string
 }
 
+func (p *I18n) Languages() []string {
+	// return reflect.ValueOf(p.items).MapKeys()
+	var items []string
+	for l := range p.items {
+		items = append(items, l)
+	}
+	return items
+}
+
 func (p *I18n) Tr(lang string, code string, data any) string {
 	key := fmt.Sprintf("%s.%s", lang, code)
 	tmp, ok := p.items[lang]

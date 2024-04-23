@@ -8,7 +8,6 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/lilac/auth"
-	"github.com/saturn-xiv/palm/lilac/env"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
 	"github.com/saturn-xiv/palm/lilac/env/rabbitmq"
 	pb "github.com/saturn-xiv/palm/lilac/sms/v2"
@@ -31,7 +30,7 @@ func (p *Service) Send(ctx context.Context, req *pb.SmsSendRequest) (*emptypb.Em
 	if err := user.Payload.IsAdministrator(p.enforcer); err != nil {
 		return nil, err
 	}
-	p.queue.Produce(ctx, env.TaskQueueName((*pb.SmsSendRequest)(nil)), req)
+	p.queue.ProducePB(ctx, req)
 	return &emptypb.Empty{}, nil
 }
 

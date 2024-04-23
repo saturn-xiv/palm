@@ -1502,29 +1502,72 @@ export class SiteClient {
     this.methodDescriptorGet);
   }
 
+  methodDescriptorLayout = new grpcWeb.MethodDescriptor(
+    '/palm.lilac.auth.v1.Site/Layout',
+    grpcWeb.MethodType.UNARY,
+    auth_pb.SiteLayoutRequest,
+    auth_pb.SiteLayoutResponse,
+    (request: auth_pb.SiteLayoutRequest) => {
+      return request.serializeBinary();
+    },
+    auth_pb.SiteLayoutResponse.deserializeBinary
+  );
+
+  layout(
+    request: auth_pb.SiteLayoutRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<auth_pb.SiteLayoutResponse>;
+
+  layout(
+    request: auth_pb.SiteLayoutRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: auth_pb.SiteLayoutResponse) => void): grpcWeb.ClientReadableStream<auth_pb.SiteLayoutResponse>;
+
+  layout(
+    request: auth_pb.SiteLayoutRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: auth_pb.SiteLayoutResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.lilac.auth.v1.Site/Layout',
+        request,
+        metadata || {},
+        this.methodDescriptorLayout,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.lilac.auth.v1.Site/Layout',
+    request,
+    metadata || {},
+    this.methodDescriptorLayout);
+  }
+
   methodDescriptorSetInfo = new grpcWeb.MethodDescriptor(
     '/palm.lilac.auth.v1.Site/SetInfo',
     grpcWeb.MethodType.UNARY,
-    auth_pb.SiteInfo,
+    auth_pb.SetSiteInfoRequest,
     google_protobuf_empty_pb.Empty,
-    (request: auth_pb.SiteInfo) => {
+    (request: auth_pb.SetSiteInfoRequest) => {
       return request.serializeBinary();
     },
     google_protobuf_empty_pb.Empty.deserializeBinary
   );
 
   setInfo(
-    request: auth_pb.SiteInfo,
+    request: auth_pb.SetSiteInfoRequest,
     metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
 
   setInfo(
-    request: auth_pb.SiteInfo,
+    request: auth_pb.SetSiteInfoRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   setInfo(
-    request: auth_pb.SiteInfo,
+    request: auth_pb.SetSiteInfoRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void) {
@@ -1548,29 +1591,29 @@ export class SiteClient {
   methodDescriptorGetInfo = new grpcWeb.MethodDescriptor(
     '/palm.lilac.auth.v1.Site/GetInfo',
     grpcWeb.MethodType.UNARY,
-    google_protobuf_empty_pb.Empty,
-    auth_pb.SiteInfo,
-    (request: google_protobuf_empty_pb.Empty) => {
+    auth_pb.GetSiteInfoRequest,
+    auth_pb.GetSiteInfoResponse,
+    (request: auth_pb.GetSiteInfoRequest) => {
       return request.serializeBinary();
     },
-    auth_pb.SiteInfo.deserializeBinary
+    auth_pb.GetSiteInfoResponse.deserializeBinary
   );
 
   getInfo(
-    request: google_protobuf_empty_pb.Empty,
-    metadata?: grpcWeb.Metadata | null): Promise<auth_pb.SiteInfo>;
+    request: auth_pb.GetSiteInfoRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<auth_pb.GetSiteInfoResponse>;
 
   getInfo(
-    request: google_protobuf_empty_pb.Empty,
+    request: auth_pb.GetSiteInfoRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: auth_pb.SiteInfo) => void): grpcWeb.ClientReadableStream<auth_pb.SiteInfo>;
+               response: auth_pb.GetSiteInfoResponse) => void): grpcWeb.ClientReadableStream<auth_pb.GetSiteInfoResponse>;
 
   getInfo(
-    request: google_protobuf_empty_pb.Empty,
+    request: auth_pb.GetSiteInfoRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: auth_pb.SiteInfo) => void) {
+               response: auth_pb.GetSiteInfoResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -1849,26 +1892,26 @@ export class SiteClient {
   methodDescriptorSetIcpCode = new grpcWeb.MethodDescriptor(
     '/palm.lilac.auth.v1.Site/SetIcpCode',
     grpcWeb.MethodType.UNARY,
-    auth_pb.SiteIcpCode,
+    auth_pb.SiteLayoutResponse.Icp,
     google_protobuf_empty_pb.Empty,
-    (request: auth_pb.SiteIcpCode) => {
+    (request: auth_pb.SiteLayoutResponse.Icp) => {
       return request.serializeBinary();
     },
     google_protobuf_empty_pb.Empty.deserializeBinary
   );
 
   setIcpCode(
-    request: auth_pb.SiteIcpCode,
+    request: auth_pb.SiteLayoutResponse.Icp,
     metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
 
   setIcpCode(
-    request: auth_pb.SiteIcpCode,
+    request: auth_pb.SiteLayoutResponse.Icp,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   setIcpCode(
-    request: auth_pb.SiteIcpCode,
+    request: auth_pb.SiteLayoutResponse.Icp,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void) {
@@ -1893,28 +1936,28 @@ export class SiteClient {
     '/palm.lilac.auth.v1.Site/GetIcpCode',
     grpcWeb.MethodType.UNARY,
     google_protobuf_empty_pb.Empty,
-    auth_pb.SiteIcpCode,
+    auth_pb.SiteLayoutResponse.Icp,
     (request: google_protobuf_empty_pb.Empty) => {
       return request.serializeBinary();
     },
-    auth_pb.SiteIcpCode.deserializeBinary
+    auth_pb.SiteLayoutResponse.Icp.deserializeBinary
   );
 
   getIcpCode(
     request: google_protobuf_empty_pb.Empty,
-    metadata?: grpcWeb.Metadata | null): Promise<auth_pb.SiteIcpCode>;
+    metadata?: grpcWeb.Metadata | null): Promise<auth_pb.SiteLayoutResponse.Icp>;
 
   getIcpCode(
     request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: auth_pb.SiteIcpCode) => void): grpcWeb.ClientReadableStream<auth_pb.SiteIcpCode>;
+               response: auth_pb.SiteLayoutResponse.Icp) => void): grpcWeb.ClientReadableStream<auth_pb.SiteLayoutResponse.Icp>;
 
   getIcpCode(
     request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: auth_pb.SiteIcpCode) => void) {
+               response: auth_pb.SiteLayoutResponse.Icp) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -1978,26 +2021,26 @@ export class SiteClient {
   methodDescriptorSetGabCode = new grpcWeb.MethodDescriptor(
     '/palm.lilac.auth.v1.Site/SetGabCode',
     grpcWeb.MethodType.UNARY,
-    auth_pb.SiteGabCode,
+    auth_pb.SiteLayoutResponse.Gab,
     google_protobuf_empty_pb.Empty,
-    (request: auth_pb.SiteGabCode) => {
+    (request: auth_pb.SiteLayoutResponse.Gab) => {
       return request.serializeBinary();
     },
     google_protobuf_empty_pb.Empty.deserializeBinary
   );
 
   setGabCode(
-    request: auth_pb.SiteGabCode,
+    request: auth_pb.SiteLayoutResponse.Gab,
     metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
 
   setGabCode(
-    request: auth_pb.SiteGabCode,
+    request: auth_pb.SiteLayoutResponse.Gab,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   setGabCode(
-    request: auth_pb.SiteGabCode,
+    request: auth_pb.SiteLayoutResponse.Gab,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void) {
@@ -2022,28 +2065,28 @@ export class SiteClient {
     '/palm.lilac.auth.v1.Site/GetGabCode',
     grpcWeb.MethodType.UNARY,
     google_protobuf_empty_pb.Empty,
-    auth_pb.SiteGabCode,
+    auth_pb.SiteLayoutResponse.Gab,
     (request: google_protobuf_empty_pb.Empty) => {
       return request.serializeBinary();
     },
-    auth_pb.SiteGabCode.deserializeBinary
+    auth_pb.SiteLayoutResponse.Gab.deserializeBinary
   );
 
   getGabCode(
     request: google_protobuf_empty_pb.Empty,
-    metadata?: grpcWeb.Metadata | null): Promise<auth_pb.SiteGabCode>;
+    metadata?: grpcWeb.Metadata | null): Promise<auth_pb.SiteLayoutResponse.Gab>;
 
   getGabCode(
     request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: auth_pb.SiteGabCode) => void): grpcWeb.ClientReadableStream<auth_pb.SiteGabCode>;
+               response: auth_pb.SiteLayoutResponse.Gab) => void): grpcWeb.ClientReadableStream<auth_pb.SiteLayoutResponse.Gab>;
 
   getGabCode(
     request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: auth_pb.SiteGabCode) => void) {
+               response: auth_pb.SiteLayoutResponse.Gab) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -2403,49 +2446,6 @@ export class SiteClient {
     request,
     metadata || {},
     this.methodDescriptorDeleteGoogle);
-  }
-
-  methodDescriptorPingGoogle = new grpcWeb.MethodDescriptor(
-    '/palm.lilac.auth.v1.Site/PingGoogle',
-    grpcWeb.MethodType.UNARY,
-    google_protobuf_empty_pb.Empty,
-    google_protobuf_empty_pb.Empty,
-    (request: google_protobuf_empty_pb.Empty) => {
-      return request.serializeBinary();
-    },
-    google_protobuf_empty_pb.Empty.deserializeBinary
-  );
-
-  pingGoogle(
-    request: google_protobuf_empty_pb.Empty,
-    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
-
-  pingGoogle(
-    request: google_protobuf_empty_pb.Empty,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
-
-  pingGoogle(
-    request: google_protobuf_empty_pb.Empty,
-    metadata?: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        this.hostname_ +
-          '/palm.lilac.auth.v1.Site/PingGoogle',
-        request,
-        metadata || {},
-        this.methodDescriptorPingGoogle,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/palm.lilac.auth.v1.Site/PingGoogle',
-    request,
-    metadata || {},
-    this.methodDescriptorPingGoogle);
   }
 
   methodDescriptorSetIndexNow = new grpcWeb.MethodDescriptor(

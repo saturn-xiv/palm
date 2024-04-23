@@ -46,3 +46,16 @@ func NewPagination(pager *Pager, total int64) *Pagination {
 		HasPrevious: (page > 1),
 	}
 }
+
+// https://www.indexnow.org/faq
+// https://www.indexnow.org/documentation
+func (p *SiteIndexNow) Ping() error {
+	// TODO
+	return nil
+}
+
+// https://tousu.baidu.com/question2?prod_en=master&class=478&id=3046
+func (p *SiteBaidu) Ping() error {
+	// TODO
+	return nil
+}

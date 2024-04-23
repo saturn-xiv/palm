@@ -3,10 +3,7 @@ import { Col } from "antd";
 
 import { useAppDispatch } from "../../../../hooks";
 import { set_pathname } from "../../../../reducers/side-bar";
-import { refresh as refreshLayout } from "../../../../reducers/site-info";
 import { SETTINGS_SITE_INFO_PATH } from "../../../../Router";
-import { fetch_layout } from "../../../../api/camelia";
-import { get as get_locale } from "../../../../locales";
 import Authors from "./Authors";
 import Base from "./Base";
 import Favicon from "./Favicon";
@@ -16,11 +13,7 @@ import Keywords from "./Keywords";
 
 export const Component = () => {
   const dispatch = useAppDispatch();
-  const handleRefresh = () => {
-    fetch_layout(get_locale()).then((res) => {
-      dispatch(refreshLayout(res));
-    });
-  };
+  const handleRefresh = () => {};
   useEffect(() => {
     dispatch(set_pathname(SETTINGS_SITE_INFO_PATH));
   }, [dispatch]);
