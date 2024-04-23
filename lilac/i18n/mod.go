@@ -19,34 +19,57 @@ import (
 var gl_locales_fs embed.FS
 
 type I18n struct {
-	items map[string]string
+	items map[string]map[string]string
 }
 
 func (p *I18n) Tr(lang string, code string, data any) string {
-	name := fmt.Sprintf("%s.%s", lang, code)
-	text, ok := p.items[name]
+	key := fmt.Sprintf("%s.%s", lang, code)
+	tmp, ok := p.items[lang]
 	if !ok {
-		return name
+		return key
 	}
-	tpl, err := template.New(name).Parse(text)
+	text, ok := tmp[code]
+	if !ok {
+		return key
+	}
+	tpl, err := template.New(key).Parse(text)
 	if err != nil {
 		slog.Error(err.Error())
-		return name
+		return key
 	}
 	var buf bytes.Buffer
 	if err = tpl.Execute(&buf, data); err != nil {
 		slog.Error(err.Error())
-		return name
+		return key
 	}
 	return buf.String()
 }
 
+func (p *I18n) ByLang(lang string) (map[string]string, bool) {
+	tmp, ok := p.items[lang]
+	return tmp, ok
+}
+
+func (p *I18n) Reload(db *gorm.DB) error {
+	return reload(db, p.items)
+}
+
 func New(db *gorm.DB) (*I18n, error) {
-	items := make(map[string]string)
+	items := make(map[string]map[string]string)
+	if err := reload(db, items); err != nil {
+		return nil, err
+	}
+
+	return &I18n{
+		items: items,
+	}, nil
+}
+func reload(db *gorm.DB, items map[string]map[string]string) error {
+
 	root := "locales"
 	dirs, err := gl_locales_fs.ReadDir(root)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	var languages []string
 	for _, il := range dirs {
@@ -58,20 +81,22 @@ func New(db *gorm.DB) (*I18n, error) {
 
 		files, err := gl_locales_fs.ReadDir(filepath.Join(root, lang))
 		if err != nil {
-			return nil, err
+			return err
 		}
+		by_lang := make(map[string]string)
 		for _, it := range files {
 			slog.Debug("load locale-ini", slog.String("language", lang), slog.String("file", it.Name()))
 			buf, err := gl_locales_fs.ReadFile(filepath.Join(root, lang, it.Name()))
 			if err != nil {
-				return nil, err
+				return err
 			}
-			tmp, err := load_ini(lang, buf)
+			tmp, err := load_from_ini(buf)
 			if err != nil {
-				return nil, err
+				return err
 			}
-			maps.Copy(items, tmp)
+			maps.Copy(by_lang, tmp)
 		}
+		items[lang] = by_lang
 	}
 	for _, it := range dirs {
 		if !it.IsDir() {
@@ -79,33 +104,40 @@ func New(db *gorm.DB) (*I18n, error) {
 				slog.Debug("load locale-ini", slog.String("language", lang), slog.String("file", it.Name()))
 				buf, err := gl_locales_fs.ReadFile(filepath.Join(root, it.Name()))
 				if err != nil {
-					return nil, err
+					return err
 				}
-				tmp, err := load_ini(lang, buf)
+				tmp, err := load_from_ini(buf)
 				if err != nil {
-					return nil, err
+					return err
 				}
-				maps.Copy(items, tmp)
+				by_lang := items[lang]
+				maps.Copy(by_lang, tmp)
 			}
-
 		}
 	}
 
-	{
-		var tmp []models.Locale
-		if rst := db.Select("lang", "code", "message").Find(&tmp); rst.Error != nil {
-			return nil, rst.Error
-		}
-		for _, it := range tmp {
-			items[it.Key()] = it.Message
-		}
+	if err = load_from_db(db, items); err != nil {
+		return err
 	}
-	return &I18n{
-		items: items,
-	}, nil
+
+	for lng, it := range items {
+		slog.Debug("found", slog.String("language", lng), slog.Int("count", len(it)))
+	}
+	return nil
+}
+func load_from_db(db *gorm.DB, items map[string]map[string]string) error {
+
+	var tmp []models.Locale
+	if rst := db.Select("lang", "code", "message").Find(&tmp); rst.Error != nil {
+		return rst.Error
+	}
+	for _, it := range tmp {
+		items[it.Lang][it.Code] = it.Message
+	}
+	return nil
 }
 
-func load_ini(lang string, buf []byte) (map[string]string, error) {
+func load_from_ini(buf []byte) (map[string]string, error) {
 	items := make(map[string]string)
 	file, err := ini.Load(buf)
 	if err != nil {
@@ -113,7 +145,7 @@ func load_ini(lang string, buf []byte) (map[string]string, error) {
 	}
 	for _, sec := range file.Sections() {
 		for k, v := range sec.KeysHash() {
-			key := fmt.Sprintf("%s.%s.%s", lang, sec.Name(), k)
+			key := fmt.Sprintf("%s.%s", sec.Name(), k)
 			items[key] = v
 		}
 	}

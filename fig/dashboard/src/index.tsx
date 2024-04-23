@@ -26,8 +26,9 @@ const client = new LocaleClient(GRPC_HOST);
 const request = new LocaleByLangRequest();
 request.setLang(lang);
 client.byLang(request, grpc_metadata()).then((res) => {
-  console.log("locales by lang", res);
-  const messages = {};
+  const messages = res
+    .getItemsList()
+    .reduce((ac, it) => ({ ...ac, [it.getCode()]: it.getMessage() }), {});
   root.render(
     <React.StrictMode>
       <ReduxProvider store={store}>

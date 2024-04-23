@@ -14,6 +14,7 @@ import (
 
 	pb "github.com/saturn-xiv/palm/lilac/auth/v2"
 	"github.com/saturn-xiv/palm/lilac/env/crypto"
+	"github.com/saturn-xiv/palm/lilac/i18n"
 	"github.com/saturn-xiv/palm/lilac/models"
 )
 
@@ -23,26 +24,27 @@ type LocaleService struct {
 	jwt      *crypto.Jwt
 	db       *gorm.DB
 	enforcer *casbin.Enforcer
+	i18n     *i18n.I18n
 }
 
-func NewLocaleService(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) *LocaleService {
-	return &LocaleService{db: db, jwt: jwt, enforcer: enforcer}
+func NewLocaleService(db *gorm.DB, jwt *crypto.Jwt, i18n *i18n.I18n, enforcer *casbin.Enforcer) *LocaleService {
+	return &LocaleService{db: db, jwt: jwt, i18n: i18n, enforcer: enforcer}
 }
 
 func (p *LocaleService) ByLang(ctx context.Context, req *pb.LocaleByLangRequest) (*pb.LocaleByLangResponse, error) {
 	var items []*pb.LocaleByLangResponse_Item
-	{
-		tmp, err := models.GetLocaleByLang(p.db, req.Lang)
-		if err != nil {
-			return nil, err
-		}
-		for _, it := range tmp {
-			items = append(items, &pb.LocaleByLangResponse_Item{
-				Code:    it.Code,
-				Message: it.Message,
-			})
-		}
+
+	tmp, ok := p.i18n.ByLang(req.Lang)
+	if !ok {
+		return nil, fmt.Errorf("couldn't find language %s", req.Lang)
 	}
+	for k, v := range tmp {
+		items = append(items, &pb.LocaleByLangResponse_Item{
+			Code:    k,
+			Message: v,
+		})
+	}
+
 	return &pb.LocaleByLangResponse{Items: items}, nil
 }
 func (p *LocaleService) Index(ctx context.Context, req *pb.Pager) (*pb.LocaleIndexResponse, error) {
@@ -98,14 +100,20 @@ func (p *LocaleService) Set(ctx context.Context, req *pb.LocaleSetRequest) (*emp
 			return err
 		}
 		slog.Debug(fmt.Sprintf("create locale %s.%s", req.Lang, req.Code))
-		return tx.Create(&models.Locale{
+		if rst := tx.Create(&models.Locale{
 			Lang:      req.Lang,
 			Code:      req.Code,
 			Message:   req.Message,
 			Version:   0,
 			UpdatedAt: now,
 			CreatedAt: now,
-		}).Error
+		}); rst.Error != nil {
+			return rst.Error
+		}
+		if err = p.i18n.Reload(tx); err != nil {
+			return err
+		}
+		return nil
 	}); err != nil {
 		return nil, err
 	}
@@ -122,7 +130,13 @@ func (p *LocaleService) Destroy(ctx context.Context, req *pb.IdRequest) (*emptyp
 	}
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		slog.Debug(fmt.Sprintf("delete locale %d", req.Id))
-		return tx.Delete(&models.Locale{}, req.Id).Error
+		if rst := tx.Delete(&models.Locale{}, req.Id); rst.Error != nil {
+			return rst.Error
+		}
+		if err := p.i18n.Reload(tx); err != nil {
+			return err
+		}
+		return nil
 	}); err != nil {
 		return nil, err
 	}

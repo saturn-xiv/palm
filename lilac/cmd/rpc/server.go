@@ -124,7 +124,7 @@ func mount(server *grpc.Server, namespace string,
 	wechat_oauth2_c *env.WechatOauth2, wechat_mini_program_c *env.WechatMiniProgram, wechat_pay_merchant_c *env.WechatPayMerchant,
 ) error {
 	auth_pb.RegisterUserServer(server, auth.NewUserService(db, cache, aes, mac, jwt, enforcer, i18n, queue, s3c))
-	auth_pb.RegisterLocaleServer(server, auth.NewLocaleService(db, jwt, enforcer))
+	auth_pb.RegisterLocaleServer(server, auth.NewLocaleService(db, jwt, i18n, enforcer))
 	auth_pb.RegisterLeaveWordServer(server, auth.NewLeaveWordService(db, jwt, enforcer))
 	auth_pb.RegisterNotificationServer(server, auth.NewNotificationService(db, jwt, enforcer))
 	auth_pb.RegisterTagServer(server, auth.NewTagService(db, jwt, enforcer))
