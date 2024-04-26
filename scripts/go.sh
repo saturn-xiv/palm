@@ -48,7 +48,7 @@ declare -a targets=(
 )
 
 cd $WORKSPACE/$1
-go mod tidy
+# go mod tidy
 mkdir -p $WORKSPACE/$1/tmp
 for t in "${targets[@]}"; do
     build $1 $t
