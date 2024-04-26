@@ -6,7 +6,7 @@ RUN apk upgrade
 # nodejs npm gradle maven
 RUN apk add vim curl bash zsh pwgen openssl git tmux rsync \
     openssh-client sshpass \
-    build-base cmake pkgconf git \
+    build-base cmake pkgconf \
     python3 py3-pip python3-dev \
     openssl-dev
 

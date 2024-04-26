@@ -5,7 +5,7 @@ RUN apk update
 RUN apk upgrade
 RUN apk add vim curl bash zsh pwgen openssl git tmux rsync xz zip \
     openssh-client sshpass \
-    build-base cmake git \
+    build-base cmake \
     python3 py3-pip python3-dev \
     nginx nodejs npm yarn \
     php php-bcmath php-bz2 php-curl php-ftp php-fpm php-gd php-iconv php-imap \
