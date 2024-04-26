@@ -8,10 +8,6 @@ if [ "$#" -ne 1 ]; then
     exit 0
 fi
 
-if [ ! -d tmp ]; then
-    mkdir tmp
-fi
-
 if podman container exists $NAME; then
     podman start -i -a $NAME
 else
