@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export CODE="palm-bugzilla"
+export NAME="$CODE-$USER-$1"
+
+if [ "$#" -ne 1 ]; then
+    echo "USAGE: $0 PORT"
+    exit 0
+fi
+
+if [ ! -d tmp ]; then
+    mkdir tmp
+fi
+
+if podman container exists $NAME; then
+    podman start -i -a $NAME
+else
+    podman run --name $NAME -it --events-backend=file -v $PWD:/workspace:z -p $1:80/tcp $CODE
+fi
