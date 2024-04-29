@@ -32,7 +32,7 @@ find_package(OpenSSL REQUIRED)
 # https://github.com/gabime/spdlog
 FetchContent_Declare(spdlog
   GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
-  GIT_TAG         "v1.13.0"
+  GIT_TAG         "v1.14.0"
 )
 # https://github.com/marzer/tomlplusplus
 FetchContent_Declare(tomlplusplus
@@ -47,12 +47,12 @@ FetchContent_Declare(argparse
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
-  GIT_TAG         "ac71903"
+  GIT_TAG         "v2.1.3"
 )
 # https://github.com/casbin/casbin-cpp
 FetchContent_Declare(casbin
   GIT_REPOSITORY  "https://github.com/casbin/casbin-cpp.git"
-  GIT_TAG         "v1.55.0"
+  GIT_TAG         "v1.58.0"
 )
 # https://github.com/google/leveldb
 FetchContent_Declare(leveldb
@@ -69,8 +69,14 @@ FetchContent_Declare(librdkafka
   GIT_REPOSITORY  "https://github.com/confluentinc/librdkafka.git"
   GIT_TAG         "v2.3.0"
 )
+# https://github.com/grpc/grpc/tree/master/src/cpp
+FetchContent_Declare(gRPC
+  GIT_REPOSITORY  "https://github.com/grpc/grpc.git"
+  GIT_TAG         "v1.63.0"
+)
+set(FETCHCONTENT_QUIET OFF)
 
-FetchContent_MakeAvailable(spdlog argparse tomlplusplus tink casbin leveldb rabbitmq librdkafka)
+FetchContent_MakeAvailable(spdlog argparse tomlplusplus tink casbin leveldb rabbitmq librdkafka gRPC)
 
 # --------------------------------------------------------
 
@@ -86,6 +92,7 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_libraries(loquat gourd
   ${OPENSSL_LIBRARIES}
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
+  grpc++
 )
 
 target_include_directories(loquat PUBLIC
