@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.22)
 include(ExternalProject)
 include(FetchContent)
 
 project(
     loquat
-    VERSION 2024.4.11
+    VERSION 2024.4.29
     DESCRIPTION "A cryptographic rpc service(by google tink & casbin)."
     LANGUAGES C CXX)
 # --------------------------------------------------------
@@ -76,7 +76,7 @@ FetchContent_Declare(gRPC
 )
 set(FETCHCONTENT_QUIET OFF)
 
-FetchContent_MakeAvailable(spdlog argparse tomlplusplus tink casbin leveldb rabbitmq librdkafka gRPC)
+FetchContent_MakeAvailable(gRPC tink spdlog argparse tomlplusplus casbin leveldb rabbitmq librdkafka)
 
 # --------------------------------------------------------
 
