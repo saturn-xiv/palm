@@ -1,2 +1,3 @@
 /include/loquat/version.hpp
 /build/
+/vcpkg_installed/

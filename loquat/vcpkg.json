@@ -1,0 +1,31 @@
+{
+  "dependencies": [
+    "openssl",
+    {
+      "name": "libevent",
+      "features": ["openssl"]
+    },
+    "boost-uuid",
+
+    "spdlog",
+    "tomlplusplus",
+    "argparse",
+    "cppcodec",
+
+    "sqlite3",
+    "sqlitecpp",
+    {
+      "name": "leveldb",
+      "features": ["crc32c"]
+    },
+    "libpq",
+    "libpqxx",
+
+    "librabbitmq",
+    "librdkafka",
+
+    "thrift",
+    "protopuf",
+    "grpc"
+  ]
+}
