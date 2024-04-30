@@ -1,11 +1,11 @@
-#/bin/bash
+#!/bin/bash
 
 set -e
 
 . /etc/os-release
 
 # https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites
-if [ $ID == "ubuntu" ] && [ $VERSION_CODENAME == "jammy" ]; then
+if [[ "$ID" == "ubuntu" ]] && [[ "$VERSION_CODENAME" == "jammy" ]]; then
     apt update
     apt install -y git build-essential cmake autoconf libtool pkg-config \
         g++-12 golang \
@@ -26,7 +26,7 @@ mkdir -p $BUILD_ROOT
 CC=gcc-12 CXX=g++-12 cmake -DCMAKE_BUILD_TYPE=Release \
     -DABSL_PROPAGATE_CXX_STD=ON \
     -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
-    -DTINK_USE_SYSTEM_OPENSSL=ON -DTINK_BUILD_TESTS=OFF \
+    -DTINK_USE_SYSTEM_OPENSSL=ON -DTINK_BUILD_TESTS=OFF -DTINK_USE_INSTALLED_PROTOBUF=ON -DTINK_USE_INSTALLED_ABSEIL=ON \
     -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DBUILD_COMPILER=OFF -DWITH_OPENSSL=ON -DBUILD_JAVA=OFF -DBUILD_JAVASCRIPT=OFF -DBUILD_NODEJS=OFF -DBUILD_PYTHON=OFF \
     -DCASBIN_BUILD_TESTS=OFF -DCASBIN_BUILD_PYTHON_BINDINGS=OFF \
     -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF \
