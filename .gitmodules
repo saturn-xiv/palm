@@ -7,3 +7,6 @@
 [submodule "themes/jekyll-al-folio"]
 	path = themes/jekyll-al-folio
 	url = https://github.com/alshedivat/al-folio.git
+[submodule "loquat/vcpkg"]
+	path = loquat/vcpkg
+	url = https://github.com/microsoft/vcpkg.git
