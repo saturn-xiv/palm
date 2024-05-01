@@ -281,6 +281,7 @@ generate_go lilac wechat-oauth2 wechat/oauth2
 generate_go lilac wechat-mini-program wechat/mini-program
 generate_go lilac wechat-pay wechat/pay
 generate_go lilac auth auth
+generate_go lilac accounting accounting
 
 generate_grpc_for_typescript lilac/protocols fig/dashboard/src/protocols/lilac
 
