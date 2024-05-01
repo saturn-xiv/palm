@@ -41,7 +41,7 @@ find_package(rabbitmq-c CONFIG REQUIRED)
 find_package(eclipse-paho-mqtt-c CONFIG REQUIRED)
 find_package(PahoMqttCpp CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
-find_package(protopuf CONFIG REQUIRED)
+find_package(protobuf CONFIG REQUIRED)
 find_package(boost_uuid CONFIG REQUIRED)
 
 find_package(PkgConfig REQUIRED)
@@ -49,18 +49,8 @@ pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
 
 find_path(CPPCODEC_INCLUDE_DIRS ")cppcodec/base32_crockford.hpp")
 
-
-# uuid
-# base64
-
-# https://github.com/p-ranav/argparse
-# https://github.com/google/leveldb
-# https://github.com/alanxz/rabbitmq-c
-# https://github.com/confluentinc/librdkafka
-# https://github.com/protocolbuffers/protobuf
-# https://github.com/grpc/grpc/tree/master/src/cpp
-
 # --------------------------------------------------------
+
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
@@ -69,9 +59,8 @@ FetchContent_Declare(tink
 # https://github.com/casbin/casbin-cpp
 FetchContent_Declare(casbin
   GIT_REPOSITORY  "https://github.com/casbin/casbin-cpp.git"
-  GIT_TAG         "v1.58.0"
+  GIT_TAG         "v1.59.0"
 )
-
 
 FetchContent_MakeAvailable(tink casbin)
 
@@ -92,10 +81,9 @@ target_link_libraries(loquat gourd
   Boost::uuid PkgConfig::tomlplusplus nlohmann_json::nlohmann_json pantor::inja
   leveldb::leveldb unofficial::sqlite3::sqlite3 SQLiteCpp PostgreSQL::PostgreSQL libpqxx::pqxx
   rabbitmq::rabbitmq-static RdKafka::rdkafka RdKafka::rdkafka++ eclipse-paho-mqtt-c::paho-mqtt3c-static PahoMqttC::PahoMqttC PahoMqttCpp::paho-mqttpp3-static
-  protopuf gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts
+  protobuf::libprotoc protobuf::libprotobuf gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts
 
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  
 )
 
 target_include_directories(loquat PUBLIC

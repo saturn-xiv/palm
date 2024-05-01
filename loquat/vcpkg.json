@@ -33,7 +33,7 @@
     },
 
     "thrift",
-    "protopuf",
+    "protobuf",
     "grpc"
   ]
 }
