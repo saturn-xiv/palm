@@ -12,6 +12,9 @@
     "argparse",
     "cppcodec",
 
+    "inja",
+    "nlohmann-json",
+
     "sqlite3",
     "sqlitecpp",
     {
@@ -23,6 +26,11 @@
 
     "librabbitmq",
     "librdkafka",
+    "paho-mqtt",
+    {
+      "name": "paho-mqttpp3",
+      "features": ["ssl"]
+    },
 
     "thrift",
     "protopuf",

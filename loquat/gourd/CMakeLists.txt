@@ -1,12 +1,14 @@
 file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
+find_package(Libevent CONFIG REQUIRED)
+find_package(Thrift CONFIG REQUIRED)
+
 add_library(gourd STATIC ${SOURCE_LIST})
-target_link_directories(gourd PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/lib)
 
 target_link_libraries(gourd PUBLIC
-  event_core event_extra event_pthreads
-  thrift thriftnb thriftz
+  libevent::core libevent::extra libevent::openssl libevent::pthreads
+  thrift::thrift thriftz::thriftz thriftnb::thriftnb
 )
 
 target_include_directories(gourd PUBLIC

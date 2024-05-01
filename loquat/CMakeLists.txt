@@ -6,7 +6,7 @@ set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems
 
 project(
     loquat
-    VERSION 2024.4.30
+    VERSION 2024.5.1
     DESCRIPTION "A cryptographic rpc service(by google tink & casbin)."
     LANGUAGES C CXX)
 # --------------------------------------------------------
@@ -29,12 +29,26 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 
 find_package(OpenSSL REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
+find_package(nlohmann_json CONFIG REQUIRED)
+find_package(inja CONFIG REQUIRED)
 find_package(PostgreSQL REQUIRED)
-find_package(RdKafka CONFIG REQUIRED)
+find_package(libpqxx CONFIG REQUIRED)
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
+find_package(SQLiteCpp CONFIG REQUIRED)
+find_package(leveldb CONFIG REQUIRED)
+find_package(RdKafka CONFIG REQUIRED)
+find_package(rabbitmq-c CONFIG REQUIRED)
+find_package(eclipse-paho-mqtt-c CONFIG REQUIRED)
+find_package(PahoMqttCpp CONFIG REQUIRED)
+find_package(gRPC CONFIG REQUIRED)
+find_package(protopuf CONFIG REQUIRED)
+find_package(boost_uuid CONFIG REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
+
+find_path(CPPCODEC_INCLUDE_DIRS ")cppcodec/base32_crockford.hpp")
+
 
 # uuid
 # base64
@@ -75,16 +89,19 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_libraries(loquat gourd
   OpenSSL::SSL OpenSSL::Crypto
   spdlog::spdlog_header_only
-  PkgConfig::tomlplusplus
-  unofficial::sqlite3::sqlite3 PostgreSQL::PostgreSQL
-  RdKafka::rdkafka RdKafka::rdkafka++
+  Boost::uuid PkgConfig::tomlplusplus nlohmann_json::nlohmann_json pantor::inja
+  leveldb::leveldb unofficial::sqlite3::sqlite3 SQLiteCpp PostgreSQL::PostgreSQL libpqxx::pqxx
+  rabbitmq::rabbitmq-static RdKafka::rdkafka RdKafka::rdkafka++ eclipse-paho-mqtt-c::paho-mqtt3c-static PahoMqttC::PahoMqttC PahoMqttCpp::paho-mqttpp3-static
+  protopuf gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts
 
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  grpc++
+  
 )
 
 target_include_directories(loquat PUBLIC
   ${PROJECT_SOURCE_DIR}/include
+
+  ${CPPCODEC_INCLUDE_DIRS}
 )
 
 
