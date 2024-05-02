@@ -1,8 +1,10 @@
 # USAGE
 
 ```bash
-mvn package -Dmaven.test.skip=true
-java -jar target/musa-XXX.jar
+$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
+> cd /workspace
+> ./build.sh
+> ls -lh target/musa-XXX.jar
 ```
 
 - [Externalized Configuration](https://docs.spring.io/spring-boot/docs/1.0.1.RELEASE/reference/html/boot-features-external-config.html)
