@@ -168,6 +168,8 @@ void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
   }
 }
 
-void loquat::HealthHandler::check() {
+void loquat::HealthHandler::check(
+    std::map<std::string, std::string>& response) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
+  response["version"] = loquat::GIT_VERSION;
 }

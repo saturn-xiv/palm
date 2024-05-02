@@ -49,15 +49,17 @@ class JwtHandler final : public v1::JwtIf {
  public:
   JwtHandler() = default;
 
-  void sign(std::string& token, const loquat::v1::JwtSignRequest& request) override;
-  void verify(loquat::v1::JwtVerfifyResponse& response, const std::string& token,
-              const std::string& issuer,const std::string&audience) override;
+  void sign(std::string& token,
+            const loquat::v1::JwtSignRequest& request) override;
+  void verify(loquat::v1::JwtVerfifyResponse& response,
+              const std::string& token, const std::string& issuer,
+              const std::string& audience) override;
 };
 
 class HealthHandler final : public v1::HealthIf {
  public:
   HealthHandler() = default;
 
-  void check() override;
+  void check(std::map<std::string, std::string>& response) override;
 };
 }  // namespace loquat

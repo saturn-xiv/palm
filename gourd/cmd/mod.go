@@ -35,9 +35,9 @@ func Execute() {
 }
 
 var (
-	gl_debug              bool
-	gl_config             string
-	gl_rpc_listen_address string
+	gl_debug    bool
+	gl_config   string
+	gl_rpc_port uint16
 )
 
 func init() {
@@ -51,13 +51,13 @@ func init() {
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 
-				if err := LaunchRpcServer(gl_rpc_listen_address, gl_config, git_version); err != nil {
+				if err := LaunchRpcServer(gl_rpc_port, gl_config, git_version); err != nil {
 					log.Fatalf("start rpc server: %s", err)
 				}
 			},
 		}
 
-		cmd.Flags().StringVarP(&gl_rpc_listen_address, "address", "A", "127.0.0.1:9999", "network address to listen")
+		cmd.Flags().Uint16VarP(&gl_rpc_port, "address", "A", 9999, "network address to listen")
 		root_cmd.AddCommand(cmd)
 	}
 

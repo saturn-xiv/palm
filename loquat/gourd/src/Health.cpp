@@ -90,7 +90,35 @@ uint32_t Health_check_result::read(::apache::thrift::protocol::TProtocol* iprot)
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_MAP) {
+          {
+            this->success.clear();
+            uint32_t _size11;
+            ::apache::thrift::protocol::TType _ktype12;
+            ::apache::thrift::protocol::TType _vtype13;
+            xfer += iprot->readMapBegin(_ktype12, _vtype13, _size11);
+            uint32_t _i15;
+            for (_i15 = 0; _i15 < _size11; ++_i15)
+            {
+              std::string _key16;
+              xfer += iprot->readString(_key16);
+              std::string& _val17 = this->success[_key16];
+              xfer += iprot->readString(_val17);
+            }
+            xfer += iprot->readMapEnd();
+          }
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -105,6 +133,20 @@ uint32_t Health_check_result::write(::apache::thrift::protocol::TProtocol* oprot
 
   xfer += oprot->writeStructBegin("Health_check_result");
 
+  if (this->__isset.success) {
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_MAP, 0);
+    {
+      xfer += oprot->writeMapBegin(::apache::thrift::protocol::T_STRING, ::apache::thrift::protocol::T_STRING, static_cast<uint32_t>(this->success.size()));
+      std::map<std::string, std::string> ::const_iterator _iter18;
+      for (_iter18 = this->success.begin(); _iter18 != this->success.end(); ++_iter18)
+      {
+        xfer += oprot->writeString(_iter18->first);
+        xfer += oprot->writeString(_iter18->second);
+      }
+      xfer += oprot->writeMapEnd();
+    }
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
@@ -134,7 +176,35 @@ uint32_t Health_check_presult::read(::apache::thrift::protocol::TProtocol* iprot
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_MAP) {
+          {
+            (*(this->success)).clear();
+            uint32_t _size19;
+            ::apache::thrift::protocol::TType _ktype20;
+            ::apache::thrift::protocol::TType _vtype21;
+            xfer += iprot->readMapBegin(_ktype20, _vtype21, _size19);
+            uint32_t _i23;
+            for (_i23 = 0; _i23 < _size19; ++_i23)
+            {
+              std::string _key24;
+              xfer += iprot->readString(_key24);
+              std::string& _val25 = (*(this->success))[_key24];
+              xfer += iprot->readString(_val25);
+            }
+            xfer += iprot->readMapEnd();
+          }
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -143,10 +213,10 @@ uint32_t Health_check_presult::read(::apache::thrift::protocol::TProtocol* iprot
   return xfer;
 }
 
-void HealthClient::check()
+void HealthClient::check(std::map<std::string, std::string> & _return)
 {
   send_check();
-  recv_check();
+  recv_check(_return);
 }
 
 void HealthClient::send_check()
@@ -162,7 +232,7 @@ void HealthClient::send_check()
   oprot_->getTransport()->flush();
 }
 
-void HealthClient::recv_check()
+void HealthClient::recv_check(std::map<std::string, std::string> & _return)
 {
 
   int32_t rseqid = 0;
@@ -188,11 +258,16 @@ void HealthClient::recv_check()
     iprot_->getTransport()->readEnd();
   }
   Health_check_presult result;
+  result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
-  return;
+  if (result.__isset.success) {
+    // _return pointer has now been filled
+    return;
+  }
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "check failed: unknown result");
 }
 
 bool HealthProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
@@ -237,7 +312,8 @@ void HealthProcessor::process_check(int32_t seqid, ::apache::thrift::protocol::T
 
   Health_check_result result;
   try {
-    iface_->check();
+    iface_->check(result.success);
+    result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
       this->eventHandler_->handlerError(ctx, "Health.check");
@@ -274,10 +350,10 @@ void HealthProcessor::process_check(int32_t seqid, ::apache::thrift::protocol::T
   return processor;
 }
 
-void HealthConcurrentClient::check()
+void HealthConcurrentClient::check(std::map<std::string, std::string> & _return)
 {
   int32_t seqid = send_check();
-  recv_check(seqid);
+  recv_check(_return, seqid);
 }
 
 int32_t HealthConcurrentClient::send_check()
@@ -297,7 +373,7 @@ int32_t HealthConcurrentClient::send_check()
   return cseqid;
 }
 
-void HealthConcurrentClient::recv_check(const int32_t seqid)
+void HealthConcurrentClient::recv_check(std::map<std::string, std::string> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -336,12 +412,18 @@ void HealthConcurrentClient::recv_check(const int32_t seqid)
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
       Health_check_presult result;
+      result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
-      sentry.commit();
-      return;
+      if (result.__isset.success) {
+        // _return pointer has now been filled
+        sentry.commit();
+        return;
+      }
+      // in a bad state, don't commit
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "check failed: unknown result");
     }
     // seqid != rseqid
     this->sync_->updatePending(fname, mtype, rseqid);

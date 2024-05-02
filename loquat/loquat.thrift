@@ -30,5 +30,5 @@ service Aes {
 }
 
 service Health {
-  void check();
+  map<string,string> check();
 }
