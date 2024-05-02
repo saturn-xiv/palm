@@ -5,35 +5,8 @@
       "name": "libevent",
       "features": ["openssl"]
     },
-    "boost-uuid",
-
-    "spdlog",
-    "tomlplusplus",
+    "spdlog",    
     "argparse",
-    "cppcodec",
-
-    "inja",
-    "nlohmann-json",
-
-    "sqlite3",
-    "sqlitecpp",
-    {
-      "name": "leveldb",
-      "features": ["crc32c"]
-    },
-    "libpq",
-    "libpqxx",
-
-    "librabbitmq",
-    "librdkafka",
-    "paho-mqtt",
-    {
-      "name": "paho-mqttpp3",
-      "features": ["ssl"]
-    },
-
-    "thrift",
-    "protobuf",
-    "grpc"
+    "thrift"
   ]
 }
