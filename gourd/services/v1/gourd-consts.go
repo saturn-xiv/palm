@@ -26,6 +26,8 @@ var _ = thrift.ZERO
 var _ = strings.Contains
 var _ = regexp.MatchString
 
+const ROLE_ADMINISTRATOR = "administrator"
+const ROLE_ROOT = "root"
 
 func init() {
 }

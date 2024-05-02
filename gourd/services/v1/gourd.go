@@ -27,6 +27,240 @@ var _ = strings.Contains
 var _ = regexp.MatchString
 
 // Attributes:
+//  - ID
+type User struct {
+  ID int64 `thrift:"id,1" db:"id" json:"id"`
+}
+
+func NewUser() *User {
+  return &User{}
+}
+
+
+func (p *User) GetID() int64 {
+  return p.ID
+}
+func (p *User) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *User)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.ID = v
+}
+  return nil
+}
+
+func (p *User) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "User"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *User) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "id", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:id: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.ID)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.id (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:id: ", p), err) }
+  return err
+}
+
+func (p *User) Equals(other *User) bool {
+  if p == other {
+    return true
+  } else if p == nil || other == nil {
+    return false
+  }
+  if p.ID != other.ID { return false }
+  return true
+}
+
+func (p *User) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("User(%+v)", *p)
+}
+
+func (p *User) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.User",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*User)(nil)
+
+func (p *User) Validate() error {
+  return nil
+}
+// Attributes:
+//  - Name
+type Role struct {
+  Name string `thrift:"name,1" db:"name" json:"name"`
+}
+
+func NewRole() *Role {
+  return &Role{}
+}
+
+
+func (p *Role) GetName() string {
+  return p.Name
+}
+func (p *Role) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *Role)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Name = v
+}
+  return nil
+}
+
+func (p *Role) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "Role"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *Role) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "name", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:name: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Name)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.name (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:name: ", p), err) }
+  return err
+}
+
+func (p *Role) Equals(other *Role) bool {
+  if p == other {
+    return true
+  } else if p == nil || other == nil {
+    return false
+  }
+  if p.Name != other.Name { return false }
+  return true
+}
+
+func (p *Role) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("Role(%+v)", *p)
+}
+
+func (p *Role) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.Role",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*Role)(nil)
+
+func (p *Role) Validate() error {
+  return nil
+}
+// Attributes:
 //  - Type
 //  - ID
 type Resource struct {
@@ -359,7 +593,66 @@ type Policy interface {
   // Parameters:
   //  - User
   //  - Role
-  Can(ctx context.Context, user string, role string) (_err error)
+  Has(ctx context.Context, user int64, role string) (_r bool, _err error)
+  // Parameters:
+  //  - User
+  //  - Operation
+  //  - Resource
+  Can(ctx context.Context, user int64, operation string, resource *Resource) (_r bool, _err error)
+  // Parameters:
+  //  - User
+  DeleteUser(ctx context.Context, user int64) (_err error)
+  // Parameters:
+  //  - Role
+  DeleteRole(ctx context.Context, role string) (_err error)
+  // Parameters:
+  //  - User
+  GetRolesForUser(ctx context.Context, user int64) (_r []string, _err error)
+  // Parameters:
+  //  - User
+  GetImplicitRolesForUser(ctx context.Context, user int64) (_r []string, _err error)
+  // Parameters:
+  //  - Role
+  GetUsersForRole(ctx context.Context, role string) (_r []int64, _err error)
+  // Parameters:
+  //  - Role
+  GetImplicitUsersForRole(ctx context.Context, role string) (_r []int64, _err error)
+  // Parameters:
+  //  - User
+  //  - Roles
+  AddRolesForUser(ctx context.Context, user int64, roles []string) (_err error)
+  // Parameters:
+  //  - User
+  //  - Roles
+  DeleteRolesForUser(ctx context.Context, user int64, roles []string) (_err error)
+  // Parameters:
+  //  - User
+  GetPermissionsForUser(ctx context.Context, user int64) (_r []*Permission, _err error)
+  // Parameters:
+  //  - User
+  GetImplicitPermissionsForUser(ctx context.Context, user int64) (_r []*Permission, _err error)
+  // Parameters:
+  //  - User
+  //  - Permissions
+  AddPermissionsForUser(ctx context.Context, user int64, permissions []*Permission) (_err error)
+  // Parameters:
+  //  - User
+  //  - Permissions
+  DeletePermissionsForUser(ctx context.Context, user int64, permissions []*Permission) (_err error)
+  // Parameters:
+  //  - Role
+  GetPermissionsForRole(ctx context.Context, role string) (_r []*Permission, _err error)
+  // Parameters:
+  //  - Role
+  GetImplicitPermissionsForRole(ctx context.Context, role string) (_r []*Permission, _err error)
+  // Parameters:
+  //  - Role
+  //  - Permissions
+  AddPermissionsForRole(ctx context.Context, role string, permissions []*Permission) (_err error)
+  // Parameters:
+  //  - Role
+  //  - Permissions
+  DeletePermissionsForRole(ctx context.Context, role string, permissions []*Permission) (_err error)
 }
 
 type PolicyClient struct {
@@ -400,14 +693,285 @@ func (p *PolicyClient) SetLastResponseMeta_(meta thrift.ResponseMeta) {
 // Parameters:
 //  - User
 //  - Role
-func (p *PolicyClient) Can(ctx context.Context, user string, role string) (_err error) {
-  var _args0 PolicyCanArgs
+func (p *PolicyClient) Has(ctx context.Context, user int64, role string) (_r bool, _err error) {
+  var _args0 PolicyHasArgs
   _args0.User = user
   _args0.Role = role
-  var _result2 PolicyCanResult
+  var _result2 PolicyHasResult
   var _meta1 thrift.ResponseMeta
-  _meta1, _err = p.Client_().Call(ctx, "can", &_args0, &_result2)
+  _meta1, _err = p.Client_().Call(ctx, "has", &_args0, &_result2)
   p.SetLastResponseMeta_(_meta1)
+  if _err != nil {
+    return
+  }
+  return _result2.GetSuccess(), nil
+}
+
+// Parameters:
+//  - User
+//  - Operation
+//  - Resource
+func (p *PolicyClient) Can(ctx context.Context, user int64, operation string, resource *Resource) (_r bool, _err error) {
+  var _args3 PolicyCanArgs
+  _args3.User = user
+  _args3.Operation = operation
+  _args3.Resource = resource
+  var _result5 PolicyCanResult
+  var _meta4 thrift.ResponseMeta
+  _meta4, _err = p.Client_().Call(ctx, "can", &_args3, &_result5)
+  p.SetLastResponseMeta_(_meta4)
+  if _err != nil {
+    return
+  }
+  return _result5.GetSuccess(), nil
+}
+
+// Parameters:
+//  - User
+func (p *PolicyClient) DeleteUser(ctx context.Context, user int64) (_err error) {
+  var _args6 PolicyDeleteUserArgs
+  _args6.User = user
+  var _result8 PolicyDeleteUserResult
+  var _meta7 thrift.ResponseMeta
+  _meta7, _err = p.Client_().Call(ctx, "delete_user", &_args6, &_result8)
+  p.SetLastResponseMeta_(_meta7)
+  if _err != nil {
+    return
+  }
+  return nil
+}
+
+// Parameters:
+//  - Role
+func (p *PolicyClient) DeleteRole(ctx context.Context, role string) (_err error) {
+  var _args9 PolicyDeleteRoleArgs
+  _args9.Role = role
+  var _result11 PolicyDeleteRoleResult
+  var _meta10 thrift.ResponseMeta
+  _meta10, _err = p.Client_().Call(ctx, "delete_role", &_args9, &_result11)
+  p.SetLastResponseMeta_(_meta10)
+  if _err != nil {
+    return
+  }
+  return nil
+}
+
+// Parameters:
+//  - User
+func (p *PolicyClient) GetRolesForUser(ctx context.Context, user int64) (_r []string, _err error) {
+  var _args12 PolicyGetRolesForUserArgs
+  _args12.User = user
+  var _result14 PolicyGetRolesForUserResult
+  var _meta13 thrift.ResponseMeta
+  _meta13, _err = p.Client_().Call(ctx, "get_roles_for_user", &_args12, &_result14)
+  p.SetLastResponseMeta_(_meta13)
+  if _err != nil {
+    return
+  }
+  return _result14.GetSuccess(), nil
+}
+
+// Parameters:
+//  - User
+func (p *PolicyClient) GetImplicitRolesForUser(ctx context.Context, user int64) (_r []string, _err error) {
+  var _args15 PolicyGetImplicitRolesForUserArgs
+  _args15.User = user
+  var _result17 PolicyGetImplicitRolesForUserResult
+  var _meta16 thrift.ResponseMeta
+  _meta16, _err = p.Client_().Call(ctx, "get_implicit_roles_for_user", &_args15, &_result17)
+  p.SetLastResponseMeta_(_meta16)
+  if _err != nil {
+    return
+  }
+  return _result17.GetSuccess(), nil
+}
+
+// Parameters:
+//  - Role
+func (p *PolicyClient) GetUsersForRole(ctx context.Context, role string) (_r []int64, _err error) {
+  var _args18 PolicyGetUsersForRoleArgs
+  _args18.Role = role
+  var _result20 PolicyGetUsersForRoleResult
+  var _meta19 thrift.ResponseMeta
+  _meta19, _err = p.Client_().Call(ctx, "get_users_for_role", &_args18, &_result20)
+  p.SetLastResponseMeta_(_meta19)
+  if _err != nil {
+    return
+  }
+  return _result20.GetSuccess(), nil
+}
+
+// Parameters:
+//  - Role
+func (p *PolicyClient) GetImplicitUsersForRole(ctx context.Context, role string) (_r []int64, _err error) {
+  var _args21 PolicyGetImplicitUsersForRoleArgs
+  _args21.Role = role
+  var _result23 PolicyGetImplicitUsersForRoleResult
+  var _meta22 thrift.ResponseMeta
+  _meta22, _err = p.Client_().Call(ctx, "get_implicit_users_for_role", &_args21, &_result23)
+  p.SetLastResponseMeta_(_meta22)
+  if _err != nil {
+    return
+  }
+  return _result23.GetSuccess(), nil
+}
+
+// Parameters:
+//  - User
+//  - Roles
+func (p *PolicyClient) AddRolesForUser(ctx context.Context, user int64, roles []string) (_err error) {
+  var _args24 PolicyAddRolesForUserArgs
+  _args24.User = user
+  _args24.Roles = roles
+  var _result26 PolicyAddRolesForUserResult
+  var _meta25 thrift.ResponseMeta
+  _meta25, _err = p.Client_().Call(ctx, "add_roles_for_user", &_args24, &_result26)
+  p.SetLastResponseMeta_(_meta25)
+  if _err != nil {
+    return
+  }
+  return nil
+}
+
+// Parameters:
+//  - User
+//  - Roles
+func (p *PolicyClient) DeleteRolesForUser(ctx context.Context, user int64, roles []string) (_err error) {
+  var _args27 PolicyDeleteRolesForUserArgs
+  _args27.User = user
+  _args27.Roles = roles
+  var _result29 PolicyDeleteRolesForUserResult
+  var _meta28 thrift.ResponseMeta
+  _meta28, _err = p.Client_().Call(ctx, "delete_roles_for_user", &_args27, &_result29)
+  p.SetLastResponseMeta_(_meta28)
+  if _err != nil {
+    return
+  }
+  return nil
+}
+
+// Parameters:
+//  - User
+func (p *PolicyClient) GetPermissionsForUser(ctx context.Context, user int64) (_r []*Permission, _err error) {
+  var _args30 PolicyGetPermissionsForUserArgs
+  _args30.User = user
+  var _result32 PolicyGetPermissionsForUserResult
+  var _meta31 thrift.ResponseMeta
+  _meta31, _err = p.Client_().Call(ctx, "get_permissions_for_user", &_args30, &_result32)
+  p.SetLastResponseMeta_(_meta31)
+  if _err != nil {
+    return
+  }
+  return _result32.GetSuccess(), nil
+}
+
+// Parameters:
+//  - User
+func (p *PolicyClient) GetImplicitPermissionsForUser(ctx context.Context, user int64) (_r []*Permission, _err error) {
+  var _args33 PolicyGetImplicitPermissionsForUserArgs
+  _args33.User = user
+  var _result35 PolicyGetImplicitPermissionsForUserResult
+  var _meta34 thrift.ResponseMeta
+  _meta34, _err = p.Client_().Call(ctx, "get_implicit_permissions_for_user", &_args33, &_result35)
+  p.SetLastResponseMeta_(_meta34)
+  if _err != nil {
+    return
+  }
+  return _result35.GetSuccess(), nil
+}
+
+// Parameters:
+//  - User
+//  - Permissions
+func (p *PolicyClient) AddPermissionsForUser(ctx context.Context, user int64, permissions []*Permission) (_err error) {
+  var _args36 PolicyAddPermissionsForUserArgs
+  _args36.User = user
+  _args36.Permissions = permissions
+  var _result38 PolicyAddPermissionsForUserResult
+  var _meta37 thrift.ResponseMeta
+  _meta37, _err = p.Client_().Call(ctx, "add_permissions_for_user", &_args36, &_result38)
+  p.SetLastResponseMeta_(_meta37)
+  if _err != nil {
+    return
+  }
+  return nil
+}
+
+// Parameters:
+//  - User
+//  - Permissions
+func (p *PolicyClient) DeletePermissionsForUser(ctx context.Context, user int64, permissions []*Permission) (_err error) {
+  var _args39 PolicyDeletePermissionsForUserArgs
+  _args39.User = user
+  _args39.Permissions = permissions
+  var _result41 PolicyDeletePermissionsForUserResult
+  var _meta40 thrift.ResponseMeta
+  _meta40, _err = p.Client_().Call(ctx, "delete_permissions_for_user", &_args39, &_result41)
+  p.SetLastResponseMeta_(_meta40)
+  if _err != nil {
+    return
+  }
+  return nil
+}
+
+// Parameters:
+//  - Role
+func (p *PolicyClient) GetPermissionsForRole(ctx context.Context, role string) (_r []*Permission, _err error) {
+  var _args42 PolicyGetPermissionsForRoleArgs
+  _args42.Role = role
+  var _result44 PolicyGetPermissionsForRoleResult
+  var _meta43 thrift.ResponseMeta
+  _meta43, _err = p.Client_().Call(ctx, "get_permissions_for_role", &_args42, &_result44)
+  p.SetLastResponseMeta_(_meta43)
+  if _err != nil {
+    return
+  }
+  return _result44.GetSuccess(), nil
+}
+
+// Parameters:
+//  - Role
+func (p *PolicyClient) GetImplicitPermissionsForRole(ctx context.Context, role string) (_r []*Permission, _err error) {
+  var _args45 PolicyGetImplicitPermissionsForRoleArgs
+  _args45.Role = role
+  var _result47 PolicyGetImplicitPermissionsForRoleResult
+  var _meta46 thrift.ResponseMeta
+  _meta46, _err = p.Client_().Call(ctx, "get_implicit_permissions_for_role", &_args45, &_result47)
+  p.SetLastResponseMeta_(_meta46)
+  if _err != nil {
+    return
+  }
+  return _result47.GetSuccess(), nil
+}
+
+// Parameters:
+//  - Role
+//  - Permissions
+func (p *PolicyClient) AddPermissionsForRole(ctx context.Context, role string, permissions []*Permission) (_err error) {
+  var _args48 PolicyAddPermissionsForRoleArgs
+  _args48.Role = role
+  _args48.Permissions = permissions
+  var _result50 PolicyAddPermissionsForRoleResult
+  var _meta49 thrift.ResponseMeta
+  _meta49, _err = p.Client_().Call(ctx, "add_permissions_for_role", &_args48, &_result50)
+  p.SetLastResponseMeta_(_meta49)
+  if _err != nil {
+    return
+  }
+  return nil
+}
+
+// Parameters:
+//  - Role
+//  - Permissions
+func (p *PolicyClient) DeletePermissionsForRole(ctx context.Context, role string, permissions []*Permission) (_err error) {
+  var _args51 PolicyDeletePermissionsForRoleArgs
+  _args51.Role = role
+  _args51.Permissions = permissions
+  var _result53 PolicyDeletePermissionsForRoleResult
+  var _meta52 thrift.ResponseMeta
+  _meta52, _err = p.Client_().Call(ctx, "delete_permissions_for_role", &_args51, &_result53)
+  p.SetLastResponseMeta_(_meta52)
   if _err != nil {
     return
   }
@@ -434,9 +998,26 @@ func (p *PolicyProcessor) ProcessorMap() map[string]thrift.TProcessorFunction {
 
 func NewPolicyProcessor(handler Policy) *PolicyProcessor {
 
-  self3 := &PolicyProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
-  self3.processorMap["can"] = &policyProcessorCan{handler:handler}
-return self3
+  self54 := &PolicyProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
+  self54.processorMap["has"] = &policyProcessorHas{handler:handler}
+  self54.processorMap["can"] = &policyProcessorCan{handler:handler}
+  self54.processorMap["delete_user"] = &policyProcessorDeleteUser{handler:handler}
+  self54.processorMap["delete_role"] = &policyProcessorDeleteRole{handler:handler}
+  self54.processorMap["get_roles_for_user"] = &policyProcessorGetRolesForUser{handler:handler}
+  self54.processorMap["get_implicit_roles_for_user"] = &policyProcessorGetImplicitRolesForUser{handler:handler}
+  self54.processorMap["get_users_for_role"] = &policyProcessorGetUsersForRole{handler:handler}
+  self54.processorMap["get_implicit_users_for_role"] = &policyProcessorGetImplicitUsersForRole{handler:handler}
+  self54.processorMap["add_roles_for_user"] = &policyProcessorAddRolesForUser{handler:handler}
+  self54.processorMap["delete_roles_for_user"] = &policyProcessorDeleteRolesForUser{handler:handler}
+  self54.processorMap["get_permissions_for_user"] = &policyProcessorGetPermissionsForUser{handler:handler}
+  self54.processorMap["get_implicit_permissions_for_user"] = &policyProcessorGetImplicitPermissionsForUser{handler:handler}
+  self54.processorMap["add_permissions_for_user"] = &policyProcessorAddPermissionsForUser{handler:handler}
+  self54.processorMap["delete_permissions_for_user"] = &policyProcessorDeletePermissionsForUser{handler:handler}
+  self54.processorMap["get_permissions_for_role"] = &policyProcessorGetPermissionsForRole{handler:handler}
+  self54.processorMap["get_implicit_permissions_for_role"] = &policyProcessorGetImplicitPermissionsForRole{handler:handler}
+  self54.processorMap["add_permissions_for_role"] = &policyProcessorAddPermissionsForRole{handler:handler}
+  self54.processorMap["delete_permissions_for_role"] = &policyProcessorDeletePermissionsForRole{handler:handler}
+return self54
 }
 
 func (p *PolicyProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
@@ -447,13 +1028,108 @@ func (p *PolicyProcessor) Process(ctx context.Context, iprot, oprot thrift.TProt
   }
   iprot.Skip(ctx, thrift.STRUCT)
   iprot.ReadMessageEnd(ctx)
-  x4 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
+  x55 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
   oprot.WriteMessageBegin(ctx, name, thrift.EXCEPTION, seqId)
-  x4.Write(ctx, oprot)
+  x55.Write(ctx, oprot)
   oprot.WriteMessageEnd(ctx)
   oprot.Flush(ctx)
-  return false, x4
+  return false, x55
 
+}
+
+type policyProcessorHas struct {
+  handler Policy
+}
+
+func (p *policyProcessorHas) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err56 error
+  args := PolicyHasArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "has", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyHasResult{}
+  if retval, err2 := p.handler.Has(ctx, args.User, args.Role); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc57 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing has: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "has", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err56 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc57.Write(ctx, oprot); _write_err56 == nil && err2 != nil {
+      _write_err56 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err56 == nil && err2 != nil {
+      _write_err56 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err56 == nil && err2 != nil {
+      _write_err56 = thrift.WrapTException(err2)
+    }
+    if _write_err56 != nil {
+      return false, thrift.WrapTException(_write_err56)
+    }
+    return true, err
+  } else {
+    result.Success = &retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "has", thrift.REPLY, seqId); err2 != nil {
+    _write_err56 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err56 == nil && err2 != nil {
+    _write_err56 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err56 == nil && err2 != nil {
+    _write_err56 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err56 == nil && err2 != nil {
+    _write_err56 = thrift.WrapTException(err2)
+  }
+  if _write_err56 != nil {
+    return false, thrift.WrapTException(_write_err56)
+  }
+  return true, err
 }
 
 type policyProcessorCan struct {
@@ -461,7 +1137,7 @@ type policyProcessorCan struct {
 }
 
 func (p *policyProcessorCan) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
-  var _write_err5 error
+  var _write_err58 error
   args := PolicyCanArgs{}
   if err2 := args.Read(ctx, iprot); err2 != nil {
     iprot.ReadMessageEnd(ctx)
@@ -501,7 +1177,7 @@ func (p *policyProcessorCan) Process(ctx context.Context, seqId int32, iprot, op
   }
 
   result := PolicyCanResult{}
-  if err2 := p.handler.Can(ctx, args.User, args.Role); err2 != nil {
+  if retval, err2 := p.handler.Can(ctx, args.User, args.Operation, args.Resource); err2 != nil {
     tickerCancel()
     err = thrift.WrapTException(err2)
     if errors.Is(err2, thrift.ErrAbandonRequest) {
@@ -512,39 +1188,1545 @@ func (p *policyProcessorCan) Process(ctx context.Context, seqId int32, iprot, op
         return false, thrift.WrapTException(err)
       }
     }
-    _exc6 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing can: " + err2.Error())
+    _exc59 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing can: " + err2.Error())
     if err2 := oprot.WriteMessageBegin(ctx, "can", thrift.EXCEPTION, seqId); err2 != nil {
-      _write_err5 = thrift.WrapTException(err2)
+      _write_err58 = thrift.WrapTException(err2)
     }
-    if err2 := _exc6.Write(ctx, oprot); _write_err5 == nil && err2 != nil {
-      _write_err5 = thrift.WrapTException(err2)
+    if err2 := _exc59.Write(ctx, oprot); _write_err58 == nil && err2 != nil {
+      _write_err58 = thrift.WrapTException(err2)
     }
-    if err2 := oprot.WriteMessageEnd(ctx); _write_err5 == nil && err2 != nil {
-      _write_err5 = thrift.WrapTException(err2)
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err58 == nil && err2 != nil {
+      _write_err58 = thrift.WrapTException(err2)
     }
-    if err2 := oprot.Flush(ctx); _write_err5 == nil && err2 != nil {
-      _write_err5 = thrift.WrapTException(err2)
+    if err2 := oprot.Flush(ctx); _write_err58 == nil && err2 != nil {
+      _write_err58 = thrift.WrapTException(err2)
     }
-    if _write_err5 != nil {
-      return false, thrift.WrapTException(_write_err5)
+    if _write_err58 != nil {
+      return false, thrift.WrapTException(_write_err58)
+    }
+    return true, err
+  } else {
+    result.Success = &retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "can", thrift.REPLY, seqId); err2 != nil {
+    _write_err58 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err58 == nil && err2 != nil {
+    _write_err58 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err58 == nil && err2 != nil {
+    _write_err58 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err58 == nil && err2 != nil {
+    _write_err58 = thrift.WrapTException(err2)
+  }
+  if _write_err58 != nil {
+    return false, thrift.WrapTException(_write_err58)
+  }
+  return true, err
+}
+
+type policyProcessorDeleteUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorDeleteUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err60 error
+  args := PolicyDeleteUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "delete_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyDeleteUserResult{}
+  if err2 := p.handler.DeleteUser(ctx, args.User); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc61 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing delete_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "delete_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err60 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc61.Write(ctx, oprot); _write_err60 == nil && err2 != nil {
+      _write_err60 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err60 == nil && err2 != nil {
+      _write_err60 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err60 == nil && err2 != nil {
+      _write_err60 = thrift.WrapTException(err2)
+    }
+    if _write_err60 != nil {
+      return false, thrift.WrapTException(_write_err60)
     }
     return true, err
   }
   tickerCancel()
-  if err2 := oprot.WriteMessageBegin(ctx, "can", thrift.REPLY, seqId); err2 != nil {
-    _write_err5 = thrift.WrapTException(err2)
+  if err2 := oprot.WriteMessageBegin(ctx, "delete_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err60 = thrift.WrapTException(err2)
   }
-  if err2 := result.Write(ctx, oprot); _write_err5 == nil && err2 != nil {
-    _write_err5 = thrift.WrapTException(err2)
+  if err2 := result.Write(ctx, oprot); _write_err60 == nil && err2 != nil {
+    _write_err60 = thrift.WrapTException(err2)
   }
-  if err2 := oprot.WriteMessageEnd(ctx); _write_err5 == nil && err2 != nil {
-    _write_err5 = thrift.WrapTException(err2)
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err60 == nil && err2 != nil {
+    _write_err60 = thrift.WrapTException(err2)
   }
-  if err2 := oprot.Flush(ctx); _write_err5 == nil && err2 != nil {
-    _write_err5 = thrift.WrapTException(err2)
+  if err2 := oprot.Flush(ctx); _write_err60 == nil && err2 != nil {
+    _write_err60 = thrift.WrapTException(err2)
   }
-  if _write_err5 != nil {
-    return false, thrift.WrapTException(_write_err5)
+  if _write_err60 != nil {
+    return false, thrift.WrapTException(_write_err60)
+  }
+  return true, err
+}
+
+type policyProcessorDeleteRole struct {
+  handler Policy
+}
+
+func (p *policyProcessorDeleteRole) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err62 error
+  args := PolicyDeleteRoleArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "delete_role", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyDeleteRoleResult{}
+  if err2 := p.handler.DeleteRole(ctx, args.Role); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc63 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing delete_role: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "delete_role", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err62 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc63.Write(ctx, oprot); _write_err62 == nil && err2 != nil {
+      _write_err62 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err62 == nil && err2 != nil {
+      _write_err62 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err62 == nil && err2 != nil {
+      _write_err62 = thrift.WrapTException(err2)
+    }
+    if _write_err62 != nil {
+      return false, thrift.WrapTException(_write_err62)
+    }
+    return true, err
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "delete_role", thrift.REPLY, seqId); err2 != nil {
+    _write_err62 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err62 == nil && err2 != nil {
+    _write_err62 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err62 == nil && err2 != nil {
+    _write_err62 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err62 == nil && err2 != nil {
+    _write_err62 = thrift.WrapTException(err2)
+  }
+  if _write_err62 != nil {
+    return false, thrift.WrapTException(_write_err62)
+  }
+  return true, err
+}
+
+type policyProcessorGetRolesForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetRolesForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err64 error
+  args := PolicyGetRolesForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_roles_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetRolesForUserResult{}
+  if retval, err2 := p.handler.GetRolesForUser(ctx, args.User); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc65 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_roles_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_roles_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err64 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc65.Write(ctx, oprot); _write_err64 == nil && err2 != nil {
+      _write_err64 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err64 == nil && err2 != nil {
+      _write_err64 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err64 == nil && err2 != nil {
+      _write_err64 = thrift.WrapTException(err2)
+    }
+    if _write_err64 != nil {
+      return false, thrift.WrapTException(_write_err64)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_roles_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err64 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err64 == nil && err2 != nil {
+    _write_err64 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err64 == nil && err2 != nil {
+    _write_err64 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err64 == nil && err2 != nil {
+    _write_err64 = thrift.WrapTException(err2)
+  }
+  if _write_err64 != nil {
+    return false, thrift.WrapTException(_write_err64)
+  }
+  return true, err
+}
+
+type policyProcessorGetImplicitRolesForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetImplicitRolesForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err66 error
+  args := PolicyGetImplicitRolesForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_implicit_roles_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetImplicitRolesForUserResult{}
+  if retval, err2 := p.handler.GetImplicitRolesForUser(ctx, args.User); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc67 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_implicit_roles_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_roles_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err66 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc67.Write(ctx, oprot); _write_err66 == nil && err2 != nil {
+      _write_err66 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err66 == nil && err2 != nil {
+      _write_err66 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err66 == nil && err2 != nil {
+      _write_err66 = thrift.WrapTException(err2)
+    }
+    if _write_err66 != nil {
+      return false, thrift.WrapTException(_write_err66)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_roles_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err66 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err66 == nil && err2 != nil {
+    _write_err66 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err66 == nil && err2 != nil {
+    _write_err66 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err66 == nil && err2 != nil {
+    _write_err66 = thrift.WrapTException(err2)
+  }
+  if _write_err66 != nil {
+    return false, thrift.WrapTException(_write_err66)
+  }
+  return true, err
+}
+
+type policyProcessorGetUsersForRole struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetUsersForRole) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err68 error
+  args := PolicyGetUsersForRoleArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_users_for_role", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetUsersForRoleResult{}
+  if retval, err2 := p.handler.GetUsersForRole(ctx, args.Role); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc69 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_users_for_role: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_users_for_role", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err68 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc69.Write(ctx, oprot); _write_err68 == nil && err2 != nil {
+      _write_err68 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err68 == nil && err2 != nil {
+      _write_err68 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err68 == nil && err2 != nil {
+      _write_err68 = thrift.WrapTException(err2)
+    }
+    if _write_err68 != nil {
+      return false, thrift.WrapTException(_write_err68)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_users_for_role", thrift.REPLY, seqId); err2 != nil {
+    _write_err68 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err68 == nil && err2 != nil {
+    _write_err68 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err68 == nil && err2 != nil {
+    _write_err68 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err68 == nil && err2 != nil {
+    _write_err68 = thrift.WrapTException(err2)
+  }
+  if _write_err68 != nil {
+    return false, thrift.WrapTException(_write_err68)
+  }
+  return true, err
+}
+
+type policyProcessorGetImplicitUsersForRole struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetImplicitUsersForRole) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err70 error
+  args := PolicyGetImplicitUsersForRoleArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_implicit_users_for_role", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetImplicitUsersForRoleResult{}
+  if retval, err2 := p.handler.GetImplicitUsersForRole(ctx, args.Role); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc71 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_implicit_users_for_role: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_users_for_role", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err70 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc71.Write(ctx, oprot); _write_err70 == nil && err2 != nil {
+      _write_err70 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err70 == nil && err2 != nil {
+      _write_err70 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err70 == nil && err2 != nil {
+      _write_err70 = thrift.WrapTException(err2)
+    }
+    if _write_err70 != nil {
+      return false, thrift.WrapTException(_write_err70)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_users_for_role", thrift.REPLY, seqId); err2 != nil {
+    _write_err70 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err70 == nil && err2 != nil {
+    _write_err70 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err70 == nil && err2 != nil {
+    _write_err70 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err70 == nil && err2 != nil {
+    _write_err70 = thrift.WrapTException(err2)
+  }
+  if _write_err70 != nil {
+    return false, thrift.WrapTException(_write_err70)
+  }
+  return true, err
+}
+
+type policyProcessorAddRolesForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorAddRolesForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err72 error
+  args := PolicyAddRolesForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "add_roles_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyAddRolesForUserResult{}
+  if err2 := p.handler.AddRolesForUser(ctx, args.User, args.Roles); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc73 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing add_roles_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "add_roles_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err72 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc73.Write(ctx, oprot); _write_err72 == nil && err2 != nil {
+      _write_err72 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err72 == nil && err2 != nil {
+      _write_err72 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err72 == nil && err2 != nil {
+      _write_err72 = thrift.WrapTException(err2)
+    }
+    if _write_err72 != nil {
+      return false, thrift.WrapTException(_write_err72)
+    }
+    return true, err
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "add_roles_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err72 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err72 == nil && err2 != nil {
+    _write_err72 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err72 == nil && err2 != nil {
+    _write_err72 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err72 == nil && err2 != nil {
+    _write_err72 = thrift.WrapTException(err2)
+  }
+  if _write_err72 != nil {
+    return false, thrift.WrapTException(_write_err72)
+  }
+  return true, err
+}
+
+type policyProcessorDeleteRolesForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorDeleteRolesForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err74 error
+  args := PolicyDeleteRolesForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "delete_roles_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyDeleteRolesForUserResult{}
+  if err2 := p.handler.DeleteRolesForUser(ctx, args.User, args.Roles); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc75 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing delete_roles_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "delete_roles_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err74 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc75.Write(ctx, oprot); _write_err74 == nil && err2 != nil {
+      _write_err74 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err74 == nil && err2 != nil {
+      _write_err74 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err74 == nil && err2 != nil {
+      _write_err74 = thrift.WrapTException(err2)
+    }
+    if _write_err74 != nil {
+      return false, thrift.WrapTException(_write_err74)
+    }
+    return true, err
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "delete_roles_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err74 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err74 == nil && err2 != nil {
+    _write_err74 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err74 == nil && err2 != nil {
+    _write_err74 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err74 == nil && err2 != nil {
+    _write_err74 = thrift.WrapTException(err2)
+  }
+  if _write_err74 != nil {
+    return false, thrift.WrapTException(_write_err74)
+  }
+  return true, err
+}
+
+type policyProcessorGetPermissionsForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetPermissionsForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err76 error
+  args := PolicyGetPermissionsForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_permissions_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetPermissionsForUserResult{}
+  if retval, err2 := p.handler.GetPermissionsForUser(ctx, args.User); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc77 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_permissions_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_permissions_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err76 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc77.Write(ctx, oprot); _write_err76 == nil && err2 != nil {
+      _write_err76 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err76 == nil && err2 != nil {
+      _write_err76 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err76 == nil && err2 != nil {
+      _write_err76 = thrift.WrapTException(err2)
+    }
+    if _write_err76 != nil {
+      return false, thrift.WrapTException(_write_err76)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_permissions_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err76 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err76 == nil && err2 != nil {
+    _write_err76 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err76 == nil && err2 != nil {
+    _write_err76 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err76 == nil && err2 != nil {
+    _write_err76 = thrift.WrapTException(err2)
+  }
+  if _write_err76 != nil {
+    return false, thrift.WrapTException(_write_err76)
+  }
+  return true, err
+}
+
+type policyProcessorGetImplicitPermissionsForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetImplicitPermissionsForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err78 error
+  args := PolicyGetImplicitPermissionsForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_implicit_permissions_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetImplicitPermissionsForUserResult{}
+  if retval, err2 := p.handler.GetImplicitPermissionsForUser(ctx, args.User); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc79 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_implicit_permissions_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_permissions_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err78 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc79.Write(ctx, oprot); _write_err78 == nil && err2 != nil {
+      _write_err78 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err78 == nil && err2 != nil {
+      _write_err78 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err78 == nil && err2 != nil {
+      _write_err78 = thrift.WrapTException(err2)
+    }
+    if _write_err78 != nil {
+      return false, thrift.WrapTException(_write_err78)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_permissions_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err78 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err78 == nil && err2 != nil {
+    _write_err78 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err78 == nil && err2 != nil {
+    _write_err78 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err78 == nil && err2 != nil {
+    _write_err78 = thrift.WrapTException(err2)
+  }
+  if _write_err78 != nil {
+    return false, thrift.WrapTException(_write_err78)
+  }
+  return true, err
+}
+
+type policyProcessorAddPermissionsForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorAddPermissionsForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err80 error
+  args := PolicyAddPermissionsForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "add_permissions_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyAddPermissionsForUserResult{}
+  if err2 := p.handler.AddPermissionsForUser(ctx, args.User, args.Permissions); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc81 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing add_permissions_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "add_permissions_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err80 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc81.Write(ctx, oprot); _write_err80 == nil && err2 != nil {
+      _write_err80 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err80 == nil && err2 != nil {
+      _write_err80 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err80 == nil && err2 != nil {
+      _write_err80 = thrift.WrapTException(err2)
+    }
+    if _write_err80 != nil {
+      return false, thrift.WrapTException(_write_err80)
+    }
+    return true, err
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "add_permissions_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err80 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err80 == nil && err2 != nil {
+    _write_err80 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err80 == nil && err2 != nil {
+    _write_err80 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err80 == nil && err2 != nil {
+    _write_err80 = thrift.WrapTException(err2)
+  }
+  if _write_err80 != nil {
+    return false, thrift.WrapTException(_write_err80)
+  }
+  return true, err
+}
+
+type policyProcessorDeletePermissionsForUser struct {
+  handler Policy
+}
+
+func (p *policyProcessorDeletePermissionsForUser) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err82 error
+  args := PolicyDeletePermissionsForUserArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "delete_permissions_for_user", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyDeletePermissionsForUserResult{}
+  if err2 := p.handler.DeletePermissionsForUser(ctx, args.User, args.Permissions); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc83 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing delete_permissions_for_user: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "delete_permissions_for_user", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err82 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc83.Write(ctx, oprot); _write_err82 == nil && err2 != nil {
+      _write_err82 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err82 == nil && err2 != nil {
+      _write_err82 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err82 == nil && err2 != nil {
+      _write_err82 = thrift.WrapTException(err2)
+    }
+    if _write_err82 != nil {
+      return false, thrift.WrapTException(_write_err82)
+    }
+    return true, err
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "delete_permissions_for_user", thrift.REPLY, seqId); err2 != nil {
+    _write_err82 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err82 == nil && err2 != nil {
+    _write_err82 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err82 == nil && err2 != nil {
+    _write_err82 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err82 == nil && err2 != nil {
+    _write_err82 = thrift.WrapTException(err2)
+  }
+  if _write_err82 != nil {
+    return false, thrift.WrapTException(_write_err82)
+  }
+  return true, err
+}
+
+type policyProcessorGetPermissionsForRole struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetPermissionsForRole) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err84 error
+  args := PolicyGetPermissionsForRoleArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_permissions_for_role", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetPermissionsForRoleResult{}
+  if retval, err2 := p.handler.GetPermissionsForRole(ctx, args.Role); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc85 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_permissions_for_role: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_permissions_for_role", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err84 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc85.Write(ctx, oprot); _write_err84 == nil && err2 != nil {
+      _write_err84 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err84 == nil && err2 != nil {
+      _write_err84 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err84 == nil && err2 != nil {
+      _write_err84 = thrift.WrapTException(err2)
+    }
+    if _write_err84 != nil {
+      return false, thrift.WrapTException(_write_err84)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_permissions_for_role", thrift.REPLY, seqId); err2 != nil {
+    _write_err84 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err84 == nil && err2 != nil {
+    _write_err84 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err84 == nil && err2 != nil {
+    _write_err84 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err84 == nil && err2 != nil {
+    _write_err84 = thrift.WrapTException(err2)
+  }
+  if _write_err84 != nil {
+    return false, thrift.WrapTException(_write_err84)
+  }
+  return true, err
+}
+
+type policyProcessorGetImplicitPermissionsForRole struct {
+  handler Policy
+}
+
+func (p *policyProcessorGetImplicitPermissionsForRole) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err86 error
+  args := PolicyGetImplicitPermissionsForRoleArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "get_implicit_permissions_for_role", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyGetImplicitPermissionsForRoleResult{}
+  if retval, err2 := p.handler.GetImplicitPermissionsForRole(ctx, args.Role); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc87 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing get_implicit_permissions_for_role: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_permissions_for_role", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err86 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc87.Write(ctx, oprot); _write_err86 == nil && err2 != nil {
+      _write_err86 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err86 == nil && err2 != nil {
+      _write_err86 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err86 == nil && err2 != nil {
+      _write_err86 = thrift.WrapTException(err2)
+    }
+    if _write_err86 != nil {
+      return false, thrift.WrapTException(_write_err86)
+    }
+    return true, err
+  } else {
+    result.Success = retval
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "get_implicit_permissions_for_role", thrift.REPLY, seqId); err2 != nil {
+    _write_err86 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err86 == nil && err2 != nil {
+    _write_err86 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err86 == nil && err2 != nil {
+    _write_err86 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err86 == nil && err2 != nil {
+    _write_err86 = thrift.WrapTException(err2)
+  }
+  if _write_err86 != nil {
+    return false, thrift.WrapTException(_write_err86)
+  }
+  return true, err
+}
+
+type policyProcessorAddPermissionsForRole struct {
+  handler Policy
+}
+
+func (p *policyProcessorAddPermissionsForRole) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err88 error
+  args := PolicyAddPermissionsForRoleArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "add_permissions_for_role", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyAddPermissionsForRoleResult{}
+  if err2 := p.handler.AddPermissionsForRole(ctx, args.Role, args.Permissions); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc89 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing add_permissions_for_role: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "add_permissions_for_role", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err88 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc89.Write(ctx, oprot); _write_err88 == nil && err2 != nil {
+      _write_err88 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err88 == nil && err2 != nil {
+      _write_err88 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err88 == nil && err2 != nil {
+      _write_err88 = thrift.WrapTException(err2)
+    }
+    if _write_err88 != nil {
+      return false, thrift.WrapTException(_write_err88)
+    }
+    return true, err
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "add_permissions_for_role", thrift.REPLY, seqId); err2 != nil {
+    _write_err88 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err88 == nil && err2 != nil {
+    _write_err88 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err88 == nil && err2 != nil {
+    _write_err88 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err88 == nil && err2 != nil {
+    _write_err88 = thrift.WrapTException(err2)
+  }
+  if _write_err88 != nil {
+    return false, thrift.WrapTException(_write_err88)
+  }
+  return true, err
+}
+
+type policyProcessorDeletePermissionsForRole struct {
+  handler Policy
+}
+
+func (p *policyProcessorDeletePermissionsForRole) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  var _write_err90 error
+  args := PolicyDeletePermissionsForRoleArgs{}
+  if err2 := args.Read(ctx, iprot); err2 != nil {
+    iprot.ReadMessageEnd(ctx)
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err2.Error())
+    oprot.WriteMessageBegin(ctx, "delete_permissions_for_role", thrift.EXCEPTION, seqId)
+    x.Write(ctx, oprot)
+    oprot.WriteMessageEnd(ctx)
+    oprot.Flush(ctx)
+    return false, thrift.WrapTException(err2)
+  }
+  iprot.ReadMessageEnd(ctx)
+
+  tickerCancel := func() {}
+  // Start a goroutine to do server side connectivity check.
+  if thrift.ServerConnectivityCheckInterval > 0 {
+    var cancel context.CancelCauseFunc
+    ctx, cancel = context.WithCancelCause(ctx)
+    defer cancel(nil)
+    var tickerCtx context.Context
+    tickerCtx, tickerCancel = context.WithCancel(context.Background())
+    defer tickerCancel()
+    go func(ctx context.Context, cancel context.CancelCauseFunc) {
+      ticker := time.NewTicker(thrift.ServerConnectivityCheckInterval)
+      defer ticker.Stop()
+      for {
+        select {
+        case <-ctx.Done():
+          return
+        case <-ticker.C:
+          if !iprot.Transport().IsOpen() {
+            cancel(thrift.ErrAbandonRequest)
+            return
+          }
+        }
+      }
+    }(tickerCtx, cancel)
+  }
+
+  result := PolicyDeletePermissionsForRoleResult{}
+  if err2 := p.handler.DeletePermissionsForRole(ctx, args.Role, args.Permissions); err2 != nil {
+    tickerCancel()
+    err = thrift.WrapTException(err2)
+    if errors.Is(err2, thrift.ErrAbandonRequest) {
+      return false, thrift.WrapTException(err2)
+    }
+    if errors.Is(err2, context.Canceled) {
+      if err := context.Cause(ctx); errors.Is(err, thrift.ErrAbandonRequest) {
+        return false, thrift.WrapTException(err)
+      }
+    }
+    _exc91 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing delete_permissions_for_role: " + err2.Error())
+    if err2 := oprot.WriteMessageBegin(ctx, "delete_permissions_for_role", thrift.EXCEPTION, seqId); err2 != nil {
+      _write_err90 = thrift.WrapTException(err2)
+    }
+    if err2 := _exc91.Write(ctx, oprot); _write_err90 == nil && err2 != nil {
+      _write_err90 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err90 == nil && err2 != nil {
+      _write_err90 = thrift.WrapTException(err2)
+    }
+    if err2 := oprot.Flush(ctx); _write_err90 == nil && err2 != nil {
+      _write_err90 = thrift.WrapTException(err2)
+    }
+    if _write_err90 != nil {
+      return false, thrift.WrapTException(_write_err90)
+    }
+    return true, err
+  }
+  tickerCancel()
+  if err2 := oprot.WriteMessageBegin(ctx, "delete_permissions_for_role", thrift.REPLY, seqId); err2 != nil {
+    _write_err90 = thrift.WrapTException(err2)
+  }
+  if err2 := result.Write(ctx, oprot); _write_err90 == nil && err2 != nil {
+    _write_err90 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err90 == nil && err2 != nil {
+    _write_err90 = thrift.WrapTException(err2)
+  }
+  if err2 := oprot.Flush(ctx); _write_err90 == nil && err2 != nil {
+    _write_err90 = thrift.WrapTException(err2)
+  }
+  if _write_err90 != nil {
+    return false, thrift.WrapTException(_write_err90)
   }
   return true, err
 }
@@ -555,24 +2737,24 @@ func (p *policyProcessorCan) Process(ctx context.Context, seqId int32, iprot, op
 // Attributes:
 //  - User
 //  - Role
-type PolicyCanArgs struct {
-  User string `thrift:"user,1" db:"user" json:"user"`
+type PolicyHasArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
   Role string `thrift:"role,2" db:"role" json:"role"`
 }
 
-func NewPolicyCanArgs() *PolicyCanArgs {
-  return &PolicyCanArgs{}
+func NewPolicyHasArgs() *PolicyHasArgs {
+  return &PolicyHasArgs{}
 }
 
 
-func (p *PolicyCanArgs) GetUser() string {
+func (p *PolicyHasArgs) GetUser() int64 {
   return p.User
 }
 
-func (p *PolicyCanArgs) GetRole() string {
+func (p *PolicyHasArgs) GetRole() string {
   return p.Role
 }
-func (p *PolicyCanArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+func (p *PolicyHasArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -586,7 +2768,7 @@ func (p *PolicyCanArgs) Read(ctx context.Context, iprot thrift.TProtocol) error 
     if fieldTypeId == thrift.STOP { break; }
     switch fieldId {
     case 1:
-      if fieldTypeId == thrift.STRING {
+      if fieldTypeId == thrift.I64 {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
@@ -620,8 +2802,8 @@ func (p *PolicyCanArgs) Read(ctx context.Context, iprot thrift.TProtocol) error 
   return nil
 }
 
-func (p *PolicyCanArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(ctx); err != nil {
+func (p *PolicyHasArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.User = v
@@ -629,7 +2811,7 @@ func (p *PolicyCanArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol)
   return nil
 }
 
-func (p *PolicyCanArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+func (p *PolicyHasArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
   if v, err := iprot.ReadString(ctx); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
@@ -638,8 +2820,8 @@ func (p *PolicyCanArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol)
   return nil
 }
 
-func (p *PolicyCanArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
-  if err := oprot.WriteStructBegin(ctx, "can_args"); err != nil {
+func (p *PolicyHasArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "has_args"); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
   if p != nil {
     if err := p.writeField1(ctx, oprot); err != nil { return err }
@@ -652,10 +2834,295 @@ func (p *PolicyCanArgs) Write(ctx context.Context, oprot thrift.TProtocol) error
   return nil
 }
 
-func (p *PolicyCanArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin(ctx, "user", thrift.STRING, 1); err != nil {
+func (p *PolicyHasArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
-  if err := oprot.WriteString(ctx, string(p.User)); err != nil {
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyHasArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (2) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyHasArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyHasArgs(%+v)", *p)
+}
+
+func (p *PolicyHasArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyHasArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyHasArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyHasResult struct {
+  Success *bool `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyHasResult() *PolicyHasResult {
+  return &PolicyHasResult{}
+}
+
+var PolicyHasResult_Success_DEFAULT bool
+func (p *PolicyHasResult) GetSuccess() bool {
+  if !p.IsSetSuccess() {
+    return PolicyHasResult_Success_DEFAULT
+  }
+  return *p.Success
+}
+func (p *PolicyHasResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyHasResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyHasResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(ctx); err != nil {
+  return thrift.PrependError("error reading field 0: ", err)
+} else {
+  p.Success = &v
+}
+  return nil
+}
+
+func (p *PolicyHasResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "has_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyHasResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.BOOL, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteBool(ctx, bool(*p.Success)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T.success (0) field write error: ", p), err) }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyHasResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyHasResult(%+v)", *p)
+}
+
+func (p *PolicyHasResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyHasResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyHasResult)(nil)
+
+// Attributes:
+//  - User
+//  - Operation
+//  - Resource
+type PolicyCanArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+  Operation string `thrift:"operation,2" db:"operation" json:"operation"`
+  Resource *Resource `thrift:"resource,3" db:"resource" json:"resource"`
+}
+
+func NewPolicyCanArgs() *PolicyCanArgs {
+  return &PolicyCanArgs{}
+}
+
+
+func (p *PolicyCanArgs) GetUser() int64 {
+  return p.User
+}
+
+func (p *PolicyCanArgs) GetOperation() string {
+  return p.Operation
+}
+var PolicyCanArgs_Resource_DEFAULT *Resource
+func (p *PolicyCanArgs) GetResource() *Resource {
+  if !p.IsSetResource() {
+    return PolicyCanArgs_Resource_DEFAULT
+  }
+  return p.Resource
+}
+func (p *PolicyCanArgs) IsSetResource() bool {
+  return p.Resource != nil
+}
+
+func (p *PolicyCanArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField2(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 3:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField3(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyCanArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyCanArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 2: ", err)
+} else {
+  p.Operation = v
+}
+  return nil
+}
+
+func (p *PolicyCanArgs)  ReadField3(ctx context.Context, iprot thrift.TProtocol) error {
+  p.Resource = &Resource{}
+  if err := p.Resource.Read(ctx, iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Resource), err)
+  }
+  return nil
+}
+
+func (p *PolicyCanArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "can_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+    if err := p.writeField2(ctx, oprot); err != nil { return err }
+    if err := p.writeField3(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyCanArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
   return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
@@ -663,12 +3130,23 @@ func (p *PolicyCanArgs) writeField1(ctx context.Context, oprot thrift.TProtocol)
 }
 
 func (p *PolicyCanArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 2); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:role: ", p), err) }
-  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.role (2) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin(ctx, "operation", thrift.STRING, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:operation: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Operation)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.operation (2) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(ctx); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:role: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:operation: ", p), err) }
+  return err
+}
+
+func (p *PolicyCanArgs) writeField3(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "resource", thrift.STRUCT, 3); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:resource: ", p), err) }
+  if err := p.Resource.Write(ctx, oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.Resource), err)
+  }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 3:resource: ", p), err) }
   return err
 }
 
@@ -692,14 +3170,231 @@ func (p *PolicyCanArgs) LogValue() slog.Value {
 
 var _ slog.LogValuer = (*PolicyCanArgs)(nil)
 
+// Attributes:
+//  - Success
 type PolicyCanResult struct {
+  Success *bool `thrift:"success,0" db:"success" json:"success,omitempty"`
 }
 
 func NewPolicyCanResult() *PolicyCanResult {
   return &PolicyCanResult{}
 }
 
+var PolicyCanResult_Success_DEFAULT bool
+func (p *PolicyCanResult) GetSuccess() bool {
+  if !p.IsSetSuccess() {
+    return PolicyCanResult_Success_DEFAULT
+  }
+  return *p.Success
+}
+func (p *PolicyCanResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
 func (p *PolicyCanResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyCanResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(ctx); err != nil {
+  return thrift.PrependError("error reading field 0: ", err)
+} else {
+  p.Success = &v
+}
+  return nil
+}
+
+func (p *PolicyCanResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "can_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyCanResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.BOOL, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteBool(ctx, bool(*p.Success)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T.success (0) field write error: ", p), err) }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyCanResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyCanResult(%+v)", *p)
+}
+
+func (p *PolicyCanResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyCanResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyCanResult)(nil)
+
+// Attributes:
+//  - User
+type PolicyDeleteUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+}
+
+func NewPolicyDeleteUserArgs() *PolicyDeleteUserArgs {
+  return &PolicyDeleteUserArgs{}
+}
+
+
+func (p *PolicyDeleteUserArgs) GetUser() int64 {
+  return p.User
+}
+func (p *PolicyDeleteUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeleteUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyDeleteUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeleteUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeleteUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeleteUserArgs(%+v)", *p)
+}
+
+func (p *PolicyDeleteUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeleteUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeleteUserArgs)(nil)
+
+type PolicyDeleteUserResult struct {
+}
+
+func NewPolicyDeleteUserResult() *PolicyDeleteUserResult {
+  return &PolicyDeleteUserResult{}
+}
+
+func (p *PolicyDeleteUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
   if _, err := iprot.ReadStructBegin(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
@@ -724,8 +3419,8 @@ func (p *PolicyCanResult) Read(ctx context.Context, iprot thrift.TProtocol) erro
   return nil
 }
 
-func (p *PolicyCanResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
-  if err := oprot.WriteStructBegin(ctx, "can_result"); err != nil {
+func (p *PolicyDeleteUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_user_result"); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
   if p != nil {
   }
@@ -736,25 +3431,3563 @@ func (p *PolicyCanResult) Write(ctx context.Context, oprot thrift.TProtocol) err
   return nil
 }
 
-func (p *PolicyCanResult) String() string {
+func (p *PolicyDeleteUserResult) String() string {
   if p == nil {
     return "<nil>"
   }
-  return fmt.Sprintf("PolicyCanResult(%+v)", *p)
+  return fmt.Sprintf("PolicyDeleteUserResult(%+v)", *p)
 }
 
-func (p *PolicyCanResult) LogValue() slog.Value {
+func (p *PolicyDeleteUserResult) LogValue() slog.Value {
   if p == nil {
     return slog.AnyValue(nil)
   }
   v := thrift.SlogTStructWrapper{
-    Type: "*v1.PolicyCanResult",
+    Type: "*v1.PolicyDeleteUserResult",
     Value: p,
   }
   return slog.AnyValue(v)
 }
 
-var _ slog.LogValuer = (*PolicyCanResult)(nil)
+var _ slog.LogValuer = (*PolicyDeleteUserResult)(nil)
+
+// Attributes:
+//  - Role
+type PolicyDeleteRoleArgs struct {
+  Role string `thrift:"role,1" db:"role" json:"role"`
+}
+
+func NewPolicyDeleteRoleArgs() *PolicyDeleteRoleArgs {
+  return &PolicyDeleteRoleArgs{}
+}
+
+
+func (p *PolicyDeleteRoleArgs) GetRole() string {
+  return p.Role
+}
+func (p *PolicyDeleteRoleArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeleteRoleArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Role = v
+}
+  return nil
+}
+
+func (p *PolicyDeleteRoleArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_role_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeleteRoleArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeleteRoleArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeleteRoleArgs(%+v)", *p)
+}
+
+func (p *PolicyDeleteRoleArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeleteRoleArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeleteRoleArgs)(nil)
+
+type PolicyDeleteRoleResult struct {
+}
+
+func NewPolicyDeleteRoleResult() *PolicyDeleteRoleResult {
+  return &PolicyDeleteRoleResult{}
+}
+
+func (p *PolicyDeleteRoleResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeleteRoleResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_role_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeleteRoleResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeleteRoleResult(%+v)", *p)
+}
+
+func (p *PolicyDeleteRoleResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeleteRoleResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeleteRoleResult)(nil)
+
+// Attributes:
+//  - User
+type PolicyGetRolesForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+}
+
+func NewPolicyGetRolesForUserArgs() *PolicyGetRolesForUserArgs {
+  return &PolicyGetRolesForUserArgs{}
+}
+
+
+func (p *PolicyGetRolesForUserArgs) GetUser() int64 {
+  return p.User
+}
+func (p *PolicyGetRolesForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetRolesForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyGetRolesForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_roles_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetRolesForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetRolesForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetRolesForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyGetRolesForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetRolesForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetRolesForUserArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetRolesForUserResult struct {
+  Success []string `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetRolesForUserResult() *PolicyGetRolesForUserResult {
+  return &PolicyGetRolesForUserResult{}
+}
+
+var PolicyGetRolesForUserResult_Success_DEFAULT []string
+
+func (p *PolicyGetRolesForUserResult) GetSuccess() []string {
+  return p.Success
+}
+func (p *PolicyGetRolesForUserResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetRolesForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetRolesForUserResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]string, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+var _elem92 string
+    if v, err := iprot.ReadString(ctx); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    _elem92 = v
+}
+    p.Success = append(p.Success, _elem92)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetRolesForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_roles_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetRolesForUserResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.STRING, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src string) bool {
+          if tgt != src { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := oprot.WriteString(ctx, string(v)); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetRolesForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetRolesForUserResult(%+v)", *p)
+}
+
+func (p *PolicyGetRolesForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetRolesForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetRolesForUserResult)(nil)
+
+// Attributes:
+//  - User
+type PolicyGetImplicitRolesForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+}
+
+func NewPolicyGetImplicitRolesForUserArgs() *PolicyGetImplicitRolesForUserArgs {
+  return &PolicyGetImplicitRolesForUserArgs{}
+}
+
+
+func (p *PolicyGetImplicitRolesForUserArgs) GetUser() int64 {
+  return p.User
+}
+func (p *PolicyGetImplicitRolesForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitRolesForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyGetImplicitRolesForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_roles_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitRolesForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetImplicitRolesForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitRolesForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitRolesForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitRolesForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitRolesForUserArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetImplicitRolesForUserResult struct {
+  Success []string `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetImplicitRolesForUserResult() *PolicyGetImplicitRolesForUserResult {
+  return &PolicyGetImplicitRolesForUserResult{}
+}
+
+var PolicyGetImplicitRolesForUserResult_Success_DEFAULT []string
+
+func (p *PolicyGetImplicitRolesForUserResult) GetSuccess() []string {
+  return p.Success
+}
+func (p *PolicyGetImplicitRolesForUserResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetImplicitRolesForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitRolesForUserResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]string, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+var _elem93 string
+    if v, err := iprot.ReadString(ctx); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    _elem93 = v
+}
+    p.Success = append(p.Success, _elem93)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitRolesForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_roles_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitRolesForUserResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.STRING, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src string) bool {
+          if tgt != src { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := oprot.WriteString(ctx, string(v)); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetImplicitRolesForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitRolesForUserResult(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitRolesForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitRolesForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitRolesForUserResult)(nil)
+
+// Attributes:
+//  - Role
+type PolicyGetUsersForRoleArgs struct {
+  Role string `thrift:"role,1" db:"role" json:"role"`
+}
+
+func NewPolicyGetUsersForRoleArgs() *PolicyGetUsersForRoleArgs {
+  return &PolicyGetUsersForRoleArgs{}
+}
+
+
+func (p *PolicyGetUsersForRoleArgs) GetRole() string {
+  return p.Role
+}
+func (p *PolicyGetUsersForRoleArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetUsersForRoleArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Role = v
+}
+  return nil
+}
+
+func (p *PolicyGetUsersForRoleArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_users_for_role_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetUsersForRoleArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetUsersForRoleArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetUsersForRoleArgs(%+v)", *p)
+}
+
+func (p *PolicyGetUsersForRoleArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetUsersForRoleArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetUsersForRoleArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetUsersForRoleResult struct {
+  Success []int64 `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetUsersForRoleResult() *PolicyGetUsersForRoleResult {
+  return &PolicyGetUsersForRoleResult{}
+}
+
+var PolicyGetUsersForRoleResult_Success_DEFAULT []int64
+
+func (p *PolicyGetUsersForRoleResult) GetSuccess() []int64 {
+  return p.Success
+}
+func (p *PolicyGetUsersForRoleResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetUsersForRoleResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetUsersForRoleResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]int64, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+var _elem94 int64
+    if v, err := iprot.ReadI64(ctx); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    _elem94 = v
+}
+    p.Success = append(p.Success, _elem94)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetUsersForRoleResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_users_for_role_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetUsersForRoleResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.I64, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src int64) bool {
+          if tgt != src { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := oprot.WriteI64(ctx, int64(v)); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetUsersForRoleResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetUsersForRoleResult(%+v)", *p)
+}
+
+func (p *PolicyGetUsersForRoleResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetUsersForRoleResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetUsersForRoleResult)(nil)
+
+// Attributes:
+//  - Role
+type PolicyGetImplicitUsersForRoleArgs struct {
+  Role string `thrift:"role,1" db:"role" json:"role"`
+}
+
+func NewPolicyGetImplicitUsersForRoleArgs() *PolicyGetImplicitUsersForRoleArgs {
+  return &PolicyGetImplicitUsersForRoleArgs{}
+}
+
+
+func (p *PolicyGetImplicitUsersForRoleArgs) GetRole() string {
+  return p.Role
+}
+func (p *PolicyGetImplicitUsersForRoleArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitUsersForRoleArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Role = v
+}
+  return nil
+}
+
+func (p *PolicyGetImplicitUsersForRoleArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_users_for_role_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitUsersForRoleArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetImplicitUsersForRoleArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitUsersForRoleArgs(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitUsersForRoleArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitUsersForRoleArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitUsersForRoleArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetImplicitUsersForRoleResult struct {
+  Success []int64 `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetImplicitUsersForRoleResult() *PolicyGetImplicitUsersForRoleResult {
+  return &PolicyGetImplicitUsersForRoleResult{}
+}
+
+var PolicyGetImplicitUsersForRoleResult_Success_DEFAULT []int64
+
+func (p *PolicyGetImplicitUsersForRoleResult) GetSuccess() []int64 {
+  return p.Success
+}
+func (p *PolicyGetImplicitUsersForRoleResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetImplicitUsersForRoleResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitUsersForRoleResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]int64, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+var _elem95 int64
+    if v, err := iprot.ReadI64(ctx); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    _elem95 = v
+}
+    p.Success = append(p.Success, _elem95)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitUsersForRoleResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_users_for_role_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitUsersForRoleResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.I64, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src int64) bool {
+          if tgt != src { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := oprot.WriteI64(ctx, int64(v)); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetImplicitUsersForRoleResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitUsersForRoleResult(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitUsersForRoleResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitUsersForRoleResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitUsersForRoleResult)(nil)
+
+// Attributes:
+//  - User
+//  - Roles
+type PolicyAddRolesForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+  Roles []string `thrift:"roles,2" db:"roles" json:"roles"`
+}
+
+func NewPolicyAddRolesForUserArgs() *PolicyAddRolesForUserArgs {
+  return &PolicyAddRolesForUserArgs{}
+}
+
+
+func (p *PolicyAddRolesForUserArgs) GetUser() int64 {
+  return p.User
+}
+
+func (p *PolicyAddRolesForUserArgs) GetRoles() []string {
+  return p.Roles
+}
+func (p *PolicyAddRolesForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField2(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyAddRolesForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyAddRolesForUserArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]string, 0, size)
+  p.Roles =  tSet
+  for i := 0; i < size; i ++ {
+var _elem96 string
+    if v, err := iprot.ReadString(ctx); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    _elem96 = v
+}
+    p.Roles = append(p.Roles, _elem96)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyAddRolesForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "add_roles_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+    if err := p.writeField2(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyAddRolesForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyAddRolesForUserArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "roles", thrift.SET, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:roles: ", p), err) }
+  if err := oprot.WriteSetBegin(ctx, thrift.STRING, len(p.Roles)); err != nil {
+    return thrift.PrependError("error writing set begin: ", err)
+  }
+  for i := 0; i<len(p.Roles); i++ {
+    for j := i+1; j<len(p.Roles); j++ {
+      if func(tgt, src string) bool {
+        if tgt != src { return false }
+        return true
+      }(p.Roles[i], p.Roles[j]) {
+        return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Roles))
+      }
+    }
+  }
+  for _, v := range p.Roles {
+    if err := oprot.WriteString(ctx, string(v)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+  }
+  if err := oprot.WriteSetEnd(ctx); err != nil {
+    return thrift.PrependError("error writing set end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:roles: ", p), err) }
+  return err
+}
+
+func (p *PolicyAddRolesForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyAddRolesForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyAddRolesForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyAddRolesForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyAddRolesForUserArgs)(nil)
+
+type PolicyAddRolesForUserResult struct {
+}
+
+func NewPolicyAddRolesForUserResult() *PolicyAddRolesForUserResult {
+  return &PolicyAddRolesForUserResult{}
+}
+
+func (p *PolicyAddRolesForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyAddRolesForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "add_roles_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyAddRolesForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyAddRolesForUserResult(%+v)", *p)
+}
+
+func (p *PolicyAddRolesForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyAddRolesForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyAddRolesForUserResult)(nil)
+
+// Attributes:
+//  - User
+//  - Roles
+type PolicyDeleteRolesForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+  Roles []string `thrift:"roles,2" db:"roles" json:"roles"`
+}
+
+func NewPolicyDeleteRolesForUserArgs() *PolicyDeleteRolesForUserArgs {
+  return &PolicyDeleteRolesForUserArgs{}
+}
+
+
+func (p *PolicyDeleteRolesForUserArgs) GetUser() int64 {
+  return p.User
+}
+
+func (p *PolicyDeleteRolesForUserArgs) GetRoles() []string {
+  return p.Roles
+}
+func (p *PolicyDeleteRolesForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField2(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeleteRolesForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyDeleteRolesForUserArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]string, 0, size)
+  p.Roles =  tSet
+  for i := 0; i < size; i ++ {
+var _elem97 string
+    if v, err := iprot.ReadString(ctx); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    _elem97 = v
+}
+    p.Roles = append(p.Roles, _elem97)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyDeleteRolesForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_roles_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+    if err := p.writeField2(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeleteRolesForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeleteRolesForUserArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "roles", thrift.SET, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:roles: ", p), err) }
+  if err := oprot.WriteSetBegin(ctx, thrift.STRING, len(p.Roles)); err != nil {
+    return thrift.PrependError("error writing set begin: ", err)
+  }
+  for i := 0; i<len(p.Roles); i++ {
+    for j := i+1; j<len(p.Roles); j++ {
+      if func(tgt, src string) bool {
+        if tgt != src { return false }
+        return true
+      }(p.Roles[i], p.Roles[j]) {
+        return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Roles))
+      }
+    }
+  }
+  for _, v := range p.Roles {
+    if err := oprot.WriteString(ctx, string(v)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+  }
+  if err := oprot.WriteSetEnd(ctx); err != nil {
+    return thrift.PrependError("error writing set end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:roles: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeleteRolesForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeleteRolesForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyDeleteRolesForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeleteRolesForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeleteRolesForUserArgs)(nil)
+
+type PolicyDeleteRolesForUserResult struct {
+}
+
+func NewPolicyDeleteRolesForUserResult() *PolicyDeleteRolesForUserResult {
+  return &PolicyDeleteRolesForUserResult{}
+}
+
+func (p *PolicyDeleteRolesForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeleteRolesForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_roles_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeleteRolesForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeleteRolesForUserResult(%+v)", *p)
+}
+
+func (p *PolicyDeleteRolesForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeleteRolesForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeleteRolesForUserResult)(nil)
+
+// Attributes:
+//  - User
+type PolicyGetPermissionsForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+}
+
+func NewPolicyGetPermissionsForUserArgs() *PolicyGetPermissionsForUserArgs {
+  return &PolicyGetPermissionsForUserArgs{}
+}
+
+
+func (p *PolicyGetPermissionsForUserArgs) GetUser() int64 {
+  return p.User
+}
+func (p *PolicyGetPermissionsForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyGetPermissionsForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_permissions_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetPermissionsForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetPermissionsForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyGetPermissionsForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetPermissionsForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetPermissionsForUserArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetPermissionsForUserResult struct {
+  Success []*Permission `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetPermissionsForUserResult() *PolicyGetPermissionsForUserResult {
+  return &PolicyGetPermissionsForUserResult{}
+}
+
+var PolicyGetPermissionsForUserResult_Success_DEFAULT []*Permission
+
+func (p *PolicyGetPermissionsForUserResult) GetSuccess() []*Permission {
+  return p.Success
+}
+func (p *PolicyGetPermissionsForUserResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetPermissionsForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForUserResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+    _elem98 := &Permission{}
+    if err := _elem98.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem98), err)
+    }
+    p.Success = append(p.Success, _elem98)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_permissions_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForUserResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src *Permission) bool {
+          if !tgt.Equals(src) { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := v.Write(ctx, oprot); err != nil {
+        return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+      }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetPermissionsForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetPermissionsForUserResult(%+v)", *p)
+}
+
+func (p *PolicyGetPermissionsForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetPermissionsForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetPermissionsForUserResult)(nil)
+
+// Attributes:
+//  - User
+type PolicyGetImplicitPermissionsForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+}
+
+func NewPolicyGetImplicitPermissionsForUserArgs() *PolicyGetImplicitPermissionsForUserArgs {
+  return &PolicyGetImplicitPermissionsForUserArgs{}
+}
+
+
+func (p *PolicyGetImplicitPermissionsForUserArgs) GetUser() int64 {
+  return p.User
+}
+func (p *PolicyGetImplicitPermissionsForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_permissions_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetImplicitPermissionsForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitPermissionsForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitPermissionsForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitPermissionsForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitPermissionsForUserArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetImplicitPermissionsForUserResult struct {
+  Success []*Permission `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetImplicitPermissionsForUserResult() *PolicyGetImplicitPermissionsForUserResult {
+  return &PolicyGetImplicitPermissionsForUserResult{}
+}
+
+var PolicyGetImplicitPermissionsForUserResult_Success_DEFAULT []*Permission
+
+func (p *PolicyGetImplicitPermissionsForUserResult) GetSuccess() []*Permission {
+  return p.Success
+}
+func (p *PolicyGetImplicitPermissionsForUserResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetImplicitPermissionsForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForUserResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+    _elem99 := &Permission{}
+    if err := _elem99.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem99), err)
+    }
+    p.Success = append(p.Success, _elem99)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_permissions_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForUserResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src *Permission) bool {
+          if !tgt.Equals(src) { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := v.Write(ctx, oprot); err != nil {
+        return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+      }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetImplicitPermissionsForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitPermissionsForUserResult(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitPermissionsForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitPermissionsForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitPermissionsForUserResult)(nil)
+
+// Attributes:
+//  - User
+//  - Permissions
+type PolicyAddPermissionsForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+  Permissions []*Permission `thrift:"permissions,2" db:"permissions" json:"permissions"`
+}
+
+func NewPolicyAddPermissionsForUserArgs() *PolicyAddPermissionsForUserArgs {
+  return &PolicyAddPermissionsForUserArgs{}
+}
+
+
+func (p *PolicyAddPermissionsForUserArgs) GetUser() int64 {
+  return p.User
+}
+
+func (p *PolicyAddPermissionsForUserArgs) GetPermissions() []*Permission {
+  return p.Permissions
+}
+func (p *PolicyAddPermissionsForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField2(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyAddPermissionsForUserArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Permissions =  tSet
+  for i := 0; i < size; i ++ {
+    _elem100 := &Permission{}
+    if err := _elem100.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem100), err)
+    }
+    p.Permissions = append(p.Permissions, _elem100)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "add_permissions_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+    if err := p.writeField2(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyAddPermissionsForUserArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "permissions", thrift.SET, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:permissions: ", p), err) }
+  if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Permissions)); err != nil {
+    return thrift.PrependError("error writing set begin: ", err)
+  }
+  for i := 0; i<len(p.Permissions); i++ {
+    for j := i+1; j<len(p.Permissions); j++ {
+      if func(tgt, src *Permission) bool {
+        if !tgt.Equals(src) { return false }
+        return true
+      }(p.Permissions[i], p.Permissions[j]) {
+        return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Permissions))
+      }
+    }
+  }
+  for _, v := range p.Permissions {
+    if err := v.Write(ctx, oprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+    }
+  }
+  if err := oprot.WriteSetEnd(ctx); err != nil {
+    return thrift.PrependError("error writing set end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:permissions: ", p), err) }
+  return err
+}
+
+func (p *PolicyAddPermissionsForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyAddPermissionsForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyAddPermissionsForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyAddPermissionsForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyAddPermissionsForUserArgs)(nil)
+
+type PolicyAddPermissionsForUserResult struct {
+}
+
+func NewPolicyAddPermissionsForUserResult() *PolicyAddPermissionsForUserResult {
+  return &PolicyAddPermissionsForUserResult{}
+}
+
+func (p *PolicyAddPermissionsForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "add_permissions_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyAddPermissionsForUserResult(%+v)", *p)
+}
+
+func (p *PolicyAddPermissionsForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyAddPermissionsForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyAddPermissionsForUserResult)(nil)
+
+// Attributes:
+//  - User
+//  - Permissions
+type PolicyDeletePermissionsForUserArgs struct {
+  User int64 `thrift:"user,1" db:"user" json:"user"`
+  Permissions []*Permission `thrift:"permissions,2" db:"permissions" json:"permissions"`
+}
+
+func NewPolicyDeletePermissionsForUserArgs() *PolicyDeletePermissionsForUserArgs {
+  return &PolicyDeletePermissionsForUserArgs{}
+}
+
+
+func (p *PolicyDeletePermissionsForUserArgs) GetUser() int64 {
+  return p.User
+}
+
+func (p *PolicyDeletePermissionsForUserArgs) GetPermissions() []*Permission {
+  return p.Permissions
+}
+func (p *PolicyDeletePermissionsForUserArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.I64 {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField2(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForUserArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI64(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.User = v
+}
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForUserArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Permissions =  tSet
+  for i := 0; i < size; i ++ {
+    _elem101 := &Permission{}
+    if err := _elem101.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem101), err)
+    }
+    p.Permissions = append(p.Permissions, _elem101)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForUserArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_permissions_for_user_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+    if err := p.writeField2(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForUserArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "user", thrift.I64, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:user: ", p), err) }
+  if err := oprot.WriteI64(ctx, int64(p.User)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.user (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:user: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeletePermissionsForUserArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "permissions", thrift.SET, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:permissions: ", p), err) }
+  if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Permissions)); err != nil {
+    return thrift.PrependError("error writing set begin: ", err)
+  }
+  for i := 0; i<len(p.Permissions); i++ {
+    for j := i+1; j<len(p.Permissions); j++ {
+      if func(tgt, src *Permission) bool {
+        if !tgt.Equals(src) { return false }
+        return true
+      }(p.Permissions[i], p.Permissions[j]) {
+        return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Permissions))
+      }
+    }
+  }
+  for _, v := range p.Permissions {
+    if err := v.Write(ctx, oprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+    }
+  }
+  if err := oprot.WriteSetEnd(ctx); err != nil {
+    return thrift.PrependError("error writing set end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:permissions: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeletePermissionsForUserArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeletePermissionsForUserArgs(%+v)", *p)
+}
+
+func (p *PolicyDeletePermissionsForUserArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeletePermissionsForUserArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeletePermissionsForUserArgs)(nil)
+
+type PolicyDeletePermissionsForUserResult struct {
+}
+
+func NewPolicyDeletePermissionsForUserResult() *PolicyDeletePermissionsForUserResult {
+  return &PolicyDeletePermissionsForUserResult{}
+}
+
+func (p *PolicyDeletePermissionsForUserResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForUserResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_permissions_for_user_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForUserResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeletePermissionsForUserResult(%+v)", *p)
+}
+
+func (p *PolicyDeletePermissionsForUserResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeletePermissionsForUserResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeletePermissionsForUserResult)(nil)
+
+// Attributes:
+//  - Role
+type PolicyGetPermissionsForRoleArgs struct {
+  Role string `thrift:"role,1" db:"role" json:"role"`
+}
+
+func NewPolicyGetPermissionsForRoleArgs() *PolicyGetPermissionsForRoleArgs {
+  return &PolicyGetPermissionsForRoleArgs{}
+}
+
+
+func (p *PolicyGetPermissionsForRoleArgs) GetRole() string {
+  return p.Role
+}
+func (p *PolicyGetPermissionsForRoleArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForRoleArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Role = v
+}
+  return nil
+}
+
+func (p *PolicyGetPermissionsForRoleArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_permissions_for_role_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForRoleArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetPermissionsForRoleArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetPermissionsForRoleArgs(%+v)", *p)
+}
+
+func (p *PolicyGetPermissionsForRoleArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetPermissionsForRoleArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetPermissionsForRoleArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetPermissionsForRoleResult struct {
+  Success []*Permission `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetPermissionsForRoleResult() *PolicyGetPermissionsForRoleResult {
+  return &PolicyGetPermissionsForRoleResult{}
+}
+
+var PolicyGetPermissionsForRoleResult_Success_DEFAULT []*Permission
+
+func (p *PolicyGetPermissionsForRoleResult) GetSuccess() []*Permission {
+  return p.Success
+}
+func (p *PolicyGetPermissionsForRoleResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetPermissionsForRoleResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForRoleResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+    _elem102 := &Permission{}
+    if err := _elem102.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem102), err)
+    }
+    p.Success = append(p.Success, _elem102)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForRoleResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_permissions_for_role_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetPermissionsForRoleResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src *Permission) bool {
+          if !tgt.Equals(src) { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := v.Write(ctx, oprot); err != nil {
+        return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+      }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetPermissionsForRoleResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetPermissionsForRoleResult(%+v)", *p)
+}
+
+func (p *PolicyGetPermissionsForRoleResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetPermissionsForRoleResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetPermissionsForRoleResult)(nil)
+
+// Attributes:
+//  - Role
+type PolicyGetImplicitPermissionsForRoleArgs struct {
+  Role string `thrift:"role,1" db:"role" json:"role"`
+}
+
+func NewPolicyGetImplicitPermissionsForRoleArgs() *PolicyGetImplicitPermissionsForRoleArgs {
+  return &PolicyGetImplicitPermissionsForRoleArgs{}
+}
+
+
+func (p *PolicyGetImplicitPermissionsForRoleArgs) GetRole() string {
+  return p.Role
+}
+func (p *PolicyGetImplicitPermissionsForRoleArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Role = v
+}
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_permissions_for_role_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitPermissionsForRoleArgs(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitPermissionsForRoleArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitPermissionsForRoleArgs)(nil)
+
+// Attributes:
+//  - Success
+type PolicyGetImplicitPermissionsForRoleResult struct {
+  Success []*Permission `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewPolicyGetImplicitPermissionsForRoleResult() *PolicyGetImplicitPermissionsForRoleResult {
+  return &PolicyGetImplicitPermissionsForRoleResult{}
+}
+
+var PolicyGetImplicitPermissionsForRoleResult_Success_DEFAULT []*Permission
+
+func (p *PolicyGetImplicitPermissionsForRoleResult) GetSuccess() []*Permission {
+  return p.Success
+}
+func (p *PolicyGetImplicitPermissionsForRoleResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField0(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleResult)  ReadField0(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Success =  tSet
+  for i := 0; i < size; i ++ {
+    _elem103 := &Permission{}
+    if err := _elem103.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem103), err)
+    }
+    p.Success = append(p.Success, _elem103)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "get_implicit_permissions_for_role_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleResult) writeField0(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin(ctx, "success", thrift.SET, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Success)); err != nil {
+      return thrift.PrependError("error writing set begin: ", err)
+    }
+    for i := 0; i<len(p.Success); i++ {
+      for j := i+1; j<len(p.Success); j++ {
+        if func(tgt, src *Permission) bool {
+          if !tgt.Equals(src) { return false }
+          return true
+        }(p.Success[i], p.Success[j]) {
+          return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Success))
+        }
+      }
+    }
+    for _, v := range p.Success {
+      if err := v.Write(ctx, oprot); err != nil {
+        return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+      }
+    }
+    if err := oprot.WriteSetEnd(ctx); err != nil {
+      return thrift.PrependError("error writing set end: ", err)
+    }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyGetImplicitPermissionsForRoleResult(%+v)", *p)
+}
+
+func (p *PolicyGetImplicitPermissionsForRoleResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyGetImplicitPermissionsForRoleResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyGetImplicitPermissionsForRoleResult)(nil)
+
+// Attributes:
+//  - Role
+//  - Permissions
+type PolicyAddPermissionsForRoleArgs struct {
+  Role string `thrift:"role,1" db:"role" json:"role"`
+  Permissions []*Permission `thrift:"permissions,2" db:"permissions" json:"permissions"`
+}
+
+func NewPolicyAddPermissionsForRoleArgs() *PolicyAddPermissionsForRoleArgs {
+  return &PolicyAddPermissionsForRoleArgs{}
+}
+
+
+func (p *PolicyAddPermissionsForRoleArgs) GetRole() string {
+  return p.Role
+}
+
+func (p *PolicyAddPermissionsForRoleArgs) GetPermissions() []*Permission {
+  return p.Permissions
+}
+func (p *PolicyAddPermissionsForRoleArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField2(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForRoleArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Role = v
+}
+  return nil
+}
+
+func (p *PolicyAddPermissionsForRoleArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Permissions =  tSet
+  for i := 0; i < size; i ++ {
+    _elem104 := &Permission{}
+    if err := _elem104.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem104), err)
+    }
+    p.Permissions = append(p.Permissions, _elem104)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForRoleArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "add_permissions_for_role_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+    if err := p.writeField2(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForRoleArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyAddPermissionsForRoleArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "permissions", thrift.SET, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:permissions: ", p), err) }
+  if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Permissions)); err != nil {
+    return thrift.PrependError("error writing set begin: ", err)
+  }
+  for i := 0; i<len(p.Permissions); i++ {
+    for j := i+1; j<len(p.Permissions); j++ {
+      if func(tgt, src *Permission) bool {
+        if !tgt.Equals(src) { return false }
+        return true
+      }(p.Permissions[i], p.Permissions[j]) {
+        return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Permissions))
+      }
+    }
+  }
+  for _, v := range p.Permissions {
+    if err := v.Write(ctx, oprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+    }
+  }
+  if err := oprot.WriteSetEnd(ctx); err != nil {
+    return thrift.PrependError("error writing set end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:permissions: ", p), err) }
+  return err
+}
+
+func (p *PolicyAddPermissionsForRoleArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyAddPermissionsForRoleArgs(%+v)", *p)
+}
+
+func (p *PolicyAddPermissionsForRoleArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyAddPermissionsForRoleArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyAddPermissionsForRoleArgs)(nil)
+
+type PolicyAddPermissionsForRoleResult struct {
+}
+
+func NewPolicyAddPermissionsForRoleResult() *PolicyAddPermissionsForRoleResult {
+  return &PolicyAddPermissionsForRoleResult{}
+}
+
+func (p *PolicyAddPermissionsForRoleResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForRoleResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "add_permissions_for_role_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyAddPermissionsForRoleResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyAddPermissionsForRoleResult(%+v)", *p)
+}
+
+func (p *PolicyAddPermissionsForRoleResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyAddPermissionsForRoleResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyAddPermissionsForRoleResult)(nil)
+
+// Attributes:
+//  - Role
+//  - Permissions
+type PolicyDeletePermissionsForRoleArgs struct {
+  Role string `thrift:"role,1" db:"role" json:"role"`
+  Permissions []*Permission `thrift:"permissions,2" db:"permissions" json:"permissions"`
+}
+
+func NewPolicyDeletePermissionsForRoleArgs() *PolicyDeletePermissionsForRoleArgs {
+  return &PolicyDeletePermissionsForRoleArgs{}
+}
+
+
+func (p *PolicyDeletePermissionsForRoleArgs) GetRole() string {
+  return p.Role
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs) GetPermissions() []*Permission {
+  return p.Permissions
+}
+func (p *PolicyDeletePermissionsForRoleArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.SET {
+        if err := p.ReadField2(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Role = v
+}
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs)  ReadField2(ctx context.Context, iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadSetBegin(ctx)
+  if err != nil {
+    return thrift.PrependError("error reading set begin: ", err)
+  }
+  tSet := make([]*Permission, 0, size)
+  p.Permissions =  tSet
+  for i := 0; i < size; i ++ {
+    _elem105 := &Permission{}
+    if err := _elem105.Read(ctx, iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem105), err)
+    }
+    p.Permissions = append(p.Permissions, _elem105)
+  }
+  if err := iprot.ReadSetEnd(ctx); err != nil {
+    return thrift.PrependError("error reading set end: ", err)
+  }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_permissions_for_role_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(ctx, oprot); err != nil { return err }
+    if err := p.writeField2(ctx, oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "role", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:role: ", p), err) }
+  if err := oprot.WriteString(ctx, string(p.Role)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.role (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:role: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs) writeField2(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "permissions", thrift.SET, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:permissions: ", p), err) }
+  if err := oprot.WriteSetBegin(ctx, thrift.STRUCT, len(p.Permissions)); err != nil {
+    return thrift.PrependError("error writing set begin: ", err)
+  }
+  for i := 0; i<len(p.Permissions); i++ {
+    for j := i+1; j<len(p.Permissions); j++ {
+      if func(tgt, src *Permission) bool {
+        if !tgt.Equals(src) { return false }
+        return true
+      }(p.Permissions[i], p.Permissions[j]) {
+        return thrift.PrependError("", fmt.Errorf("%T error writing set field: slice is not unique", p.Permissions))
+      }
+    }
+  }
+  for _, v := range p.Permissions {
+    if err := v.Write(ctx, oprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", v), err)
+    }
+  }
+  if err := oprot.WriteSetEnd(ctx); err != nil {
+    return thrift.PrependError("error writing set end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:permissions: ", p), err) }
+  return err
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeletePermissionsForRoleArgs(%+v)", *p)
+}
+
+func (p *PolicyDeletePermissionsForRoleArgs) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeletePermissionsForRoleArgs",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeletePermissionsForRoleArgs)(nil)
+
+type PolicyDeletePermissionsForRoleResult struct {
+}
+
+func NewPolicyDeletePermissionsForRoleResult() *PolicyDeletePermissionsForRoleResult {
+  return &PolicyDeletePermissionsForRoleResult{}
+}
+
+func (p *PolicyDeletePermissionsForRoleResult) Read(ctx context.Context, iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(ctx); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(ctx); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForRoleResult) Write(ctx context.Context, oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin(ctx, "delete_permissions_for_role_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(ctx); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(ctx); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *PolicyDeletePermissionsForRoleResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("PolicyDeletePermissionsForRoleResult(%+v)", *p)
+}
+
+func (p *PolicyDeletePermissionsForRoleResult) LogValue() slog.Value {
+  if p == nil {
+    return slog.AnyValue(nil)
+  }
+  v := thrift.SlogTStructWrapper{
+    Type: "*v1.PolicyDeletePermissionsForRoleResult",
+    Value: p,
+  }
+  return slog.AnyValue(v)
+}
+
+var _ slog.LogValuer = (*PolicyDeletePermissionsForRoleResult)(nil)
 
 
 type Health interface {
@@ -797,15 +7030,15 @@ func (p *HealthClient) SetLastResponseMeta_(meta thrift.ResponseMeta) {
 }
 
 func (p *HealthClient) Check(ctx context.Context) (_r map[string]string, _err error) {
-  var _args7 HealthCheckArgs
-  var _result9 HealthCheckResult
-  var _meta8 thrift.ResponseMeta
-  _meta8, _err = p.Client_().Call(ctx, "check", &_args7, &_result9)
-  p.SetLastResponseMeta_(_meta8)
+  var _args106 HealthCheckArgs
+  var _result108 HealthCheckResult
+  var _meta107 thrift.ResponseMeta
+  _meta107, _err = p.Client_().Call(ctx, "check", &_args106, &_result108)
+  p.SetLastResponseMeta_(_meta107)
   if _err != nil {
     return
   }
-  return _result9.GetSuccess(), nil
+  return _result108.GetSuccess(), nil
 }
 
 type HealthProcessor struct {
@@ -828,9 +7061,9 @@ func (p *HealthProcessor) ProcessorMap() map[string]thrift.TProcessorFunction {
 
 func NewHealthProcessor(handler Health) *HealthProcessor {
 
-  self10 := &HealthProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
-  self10.processorMap["check"] = &healthProcessorCheck{handler:handler}
-return self10
+  self109 := &HealthProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
+  self109.processorMap["check"] = &healthProcessorCheck{handler:handler}
+return self109
 }
 
 func (p *HealthProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
@@ -841,12 +7074,12 @@ func (p *HealthProcessor) Process(ctx context.Context, iprot, oprot thrift.TProt
   }
   iprot.Skip(ctx, thrift.STRUCT)
   iprot.ReadMessageEnd(ctx)
-  x11 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
+  x110 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
   oprot.WriteMessageBegin(ctx, name, thrift.EXCEPTION, seqId)
-  x11.Write(ctx, oprot)
+  x110.Write(ctx, oprot)
   oprot.WriteMessageEnd(ctx)
   oprot.Flush(ctx)
-  return false, x11
+  return false, x110
 
 }
 
@@ -855,7 +7088,7 @@ type healthProcessorCheck struct {
 }
 
 func (p *healthProcessorCheck) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
-  var _write_err12 error
+  var _write_err111 error
   args := HealthCheckArgs{}
   if err2 := args.Read(ctx, iprot); err2 != nil {
     iprot.ReadMessageEnd(ctx)
@@ -906,21 +7139,21 @@ func (p *healthProcessorCheck) Process(ctx context.Context, seqId int32, iprot, 
         return false, thrift.WrapTException(err)
       }
     }
-    _exc13 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing check: " + err2.Error())
+    _exc112 := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing check: " + err2.Error())
     if err2 := oprot.WriteMessageBegin(ctx, "check", thrift.EXCEPTION, seqId); err2 != nil {
-      _write_err12 = thrift.WrapTException(err2)
+      _write_err111 = thrift.WrapTException(err2)
     }
-    if err2 := _exc13.Write(ctx, oprot); _write_err12 == nil && err2 != nil {
-      _write_err12 = thrift.WrapTException(err2)
+    if err2 := _exc112.Write(ctx, oprot); _write_err111 == nil && err2 != nil {
+      _write_err111 = thrift.WrapTException(err2)
     }
-    if err2 := oprot.WriteMessageEnd(ctx); _write_err12 == nil && err2 != nil {
-      _write_err12 = thrift.WrapTException(err2)
+    if err2 := oprot.WriteMessageEnd(ctx); _write_err111 == nil && err2 != nil {
+      _write_err111 = thrift.WrapTException(err2)
     }
-    if err2 := oprot.Flush(ctx); _write_err12 == nil && err2 != nil {
-      _write_err12 = thrift.WrapTException(err2)
+    if err2 := oprot.Flush(ctx); _write_err111 == nil && err2 != nil {
+      _write_err111 = thrift.WrapTException(err2)
     }
-    if _write_err12 != nil {
-      return false, thrift.WrapTException(_write_err12)
+    if _write_err111 != nil {
+      return false, thrift.WrapTException(_write_err111)
     }
     return true, err
   } else {
@@ -928,19 +7161,19 @@ func (p *healthProcessorCheck) Process(ctx context.Context, seqId int32, iprot, 
   }
   tickerCancel()
   if err2 := oprot.WriteMessageBegin(ctx, "check", thrift.REPLY, seqId); err2 != nil {
-    _write_err12 = thrift.WrapTException(err2)
+    _write_err111 = thrift.WrapTException(err2)
   }
-  if err2 := result.Write(ctx, oprot); _write_err12 == nil && err2 != nil {
-    _write_err12 = thrift.WrapTException(err2)
+  if err2 := result.Write(ctx, oprot); _write_err111 == nil && err2 != nil {
+    _write_err111 = thrift.WrapTException(err2)
   }
-  if err2 := oprot.WriteMessageEnd(ctx); _write_err12 == nil && err2 != nil {
-    _write_err12 = thrift.WrapTException(err2)
+  if err2 := oprot.WriteMessageEnd(ctx); _write_err111 == nil && err2 != nil {
+    _write_err111 = thrift.WrapTException(err2)
   }
-  if err2 := oprot.Flush(ctx); _write_err12 == nil && err2 != nil {
-    _write_err12 = thrift.WrapTException(err2)
+  if err2 := oprot.Flush(ctx); _write_err111 == nil && err2 != nil {
+    _write_err111 = thrift.WrapTException(err2)
   }
-  if _write_err12 != nil {
-    return false, thrift.WrapTException(_write_err12)
+  if _write_err111 != nil {
+    return false, thrift.WrapTException(_write_err111)
   }
   return true, err
 }
@@ -1077,19 +7310,19 @@ func (p *HealthCheckResult)  ReadField0(ctx context.Context, iprot thrift.TProto
   tMap := make(map[string]string, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key14 string
+var _key113 string
     if v, err := iprot.ReadString(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key14 = v
+    _key113 = v
 }
-var _val15 string
+var _val114 string
     if v, err := iprot.ReadString(ctx); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _val15 = v
+    _val114 = v
 }
-    p.Success[_key14] = _val15
+    p.Success[_key113] = _val114
   }
   if err := iprot.ReadMapEnd(ctx); err != nil {
     return thrift.PrependError("error reading map end: ", err)

@@ -10,10 +10,10 @@ function generate_thrift_for_cpp() {
     echo "generate $1 => $2"
 
     if [ -d $2/src ]; then
-        rm -r $2/src
+        rm -rv $2/src
     fi
     if [ -d $2/include ]; then
-        rm -r $2/include
+        rm -rv $2/include
     fi
 
     mkdir -p $2/src
@@ -27,7 +27,12 @@ function generate_thrift_for_go() {
     echo "generate $1 => $2"
 
     if [ -d $2 ]; then
-        rm -r $2
+        for f in $2/*.go; do
+            n=$(basename $f)
+            if [[ "$n" != "mod.go" ]]; then
+                rm -v $f
+            fi
+        done
     fi
 
     mkdir -p $2
