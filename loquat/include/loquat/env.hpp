@@ -32,6 +32,12 @@
 #include <variant>
 #include <vector>
 
+// TODO
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#include <tink/internal/ssl_unique_ptr.h>
+#pragma GCC diagnostic pop
+
 #include <spdlog/spdlog.h>
 #include <tink/aead/aead_key_templates.h>
 #include <tink/jwt/jwt_mac.h>
@@ -66,7 +72,7 @@ class Keyset {
     std::string msg(it.begin(), it.end());
     if (!status.ok()) {
       spdlog::error("{}", msg);
-      throw std::runtime_error("");
+      throw std::runtime_error(msg);
     }
   }
 
@@ -79,15 +85,7 @@ class Keyset {
 class Jwt final : public Keyset {
  public:
   Jwt() : Keyset("jwt") {}
-  inline std::string sign(const std::string& subject,
-                          const std::chrono::seconds& ttl) {
-    return this->sign(subject, std::nullopt, ttl);
-  }
-  inline std::string sign(const std::string& subject,
-                          const std::string& audience,
-                          const std::chrono::seconds& ttl) {
-    return this->sign(subject, std::optional<std::string>{audience}, ttl);
-  }
+
   inline std::string verify(const std::string& token) {
     return this->verify(token, std::nullopt);
   }
@@ -96,14 +94,16 @@ class Jwt final : public Keyset {
     return this->verify(token, std::optional<std::string>{audience});
   }
 
- private:
   std::string verify(const std::string& token,
                      const std::optional<std::string> audience);
-  std::string sign(const std::string& subject,
-                   const std::optional<std::string> audience,
-                   const std::chrono::seconds& ttl);
+  std::string sign(const std::string& issuer, const std::string& subject,
+                   const std::vector<std::string> audiences,
+                   const std::chrono::seconds& ttl,
+                   const std::optional<std::string> payload);
 
+ private:
   std::unique_ptr<crypto::tink::JwtMac> load();
+  inline static const std::string PAYLOAD_KEY = "pyd";
 };
 
 class HMac final : public Keyset {

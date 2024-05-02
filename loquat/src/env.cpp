@@ -10,6 +10,7 @@
 #include <tink/jwt/internal/jwt_mac_impl.h>
 #include <tink/jwt/internal/jwt_mac_internal.h>
 #include <tink/jwt/jwt_key_templates.h>
+#include <tink/jwt/jwt_signature_config.h>
 #include <tink/jwt/jwt_validator.h>
 #include <tink/jwt/raw_jwt.h>
 #include <tink/mac/mac_factory.h>
@@ -19,10 +20,11 @@
 #include <tink/tink_config.h>
 #include <tink/util/status.h>
 
-
-std::string loquat::Jwt::sign(const std::string& subject,
-                              const std::optional<std::string> audience,
-                              const std::chrono::seconds& ttl) {
+std::string loquat::Jwt::sign(const std::string& issuer,
+                              const std::string& subject,
+                              const std::vector<std::string> audiences,
+                              const std::chrono::seconds& ttl,
+                              const std::optional<std::string> payload) {
   auto now = absl::Now();
   auto raw_rb = crypto::tink::RawJwtBuilder()
                     .SetIssuer(loquat::PROJECT_NAME)
@@ -30,9 +32,13 @@ std::string loquat::Jwt::sign(const std::string& subject,
                     .SetNotBefore(now - absl::Seconds(1))
                     .SetIssuedAt(now)
                     .SetExpiration(now + absl::Seconds(ttl.count()));
-  if (audience) {
-    raw_rb = raw_rb.AddAudience(audience.value());
+  for (const auto& it : audiences) {
+    raw_rb = raw_rb.AddAudience(it);
   }
+  if (payload) {
+    raw_rb.AddJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
+  }
+
   auto raw_r = raw_rb.Build();
   this->check(raw_r);
   auto raw = std::move(raw_r.value());
@@ -70,7 +76,8 @@ std::string loquat::Jwt::verify(const std::string& token,
 
 std::unique_ptr<crypto::tink::JwtMac> loquat::Jwt::load() {
   auto keyset = this->Keyset::load(crypto::tink::JwtHs512Template());
-  auto jwt_r = keyset->GetPrimitive<crypto::tink::JwtMac>();
+  auto jwt_r = keyset->GetPrimitive<crypto::tink::JwtMac>(
+      crypto::tink::ConfigGlobalRegistry());
   this->check(jwt_r);
   auto jwt = std::move(jwt_r.value());
   return jwt;
@@ -92,7 +99,8 @@ void loquat::HMac::verify(const std::string& code, const std::string& plain) {
 
 std::unique_ptr<crypto::tink::Mac> loquat::HMac::load() {
   auto keyset = this->Keyset::load(crypto::tink::MacKeyTemplates::HmacSha512());
-  auto mac_r = keyset->GetPrimitive<crypto::tink::Mac>();
+  auto mac_r = keyset->GetPrimitive<crypto::tink::Mac>(
+      crypto::tink::ConfigGlobalRegistry());
   this->check(mac_r);
   auto mac = std::move(mac_r.value());
   return mac;
@@ -116,7 +124,8 @@ std::string loquat::Aes::decrypt(const std::string& code) {
 
 std::unique_ptr<crypto::tink::Aead> loquat::Aes::load() {
   auto keyset = this->Keyset::load(crypto::tink::AeadKeyTemplates::Aes256Gcm());
-  auto aes_r = keyset->GetPrimitive<crypto::tink::Aead>();
+  auto aes_r = keyset->GetPrimitive<crypto::tink::Aead>(
+      crypto::tink::ConfigGlobalRegistry());
   this->check(aes_r);
   auto aes = std::move(aes_r.value());
   return aes;
@@ -149,7 +158,8 @@ std::unique_ptr<crypto::tink::KeysetHandle> loquat::Keyset::load(
   } else {
     spdlog::warn("not exists, try to create {}", file.string());
 
-    auto keyset_handle_r = crypto::tink::KeysetHandle::GenerateNew(tpl);
+    auto keyset_handle_r = crypto::tink::KeysetHandle::GenerateNew(
+        tpl, crypto::tink::KeyGenConfigGlobalRegistry());
     this->check(keyset_handle_r);
     auto keyset_handler = std::move(keyset_handle_r.value());
     {

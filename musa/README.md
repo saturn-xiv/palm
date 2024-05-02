@@ -1,8 +1,8 @@
 # USAGE
 
 ```bash
-$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
-> cd /workspace
+$ podman run --rm -it --events-backend=file --network host -v $(dirname $PWD):/workspace:z ubuntu:latest
+> cd /workspace/musa
 > ./build.sh
 > ls -lh target/musa-XXX.jar
 ```
