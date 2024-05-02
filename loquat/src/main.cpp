@@ -120,7 +120,7 @@ int main(int argc, char** argv) {
     const auto ttl = std::chrono::duration_cast<std::chrono::seconds>(
         std::chrono::years(years));
     loquat::Jwt jwt;
-    std::vector<std::string> audiences{audience};
+    std::set<std::string> audiences{audience};
     const auto token = jwt.sign(issuer, subject, audiences, ttl, std::nullopt);
 
     std::cout << token << std::endl;

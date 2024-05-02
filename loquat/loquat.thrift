@@ -6,8 +6,16 @@ struct JwtVerfifyResponse{
     2:optional string payload,
 }
 
+struct JwtSignRequest{
+    1:string issuer,
+    2:string subject,
+    3:set<string> audiences,
+    4:i64 ttl,
+    5:optional string payload,
+}
+
 service Jwt {
-    string sign(1:string issuer, 2:string subject, 3:set<string> audience, 4:i64 ttl, 5: optional string payload);
+    string sign(1:JwtSignRequest request);
     JwtVerfifyResponse verify(1:string token, 2:string issuer, 3:string audience);
 }
 

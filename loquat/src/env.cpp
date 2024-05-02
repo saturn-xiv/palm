@@ -22,7 +22,7 @@
 
 std::string loquat::Jwt::sign(const std::string& issuer,
                               const std::string& subject,
-                              const std::vector<std::string> audiences,
+                              const std::set<std::string> audiences,
                               const std::chrono::seconds& ttl,
                               const std::optional<std::string> payload) {
   auto now = absl::Now();
@@ -49,15 +49,16 @@ std::string loquat::Jwt::sign(const std::string& issuer,
   return token;
 }
 
-std::string loquat::Jwt::verify(const std::string& token,
-                                const std::optional<std::string> audience) {
+std::pair<std::string, std::optional<std::string>> loquat::Jwt::verify(
+    const std::string& token, const std::string& issuer,
+    const std::string& audience) {
   spdlog::debug("{}", token);
-  auto validator_b =
-      crypto::tink::JwtValidatorBuilder().IgnoreTypeHeader().IgnoreIssuer();
-  if (audience) {
-    spdlog::debug("test with audience({})", audience.value());
-    validator_b = validator_b.ExpectAudience(audience.value());
-  }
+  auto validator_b = crypto::tink::JwtValidatorBuilder()
+                         .IgnoreTypeHeader()
+                         .ExpectIssuer(issuer)
+                         .ExpectAudience(audience)
+                         .ExpectIssuedInThePast();
+
   auto validator_r = validator_b.Build();
   this->check(validator_r);
   auto validator = std::move(validator_r.value());
@@ -71,7 +72,19 @@ std::string loquat::Jwt::verify(const std::string& token,
   this->check(subject_r);
   auto subject = std::move(subject_r.value());
   spdlog::debug("get subject({})", subject);
-  return subject;
+
+  if (!payload.HasJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY)) {
+    std::pair<std::string, std::optional<std::string>> it =
+        std::make_pair(subject, std::nullopt);
+    return it;
+  }
+
+  auto payload__r = payload.GetJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY);
+  this->check(payload__r);
+  auto payload_ = std::move(payload__r.value());
+  std::pair<std::string, std::optional<std::string>> it =
+      std::make_pair(subject, std::optional<std::string>{payload_});
+  return it;
 }
 
 std::unique_ptr<crypto::tink::JwtMac> loquat::Jwt::load() {

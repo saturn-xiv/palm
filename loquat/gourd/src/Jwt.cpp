@@ -35,56 +35,9 @@ uint32_t Jwt_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->issuer);
-          this->__isset.issuer = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->subject);
-          this->__isset.subject = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->audience);
-          this->__isset.audience = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 4:
-        if (ftype == ::apache::thrift::protocol::T_I64) {
-          xfer += iprot->readI64(this->ttl);
-          this->__isset.ttl = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 5:
-        if (ftype == ::apache::thrift::protocol::T_MAP) {
-          {
-            this->payload.clear();
-            uint32_t _size10;
-            ::apache::thrift::protocol::TType _ktype11;
-            ::apache::thrift::protocol::TType _vtype12;
-            xfer += iprot->readMapBegin(_ktype11, _vtype12, _size10);
-            uint32_t _i14;
-            for (_i14 = 0; _i14 < _size10; ++_i14)
-            {
-              std::string _key15;
-              xfer += iprot->readString(_key15);
-              std::string& _val16 = this->payload[_key15];
-              xfer += iprot->readString(_val16);
-            }
-            xfer += iprot->readMapEnd();
-          }
-          this->__isset.payload = true;
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->request.read(iprot);
+          this->__isset.request = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -106,33 +59,8 @@ uint32_t Jwt_sign_args::write(::apache::thrift::protocol::TProtocol* oprot) cons
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("Jwt_sign_args");
 
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->issuer);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->subject);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString(this->audience);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ttl", ::apache::thrift::protocol::T_I64, 4);
-  xfer += oprot->writeI64(this->ttl);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_MAP, 5);
-  {
-    xfer += oprot->writeMapBegin(::apache::thrift::protocol::T_STRING, ::apache::thrift::protocol::T_STRING, static_cast<uint32_t>(this->payload.size()));
-    std::map<std::string, std::string> ::const_iterator _iter17;
-    for (_iter17 = this->payload.begin(); _iter17 != this->payload.end(); ++_iter17)
-    {
-      xfer += oprot->writeString(_iter17->first);
-      xfer += oprot->writeString(_iter17->second);
-    }
-    xfer += oprot->writeMapEnd();
-  }
+  xfer += oprot->writeFieldBegin("request", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->request.write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -150,33 +78,8 @@ uint32_t Jwt_sign_pargs::write(::apache::thrift::protocol::TProtocol* oprot) con
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("Jwt_sign_pargs");
 
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->issuer)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString((*(this->subject)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString((*(this->audience)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ttl", ::apache::thrift::protocol::T_I64, 4);
-  xfer += oprot->writeI64((*(this->ttl)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_MAP, 5);
-  {
-    xfer += oprot->writeMapBegin(::apache::thrift::protocol::T_STRING, ::apache::thrift::protocol::T_STRING, static_cast<uint32_t>((*(this->payload)).size()));
-    std::map<std::string, std::string> ::const_iterator _iter18;
-    for (_iter18 = (*(this->payload)).begin(); _iter18 != (*(this->payload)).end(); ++_iter18)
-    {
-      xfer += oprot->writeString(_iter18->first);
-      xfer += oprot->writeString(_iter18->second);
-    }
-    xfer += oprot->writeMapEnd();
-  }
+  xfer += oprot->writeFieldBegin("request", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += (*(this->request)).write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -511,23 +414,19 @@ uint32_t Jwt_verify_presult::read(::apache::thrift::protocol::TProtocol* iprot) 
   return xfer;
 }
 
-void JwtClient::sign(std::string& _return, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::map<std::string, std::string> & payload)
+void JwtClient::sign(std::string& _return, const JwtSignRequest& request)
 {
-  send_sign(issuer, subject, audience, ttl, payload);
+  send_sign(request);
   recv_sign(_return);
 }
 
-void JwtClient::send_sign(const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::map<std::string, std::string> & payload)
+void JwtClient::send_sign(const JwtSignRequest& request)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Jwt_sign_pargs args;
-  args.issuer = &issuer;
-  args.subject = &subject;
-  args.audience = &audience;
-  args.ttl = &ttl;
-  args.payload = &payload;
+  args.request = &request;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -675,7 +574,7 @@ void JwtProcessor::process_sign(int32_t seqid, ::apache::thrift::protocol::TProt
 
   Jwt_sign_result result;
   try {
-    iface_->sign(result.success, args.issuer, args.subject, args.audience, args.ttl, args.payload);
+    iface_->sign(result.success, args.request);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
@@ -767,24 +666,20 @@ void JwtProcessor::process_verify(int32_t seqid, ::apache::thrift::protocol::TPr
   return processor;
 }
 
-void JwtConcurrentClient::sign(std::string& _return, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::map<std::string, std::string> & payload)
+void JwtConcurrentClient::sign(std::string& _return, const JwtSignRequest& request)
 {
-  int32_t seqid = send_sign(issuer, subject, audience, ttl, payload);
+  int32_t seqid = send_sign(request);
   recv_sign(_return, seqid);
 }
 
-int32_t JwtConcurrentClient::send_sign(const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl, const std::map<std::string, std::string> & payload)
+int32_t JwtConcurrentClient::send_sign(const JwtSignRequest& request)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
   oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Jwt_sign_pargs args;
-  args.issuer = &issuer;
-  args.subject = &subject;
-  args.audience = &audience;
-  args.ttl = &ttl;
-  args.payload = &payload;
+  args.request = &request;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();

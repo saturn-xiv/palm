@@ -49,10 +49,7 @@ class JwtHandler final : public v1::JwtIf {
  public:
   JwtHandler() = default;
 
-  void sign(std::string& token, const std::string& issuer,
-            const std::string& subject, const std::string& action,
-            const int64_t ttl,
-            const std::map<std::string, std::string>& payload) override;
+  void sign(std::string& token, const loquat::v1::JwtSignRequest& request) override;
   void verify(loquat::v1::JwtVerfifyResponse& response, const std::string& token,
               const std::string& issuer,const std::string&audience) override;
 };

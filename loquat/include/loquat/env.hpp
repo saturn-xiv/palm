@@ -86,18 +86,11 @@ class Jwt final : public Keyset {
  public:
   Jwt() : Keyset("jwt") {}
 
-  inline std::string verify(const std::string& token) {
-    return this->verify(token, std::nullopt);
-  }
-  inline std::string verify(const std::string& token,
-                            const std::string& audience) {
-    return this->verify(token, std::optional<std::string>{audience});
-  }
-
-  std::string verify(const std::string& token,
-                     const std::optional<std::string> audience);
+  std::pair<std::string, std::optional<std::string>> verify(
+      const std::string& token, const std::string& issuer,
+      const std::string& audience);
   std::string sign(const std::string& issuer, const std::string& subject,
-                   const std::vector<std::string> audiences,
+                   const std::set<std::string> audiences,
                    const std::chrono::seconds& ttl,
                    const std::optional<std::string> payload);
 

@@ -141,16 +141,18 @@ void loquat::HmacHandler::verify(const std::string& code,
   mac.verify(code, plain);
 }
 
-void loquat::JwtHandler::sign(
-    std::string& token, const std::string& issuer, const std::string& subject,
-    const std::string& audience, const int64_t ttl,
-    const std::map<std::string, std::string>& payload) {
+void loquat::JwtHandler::sign(std::string& token,
+                              const loquat::v1::JwtSignRequest& request) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::Jwt jwt;
-  // TODO
-  // token = audience.empty()
-  //             ? jwt.sign(subject, std::chrono::seconds(ttl))
-  //             : jwt.sign(subject, audience, std::chrono::seconds(ttl));
+  const auto ttl = std::chrono::seconds(request.ttl);
+  if (request.__isset.payload) {
+  }
+  const std::optional<std::string> payload =
+      request.__isset.payload ? std::optional<std::string>{request.payload}
+                              : std::nullopt;
+  token = jwt.sign(request.issuer, request.subject, request.audiences, ttl,
+                   payload);
 }
 
 void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
@@ -159,9 +161,11 @@ void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
                                 const std::string& audience) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::Jwt jwt;
-  // subject = audience.empty() ? jwt.verify(token) : jwt.verify(token,
-  // audience);
-  //  TODO
+  const auto it = jwt.verify(token, issuer, audience);
+  response.subject = it.first;
+  if (it.second) {
+    response.payload = it.second.value();
+  }
 }
 
 void loquat::HealthHandler::check() {

@@ -23,6 +23,8 @@ namespace loquat { namespace v1 {
 
 class JwtVerfifyResponse;
 
+class JwtSignRequest;
+
 typedef struct _JwtVerfifyResponse__isset {
   _JwtVerfifyResponse__isset() : subject(false), payload(false) {}
   bool subject :1;
@@ -35,24 +37,27 @@ class JwtVerfifyResponse : public virtual ::apache::thrift::TBase {
   JwtVerfifyResponse(const JwtVerfifyResponse&);
   JwtVerfifyResponse& operator=(const JwtVerfifyResponse&);
   JwtVerfifyResponse() noexcept
-                     : subject() {
+                     : subject(),
+                       payload() {
   }
 
   virtual ~JwtVerfifyResponse() noexcept;
   std::string subject;
-  std::map<std::string, std::string>  payload;
+  std::string payload;
 
   _JwtVerfifyResponse__isset __isset;
 
   void __set_subject(const std::string& val);
 
-  void __set_payload(const std::map<std::string, std::string> & val);
+  void __set_payload(const std::string& val);
 
   bool operator == (const JwtVerfifyResponse & rhs) const
   {
     if (!(subject == rhs.subject))
       return false;
-    if (!(payload == rhs.payload))
+    if (__isset.payload != rhs.__isset.payload)
+      return false;
+    else if (__isset.payload && !(payload == rhs.payload))
       return false;
     return true;
   }
@@ -71,6 +76,78 @@ class JwtVerfifyResponse : public virtual ::apache::thrift::TBase {
 void swap(JwtVerfifyResponse &a, JwtVerfifyResponse &b);
 
 std::ostream& operator<<(std::ostream& out, const JwtVerfifyResponse& obj);
+
+typedef struct _JwtSignRequest__isset {
+  _JwtSignRequest__isset() : issuer(false), subject(false), audiences(false), ttl(false), payload(false) {}
+  bool issuer :1;
+  bool subject :1;
+  bool audiences :1;
+  bool ttl :1;
+  bool payload :1;
+} _JwtSignRequest__isset;
+
+class JwtSignRequest : public virtual ::apache::thrift::TBase {
+ public:
+
+  JwtSignRequest(const JwtSignRequest&);
+  JwtSignRequest& operator=(const JwtSignRequest&);
+  JwtSignRequest() noexcept
+                 : issuer(),
+                   subject(),
+                   ttl(0),
+                   payload() {
+  }
+
+  virtual ~JwtSignRequest() noexcept;
+  std::string issuer;
+  std::string subject;
+  std::set<std::string>  audiences;
+  int64_t ttl;
+  std::string payload;
+
+  _JwtSignRequest__isset __isset;
+
+  void __set_issuer(const std::string& val);
+
+  void __set_subject(const std::string& val);
+
+  void __set_audiences(const std::set<std::string> & val);
+
+  void __set_ttl(const int64_t val);
+
+  void __set_payload(const std::string& val);
+
+  bool operator == (const JwtSignRequest & rhs) const
+  {
+    if (!(issuer == rhs.issuer))
+      return false;
+    if (!(subject == rhs.subject))
+      return false;
+    if (!(audiences == rhs.audiences))
+      return false;
+    if (!(ttl == rhs.ttl))
+      return false;
+    if (__isset.payload != rhs.__isset.payload)
+      return false;
+    else if (__isset.payload && !(payload == rhs.payload))
+      return false;
+    return true;
+  }
+  bool operator != (const JwtSignRequest &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const JwtSignRequest & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot) override;
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const override;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(JwtSignRequest &a, JwtSignRequest &b);
+
+std::ostream& operator<<(std::ostream& out, const JwtSignRequest& obj);
 
 }} // namespace
 
