@@ -13,62 +13,26 @@
 
 namespace loquat { namespace v1 {
 
-int _kTaskContentTypeValues[] = {
-  TaskContentType::PROTOBUF,
-  TaskContentType::FLATBUFFERS,
-  TaskContentType::JSON,
-  TaskContentType::MSGPACK,
-  TaskContentType::CAPNPROTO
-};
-const char* _kTaskContentTypeNames[] = {
-  "PROTOBUF",
-  "FLATBUFFERS",
-  "JSON",
-  "MSGPACK",
-  "CAPNPROTO"
-};
-const std::map<int, const char*> _TaskContentType_VALUES_TO_NAMES(::apache::thrift::TEnumIterator(5, _kTaskContentTypeValues, _kTaskContentTypeNames), ::apache::thrift::TEnumIterator(-1, nullptr, nullptr));
 
-std::ostream& operator<<(std::ostream& out, const TaskContentType::type& val) {
-  std::map<int, const char*>::const_iterator it = _TaskContentType_VALUES_TO_NAMES.find(val);
-  if (it != _TaskContentType_VALUES_TO_NAMES.end()) {
-    out << it->second;
-  } else {
-    out << static_cast<int>(val);
-  }
-  return out;
-}
-
-std::string to_string(const TaskContentType::type& val) {
-  std::map<int, const char*>::const_iterator it = _TaskContentType_VALUES_TO_NAMES.find(val);
-  if (it != _TaskContentType_VALUES_TO_NAMES.end()) {
-    return std::string(it->second);
-  } else {
-    return std::to_string(static_cast<int>(val));
-  }
+JwtVerfifyResponse::~JwtVerfifyResponse() noexcept {
 }
 
 
-Resource::~Resource() noexcept {
+void JwtVerfifyResponse::__set_subject(const std::string& val) {
+  this->subject = val;
 }
 
-
-void Resource::__set_type(const std::string& val) {
-  this->type = val;
+void JwtVerfifyResponse::__set_payload(const std::map<std::string, std::string> & val) {
+  this->payload = val;
 }
-
-void Resource::__set_id(const int32_t val) {
-  this->id = val;
-__isset.id = true;
-}
-std::ostream& operator<<(std::ostream& out, const Resource& obj)
+std::ostream& operator<<(std::ostream& out, const JwtVerfifyResponse& obj)
 {
   obj.printTo(out);
   return out;
 }
 
 
-uint32_t Resource::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t JwtVerfifyResponse::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -91,16 +55,31 @@ uint32_t Resource::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->type);
-          this->__isset.type = true;
+          xfer += iprot->readString(this->subject);
+          this->__isset.subject = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          xfer += iprot->readI32(this->id);
-          this->__isset.id = true;
+        if (ftype == ::apache::thrift::protocol::T_MAP) {
+          {
+            this->payload.clear();
+            uint32_t _size0;
+            ::apache::thrift::protocol::TType _ktype1;
+            ::apache::thrift::protocol::TType _vtype2;
+            xfer += iprot->readMapBegin(_ktype1, _vtype2, _size0);
+            uint32_t _i4;
+            for (_i4 = 0; _i4 < _size0; ++_i4)
+            {
+              std::string _key5;
+              xfer += iprot->readString(_key5);
+              std::string& _val6 = this->payload[_key5];
+              xfer += iprot->readString(_val6);
+            }
+            xfer += iprot->readMapEnd();
+          }
+          this->__isset.payload = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -117,130 +96,26 @@ uint32_t Resource::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-uint32_t Resource::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t JwtVerfifyResponse::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Resource");
+  xfer += oprot->writeStructBegin("JwtVerfifyResponse");
 
-  xfer += oprot->writeFieldBegin("type", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->type);
+  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->subject);
   xfer += oprot->writeFieldEnd();
 
-  if (this->__isset.id) {
-    xfer += oprot->writeFieldBegin("id", ::apache::thrift::protocol::T_I32, 2);
-    xfer += oprot->writeI32(this->id);
-    xfer += oprot->writeFieldEnd();
-  }
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(Resource &a, Resource &b) {
-  using ::std::swap;
-  swap(a.type, b.type);
-  swap(a.id, b.id);
-  swap(a.__isset, b.__isset);
-}
-
-Resource::Resource(const Resource& other0) {
-  type = other0.type;
-  id = other0.id;
-  __isset = other0.__isset;
-}
-Resource& Resource::operator=(const Resource& other1) {
-  type = other1.type;
-  id = other1.id;
-  __isset = other1.__isset;
-  return *this;
-}
-void Resource::printTo(std::ostream& out) const {
-  using ::apache::thrift::to_string;
-  out << "Resource(";
-  out << "type=" << to_string(type);
-  out << ", " << "id="; (__isset.id ? (out << to_string(id)) : (out << "<null>"));
-  out << ")";
-}
-
-
-Permission::~Permission() noexcept {
-}
-
-
-void Permission::__set_operation(const std::string& val) {
-  this->operation = val;
-}
-
-void Permission::__set_resource(const Resource& val) {
-  this->resource = val;
-}
-std::ostream& operator<<(std::ostream& out, const Permission& obj)
-{
-  obj.printTo(out);
-  return out;
-}
-
-
-uint32_t Permission::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
+  xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_MAP, 2);
   {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
+    xfer += oprot->writeMapBegin(::apache::thrift::protocol::T_STRING, ::apache::thrift::protocol::T_STRING, static_cast<uint32_t>(this->payload.size()));
+    std::map<std::string, std::string> ::const_iterator _iter7;
+    for (_iter7 = this->payload.begin(); _iter7 != this->payload.end(); ++_iter7)
     {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->operation);
-          this->__isset.operation = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->resource.read(iprot);
-          this->__isset.resource = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
+      xfer += oprot->writeString(_iter7->first);
+      xfer += oprot->writeString(_iter7->second);
     }
-    xfer += iprot->readFieldEnd();
+    xfer += oprot->writeMapEnd();
   }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t Permission::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Permission");
-
-  xfer += oprot->writeFieldBegin("operation", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->operation);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("resource", ::apache::thrift::protocol::T_STRUCT, 2);
-  xfer += this->resource.write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -248,29 +123,29 @@ uint32_t Permission::write(::apache::thrift::protocol::TProtocol* oprot) const {
   return xfer;
 }
 
-void swap(Permission &a, Permission &b) {
+void swap(JwtVerfifyResponse &a, JwtVerfifyResponse &b) {
   using ::std::swap;
-  swap(a.operation, b.operation);
-  swap(a.resource, b.resource);
+  swap(a.subject, b.subject);
+  swap(a.payload, b.payload);
   swap(a.__isset, b.__isset);
 }
 
-Permission::Permission(const Permission& other2) {
-  operation = other2.operation;
-  resource = other2.resource;
-  __isset = other2.__isset;
+JwtVerfifyResponse::JwtVerfifyResponse(const JwtVerfifyResponse& other8) {
+  subject = other8.subject;
+  payload = other8.payload;
+  __isset = other8.__isset;
 }
-Permission& Permission::operator=(const Permission& other3) {
-  operation = other3.operation;
-  resource = other3.resource;
-  __isset = other3.__isset;
+JwtVerfifyResponse& JwtVerfifyResponse::operator=(const JwtVerfifyResponse& other9) {
+  subject = other9.subject;
+  payload = other9.payload;
+  __isset = other9.__isset;
   return *this;
 }
-void Permission::printTo(std::ostream& out) const {
+void JwtVerfifyResponse::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
-  out << "Permission(";
-  out << "operation=" << to_string(operation);
-  out << ", " << "resource=" << to_string(resource);
+  out << "JwtVerfifyResponse(";
+  out << "subject=" << to_string(subject);
+  out << ", " << "payload=" << to_string(payload);
   out << ")";
 }
 

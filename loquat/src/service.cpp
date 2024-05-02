@@ -116,61 +116,54 @@ void loquat::application::launch(const uint16_t port,
   server->serve();
 }
 
-void loquat::AesHandler::encrypt(std::string& code, const std::string& auth,
-                                 const std::string& plain) {
+void loquat::AesHandler::encrypt(std::string& code, const std::string& plain) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
-  const auto name = loquat::auth(auth);
-  loquat::Aes aes(name);
+  loquat::Aes aes;
   code = aes.encrypt(plain);
 }
 
-void loquat::AesHandler::decrypt(std::string& plain, const std::string& auth,
-                                 const std::string& code) {
+void loquat::AesHandler::decrypt(std::string& plain, const std::string& code) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
-  const auto name = loquat::auth(auth);
-  loquat::Aes aes(name);
+  loquat::Aes aes;
   plain = aes.decrypt(code);
 }
 
-void loquat::HmacHandler::sign(std::string& code, const std::string& auth,
-                               const std::string& plain) {
+void loquat::HmacHandler::sign(std::string& code, const std::string& plain) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
-  const auto name = loquat::auth(auth);
-  loquat::HMac mac(name);
+  loquat::HMac mac;
   code = mac.sign(plain);
 }
 
-void loquat::HmacHandler::verify(const std::string& auth,
-                                 const std::string& code,
+void loquat::HmacHandler::verify(const std::string& code,
                                  const std::string& plain) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
-  const auto name = loquat::auth(auth);
-  loquat::HMac mac(name);
+  loquat::HMac mac;
   mac.verify(code, plain);
 }
 
-void loquat::JwtHandler::sign(std::string& token, const std::string& auth,
-                              const std::string& subject,
-                              const std::string& audience, const int64_t ttl) {
+void loquat::JwtHandler::sign(
+    std::string& token, const std::string& issuer, const std::string& subject,
+    const std::string& audience, const int64_t ttl,
+    const std::map<std::string, std::string>& payload) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
-  const auto name = loquat::auth(auth);
-  loquat::Jwt jwt(name);
-  token = audience.empty()
-              ? jwt.sign(subject, std::chrono::seconds(ttl))
-              : jwt.sign(subject, audience, std::chrono::seconds(ttl));
+  loquat::Jwt jwt;
+  // TODO
+  // token = audience.empty()
+  //             ? jwt.sign(subject, std::chrono::seconds(ttl))
+  //             : jwt.sign(subject, audience, std::chrono::seconds(ttl));
 }
 
-void loquat::JwtHandler::verify(std::string& subject, const std::string& auth,
+void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
                                 const std::string& token,
+                                const std::string& issuer,
                                 const std::string& audience) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
-  const auto name = loquat::auth(auth);
-  loquat::Jwt jwt(name);
-  subject = audience.empty() ? jwt.verify(token) : jwt.verify(token, audience);
+  loquat::Jwt jwt;
+  // subject = audience.empty() ? jwt.verify(token) : jwt.verify(token,
+  // audience);
+  //  TODO
 }
 
-void loquat::HealthHandler::check(const std::string& auth) {
+void loquat::HealthHandler::check() {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
-  const auto subject = loquat::auth(auth);
-  spdlog::debug("health check from {}", subject);
 }

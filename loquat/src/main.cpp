@@ -3,7 +3,6 @@
 
 #include <event2/event.h>
 #include <openssl/opensslv.h>
-#include <thrift/version.h>
 #include <tink/config/tink_config.h>
 #include <tink/jwt/jwt_mac_config.h>
 #include <tink/version.h>
@@ -75,7 +74,7 @@ int main(int argc, char** argv) {
     spdlog::debug(
         "Protocol Buffers v{}",
         google::protobuf::internal::VersionString(GOOGLE_PROTOBUF_VERSION));
-    spdlog::debug("Thrift v{}", THRIFT_VERSION);
+    spdlog::debug("Thrift v{}", loquat::thrift_version());
   }
   {
     const auto status = crypto::tink::TinkConfig::Register();
@@ -119,7 +118,7 @@ int main(int argc, char** argv) {
 
     const auto ttl = std::chrono::duration_cast<std::chrono::seconds>(
         std::chrono::years(years));
-    loquat::Jwt jwt(key_id);
+    loquat::Jwt jwt;
     const auto token = audience.has_value()
                            ? jwt.sign(subject, audience.value(), ttl)
                            : jwt.sign(subject, ttl);

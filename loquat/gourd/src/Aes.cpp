@@ -4,16 +4,16 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "Token.h"
+#include "Aes.h"
 
 namespace loquat { namespace v1 {
 
 
-Token_sign_args::~Token_sign_args() noexcept {
+Aes_encrypt_args::~Aes_encrypt_args() noexcept {
 }
 
 
-uint32_t Token_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Aes_encrypt_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -36,40 +36,8 @@ uint32_t Token_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->token);
-          this->__isset.token = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->issuer);
-          this->__isset.issuer = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->subject);
-          this->__isset.subject = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 4:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->audience);
-          this->__isset.audience = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 5:
-        if (ftype == ::apache::thrift::protocol::T_I64) {
-          xfer += iprot->readI64(this->ttl);
-          this->__isset.ttl = true;
+          xfer += iprot->readBinary(this->plain);
+          this->__isset.plain = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -86,29 +54,13 @@ uint32_t Token_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-uint32_t Token_sign_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Aes_encrypt_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Token_sign_args");
+  xfer += oprot->writeStructBegin("Aes_encrypt_args");
 
-  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->token);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->issuer);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString(this->subject);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 4);
-  xfer += oprot->writeString(this->audience);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ttl", ::apache::thrift::protocol::T_I64, 5);
-  xfer += oprot->writeI64(this->ttl);
+  xfer += oprot->writeFieldBegin("plain", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeBinary(this->plain);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -117,33 +69,17 @@ uint32_t Token_sign_args::write(::apache::thrift::protocol::TProtocol* oprot) co
 }
 
 
-Token_sign_pargs::~Token_sign_pargs() noexcept {
+Aes_encrypt_pargs::~Aes_encrypt_pargs() noexcept {
 }
 
 
-uint32_t Token_sign_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Aes_encrypt_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Token_sign_pargs");
+  xfer += oprot->writeStructBegin("Aes_encrypt_pargs");
 
-  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->token)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString((*(this->issuer)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString((*(this->subject)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 4);
-  xfer += oprot->writeString((*(this->audience)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("ttl", ::apache::thrift::protocol::T_I64, 5);
-  xfer += oprot->writeI64((*(this->ttl)));
+  xfer += oprot->writeFieldBegin("plain", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeBinary((*(this->plain)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -152,11 +88,11 @@ uint32_t Token_sign_pargs::write(::apache::thrift::protocol::TProtocol* oprot) c
 }
 
 
-Token_sign_result::~Token_sign_result() noexcept {
+Aes_encrypt_result::~Aes_encrypt_result() noexcept {
 }
 
 
-uint32_t Token_sign_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Aes_encrypt_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -179,7 +115,7 @@ uint32_t Token_sign_result::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 0:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->success);
+          xfer += iprot->readBinary(this->success);
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -197,15 +133,15 @@ uint32_t Token_sign_result::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-uint32_t Token_sign_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Aes_encrypt_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("Token_sign_result");
+  xfer += oprot->writeStructBegin("Aes_encrypt_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
-    xfer += oprot->writeString(this->success);
+    xfer += oprot->writeBinary(this->success);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -214,11 +150,11 @@ uint32_t Token_sign_result::write(::apache::thrift::protocol::TProtocol* oprot) 
 }
 
 
-Token_sign_presult::~Token_sign_presult() noexcept {
+Aes_encrypt_presult::~Aes_encrypt_presult() noexcept {
 }
 
 
-uint32_t Token_sign_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Aes_encrypt_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -241,7 +177,7 @@ uint32_t Token_sign_presult::read(::apache::thrift::protocol::TProtocol* iprot) 
     {
       case 0:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString((*(this->success)));
+          xfer += iprot->readBinary((*(this->success)));
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -260,11 +196,11 @@ uint32_t Token_sign_presult::read(::apache::thrift::protocol::TProtocol* iprot) 
 }
 
 
-Token_verify_args::~Token_verify_args() noexcept {
+Aes_decrypt_args::~Aes_decrypt_args() noexcept {
 }
 
 
-uint32_t Token_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Aes_decrypt_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -287,24 +223,8 @@ uint32_t Token_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->token);
-          this->__isset.token = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->issuer);
-          this->__isset.issuer = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->audience);
-          this->__isset.audience = true;
+          xfer += iprot->readBinary(this->code);
+          this->__isset.code = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -321,21 +241,13 @@ uint32_t Token_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-uint32_t Token_verify_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Aes_decrypt_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Token_verify_args");
+  xfer += oprot->writeStructBegin("Aes_decrypt_args");
 
-  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->token);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->issuer);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString(this->audience);
+  xfer += oprot->writeFieldBegin("code", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeBinary(this->code);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -344,25 +256,17 @@ uint32_t Token_verify_args::write(::apache::thrift::protocol::TProtocol* oprot) 
 }
 
 
-Token_verify_pargs::~Token_verify_pargs() noexcept {
+Aes_decrypt_pargs::~Aes_decrypt_pargs() noexcept {
 }
 
 
-uint32_t Token_verify_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Aes_decrypt_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Token_verify_pargs");
+  xfer += oprot->writeStructBegin("Aes_decrypt_pargs");
 
-  xfer += oprot->writeFieldBegin("token", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->token)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString((*(this->issuer)));
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audience", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString((*(this->audience)));
+  xfer += oprot->writeFieldBegin("code", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeBinary((*(this->code)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -371,11 +275,11 @@ uint32_t Token_verify_pargs::write(::apache::thrift::protocol::TProtocol* oprot)
 }
 
 
-Token_verify_result::~Token_verify_result() noexcept {
+Aes_decrypt_result::~Aes_decrypt_result() noexcept {
 }
 
 
-uint32_t Token_verify_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Aes_decrypt_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -398,7 +302,7 @@ uint32_t Token_verify_result::read(::apache::thrift::protocol::TProtocol* iprot)
     {
       case 0:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->success);
+          xfer += iprot->readBinary(this->success);
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -416,15 +320,15 @@ uint32_t Token_verify_result::read(::apache::thrift::protocol::TProtocol* iprot)
   return xfer;
 }
 
-uint32_t Token_verify_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Aes_decrypt_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("Token_verify_result");
+  xfer += oprot->writeStructBegin("Aes_decrypt_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
-    xfer += oprot->writeString(this->success);
+    xfer += oprot->writeBinary(this->success);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -433,11 +337,11 @@ uint32_t Token_verify_result::write(::apache::thrift::protocol::TProtocol* oprot
 }
 
 
-Token_verify_presult::~Token_verify_presult() noexcept {
+Aes_decrypt_presult::~Aes_decrypt_presult() noexcept {
 }
 
 
-uint32_t Token_verify_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Aes_decrypt_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -460,7 +364,7 @@ uint32_t Token_verify_presult::read(::apache::thrift::protocol::TProtocol* iprot
     {
       case 0:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString((*(this->success)));
+          xfer += iprot->readBinary((*(this->success)));
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -478,23 +382,19 @@ uint32_t Token_verify_presult::read(::apache::thrift::protocol::TProtocol* iprot
   return xfer;
 }
 
-void TokenClient::sign(std::string& _return, const std::string& token, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl)
+void AesClient::encrypt(std::string& _return, const std::string& plain)
 {
-  send_sign(token, issuer, subject, audience, ttl);
-  recv_sign(_return);
+  send_encrypt(plain);
+  recv_encrypt(_return);
 }
 
-void TokenClient::send_sign(const std::string& token, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl)
+void AesClient::send_encrypt(const std::string& plain)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("encrypt", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Token_sign_pargs args;
-  args.token = &token;
-  args.issuer = &issuer;
-  args.subject = &subject;
-  args.audience = &audience;
-  args.ttl = &ttl;
+  Aes_encrypt_pargs args;
+  args.plain = &plain;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -502,7 +402,7 @@ void TokenClient::send_sign(const std::string& token, const std::string& issuer,
   oprot_->getTransport()->flush();
 }
 
-void TokenClient::recv_sign(std::string& _return)
+void AesClient::recv_encrypt(std::string& _return)
 {
 
   int32_t rseqid = 0;
@@ -522,12 +422,12 @@ void TokenClient::recv_sign(std::string& _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("sign") != 0) {
+  if (fname.compare("encrypt") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  Token_sign_presult result;
+  Aes_encrypt_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -537,24 +437,22 @@ void TokenClient::recv_sign(std::string& _return)
     // _return pointer has now been filled
     return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "sign failed: unknown result");
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "encrypt failed: unknown result");
 }
 
-void TokenClient::verify(std::string& _return, const std::string& token, const std::string& issuer, const std::string& audience)
+void AesClient::decrypt(std::string& _return, const std::string& code)
 {
-  send_verify(token, issuer, audience);
-  recv_verify(_return);
+  send_decrypt(code);
+  recv_decrypt(_return);
 }
 
-void TokenClient::send_verify(const std::string& token, const std::string& issuer, const std::string& audience)
+void AesClient::send_decrypt(const std::string& code)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("verify", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("decrypt", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Token_verify_pargs args;
-  args.token = &token;
-  args.issuer = &issuer;
-  args.audience = &audience;
+  Aes_decrypt_pargs args;
+  args.code = &code;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -562,7 +460,7 @@ void TokenClient::send_verify(const std::string& token, const std::string& issue
   oprot_->getTransport()->flush();
 }
 
-void TokenClient::recv_verify(std::string& _return)
+void AesClient::recv_decrypt(std::string& _return)
 {
 
   int32_t rseqid = 0;
@@ -582,12 +480,12 @@ void TokenClient::recv_verify(std::string& _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("verify") != 0) {
+  if (fname.compare("decrypt") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  Token_verify_presult result;
+  Aes_decrypt_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -597,10 +495,10 @@ void TokenClient::recv_verify(std::string& _return)
     // _return pointer has now been filled
     return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "verify failed: unknown result");
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "decrypt failed: unknown result");
 }
 
-bool TokenProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
+bool AesProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
   if (pfn == processMap_.end()) {
@@ -619,38 +517,38 @@ bool TokenProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, 
   return true;
 }
 
-void TokenProcessor::process_sign(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void AesProcessor::process_encrypt(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = nullptr;
   if (this->eventHandler_.get() != nullptr) {
-    ctx = this->eventHandler_->getContext("Token.sign", callContext);
+    ctx = this->eventHandler_->getContext("Aes.encrypt", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Token.sign");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Aes.encrypt");
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preRead(ctx, "Token.sign");
+    this->eventHandler_->preRead(ctx, "Aes.encrypt");
   }
 
-  Token_sign_args args;
+  Aes_encrypt_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postRead(ctx, "Token.sign", bytes);
+    this->eventHandler_->postRead(ctx, "Aes.encrypt", bytes);
   }
 
-  Token_sign_result result;
+  Aes_encrypt_result result;
   try {
-    iface_->sign(result.success, args.token, args.issuer, args.subject, args.audience, args.ttl);
+    iface_->encrypt(result.success, args.plain);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
-      this->eventHandler_->handlerError(ctx, "Token.sign");
+      this->eventHandler_->handlerError(ctx, "Aes.encrypt");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("sign", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("encrypt", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -659,52 +557,52 @@ void TokenProcessor::process_sign(int32_t seqid, ::apache::thrift::protocol::TPr
   }
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preWrite(ctx, "Token.sign");
+    this->eventHandler_->preWrite(ctx, "Aes.encrypt");
   }
 
-  oprot->writeMessageBegin("sign", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("encrypt", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postWrite(ctx, "Token.sign", bytes);
+    this->eventHandler_->postWrite(ctx, "Aes.encrypt", bytes);
   }
 }
 
-void TokenProcessor::process_verify(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void AesProcessor::process_decrypt(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = nullptr;
   if (this->eventHandler_.get() != nullptr) {
-    ctx = this->eventHandler_->getContext("Token.verify", callContext);
+    ctx = this->eventHandler_->getContext("Aes.decrypt", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Token.verify");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Aes.decrypt");
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preRead(ctx, "Token.verify");
+    this->eventHandler_->preRead(ctx, "Aes.decrypt");
   }
 
-  Token_verify_args args;
+  Aes_decrypt_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postRead(ctx, "Token.verify", bytes);
+    this->eventHandler_->postRead(ctx, "Aes.decrypt", bytes);
   }
 
-  Token_verify_result result;
+  Aes_decrypt_result result;
   try {
-    iface_->verify(result.success, args.token, args.issuer, args.audience);
+    iface_->decrypt(result.success, args.code);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
-      this->eventHandler_->handlerError(ctx, "Token.verify");
+      this->eventHandler_->handlerError(ctx, "Aes.decrypt");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("verify", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("decrypt", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -713,45 +611,41 @@ void TokenProcessor::process_verify(int32_t seqid, ::apache::thrift::protocol::T
   }
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preWrite(ctx, "Token.verify");
+    this->eventHandler_->preWrite(ctx, "Aes.decrypt");
   }
 
-  oprot->writeMessageBegin("verify", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("decrypt", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postWrite(ctx, "Token.verify", bytes);
+    this->eventHandler_->postWrite(ctx, "Aes.decrypt", bytes);
   }
 }
 
-::std::shared_ptr< ::apache::thrift::TProcessor > TokenProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
-  ::apache::thrift::ReleaseHandler< TokenIfFactory > cleanup(handlerFactory_);
-  ::std::shared_ptr< TokenIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
-  ::std::shared_ptr< ::apache::thrift::TProcessor > processor(new TokenProcessor(handler));
+::std::shared_ptr< ::apache::thrift::TProcessor > AesProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
+  ::apache::thrift::ReleaseHandler< AesIfFactory > cleanup(handlerFactory_);
+  ::std::shared_ptr< AesIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
+  ::std::shared_ptr< ::apache::thrift::TProcessor > processor(new AesProcessor(handler));
   return processor;
 }
 
-void TokenConcurrentClient::sign(std::string& _return, const std::string& token, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl)
+void AesConcurrentClient::encrypt(std::string& _return, const std::string& plain)
 {
-  int32_t seqid = send_sign(token, issuer, subject, audience, ttl);
-  recv_sign(_return, seqid);
+  int32_t seqid = send_encrypt(plain);
+  recv_encrypt(_return, seqid);
 }
 
-int32_t TokenConcurrentClient::send_sign(const std::string& token, const std::string& issuer, const std::string& subject, const std::string& audience, const int64_t ttl)
+int32_t AesConcurrentClient::send_encrypt(const std::string& plain)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
-  oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("encrypt", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Token_sign_pargs args;
-  args.token = &token;
-  args.issuer = &issuer;
-  args.subject = &subject;
-  args.audience = &audience;
-  args.ttl = &ttl;
+  Aes_encrypt_pargs args;
+  args.plain = &plain;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -762,7 +656,7 @@ int32_t TokenConcurrentClient::send_sign(const std::string& token, const std::st
   return cseqid;
 }
 
-void TokenConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
+void AesConcurrentClient::recv_encrypt(std::string& _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -791,7 +685,7 @@ void TokenConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("sign") != 0) {
+      if (fname.compare("encrypt") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -800,7 +694,7 @@ void TokenConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      Token_sign_presult result;
+      Aes_encrypt_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -812,7 +706,7 @@ void TokenConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
         return;
       }
       // in a bad state, don't commit
-      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "sign failed: unknown result");
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "encrypt failed: unknown result");
     }
     // seqid != rseqid
     this->sync_->updatePending(fname, mtype, rseqid);
@@ -822,22 +716,20 @@ void TokenConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
   } // end while(true)
 }
 
-void TokenConcurrentClient::verify(std::string& _return, const std::string& token, const std::string& issuer, const std::string& audience)
+void AesConcurrentClient::decrypt(std::string& _return, const std::string& code)
 {
-  int32_t seqid = send_verify(token, issuer, audience);
-  recv_verify(_return, seqid);
+  int32_t seqid = send_decrypt(code);
+  recv_decrypt(_return, seqid);
 }
 
-int32_t TokenConcurrentClient::send_verify(const std::string& token, const std::string& issuer, const std::string& audience)
+int32_t AesConcurrentClient::send_decrypt(const std::string& code)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
-  oprot_->writeMessageBegin("verify", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("decrypt", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Token_verify_pargs args;
-  args.token = &token;
-  args.issuer = &issuer;
-  args.audience = &audience;
+  Aes_decrypt_pargs args;
+  args.code = &code;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -848,7 +740,7 @@ int32_t TokenConcurrentClient::send_verify(const std::string& token, const std::
   return cseqid;
 }
 
-void TokenConcurrentClient::recv_verify(std::string& _return, const int32_t seqid)
+void AesConcurrentClient::recv_decrypt(std::string& _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -877,7 +769,7 @@ void TokenConcurrentClient::recv_verify(std::string& _return, const int32_t seqi
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("verify") != 0) {
+      if (fname.compare("decrypt") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -886,7 +778,7 @@ void TokenConcurrentClient::recv_verify(std::string& _return, const int32_t seqi
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      Token_verify_presult result;
+      Aes_decrypt_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -898,7 +790,7 @@ void TokenConcurrentClient::recv_verify(std::string& _return, const int32_t seqi
         return;
       }
       // in a bad state, don't commit
-      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "verify failed: unknown result");
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "decrypt failed: unknown result");
     }
     // seqid != rseqid
     this->sync_->updatePending(fname, mtype, rseqid);

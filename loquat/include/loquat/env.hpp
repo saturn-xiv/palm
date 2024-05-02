@@ -32,7 +32,6 @@
 #include <variant>
 #include <vector>
 
-
 #include <spdlog/spdlog.h>
 #include <tink/aead/aead_key_templates.h>
 #include <tink/jwt/jwt_mac.h>
@@ -42,7 +41,7 @@
 
 namespace loquat {
 
-
+std::string thrift_version();
 
 class Keyset {
  public:
@@ -79,7 +78,7 @@ class Keyset {
 // https://github.com/google/tink/blob/master/docs/JWT-HOWTO.md
 class Jwt final : public Keyset {
  public:
-  Jwt(const std::string& name) : Keyset(name + ".jwt") {}
+  Jwt() : Keyset("jwt") {}
   inline std::string sign(const std::string& subject,
                           const std::chrono::seconds& ttl) {
     return this->sign(subject, std::nullopt, ttl);
@@ -109,7 +108,7 @@ class Jwt final : public Keyset {
 
 class HMac final : public Keyset {
  public:
-  HMac(const std::string& name) : Keyset(name + ".hmac") {}
+  HMac() : Keyset("hmac") {}
   std::string sign(const std::string& plain);
   void verify(const std::string& code, const std::string& plain);
 
@@ -119,7 +118,7 @@ class HMac final : public Keyset {
 
 class Aes final : public Keyset {
  public:
-  Aes(const std::string& name) : Keyset(name + ".aes") {}
+  Aes() : Keyset("aes") {}
   std::string encrypt(const std::string& plain);
   std::string decrypt(const std::string& code);
 
@@ -127,5 +126,4 @@ class Aes final : public Keyset {
   std::unique_ptr<crypto::tink::Aead> load();
 };
 
-std::string auth(const std::string& token);
 }  // namespace loquat

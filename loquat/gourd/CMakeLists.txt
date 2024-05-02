@@ -1,4 +1,4 @@
-file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 find_package(Libevent CONFIG REQUIRED)
@@ -11,11 +11,11 @@ target_link_libraries(gourd PUBLIC
 )
 
 target_include_directories(gourd PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/src
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 source_group(
-  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/include"
   PREFIX "Header Files"
   FILES ${HEADER_LIST}
 )

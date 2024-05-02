@@ -166,9 +166,3 @@ std::unique_ptr<crypto::tink::KeysetHandle> loquat::Keyset::load(
     return keyset_handler;
   }
 }
-
-std::string loquat::auth(const std::string& token) {
-  loquat::Jwt jwt(loquat::PROJECT_NAME);
-  const auto subject = jwt.verify(token);
-  return subject;
-}

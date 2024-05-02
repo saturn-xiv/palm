@@ -30,6 +30,10 @@ find_package(OpenSSL REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(Thrift CONFIG REQUIRED)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(thriftnb REQUIRED IMPORTED_TARGET thrift-nb)
+pkg_check_modules(thriftz REQUIRED IMPORTED_TARGET thrift-z)
+
 # --------------------------------------------------------
 
 # https://github.com/tink-crypto/tink-cc
@@ -56,7 +60,7 @@ target_link_libraries(loquat gourd
   spdlog::spdlog_header_only
  
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  thriftz thriftnb
+  thrift::thrift PkgConfig::thriftz PkgConfig::thriftnb
 )
 
 target_include_directories(loquat PUBLIC
