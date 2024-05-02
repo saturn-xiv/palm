@@ -44,10 +44,10 @@ int main(int argc, char** argv) {
         .help("enable mutual tls mode")
         .implicit_value(true);
     rpc_command.add_argument("--cert-file")
-        .default_value(loquat::PROJECT_NAME + ".crt")
+        .default_value("server.crt")
         .required();
     rpc_command.add_argument("--key-file")
-        .default_value(loquat::PROJECT_NAME + ".key")
+        .default_value("server.key")
         .required();
     rpc_command.add_argument("--ca-file").default_value("ca.crt").required();
   }

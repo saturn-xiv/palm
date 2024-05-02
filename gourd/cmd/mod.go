@@ -6,6 +6,8 @@ import (
 	"log/slog"
 
 	"github.com/spf13/cobra"
+
+	"github.com/saturn-xiv/palm/gourd/cmd/rpc"
 )
 
 var (
@@ -35,9 +37,13 @@ func Execute() {
 }
 
 var (
-	gl_debug    bool
-	gl_config   string
-	gl_rpc_port uint16
+	gl_debug         bool
+	gl_config        string
+	gl_rpc_port      uint16
+	gl_rpc_ssl       bool
+	gl_rpc_ca_file   string
+	gl_rpc_key_file  string
+	gl_rpc_cert_file string
 )
 
 func init() {
@@ -51,13 +57,29 @@ func init() {
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 
-				if err := LaunchRpcServer(gl_rpc_port, gl_config, git_version); err != nil {
+				var err error
+				if gl_rpc_ssl {
+					err = rpc.Launch(gl_rpc_port, gl_config, git_version, &rpc.Ssl{
+						CaFile:   gl_rpc_ca_file,
+						KeyFile:  gl_rpc_key_file,
+						CertFile: gl_rpc_cert_file,
+					})
+
+				} else {
+					err = rpc.Launch(gl_rpc_port, gl_config, git_version, nil)
+				}
+
+				if err != nil {
 					log.Fatalf("start rpc server: %s", err)
 				}
 			},
 		}
 
-		cmd.Flags().Uint16VarP(&gl_rpc_port, "address", "A", 9999, "network address to listen")
+		cmd.Flags().Uint16VarP(&gl_rpc_port, "port", "p", 9999, "port to listen")
+		cmd.Flags().BoolVarP(&gl_rpc_ssl, "ssl", "s", false, "enable ssl")
+		cmd.Flags().StringVar(&gl_rpc_cert_file, "cert-file", "server.crt", "cert file")
+		cmd.Flags().StringVar(&gl_rpc_key_file, "key-file", "server.key", "key file")
+		cmd.Flags().StringVar(&gl_rpc_ca_file, "ca-file", "ca.crt", "ca file")
 		root_cmd.AddCommand(cmd)
 	}
 

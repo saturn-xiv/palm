@@ -1,5 +1,6 @@
 #include "loquat/service.hpp"
 #include "loquat/env.hpp"
+#include "loquat/version.hpp"
 
 #include <thrift/concurrency/ThreadFactory.h>
 #include <thrift/concurrency/ThreadManager.h>
