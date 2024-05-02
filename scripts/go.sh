@@ -20,16 +20,8 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-declare -a packages=(
-    "git"
-    "wget"
-)
-
 apt update
-apt upgrade -y
-for p in "${packages[@]}"; do
-    apt install -y $p
-done
+apt install -y git wget
 
 export GO_VERSION="1.22.2"
 if [ ! -d /opt/go ]; then
