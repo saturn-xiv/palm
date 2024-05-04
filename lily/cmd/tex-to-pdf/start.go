@@ -8,6 +8,7 @@ import (
 	"log/slog"
 	"mime/multipart"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"time"
@@ -87,14 +88,31 @@ func consume(ctx context.Context, client *jasmine_v1.S3Client, message []byte) e
 		}
 	}
 
+	err := produce_task(ctx, client, &task)
+
+	if task.Callback != nil {
+		slog.Debug("report to", slog.String("url", *task.Callback))
+		values := url.Values{"bucket": {task.Bucket}, "object": {task.Object}}
+		if err != nil {
+			values.Add("error", err.Error())
+		}
+		if _, err := http.PostForm(*task.Callback, values); err != nil {
+			return err
+		}
+		return nil
+	}
+	return err
+}
+
+func produce_task(ctx context.Context, client *jasmine_v1.S3Client, task *v1.TexToPdfTask) error {
 	work_dir, err := os.MkdirTemp("", "tex2pdf")
 	if err != nil {
 		return err
 	}
 	defer os.RemoveAll(work_dir)
 
-	pdf_file := "main.pdf"
-	if err = task.Tex.BuildPdf(work_dir, pdf_file); err != nil {
+	pdf_file, err := task.Tex.BuildPdf(work_dir)
+	if err != nil {
 		return nil
 	}
 
@@ -103,7 +121,7 @@ func consume(ctx context.Context, client *jasmine_v1.S3Client, message []byte) e
 		return err
 	}
 
-	return upload_file(url, filepath.Join(work_dir, pdf_file))
+	return upload_file(url, pdf_file)
 }
 
 func upload_file(url string, name string) error {
@@ -137,10 +155,9 @@ func upload_file(url string, name string) error {
 	request.Header.Set("Content-Type", writer.FormDataContentType())
 
 	client := &http.Client{}
-	response, err := client.Do(request)
-	if err != nil {
+	if _, err = client.Do(request); err != nil {
 		return err
 	}
-	slog.Info("succeed", slog.Int("status", response.StatusCode))
+
 	return nil
 }

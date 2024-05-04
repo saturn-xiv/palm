@@ -30,11 +30,13 @@ var _ = regexp.MatchString
 //  - Bucket
 //  - Object
 //  - Tex
+//  - Callback
 type TexToPdfTask struct {
   Bucket string `thrift:"bucket,1" db:"bucket" json:"bucket"`
   Object string `thrift:"object,2" db:"object" json:"object"`
-  // unused fields # 3 to 8
-  Tex *Tex `thrift:"tex,9" db:"tex" json:"tex"`
+  Tex *Tex `thrift:"tex,3" db:"tex" json:"tex"`
+  // unused fields # 4 to 8
+  Callback *string `thrift:"callback,9" db:"callback" json:"callback,omitempty"`
 }
 
 func NewTexToPdfTask() *TexToPdfTask {
@@ -56,8 +58,19 @@ func (p *TexToPdfTask) GetTex() *Tex {
   }
   return p.Tex
 }
+var TexToPdfTask_Callback_DEFAULT string
+func (p *TexToPdfTask) GetCallback() string {
+  if !p.IsSetCallback() {
+    return TexToPdfTask_Callback_DEFAULT
+  }
+  return *p.Callback
+}
 func (p *TexToPdfTask) IsSetTex() bool {
   return p.Tex != nil
+}
+
+func (p *TexToPdfTask) IsSetCallback() bool {
+  return p.Callback != nil
 }
 
 func (p *TexToPdfTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
@@ -93,8 +106,18 @@ func (p *TexToPdfTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
           return err
         }
       }
-    case 9:
+    case 3:
       if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField3(ctx, iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(ctx, fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 9:
+      if fieldTypeId == thrift.STRING {
         if err := p.ReadField9(ctx, iprot); err != nil {
           return err
         }
@@ -136,11 +159,20 @@ func (p *TexToPdfTask)  ReadField2(ctx context.Context, iprot thrift.TProtocol) 
   return nil
 }
 
-func (p *TexToPdfTask)  ReadField9(ctx context.Context, iprot thrift.TProtocol) error {
+func (p *TexToPdfTask)  ReadField3(ctx context.Context, iprot thrift.TProtocol) error {
   p.Tex = &Tex{}
   if err := p.Tex.Read(ctx, iprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Tex), err)
   }
+  return nil
+}
+
+func (p *TexToPdfTask)  ReadField9(ctx context.Context, iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(ctx); err != nil {
+  return thrift.PrependError("error reading field 9: ", err)
+} else {
+  p.Callback = &v
+}
   return nil
 }
 
@@ -150,6 +182,7 @@ func (p *TexToPdfTask) Write(ctx context.Context, oprot thrift.TProtocol) error 
   if p != nil {
     if err := p.writeField1(ctx, oprot); err != nil { return err }
     if err := p.writeField2(ctx, oprot); err != nil { return err }
+    if err := p.writeField3(ctx, oprot); err != nil { return err }
     if err := p.writeField9(ctx, oprot); err != nil { return err }
   }
   if err := oprot.WriteFieldStop(ctx); err != nil {
@@ -179,14 +212,26 @@ func (p *TexToPdfTask) writeField2(ctx context.Context, oprot thrift.TProtocol) 
   return err
 }
 
-func (p *TexToPdfTask) writeField9(ctx context.Context, oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin(ctx, "tex", thrift.STRUCT, 9); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 9:tex: ", p), err) }
+func (p *TexToPdfTask) writeField3(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin(ctx, "tex", thrift.STRUCT, 3); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:tex: ", p), err) }
   if err := p.Tex.Write(ctx, oprot); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.Tex), err)
   }
   if err := oprot.WriteFieldEnd(ctx); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 9:tex: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 3:tex: ", p), err) }
+  return err
+}
+
+func (p *TexToPdfTask) writeField9(ctx context.Context, oprot thrift.TProtocol) (err error) {
+  if p.IsSetCallback() {
+    if err := oprot.WriteFieldBegin(ctx, "callback", thrift.STRING, 9); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 9:callback: ", p), err) }
+    if err := oprot.WriteString(ctx, string(*p.Callback)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T.callback (9) field write error: ", p), err) }
+    if err := oprot.WriteFieldEnd(ctx); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 9:callback: ", p), err) }
+  }
   return err
 }
 
@@ -199,6 +244,12 @@ func (p *TexToPdfTask) Equals(other *TexToPdfTask) bool {
   if p.Bucket != other.Bucket { return false }
   if p.Object != other.Object { return false }
   if !p.Tex.Equals(other.Tex) { return false }
+  if p.Callback != other.Callback {
+    if p.Callback == nil || other.Callback == nil {
+      return false
+    }
+    if (*p.Callback) != (*other.Callback) { return false }
+  }
   return true
 }
 
@@ -229,7 +280,7 @@ func (p *TexToPdfTask) Validate() error {
 //  - Homepage
 //  - Files
 type Tex struct {
-  Homepage string `thrift:"homepage,1" db:"homepage" json:"homepage"`
+  Homepage []byte `thrift:"homepage,1" db:"homepage" json:"homepage"`
   Files map[string][]byte `thrift:"files,2" db:"files" json:"files"`
 }
 
@@ -238,7 +289,7 @@ func NewTex() *Tex {
 }
 
 
-func (p *Tex) GetHomepage() string {
+func (p *Tex) GetHomepage() []byte {
   return p.Homepage
 }
 
@@ -294,7 +345,7 @@ func (p *Tex) Read(ctx context.Context, iprot thrift.TProtocol) error {
 }
 
 func (p *Tex)  ReadField1(ctx context.Context, iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(ctx); err != nil {
+  if v, err := iprot.ReadBinary(ctx); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
   p.Homepage = v
@@ -347,7 +398,7 @@ func (p *Tex) Write(ctx context.Context, oprot thrift.TProtocol) error {
 func (p *Tex) writeField1(ctx context.Context, oprot thrift.TProtocol) (err error) {
   if err := oprot.WriteFieldBegin(ctx, "homepage", thrift.STRING, 1); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:homepage: ", p), err) }
-  if err := oprot.WriteString(ctx, string(p.Homepage)); err != nil {
+  if err := oprot.WriteBinary(ctx, p.Homepage); err != nil {
   return thrift.PrependError(fmt.Sprintf("%T.homepage (1) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write field end error 1:homepage: ", p), err) }
@@ -380,7 +431,7 @@ func (p *Tex) Equals(other *Tex) bool {
   } else if p == nil || other == nil {
     return false
   }
-  if p.Homepage != other.Homepage { return false }
+  if bytes.Compare(p.Homepage, other.Homepage) != 0 { return false }
   if len(p.Files) != len(other.Files) { return false }
   for k, _tgt := range p.Files {
     _src2 := other.Files[k]
