@@ -16,8 +16,8 @@
     "google-protobuf": "^3.21.2",
     "jsdom": "^24.0.0",
     "marked": "^12.0.0",
-    "pino": "^8.16.1",
-    "pino-pretty": "^10.2.3",
+    "pino": "^8.21.0",
+    "pino-pretty": "^10.3.1",
     "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
