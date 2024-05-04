@@ -8,8 +8,8 @@ apt update
 
 export NODE_VERSION="20.12.2"
 
-apt install -y wget
-if [ ! -d /opt/nodejs ]; then
+apt install -y wget xz-utils
+if [ ! -d /opt/node-v${NODE_VERSION}-linux-x64 ]; then
     wget -q -P $HOME/ https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz
     tar xf $HOME/node-v${NODE_VERSION}-linux-x64.tar.xz -C /opt
 fi

@@ -88,7 +88,7 @@ impl super::Handler for Handler {
     }
 }
 
-struct Consumer {
+pub struct Consumer {
     enforcer: Arc<Mutex<Enforcer>>,
 }
 

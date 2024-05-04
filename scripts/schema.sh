@@ -51,9 +51,23 @@ function generate_thrift_for_java() {
     thrift -out $2 --gen java:sorted_containers,generated_annotations=undated -r $1
 }
 
+function generate_grpc_for_node() {
+    echo "generate grpc $1 => $2"
+    grpc_tools_node_protoc -I $1 \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$2 \
+        --grpc_out=grpc_js:$2 $1
+}
+
 generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/loquat/gourd
 generate_thrift_for_go $WORKSPACE/gourd/gourd.thrift $WORKSPACE/gourd/services/v1
 generate_thrift_for_java $WORKSPACE/musa/wechat-pay.thrift $WORKSPACE/musa/src/main/java com/github/saturn_xiv/palm/plugins/musa/v1/wechat_pay
+
+if [ -d $WORKSPACE/morus/src/protocols ]; then
+    rm -rv $WORKSPACE/morus/src/protocols
+fi
+mkdir -p $WORKSPACE/morus/src/protocols
+generate_grpc_for_node $WORKSPACE/morus/markdown.proto $WORKSPACE/morus/src/protocols
 
 echo 'done.'
 exit 0
