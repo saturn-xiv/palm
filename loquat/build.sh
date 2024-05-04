@@ -14,7 +14,7 @@ if [[ "$ID" == "ubuntu" ]] && [[ "$VERSION_CODENAME" == "jammy" ]]; then
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100
 elif [[ "$ID" == "arch" ]]; then
     echo 'building on arch'
-else 
+else
     echo "Unsupported system: $ID/$VERSION_CODENAME"
     exit 1
 fi
