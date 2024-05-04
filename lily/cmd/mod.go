@@ -5,9 +5,8 @@ import (
 	"log"
 	"log/slog"
 
+	tex_to_pdf "github.com/saturn-xiv/palm/lily/cmd/tex-to-pdf"
 	"github.com/spf13/cobra"
-
-	send_email_worker "github.com/saturn-xiv/palm/daisy/cmd/send-email-worker"
 )
 
 var (
@@ -19,9 +18,9 @@ var (
 )
 
 var root_cmd = &cobra.Command{
-	Use:     "daisy",
-	Short:   "Daisy",
-	Long:    fmt.Sprintf("A smtp worker(%s).", repo_url),
+	Use:     "lily",
+	Short:   "Lily",
+	Long:    fmt.Sprintf("A collection of texlive services(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
@@ -40,8 +39,8 @@ var (
 	gl_debug  bool
 	gl_config string
 
-	gl_send_email_worker_queue_name    string
-	gl_send_email_worker_consumer_name string
+	gl_tex_to_pdf_worker_queue_name    string
+	gl_tex_to_pdf_worker_consumer_name string
 )
 
 func init() {
@@ -50,18 +49,18 @@ func init() {
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "send-email-worker",
-			Short: "Start a smtp consumer",
+			Use:   "tex-to-pdf-worker",
+			Short: "Start a tex-to-pdf consumer",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := send_email_worker.Launch(gl_config, gl_send_email_worker_consumer_name, gl_send_email_worker_queue_name); err != nil {
-					log.Fatalf("start a send-email worker: %s", err)
+				if err := tex_to_pdf.Launch(gl_config, gl_tex_to_pdf_worker_consumer_name, gl_tex_to_pdf_worker_queue_name); err != nil {
+					log.Fatalf("start a tex-to-pdf worker: %s", err)
 				}
 			},
 		}
 
-		cmd.Flags().StringVarP(&gl_send_email_worker_queue_name, "queue", "q", "emails", "queue name")
-		cmd.Flags().StringVarP(&gl_send_email_worker_consumer_name, "name", "n", "send-email", "consumer name")
+		cmd.Flags().StringVarP(&gl_tex_to_pdf_worker_queue_name, "queue", "q", "tex2pdf", "queue name")
+		cmd.Flags().StringVarP(&gl_tex_to_pdf_worker_consumer_name, "name", "n", "build-tex-to-pdf", "consumer name")
 		root_cmd.AddCommand(cmd)
 	}
 

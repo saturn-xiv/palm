@@ -71,6 +71,8 @@ func (p *S3Handler) CreateBucket(ctx context.Context, name string, public bool, 
 	}
 	return nil
 }
+
+// https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
 func (p *S3Handler) UploadFile(ctx context.Context, bucket string, object string, ttl int32) (string, error) {
 	expiry := time.Second * time.Duration(ttl)
 	url, err := p.client.PresignedPutObject(ctx, bucket, object, expiry)

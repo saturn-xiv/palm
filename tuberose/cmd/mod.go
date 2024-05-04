@@ -53,12 +53,12 @@ func init() {
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "send-email-worker",
-			Short: "Start a smtp consumer",
+			Use:   "send-sms-worker",
+			Short: "Start a sms consumer",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 				if err := send_sms_worker.Launch(gl_config, gl_send_sms_worker_consumer_name, gl_send_sms_worker_queue_name); err != nil {
-					log.Fatalf("start gRPC server: %s", err)
+					log.Fatalf("start a send sms worker: %s", err)
 				}
 			},
 		}

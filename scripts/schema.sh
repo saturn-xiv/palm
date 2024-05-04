@@ -81,6 +81,8 @@ generate_thrift_for_node $WORKSPACE/morus/markdown.thrift $WORKSPACE/morus/src/p
 generate_thrift_for_go $WORKSPACE/daisy/daisy.thrift $WORKSPACE/daisy/services/v1
 generate_thrift_for_go $WORKSPACE/tuberose/tuberose.thrift $WORKSPACE/tuberose/services/v1
 generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/jasmine/services/v1
+generate_thrift_for_go $WORKSPACE/lily/lily.thrift $WORKSPACE/lily/services/v1
+generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/lily/env/jasmine/v1
 
 echo 'done.'
 exit 0
