@@ -84,6 +84,7 @@ $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z 
 - jasmine: minio services
 - lily: texlive worker
 - daisy: email worker
+- tuberose: sms worker & callback handler
 - ~~lilac~~: casbin/minio/tink services
 - ~~lily~~: tex => pdf/word, epub, Excel, ImageMagic services
 - ~~camelia~~: cms/forum services
