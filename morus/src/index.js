@@ -1,11 +1,16 @@
 "use strict";
 
-import { Server, ServerCredentials } from "@grpc/grpc-js";
+import {
+  createMultiplexServer,
+  MultiplexedProcessor,
+  TFramedTransport,
+  TBinaryProtocol,
+} from "thrift";
 
 import { Config } from "./env";
 import logger from "./logger";
-import { MarkdownService } from "./protocols/morus_grpc_pb";
-import { to_html } from "./services/markdown";
+import { to_html as markdown_to_html } from "./services/markdown";
+import { Processor as MarkdownProcessor } from "./protocols/Markdown";
 
 function main() {
   const args = process.argv;
@@ -14,16 +19,27 @@ function main() {
     return;
   }
   const config = new Config("config.json");
-  logger.info(`start gRPC server on http://0.0.0.0:${config.port}`);
-  var server = new Server();
-  server.addService(MarkdownService, { toHtml: to_html });
-  server.bindAsync(
-    `0.0.0.0:${config.port}`,
-    ServerCredentials.createInsecure(),
-    () => {
-      server.start();
-    }
-  );
+  if (config.debug) {
+    logger.level = "debug";
+    logger.debug("run on debug mode");
+  }
+
+  var processor = new MultiplexedProcessor();
+  {
+    const name = "markdown";
+    logger.info(`register markdown service(${name})`);
+    var service = new MarkdownProcessor({ to_html: markdown_to_html });
+    processor.registerProcessor(name, service);
+  }
+
+  var options = {
+    transport: TFramedTransport,
+    protocol: TBinaryProtocol,
+  };
+
+  const server = createMultiplexServer(processor, options);
+  logger.info(`start rpc server on tcp://0.0.0.0:${config.port}`);
+  server.listen(config.port);
 }
 
 main();

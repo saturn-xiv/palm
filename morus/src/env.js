@@ -7,5 +7,6 @@ export class Config {
     const raw = readFileSync(file);
     const it = JSON.parse(raw);
     this.port = it.port;
+    this.debug = it.debug;
   }
 }

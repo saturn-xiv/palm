@@ -4,19 +4,17 @@ import createDOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 import { parse as parse_markdown } from "marked";
 
-import { MarkdownToHtmlResponse } from "../protocols/morus_pb";
+import logger from "../logger";
 
-export const to_html = (call, callback) => {
-  const request = call.request.getPayload();
-  const html = parse_markdown(request);
-  var reply = new MarkdownToHtmlResponse();
-  if (call.request.sanitize) {
+export const to_html = (text, sanitize, result) => {
+  logger.debug(`markdown to html(${sanitize}):\n${text}`);
+  const html = parse_markdown(text);
+  if (sanitize) {
     const window = new JSDOM("").window;
     const purify = createDOMPurify(window);
     const clean = purify.sanitize(html);
-    reply.setPayload(clean);
+    result(null, clean);
   } else {
-    reply.setPayload(html);
+    result(null, html);
   }
-  callback(null, reply);
 };
