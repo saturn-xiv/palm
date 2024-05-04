@@ -1,13 +1,17 @@
 package env
 
 import (
+	"context"
 	"crypto/tls"
 	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
 
+	"github.com/apache/thrift/lib/go/thrift"
 	"gopkg.in/gomail.v2"
+
+	v1 "github.com/saturn-xiv/palm/daisy/services/v1"
 )
 
 type Smtp struct {
@@ -35,8 +39,21 @@ type SendEmailWorker struct {
 	bcc    []string
 }
 
-func (p *SendEmailWorker) Handle(_id string, _content_type string, body []byte) error {
+func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
+	var task v1.EmailSendTask
+	{
+		t := thrift.NewTMemoryBufferLen(1024 * 1024 * (1 << 4))
+		defer t.Close()
 
+		p := thrift.NewTBinaryProtocolConf(t, &thrift.TConfiguration{})
+		de := &thrift.TDeserializer{
+			Transport: t,
+			Protocol:  p,
+		}
+		if err := de.Read(ctx, &task, message); err != nil {
+			return err
+		}
+	}
 	slog.Info(fmt.Sprintf("send email(%s) => %s", task.Subject, task.To.Display()))
 
 	msg := gomail.NewMessage()
@@ -59,10 +76,10 @@ func (p *SendEmailWorker) Handle(_id string, _content_type string, body []byte) 
 		msg.SetHeader("Bcc", bcc...)
 	}
 	msg.SetHeader("Subject", task.Subject)
-	if task.Body.Html {
-		msg.SetBody("text/plain", task.Body.Payload)
+	if task.Body.HTML {
+		msg.SetBody("text/plain", task.Body.Text)
 	} else {
-		msg.SetBody("text/html", task.Body.Payload)
+		msg.SetBody("text/html", task.Body.Text)
 	}
 
 	{
@@ -73,7 +90,7 @@ func (p *SendEmailWorker) Handle(_id string, _content_type string, body []byte) 
 		defer os.RemoveAll(dir)
 		for _, it := range task.Attachments {
 			file := filepath.Join(dir, it.Title)
-			if err := os.WriteFile(file, it.Payload, 0600); err != nil {
+			if err := os.WriteFile(file, it.Body, 0600); err != nil {
 				return err
 			}
 			if it.Inline {
