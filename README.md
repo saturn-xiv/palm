@@ -44,7 +44,6 @@ $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z 
 > ./build.sh
 ```
 
-
 ## Documents
 
 - [Install WSL](https://docs.microsoft.com/en-us/windows/wsl/install)
@@ -78,9 +77,14 @@ $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z 
 
 ## Sub-projects
 
-- ~~lily~~: tex => pdf/word, epub, Excel, ImageMagic services
+- loquot: crypto services
+- gourd: casbin services
 - morus: markdown => html services
 - musa: WechatPay services
-- lilac: casbin/minio/tink services
-- camelia: cms/forum services
+- jasmine: minio services
+- lily: texlive worker
+- daisy: email worker
+- ~~lilac~~: casbin/minio/tink services
+- ~~lily~~: tex => pdf/word, epub, Excel, ImageMagic services
+- ~~camelia~~: cms/forum services
 - ~~daffodil~~: tex, pdf, word, epub, excel, imagemagic services
