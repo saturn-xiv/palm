@@ -6,7 +6,7 @@ enum Currency {
 }
 
 struct Amount {
-    1:int32 total,
+    1:i32 total,
     2:Currency currenty,
 }
 

@@ -39,8 +39,21 @@ function generate_thrift_for_go() {
     thrift -out $(dirname $2) --gen go:skip_remote,package=v1 -r $1
 }
 
+function generate_thrift_for_java() {
+    cd $WORKSPACE
+    echo "generate thrift $1 => $2"
+
+    echo "generate thrift-java for $1"
+    local target=$2/$3
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    thrift -out $2 --gen java:sorted_containers,generated_annotations=undated -r $1
+}
+
 generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/loquat/gourd
 generate_thrift_for_go $WORKSPACE/gourd/gourd.thrift $WORKSPACE/gourd/services/v1
+generate_thrift_for_java $WORKSPACE/musa/wechat-pay.thrift $WORKSPACE/musa/src/main/java com/github/saturn_xiv/palm/plugins/musa/v1/wechat_pay
 
 echo 'done.'
 exit 0
