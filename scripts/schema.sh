@@ -80,6 +80,7 @@ generate_thrift_for_java $WORKSPACE/musa/wechat-pay.thrift $WORKSPACE/musa/src/m
 generate_thrift_for_node $WORKSPACE/morus/markdown.thrift $WORKSPACE/morus/src/protocols
 generate_thrift_for_go $WORKSPACE/daisy/daisy.thrift $WORKSPACE/daisy/services/v1
 generate_thrift_for_go $WORKSPACE/tuberose/tuberose.thrift $WORKSPACE/tuberose/services/v1
+generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/jasmine/services/v1
 
 echo 'done.'
 exit 0

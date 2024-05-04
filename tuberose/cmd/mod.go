@@ -20,9 +20,9 @@ var (
 )
 
 var root_cmd = &cobra.Command{
-	Use:     "daisy",
-	Short:   "Daisy",
-	Long:    fmt.Sprintf("A smtp worker(%s).", repo_url),
+	Use:     "tuberose",
+	Short:   "Tuberose",
+	Long:    fmt.Sprintf("A sms worker & callback handler(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {

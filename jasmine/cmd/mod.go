@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/saturn-xiv/palm/gourd/cmd/rpc"
+	"github.com/saturn-xiv/palm/jasmine/cmd/rpc"
 )
 
 var (
@@ -19,9 +19,9 @@ var (
 )
 
 var root_cmd = &cobra.Command{
-	Use:     "gourd",
-	Short:   "Gourd",
-	Long:    fmt.Sprintf("A rbac service based on Casbin.(%s).", repo_url),
+	Use:     "jasmine",
+	Short:   "Jasmine",
+	Long:    fmt.Sprintf("A minio service(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
@@ -54,20 +54,19 @@ func init() {
 	{
 		var cmd = &cobra.Command{
 			Use:   "rpc",
-			Short: "Start a gRPC server",
+			Short: "Start a rpc server",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-
 				var err error
 				if gl_rpc_ssl {
-					err = rpc.Launch(gl_rpc_port, gl_config, git_version, &rpc.Ssl{
+					err = rpc.Launch(gl_rpc_port, gl_config, &rpc.Ssl{
 						CaFile:   gl_rpc_ca_file,
 						KeyFile:  gl_rpc_key_file,
 						CertFile: gl_rpc_cert_file,
 					})
 
 				} else {
-					err = rpc.Launch(gl_rpc_port, gl_config, git_version, nil)
+					err = rpc.Launch(gl_rpc_port, gl_config, nil)
 				}
 
 				if err != nil {
