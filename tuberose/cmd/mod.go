@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 
 	send_sms_worker "github.com/saturn-xiv/palm/tuberose/cmd/send-sms-worker"
+	"github.com/saturn-xiv/palm/tuberose/cmd/web"
 )
 
 var (
@@ -42,6 +43,8 @@ var (
 
 	gl_send_sms_worker_queue_name    string
 	gl_send_sms_worker_consumer_name string
+
+	gl_web_listen_port uint16
 )
 
 func init() {
@@ -64,7 +67,21 @@ func init() {
 		cmd.Flags().StringVarP(&gl_send_sms_worker_consumer_name, "name", "n", "send-sms", "consumer name")
 		root_cmd.AddCommand(cmd)
 	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "web",
+			Short: "Start http server",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := web.Launch(gl_config, gl_web_listen_port); err != nil {
+					log.Fatalf("start gRPC server: %s", err)
+				}
+			},
+		}
 
+		cmd.Flags().Uint16VarP(&gl_web_listen_port, "port", "o", 8080, "listening port")
+		root_cmd.AddCommand(cmd)
+	}
 }
 
 func set_log(debug bool) {
