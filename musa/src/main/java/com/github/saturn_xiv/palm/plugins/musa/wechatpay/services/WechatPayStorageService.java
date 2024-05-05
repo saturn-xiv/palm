@@ -1,6 +1,5 @@
 package com.github.saturn_xiv.palm.plugins.musa.wechatpay.services;
 
-import com.github.saturn_xiv.palm.plugins.musa.v1.*;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.FundFlowBill;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.TradeBill;
 

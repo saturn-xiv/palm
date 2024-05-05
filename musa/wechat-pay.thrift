@@ -104,8 +104,8 @@ struct QueryRefundResponse {
 }
 
 service Transfer {
-    ExecuteTransferBatchResponse create_batch(1:string app_id, 2:string out_no, 3:string name, 4: string remark, 5:list<ExecuteTransferBatchRequestDetail> details, 6:string scene_id);
-    ExecuteTransferBatchResponse execute_batch(1:string app_id, 2:string name, 3: string remark, 4:list<ExecuteTransferBatchRequestDetail> details, 5:string scene_id);
+    ExecuteTransferBatchResponse execute_batch(1:string app_id, 2:string out_batch_no, 3:string name, 4: string remark, 5:list<ExecuteTransferBatchRequestDetail> details, 6:string scene_id);
+    ExecuteTransferBatchResponse create_batch(1:string app_id, 2:string name, 3: string remark, 4:list<ExecuteTransferBatchRequestDetail> details, 5:string scene_id);
     QueryTransferBatchResponse query_batch(1:string out_batch_no, 2:QueryBatchTransferDetailStatus detail_status, 3:i32 offset, 4:i32 limit);
     QueryTransferDetailResponse query_detail(1:string out_batch_no, 2:string out_detail_no);
     binary get_bill_receipt(1:string out_batch_no);
@@ -122,7 +122,7 @@ struct ExecuteTransferBatchRequestDetail {
 
 struct ExecuteTransferBatchResponse {
     1:string out_batch_no,
-    2:list<CreateExecuteTransferBatchResponseDetail> details,
+    2:list<ExecuteTransferBatchResponseDetail> details,
     9:ExecuteTransferBatchResponseStatus status,
 }
 
@@ -136,7 +136,7 @@ struct ExecuteTransferBatchResponseSucceeded {
     2:string create_time,
 }
 
-struct CreateExecuteTransferBatchResponseDetail {
+struct ExecuteTransferBatchResponseDetail {
     1:string open_id,
     2:string out_detail_no,
 }

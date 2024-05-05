@@ -1,7 +1,6 @@
 package com.github.saturn_xiv.palm.plugins.musa.wechatpay.services.impl.rpc;
 
-import com.github.saturn_xiv.palm.plugins.musa.v1.Error;
-import com.github.saturn_xiv.palm.plugins.musa.v1.*;
+import com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.*;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.WechatPayClient;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.helpers.WechatPayBatchTransferHelper;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.OutNoType;
@@ -10,92 +9,45 @@ import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.transfer.Transfe
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.repositories.WechatPayTransferBillReceiptRepository;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.repositories.WechatPayTransferDetailElectronicReceiptRepository;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.services.WechatPayStorageService;
-import com.google.protobuf.ByteString;
 import com.wechat.pay.java.core.exception.ServiceException;
 import com.wechat.pay.java.service.transferbatch.model.TransferDetailInput;
-import io.grpc.Status;
-import io.grpc.stub.StreamObserver;
+import jakarta.annotation.PostConstruct;
+import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import java.lang.Error;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Component("palm.musa.service.rpc.wechat-pay.transfer")
-public class WechatPayTransferServiceImpl extends WechatPayTransferGrpc.WechatPayTransferImplBase {
+public class WechatPayTransferServiceImpl implements Transfer.Iface {
     @Override
-    public void getBillReceipt(WechatPayTransferGetBillReceiptRequest request,
-                               StreamObserver<WechatPayTransferGetReceiptResponse> responseObserver) {
-        final var it = transferBillReceiptRepository.findByOutBatchNo(request.getOutBatchNo());
-
-        if (it == null) {
-            logger.warn("couldn't find transfer {}", request.getOutBatchNo());
-            var item = new TransferBillReceipt();
-            item.setOutBatchNo(request.getOutBatchNo());
-            item.setSignatureStatus(ReceiptSignatureStatus.PENDING);
-            final var now = new Date();
-            item.setUpdatedAt(now);
-            item.setCreatedAt(now);
-            transferBillReceiptRepository.save(item);
-            responseObserver.onError(
-                    Status.NOT_FOUND
-                            .withDescription("not found, put it into task queue, please check it later")
-                            .asRuntimeException());
-            return;
-        }
-
-        if (it.getSignatureStatus() == ReceiptSignatureStatus.FINISHED) {
-            responseObserver.onNext(WechatPayTransferGetReceiptResponse.newBuilder()
-                    .setPayload(ByteString.copyFrom(it.getContent()))
-                    .build());
-            responseObserver.onCompleted();
-            return;
-        }
-
-        responseObserver.onError(
-                Status.UNAVAILABLE.withDescription("please wait another 30 minutes").asRuntimeException());
-    }
-
-    @Override
-    public void getElectronicReceipt(WechatPayTransferGetElectronicReceiptRequest request,
-                                     StreamObserver<WechatPayTransferGetReceiptResponse> responseObserver) {
-        final var it = transferDetailElectronicReceiptsRepository.findByOutBatchNoAndOutDetailNoAndAcceptType(
-                request.getOutBatchNo(),
-                request.getOutDetailNo(),
-                WechatPayClient.transferDetailElectronicReceiptAcceptType(request.getAcceptType())
-        );
-        responseObserver.onNext(WechatPayTransferGetReceiptResponse.newBuilder()
-                .setPayload(ByteString.copyFrom(it.getContent()))
-                .build());
-        responseObserver.onCompleted();
-    }
-
-    @Override
-    public void executeBatch(WechatPayExecuteBatchTransferRequest request,
-                             StreamObserver<WechatPayExecuteBatchTransferResponse> responseObserver) {
-        List<WechatPayExecuteBatchTransferResponse.Detail> transferDetailList = new ArrayList<>();
+    public ExecuteTransferBatchResponse execute_batch(String app_id, String out_no, String name, String remark, List<ExecuteTransferBatchRequestDetail> details, String scene_id) throws TException {
+        List<ExecuteTransferBatchRequestDetail> transferDetailList = new ArrayList<>();
         List<TransferDetailInput> transferDetailInputList = new ArrayList<>();
         long totalAmount = 0;
-        for (var it : request.getDetailsList()) {
-
+        for (var it : details) {
             final var outDetailsNo = WechatPayClient.outNo(OutNoType.BATCH_TRANSFER_DETAIL);
-
             totalAmount += it.getAmount();
             {
                 var tdi = new TransferDetailInput();
                 tdi.setTransferAmount(it.getAmount());
                 tdi.setTransferRemark(it.getRemark());
                 tdi.setOutDetailNo(outDetailsNo);
-                tdi.setOpenid(it.getOpenId());
+                tdi.setOpenid(it.getOpen_id());
                 tdi.setUserName(it.getUsername());
                 logger.debug("add detail ({},{}) {} {} {}",
-                        it.getUsername(), it.getOpenId(), outDetailsNo, it.getAmount(), it.getRemark());
+                        it.getUsername(), it.getOpen_id(), outDetailsNo, it.getAmount(), it.getRemark());
                 transferDetailInputList.add(tdi);
             }
+            var detail = new ExecuteTransferBatchRequestDetail();
+            detail.setOpen_id(it.getOpen_id());
+            detail.setd
             transferDetailList.add(WechatPayExecuteBatchTransferResponse.Detail.newBuilder()
                     .setOpenId(it.getOpenId())
                     .setOutDetailNo(outDetailsNo)
@@ -146,109 +98,113 @@ public class WechatPayTransferServiceImpl extends WechatPayTransferGrpc.WechatPa
                             .build()
                     ).build());
         }
-        responseObserver.onCompleted();
     }
 
     @Override
-    public void queryBatch(WechatPayQueryBatchTransferRequest request,
-                           StreamObserver<WechatPayQueryBatchTransferResponse> responseObserver) {
-        logger.info("query batch transfer {} ({}, {})",
-                request.getOutBatchNo(), request.getOffset(), request.getLimit());
+    public ExecuteTransferBatchResponse create_batch(String app_id, String name, String remark, List<ExecuteTransferBatchRequestDetail> details, String scene_id) throws TException {
+        return this.execute_batch(app_id,WechatPayClient.outNo(OutNoType.BATCH_TRANSFER),name,remark,details,scene_id);
+    }
+
+    @Override
+    public QueryTransferBatchResponse query_batch(String out_batch_no, QueryBatchTransferDetailStatus detail_status, int offset, int limit) throws TException {
+        logger.info("query batch transfer {} ({}, {})", out_batch_no, offset, limit);
         final var response = transferBatchHelper.query(
-                request.getOutBatchNo(),
-                request.getOffset(), request.getLimit(),
-                WechatPayClient.batchTransferDetailStatus(request.getDetailStatus())
+                out_batch_no, offset, limit,
+                WechatPayClient.batchTransferDetailStatus(detail_status)
         );
 
 
-        List<WechatPayQueryBatchTransferResponse.Detail> transferDetailList = new ArrayList<>();
+        List<QueryTransferBatchResponseDetail> transferDetailList = new ArrayList<>();
         for (var it : response.getTransferDetailList()) {
-            transferDetailList.add(
-                    WechatPayQueryBatchTransferResponse.Detail.newBuilder()
-                            .setDetailId(it.getDetailId())
-                            .setOutDetailNo(it.getOutDetailNo())
-                            .setStatus(it.getDetailStatus())
-                            .build()
-            );
+            var detail = new QueryTransferBatchResponseDetail();
+            detail.setDetail_id(it.getDetailId());
+            detail.setOut_detail_no(it.getOutDetailNo());
+            detail.setStatus(it.getDetailStatus());
+            transferDetailList.add(detail);
         }
-        var tb = WechatPayQueryBatchTransferResponse.Batch.newBuilder()
-                .setMchId(response.getTransferBatch().getMchid())
-                .setOutBatchNo(response.getTransferBatch().getOutBatchNo())
-                .setBatchId(response.getTransferBatch().getBatchId())
-                .setAppId(response.getTransferBatch().getAppid())
-                .setBatchStatus(response.getTransferBatch().getBatchStatus())
-                .setBatchType(response.getTransferBatch().getBatchType())
-                .setBatchName(response.getTransferBatch().getBatchName())
-                .setBatchRemark(response.getTransferBatch().getBatchRemark())
-                .setTotalAmount(response.getTransferBatch().getTotalAmount())
-                .setTotalNum(response.getTransferBatch().getTotalNum());
+
+        var it = new QueryTransferBatchResponse();
+        it.setMachent_id(response.getTransferBatch().getBatchId());
+        it.setOut_batch_no(response.getTransferBatch().getOutBatchNo());
+        it.setBatch_id(response.getTransferBatch().getBatchId());
+        it.setApp_id(response.getTransferBatch().getAppid());
+        it.setBatch_status(response.getTransferBatch().getBatchStatus());
+        it.setBatch_type(response.getTransferBatch().getBatchType());
+        it.setBatch_name(response.getTransferBatch().getBatchName());
+        it.setBatch_remark(response.getTransferBatch().getBatchRemark());
+        it.setTotal_amount(response.getTransferBatch().getTotalAmount());
+        it.setTotal_num(response.getTransferBatch().getTotalNum());
+        it.setDetails(transferDetailList);
+
         if (response.getTransferBatch().getCloseReason() != null) {
-            tb.setCloseReason(response.getTransferBatch().getCloseReason().name());
+            it.setClose_reason(response.getTransferBatch().getCloseReason().name());
         }
         if (response.getTransferBatch().getCreateTime() != null) {
-            tb.setCreateTime(response.getTransferBatch().getCreateTime());
+            it.setCreate_time(response.getTransferBatch().getCreateTime());
         }
         if (response.getTransferBatch().getUpdateTime() != null) {
-            tb.setUpdateTime(response.getTransferBatch().getUpdateTime());
+            it.setUpdate_time(response.getTransferBatch().getUpdateTime());
         }
         if (response.getTransferBatch().getSuccessAmount() != null) {
-            tb.setSuccessAmount(response.getTransferBatch().getSuccessAmount());
+            it.setSuccess_amount(response.getTransferBatch().getSuccessAmount());
         }
         if (response.getTransferBatch().getSuccessNum() != null) {
-            tb.setSuccessNum(response.getTransferBatch().getSuccessNum());
+            it.setSuccess_num(response.getTransferBatch().getSuccessNum());
         }
         if (response.getTransferBatch().getFailAmount() != null) {
-            tb.setFailAmount(response.getTransferBatch().getFailAmount());
+            it.setFail_amount(response.getTransferBatch().getFailAmount());
         }
         if (response.getTransferBatch().getFailNum() != null) {
-            tb.setFailNum(response.getTransferBatch().getFailNum());
+            it.setFail_num(response.getTransferBatch().getFailNum());
         }
 
-        responseObserver.onNext(WechatPayQueryBatchTransferResponse.newBuilder()
-                .setBatch(tb.build())
-                .addAllDetails(transferDetailList)
-                .build());
-        responseObserver.onCompleted();
-
+        return it;
     }
 
     @Override
-    public void queryDetail(WechatPayQueryTransferDetailRequest request,
-                            StreamObserver<WechatPayQueryTransferDetailResponse> responseObserver) {
-        logger.info("query transfer detail {} ({})", request.getOutBatchNo(), request.getOutDetailNo());
-        final var response = transferBatchHelper.query(request.getOutBatchNo(), request.getOutDetailNo());
+    public QueryTransferDetailResponse query_detail(String out_batch_no, String out_detail_no) throws TException {
+        logger.info("query transfer detail {} ({})", out_batch_no, out_detail_no);
+        final var response = transferBatchHelper.query(out_batch_no, out_detail_no);
 
-        var builder = WechatPayQueryTransferDetailResponse.newBuilder()
-                .setMchId(response.getMchid())
-                .setOutBatchNo(response.getOutBatchNo())
-                .setBatchId(response.getBatchId())
-                .setAppId(response.getAppid())
-                .setOutDetailNo(response.getOutDetailNo())
-                .setDetailId(response.getDetailId())
-                .setDetailStatus(response.getDetailStatus())
-                .setTransferAmount(response.getTransferAmount())
-                .setTransferRemark(response.getTransferRemark())
-                .setOpenId(response.getOpenid());
+        var it = new QueryTransferDetailResponse();
+        it.setMerchant_id(response.getMchid());
+        it.setOut_batch_no(response.getOutBatchNo());
+        it.setBatch_id(response.getBatchId());
+        it.setApp_id(response.getAppid());
+        it.setOut_detail_no(response.getOutDetailNo());
+        it.setDetail_id(response.getDetailId());
+        it.setDetail_status(response.getDetailStatus());
+        it.setTransfer_amount(response.getTransferAmount());
+        it.setTransfer_remark(response.getTransferRemark());
+        it.setOpen_id(response.getOpenid());
 
 
 //        TODO initial-time & update-time may be null
         if (response.getInitiateTime() != null) {
-            builder = builder.setInitiateTime(response.getInitiateTime());
+            it.setInitiate_time(response.getInitiateTime());
         }
         if (response.getUpdateTime() != null) {
-            builder = builder.setUpdateTime(response.getUpdateTime());
+            it.setUpdate_time(response.getUpdateTime());
         }
 
         if (response.getFailReason() != null) {
-            builder = builder.setFailReason(response.getFailReason().name());
+            it.setFail_reason(response.getFailReason().name());
         }
         if (response.getUserName() != null) {
-            builder = builder.setUserName(response.getUserName());
+            it.setUser_name(response.getUserName());
         }
 
-        responseObserver.onNext(builder.build());
-        responseObserver.onCompleted();
+        return it;
+    }
 
+    @Override
+    public ByteBuffer get_bill_receipt(String out_batch_no) throws TException {
+        return null;
+    }
+
+    @Override
+    public ByteBuffer get_electronic_receipt(TransferElectronicReceiptAcceptType accept_type, String out_batch_no, String out_detail_no) throws TException {
+        return null;
     }
 
     @PostConstruct
@@ -267,6 +223,5 @@ public class WechatPayTransferServiceImpl extends WechatPayTransferGrpc.WechatPa
     WechatPayTransferDetailElectronicReceiptRepository transferDetailElectronicReceiptsRepository;
 
     private WechatPayBatchTransferHelper transferBatchHelper;
-
     private final static Logger logger = LoggerFactory.getLogger(WechatPayTransferServiceImpl.class);
 }

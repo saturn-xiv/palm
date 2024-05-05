@@ -1,6 +1,5 @@
 package com.github.saturn_xiv.palm.plugins.musa.wechatpay.services.impl;
 
-import com.github.saturn_xiv.palm.plugins.musa.v1.*;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.*;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.transfer.ReceiptAcceptType;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.transfer.ReceiptSignatureStatus;

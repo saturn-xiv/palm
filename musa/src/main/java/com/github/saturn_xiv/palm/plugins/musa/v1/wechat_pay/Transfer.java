@@ -12,9 +12,9 @@ public class Transfer {
 
   public interface Iface {
 
-    public ExecuteTransferBatchResponse create_batch(java.lang.String app_id, java.lang.String out_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException;
+    public ExecuteTransferBatchResponse execute_batch(java.lang.String app_id, java.lang.String out_batch_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException;
 
-    public ExecuteTransferBatchResponse execute_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException;
+    public ExecuteTransferBatchResponse create_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException;
 
     public QueryTransferBatchResponse query_batch(java.lang.String out_batch_no, QueryBatchTransferDetailStatus detail_status, int offset, int limit) throws org.apache.thrift.TException;
 
@@ -28,9 +28,9 @@ public class Transfer {
 
   public interface AsyncIface {
 
-    public void create_batch(java.lang.String app_id, java.lang.String out_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException;
+    public void execute_batch(java.lang.String app_id, java.lang.String out_batch_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException;
 
-    public void execute_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException;
+    public void create_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException;
 
     public void query_batch(java.lang.String out_batch_no, QueryBatchTransferDetailStatus detail_status, int offset, int limit, org.apache.thrift.async.AsyncMethodCallback<QueryTransferBatchResponse> resultHandler) throws org.apache.thrift.TException;
 
@@ -65,45 +65,17 @@ public class Transfer {
     }
 
     @Override
-    public ExecuteTransferBatchResponse create_batch(java.lang.String app_id, java.lang.String out_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
+    public ExecuteTransferBatchResponse execute_batch(java.lang.String app_id, java.lang.String out_batch_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
     {
-      send_create_batch(app_id, out_no, name, remark, details, scene_id);
-      return recv_create_batch();
-    }
-
-    public void send_create_batch(java.lang.String app_id, java.lang.String out_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
-    {
-      create_batch_args args = new create_batch_args();
-      args.setApp_id(app_id);
-      args.setOut_no(out_no);
-      args.setName(name);
-      args.setRemark(remark);
-      args.setDetails(details);
-      args.setScene_id(scene_id);
-      sendBase("create_batch", args);
-    }
-
-    public ExecuteTransferBatchResponse recv_create_batch() throws org.apache.thrift.TException
-    {
-      create_batch_result result = new create_batch_result();
-      receiveBase(result, "create_batch");
-      if (result.isSetSuccess()) {
-        return result.success;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "create_batch failed: unknown result");
-    }
-
-    @Override
-    public ExecuteTransferBatchResponse execute_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
-    {
-      send_execute_batch(app_id, name, remark, details, scene_id);
+      send_execute_batch(app_id, out_batch_no, name, remark, details, scene_id);
       return recv_execute_batch();
     }
 
-    public void send_execute_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
+    public void send_execute_batch(java.lang.String app_id, java.lang.String out_batch_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
     {
       execute_batch_args args = new execute_batch_args();
       args.setApp_id(app_id);
+      args.setOut_batch_no(out_batch_no);
       args.setName(name);
       args.setRemark(remark);
       args.setDetails(details);
@@ -119,6 +91,34 @@ public class Transfer {
         return result.success;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "execute_batch failed: unknown result");
+    }
+
+    @Override
+    public ExecuteTransferBatchResponse create_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
+    {
+      send_create_batch(app_id, name, remark, details, scene_id);
+      return recv_create_batch();
+    }
+
+    public void send_create_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id) throws org.apache.thrift.TException
+    {
+      create_batch_args args = new create_batch_args();
+      args.setApp_id(app_id);
+      args.setName(name);
+      args.setRemark(remark);
+      args.setDetails(details);
+      args.setScene_id(scene_id);
+      sendBase("create_batch", args);
+    }
+
+    public ExecuteTransferBatchResponse recv_create_batch() throws org.apache.thrift.TException
+    {
+      create_batch_result result = new create_batch_result();
+      receiveBase(result, "create_batch");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "create_batch failed: unknown result");
     }
 
     @Override
@@ -243,72 +243,24 @@ public class Transfer {
     }
 
     @Override
-    public void create_batch(java.lang.String app_id, java.lang.String out_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException {
+    public void execute_batch(java.lang.String app_id, java.lang.String out_batch_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      create_batch_call method_call = new create_batch_call(app_id, out_no, name, remark, details, scene_id, resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class create_batch_call extends org.apache.thrift.async.TAsyncMethodCall<ExecuteTransferBatchResponse> {
-      private java.lang.String app_id;
-      private java.lang.String out_no;
-      private java.lang.String name;
-      private java.lang.String remark;
-      private java.util.List<ExecuteTransferBatchRequestDetail> details;
-      private java.lang.String scene_id;
-      public create_batch_call(java.lang.String app_id, java.lang.String out_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-        this.app_id = app_id;
-        this.out_no = out_no;
-        this.name = name;
-        this.remark = remark;
-        this.details = details;
-        this.scene_id = scene_id;
-      }
-
-      @Override
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("create_batch", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        create_batch_args args = new create_batch_args();
-        args.setApp_id(app_id);
-        args.setOut_no(out_no);
-        args.setName(name);
-        args.setRemark(remark);
-        args.setDetails(details);
-        args.setScene_id(scene_id);
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      @Override
-      public ExecuteTransferBatchResponse getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new java.lang.IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_create_batch();
-      }
-    }
-
-    @Override
-    public void execute_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      execute_batch_call method_call = new execute_batch_call(app_id, name, remark, details, scene_id, resultHandler, this, ___protocolFactory, ___transport);
+      execute_batch_call method_call = new execute_batch_call(app_id, out_batch_no, name, remark, details, scene_id, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
     public static class execute_batch_call extends org.apache.thrift.async.TAsyncMethodCall<ExecuteTransferBatchResponse> {
       private java.lang.String app_id;
+      private java.lang.String out_batch_no;
       private java.lang.String name;
       private java.lang.String remark;
       private java.util.List<ExecuteTransferBatchRequestDetail> details;
       private java.lang.String scene_id;
-      public execute_batch_call(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      public execute_batch_call(java.lang.String app_id, java.lang.String out_batch_no, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.app_id = app_id;
+        this.out_batch_no = out_batch_no;
         this.name = name;
         this.remark = remark;
         this.details = details;
@@ -320,6 +272,7 @@ public class Transfer {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("execute_batch", org.apache.thrift.protocol.TMessageType.CALL, 0));
         execute_batch_args args = new execute_batch_args();
         args.setApp_id(app_id);
+        args.setOut_batch_no(out_batch_no);
         args.setName(name);
         args.setRemark(remark);
         args.setDetails(details);
@@ -336,6 +289,53 @@ public class Transfer {
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_execute_batch();
+      }
+    }
+
+    @Override
+    public void create_batch(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      create_batch_call method_call = new create_batch_call(app_id, name, remark, details, scene_id, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class create_batch_call extends org.apache.thrift.async.TAsyncMethodCall<ExecuteTransferBatchResponse> {
+      private java.lang.String app_id;
+      private java.lang.String name;
+      private java.lang.String remark;
+      private java.util.List<ExecuteTransferBatchRequestDetail> details;
+      private java.lang.String scene_id;
+      public create_batch_call(java.lang.String app_id, java.lang.String name, java.lang.String remark, java.util.List<ExecuteTransferBatchRequestDetail> details, java.lang.String scene_id, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.app_id = app_id;
+        this.name = name;
+        this.remark = remark;
+        this.details = details;
+        this.scene_id = scene_id;
+      }
+
+      @Override
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("create_batch", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        create_batch_args args = new create_batch_args();
+        args.setApp_id(app_id);
+        args.setName(name);
+        args.setRemark(remark);
+        args.setDetails(details);
+        args.setScene_id(scene_id);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      @Override
+      public ExecuteTransferBatchResponse getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_create_batch();
       }
     }
 
@@ -510,41 +510,13 @@ public class Transfer {
     }
 
     private static <I extends Iface> java.util.Map<java.lang.String,  org.apache.thrift.ProcessFunction<I, ? extends org.apache.thrift.TBase>> getProcessMap(java.util.Map<java.lang.String, org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
-      processMap.put("create_batch", new create_batch());
       processMap.put("execute_batch", new execute_batch());
+      processMap.put("create_batch", new create_batch());
       processMap.put("query_batch", new query_batch());
       processMap.put("query_detail", new query_detail());
       processMap.put("get_bill_receipt", new get_bill_receipt());
       processMap.put("get_electronic_receipt", new get_electronic_receipt());
       return processMap;
-    }
-
-    public static class create_batch<I extends Iface> extends org.apache.thrift.ProcessFunction<I, create_batch_args> {
-      public create_batch() {
-        super("create_batch");
-      }
-
-      @Override
-      public create_batch_args getEmptyArgsInstance() {
-        return new create_batch_args();
-      }
-
-      @Override
-      protected boolean isOneway() {
-        return false;
-      }
-
-      @Override
-      protected boolean rethrowUnhandledExceptions() {
-        return false;
-      }
-
-      @Override
-      public create_batch_result getResult(I iface, create_batch_args args) throws org.apache.thrift.TException {
-        create_batch_result result = new create_batch_result();
-        result.success = iface.create_batch(args.app_id, args.out_no, args.name, args.remark, args.details, args.scene_id);
-        return result;
-      }
     }
 
     public static class execute_batch<I extends Iface> extends org.apache.thrift.ProcessFunction<I, execute_batch_args> {
@@ -570,7 +542,35 @@ public class Transfer {
       @Override
       public execute_batch_result getResult(I iface, execute_batch_args args) throws org.apache.thrift.TException {
         execute_batch_result result = new execute_batch_result();
-        result.success = iface.execute_batch(args.app_id, args.name, args.remark, args.details, args.scene_id);
+        result.success = iface.execute_batch(args.app_id, args.out_batch_no, args.name, args.remark, args.details, args.scene_id);
+        return result;
+      }
+    }
+
+    public static class create_batch<I extends Iface> extends org.apache.thrift.ProcessFunction<I, create_batch_args> {
+      public create_batch() {
+        super("create_batch");
+      }
+
+      @Override
+      public create_batch_args getEmptyArgsInstance() {
+        return new create_batch_args();
+      }
+
+      @Override
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      protected boolean rethrowUnhandledExceptions() {
+        return false;
+      }
+
+      @Override
+      public create_batch_result getResult(I iface, create_batch_args args) throws org.apache.thrift.TException {
+        create_batch_result result = new create_batch_result();
+        result.success = iface.create_batch(args.app_id, args.name, args.remark, args.details, args.scene_id);
         return result;
       }
     }
@@ -700,80 +700,13 @@ public class Transfer {
     }
 
     private static <I extends AsyncIface> java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase,?>> getProcessMap(java.util.Map<java.lang.String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
-      processMap.put("create_batch", new create_batch());
       processMap.put("execute_batch", new execute_batch());
+      processMap.put("create_batch", new create_batch());
       processMap.put("query_batch", new query_batch());
       processMap.put("query_detail", new query_detail());
       processMap.put("get_bill_receipt", new get_bill_receipt());
       processMap.put("get_electronic_receipt", new get_electronic_receipt());
       return processMap;
-    }
-
-    public static class create_batch<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, create_batch_args, ExecuteTransferBatchResponse> {
-      public create_batch() {
-        super("create_batch");
-      }
-
-      @Override
-      public create_batch_args getEmptyArgsInstance() {
-        return new create_batch_args();
-      }
-
-      @Override
-      public org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
-        final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse>() { 
-          @Override
-          public void onComplete(ExecuteTransferBatchResponse o) {
-            create_batch_result result = new create_batch_result();
-            result.success = o;
-            try {
-              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
-            } catch (org.apache.thrift.transport.TTransportException e) {
-              _LOGGER.error("TTransportException writing to internal frame buffer", e);
-              fb.close();
-            } catch (java.lang.Exception e) {
-              _LOGGER.error("Exception writing to internal frame buffer", e);
-              onError(e);
-            }
-          }
-          @Override
-          public void onError(java.lang.Exception e) {
-            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
-            org.apache.thrift.TSerializable msg;
-            create_batch_result result = new create_batch_result();
-            if (e instanceof org.apache.thrift.transport.TTransportException) {
-              _LOGGER.error("TTransportException inside handler", e);
-              fb.close();
-              return;
-            } else if (e instanceof org.apache.thrift.TApplicationException) {
-              _LOGGER.error("TApplicationException inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = (org.apache.thrift.TApplicationException)e;
-            } else {
-              _LOGGER.error("Exception inside handler", e);
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
-            }
-            try {
-              fcall.sendResponse(fb,msg,msgType,seqid);
-            } catch (java.lang.Exception ex) {
-              _LOGGER.error("Exception writing to internal frame buffer", ex);
-              fb.close();
-            }
-          }
-        };
-      }
-
-      @Override
-      protected boolean isOneway() {
-        return false;
-      }
-
-      @Override
-      public void start(I iface, create_batch_args args, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException {
-        iface.create_batch(args.app_id, args.out_no, args.name, args.remark, args.details, args.scene_id,resultHandler);
-      }
     }
 
     public static class execute_batch<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, execute_batch_args, ExecuteTransferBatchResponse> {
@@ -839,7 +772,74 @@ public class Transfer {
 
       @Override
       public void start(I iface, execute_batch_args args, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException {
-        iface.execute_batch(args.app_id, args.name, args.remark, args.details, args.scene_id,resultHandler);
+        iface.execute_batch(args.app_id, args.out_batch_no, args.name, args.remark, args.details, args.scene_id,resultHandler);
+      }
+    }
+
+    public static class create_batch<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, create_batch_args, ExecuteTransferBatchResponse> {
+      public create_batch() {
+        super("create_batch");
+      }
+
+      @Override
+      public create_batch_args getEmptyArgsInstance() {
+        return new create_batch_args();
+      }
+
+      @Override
+      public org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse>() { 
+          @Override
+          public void onComplete(ExecuteTransferBatchResponse o) {
+            create_batch_result result = new create_batch_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          @Override
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            create_batch_result result = new create_batch_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      @Override
+      protected boolean isOneway() {
+        return false;
+      }
+
+      @Override
+      public void start(I iface, create_batch_args args, org.apache.thrift.async.AsyncMethodCallback<ExecuteTransferBatchResponse> resultHandler) throws org.apache.thrift.TException {
+        iface.create_batch(args.app_id, args.name, args.remark, args.details, args.scene_id,resultHandler);
       }
     }
 
@@ -1114,21 +1114,21 @@ public class Transfer {
   }
 
   @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
-  public static class create_batch_args implements org.apache.thrift.TBase<create_batch_args, create_batch_args._Fields>, java.io.Serializable, Cloneable, Comparable<create_batch_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("create_batch_args");
+  public static class execute_batch_args implements org.apache.thrift.TBase<execute_batch_args, execute_batch_args._Fields>, java.io.Serializable, Cloneable, Comparable<execute_batch_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("execute_batch_args");
 
     private static final org.apache.thrift.protocol.TField APP_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("app_id", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField OUT_NO_FIELD_DESC = new org.apache.thrift.protocol.TField("out_no", org.apache.thrift.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift.protocol.TField OUT_BATCH_NO_FIELD_DESC = new org.apache.thrift.protocol.TField("out_batch_no", org.apache.thrift.protocol.TType.STRING, (short)2);
     private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)3);
     private static final org.apache.thrift.protocol.TField REMARK_FIELD_DESC = new org.apache.thrift.protocol.TField("remark", org.apache.thrift.protocol.TType.STRING, (short)4);
     private static final org.apache.thrift.protocol.TField DETAILS_FIELD_DESC = new org.apache.thrift.protocol.TField("details", org.apache.thrift.protocol.TType.LIST, (short)5);
     private static final org.apache.thrift.protocol.TField SCENE_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("scene_id", org.apache.thrift.protocol.TType.STRING, (short)6);
 
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new create_batch_argsStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new create_batch_argsTupleSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new execute_batch_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new execute_batch_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable java.lang.String app_id; // required
-    public @org.apache.thrift.annotation.Nullable java.lang.String out_no; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String out_batch_no; // required
     public @org.apache.thrift.annotation.Nullable java.lang.String name; // required
     public @org.apache.thrift.annotation.Nullable java.lang.String remark; // required
     public @org.apache.thrift.annotation.Nullable java.util.List<ExecuteTransferBatchRequestDetail> details; // required
@@ -1137,7 +1137,7 @@ public class Transfer {
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       APP_ID((short)1, "app_id"),
-      OUT_NO((short)2, "out_no"),
+      OUT_BATCH_NO((short)2, "out_batch_no"),
       NAME((short)3, "name"),
       REMARK((short)4, "remark"),
       DETAILS((short)5, "details"),
@@ -1159,8 +1159,8 @@ public class Transfer {
         switch(fieldId) {
           case 1: // APP_ID
             return APP_ID;
-          case 2: // OUT_NO
-            return OUT_NO;
+          case 2: // OUT_BATCH_NO
+            return OUT_BATCH_NO;
           case 3: // NAME
             return NAME;
           case 4: // REMARK
@@ -1217,1342 +1217,7 @@ public class Transfer {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.OUT_NO, new org.apache.thrift.meta_data.FieldMetaData("out_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.REMARK, new org.apache.thrift.meta_data.FieldMetaData("remark", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.DETAILS, new org.apache.thrift.meta_data.FieldMetaData("details", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchRequestDetail.class))));
-      tmpMap.put(_Fields.SCENE_ID, new org.apache.thrift.meta_data.FieldMetaData("scene_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(create_batch_args.class, metaDataMap);
-    }
-
-    public create_batch_args() {
-    }
-
-    public create_batch_args(
-      java.lang.String app_id,
-      java.lang.String out_no,
-      java.lang.String name,
-      java.lang.String remark,
-      java.util.List<ExecuteTransferBatchRequestDetail> details,
-      java.lang.String scene_id)
-    {
-      this();
-      this.app_id = app_id;
-      this.out_no = out_no;
-      this.name = name;
-      this.remark = remark;
-      this.details = details;
-      this.scene_id = scene_id;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public create_batch_args(create_batch_args other) {
-      if (other.isSetApp_id()) {
-        this.app_id = other.app_id;
-      }
-      if (other.isSetOut_no()) {
-        this.out_no = other.out_no;
-      }
-      if (other.isSetName()) {
-        this.name = other.name;
-      }
-      if (other.isSetRemark()) {
-        this.remark = other.remark;
-      }
-      if (other.isSetDetails()) {
-        java.util.List<ExecuteTransferBatchRequestDetail> __this__details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(other.details.size());
-        for (ExecuteTransferBatchRequestDetail other_element : other.details) {
-          __this__details.add(new ExecuteTransferBatchRequestDetail(other_element));
-        }
-        this.details = __this__details;
-      }
-      if (other.isSetScene_id()) {
-        this.scene_id = other.scene_id;
-      }
-    }
-
-    @Override
-    public create_batch_args deepCopy() {
-      return new create_batch_args(this);
-    }
-
-    @Override
-    public void clear() {
-      this.app_id = null;
-      this.out_no = null;
-      this.name = null;
-      this.remark = null;
-      this.details = null;
-      this.scene_id = null;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.lang.String getApp_id() {
-      return this.app_id;
-    }
-
-    public create_batch_args setApp_id(@org.apache.thrift.annotation.Nullable java.lang.String app_id) {
-      this.app_id = app_id;
-      return this;
-    }
-
-    public void unsetApp_id() {
-      this.app_id = null;
-    }
-
-    /** Returns true if field app_id is set (has been assigned a value) and false otherwise */
-    public boolean isSetApp_id() {
-      return this.app_id != null;
-    }
-
-    public void setApp_idIsSet(boolean value) {
-      if (!value) {
-        this.app_id = null;
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.lang.String getOut_no() {
-      return this.out_no;
-    }
-
-    public create_batch_args setOut_no(@org.apache.thrift.annotation.Nullable java.lang.String out_no) {
-      this.out_no = out_no;
-      return this;
-    }
-
-    public void unsetOut_no() {
-      this.out_no = null;
-    }
-
-    /** Returns true if field out_no is set (has been assigned a value) and false otherwise */
-    public boolean isSetOut_no() {
-      return this.out_no != null;
-    }
-
-    public void setOut_noIsSet(boolean value) {
-      if (!value) {
-        this.out_no = null;
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.lang.String getName() {
-      return this.name;
-    }
-
-    public create_batch_args setName(@org.apache.thrift.annotation.Nullable java.lang.String name) {
-      this.name = name;
-      return this;
-    }
-
-    public void unsetName() {
-      this.name = null;
-    }
-
-    /** Returns true if field name is set (has been assigned a value) and false otherwise */
-    public boolean isSetName() {
-      return this.name != null;
-    }
-
-    public void setNameIsSet(boolean value) {
-      if (!value) {
-        this.name = null;
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.lang.String getRemark() {
-      return this.remark;
-    }
-
-    public create_batch_args setRemark(@org.apache.thrift.annotation.Nullable java.lang.String remark) {
-      this.remark = remark;
-      return this;
-    }
-
-    public void unsetRemark() {
-      this.remark = null;
-    }
-
-    /** Returns true if field remark is set (has been assigned a value) and false otherwise */
-    public boolean isSetRemark() {
-      return this.remark != null;
-    }
-
-    public void setRemarkIsSet(boolean value) {
-      if (!value) {
-        this.remark = null;
-      }
-    }
-
-    public int getDetailsSize() {
-      return (this.details == null) ? 0 : this.details.size();
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.Iterator<ExecuteTransferBatchRequestDetail> getDetailsIterator() {
-      return (this.details == null) ? null : this.details.iterator();
-    }
-
-    public void addToDetails(ExecuteTransferBatchRequestDetail elem) {
-      if (this.details == null) {
-        this.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>();
-      }
-      this.details.add(elem);
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.util.List<ExecuteTransferBatchRequestDetail> getDetails() {
-      return this.details;
-    }
-
-    public create_batch_args setDetails(@org.apache.thrift.annotation.Nullable java.util.List<ExecuteTransferBatchRequestDetail> details) {
-      this.details = details;
-      return this;
-    }
-
-    public void unsetDetails() {
-      this.details = null;
-    }
-
-    /** Returns true if field details is set (has been assigned a value) and false otherwise */
-    public boolean isSetDetails() {
-      return this.details != null;
-    }
-
-    public void setDetailsIsSet(boolean value) {
-      if (!value) {
-        this.details = null;
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public java.lang.String getScene_id() {
-      return this.scene_id;
-    }
-
-    public create_batch_args setScene_id(@org.apache.thrift.annotation.Nullable java.lang.String scene_id) {
-      this.scene_id = scene_id;
-      return this;
-    }
-
-    public void unsetScene_id() {
-      this.scene_id = null;
-    }
-
-    /** Returns true if field scene_id is set (has been assigned a value) and false otherwise */
-    public boolean isSetScene_id() {
-      return this.scene_id != null;
-    }
-
-    public void setScene_idIsSet(boolean value) {
-      if (!value) {
-        this.scene_id = null;
-      }
-    }
-
-    @Override
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
-      switch (field) {
-      case APP_ID:
-        if (value == null) {
-          unsetApp_id();
-        } else {
-          setApp_id((java.lang.String)value);
-        }
-        break;
-
-      case OUT_NO:
-        if (value == null) {
-          unsetOut_no();
-        } else {
-          setOut_no((java.lang.String)value);
-        }
-        break;
-
-      case NAME:
-        if (value == null) {
-          unsetName();
-        } else {
-          setName((java.lang.String)value);
-        }
-        break;
-
-      case REMARK:
-        if (value == null) {
-          unsetRemark();
-        } else {
-          setRemark((java.lang.String)value);
-        }
-        break;
-
-      case DETAILS:
-        if (value == null) {
-          unsetDetails();
-        } else {
-          setDetails((java.util.List<ExecuteTransferBatchRequestDetail>)value);
-        }
-        break;
-
-      case SCENE_ID:
-        if (value == null) {
-          unsetScene_id();
-        } else {
-          setScene_id((java.lang.String)value);
-        }
-        break;
-
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    @Override
-    public java.lang.Object getFieldValue(_Fields field) {
-      switch (field) {
-      case APP_ID:
-        return getApp_id();
-
-      case OUT_NO:
-        return getOut_no();
-
-      case NAME:
-        return getName();
-
-      case REMARK:
-        return getRemark();
-
-      case DETAILS:
-        return getDetails();
-
-      case SCENE_ID:
-        return getScene_id();
-
-      }
-      throw new java.lang.IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    @Override
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new java.lang.IllegalArgumentException();
-      }
-
-      switch (field) {
-      case APP_ID:
-        return isSetApp_id();
-      case OUT_NO:
-        return isSetOut_no();
-      case NAME:
-        return isSetName();
-      case REMARK:
-        return isSetRemark();
-      case DETAILS:
-        return isSetDetails();
-      case SCENE_ID:
-        return isSetScene_id();
-      }
-      throw new java.lang.IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(java.lang.Object that) {
-      if (that instanceof create_batch_args)
-        return this.equals((create_batch_args)that);
-      return false;
-    }
-
-    public boolean equals(create_batch_args that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      boolean this_present_app_id = true && this.isSetApp_id();
-      boolean that_present_app_id = true && that.isSetApp_id();
-      if (this_present_app_id || that_present_app_id) {
-        if (!(this_present_app_id && that_present_app_id))
-          return false;
-        if (!this.app_id.equals(that.app_id))
-          return false;
-      }
-
-      boolean this_present_out_no = true && this.isSetOut_no();
-      boolean that_present_out_no = true && that.isSetOut_no();
-      if (this_present_out_no || that_present_out_no) {
-        if (!(this_present_out_no && that_present_out_no))
-          return false;
-        if (!this.out_no.equals(that.out_no))
-          return false;
-      }
-
-      boolean this_present_name = true && this.isSetName();
-      boolean that_present_name = true && that.isSetName();
-      if (this_present_name || that_present_name) {
-        if (!(this_present_name && that_present_name))
-          return false;
-        if (!this.name.equals(that.name))
-          return false;
-      }
-
-      boolean this_present_remark = true && this.isSetRemark();
-      boolean that_present_remark = true && that.isSetRemark();
-      if (this_present_remark || that_present_remark) {
-        if (!(this_present_remark && that_present_remark))
-          return false;
-        if (!this.remark.equals(that.remark))
-          return false;
-      }
-
-      boolean this_present_details = true && this.isSetDetails();
-      boolean that_present_details = true && that.isSetDetails();
-      if (this_present_details || that_present_details) {
-        if (!(this_present_details && that_present_details))
-          return false;
-        if (!this.details.equals(that.details))
-          return false;
-      }
-
-      boolean this_present_scene_id = true && this.isSetScene_id();
-      boolean that_present_scene_id = true && that.isSetScene_id();
-      if (this_present_scene_id || that_present_scene_id) {
-        if (!(this_present_scene_id && that_present_scene_id))
-          return false;
-        if (!this.scene_id.equals(that.scene_id))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      hashCode = hashCode * 8191 + ((isSetApp_id()) ? 131071 : 524287);
-      if (isSetApp_id())
-        hashCode = hashCode * 8191 + app_id.hashCode();
-
-      hashCode = hashCode * 8191 + ((isSetOut_no()) ? 131071 : 524287);
-      if (isSetOut_no())
-        hashCode = hashCode * 8191 + out_no.hashCode();
-
-      hashCode = hashCode * 8191 + ((isSetName()) ? 131071 : 524287);
-      if (isSetName())
-        hashCode = hashCode * 8191 + name.hashCode();
-
-      hashCode = hashCode * 8191 + ((isSetRemark()) ? 131071 : 524287);
-      if (isSetRemark())
-        hashCode = hashCode * 8191 + remark.hashCode();
-
-      hashCode = hashCode * 8191 + ((isSetDetails()) ? 131071 : 524287);
-      if (isSetDetails())
-        hashCode = hashCode * 8191 + details.hashCode();
-
-      hashCode = hashCode * 8191 + ((isSetScene_id()) ? 131071 : 524287);
-      if (isSetScene_id())
-        hashCode = hashCode * 8191 + scene_id.hashCode();
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(create_batch_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = java.lang.Boolean.compare(isSetApp_id(), other.isSetApp_id());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetApp_id()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.app_id, other.app_id);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = java.lang.Boolean.compare(isSetOut_no(), other.isSetOut_no());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetOut_no()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.out_no, other.out_no);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = java.lang.Boolean.compare(isSetName(), other.isSetName());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetName()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, other.name);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = java.lang.Boolean.compare(isSetRemark(), other.isSetRemark());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetRemark()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.remark, other.remark);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = java.lang.Boolean.compare(isSetDetails(), other.isSetDetails());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetDetails()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.details, other.details);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = java.lang.Boolean.compare(isSetScene_id(), other.isSetScene_id());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetScene_id()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.scene_id, other.scene_id);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    @Override
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    @Override
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    @Override
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-    }
-
-    @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("create_batch_args(");
-      boolean first = true;
-
-      sb.append("app_id:");
-      if (this.app_id == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.app_id);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("out_no:");
-      if (this.out_no == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.out_no);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("name:");
-      if (this.name == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.name);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("remark:");
-      if (this.remark == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.remark);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("details:");
-      if (this.details == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.details);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("scene_id:");
-      if (this.scene_id == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.scene_id);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class create_batch_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      @Override
-      public create_batch_argsStandardScheme getScheme() {
-        return new create_batch_argsStandardScheme();
-      }
-    }
-
-    private static class create_batch_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<create_batch_args> {
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol iprot, create_batch_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 1: // APP_ID
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.app_id = iprot.readString();
-                struct.setApp_idIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 2: // OUT_NO
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.out_no = iprot.readString();
-                struct.setOut_noIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 3: // NAME
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.name = iprot.readString();
-                struct.setNameIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 4: // REMARK
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.remark = iprot.readString();
-                struct.setRemarkIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 5: // DETAILS
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list16 = iprot.readListBegin();
-                  struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list16.size);
-                  @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem17;
-                  for (int _i18 = 0; _i18 < _list16.size; ++_i18)
-                  {
-                    _elem17 = new ExecuteTransferBatchRequestDetail();
-                    _elem17.read(iprot);
-                    struct.details.add(_elem17);
-                  }
-                  iprot.readListEnd();
-                }
-                struct.setDetailsIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 6: // SCENE_ID
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.scene_id = iprot.readString();
-                struct.setScene_idIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol oprot, create_batch_args struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.app_id != null) {
-          oprot.writeFieldBegin(APP_ID_FIELD_DESC);
-          oprot.writeString(struct.app_id);
-          oprot.writeFieldEnd();
-        }
-        if (struct.out_no != null) {
-          oprot.writeFieldBegin(OUT_NO_FIELD_DESC);
-          oprot.writeString(struct.out_no);
-          oprot.writeFieldEnd();
-        }
-        if (struct.name != null) {
-          oprot.writeFieldBegin(NAME_FIELD_DESC);
-          oprot.writeString(struct.name);
-          oprot.writeFieldEnd();
-        }
-        if (struct.remark != null) {
-          oprot.writeFieldBegin(REMARK_FIELD_DESC);
-          oprot.writeString(struct.remark);
-          oprot.writeFieldEnd();
-        }
-        if (struct.details != null) {
-          oprot.writeFieldBegin(DETAILS_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.details.size()));
-            for (ExecuteTransferBatchRequestDetail _iter19 : struct.details)
-            {
-              _iter19.write(oprot);
-            }
-            oprot.writeListEnd();
-          }
-          oprot.writeFieldEnd();
-        }
-        if (struct.scene_id != null) {
-          oprot.writeFieldBegin(SCENE_ID_FIELD_DESC);
-          oprot.writeString(struct.scene_id);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class create_batch_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      @Override
-      public create_batch_argsTupleScheme getScheme() {
-        return new create_batch_argsTupleScheme();
-      }
-    }
-
-    private static class create_batch_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<create_batch_args> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, create_batch_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetApp_id()) {
-          optionals.set(0);
-        }
-        if (struct.isSetOut_no()) {
-          optionals.set(1);
-        }
-        if (struct.isSetName()) {
-          optionals.set(2);
-        }
-        if (struct.isSetRemark()) {
-          optionals.set(3);
-        }
-        if (struct.isSetDetails()) {
-          optionals.set(4);
-        }
-        if (struct.isSetScene_id()) {
-          optionals.set(5);
-        }
-        oprot.writeBitSet(optionals, 6);
-        if (struct.isSetApp_id()) {
-          oprot.writeString(struct.app_id);
-        }
-        if (struct.isSetOut_no()) {
-          oprot.writeString(struct.out_no);
-        }
-        if (struct.isSetName()) {
-          oprot.writeString(struct.name);
-        }
-        if (struct.isSetRemark()) {
-          oprot.writeString(struct.remark);
-        }
-        if (struct.isSetDetails()) {
-          {
-            oprot.writeI32(struct.details.size());
-            for (ExecuteTransferBatchRequestDetail _iter20 : struct.details)
-            {
-              _iter20.write(oprot);
-            }
-          }
-        }
-        if (struct.isSetScene_id()) {
-          oprot.writeString(struct.scene_id);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, create_batch_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(6);
-        if (incoming.get(0)) {
-          struct.app_id = iprot.readString();
-          struct.setApp_idIsSet(true);
-        }
-        if (incoming.get(1)) {
-          struct.out_no = iprot.readString();
-          struct.setOut_noIsSet(true);
-        }
-        if (incoming.get(2)) {
-          struct.name = iprot.readString();
-          struct.setNameIsSet(true);
-        }
-        if (incoming.get(3)) {
-          struct.remark = iprot.readString();
-          struct.setRemarkIsSet(true);
-        }
-        if (incoming.get(4)) {
-          {
-            org.apache.thrift.protocol.TList _list21 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
-            struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list21.size);
-            @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem22;
-            for (int _i23 = 0; _i23 < _list21.size; ++_i23)
-            {
-              _elem22 = new ExecuteTransferBatchRequestDetail();
-              _elem22.read(iprot);
-              struct.details.add(_elem22);
-            }
-          }
-          struct.setDetailsIsSet(true);
-        }
-        if (incoming.get(5)) {
-          struct.scene_id = iprot.readString();
-          struct.setScene_idIsSet(true);
-        }
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
-  public static class create_batch_result implements org.apache.thrift.TBase<create_batch_result, create_batch_result._Fields>, java.io.Serializable, Cloneable, Comparable<create_batch_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("create_batch_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new create_batch_resultStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new create_batch_resultTupleSchemeFactory();
-
-    public @org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponse success; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success");
-
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(java.lang.String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final java.lang.String _fieldName;
-
-      _Fields(short thriftId, java.lang.String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      @Override
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      @Override
-      public java.lang.String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchResponse.class)));
-      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(create_batch_result.class, metaDataMap);
-    }
-
-    public create_batch_result() {
-    }
-
-    public create_batch_result(
-      ExecuteTransferBatchResponse success)
-    {
-      this();
-      this.success = success;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public create_batch_result(create_batch_result other) {
-      if (other.isSetSuccess()) {
-        this.success = new ExecuteTransferBatchResponse(other.success);
-      }
-    }
-
-    @Override
-    public create_batch_result deepCopy() {
-      return new create_batch_result(this);
-    }
-
-    @Override
-    public void clear() {
-      this.success = null;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    public ExecuteTransferBatchResponse getSuccess() {
-      return this.success;
-    }
-
-    public create_batch_result setSuccess(@org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponse success) {
-      this.success = success;
-      return this;
-    }
-
-    public void unsetSuccess() {
-      this.success = null;
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean isSetSuccess() {
-      return this.success != null;
-    }
-
-    public void setSuccessIsSet(boolean value) {
-      if (!value) {
-        this.success = null;
-      }
-    }
-
-    @Override
-    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((ExecuteTransferBatchResponse)value);
-        }
-        break;
-
-      }
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    @Override
-    public java.lang.Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return getSuccess();
-
-      }
-      throw new java.lang.IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    @Override
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new java.lang.IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return isSetSuccess();
-      }
-      throw new java.lang.IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(java.lang.Object that) {
-      if (that instanceof create_batch_result)
-        return this.equals((create_batch_result)that);
-      return false;
-    }
-
-    public boolean equals(create_batch_result that) {
-      if (that == null)
-        return false;
-      if (this == that)
-        return true;
-
-      boolean this_present_success = true && this.isSetSuccess();
-      boolean that_present_success = true && that.isSetSuccess();
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (!this.success.equals(that.success))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int hashCode = 1;
-
-      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
-      if (isSetSuccess())
-        hashCode = hashCode * 8191 + success.hashCode();
-
-      return hashCode;
-    }
-
-    @Override
-    public int compareTo(create_batch_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = java.lang.Boolean.compare(isSetSuccess(), other.isSetSuccess());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetSuccess()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    @org.apache.thrift.annotation.Nullable
-    @Override
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    @Override
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      scheme(iprot).read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      scheme(oprot).write(oprot, this);
-      }
-
-    @Override
-    public java.lang.String toString() {
-      java.lang.StringBuilder sb = new java.lang.StringBuilder("create_batch_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      if (this.success == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.success);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-      if (success != null) {
-        success.validate();
-      }
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class create_batch_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      @Override
-      public create_batch_resultStandardScheme getScheme() {
-        return new create_batch_resultStandardScheme();
-      }
-    }
-
-    private static class create_batch_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<create_batch_result> {
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol iprot, create_batch_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new ExecuteTransferBatchResponse();
-                struct.success.read(iprot);
-                struct.setSuccessIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol oprot, create_batch_result struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.success != null) {
-          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          struct.success.write(oprot);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class create_batch_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-      @Override
-      public create_batch_resultTupleScheme getScheme() {
-        return new create_batch_resultTupleScheme();
-      }
-    }
-
-    private static class create_batch_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<create_batch_result> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, create_batch_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet optionals = new java.util.BitSet();
-        if (struct.isSetSuccess()) {
-          optionals.set(0);
-        }
-        oprot.writeBitSet(optionals, 1);
-        if (struct.isSetSuccess()) {
-          struct.success.write(oprot);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, create_batch_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(1);
-        if (incoming.get(0)) {
-          struct.success = new ExecuteTransferBatchResponse();
-          struct.success.read(iprot);
-          struct.setSuccessIsSet(true);
-        }
-      }
-    }
-
-    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
-      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
-    }
-  }
-
-  @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
-  public static class execute_batch_args implements org.apache.thrift.TBase<execute_batch_args, execute_batch_args._Fields>, java.io.Serializable, Cloneable, Comparable<execute_batch_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("execute_batch_args");
-
-    private static final org.apache.thrift.protocol.TField APP_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("app_id", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)2);
-    private static final org.apache.thrift.protocol.TField REMARK_FIELD_DESC = new org.apache.thrift.protocol.TField("remark", org.apache.thrift.protocol.TType.STRING, (short)3);
-    private static final org.apache.thrift.protocol.TField DETAILS_FIELD_DESC = new org.apache.thrift.protocol.TField("details", org.apache.thrift.protocol.TType.LIST, (short)4);
-    private static final org.apache.thrift.protocol.TField SCENE_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("scene_id", org.apache.thrift.protocol.TType.STRING, (short)5);
-
-    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new execute_batch_argsStandardSchemeFactory();
-    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new execute_batch_argsTupleSchemeFactory();
-
-    public @org.apache.thrift.annotation.Nullable java.lang.String app_id; // required
-    public @org.apache.thrift.annotation.Nullable java.lang.String name; // required
-    public @org.apache.thrift.annotation.Nullable java.lang.String remark; // required
-    public @org.apache.thrift.annotation.Nullable java.util.List<ExecuteTransferBatchRequestDetail> details; // required
-    public @org.apache.thrift.annotation.Nullable java.lang.String scene_id; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      APP_ID((short)1, "app_id"),
-      NAME((short)2, "name"),
-      REMARK((short)3, "remark"),
-      DETAILS((short)4, "details"),
-      SCENE_ID((short)5, "scene_id");
-
-      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
-
-      static {
-        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 1: // APP_ID
-            return APP_ID;
-          case 2: // NAME
-            return NAME;
-          case 3: // REMARK
-            return REMARK;
-          case 4: // DETAILS
-            return DETAILS;
-          case 5: // SCENE_ID
-            return SCENE_ID;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      @org.apache.thrift.annotation.Nullable
-      public static _Fields findByName(java.lang.String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final java.lang.String _fieldName;
-
-      _Fields(short thriftId, java.lang.String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      @Override
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      @Override
-      public java.lang.String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+      tmpMap.put(_Fields.OUT_BATCH_NO, new org.apache.thrift.meta_data.FieldMetaData("out_batch_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
@@ -2572,6 +1237,7 @@ public class Transfer {
 
     public execute_batch_args(
       java.lang.String app_id,
+      java.lang.String out_batch_no,
       java.lang.String name,
       java.lang.String remark,
       java.util.List<ExecuteTransferBatchRequestDetail> details,
@@ -2579,6 +1245,7 @@ public class Transfer {
     {
       this();
       this.app_id = app_id;
+      this.out_batch_no = out_batch_no;
       this.name = name;
       this.remark = remark;
       this.details = details;
@@ -2591,6 +1258,9 @@ public class Transfer {
     public execute_batch_args(execute_batch_args other) {
       if (other.isSetApp_id()) {
         this.app_id = other.app_id;
+      }
+      if (other.isSetOut_batch_no()) {
+        this.out_batch_no = other.out_batch_no;
       }
       if (other.isSetName()) {
         this.name = other.name;
@@ -2618,6 +1288,7 @@ public class Transfer {
     @Override
     public void clear() {
       this.app_id = null;
+      this.out_batch_no = null;
       this.name = null;
       this.remark = null;
       this.details = null;
@@ -2646,6 +1317,31 @@ public class Transfer {
     public void setApp_idIsSet(boolean value) {
       if (!value) {
         this.app_id = null;
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.String getOut_batch_no() {
+      return this.out_batch_no;
+    }
+
+    public execute_batch_args setOut_batch_no(@org.apache.thrift.annotation.Nullable java.lang.String out_batch_no) {
+      this.out_batch_no = out_batch_no;
+      return this;
+    }
+
+    public void unsetOut_batch_no() {
+      this.out_batch_no = null;
+    }
+
+    /** Returns true if field out_batch_no is set (has been assigned a value) and false otherwise */
+    public boolean isSetOut_batch_no() {
+      return this.out_batch_no != null;
+    }
+
+    public void setOut_batch_noIsSet(boolean value) {
+      if (!value) {
+        this.out_batch_no = null;
       }
     }
 
@@ -2776,6 +1472,14 @@ public class Transfer {
         }
         break;
 
+      case OUT_BATCH_NO:
+        if (value == null) {
+          unsetOut_batch_no();
+        } else {
+          setOut_batch_no((java.lang.String)value);
+        }
+        break;
+
       case NAME:
         if (value == null) {
           unsetName();
@@ -2818,6 +1522,9 @@ public class Transfer {
       case APP_ID:
         return getApp_id();
 
+      case OUT_BATCH_NO:
+        return getOut_batch_no();
+
       case NAME:
         return getName();
 
@@ -2844,6 +1551,8 @@ public class Transfer {
       switch (field) {
       case APP_ID:
         return isSetApp_id();
+      case OUT_BATCH_NO:
+        return isSetOut_batch_no();
       case NAME:
         return isSetName();
       case REMARK:
@@ -2875,6 +1584,15 @@ public class Transfer {
         if (!(this_present_app_id && that_present_app_id))
           return false;
         if (!this.app_id.equals(that.app_id))
+          return false;
+      }
+
+      boolean this_present_out_batch_no = true && this.isSetOut_batch_no();
+      boolean that_present_out_batch_no = true && that.isSetOut_batch_no();
+      if (this_present_out_batch_no || that_present_out_batch_no) {
+        if (!(this_present_out_batch_no && that_present_out_batch_no))
+          return false;
+        if (!this.out_batch_no.equals(that.out_batch_no))
           return false;
       }
 
@@ -2925,6 +1643,10 @@ public class Transfer {
       if (isSetApp_id())
         hashCode = hashCode * 8191 + app_id.hashCode();
 
+      hashCode = hashCode * 8191 + ((isSetOut_batch_no()) ? 131071 : 524287);
+      if (isSetOut_batch_no())
+        hashCode = hashCode * 8191 + out_batch_no.hashCode();
+
       hashCode = hashCode * 8191 + ((isSetName()) ? 131071 : 524287);
       if (isSetName())
         hashCode = hashCode * 8191 + name.hashCode();
@@ -2958,6 +1680,16 @@ public class Transfer {
       }
       if (isSetApp_id()) {
         lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.app_id, other.app_id);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.compare(isSetOut_batch_no(), other.isSetOut_batch_no());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetOut_batch_no()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.out_batch_no, other.out_batch_no);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3031,6 +1763,14 @@ public class Transfer {
         sb.append("null");
       } else {
         sb.append(this.app_id);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("out_batch_no:");
+      if (this.out_batch_no == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.out_batch_no);
       }
       first = false;
       if (!first) sb.append(", ");
@@ -3118,7 +1858,15 @@ public class Transfer {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 2: // NAME
+            case 2: // OUT_BATCH_NO
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.out_batch_no = iprot.readString();
+                struct.setOut_batch_noIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // NAME
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
                 struct.name = iprot.readString();
                 struct.setNameIsSet(true);
@@ -3126,7 +1874,7 @@ public class Transfer {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 3: // REMARK
+            case 4: // REMARK
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
                 struct.remark = iprot.readString();
                 struct.setRemarkIsSet(true);
@@ -3134,17 +1882,17 @@ public class Transfer {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 4: // DETAILS
+            case 5: // DETAILS
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TList _list24 = iprot.readListBegin();
-                  struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list24.size);
-                  @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem25;
-                  for (int _i26 = 0; _i26 < _list24.size; ++_i26)
+                  org.apache.thrift.protocol.TList _list16 = iprot.readListBegin();
+                  struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list16.size);
+                  @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem17;
+                  for (int _i18 = 0; _i18 < _list16.size; ++_i18)
                   {
-                    _elem25 = new ExecuteTransferBatchRequestDetail();
-                    _elem25.read(iprot);
-                    struct.details.add(_elem25);
+                    _elem17 = new ExecuteTransferBatchRequestDetail();
+                    _elem17.read(iprot);
+                    struct.details.add(_elem17);
                   }
                   iprot.readListEnd();
                 }
@@ -3153,7 +1901,7 @@ public class Transfer {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 5: // SCENE_ID
+            case 6: // SCENE_ID
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
                 struct.scene_id = iprot.readString();
                 struct.setScene_idIsSet(true);
@@ -3182,6 +1930,11 @@ public class Transfer {
           oprot.writeString(struct.app_id);
           oprot.writeFieldEnd();
         }
+        if (struct.out_batch_no != null) {
+          oprot.writeFieldBegin(OUT_BATCH_NO_FIELD_DESC);
+          oprot.writeString(struct.out_batch_no);
+          oprot.writeFieldEnd();
+        }
         if (struct.name != null) {
           oprot.writeFieldBegin(NAME_FIELD_DESC);
           oprot.writeString(struct.name);
@@ -3196,9 +1949,9 @@ public class Transfer {
           oprot.writeFieldBegin(DETAILS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.details.size()));
-            for (ExecuteTransferBatchRequestDetail _iter27 : struct.details)
+            for (ExecuteTransferBatchRequestDetail _iter19 : struct.details)
             {
-              _iter27.write(oprot);
+              _iter19.write(oprot);
             }
             oprot.writeListEnd();
           }
@@ -3231,21 +1984,27 @@ public class Transfer {
         if (struct.isSetApp_id()) {
           optionals.set(0);
         }
-        if (struct.isSetName()) {
+        if (struct.isSetOut_batch_no()) {
           optionals.set(1);
         }
-        if (struct.isSetRemark()) {
+        if (struct.isSetName()) {
           optionals.set(2);
         }
-        if (struct.isSetDetails()) {
+        if (struct.isSetRemark()) {
           optionals.set(3);
         }
-        if (struct.isSetScene_id()) {
+        if (struct.isSetDetails()) {
           optionals.set(4);
         }
-        oprot.writeBitSet(optionals, 5);
+        if (struct.isSetScene_id()) {
+          optionals.set(5);
+        }
+        oprot.writeBitSet(optionals, 6);
         if (struct.isSetApp_id()) {
           oprot.writeString(struct.app_id);
+        }
+        if (struct.isSetOut_batch_no()) {
+          oprot.writeString(struct.out_batch_no);
         }
         if (struct.isSetName()) {
           oprot.writeString(struct.name);
@@ -3256,9 +2015,9 @@ public class Transfer {
         if (struct.isSetDetails()) {
           {
             oprot.writeI32(struct.details.size());
-            for (ExecuteTransferBatchRequestDetail _iter28 : struct.details)
+            for (ExecuteTransferBatchRequestDetail _iter20 : struct.details)
             {
-              _iter28.write(oprot);
+              _iter20.write(oprot);
             }
           }
         }
@@ -3270,34 +2029,38 @@ public class Transfer {
       @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, execute_batch_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(5);
+        java.util.BitSet incoming = iprot.readBitSet(6);
         if (incoming.get(0)) {
           struct.app_id = iprot.readString();
           struct.setApp_idIsSet(true);
         }
         if (incoming.get(1)) {
+          struct.out_batch_no = iprot.readString();
+          struct.setOut_batch_noIsSet(true);
+        }
+        if (incoming.get(2)) {
           struct.name = iprot.readString();
           struct.setNameIsSet(true);
         }
-        if (incoming.get(2)) {
+        if (incoming.get(3)) {
           struct.remark = iprot.readString();
           struct.setRemarkIsSet(true);
         }
-        if (incoming.get(3)) {
+        if (incoming.get(4)) {
           {
-            org.apache.thrift.protocol.TList _list29 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
-            struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list29.size);
-            @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem30;
-            for (int _i31 = 0; _i31 < _list29.size; ++_i31)
+            org.apache.thrift.protocol.TList _list21 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
+            struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list21.size);
+            @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem22;
+            for (int _i23 = 0; _i23 < _list21.size; ++_i23)
             {
-              _elem30 = new ExecuteTransferBatchRequestDetail();
-              _elem30.read(iprot);
-              struct.details.add(_elem30);
+              _elem22 = new ExecuteTransferBatchRequestDetail();
+              _elem22.read(iprot);
+              struct.details.add(_elem22);
             }
           }
           struct.setDetailsIsSet(true);
         }
-        if (incoming.get(4)) {
+        if (incoming.get(5)) {
           struct.scene_id = iprot.readString();
           struct.setScene_idIsSet(true);
         }
@@ -3677,6 +2440,1243 @@ public class Transfer {
 
       @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, execute_batch_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = new ExecuteTransferBatchResponse();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
+  public static class create_batch_args implements org.apache.thrift.TBase<create_batch_args, create_batch_args._Fields>, java.io.Serializable, Cloneable, Comparable<create_batch_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("create_batch_args");
+
+    private static final org.apache.thrift.protocol.TField APP_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("app_id", org.apache.thrift.protocol.TType.STRING, (short)1);
+    private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift.protocol.TField REMARK_FIELD_DESC = new org.apache.thrift.protocol.TField("remark", org.apache.thrift.protocol.TType.STRING, (short)3);
+    private static final org.apache.thrift.protocol.TField DETAILS_FIELD_DESC = new org.apache.thrift.protocol.TField("details", org.apache.thrift.protocol.TType.LIST, (short)4);
+    private static final org.apache.thrift.protocol.TField SCENE_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("scene_id", org.apache.thrift.protocol.TType.STRING, (short)5);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new create_batch_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new create_batch_argsTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable java.lang.String app_id; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String name; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String remark; // required
+    public @org.apache.thrift.annotation.Nullable java.util.List<ExecuteTransferBatchRequestDetail> details; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String scene_id; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      APP_ID((short)1, "app_id"),
+      NAME((short)2, "name"),
+      REMARK((short)3, "remark"),
+      DETAILS((short)4, "details"),
+      SCENE_ID((short)5, "scene_id");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // APP_ID
+            return APP_ID;
+          case 2: // NAME
+            return NAME;
+          case 3: // REMARK
+            return REMARK;
+          case 4: // DETAILS
+            return DETAILS;
+          case 5: // SCENE_ID
+            return SCENE_ID;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      @Override
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      @Override
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.REMARK, new org.apache.thrift.meta_data.FieldMetaData("remark", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.DETAILS, new org.apache.thrift.meta_data.FieldMetaData("details", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchRequestDetail.class))));
+      tmpMap.put(_Fields.SCENE_ID, new org.apache.thrift.meta_data.FieldMetaData("scene_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(create_batch_args.class, metaDataMap);
+    }
+
+    public create_batch_args() {
+    }
+
+    public create_batch_args(
+      java.lang.String app_id,
+      java.lang.String name,
+      java.lang.String remark,
+      java.util.List<ExecuteTransferBatchRequestDetail> details,
+      java.lang.String scene_id)
+    {
+      this();
+      this.app_id = app_id;
+      this.name = name;
+      this.remark = remark;
+      this.details = details;
+      this.scene_id = scene_id;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public create_batch_args(create_batch_args other) {
+      if (other.isSetApp_id()) {
+        this.app_id = other.app_id;
+      }
+      if (other.isSetName()) {
+        this.name = other.name;
+      }
+      if (other.isSetRemark()) {
+        this.remark = other.remark;
+      }
+      if (other.isSetDetails()) {
+        java.util.List<ExecuteTransferBatchRequestDetail> __this__details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(other.details.size());
+        for (ExecuteTransferBatchRequestDetail other_element : other.details) {
+          __this__details.add(new ExecuteTransferBatchRequestDetail(other_element));
+        }
+        this.details = __this__details;
+      }
+      if (other.isSetScene_id()) {
+        this.scene_id = other.scene_id;
+      }
+    }
+
+    @Override
+    public create_batch_args deepCopy() {
+      return new create_batch_args(this);
+    }
+
+    @Override
+    public void clear() {
+      this.app_id = null;
+      this.name = null;
+      this.remark = null;
+      this.details = null;
+      this.scene_id = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.String getApp_id() {
+      return this.app_id;
+    }
+
+    public create_batch_args setApp_id(@org.apache.thrift.annotation.Nullable java.lang.String app_id) {
+      this.app_id = app_id;
+      return this;
+    }
+
+    public void unsetApp_id() {
+      this.app_id = null;
+    }
+
+    /** Returns true if field app_id is set (has been assigned a value) and false otherwise */
+    public boolean isSetApp_id() {
+      return this.app_id != null;
+    }
+
+    public void setApp_idIsSet(boolean value) {
+      if (!value) {
+        this.app_id = null;
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.String getName() {
+      return this.name;
+    }
+
+    public create_batch_args setName(@org.apache.thrift.annotation.Nullable java.lang.String name) {
+      this.name = name;
+      return this;
+    }
+
+    public void unsetName() {
+      this.name = null;
+    }
+
+    /** Returns true if field name is set (has been assigned a value) and false otherwise */
+    public boolean isSetName() {
+      return this.name != null;
+    }
+
+    public void setNameIsSet(boolean value) {
+      if (!value) {
+        this.name = null;
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.String getRemark() {
+      return this.remark;
+    }
+
+    public create_batch_args setRemark(@org.apache.thrift.annotation.Nullable java.lang.String remark) {
+      this.remark = remark;
+      return this;
+    }
+
+    public void unsetRemark() {
+      this.remark = null;
+    }
+
+    /** Returns true if field remark is set (has been assigned a value) and false otherwise */
+    public boolean isSetRemark() {
+      return this.remark != null;
+    }
+
+    public void setRemarkIsSet(boolean value) {
+      if (!value) {
+        this.remark = null;
+      }
+    }
+
+    public int getDetailsSize() {
+      return (this.details == null) ? 0 : this.details.size();
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.Iterator<ExecuteTransferBatchRequestDetail> getDetailsIterator() {
+      return (this.details == null) ? null : this.details.iterator();
+    }
+
+    public void addToDetails(ExecuteTransferBatchRequestDetail elem) {
+      if (this.details == null) {
+        this.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>();
+      }
+      this.details.add(elem);
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.util.List<ExecuteTransferBatchRequestDetail> getDetails() {
+      return this.details;
+    }
+
+    public create_batch_args setDetails(@org.apache.thrift.annotation.Nullable java.util.List<ExecuteTransferBatchRequestDetail> details) {
+      this.details = details;
+      return this;
+    }
+
+    public void unsetDetails() {
+      this.details = null;
+    }
+
+    /** Returns true if field details is set (has been assigned a value) and false otherwise */
+    public boolean isSetDetails() {
+      return this.details != null;
+    }
+
+    public void setDetailsIsSet(boolean value) {
+      if (!value) {
+        this.details = null;
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.String getScene_id() {
+      return this.scene_id;
+    }
+
+    public create_batch_args setScene_id(@org.apache.thrift.annotation.Nullable java.lang.String scene_id) {
+      this.scene_id = scene_id;
+      return this;
+    }
+
+    public void unsetScene_id() {
+      this.scene_id = null;
+    }
+
+    /** Returns true if field scene_id is set (has been assigned a value) and false otherwise */
+    public boolean isSetScene_id() {
+      return this.scene_id != null;
+    }
+
+    public void setScene_idIsSet(boolean value) {
+      if (!value) {
+        this.scene_id = null;
+      }
+    }
+
+    @Override
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case APP_ID:
+        if (value == null) {
+          unsetApp_id();
+        } else {
+          setApp_id((java.lang.String)value);
+        }
+        break;
+
+      case NAME:
+        if (value == null) {
+          unsetName();
+        } else {
+          setName((java.lang.String)value);
+        }
+        break;
+
+      case REMARK:
+        if (value == null) {
+          unsetRemark();
+        } else {
+          setRemark((java.lang.String)value);
+        }
+        break;
+
+      case DETAILS:
+        if (value == null) {
+          unsetDetails();
+        } else {
+          setDetails((java.util.List<ExecuteTransferBatchRequestDetail>)value);
+        }
+        break;
+
+      case SCENE_ID:
+        if (value == null) {
+          unsetScene_id();
+        } else {
+          setScene_id((java.lang.String)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    @Override
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case APP_ID:
+        return getApp_id();
+
+      case NAME:
+        return getName();
+
+      case REMARK:
+        return getRemark();
+
+      case DETAILS:
+        return getDetails();
+
+      case SCENE_ID:
+        return getScene_id();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    @Override
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case APP_ID:
+        return isSetApp_id();
+      case NAME:
+        return isSetName();
+      case REMARK:
+        return isSetRemark();
+      case DETAILS:
+        return isSetDetails();
+      case SCENE_ID:
+        return isSetScene_id();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that instanceof create_batch_args)
+        return this.equals((create_batch_args)that);
+      return false;
+    }
+
+    public boolean equals(create_batch_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_app_id = true && this.isSetApp_id();
+      boolean that_present_app_id = true && that.isSetApp_id();
+      if (this_present_app_id || that_present_app_id) {
+        if (!(this_present_app_id && that_present_app_id))
+          return false;
+        if (!this.app_id.equals(that.app_id))
+          return false;
+      }
+
+      boolean this_present_name = true && this.isSetName();
+      boolean that_present_name = true && that.isSetName();
+      if (this_present_name || that_present_name) {
+        if (!(this_present_name && that_present_name))
+          return false;
+        if (!this.name.equals(that.name))
+          return false;
+      }
+
+      boolean this_present_remark = true && this.isSetRemark();
+      boolean that_present_remark = true && that.isSetRemark();
+      if (this_present_remark || that_present_remark) {
+        if (!(this_present_remark && that_present_remark))
+          return false;
+        if (!this.remark.equals(that.remark))
+          return false;
+      }
+
+      boolean this_present_details = true && this.isSetDetails();
+      boolean that_present_details = true && that.isSetDetails();
+      if (this_present_details || that_present_details) {
+        if (!(this_present_details && that_present_details))
+          return false;
+        if (!this.details.equals(that.details))
+          return false;
+      }
+
+      boolean this_present_scene_id = true && this.isSetScene_id();
+      boolean that_present_scene_id = true && that.isSetScene_id();
+      if (this_present_scene_id || that_present_scene_id) {
+        if (!(this_present_scene_id && that_present_scene_id))
+          return false;
+        if (!this.scene_id.equals(that.scene_id))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetApp_id()) ? 131071 : 524287);
+      if (isSetApp_id())
+        hashCode = hashCode * 8191 + app_id.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetName()) ? 131071 : 524287);
+      if (isSetName())
+        hashCode = hashCode * 8191 + name.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetRemark()) ? 131071 : 524287);
+      if (isSetRemark())
+        hashCode = hashCode * 8191 + remark.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetDetails()) ? 131071 : 524287);
+      if (isSetDetails())
+        hashCode = hashCode * 8191 + details.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetScene_id()) ? 131071 : 524287);
+      if (isSetScene_id())
+        hashCode = hashCode * 8191 + scene_id.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(create_batch_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.compare(isSetApp_id(), other.isSetApp_id());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetApp_id()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.app_id, other.app_id);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.compare(isSetName(), other.isSetName());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetName()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, other.name);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.compare(isSetRemark(), other.isSetRemark());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetRemark()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.remark, other.remark);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.compare(isSetDetails(), other.isSetDetails());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetDetails()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.details, other.details);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.compare(isSetScene_id(), other.isSetScene_id());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetScene_id()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.scene_id, other.scene_id);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    @Override
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    @Override
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    @Override
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("create_batch_args(");
+      boolean first = true;
+
+      sb.append("app_id:");
+      if (this.app_id == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.app_id);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("name:");
+      if (this.name == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.name);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("remark:");
+      if (this.remark == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.remark);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("details:");
+      if (this.details == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.details);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("scene_id:");
+      if (this.scene_id == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.scene_id);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class create_batch_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      @Override
+      public create_batch_argsStandardScheme getScheme() {
+        return new create_batch_argsStandardScheme();
+      }
+    }
+
+    private static class create_batch_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<create_batch_args> {
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol iprot, create_batch_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // APP_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.app_id = iprot.readString();
+                struct.setApp_idIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // NAME
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.name = iprot.readString();
+                struct.setNameIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // REMARK
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.remark = iprot.readString();
+                struct.setRemarkIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 4: // DETAILS
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list24 = iprot.readListBegin();
+                  struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list24.size);
+                  @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem25;
+                  for (int _i26 = 0; _i26 < _list24.size; ++_i26)
+                  {
+                    _elem25 = new ExecuteTransferBatchRequestDetail();
+                    _elem25.read(iprot);
+                    struct.details.add(_elem25);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setDetailsIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 5: // SCENE_ID
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.scene_id = iprot.readString();
+                struct.setScene_idIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol oprot, create_batch_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.app_id != null) {
+          oprot.writeFieldBegin(APP_ID_FIELD_DESC);
+          oprot.writeString(struct.app_id);
+          oprot.writeFieldEnd();
+        }
+        if (struct.name != null) {
+          oprot.writeFieldBegin(NAME_FIELD_DESC);
+          oprot.writeString(struct.name);
+          oprot.writeFieldEnd();
+        }
+        if (struct.remark != null) {
+          oprot.writeFieldBegin(REMARK_FIELD_DESC);
+          oprot.writeString(struct.remark);
+          oprot.writeFieldEnd();
+        }
+        if (struct.details != null) {
+          oprot.writeFieldBegin(DETAILS_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.details.size()));
+            for (ExecuteTransferBatchRequestDetail _iter27 : struct.details)
+            {
+              _iter27.write(oprot);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        if (struct.scene_id != null) {
+          oprot.writeFieldBegin(SCENE_ID_FIELD_DESC);
+          oprot.writeString(struct.scene_id);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class create_batch_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      @Override
+      public create_batch_argsTupleScheme getScheme() {
+        return new create_batch_argsTupleScheme();
+      }
+    }
+
+    private static class create_batch_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<create_batch_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, create_batch_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetApp_id()) {
+          optionals.set(0);
+        }
+        if (struct.isSetName()) {
+          optionals.set(1);
+        }
+        if (struct.isSetRemark()) {
+          optionals.set(2);
+        }
+        if (struct.isSetDetails()) {
+          optionals.set(3);
+        }
+        if (struct.isSetScene_id()) {
+          optionals.set(4);
+        }
+        oprot.writeBitSet(optionals, 5);
+        if (struct.isSetApp_id()) {
+          oprot.writeString(struct.app_id);
+        }
+        if (struct.isSetName()) {
+          oprot.writeString(struct.name);
+        }
+        if (struct.isSetRemark()) {
+          oprot.writeString(struct.remark);
+        }
+        if (struct.isSetDetails()) {
+          {
+            oprot.writeI32(struct.details.size());
+            for (ExecuteTransferBatchRequestDetail _iter28 : struct.details)
+            {
+              _iter28.write(oprot);
+            }
+          }
+        }
+        if (struct.isSetScene_id()) {
+          oprot.writeString(struct.scene_id);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, create_batch_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(5);
+        if (incoming.get(0)) {
+          struct.app_id = iprot.readString();
+          struct.setApp_idIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.name = iprot.readString();
+          struct.setNameIsSet(true);
+        }
+        if (incoming.get(2)) {
+          struct.remark = iprot.readString();
+          struct.setRemarkIsSet(true);
+        }
+        if (incoming.get(3)) {
+          {
+            org.apache.thrift.protocol.TList _list29 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
+            struct.details = new java.util.ArrayList<ExecuteTransferBatchRequestDetail>(_list29.size);
+            @org.apache.thrift.annotation.Nullable ExecuteTransferBatchRequestDetail _elem30;
+            for (int _i31 = 0; _i31 < _list29.size; ++_i31)
+            {
+              _elem30 = new ExecuteTransferBatchRequestDetail();
+              _elem30.read(iprot);
+              struct.details.add(_elem30);
+            }
+          }
+          struct.setDetailsIsSet(true);
+        }
+        if (incoming.get(4)) {
+          struct.scene_id = iprot.readString();
+          struct.setScene_idIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
+  public static class create_batch_result implements org.apache.thrift.TBase<create_batch_result, create_batch_result._Fields>, java.io.Serializable, Cloneable, Comparable<create_batch_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("create_batch_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new create_batch_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new create_batch_resultTupleSchemeFactory();
+
+    public @org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponse success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      @org.apache.thrift.annotation.Nullable
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      @Override
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      @Override
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchResponse.class)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(create_batch_result.class, metaDataMap);
+    }
+
+    public create_batch_result() {
+    }
+
+    public create_batch_result(
+      ExecuteTransferBatchResponse success)
+    {
+      this();
+      this.success = success;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public create_batch_result(create_batch_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new ExecuteTransferBatchResponse(other.success);
+      }
+    }
+
+    @Override
+    public create_batch_result deepCopy() {
+      return new create_batch_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    public ExecuteTransferBatchResponse getSuccess() {
+      return this.success;
+    }
+
+    public create_batch_result setSuccess(@org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponse success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    @Override
+    public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((ExecuteTransferBatchResponse)value);
+        }
+        break;
+
+      }
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    @Override
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    @Override
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that instanceof create_batch_result)
+        return this.equals((create_batch_result)that);
+      return false;
+    }
+
+    public boolean equals(create_batch_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((isSetSuccess()) ? 131071 : 524287);
+      if (isSetSuccess())
+        hashCode = hashCode * 8191 + success.hashCode();
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(create_batch_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.compare(isSetSuccess(), other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    @org.apache.thrift.annotation.Nullable
+    @Override
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    @Override
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("create_batch_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class create_batch_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      @Override
+      public create_batch_resultStandardScheme getScheme() {
+        return new create_batch_resultStandardScheme();
+      }
+    }
+
+    private static class create_batch_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<create_batch_result> {
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol iprot, create_batch_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new ExecuteTransferBatchResponse();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol oprot, create_batch_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class create_batch_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      @Override
+      public create_batch_resultTupleScheme getScheme() {
+        return new create_batch_resultTupleScheme();
+      }
+    }
+
+    private static class create_batch_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<create_batch_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, create_batch_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, create_batch_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {

@@ -19,7 +19,7 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new ExecuteTransferBatchResponseTupleSchemeFactory();
 
   public @org.apache.thrift.annotation.Nullable java.lang.String out_batch_no; // required
-  public @org.apache.thrift.annotation.Nullable java.util.List<CreateExecuteTransferBatchResponseDetail> details; // required
+  public @org.apache.thrift.annotation.Nullable java.util.List<ExecuteTransferBatchResponseDetail> details; // required
   public @org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponseStatus status; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
@@ -98,7 +98,7 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.DETAILS, new org.apache.thrift.meta_data.FieldMetaData("details", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-            new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, CreateExecuteTransferBatchResponseDetail.class))));
+            new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchResponseDetail.class))));
     tmpMap.put(_Fields.STATUS, new org.apache.thrift.meta_data.FieldMetaData("status", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchResponseStatus.class)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
@@ -110,7 +110,7 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
 
   public ExecuteTransferBatchResponse(
     java.lang.String out_batch_no,
-    java.util.List<CreateExecuteTransferBatchResponseDetail> details,
+    java.util.List<ExecuteTransferBatchResponseDetail> details,
     ExecuteTransferBatchResponseStatus status)
   {
     this();
@@ -127,9 +127,9 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
       this.out_batch_no = other.out_batch_no;
     }
     if (other.isSetDetails()) {
-      java.util.List<CreateExecuteTransferBatchResponseDetail> __this__details = new java.util.ArrayList<CreateExecuteTransferBatchResponseDetail>(other.details.size());
-      for (CreateExecuteTransferBatchResponseDetail other_element : other.details) {
-        __this__details.add(new CreateExecuteTransferBatchResponseDetail(other_element));
+      java.util.List<ExecuteTransferBatchResponseDetail> __this__details = new java.util.ArrayList<ExecuteTransferBatchResponseDetail>(other.details.size());
+      for (ExecuteTransferBatchResponseDetail other_element : other.details) {
+        __this__details.add(new ExecuteTransferBatchResponseDetail(other_element));
       }
       this.details = __this__details;
     }
@@ -180,23 +180,23 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.util.Iterator<CreateExecuteTransferBatchResponseDetail> getDetailsIterator() {
+  public java.util.Iterator<ExecuteTransferBatchResponseDetail> getDetailsIterator() {
     return (this.details == null) ? null : this.details.iterator();
   }
 
-  public void addToDetails(CreateExecuteTransferBatchResponseDetail elem) {
+  public void addToDetails(ExecuteTransferBatchResponseDetail elem) {
     if (this.details == null) {
-      this.details = new java.util.ArrayList<CreateExecuteTransferBatchResponseDetail>();
+      this.details = new java.util.ArrayList<ExecuteTransferBatchResponseDetail>();
     }
     this.details.add(elem);
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.util.List<CreateExecuteTransferBatchResponseDetail> getDetails() {
+  public java.util.List<ExecuteTransferBatchResponseDetail> getDetails() {
     return this.details;
   }
 
-  public ExecuteTransferBatchResponse setDetails(@org.apache.thrift.annotation.Nullable java.util.List<CreateExecuteTransferBatchResponseDetail> details) {
+  public ExecuteTransferBatchResponse setDetails(@org.apache.thrift.annotation.Nullable java.util.List<ExecuteTransferBatchResponseDetail> details) {
     this.details = details;
     return this;
   }
@@ -256,7 +256,7 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
       if (value == null) {
         unsetDetails();
       } else {
-        setDetails((java.util.List<CreateExecuteTransferBatchResponseDetail>)value);
+        setDetails((java.util.List<ExecuteTransferBatchResponseDetail>)value);
       }
       break;
 
@@ -510,11 +510,11 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
                 org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
-                struct.details = new java.util.ArrayList<CreateExecuteTransferBatchResponseDetail>(_list0.size);
-                @org.apache.thrift.annotation.Nullable CreateExecuteTransferBatchResponseDetail _elem1;
+                struct.details = new java.util.ArrayList<ExecuteTransferBatchResponseDetail>(_list0.size);
+                @org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponseDetail _elem1;
                 for (int _i2 = 0; _i2 < _list0.size; ++_i2)
                 {
-                  _elem1 = new CreateExecuteTransferBatchResponseDetail();
+                  _elem1 = new ExecuteTransferBatchResponseDetail();
                   _elem1.read(iprot);
                   struct.details.add(_elem1);
                 }
@@ -559,7 +559,7 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
         oprot.writeFieldBegin(DETAILS_FIELD_DESC);
         {
           oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.details.size()));
-          for (CreateExecuteTransferBatchResponseDetail _iter3 : struct.details)
+          for (ExecuteTransferBatchResponseDetail _iter3 : struct.details)
           {
             _iter3.write(oprot);
           }
@@ -607,7 +607,7 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
       if (struct.isSetDetails()) {
         {
           oprot.writeI32(struct.details.size());
-          for (CreateExecuteTransferBatchResponseDetail _iter4 : struct.details)
+          for (ExecuteTransferBatchResponseDetail _iter4 : struct.details)
           {
             _iter4.write(oprot);
           }
@@ -629,11 +629,11 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
       if (incoming.get(1)) {
         {
           org.apache.thrift.protocol.TList _list5 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
-          struct.details = new java.util.ArrayList<CreateExecuteTransferBatchResponseDetail>(_list5.size);
-          @org.apache.thrift.annotation.Nullable CreateExecuteTransferBatchResponseDetail _elem6;
+          struct.details = new java.util.ArrayList<ExecuteTransferBatchResponseDetail>(_list5.size);
+          @org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponseDetail _elem6;
           for (int _i7 = 0; _i7 < _list5.size; ++_i7)
           {
-            _elem6 = new CreateExecuteTransferBatchResponseDetail();
+            _elem6 = new ExecuteTransferBatchResponseDetail();
             _elem6.read(iprot);
             struct.details.add(_elem6);
           }

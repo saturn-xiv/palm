@@ -1,6 +1,6 @@
 package com.github.saturn_xiv.palm.plugins.musa.wechatpay;
 
-import com.github.saturn_xiv.palm.plugins.musa.v1.*;
+import com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.*;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.BillDownloadResponse;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.OutNoType;
 import com.wechat.pay.java.core.RSAAutoCertificateConfig;
@@ -12,6 +12,7 @@ import com.wechat.pay.java.service.payments.jsapi.JsapiServiceExtension;
 import com.wechat.pay.java.service.payments.nativepay.NativePayService;
 import com.wechat.pay.java.service.refund.RefundService;
 import com.wechat.pay.java.service.transferbatch.TransferBatchService;
+import jakarta.annotation.PostConstruct;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
@@ -94,23 +94,21 @@ public class WechatPayClient {
         return new DefaultHttpClientBuilder().config(config).build();
     }
 
-    public static String currency(WechatPayCurrency currency) {
+    public static String currency(Currency currency) {
         return switch (currency) {
             case CNY -> "CNY";
-            case UNRECOGNIZED -> null;
         };
     }
 
-    public static String notifyUrl(String host, WechatPayNotifyAction action) {
+    public static String notifyUrl(String host, NotifyAction action) {
         final var it = switch (action) {
             case TRANSCATION -> "transaction";
             case REFUND -> "refund";
-            case UNRECOGNIZED -> "nil";
         };
         return "https://" + host + "/api/wechat-pay/notification/" + it;
     }
 
-    public static String billDate(WechatPayBillDate date) {
+    public static String billDate(BillDate date) {
         LocalDate it = LocalDate.of(date.getYear(), date.getMonth(), date.getDay());
         return billDate(it);
     }
@@ -125,7 +123,7 @@ public class WechatPayClient {
         return format.format(date);
     }
 
-    public static boolean canDownload(WechatPayBillDate date) {
+    public static boolean canDownload(BillDate date) {
         final var zone = TimeZone.getTimeZone("Asia/Shanghai").toZoneId();
         LocalDateTime now = LocalDateTime.now(zone);
         LocalDateTime end = now.withHour(10).withMinute(5).withSecond(0);
@@ -153,38 +151,34 @@ public class WechatPayClient {
 
     }
 
-    public static String billType(WechatPayTradeBillRequest.BillType billType) {
+    public static String billType(TradeBillType billType) {
         return switch (billType) {
             case ALL -> "ALL";
             case SUCCESS -> "SUCCESS";
             case REFUND -> "REFUND";
-            case UNRECOGNIZED -> null;
         };
     }
 
-    public static String transferDetailElectronicReceiptAcceptType(
-            WechatPayTransferGetElectronicReceiptRequest.AcceptType acceptType) {
+    public static String transferDetailElectronicReceiptAcceptType(TransferElectronicReceiptAcceptType acceptType) {
         return switch (acceptType) {
             case BATCH_TRANSFER -> "BATCH_TRANSFER";
             case TRANSFER_TO_BANK -> "TRANSFER_TO_BANK";
             case TRANSFER_TO_POCKET -> "TRANSFER_TO_POCKET";
-            case UNRECOGNIZED -> null;
+
         };
     }
 
-    public static String accountType(WechatPayFundFlowBillRequest.AccountType accountType) {
+    public static String accountType(FundFlowAccountType accountType) {
         return switch (accountType) {
             case FEES -> "FEES";
             case BASIC -> "BASIC";
             case OPERATION -> "OPERATION";
-            case UNRECOGNIZED -> null;
         };
     }
 
-    public static String tarType(WechatPayTarType tarType) {
+    public static String tarType(TarType tarType) {
         return switch (tarType) {
             case GZIP -> "GZIP";
-            case UNRECOGNIZED -> null;
         };
     }
 
@@ -200,13 +194,12 @@ public class WechatPayClient {
 
     }
 
-    public static String batchTransferDetailStatus(WechatPayQueryBatchTransferRequest.DetailStatus status) {
+    public static String batchTransferDetailStatus(QueryBatchTransferDetailStatus status) {
         return switch (status) {
             case WAIT_PAY -> "WAIT_PAY";
             case SUCCESS -> "SUCCESS";
             case ALL -> "ALL";
             case FAIL -> "FAIL";
-            case UNRECOGNIZED -> null;
         };
     }
 
