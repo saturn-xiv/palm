@@ -1,5 +1,7 @@
 package com.github.saturn_xiv.palm.plugins.musa.wechatpay.services.impl;
 
+import com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.*;
+import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.Refund;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.*;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.transfer.ReceiptAcceptType;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.transfer.ReceiptSignatureStatus;
@@ -32,13 +34,13 @@ public class WechatPayStorageServiceImpl implements WechatPayStorageService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void addRefund(String outTradeNo, String outRefundNo, WechatPayCreateRefundRequest.Amount amount, String reason) {
+    public void addRefund(String outTradeNo, String outRefundNo, CreateRefundAmount amount, String reason) {
         var it = new Refund();
         it.setOutRefundNo(outRefundNo);
         it.setOutTradeNo(outTradeNo);
         it.setAmountTotal(amount.getTotal());
         it.setAmountRefund(amount.getRefund());
-        it.setAmountCurrency(amount.getCurrency().getNumber());
+        it.setAmountCurrency(amount.getCurrency().getValue());
         it.setReason(reason);
         it.setCreatedAt(new Date());
         refundRepository.save(it);
@@ -46,14 +48,14 @@ public class WechatPayStorageServiceImpl implements WechatPayStorageService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void addOrder(String appId, String payerOpenId, String outTradeNo, WechatPayPrepayRequest.Amount amount,
+    public void addOrder(String appId, String payerOpenId, String outTradeNo, Amount amount,
                          String description, String response) {
         var it = new Order();
         it.setAppId(appId);
         it.setPayerOpenId(payerOpenId);
         it.setOutTradeNo(outTradeNo);
         it.setAmountTotal(amount.getTotal());
-        it.setAmountCurrency(amount.getCurrency().getNumber());
+        it.setAmountCurrency(amount.getCurrency().getValue());
         it.setDescription(description);
         it.setResponse(response);
         it.setCreatedAt(new Date());
@@ -62,24 +64,24 @@ public class WechatPayStorageServiceImpl implements WechatPayStorageService {
 
     @Transactional(readOnly = true)
     @Override
-    public FundFlowBill getFundFlowBill(@NotNull String billDate, @NotNull WechatPayFundFlowBillRequest.AccountType accountType) {
-        return fundFlowBillRepository.findByBillDateAndAccountType(billDate, accountType.getNumber());
+    public FundFlowBill getFundFlowBill(@NotNull String billDate, @NotNull FundFlowAccountType accountType) {
+        return fundFlowBillRepository.findByBillDateAndAccountType(billDate, accountType.getValue());
     }
 
     @Transactional(readOnly = true)
     @Override
-    public TradeBill getTradeBill(@NotNull String billDate, @NotNull WechatPayTradeBillRequest.BillType billType) {
-        return tradeBillRepository.findByBillDateAndBillType(billDate, billType.getNumber());
+    public TradeBill getTradeBill(@NotNull String billDate, @NotNull TradeBillType billType) {
+        return tradeBillRepository.findByBillDateAndBillType(billDate, billType.getValue());
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void addFundFlowBill(String billDate, WechatPayFundFlowBillRequest.AccountType accountType, WechatPayTarType tarType, byte[] content) {
+    public void addFundFlowBill(String billDate, FundFlowAccountType accountType, TarType tarType, byte[] content) {
         var it = new FundFlowBill();
 
         it.setBillDate(billDate);
-        it.setAccountType(accountType.getNumber());
-        it.setTarType(tarType.getNumber());
+        it.setAccountType(accountType.getValue());
+        it.setTarType(tarType.getValue());
         it.setContent(content);
         it.setCreatedAt(new Date());
         fundFlowBillRepository.save(it);
@@ -87,11 +89,11 @@ public class WechatPayStorageServiceImpl implements WechatPayStorageService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void addTradeBill(String billDate, WechatPayTradeBillRequest.BillType billType, WechatPayTarType tarType, byte[] content) {
+    public void addTradeBill(String billDate, TradeBillType billType, TarType tarType, byte[] content) {
         var it = new TradeBill();
         it.setBillDate(billDate);
-        it.setBillType(billType.getNumber());
-        it.setTarType(tarType.getNumber());
+        it.setBillType(billType.getValue());
+        it.setTarType(tarType.getValue());
         it.setContent(content);
         it.setCreatedAt(new Date());
         tradeBillRepository.save(it);

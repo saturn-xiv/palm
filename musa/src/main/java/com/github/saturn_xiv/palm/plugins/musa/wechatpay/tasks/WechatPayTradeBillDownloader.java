@@ -1,8 +1,8 @@
 package com.github.saturn_xiv.palm.plugins.musa.wechatpay.tasks;
 
 
-import com.github.saturn_xiv.palm.plugins.musa.v1.WechatPayTarType;
-import com.github.saturn_xiv.palm.plugins.musa.v1.WechatPayTradeBillRequest;
+import com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.TarType;
+import com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.TradeBillType;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.WechatPayClient;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.services.WechatPayStorageService;
 import com.wechat.pay.java.core.exception.ServiceException;
@@ -20,15 +20,13 @@ public class WechatPayTradeBillDownloader {
     public void execute() throws InterruptedException {
         logger.info("start to download trade bills");
         for (var billDate : WechatPayClient.latestBillDates()) {
-            for (var billType : WechatPayTradeBillRequest.BillType.values()) {
-                if (billType == WechatPayTradeBillRequest.BillType.UNRECOGNIZED) {
-                    continue;
-                }
+            for (var billType : TradeBillType.values()) {
+
                 logger.info("download wechat-pay trade bills ({},{})", billDate, billType);
                 if (wechatPayStorageService.getTradeBill(billDate, billType) == null) {
                     try {
                         final var content = wechatPayClient.downloadTradeBill(billDate, WechatPayClient.billType(billType));
-                        wechatPayStorageService.addTradeBill(billDate, billType, WechatPayTarType.GZIP, content);
+                        wechatPayStorageService.addTradeBill(billDate, billType, TarType.GZIP, content);
                     } catch (ServiceException e) {
                         logger.error("{} {} {}", e.getHttpStatusCode(), e.getErrorCode(), e.getErrorMessage());
                     }

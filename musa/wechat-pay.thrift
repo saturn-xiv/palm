@@ -7,7 +7,7 @@ enum Currency {
 
 struct Amount {
     1:i32 total,
-    2:Currency currenty,
+    2:Currency currency,
 }
 
 enum NotifyAction {
@@ -17,8 +17,7 @@ enum NotifyAction {
 
 struct PrepayRequest {
     1:string app_id,
-    2:optional string out_trade_no,
-
+    
     11:optional string payer_open_id,
     12:Amount amount,
 
@@ -47,7 +46,8 @@ struct TradeResponse {
 }
 
 service Native {
-    NativeQrCodeUrlResponse prepay(1:PrepayRequest request);
+    NativeQrCodeUrlResponse create_prepay(1:PrepayRequest request);
+    NativeQrCodeUrlResponse execute_prepay(1:string out_trade_no, 2:PrepayRequest request);
 }
 
 struct NativeQrCodeUrlResponse {
@@ -56,7 +56,8 @@ struct NativeQrCodeUrlResponse {
 }
 
 service Jsapi {
-    JsapiPrepayIdResponse prepay(1:PrepayRequest request);
+    JsapiPrepayIdResponse create_prepay(1:PrepayRequest request);
+    JsapiPrepayIdResponse execute_prepay(1:string out_trade_no, 2:PrepayRequest request);
     TradeResponse query_order_by_out_trade_no(1:string out_trade_no);
     TradeResponse query_order_by_transaction_id(1:string transaction_id);
     void close_order( 1:string out_trade_no, 2:string reason);
@@ -91,10 +92,15 @@ enum FundFlowAccountType {
 }
 
 service Refund {
-    QueryRefundResponse create(1:string out_trade_no, 2:Amount amount, 3:string reason, 4:string notify_host);
+    QueryRefundResponse create(1:string out_trade_no, 2:CreateRefundAmount amount, 3:string reason, 4:string notify_host);
     QueryRefundResponse query(1:string out_refund_no);
 }
 
+struct CreateRefundAmount {
+    1:i32 total,
+    2:i32 refund,
+    9:Currency currency,
+}
 struct QueryRefundResponse {
     1:string out_refund_no,
     11:string channel,
@@ -143,7 +149,7 @@ struct ExecuteTransferBatchResponseDetail {
 
 struct QueryTransferBatchResponse {
     1:string app_id,
-    2:string machent_id,
+    2:string merchant_id,
     3:string transfer_scene_id,
 
     11:string batch_id,

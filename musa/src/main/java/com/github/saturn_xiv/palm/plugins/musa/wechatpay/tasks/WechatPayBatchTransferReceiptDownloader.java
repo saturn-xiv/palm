@@ -1,10 +1,11 @@
 package com.github.saturn_xiv.palm.plugins.musa.wechatpay.tasks;
 
-import com.github.saturn_xiv.palm.plugins.musa.v1.WechatPayQueryBatchTransferRequest;
-import com.github.saturn_xiv.palm.plugins.musa.v1.WechatPayTransferGetElectronicReceiptRequest;
+import com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.QueryBatchTransferDetailStatus;
+import com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.TransferElectronicReceiptAcceptType;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.WechatPayClient;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.helpers.WechatPayBatchTransferHelper;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.helpers.WechatPayTransferReceiptHelper;
+import com.github.saturn_xiv.palm.plugins.musa.wechatpay.models.transfer.ReceiptSignatureStatus;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.repositories.WechatPayTransferBillReceiptRepository;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.repositories.WechatPayTransferDetailElectronicReceiptRepository;
 import com.github.saturn_xiv.palm.plugins.musa.wechatpay.services.WechatPayStorageService;
@@ -28,19 +29,10 @@ public class WechatPayBatchTransferReceiptDownloader {
         var transferReceiptHelper = new WechatPayTransferReceiptHelper(this.client.httpClient());
         var batchTransferHelper = new WechatPayBatchTransferHelper(this.client.batchTransferService());
         for (var it : transferBillReceiptRepository.findAll()) {
-            switch (it.getSignatureStatus()) {
-                case PENDING -> this.accept(batchTransferHelper, transferReceiptHelper, it.getOutBatchNo());
+            if (it.getSignatureStatus() == ReceiptSignatureStatus.PENDING) {
+                this.accept(batchTransferHelper, transferReceiptHelper, it.getOutBatchNo());
             }
-
-
-//                if (it.getSignatureStatus() != ReceiptSignatureStatus.FINISHED) {
-//                    this.execute(batchTransferHelper, transferReceiptHelper, it.getOutBatchNo(), it.getSignatureStatus());
-//                }
-//            } catch (Exception e) {
-//                logger.error("fetch {}", it.getOutBatchNo(), e);
-//            }
-
-            Thread.sleep(Duration.ofMinutes(11));
+            Thread.sleep(Duration.ofMinutes(15));
         }
     }
 
@@ -53,7 +45,7 @@ public class WechatPayBatchTransferReceiptDownloader {
             var response = batchTransferHelper.query(
                     outBatchNo,
                     i * BATCH, BATCH,
-                    WechatPayClient.batchTransferDetailStatus(WechatPayQueryBatchTransferRequest.DetailStatus.SUCCESS));
+                    WechatPayClient.batchTransferDetailStatus(QueryBatchTransferDetailStatus.SUCCESS));
             if (!"FINISHED".equals(response.getTransferBatch().getBatchStatus())) {
                 logger.error("batch transfer {}({}) isn't finished yet.",
                         outBatchNo, response.getTransferBatch().getBatchStatus());
@@ -78,7 +70,7 @@ public class WechatPayBatchTransferReceiptDownloader {
             try {
                 transferReceiptHelper.requestTransferElectronicReceipt(
                         WechatPayClient.transferDetailElectronicReceiptAcceptType(
-                                WechatPayTransferGetElectronicReceiptRequest.AcceptType.BATCH_TRANSFER),
+                                TransferElectronicReceiptAcceptType.BATCH_TRANSFER),
                         outBatchNo, detail);
             } catch (ServiceException e) {
                 if (!"RESOURCE_ALREADY_EXISTS".equals(e.getErrorCode())) {
@@ -106,7 +98,7 @@ public class WechatPayBatchTransferReceiptDownloader {
                               String outDetailNo) {
         final var response = transferReceiptHelper.requestTransferElectronicReceipt(
                 WechatPayClient.transferDetailElectronicReceiptAcceptType(
-                        WechatPayTransferGetElectronicReceiptRequest.AcceptType.BATCH_TRANSFER),
+                        TransferElectronicReceiptAcceptType.BATCH_TRANSFER),
                 outBatchNo, outDetailNo);
         if (!"FINISHED".equals(response.getSignatureStatus())) {
             logger.error("detail receipt  [{},{}]({}) isn't finish yet", outBatchNo, outDetailNo, response.getSignatureStatus());

@@ -47,7 +47,7 @@ function generate_thrift_for_java() {
     if [ -d $target ]; then
         rm -r $target
     fi
-    thrift -out $2 --gen java:sorted_containers,generated_annotations=undated -r $1
+    thrift -out $2 --gen java:sorted_containers,jakarta_annotations,generated_annotations=undated -r $1
 }
 
 function generate_thrift_for_node() {
