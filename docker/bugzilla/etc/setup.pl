@@ -10,6 +10,7 @@ $answer{'ADMIN_EMAIL'} = 'who-am-i@gmail.com';
 $answer{'ADMIN_PASSWORD'} = 'change-me';
 $answer{'ADMIN_REALNAME'} = 'Web Master';
 
+# smtp.qq.com
 $answer{'SMTP_SERVER'} = 'smtp.gmail.com';
 
 # $answer{'NO_PAUSE'} = 1
