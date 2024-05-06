@@ -71,7 +71,7 @@ public class WechatPayTransferServiceImpl implements Transfer.Iface {
         } catch (ServiceException e) {
             logger.error("{} {} {}", e.getHttpStatusCode(), e.getErrorCode(), e.getErrorMessage());
             it.setOut_batch_no(out_batch_no);
-            var error = new com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.Error();
+            var error = new com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.ResponseError();
             error.setCode(e.getErrorCode());
             error.setMessage(e.getErrorMessage());
             status.setError(error);

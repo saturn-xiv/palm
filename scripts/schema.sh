@@ -62,6 +62,13 @@ function generate_thrift_for_node() {
     thrift -out $2 --gen js:node -r $1
 }
 
+function generate_thrift_for_rust() {
+    cd $WORKSPACE
+    echo "generate thrift $1 => $3"
+    thrift -out tmp --gen rs -r $1
+    mv tmp/$2.rs $3/protocols.rs
+}
+
 function generate_grpc_for_node() {
     echo "generate grpc $1 => $2"
     if [ -d $2 ]; then
@@ -83,6 +90,14 @@ generate_thrift_for_go $WORKSPACE/tuberose/tuberose.thrift $WORKSPACE/tuberose/s
 generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/jasmine/services/v1
 generate_thrift_for_go $WORKSPACE/lily/lily.thrift $WORKSPACE/lily/services/v1
 generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/lily/env/jasmine/v1
+generate_thrift_for_rust $WORKSPACE/jasmine/jasmine.thrift jasmine $WORKSPACE/hibiscus/src/jasmine
+generate_thrift_for_rust $WORKSPACE/lily/lily.thrift lily $WORKSPACE/hibiscus/src/lily
+generate_thrift_for_rust $WORKSPACE/gourd/gourd.thrift gourd $WORKSPACE/hibiscus/src/gourd
+generate_thrift_for_rust $WORKSPACE/morus/markdown.thrift markdown $WORKSPACE/hibiscus/src/morus/markdown
+generate_thrift_for_rust $WORKSPACE/musa/wechat-pay.thrift wechat-pay $WORKSPACE/hibiscus/src/musa/wechat_pay
+generate_thrift_for_rust $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/hibiscus/src/tuberose
+generate_thrift_for_rust $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/hibiscus/src/daisy
 
+cargo fmt
 echo 'done.'
 exit 0

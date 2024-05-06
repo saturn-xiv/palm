@@ -25,7 +25,7 @@ struct PrepayRequest {
     99:string notify_host,
 }
 
-struct Error {
+struct ResponseError {
     1:string code,
     2:string message,
 }
@@ -134,7 +134,7 @@ struct ExecuteTransferBatchResponse {
 
 union ExecuteTransferBatchResponseStatus {
     1:ExecuteTransferBatchResponseSucceeded succeeded,
-    2:Error error,
+    2:ResponseError error,
 }
 
 struct ExecuteTransferBatchResponseSucceeded {

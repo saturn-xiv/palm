@@ -84,7 +84,7 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
     tmpMap.put(_Fields.SUCCEEDED, new org.apache.thrift.meta_data.FieldMetaData("succeeded", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchResponseSucceeded.class)));
     tmpMap.put(_Fields.ERROR, new org.apache.thrift.meta_data.FieldMetaData("error", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
-        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, Error.class)));
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ResponseError.class)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(ExecuteTransferBatchResponseStatus.class, metaDataMap);
   }
@@ -111,7 +111,7 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
     return x;
   }
 
-  public static ExecuteTransferBatchResponseStatus error(Error value) {
+  public static ExecuteTransferBatchResponseStatus error(ResponseError value) {
     ExecuteTransferBatchResponseStatus x = new ExecuteTransferBatchResponseStatus();
     x.setError(value);
     return x;
@@ -127,10 +127,10 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
         }
         throw new java.lang.ClassCastException("Was expecting value of type ExecuteTransferBatchResponseSucceeded for field 'succeeded', but got " + value.getClass().getSimpleName());
       case ERROR:
-        if (value instanceof Error) {
+        if (value instanceof ResponseError) {
           break;
         }
-        throw new java.lang.ClassCastException("Was expecting value of type Error for field 'error', but got " + value.getClass().getSimpleName());
+        throw new java.lang.ClassCastException("Was expecting value of type ResponseError for field 'error', but got " + value.getClass().getSimpleName());
       default:
         throw new java.lang.IllegalArgumentException("Unknown field id " + setField);
     }
@@ -153,8 +153,8 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
           }
         case ERROR:
           if (field.type == ERROR_FIELD_DESC.type) {
-            Error error;
-            error = new Error();
+            ResponseError error;
+            error = new ResponseError();
             error.read(iprot);
             return error;
           } else {
@@ -178,7 +178,7 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
         succeeded.write(oprot);
         return;
       case ERROR:
-        Error error = (Error)value_;
+        ResponseError error = (ResponseError)value_;
         error.write(oprot);
         return;
       default:
@@ -197,8 +197,8 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
           succeeded.read(iprot);
           return succeeded;
         case ERROR:
-          Error error;
-          error = new Error();
+          ResponseError error;
+          error = new ResponseError();
           error.read(iprot);
           return error;
         default:
@@ -217,7 +217,7 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
         succeeded.write(oprot);
         return;
       case ERROR:
-        Error error = (Error)value_;
+        ResponseError error = (ResponseError)value_;
         error.write(oprot);
         return;
       default:
@@ -267,15 +267,15 @@ public class ExecuteTransferBatchResponseStatus extends org.apache.thrift.TUnion
     value_ = java.util.Objects.requireNonNull(value,"_Fields.SUCCEEDED");
   }
 
-  public Error getError() {
+  public ResponseError getError() {
     if (getSetField() == _Fields.ERROR) {
-      return (Error)getFieldValue();
+      return (ResponseError)getFieldValue();
     } else {
       throw new java.lang.RuntimeException("Cannot get field 'error' because union is currently set to " + getFieldDesc(getSetField()).name);
     }
   }
 
-  public void setError(Error value) {
+  public void setError(ResponseError value) {
     setField_ = _Fields.ERROR;
     value_ = java.util.Objects.requireNonNull(value,"_Fields.ERROR");
   }
