@@ -1,56 +1,29 @@
-FROM alpine:latest
+FROM ubuntu:jammy
 LABEL maintainer="Jeremy Zheng"
 
-RUN apk update
-RUN apk upgrade
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apk add bash wget pwgen openssl vim git tzdata rsync \
-    build-base patchutils \
-    apache2 apache2-ctl apache2-dev fcgiwrap \
-    perl perl-dev \
-    perl-cgi perl-date-format perl-datetime perl-datetime-timezone \
-    perl-template-toolkit perl-email-mime perl-uri perl-list-moreutils perl-json-xs \
-    perl-dbi perl-dbd-sqlite perl-dbd-pg perl-dbd-mysql \
-    perl-yaml perl-cpan-distnameinfo perl-params-util \
-    perl-net-smtp-ssl perl-email-address perl-class-xsaccessor \
-    perl-gd perl-html-scrubber perl-html-formattext-withlinks perl-xml-twig \
-    perl-file-copy-recursive perl-file-which perl-file-mimeinfo
-ENV TZ=UTC
-RUN cp /usr/share/zoneinfo/UTC /etc/localtime
+RUN apt update
+RUN apt -y upgrade
+RUN apt install -y git libdbd-sqlite3-perl libdbd-pg-perl \
+    apache2 build-essential libcgi-pm-perl libdigest-sha-perl libtimedate-perl libdatetime-perl libdatetime-timezone-perl libdbi-perl libdbix-connector-perl libtemplate-perl libemail-address-perl libemail-sender-perl libemail-mime-perl liburi-perl liblist-moreutils-perl libmath-random-isaac-perl libjson-xs-perl libgd-perl libchart-perl libtemplate-plugin-gd-perl libgd-text-perl libgd-graph-perl libmime-tools-perl libwww-perl libxml-twig-perl libnet-ldap-perl libauthen-sasl-perl libnet-smtp-ssl-perl libauthen-radius-perl libsoap-lite-perl libxmlrpc-lite-perl libjson-rpc-perl libtest-taint-perl libhtml-parser-perl libhtml-scrubber-perl libencode-perl libencode-detect-perl libemail-reply-perl libhtml-formattext-withlinks-perl libtheschwartz-perl libdaemon-generic-perl libapache2-mod-perl2 libapache2-mod-perl2-dev libfile-mimeinfo-perl libio-stringy-perl libcache-memcached-perl libfile-copy-recursive-perl libfile-which-perl libdbd-mysql-perl perlmagick lynx graphviz python3-sphinx rst2pdf
+RUN apt -y autoremove
+RUN apt -y clean
 
-RUN mkdir -p $HOME/downloads $HOME/local $HOME/tmp
-
-# https://bugzilla.readthedocs.io/en/5.2/installing/quick-start.html#download-bugzilla
+# https://bugzilla.readthedocs.io/en/latest/installing/quick-start.html
 RUN git clone -b release-5.0.6 https://github.com/bugzilla/bugzilla.git /var/www/bugzilla
-RUN cd /var/www/bugzilla \
-    && perl install-module.pl Chart::Lines \
-    && perl install-module.pl Template::Plugin::GD::Image \
-    && perl install-module.pl GD::Text \
-    && perl install-module.pl GD::Graph \
-    && perl install-module.pl MIME::Parser \
-    && perl install-module.pl PatchReader \
-    && perl install-module.pl Email::Reply \
-    && perl install-module.pl File::MimeInfo::Magic \
-    && perl install-module.pl IO::Scalar \
-    && perl install-module.pl mod_perl2 \
-    && perl install-module.pl Apache2::SizeLimit \
-    && perl install-module.pl Encode::Detect \
-    && perl install-module.pl Email::Sender \
-    && perl install-module.pl Math::Random::ISAAC
-RUN mkdir /etc/apache2/sites-available/
+RUN cd /var/www/bugzilla && perl install-module.pl PatchReader
 COPY etc/apache2.conf /etc/apache2/sites-available/bugzilla.conf
-RUN echo 'Include /etc/apache2/sites-available/*.conf' >> /etc/apache2/httpd.conf
+RUN a2ensite bugzilla
+RUN a2enmod cgi headers expires rewrite
 COPY etc/run.sh /bugzilla.sh
 RUN mkdir /etc/bugzilla
 COPY etc/setup.pl /etc/bugzilla/
 
-# https://wiki.mozilla.org/Bugzilla:Installation_with_nginx
-
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
-EXPOSE 8080/tcp
+EXPOSE 80/tcp
 VOLUME /workspace
-WORKDIR /workspace
+WORKDIR /var/www/bugzilla
 
 CMD ["/bin/bash", "-l"]
-

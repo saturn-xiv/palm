@@ -1,5 +1,3 @@
-# https://www.bugzilla.org/docs/3.0/html/api/checksetup.html#RUNNING_CHECKSETUP_NON-INTERACTIVELY
-
 $answer{'db_driver'} = 'sqlite';
 $answer{'db_name'} = 'bugs';
 # pwgen 128 1
@@ -10,7 +8,13 @@ $answer{'ADMIN_EMAIL'} = 'who-am-i@gmail.com';
 $answer{'ADMIN_PASSWORD'} = 'change-me';
 $answer{'ADMIN_REALNAME'} = 'Web Master';
 
-# smtp.qq.com
-$answer{'SMTP_SERVER'} = 'smtp.gmail.com';
+# smtp.qq.com:465
+$answer{'mail_delivery_method'} = 'SMTP';
+$answer{'mailfrom'} = 'who-am-i@gmail.com';
+$answer{'smtpserver'} = 'smtp.gmail.com:465';
+$answer{'smtp_username'} = 'who-am-i@gmail.com';
+$answer{'smtp_password'} = 'change-me';
+$answer{'smtp_ssl'} = 'On';
 
-# $answer{'NO_PAUSE'} = 1
+$answer{'webservergroup'} = 'www-data';
+
