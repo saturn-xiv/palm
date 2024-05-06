@@ -91,14 +91,17 @@ func consume(ctx context.Context, client *jasmine_v1.S3Client, message []byte) e
 	err := produce_task(ctx, client, &task)
 
 	if task.Callback != nil {
-		slog.Debug("report to", slog.String("url", *task.Callback))
+		slog.Info("report to", slog.String("url", *task.Callback))
 		values := url.Values{"bucket": {task.Bucket}, "object": {task.Object}}
 		if err != nil {
 			values.Add("error", err.Error())
 		}
-		if _, err := http.PostForm(*task.Callback, values); err != nil {
+		res, err := http.PostForm(*task.Callback, values)
+		if err != nil {
 			return err
 		}
+		slog.Info("", slog.Int("status", res.StatusCode))
+
 		return nil
 	}
 	return err
