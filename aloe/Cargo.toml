@@ -15,5 +15,5 @@ default-features = false
 features = ["bigdecimal", "sqlite", "extras", "128-column-tables"]
 
 
-[dependencies.palm]
-path = '../palm'
+[dependencies.hibiscus]
+path = '../hibiscus'

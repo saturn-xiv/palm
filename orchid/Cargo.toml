@@ -55,5 +55,5 @@ features = ["v4", "serde"]
 version = "4"
 features = ["derive"]
 
-[dependencies.palm]
-path = '../palm'
+[dependencies.hibiscus]
+path = '../hibiscus'

@@ -82,9 +82,10 @@ $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z 
 - morus: markdown => html services
 - musa: WechatPay services
 - jasmine: minio services
-- lily: texlive worker
+- lily: tex-to-pdf worker
 - daisy: email worker
 - tuberose: sms worker & callback handler
+- ~~orchid~~: oauth2 services
 - ~~lilac~~: casbin/minio/tink services
 - ~~lily~~: tex => pdf/word, epub, Excel, ImageMagic services
 - ~~camelia~~: cms/forum services

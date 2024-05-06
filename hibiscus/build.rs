@@ -1,5 +1,5 @@
 use std::env;
-use std::fs::{read_dir, File};
+use std::fs::File;
 use std::io::Write;
 use std::path::Path;
 use std::process::Command;
@@ -12,15 +12,6 @@ fn shell(cmd: &mut Command) -> String {
 }
 
 fn main() {
-    for it in read_dir("protocols").unwrap() {
-        let it = it.unwrap();
-        let it = it.path();
-        if let Some(ext) = it.extension() {
-            if ext == "proto" {
-                tonic_build::compile_protos(it.display().to_string()).unwrap();
-            }
-        }
-    }
     {
         let out_dir = env::var("OUT_DIR").unwrap();
         let git_version = shell(

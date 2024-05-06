@@ -94,5 +94,5 @@ features = ["cookies"]
 version = "*"
 features = ["vendored"]
 
-[dependencies.palm]
-path = '../palm'
+[dependencies.hibiscus]
+path = '../hibiscus'

@@ -136,7 +136,6 @@ pub mod cache;
 pub mod captcha;
 pub mod crypto;
 pub mod currency;
-pub mod email;
 pub mod env;
 pub mod google;
 pub mod handlers;
@@ -145,16 +144,13 @@ pub mod jwt;
 pub mod line;
 pub mod minio;
 pub mod network;
-pub mod orchid;
 pub mod pagination;
 pub mod parser;
 pub mod queue;
-pub mod rbac;
 pub mod result;
 pub mod search;
 pub mod seo;
 pub mod session;
-pub mod sms;
 pub mod wechat;
 
 use std::fs::{copy as copy_file, create_dir_all, read_dir, remove_dir_all, remove_file, File};
@@ -355,16 +351,4 @@ pub fn tar<P: AsRef<Path>>(root: P, name: &str, keep: usize) -> Result<()> {
         }
     }
     Ok(())
-}
-
-pub mod morus {
-    pub mod v1 {
-        tonic::include_proto!("palm.morus.v1");
-    }
-}
-
-pub mod musa {
-    pub mod v1 {
-        tonic::include_proto!("palm.musa.v1");
-    }
 }

@@ -7,7 +7,9 @@ strip = true
 resolver = "2"
 
 members = [
-    "palm",
+    "hibiscus",
+
+
     "orchid",
     "camelia",
     "cms",

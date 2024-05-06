@@ -3,7 +3,6 @@ pub mod hmac;
 pub mod random;
 pub mod sha1;
 pub mod ssha512;
-pub mod tink;
 
 use data_encoding::BASE64;
 use serde::{Deserialize, Serialize};

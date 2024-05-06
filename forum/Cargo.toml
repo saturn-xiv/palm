@@ -12,8 +12,8 @@ version = "2"
 default-features = false
 features = ["bigdecimal", "postgres", "extras", "128-column-tables"]
 
-[dependencies.palm]
-path = '../palm'
+[dependencies.hibiscus]
+path = '../hibiscus'
 
 [dependencies.camelia]
 path = '../camelia'
