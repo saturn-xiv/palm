@@ -146,14 +146,23 @@ void loquat::JwtHandler::sign(std::string& token,
                               const loquat::v1::JwtSignRequest& request) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::Jwt jwt;
-  const auto ttl = std::chrono::seconds(request.ttl);
+
   if (request.__isset.payload) {
   }
+  const std::optional<std::string> jwt_id =
+      request.__isset.jwt_id ? std::optional<std::string>{request.jwt_id}
+                             : std::nullopt;
+  const std::optional<std::string> key_id =
+      request.__isset.key_id ? std::optional<std::string>{request.key_id}
+                             : std::nullopt;
   const std::optional<std::string> payload =
       request.__isset.payload ? std::optional<std::string>{request.payload}
                               : std::nullopt;
-  token = jwt.sign(request.issuer, request.subject, request.audiences, ttl,
-                   payload);
+
+  token = jwt.sign(jwt_id, key_id, request.issuer, request.subject,
+                   request.audiences, absl::FromUnixSeconds(request.issued_at),
+                   absl::FromUnixSeconds(request.not_before),
+                   absl::FromUnixSeconds(request.expired_at), payload);
 }
 
 void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
@@ -162,10 +171,17 @@ void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
                                 const std::string& audience) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::Jwt jwt;
-  const auto it = jwt.verify(token, issuer, audience);
-  response.subject = it.first;
-  if (it.second) {
-    response.payload = it.second.value();
+  const auto [jwt_id, key_id, subject, payload] =
+      jwt.verify(token, issuer, audience);
+  if (jwt_id) {
+    response.jwt_id = jwt_id.value();
+  }
+  if (key_id) {
+    response.key_id = key_id.value();
+  }
+  response.subject = subject;
+  if (payload) {
+    response.payload = payload.value();
   }
 }
 

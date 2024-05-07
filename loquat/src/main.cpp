@@ -121,7 +121,12 @@ int main(int argc, char** argv) {
         std::chrono::years(years));
     loquat::Jwt jwt;
     std::set<std::string> audiences{audience};
-    const auto token = jwt.sign(issuer, subject, audiences, ttl, std::nullopt);
+
+    auto now = absl::Now();
+    const auto token =
+        jwt.sign(std::nullopt, std::optional<std::string>{key_id}, issuer,
+                 subject, audiences, now, now - absl::Seconds(1),
+                 now + absl::Seconds(ttl.count()), std::nullopt);
 
     std::cout << token << std::endl;
   }

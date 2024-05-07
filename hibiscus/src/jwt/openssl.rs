@@ -1,9 +1,8 @@
-use chrono::{Duration, NaiveDateTime, Utc};
+use chrono::NaiveDateTime;
 use jsonwebtoken::{
     decode, encode, Algorithm, DecodingKey, EncodingKey, Header, TokenData, Validation,
 };
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
-use uuid::Uuid;
 
 use super::super::Result;
 
@@ -25,47 +24,28 @@ pub struct Token {
 }
 
 impl super::Jwt for Jwt {
-    fn sign_by_duration(
-        &self,
-        issuer: &str,
-        subject: &str,
-        audience: &str,
-        ttl: Duration,
-    ) -> Result<String> {
-        let (iat, nbf, exp) = Self::timestamps(ttl)?;
-        let token = Token {
-            iss: issuer.to_string(),
-            sub: subject.to_string(),
-            aud: audience.to_string(),
-            jti: Uuid::new_v4().to_string(),
-            iat,
-            exp,
-            nbf,
-        };
-        self.sum(None, &token)
-    }
-    fn sign_by_range(
-        &self,
-        issuer: &str,
-        subject: &str,
-        audience: &str,
-        not_before: NaiveDateTime,
-        expiration_time: NaiveDateTime,
-    ) -> Result<String> {
-        let token = Token {
-            iss: issuer.to_string(),
-            sub: subject.to_string(),
-            aud: audience.to_string(),
-            jti: Uuid::new_v4().to_string(),
-            iat: Utc::now().timestamp(),
-            exp: expiration_time.and_utc().timestamp(),
-            nbf: not_before.and_utc().timestamp(),
-        };
-        self.sum(None, &token)
-    }
     fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)> {
         let token: TokenData<Token> = self.parse(token, issuer, audience)?;
         Ok((token.claims.jti, token.claims.sub))
+    }
+    fn sign(
+        &self,
+        jwt_id: &str,
+        issuer: &str,
+        subject: &str,
+        audience: &str,
+        (issued_at, not_before, expired_at): (NaiveDateTime, NaiveDateTime, NaiveDateTime),
+    ) -> Result<String> {
+        let token = Token {
+            iss: issuer.to_string(),
+            sub: subject.to_string(),
+            aud: audience.to_string(),
+            jti: jwt_id.to_string(),
+            iat: issued_at.and_utc().timestamp(),
+            exp: expired_at.and_utc().timestamp(),
+            nbf: not_before.and_utc().timestamp(),
+        };
+        self.sum(None, &token)
     }
 }
 

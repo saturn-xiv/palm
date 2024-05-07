@@ -145,7 +145,7 @@ pub mod jasmine;
 pub mod jwt;
 pub mod lily;
 pub mod line;
-pub mod minio;
+pub mod loquat;
 pub mod morus;
 pub mod musa;
 pub mod network;

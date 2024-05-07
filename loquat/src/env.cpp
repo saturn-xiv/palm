@@ -20,23 +20,28 @@
 #include <tink/tink_config.h>
 #include <tink/util/status.h>
 
-std::string loquat::Jwt::sign(const std::string& issuer,
-                              const std::string& subject,
-                              const std::set<std::string> audiences,
-                              const std::chrono::seconds& ttl,
-                              const std::optional<std::string> payload) {
-  auto now = absl::Now();
+std::string loquat::Jwt::sign(
+    const std::optional<std::string> jwt_id,
+    const std::optional<std::string> key_id, const std::string& issuer,
+    const std::string& subject, const std::set<std::string> audiences,
+    const absl::Time& issued_at, const absl::Time& not_before,
+    const absl::Time& expired_at, const std::optional<std::string> payload) {
+  // https://github.com/tink-crypto/tink-cc/blob/main/tink/jwt/raw_jwt.h#L101
   auto raw_rb = crypto::tink::RawJwtBuilder()
                     .SetIssuer(loquat::PROJECT_NAME)
                     .SetSubject(subject)
-                    .SetNotBefore(now - absl::Seconds(1))
-                    .SetIssuedAt(now)
-                    .SetExpiration(now + absl::Seconds(ttl.count()));
+                    .SetNotBefore(not_before)
+                    .SetIssuedAt(issued_at)
+                    .SetExpiration(expired_at);
+  if (jwt_id) {
+    raw_rb = raw_rb.SetJwtId(jwt_id.value());
+  }
   for (const auto& it : audiences) {
     raw_rb = raw_rb.AddAudience(it);
   }
   if (payload) {
-    raw_rb.AddJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
+    raw_rb =
+        raw_rb.AddJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
   }
 
   auto raw_r = raw_rb.Build();
@@ -49,9 +54,10 @@ std::string loquat::Jwt::sign(const std::string& issuer,
   return token;
 }
 
-std::pair<std::string, std::optional<std::string>> loquat::Jwt::verify(
-    const std::string& token, const std::string& issuer,
-    const std::string& audience) {
+std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
+           std::optional<std::string>>
+loquat::Jwt::verify(const std::string& token, const std::string& issuer,
+                    const std::string& audience) {
   spdlog::debug("{}", token);
   auto validator_b = crypto::tink::JwtValidatorBuilder()
                          .IgnoreTypeHeader()
@@ -68,22 +74,31 @@ std::pair<std::string, std::optional<std::string>> loquat::Jwt::verify(
   this->check(payload_r);
   auto payload = std::move(payload_r.value());
 
+  // https://github.com/tink-crypto/tink-cc/blob/main/tink/jwt/verified_jwt.h#L53
   auto subject_r = payload.GetSubject();
   this->check(subject_r);
   auto subject = std::move(subject_r.value());
   spdlog::debug("get subject({})", subject);
 
-  if (!payload.HasJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY)) {
-    std::pair<std::string, std::optional<std::string>> it =
-        std::make_pair(subject, std::nullopt);
-    return it;
+  std::optional<std::string> jwt_id = std::nullopt;
+  if (payload.HasJwtId()) {
+    auto ir = payload.GetJwtId();
+    this->check(ir);
+    auto iv = std::move(ir.value());
+    jwt_id = std::optional<std::string>{iv};
+  }
+  std::optional<std::string> key_id = std::nullopt;
+  std::optional<std::string> payload_ = std::nullopt;
+  if (payload.HasJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY)) {
+    auto ir = payload.GetJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY);
+    this->check(ir);
+    auto iv = std::move(ir.value());
+    payload_ = std::optional<std::string>{iv};
   }
 
-  auto payload__r = payload.GetJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY);
-  this->check(payload__r);
-  auto payload_ = std::move(payload__r.value());
-  std::pair<std::string, std::optional<std::string>> it =
-      std::make_pair(subject, std::optional<std::string>{payload_});
+  std::tuple<std::optional<std::string>, std::optional<std::string>,
+             std::string, std::optional<std::string>>
+      it = std::make_tuple(jwt_id, key_id, subject, payload_);
   return it;
 }
 

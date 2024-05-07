@@ -8,6 +8,7 @@ use tonic::{
     metadata::{Ascii, MetadataKey, MetadataValue},
     Request as GrpcRequest,
 };
+use uuid::Uuid;
 
 use super::{HttpError, Result};
 
@@ -17,22 +18,48 @@ pub const BEARER: &str = "Bearer ";
 // https://jwt.io/
 // https://tools.ietf.org/html/rfc7519
 pub trait Jwt {
+    fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)>;
+    fn sign(
+        &self,
+        jwt_id: &str,
+        issuer: &str,
+        subject: &str,
+        audience: &str,
+        timestamps: (NaiveDateTime, NaiveDateTime, NaiveDateTime),
+    ) -> Result<String>;
+
     fn sign_by_duration(
         &self,
         issuer: &str,
         subject: &str,
         audience: &str,
         ttl: Duration,
-    ) -> Result<String>;
+    ) -> Result<String> {
+        let (iat, nbf, exp) = Self::timestamps(ttl)?;
+        self.sign(
+            &Uuid::new_v4().to_string(),
+            issuer,
+            subject,
+            audience,
+            (iat, nbf, exp),
+        )
+    }
     fn sign_by_range(
         &self,
         issuer: &str,
         subject: &str,
         audience: &str,
         not_before: NaiveDateTime,
-        expiration_time: NaiveDateTime,
-    ) -> Result<String>;
-    fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)>;
+        expired_at: NaiveDateTime,
+    ) -> Result<String> {
+        self.sign(
+            &Uuid::new_v4().to_string(),
+            issuer,
+            subject,
+            audience,
+            (Utc::now().naive_local(), not_before, expired_at),
+        )
+    }
 
     fn bearer(token: &str) -> String {
         format!("{}{}", BEARER, token)
@@ -54,14 +81,14 @@ pub trait Jwt {
         Ok(())
     }
 
-    fn timestamps(ttl: Duration) -> Result<(i64, i64, i64)> {
+    fn timestamps(ttl: Duration) -> Result<(NaiveDateTime, NaiveDateTime, NaiveDateTime)> {
         let now = Utc::now();
         let nbf = now.add(Duration::try_seconds(-1).ok_or(Box::new(HttpError(
             StatusCode::BAD_REQUEST,
             Some("bad seconds".to_string()),
         )))?);
         let exp = now.add(ttl);
-        Ok((now.timestamp(), nbf.timestamp(), exp.timestamp()))
+        Ok((now.naive_local(), nbf.naive_local(), exp.naive_local()))
     }
     fn years(y: i32) -> Result<(i64, i64, i64)> {
         let now = Utc::now();

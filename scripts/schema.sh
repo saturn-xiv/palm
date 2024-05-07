@@ -97,6 +97,7 @@ generate_thrift_for_rust $WORKSPACE/morus/markdown.thrift markdown $WORKSPACE/hi
 generate_thrift_for_rust $WORKSPACE/musa/wechat-pay.thrift wechat-pay $WORKSPACE/hibiscus/src/musa/wechat_pay
 generate_thrift_for_rust $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/hibiscus/src/tuberose
 generate_thrift_for_rust $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/hibiscus/src/daisy
+generate_thrift_for_rust $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/hibiscus/src/loquat
 
 cargo fmt
 echo 'done.'

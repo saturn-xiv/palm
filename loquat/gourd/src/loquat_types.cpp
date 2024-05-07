@@ -18,6 +18,16 @@ JwtVerfifyResponse::~JwtVerfifyResponse() noexcept {
 }
 
 
+void JwtVerfifyResponse::__set_jwt_id(const std::string& val) {
+  this->jwt_id = val;
+__isset.jwt_id = true;
+}
+
+void JwtVerfifyResponse::__set_key_id(const std::string& val) {
+  this->key_id = val;
+__isset.key_id = true;
+}
+
 void JwtVerfifyResponse::__set_subject(const std::string& val) {
   this->subject = val;
 }
@@ -45,6 +55,7 @@ uint32_t JwtVerfifyResponse::read(::apache::thrift::protocol::TProtocol* iprot) 
 
   using ::apache::thrift::protocol::TProtocolException;
 
+  bool isset_subject = false;
 
   while (true)
   {
@@ -56,13 +67,29 @@ uint32_t JwtVerfifyResponse::read(::apache::thrift::protocol::TProtocol* iprot) 
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->subject);
-          this->__isset.subject = true;
+          xfer += iprot->readString(this->jwt_id);
+          this->__isset.jwt_id = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->key_id);
+          this->__isset.key_id = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 8:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->subject);
+          isset_subject = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 9:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->payload);
           this->__isset.payload = true;
@@ -79,6 +106,8 @@ uint32_t JwtVerfifyResponse::read(::apache::thrift::protocol::TProtocol* iprot) 
 
   xfer += iprot->readStructEnd();
 
+  if (!isset_subject)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
 
@@ -87,12 +116,22 @@ uint32_t JwtVerfifyResponse::write(::apache::thrift::protocol::TProtocol* oprot)
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("JwtVerfifyResponse");
 
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 1);
+  if (this->__isset.jwt_id) {
+    xfer += oprot->writeFieldBegin("jwt_id", ::apache::thrift::protocol::T_STRING, 1);
+    xfer += oprot->writeString(this->jwt_id);
+    xfer += oprot->writeFieldEnd();
+  }
+  if (this->__isset.key_id) {
+    xfer += oprot->writeFieldBegin("key_id", ::apache::thrift::protocol::T_STRING, 2);
+    xfer += oprot->writeString(this->key_id);
+    xfer += oprot->writeFieldEnd();
+  }
+  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 8);
   xfer += oprot->writeString(this->subject);
   xfer += oprot->writeFieldEnd();
 
   if (this->__isset.payload) {
-    xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 2);
+    xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 9);
     xfer += oprot->writeString(this->payload);
     xfer += oprot->writeFieldEnd();
   }
@@ -103,17 +142,23 @@ uint32_t JwtVerfifyResponse::write(::apache::thrift::protocol::TProtocol* oprot)
 
 void swap(JwtVerfifyResponse &a, JwtVerfifyResponse &b) {
   using ::std::swap;
+  swap(a.jwt_id, b.jwt_id);
+  swap(a.key_id, b.key_id);
   swap(a.subject, b.subject);
   swap(a.payload, b.payload);
   swap(a.__isset, b.__isset);
 }
 
 JwtVerfifyResponse::JwtVerfifyResponse(const JwtVerfifyResponse& other0) {
+  jwt_id = other0.jwt_id;
+  key_id = other0.key_id;
   subject = other0.subject;
   payload = other0.payload;
   __isset = other0.__isset;
 }
 JwtVerfifyResponse& JwtVerfifyResponse::operator=(const JwtVerfifyResponse& other1) {
+  jwt_id = other1.jwt_id;
+  key_id = other1.key_id;
   subject = other1.subject;
   payload = other1.payload;
   __isset = other1.__isset;
@@ -122,7 +167,9 @@ JwtVerfifyResponse& JwtVerfifyResponse::operator=(const JwtVerfifyResponse& othe
 void JwtVerfifyResponse::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
   out << "JwtVerfifyResponse(";
-  out << "subject=" << to_string(subject);
+  out << "jwt_id="; (__isset.jwt_id ? (out << to_string(jwt_id)) : (out << "<null>"));
+  out << ", " << "key_id="; (__isset.key_id ? (out << to_string(key_id)) : (out << "<null>"));
+  out << ", " << "subject=" << to_string(subject);
   out << ", " << "payload="; (__isset.payload ? (out << to_string(payload)) : (out << "<null>"));
   out << ")";
 }
@@ -131,6 +178,16 @@ void JwtVerfifyResponse::printTo(std::ostream& out) const {
 JwtSignRequest::~JwtSignRequest() noexcept {
 }
 
+
+void JwtSignRequest::__set_jwt_id(const std::string& val) {
+  this->jwt_id = val;
+__isset.jwt_id = true;
+}
+
+void JwtSignRequest::__set_key_id(const std::string& val) {
+  this->key_id = val;
+__isset.key_id = true;
+}
 
 void JwtSignRequest::__set_issuer(const std::string& val) {
   this->issuer = val;
@@ -144,8 +201,16 @@ void JwtSignRequest::__set_audiences(const std::set<std::string> & val) {
   this->audiences = val;
 }
 
-void JwtSignRequest::__set_ttl(const int64_t val) {
-  this->ttl = val;
+void JwtSignRequest::__set_issued_at(const int64_t val) {
+  this->issued_at = val;
+}
+
+void JwtSignRequest::__set_not_before(const int64_t val) {
+  this->not_before = val;
+}
+
+void JwtSignRequest::__set_expired_at(const int64_t val) {
+  this->expired_at = val;
 }
 
 void JwtSignRequest::__set_payload(const std::string& val) {
@@ -171,6 +236,12 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   using ::apache::thrift::protocol::TProtocolException;
 
+  bool isset_issuer = false;
+  bool isset_subject = false;
+  bool isset_audiences = false;
+  bool isset_issued_at = false;
+  bool isset_not_before = false;
+  bool isset_expired_at = false;
 
   while (true)
   {
@@ -182,21 +253,37 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->issuer);
-          this->__isset.issuer = true;
+          xfer += iprot->readString(this->jwt_id);
+          this->__isset.jwt_id = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->subject);
-          this->__isset.subject = true;
+          xfer += iprot->readString(this->key_id);
+          this->__isset.key_id = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
-      case 3:
+      case 11:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->issuer);
+          isset_issuer = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 12:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->subject);
+          isset_subject = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 13:
         if (ftype == ::apache::thrift::protocol::T_SET) {
           {
             this->audiences.clear();
@@ -212,20 +299,36 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
             }
             xfer += iprot->readSetEnd();
           }
-          this->__isset.audiences = true;
+          isset_audiences = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
-      case 4:
+      case 21:
         if (ftype == ::apache::thrift::protocol::T_I64) {
-          xfer += iprot->readI64(this->ttl);
-          this->__isset.ttl = true;
+          xfer += iprot->readI64(this->issued_at);
+          isset_issued_at = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
-      case 5:
+      case 22:
+        if (ftype == ::apache::thrift::protocol::T_I64) {
+          xfer += iprot->readI64(this->not_before);
+          isset_not_before = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 23:
+        if (ftype == ::apache::thrift::protocol::T_I64) {
+          xfer += iprot->readI64(this->expired_at);
+          isset_expired_at = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 99:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->payload);
           this->__isset.payload = true;
@@ -242,6 +345,18 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   xfer += iprot->readStructEnd();
 
+  if (!isset_issuer)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_subject)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_audiences)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_issued_at)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_not_before)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_expired_at)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
 
@@ -250,15 +365,25 @@ uint32_t JwtSignRequest::write(::apache::thrift::protocol::TProtocol* oprot) con
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("JwtSignRequest");
 
-  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 1);
+  if (this->__isset.jwt_id) {
+    xfer += oprot->writeFieldBegin("jwt_id", ::apache::thrift::protocol::T_STRING, 1);
+    xfer += oprot->writeString(this->jwt_id);
+    xfer += oprot->writeFieldEnd();
+  }
+  if (this->__isset.key_id) {
+    xfer += oprot->writeFieldBegin("key_id", ::apache::thrift::protocol::T_STRING, 2);
+    xfer += oprot->writeString(this->key_id);
+    xfer += oprot->writeFieldEnd();
+  }
+  xfer += oprot->writeFieldBegin("issuer", ::apache::thrift::protocol::T_STRING, 11);
   xfer += oprot->writeString(this->issuer);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeFieldBegin("subject", ::apache::thrift::protocol::T_STRING, 12);
   xfer += oprot->writeString(this->subject);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("audiences", ::apache::thrift::protocol::T_SET, 3);
+  xfer += oprot->writeFieldBegin("audiences", ::apache::thrift::protocol::T_SET, 13);
   {
     xfer += oprot->writeSetBegin(::apache::thrift::protocol::T_STRING, static_cast<uint32_t>(this->audiences.size()));
     std::set<std::string> ::const_iterator _iter8;
@@ -270,12 +395,20 @@ uint32_t JwtSignRequest::write(::apache::thrift::protocol::TProtocol* oprot) con
   }
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("ttl", ::apache::thrift::protocol::T_I64, 4);
-  xfer += oprot->writeI64(this->ttl);
+  xfer += oprot->writeFieldBegin("issued_at", ::apache::thrift::protocol::T_I64, 21);
+  xfer += oprot->writeI64(this->issued_at);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("not_before", ::apache::thrift::protocol::T_I64, 22);
+  xfer += oprot->writeI64(this->not_before);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("expired_at", ::apache::thrift::protocol::T_I64, 23);
+  xfer += oprot->writeI64(this->expired_at);
   xfer += oprot->writeFieldEnd();
 
   if (this->__isset.payload) {
-    xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 5);
+    xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 99);
     xfer += oprot->writeString(this->payload);
     xfer += oprot->writeFieldEnd();
   }
@@ -286,27 +419,39 @@ uint32_t JwtSignRequest::write(::apache::thrift::protocol::TProtocol* oprot) con
 
 void swap(JwtSignRequest &a, JwtSignRequest &b) {
   using ::std::swap;
+  swap(a.jwt_id, b.jwt_id);
+  swap(a.key_id, b.key_id);
   swap(a.issuer, b.issuer);
   swap(a.subject, b.subject);
   swap(a.audiences, b.audiences);
-  swap(a.ttl, b.ttl);
+  swap(a.issued_at, b.issued_at);
+  swap(a.not_before, b.not_before);
+  swap(a.expired_at, b.expired_at);
   swap(a.payload, b.payload);
   swap(a.__isset, b.__isset);
 }
 
 JwtSignRequest::JwtSignRequest(const JwtSignRequest& other9) {
+  jwt_id = other9.jwt_id;
+  key_id = other9.key_id;
   issuer = other9.issuer;
   subject = other9.subject;
   audiences = other9.audiences;
-  ttl = other9.ttl;
+  issued_at = other9.issued_at;
+  not_before = other9.not_before;
+  expired_at = other9.expired_at;
   payload = other9.payload;
   __isset = other9.__isset;
 }
 JwtSignRequest& JwtSignRequest::operator=(const JwtSignRequest& other10) {
+  jwt_id = other10.jwt_id;
+  key_id = other10.key_id;
   issuer = other10.issuer;
   subject = other10.subject;
   audiences = other10.audiences;
-  ttl = other10.ttl;
+  issued_at = other10.issued_at;
+  not_before = other10.not_before;
+  expired_at = other10.expired_at;
   payload = other10.payload;
   __isset = other10.__isset;
   return *this;
@@ -314,10 +459,14 @@ JwtSignRequest& JwtSignRequest::operator=(const JwtSignRequest& other10) {
 void JwtSignRequest::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
   out << "JwtSignRequest(";
-  out << "issuer=" << to_string(issuer);
+  out << "jwt_id="; (__isset.jwt_id ? (out << to_string(jwt_id)) : (out << "<null>"));
+  out << ", " << "key_id="; (__isset.key_id ? (out << to_string(key_id)) : (out << "<null>"));
+  out << ", " << "issuer=" << to_string(issuer);
   out << ", " << "subject=" << to_string(subject);
   out << ", " << "audiences=" << to_string(audiences);
-  out << ", " << "ttl=" << to_string(ttl);
+  out << ", " << "issued_at=" << to_string(issued_at);
+  out << ", " << "not_before=" << to_string(not_before);
+  out << ", " << "expired_at=" << to_string(expired_at);
   out << ", " << "payload="; (__isset.payload ? (out << to_string(payload)) : (out << "<null>"));
   out << ")";
 }

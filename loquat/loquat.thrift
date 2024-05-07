@@ -2,16 +2,25 @@ namespace cpp loquat.v1
 namespace java com.github.saturn_xiv.palm.plugins.loquat.v1
 
 struct JwtVerfifyResponse{
-    1:string subject,
-    2:optional string payload,
+    1:optional string jwt_id,
+    2:optional string key_id,
+    8:required string subject,
+    9:optional string payload,
 }
 
 struct JwtSignRequest{
-    1:string issuer,
-    2:string subject,
-    3:set<string> audiences,
-    4:i64 ttl,
-    5:optional string payload,
+    1:optional string jwt_id,
+    2:optional string key_id,
+    
+    11:required string issuer,
+    12:required string subject,
+    13:required set<string> audiences,
+    
+    21:required i64 issued_at,
+    22:required i64 not_before,
+    23:required i64 expired_at,
+    
+    99:optional string payload,
 }
 
 service Jwt {

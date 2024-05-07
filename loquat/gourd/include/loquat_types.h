@@ -26,8 +26,9 @@ class JwtVerfifyResponse;
 class JwtSignRequest;
 
 typedef struct _JwtVerfifyResponse__isset {
-  _JwtVerfifyResponse__isset() : subject(false), payload(false) {}
-  bool subject :1;
+  _JwtVerfifyResponse__isset() : jwt_id(false), key_id(false), payload(false) {}
+  bool jwt_id :1;
+  bool key_id :1;
   bool payload :1;
 } _JwtVerfifyResponse__isset;
 
@@ -37,15 +38,23 @@ class JwtVerfifyResponse : public virtual ::apache::thrift::TBase {
   JwtVerfifyResponse(const JwtVerfifyResponse&);
   JwtVerfifyResponse& operator=(const JwtVerfifyResponse&);
   JwtVerfifyResponse() noexcept
-                     : subject(),
+                     : jwt_id(),
+                       key_id(),
+                       subject(),
                        payload() {
   }
 
   virtual ~JwtVerfifyResponse() noexcept;
+  std::string jwt_id;
+  std::string key_id;
   std::string subject;
   std::string payload;
 
   _JwtVerfifyResponse__isset __isset;
+
+  void __set_jwt_id(const std::string& val);
+
+  void __set_key_id(const std::string& val);
 
   void __set_subject(const std::string& val);
 
@@ -53,6 +62,14 @@ class JwtVerfifyResponse : public virtual ::apache::thrift::TBase {
 
   bool operator == (const JwtVerfifyResponse & rhs) const
   {
+    if (__isset.jwt_id != rhs.__isset.jwt_id)
+      return false;
+    else if (__isset.jwt_id && !(jwt_id == rhs.jwt_id))
+      return false;
+    if (__isset.key_id != rhs.__isset.key_id)
+      return false;
+    else if (__isset.key_id && !(key_id == rhs.key_id))
+      return false;
     if (!(subject == rhs.subject))
       return false;
     if (__isset.payload != rhs.__isset.payload)
@@ -78,11 +95,9 @@ void swap(JwtVerfifyResponse &a, JwtVerfifyResponse &b);
 std::ostream& operator<<(std::ostream& out, const JwtVerfifyResponse& obj);
 
 typedef struct _JwtSignRequest__isset {
-  _JwtSignRequest__isset() : issuer(false), subject(false), audiences(false), ttl(false), payload(false) {}
-  bool issuer :1;
-  bool subject :1;
-  bool audiences :1;
-  bool ttl :1;
+  _JwtSignRequest__isset() : jwt_id(false), key_id(false), payload(false) {}
+  bool jwt_id :1;
+  bool key_id :1;
   bool payload :1;
 } _JwtSignRequest__isset;
 
@@ -92,20 +107,32 @@ class JwtSignRequest : public virtual ::apache::thrift::TBase {
   JwtSignRequest(const JwtSignRequest&);
   JwtSignRequest& operator=(const JwtSignRequest&);
   JwtSignRequest() noexcept
-                 : issuer(),
+                 : jwt_id(),
+                   key_id(),
+                   issuer(),
                    subject(),
-                   ttl(0),
+                   issued_at(0),
+                   not_before(0),
+                   expired_at(0),
                    payload() {
   }
 
   virtual ~JwtSignRequest() noexcept;
+  std::string jwt_id;
+  std::string key_id;
   std::string issuer;
   std::string subject;
   std::set<std::string>  audiences;
-  int64_t ttl;
+  int64_t issued_at;
+  int64_t not_before;
+  int64_t expired_at;
   std::string payload;
 
   _JwtSignRequest__isset __isset;
+
+  void __set_jwt_id(const std::string& val);
+
+  void __set_key_id(const std::string& val);
 
   void __set_issuer(const std::string& val);
 
@@ -113,19 +140,35 @@ class JwtSignRequest : public virtual ::apache::thrift::TBase {
 
   void __set_audiences(const std::set<std::string> & val);
 
-  void __set_ttl(const int64_t val);
+  void __set_issued_at(const int64_t val);
+
+  void __set_not_before(const int64_t val);
+
+  void __set_expired_at(const int64_t val);
 
   void __set_payload(const std::string& val);
 
   bool operator == (const JwtSignRequest & rhs) const
   {
+    if (__isset.jwt_id != rhs.__isset.jwt_id)
+      return false;
+    else if (__isset.jwt_id && !(jwt_id == rhs.jwt_id))
+      return false;
+    if (__isset.key_id != rhs.__isset.key_id)
+      return false;
+    else if (__isset.key_id && !(key_id == rhs.key_id))
+      return false;
     if (!(issuer == rhs.issuer))
       return false;
     if (!(subject == rhs.subject))
       return false;
     if (!(audiences == rhs.audiences))
       return false;
-    if (!(ttl == rhs.ttl))
+    if (!(issued_at == rhs.issued_at))
+      return false;
+    if (!(not_before == rhs.not_before))
+      return false;
+    if (!(expired_at == rhs.expired_at))
       return false;
     if (__isset.payload != rhs.__isset.payload)
       return false;
