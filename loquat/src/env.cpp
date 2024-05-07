@@ -26,9 +26,14 @@ std::string loquat::Jwt::sign(
     const std::string& subject, const std::set<std::string> audiences,
     const absl::Time& issued_at, const absl::Time& not_before,
     const absl::Time& expired_at, const std::optional<std::string> payload) {
+  spdlog::debug(
+      "sign token for jwt-id({}) key-id({}) issuer({}) subject({}) "
+      "audiences({})",
+      jwt_id.value_or(""), key_id.value_or(""), issuer, subject,
+      absl::StrJoin(audiences, ","));
   // https://github.com/tink-crypto/tink-cc/blob/main/tink/jwt/raw_jwt.h#L101
   auto raw_rb = crypto::tink::RawJwtBuilder()
-                    .SetIssuer(loquat::PROJECT_NAME)
+                    .SetIssuer(issuer)
                     .SetSubject(subject)
                     .SetNotBefore(not_before)
                     .SetIssuedAt(issued_at)
@@ -58,7 +63,8 @@ std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
            std::optional<std::string>>
 loquat::Jwt::verify(const std::string& token, const std::string& issuer,
                     const std::string& audience) {
-  spdlog::debug("{}", token);
+  spdlog::debug("verify issuer({}) audience({}) token({})", issuer, audience,
+                token);
   auto validator_b = crypto::tink::JwtValidatorBuilder()
                          .IgnoreTypeHeader()
                          .ExpectIssuer(issuer)
@@ -78,7 +84,6 @@ loquat::Jwt::verify(const std::string& token, const std::string& issuer,
   auto subject_r = payload.GetSubject();
   this->check(subject_r);
   auto subject = std::move(subject_r.value());
-  spdlog::debug("get subject({})", subject);
 
   std::optional<std::string> jwt_id = std::nullopt;
   if (payload.HasJwtId()) {
@@ -96,6 +101,8 @@ loquat::Jwt::verify(const std::string& token, const std::string& issuer,
     payload_ = std::optional<std::string>{iv};
   }
 
+  spdlog::debug("get jwt-id({}) key-id({}) subject({})", jwt_id.value_or(""),
+                key_id.value_or(""), subject);
   std::tuple<std::optional<std::string>, std::optional<std::string>,
              std::string, std::optional<std::string>>
       it = std::make_tuple(jwt_id, key_id, subject, payload_);

@@ -31,7 +31,7 @@ use thrift::server::TProcessor;
 //
 
 pub trait TMarkdownSyncClient {
-  fn to_html(&mut self, text: String, sanitize: String) -> thrift::Result<String>;
+  fn to_html(&mut self, text: String, sanitize: bool) -> thrift::Result<String>;
 }
 
 pub trait TMarkdownSyncClientMarker {}
@@ -58,7 +58,7 @@ impl <IP, OP> TThriftClient for MarkdownSyncClient<IP, OP> where IP: TInputProto
 impl <IP, OP> TMarkdownSyncClientMarker for MarkdownSyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + TMarkdownSyncClientMarker> TMarkdownSyncClient for C {
-  fn to_html(&mut self, text: String, sanitize: String) -> thrift::Result<String> {
+  fn to_html(&mut self, text: String, sanitize: bool) -> thrift::Result<String> {
     (
       {
         self.increment_sequence_number();
@@ -92,7 +92,7 @@ impl <C: TThriftClient + TMarkdownSyncClientMarker> TMarkdownSyncClient for C {
 //
 
 pub trait MarkdownSyncHandler {
-  fn handle_to_html(&self, text: String, sanitize: String) -> thrift::Result<String>;
+  fn handle_to_html(&self, text: String, sanitize: bool) -> thrift::Result<String>;
 }
 
 pub struct MarkdownSyncProcessor<H: MarkdownSyncHandler> {
@@ -181,14 +181,14 @@ impl <H: MarkdownSyncHandler> TProcessor for MarkdownSyncProcessor<H> {
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct MarkdownToHtmlArgs {
   text: String,
-  sanitize: String,
+  sanitize: bool,
 }
 
 impl MarkdownToHtmlArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<MarkdownToHtmlArgs> {
     i_prot.read_struct_begin()?;
     let mut f_1: Option<String> = None;
-    let mut f_2: Option<String> = None;
+    let mut f_2: Option<bool> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -201,7 +201,7 @@ impl MarkdownToHtmlArgs {
           f_1 = Some(val);
         },
         2 => {
-          let val = i_prot.read_string()?;
+          let val = i_prot.read_bool()?;
           f_2 = Some(val);
         },
         _ => {
@@ -225,8 +225,8 @@ impl MarkdownToHtmlArgs {
     o_prot.write_field_begin(&TFieldIdentifier::new("text", TType::String, 1))?;
     o_prot.write_string(&self.text)?;
     o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("sanitize", TType::String, 2))?;
-    o_prot.write_string(&self.sanitize)?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("sanitize", TType::Bool, 2))?;
+    o_prot.write_bool(self.sanitize)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()

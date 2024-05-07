@@ -147,8 +147,6 @@ void loquat::JwtHandler::sign(std::string& token,
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::Jwt jwt;
 
-  if (request.__isset.payload) {
-  }
   const std::optional<std::string> jwt_id =
       request.__isset.jwt_id ? std::optional<std::string>{request.jwt_id}
                              : std::nullopt;
@@ -170,18 +168,19 @@ void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
                                 const std::string& issuer,
                                 const std::string& audience) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
+
   loquat::Jwt jwt;
   const auto [jwt_id, key_id, subject, payload] =
       jwt.verify(token, issuer, audience);
   if (jwt_id) {
-    response.jwt_id = jwt_id.value();
+    response.__set_jwt_id(jwt_id.value());
   }
   if (key_id) {
-    response.key_id = key_id.value();
+    response.__set_key_id(key_id.value());
   }
-  response.subject = subject;
+  response.__set_subject(subject);
   if (payload) {
-    response.payload = payload.value();
+    response.__set_payload(payload.value());
   }
 }
 

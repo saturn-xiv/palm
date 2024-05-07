@@ -45,8 +45,8 @@ Markdown_to_html_args.prototype.read = function(input) {
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.sanitize = input.readString();
+      if (ftype == Thrift.Type.BOOL) {
+        this.sanitize = input.readBool();
       } else {
         input.skip(ftype);
       }
@@ -68,8 +68,8 @@ Markdown_to_html_args.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.sanitize !== null && this.sanitize !== undefined) {
-    output.writeFieldBegin('sanitize', Thrift.Type.STRING, 2);
-    output.writeString(this.sanitize);
+    output.writeFieldBegin('sanitize', Thrift.Type.BOOL, 2);
+    output.writeBool(this.sanitize);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

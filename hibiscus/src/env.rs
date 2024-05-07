@@ -1,9 +1,12 @@
 use std::default::Default;
+use std::fmt;
 
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 use thrift::{
-    protocol::{TBinaryInputProtocol, TBinaryOutputProtocol, TMultiplexedOutputProtocol},
+    protocol::{
+        TBinaryInputProtocol, TBinaryOutputProtocol, TMultiplexedOutputProtocol, TSerializable,
+    },
     transport::{
         ReadHalf, TFramedReadTransport, TFramedWriteTransport, TIoChannel, TTcpChannel, WriteHalf,
     },
@@ -25,6 +28,7 @@ pub enum Environment {
 pub struct Thrift {
     pub host: String,
     pub port: u16,
+    pub secure: bool,
 }
 
 impl Default for Thrift {
@@ -32,7 +36,19 @@ impl Default for Thrift {
         Self {
             host: "127.0.0.1".to_string(),
             port: 9999,
+            secure: false,
         }
+    }
+}
+impl fmt::Display for Thrift {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "{}://{}:{}",
+            if self.secure { "tcps" } else { "tcp" },
+            self.host,
+            self.port
+        )
     }
 }
 
@@ -54,5 +70,17 @@ impl Thrift {
             TBinaryOutputProtocol::new(TFramedWriteTransport::new(o_chan), true),
         );
         Ok((i_prot, o_prot))
+    }
+
+    pub fn to_bytes<T: TSerializable>(val: &T, buf: &mut [u8]) -> ThriftResult<()> {
+        let mut output = Box::new(TBinaryOutputProtocol::new(buf, true));
+        val.write_to_out_protocol(&mut output)?;
+        Ok(())
+    }
+
+    pub fn from_bytes<T: TSerializable>(buf: &[u8]) -> ThriftResult<T> {
+        let mut input = Box::new(TBinaryInputProtocol::new(buf, true));
+        let val = T::read_from_in_protocol(&mut input)?;
+        Ok(val)
     }
 }

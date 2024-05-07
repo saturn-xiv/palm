@@ -1,7 +1,7 @@
-# PALM
+# HIBISCUS
 
 ## test
 
 ```bash
-cargo test -p palm --test twilio_test -- --nocapture
+cargo test -p hibiscus --test twilio_test -- --nocapture
 ```
