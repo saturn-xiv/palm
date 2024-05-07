@@ -30,8 +30,8 @@ var _ = regexp.MatchString
 //  - Name
 //  - Email
 type Address struct {
-  Name string `thrift:"name,1" db:"name" json:"name"`
-  Email string `thrift:"email,2" db:"email" json:"email"`
+  Name string `thrift:"name,1,required" db:"name" json:"name"`
+  Email string `thrift:"email,2,required" db:"email" json:"email"`
 }
 
 func NewAddress() *Address {
@@ -51,6 +51,8 @@ func (p *Address) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetName bool = false;
+  var issetEmail bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -64,6 +66,7 @@ func (p *Address) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetName = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -74,6 +77,7 @@ func (p *Address) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetEmail = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -90,6 +94,12 @@ func (p *Address) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetName{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Name is not set"));
+  }
+  if !issetEmail{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Email is not set"));
   }
   return nil
 }
@@ -184,8 +194,8 @@ func (p *Address) Validate() error {
 //  - Text
 //  - HTML
 type Body struct {
-  Text string `thrift:"text,1" db:"text" json:"text"`
-  HTML bool `thrift:"html,2" db:"html" json:"html"`
+  Text string `thrift:"text,1,required" db:"text" json:"text"`
+  HTML bool `thrift:"html,2,required" db:"html" json:"html"`
 }
 
 func NewBody() *Body {
@@ -205,6 +215,8 @@ func (p *Body) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetText bool = false;
+  var issetHTML bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -218,6 +230,7 @@ func (p *Body) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetText = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -228,6 +241,7 @@ func (p *Body) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetHTML = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -244,6 +258,12 @@ func (p *Body) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetText{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Text is not set"));
+  }
+  if !issetHTML{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field HTML is not set"));
   }
   return nil
 }
@@ -340,11 +360,11 @@ func (p *Body) Validate() error {
 //  - Inline
 //  - Body
 type Attachment struct {
-  Title string `thrift:"title,1" db:"title" json:"title"`
-  ContentType string `thrift:"content_type,2" db:"content_type" json:"content_type"`
+  Title string `thrift:"title,1,required" db:"title" json:"title"`
+  ContentType string `thrift:"content_type,2,required" db:"content_type" json:"content_type"`
   // unused fields # 3 to 7
-  Inline bool `thrift:"inline,8" db:"inline" json:"inline"`
-  Body []byte `thrift:"body,9" db:"body" json:"body"`
+  Inline bool `thrift:"inline,8,required" db:"inline" json:"inline"`
+  Body []byte `thrift:"body,9,required" db:"body" json:"body"`
 }
 
 func NewAttachment() *Attachment {
@@ -372,6 +392,10 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetTitle bool = false;
+  var issetContentType bool = false;
+  var issetInline bool = false;
+  var issetBody bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -385,6 +409,7 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetTitle = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -395,6 +420,7 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetContentType = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -405,6 +431,7 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField8(ctx, iprot); err != nil {
           return err
         }
+        issetInline = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -415,6 +442,7 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField9(ctx, iprot); err != nil {
           return err
         }
+        issetBody = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -431,6 +459,18 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetTitle{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Title is not set"));
+  }
+  if !issetContentType{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field ContentType is not set"));
+  }
+  if !issetInline{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Inline is not set"));
+  }
+  if !issetBody{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Body is not set"));
   }
   return nil
 }
@@ -571,14 +611,14 @@ func (p *Attachment) Validate() error {
 //  - Body
 //  - Attachments
 type EmailSendTask struct {
-  To *Address `thrift:"to,1" db:"to" json:"to"`
-  Cc []*Address `thrift:"cc,2" db:"cc" json:"cc"`
-  Bcc []*Address `thrift:"bcc,3" db:"bcc" json:"bcc"`
+  To *Address `thrift:"to,1,required" db:"to" json:"to"`
+  Cc []*Address `thrift:"cc,2,required" db:"cc" json:"cc"`
+  Bcc []*Address `thrift:"bcc,3,required" db:"bcc" json:"bcc"`
   // unused fields # 4 to 10
-  Subject string `thrift:"subject,11" db:"subject" json:"subject"`
-  Body *Body `thrift:"body,12" db:"body" json:"body"`
+  Subject string `thrift:"subject,11,required" db:"subject" json:"subject"`
+  Body *Body `thrift:"body,12,required" db:"body" json:"body"`
   // unused fields # 13 to 18
-  Attachments []*Attachment `thrift:"attachments,19" db:"attachments" json:"attachments"`
+  Attachments []*Attachment `thrift:"attachments,19,required" db:"attachments" json:"attachments"`
 }
 
 func NewEmailSendTask() *EmailSendTask {
@@ -628,6 +668,12 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetTo bool = false;
+  var issetCc bool = false;
+  var issetBcc bool = false;
+  var issetSubject bool = false;
+  var issetBody bool = false;
+  var issetAttachments bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -641,6 +687,7 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetTo = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -651,6 +698,7 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetCc = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -661,6 +709,7 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
         if err := p.ReadField3(ctx, iprot); err != nil {
           return err
         }
+        issetBcc = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -671,6 +720,7 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
         if err := p.ReadField11(ctx, iprot); err != nil {
           return err
         }
+        issetSubject = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -681,6 +731,7 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
         if err := p.ReadField12(ctx, iprot); err != nil {
           return err
         }
+        issetBody = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -691,6 +742,7 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
         if err := p.ReadField19(ctx, iprot); err != nil {
           return err
         }
+        issetAttachments = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -707,6 +759,24 @@ func (p *EmailSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error 
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetTo{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field To is not set"));
+  }
+  if !issetCc{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Cc is not set"));
+  }
+  if !issetBcc{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Bcc is not set"));
+  }
+  if !issetSubject{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Subject is not set"));
+  }
+  if !issetBody{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Body is not set"));
+  }
+  if !issetAttachments{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Attachments is not set"));
   }
   return nil
 }

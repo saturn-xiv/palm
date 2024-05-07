@@ -30,18 +30,18 @@ use thrift::server::TProcessor;
 // SmsSendTask
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct SmsSendTask {
-  pub to: Option<BTreeSet<String>>,
-  pub body: Option<String>,
+  pub to: BTreeSet<String>,
+  pub body: String,
   pub callback: Option<String>,
 }
 
 impl SmsSendTask {
-  pub fn new<F1, F2, F9>(to: F1, body: F2, callback: F9) -> SmsSendTask where F1: Into<Option<BTreeSet<String>>>, F2: Into<Option<String>>, F9: Into<Option<String>> {
+  pub fn new<F9>(to: BTreeSet<String>, body: String, callback: F9) -> SmsSendTask where F9: Into<Option<String>> {
     SmsSendTask {
-      to: to.into(),
-      body: body.into(),
+      to,
+      body,
       callback: callback.into(),
     }
   }
@@ -50,8 +50,8 @@ impl SmsSendTask {
 impl TSerializable for SmsSendTask {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<SmsSendTask> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<BTreeSet<String>> = Some(BTreeSet::new());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<BTreeSet<String>> = None;
+    let mut f_2: Option<String> = None;
     let mut f_9: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
@@ -85,9 +85,11 @@ impl TSerializable for SmsSendTask {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("SmsSendTask.to", &f_1)?;
+    verify_required_field_exists("SmsSendTask.body", &f_2)?;
     let ret = SmsSendTask {
-      to: f_1,
-      body: f_2,
+      to: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      body: f_2.expect("auto-generated code should have checked for presence of required fields"),
       callback: f_9,
     };
     Ok(ret)
@@ -95,20 +97,16 @@ impl TSerializable for SmsSendTask {
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("SmsSendTask");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.to {
-      o_prot.write_field_begin(&TFieldIdentifier::new("to", TType::Set, 1))?;
-      o_prot.write_set_begin(&TSetIdentifier::new(TType::String, fld_var.len() as i32))?;
-      for e in fld_var {
-        o_prot.write_string(e)?;
-      }
-      o_prot.write_set_end()?;
-      o_prot.write_field_end()?
+    o_prot.write_field_begin(&TFieldIdentifier::new("to", TType::Set, 1))?;
+    o_prot.write_set_begin(&TSetIdentifier::new(TType::String, self.to.len() as i32))?;
+    for e in &self.to {
+      o_prot.write_string(e)?;
     }
-    if let Some(ref fld_var) = self.body {
-      o_prot.write_field_begin(&TFieldIdentifier::new("body", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_set_end()?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("body", TType::String, 2))?;
+    o_prot.write_string(&self.body)?;
+    o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.callback {
       o_prot.write_field_begin(&TFieldIdentifier::new("callback", TType::String, 9))?;
       o_prot.write_string(fld_var)?;

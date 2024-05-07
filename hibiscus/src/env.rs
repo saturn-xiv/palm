@@ -5,10 +5,12 @@ use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 use thrift::{
     protocol::{
-        TBinaryInputProtocol, TBinaryOutputProtocol, TMultiplexedOutputProtocol, TSerializable,
+        TBinaryInputProtocol, TBinaryOutputProtocol, TMultiplexedOutputProtocol, TOutputProtocol,
+        TSerializable,
     },
     transport::{
-        ReadHalf, TFramedReadTransport, TFramedWriteTransport, TIoChannel, TTcpChannel, WriteHalf,
+        ReadHalf, TBufferedReadTransport, TBufferedWriteTransport, TFramedReadTransport,
+        TFramedWriteTransport, TIoChannel, TTcpChannel, WriteHalf,
     },
     Result as ThriftResult,
 };
@@ -71,16 +73,24 @@ impl Thrift {
         );
         Ok((i_prot, o_prot))
     }
+}
 
-    pub fn to_bytes<T: TSerializable>(val: &T, buf: &mut [u8]) -> ThriftResult<()> {
-        let mut output = Box::new(TBinaryOutputProtocol::new(buf, true));
+pub fn to_bytes<T: TSerializable>(val: &T) -> ThriftResult<Vec<u8>> {
+    let mut buf = Vec::new();
+    {
+        let mut output = TBinaryOutputProtocol::new(TBufferedWriteTransport::new(&mut buf), true);
         val.write_to_out_protocol(&mut output)?;
-        Ok(())
+        output.flush()?;
     }
 
-    pub fn from_bytes<T: TSerializable>(buf: &[u8]) -> ThriftResult<T> {
-        let mut input = Box::new(TBinaryInputProtocol::new(buf, true));
-        let val = T::read_from_in_protocol(&mut input)?;
-        Ok(val)
-    }
+    Ok(buf)
+}
+
+pub fn from_bytes<T: TSerializable>(buf: &[u8]) -> ThriftResult<T> {
+    let mut input = Box::new(TBinaryInputProtocol::new(
+        TBufferedReadTransport::with_capacity(1 << 12, buf),
+        true,
+    ));
+    let val = T::read_from_in_protocol(&mut input)?;
+    Ok(val)
 }

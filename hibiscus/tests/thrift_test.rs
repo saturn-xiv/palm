@@ -1,3 +1,4 @@
+use std::collections::BTreeSet;
 use std::env;
 use std::thread;
 use std::time::Duration as StdDuration;
@@ -6,7 +7,8 @@ use chrono::Duration;
 use data_encoding::BASE64;
 use hibiscus::{
     crypto::{Password, Secret},
-    env::Thrift,
+    daisy::protocols::{Address, Body, EmailSendTask},
+    env::{from_bytes, to_bytes, Thrift},
     jwt::Jwt,
     morus::markdown::Markdown,
 };
@@ -74,5 +76,36 @@ fn morus() {
         );
 
         println!("MARKDOWN TO HTML: {:?}", res);
+    }
+}
+
+#[test]
+fn binary() {
+    let hi = "hello, palm!";
+    {
+        let task = EmailSendTask {
+            subject: hi.to_string(),
+            body: Body {
+                text: "<a href='https://www.google.com'>Google</a>".to_string(),
+                html: true,
+            },
+            to: Address {
+                name: "who-am-i".to_string(),
+                email: "who-am-i@gmail.com".to_string(),
+            },
+            cc: BTreeSet::new(),
+            bcc: BTreeSet::new(),
+            attachments: BTreeSet::new(),
+        };
+
+        {
+            let buf = to_bytes(&task).unwrap();
+            println!("email task({}): {}", buf.len(), BASE64.encode(&buf));
+            assert!(!buf.is_empty());
+
+            let val: EmailSendTask = from_bytes(&buf).unwrap();
+            println!("{:?}", val);
+            assert_eq!(hi, val.subject);
+        }
     }
 }

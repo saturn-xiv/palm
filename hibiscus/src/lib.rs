@@ -136,6 +136,7 @@ pub mod cache;
 pub mod captcha;
 pub mod crypto;
 pub mod currency;
+pub mod daisy;
 pub mod env;
 pub mod google;
 pub mod gourd;
@@ -156,6 +157,7 @@ pub mod result;
 pub mod search;
 pub mod seo;
 pub mod session;
+pub mod tuberose;
 pub mod wechat;
 
 use std::fs::{copy as copy_file, create_dir_all, read_dir, remove_dir_all, remove_file, File};

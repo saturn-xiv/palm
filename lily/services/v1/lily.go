@@ -32,9 +32,9 @@ var _ = regexp.MatchString
 //  - Tex
 //  - Callback
 type TexToPdfTask struct {
-  Bucket string `thrift:"bucket,1" db:"bucket" json:"bucket"`
-  Object string `thrift:"object,2" db:"object" json:"object"`
-  Tex *Tex `thrift:"tex,3" db:"tex" json:"tex"`
+  Bucket string `thrift:"bucket,1,required" db:"bucket" json:"bucket"`
+  Object string `thrift:"object,2,required" db:"object" json:"object"`
+  Tex *Tex `thrift:"tex,3,required" db:"tex" json:"tex"`
   // unused fields # 4 to 8
   Callback *string `thrift:"callback,9" db:"callback" json:"callback,omitempty"`
 }
@@ -78,6 +78,9 @@ func (p *TexToPdfTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetBucket bool = false;
+  var issetObject bool = false;
+  var issetTex bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -91,6 +94,7 @@ func (p *TexToPdfTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetBucket = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -101,6 +105,7 @@ func (p *TexToPdfTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetObject = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -111,6 +116,7 @@ func (p *TexToPdfTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField3(ctx, iprot); err != nil {
           return err
         }
+        issetTex = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -137,6 +143,15 @@ func (p *TexToPdfTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetBucket{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Bucket is not set"));
+  }
+  if !issetObject{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Object is not set"));
+  }
+  if !issetTex{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Tex is not set"));
   }
   return nil
 }
@@ -280,8 +295,8 @@ func (p *TexToPdfTask) Validate() error {
 //  - Homepage
 //  - Files
 type Tex struct {
-  Homepage []byte `thrift:"homepage,1" db:"homepage" json:"homepage"`
-  Files map[string][]byte `thrift:"files,2" db:"files" json:"files"`
+  Homepage []byte `thrift:"homepage,1,required" db:"homepage" json:"homepage"`
+  Files map[string][]byte `thrift:"files,2,required" db:"files" json:"files"`
 }
 
 func NewTex() *Tex {
@@ -301,6 +316,8 @@ func (p *Tex) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetHomepage bool = false;
+  var issetFiles bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -314,6 +331,7 @@ func (p *Tex) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetHomepage = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -324,6 +342,7 @@ func (p *Tex) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetFiles = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -340,6 +359,12 @@ func (p *Tex) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetHomepage{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Homepage is not set"));
+  }
+  if !issetFiles{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Files is not set"));
   }
   return nil
 }

@@ -30,17 +30,17 @@ use thrift::server::TProcessor;
 // Address
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Address {
-  pub name: Option<String>,
-  pub email: Option<String>,
+  pub name: String,
+  pub email: String,
 }
 
 impl Address {
-  pub fn new<F1, F2>(name: F1, email: F2) -> Address where F1: Into<Option<String>>, F2: Into<Option<String>> {
+  pub fn new(name: String, email: String) -> Address {
     Address {
-      name: name.into(),
-      email: email.into(),
+      name,
+      email,
     }
   }
 }
@@ -48,8 +48,8 @@ impl Address {
 impl TSerializable for Address {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Address> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -72,25 +72,23 @@ impl TSerializable for Address {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Address.name", &f_1)?;
+    verify_required_field_exists("Address.email", &f_2)?;
     let ret = Address {
-      name: f_1,
-      email: f_2,
+      name: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      email: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Address");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.name {
-      o_prot.write_field_begin(&TFieldIdentifier::new("name", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.email {
-      o_prot.write_field_begin(&TFieldIdentifier::new("email", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("name", TType::String, 1))?;
+    o_prot.write_string(&self.name)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("email", TType::String, 2))?;
+    o_prot.write_string(&self.email)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -100,17 +98,17 @@ impl TSerializable for Address {
 // Body
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Body {
-  pub text: Option<String>,
-  pub html: Option<bool>,
+  pub text: String,
+  pub html: bool,
 }
 
 impl Body {
-  pub fn new<F1, F2>(text: F1, html: F2) -> Body where F1: Into<Option<String>>, F2: Into<Option<bool>> {
+  pub fn new(text: String, html: bool) -> Body {
     Body {
-      text: text.into(),
-      html: html.into(),
+      text,
+      html,
     }
   }
 }
@@ -118,8 +116,8 @@ impl Body {
 impl TSerializable for Body {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Body> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<bool> = Some(false);
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<bool> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -142,25 +140,23 @@ impl TSerializable for Body {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Body.text", &f_1)?;
+    verify_required_field_exists("Body.html", &f_2)?;
     let ret = Body {
-      text: f_1,
-      html: f_2,
+      text: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      html: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Body");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.text {
-      o_prot.write_field_begin(&TFieldIdentifier::new("text", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.html {
-      o_prot.write_field_begin(&TFieldIdentifier::new("html", TType::Bool, 2))?;
-      o_prot.write_bool(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("text", TType::String, 1))?;
+    o_prot.write_string(&self.text)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("html", TType::Bool, 2))?;
+    o_prot.write_bool(self.html)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -170,21 +166,21 @@ impl TSerializable for Body {
 // Attachment
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Attachment {
-  pub title: Option<String>,
-  pub content_type: Option<String>,
-  pub inline: Option<bool>,
-  pub body: Option<Vec<u8>>,
+  pub title: String,
+  pub content_type: String,
+  pub inline: bool,
+  pub body: Vec<u8>,
 }
 
 impl Attachment {
-  pub fn new<F1, F2, F8, F9>(title: F1, content_type: F2, inline: F8, body: F9) -> Attachment where F1: Into<Option<String>>, F2: Into<Option<String>>, F8: Into<Option<bool>>, F9: Into<Option<Vec<u8>>> {
+  pub fn new(title: String, content_type: String, inline: bool, body: Vec<u8>) -> Attachment {
     Attachment {
-      title: title.into(),
-      content_type: content_type.into(),
-      inline: inline.into(),
-      body: body.into(),
+      title,
+      content_type,
+      inline,
+      body,
     }
   }
 }
@@ -192,10 +188,10 @@ impl Attachment {
 impl TSerializable for Attachment {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Attachment> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
-    let mut f_8: Option<bool> = Some(false);
-    let mut f_9: Option<Vec<u8>> = Some(Vec::new());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_8: Option<bool> = None;
+    let mut f_9: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -226,37 +222,33 @@ impl TSerializable for Attachment {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Attachment.title", &f_1)?;
+    verify_required_field_exists("Attachment.content_type", &f_2)?;
+    verify_required_field_exists("Attachment.inline", &f_8)?;
+    verify_required_field_exists("Attachment.body", &f_9)?;
     let ret = Attachment {
-      title: f_1,
-      content_type: f_2,
-      inline: f_8,
-      body: f_9,
+      title: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      content_type: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      inline: f_8.expect("auto-generated code should have checked for presence of required fields"),
+      body: f_9.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Attachment");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.title {
-      o_prot.write_field_begin(&TFieldIdentifier::new("title", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.content_type {
-      o_prot.write_field_begin(&TFieldIdentifier::new("content_type", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.inline {
-      o_prot.write_field_begin(&TFieldIdentifier::new("inline", TType::Bool, 8))?;
-      o_prot.write_bool(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.body {
-      o_prot.write_field_begin(&TFieldIdentifier::new("body", TType::String, 9))?;
-      o_prot.write_bytes(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("title", TType::String, 1))?;
+    o_prot.write_string(&self.title)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("content_type", TType::String, 2))?;
+    o_prot.write_string(&self.content_type)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("inline", TType::Bool, 8))?;
+    o_prot.write_bool(self.inline)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("body", TType::String, 9))?;
+    o_prot.write_bytes(&self.body)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -266,25 +258,25 @@ impl TSerializable for Attachment {
 // EmailSendTask
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct EmailSendTask {
-  pub to: Option<Address>,
-  pub cc: Option<BTreeSet<Address>>,
-  pub bcc: Option<BTreeSet<Address>>,
-  pub subject: Option<String>,
-  pub body: Option<Body>,
-  pub attachments: Option<BTreeSet<Attachment>>,
+  pub to: Address,
+  pub cc: BTreeSet<Address>,
+  pub bcc: BTreeSet<Address>,
+  pub subject: String,
+  pub body: Body,
+  pub attachments: BTreeSet<Attachment>,
 }
 
 impl EmailSendTask {
-  pub fn new<F1, F2, F3, F11, F12, F19>(to: F1, cc: F2, bcc: F3, subject: F11, body: F12, attachments: F19) -> EmailSendTask where F1: Into<Option<Address>>, F2: Into<Option<BTreeSet<Address>>>, F3: Into<Option<BTreeSet<Address>>>, F11: Into<Option<String>>, F12: Into<Option<Body>>, F19: Into<Option<BTreeSet<Attachment>>> {
+  pub fn new(to: Address, cc: BTreeSet<Address>, bcc: BTreeSet<Address>, subject: String, body: Body, attachments: BTreeSet<Attachment>) -> EmailSendTask {
     EmailSendTask {
-      to: to.into(),
-      cc: cc.into(),
-      bcc: bcc.into(),
-      subject: subject.into(),
-      body: body.into(),
-      attachments: attachments.into(),
+      to,
+      cc,
+      bcc,
+      subject,
+      body,
+      attachments,
     }
   }
 }
@@ -293,11 +285,11 @@ impl TSerializable for EmailSendTask {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<EmailSendTask> {
     i_prot.read_struct_begin()?;
     let mut f_1: Option<Address> = None;
-    let mut f_2: Option<BTreeSet<Address>> = Some(BTreeSet::new());
-    let mut f_3: Option<BTreeSet<Address>> = Some(BTreeSet::new());
-    let mut f_11: Option<String> = Some("".to_owned());
+    let mut f_2: Option<BTreeSet<Address>> = None;
+    let mut f_3: Option<BTreeSet<Address>> = None;
+    let mut f_11: Option<String> = None;
     let mut f_12: Option<Body> = None;
-    let mut f_19: Option<BTreeSet<Attachment>> = Some(BTreeSet::new());
+    let mut f_19: Option<BTreeSet<Attachment>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -354,61 +346,55 @@ impl TSerializable for EmailSendTask {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("EmailSendTask.to", &f_1)?;
+    verify_required_field_exists("EmailSendTask.cc", &f_2)?;
+    verify_required_field_exists("EmailSendTask.bcc", &f_3)?;
+    verify_required_field_exists("EmailSendTask.subject", &f_11)?;
+    verify_required_field_exists("EmailSendTask.body", &f_12)?;
+    verify_required_field_exists("EmailSendTask.attachments", &f_19)?;
     let ret = EmailSendTask {
-      to: f_1,
-      cc: f_2,
-      bcc: f_3,
-      subject: f_11,
-      body: f_12,
-      attachments: f_19,
+      to: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      cc: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      bcc: f_3.expect("auto-generated code should have checked for presence of required fields"),
+      subject: f_11.expect("auto-generated code should have checked for presence of required fields"),
+      body: f_12.expect("auto-generated code should have checked for presence of required fields"),
+      attachments: f_19.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("EmailSendTask");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.to {
-      o_prot.write_field_begin(&TFieldIdentifier::new("to", TType::Struct, 1))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
+    o_prot.write_field_begin(&TFieldIdentifier::new("to", TType::Struct, 1))?;
+    self.to.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("cc", TType::Set, 2))?;
+    o_prot.write_set_begin(&TSetIdentifier::new(TType::Struct, self.cc.len() as i32))?;
+    for e in &self.cc {
+      e.write_to_out_protocol(o_prot)?;
     }
-    if let Some(ref fld_var) = self.cc {
-      o_prot.write_field_begin(&TFieldIdentifier::new("cc", TType::Set, 2))?;
-      o_prot.write_set_begin(&TSetIdentifier::new(TType::Struct, fld_var.len() as i32))?;
-      for e in fld_var {
-        e.write_to_out_protocol(o_prot)?;
-      }
-      o_prot.write_set_end()?;
-      o_prot.write_field_end()?
+    o_prot.write_set_end()?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("bcc", TType::Set, 3))?;
+    o_prot.write_set_begin(&TSetIdentifier::new(TType::Struct, self.bcc.len() as i32))?;
+    for e in &self.bcc {
+      e.write_to_out_protocol(o_prot)?;
     }
-    if let Some(ref fld_var) = self.bcc {
-      o_prot.write_field_begin(&TFieldIdentifier::new("bcc", TType::Set, 3))?;
-      o_prot.write_set_begin(&TSetIdentifier::new(TType::Struct, fld_var.len() as i32))?;
-      for e in fld_var {
-        e.write_to_out_protocol(o_prot)?;
-      }
-      o_prot.write_set_end()?;
-      o_prot.write_field_end()?
+    o_prot.write_set_end()?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("subject", TType::String, 11))?;
+    o_prot.write_string(&self.subject)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("body", TType::Struct, 12))?;
+    self.body.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("attachments", TType::Set, 19))?;
+    o_prot.write_set_begin(&TSetIdentifier::new(TType::Struct, self.attachments.len() as i32))?;
+    for e in &self.attachments {
+      e.write_to_out_protocol(o_prot)?;
     }
-    if let Some(ref fld_var) = self.subject {
-      o_prot.write_field_begin(&TFieldIdentifier::new("subject", TType::String, 11))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.body {
-      o_prot.write_field_begin(&TFieldIdentifier::new("body", TType::Struct, 12))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.attachments {
-      o_prot.write_field_begin(&TFieldIdentifier::new("attachments", TType::Set, 19))?;
-      o_prot.write_set_begin(&TSetIdentifier::new(TType::Struct, fld_var.len() as i32))?;
-      for e in fld_var {
-        e.write_to_out_protocol(o_prot)?;
-      }
-      o_prot.write_set_end()?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_set_end()?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }

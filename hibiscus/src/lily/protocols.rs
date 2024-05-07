@@ -30,20 +30,20 @@ use thrift::server::TProcessor;
 // TexToPdfTask
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct TexToPdfTask {
-  pub bucket: Option<String>,
-  pub object: Option<String>,
-  pub tex: Option<Box<Tex>>,
+  pub bucket: String,
+  pub object: String,
+  pub tex: Box<Tex>,
   pub callback: Option<String>,
 }
 
 impl TexToPdfTask {
-  pub fn new<F1, F2, F3, F9>(bucket: F1, object: F2, tex: F3, callback: F9) -> TexToPdfTask where F1: Into<Option<String>>, F2: Into<Option<String>>, F3: Into<Option<Box<Tex>>>, F9: Into<Option<String>> {
+  pub fn new<F9>(bucket: String, object: String, tex: Box<Tex>, callback: F9) -> TexToPdfTask where F9: Into<Option<String>> {
     TexToPdfTask {
-      bucket: bucket.into(),
-      object: object.into(),
-      tex: tex.into(),
+      bucket,
+      object,
+      tex,
       callback: callback.into(),
     }
   }
@@ -52,8 +52,8 @@ impl TexToPdfTask {
 impl TSerializable for TexToPdfTask {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<TexToPdfTask> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
     let mut f_3: Option<Box<Tex>> = None;
     let mut f_9: Option<String> = None;
     loop {
@@ -86,10 +86,13 @@ impl TSerializable for TexToPdfTask {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("TexToPdfTask.bucket", &f_1)?;
+    verify_required_field_exists("TexToPdfTask.object", &f_2)?;
+    verify_required_field_exists("TexToPdfTask.tex", &f_3)?;
     let ret = TexToPdfTask {
-      bucket: f_1,
-      object: f_2,
-      tex: f_3,
+      bucket: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      object: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      tex: f_3.expect("auto-generated code should have checked for presence of required fields"),
       callback: f_9,
     };
     Ok(ret)
@@ -97,21 +100,15 @@ impl TSerializable for TexToPdfTask {
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("TexToPdfTask");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.bucket {
-      o_prot.write_field_begin(&TFieldIdentifier::new("bucket", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.object {
-      o_prot.write_field_begin(&TFieldIdentifier::new("object", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.tex {
-      o_prot.write_field_begin(&TFieldIdentifier::new("tex", TType::Struct, 3))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("bucket", TType::String, 1))?;
+    o_prot.write_string(&self.bucket)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("object", TType::String, 2))?;
+    o_prot.write_string(&self.object)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("tex", TType::Struct, 3))?;
+    self.tex.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.callback {
       o_prot.write_field_begin(&TFieldIdentifier::new("callback", TType::String, 9))?;
       o_prot.write_string(fld_var)?;
@@ -126,17 +123,17 @@ impl TSerializable for TexToPdfTask {
 // Tex
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Tex {
-  pub homepage: Option<Vec<u8>>,
-  pub files: Option<BTreeMap<String, Vec<u8>>>,
+  pub homepage: Vec<u8>,
+  pub files: BTreeMap<String, Vec<u8>>,
 }
 
 impl Tex {
-  pub fn new<F1, F2>(homepage: F1, files: F2) -> Tex where F1: Into<Option<Vec<u8>>>, F2: Into<Option<BTreeMap<String, Vec<u8>>>> {
+  pub fn new(homepage: Vec<u8>, files: BTreeMap<String, Vec<u8>>) -> Tex {
     Tex {
-      homepage: homepage.into(),
-      files: files.into(),
+      homepage,
+      files,
     }
   }
 }
@@ -144,8 +141,8 @@ impl Tex {
 impl TSerializable for Tex {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Tex> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<Vec<u8>> = Some(Vec::new());
-    let mut f_2: Option<BTreeMap<String, Vec<u8>>> = Some(BTreeMap::new());
+    let mut f_1: Option<Vec<u8>> = None;
+    let mut f_2: Option<BTreeMap<String, Vec<u8>>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -175,30 +172,28 @@ impl TSerializable for Tex {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Tex.homepage", &f_1)?;
+    verify_required_field_exists("Tex.files", &f_2)?;
     let ret = Tex {
-      homepage: f_1,
-      files: f_2,
+      homepage: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      files: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Tex");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.homepage {
-      o_prot.write_field_begin(&TFieldIdentifier::new("homepage", TType::String, 1))?;
-      o_prot.write_bytes(fld_var)?;
-      o_prot.write_field_end()?
+    o_prot.write_field_begin(&TFieldIdentifier::new("homepage", TType::String, 1))?;
+    o_prot.write_bytes(&self.homepage)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("files", TType::Map, 2))?;
+    o_prot.write_map_begin(&TMapIdentifier::new(TType::String, TType::String, self.files.len() as i32))?;
+    for (k, v) in &self.files {
+      o_prot.write_string(k)?;
+      o_prot.write_bytes(v)?;
     }
-    if let Some(ref fld_var) = self.files {
-      o_prot.write_field_begin(&TFieldIdentifier::new("files", TType::Map, 2))?;
-      o_prot.write_map_begin(&TMapIdentifier::new(TType::String, TType::String, fld_var.len() as i32))?;
-      for (k, v) in fld_var {
-        o_prot.write_string(k)?;
-        o_prot.write_bytes(v)?;
-      }
-      o_prot.write_map_end()?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_map_end()?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }

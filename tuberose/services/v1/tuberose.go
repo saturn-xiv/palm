@@ -31,8 +31,8 @@ var _ = regexp.MatchString
 //  - Body
 //  - Callback
 type SmsSendTask struct {
-  To []string `thrift:"to,1" db:"to" json:"to"`
-  Body string `thrift:"body,2" db:"body" json:"body"`
+  To []string `thrift:"to,1,required" db:"to" json:"to"`
+  Body string `thrift:"body,2,required" db:"body" json:"body"`
   // unused fields # 3 to 8
   Callback *string `thrift:"callback,9" db:"callback" json:"callback,omitempty"`
 }
@@ -65,6 +65,8 @@ func (p *SmsSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetTo bool = false;
+  var issetBody bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -78,6 +80,7 @@ func (p *SmsSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetTo = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -88,6 +91,7 @@ func (p *SmsSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetBody = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -114,6 +118,12 @@ func (p *SmsSendTask) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetTo{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field To is not set"));
+  }
+  if !issetBody{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Body is not set"));
   }
   return nil
 }
