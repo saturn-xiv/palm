@@ -182,29 +182,29 @@ public class QueryTransferBatchResponse implements org.apache.thrift.TBase<Query
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.MERCHANT_ID, new org.apache.thrift.meta_data.FieldMetaData("merchant_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.MERCHANT_ID, new org.apache.thrift.meta_data.FieldMetaData("merchant_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.TRANSFER_SCENE_ID, new org.apache.thrift.meta_data.FieldMetaData("transfer_scene_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TRANSFER_SCENE_ID, new org.apache.thrift.meta_data.FieldMetaData("transfer_scene_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BATCH_ID, new org.apache.thrift.meta_data.FieldMetaData("batch_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BATCH_ID, new org.apache.thrift.meta_data.FieldMetaData("batch_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.OUT_BATCH_NO, new org.apache.thrift.meta_data.FieldMetaData("out_batch_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OUT_BATCH_NO, new org.apache.thrift.meta_data.FieldMetaData("out_batch_no", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BATCH_STATUS, new org.apache.thrift.meta_data.FieldMetaData("batch_status", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BATCH_STATUS, new org.apache.thrift.meta_data.FieldMetaData("batch_status", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BATCH_TYPE, new org.apache.thrift.meta_data.FieldMetaData("batch_type", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BATCH_TYPE, new org.apache.thrift.meta_data.FieldMetaData("batch_type", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BATCH_NAME, new org.apache.thrift.meta_data.FieldMetaData("batch_name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BATCH_NAME, new org.apache.thrift.meta_data.FieldMetaData("batch_name", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BATCH_REMARK, new org.apache.thrift.meta_data.FieldMetaData("batch_remark", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BATCH_REMARK, new org.apache.thrift.meta_data.FieldMetaData("batch_remark", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CLOSE_REASON, new org.apache.thrift.meta_data.FieldMetaData("close_reason", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.TOTAL_AMOUNT, new org.apache.thrift.meta_data.FieldMetaData("total_amount", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TOTAL_AMOUNT, new org.apache.thrift.meta_data.FieldMetaData("total_amount", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
-    tmpMap.put(_Fields.TOTAL_NUM, new org.apache.thrift.meta_data.FieldMetaData("total_num", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TOTAL_NUM, new org.apache.thrift.meta_data.FieldMetaData("total_num", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     tmpMap.put(_Fields.CREATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("create_time", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
@@ -1736,6 +1736,35 @@ public class QueryTransferBatchResponse implements org.apache.thrift.TBase<Query
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (app_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'app_id' was not present! Struct: " + toString());
+    }
+    if (merchant_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'merchant_id' was not present! Struct: " + toString());
+    }
+    if (transfer_scene_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'transfer_scene_id' was not present! Struct: " + toString());
+    }
+    if (batch_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'batch_id' was not present! Struct: " + toString());
+    }
+    if (out_batch_no == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'out_batch_no' was not present! Struct: " + toString());
+    }
+    if (batch_status == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'batch_status' was not present! Struct: " + toString());
+    }
+    if (batch_type == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'batch_type' was not present! Struct: " + toString());
+    }
+    if (batch_name == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'batch_name' was not present! Struct: " + toString());
+    }
+    if (batch_remark == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'batch_remark' was not present! Struct: " + toString());
+    }
+    // alas, we cannot check 'total_amount' because it's a primitive and you chose the non-beans generator.
+    // alas, we cannot check 'total_num' because it's a primitive and you chose the non-beans generator.
     // check for sub-struct validity
   }
 
@@ -1948,6 +1977,12 @@ public class QueryTransferBatchResponse implements org.apache.thrift.TBase<Query
       iprot.readStructEnd();
 
       // check for required fields of primitive type, which can't be checked in the validate method
+      if (!struct.isSetTotal_amount()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'total_amount' was not found in serialized data! Struct: " + toString());
+      }
+      if (!struct.isSetTotal_num()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'total_num' was not found in serialized data! Struct: " + toString());
+      }
       struct.validate();
     }
 
@@ -2078,100 +2113,45 @@ public class QueryTransferBatchResponse implements org.apache.thrift.TBase<Query
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, QueryTransferBatchResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+      oprot.writeString(struct.app_id);
+      oprot.writeString(struct.merchant_id);
+      oprot.writeString(struct.transfer_scene_id);
+      oprot.writeString(struct.batch_id);
+      oprot.writeString(struct.out_batch_no);
+      oprot.writeString(struct.batch_status);
+      oprot.writeString(struct.batch_type);
+      oprot.writeString(struct.batch_name);
+      oprot.writeString(struct.batch_remark);
+      oprot.writeI64(struct.total_amount);
+      oprot.writeI32(struct.total_num);
       java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetApp_id()) {
+      if (struct.isSetClose_reason()) {
         optionals.set(0);
       }
-      if (struct.isSetMerchant_id()) {
+      if (struct.isSetCreate_time()) {
         optionals.set(1);
       }
-      if (struct.isSetTransfer_scene_id()) {
+      if (struct.isSetUpdate_time()) {
         optionals.set(2);
       }
-      if (struct.isSetBatch_id()) {
+      if (struct.isSetSuccess_amount()) {
         optionals.set(3);
       }
-      if (struct.isSetOut_batch_no()) {
+      if (struct.isSetSuccess_num()) {
         optionals.set(4);
       }
-      if (struct.isSetBatch_status()) {
+      if (struct.isSetFail_amount()) {
         optionals.set(5);
       }
-      if (struct.isSetBatch_type()) {
+      if (struct.isSetFail_num()) {
         optionals.set(6);
       }
-      if (struct.isSetBatch_name()) {
+      if (struct.isSetDetails()) {
         optionals.set(7);
       }
-      if (struct.isSetBatch_remark()) {
-        optionals.set(8);
-      }
-      if (struct.isSetClose_reason()) {
-        optionals.set(9);
-      }
-      if (struct.isSetTotal_amount()) {
-        optionals.set(10);
-      }
-      if (struct.isSetTotal_num()) {
-        optionals.set(11);
-      }
-      if (struct.isSetCreate_time()) {
-        optionals.set(12);
-      }
-      if (struct.isSetUpdate_time()) {
-        optionals.set(13);
-      }
-      if (struct.isSetSuccess_amount()) {
-        optionals.set(14);
-      }
-      if (struct.isSetSuccess_num()) {
-        optionals.set(15);
-      }
-      if (struct.isSetFail_amount()) {
-        optionals.set(16);
-      }
-      if (struct.isSetFail_num()) {
-        optionals.set(17);
-      }
-      if (struct.isSetDetails()) {
-        optionals.set(18);
-      }
-      oprot.writeBitSet(optionals, 19);
-      if (struct.isSetApp_id()) {
-        oprot.writeString(struct.app_id);
-      }
-      if (struct.isSetMerchant_id()) {
-        oprot.writeString(struct.merchant_id);
-      }
-      if (struct.isSetTransfer_scene_id()) {
-        oprot.writeString(struct.transfer_scene_id);
-      }
-      if (struct.isSetBatch_id()) {
-        oprot.writeString(struct.batch_id);
-      }
-      if (struct.isSetOut_batch_no()) {
-        oprot.writeString(struct.out_batch_no);
-      }
-      if (struct.isSetBatch_status()) {
-        oprot.writeString(struct.batch_status);
-      }
-      if (struct.isSetBatch_type()) {
-        oprot.writeString(struct.batch_type);
-      }
-      if (struct.isSetBatch_name()) {
-        oprot.writeString(struct.batch_name);
-      }
-      if (struct.isSetBatch_remark()) {
-        oprot.writeString(struct.batch_remark);
-      }
+      oprot.writeBitSet(optionals, 8);
       if (struct.isSetClose_reason()) {
         oprot.writeString(struct.close_reason);
-      }
-      if (struct.isSetTotal_amount()) {
-        oprot.writeI64(struct.total_amount);
-      }
-      if (struct.isSetTotal_num()) {
-        oprot.writeI32(struct.total_num);
       }
       if (struct.isSetCreate_time()) {
         oprot.writeString(struct.create_time);
@@ -2205,80 +2185,58 @@ public class QueryTransferBatchResponse implements org.apache.thrift.TBase<Query
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, QueryTransferBatchResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(19);
+      struct.app_id = iprot.readString();
+      struct.setApp_idIsSet(true);
+      struct.merchant_id = iprot.readString();
+      struct.setMerchant_idIsSet(true);
+      struct.transfer_scene_id = iprot.readString();
+      struct.setTransfer_scene_idIsSet(true);
+      struct.batch_id = iprot.readString();
+      struct.setBatch_idIsSet(true);
+      struct.out_batch_no = iprot.readString();
+      struct.setOut_batch_noIsSet(true);
+      struct.batch_status = iprot.readString();
+      struct.setBatch_statusIsSet(true);
+      struct.batch_type = iprot.readString();
+      struct.setBatch_typeIsSet(true);
+      struct.batch_name = iprot.readString();
+      struct.setBatch_nameIsSet(true);
+      struct.batch_remark = iprot.readString();
+      struct.setBatch_remarkIsSet(true);
+      struct.total_amount = iprot.readI64();
+      struct.setTotal_amountIsSet(true);
+      struct.total_num = iprot.readI32();
+      struct.setTotal_numIsSet(true);
+      java.util.BitSet incoming = iprot.readBitSet(8);
       if (incoming.get(0)) {
-        struct.app_id = iprot.readString();
-        struct.setApp_idIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.merchant_id = iprot.readString();
-        struct.setMerchant_idIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.transfer_scene_id = iprot.readString();
-        struct.setTransfer_scene_idIsSet(true);
-      }
-      if (incoming.get(3)) {
-        struct.batch_id = iprot.readString();
-        struct.setBatch_idIsSet(true);
-      }
-      if (incoming.get(4)) {
-        struct.out_batch_no = iprot.readString();
-        struct.setOut_batch_noIsSet(true);
-      }
-      if (incoming.get(5)) {
-        struct.batch_status = iprot.readString();
-        struct.setBatch_statusIsSet(true);
-      }
-      if (incoming.get(6)) {
-        struct.batch_type = iprot.readString();
-        struct.setBatch_typeIsSet(true);
-      }
-      if (incoming.get(7)) {
-        struct.batch_name = iprot.readString();
-        struct.setBatch_nameIsSet(true);
-      }
-      if (incoming.get(8)) {
-        struct.batch_remark = iprot.readString();
-        struct.setBatch_remarkIsSet(true);
-      }
-      if (incoming.get(9)) {
         struct.close_reason = iprot.readString();
         struct.setClose_reasonIsSet(true);
       }
-      if (incoming.get(10)) {
-        struct.total_amount = iprot.readI64();
-        struct.setTotal_amountIsSet(true);
-      }
-      if (incoming.get(11)) {
-        struct.total_num = iprot.readI32();
-        struct.setTotal_numIsSet(true);
-      }
-      if (incoming.get(12)) {
+      if (incoming.get(1)) {
         struct.create_time = iprot.readString();
         struct.setCreate_timeIsSet(true);
       }
-      if (incoming.get(13)) {
+      if (incoming.get(2)) {
         struct.update_time = iprot.readString();
         struct.setUpdate_timeIsSet(true);
       }
-      if (incoming.get(14)) {
+      if (incoming.get(3)) {
         struct.success_amount = iprot.readI64();
         struct.setSuccess_amountIsSet(true);
       }
-      if (incoming.get(15)) {
+      if (incoming.get(4)) {
         struct.success_num = iprot.readI32();
         struct.setSuccess_numIsSet(true);
       }
-      if (incoming.get(16)) {
+      if (incoming.get(5)) {
         struct.fail_amount = iprot.readI64();
         struct.setFail_amountIsSet(true);
       }
-      if (incoming.get(17)) {
+      if (incoming.get(6)) {
         struct.fail_num = iprot.readI32();
         struct.setFail_numIsSet(true);
       }
-      if (incoming.get(18)) {
+      if (incoming.get(7)) {
         {
           org.apache.thrift.protocol.TList _list13 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
           struct.details = new java.util.ArrayList<QueryTransferBatchResponseDetail>(_list13.size);

@@ -396,17 +396,17 @@ impl From<&TransferElectronicReceiptAcceptType> for i32 {
 // Amount
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Amount {
-  pub total: Option<i32>,
-  pub currency: Option<Currency>,
+  pub total: i32,
+  pub currency: Currency,
 }
 
 impl Amount {
-  pub fn new<F1, F2>(total: F1, currency: F2) -> Amount where F1: Into<Option<i32>>, F2: Into<Option<Currency>> {
+  pub fn new(total: i32, currency: Currency) -> Amount {
     Amount {
-      total: total.into(),
-      currency: currency.into(),
+      total,
+      currency,
     }
   }
 }
@@ -414,7 +414,7 @@ impl Amount {
 impl TSerializable for Amount {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Amount> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<i32> = Some(0);
+    let mut f_1: Option<i32> = None;
     let mut f_2: Option<Currency> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
@@ -438,25 +438,23 @@ impl TSerializable for Amount {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Amount.total", &f_1)?;
+    verify_required_field_exists("Amount.currency", &f_2)?;
     let ret = Amount {
-      total: f_1,
-      currency: f_2,
+      total: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      currency: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Amount");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(fld_var) = self.total {
-      o_prot.write_field_begin(&TFieldIdentifier::new("total", TType::I32, 1))?;
-      o_prot.write_i32(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.currency {
-      o_prot.write_field_begin(&TFieldIdentifier::new("currency", TType::I32, 2))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("total", TType::I32, 1))?;
+    o_prot.write_i32(self.total)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("currency", TType::I32, 2))?;
+    self.currency.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -466,23 +464,23 @@ impl TSerializable for Amount {
 // PrepayRequest
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct PrepayRequest {
-  pub app_id: Option<String>,
+  pub app_id: String,
   pub payer_open_id: Option<String>,
-  pub amount: Option<Amount>,
-  pub description: Option<String>,
-  pub notify_host: Option<String>,
+  pub amount: Amount,
+  pub description: String,
+  pub notify_host: String,
 }
 
 impl PrepayRequest {
-  pub fn new<F1, F11, F12, F98, F99>(app_id: F1, payer_open_id: F11, amount: F12, description: F98, notify_host: F99) -> PrepayRequest where F1: Into<Option<String>>, F11: Into<Option<String>>, F12: Into<Option<Amount>>, F98: Into<Option<String>>, F99: Into<Option<String>> {
+  pub fn new<F11>(app_id: String, payer_open_id: F11, amount: Amount, description: String, notify_host: String) -> PrepayRequest where F11: Into<Option<String>> {
     PrepayRequest {
-      app_id: app_id.into(),
+      app_id,
       payer_open_id: payer_open_id.into(),
-      amount: amount.into(),
-      description: description.into(),
-      notify_host: notify_host.into(),
+      amount,
+      description,
+      notify_host,
     }
   }
 }
@@ -490,11 +488,11 @@ impl PrepayRequest {
 impl TSerializable for PrepayRequest {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<PrepayRequest> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
     let mut f_11: Option<String> = None;
     let mut f_12: Option<Amount> = None;
-    let mut f_98: Option<String> = Some("".to_owned());
-    let mut f_99: Option<String> = Some("".to_owned());
+    let mut f_98: Option<String> = None;
+    let mut f_99: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -529,43 +527,39 @@ impl TSerializable for PrepayRequest {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("PrepayRequest.app_id", &f_1)?;
+    verify_required_field_exists("PrepayRequest.amount", &f_12)?;
+    verify_required_field_exists("PrepayRequest.description", &f_98)?;
+    verify_required_field_exists("PrepayRequest.notify_host", &f_99)?;
     let ret = PrepayRequest {
-      app_id: f_1,
+      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
       payer_open_id: f_11,
-      amount: f_12,
-      description: f_98,
-      notify_host: f_99,
+      amount: f_12.expect("auto-generated code should have checked for presence of required fields"),
+      description: f_98.expect("auto-generated code should have checked for presence of required fields"),
+      notify_host: f_99.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("PrepayRequest");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.app_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
+    o_prot.write_string(&self.app_id)?;
+    o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.payer_open_id {
       o_prot.write_field_begin(&TFieldIdentifier::new("payer_open_id", TType::String, 11))?;
       o_prot.write_string(fld_var)?;
       o_prot.write_field_end()?
     }
-    if let Some(ref fld_var) = self.amount {
-      o_prot.write_field_begin(&TFieldIdentifier::new("amount", TType::Struct, 12))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.description {
-      o_prot.write_field_begin(&TFieldIdentifier::new("description", TType::String, 98))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.notify_host {
-      o_prot.write_field_begin(&TFieldIdentifier::new("notify_host", TType::String, 99))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("amount", TType::Struct, 12))?;
+    self.amount.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("description", TType::String, 98))?;
+    o_prot.write_string(&self.description)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("notify_host", TType::String, 99))?;
+    o_prot.write_string(&self.notify_host)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -575,17 +569,17 @@ impl TSerializable for PrepayRequest {
 // ResponseError
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct ResponseError {
-  pub code: Option<String>,
-  pub message: Option<String>,
+  pub code: String,
+  pub message: String,
 }
 
 impl ResponseError {
-  pub fn new<F1, F2>(code: F1, message: F2) -> ResponseError where F1: Into<Option<String>>, F2: Into<Option<String>> {
+  pub fn new(code: String, message: String) -> ResponseError {
     ResponseError {
-      code: code.into(),
-      message: message.into(),
+      code,
+      message,
     }
   }
 }
@@ -593,8 +587,8 @@ impl ResponseError {
 impl TSerializable for ResponseError {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<ResponseError> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -617,25 +611,23 @@ impl TSerializable for ResponseError {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("ResponseError.code", &f_1)?;
+    verify_required_field_exists("ResponseError.message", &f_2)?;
     let ret = ResponseError {
-      code: f_1,
-      message: f_2,
+      code: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      message: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("ResponseError");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.code {
-      o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.message {
-      o_prot.write_field_begin(&TFieldIdentifier::new("message", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 1))?;
+    o_prot.write_string(&self.code)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("message", TType::String, 2))?;
+    o_prot.write_string(&self.message)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -645,19 +637,19 @@ impl TSerializable for ResponseError {
 // BillDate
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct BillDate {
-  pub year: Option<i16>,
-  pub month: Option<i8>,
-  pub day: Option<i8>,
+  pub year: i16,
+  pub month: i8,
+  pub day: i8,
 }
 
 impl BillDate {
-  pub fn new<F1, F2, F3>(year: F1, month: F2, day: F3) -> BillDate where F1: Into<Option<i16>>, F2: Into<Option<i8>>, F3: Into<Option<i8>> {
+  pub fn new(year: i16, month: i8, day: i8) -> BillDate {
     BillDate {
-      year: year.into(),
-      month: month.into(),
-      day: day.into(),
+      year,
+      month,
+      day,
     }
   }
 }
@@ -665,9 +657,9 @@ impl BillDate {
 impl TSerializable for BillDate {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<BillDate> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<i16> = Some(0);
-    let mut f_2: Option<i8> = Some(0);
-    let mut f_3: Option<i8> = Some(0);
+    let mut f_1: Option<i16> = None;
+    let mut f_2: Option<i8> = None;
+    let mut f_3: Option<i8> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -694,31 +686,28 @@ impl TSerializable for BillDate {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("BillDate.year", &f_1)?;
+    verify_required_field_exists("BillDate.month", &f_2)?;
+    verify_required_field_exists("BillDate.day", &f_3)?;
     let ret = BillDate {
-      year: f_1,
-      month: f_2,
-      day: f_3,
+      year: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      month: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      day: f_3.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("BillDate");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(fld_var) = self.year {
-      o_prot.write_field_begin(&TFieldIdentifier::new("year", TType::I16, 1))?;
-      o_prot.write_i16(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.month {
-      o_prot.write_field_begin(&TFieldIdentifier::new("month", TType::I08, 2))?;
-      o_prot.write_i8(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.day {
-      o_prot.write_field_begin(&TFieldIdentifier::new("day", TType::I08, 3))?;
-      o_prot.write_i8(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("year", TType::I16, 1))?;
+    o_prot.write_i16(self.year)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("month", TType::I08, 2))?;
+    o_prot.write_i8(self.month)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("day", TType::I08, 3))?;
+    o_prot.write_i8(self.day)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -728,17 +717,17 @@ impl TSerializable for BillDate {
 // TradeResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct TradeResponse {
-  pub trade_state: Option<String>,
-  pub trade_state_desc: Option<String>,
+  pub trade_state: String,
+  pub trade_state_desc: String,
 }
 
 impl TradeResponse {
-  pub fn new<F1, F2>(trade_state: F1, trade_state_desc: F2) -> TradeResponse where F1: Into<Option<String>>, F2: Into<Option<String>> {
+  pub fn new(trade_state: String, trade_state_desc: String) -> TradeResponse {
     TradeResponse {
-      trade_state: trade_state.into(),
-      trade_state_desc: trade_state_desc.into(),
+      trade_state,
+      trade_state_desc,
     }
   }
 }
@@ -746,8 +735,8 @@ impl TradeResponse {
 impl TSerializable for TradeResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<TradeResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -770,25 +759,23 @@ impl TSerializable for TradeResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("TradeResponse.trade_state", &f_1)?;
+    verify_required_field_exists("TradeResponse.trade_state_desc", &f_2)?;
     let ret = TradeResponse {
-      trade_state: f_1,
-      trade_state_desc: f_2,
+      trade_state: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      trade_state_desc: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("TradeResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.trade_state {
-      o_prot.write_field_begin(&TFieldIdentifier::new("trade_state", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.trade_state_desc {
-      o_prot.write_field_begin(&TFieldIdentifier::new("trade_state_desc", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("trade_state", TType::String, 1))?;
+    o_prot.write_string(&self.trade_state)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("trade_state_desc", TType::String, 2))?;
+    o_prot.write_string(&self.trade_state_desc)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -798,17 +785,17 @@ impl TSerializable for TradeResponse {
 // NativeQrCodeUrlResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct NativeQrCodeUrlResponse {
-  pub url: Option<String>,
-  pub out_trade_no: Option<String>,
+  pub url: String,
+  pub out_trade_no: String,
 }
 
 impl NativeQrCodeUrlResponse {
-  pub fn new<F1, F2>(url: F1, out_trade_no: F2) -> NativeQrCodeUrlResponse where F1: Into<Option<String>>, F2: Into<Option<String>> {
+  pub fn new(url: String, out_trade_no: String) -> NativeQrCodeUrlResponse {
     NativeQrCodeUrlResponse {
-      url: url.into(),
-      out_trade_no: out_trade_no.into(),
+      url,
+      out_trade_no,
     }
   }
 }
@@ -816,8 +803,8 @@ impl NativeQrCodeUrlResponse {
 impl TSerializable for NativeQrCodeUrlResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<NativeQrCodeUrlResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -840,25 +827,23 @@ impl TSerializable for NativeQrCodeUrlResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("NativeQrCodeUrlResponse.url", &f_1)?;
+    verify_required_field_exists("NativeQrCodeUrlResponse.out_trade_no", &f_2)?;
     let ret = NativeQrCodeUrlResponse {
-      url: f_1,
-      out_trade_no: f_2,
+      url: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      out_trade_no: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("NativeQrCodeUrlResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.url {
-      o_prot.write_field_begin(&TFieldIdentifier::new("url", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.out_trade_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_trade_no", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("url", TType::String, 1))?;
+    o_prot.write_string(&self.url)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_trade_no", TType::String, 2))?;
+    o_prot.write_string(&self.out_trade_no)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -868,27 +853,27 @@ impl TSerializable for NativeQrCodeUrlResponse {
 // JsapiPrepayIdResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct JsapiPrepayIdResponse {
-  pub app_id: Option<String>,
-  pub out_trade_no: Option<String>,
-  pub time_stamp: Option<String>,
-  pub nonce_str: Option<String>,
-  pub package: Option<String>,
-  pub sign_type: Option<String>,
-  pub pay_sign: Option<String>,
+  pub app_id: String,
+  pub out_trade_no: String,
+  pub time_stamp: String,
+  pub nonce_str: String,
+  pub package_: String,
+  pub sign_type: String,
+  pub pay_sign: String,
 }
 
 impl JsapiPrepayIdResponse {
-  pub fn new<F1, F2, F11, F12, F13, F14, F15>(app_id: F1, out_trade_no: F2, time_stamp: F11, nonce_str: F12, package: F13, sign_type: F14, pay_sign: F15) -> JsapiPrepayIdResponse where F1: Into<Option<String>>, F2: Into<Option<String>>, F11: Into<Option<String>>, F12: Into<Option<String>>, F13: Into<Option<String>>, F14: Into<Option<String>>, F15: Into<Option<String>> {
+  pub fn new(app_id: String, out_trade_no: String, time_stamp: String, nonce_str: String, package_: String, sign_type: String, pay_sign: String) -> JsapiPrepayIdResponse {
     JsapiPrepayIdResponse {
-      app_id: app_id.into(),
-      out_trade_no: out_trade_no.into(),
-      time_stamp: time_stamp.into(),
-      nonce_str: nonce_str.into(),
-      package: package.into(),
-      sign_type: sign_type.into(),
-      pay_sign: pay_sign.into(),
+      app_id,
+      out_trade_no,
+      time_stamp,
+      nonce_str,
+      package_,
+      sign_type,
+      pay_sign,
     }
   }
 }
@@ -896,13 +881,13 @@ impl JsapiPrepayIdResponse {
 impl TSerializable for JsapiPrepayIdResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<JsapiPrepayIdResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
-    let mut f_11: Option<String> = Some("".to_owned());
-    let mut f_12: Option<String> = Some("".to_owned());
-    let mut f_13: Option<String> = Some("".to_owned());
-    let mut f_14: Option<String> = Some("".to_owned());
-    let mut f_15: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_11: Option<String> = None;
+    let mut f_12: Option<String> = None;
+    let mut f_13: Option<String> = None;
+    let mut f_14: Option<String> = None;
+    let mut f_15: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -945,55 +930,48 @@ impl TSerializable for JsapiPrepayIdResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("JsapiPrepayIdResponse.app_id", &f_1)?;
+    verify_required_field_exists("JsapiPrepayIdResponse.out_trade_no", &f_2)?;
+    verify_required_field_exists("JsapiPrepayIdResponse.time_stamp", &f_11)?;
+    verify_required_field_exists("JsapiPrepayIdResponse.nonce_str", &f_12)?;
+    verify_required_field_exists("JsapiPrepayIdResponse.package_", &f_13)?;
+    verify_required_field_exists("JsapiPrepayIdResponse.sign_type", &f_14)?;
+    verify_required_field_exists("JsapiPrepayIdResponse.pay_sign", &f_15)?;
     let ret = JsapiPrepayIdResponse {
-      app_id: f_1,
-      out_trade_no: f_2,
-      time_stamp: f_11,
-      nonce_str: f_12,
-      package: f_13,
-      sign_type: f_14,
-      pay_sign: f_15,
+      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      out_trade_no: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      time_stamp: f_11.expect("auto-generated code should have checked for presence of required fields"),
+      nonce_str: f_12.expect("auto-generated code should have checked for presence of required fields"),
+      package_: f_13.expect("auto-generated code should have checked for presence of required fields"),
+      sign_type: f_14.expect("auto-generated code should have checked for presence of required fields"),
+      pay_sign: f_15.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("JsapiPrepayIdResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.app_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.out_trade_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_trade_no", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.time_stamp {
-      o_prot.write_field_begin(&TFieldIdentifier::new("time_stamp", TType::String, 11))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.nonce_str {
-      o_prot.write_field_begin(&TFieldIdentifier::new("nonce_str", TType::String, 12))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.package {
-      o_prot.write_field_begin(&TFieldIdentifier::new("package", TType::String, 13))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.sign_type {
-      o_prot.write_field_begin(&TFieldIdentifier::new("sign_type", TType::String, 14))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.pay_sign {
-      o_prot.write_field_begin(&TFieldIdentifier::new("pay_sign", TType::String, 15))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
+    o_prot.write_string(&self.app_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_trade_no", TType::String, 2))?;
+    o_prot.write_string(&self.out_trade_no)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("time_stamp", TType::String, 11))?;
+    o_prot.write_string(&self.time_stamp)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("nonce_str", TType::String, 12))?;
+    o_prot.write_string(&self.nonce_str)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("package_", TType::String, 13))?;
+    o_prot.write_string(&self.package_)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("sign_type", TType::String, 14))?;
+    o_prot.write_string(&self.sign_type)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("pay_sign", TType::String, 15))?;
+    o_prot.write_string(&self.pay_sign)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1003,19 +981,19 @@ impl TSerializable for JsapiPrepayIdResponse {
 // CreateRefundAmount
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct CreateRefundAmount {
-  pub total: Option<i32>,
-  pub refund: Option<i32>,
-  pub currency: Option<Currency>,
+  pub total: i32,
+  pub refund: i32,
+  pub currency: Currency,
 }
 
 impl CreateRefundAmount {
-  pub fn new<F1, F2, F9>(total: F1, refund: F2, currency: F9) -> CreateRefundAmount where F1: Into<Option<i32>>, F2: Into<Option<i32>>, F9: Into<Option<Currency>> {
+  pub fn new(total: i32, refund: i32, currency: Currency) -> CreateRefundAmount {
     CreateRefundAmount {
-      total: total.into(),
-      refund: refund.into(),
-      currency: currency.into(),
+      total,
+      refund,
+      currency,
     }
   }
 }
@@ -1023,8 +1001,8 @@ impl CreateRefundAmount {
 impl TSerializable for CreateRefundAmount {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<CreateRefundAmount> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<i32> = Some(0);
-    let mut f_2: Option<i32> = Some(0);
+    let mut f_1: Option<i32> = None;
+    let mut f_2: Option<i32> = None;
     let mut f_9: Option<Currency> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
@@ -1052,31 +1030,28 @@ impl TSerializable for CreateRefundAmount {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("CreateRefundAmount.total", &f_1)?;
+    verify_required_field_exists("CreateRefundAmount.refund", &f_2)?;
+    verify_required_field_exists("CreateRefundAmount.currency", &f_9)?;
     let ret = CreateRefundAmount {
-      total: f_1,
-      refund: f_2,
-      currency: f_9,
+      total: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      refund: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      currency: f_9.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("CreateRefundAmount");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(fld_var) = self.total {
-      o_prot.write_field_begin(&TFieldIdentifier::new("total", TType::I32, 1))?;
-      o_prot.write_i32(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.refund {
-      o_prot.write_field_begin(&TFieldIdentifier::new("refund", TType::I32, 2))?;
-      o_prot.write_i32(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.currency {
-      o_prot.write_field_begin(&TFieldIdentifier::new("currency", TType::I32, 9))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("total", TType::I32, 1))?;
+    o_prot.write_i32(self.total)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("refund", TType::I32, 2))?;
+    o_prot.write_i32(self.refund)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("currency", TType::I32, 9))?;
+    self.currency.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1086,23 +1061,23 @@ impl TSerializable for CreateRefundAmount {
 // QueryRefundResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct QueryRefundResponse {
-  pub out_refund_no: Option<String>,
-  pub channel: Option<String>,
-  pub status: Option<String>,
-  pub user_received_account: Option<String>,
-  pub create_time: Option<String>,
+  pub out_refund_no: String,
+  pub channel: String,
+  pub status: String,
+  pub user_received_account: String,
+  pub create_time: String,
 }
 
 impl QueryRefundResponse {
-  pub fn new<F1, F11, F12, F13, F99>(out_refund_no: F1, channel: F11, status: F12, user_received_account: F13, create_time: F99) -> QueryRefundResponse where F1: Into<Option<String>>, F11: Into<Option<String>>, F12: Into<Option<String>>, F13: Into<Option<String>>, F99: Into<Option<String>> {
+  pub fn new(out_refund_no: String, channel: String, status: String, user_received_account: String, create_time: String) -> QueryRefundResponse {
     QueryRefundResponse {
-      out_refund_no: out_refund_no.into(),
-      channel: channel.into(),
-      status: status.into(),
-      user_received_account: user_received_account.into(),
-      create_time: create_time.into(),
+      out_refund_no,
+      channel,
+      status,
+      user_received_account,
+      create_time,
     }
   }
 }
@@ -1110,11 +1085,11 @@ impl QueryRefundResponse {
 impl TSerializable for QueryRefundResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<QueryRefundResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_11: Option<String> = Some("".to_owned());
-    let mut f_12: Option<String> = Some("".to_owned());
-    let mut f_13: Option<String> = Some("".to_owned());
-    let mut f_99: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_11: Option<String> = None;
+    let mut f_12: Option<String> = None;
+    let mut f_13: Option<String> = None;
+    let mut f_99: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1149,43 +1124,38 @@ impl TSerializable for QueryRefundResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("QueryRefundResponse.out_refund_no", &f_1)?;
+    verify_required_field_exists("QueryRefundResponse.channel", &f_11)?;
+    verify_required_field_exists("QueryRefundResponse.status", &f_12)?;
+    verify_required_field_exists("QueryRefundResponse.user_received_account", &f_13)?;
+    verify_required_field_exists("QueryRefundResponse.create_time", &f_99)?;
     let ret = QueryRefundResponse {
-      out_refund_no: f_1,
-      channel: f_11,
-      status: f_12,
-      user_received_account: f_13,
-      create_time: f_99,
+      out_refund_no: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      channel: f_11.expect("auto-generated code should have checked for presence of required fields"),
+      status: f_12.expect("auto-generated code should have checked for presence of required fields"),
+      user_received_account: f_13.expect("auto-generated code should have checked for presence of required fields"),
+      create_time: f_99.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("QueryRefundResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.out_refund_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_refund_no", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.channel {
-      o_prot.write_field_begin(&TFieldIdentifier::new("channel", TType::String, 11))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.status {
-      o_prot.write_field_begin(&TFieldIdentifier::new("status", TType::String, 12))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.user_received_account {
-      o_prot.write_field_begin(&TFieldIdentifier::new("user_received_account", TType::String, 13))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.create_time {
-      o_prot.write_field_begin(&TFieldIdentifier::new("create_time", TType::String, 99))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_refund_no", TType::String, 1))?;
+    o_prot.write_string(&self.out_refund_no)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("channel", TType::String, 11))?;
+    o_prot.write_string(&self.channel)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("status", TType::String, 12))?;
+    o_prot.write_string(&self.status)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("user_received_account", TType::String, 13))?;
+    o_prot.write_string(&self.user_received_account)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("create_time", TType::String, 99))?;
+    o_prot.write_string(&self.create_time)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1195,21 +1165,21 @@ impl TSerializable for QueryRefundResponse {
 // ExecuteTransferBatchRequestDetail
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct ExecuteTransferBatchRequestDetail {
-  pub open_id: Option<String>,
-  pub username: Option<String>,
-  pub amount: Option<i64>,
-  pub remark: Option<String>,
+  pub open_id: String,
+  pub username: String,
+  pub amount: i64,
+  pub remark: String,
 }
 
 impl ExecuteTransferBatchRequestDetail {
-  pub fn new<F1, F2, F3, F4>(open_id: F1, username: F2, amount: F3, remark: F4) -> ExecuteTransferBatchRequestDetail where F1: Into<Option<String>>, F2: Into<Option<String>>, F3: Into<Option<i64>>, F4: Into<Option<String>> {
+  pub fn new(open_id: String, username: String, amount: i64, remark: String) -> ExecuteTransferBatchRequestDetail {
     ExecuteTransferBatchRequestDetail {
-      open_id: open_id.into(),
-      username: username.into(),
-      amount: amount.into(),
-      remark: remark.into(),
+      open_id,
+      username,
+      amount,
+      remark,
     }
   }
 }
@@ -1217,10 +1187,10 @@ impl ExecuteTransferBatchRequestDetail {
 impl TSerializable for ExecuteTransferBatchRequestDetail {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<ExecuteTransferBatchRequestDetail> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
-    let mut f_3: Option<i64> = Some(0);
-    let mut f_4: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_3: Option<i64> = None;
+    let mut f_4: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1251,37 +1221,33 @@ impl TSerializable for ExecuteTransferBatchRequestDetail {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("ExecuteTransferBatchRequestDetail.open_id", &f_1)?;
+    verify_required_field_exists("ExecuteTransferBatchRequestDetail.username", &f_2)?;
+    verify_required_field_exists("ExecuteTransferBatchRequestDetail.amount", &f_3)?;
+    verify_required_field_exists("ExecuteTransferBatchRequestDetail.remark", &f_4)?;
     let ret = ExecuteTransferBatchRequestDetail {
-      open_id: f_1,
-      username: f_2,
-      amount: f_3,
-      remark: f_4,
+      open_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      username: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      amount: f_3.expect("auto-generated code should have checked for presence of required fields"),
+      remark: f_4.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("ExecuteTransferBatchRequestDetail");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.open_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("open_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.username {
-      o_prot.write_field_begin(&TFieldIdentifier::new("username", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.amount {
-      o_prot.write_field_begin(&TFieldIdentifier::new("amount", TType::I64, 3))?;
-      o_prot.write_i64(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.remark {
-      o_prot.write_field_begin(&TFieldIdentifier::new("remark", TType::String, 4))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("open_id", TType::String, 1))?;
+    o_prot.write_string(&self.open_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("username", TType::String, 2))?;
+    o_prot.write_string(&self.username)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("amount", TType::I64, 3))?;
+    o_prot.write_i64(self.amount)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("remark", TType::String, 4))?;
+    o_prot.write_string(&self.remark)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1291,19 +1257,19 @@ impl TSerializable for ExecuteTransferBatchRequestDetail {
 // ExecuteTransferBatchResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct ExecuteTransferBatchResponse {
-  pub out_batch_no: Option<String>,
-  pub details: Option<Vec<Box<ExecuteTransferBatchResponseDetail>>>,
-  pub status: Option<Box<ExecuteTransferBatchResponseStatus>>,
+  pub out_batch_no: String,
+  pub details: Vec<Box<ExecuteTransferBatchResponseDetail>>,
+  pub status: Box<ExecuteTransferBatchResponseStatus>,
 }
 
 impl ExecuteTransferBatchResponse {
-  pub fn new<F1, F2, F9>(out_batch_no: F1, details: F2, status: F9) -> ExecuteTransferBatchResponse where F1: Into<Option<String>>, F2: Into<Option<Vec<Box<ExecuteTransferBatchResponseDetail>>>>, F9: Into<Option<Box<ExecuteTransferBatchResponseStatus>>> {
+  pub fn new(out_batch_no: String, details: Vec<Box<ExecuteTransferBatchResponseDetail>>, status: Box<ExecuteTransferBatchResponseStatus>) -> ExecuteTransferBatchResponse {
     ExecuteTransferBatchResponse {
-      out_batch_no: out_batch_no.into(),
-      details: details.into(),
-      status: status.into(),
+      out_batch_no,
+      details,
+      status,
     }
   }
 }
@@ -1311,8 +1277,8 @@ impl ExecuteTransferBatchResponse {
 impl TSerializable for ExecuteTransferBatchResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<ExecuteTransferBatchResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<Vec<Box<ExecuteTransferBatchResponseDetail>>> = Some(Vec::new());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<Vec<Box<ExecuteTransferBatchResponseDetail>>> = None;
     let mut f_9: Option<Box<ExecuteTransferBatchResponseStatus>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
@@ -1346,35 +1312,32 @@ impl TSerializable for ExecuteTransferBatchResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("ExecuteTransferBatchResponse.out_batch_no", &f_1)?;
+    verify_required_field_exists("ExecuteTransferBatchResponse.details", &f_2)?;
+    verify_required_field_exists("ExecuteTransferBatchResponse.status", &f_9)?;
     let ret = ExecuteTransferBatchResponse {
-      out_batch_no: f_1,
-      details: f_2,
-      status: f_9,
+      out_batch_no: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      details: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      status: f_9.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("ExecuteTransferBatchResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.out_batch_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_batch_no", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_batch_no", TType::String, 1))?;
+    o_prot.write_string(&self.out_batch_no)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("details", TType::List, 2))?;
+    o_prot.write_list_begin(&TListIdentifier::new(TType::Struct, self.details.len() as i32))?;
+    for e in &self.details {
+      e.write_to_out_protocol(o_prot)?;
     }
-    if let Some(ref fld_var) = self.details {
-      o_prot.write_field_begin(&TFieldIdentifier::new("details", TType::List, 2))?;
-      o_prot.write_list_begin(&TListIdentifier::new(TType::Struct, fld_var.len() as i32))?;
-      for e in fld_var {
-        e.write_to_out_protocol(o_prot)?;
-      }
-      o_prot.write_list_end()?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.status {
-      o_prot.write_field_begin(&TFieldIdentifier::new("status", TType::Struct, 9))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_list_end()?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("status", TType::Struct, 9))?;
+    self.status.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1470,17 +1433,17 @@ impl TSerializable for ExecuteTransferBatchResponseStatus {
 // ExecuteTransferBatchResponseSucceeded
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct ExecuteTransferBatchResponseSucceeded {
-  pub batch_id: Option<String>,
-  pub create_time: Option<String>,
+  pub batch_id: String,
+  pub create_time: String,
 }
 
 impl ExecuteTransferBatchResponseSucceeded {
-  pub fn new<F1, F2>(batch_id: F1, create_time: F2) -> ExecuteTransferBatchResponseSucceeded where F1: Into<Option<String>>, F2: Into<Option<String>> {
+  pub fn new(batch_id: String, create_time: String) -> ExecuteTransferBatchResponseSucceeded {
     ExecuteTransferBatchResponseSucceeded {
-      batch_id: batch_id.into(),
-      create_time: create_time.into(),
+      batch_id,
+      create_time,
     }
   }
 }
@@ -1488,8 +1451,8 @@ impl ExecuteTransferBatchResponseSucceeded {
 impl TSerializable for ExecuteTransferBatchResponseSucceeded {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<ExecuteTransferBatchResponseSucceeded> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1512,25 +1475,23 @@ impl TSerializable for ExecuteTransferBatchResponseSucceeded {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("ExecuteTransferBatchResponseSucceeded.batch_id", &f_1)?;
+    verify_required_field_exists("ExecuteTransferBatchResponseSucceeded.create_time", &f_2)?;
     let ret = ExecuteTransferBatchResponseSucceeded {
-      batch_id: f_1,
-      create_time: f_2,
+      batch_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      create_time: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("ExecuteTransferBatchResponseSucceeded");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.batch_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("batch_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.create_time {
-      o_prot.write_field_begin(&TFieldIdentifier::new("create_time", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("batch_id", TType::String, 1))?;
+    o_prot.write_string(&self.batch_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("create_time", TType::String, 2))?;
+    o_prot.write_string(&self.create_time)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1540,17 +1501,17 @@ impl TSerializable for ExecuteTransferBatchResponseSucceeded {
 // ExecuteTransferBatchResponseDetail
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct ExecuteTransferBatchResponseDetail {
-  pub open_id: Option<String>,
-  pub out_detail_no: Option<String>,
+  pub open_id: String,
+  pub out_detail_no: String,
 }
 
 impl ExecuteTransferBatchResponseDetail {
-  pub fn new<F1, F2>(open_id: F1, out_detail_no: F2) -> ExecuteTransferBatchResponseDetail where F1: Into<Option<String>>, F2: Into<Option<String>> {
+  pub fn new(open_id: String, out_detail_no: String) -> ExecuteTransferBatchResponseDetail {
     ExecuteTransferBatchResponseDetail {
-      open_id: open_id.into(),
-      out_detail_no: out_detail_no.into(),
+      open_id,
+      out_detail_no,
     }
   }
 }
@@ -1558,8 +1519,8 @@ impl ExecuteTransferBatchResponseDetail {
 impl TSerializable for ExecuteTransferBatchResponseDetail {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<ExecuteTransferBatchResponseDetail> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1582,25 +1543,23 @@ impl TSerializable for ExecuteTransferBatchResponseDetail {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("ExecuteTransferBatchResponseDetail.open_id", &f_1)?;
+    verify_required_field_exists("ExecuteTransferBatchResponseDetail.out_detail_no", &f_2)?;
     let ret = ExecuteTransferBatchResponseDetail {
-      open_id: f_1,
-      out_detail_no: f_2,
+      open_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      out_detail_no: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("ExecuteTransferBatchResponseDetail");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.open_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("open_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.out_detail_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_detail_no", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("open_id", TType::String, 1))?;
+    o_prot.write_string(&self.open_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_detail_no", TType::String, 2))?;
+    o_prot.write_string(&self.out_detail_no)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1610,20 +1569,20 @@ impl TSerializable for ExecuteTransferBatchResponseDetail {
 // QueryTransferBatchResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct QueryTransferBatchResponse {
-  pub app_id: Option<String>,
-  pub merchant_id: Option<String>,
-  pub transfer_scene_id: Option<String>,
-  pub batch_id: Option<String>,
-  pub out_batch_no: Option<String>,
-  pub batch_status: Option<String>,
-  pub batch_type: Option<String>,
-  pub batch_name: Option<String>,
-  pub batch_remark: Option<String>,
+  pub app_id: String,
+  pub merchant_id: String,
+  pub transfer_scene_id: String,
+  pub batch_id: String,
+  pub out_batch_no: String,
+  pub batch_status: String,
+  pub batch_type: String,
+  pub batch_name: String,
+  pub batch_remark: String,
   pub close_reason: Option<String>,
-  pub total_amount: Option<i64>,
-  pub total_num: Option<i32>,
+  pub total_amount: i64,
+  pub total_num: i32,
   pub create_time: Option<String>,
   pub update_time: Option<String>,
   pub success_amount: Option<i64>,
@@ -1634,20 +1593,20 @@ pub struct QueryTransferBatchResponse {
 }
 
 impl QueryTransferBatchResponse {
-  pub fn new<F1, F2, F3, F11, F12, F13, F14, F15, F16, F21, F22, F23, F24, F25, F26, F27, F28, F29, F99>(app_id: F1, merchant_id: F2, transfer_scene_id: F3, batch_id: F11, out_batch_no: F12, batch_status: F13, batch_type: F14, batch_name: F15, batch_remark: F16, close_reason: F21, total_amount: F22, total_num: F23, create_time: F24, update_time: F25, success_amount: F26, success_num: F27, fail_amount: F28, fail_num: F29, details: F99) -> QueryTransferBatchResponse where F1: Into<Option<String>>, F2: Into<Option<String>>, F3: Into<Option<String>>, F11: Into<Option<String>>, F12: Into<Option<String>>, F13: Into<Option<String>>, F14: Into<Option<String>>, F15: Into<Option<String>>, F16: Into<Option<String>>, F21: Into<Option<String>>, F22: Into<Option<i64>>, F23: Into<Option<i32>>, F24: Into<Option<String>>, F25: Into<Option<String>>, F26: Into<Option<i64>>, F27: Into<Option<i32>>, F28: Into<Option<i64>>, F29: Into<Option<i32>>, F99: Into<Option<Vec<Box<QueryTransferBatchResponseDetail>>>> {
+  pub fn new<F21, F24, F25, F26, F27, F28, F29, F99>(app_id: String, merchant_id: String, transfer_scene_id: String, batch_id: String, out_batch_no: String, batch_status: String, batch_type: String, batch_name: String, batch_remark: String, close_reason: F21, total_amount: i64, total_num: i32, create_time: F24, update_time: F25, success_amount: F26, success_num: F27, fail_amount: F28, fail_num: F29, details: F99) -> QueryTransferBatchResponse where F21: Into<Option<String>>, F24: Into<Option<String>>, F25: Into<Option<String>>, F26: Into<Option<i64>>, F27: Into<Option<i32>>, F28: Into<Option<i64>>, F29: Into<Option<i32>>, F99: Into<Option<Vec<Box<QueryTransferBatchResponseDetail>>>> {
     QueryTransferBatchResponse {
-      app_id: app_id.into(),
-      merchant_id: merchant_id.into(),
-      transfer_scene_id: transfer_scene_id.into(),
-      batch_id: batch_id.into(),
-      out_batch_no: out_batch_no.into(),
-      batch_status: batch_status.into(),
-      batch_type: batch_type.into(),
-      batch_name: batch_name.into(),
-      batch_remark: batch_remark.into(),
+      app_id,
+      merchant_id,
+      transfer_scene_id,
+      batch_id,
+      out_batch_no,
+      batch_status,
+      batch_type,
+      batch_name,
+      batch_remark,
       close_reason: close_reason.into(),
-      total_amount: total_amount.into(),
-      total_num: total_num.into(),
+      total_amount,
+      total_num,
       create_time: create_time.into(),
       update_time: update_time.into(),
       success_amount: success_amount.into(),
@@ -1662,18 +1621,18 @@ impl QueryTransferBatchResponse {
 impl TSerializable for QueryTransferBatchResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<QueryTransferBatchResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
-    let mut f_3: Option<String> = Some("".to_owned());
-    let mut f_11: Option<String> = Some("".to_owned());
-    let mut f_12: Option<String> = Some("".to_owned());
-    let mut f_13: Option<String> = Some("".to_owned());
-    let mut f_14: Option<String> = Some("".to_owned());
-    let mut f_15: Option<String> = Some("".to_owned());
-    let mut f_16: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_3: Option<String> = None;
+    let mut f_11: Option<String> = None;
+    let mut f_12: Option<String> = None;
+    let mut f_13: Option<String> = None;
+    let mut f_14: Option<String> = None;
+    let mut f_15: Option<String> = None;
+    let mut f_16: Option<String> = None;
     let mut f_21: Option<String> = None;
-    let mut f_22: Option<i64> = Some(0);
-    let mut f_23: Option<i32> = Some(0);
+    let mut f_22: Option<i64> = None;
+    let mut f_23: Option<i32> = None;
     let mut f_24: Option<String> = None;
     let mut f_25: Option<String> = None;
     let mut f_26: Option<i64> = None;
@@ -1777,19 +1736,30 @@ impl TSerializable for QueryTransferBatchResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("QueryTransferBatchResponse.app_id", &f_1)?;
+    verify_required_field_exists("QueryTransferBatchResponse.merchant_id", &f_2)?;
+    verify_required_field_exists("QueryTransferBatchResponse.transfer_scene_id", &f_3)?;
+    verify_required_field_exists("QueryTransferBatchResponse.batch_id", &f_11)?;
+    verify_required_field_exists("QueryTransferBatchResponse.out_batch_no", &f_12)?;
+    verify_required_field_exists("QueryTransferBatchResponse.batch_status", &f_13)?;
+    verify_required_field_exists("QueryTransferBatchResponse.batch_type", &f_14)?;
+    verify_required_field_exists("QueryTransferBatchResponse.batch_name", &f_15)?;
+    verify_required_field_exists("QueryTransferBatchResponse.batch_remark", &f_16)?;
+    verify_required_field_exists("QueryTransferBatchResponse.total_amount", &f_22)?;
+    verify_required_field_exists("QueryTransferBatchResponse.total_num", &f_23)?;
     let ret = QueryTransferBatchResponse {
-      app_id: f_1,
-      merchant_id: f_2,
-      transfer_scene_id: f_3,
-      batch_id: f_11,
-      out_batch_no: f_12,
-      batch_status: f_13,
-      batch_type: f_14,
-      batch_name: f_15,
-      batch_remark: f_16,
+      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      merchant_id: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      transfer_scene_id: f_3.expect("auto-generated code should have checked for presence of required fields"),
+      batch_id: f_11.expect("auto-generated code should have checked for presence of required fields"),
+      out_batch_no: f_12.expect("auto-generated code should have checked for presence of required fields"),
+      batch_status: f_13.expect("auto-generated code should have checked for presence of required fields"),
+      batch_type: f_14.expect("auto-generated code should have checked for presence of required fields"),
+      batch_name: f_15.expect("auto-generated code should have checked for presence of required fields"),
+      batch_remark: f_16.expect("auto-generated code should have checked for presence of required fields"),
       close_reason: f_21,
-      total_amount: f_22,
-      total_num: f_23,
+      total_amount: f_22.expect("auto-generated code should have checked for presence of required fields"),
+      total_num: f_23.expect("auto-generated code should have checked for presence of required fields"),
       create_time: f_24,
       update_time: f_25,
       success_amount: f_26,
@@ -1803,66 +1773,44 @@ impl TSerializable for QueryTransferBatchResponse {
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("QueryTransferBatchResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.app_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.merchant_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("merchant_id", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.transfer_scene_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("transfer_scene_id", TType::String, 3))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.batch_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("batch_id", TType::String, 11))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.out_batch_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_batch_no", TType::String, 12))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.batch_status {
-      o_prot.write_field_begin(&TFieldIdentifier::new("batch_status", TType::String, 13))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.batch_type {
-      o_prot.write_field_begin(&TFieldIdentifier::new("batch_type", TType::String, 14))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.batch_name {
-      o_prot.write_field_begin(&TFieldIdentifier::new("batch_name", TType::String, 15))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.batch_remark {
-      o_prot.write_field_begin(&TFieldIdentifier::new("batch_remark", TType::String, 16))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
+    o_prot.write_string(&self.app_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("merchant_id", TType::String, 2))?;
+    o_prot.write_string(&self.merchant_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("transfer_scene_id", TType::String, 3))?;
+    o_prot.write_string(&self.transfer_scene_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("batch_id", TType::String, 11))?;
+    o_prot.write_string(&self.batch_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_batch_no", TType::String, 12))?;
+    o_prot.write_string(&self.out_batch_no)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("batch_status", TType::String, 13))?;
+    o_prot.write_string(&self.batch_status)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("batch_type", TType::String, 14))?;
+    o_prot.write_string(&self.batch_type)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("batch_name", TType::String, 15))?;
+    o_prot.write_string(&self.batch_name)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("batch_remark", TType::String, 16))?;
+    o_prot.write_string(&self.batch_remark)?;
+    o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.close_reason {
       o_prot.write_field_begin(&TFieldIdentifier::new("close_reason", TType::String, 21))?;
       o_prot.write_string(fld_var)?;
       o_prot.write_field_end()?
     }
-    if let Some(fld_var) = self.total_amount {
-      o_prot.write_field_begin(&TFieldIdentifier::new("total_amount", TType::I64, 22))?;
-      o_prot.write_i64(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.total_num {
-      o_prot.write_field_begin(&TFieldIdentifier::new("total_num", TType::I32, 23))?;
-      o_prot.write_i32(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("total_amount", TType::I64, 22))?;
+    o_prot.write_i64(self.total_amount)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("total_num", TType::I32, 23))?;
+    o_prot.write_i32(self.total_num)?;
+    o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.create_time {
       o_prot.write_field_begin(&TFieldIdentifier::new("create_time", TType::String, 24))?;
       o_prot.write_string(fld_var)?;
@@ -1911,19 +1859,19 @@ impl TSerializable for QueryTransferBatchResponse {
 // QueryTransferBatchResponseDetail
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct QueryTransferBatchResponseDetail {
-  pub detail_id: Option<String>,
-  pub out_detail_no: Option<String>,
-  pub status: Option<String>,
+  pub detail_id: String,
+  pub out_detail_no: String,
+  pub status: String,
 }
 
 impl QueryTransferBatchResponseDetail {
-  pub fn new<F1, F2, F3>(detail_id: F1, out_detail_no: F2, status: F3) -> QueryTransferBatchResponseDetail where F1: Into<Option<String>>, F2: Into<Option<String>>, F3: Into<Option<String>> {
+  pub fn new(detail_id: String, out_detail_no: String, status: String) -> QueryTransferBatchResponseDetail {
     QueryTransferBatchResponseDetail {
-      detail_id: detail_id.into(),
-      out_detail_no: out_detail_no.into(),
-      status: status.into(),
+      detail_id,
+      out_detail_no,
+      status,
     }
   }
 }
@@ -1931,9 +1879,9 @@ impl QueryTransferBatchResponseDetail {
 impl TSerializable for QueryTransferBatchResponseDetail {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<QueryTransferBatchResponseDetail> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
-    let mut f_3: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_3: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1960,31 +1908,28 @@ impl TSerializable for QueryTransferBatchResponseDetail {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("QueryTransferBatchResponseDetail.detail_id", &f_1)?;
+    verify_required_field_exists("QueryTransferBatchResponseDetail.out_detail_no", &f_2)?;
+    verify_required_field_exists("QueryTransferBatchResponseDetail.status", &f_3)?;
     let ret = QueryTransferBatchResponseDetail {
-      detail_id: f_1,
-      out_detail_no: f_2,
-      status: f_3,
+      detail_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      out_detail_no: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      status: f_3.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("QueryTransferBatchResponseDetail");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.detail_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("detail_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.out_detail_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_detail_no", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.status {
-      o_prot.write_field_begin(&TFieldIdentifier::new("status", TType::String, 3))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("detail_id", TType::String, 1))?;
+    o_prot.write_string(&self.detail_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_detail_no", TType::String, 2))?;
+    o_prot.write_string(&self.out_detail_no)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("status", TType::String, 3))?;
+    o_prot.write_string(&self.status)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -1994,41 +1939,41 @@ impl TSerializable for QueryTransferBatchResponseDetail {
 // QueryTransferDetailResponse
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct QueryTransferDetailResponse {
-  pub app_id: Option<String>,
-  pub merchant_id: Option<String>,
-  pub open_id: Option<String>,
+  pub app_id: String,
+  pub merchant_id: String,
+  pub open_id: String,
   pub user_name: Option<String>,
-  pub batch_id: Option<String>,
-  pub out_batch_no: Option<String>,
-  pub out_detail_no: Option<String>,
-  pub detail_id: Option<String>,
-  pub detail_status: Option<String>,
-  pub transfer_amount: Option<i64>,
-  pub transfer_remark: Option<String>,
+  pub batch_id: String,
+  pub out_batch_no: String,
+  pub out_detail_no: String,
+  pub detail_id: String,
+  pub detail_status: String,
+  pub transfer_amount: i64,
+  pub transfer_remark: String,
   pub fail_reason: Option<String>,
-  pub initiate_time: Option<String>,
-  pub update_time: Option<String>,
+  pub initiate_time: String,
+  pub update_time: String,
 }
 
 impl QueryTransferDetailResponse {
-  pub fn new<F1, F2, F3, F9, F11, F12, F13, F14, F15, F16, F17, F18, F19, F20>(app_id: F1, merchant_id: F2, open_id: F3, user_name: F9, batch_id: F11, out_batch_no: F12, out_detail_no: F13, detail_id: F14, detail_status: F15, transfer_amount: F16, transfer_remark: F17, fail_reason: F18, initiate_time: F19, update_time: F20) -> QueryTransferDetailResponse where F1: Into<Option<String>>, F2: Into<Option<String>>, F3: Into<Option<String>>, F9: Into<Option<String>>, F11: Into<Option<String>>, F12: Into<Option<String>>, F13: Into<Option<String>>, F14: Into<Option<String>>, F15: Into<Option<String>>, F16: Into<Option<i64>>, F17: Into<Option<String>>, F18: Into<Option<String>>, F19: Into<Option<String>>, F20: Into<Option<String>> {
+  pub fn new<F9, F18>(app_id: String, merchant_id: String, open_id: String, user_name: F9, batch_id: String, out_batch_no: String, out_detail_no: String, detail_id: String, detail_status: String, transfer_amount: i64, transfer_remark: String, fail_reason: F18, initiate_time: String, update_time: String) -> QueryTransferDetailResponse where F9: Into<Option<String>>, F18: Into<Option<String>> {
     QueryTransferDetailResponse {
-      app_id: app_id.into(),
-      merchant_id: merchant_id.into(),
-      open_id: open_id.into(),
+      app_id,
+      merchant_id,
+      open_id,
       user_name: user_name.into(),
-      batch_id: batch_id.into(),
-      out_batch_no: out_batch_no.into(),
-      out_detail_no: out_detail_no.into(),
-      detail_id: detail_id.into(),
-      detail_status: detail_status.into(),
-      transfer_amount: transfer_amount.into(),
-      transfer_remark: transfer_remark.into(),
+      batch_id,
+      out_batch_no,
+      out_detail_no,
+      detail_id,
+      detail_status,
+      transfer_amount,
+      transfer_remark,
       fail_reason: fail_reason.into(),
-      initiate_time: initiate_time.into(),
-      update_time: update_time.into(),
+      initiate_time,
+      update_time,
     }
   }
 }
@@ -2036,20 +1981,20 @@ impl QueryTransferDetailResponse {
 impl TSerializable for QueryTransferDetailResponse {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<QueryTransferDetailResponse> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
-    let mut f_2: Option<String> = Some("".to_owned());
-    let mut f_3: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
+    let mut f_2: Option<String> = None;
+    let mut f_3: Option<String> = None;
     let mut f_9: Option<String> = None;
-    let mut f_11: Option<String> = Some("".to_owned());
-    let mut f_12: Option<String> = Some("".to_owned());
-    let mut f_13: Option<String> = Some("".to_owned());
-    let mut f_14: Option<String> = Some("".to_owned());
-    let mut f_15: Option<String> = Some("".to_owned());
-    let mut f_16: Option<i64> = Some(0);
-    let mut f_17: Option<String> = Some("".to_owned());
+    let mut f_11: Option<String> = None;
+    let mut f_12: Option<String> = None;
+    let mut f_13: Option<String> = None;
+    let mut f_14: Option<String> = None;
+    let mut f_15: Option<String> = None;
+    let mut f_16: Option<i64> = None;
+    let mut f_17: Option<String> = None;
     let mut f_18: Option<String> = None;
-    let mut f_19: Option<String> = Some("".to_owned());
-    let mut f_20: Option<String> = Some("".to_owned());
+    let mut f_19: Option<String> = None;
+    let mut f_20: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -2120,97 +2065,85 @@ impl TSerializable for QueryTransferDetailResponse {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("QueryTransferDetailResponse.app_id", &f_1)?;
+    verify_required_field_exists("QueryTransferDetailResponse.merchant_id", &f_2)?;
+    verify_required_field_exists("QueryTransferDetailResponse.open_id", &f_3)?;
+    verify_required_field_exists("QueryTransferDetailResponse.batch_id", &f_11)?;
+    verify_required_field_exists("QueryTransferDetailResponse.out_batch_no", &f_12)?;
+    verify_required_field_exists("QueryTransferDetailResponse.out_detail_no", &f_13)?;
+    verify_required_field_exists("QueryTransferDetailResponse.detail_id", &f_14)?;
+    verify_required_field_exists("QueryTransferDetailResponse.detail_status", &f_15)?;
+    verify_required_field_exists("QueryTransferDetailResponse.transfer_amount", &f_16)?;
+    verify_required_field_exists("QueryTransferDetailResponse.transfer_remark", &f_17)?;
+    verify_required_field_exists("QueryTransferDetailResponse.initiate_time", &f_19)?;
+    verify_required_field_exists("QueryTransferDetailResponse.update_time", &f_20)?;
     let ret = QueryTransferDetailResponse {
-      app_id: f_1,
-      merchant_id: f_2,
-      open_id: f_3,
+      app_id: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      merchant_id: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      open_id: f_3.expect("auto-generated code should have checked for presence of required fields"),
       user_name: f_9,
-      batch_id: f_11,
-      out_batch_no: f_12,
-      out_detail_no: f_13,
-      detail_id: f_14,
-      detail_status: f_15,
-      transfer_amount: f_16,
-      transfer_remark: f_17,
+      batch_id: f_11.expect("auto-generated code should have checked for presence of required fields"),
+      out_batch_no: f_12.expect("auto-generated code should have checked for presence of required fields"),
+      out_detail_no: f_13.expect("auto-generated code should have checked for presence of required fields"),
+      detail_id: f_14.expect("auto-generated code should have checked for presence of required fields"),
+      detail_status: f_15.expect("auto-generated code should have checked for presence of required fields"),
+      transfer_amount: f_16.expect("auto-generated code should have checked for presence of required fields"),
+      transfer_remark: f_17.expect("auto-generated code should have checked for presence of required fields"),
       fail_reason: f_18,
-      initiate_time: f_19,
-      update_time: f_20,
+      initiate_time: f_19.expect("auto-generated code should have checked for presence of required fields"),
+      update_time: f_20.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("QueryTransferDetailResponse");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.app_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.merchant_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("merchant_id", TType::String, 2))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.open_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("open_id", TType::String, 3))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("app_id", TType::String, 1))?;
+    o_prot.write_string(&self.app_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("merchant_id", TType::String, 2))?;
+    o_prot.write_string(&self.merchant_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("open_id", TType::String, 3))?;
+    o_prot.write_string(&self.open_id)?;
+    o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.user_name {
       o_prot.write_field_begin(&TFieldIdentifier::new("user_name", TType::String, 9))?;
       o_prot.write_string(fld_var)?;
       o_prot.write_field_end()?
     }
-    if let Some(ref fld_var) = self.batch_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("batch_id", TType::String, 11))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.out_batch_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_batch_no", TType::String, 12))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.out_detail_no {
-      o_prot.write_field_begin(&TFieldIdentifier::new("out_detail_no", TType::String, 13))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.detail_id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("detail_id", TType::String, 14))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.detail_status {
-      o_prot.write_field_begin(&TFieldIdentifier::new("detail_status", TType::String, 15))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(fld_var) = self.transfer_amount {
-      o_prot.write_field_begin(&TFieldIdentifier::new("transfer_amount", TType::I64, 16))?;
-      o_prot.write_i64(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.transfer_remark {
-      o_prot.write_field_begin(&TFieldIdentifier::new("transfer_remark", TType::String, 17))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("batch_id", TType::String, 11))?;
+    o_prot.write_string(&self.batch_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_batch_no", TType::String, 12))?;
+    o_prot.write_string(&self.out_batch_no)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("out_detail_no", TType::String, 13))?;
+    o_prot.write_string(&self.out_detail_no)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("detail_id", TType::String, 14))?;
+    o_prot.write_string(&self.detail_id)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("detail_status", TType::String, 15))?;
+    o_prot.write_string(&self.detail_status)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("transfer_amount", TType::I64, 16))?;
+    o_prot.write_i64(self.transfer_amount)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("transfer_remark", TType::String, 17))?;
+    o_prot.write_string(&self.transfer_remark)?;
+    o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.fail_reason {
       o_prot.write_field_begin(&TFieldIdentifier::new("fail_reason", TType::String, 18))?;
       o_prot.write_string(fld_var)?;
       o_prot.write_field_end()?
     }
-    if let Some(ref fld_var) = self.initiate_time {
-      o_prot.write_field_begin(&TFieldIdentifier::new("initiate_time", TType::String, 19))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.update_time {
-      o_prot.write_field_begin(&TFieldIdentifier::new("update_time", TType::String, 20))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("initiate_time", TType::String, 19))?;
+    o_prot.write_string(&self.initiate_time)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("update_time", TType::String, 20))?;
+    o_prot.write_string(&self.update_time)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }

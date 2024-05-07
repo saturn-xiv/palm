@@ -105,15 +105,15 @@ public class PrepayRequest implements org.apache.thrift.TBase<PrepayRequest, Pre
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.PAYER_OPEN_ID, new org.apache.thrift.meta_data.FieldMetaData("payer_open_id", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.AMOUNT, new org.apache.thrift.meta_data.FieldMetaData("amount", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.AMOUNT, new org.apache.thrift.meta_data.FieldMetaData("amount", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, Amount.class)));
-    tmpMap.put(_Fields.DESCRIPTION, new org.apache.thrift.meta_data.FieldMetaData("description", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.DESCRIPTION, new org.apache.thrift.meta_data.FieldMetaData("description", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.NOTIFY_HOST, new org.apache.thrift.meta_data.FieldMetaData("notify_host", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.NOTIFY_HOST, new org.apache.thrift.meta_data.FieldMetaData("notify_host", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(PrepayRequest.class, metaDataMap);
@@ -603,6 +603,18 @@ public class PrepayRequest implements org.apache.thrift.TBase<PrepayRequest, Pre
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (app_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'app_id' was not present! Struct: " + toString());
+    }
+    if (amount == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'amount' was not present! Struct: " + toString());
+    }
+    if (description == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'description' was not present! Struct: " + toString());
+    }
+    if (notify_host == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'notify_host' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
     if (amount != null) {
       amount.validate();
@@ -747,64 +759,36 @@ public class PrepayRequest implements org.apache.thrift.TBase<PrepayRequest, Pre
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, PrepayRequest struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+      oprot.writeString(struct.app_id);
+      struct.amount.write(oprot);
+      oprot.writeString(struct.description);
+      oprot.writeString(struct.notify_host);
       java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetApp_id()) {
+      if (struct.isSetPayer_open_id()) {
         optionals.set(0);
       }
-      if (struct.isSetPayer_open_id()) {
-        optionals.set(1);
-      }
-      if (struct.isSetAmount()) {
-        optionals.set(2);
-      }
-      if (struct.isSetDescription()) {
-        optionals.set(3);
-      }
-      if (struct.isSetNotify_host()) {
-        optionals.set(4);
-      }
-      oprot.writeBitSet(optionals, 5);
-      if (struct.isSetApp_id()) {
-        oprot.writeString(struct.app_id);
-      }
+      oprot.writeBitSet(optionals, 1);
       if (struct.isSetPayer_open_id()) {
         oprot.writeString(struct.payer_open_id);
-      }
-      if (struct.isSetAmount()) {
-        struct.amount.write(oprot);
-      }
-      if (struct.isSetDescription()) {
-        oprot.writeString(struct.description);
-      }
-      if (struct.isSetNotify_host()) {
-        oprot.writeString(struct.notify_host);
       }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, PrepayRequest struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(5);
+      struct.app_id = iprot.readString();
+      struct.setApp_idIsSet(true);
+      struct.amount = new Amount();
+      struct.amount.read(iprot);
+      struct.setAmountIsSet(true);
+      struct.description = iprot.readString();
+      struct.setDescriptionIsSet(true);
+      struct.notify_host = iprot.readString();
+      struct.setNotify_hostIsSet(true);
+      java.util.BitSet incoming = iprot.readBitSet(1);
       if (incoming.get(0)) {
-        struct.app_id = iprot.readString();
-        struct.setApp_idIsSet(true);
-      }
-      if (incoming.get(1)) {
         struct.payer_open_id = iprot.readString();
         struct.setPayer_open_idIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.amount = new Amount();
-        struct.amount.read(iprot);
-        struct.setAmountIsSet(true);
-      }
-      if (incoming.get(3)) {
-        struct.description = iprot.readString();
-        struct.setDescriptionIsSet(true);
-      }
-      if (incoming.get(4)) {
-        struct.notify_host = iprot.readString();
-        struct.setNotify_hostIsSet(true);
       }
     }
   }

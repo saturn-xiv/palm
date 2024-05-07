@@ -89,9 +89,9 @@ public class ResponseError implements org.apache.thrift.TBase<ResponseError, Res
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.CODE, new org.apache.thrift.meta_data.FieldMetaData("code", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CODE, new org.apache.thrift.meta_data.FieldMetaData("code", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.MESSAGE, new org.apache.thrift.meta_data.FieldMetaData("message", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.MESSAGE, new org.apache.thrift.meta_data.FieldMetaData("message", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(ResponseError.class, metaDataMap);
@@ -356,6 +356,12 @@ public class ResponseError implements org.apache.thrift.TBase<ResponseError, Res
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (code == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'code' was not present! Struct: " + toString());
+    }
+    if (message == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'message' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -455,34 +461,17 @@ public class ResponseError implements org.apache.thrift.TBase<ResponseError, Res
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, ResponseError struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetCode()) {
-        optionals.set(0);
-      }
-      if (struct.isSetMessage()) {
-        optionals.set(1);
-      }
-      oprot.writeBitSet(optionals, 2);
-      if (struct.isSetCode()) {
-        oprot.writeString(struct.code);
-      }
-      if (struct.isSetMessage()) {
-        oprot.writeString(struct.message);
-      }
+      oprot.writeString(struct.code);
+      oprot.writeString(struct.message);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, ResponseError struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(2);
-      if (incoming.get(0)) {
-        struct.code = iprot.readString();
-        struct.setCodeIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.message = iprot.readString();
-        struct.setMessageIsSet(true);
-      }
+      struct.code = iprot.readString();
+      struct.setCodeIsSet(true);
+      struct.message = iprot.readString();
+      struct.setMessageIsSet(true);
     }
   }
 

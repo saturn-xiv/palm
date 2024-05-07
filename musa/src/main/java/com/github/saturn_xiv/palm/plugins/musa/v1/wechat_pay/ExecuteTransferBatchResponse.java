@@ -94,12 +94,12 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.OUT_BATCH_NO, new org.apache.thrift.meta_data.FieldMetaData("out_batch_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OUT_BATCH_NO, new org.apache.thrift.meta_data.FieldMetaData("out_batch_no", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.DETAILS, new org.apache.thrift.meta_data.FieldMetaData("details", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.DETAILS, new org.apache.thrift.meta_data.FieldMetaData("details", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
             new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchResponseDetail.class))));
-    tmpMap.put(_Fields.STATUS, new org.apache.thrift.meta_data.FieldMetaData("status", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.STATUS, new org.apache.thrift.meta_data.FieldMetaData("status", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, ExecuteTransferBatchResponseStatus.class)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(ExecuteTransferBatchResponse.class, metaDataMap);
@@ -459,6 +459,15 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (out_batch_no == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'out_batch_no' was not present! Struct: " + toString());
+    }
+    if (details == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'details' was not present! Struct: " + toString());
+    }
+    if (status == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'status' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -590,61 +599,37 @@ public class ExecuteTransferBatchResponse implements org.apache.thrift.TBase<Exe
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetOut_batch_no()) {
-        optionals.set(0);
-      }
-      if (struct.isSetDetails()) {
-        optionals.set(1);
-      }
-      if (struct.isSetStatus()) {
-        optionals.set(2);
-      }
-      oprot.writeBitSet(optionals, 3);
-      if (struct.isSetOut_batch_no()) {
-        oprot.writeString(struct.out_batch_no);
-      }
-      if (struct.isSetDetails()) {
+      oprot.writeString(struct.out_batch_no);
+      {
+        oprot.writeI32(struct.details.size());
+        for (ExecuteTransferBatchResponseDetail _iter4 : struct.details)
         {
-          oprot.writeI32(struct.details.size());
-          for (ExecuteTransferBatchResponseDetail _iter4 : struct.details)
-          {
-            _iter4.write(oprot);
-          }
+          _iter4.write(oprot);
         }
       }
-      if (struct.isSetStatus()) {
-        struct.status.write(oprot);
-      }
+      struct.status.write(oprot);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(3);
-      if (incoming.get(0)) {
-        struct.out_batch_no = iprot.readString();
-        struct.setOut_batch_noIsSet(true);
-      }
-      if (incoming.get(1)) {
+      struct.out_batch_no = iprot.readString();
+      struct.setOut_batch_noIsSet(true);
+      {
+        org.apache.thrift.protocol.TList _list5 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
+        struct.details = new java.util.ArrayList<ExecuteTransferBatchResponseDetail>(_list5.size);
+        @org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponseDetail _elem6;
+        for (int _i7 = 0; _i7 < _list5.size; ++_i7)
         {
-          org.apache.thrift.protocol.TList _list5 = iprot.readListBegin(org.apache.thrift.protocol.TType.STRUCT);
-          struct.details = new java.util.ArrayList<ExecuteTransferBatchResponseDetail>(_list5.size);
-          @org.apache.thrift.annotation.Nullable ExecuteTransferBatchResponseDetail _elem6;
-          for (int _i7 = 0; _i7 < _list5.size; ++_i7)
-          {
-            _elem6 = new ExecuteTransferBatchResponseDetail();
-            _elem6.read(iprot);
-            struct.details.add(_elem6);
-          }
+          _elem6 = new ExecuteTransferBatchResponseDetail();
+          _elem6.read(iprot);
+          struct.details.add(_elem6);
         }
-        struct.setDetailsIsSet(true);
       }
-      if (incoming.get(2)) {
-        struct.status = new ExecuteTransferBatchResponseStatus();
-        struct.status.read(iprot);
-        struct.setStatusIsSet(true);
-      }
+      struct.setDetailsIsSet(true);
+      struct.status = new ExecuteTransferBatchResponseStatus();
+      struct.status.read(iprot);
+      struct.setStatusIsSet(true);
     }
   }
 

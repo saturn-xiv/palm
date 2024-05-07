@@ -89,9 +89,9 @@ public class TradeResponse implements org.apache.thrift.TBase<TradeResponse, Tra
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.TRADE_STATE, new org.apache.thrift.meta_data.FieldMetaData("trade_state", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TRADE_STATE, new org.apache.thrift.meta_data.FieldMetaData("trade_state", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.TRADE_STATE_DESC, new org.apache.thrift.meta_data.FieldMetaData("trade_state_desc", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TRADE_STATE_DESC, new org.apache.thrift.meta_data.FieldMetaData("trade_state_desc", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(TradeResponse.class, metaDataMap);
@@ -356,6 +356,12 @@ public class TradeResponse implements org.apache.thrift.TBase<TradeResponse, Tra
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (trade_state == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'trade_state' was not present! Struct: " + toString());
+    }
+    if (trade_state_desc == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'trade_state_desc' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -455,34 +461,17 @@ public class TradeResponse implements org.apache.thrift.TBase<TradeResponse, Tra
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, TradeResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetTrade_state()) {
-        optionals.set(0);
-      }
-      if (struct.isSetTrade_state_desc()) {
-        optionals.set(1);
-      }
-      oprot.writeBitSet(optionals, 2);
-      if (struct.isSetTrade_state()) {
-        oprot.writeString(struct.trade_state);
-      }
-      if (struct.isSetTrade_state_desc()) {
-        oprot.writeString(struct.trade_state_desc);
-      }
+      oprot.writeString(struct.trade_state);
+      oprot.writeString(struct.trade_state_desc);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, TradeResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(2);
-      if (incoming.get(0)) {
-        struct.trade_state = iprot.readString();
-        struct.setTrade_stateIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.trade_state_desc = iprot.readString();
-        struct.setTrade_state_descIsSet(true);
-      }
+      struct.trade_state = iprot.readString();
+      struct.setTrade_stateIsSet(true);
+      struct.trade_state_desc = iprot.readString();
+      struct.setTrade_state_descIsSet(true);
     }
   }
 

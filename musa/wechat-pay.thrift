@@ -6,8 +6,8 @@ enum Currency {
 }
 
 struct Amount {
-    1:i32 total,
-    2:Currency currency,
+    1:required i32 total,
+    2:required Currency currency,
 }
 
 enum NotifyAction {
@@ -16,18 +16,18 @@ enum NotifyAction {
 }
 
 struct PrepayRequest {
-    1:string app_id,
+    1:required string app_id,
     
     11:optional string payer_open_id,
-    12:Amount amount,
+    12:required Amount amount,
 
-    98:string description,
-    99:string notify_host,
+    98:required string description,
+    99:required string notify_host,
 }
 
 struct ResponseError {
-    1:string code,
-    2:string message,
+    1:required string code,
+    2:required string message,
 }
 
 enum TarType {
@@ -35,14 +35,14 @@ enum TarType {
 }
 
 struct BillDate {
-    1:i16 year,
-    2:i8 month,
-    3:i8 day,
+    1:required i16 year,
+    2:required i8 month,
+    3:required i8 day,
 }
 
 struct TradeResponse {
-    1:string trade_state,
-    2:string trade_state_desc,
+    1:required string trade_state,
+    2:required string trade_state_desc,
 }
 
 service Native {
@@ -51,8 +51,8 @@ service Native {
 }
 
 struct NativeQrCodeUrlResponse {
-    1:string url,
-    2:string out_trade_no,
+    1:required string url,
+    2:required string out_trade_no,
 }
 
 service Jsapi {
@@ -64,14 +64,14 @@ service Jsapi {
 }
 
 struct JsapiPrepayIdResponse {
-    1:string app_id,
-    2:string out_trade_no,
+    1:required string app_id,
+    2:required string out_trade_no,
 
-    11:string time_stamp,
-    12:string nonce_str,
-    13:string package,
-    14:string sign_type,
-    15:string pay_sign,
+    11:required string time_stamp,
+    12:required string nonce_str,
+    13:required string package_,
+    14:required string sign_type,
+    15:required string pay_sign,
 }
 
 service Bill {
@@ -97,16 +97,18 @@ service Refund {
 }
 
 struct CreateRefundAmount {
-    1:i32 total,
-    2:i32 refund,
-    9:Currency currency,
+    1:required i32 total,
+    2:required i32 refund,
+    9:required Currency currency,
 }
 struct QueryRefundResponse {
-    1:string out_refund_no,
-    11:string channel,
-    12:string status,
-    13:string user_received_account,
-    99:string create_time,
+    1:required string out_refund_no,
+    
+    11:required string channel,
+    12:required string status,
+    13:required string user_received_account,
+
+    99:required string create_time,
 }
 
 service Transfer {
@@ -119,17 +121,17 @@ service Transfer {
 }
 
 struct ExecuteTransferBatchRequestDetail {
-    1:string open_id,
-    2:string username,
-    3:i64 amount,
-    4:string remark,
+    1:required string open_id,
+    2:required string username,
+    3:required i64 amount,
+    4:required string remark,
 }
 
 
 struct ExecuteTransferBatchResponse {
-    1:string out_batch_no,
-    2:list<ExecuteTransferBatchResponseDetail> details,
-    9:ExecuteTransferBatchResponseStatus status,
+    1:required string out_batch_no,
+    2:required list<ExecuteTransferBatchResponseDetail> details,
+    9:required ExecuteTransferBatchResponseStatus status,
 }
 
 union ExecuteTransferBatchResponseStatus {
@@ -138,30 +140,30 @@ union ExecuteTransferBatchResponseStatus {
 }
 
 struct ExecuteTransferBatchResponseSucceeded {
-    1:string batch_id,
-    2:string create_time,
+    1:required string batch_id,
+    2:required string create_time,
 }
 
 struct ExecuteTransferBatchResponseDetail {
-    1:string open_id,
-    2:string out_detail_no,
+    1:required string open_id,
+    2:required string out_detail_no,
 }
 
 struct QueryTransferBatchResponse {
-    1:string app_id,
-    2:string merchant_id,
-    3:string transfer_scene_id,
+    1:required string app_id,
+    2:required string merchant_id,
+    3:required string transfer_scene_id,
 
-    11:string batch_id,
-    12:string out_batch_no,
-    13:string batch_status,
-    14:string batch_type,
-    15:string batch_name,
-    16:string batch_remark,
+    11:required string batch_id,
+    12:required string out_batch_no,
+    13:required string batch_status,
+    14:required string batch_type,
+    15:required string batch_name,
+    16:required string batch_remark,
 
     21:optional string close_reason,
-    22:i64 total_amount,
-    23:i32 total_num,
+    22:required i64 total_amount,
+    23:required i32 total_num,
     24:optional string create_time,
     25:optional string update_time,
     26:optional i64 success_amount,
@@ -173,9 +175,9 @@ struct QueryTransferBatchResponse {
 }
 
 struct QueryTransferBatchResponseDetail {
-    1:string detail_id,
-    2:string out_detail_no,
-    3:string status,
+    1:required string detail_id,
+    2:required string out_detail_no,
+    3:required string status,
 }
 
 enum QueryBatchTransferDetailStatus {
@@ -192,19 +194,19 @@ enum TransferElectronicReceiptAcceptType {
 }
 
 struct QueryTransferDetailResponse {
-    1:string app_id,
-    2:string merchant_id,
-    3:string open_id,
+    1:required string app_id,
+    2:required string merchant_id,
+    3:required string open_id,
     9:optional string user_name,
 
-    11:string batch_id,
-    12:string out_batch_no,
-    13:string out_detail_no,
-    14:string detail_id,
-    15:string detail_status,
-    16:i64 transfer_amount,
-    17:string transfer_remark,
+    11:required string batch_id,
+    12:required string out_batch_no,
+    13:required string out_detail_no,
+    14:required string detail_id,
+    15:required string detail_status,
+    16:required i64 transfer_amount,
+    17:required string transfer_remark,
     18:optional string fail_reason,
-    19:string initiate_time,
-    20:string update_time,
+    19:required string initiate_time,
+    20:required string update_time,
 }

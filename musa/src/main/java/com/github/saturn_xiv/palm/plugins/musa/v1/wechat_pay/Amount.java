@@ -99,9 +99,9 @@ public class Amount implements org.apache.thrift.TBase<Amount, Amount._Fields>, 
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.TOTAL, new org.apache.thrift.meta_data.FieldMetaData("total", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TOTAL, new org.apache.thrift.meta_data.FieldMetaData("total", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-    tmpMap.put(_Fields.CURRENCY, new org.apache.thrift.meta_data.FieldMetaData("currency", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CURRENCY, new org.apache.thrift.meta_data.FieldMetaData("currency", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.EnumMetaData(org.apache.thrift.protocol.TType.ENUM, Currency.class)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(Amount.class, metaDataMap);
@@ -367,6 +367,10 @@ public class Amount implements org.apache.thrift.TBase<Amount, Amount._Fields>, 
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    // alas, we cannot check 'total' because it's a primitive and you chose the non-beans generator.
+    if (currency == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'currency' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -432,6 +436,9 @@ public class Amount implements org.apache.thrift.TBase<Amount, Amount._Fields>, 
       iprot.readStructEnd();
 
       // check for required fields of primitive type, which can't be checked in the validate method
+      if (!struct.isSetTotal()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'total' was not found in serialized data! Struct: " + toString());
+      }
       struct.validate();
     }
 
@@ -466,34 +473,17 @@ public class Amount implements org.apache.thrift.TBase<Amount, Amount._Fields>, 
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, Amount struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetTotal()) {
-        optionals.set(0);
-      }
-      if (struct.isSetCurrency()) {
-        optionals.set(1);
-      }
-      oprot.writeBitSet(optionals, 2);
-      if (struct.isSetTotal()) {
-        oprot.writeI32(struct.total);
-      }
-      if (struct.isSetCurrency()) {
-        oprot.writeI32(struct.currency.getValue());
-      }
+      oprot.writeI32(struct.total);
+      oprot.writeI32(struct.currency.getValue());
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, Amount struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(2);
-      if (incoming.get(0)) {
-        struct.total = iprot.readI32();
-        struct.setTotalIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.currency = com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.Currency.findByValue(iprot.readI32());
-        struct.setCurrencyIsSet(true);
-      }
+      struct.total = iprot.readI32();
+      struct.setTotalIsSet(true);
+      struct.currency = com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.Currency.findByValue(iprot.readI32());
+      struct.setCurrencyIsSet(true);
     }
   }
 

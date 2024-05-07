@@ -89,9 +89,9 @@ public class ExecuteTransferBatchResponseSucceeded implements org.apache.thrift.
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.BATCH_ID, new org.apache.thrift.meta_data.FieldMetaData("batch_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BATCH_ID, new org.apache.thrift.meta_data.FieldMetaData("batch_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.CREATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("create_time", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CREATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("create_time", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(ExecuteTransferBatchResponseSucceeded.class, metaDataMap);
@@ -356,6 +356,12 @@ public class ExecuteTransferBatchResponseSucceeded implements org.apache.thrift.
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (batch_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'batch_id' was not present! Struct: " + toString());
+    }
+    if (create_time == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'create_time' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -455,34 +461,17 @@ public class ExecuteTransferBatchResponseSucceeded implements org.apache.thrift.
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchResponseSucceeded struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetBatch_id()) {
-        optionals.set(0);
-      }
-      if (struct.isSetCreate_time()) {
-        optionals.set(1);
-      }
-      oprot.writeBitSet(optionals, 2);
-      if (struct.isSetBatch_id()) {
-        oprot.writeString(struct.batch_id);
-      }
-      if (struct.isSetCreate_time()) {
-        oprot.writeString(struct.create_time);
-      }
+      oprot.writeString(struct.batch_id);
+      oprot.writeString(struct.create_time);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchResponseSucceeded struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(2);
-      if (incoming.get(0)) {
-        struct.batch_id = iprot.readString();
-        struct.setBatch_idIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.create_time = iprot.readString();
-        struct.setCreate_timeIsSet(true);
-      }
+      struct.batch_id = iprot.readString();
+      struct.setBatch_idIsSet(true);
+      struct.create_time = iprot.readString();
+      struct.setCreate_timeIsSet(true);
     }
   }
 

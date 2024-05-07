@@ -104,15 +104,15 @@ public class QueryRefundResponse implements org.apache.thrift.TBase<QueryRefundR
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.OUT_REFUND_NO, new org.apache.thrift.meta_data.FieldMetaData("out_refund_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OUT_REFUND_NO, new org.apache.thrift.meta_data.FieldMetaData("out_refund_no", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.CHANNEL, new org.apache.thrift.meta_data.FieldMetaData("channel", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CHANNEL, new org.apache.thrift.meta_data.FieldMetaData("channel", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.STATUS, new org.apache.thrift.meta_data.FieldMetaData("status", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.STATUS, new org.apache.thrift.meta_data.FieldMetaData("status", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.USER_RECEIVED_ACCOUNT, new org.apache.thrift.meta_data.FieldMetaData("user_received_account", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.USER_RECEIVED_ACCOUNT, new org.apache.thrift.meta_data.FieldMetaData("user_received_account", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.CREATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("create_time", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CREATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("create_time", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(QueryRefundResponse.class, metaDataMap);
@@ -602,6 +602,21 @@ public class QueryRefundResponse implements org.apache.thrift.TBase<QueryRefundR
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (out_refund_no == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'out_refund_no' was not present! Struct: " + toString());
+    }
+    if (channel == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'channel' was not present! Struct: " + toString());
+    }
+    if (status == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'status' was not present! Struct: " + toString());
+    }
+    if (user_received_account == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'user_received_account' was not present! Struct: " + toString());
+    }
+    if (create_time == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'create_time' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -740,64 +755,26 @@ public class QueryRefundResponse implements org.apache.thrift.TBase<QueryRefundR
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, QueryRefundResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetOut_refund_no()) {
-        optionals.set(0);
-      }
-      if (struct.isSetChannel()) {
-        optionals.set(1);
-      }
-      if (struct.isSetStatus()) {
-        optionals.set(2);
-      }
-      if (struct.isSetUser_received_account()) {
-        optionals.set(3);
-      }
-      if (struct.isSetCreate_time()) {
-        optionals.set(4);
-      }
-      oprot.writeBitSet(optionals, 5);
-      if (struct.isSetOut_refund_no()) {
-        oprot.writeString(struct.out_refund_no);
-      }
-      if (struct.isSetChannel()) {
-        oprot.writeString(struct.channel);
-      }
-      if (struct.isSetStatus()) {
-        oprot.writeString(struct.status);
-      }
-      if (struct.isSetUser_received_account()) {
-        oprot.writeString(struct.user_received_account);
-      }
-      if (struct.isSetCreate_time()) {
-        oprot.writeString(struct.create_time);
-      }
+      oprot.writeString(struct.out_refund_no);
+      oprot.writeString(struct.channel);
+      oprot.writeString(struct.status);
+      oprot.writeString(struct.user_received_account);
+      oprot.writeString(struct.create_time);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, QueryRefundResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(5);
-      if (incoming.get(0)) {
-        struct.out_refund_no = iprot.readString();
-        struct.setOut_refund_noIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.channel = iprot.readString();
-        struct.setChannelIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.status = iprot.readString();
-        struct.setStatusIsSet(true);
-      }
-      if (incoming.get(3)) {
-        struct.user_received_account = iprot.readString();
-        struct.setUser_received_accountIsSet(true);
-      }
-      if (incoming.get(4)) {
-        struct.create_time = iprot.readString();
-        struct.setCreate_timeIsSet(true);
-      }
+      struct.out_refund_no = iprot.readString();
+      struct.setOut_refund_noIsSet(true);
+      struct.channel = iprot.readString();
+      struct.setChannelIsSet(true);
+      struct.status = iprot.readString();
+      struct.setStatusIsSet(true);
+      struct.user_received_account = iprot.readString();
+      struct.setUser_received_accountIsSet(true);
+      struct.create_time = iprot.readString();
+      struct.setCreate_timeIsSet(true);
     }
   }
 

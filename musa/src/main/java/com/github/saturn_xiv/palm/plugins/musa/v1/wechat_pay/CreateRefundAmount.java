@@ -105,11 +105,11 @@ public class CreateRefundAmount implements org.apache.thrift.TBase<CreateRefundA
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.TOTAL, new org.apache.thrift.meta_data.FieldMetaData("total", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TOTAL, new org.apache.thrift.meta_data.FieldMetaData("total", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-    tmpMap.put(_Fields.REFUND, new org.apache.thrift.meta_data.FieldMetaData("refund", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.REFUND, new org.apache.thrift.meta_data.FieldMetaData("refund", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-    tmpMap.put(_Fields.CURRENCY, new org.apache.thrift.meta_data.FieldMetaData("currency", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.CURRENCY, new org.apache.thrift.meta_data.FieldMetaData("currency", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.EnumMetaData(org.apache.thrift.protocol.TType.ENUM, Currency.class)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(CreateRefundAmount.class, metaDataMap);
@@ -442,6 +442,11 @@ public class CreateRefundAmount implements org.apache.thrift.TBase<CreateRefundA
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    // alas, we cannot check 'total' because it's a primitive and you chose the non-beans generator.
+    // alas, we cannot check 'refund' because it's a primitive and you chose the non-beans generator.
+    if (currency == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'currency' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -515,6 +520,12 @@ public class CreateRefundAmount implements org.apache.thrift.TBase<CreateRefundA
       iprot.readStructEnd();
 
       // check for required fields of primitive type, which can't be checked in the validate method
+      if (!struct.isSetTotal()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'total' was not found in serialized data! Struct: " + toString());
+      }
+      if (!struct.isSetRefund()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'refund' was not found in serialized data! Struct: " + toString());
+      }
       struct.validate();
     }
 
@@ -552,44 +563,20 @@ public class CreateRefundAmount implements org.apache.thrift.TBase<CreateRefundA
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, CreateRefundAmount struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetTotal()) {
-        optionals.set(0);
-      }
-      if (struct.isSetRefund()) {
-        optionals.set(1);
-      }
-      if (struct.isSetCurrency()) {
-        optionals.set(2);
-      }
-      oprot.writeBitSet(optionals, 3);
-      if (struct.isSetTotal()) {
-        oprot.writeI32(struct.total);
-      }
-      if (struct.isSetRefund()) {
-        oprot.writeI32(struct.refund);
-      }
-      if (struct.isSetCurrency()) {
-        oprot.writeI32(struct.currency.getValue());
-      }
+      oprot.writeI32(struct.total);
+      oprot.writeI32(struct.refund);
+      oprot.writeI32(struct.currency.getValue());
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, CreateRefundAmount struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(3);
-      if (incoming.get(0)) {
-        struct.total = iprot.readI32();
-        struct.setTotalIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.refund = iprot.readI32();
-        struct.setRefundIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.currency = com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.Currency.findByValue(iprot.readI32());
-        struct.setCurrencyIsSet(true);
-      }
+      struct.total = iprot.readI32();
+      struct.setTotalIsSet(true);
+      struct.refund = iprot.readI32();
+      struct.setRefundIsSet(true);
+      struct.currency = com.github.saturn_xiv.palm.plugins.musa.v1.wechat_pay.Currency.findByValue(iprot.readI32());
+      struct.setCurrencyIsSet(true);
     }
   }
 

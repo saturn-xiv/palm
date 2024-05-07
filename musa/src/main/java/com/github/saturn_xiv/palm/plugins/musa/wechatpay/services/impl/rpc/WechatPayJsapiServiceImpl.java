@@ -42,7 +42,7 @@ public class WechatPayJsapiServiceImpl implements Jsapi.Iface {
         it.setOut_trade_no(out_trade_no);
         it.setTime_stamp(response.getTimeStamp());
         it.setNonce_str(response.getNonceStr());
-        it.setPackage(response.getPackageVal());
+        it.setPackage_(response.getPackageVal());
         it.setSign_type(response.getSignType());
         it.setPay_sign(response.getPaySign());
         return it;

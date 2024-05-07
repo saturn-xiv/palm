@@ -15,7 +15,7 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
   private static final org.apache.thrift.protocol.TField OUT_TRADE_NO_FIELD_DESC = new org.apache.thrift.protocol.TField("out_trade_no", org.apache.thrift.protocol.TType.STRING, (short)2);
   private static final org.apache.thrift.protocol.TField TIME_STAMP_FIELD_DESC = new org.apache.thrift.protocol.TField("time_stamp", org.apache.thrift.protocol.TType.STRING, (short)11);
   private static final org.apache.thrift.protocol.TField NONCE_STR_FIELD_DESC = new org.apache.thrift.protocol.TField("nonce_str", org.apache.thrift.protocol.TType.STRING, (short)12);
-  private static final org.apache.thrift.protocol.TField PACKAGE_FIELD_DESC = new org.apache.thrift.protocol.TField("package", org.apache.thrift.protocol.TType.STRING, (short)13);
+  private static final org.apache.thrift.protocol.TField PACKAGE__FIELD_DESC = new org.apache.thrift.protocol.TField("package_", org.apache.thrift.protocol.TType.STRING, (short)13);
   private static final org.apache.thrift.protocol.TField SIGN_TYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("sign_type", org.apache.thrift.protocol.TType.STRING, (short)14);
   private static final org.apache.thrift.protocol.TField PAY_SIGN_FIELD_DESC = new org.apache.thrift.protocol.TField("pay_sign", org.apache.thrift.protocol.TType.STRING, (short)15);
 
@@ -26,7 +26,7 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
   public @org.apache.thrift.annotation.Nullable java.lang.String out_trade_no; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String time_stamp; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String nonce_str; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String $package; // required
+  public @org.apache.thrift.annotation.Nullable java.lang.String package_; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String sign_type; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String pay_sign; // required
 
@@ -36,7 +36,7 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     OUT_TRADE_NO((short)2, "out_trade_no"),
     TIME_STAMP((short)11, "time_stamp"),
     NONCE_STR((short)12, "nonce_str"),
-    PACKAGE((short)13, "package"),
+    PACKAGE_((short)13, "package_"),
     SIGN_TYPE((short)14, "sign_type"),
     PAY_SIGN((short)15, "pay_sign");
 
@@ -62,8 +62,8 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
           return TIME_STAMP;
         case 12: // NONCE_STR
           return NONCE_STR;
-        case 13: // PACKAGE
-          return PACKAGE;
+        case 13: // PACKAGE_
+          return PACKAGE_;
         case 14: // SIGN_TYPE
           return SIGN_TYPE;
         case 15: // PAY_SIGN
@@ -114,19 +114,19 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.APP_ID, new org.apache.thrift.meta_data.FieldMetaData("app_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.OUT_TRADE_NO, new org.apache.thrift.meta_data.FieldMetaData("out_trade_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OUT_TRADE_NO, new org.apache.thrift.meta_data.FieldMetaData("out_trade_no", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.TIME_STAMP, new org.apache.thrift.meta_data.FieldMetaData("time_stamp", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.TIME_STAMP, new org.apache.thrift.meta_data.FieldMetaData("time_stamp", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.NONCE_STR, new org.apache.thrift.meta_data.FieldMetaData("nonce_str", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.NONCE_STR, new org.apache.thrift.meta_data.FieldMetaData("nonce_str", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.PACKAGE, new org.apache.thrift.meta_data.FieldMetaData("package", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.PACKAGE_, new org.apache.thrift.meta_data.FieldMetaData("package_", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.SIGN_TYPE, new org.apache.thrift.meta_data.FieldMetaData("sign_type", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.SIGN_TYPE, new org.apache.thrift.meta_data.FieldMetaData("sign_type", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.PAY_SIGN, new org.apache.thrift.meta_data.FieldMetaData("pay_sign", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.PAY_SIGN, new org.apache.thrift.meta_data.FieldMetaData("pay_sign", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(JsapiPrepayIdResponse.class, metaDataMap);
@@ -140,7 +140,7 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     java.lang.String out_trade_no,
     java.lang.String time_stamp,
     java.lang.String nonce_str,
-    java.lang.String $package,
+    java.lang.String package_,
     java.lang.String sign_type,
     java.lang.String pay_sign)
   {
@@ -149,7 +149,7 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     this.out_trade_no = out_trade_no;
     this.time_stamp = time_stamp;
     this.nonce_str = nonce_str;
-    this.$package = $package;
+    this.package_ = package_;
     this.sign_type = sign_type;
     this.pay_sign = pay_sign;
   }
@@ -170,8 +170,8 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     if (other.isSetNonce_str()) {
       this.nonce_str = other.nonce_str;
     }
-    if (other.isSetPackage()) {
-      this.$package = other.$package;
+    if (other.isSetPackage_()) {
+      this.package_ = other.package_;
     }
     if (other.isSetSign_type()) {
       this.sign_type = other.sign_type;
@@ -192,7 +192,7 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     this.out_trade_no = null;
     this.time_stamp = null;
     this.nonce_str = null;
-    this.$package = null;
+    this.package_ = null;
     this.sign_type = null;
     this.pay_sign = null;
   }
@@ -298,27 +298,27 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getPackage() {
-    return this.$package;
+  public java.lang.String getPackage_() {
+    return this.package_;
   }
 
-  public JsapiPrepayIdResponse setPackage(@org.apache.thrift.annotation.Nullable java.lang.String $package) {
-    this.$package = $package;
+  public JsapiPrepayIdResponse setPackage_(@org.apache.thrift.annotation.Nullable java.lang.String package_) {
+    this.package_ = package_;
     return this;
   }
 
-  public void unsetPackage() {
-    this.$package = null;
+  public void unsetPackage_() {
+    this.package_ = null;
   }
 
-  /** Returns true if field package is set (has been assigned a value) and false otherwise */
-  public boolean isSetPackage() {
-    return this.$package != null;
+  /** Returns true if field package_ is set (has been assigned a value) and false otherwise */
+  public boolean isSetPackage_() {
+    return this.package_ != null;
   }
 
-  public void setPackageIsSet(boolean value) {
+  public void setPackage_IsSet(boolean value) {
     if (!value) {
-      this.$package = null;
+      this.package_ = null;
     }
   }
 
@@ -407,11 +407,11 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
       }
       break;
 
-    case PACKAGE:
+    case PACKAGE_:
       if (value == null) {
-        unsetPackage();
+        unsetPackage_();
       } else {
-        setPackage((java.lang.String)value);
+        setPackage_((java.lang.String)value);
       }
       break;
 
@@ -450,8 +450,8 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     case NONCE_STR:
       return getNonce_str();
 
-    case PACKAGE:
-      return getPackage();
+    case PACKAGE_:
+      return getPackage_();
 
     case SIGN_TYPE:
       return getSign_type();
@@ -479,8 +479,8 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
       return isSetTime_stamp();
     case NONCE_STR:
       return isSetNonce_str();
-    case PACKAGE:
-      return isSetPackage();
+    case PACKAGE_:
+      return isSetPackage_();
     case SIGN_TYPE:
       return isSetSign_type();
     case PAY_SIGN:
@@ -538,12 +538,12 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
         return false;
     }
 
-    boolean this_present_package = true && this.isSetPackage();
-    boolean that_present_package = true && that.isSetPackage();
-    if (this_present_package || that_present_package) {
-      if (!(this_present_package && that_present_package))
+    boolean this_present_package_ = true && this.isSetPackage_();
+    boolean that_present_package_ = true && that.isSetPackage_();
+    if (this_present_package_ || that_present_package_) {
+      if (!(this_present_package_ && that_present_package_))
         return false;
-      if (!this.$package.equals(that.$package))
+      if (!this.package_.equals(that.package_))
         return false;
     }
 
@@ -588,9 +588,9 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     if (isSetNonce_str())
       hashCode = hashCode * 8191 + nonce_str.hashCode();
 
-    hashCode = hashCode * 8191 + ((isSetPackage()) ? 131071 : 524287);
-    if (isSetPackage())
-      hashCode = hashCode * 8191 + $package.hashCode();
+    hashCode = hashCode * 8191 + ((isSetPackage_()) ? 131071 : 524287);
+    if (isSetPackage_())
+      hashCode = hashCode * 8191 + package_.hashCode();
 
     hashCode = hashCode * 8191 + ((isSetSign_type()) ? 131071 : 524287);
     if (isSetSign_type())
@@ -651,12 +651,12 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.compare(isSetPackage(), other.isSetPackage());
+    lastComparison = java.lang.Boolean.compare(isSetPackage_(), other.isSetPackage_());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetPackage()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.$package, other.$package);
+    if (isSetPackage_()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.package_, other.package_);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -737,11 +737,11 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     }
     first = false;
     if (!first) sb.append(", ");
-    sb.append("package:");
-    if (this.$package == null) {
+    sb.append("package_:");
+    if (this.package_ == null) {
       sb.append("null");
     } else {
-      sb.append(this.$package);
+      sb.append(this.package_);
     }
     first = false;
     if (!first) sb.append(", ");
@@ -766,6 +766,27 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (app_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'app_id' was not present! Struct: " + toString());
+    }
+    if (out_trade_no == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'out_trade_no' was not present! Struct: " + toString());
+    }
+    if (time_stamp == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'time_stamp' was not present! Struct: " + toString());
+    }
+    if (nonce_str == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'nonce_str' was not present! Struct: " + toString());
+    }
+    if (package_ == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'package_' was not present! Struct: " + toString());
+    }
+    if (sign_type == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'sign_type' was not present! Struct: " + toString());
+    }
+    if (pay_sign == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'pay_sign' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -837,10 +858,10 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 13: // PACKAGE
+          case 13: // PACKAGE_
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.$package = iprot.readString();
-              struct.setPackageIsSet(true);
+              struct.package_ = iprot.readString();
+              struct.setPackage_IsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -897,9 +918,9 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
         oprot.writeString(struct.nonce_str);
         oprot.writeFieldEnd();
       }
-      if (struct.$package != null) {
-        oprot.writeFieldBegin(PACKAGE_FIELD_DESC);
-        oprot.writeString(struct.$package);
+      if (struct.package_ != null) {
+        oprot.writeFieldBegin(PACKAGE__FIELD_DESC);
+        oprot.writeString(struct.package_);
         oprot.writeFieldEnd();
       }
       if (struct.sign_type != null) {
@@ -930,84 +951,32 @@ public class JsapiPrepayIdResponse implements org.apache.thrift.TBase<JsapiPrepa
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, JsapiPrepayIdResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetApp_id()) {
-        optionals.set(0);
-      }
-      if (struct.isSetOut_trade_no()) {
-        optionals.set(1);
-      }
-      if (struct.isSetTime_stamp()) {
-        optionals.set(2);
-      }
-      if (struct.isSetNonce_str()) {
-        optionals.set(3);
-      }
-      if (struct.isSetPackage()) {
-        optionals.set(4);
-      }
-      if (struct.isSetSign_type()) {
-        optionals.set(5);
-      }
-      if (struct.isSetPay_sign()) {
-        optionals.set(6);
-      }
-      oprot.writeBitSet(optionals, 7);
-      if (struct.isSetApp_id()) {
-        oprot.writeString(struct.app_id);
-      }
-      if (struct.isSetOut_trade_no()) {
-        oprot.writeString(struct.out_trade_no);
-      }
-      if (struct.isSetTime_stamp()) {
-        oprot.writeString(struct.time_stamp);
-      }
-      if (struct.isSetNonce_str()) {
-        oprot.writeString(struct.nonce_str);
-      }
-      if (struct.isSetPackage()) {
-        oprot.writeString(struct.$package);
-      }
-      if (struct.isSetSign_type()) {
-        oprot.writeString(struct.sign_type);
-      }
-      if (struct.isSetPay_sign()) {
-        oprot.writeString(struct.pay_sign);
-      }
+      oprot.writeString(struct.app_id);
+      oprot.writeString(struct.out_trade_no);
+      oprot.writeString(struct.time_stamp);
+      oprot.writeString(struct.nonce_str);
+      oprot.writeString(struct.package_);
+      oprot.writeString(struct.sign_type);
+      oprot.writeString(struct.pay_sign);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, JsapiPrepayIdResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(7);
-      if (incoming.get(0)) {
-        struct.app_id = iprot.readString();
-        struct.setApp_idIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.out_trade_no = iprot.readString();
-        struct.setOut_trade_noIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.time_stamp = iprot.readString();
-        struct.setTime_stampIsSet(true);
-      }
-      if (incoming.get(3)) {
-        struct.nonce_str = iprot.readString();
-        struct.setNonce_strIsSet(true);
-      }
-      if (incoming.get(4)) {
-        struct.$package = iprot.readString();
-        struct.setPackageIsSet(true);
-      }
-      if (incoming.get(5)) {
-        struct.sign_type = iprot.readString();
-        struct.setSign_typeIsSet(true);
-      }
-      if (incoming.get(6)) {
-        struct.pay_sign = iprot.readString();
-        struct.setPay_signIsSet(true);
-      }
+      struct.app_id = iprot.readString();
+      struct.setApp_idIsSet(true);
+      struct.out_trade_no = iprot.readString();
+      struct.setOut_trade_noIsSet(true);
+      struct.time_stamp = iprot.readString();
+      struct.setTime_stampIsSet(true);
+      struct.nonce_str = iprot.readString();
+      struct.setNonce_strIsSet(true);
+      struct.package_ = iprot.readString();
+      struct.setPackage_IsSet(true);
+      struct.sign_type = iprot.readString();
+      struct.setSign_typeIsSet(true);
+      struct.pay_sign = iprot.readString();
+      struct.setPay_signIsSet(true);
     }
   }
 

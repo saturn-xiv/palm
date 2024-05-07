@@ -101,13 +101,13 @@ public class ExecuteTransferBatchRequestDetail implements org.apache.thrift.TBas
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.OPEN_ID, new org.apache.thrift.meta_data.FieldMetaData("open_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OPEN_ID, new org.apache.thrift.meta_data.FieldMetaData("open_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.AMOUNT, new org.apache.thrift.meta_data.FieldMetaData("amount", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.AMOUNT, new org.apache.thrift.meta_data.FieldMetaData("amount", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
-    tmpMap.put(_Fields.REMARK, new org.apache.thrift.meta_data.FieldMetaData("remark", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.REMARK, new org.apache.thrift.meta_data.FieldMetaData("remark", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(ExecuteTransferBatchRequestDetail.class, metaDataMap);
@@ -515,6 +515,16 @@ public class ExecuteTransferBatchRequestDetail implements org.apache.thrift.TBas
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (open_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'open_id' was not present! Struct: " + toString());
+    }
+    if (username == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'username' was not present! Struct: " + toString());
+    }
+    // alas, we cannot check 'amount' because it's a primitive and you chose the non-beans generator.
+    if (remark == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'remark' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -596,6 +606,9 @@ public class ExecuteTransferBatchRequestDetail implements org.apache.thrift.TBas
       iprot.readStructEnd();
 
       // check for required fields of primitive type, which can't be checked in the validate method
+      if (!struct.isSetAmount()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'amount' was not found in serialized data! Struct: " + toString());
+      }
       struct.validate();
     }
 
@@ -640,54 +653,23 @@ public class ExecuteTransferBatchRequestDetail implements org.apache.thrift.TBas
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchRequestDetail struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetOpen_id()) {
-        optionals.set(0);
-      }
-      if (struct.isSetUsername()) {
-        optionals.set(1);
-      }
-      if (struct.isSetAmount()) {
-        optionals.set(2);
-      }
-      if (struct.isSetRemark()) {
-        optionals.set(3);
-      }
-      oprot.writeBitSet(optionals, 4);
-      if (struct.isSetOpen_id()) {
-        oprot.writeString(struct.open_id);
-      }
-      if (struct.isSetUsername()) {
-        oprot.writeString(struct.username);
-      }
-      if (struct.isSetAmount()) {
-        oprot.writeI64(struct.amount);
-      }
-      if (struct.isSetRemark()) {
-        oprot.writeString(struct.remark);
-      }
+      oprot.writeString(struct.open_id);
+      oprot.writeString(struct.username);
+      oprot.writeI64(struct.amount);
+      oprot.writeString(struct.remark);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchRequestDetail struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(4);
-      if (incoming.get(0)) {
-        struct.open_id = iprot.readString();
-        struct.setOpen_idIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.username = iprot.readString();
-        struct.setUsernameIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.amount = iprot.readI64();
-        struct.setAmountIsSet(true);
-      }
-      if (incoming.get(3)) {
-        struct.remark = iprot.readString();
-        struct.setRemarkIsSet(true);
-      }
+      struct.open_id = iprot.readString();
+      struct.setOpen_idIsSet(true);
+      struct.username = iprot.readString();
+      struct.setUsernameIsSet(true);
+      struct.amount = iprot.readI64();
+      struct.setAmountIsSet(true);
+      struct.remark = iprot.readString();
+      struct.setRemarkIsSet(true);
     }
   }
 

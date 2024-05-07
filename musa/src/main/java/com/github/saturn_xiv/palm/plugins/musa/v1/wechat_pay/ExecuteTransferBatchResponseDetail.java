@@ -89,9 +89,9 @@ public class ExecuteTransferBatchResponseDetail implements org.apache.thrift.TBa
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.OPEN_ID, new org.apache.thrift.meta_data.FieldMetaData("open_id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OPEN_ID, new org.apache.thrift.meta_data.FieldMetaData("open_id", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.OUT_DETAIL_NO, new org.apache.thrift.meta_data.FieldMetaData("out_detail_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OUT_DETAIL_NO, new org.apache.thrift.meta_data.FieldMetaData("out_detail_no", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(ExecuteTransferBatchResponseDetail.class, metaDataMap);
@@ -356,6 +356,12 @@ public class ExecuteTransferBatchResponseDetail implements org.apache.thrift.TBa
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (open_id == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'open_id' was not present! Struct: " + toString());
+    }
+    if (out_detail_no == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'out_detail_no' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -455,34 +461,17 @@ public class ExecuteTransferBatchResponseDetail implements org.apache.thrift.TBa
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchResponseDetail struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetOpen_id()) {
-        optionals.set(0);
-      }
-      if (struct.isSetOut_detail_no()) {
-        optionals.set(1);
-      }
-      oprot.writeBitSet(optionals, 2);
-      if (struct.isSetOpen_id()) {
-        oprot.writeString(struct.open_id);
-      }
-      if (struct.isSetOut_detail_no()) {
-        oprot.writeString(struct.out_detail_no);
-      }
+      oprot.writeString(struct.open_id);
+      oprot.writeString(struct.out_detail_no);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, ExecuteTransferBatchResponseDetail struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(2);
-      if (incoming.get(0)) {
-        struct.open_id = iprot.readString();
-        struct.setOpen_idIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.out_detail_no = iprot.readString();
-        struct.setOut_detail_noIsSet(true);
-      }
+      struct.open_id = iprot.readString();
+      struct.setOpen_idIsSet(true);
+      struct.out_detail_no = iprot.readString();
+      struct.setOut_detail_noIsSet(true);
     }
   }
 

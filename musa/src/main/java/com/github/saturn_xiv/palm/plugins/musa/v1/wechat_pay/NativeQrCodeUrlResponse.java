@@ -89,9 +89,9 @@ public class NativeQrCodeUrlResponse implements org.apache.thrift.TBase<NativeQr
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.URL, new org.apache.thrift.meta_data.FieldMetaData("url", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.URL, new org.apache.thrift.meta_data.FieldMetaData("url", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.OUT_TRADE_NO, new org.apache.thrift.meta_data.FieldMetaData("out_trade_no", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.OUT_TRADE_NO, new org.apache.thrift.meta_data.FieldMetaData("out_trade_no", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(NativeQrCodeUrlResponse.class, metaDataMap);
@@ -356,6 +356,12 @@ public class NativeQrCodeUrlResponse implements org.apache.thrift.TBase<NativeQr
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    if (url == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'url' was not present! Struct: " + toString());
+    }
+    if (out_trade_no == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'out_trade_no' was not present! Struct: " + toString());
+    }
     // check for sub-struct validity
   }
 
@@ -455,34 +461,17 @@ public class NativeQrCodeUrlResponse implements org.apache.thrift.TBase<NativeQr
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, NativeQrCodeUrlResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetUrl()) {
-        optionals.set(0);
-      }
-      if (struct.isSetOut_trade_no()) {
-        optionals.set(1);
-      }
-      oprot.writeBitSet(optionals, 2);
-      if (struct.isSetUrl()) {
-        oprot.writeString(struct.url);
-      }
-      if (struct.isSetOut_trade_no()) {
-        oprot.writeString(struct.out_trade_no);
-      }
+      oprot.writeString(struct.url);
+      oprot.writeString(struct.out_trade_no);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, NativeQrCodeUrlResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(2);
-      if (incoming.get(0)) {
-        struct.url = iprot.readString();
-        struct.setUrlIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.out_trade_no = iprot.readString();
-        struct.setOut_trade_noIsSet(true);
-      }
+      struct.url = iprot.readString();
+      struct.setUrlIsSet(true);
+      struct.out_trade_no = iprot.readString();
+      struct.setOut_trade_noIsSet(true);
     }
   }
 

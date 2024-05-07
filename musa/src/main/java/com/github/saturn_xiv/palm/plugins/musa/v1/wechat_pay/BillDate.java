@@ -98,11 +98,11 @@ public class BillDate implements org.apache.thrift.TBase<BillDate, BillDate._Fie
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.YEAR, new org.apache.thrift.meta_data.FieldMetaData("year", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.YEAR, new org.apache.thrift.meta_data.FieldMetaData("year", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I16)));
-    tmpMap.put(_Fields.MONTH, new org.apache.thrift.meta_data.FieldMetaData("month", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.MONTH, new org.apache.thrift.meta_data.FieldMetaData("month", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
-    tmpMap.put(_Fields.DAY, new org.apache.thrift.meta_data.FieldMetaData("day", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.DAY, new org.apache.thrift.meta_data.FieldMetaData("day", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(BillDate.class, metaDataMap);
@@ -419,6 +419,9 @@ public class BillDate implements org.apache.thrift.TBase<BillDate, BillDate._Fie
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
+    // alas, we cannot check 'year' because it's a primitive and you chose the non-beans generator.
+    // alas, we cannot check 'month' because it's a primitive and you chose the non-beans generator.
+    // alas, we cannot check 'day' because it's a primitive and you chose the non-beans generator.
     // check for sub-struct validity
   }
 
@@ -492,6 +495,15 @@ public class BillDate implements org.apache.thrift.TBase<BillDate, BillDate._Fie
       iprot.readStructEnd();
 
       // check for required fields of primitive type, which can't be checked in the validate method
+      if (!struct.isSetYear()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'year' was not found in serialized data! Struct: " + toString());
+      }
+      if (!struct.isSetMonth()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'month' was not found in serialized data! Struct: " + toString());
+      }
+      if (!struct.isSetDay()) {
+        throw new org.apache.thrift.protocol.TProtocolException("Required field 'day' was not found in serialized data! Struct: " + toString());
+      }
       struct.validate();
     }
 
@@ -527,44 +539,20 @@ public class BillDate implements org.apache.thrift.TBase<BillDate, BillDate._Fie
     @Override
     public void write(org.apache.thrift.protocol.TProtocol prot, BillDate struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetYear()) {
-        optionals.set(0);
-      }
-      if (struct.isSetMonth()) {
-        optionals.set(1);
-      }
-      if (struct.isSetDay()) {
-        optionals.set(2);
-      }
-      oprot.writeBitSet(optionals, 3);
-      if (struct.isSetYear()) {
-        oprot.writeI16(struct.year);
-      }
-      if (struct.isSetMonth()) {
-        oprot.writeByte(struct.month);
-      }
-      if (struct.isSetDay()) {
-        oprot.writeByte(struct.day);
-      }
+      oprot.writeI16(struct.year);
+      oprot.writeByte(struct.month);
+      oprot.writeByte(struct.day);
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, BillDate struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(3);
-      if (incoming.get(0)) {
-        struct.year = iprot.readI16();
-        struct.setYearIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.month = iprot.readByte();
-        struct.setMonthIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.day = iprot.readByte();
-        struct.setDayIsSet(true);
-      }
+      struct.year = iprot.readI16();
+      struct.setYearIsSet(true);
+      struct.month = iprot.readByte();
+      struct.setMonthIsSet(true);
+      struct.day = iprot.readByte();
+      struct.setDayIsSet(true);
     }
   }
 
