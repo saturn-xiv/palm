@@ -1,0 +1,33 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.camelia.v1";
+option go_package = "github.com/saturn-xiv/palm/camelia/v2";
+package camelia.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+
+service User {
+  rpc SignInByEmail(UserSignInByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc SignUpByEmail(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
+}
+
+message UserSignInByEmailRequest {
+  oneof who {
+    string nickname = 1;
+    string email = 2;
+    string phone = 3;
+  }
+  string password = 9;
+  google.protobuf.Duration ttl = 11;
+}
+
+message UserSignUpByEmailRequest {
+  string real_name = 1;
+  string email = 2;
+  string nickname = 3;
+  string password = 4;
+
+  string lang = 11;
+  string timezone = 12;
+}

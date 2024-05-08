@@ -1,6 +1,6 @@
 [package]
 name = "camelia"
-version = "2024.3.5"
+version = "2024.5.8"
 edition = "2021"
 description = "A portal application."
 
@@ -34,13 +34,13 @@ features = ["serde"]
 version = "0.8"
 features = ["small_rng"]
 
+[dependencies.tonic]
+version = "0.11"
+features = ["transport"]
+
 [dependencies.reqwest]
 version = "0.12"
 features = ["json", "cookies"]
-
-[dependencies.juniper]
-version = "0.16"
-features = ["chrono"]
 
 [dependencies.validator]
 version = "0.18"
@@ -96,3 +96,6 @@ features = ["vendored"]
 
 [dependencies.hibiscus]
 path = '../hibiscus'
+
+[build-dependencies]
+tonic-build = "0.11"

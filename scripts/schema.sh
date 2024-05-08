@@ -90,6 +90,25 @@ function generate_grpc_for_node() {
         --grpc_out=grpc_js:$2 $1/*.proto
 }
 
+function generate_diesel_postgresql_scheme() {
+    echo "generate diesel schema for postgresql"
+
+    DATABASE_URL=$1 diesel print-schema -o \
+        locales settings \
+        users user_contacts user_bans user_sessions logs \
+        google_users \
+        wechat_oauth2_users wechat_mini_program_users \
+        attachments attachment_resources \
+        leave_words shorter_links notifications \
+        tags tag_resources \
+        categories category_resources \
+        vote_items vote_logs \
+        footprints feedbacks favorites issues comments search_histories \
+        menus \
+        >camelia/src/schema.rs
+    DATABASE_URL=$1 diesel print-schema -o schema_migrations >camelia/src/orm/postgresql/schema.rs
+}
+
 generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/loquat/gourd
 generate_thrift_for_go $WORKSPACE/gourd/gourd.thrift $WORKSPACE/gourd/services/v1
 generate_thrift_for_java $WORKSPACE/musa/wechat-pay.thrift $WORKSPACE/musa/src/main/java com/github/saturn_xiv/palm/plugins/musa/v1/wechat_pay
@@ -116,6 +135,9 @@ generate_thrift_for_php $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/tutorials
 generate_thrift_for_php $WORKSPACE/morus/markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
 generate_thrift_for_php $WORKSPACE/musa/wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
 generate_thrift_for_java $WORKSPACE/morus/markdown.thrift $WORKSPACE/tutorials/java/src/main/java com/github/saturn_xiv/palm/plugins/morus/v1/markdown
+
+# postgresql
+generate_diesel_postgresql_scheme "postgres://www:change-me@127.0.0.1:5432/palm?sslmode=disable"
 
 cargo fmt
 echo 'done.'
