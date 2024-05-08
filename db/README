@@ -6,3 +6,7 @@
 CREATE USER www WITH PASSWORD 'change-me';
 CREATE DATABASE palm WITH ENCODING = 'UTF8' OWNER www;
 ```
+
+```bash
+
+```

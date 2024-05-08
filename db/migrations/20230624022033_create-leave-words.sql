@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE leave_words(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     lang VARCHAR(15) NOT NULL,
     ip VARCHAR(45) NOT NULL,
     body TEXT NOT NULL,

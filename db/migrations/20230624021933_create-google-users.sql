@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE google_users(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     sub VARCHAR(127) NOT NULL,
     code BYTEA NOT NULL,
     token VARCHAR(127) NOT NULL,

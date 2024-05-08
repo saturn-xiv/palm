@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE forum_topics(
-    id SERIAL PRIMARY KEY,
-    author_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    author_id BIGINT NOT NULL,
     slug VARCHAR(63) NOT NULL,
     "subject" VARCHAR(255) NOT NULL,
     lang VARCHAR(8) NOT NULL,

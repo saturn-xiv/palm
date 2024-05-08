@@ -1,14 +1,14 @@
 -- migrate:up
 CREATE TABLE feedbacks(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     username VARCHAR(63) NOT NULL,
     mobile VARCHAR(15) NOT NULL,
     email VARCHAR(127) NOT NULL,
     content TEXT NOT NULL,
     content_editor VARCHAR(15) NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
-    resource_id INT NOT NULL,
+    resource_id BIGINT NOT NULL,
     "status" VARCHAR(15) NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,

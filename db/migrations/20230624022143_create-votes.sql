@@ -1,9 +1,9 @@
 -- migrate:up
 CREATE TABLE vote_items(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     star_ INT NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
-    resource_id INT NOT NULL,
+    resource_id BIGINT NOT NULL,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -11,14 +11,14 @@ CREATE TABLE vote_items(
 CREATE UNIQUE INDEX idx_vote_items ON vote_items(resource_type, resource_id);
 CREATE INDEX idx_vote_items_resource_type ON vote_items(resource_type);
 CREATE TABLE vote_logs(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     star_ INT NOT NULL,
     comment TEXT NOT NULL,
     comment_editor VARCHAR(15) NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
-    resource_id INT NOT NULL,
+    resource_id BIGINT NOT NULL,
     "status" VARCHAR(15) NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,

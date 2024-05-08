@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE attachments(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     bucket VARCHAR(63) NOT NULL,
     "name" VARCHAR(63) NOT NULL,
     title VARCHAR(127) NOT NULL,
@@ -20,10 +20,10 @@ CREATE INDEX idx_attachments_title ON attachments(title);
 CREATE INDEX idx_attachment_status ON attachments("status");
 CREATE INDEX idx_attachments_content_type ON attachments(content_type);
 CREATE TABLE attachment_resources(
-    id SERIAL PRIMARY KEY,
-    attachment_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    attachment_id BIGINT NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
-    resource_id INT NOT NULL,
+    resource_id BIGINT NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX idx_attachment_resources ON attachment_resources(attachment_id, resource_type, resource_id);

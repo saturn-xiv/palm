@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE locales(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     lang VARCHAR(8) NOT NULL,
     code VARCHAR(255) NOT NULL,
     "message" TEXT NOT NULL,

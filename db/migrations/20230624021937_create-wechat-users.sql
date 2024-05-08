@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE wechat_oauth2_users(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     union_id VARCHAR(127) NOT NULL,
     app_id VARCHAR(63) NOT NULL,
     open_id VARCHAR(127) NOT NULL,
@@ -27,8 +27,8 @@ CREATE INDEX idx_wechat_oauth2_users_province ON wechat_oauth2_users(province);
 CREATE INDEX idx_wechat_oauth2_users_country ON wechat_oauth2_users(country);
 CREATE INDEX idx_wechat_oauth2_users_lang ON wechat_oauth2_users(lang);
 CREATE TABLE wechat_mini_program_users(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     union_id VARCHAR(127) NOT NULL,
     app_id VARCHAR(63) NOT NULL,
     open_id VARCHAR(127) NOT NULL,

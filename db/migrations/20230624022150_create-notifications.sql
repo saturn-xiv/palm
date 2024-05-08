@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE notifications(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     "subject" VARCHAR(127) NOT NULL,
     body VARCHAR(511) NOT NULL,
     "url" VARCHAR(255) NOT NULL,

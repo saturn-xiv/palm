@@ -1,14 +1,14 @@
 -- migrate:up
 CREATE TABLE comments(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     username VARCHAR(63) NOT NULL,
     ip VARCHAR(45) NOT NULL,
-    comment_id INT,
+    comment_id BIGINT,
     content TEXT NOT NULL,
     content_editor VARCHAR(15) NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
-    resource_id INT NOT NULL,
+    resource_id BIGINT NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,

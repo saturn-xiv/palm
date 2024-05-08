@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE issues(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     lang VARCHAR(15) NOT NULL,
     question VARCHAR(255) NOT NULL,
     answer TEXT NOT NULL,

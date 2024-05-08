@@ -1,8 +1,8 @@
 -- migrate:up
 CREATE TABLE settings(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     "key" VARCHAR(255) NOT NULL,
-    user_id INT,
+    user_id BIGINT,
     salt BYTEA,
     "value" BYTEA NOT NULL,
     "version" INT NOT NULL DEFAULT 0,

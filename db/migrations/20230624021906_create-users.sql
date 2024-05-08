@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE users(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     real_name VARCHAR(63) NOT NULL,
     nickname VARCHAR(63) NOT NULL,
     email VARCHAR(127) NOT NULL,
@@ -33,8 +33,8 @@ WHERE current_sign_in_ip IS NOT NULL;
 CREATE INDEX idx_users_last_sign_in_ip ON users(last_sign_in_ip)
 WHERE last_sign_in_ip IS NOT NULL;
 CREATE TABLE user_contacts(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     "key" VARCHAR(255) NOT NULL,
     "value" BYTEA NOT NULL,
     "version" INT NOT NULL DEFAULT 0,
@@ -44,13 +44,13 @@ CREATE TABLE user_contacts(
 CREATE UNIQUE INDEX idx_user_contacts_user_key ON user_contacts(user_id, "key");
 CREATE INDEX idx_user_contacts_key ON user_contacts("key");
 CREATE TABLE logs(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     plugin VARCHAR(15) NOT NULL,
     "level" VARCHAR(15) NOT NULL,
     ip VARCHAR(45) NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
-    resource_id INT,
+    resource_id BIGINT,
     "message" TEXT NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -59,22 +59,22 @@ CREATE INDEX idx_logs_plugin ON logs(plugin);
 CREATE INDEX idx_logs_level ON logs("level");
 CREATE INDEX idx_logs_resource_type ON logs(resource_type);
 CREATE TABLE user_bans(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     reason VARCHAR(255) NOT NULL,
     expired_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    creator_id INT NOT NULL,
+    creator_id BIGINT NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_user_bans_ip ON user_bans(ip);
 CREATE INDEX idx_user_bans_reason ON user_bans(reason);
 CREATE TABLE user_sessions(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     "uid" VARCHAR(36) NOT NULL,
     provider_type VARCHAR(31) NOT NULL,
-    provider_id INT NOT NULL,
+    provider_id BIGINT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     expired_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP

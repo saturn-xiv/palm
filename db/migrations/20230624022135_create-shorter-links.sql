@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE shorter_links(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     "url" VARCHAR(255) NOT NULL,
     summary VARCHAR(511) NOT NULL DEFAULT '',
     "version" INT NOT NULL DEFAULT 0,

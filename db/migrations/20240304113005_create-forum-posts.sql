@@ -1,9 +1,9 @@
 -- migrate:up
 CREATE TABLE forum_posts(
-    id SERIAL PRIMARY KEY,
-    author_id INT NOT NULL,
-    topic_id INT NOT NULL,
-    post_id INT,
+    id BIGSERIAL PRIMARY KEY,
+    author_id BIGINT NOT NULL,
+    topic_id BIGINT NOT NULL,
+    post_id BIGINT,
     lang VARCHAR(8) NOT NULL,
     body TEXT NOT NULL,
     body_editor VARCHAR(15) NOT NULL,

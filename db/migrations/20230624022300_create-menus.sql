@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE menus(
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     code VARCHAR(63) NOT NULL,
     "location" VARCHAR(31) NOT NULL,
     "left" INT NOT NULL,

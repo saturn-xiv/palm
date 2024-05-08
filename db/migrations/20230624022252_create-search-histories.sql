@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE search_histories(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     keyword VARCHAR(63) NOT NULL,
     "from" VARCHAR(255) NOT NULL,

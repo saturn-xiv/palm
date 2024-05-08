@@ -1,11 +1,11 @@
 -- migrate:up
 CREATE TABLE favorites(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
     "subject" VARCHAR(127) NOT NULL,
     "url" VARCHAR(255) NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
-    resource_id INT NOT NULL,
+    resource_id BIGINT NOT NULL,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
