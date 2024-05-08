@@ -14,14 +14,14 @@ type Minio struct {
 	Endpoint  string `toml:"endpoint"`
 	AccessKey string `toml:"access-key"`
 	SecretKey string `toml:"secret-key"`
-	UseSSL    bool   `toml:"use-ssl"`
+	Secure    bool   `toml:"secure"`
 }
 
 func (p *Minio) Open() (*minio.Client, error) {
 	slog.Info(fmt.Sprintf("open minio %s", p.Endpoint))
 	cli, err := minio.New(p.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(p.AccessKey, p.SecretKey, ""),
-		Secure: p.UseSSL,
+		Secure: p.Secure,
 	})
 	if err != nil {
 		return nil, err

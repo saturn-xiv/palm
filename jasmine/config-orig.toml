@@ -1,0 +1,5 @@
+[minio]
+endpoint = "x.org"
+access-key = "x"
+secret-key = "x"
+secure = true
