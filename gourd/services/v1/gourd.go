@@ -29,7 +29,7 @@ var _ = regexp.MatchString
 // Attributes:
 //  - ID
 type User struct {
-  ID int64 `thrift:"id,1" db:"id" json:"id"`
+  ID int64 `thrift:"id,1,required" db:"id" json:"id"`
 }
 
 func NewUser() *User {
@@ -45,6 +45,7 @@ func (p *User) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetID bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -58,6 +59,7 @@ func (p *User) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetID = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -74,6 +76,9 @@ func (p *User) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetID{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field ID is not set"));
   }
   return nil
 }
@@ -146,7 +151,7 @@ func (p *User) Validate() error {
 // Attributes:
 //  - Name
 type Role struct {
-  Name string `thrift:"name,1" db:"name" json:"name"`
+  Name string `thrift:"name,1,required" db:"name" json:"name"`
 }
 
 func NewRole() *Role {
@@ -162,6 +167,7 @@ func (p *Role) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetName bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -175,6 +181,7 @@ func (p *Role) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetName = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -191,6 +198,9 @@ func (p *Role) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetName{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Name is not set"));
   }
   return nil
 }
@@ -264,7 +274,7 @@ func (p *Role) Validate() error {
 //  - Type
 //  - ID
 type Resource struct {
-  Type string `thrift:"type,1" db:"type" json:"type"`
+  Type string `thrift:"type,1,required" db:"type" json:"type"`
   ID *int64 `thrift:"id,2" db:"id" json:"id,omitempty"`
 }
 
@@ -292,6 +302,7 @@ func (p *Resource) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetType bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -305,6 +316,7 @@ func (p *Resource) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetType = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -331,6 +343,9 @@ func (p *Resource) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetType{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Type is not set"));
   }
   return nil
 }
@@ -432,8 +447,8 @@ func (p *Resource) Validate() error {
 //  - Operation
 //  - Resource
 type Permission struct {
-  Operation string `thrift:"operation,1" db:"operation" json:"operation"`
-  Resource *Resource `thrift:"resource,2" db:"resource" json:"resource"`
+  Operation string `thrift:"operation,1,required" db:"operation" json:"operation"`
+  Resource *Resource `thrift:"resource,2,required" db:"resource" json:"resource"`
 }
 
 func NewPermission() *Permission {
@@ -460,6 +475,8 @@ func (p *Permission) Read(ctx context.Context, iprot thrift.TProtocol) error {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
   }
 
+  var issetOperation bool = false;
+  var issetResource bool = false;
 
   for {
     _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(ctx)
@@ -473,6 +490,7 @@ func (p *Permission) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField1(ctx, iprot); err != nil {
           return err
         }
+        issetOperation = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -483,6 +501,7 @@ func (p *Permission) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField2(ctx, iprot); err != nil {
           return err
         }
+        issetResource = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -499,6 +518,12 @@ func (p *Permission) Read(ctx context.Context, iprot thrift.TProtocol) error {
   }
   if err := iprot.ReadStructEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  if !issetOperation{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Operation is not set"));
+  }
+  if !issetResource{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Resource is not set"));
   }
   return nil
 }

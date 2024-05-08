@@ -5,21 +5,21 @@ const string ROLE_ADMINISTRATOR = "administrator"
 const string ROLE_ROOT = "root"
 
 struct User{
-    1:i64 id,
+    1:required i64 id,
 }
 
 struct Role{
-    1:string name,
+    1:required string name,
 }
 
 struct Resource{
-    1:string type,
+    1:required string type,
     2:optional i64 id,
 }
 
 struct Permission{
-    1:string operation,
-    2:Resource resource,
+    1:required string operation,
+    2:required Resource resource,
 }
 
 

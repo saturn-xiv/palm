@@ -30,15 +30,15 @@ use thrift::server::TProcessor;
 // User
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct User {
-  pub id: Option<i64>,
+  pub id: i64,
 }
 
 impl User {
-  pub fn new<F1>(id: F1) -> User where F1: Into<Option<i64>> {
+  pub fn new(id: i64) -> User {
     User {
-      id: id.into(),
+      id,
     }
   }
 }
@@ -46,7 +46,7 @@ impl User {
 impl TSerializable for User {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<User> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<i64> = Some(0);
+    let mut f_1: Option<i64> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -65,19 +65,18 @@ impl TSerializable for User {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("User.id", &f_1)?;
     let ret = User {
-      id: f_1,
+      id: f_1.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("User");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(fld_var) = self.id {
-      o_prot.write_field_begin(&TFieldIdentifier::new("id", TType::I64, 1))?;
-      o_prot.write_i64(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("id", TType::I64, 1))?;
+    o_prot.write_i64(self.id)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -87,15 +86,15 @@ impl TSerializable for User {
 // Role
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Role {
-  pub name: Option<String>,
+  pub name: String,
 }
 
 impl Role {
-  pub fn new<F1>(name: F1) -> Role where F1: Into<Option<String>> {
+  pub fn new(name: String) -> Role {
     Role {
-      name: name.into(),
+      name,
     }
   }
 }
@@ -103,7 +102,7 @@ impl Role {
 impl TSerializable for Role {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Role> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -122,19 +121,18 @@ impl TSerializable for Role {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Role.name", &f_1)?;
     let ret = Role {
-      name: f_1,
+      name: f_1.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Role");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.name {
-      o_prot.write_field_begin(&TFieldIdentifier::new("name", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("name", TType::String, 1))?;
+    o_prot.write_string(&self.name)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }
@@ -144,16 +142,16 @@ impl TSerializable for Role {
 // Resource
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Resource {
-  pub type_: Option<String>,
+  pub type_: String,
   pub id: Option<i64>,
 }
 
 impl Resource {
-  pub fn new<F1, F2>(type_: F1, id: F2) -> Resource where F1: Into<Option<String>>, F2: Into<Option<i64>> {
+  pub fn new<F2>(type_: String, id: F2) -> Resource where F2: Into<Option<i64>> {
     Resource {
-      type_: type_.into(),
+      type_,
       id: id.into(),
     }
   }
@@ -162,7 +160,7 @@ impl Resource {
 impl TSerializable for Resource {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Resource> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
     let mut f_2: Option<i64> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
@@ -186,8 +184,9 @@ impl TSerializable for Resource {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Resource.type_", &f_1)?;
     let ret = Resource {
-      type_: f_1,
+      type_: f_1.expect("auto-generated code should have checked for presence of required fields"),
       id: f_2,
     };
     Ok(ret)
@@ -195,11 +194,9 @@ impl TSerializable for Resource {
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Resource");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.type_ {
-      o_prot.write_field_begin(&TFieldIdentifier::new("type", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("type", TType::String, 1))?;
+    o_prot.write_string(&self.type_)?;
+    o_prot.write_field_end()?;
     if let Some(fld_var) = self.id {
       o_prot.write_field_begin(&TFieldIdentifier::new("id", TType::I64, 2))?;
       o_prot.write_i64(fld_var)?;
@@ -214,17 +211,17 @@ impl TSerializable for Resource {
 // Permission
 //
 
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Permission {
-  pub operation: Option<String>,
-  pub resource: Option<Resource>,
+  pub operation: String,
+  pub resource: Resource,
 }
 
 impl Permission {
-  pub fn new<F1, F2>(operation: F1, resource: F2) -> Permission where F1: Into<Option<String>>, F2: Into<Option<Resource>> {
+  pub fn new(operation: String, resource: Resource) -> Permission {
     Permission {
-      operation: operation.into(),
-      resource: resource.into(),
+      operation,
+      resource,
     }
   }
 }
@@ -232,7 +229,7 @@ impl Permission {
 impl TSerializable for Permission {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<Permission> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = Some("".to_owned());
+    let mut f_1: Option<String> = None;
     let mut f_2: Option<Resource> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
@@ -256,25 +253,23 @@ impl TSerializable for Permission {
       i_prot.read_field_end()?;
     }
     i_prot.read_struct_end()?;
+    verify_required_field_exists("Permission.operation", &f_1)?;
+    verify_required_field_exists("Permission.resource", &f_2)?;
     let ret = Permission {
-      operation: f_1,
-      resource: f_2,
+      operation: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      resource: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
   fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let struct_ident = TStructIdentifier::new("Permission");
     o_prot.write_struct_begin(&struct_ident)?;
-    if let Some(ref fld_var) = self.operation {
-      o_prot.write_field_begin(&TFieldIdentifier::new("operation", TType::String, 1))?;
-      o_prot.write_string(fld_var)?;
-      o_prot.write_field_end()?
-    }
-    if let Some(ref fld_var) = self.resource {
-      o_prot.write_field_begin(&TFieldIdentifier::new("resource", TType::Struct, 2))?;
-      fld_var.write_to_out_protocol(o_prot)?;
-      o_prot.write_field_end()?
-    }
+    o_prot.write_field_begin(&TFieldIdentifier::new("operation", TType::String, 1))?;
+    o_prot.write_string(&self.operation)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("resource", TType::Struct, 2))?;
+    self.resource.write_to_out_protocol(o_prot)?;
+    o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
   }

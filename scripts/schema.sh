@@ -99,6 +99,7 @@ generate_thrift_for_go $WORKSPACE/tuberose/tuberose.thrift $WORKSPACE/tuberose/s
 generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/jasmine/services/v1
 generate_thrift_for_go $WORKSPACE/lily/lily.thrift $WORKSPACE/lily/services/v1
 generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/lily/env/jasmine/v1
+# hibiscus
 generate_thrift_for_rust $WORKSPACE/jasmine/jasmine.thrift jasmine $WORKSPACE/hibiscus/src/jasmine
 generate_thrift_for_rust $WORKSPACE/lily/lily.thrift lily $WORKSPACE/hibiscus/src/lily
 generate_thrift_for_rust $WORKSPACE/gourd/gourd.thrift gourd $WORKSPACE/hibiscus/src/gourd
@@ -107,12 +108,14 @@ generate_thrift_for_rust $WORKSPACE/musa/wechat-pay.thrift wechat-pay $WORKSPACE
 generate_thrift_for_rust $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/hibiscus/src/tuberose
 generate_thrift_for_rust $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/hibiscus/src/daisy
 generate_thrift_for_rust $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/hibiscus/src/loquat
+# tutorials
 generate_thrift_for_php $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/tutorials/php/lib
 generate_thrift_for_php $WORKSPACE/lily/lily.thrift lily $WORKSPACE/tutorials/php/lib
 generate_thrift_for_php $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/tutorials/php/lib
 generate_thrift_for_php $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/tutorials/php/lib
 generate_thrift_for_php $WORKSPACE/morus/markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
 generate_thrift_for_php $WORKSPACE/musa/wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
+generate_thrift_for_java $WORKSPACE/morus/markdown.thrift $WORKSPACE/tutorials/java/src/main/java com/github/saturn_xiv/palm/plugins/morus/v1/markdown
 
 cargo fmt
 echo 'done.'

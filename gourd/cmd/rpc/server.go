@@ -25,7 +25,7 @@ func Launch(port uint16, config_file string, version string, ssl *Ssl) error {
 	if err != nil {
 		return err
 	}
-	enforcer, err := env.OpenCasbinEnforcer(config.Namespace, db, config.Redis.Options().Addrs)
+	enforcer, err := env.OpenCasbinEnforcer(config.Redis.Namespace, db, config.Redis.Options().Addrs)
 	if err != nil {
 		return err
 	}

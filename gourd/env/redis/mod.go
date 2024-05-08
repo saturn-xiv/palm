@@ -7,7 +7,8 @@ import (
 )
 
 type Cluster struct {
-	Nodes []Node `toml:"nodes"`
+	Namespace string `toml:"namespace"`
+	Nodes     []Node `toml:"nodes"`
 }
 
 func (p *Cluster) Addrs() []string {

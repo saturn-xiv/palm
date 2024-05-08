@@ -2,13 +2,12 @@ package rpc
 
 import (
 	"github.com/saturn-xiv/palm/gourd/env"
-	"github.com/saturn-xiv/palm/gourd/redis"
+	"github.com/saturn-xiv/palm/gourd/env/redis"
 )
 
 type Config struct {
-	Namespace string        `toml:"namespace"`
-	Redis     redis.Cluster `toml:"redis"`
-	Database  env.Database  `toml:"database"`
+	Redis    redis.Cluster `toml:"redis"`
+	Database env.Database  `toml:"database"`
 }
 
 type Ssl struct {
