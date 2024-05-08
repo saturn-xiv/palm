@@ -5,6 +5,7 @@
     "vscjava.vscode-java-pack",
     "golang.go",
     "ms-python.python",
+    "bmewburn.vscode-intelephense-client",
     "jakebecker.elixir-ls",
     "phoenixframework.phoenix",
     "ms-python.autopep8",
