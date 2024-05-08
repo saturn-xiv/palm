@@ -14,7 +14,7 @@ struct Body {
 struct Attachment {
     1:required string title,
     2:required string content_type,
-    8:required bool inline,
+    8:required bool inline_,
     9:required binary body,
 }
 

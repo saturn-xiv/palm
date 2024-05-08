@@ -1,0 +1,6 @@
+{
+  "require": {
+    "apache/thrift": "0.20.0",
+    "monolog/monolog": "3.6.0"
+  }
+}

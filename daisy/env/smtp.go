@@ -93,7 +93,7 @@ func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
 			if err := os.WriteFile(file, it.Body, 0600); err != nil {
 				return err
 			}
-			if it.Inline {
+			if it.Inline_ {
 				msg.Embed(file)
 			} else {
 				msg.Attach(file)

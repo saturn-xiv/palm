@@ -357,13 +357,13 @@ func (p *Body) Validate() error {
 // Attributes:
 //  - Title
 //  - ContentType
-//  - Inline
+//  - Inline_
 //  - Body
 type Attachment struct {
   Title string `thrift:"title,1,required" db:"title" json:"title"`
   ContentType string `thrift:"content_type,2,required" db:"content_type" json:"content_type"`
   // unused fields # 3 to 7
-  Inline bool `thrift:"inline,8,required" db:"inline" json:"inline"`
+  Inline_ bool `thrift:"inline_,8,required" db:"inline_" json:"inline_"`
   Body []byte `thrift:"body,9,required" db:"body" json:"body"`
 }
 
@@ -380,8 +380,8 @@ func (p *Attachment) GetContentType() string {
   return p.ContentType
 }
 
-func (p *Attachment) GetInline() bool {
-  return p.Inline
+func (p *Attachment) GetInline_() bool {
+  return p.Inline_
 }
 
 func (p *Attachment) GetBody() []byte {
@@ -394,7 +394,7 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
 
   var issetTitle bool = false;
   var issetContentType bool = false;
-  var issetInline bool = false;
+  var issetInline_ bool = false;
   var issetBody bool = false;
 
   for {
@@ -431,7 +431,7 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
         if err := p.ReadField8(ctx, iprot); err != nil {
           return err
         }
-        issetInline = true
+        issetInline_ = true
       } else {
         if err := iprot.Skip(ctx, fieldTypeId); err != nil {
           return err
@@ -466,8 +466,8 @@ func (p *Attachment) Read(ctx context.Context, iprot thrift.TProtocol) error {
   if !issetContentType{
     return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field ContentType is not set"));
   }
-  if !issetInline{
-    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Inline is not set"));
+  if !issetInline_{
+    return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Inline_ is not set"));
   }
   if !issetBody{
     return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("Required field Body is not set"));
@@ -497,7 +497,7 @@ func (p *Attachment)  ReadField8(ctx context.Context, iprot thrift.TProtocol) er
   if v, err := iprot.ReadBool(ctx); err != nil {
   return thrift.PrependError("error reading field 8: ", err)
 } else {
-  p.Inline = v
+  p.Inline_ = v
 }
   return nil
 }
@@ -548,12 +548,12 @@ func (p *Attachment) writeField2(ctx context.Context, oprot thrift.TProtocol) (e
 }
 
 func (p *Attachment) writeField8(ctx context.Context, oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin(ctx, "inline", thrift.BOOL, 8); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 8:inline: ", p), err) }
-  if err := oprot.WriteBool(ctx, bool(p.Inline)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.inline (8) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin(ctx, "inline_", thrift.BOOL, 8); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 8:inline_: ", p), err) }
+  if err := oprot.WriteBool(ctx, bool(p.Inline_)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.inline_ (8) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(ctx); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 8:inline: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 8:inline_: ", p), err) }
   return err
 }
 
@@ -575,7 +575,7 @@ func (p *Attachment) Equals(other *Attachment) bool {
   }
   if p.Title != other.Title { return false }
   if p.ContentType != other.ContentType { return false }
-  if p.Inline != other.Inline { return false }
+  if p.Inline_ != other.Inline_ { return false }
   if bytes.Compare(p.Body, other.Body) != 0 { return false }
   return true
 }

@@ -170,16 +170,16 @@ impl TSerializable for Body {
 pub struct Attachment {
   pub title: String,
   pub content_type: String,
-  pub inline: bool,
+  pub inline_: bool,
   pub body: Vec<u8>,
 }
 
 impl Attachment {
-  pub fn new(title: String, content_type: String, inline: bool, body: Vec<u8>) -> Attachment {
+  pub fn new(title: String, content_type: String, inline_: bool, body: Vec<u8>) -> Attachment {
     Attachment {
       title,
       content_type,
-      inline,
+      inline_,
       body,
     }
   }
@@ -224,12 +224,12 @@ impl TSerializable for Attachment {
     i_prot.read_struct_end()?;
     verify_required_field_exists("Attachment.title", &f_1)?;
     verify_required_field_exists("Attachment.content_type", &f_2)?;
-    verify_required_field_exists("Attachment.inline", &f_8)?;
+    verify_required_field_exists("Attachment.inline_", &f_8)?;
     verify_required_field_exists("Attachment.body", &f_9)?;
     let ret = Attachment {
       title: f_1.expect("auto-generated code should have checked for presence of required fields"),
       content_type: f_2.expect("auto-generated code should have checked for presence of required fields"),
-      inline: f_8.expect("auto-generated code should have checked for presence of required fields"),
+      inline_: f_8.expect("auto-generated code should have checked for presence of required fields"),
       body: f_9.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
@@ -243,8 +243,8 @@ impl TSerializable for Attachment {
     o_prot.write_field_begin(&TFieldIdentifier::new("content_type", TType::String, 2))?;
     o_prot.write_string(&self.content_type)?;
     o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("inline", TType::Bool, 8))?;
-    o_prot.write_bool(self.inline)?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("inline_", TType::Bool, 8))?;
+    o_prot.write_bool(self.inline_)?;
     o_prot.write_field_end()?;
     o_prot.write_field_begin(&TFieldIdentifier::new("body", TType::String, 9))?;
     o_prot.write_bytes(&self.body)?;

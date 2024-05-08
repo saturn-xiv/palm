@@ -69,6 +69,15 @@ function generate_thrift_for_rust() {
     mv tmp/$2.rs $3/protocols.rs
 }
 
+function generate_thrift_for_php() {
+    cd $WORKSPACE
+    echo "generate thrift $1 => $3"
+    if [ -d $3/$2 ]; then
+        rm -rv $3/$2
+    fi
+    thrift -out $3 --gen php:nsglobal=$2 -r $1
+}
+
 function generate_grpc_for_node() {
     echo "generate grpc $1 => $2"
     if [ -d $2 ]; then
@@ -98,6 +107,12 @@ generate_thrift_for_rust $WORKSPACE/musa/wechat-pay.thrift wechat-pay $WORKSPACE
 generate_thrift_for_rust $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/hibiscus/src/tuberose
 generate_thrift_for_rust $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/hibiscus/src/daisy
 generate_thrift_for_rust $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/hibiscus/src/loquat
+generate_thrift_for_php $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/lily/lily.thrift lily $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/morus/markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/musa/wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
 
 cargo fmt
 echo 'done.'
