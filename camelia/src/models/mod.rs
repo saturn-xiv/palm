@@ -1,4 +1,4 @@
-// pub mod attachment;
+pub mod attachment;
 // pub mod category;
 // pub mod crawler;
 // pub mod google;

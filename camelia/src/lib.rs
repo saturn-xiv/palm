@@ -1,6 +1,6 @@
-// pub mod controllers;
+pub mod controllers;
 // pub mod graphql;
-// pub mod handlers;
+pub mod handlers;
 pub mod i18n;
 pub mod models;
 pub mod orm;

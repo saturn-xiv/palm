@@ -41,7 +41,7 @@ features = ["transport"]
 
 [dependencies.reqwest]
 version = "0.12"
-features = ["json", "cookies"]
+features = ["json", "cookies", "multipart", "stream"]
 
 [dependencies.validator]
 version = "0.18"

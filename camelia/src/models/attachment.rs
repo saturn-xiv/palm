@@ -6,7 +6,7 @@ use std::string::ToString;
 use actix_files::file_extension_to_mime;
 use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use hibiscus::{minio::Connection as Minio, HttpError, Result};
+use hibiscus::{jasmine::S3, HttpError, Result};
 use hyper::StatusCode;
 use log::warn;
 use mime::{Mime, IMAGE};
@@ -19,7 +19,7 @@ use super::super::{
     schema::{attachment_resources, attachments},
 };
 
-pub fn cover<T>(db: &mut Connection, id: i32) -> Result<Item> {
+pub fn cover<T>(db: &mut Connection, id: i64) -> Result<Item> {
     let it = Dao::by_resource::<T>(db, id)?
         .into_iter()
         .find(|x| x.is_picture())
@@ -33,8 +33,8 @@ pub fn cover<T>(db: &mut Connection, id: i32) -> Result<Item> {
 #[derive(Queryable, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub bucket: String,
     pub name: String,
     pub title: String,
@@ -53,19 +53,18 @@ impl fmt::Display for Item {
     }
 }
 impl Item {
-    pub async fn url(&self, s3: &Minio, ttl: Option<i64>) -> Result<String> {
+    pub fn url<S: S3>(&self, s3: &S, ttl: Option<i64>) -> Result<String> {
         let it = match self.status.parse::<Status>()? {
-            Status::Public => s3.get_permanent_object_url(&self.bucket, &self.name)?,
-            Status::Private => {
-                s3.get_presigned_object_url(
-                    &self.bucket,
-                    &self.name,
-                    Duration::try_seconds(ttl.unwrap_or(60 * 60 * 24)).ok_or(Box::new(
-                        HttpError(StatusCode::BAD_REQUEST, Some("bad ttl".to_string())),
-                    ))?,
-                )
-                .await?
-            }
+            Status::Public => s3.get_permanent_url(&self.bucket, &self.name)?,
+            Status::Private => s3.get_presigned_url(
+                &self.bucket,
+                &self.name,
+                &self.title,
+                Duration::try_seconds(ttl.unwrap_or(60 * 60 * 24)).ok_or(Box::new(HttpError(
+                    StatusCode::BAD_REQUEST,
+                    Some("bad ttl".to_string()),
+                )))?,
+            )?,
         };
         Ok(it)
     }
@@ -107,35 +106,35 @@ pub enum Status {
 }
 
 pub trait Dao {
-    fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_bucket_and_name(&mut self, bucket: &str, name: &str) -> Result<Item>;
     fn create(
         &mut self,
-        user: i32,
+        user: i64,
         bucket: &str,
         name: &str,
         title: &str,
         content_type: &Mime,
         size: u64,
     ) -> Result<()>;
-    fn update(&mut self, id: i32, title: &str) -> Result<()>;
+    fn update(&mut self, id: i64, title: &str) -> Result<()>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
-    fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
-    fn count_by_user(&mut self, user: i32) -> Result<i64>;
-    fn delete(&mut self, id: i32) -> Result<()>;
-    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
-    fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
-    fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>>;
-    fn clear_(&mut self, resource_type: &str, resource_id: i32) -> Result<()>;
-    fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
-    fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
-    fn clear<T>(&mut self, resource_id: i32) -> Result<()>;
-    fn by_resource<T>(&mut self, resource_id: i32) -> Result<Vec<Item>>;
+    fn by_user(&mut self, user: i64, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn count_by_user(&mut self, user: i64) -> Result<i64>;
+    fn delete(&mut self, id: i64) -> Result<()>;
+    fn associate_(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()>;
+    fn dissociate_(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()>;
+    fn by_resource_(&mut self, resource_type: &str, resource_id: i64) -> Result<Vec<Item>>;
+    fn clear_(&mut self, resource_type: &str, resource_id: i64) -> Result<()>;
+    fn associate<T>(&mut self, id: i64, resource_id: i64) -> Result<()>;
+    fn dissociate<T>(&mut self, id: i64, resource_id: i64) -> Result<()>;
+    fn clear<T>(&mut self, resource_id: i64) -> Result<()>;
+    fn by_resource<T>(&mut self, resource_id: i64) -> Result<Vec<Item>>;
 }
 
 impl Dao for Connection {
-    fn by_id(&mut self, id: i32) -> Result<Item> {
+    fn by_id(&mut self, id: i64) -> Result<Item> {
         let it = attachments::dsl::attachments
             .filter(attachments::dsl::id.eq(id))
             .first::<Item>(self)?;
@@ -150,7 +149,7 @@ impl Dao for Connection {
     }
     fn create(
         &mut self,
-        user: i32,
+        user: i64,
         bucket: &str,
         name: &str,
         title: &str,
@@ -175,7 +174,7 @@ impl Dao for Connection {
         Ok(())
     }
 
-    fn update(&mut self, id: i32, title: &str) -> Result<()> {
+    fn update(&mut self, id: i64, title: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         update(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id)))
             .set((
@@ -198,7 +197,7 @@ impl Dao for Connection {
         let it = attachments::dsl::attachments.count().first(self)?;
         Ok(it)
     }
-    fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>> {
+    fn by_user(&mut self, user: i64, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = attachments::dsl::attachments
             .filter(attachments::dsl::user_id.eq(user))
             .filter(attachments::dsl::deleted_at.is_null())
@@ -209,14 +208,14 @@ impl Dao for Connection {
         Ok(items)
     }
 
-    fn count_by_user(&mut self, user: i32) -> Result<i64> {
+    fn count_by_user(&mut self, user: i64) -> Result<i64> {
         let it = attachments::dsl::attachments
             .filter(attachments::dsl::user_id.eq(user))
             .count()
             .first(self)?;
         Ok(it)
     }
-    fn delete(&mut self, id: i32) -> Result<()> {
+    fn delete(&mut self, id: i64) -> Result<()> {
         delete(
             attachment_resources::dsl::attachment_resources
                 .filter(attachment_resources::dsl::attachment_id.eq(id)),
@@ -225,7 +224,7 @@ impl Dao for Connection {
         delete(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }
-    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn associate_(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()> {
         let cnt: i64 = attachment_resources::dsl::attachment_resources
             .filter(attachment_resources::dsl::attachment_id.eq(id))
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
@@ -243,7 +242,7 @@ impl Dao for Connection {
         }
         Ok(())
     }
-    fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn dissociate_(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()> {
         delete(
             attachment_resources::dsl::attachment_resources
                 .filter(attachment_resources::dsl::attachment_id.eq(id))
@@ -253,7 +252,7 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn clear_(&mut self, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn clear_(&mut self, resource_type: &str, resource_id: i64) -> Result<()> {
         delete(
             attachment_resources::dsl::attachment_resources
                 .filter(attachment_resources::dsl::resource_type.eq(resource_type))
@@ -262,8 +261,8 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>> {
-        let ids: Vec<i32> = attachment_resources::dsl::attachment_resources
+    fn by_resource_(&mut self, resource_type: &str, resource_id: i64) -> Result<Vec<Item>> {
+        let ids: Vec<i64> = attachment_resources::dsl::attachment_resources
             .select(attachment_resources::dsl::attachment_id)
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
             .filter(attachment_resources::dsl::resource_id.eq(resource_id))
@@ -275,16 +274,16 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()> {
+    fn associate<T>(&mut self, id: i64, resource_id: i64) -> Result<()> {
         self.associate_(id, type_name::<T>(), resource_id)
     }
-    fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()> {
+    fn dissociate<T>(&mut self, id: i64, resource_id: i64) -> Result<()> {
         self.dissociate_(id, type_name::<T>(), resource_id)
     }
-    fn clear<T>(&mut self, resource_id: i32) -> Result<()> {
+    fn clear<T>(&mut self, resource_id: i64) -> Result<()> {
         self.clear_(type_name::<T>(), resource_id)
     }
-    fn by_resource<T>(&mut self, resource_id: i32) -> Result<Vec<Item>> {
+    fn by_resource<T>(&mut self, resource_id: i64) -> Result<Vec<Item>> {
         self.by_resource_(type_name::<T>(), resource_id)
     }
 }

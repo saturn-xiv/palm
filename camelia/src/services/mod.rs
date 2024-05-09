@@ -5,7 +5,6 @@ use std::str::FromStr;
 use data_encoding::BASE64URL_NOPAD;
 use hibiscus::{
     cache::redis::ClusterConnection as Cache,
-    env::Thrift,
     gourd::{
         protocols::{ROLE_ADMINISTRATOR, ROLE_ROOT},
         Policy,
@@ -62,8 +61,8 @@ impl CurrentUserAdapter for Session {
 }
 
 impl User {
-    pub fn has(&self, gourd: &Thrift, role: &str) -> Result<()> {
-        let ok = Policy::has(gourd, self.id, role)?;
+    pub fn has<P: Policy>(&self, policy: &P, role: &str) -> Result<()> {
+        let ok = policy.has(self.id, role)?;
         if ok {
             return Ok(());
         }
@@ -73,21 +72,21 @@ impl User {
             Some(format!("user didn't has role {}", role)),
         )))
     }
-    pub fn is_administrator(&self, gourd: &Thrift) -> Result<()> {
-        self.has(gourd, ROLE_ADMINISTRATOR)
+    pub fn is_administrator<P: Policy>(&self, policy: &P) -> Result<()> {
+        self.has(policy, ROLE_ADMINISTRATOR)
     }
-    pub fn is_root(&self, gourd: &Thrift) -> Result<()> {
-        self.has(gourd, ROLE_ROOT)
+    pub fn is_root<P: Policy>(&self, policy: &P) -> Result<()> {
+        self.has(policy, ROLE_ROOT)
     }
-    pub fn can_<O: Display>(
+    pub fn can_<P: Policy, O: Display>(
         &self,
-        gourd: &Thrift,
+        policy: &P,
         operation: O,
         resource_type: &str,
         resource_id: Option<i64>,
     ) -> Result<()> {
         let operation = operation.to_string();
-        let ok = Policy::can(gourd, self.id, &operation, resource_type, resource_id)?;
+        let ok = policy.can(self.id, &operation, resource_type, resource_id)?;
         if ok {
             return Ok(());
         }
@@ -101,14 +100,14 @@ impl User {
             )),
         )))
     }
-    pub fn can<R, O: Display>(
+    pub fn can<P: Policy, O: Display, R>(
         &self,
-        gourd: &Thrift,
+        policy: &P,
         operation: O,
         resource_id: Option<i64>,
     ) -> Result<()> {
         let resource_type = type_name::<R>();
-        self.can_(gourd, operation, resource_type, resource_id)
+        self.can_(policy, operation, resource_type, resource_id)
     }
 }
 

@@ -10,13 +10,14 @@ use hibiscus::{
 };
 
 use super::super::{
-    models::user::{session::Dao as UserSessionDao, Action, Dao as UserDao, Item as User},
+    models::user::{session::Dao as UserSessionDao, Dao as UserDao, Item as User},
     orm::postgresql::{Connection as Db, Pool as DbPool},
+    v1::TokenAction,
     NAME,
 };
 
 fn user_from_token<P: JwtProvider>(token: &str, db: &mut Db, jwt: &P) -> Result<User> {
-    let (_, uid) = jwt.verify(token, NAME, &Action::SignIn.to_string())?;
+    let (_, uid) = jwt.verify(token, NAME, TokenAction::SignIn.as_str_name())?;
     let ss = UserSessionDao::by_uid(db, &uid)?;
     let user = UserDao::by_id(db, ss.user_id)?;
     user.available()?;

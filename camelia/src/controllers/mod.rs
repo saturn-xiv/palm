@@ -3,9 +3,11 @@ pub mod attachments;
 use std::collections::HashMap;
 
 use actix_web::web;
-use hibiscus::Result;
+use hibiscus::{env::Thrift, Result};
 
 use super::{models::locale::Dao as LocaleDao, orm::postgresql::Connection as Db};
+
+pub type Jasmine = Thrift;
 
 pub fn register(config: &mut web::ServiceConfig) {
     if cfg!(debug_assertions) {
