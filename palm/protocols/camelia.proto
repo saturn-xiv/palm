@@ -2,10 +2,13 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.camelia.v1";
 option go_package = "github.com/saturn-xiv/palm/camelia/v2";
-package camelia.v1;
+package palm.camelia.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+import "azalea.proto";
 
 enum Editor {
   TextArea = 0;
@@ -33,9 +36,20 @@ message Oauth2State {
   string code = 2;
 }
 
+message Resource {
+  string type = 1;
+  optional int64 id = 2;
+}
+
+message Permission {
+  Operation operation = 1;
+  Resource resource = 2;
+}
+
 service User {
   rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
   rpc SignUpByEmail(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc Logs(palm.azalea.v1.Pager) returns (UserLogsResponse) {}
 }
 
 message UserDetails {
@@ -55,7 +69,12 @@ message UserDetails {
   optional string avatar = 19;
 }
 
-message UserSignInResponse {}
+message UserSignInResponse {
+  string token = 1;
+  UserDetails details = 2;
+  repeated string roles = 8;
+  repeated Permission permissions = 9;
+}
 
 message UserSignInByEmailRequest {
   oneof who {
@@ -75,4 +94,24 @@ message UserSignUpByEmailRequest {
 
   string lang = 11;
   string timezone = 12;
+}
+
+message UserLogsResponse {
+  message Item {
+    enum Level {
+      Debug = 0;
+      Info = 1;
+      Warn = 2;
+      Error = 3;
+    }
+    int64 id = 1;
+    Level level = 2;
+    string ip = 3;
+    string message = 4;
+    Resource resource = 5;
+    google.protobuf.Timestamp created_at = 9;
+  }
+
+  repeated Item items = 1;
+  palm.azalea.v1.Pagination pagination = 2;
 }

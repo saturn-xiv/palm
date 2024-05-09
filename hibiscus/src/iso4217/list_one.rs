@@ -1,13 +1,10 @@
 use chrono::NaiveDate;
-use juniper::GraphQLObject;
 use log::error;
 use quick_xml::de::from_str as xml_from_str;
 use serde::{Deserialize, Serialize};
 
 use super::super::Result;
 
-#[derive(GraphQLObject)]
-#[graphql(name = "ISO4217Currency")]
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Item {
     pub id: Option<i32>,

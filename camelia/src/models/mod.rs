@@ -4,7 +4,7 @@ pub mod attachment;
 // pub mod google;
 // pub mod leave_word;
 pub mod locale;
-// pub mod log;
+pub mod log;
 // pub mod setting;
 // pub mod shorter_link;
 // pub mod tag;

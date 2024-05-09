@@ -85,10 +85,6 @@ features = ["transport"]
 version = "0.12"
 features = ["json", "cookies"]
 
-[dependencies.juniper]
-version = "0.16"
-features = ["chrono"]
-
 [dependencies.cookie]
 version = "0.18"
 features = ["secure", "private", "percent-encode"]

@@ -10,13 +10,13 @@ use super::super::{orm::postgresql::Connection, schema::logs};
 
 #[derive(Queryable)]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub plugin: String,
     pub level: String,
     pub ip: String,
     pub resource_type: String,
-    pub resource_id: Option<i32>,
+    pub resource_id: Option<i64>,
     pub message: String,
     pub created_at: NaiveDateTime,
 }
@@ -30,27 +30,27 @@ pub enum Level {
 pub trait Dao {
     fn add<S: Into<String>, T>(
         &mut self,
-        user: i32,
+        user: i64,
         plugin: &str,
         level: Level,
         ip: &str,
-        resource_id: Option<i32>,
+        resource_id: Option<i64>,
         message: S,
     ) -> Result<()>;
 
-    fn all(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
-    fn by_resource<T>(&mut self, resource_id: Option<i32>) -> Result<Vec<Item>>;
-    fn count(&mut self, user: i32) -> Result<i64>;
+    fn all(&mut self, user: i64, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn by_resource<T>(&mut self, resource_id: Option<i64>) -> Result<Vec<Item>>;
+    fn count(&mut self, user: i64) -> Result<i64>;
 }
 
 impl Dao for Connection {
     fn add<S: Into<String>, T>(
         &mut self,
-        user: i32,
+        user: i64,
         plugin: &str,
         level: Level,
         ip: &str,
-        resource_id: Option<i32>,
+        resource_id: Option<i64>,
         message: S,
     ) -> Result<()> {
         insert_into(logs::dsl::logs)
@@ -67,7 +67,7 @@ impl Dao for Connection {
         Ok(())
     }
 
-    fn all(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>> {
+    fn all(&mut self, user: i64, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = logs::dsl::logs
             .filter(logs::dsl::user_id.eq(user))
             .order(logs::dsl::created_at.desc())
@@ -76,7 +76,7 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn by_resource<T>(&mut self, resource_id: Option<i32>) -> Result<Vec<Item>> {
+    fn by_resource<T>(&mut self, resource_id: Option<i64>) -> Result<Vec<Item>> {
         let items = logs::dsl::logs
             .filter(logs::dsl::resource_type.eq(type_name::<T>()))
             .filter(logs::dsl::resource_id.eq(resource_id))
@@ -84,7 +84,7 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn count(&mut self, user: i32) -> Result<i64> {
+    fn count(&mut self, user: i64) -> Result<i64> {
         let it = logs::dsl::logs
             .filter(logs::dsl::user_id.eq(user))
             .count()
