@@ -11,7 +11,7 @@ var Q = thrift.Q;
 var Int64 = require('node-int64');
 
 
-var ttypes = require('./markdown_types');
+var ttypes = require('./morus-markdown_types');
 //HELPER FUNCTIONS AND STRUCTURES
 
 var Markdown_to_html_args = function(args) {

@@ -64,8 +64,9 @@ function generate_thrift_for_node() {
 
 function generate_thrift_for_rust() {
     cd $WORKSPACE
-    echo "generate thrift $1 => $3"
-    thrift -out tmp --gen rs -r $1
+    echo "generate thrift $1/$2.thrift => $3"
+    mkdir -p $3
+    thrift -out tmp --gen rs -r $1/$2.thrift
     mv tmp/$2.rs $3/protocols.rs
 }
 
@@ -109,32 +110,32 @@ function generate_diesel_postgresql_scheme() {
     DATABASE_URL=$1 diesel print-schema -o schema_migrations >camelia/src/orm/postgresql/schema.rs
 }
 
-generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/loquat/gourd
-generate_thrift_for_go $WORKSPACE/gourd/gourd.thrift $WORKSPACE/gourd/services/v1
-generate_thrift_for_java $WORKSPACE/musa/wechat-pay.thrift $WORKSPACE/musa/src/main/java com/github/saturn_xiv/palm/plugins/musa/v1/wechat_pay
-generate_thrift_for_node $WORKSPACE/morus/markdown.thrift $WORKSPACE/morus/src/protocols
-generate_thrift_for_go $WORKSPACE/daisy/daisy.thrift $WORKSPACE/daisy/services/v1
-generate_thrift_for_go $WORKSPACE/tuberose/tuberose.thrift $WORKSPACE/tuberose/services/v1
-generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/jasmine/services/v1
-generate_thrift_for_go $WORKSPACE/lily/lily.thrift $WORKSPACE/lily/services/v1
-generate_thrift_for_go $WORKSPACE/jasmine/jasmine.thrift $WORKSPACE/lily/env/jasmine/v1
+generate_thrift_for_cpp $WORKSPACE/palm/protocols/loquat.thrift $WORKSPACE/loquat/gourd
+generate_thrift_for_go $WORKSPACE/palm/protocols/gourd.thrift $WORKSPACE/gourd/services/v1
+generate_thrift_for_java $WORKSPACE/palm/protocols/musa-wechat-pay.thrift $WORKSPACE/musa/src/main/java com/github/saturn_xiv/palm/plugins/musa/v1/wechat_pay
+generate_thrift_for_node $WORKSPACE/palm/protocols/morus-markdown.thrift $WORKSPACE/morus/src/protocols
+generate_thrift_for_go $WORKSPACE/palm/protocols/daisy.thrift $WORKSPACE/daisy/services/v1
+generate_thrift_for_go $WORKSPACE/palm/protocols/tuberose.thrift $WORKSPACE/tuberose/services/v1
+generate_thrift_for_go $WORKSPACE/palm/protocols/jasmine.thrift $WORKSPACE/jasmine/services/v1
+generate_thrift_for_go $WORKSPACE/palm/protocols/lily.thrift $WORKSPACE/lily/services/v1
+generate_thrift_for_go $WORKSPACE/palm/protocols/jasmine.thrift $WORKSPACE/lily/env/jasmine/v1
 # hibiscus
-generate_thrift_for_rust $WORKSPACE/jasmine/jasmine.thrift jasmine $WORKSPACE/hibiscus/src/jasmine
-generate_thrift_for_rust $WORKSPACE/lily/lily.thrift lily $WORKSPACE/hibiscus/src/lily
-generate_thrift_for_rust $WORKSPACE/gourd/gourd.thrift gourd $WORKSPACE/hibiscus/src/gourd
-generate_thrift_for_rust $WORKSPACE/morus/markdown.thrift markdown $WORKSPACE/hibiscus/src/morus/markdown
-generate_thrift_for_rust $WORKSPACE/musa/wechat-pay.thrift wechat-pay $WORKSPACE/hibiscus/src/musa/wechat_pay
-generate_thrift_for_rust $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/hibiscus/src/tuberose
-generate_thrift_for_rust $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/hibiscus/src/daisy
-generate_thrift_for_rust $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/hibiscus/src/loquat
-# tutorials
-generate_thrift_for_php $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/tutorials/php/lib
-generate_thrift_for_php $WORKSPACE/lily/lily.thrift lily $WORKSPACE/tutorials/php/lib
-generate_thrift_for_php $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/tutorials/php/lib
-generate_thrift_for_php $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/tutorials/php/lib
-generate_thrift_for_php $WORKSPACE/morus/markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
-generate_thrift_for_php $WORKSPACE/musa/wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
-generate_thrift_for_java $WORKSPACE/morus/markdown.thrift $WORKSPACE/tutorials/java/src/main/java com/github/saturn_xiv/palm/plugins/morus/v1/markdown
+generate_thrift_for_rust $WORKSPACE/palm/protocols jasmine $WORKSPACE/palm/src/jasmine
+generate_thrift_for_rust $WORKSPACE/palm/protocols lily $WORKSPACE/palm/src/lily
+generate_thrift_for_rust $WORKSPACE/palm/protocols gourd $WORKSPACE/palm/src/gourd
+generate_thrift_for_rust $WORKSPACE/palm/protocols morus-markdown $WORKSPACE/palm/src/morus/markdown
+generate_thrift_for_rust $WORKSPACE/palm/protocols musa-wechat-pay $WORKSPACE/palm/src/musa/wechat_pay
+generate_thrift_for_rust $WORKSPACE/palm/protocols tuberose $WORKSPACE/palm/src/tuberose
+generate_thrift_for_rust $WORKSPACE/palm/protocols daisy $WORKSPACE/palm/src/daisy
+generate_thrift_for_rust $WORKSPACE/palm/protocols loquat $WORKSPACE/palm/src/loquat
+# # tutorials
+# generate_thrift_for_php $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/tutorials/php/lib
+# generate_thrift_for_php $WORKSPACE/lily/lily.thrift lily $WORKSPACE/tutorials/php/lib
+# generate_thrift_for_php $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/tutorials/php/lib
+# generate_thrift_for_php $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/tutorials/php/lib
+# generate_thrift_for_php $WORKSPACE/morus/markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
+# generate_thrift_for_php $WORKSPACE/musa/wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
+# generate_thrift_for_java $WORKSPACE/morus/markdown.thrift $WORKSPACE/tutorials/java/src/main/java com/github/saturn_xiv/palm/plugins/morus/v1/markdown
 
 # postgresql
 generate_diesel_postgresql_scheme "postgres://www:change-me@127.0.0.1:5432/palm?sslmode=disable"
