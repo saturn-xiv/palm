@@ -15,15 +15,12 @@ use hibiscus::{
     Error, HttpError, Result,
 };
 use hyper::StatusCode;
-use log::error;
-use serde::{Deserialize, Serialize};
+use prost::Message as ProtobufMessage;
 
 use super::{
-    models::user::{
-        session::{Dao as UserSessionDao, ProviderType as UserProviderType},
-        Action, Dao as UserDao, Item as User,
-    },
+    models::user::{session::Dao as UserSessionDao, Dao as UserDao, Item as User},
     orm::postgresql::Connection as Db,
+    v1::{user_details::Type as UserProviderType, Oauth2State, TokenAction},
     NAME,
 };
 
@@ -33,7 +30,7 @@ pub trait CurrentUserAdapter {
         db: &mut Db,
         ch: &mut Cache,
         jwt: &P,
-    ) -> Result<(User, String, (UserProviderType, i32))>;
+    ) -> Result<(User, String, (UserProviderType, i64))>;
 }
 
 impl CurrentUserAdapter for Session {
@@ -42,13 +39,19 @@ impl CurrentUserAdapter for Session {
         db: &mut Db,
         _ch: &mut Cache,
         jwt: &P,
-    ) -> Result<(User, String, (UserProviderType, i32))> {
+    ) -> Result<(User, String, (UserProviderType, i64))> {
         if let Some(ref token) = self.token {
-            let (_, uid) = jwt.verify(token, NAME, &Action::SignIn.to_string())?;
+            let (_, uid) = jwt.verify(token, NAME, TokenAction::SignIn.as_str_name())?;
             let su = UserSessionDao::by_uid(db, &uid)?;
+            let provider_type =
+                UserProviderType::from_str_name(&su.provider_type).ok_or(Box::new(HttpError(
+                    StatusCode::BAD_REQUEST,
+                    Some(format!("bad provider type({})", su.provider_type)),
+                )))?;
             let iu = UserDao::by_id(db, su.user_id)?;
             iu.available()?;
-            return Ok((iu, su.uid, (su.provider_type.parse()?, su.provider_id)));
+
+            return Ok((iu, su.uid, (provider_type, su.provider_id)));
         }
 
         Err(Box::new(HttpError(
@@ -67,7 +70,7 @@ impl User {
 
         Err(Box::new(HttpError(
             StatusCode::FORBIDDEN,
-            Some(format!("{} didn't has role {}", self.nickname, role)),
+            Some(format!("user didn't has role {}", role)),
         )))
     }
     pub fn is_administrator(&self, gourd: &Thrift) -> Result<()> {
@@ -94,7 +97,7 @@ impl User {
                 "user didn't has permission({}, {}://{})",
                 operation,
                 resource_type,
-                resource_id.map_or_else("".to_string(), |x| x.to_string())
+                resource_id.map_or_else(|| "".to_string(), |x| x.to_string())
             )),
         )))
     }
@@ -109,19 +112,10 @@ impl User {
     }
 }
 
-#[derive(Serialize, Deserialize, Default, PartialEq, Debug, Clone)]
-pub struct Oauth2State {
-    pub user: Option<String>,
-    pub id: String,
-}
-
 impl fmt::Display for Oauth2State {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let it = {
-            let buf = flexbuffers::to_vec(self).map_err(|e| {
-                error!("{:?}", e);
-                fmt::Error
-            })?;
+            let buf = self.encode_to_vec();
             BASE64URL_NOPAD.encode(&buf)
         };
         write!(f, "{}", it)
@@ -133,7 +127,7 @@ impl FromStr for Oauth2State {
 
     fn from_str(s: &str) -> Result<Self> {
         let buf = BASE64URL_NOPAD.decode(s.as_bytes())?;
-        let it = flexbuffers::from_slice(&buf)?;
+        let it = ProtobufMessage::decode(&buf[..])?;
         Ok(it)
     }
 }

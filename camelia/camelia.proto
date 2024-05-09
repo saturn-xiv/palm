@@ -21,18 +21,16 @@ enum Operation {
   Remove = 4;
 }
 
-message Token {
-  message SignIn {}
-  message ResetPassword {}
-  message Unlock {}
-  message Confirm {}
-  oneof action {
-    SignIn sign_in = 1;
-    ResetPassword reset_password = 2;
-    Unlock unlock = 3;
-    Confirm confirm = 4;
-    string by = 9;
-  }
+enum TokenAction {
+  SignIn = 0;
+  Confirm = 1;
+  ResetPassword = 2;
+  Unlock = 3;
+}
+
+message Oauth2State {
+  optional int64 user = 1;
+  string code = 2;
 }
 
 service User {
