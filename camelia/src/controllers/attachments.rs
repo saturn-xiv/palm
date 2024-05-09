@@ -4,8 +4,8 @@ use std::ops::DerefMut;
 use actix_multipart::form::{tempfile::TempFile, MultipartForm};
 use actix_web::{post, web, Responder, Result as WebResult};
 use diesel::Connection as DieselConntection;
+use hibiscus::{env::Thrift, try_web, Error, Result};
 use mime::APPLICATION_OCTET_STREAM;
-use palm::{minio::Connection as Minio, try_web, Error, Result};
 use serde::Deserialize;
 
 use super::super::{

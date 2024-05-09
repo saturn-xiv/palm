@@ -2,18 +2,11 @@ pub mod schema;
 
 use std::default::Default;
 use std::fmt;
-use std::sync::Arc;
 
-use casbin::prelude::*;
 use diesel::{sql_query, RunQueryDsl};
-use diesel_adapter::DieselAdapter;
+use hibiscus::Result;
 use log::debug;
-use palm::{
-    queue::rabbitmq::stream::{watcher::Watcher as RabbitCasbinWatcher, Client as RabbitMqClient},
-    Result,
-};
 use serde::{Deserialize, Serialize};
-use tokio::sync::Mutex;
 
 use super::Version;
 
@@ -47,31 +40,6 @@ impl Config {
         Ok(Pool::builder()
             .max_size(self.pool_size.unwrap_or(32))
             .build(manager)?)
-    }
-    pub async fn casbin_enforcer(
-        &self,
-        client: Arc<RabbitMqClient>,
-    ) -> Result<Arc<Mutex<Enforcer>>> {
-        debug!("init casbin postgresql enforcer");
-        let enforcer = {
-            let model =
-                DefaultModel::from_str(include_str!("rbac_with_resource_roles_model.conf")).await?;
-            let url = self.to_string();
-
-            let adapter = DieselAdapter::new(&url, 4)?;
-            let it = Enforcer::new(model, adapter).await?;
-            Arc::new(Mutex::new(it))
-        };
-
-        debug!("init casbin rabbitmq stream adapter");
-        let watcher = RabbitCasbinWatcher::new(client.clone()).await?;
-
-        {
-            let enforcer = enforcer.clone();
-            let mut enf = enforcer.lock().await;
-            enf.set_watcher(Box::new(watcher));
-        }
-        Ok(enforcer)
     }
 }
 

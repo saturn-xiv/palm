@@ -1,5 +1,5 @@
 use casbin::Enforcer;
-use palm::{
+use hibiscus::{
     cache::redis::ClusterConnection as Cache,
     crypto::Secret,
     jwt::Jwt,

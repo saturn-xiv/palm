@@ -2,22 +2,24 @@ use std::string::ToString;
 
 use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*};
+use hibiscus::{HttpError, Result};
 use hyper::StatusCode;
-use palm::{HttpError, Result};
 use serde::{Deserialize, Serialize};
-use strum::{Display as EnumDisplay, EnumString};
+
 use uuid::Uuid;
 
-use super::super::super::{orm::postgresql::Connection, schema::user_sessions};
+use super::super::super::{
+    orm::postgresql::Connection, schema::user_sessions, v1::user_details::Type as ProviderType,
+};
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub uid: String,
     pub provider_type: String,
-    pub provider_id: i32,
+    pub provider_id: i64,
     pub ip: String,
     pub expired_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
@@ -36,49 +38,40 @@ impl Item {
     }
 }
 
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub enum ProviderType {
-    Email,
-    Google,
-    WechatMiniProgram,
-    WechatOauth2,
-}
-
 pub trait Dao {
     fn create(
         &mut self,
-        user: i32,
+        user: i64,
         provider_type: &ProviderType,
-        provider_id: i32,
+        provider_id: i64,
         ip: &str,
         ttl: Duration,
     ) -> Result<String>;
-    fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn by_user_and_provider_type(
         &mut self,
-        user: i32,
+        user: i64,
         provider_type: &ProviderType,
     ) -> Result<Vec<Item>>;
     fn by_ip(&mut self, ip: &str) -> Result<Vec<Item>>;
-    fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
+    fn by_user(&mut self, user: i64) -> Result<Vec<Item>>;
     fn clean(&mut self) -> Result<()>;
-    fn delete(&mut self, id: i32) -> Result<()>;
+    fn delete(&mut self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
     fn create(
         &mut self,
-        user: i32,
+        user: i64,
         provider_type: &ProviderType,
-        provider_id: i32,
+        provider_id: i64,
         ip: &str,
         ttl: Duration,
     ) -> Result<String> {
         let uid = Uuid::new_v4().to_string();
         let expired_at = Utc::now().naive_utc() + ttl;
-        let provider_type = provider_type.to_string();
+        let provider_type = provider_type.as_str_name();
         insert_into(user_sessions::dsl::user_sessions)
             .values((
                 user_sessions::dsl::uid.eq(&uid),
@@ -93,17 +86,17 @@ impl Dao for Connection {
     }
     fn by_user_and_provider_type(
         &mut self,
-        user: i32,
+        user: i64,
         provider_type: &ProviderType,
     ) -> Result<Vec<Item>> {
-        let provider_type = provider_type.to_string();
+        let provider_type = provider_type.as_str_name();
         let items = user_sessions::dsl::user_sessions
             .filter(user_sessions::dsl::user_id.eq(user))
             .filter(user_sessions::dsl::provider_type.eq(provider_type))
             .load(self)?;
         Ok(items)
     }
-    fn by_id(&mut self, id: i32) -> Result<Item> {
+    fn by_id(&mut self, id: i64) -> Result<Item> {
         let it = user_sessions::dsl::user_sessions
             .filter(user_sessions::dsl::id.eq(id))
             .first(self)?;
@@ -121,7 +114,7 @@ impl Dao for Connection {
             .load(self)?;
         Ok(items)
     }
-    fn by_user(&mut self, user: i32) -> Result<Vec<Item>> {
+    fn by_user(&mut self, user: i64) -> Result<Vec<Item>> {
         let items = user_sessions::dsl::user_sessions
             .filter(user_sessions::dsl::user_id.eq(user))
             .load(self)?;
@@ -133,7 +126,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn delete(&mut self, id: i32) -> Result<()> {
+    fn delete(&mut self, id: i64) -> Result<()> {
         delete(user_sessions::dsl::user_sessions.filter(user_sessions::dsl::id.eq(id)))
             .execute(self)?;
         Ok(())

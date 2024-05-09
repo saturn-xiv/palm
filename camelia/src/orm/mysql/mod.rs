@@ -2,7 +2,7 @@ use std::default::Default;
 use std::fmt;
 
 use diesel::{sql_query, RunQueryDsl};
-use palm::Result;
+use hibiscus::Result;
 use serde::{Deserialize, Serialize};
 
 use super::Version;

@@ -1,33 +1,21 @@
 -- migrate:up
 CREATE TABLE users(
     id BIGSERIAL PRIMARY KEY,
-    real_name VARCHAR(63) NOT NULL,
-    nickname VARCHAR(63) NOT NULL,
-    email VARCHAR(127) NOT NULL,
-    "password" BYTEA,
-    salt BYTEA NOT NULL,
-    avatar VARCHAR(255) NOT NULL,
     lang VARCHAR(8) NOT NULL DEFAULT 'en-US',
-    timezone VARCHAR(32) NOT NULL DEFAULT 'UTC',
-    "status" VARCHAR(16) NOT NULL,
+    timezone VARCHAR(32) NOT NULL DEFAULT 'UTC',    
     sign_in_count INT NOT NULL DEFAULT 0,
     current_sign_in_at TIMESTAMP WITHOUT TIME ZONE,
     current_sign_in_ip VARCHAR(45),
     last_sign_in_at TIMESTAMP WITHOUT TIME ZONE,
-    last_sign_in_ip VARCHAR(45),
-    confirmed_at TIMESTAMP WITHOUT TIME ZONE,
+    last_sign_in_ip VARCHAR(45),    
     locked_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE UNIQUE INDEX idx_users_nickname ON users(nickname);
-CREATE UNIQUE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_users_real_name ON users(real_name);
 CREATE INDEX idx_users_lang ON users(lang);
 CREATE INDEX idx_users_timezone ON users(timezone);
-CREATE INDEX idx_users_status ON users("status");
 CREATE INDEX idx_users_current_sign_in_ip ON users(current_sign_in_ip)
 WHERE current_sign_in_ip IS NOT NULL;
 CREATE INDEX idx_users_last_sign_in_ip ON users(last_sign_in_ip)

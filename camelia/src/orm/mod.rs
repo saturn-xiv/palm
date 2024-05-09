@@ -3,7 +3,7 @@ pub mod postgresql;
 pub mod sqlite;
 
 use diesel::{sql_types::Text, QueryableByName};
-use palm::Result;
+use hibiscus::Result;
 
 #[derive(QueryableByName)]
 pub struct Version {

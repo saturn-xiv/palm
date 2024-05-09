@@ -1,7 +1,7 @@
 use casbin::Enforcer;
 use diesel::prelude::*;
+use hibiscus::{cache::redis::ClusterConnection as Cache, jwt::Jwt, session::Session, Error};
 use juniper::GraphQLObject;
-use palm::{cache::redis::ClusterConnection as Cache, jwt::Jwt, session::Session, Error};
 use tokio::sync::Mutex;
 
 use super::super::super::super::{

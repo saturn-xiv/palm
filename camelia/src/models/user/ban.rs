@@ -1,6 +1,6 @@
 use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*};
-use palm::Result;
+use hibiscus::Result;
 use serde::{Deserialize, Serialize};
 
 use super::super::super::{orm::postgresql::Connection, schema::user_bans};
@@ -8,35 +8,35 @@ use super::super::super::{orm::postgresql::Connection, schema::user_bans};
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub ip: String,
     pub reason: String,
     pub expired_at: NaiveDateTime,
-    pub creator_id: i32,
+    pub creator_id: i64,
     pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {
     fn create(
         &mut self,
-        creator: i32,
-        user: i32,
+        creator: i64,
+        user: i64,
         ip: &str,
         reason: &str,
         ttl: Duration,
     ) -> Result<()>;
-    fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_ip(&mut self, ip: &str) -> Result<Vec<Item>>;
-    fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
+    fn by_user(&mut self, user: i64) -> Result<Vec<Item>>;
     fn clean(&mut self) -> Result<()>;
 }
 
 impl Dao for Connection {
     fn create(
         &mut self,
-        creator: i32,
-        user: i32,
+        creator: i64,
+        user: i64,
         ip: &str,
         reason: &str,
         ttl: Duration,
@@ -53,7 +53,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn by_id(&mut self, id: i32) -> Result<Item> {
+    fn by_id(&mut self, id: i64) -> Result<Item> {
         let it = user_bans::dsl::user_bans
             .filter(user_bans::dsl::id.eq(id))
             .first(self)?;
@@ -65,7 +65,7 @@ impl Dao for Connection {
             .load(self)?;
         Ok(items)
     }
-    fn by_user(&mut self, user: i32) -> Result<Vec<Item>> {
+    fn by_user(&mut self, user: i64) -> Result<Vec<Item>> {
         let items = user_bans::dsl::user_bans
             .filter(user_bans::dsl::user_id.eq(user))
             .load(self)?;

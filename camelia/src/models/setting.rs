@@ -3,7 +3,7 @@ use std::fmt::Display;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use palm::{crypto::Secret, Result};
+use hibiscus::{crypto::Secret, Result};
 use serde::{de::DeserializeOwned, ser::Serialize};
 
 use super::super::{orm::postgresql::Connection, schema::settings};

@@ -1,6 +1,6 @@
 use handlebars::Handlebars;
+use hibiscus::{HttpError, Result};
 use hyper::StatusCode;
-use palm::{HttpError, Result};
 use serde::ser::Serialize;
 
 use super::{models::locale::Dao, orm::postgresql::Connection};

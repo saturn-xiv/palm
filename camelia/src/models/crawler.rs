@@ -5,9 +5,9 @@ use diesel::{
     insert_into,
     prelude::*,
 };
+use hibiscus::{HttpError, Result};
 use hyper::StatusCode;
 use log::{debug, error, info};
-use palm::{HttpError, Result};
 use rand::{rngs::SmallRng, seq::SliceRandom, SeedableRng};
 use serde::Serialize;
 

@@ -1,6 +1,6 @@
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use palm::{
+use hibiscus::{
     crypto::random::bytes as random_bytes,
     google::oauth::openid::{
         AuthorizationCode as GoogleAuthorizationCode, IdToken as GoogleOpenIdToken,

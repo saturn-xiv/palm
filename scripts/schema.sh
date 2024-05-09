@@ -95,7 +95,7 @@ function generate_diesel_postgresql_scheme() {
 
     DATABASE_URL=$1 diesel print-schema -o \
         locales settings \
-        users user_contacts user_bans user_sessions logs \
+        users email_users user_contacts user_bans user_sessions logs \
         google_users \
         wechat_oauth2_users wechat_mini_program_users \
         attachments attachment_resources \

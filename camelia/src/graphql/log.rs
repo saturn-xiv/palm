@@ -1,12 +1,12 @@
 use chrono::NaiveDateTime;
-use juniper::GraphQLObject;
-use palm::{
+use hibiscus::{
     cache::redis::ClusterConnection as Cache,
     jwt::Jwt,
     pagination::{Pager, Pagination},
     session::Session,
     Result,
 };
+use juniper::GraphQLObject;
 
 use super::super::{
     models::log::{Dao as LogDao, Item as Log},

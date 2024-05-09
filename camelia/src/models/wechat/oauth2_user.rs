@@ -2,7 +2,7 @@ use std::fmt;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use palm::{
+use hibiscus::{
     crypto::random::bytes as random_bytes,
     orchid::v1::{
         wechat_oauth2_login_response::Sex, wechat_oauth2_qr_connect_request::Language,

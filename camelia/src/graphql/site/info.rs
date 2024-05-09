@@ -2,11 +2,11 @@ use std::collections::HashSet;
 
 use casbin::Enforcer;
 use chrono::{NaiveDateTime, Utc};
-use juniper::{GraphQLInputObject, GraphQLObject};
-use palm::{
+use hibiscus::{
     cache::redis::ClusterConnection as Cache, crypto::aes::Aes, jwt::Jwt, session::Session, Error,
     GIT_VERSION,
 };
+use juniper::{GraphQLInputObject, GraphQLObject};
 use serde::{Deserialize, Serialize};
 use tokio::sync::Mutex;
 use validator::Validate;

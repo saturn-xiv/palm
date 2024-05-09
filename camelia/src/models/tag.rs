@@ -1,6 +1,6 @@
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use palm::Result;
+use hibiscus::Result;
 use serde::Serialize;
 
 use super::super::{

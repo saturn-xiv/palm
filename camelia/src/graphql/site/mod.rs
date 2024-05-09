@@ -5,7 +5,7 @@ pub mod status;
 use std::any::type_name;
 
 use casbin::Enforcer;
-use palm::{
+use hibiscus::{
     cache::redis::ClusterConnection as Cache, crypto::Secret, jwt::Jwt, session::Session, Error,
 };
 use serde::{de::DeserializeOwned, Serialize};

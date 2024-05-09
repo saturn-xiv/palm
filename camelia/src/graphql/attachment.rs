@@ -1,18 +1,18 @@
 use casbin::Enforcer;
 use chrono::{Duration, NaiveDateTime};
+use hibiscus::{
+    cache::redis::ClusterConnection as Cache,
+    env::Thrift,
+    jasmine::S3,
+    jwt::Jwt,
+    pagination::{Pager, Pagination},
+    session::Session,
+    Error, HttpError,
+};
 use hyper::StatusCode;
 use juniper::GraphQLObject;
 use log::warn;
 use mime::{Mime, IMAGE};
-use palm::{
-    cache::redis::ClusterConnection as Cache,
-    jwt::Jwt,
-    minio::Connection as Minio,
-    pagination::{Pager, Pagination},
-    rbac::Operation,
-    session::Session,
-    Error, HttpError,
-};
 use tokio::sync::Mutex;
 use validator::Validate;
 
@@ -68,10 +68,8 @@ impl Show {
         }
         false
     }
-    pub async fn new(s3: &Minio, it: &Attachment, ttl: Duration) -> Result<Self, Error> {
-        let url = s3
-            .get_presigned_object_url(&it.bucket, &it.name, ttl)
-            .await?;
+    pub fn new(s3: &Thrift, it: &Attachment, ttl: Duration) -> Result<Self, Error> {
+        let url = s3.get_presigned_url(&it.bucket, &it.name, &it.title, ttl)?;
         Ok(Self {
             id: it.id,
             url,

@@ -1,16 +1,22 @@
+use std::any::type_name;
 use std::fmt::{self, Display};
 use std::str::FromStr;
 
-use casbin::{Enforcer, RbacApi};
 use data_encoding::BASE64URL_NOPAD;
+use hibiscus::{
+    cache::redis::ClusterConnection as Cache,
+    env::Thrift,
+    gourd::{
+        protocols::{ROLE_ADMINISTRATOR, ROLE_ROOT},
+        Policy,
+    },
+    jwt::Jwt,
+    session::Session,
+    Error, HttpError, Result,
+};
 use hyper::StatusCode;
 use log::error;
-use palm::{
-    cache::redis::ClusterConnection as Cache, has_permission, has_role, jwt::Jwt,
-    rbac::v1 as rbac_v1, session::Session, to_code, Error, HttpError, Result,
-};
 use serde::{Deserialize, Serialize};
-use tokio::sync::Mutex;
 
 use super::{
     models::user::{
@@ -53,76 +59,53 @@ impl CurrentUserAdapter for Session {
 }
 
 impl User {
-    pub async fn has(&self, enforcer: &Mutex<Enforcer>, role: &rbac_v1::Role) -> Result<()> {
-        {
-            let role = role.to_string();
-            let user = self.to_subject();
-            if has_role!(enforcer, &user, &role) {
-                return Ok(());
-            }
+    pub fn has(&self, gourd: &Thrift, role: &str) -> Result<()> {
+        let ok = Policy::has(gourd, self.id, role)?;
+        if ok {
+            return Ok(());
         }
+
         Err(Box::new(HttpError(
             StatusCode::FORBIDDEN,
             Some(format!("{} didn't has role {}", self.nickname, role)),
         )))
     }
-    pub async fn is_member(&self, enforcer: &Mutex<Enforcer>, name: &str) -> Result<()> {
-        self.has(enforcer, &rbac_v1::Role::member(name.to_string()))
-            .await
+    pub fn is_administrator(&self, gourd: &Thrift) -> Result<()> {
+        self.has(gourd, ROLE_ADMINISTRATOR)
     }
-    pub async fn is_administrator(&self, enforcer: &Mutex<Enforcer>) -> Result<()> {
-        self.has(enforcer, &rbac_v1::Role::administrator()).await
+    pub fn is_root(&self, gourd: &Thrift) -> Result<()> {
+        self.has(gourd, ROLE_ROOT)
     }
-    pub async fn is_root(&self, enforcer: &Mutex<Enforcer>) -> Result<()> {
-        self.has(enforcer, &rbac_v1::Role::root()).await
-    }
-    pub async fn can_<O: Display>(
+    pub fn can_<O: Display>(
         &self,
-        enforcer: &Mutex<Enforcer>,
+        gourd: &Thrift,
         operation: O,
         resource_type: &str,
-        resource_id: Option<i32>,
+        resource_id: Option<i64>,
     ) -> Result<()> {
-        let resource = rbac_v1::Resource {
-            r#type: resource_type.to_string(),
-            id: resource_id.map(rbac_v1::resource::Id::I),
-        };
-        self.can_object(enforcer, operation, &resource).await
-    }
-    pub async fn can<R, O: Display>(
-        &self,
-        enforcer: &Mutex<Enforcer>,
-        operation: O,
-        resource_id: Option<i32>,
-    ) -> Result<()> {
-        let resource = rbac_v1::Resource::by_i::<R>(resource_id);
-        self.can_object(enforcer, operation, &resource).await
-    }
-    async fn can_object<O: Display>(
-        &self,
-        enforcer: &Mutex<Enforcer>,
-        operation: O,
-        resource: &rbac_v1::Resource,
-    ) -> Result<()> {
-        if self.is_administrator(enforcer).await.is_ok() {
-            return Ok(());
-        }
-        let user = self.to_subject();
-        let action = {
-            let it = operation.to_string();
-            to_code!(it)
-        };
-        let object = resource.to_string();
-        if has_permission!(enforcer, &user, &object, &action) {
+        let operation = operation.to_string();
+        let ok = Policy::can(gourd, self.id, &operation, resource_type, resource_id)?;
+        if ok {
             return Ok(());
         }
         Err(Box::new(HttpError(
             StatusCode::FORBIDDEN,
             Some(format!(
-                "{} didn't has permission ({}, {})",
-                self.nickname, operation, object
+                "user didn't has permission({}, {}://{})",
+                operation,
+                resource_type,
+                resource_id.map_or_else("".to_string(), |x| x.to_string())
             )),
         )))
+    }
+    pub fn can<R, O: Display>(
+        &self,
+        gourd: &Thrift,
+        operation: O,
+        resource_id: Option<i64>,
+    ) -> Result<()> {
+        let resource_type = type_name::<R>();
+        self.can_(gourd, operation, resource_type, resource_id)
     }
 }
 

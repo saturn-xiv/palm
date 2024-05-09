@@ -95,42 +95,6 @@ macro_rules! try_web {
     }};
 }
 
-#[macro_export]
-macro_rules! has_role {
-    ($e:expr, $s:expr, $r:expr) => {{
-        let mut e = $e.lock().await;
-        e.get_implicit_roles_for_user($s, None).contains($r)
-    }};
-}
-
-#[macro_export]
-macro_rules! has_permission {
-    ($e:expr, $s:expr, $o:expr, $a:expr) => {{
-        let mut e = $e.lock().await;
-        let mut ok = false;
-
-        for r in e.get_implicit_roles_for_user($s, None).iter() {
-            if e.has_permission_for_user(r, vec![$o.clone(), $a.clone()]) {
-                ok = true;
-                break;
-            }
-        }
-
-        ok
-    }};
-    ($e:expr, $s:expr, $a:expr) => {{
-        let mut e = $e.lock().await;
-        let mut ok = false;
-        for r in e.get_implicit_roles_for_user($s, None).iter() {
-            if e.has_permission_for_user(r, vec![$a.clone()]) {
-                ok = true;
-                break;
-            }
-        }
-        ok
-    }};
-}
-
 pub mod aws;
 pub mod cache;
 pub mod captcha;

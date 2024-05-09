@@ -1,6 +1,6 @@
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*};
-use palm::{Result, TextEditor};
+use hibiscus::{Result, TextEditor};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 

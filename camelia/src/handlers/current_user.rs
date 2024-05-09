@@ -3,7 +3,7 @@ use std::result::Result as StdResult;
 
 use actix_web::{dev::Payload, error::ErrorForbidden, web, Error, FromRequest, HttpRequest};
 use futures::future::{err, ok, Ready};
-use palm::{
+use hibiscus::{
     handlers::token::Token,
     jwt::{openssl::Jwt, Jwt as JwtProvider},
     try_web, Result,

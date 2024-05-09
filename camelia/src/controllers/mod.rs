@@ -3,7 +3,7 @@ pub mod attachments;
 use std::collections::HashMap;
 
 use actix_web::web;
-use palm::Result;
+use hibiscus::Result;
 
 use super::{models::locale::Dao as LocaleDao, orm::postgresql::Connection as Db};
 

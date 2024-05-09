@@ -7,10 +7,57 @@ package camelia.v1;
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 
+enum Editor {
+  TextArea = 0;
+  Markdown = 1;
+  Quill = 9;
+}
+
+enum Operation {
+  Read = 0;
+  Write = 1;
+  Create = 2;
+  Update = 3;
+  Remove = 4;
+}
+
+message Token {
+  message SignIn {}
+  message ResetPassword {}
+  message Unlock {}
+  message Confirm {}
+  oneof action {
+    SignIn sign_in = 1;
+    ResetPassword reset_password = 2;
+    Unlock unlock = 3;
+    Confirm confirm = 4;
+    string by = 9;
+  }
+}
+
 service User {
-  rpc SignInByEmail(UserSignInByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
   rpc SignUpByEmail(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
 }
+
+message UserDetails {
+  enum Type {
+    Email = 0;
+    Phone = 1;
+    Google = 2;
+    WechatMiniProgram = 11;
+    WechatOauth2 = 12;
+  }
+  Type type = 1;
+  string id = 2;
+
+  string name = 11;
+  string lang = 12;
+  string timezone = 13;
+  optional string avatar = 19;
+}
+
+message UserSignInResponse {}
 
 message UserSignInByEmailRequest {
   oneof who {

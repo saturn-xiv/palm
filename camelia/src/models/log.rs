@@ -2,7 +2,7 @@ use std::any::type_name;
 
 use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
-use palm::Result;
+use hibiscus::Result;
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 
