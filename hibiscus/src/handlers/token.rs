@@ -2,9 +2,8 @@ use std::result::Result as StdResult;
 
 use actix_web::{dev::Payload, http::header::AUTHORIZATION, web, Error, FromRequest, HttpRequest};
 use futures::future::{ok, Ready};
+use palm::BEARER;
 use serde::{Deserialize, Serialize};
-
-use super::super::jwt::BEARER;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Token(pub Option<String>);

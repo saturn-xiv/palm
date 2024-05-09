@@ -1,8 +1,9 @@
 // https://developers.weixin.qq.com/miniprogram/dev/framework/server-ability/message-push.html#option-url
 use hyper::StatusCode;
+use palm::openssl::sha1::sum as sha1_sum;
 use serde::{Deserialize, Serialize};
 
-use super::super::super::{crypto::sha1::sum as sha1_sum, HttpError, Result};
+use super::super::super::{HttpError, Result};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct VerifyRequest {

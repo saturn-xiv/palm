@@ -1,20 +1,9 @@
-use juniper::{GraphQLInputObject, GraphQLObject};
-
-#[derive(GraphQLObject)]
-#[graphql(name = "Pagination")]
-pub struct Pagination {
-    pub page: i32,
-    pub size: i32,
-    pub total: i32,
-    pub has_next: bool,
-    pub has_previous: bool,
-}
+use super::azalea::v1::{Pager, Pagination};
 
 impl Pagination {
     pub fn new(pager: &Pager, total: i64) -> Self {
-        let page = pager.page(total) as i32;
-        let size = pager.size() as i32;
-        let total = total as i32;
+        let page = pager.page(total);
+        let size = pager.size();
 
         Self {
             page,
@@ -24,13 +13,6 @@ impl Pagination {
             has_previous: (page > 1),
         }
     }
-}
-
-#[derive(GraphQLInputObject)]
-#[graphql(name = "Pager")]
-pub struct Pager {
-    pub page: i32,
-    pub size: i32,
 }
 
 impl Pager {
@@ -43,7 +25,7 @@ impl Pager {
         if total < size || self.page < 1 {
             return 1;
         }
-        let page = self.page as i64;
+        let page = self.page;
         if page * size > total {
             let it = total / size;
             return if total % size == 0 { it } else { it + 1 };
@@ -52,7 +34,7 @@ impl Pager {
     }
 
     pub fn size(&self) -> i64 {
-        let size = self.size as i64;
+        let size = self.size;
         if size < Self::MIN_SIZE {
             return Self::MIN_SIZE;
         }

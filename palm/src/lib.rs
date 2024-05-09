@@ -1,10 +1,13 @@
 pub mod daisy;
 pub mod gourd;
+pub mod iso4217;
 pub mod jasmine;
 pub mod lily;
 pub mod loquat;
 pub mod morus;
 pub mod musa;
+pub mod openssl;
+pub mod pagination;
 pub mod random;
 pub mod tuberose;
 
@@ -25,6 +28,7 @@ use std::ops::Add;
 use std::result::Result as StdResult;
 
 use chrono::{Datelike, Duration, NaiveDateTime, Utc};
+use data_encoding::BASE64;
 use hyper::{header::AUTHORIZATION, StatusCode};
 use serde::{Deserialize, Serialize};
 use thrift::{
@@ -42,6 +46,26 @@ use tonic::{
     metadata::{Ascii, MetadataKey, MetadataValue},
     Request as GrpcRequest,
 };
+
+pub const NAME: &str = env!("CARGO_PKG_NAME");
+pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");
+pub const HOMEPAGE: &str = env!("CARGO_PKG_HOMEPAGE");
+pub const AUTHORS: &str = env!("CARGO_PKG_AUTHORS");
+pub const BANNER: &str = include_str!("banner.txt");
+
+pub const XML_HEADER: &str = r#"<?xml version="1.0" encoding="UTF-8"?>"#;
+
+include!(concat!(env!("OUT_DIR"), "/env.rs"));
+
+lazy_static::lazy_static! {
+    pub static ref VERSION: String = format!("{GIT_VERSION}({BUILD_TIME})");
+}
+
+// https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md
+// https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md
+// https://developers.cloudflare.com/support/speed/optimization-file-size/what-will-cloudflare-compress/
+pub const PROTOBUF: &str = "application/x-protobuf";
+pub const FLATBUFFER: &str = "application/x-flatbuffer";
 
 pub type Error = Box<dyn StdError + Send + Sync>;
 pub type Result<T> = StdResult<T, Error>;
@@ -161,6 +185,22 @@ pub trait Jwt {
             Some("bad years".to_string()),
         )))?;
         Ok((now.timestamp(), nbf.timestamp(), exp.timestamp()))
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Key(pub String);
+
+impl Default for Key {
+    fn default() -> Self {
+        Self(BASE64.encode(&random::bytes(32)))
+    }
+}
+
+impl From<Key> for Result<Vec<u8>> {
+    fn from(it: Key) -> Self {
+        let buf = BASE64.decode(it.0.as_bytes())?;
+        Ok(buf)
     }
 }
 

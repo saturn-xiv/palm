@@ -1,5 +1,3 @@
-pub mod watcher;
-
 use std::any::type_name;
 use std::fmt::Debug;
 use std::ops::Deref;
@@ -7,15 +5,15 @@ use std::time::Duration as StdDuration;
 
 use futures::StreamExt;
 use hyper::StatusCode;
+use palm::{random::uuid, HttpError, Result, FLATBUFFER, PROTOBUF};
 use rabbitmq_stream_client::{
     error::StreamCreateError,
     types::{ByteCapacity, Message, OffsetSpecification, ResponseCode},
     Environment,
 };
 use serde::Serialize;
-use uuid::Uuid;
 
-use super::super::super::{is_stopped, HttpError, Result, FLATBUFFER, PROTOBUF};
+use super::super::super::is_stopped;
 
 pub trait Handler: Sync + Send {
     fn handle(
@@ -129,7 +127,7 @@ impl Client {
             .name(&self.name)
             .build(queue)
             .await?;
-        let id = Uuid::new_v4().to_string();
+        let id = uuid();
         info!("publish message {}/{} into {}", id, content_type, queue);
         let message = Message::builder()
             .properties()

@@ -1,12 +1,10 @@
 pub mod ping;
 
 use askama::Template;
-use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-#[derive(GraphQLObject, Template, Validate, Serialize, Deserialize, Default)]
-#[graphql(name = "BaiduSiteVerification")]
+#[derive(Template, Validate, Serialize, Deserialize, Default)]
 #[template(path = "baidu/verify.html", escape = "none")]
 
 pub struct SiteVerification {

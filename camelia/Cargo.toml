@@ -87,9 +87,5 @@ features = [
 version = "4"
 features = ["cookies"]
 
-[dependencies.openssl]
-version = "*"
-features = ["vendored"]
-
 [dependencies.hibiscus]
 path = '../hibiscus'

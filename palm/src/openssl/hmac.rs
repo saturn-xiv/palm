@@ -6,8 +6,7 @@ use openssl::{
     sign::Signer,
 };
 
-use super::super::Result;
-use super::random::bytes as random_bytes;
+use super::super::{random::bytes as random_bytes, Password, Result};
 
 // https://docs.rs/openssl/latest/openssl/sign/index.html
 pub struct Hmac {
@@ -25,7 +24,7 @@ impl Hmac {
     }
 }
 
-impl super::Password for Hmac {
+impl Password for Hmac {
     fn compute(&self, plain_text: &[u8], salt_len: usize) -> Result<(Vec<u8>, Vec<u8>)> {
         let salt = random_bytes(salt_len);
         let cipher = self.compute_(plain_text, &salt)?;

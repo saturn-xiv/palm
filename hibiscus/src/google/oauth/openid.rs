@@ -2,11 +2,10 @@ use std::collections::HashMap;
 use std::fmt::Display;
 
 use hyper::StatusCode;
-use rand::{distributions::Alphanumeric, thread_rng, Rng};
+use palm::{random::string as random_string, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use url::form_urlencoded;
 
-use super::super::super::{HttpError, Result};
 use super::{AccessType, Scope};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -27,11 +26,7 @@ impl super::Web {
         state: &T,
         redirect_uri: &str,
     ) -> (String, String) {
-        let nonce: String = thread_rng()
-            .sample_iter(&Alphanumeric)
-            .take(8)
-            .map(char::from)
-            .collect();
+        let nonce: String = random_string(8);
         let url = form_urlencoded::Serializer::new(
             "https://accounts.google.com/o/oauth2/v2/auth".to_string(),
         )

@@ -1,5 +1,3 @@
-pub mod watcher;
-
 use std::any::type_name;
 use std::fmt::Debug;
 use std::time::{SystemTime, UNIX_EPOCH};
@@ -17,10 +15,8 @@ use amqprs::{
 use async_trait::async_trait;
 use hyper::StatusCode;
 use log::info;
+use palm::{random::uuid, HttpError, Result, FLATBUFFER, PROTOBUF};
 use serde::Serialize;
-use uuid::Uuid;
-
-use super::super::super::{HttpError, Result, FLATBUFFER, PROTOBUF};
 
 #[async_trait]
 pub trait Handler: Sync + Send {
@@ -161,7 +157,7 @@ impl Connection {
         payload: &[u8],
     ) -> Result<()> {
         let ch = self.open_channel().await?;
-        let message_id = Uuid::new_v4().to_string();
+        let message_id = uuid();
         debug!("send message {message_id}@({exchange}, {routing_key})");
         ch.basic_publish(
             BasicProperties::default()

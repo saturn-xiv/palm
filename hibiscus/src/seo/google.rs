@@ -1,13 +1,10 @@
 use askama::Template;
 use hyper::StatusCode;
-use juniper::GraphQLObject;
+use palm::{Error, HttpError};
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 
-use super::super::{Error, HttpError};
-
-#[derive(GraphQLObject, Template, Validate, Serialize, Deserialize, Default)]
-#[graphql(name = "GoogleSiteVerification")]
+#[derive(Template, Validate, Serialize, Deserialize, Default)]
 #[template(path = "google/verify.html", escape = "none")]
 
 pub struct SiteVerification {
@@ -16,8 +13,7 @@ pub struct SiteVerification {
 }
 
 // https://developers.google.com/recaptcha/docs/v3
-#[derive(GraphQLObject, Validate, Serialize, Deserialize, Debug, Default)]
-#[graphql(name = "GoogleReCaptcha")]
+#[derive(Validate, Serialize, Deserialize, Debug, Default)]
 pub struct ReCaptcha {
     #[serde(rename = "site-key")]
     #[validate(length(min = 1, max = 127))]

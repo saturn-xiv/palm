@@ -4,8 +4,6 @@
 extern crate log;
 #[macro_use]
 extern crate serde_json;
-#[macro_use]
-extern crate lazy_static;
 
 #[macro_export]
 macro_rules! to_timestamp {
@@ -98,16 +96,12 @@ macro_rules! try_web {
 pub mod aws;
 pub mod cache;
 pub mod captcha;
-pub mod crypto;
 pub mod currency;
 pub mod env;
 pub mod google;
 pub mod handlers;
-pub mod iso4217;
-pub mod jwt;
 pub mod line;
 pub mod network;
-pub mod pagination;
 pub mod parser;
 pub mod queue;
 pub mod search;
@@ -121,58 +115,10 @@ use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 use std::process::{Command, Output};
 
-use chrono::{DateTime, Duration, NaiveDateTime, Utc};
+use chrono::{DateTime, Duration, Utc};
 use chrono_tz::Tz;
 use hyper::StatusCode;
-use serde::{Deserialize, Serialize};
-use strum::{Display as EnumDisplay, EnumString};
-
-pub use self::result::{Error, GrpcResult, HttpError, HttpResult, Result};
-
-pub const NAME: &str = env!("CARGO_PKG_NAME");
-pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");
-pub const HOMEPAGE: &str = env!("CARGO_PKG_HOMEPAGE");
-pub const AUTHORS: &str = env!("CARGO_PKG_AUTHORS");
-pub const BANNER: &str = include_str!("banner.txt");
-
-pub const XML_HEADER: &str = r#"<?xml version="1.0" encoding="UTF-8"?>"#;
-
-include!(concat!(env!("OUT_DIR"), "/env.rs"));
-
-lazy_static! {
-    pub static ref VERSION: String = format!("{GIT_VERSION}({BUILD_TIME})");
-}
-
-// https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md
-// https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md
-// https://developers.cloudflare.com/support/speed/optimization-file-size/what-will-cloudflare-compress/
-pub const PROTOBUF: &str = "application/x-protobuf";
-pub const FLATBUFFER: &str = "application/x-flatbuffer";
-
-#[derive(GraphQLObject, Serialize, Deserialize)]
-#[graphql(name = "Succeed")]
-#[serde(rename_all = "camelCase")]
-pub struct Succeed {
-    pub created_at: NaiveDateTime,
-}
-
-impl Default for Succeed {
-    fn default() -> Self {
-        Self {
-            created_at: Utc::now().naive_utc(),
-        }
-    }
-}
-
-#[derive(
-    GraphQLEnum, EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone,
-)]
-#[graphql(name = "MediaTextEditor")]
-pub enum TextEditor {
-    Textarea,
-    Markdown,
-    Quill,
-}
+use palm::{HttpError, Result};
 
 pub fn duration_from_days(i: i64) -> Result<Duration> {
     Duration::try_days(i).ok_or(Box::new(HttpError(

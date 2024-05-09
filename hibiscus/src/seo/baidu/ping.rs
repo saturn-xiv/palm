@@ -1,9 +1,8 @@
 use hyper::StatusCode;
+use palm::{Error, HttpError, XML_HEADER};
 use quick_xml::se::to_string as to_xml_string;
 use reqwest::header::CONTENT_TYPE;
 use serde::{Deserialize, Serialize};
-
-use super::super::super::{Error, HttpError, XML_HEADER};
 
 // https://help.baidu.com/question?prod_id=99&class=0&id=3046
 // https://github.com/CleanSky/PHP/blob/master/phpLearning/google_baidu_shoulu.php

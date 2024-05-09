@@ -23,7 +23,7 @@ pub struct Token {
     pub iat: i64,
 }
 
-impl super::Jwt for Jwt {
+impl super::super::Jwt for Jwt {
     fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)> {
         let token: TokenData<Token> = self.parse(token, issuer, audience)?;
         Ok((token.claims.jti, token.claims.sub))

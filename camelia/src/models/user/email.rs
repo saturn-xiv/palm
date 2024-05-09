@@ -5,7 +5,6 @@ use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
 use hibiscus::{crypto::Password, HttpError, Result};
 use hyper::StatusCode;
-use openssl::hash::{hash, MessageDigest};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -72,23 +71,6 @@ impl Item {
             StatusCode::UNAUTHORIZED,
             Some("bad password".to_string()),
         )))
-    }
-
-    // https://en.gravatar.com/site/implement/hash/
-    pub fn gravatar<S: AsRef<str>>(email: &S) -> Result<String> {
-        let id = hash(
-            MessageDigest::md5(),
-            email.as_ref().to_lowercase().trim().as_bytes(),
-        )?;
-        let it = format!(
-            "https://www.gravatar.com/avatar/{}.png",
-            id.to_vec()
-                .iter()
-                .map(|x| format!("{:02x}", *x))
-                .collect::<Vec::<_>>()
-                .join("")
-        );
-        Ok(it)
     }
 
     const SALT_SIZE: usize = 16;

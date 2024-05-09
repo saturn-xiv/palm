@@ -5,13 +5,10 @@ pub mod list_one;
 use std::collections::HashSet;
 
 use hyper::StatusCode;
-use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 
 use super::{HttpError, Result};
 
-#[derive(GraphQLObject)]
-#[graphql(name = "CurrencySelectOption")]
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Hash)]
 pub struct Currency {
     pub id: i32,

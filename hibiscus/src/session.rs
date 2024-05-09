@@ -2,12 +2,10 @@ use actix_web::{dev::Payload, Error, FromRequest, HttpRequest};
 use futures::future::{ok, Ready};
 use hyper::header::{ACCEPT_LANGUAGE, AUTHORIZATION, USER_AGENT};
 use language_tags::LanguageTag;
+use palm::BEARER;
 use tonic::{metadata::MetadataMap, Request};
 
-use super::{
-    handlers::{locale::Locale, peer::ClientIp, token::Token},
-    jwt::BEARER,
-};
+use super::handlers::{locale::Locale, peer::ClientIp, token::Token};
 
 pub struct Session {
     pub lang: String,

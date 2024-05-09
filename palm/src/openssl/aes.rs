@@ -1,8 +1,7 @@
 use data_encoding::BASE64;
 use openssl::symm::{decrypt, encrypt, Cipher};
 
-use super::super::Result;
-use super::random::bytes as random_bytes;
+use super::super::{random::bytes as random_bytes, Result, Secret};
 
 // https://docs.rs/openssl/latest/openssl/symm/index.html
 // Serpent > Twofish > Serpent
@@ -21,7 +20,7 @@ impl Aes {
     }
 }
 
-impl super::Secret for Aes {
+impl Secret for Aes {
     fn encrypt(&self, plain_text: &[u8]) -> Result<(Vec<u8>, Vec<u8>)> {
         let iv = random_bytes(self.cipher.block_size());
         let cipher_text = encrypt(self.cipher, &self.key, Some(&iv), plain_text)?;

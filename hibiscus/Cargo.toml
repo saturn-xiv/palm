@@ -50,12 +50,15 @@ percent-encoding = "2"
 tempfile = "3"
 handlebars = "5"
 google-youtube3 = "5"
-jsonwebtoken = "9"
 flatbuffers = "24"
 
 [dependencies.chrono]
 version = "0.4"
 features = ["serde", "std"]
+
+[dependencies.rand]
+version = "0.8"
+features = ["small_rng"]
 
 [dependencies.actix-session]
 version = "0.9"
@@ -138,10 +141,5 @@ features = ["serde"]
 version = "4"
 features = ["cookies"]
 
-# [dependencies.thrift]
-# git = "https://github.com/apache/thrift.git"
-# tag = "v0.20.0"
-
-[dependencies.openssl]
-version = "*"
-features = ["vendored"]
+[dependencies.palm]
+path = '../palm'
