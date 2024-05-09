@@ -9,16 +9,6 @@ use serde::{Deserialize, Serialize};
 
 use super::Result;
 
-pub trait Password {
-    fn compute(&self, plain_text: &[u8], salt_len: usize) -> Result<(Vec<u8>, Vec<u8>)>;
-    fn verify(&self, cipher_text: &[u8], plain_text: &[u8], salt: &[u8]) -> bool;
-}
-
-pub trait Secret {
-    fn encrypt(&self, plain_text: &[u8]) -> Result<(Vec<u8>, Vec<u8>)>;
-    fn decrypt(&self, cipher_text: &[u8], iv: &[u8]) -> Result<Vec<u8>>;
-}
-
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Key(pub String);
 

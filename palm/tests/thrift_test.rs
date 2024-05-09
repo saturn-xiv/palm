@@ -5,12 +5,11 @@ use std::time::Duration as StdDuration;
 
 use chrono::Duration;
 use data_encoding::BASE64;
-use hibiscus::{
-    crypto::{Password, Secret},
+use palm::{
     daisy::protocols::{Address, Body, EmailSendTask},
-    env::{from_bytes, to_bytes, Thrift},
-    jwt::Jwt,
+    from_bytes,
     morus::markdown::Markdown,
+    to_bytes, Jwt, Password, Secret, Thrift,
 };
 
 #[test]

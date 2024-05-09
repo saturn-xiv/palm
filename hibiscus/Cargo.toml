@@ -53,17 +53,9 @@ google-youtube3 = "5"
 jsonwebtoken = "9"
 flatbuffers = "24"
 
-[dependencies.tink-core]
-version = "0.2"
-features = ["insecure"]
-
 [dependencies.chrono]
 version = "0.4"
 features = ["serde", "std"]
-
-[dependencies.rand]
-version = "0.8"
-features = ["small_rng"]
 
 [dependencies.actix-session]
 version = "0.9"
@@ -129,14 +121,6 @@ features = ["derive"]
 [dependencies.tokio]
 version = "1"
 features = ["full"]
-
-[dependencies.uuid]
-version = "1"
-features = ["v4", "serde"]
-
-[dependencies.casbin]
-version = "2"
-features = ["watcher", "cached"]
 
 [dependencies.ipnet]
 version = "2"
