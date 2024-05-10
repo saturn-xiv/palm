@@ -1,25 +1,20 @@
 use std::any::type_name;
-use std::fmt::{self, Display};
-use std::str::FromStr;
+use std::fmt::Display;
 
-use data_encoding::BASE64URL_NOPAD;
-use hibiscus::{
-    cache::redis::ClusterConnection as Cache,
+use hibiscus::{cache::redis::ClusterConnection as Cache, session::Session};
+use hyper::StatusCode;
+use palm::{
+    camelia::v1::{user_details::Type as UserProviderType, UserTokenAction},
     gourd::{
         protocols::{ROLE_ADMINISTRATOR, ROLE_ROOT},
         Policy,
     },
-    jwt::Jwt,
-    session::Session,
-    Error, HttpError, Result,
+    HttpError, Jwt, Result,
 };
-use hyper::StatusCode;
-use prost::Message as ProtobufMessage;
 
 use super::{
     models::user::{session::Dao as UserSessionDao, Dao as UserDao, Item as User},
     orm::postgresql::Connection as Db,
-    v1::{user_details::Type as UserProviderType, Oauth2State, TokenAction},
     NAME,
 };
 
@@ -40,7 +35,7 @@ impl CurrentUserAdapter for Session {
         jwt: &P,
     ) -> Result<(User, String, (UserProviderType, i64))> {
         if let Some(ref token) = self.token {
-            let (_, uid) = jwt.verify(token, NAME, TokenAction::SignIn.as_str_name())?;
+            let (_, uid) = jwt.verify(token, NAME, UserTokenAction::SignIn.as_str_name())?;
             let su = UserSessionDao::by_uid(db, &uid)?;
             let provider_type =
                 UserProviderType::from_str_name(&su.provider_type).ok_or(Box::new(HttpError(
@@ -108,25 +103,5 @@ impl User {
     ) -> Result<()> {
         let resource_type = type_name::<R>();
         self.can_(policy, operation, resource_type, resource_id)
-    }
-}
-
-impl fmt::Display for Oauth2State {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let it = {
-            let buf = self.encode_to_vec();
-            BASE64URL_NOPAD.encode(&buf)
-        };
-        write!(f, "{}", it)
-    }
-}
-
-impl FromStr for Oauth2State {
-    type Err = Error;
-
-    fn from_str(s: &str) -> Result<Self> {
-        let buf = BASE64URL_NOPAD.decode(s.as_bytes())?;
-        let it = ProtobufMessage::decode(&buf[..])?;
-        Ok(it)
     }
 }

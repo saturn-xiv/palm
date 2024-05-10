@@ -5,8 +5,8 @@ use actix_multipart::form::{tempfile::TempFile, MultipartForm};
 use actix_web::{post, web, Responder, Result as WebResult};
 use chrono::Duration;
 use diesel::Connection as DieselConntection;
-use hibiscus::{jasmine::S3, try_web, Error, Result};
 use mime::APPLICATION_OCTET_STREAM;
+use palm::{jasmine::S3, try_web, Error, Result};
 use serde::Deserialize;
 use tokio::fs::File as TokioFile;
 

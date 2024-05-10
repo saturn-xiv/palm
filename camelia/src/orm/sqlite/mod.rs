@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 use std::time::Duration;
 
 use diesel::{connection::SimpleConnection, sql_query, RunQueryDsl};
-use hibiscus::Result;
+use palm::Result;
 use serde::{Deserialize, Serialize};
 
 use super::Version;

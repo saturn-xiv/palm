@@ -17,3 +17,9 @@ message Pagination {
   bool has_previous = 8;
   bool has_next = 9;
 }
+
+enum TextEditor {
+  TextArea = 0;
+  Markdown = 1;
+  Quill = 9;
+}

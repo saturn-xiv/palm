@@ -7,9 +7,9 @@ use std::string::ToString;
 use chrono::{NaiveDateTime, Utc};
 use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, update};
-use hibiscus::{HttpError, Result};
 use hyper::StatusCode;
 use language_tags::LanguageTag;
+use palm::{HttpError, Result};
 use serde::{Deserialize, Serialize};
 
 use super::super::{orm::postgresql::Connection, schema::users};

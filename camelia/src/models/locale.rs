@@ -3,9 +3,9 @@ use std::path::Path;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use hibiscus::Result;
 use ini::Ini;
 use log::{debug, info, warn};
+use palm::Result;
 use serde::{Deserialize, Serialize};
 
 use super::super::{orm::postgresql::Connection, schema::locales};

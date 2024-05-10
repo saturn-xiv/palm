@@ -3,8 +3,8 @@ use std::string::ToString;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use hibiscus::{crypto::Password, HttpError, Result};
 use hyper::StatusCode;
+use palm::{openssl::gravatar, HttpError, Password, Result};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -134,7 +134,7 @@ impl Dao for Connection {
                 email_users::dsl::email.eq(email),
                 email_users::dsl::password.eq(&password),
                 email_users::dsl::salt.eq(&salt),
-                email_users::dsl::avatar.eq(&Item::gravatar(&email)?),
+                email_users::dsl::avatar.eq(&gravatar(&email)?),
                 email_users::dsl::updated_at.eq(&Utc::now().naive_utc()),
             ))
             .execute(self)?;

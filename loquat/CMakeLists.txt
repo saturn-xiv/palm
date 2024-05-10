@@ -39,7 +39,7 @@ pkg_check_modules(thriftz REQUIRED IMPORTED_TARGET thrift-z)
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
-  GIT_TAG         "v2.1.3"
+  GIT_TAG         "v2.2.0"
 )
 
 FetchContent_MakeAvailable(tink)

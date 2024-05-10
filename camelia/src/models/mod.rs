@@ -2,7 +2,7 @@ pub mod attachment;
 // pub mod category;
 // pub mod crawler;
 // pub mod google;
-// pub mod leave_word;
+pub mod leave_word;
 pub mod locale;
 pub mod log;
 // pub mod setting;

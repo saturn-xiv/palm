@@ -1,3 +1,5 @@
+pub mod azalea;
+pub mod camelia;
 pub mod daisy;
 pub mod gourd;
 pub mod iso4217;
@@ -7,20 +9,8 @@ pub mod loquat;
 pub mod morus;
 pub mod musa;
 pub mod openssl;
-pub mod pagination;
 pub mod random;
 pub mod tuberose;
-
-pub mod azalea {
-    pub mod v1 {
-        tonic::include_proto!("palm.azalea.v1");
-    }
-}
-pub mod camelia {
-    pub mod v1 {
-        tonic::include_proto!("palm.camelia.v1");
-    }
-}
 
 use std::error::Error as StdError;
 use std::fmt;
@@ -46,6 +36,94 @@ use tonic::{
     metadata::{Ascii, MetadataKey, MetadataValue},
     Request as GrpcRequest,
 };
+
+#[macro_export]
+macro_rules! to_timestamp {
+    ($x:expr) => {{
+        let it: std::time::SystemTime =
+            chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset($x, chrono::Utc).into();
+        it.into()
+    }};
+}
+
+#[macro_export]
+macro_rules! to_datetime {
+    ($x:expr) => {{
+        chrono::NaiveDateTime::from_timestamp_opt($x.seconds, $x.nanos as u32).unwrap_or_default()
+    }};
+}
+
+#[macro_export]
+macro_rules! to_chrono_duration {
+    ($x:expr) => {{
+        chrono::Duration::seconds($x.seconds)
+    }};
+}
+
+#[macro_export]
+macro_rules! to_utc_datetime {
+    ($x:expr) => {{
+        chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset($x, chrono::Utc)
+    }};
+}
+
+#[macro_export]
+macro_rules! to_std_duration {
+    ($x:expr) => {{
+        std::time::Duration::new($x.seconds as u64, $x.nanos as u32)
+    }};
+}
+
+#[macro_export]
+macro_rules! to_code {
+    ($x:expr) => {{
+        let it = $x.trim();
+        it.to_lowercase()
+    }};
+}
+
+#[macro_export]
+macro_rules! try_thrift {
+    ($r:expr, $e:expr) => {{
+        $r.map_err($e)
+    }};
+    ($r:expr) => {{
+        try_thrift!($r, |e| Error::Application(ApplicationError::new(
+            ApplicationErrorKind::InternalError,
+            e.to_string(),
+        )))
+    }};
+}
+
+#[macro_export]
+macro_rules! try_graphql {
+    ($r:expr, $e:expr) => {{
+        $r.map_err($e)
+    }};
+    ($r:expr) => {{
+        try_grpc!($r, |e| tonic::Status::internal(e.to_string()))
+    }};
+}
+
+#[macro_export]
+macro_rules! try_grpc {
+    ($r:expr, $e:expr) => {{
+        $r.map_err($e)
+    }};
+    ($r:expr) => {{
+        try_grpc!($r, |e| tonic::Status::internal(e.to_string()))
+    }};
+}
+
+#[macro_export]
+macro_rules! try_web {
+    ($r:expr, $e:expr) => {{
+        $r.map_err($e)
+    }};
+    ($r:expr) => {{
+        try_web!($r, actix_web::error::ErrorInternalServerError)
+    }};
+}
 
 pub const NAME: &str = env!("CARGO_PKG_NAME");
 pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");

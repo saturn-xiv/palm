@@ -2,15 +2,13 @@ use std::string::ToString;
 
 use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*};
-use hibiscus::{HttpError, Result};
 use hyper::StatusCode;
+use palm::{camelia::v1::user_details::Type as ProviderType, HttpError, Result};
 use serde::{Deserialize, Serialize};
 
 use uuid::Uuid;
 
-use super::super::super::{
-    orm::postgresql::Connection, schema::user_sessions, v1::user_details::Type as ProviderType,
-};
+use super::super::super::{orm::postgresql::Connection, schema::user_sessions};
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

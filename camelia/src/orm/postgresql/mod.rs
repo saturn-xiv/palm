@@ -4,8 +4,8 @@ use std::default::Default;
 use std::fmt;
 
 use diesel::{sql_query, RunQueryDsl};
-use hibiscus::Result;
 use log::debug;
+use palm::Result;
 use serde::{Deserialize, Serialize};
 
 use super::Version;

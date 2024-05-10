@@ -1,7 +1,6 @@
 use chrono::NaiveDateTime;
+use palm::{to_utc_datetime, Result};
 use sitewriter::{ChangeFreq, UrlEntryBuilder};
-
-use super::super::Result;
 
 // https://www.sitemaps.org/protocol.html#
 pub struct Link {

@@ -1,4 +1,4 @@
-use super::azalea::v1::{Pager, Pagination};
+use super::v1::{Pager, Pagination};
 
 impl Pagination {
     pub fn new(pager: &Pager, total: i64) -> Self {

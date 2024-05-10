@@ -1,20 +1,18 @@
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*};
-use hibiscus::{Result, TextEditor};
-use serde::{Deserialize, Serialize};
-use strum::{Display as EnumDisplay, EnumString};
+use palm::{azalea::v1::TextEditor, Result};
+use serde::Serialize;
 
 use super::super::{orm::postgresql::Connection, schema::leave_words};
 
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
+    pub id: i64,
     pub lang: String,
     pub ip: String,
     pub body: String,
     pub body_editor: String,
-    pub status: String,
     pub published_at: Option<NaiveDateTime>,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
@@ -22,23 +20,16 @@ pub struct Item {
     pub created_at: NaiveDateTime,
 }
 
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
-pub enum Status {
-    Pending,
-    Processing,
-    Finished,
-}
-
 pub trait Dao {
-    fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_id(&mut self, id: i64) -> Result<Item>;
     fn create(&mut self, lang: &str, ip: &str, body: &str, editor: &TextEditor) -> Result<()>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
-    fn destroy(&mut self, id: i32) -> Result<()>;
+    fn destroy(&mut self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
-    fn by_id(&mut self, id: i32) -> Result<Item> {
+    fn by_id(&mut self, id: i64) -> Result<Item> {
         Ok(leave_words::dsl::leave_words
             .filter(leave_words::dsl::id.eq(id))
             .first::<Item>(self)?)
@@ -51,8 +42,7 @@ impl Dao for Connection {
                 leave_words::dsl::lang.eq(lang),
                 leave_words::dsl::ip.eq(ip),
                 leave_words::dsl::body.eq(body),
-                leave_words::dsl::status.eq(Status::Pending.to_string()),
-                leave_words::dsl::body_editor.eq(editor.to_string()),
+                leave_words::dsl::body_editor.eq(editor.as_str_name()),
                 leave_words::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -70,7 +60,7 @@ impl Dao for Connection {
         let it = leave_words::dsl::leave_words.count().first(self)?;
         Ok(it)
     }
-    fn destroy(&mut self, id: i32) -> Result<()> {
+    fn destroy(&mut self, id: i64) -> Result<()> {
         delete(leave_words::dsl::leave_words.filter(leave_words::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }

@@ -210,8 +210,6 @@ diesel::table! {
         body -> Text,
         #[max_length = 15]
         body_editor -> Varchar,
-        #[max_length = 15]
-        status -> Varchar,
         published_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,

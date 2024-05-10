@@ -1,6 +1,6 @@
 use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*};
-use hibiscus::Result;
+use palm::Result;
 use serde::{Deserialize, Serialize};
 
 use super::super::super::{orm::postgresql::Connection, schema::user_bans};
