@@ -109,3 +109,34 @@ message UserLogsResponse {
   repeated Item items = 1;
   palm.azalea.v1.Pagination pagination = 2;
 }
+
+// ----------------------------------------------------------------------------
+
+service Locale {
+  rpc Index(palm.azalea.v1.Pager) returns (LocaleIndexResponse) {}
+  rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
+  rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
+  rpc Destroy(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+}
+message LocaleByLangRequest {
+  string lang = 1;
+}
+message LocaleSetRequest {
+  string lang = 1;
+  string code = 2;
+  string message = 3;
+}
+message LocaleIndexResponse {
+  message Item {
+    int64 id = 1;
+    string lang = 2;
+    string code = 3;
+    string message = 4;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  palm.azalea.v1.Pagination pagination = 2;
+}
+message LocaleByLangResponse {
+  repeated LocaleIndexResponse.Item items = 1;
+}

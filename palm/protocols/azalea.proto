@@ -23,3 +23,7 @@ enum TextEditor {
   Markdown = 1;
   Quill = 9;
 }
+
+message IdRequest {
+  int64 id = 1;
+}

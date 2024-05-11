@@ -1,3 +1,5 @@
+pub mod locale;
+
 use std::any::type_name;
 use std::fmt::Display;
 
