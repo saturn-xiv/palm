@@ -9,6 +9,7 @@ pub mod loquat;
 pub mod morus;
 pub mod musa;
 pub mod openssl;
+pub mod orchid;
 pub mod random;
 pub mod tuberose;
 

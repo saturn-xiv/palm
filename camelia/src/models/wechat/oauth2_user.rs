@@ -1,28 +1,27 @@
 use std::fmt;
 
 use chrono::{NaiveDateTime, Utc};
+use chrono_tz::Tz;
 use diesel::{delete, insert_into, prelude::*, update};
-use hibiscus::{
-    crypto::random::bytes as random_bytes,
+use language_tags::LanguageTag;
+use palm::{
     orchid::v1::{
         wechat_oauth2_login_response::Sex, wechat_oauth2_qr_connect_request::Language,
         WechatOauth2LoginResponse,
     },
+    random::uuid,
     Result,
 };
 use serde::{Deserialize, Serialize};
 
-use super::super::super::{
-    orm::postgresql::Connection,
-    schema::{users, wechat_oauth2_users},
-};
-use super::super::user::{Dao as UserDao, Item as User, New as NewUser, Status};
+use super::super::super::{orm::postgresql::Connection, schema::wechat_oauth2_users};
+use super::super::user::{Dao as UserDao, Item as User};
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub union_id: String,
     pub app_id: String,
     pub open_id: String,
@@ -59,21 +58,22 @@ impl fmt::Display for Item {
 
 pub trait Dao {
     fn all(&mut self) -> Result<Vec<Item>>;
-    fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_open_id(&mut self, app_id: &str, open_id: &str) -> Result<Item>;
     fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>>;
-    fn set_profile(&mut self, id: i32, user_info: &WechatOauth2LoginResponse) -> Result<()>;
+    fn set_profile(&mut self, id: i64, user_info: &WechatOauth2LoginResponse) -> Result<()>;
     fn sign_in(
         &mut self,
-        user_id: Option<i32>,
+        user_id: Option<i64>,
         app_id: &str,
         user_info: &WechatOauth2LoginResponse,
         lang: Language,
         ip: &str,
+        timezone: Tz,
     ) -> Result<User>;
-    fn destroy(&mut self, id: i32) -> Result<()>;
-    fn bind(&mut self, id: i32, user: i32) -> Result<()>;
-    fn count_by_user(&mut self, user: i32) -> Result<i64>;
+    fn destroy(&mut self, id: i64) -> Result<()>;
+    fn bind(&mut self, id: i64, user: i64) -> Result<()>;
+    fn count_by_user(&mut self, user: i64) -> Result<i64>;
 }
 
 impl Dao for Connection {
@@ -83,7 +83,7 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn by_id(&mut self, id: i32) -> Result<Item> {
+    fn by_id(&mut self, id: i64) -> Result<Item> {
         let it = wechat_oauth2_users::dsl::wechat_oauth2_users
             .filter(wechat_oauth2_users::dsl::id.eq(id))
             .first::<Item>(self)?;
@@ -102,17 +102,20 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(it)
     }
-    fn set_profile(&mut self, id: i32, info: &WechatOauth2LoginResponse) -> Result<()> {
+    fn set_profile(&mut self, id: i64, info: &WechatOauth2LoginResponse) -> Result<()> {
         let now = Utc::now().naive_utc();
-        let user = UserDao::by_id(self, id)?;
-        if let Some(ref avatar) = info.headimgurl {
-            if &user.avatar != avatar {
-                update(users::dsl::users.filter(users::dsl::id.eq(id)))
-                    .set((
-                        users::dsl::avatar.eq(avatar),
-                        users::dsl::updated_at.eq(&now),
-                    ))
-                    .execute(self)?;
+        let user = Dao::by_id(self, id)?;
+        if user.head_img_url != info.headimgurl {
+            if let Some(ref avatar) = info.headimgurl {
+                update(
+                    wechat_oauth2_users::dsl::wechat_oauth2_users
+                        .filter(wechat_oauth2_users::dsl::id.eq(id)),
+                )
+                .set((
+                    wechat_oauth2_users::dsl::head_img_url.eq(avatar),
+                    wechat_oauth2_users::dsl::updated_at.eq(&now),
+                ))
+                .execute(self)?;
             }
         }
 
@@ -120,14 +123,14 @@ impl Dao for Connection {
     }
     fn sign_in(
         &mut self,
-        user_id: Option<i32>,
+        user_id: Option<i64>,
         app_id: &str,
         info: &WechatOauth2LoginResponse,
         lang: Language,
         ip: &str,
+        timezone: Tz,
     ) -> Result<User> {
         let privilege = flexbuffers::to_vec(&info.privilege)?;
-        let lang = lang.to_string();
         let now = Utc::now().naive_utc();
 
         let user = match Dao::by_open_id(self, app_id, &info.openid) {
@@ -144,7 +147,7 @@ impl Dao for Connection {
                     wechat_oauth2_users::dsl::country.eq(&info.country),
                     wechat_oauth2_users::dsl::head_img_url.eq(&info.headimgurl),
                     wechat_oauth2_users::dsl::privilege.eq(&privilege),
-                    wechat_oauth2_users::dsl::lang.eq(&lang),
+                    wechat_oauth2_users::dsl::lang.eq(lang.as_str_name()),
                     wechat_oauth2_users::dsl::updated_at.eq(&now),
                 ))
                 .execute(self)?;
@@ -158,28 +161,14 @@ impl Dao for Connection {
                         UserDao::by_id(self, id)?
                     }
                     None => {
-                        let email = User::guest_email();
-                        insert_into(users::dsl::users)
-                            .values(&NewUser {
-                                real_name: &info.nickname,
-                                nickname: &User::guest_nickname(),
-                                email: &email,
-                                password: None,
-                                salt: &random_bytes(NewUser::SALT_SIZE),
-                                lang: User::GUEST_LANG,
-                                timezone: User::GUEST_TIMEZONE,
-                                avatar: &match info.headimgurl {
-                                    Some(ref v) => v.clone(),
-                                    None => User::gravatar(&email)?,
-                                },
-                                status: &Status::WechatOauth2.to_string(),
-                                updated_at: &now,
-                            })
-                            .execute(self)?;
-
-                        let user = self.by_email(&email)?;
-                        Self::confirm(self, user.id)?;
-                        user
+                        let uid = uuid();
+                        let lang = match lang {
+                            Language::Tw => LanguageTag::parse("zh-Hant")?,
+                            Language::Cn => LanguageTag::parse("zh-Hans")?,
+                            Language::En => LanguageTag::parse("en-US")?,
+                        };
+                        UserDao::create(self, &uid, &lang, timezone)?;
+                        UserDao::by_uid(self, &uid)?
                     }
                 };
                 insert_into(wechat_oauth2_users::dsl::wechat_oauth2_users)
@@ -195,7 +184,7 @@ impl Dao for Connection {
                         wechat_oauth2_users::dsl::country.eq(&info.country),
                         wechat_oauth2_users::dsl::head_img_url.eq(&info.headimgurl),
                         wechat_oauth2_users::dsl::privilege.eq(&privilege),
-                        wechat_oauth2_users::dsl::lang.eq(&lang),
+                        wechat_oauth2_users::dsl::lang.eq(lang.as_str_name()),
                         wechat_oauth2_users::dsl::updated_at.eq(&now),
                     ))
                     .execute(self)?;
@@ -206,7 +195,7 @@ impl Dao for Connection {
         Ok(user)
     }
 
-    fn destroy(&mut self, id: i32) -> Result<()> {
+    fn destroy(&mut self, id: i64) -> Result<()> {
         delete(
             wechat_oauth2_users::dsl::wechat_oauth2_users
                 .filter(wechat_oauth2_users::dsl::id.eq(id)),
@@ -214,7 +203,7 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn bind(&mut self, id: i32, user: i32) -> Result<()> {
+    fn bind(&mut self, id: i64, user: i64) -> Result<()> {
         let now = Utc::now().naive_utc();
         update(
             wechat_oauth2_users::dsl::wechat_oauth2_users
@@ -227,7 +216,7 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn count_by_user(&mut self, user: i32) -> Result<i64> {
+    fn count_by_user(&mut self, user: i64) -> Result<i64> {
         let cnt: i64 = wechat_oauth2_users::dsl::wechat_oauth2_users
             .filter(wechat_oauth2_users::dsl::user_id.eq(user))
             .count()

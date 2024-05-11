@@ -1,6 +1,7 @@
 -- migrate:up
 CREATE TABLE users(
     id BIGSERIAL PRIMARY KEY,
+    "uid" VARCHAR(36) NOT NULL,
     lang VARCHAR(8) NOT NULL DEFAULT 'en-US',
     timezone VARCHAR(32) NOT NULL DEFAULT 'UTC',    
     sign_in_count INT NOT NULL DEFAULT 0,
@@ -14,6 +15,7 @@ CREATE TABLE users(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_users_uid ON users("uid");
 CREATE INDEX idx_users_lang ON users(lang);
 CREATE INDEX idx_users_timezone ON users(timezone);
 CREATE INDEX idx_users_current_sign_in_ip ON users(current_sign_in_ip)

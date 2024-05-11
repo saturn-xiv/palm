@@ -1,6 +1,8 @@
+use std::any::type_name;
+
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use hibiscus::Result;
+use palm::Result;
 use serde::Serialize;
 
 use super::super::{
@@ -11,7 +13,7 @@ use super::super::{
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
+    pub id: i64,
     pub code: String,
     pub left: i32,
     pub right: i32,
@@ -22,18 +24,20 @@ pub struct Item {
 }
 
 pub trait Dao {
-    fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_id(&mut self, id: i64) -> Result<Item>;
     fn create(&mut self, code: &str, left: i32, right: i32) -> Result<()>;
-    fn update(&mut self, id: i32, code: &str, left: i32, right: i32) -> Result<()>;
+    fn update(&mut self, id: i64, code: &str, left: i32, right: i32) -> Result<()>;
     fn all(&mut self) -> Result<Vec<Item>>;
-    fn children(&mut self, id: i32) -> Result<Vec<Item>>;
-    fn destroy(&mut self, id: i32) -> Result<()>;
-    fn associate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
-    fn dissociate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
+    fn children(&mut self, id: i64) -> Result<Vec<Item>>;
+    fn destroy(&mut self, id: i64) -> Result<()>;
+    fn associate(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()>;
+    fn dissociate(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()>;
+    fn associate_<T>(&mut self, id: i64, resource_id: i64) -> Result<()>;
+    fn dissociate_<T>(&mut self, id: i64, resource_id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
-    fn by_id(&mut self, id: i32) -> Result<Item> {
+    fn by_id(&mut self, id: i64) -> Result<Item> {
         Ok(categories::dsl::categories
             .filter(categories::dsl::id.eq(id))
             .first::<Item>(self)?)
@@ -51,7 +55,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn update(&mut self, id: i32, code: &str, left: i32, right: i32) -> Result<()> {
+    fn update(&mut self, id: i64, code: &str, left: i32, right: i32) -> Result<()> {
         let it = categories::dsl::categories.filter(categories::dsl::id.eq(&id));
         let now = Utc::now().naive_utc();
         update(it)
@@ -69,7 +73,7 @@ impl Dao for Connection {
             .order(categories::dsl::left.asc())
             .load::<Item>(self)?)
     }
-    fn children(&mut self, id: i32) -> Result<Vec<Item>> {
+    fn children(&mut self, id: i64) -> Result<Vec<Item>> {
         let it = self.by_id(id)?;
         Ok(categories::dsl::categories
             .filter(categories::dsl::left.gt(it.left))
@@ -77,7 +81,7 @@ impl Dao for Connection {
             .order(categories::dsl::left.asc())
             .load::<Item>(self)?)
     }
-    fn destroy(&mut self, id: i32) -> Result<()> {
+    fn destroy(&mut self, id: i64) -> Result<()> {
         delete(
             category_resources::dsl::category_resources
                 .filter(category_resources::dsl::category_id.eq(id)),
@@ -86,7 +90,7 @@ impl Dao for Connection {
         delete(categories::dsl::categories.filter(categories::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }
-    fn associate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn associate(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()> {
         let cnt: i64 = category_resources::dsl::category_resources
             .filter(category_resources::dsl::category_id.eq(id))
             .filter(category_resources::dsl::resource_type.eq(resource_type))
@@ -105,7 +109,7 @@ impl Dao for Connection {
 
         Ok(())
     }
-    fn dissociate(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn dissociate(&mut self, id: i64, resource_type: &str, resource_id: i64) -> Result<()> {
         delete(
             category_resources::dsl::category_resources
                 .filter(category_resources::dsl::category_id.eq(id))
@@ -114,6 +118,12 @@ impl Dao for Connection {
         )
         .execute(self)?;
         Ok(())
+    }
+    fn associate_<T>(&mut self, id: i64, resource_id: i64) -> Result<()> {
+        Self::associate(self, id, type_name::<T>(), resource_id)
+    }
+    fn dissociate_<T>(&mut self, id: i64, resource_id: i64) -> Result<()> {
+        Self::dissociate(self, id, type_name::<T>(), resource_id)
     }
 }
 

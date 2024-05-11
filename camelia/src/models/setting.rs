@@ -3,7 +3,7 @@ use std::fmt::Display;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
-use hibiscus::{crypto::Secret, Result};
+use palm::{Result, Secret};
 use serde::{de::DeserializeOwned, ser::Serialize};
 
 use super::super::{orm::postgresql::Connection, schema::settings};
@@ -12,12 +12,12 @@ pub trait Protobuf {
     fn get<V: prost::Message + Default, E: Secret>(
         &mut self,
         enc: &E,
-        user: Option<i32>,
+        user: Option<i64>,
     ) -> Result<V>;
     fn set<V: prost::Message + Default, E: Secret>(
         &mut self,
         enc: &E,
-        user: Option<i32>,
+        user: Option<i64>,
         value: &V,
         encode: bool,
     ) -> Result<()>;
@@ -27,7 +27,7 @@ impl Protobuf for Connection {
     fn get<V: prost::Message + Default, E: Secret>(
         &mut self,
         enc: &E,
-        user: Option<i32>,
+        user: Option<i64>,
     ) -> Result<V> {
         let (_, buf) = Dao::get(self, enc, &type_name::<V>().to_string(), user)?;
         let it = V::decode(&buf[..])?;
@@ -37,7 +37,7 @@ impl Protobuf for Connection {
     fn set<V: prost::Message + Default, E: Secret>(
         &mut self,
         enc: &E,
-        user: Option<i32>,
+        user: Option<i64>,
         value: &V,
         encode: bool,
     ) -> Result<()> {
@@ -49,18 +49,18 @@ impl Protobuf for Connection {
 }
 
 pub trait FlatBuffer {
-    fn get<V: DeserializeOwned, E: Secret>(&mut self, enc: &E, user: Option<i32>) -> Result<V>;
+    fn get<V: DeserializeOwned, E: Secret>(&mut self, enc: &E, user: Option<i64>) -> Result<V>;
     fn set<V: Serialize, E: Secret>(
         &mut self,
         enc: &E,
-        user: Option<i32>,
+        user: Option<i64>,
         value: &V,
         encode: bool,
     ) -> Result<()>;
 }
 
 impl FlatBuffer for Connection {
-    fn get<V: DeserializeOwned, E: Secret>(&mut self, enc: &E, user: Option<i32>) -> Result<V> {
+    fn get<V: DeserializeOwned, E: Secret>(&mut self, enc: &E, user: Option<i64>) -> Result<V> {
         let (_, buf) = Dao::get(self, enc, &type_name::<V>().to_string(), user)?;
         let it = flexbuffers::from_slice(&buf)?;
         Ok(it)
@@ -69,7 +69,7 @@ impl FlatBuffer for Connection {
     fn set<V: Serialize, E: Secret>(
         &mut self,
         enc: &E,
-        user: Option<i32>,
+        user: Option<i64>,
         value: &V,
         encode: bool,
     ) -> Result<()> {
@@ -81,9 +81,9 @@ impl FlatBuffer for Connection {
 
 #[derive(Queryable)]
 pub struct Item {
-    pub id: i32,
+    pub id: i64,
     pub key: String,
-    pub user_id: Option<i32>,
+    pub user_id: Option<i64>,
     pub salt: Option<Vec<u8>>,
     pub value: Vec<u8>,
     pub version: i32,
@@ -96,17 +96,17 @@ pub trait Dao {
         &mut self,
         e: &E,
         k: &K,
-        u: Option<i32>,
-    ) -> Result<(i32, Vec<u8>)>;
+        u: Option<i64>,
+    ) -> Result<(i64, Vec<u8>)>;
     fn set<K: Display, E: Secret>(
         &mut self,
         e: &E,
         k: &K,
-        u: Option<i32>,
+        u: Option<i64>,
         v: &[u8],
         f: bool,
     ) -> Result<()>;
-    fn delete(&mut self, id: i32) -> Result<()>;
+    fn delete(&mut self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -114,8 +114,8 @@ impl Dao for Connection {
         &mut self,
         e: &E,
         k: &K,
-        u: Option<i32>,
-    ) -> Result<(i32, Vec<u8>)> {
+        u: Option<i64>,
+    ) -> Result<(i64, Vec<u8>)> {
         let k = k.to_string();
 
         let it = match u {
@@ -140,7 +140,7 @@ impl Dao for Connection {
         &mut self,
         e: &E,
         k: &K,
-        u: Option<i32>,
+        u: Option<i64>,
         v: &[u8],
         f: bool,
     ) -> Result<()> {
@@ -194,7 +194,7 @@ impl Dao for Connection {
         Ok(())
     }
 
-    fn delete(&mut self, id: i32) -> Result<()> {
+    fn delete(&mut self, id: i64) -> Result<()> {
         delete(settings::dsl::settings.filter(settings::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }

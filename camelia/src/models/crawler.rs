@@ -5,9 +5,9 @@ use diesel::{
     insert_into,
     prelude::*,
 };
-use hibiscus::{HttpError, Result};
 use hyper::StatusCode;
 use log::{debug, error, info};
+use palm::{HttpError, Result};
 use rand::{rngs::SmallRng, seq::SliceRandom, SeedableRng};
 use serde::Serialize;
 
@@ -51,7 +51,7 @@ pub async fn pull(db: &mut Connection, url: &str) -> Result<()> {
 #[derive(Queryable, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
+    pub id: i64,
     pub url: String,
     pub body: Vec<u8>,
     pub created_at: NaiveDateTime,

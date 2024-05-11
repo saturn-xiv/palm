@@ -170,6 +170,13 @@ diesel::table! {
     google_users (id) {
         id -> Int8,
         user_id -> Int8,
+        #[max_length = 255]
+        email -> Nullable<Varchar>,
+        email_verified -> Bool,
+        #[max_length = 63]
+        name -> Nullable<Varchar>,
+        #[max_length = 255]
+        picture -> Nullable<Varchar>,
         #[max_length = 127]
         sub -> Varchar,
         code -> Bytea,
@@ -398,6 +405,8 @@ diesel::table! {
 diesel::table! {
     users (id) {
         id -> Int8,
+        #[max_length = 36]
+        uid -> Varchar,
         #[max_length = 8]
         lang -> Varchar,
         #[max_length = 32]

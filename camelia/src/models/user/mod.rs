@@ -18,6 +18,7 @@ use super::super::{orm::postgresql::Connection, schema::users};
 #[serde(rename_all = "camelCase")]
 pub struct Item {
     pub id: i64,
+    pub uid: String,
     pub lang: String,
     pub timezone: String,
     pub sign_in_count: i32,
@@ -52,10 +53,11 @@ impl Item {
 
 pub trait Dao {
     fn by_id(&mut self, id: i64) -> Result<Item>;
+    fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn set_lang(&mut self, id: i64, lang: &LanguageTag) -> Result<()>;
     fn set_timezone(&mut self, id: i64, timezone: &Tz) -> Result<()>;
     fn sign_in(&mut self, id: i64, ip: &str) -> Result<()>;
-    fn create(&mut self, lang: &LanguageTag, timezone: &Tz) -> Result<()>;
+    fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()>;
     fn lock(&mut self, id: i64, on: bool) -> Result<()>;
     fn enable(&mut self, id: i64, on: bool) -> Result<()>;
     fn count(&mut self) -> Result<i64>;
@@ -69,7 +71,12 @@ impl Dao for Connection {
             .first(self)?;
         Ok(it)
     }
-
+    fn by_uid(&mut self, uid: &str) -> Result<Item> {
+        let it = users::dsl::users
+            .filter(users::dsl::uid.eq(uid))
+            .first(self)?;
+        Ok(it)
+    }
     fn sign_in(&mut self, id: i64, ip: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         let (current_sign_in_at, current_sign_in_ip, sign_in_count) = users::dsl::users
@@ -92,9 +99,10 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn create(&mut self, lang: &LanguageTag, timezone: &Tz) -> Result<()> {
+    fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()> {
         insert_into(users::dsl::users)
             .values((
+                users::dsl::uid.eq(uid),
                 users::dsl::lang.eq(&lang.to_string()),
                 users::dsl::timezone.eq(&timezone.to_string()),
                 users::dsl::updated_at.eq(&Utc::now().naive_utc()),

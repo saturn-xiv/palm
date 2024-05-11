@@ -1,21 +1,20 @@
 use std::fmt;
 
 use chrono::{NaiveDateTime, Utc};
+use chrono_tz::Tz;
 use diesel::{delete, insert_into, prelude::*, update};
-use hibiscus::{crypto::random::bytes as random_bytes, Result};
+use language_tags::LanguageTag;
+use palm::{random::uuid, Result};
 use serde::{Deserialize, Serialize};
 
-use super::super::super::{
-    orm::postgresql::Connection,
-    schema::{users, wechat_mini_program_users},
-};
-use super::super::user::{Dao as UserDao, Item as User, New as NewUser, Status};
+use super::super::super::{orm::postgresql::Connection, schema::wechat_mini_program_users};
+use super::super::user::Dao as UserDao;
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Item {
-    pub id: i32,
-    pub user_id: i32,
+    pub id: i64,
+    pub user_id: i64,
     pub union_id: String,
     pub app_id: String,
     pub open_id: String,
@@ -34,15 +33,23 @@ impl fmt::Display for Item {
 
 pub trait Dao {
     fn all(&mut self) -> Result<Vec<Item>>;
-    fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_open_id(&mut self, app_id: &str, open_id: &str) -> Result<Item>;
     fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>>;
-    fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
-    fn bind(&mut self, id: i32, user: i32) -> Result<()>;
-    fn set_profile(&mut self, id: i32, nickname: &str, avatar_url: &str) -> Result<()>;
-    fn sign_in(&mut self, app_id: &str, open_id: &str, union_id: &str, ip: &str) -> Result<Item>;
-    fn count_by_user(&mut self, user: i32) -> Result<i64>;
-    fn destroy(&mut self, id: i32) -> Result<()>;
+    fn by_user(&mut self, user: i64) -> Result<Vec<Item>>;
+    fn bind(&mut self, id: i64, user: i64) -> Result<()>;
+    fn set_profile(&mut self, id: i64, nickname: &str, avatar_url: &str) -> Result<()>;
+    fn sign_in(
+        &mut self,
+        app_id: &str,
+        open_id: &str,
+        union_id: &str,
+        ip: &str,
+        lang: &LanguageTag,
+        timezone: Tz,
+    ) -> Result<Item>;
+    fn count_by_user(&mut self, user: i64) -> Result<i64>;
+    fn destroy(&mut self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -59,7 +66,7 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn by_user(&mut self, user: i32) -> Result<Vec<Item>> {
+    fn by_user(&mut self, user: i64) -> Result<Vec<Item>> {
         let it = wechat_mini_program_users::dsl::wechat_mini_program_users
             .filter(wechat_mini_program_users::dsl::user_id.eq(user))
             .load::<Item>(self)?;
@@ -71,13 +78,13 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(it)
     }
-    fn by_id(&mut self, id: i32) -> Result<Item> {
+    fn by_id(&mut self, id: i64) -> Result<Item> {
         let it = wechat_mini_program_users::dsl::wechat_mini_program_users
             .filter(wechat_mini_program_users::dsl::id.eq(id))
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn bind(&mut self, id: i32, user: i32) -> Result<()> {
+    fn bind(&mut self, id: i64, user: i64) -> Result<()> {
         let now = Utc::now().naive_utc();
         update(
             wechat_mini_program_users::dsl::wechat_mini_program_users
@@ -90,7 +97,7 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn set_profile(&mut self, id: i32, nickname: &str, avatar_url: &str) -> Result<()> {
+    fn set_profile(&mut self, id: i64, nickname: &str, avatar_url: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         update(
             wechat_mini_program_users::dsl::wechat_mini_program_users
@@ -104,7 +111,15 @@ impl Dao for Connection {
         .execute(self)?;
         Ok(())
     }
-    fn sign_in(&mut self, app_id: &str, open_id: &str, union_id: &str, ip: &str) -> Result<Item> {
+    fn sign_in(
+        &mut self,
+        app_id: &str,
+        open_id: &str,
+        union_id: &str,
+        ip: &str,
+        lang: &LanguageTag,
+        timezone: Tz,
+    ) -> Result<Item> {
         let now = Utc::now().naive_utc();
         let user = match wechat_mini_program_users::dsl::wechat_mini_program_users
             .select((
@@ -113,36 +128,13 @@ impl Dao for Connection {
             ))
             .filter(wechat_mini_program_users::dsl::app_id.eq(app_id))
             .filter(wechat_mini_program_users::dsl::open_id.eq(open_id))
-            .first::<(i32, i32)>(self)
+            .first::<(i64, i64)>(self)
         {
-            Ok((id, user)) => {
-                update(
-                    wechat_mini_program_users::dsl::wechat_mini_program_users
-                        .filter(wechat_mini_program_users::dsl::id.eq(id)),
-                )
-                .set(wechat_mini_program_users::dsl::updated_at.eq(&now))
-                .execute(self)?;
-                user
-            }
+            Ok((_, user)) => user,
             Err(_) => {
-                let email = User::guest_email();
-                insert_into(users::dsl::users)
-                    .values(&NewUser {
-                        real_name: User::GUEST_NAME,
-                        nickname: &User::guest_nickname(),
-                        email: &email,
-                        password: None,
-                        salt: &random_bytes(NewUser::SALT_SIZE),
-                        lang: User::GUEST_LANG,
-                        timezone: User::GUEST_TIMEZONE,
-                        avatar: &User::gravatar(&email)?,
-                        status: &Status::WechatMiniProgram.to_string(),
-                        updated_at: &now,
-                    })
-                    .execute(self)?;
-
-                let user = self.by_email(&email)?;
-                Self::confirm(self, user.id)?;
+                let uid = uuid();
+                UserDao::create(self, &uid, lang, timezone)?;
+                let user = UserDao::by_uid(self, &uid)?;
                 insert_into(wechat_mini_program_users::dsl::wechat_mini_program_users)
                     .values((
                         wechat_mini_program_users::dsl::app_id.eq(app_id),
@@ -163,14 +155,14 @@ impl Dao for Connection {
         Ok(it)
     }
 
-    fn count_by_user(&mut self, user: i32) -> Result<i64> {
+    fn count_by_user(&mut self, user: i64) -> Result<i64> {
         let cnt: i64 = wechat_mini_program_users::dsl::wechat_mini_program_users
             .filter(wechat_mini_program_users::dsl::user_id.eq(user))
             .count()
             .get_result(self)?;
         Ok(cnt)
     }
-    fn destroy(&mut self, id: i32) -> Result<()> {
+    fn destroy(&mut self, id: i64) -> Result<()> {
         delete(
             wechat_mini_program_users::dsl::wechat_mini_program_users
                 .filter(wechat_mini_program_users::dsl::id.eq(id)),
