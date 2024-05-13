@@ -9,14 +9,14 @@ resolver = "2"
 members = [
     "palm",
     "hibiscus",
-
-    "orchid",
     "camelia",
-    "cms",
-    "forum",
-    "daffodil",
 
-    "fig",
-    "aloe",
-    "bougainvillea",
+    # "orchid",
+    # "cms",
+    # "forum",
+    # "daffodil",
+
+    # "fig",
+    # "aloe",
+    # "bougainvillea",
 ]

@@ -5,7 +5,7 @@ CREATE TABLE notifications(
     "subject" VARCHAR(127) NOT NULL,
     body VARCHAR(511) NOT NULL,
     "url" VARCHAR(255) NOT NULL,
-    "status" VARCHAR(15) NOT NULL,
+    "status" INT NOT NULL,
     read_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,
@@ -13,6 +13,5 @@ CREATE TABLE notifications(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_notifications_subject ON notifications("subject");
-CREATE INDEX idx_notifications_status ON notifications("status");
 -- migrate:down
 DROP TABLE notifications;

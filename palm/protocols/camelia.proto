@@ -40,10 +40,71 @@ message Permission {
   Resource resource = 2;
 }
 
+message Menu {
+  string key = 1;
+  string label = 2;
+  string path = 3;
+  repeated Menu children = 9;
+}
+
 service User {
   rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
   rpc SignUpByEmail(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc ConfirmByEmail(UserEmailRequest) returns (google.protobuf.Empty) {}
+  rpc ConfirmByToken(UserTokenRequest) returns (google.protobuf.Empty) {}
+  rpc UnlockByEmail(UserEmailRequest) returns (google.protobuf.Empty) {}
+  rpc UnlockByToken(UserTokenRequest) returns (google.protobuf.Empty) {}
+  rpc ForgotPassword(UserEmailRequest) returns (google.protobuf.Empty) {}
+  rpc ResetPassword(UserResetPasswordRequest) returns (google.protobuf.Empty) {}
   rpc Logs(palm.azalea.v1.Pager) returns (UserLogsResponse) {}
+  rpc SetPassword(UserSetPasswordRequest) returns (google.protobuf.Empty) {}
+  rpc SetLocation(UserSetLocationRequest) returns (google.protobuf.Empty) {}
+  rpc SetProfile(UserSetProfileRequest) returns (google.protobuf.Empty) {}
+  rpc CancelByEmail(UserCancelRequest) returns (google.protobuf.Empty) {}
+  rpc CancelByToken(UserTokenRequest) returns (google.protobuf.Empty) {}
+
+  rpc Disable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Lock(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Unlock(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+
+  rpc IndexByEmail(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
+  rpc IndexByGoogle(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
+  rpc IndexByWechatMiniProgram(palm.azalea.v1.Pager)
+      returns (UserIndexResponse) {}
+  rpc IndexByOauth2(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
+}
+message UserIndexResponse {
+  repeated UserDetails items = 1;
+  palm.azalea.v1.Pagination pagination = 2;
+}
+message UserCancelRequest {
+  string reason = 1;
+}
+message UserSetProfileRequest {
+  string real_name = 1;
+  string avatar = 2;
+}
+message UserSetLocationRequest {
+  string lang = 1;
+  string timezone = 2;
+}
+message UserSetPasswordRequest {
+  string current_password = 1;
+  string new_password = 2;
+}
+message UserResetPasswordRequest {
+  string token = 1;
+  string password = 2;
+}
+message UserEmailRequest {
+  oneof user {
+    string nickname = 1;
+    string email = 2;
+  }
+}
+message UserTokenRequest {
+  string token = 1;
 }
 
 message UserDetails {
@@ -66,8 +127,9 @@ message UserDetails {
 message UserSignInResponse {
   string token = 1;
   UserDetails details = 2;
-  repeated string roles = 8;
-  repeated Permission permissions = 9;
+  repeated string roles = 11;
+  repeated Permission permissions = 12;
+  repeated Menu menus = 13;
 }
 
 message UserSignInByEmailRequest {
@@ -109,7 +171,85 @@ message UserLogsResponse {
   repeated Item items = 1;
   palm.azalea.v1.Pagination pagination = 2;
 }
+// ----------------------------------------------------------------------------
 
+service Attachment {
+  rpc UploadUrl(AttachmentUploadUrlRequest)
+      returns (AttachmentUploadUrlResponse) {}
+  rpc Index(palm.azalea.v1.Pager) returns (AttachmentIndexResponse) {}
+  rpc Publish(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Destroy(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Update(AttachmentUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Associate(AttachmentResourceRequest) returns (google.protobuf.Empty) {}
+  rpc Dissociate(AttachmentResourceRequest) returns (google.protobuf.Empty) {}
+}
+message AttachmentResourceRequest {
+  int64 id = 1;
+  Resource resource = 2;
+}
+message AttachmentUpdateRequest {
+  int64 id = 1;
+  string title = 2;
+}
+message AttachmentUploadUrlRequest {
+  string title = 1;
+  int64 size = 2;
+  optional Resource resource = 9;
+}
+message AttachmentUploadUrlResponse {
+  string url = 1;
+}
+message AttachmentIndexResponse {
+  message Item {
+    int64 id = 1;
+    string bucket = 2;
+    string name = 3;
+    string title = 4;
+    int64 size = 5;
+    string content_type = 6;
+    optional google.protobuf.Timestamp published_at = 7;
+    optional google.protobuf.Timestamp deleted_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  palm.azalea.v1.Pagination pagination = 2;
+}
+// ----------------------------------------------------------------------------
+
+service LeaveWord {
+  rpc Create(LeaveWordCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Index(palm.azalea.v1.Pager) returns (LeaveWordIndexResponse) {}
+  rpc Publish(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Destroy(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Close(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Process(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+}
+
+message LeaveWordCreateRequest {
+  string body = 1;
+  palm.azalea.v1.TextEditor editor = 2;
+}
+
+message LeaveWordIndexResponse {
+  message Item {
+    enum Status {
+      Pending = 0;
+      Processing = 2;
+      Closed = 3;
+    }
+    int64 id = 1;
+    string lang = 2;
+    string ip = 3;
+    string body = 4;
+    palm.azalea.v1.TextEditor editor = 5;
+    Status status = 6;
+    optional google.protobuf.Timestamp published_at = 7;
+    optional google.protobuf.Timestamp deleted_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  palm.azalea.v1.Pagination pagination = 2;
+}
 // ----------------------------------------------------------------------------
 
 service Locale {
@@ -139,4 +279,82 @@ message LocaleIndexResponse {
 }
 message LocaleByLangResponse {
   repeated LocaleIndexResponse.Item items = 1;
+}
+// ----------------------------------------------------------------------------
+service Site {
+  rpc Layout(google.protobuf.Empty) returns (SiteLayoutResponse) {}
+  rpc Status(google.protobuf.Empty) returns (SiteStatusResponse) {}
+  rpc SetInfo(SiteSetInfoRequest) returns (google.protobuf.Empty) {}
+  rpc SetKeywords(SiteSetKeywordsRequest) returns (google.protobuf.Empty) {}
+  rpc SetAuthor(SiteLayoutResponse.Author) returns (google.protobuf.Empty) {}
+  rpc SetFavicon(SiteSetFaviconRequest) returns (google.protobuf.Empty) {}
+
+  rpc SetBaidu(BaiduProfile) returns (google.protobuf.Empty) {}
+  rpc GetBaidu(google.protobuf.Empty) returns (BaiduProfile) {}
+  rpc SetIndexNow(IndexNowProfile) returns (google.protobuf.Empty) {}
+  rpc GetIndexNow(google.protobuf.Empty) returns (IndexNowProfile) {}
+  rpc SetGoogle(GoogleProfile) returns (google.protobuf.Empty) {}
+  rpc GetGoogle(google.protobuf.Empty) returns (GoogleProfile) {}
+  rpc SetReCaptcha(ReCaptchaProfile) returns (google.protobuf.Empty) {}
+  rpc GetReCaptcha(google.protobuf.Empty) returns (ReCaptchaProfile) {}
+}
+
+message BaiduProfile {
+  string code = 1;
+  string content = 2;
+}
+
+message IndexNowProfile {
+  string key = 1;
+}
+message GoogleProfile {
+  string code = 1;
+}
+message ReCaptchaProfile {
+  string site_key = 1;
+  string secret = 2;
+}
+message SiteSetFaviconRequest {
+  string url = 1;
+}
+
+message SiteLayoutResponse {
+  message Author {
+    string name = 1;
+    string email = 2;
+  }
+  string lang = 1;
+  string title = 2;
+  string subhead = 3;
+  Author author = 4;
+  string description = 5;
+  string favicon = 8;
+  string copyright = 9;
+
+  repeated string languages = 11;
+}
+
+message SiteSetKeywordsRequest {
+  repeated string items = 1;
+}
+message SiteSetInfoRequest {
+  string lang = 1;
+  string title = 2;
+  string subhead = 3;
+  string description = 4;
+  string copyright = 5;
+}
+message SiteStatusResponse {
+  message PostgreSql {
+    string version = 1;
+  }
+  message Redis {
+    repeated string nodes = 1;
+  }
+  message OpenSearch {
+    string version = 1;
+  }
+  PostgreSql postgresql = 1;
+  Redis redis = 2;
+  OpenSearch open_search = 3;
 }

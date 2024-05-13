@@ -4,14 +4,13 @@ use std::path::Path;
 use std::string::ToString;
 
 use actix_files::file_extension_to_mime;
-use chrono::{Duration, NaiveDateTime, Utc};
+use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use hyper::StatusCode;
 use log::warn;
 use mime::{Mime, IMAGE};
-use palm::{jasmine::S3, HttpError, Result};
-use serde::{Deserialize, Serialize};
-use strum::{Display as EnumDisplay, EnumString};
+use palm::{HttpError, Result};
+use serde::Serialize;
 use uuid::Uuid;
 
 use super::super::{
@@ -40,7 +39,7 @@ pub struct Item {
     pub title: String,
     pub size: i64,
     pub content_type: String,
-    pub status: String,
+    pub published_at: Option<NaiveDateTime>,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
     pub created_at: NaiveDateTime,
@@ -53,21 +52,6 @@ impl fmt::Display for Item {
     }
 }
 impl Item {
-    pub fn url<S: S3>(&self, s3: &S, ttl: Option<i64>) -> Result<String> {
-        let it = match self.status.parse::<Status>()? {
-            Status::Public => s3.get_permanent_url(&self.bucket, &self.name)?,
-            Status::Private => s3.get_presigned_url(
-                &self.bucket,
-                &self.name,
-                &self.title,
-                Duration::try_seconds(ttl.unwrap_or(60 * 60 * 24)).ok_or(Box::new(HttpError(
-                    StatusCode::BAD_REQUEST,
-                    Some("bad ttl".to_string()),
-                )))?,
-            )?,
-        };
-        Ok(it)
-    }
     pub fn size(body: &[u8]) -> usize {
         body.len() / (1 << 10)
     }
@@ -96,13 +80,6 @@ impl Item {
         }
         false
     }
-}
-
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub enum Status {
-    Public,
-    Private,
 }
 
 pub trait Dao {
@@ -167,7 +144,6 @@ impl Dao for Connection {
                 attachments::dsl::title.eq(title),
                 attachments::dsl::content_type.eq(content_type),
                 attachments::dsl::size.eq(size as i64),
-                attachments::dsl::status.eq(Status::Private.to_string()),
                 attachments::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

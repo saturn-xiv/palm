@@ -6,7 +6,7 @@ CREATE TABLE comments(
     ip VARCHAR(45) NOT NULL,
     comment_id BIGINT,
     content TEXT NOT NULL,
-    content_editor VARCHAR(15) NOT NULL,
+    content_editor INT NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
     resource_id BIGINT NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
@@ -17,6 +17,5 @@ CREATE TABLE comments(
 CREATE INDEX idx_comments_ip ON comments(ip);
 CREATE INDEX idx_comments_username ON comments(username);
 CREATE INDEX idx_comments_resource_type ON comments(resource_type);
-CREATE INDEX idx_content_editor ON comments(content_editor);
 -- migrate:down
 DROP TABLE comments;

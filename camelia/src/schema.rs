@@ -24,8 +24,7 @@ diesel::table! {
         size -> Int8,
         #[max_length = 63]
         content_type -> Varchar,
-        #[max_length = 15]
-        status -> Varchar,
+        published_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -69,8 +68,7 @@ diesel::table! {
         ip -> Varchar,
         comment_id -> Nullable<Int8>,
         content -> Text,
-        #[max_length = 15]
-        content_editor -> Varchar,
+        content_editor -> Int4,
         #[max_length = 255]
         resource_type -> Varchar,
         resource_id -> Int8,
@@ -146,8 +144,7 @@ diesel::table! {
         #[max_length = 255]
         resource_type -> Varchar,
         resource_id -> Int8,
-        #[max_length = 15]
-        status -> Varchar,
+        status -> Int4,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -196,8 +193,7 @@ diesel::table! {
         #[max_length = 255]
         question -> Varchar,
         answer -> Text,
-        #[max_length = 15]
-        answer_editor -> Varchar,
+        answer_editor -> Int4,
         #[max_length = 255]
         resource_type -> Varchar,
         deleted_at -> Nullable<Timestamp>,
@@ -215,8 +211,8 @@ diesel::table! {
         #[max_length = 45]
         ip -> Varchar,
         body -> Text,
-        #[max_length = 15]
-        body_editor -> Varchar,
+        body_editor -> Int4,
+        status -> Int4,
         published_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
@@ -283,8 +279,7 @@ diesel::table! {
         body -> Varchar,
         #[max_length = 255]
         url -> Varchar,
-        #[max_length = 15]
-        status -> Varchar,
+        status -> Int4,
         read_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
@@ -447,13 +442,11 @@ diesel::table! {
         ip -> Varchar,
         star_ -> Int4,
         comment -> Text,
-        #[max_length = 15]
-        comment_editor -> Varchar,
+        comment_editor -> Int4,
         #[max_length = 255]
         resource_type -> Varchar,
         resource_id -> Int8,
-        #[max_length = 15]
-        status -> Varchar,
+        status -> Int4,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,

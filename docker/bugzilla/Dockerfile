@@ -14,7 +14,7 @@ RUN apt -y clean
 RUN git clone -b release-5.0.6 https://github.com/bugzilla/bugzilla.git /var/www/bugzilla
 RUN cd /var/www/bugzilla && perl install-module.pl PatchReader
 COPY etc/apache2.conf /etc/apache2/sites-available/bugzilla.conf
-COPY html/index.html /var/www/html/index.html
+COPY etc/index.html /var/www/html/index.html
 RUN a2ensite bugzilla
 RUN a2enmod cgi headers expires rewrite
 COPY etc/start.sh etc/backup.sh /

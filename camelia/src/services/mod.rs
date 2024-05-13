@@ -1,4 +1,8 @@
+pub mod attachment;
+pub mod leave_word;
 pub mod locale;
+pub mod site;
+pub mod user;
 
 use std::any::type_name;
 use std::fmt::Display;
