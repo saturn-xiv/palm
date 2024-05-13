@@ -21,7 +21,7 @@ use std::result::Result as StdResult;
 use chrono::{Datelike, Duration, NaiveDateTime, Utc};
 use data_encoding::BASE64;
 use hyper::{header::AUTHORIZATION, StatusCode};
-use serde::{Deserialize, Serialize};
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use thrift::{
     protocol::{
         TBinaryInputProtocol, TBinaryOutputProtocol, TMultiplexedOutputProtocol, TOutputProtocol,
@@ -187,31 +187,46 @@ pub const BEARER: &str = "Bearer ";
 // https://jwt.io/
 // https://tools.ietf.org/html/rfc7519
 pub trait Jwt {
-    fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)>;
-    fn sign(
+    fn verify<T: DeserializeOwned>(
+        &self,
+        token: &str,
+        issuer: &str,
+        audience: &str,
+    ) -> Result<(String, String, Option<T>)>;
+    fn sign<S: Serialize>(
         &self,
         jwt_id: &str,
         issuer: &str,
         subject: &str,
         audience: &str,
+        payload: &Option<S>,
         timestamps: (NaiveDateTime, NaiveDateTime, NaiveDateTime),
     ) -> Result<String>;
 
-    fn sign_by_duration(
+    fn sign_by_duration<S: Serialize>(
         &self,
         issuer: &str,
         subject: &str,
         audience: &str,
+        payload: &Option<S>,
         ttl: Duration,
     ) -> Result<String> {
         let (iat, nbf, exp) = Self::timestamps(ttl)?;
-        self.sign(&random::uuid(), issuer, subject, audience, (iat, nbf, exp))
+        self.sign(
+            &random::uuid(),
+            issuer,
+            subject,
+            audience,
+            payload,
+            (iat, nbf, exp),
+        )
     }
-    fn sign_by_range(
+    fn sign_by_range<S: Serialize>(
         &self,
         issuer: &str,
         subject: &str,
         audience: &str,
+        payload: &Option<S>,
         not_before: NaiveDateTime,
         expired_at: NaiveDateTime,
     ) -> Result<String> {
@@ -220,6 +235,7 @@ pub trait Jwt {
             issuer,
             subject,
             audience,
+            payload,
             (Utc::now().naive_local(), not_before, expired_at),
         )
     }

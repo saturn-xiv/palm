@@ -35,11 +35,11 @@ pub struct JwtVerfifyResponse {
   pub jwt_id: Option<String>,
   pub key_id: Option<String>,
   pub subject: String,
-  pub payload: Option<String>,
+  pub payload: Option<Vec<u8>>,
 }
 
 impl JwtVerfifyResponse {
-  pub fn new<F1, F2, F9>(jwt_id: F1, key_id: F2, subject: String, payload: F9) -> JwtVerfifyResponse where F1: Into<Option<String>>, F2: Into<Option<String>>, F9: Into<Option<String>> {
+  pub fn new<F1, F2, F9>(jwt_id: F1, key_id: F2, subject: String, payload: F9) -> JwtVerfifyResponse where F1: Into<Option<String>>, F2: Into<Option<String>>, F9: Into<Option<Vec<u8>>> {
     JwtVerfifyResponse {
       jwt_id: jwt_id.into(),
       key_id: key_id.into(),
@@ -55,7 +55,7 @@ impl TSerializable for JwtVerfifyResponse {
     let mut f_1: Option<String> = None;
     let mut f_2: Option<String> = None;
     let mut f_8: Option<String> = None;
-    let mut f_9: Option<String> = None;
+    let mut f_9: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -76,7 +76,7 @@ impl TSerializable for JwtVerfifyResponse {
           f_8 = Some(val);
         },
         9 => {
-          let val = i_prot.read_string()?;
+          let val = i_prot.read_bytes()?;
           f_9 = Some(val);
         },
         _ => {
@@ -113,7 +113,7 @@ impl TSerializable for JwtVerfifyResponse {
     o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.payload {
       o_prot.write_field_begin(&TFieldIdentifier::new("payload", TType::String, 9))?;
-      o_prot.write_string(fld_var)?;
+      o_prot.write_bytes(fld_var)?;
       o_prot.write_field_end()?
     }
     o_prot.write_field_stop()?;
@@ -135,11 +135,11 @@ pub struct JwtSignRequest {
   pub issued_at: i64,
   pub not_before: i64,
   pub expired_at: i64,
-  pub payload: Option<String>,
+  pub payload: Option<Vec<u8>>,
 }
 
 impl JwtSignRequest {
-  pub fn new<F1, F2, F99>(jwt_id: F1, key_id: F2, issuer: String, subject: String, audiences: BTreeSet<String>, issued_at: i64, not_before: i64, expired_at: i64, payload: F99) -> JwtSignRequest where F1: Into<Option<String>>, F2: Into<Option<String>>, F99: Into<Option<String>> {
+  pub fn new<F1, F2, F99>(jwt_id: F1, key_id: F2, issuer: String, subject: String, audiences: BTreeSet<String>, issued_at: i64, not_before: i64, expired_at: i64, payload: F99) -> JwtSignRequest where F1: Into<Option<String>>, F2: Into<Option<String>>, F99: Into<Option<Vec<u8>>> {
     JwtSignRequest {
       jwt_id: jwt_id.into(),
       key_id: key_id.into(),
@@ -165,7 +165,7 @@ impl TSerializable for JwtSignRequest {
     let mut f_21: Option<i64> = None;
     let mut f_22: Option<i64> = None;
     let mut f_23: Option<i64> = None;
-    let mut f_99: Option<String> = None;
+    let mut f_99: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -212,7 +212,7 @@ impl TSerializable for JwtSignRequest {
           f_23 = Some(val);
         },
         99 => {
-          let val = i_prot.read_string()?;
+          let val = i_prot.read_bytes()?;
           f_99 = Some(val);
         },
         _ => {
@@ -278,7 +278,7 @@ impl TSerializable for JwtSignRequest {
     o_prot.write_field_end()?;
     if let Some(ref fld_var) = self.payload {
       o_prot.write_field_begin(&TFieldIdentifier::new("payload", TType::String, 99))?;
-      o_prot.write_string(fld_var)?;
+      o_prot.write_bytes(fld_var)?;
       o_prot.write_field_end()?
     }
     o_prot.write_field_stop()?;

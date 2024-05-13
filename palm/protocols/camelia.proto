@@ -23,6 +23,7 @@ enum UserTokenAction {
   Confirm = 1;
   ResetPassword = 2;
   Unlock = 3;
+  Cancel = 9;
 }
 
 message UserOauth2State {
@@ -60,26 +61,34 @@ service User {
   rpc SetPassword(UserSetPasswordRequest) returns (google.protobuf.Empty) {}
   rpc SetLocation(UserSetLocationRequest) returns (google.protobuf.Empty) {}
   rpc SetProfile(UserSetProfileRequest) returns (google.protobuf.Empty) {}
-  rpc CancelByEmail(UserCancelRequest) returns (google.protobuf.Empty) {}
+  rpc Cancel(UserCancelRequest) returns (UserCancelResponse) {}
   rpc CancelByToken(UserTokenRequest) returns (google.protobuf.Empty) {}
 
   rpc Disable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
   rpc Enable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
   rpc Lock(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
   rpc Unlock(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc ConfirmEmail(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
 
   rpc IndexByEmail(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
   rpc IndexByGoogle(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
   rpc IndexByWechatMiniProgram(palm.azalea.v1.Pager)
       returns (UserIndexResponse) {}
-  rpc IndexByOauth2(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
+  rpc IndexByWechatOauth2(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
 }
 message UserIndexResponse {
   repeated UserDetails items = 1;
   palm.azalea.v1.Pagination pagination = 2;
 }
 message UserCancelRequest {
-  string reason = 1;
+  string home = 1;
+  string reason = 2;
+}
+message UserCancelResponse {
+  oneof payload {
+    string reminder = 1;
+    string redirect_to = 2;
+  }
 }
 message UserSetProfileRequest {
   string real_name = 1;

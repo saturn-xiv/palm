@@ -4,6 +4,7 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use chrono::NaiveDateTime;
 use hyper::StatusCode;
+use serde::{de::DeserializeOwned, Serialize};
 
 use super::{random::bytes as random_bytes, HttpError, Jwt, Password, Result, Secret, Thrift};
 
@@ -83,7 +84,12 @@ impl HealthCheck for Thrift {
 }
 
 impl Jwt for Thrift {
-    fn verify(&self, token: &str, issuer: &str, audience: &str) -> Result<(String, String)> {
+    fn verify<T: DeserializeOwned>(
+        &self,
+        token: &str,
+        issuer: &str,
+        audience: &str,
+    ) -> Result<(String, String, Option<T>)> {
         let (i_prot, o_prot) = self.open(JWT)?;
         let mut client = JwtSyncClient::new(i_prot, o_prot);
         let res = client.verify(token.to_string(), issuer.to_string(), audience.to_string())?;
@@ -91,16 +97,29 @@ impl Jwt for Thrift {
             StatusCode::BAD_REQUEST,
             Some("empty jwt-id header".to_string()),
         )))?;
-        Ok((jwt_id.clone(), res.subject))
+        let payload = if let Some(ref payload) = res.payload {
+            let it = flexbuffers::from_slice(payload)?;
+            Some(it)
+        } else {
+            None
+        };
+        Ok((jwt_id.clone(), res.subject, payload))
     }
-    fn sign(
+    fn sign<S: Serialize>(
         &self,
         jwt_id: &str,
         issuer: &str,
         subject: &str,
         audience: &str,
+        payload: &Option<S>,
         (issued_at, not_before, expired_at): (NaiveDateTime, NaiveDateTime, NaiveDateTime),
     ) -> Result<String> {
+        let payload = if let Some(payload) = payload {
+            let it = flexbuffers::to_vec(payload)?;
+            Some(it)
+        } else {
+            None
+        };
         let (i_prot, o_prot) = self.open(JWT)?;
         let mut client = JwtSyncClient::new(i_prot, o_prot);
         let req = JwtSignRequest {
@@ -116,7 +135,7 @@ impl Jwt for Thrift {
             issued_at: issued_at.and_utc().timestamp(),
             expired_at: expired_at.and_utc().timestamp(),
             not_before: not_before.and_utc().timestamp(),
-            payload: None,
+            payload,
         };
         let token = client.sign(req)?;
         Ok(token)

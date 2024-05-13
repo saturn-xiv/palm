@@ -5,7 +5,7 @@ struct JwtVerfifyResponse{
     1:optional string jwt_id,
     2:optional string key_id,
     8:required string subject,
-    9:optional string payload,
+    9:optional binary payload,
 }
 
 struct JwtSignRequest{
@@ -20,7 +20,7 @@ struct JwtSignRequest{
     22:required i64 not_before,
     23:required i64 expired_at,
     
-    99:optional string payload,
+    99:optional binary payload,
 }
 
 service Jwt {

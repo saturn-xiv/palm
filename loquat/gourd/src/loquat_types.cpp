@@ -91,7 +91,7 @@ uint32_t JwtVerfifyResponse::read(::apache::thrift::protocol::TProtocol* iprot) 
         break;
       case 9:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->payload);
+          xfer += iprot->readBinary(this->payload);
           this->__isset.payload = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -132,7 +132,7 @@ uint32_t JwtVerfifyResponse::write(::apache::thrift::protocol::TProtocol* oprot)
 
   if (this->__isset.payload) {
     xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 9);
-    xfer += oprot->writeString(this->payload);
+    xfer += oprot->writeBinary(this->payload);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -330,7 +330,7 @@ uint32_t JwtSignRequest::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 99:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->payload);
+          xfer += iprot->readBinary(this->payload);
           this->__isset.payload = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -409,7 +409,7 @@ uint32_t JwtSignRequest::write(::apache::thrift::protocol::TProtocol* oprot) con
 
   if (this->__isset.payload) {
     xfer += oprot->writeFieldBegin("payload", ::apache::thrift::protocol::T_STRING, 99);
-    xfer += oprot->writeString(this->payload);
+    xfer += oprot->writeBinary(this->payload);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();

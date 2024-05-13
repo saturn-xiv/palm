@@ -10,6 +10,7 @@ prost-types = "0.12"
 thrift = "0.17"
 lazy_static = "1"
 data-encoding = "2"
+flexbuffers = "2"
 jsonwebtoken = "9"
 
 [dependencies.chrono]
