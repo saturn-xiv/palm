@@ -6,7 +6,7 @@ $ ./start.sh
 # vim /etc/bugzilla/setup.pl
 > ./checksetup.pl /etc/bugzilla/setup.pl
 # https://<servername>/bugzilla/
-> /bugzilla.sh
+> /start.sh
 ```
 
 - [Use Another Mail Server](https://bugzilla.readthedocs.io/en/latest/installing/essential-post-install-config.html#use-another-mail-server)
