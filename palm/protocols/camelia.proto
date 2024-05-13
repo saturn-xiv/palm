@@ -180,21 +180,34 @@ service Attachment {
   rpc Publish(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
   rpc Destroy(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
   rpc Update(AttachmentUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Show(AttachmentShowRequest) returns (AttachmentShowResponse) {}
   rpc Associate(AttachmentResourceRequest) returns (google.protobuf.Empty) {}
   rpc Dissociate(AttachmentResourceRequest) returns (google.protobuf.Empty) {}
 }
+message AttachmentShowRequest {
+  int64 id = 1;
+  optional google.protobuf.Duration ttl = 9;
+}
+message AttachmentShowResponse {
+  string url = 1;
+}
 message AttachmentResourceRequest {
   int64 id = 1;
-  Resource resource = 2;
+  string resource_type = 2;
+  int64 resource_id = 3;
 }
+
 message AttachmentUpdateRequest {
   int64 id = 1;
   string title = 2;
 }
 message AttachmentUploadUrlRequest {
   string title = 1;
-  int64 size = 2;
-  optional Resource resource = 9;
+  string content_type = 2;
+  uint64 size = 3;
+
+  bool public = 11;
+  optional int32 expiration_days = 12;
 }
 message AttachmentUploadUrlResponse {
   string url = 1;

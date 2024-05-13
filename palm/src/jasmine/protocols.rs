@@ -31,7 +31,7 @@ use thrift::server::TProcessor;
 //
 
 pub trait TS3SyncClient {
-  fn create_bucket(&mut self, name: String, public: bool, expiration_days: i8) -> thrift::Result<()>;
+  fn create_bucket(&mut self, name: String, public: bool, expiration_days: i32) -> thrift::Result<()>;
   fn upload_file(&mut self, bucket: String, object: String, ttl: i32) -> thrift::Result<String>;
   fn get_presigned_url(&mut self, bucket: String, object: String, title: String, ttl: i32) -> thrift::Result<String>;
   fn get_permanent_url(&mut self, bucket: String, object: String) -> thrift::Result<String>;
@@ -61,7 +61,7 @@ impl <IP, OP> TThriftClient for S3SyncClient<IP, OP> where IP: TInputProtocol, O
 impl <IP, OP> TS3SyncClientMarker for S3SyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + TS3SyncClientMarker> TS3SyncClient for C {
-  fn create_bucket(&mut self, name: String, public: bool, expiration_days: i8) -> thrift::Result<()> {
+  fn create_bucket(&mut self, name: String, public: bool, expiration_days: i32) -> thrift::Result<()> {
     (
       {
         self.increment_sequence_number();
@@ -176,7 +176,7 @@ impl <C: TThriftClient + TS3SyncClientMarker> TS3SyncClient for C {
 //
 
 pub trait S3SyncHandler {
-  fn handle_create_bucket(&self, name: String, public: bool, expiration_days: i8) -> thrift::Result<()>;
+  fn handle_create_bucket(&self, name: String, public: bool, expiration_days: i32) -> thrift::Result<()>;
   fn handle_upload_file(&self, bucket: String, object: String, ttl: i32) -> thrift::Result<String>;
   fn handle_get_presigned_url(&self, bucket: String, object: String, title: String, ttl: i32) -> thrift::Result<String>;
   fn handle_get_permanent_url(&self, bucket: String, object: String) -> thrift::Result<String>;
@@ -398,7 +398,7 @@ impl <H: S3SyncHandler> TProcessor for S3SyncProcessor<H> {
 struct S3CreateBucketArgs {
   name: String,
   public: bool,
-  expiration_days: i8,
+  expiration_days: i32,
 }
 
 impl S3CreateBucketArgs {
@@ -406,7 +406,7 @@ impl S3CreateBucketArgs {
     i_prot.read_struct_begin()?;
     let mut f_1: Option<String> = None;
     let mut f_2: Option<bool> = None;
-    let mut f_3: Option<i8> = None;
+    let mut f_3: Option<i32> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -423,7 +423,7 @@ impl S3CreateBucketArgs {
           f_2 = Some(val);
         },
         3 => {
-          let val = i_prot.read_i8()?;
+          let val = i_prot.read_i32()?;
           f_3 = Some(val);
         },
         _ => {
@@ -452,8 +452,8 @@ impl S3CreateBucketArgs {
     o_prot.write_field_begin(&TFieldIdentifier::new("public", TType::Bool, 2))?;
     o_prot.write_bool(self.public)?;
     o_prot.write_field_end()?;
-    o_prot.write_field_begin(&TFieldIdentifier::new("expiration_days", TType::I08, 3))?;
-    o_prot.write_i8(self.expiration_days)?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("expiration_days", TType::I32, 3))?;
+    o_prot.write_i32(self.expiration_days)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()

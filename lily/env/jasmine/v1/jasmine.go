@@ -31,7 +31,7 @@ type S3 interface {
   //  - Name
   //  - Public
   //  - ExpirationDays
-  CreateBucket(ctx context.Context, name string, public bool, expiration_days int8) (_err error)
+  CreateBucket(ctx context.Context, name string, public bool, expiration_days int32) (_err error)
   // Parameters:
   //  - Bucket
   //  - Object
@@ -88,7 +88,7 @@ func (p *S3Client) SetLastResponseMeta_(meta thrift.ResponseMeta) {
 //  - Name
 //  - Public
 //  - ExpirationDays
-func (p *S3Client) CreateBucket(ctx context.Context, name string, public bool, expiration_days int8) (_err error) {
+func (p *S3Client) CreateBucket(ctx context.Context, name string, public bool, expiration_days int32) (_err error) {
   var _args0 S3CreateBucketArgs
   _args0.Name = name
   _args0.Public = public
@@ -593,7 +593,7 @@ func (p *s3ProcessorGetPermanentURL) Process(ctx context.Context, seqId int32, i
 type S3CreateBucketArgs struct {
   Name string `thrift:"name,1" db:"name" json:"name"`
   Public bool `thrift:"public,2" db:"public" json:"public"`
-  ExpirationDays int8 `thrift:"expiration_days,3" db:"expiration_days" json:"expiration_days"`
+  ExpirationDays int32 `thrift:"expiration_days,3" db:"expiration_days" json:"expiration_days"`
 }
 
 func NewS3CreateBucketArgs() *S3CreateBucketArgs {
@@ -609,7 +609,7 @@ func (p *S3CreateBucketArgs) GetPublic() bool {
   return p.Public
 }
 
-func (p *S3CreateBucketArgs) GetExpirationDays() int8 {
+func (p *S3CreateBucketArgs) GetExpirationDays() int32 {
   return p.ExpirationDays
 }
 func (p *S3CreateBucketArgs) Read(ctx context.Context, iprot thrift.TProtocol) error {
@@ -646,7 +646,7 @@ func (p *S3CreateBucketArgs) Read(ctx context.Context, iprot thrift.TProtocol) e
         }
       }
     case 3:
-      if fieldTypeId == thrift.BYTE {
+      if fieldTypeId == thrift.I32 {
         if err := p.ReadField3(ctx, iprot); err != nil {
           return err
         }
@@ -689,11 +689,10 @@ func (p *S3CreateBucketArgs)  ReadField2(ctx context.Context, iprot thrift.TProt
 }
 
 func (p *S3CreateBucketArgs)  ReadField3(ctx context.Context, iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadByte(ctx); err != nil {
+  if v, err := iprot.ReadI32(ctx); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
-  temp := int8(v)
-  p.ExpirationDays = temp
+  p.ExpirationDays = v
 }
   return nil
 }
@@ -734,9 +733,9 @@ func (p *S3CreateBucketArgs) writeField2(ctx context.Context, oprot thrift.TProt
 }
 
 func (p *S3CreateBucketArgs) writeField3(ctx context.Context, oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin(ctx, "expiration_days", thrift.BYTE, 3); err != nil {
+  if err := oprot.WriteFieldBegin(ctx, "expiration_days", thrift.I32, 3); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:expiration_days: ", p), err) }
-  if err := oprot.WriteByte(ctx, int8(p.ExpirationDays)); err != nil {
+  if err := oprot.WriteI32(ctx, int32(p.ExpirationDays)); err != nil {
   return thrift.PrependError(fmt.Sprintf("%T.expiration_days (3) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(ctx); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T write field end error 3:expiration_days: ", p), err) }

@@ -94,7 +94,8 @@ pub trait Dao {
         content_type: &Mime,
         size: u64,
     ) -> Result<()>;
-    fn update(&mut self, id: i64, title: &str) -> Result<()>;
+    fn set_title(&mut self, id: i64, title: &str) -> Result<()>;
+    fn publish(&mut self, id: i64) -> Result<()>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
     fn by_user(&mut self, user: i64, offset: i64, limit: i64) -> Result<Vec<Item>>;
@@ -108,6 +109,7 @@ pub trait Dao {
     fn dissociate<T>(&mut self, id: i64, resource_id: i64) -> Result<()>;
     fn clear<T>(&mut self, resource_id: i64) -> Result<()>;
     fn by_resource<T>(&mut self, resource_id: i64) -> Result<Vec<Item>>;
+    fn resources(&mut self, id: i64) -> Result<Vec<(String, i64)>>;
 }
 
 impl Dao for Connection {
@@ -150,7 +152,7 @@ impl Dao for Connection {
         Ok(())
     }
 
-    fn update(&mut self, id: i64, title: &str) -> Result<()> {
+    fn set_title(&mut self, id: i64, title: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         update(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id)))
             .set((
@@ -161,6 +163,16 @@ impl Dao for Connection {
         Ok(())
     }
 
+    fn publish(&mut self, id: i64) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        update(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id)))
+            .set((
+                attachments::dsl::published_at.eq(&now),
+                attachments::dsl::updated_at.eq(&now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = attachments::dsl::attachments
             .order(attachments::dsl::updated_at.desc())
@@ -261,5 +273,16 @@ impl Dao for Connection {
     }
     fn by_resource<T>(&mut self, resource_id: i64) -> Result<Vec<Item>> {
         self.by_resource_(type_name::<T>(), resource_id)
+    }
+    fn resources(&mut self, id: i64) -> Result<Vec<(String, i64)>> {
+        let items: Vec<(String, i64)> = attachment_resources::dsl::attachment_resources
+            .select((
+                attachment_resources::dsl::resource_type,
+                attachment_resources::dsl::resource_id,
+            ))
+            .filter(attachment_resources::dsl::attachment_id.eq(id))
+            .order(attachment_resources::dsl::created_at.desc())
+            .load(self)?;
+        Ok(items)
     }
 }

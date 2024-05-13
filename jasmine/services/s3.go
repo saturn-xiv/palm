@@ -15,7 +15,7 @@ type S3Handler struct {
 	client *minio.Client
 }
 
-func (p *S3Handler) CreateBucket(ctx context.Context, name string, public bool, expiration_days int8) error {
+func (p *S3Handler) CreateBucket(ctx context.Context, name string, public bool, expiration_days int32) error {
 
 	found, err := p.client.BucketExists(ctx, name)
 	if err != nil {
