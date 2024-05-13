@@ -2,9 +2,7 @@ use std::any::type_name;
 
 use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
-use palm::Result;
-use serde::{Deserialize, Serialize};
-use strum::{Display as EnumDisplay, EnumString};
+use palm::{camelia::v1, Result};
 
 use super::super::{orm::postgresql::Connection, schema::logs};
 
@@ -13,7 +11,7 @@ pub struct Item {
     pub id: i64,
     pub user_id: i64,
     pub plugin: String,
-    pub level: String,
+    pub level: i32,
     pub ip: String,
     pub resource_type: String,
     pub resource_id: Option<i64>,
@@ -21,18 +19,12 @@ pub struct Item {
     pub created_at: NaiveDateTime,
 }
 
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
-pub enum Level {
-    Info,
-    Warn,
-    Security,
-}
 pub trait Dao {
     fn add<S: Into<String>, T>(
         &mut self,
         user: i64,
         plugin: &str,
-        level: Level,
+        level: v1::user_logs_response::item::Level,
         ip: &str,
         resource_id: Option<i64>,
         message: S,
@@ -48,7 +40,7 @@ impl Dao for Connection {
         &mut self,
         user: i64,
         plugin: &str,
-        level: Level,
+        level: v1::user_logs_response::item::Level,
         ip: &str,
         resource_id: Option<i64>,
         message: S,
@@ -58,7 +50,7 @@ impl Dao for Connection {
                 logs::dsl::user_id.eq(user),
                 logs::dsl::ip.eq(ip),
                 logs::dsl::plugin.eq(plugin),
-                logs::dsl::level.eq(&level.to_string()),
+                logs::dsl::level.eq(level as i32),
                 logs::dsl::resource_type.eq(type_name::<T>()),
                 logs::dsl::resource_id.eq(resource_id),
                 logs::dsl::message.eq(&message.into()),

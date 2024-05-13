@@ -13,7 +13,7 @@ use super::super::{
 };
 
 fn user_from_token<P: JwtProvider>(token: &str, db: &mut Db, jwt: &P) -> Result<User> {
-    let (_, uid) = jwt.verify(token, NAME, UserTokenAction::SignIn.as_str_name())?;
+    let (_, uid, _) = jwt.verify::<String>(token, NAME, UserTokenAction::SignIn.as_str_name())?;
     let ss = UserSessionDao::by_uid(db, &uid)?;
     let user = UserDao::by_id(db, ss.user_id)?;
     user.available()?;

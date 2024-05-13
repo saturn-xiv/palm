@@ -49,7 +49,8 @@ message Menu {
 }
 
 service User {
-  rpc SignInByEmail(UserSignInByEmailRequest) returns (UserSignInResponse) {}
+  rpc SignInByPassword(UserSignInByPasswordRequest)
+      returns (UserSignInResponse) {}
   rpc SignUpByEmail(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
   rpc ConfirmByEmail(UserEmailRequest) returns (google.protobuf.Empty) {}
   rpc ConfirmByToken(UserTokenRequest) returns (google.protobuf.Empty) {}
@@ -58,7 +59,8 @@ service User {
   rpc ForgotPassword(UserEmailRequest) returns (google.protobuf.Empty) {}
   rpc ResetPassword(UserResetPasswordRequest) returns (google.protobuf.Empty) {}
   rpc Logs(palm.azalea.v1.Pager) returns (UserLogsResponse) {}
-  rpc SetPassword(UserSetPasswordRequest) returns (google.protobuf.Empty) {}
+  rpc ChangePassword(UserChangePasswordRequest)
+      returns (google.protobuf.Empty) {}
   rpc SetLocation(UserSetLocationRequest) returns (google.protobuf.Empty) {}
   rpc SetProfile(UserSetProfileRequest) returns (google.protobuf.Empty) {}
   rpc Cancel(UserCancelRequest) returns (UserCancelResponse) {}
@@ -68,6 +70,7 @@ service User {
   rpc Enable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
   rpc Lock(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
   rpc Unlock(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc SetPassword(UserSetPasswordRequest) returns (google.protobuf.Empty) {}
   rpc ConfirmEmail(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
 
   rpc IndexByEmail(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
@@ -98,9 +101,15 @@ message UserSetLocationRequest {
   string lang = 1;
   string timezone = 2;
 }
-message UserSetPasswordRequest {
+message UserChangePasswordRequest {
   string current_password = 1;
   string new_password = 2;
+}
+
+message UserSetPasswordRequest {
+  UserDetails.Type provider_type = 1;
+  int64 provider_id = 2;
+  string password = 3;
 }
 message UserResetPasswordRequest {
   string token = 1;
@@ -111,6 +120,7 @@ message UserEmailRequest {
     string nickname = 1;
     string email = 2;
   }
+  string home = 9;
 }
 message UserTokenRequest {
   string token = 1;
@@ -127,7 +137,7 @@ message UserDetails {
   Type type = 1;
   string id = 2;
 
-  string name = 11;
+  optional string name = 11;
   string lang = 12;
   string timezone = 13;
   optional string avatar = 19;
@@ -141,7 +151,7 @@ message UserSignInResponse {
   repeated Menu menus = 13;
 }
 
-message UserSignInByEmailRequest {
+message UserSignInByPasswordRequest {
   oneof who {
     string nickname = 1;
     string email = 2;
@@ -157,8 +167,8 @@ message UserSignUpByEmailRequest {
   string nickname = 3;
   string password = 4;
 
-  string lang = 11;
-  string timezone = 12;
+  string timezone = 11;
+  string home = 19;
 }
 
 message UserLogsResponse {

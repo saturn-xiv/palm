@@ -241,8 +241,7 @@ diesel::table! {
         user_id -> Int8,
         #[max_length = 15]
         plugin -> Varchar,
-        #[max_length = 15]
-        level -> Varchar,
+        level -> Int4,
         #[max_length = 45]
         ip -> Varchar,
         #[max_length = 255]
@@ -387,8 +386,7 @@ diesel::table! {
         user_id -> Int8,
         #[max_length = 36]
         uid -> Varchar,
-        #[max_length = 31]
-        provider_type -> Varchar,
+        provider_type -> Int4,
         provider_id -> Int8,
         #[max_length = 45]
         ip -> Varchar,

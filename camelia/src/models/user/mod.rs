@@ -55,7 +55,7 @@ pub trait Dao {
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn set_lang(&mut self, id: i64, lang: &LanguageTag) -> Result<()>;
-    fn set_timezone(&mut self, id: i64, timezone: &Tz) -> Result<()>;
+    fn set_timezone(&mut self, id: i64, timezone: Tz) -> Result<()>;
     fn sign_in(&mut self, id: i64, ip: &str) -> Result<()>;
     fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()>;
     fn lock(&mut self, id: i64, on: bool) -> Result<()>;
@@ -143,7 +143,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_timezone(&mut self, id: i64, timezone: &Tz) -> Result<()> {
+    fn set_timezone(&mut self, id: i64, timezone: Tz) -> Result<()> {
         let now = Utc::now().naive_utc();
         update(users::dsl::users.filter(users::dsl::id.eq(id)))
             .set((

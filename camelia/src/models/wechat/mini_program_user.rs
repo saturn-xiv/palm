@@ -32,10 +32,10 @@ impl fmt::Display for Item {
 }
 
 pub trait Dao {
-    fn all(&mut self) -> Result<Vec<Item>>;
+    fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_open_id(&mut self, app_id: &str, open_id: &str) -> Result<Item>;
-    fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>>;
+    fn by_union_id(&mut self, union_id: &str) -> Result<Item>;
     fn by_user(&mut self, user: i64) -> Result<Vec<Item>>;
     fn bind(&mut self, id: i64, user: i64) -> Result<()>;
     fn set_profile(&mut self, id: i64, nickname: &str, avatar_url: &str) -> Result<()>;
@@ -49,13 +49,16 @@ pub trait Dao {
         timezone: Tz,
     ) -> Result<Item>;
     fn count_by_user(&mut self, user: i64) -> Result<i64>;
+    fn count(&mut self) -> Result<i64>;
     fn destroy(&mut self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
-    fn all(&mut self) -> Result<Vec<Item>> {
+    fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = wechat_mini_program_users::dsl::wechat_mini_program_users
             .order(wechat_mini_program_users::dsl::updated_at.desc())
+            .offset(offset)
+            .limit(limit)
             .load::<Item>(self)?;
         Ok(items)
     }
@@ -72,10 +75,10 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(it)
     }
-    fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>> {
+    fn by_union_id(&mut self, union_id: &str) -> Result<Item> {
         let it = wechat_mini_program_users::dsl::wechat_mini_program_users
             .filter(wechat_mini_program_users::dsl::union_id.eq(union_id))
-            .load::<Item>(self)?;
+            .first::<Item>(self)?;
         Ok(it)
     }
     fn by_id(&mut self, id: i64) -> Result<Item> {
@@ -158,6 +161,12 @@ impl Dao for Connection {
     fn count_by_user(&mut self, user: i64) -> Result<i64> {
         let cnt: i64 = wechat_mini_program_users::dsl::wechat_mini_program_users
             .filter(wechat_mini_program_users::dsl::user_id.eq(user))
+            .count()
+            .get_result(self)?;
+        Ok(cnt)
+    }
+    fn count(&mut self) -> Result<i64> {
+        let cnt: i64 = wechat_mini_program_users::dsl::wechat_mini_program_users
             .count()
             .get_result(self)?;
         Ok(cnt)

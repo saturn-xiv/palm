@@ -41,13 +41,10 @@ impl CurrentUserAdapter for Session {
         jwt: &P,
     ) -> Result<(User, String, (UserProviderType, i64))> {
         if let Some(ref token) = self.token {
-            let (_, uid) = jwt.verify(token, NAME, UserTokenAction::SignIn.as_str_name())?;
+            let (_, uid, _) =
+                jwt.verify::<String>(token, NAME, UserTokenAction::SignIn.as_str_name())?;
             let su = UserSessionDao::by_uid(db, &uid)?;
-            let provider_type =
-                UserProviderType::from_str_name(&su.provider_type).ok_or(Box::new(HttpError(
-                    StatusCode::BAD_REQUEST,
-                    Some(format!("bad provider type({})", su.provider_type)),
-                )))?;
+            let provider_type = UserProviderType::try_from(su.provider_type)?;
             let iu = UserDao::by_id(db, su.user_id)?;
             iu.available()?;
 

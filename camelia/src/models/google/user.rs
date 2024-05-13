@@ -29,8 +29,9 @@ pub struct Item {
 }
 
 pub trait Dao {
-    fn all(&mut self) -> Result<Vec<Item>>;
+    fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
+    fn by_sub(&mut self, sub: &str) -> Result<Item>;
     fn by_token(&mut self, token: &GoogleOpenIdToken) -> Result<Item>;
     fn sign_in(
         &mut self,
@@ -43,12 +44,15 @@ pub trait Dao {
     ) -> Result<User>;
     fn set_profile(&mut self, user: i64, token: &GoogleOpenIdToken) -> Result<()>;
     fn count_by_user(&mut self, user: i64) -> Result<i64>;
+    fn count(&mut self) -> Result<i64>;
 }
 
 impl Dao for Connection {
-    fn all(&mut self) -> Result<Vec<Item>> {
+    fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = google_users::dsl::google_users
             .order(google_users::dsl::updated_at.desc())
+            .offset(offset)
+            .limit(limit)
             .load::<Item>(self)?;
         Ok(items)
     }
@@ -103,8 +107,11 @@ impl Dao for Connection {
     }
 
     fn by_token(&mut self, token: &GoogleOpenIdToken) -> Result<Item> {
+        Self::by_sub(self, &token.sub)
+    }
+    fn by_sub(&mut self, sub: &str) -> Result<Item> {
         let it = google_users::dsl::google_users
-            .filter(google_users::dsl::sub.eq(&token.sub))
+            .filter(google_users::dsl::sub.eq(sub))
             .first::<Item>(self)?;
         Ok(it)
     }
@@ -170,6 +177,10 @@ impl Dao for Connection {
             .filter(google_users::dsl::user_id.eq(user))
             .count()
             .get_result(self)?;
+        Ok(cnt)
+    }
+    fn count(&mut self) -> Result<i64> {
+        let cnt: i64 = google_users::dsl::google_users.count().get_result(self)?;
         Ok(cnt)
     }
 }

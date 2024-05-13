@@ -37,7 +37,7 @@ CREATE TABLE logs(
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
     plugin VARCHAR(15) NOT NULL,
-    "level" VARCHAR(15) NOT NULL,
+    "level" INT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     resource_type VARCHAR(255) NOT NULL,
     resource_id BIGINT,
@@ -46,7 +46,6 @@ CREATE TABLE logs(
 );
 CREATE INDEX idx_logs_ip ON logs(ip);
 CREATE INDEX idx_logs_plugin ON logs(plugin);
-CREATE INDEX idx_logs_level ON logs("level");
 CREATE INDEX idx_logs_resource_type ON logs(resource_type);
 CREATE TABLE user_bans(
     id BIGSERIAL PRIMARY KEY,
@@ -63,14 +62,13 @@ CREATE TABLE user_sessions(
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
     "uid" VARCHAR(36) NOT NULL,
-    provider_type VARCHAR(31) NOT NULL,
+    provider_type INT NOT NULL,
     provider_id BIGINT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     expired_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX idx_user_sessions_uid ON user_sessions("uid");
-CREATE INDEX idx_user_sessions_provider_type ON user_sessions(provider_type);
 CREATE INDEX idx_user_sessions_ip ON user_sessions(ip);
 -- migrate:down
 DROP TABLE user_sessions;

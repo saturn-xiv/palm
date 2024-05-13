@@ -85,6 +85,7 @@ pub trait Dao {
     fn create<P: Password>(
         &mut self,
         enc: &P,
+        user_id: i64,
         real_name: &str,
         nickname: &str,
         email: &str,
@@ -121,6 +122,7 @@ impl Dao for Connection {
     fn create<P: Password>(
         &mut self,
         enc: &P,
+        user_id: i64,
         real_name: &str,
         nickname: &str,
         email: &str,
@@ -129,6 +131,7 @@ impl Dao for Connection {
         let (password, salt) = enc.compute(password.as_bytes(), Item::SALT_SIZE)?;
         insert_into(email_users::dsl::email_users)
             .values((
+                email_users::dsl::user_id.eq(user_id),
                 email_users::dsl::real_name.eq(real_name),
                 email_users::dsl::nickname.eq(nickname),
                 email_users::dsl::email.eq(email),

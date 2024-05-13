@@ -16,7 +16,7 @@ pub struct Item {
     pub id: i64,
     pub user_id: i64,
     pub uid: String,
-    pub provider_type: String,
+    pub provider_type: i32,
     pub provider_id: i64,
     pub ip: String,
     pub expired_at: NaiveDateTime,
@@ -40,7 +40,7 @@ pub trait Dao {
     fn create(
         &mut self,
         user: i64,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
         provider_id: i64,
         ip: &str,
         ttl: Duration,
@@ -50,31 +50,32 @@ pub trait Dao {
     fn by_user_and_provider_type(
         &mut self,
         user: i64,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
     ) -> Result<Vec<Item>>;
     fn by_ip(&mut self, ip: &str) -> Result<Vec<Item>>;
     fn by_user(&mut self, user: i64) -> Result<Vec<Item>>;
     fn clean(&mut self) -> Result<()>;
     fn delete(&mut self, id: i64) -> Result<()>;
+    fn delete_by_user(&mut self, user: i64) -> Result<()>;
+    fn delete_by_uid(&mut self, uid: &str) -> Result<()>;
 }
 
 impl Dao for Connection {
     fn create(
         &mut self,
         user: i64,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
         provider_id: i64,
         ip: &str,
         ttl: Duration,
     ) -> Result<String> {
         let uid = Uuid::new_v4().to_string();
         let expired_at = Utc::now().naive_utc() + ttl;
-        let provider_type = provider_type.as_str_name();
         insert_into(user_sessions::dsl::user_sessions)
             .values((
                 user_sessions::dsl::uid.eq(&uid),
                 user_sessions::dsl::user_id.eq(user),
-                user_sessions::dsl::provider_type.eq(provider_type),
+                user_sessions::dsl::provider_type.eq(provider_type as i32),
                 user_sessions::dsl::provider_id.eq(provider_id),
                 user_sessions::dsl::ip.eq(ip),
                 user_sessions::dsl::expired_at.eq(expired_at),
@@ -85,12 +86,11 @@ impl Dao for Connection {
     fn by_user_and_provider_type(
         &mut self,
         user: i64,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
     ) -> Result<Vec<Item>> {
-        let provider_type = provider_type.as_str_name();
         let items = user_sessions::dsl::user_sessions
             .filter(user_sessions::dsl::user_id.eq(user))
-            .filter(user_sessions::dsl::provider_type.eq(provider_type))
+            .filter(user_sessions::dsl::provider_type.eq(provider_type as i32))
             .load(self)?;
         Ok(items)
     }
@@ -126,6 +126,16 @@ impl Dao for Connection {
     }
     fn delete(&mut self, id: i64) -> Result<()> {
         delete(user_sessions::dsl::user_sessions.filter(user_sessions::dsl::id.eq(id)))
+            .execute(self)?;
+        Ok(())
+    }
+    fn delete_by_user(&mut self, user: i64) -> Result<()> {
+        delete(user_sessions::dsl::user_sessions.filter(user_sessions::dsl::user_id.eq(user)))
+            .execute(self)?;
+        Ok(())
+    }
+    fn delete_by_uid(&mut self, uid: &str) -> Result<()> {
+        delete(user_sessions::dsl::user_sessions.filter(user_sessions::dsl::uid.eq(uid)))
             .execute(self)?;
         Ok(())
     }
