@@ -2,15 +2,14 @@
 
 diesel::table! {
     forum_posts (id) {
-        id -> Int4,
-        author_id -> Int4,
-        topic_id -> Int4,
-        post_id -> Nullable<Int4>,
+        id -> Int8,
+        author_id -> Int8,
+        topic_id -> Int8,
+        post_id -> Nullable<Int8>,
         #[max_length = 8]
         lang -> Varchar,
         body -> Text,
-        #[max_length = 15]
-        body_editor -> Varchar,
+        body_editor -> Int4,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -20,8 +19,8 @@ diesel::table! {
 
 diesel::table! {
     forum_topics (id) {
-        id -> Int4,
-        author_id -> Int4,
+        id -> Int8,
+        author_id -> Int8,
         #[max_length = 63]
         slug -> Varchar,
         #[max_length = 255]
@@ -29,8 +28,7 @@ diesel::table! {
         #[max_length = 8]
         lang -> Varchar,
         body -> Text,
-        #[max_length = 15]
-        body_editor -> Varchar,
+        body_editor -> Int4,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -38,4 +36,7 @@ diesel::table! {
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(forum_posts, forum_topics,);
+diesel::allow_tables_to_appear_in_same_query!(
+    forum_posts,
+    forum_topics,
+);

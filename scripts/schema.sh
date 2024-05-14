@@ -108,6 +108,10 @@ function generate_diesel_postgresql_scheme() {
         menus \
         >camelia/src/schema.rs
     DATABASE_URL=$1 diesel print-schema -o schema_migrations >camelia/src/orm/postgresql/schema.rs
+
+    DATABASE_URL=$1 diesel print-schema -o cms_* >cms/src/schema.rs
+    DATABASE_URL=$1 diesel print-schema -o forum_* >forum/src/schema.rs
+    DATABASE_URL=$1 diesel print-schema -o daffodil_* >daffodil/src/schema.rs
 }
 
 generate_thrift_for_cpp $WORKSPACE/palm/protocols/loquat.thrift $WORKSPACE/loquat/gourd

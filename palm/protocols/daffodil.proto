@@ -1,0 +1,81 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.daffodil.v1";
+option go_package = "github.com/saturn-xiv/palm/daffodil/v2";
+package palm.daffodil.v1;
+
+// import "google/protobuf/duration.proto";
+// import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+// import "azalea.proto";
+
+enum Type {
+  Assets = 0;
+  Liability = 1;
+  Equity = 2;
+  Income = 3;
+  Expense = 4;
+}
+
+message Account {
+  enum Type {
+    Cash = 0;
+    Checking = 1;
+    Saving = 2;
+    CreditCard = 3;
+    Mortgage = 4;
+    Loan = 5;
+  }
+  string code = 1;
+  string name = 2;
+  Type type = 3;
+  string description = 8;
+  optional string cover = 9;
+
+  int64 balance = 11;
+  string currency = 12;
+
+  google.protobuf.Timestamp updated_at = 99;
+}
+
+message Transaction {
+  message Attachment {
+    string bucket = 1;
+    string object = 2;
+    string title = 3;
+    string content_type = 4;
+  }
+  message Account {
+    string code = 1;
+    string name = 2;
+    optional string cover = 3;
+  }
+  string summary = 1;
+  Account source = 11;
+  Account destination = 12;
+  int64 amount = 13;
+  string currency = 14;
+  repeated Attachment attachments = 19;
+
+  google.protobuf.Timestamp created_at = 99;
+}
+
+message Merchant {
+  string name = 1;
+  optional string description = 2;
+  optional string address = 3;
+  optional string contact = 4;
+}
+
+message Account1 {
+  message Item {}
+
+  string name = 1;
+
+  repeated Item assets = 11;
+  repeated Item liabilities = 12;
+  repeated Item equity = 13;
+  repeated Item income = 14;
+  repeated Item expenses = 15;
+}

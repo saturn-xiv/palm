@@ -90,6 +90,25 @@ diesel::table! {
 }
 
 diesel::table! {
+    daffodil_transaction_attachments (id) {
+        id -> Int8,
+        owner_id -> Int8,
+        transaction_id -> Int8,
+        #[max_length = 63]
+        bucket -> Varchar,
+        #[max_length = 63]
+        object -> Varchar,
+        #[max_length = 63]
+        title -> Varchar,
+        #[max_length = 63]
+        content_type -> Varchar,
+        published_at -> Nullable<Timestamp>,
+        deleted_at -> Nullable<Timestamp>,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     email_users (id) {
         id -> Int8,
         user_id -> Int8,
@@ -509,6 +528,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     category_resources,
     comments,
     crawler_logs,
+    daffodil_transaction_attachments,
     email_users,
     favorites,
     feedbacks,

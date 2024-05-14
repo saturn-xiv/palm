@@ -1,5 +1,6 @@
 pub mod azalea;
 pub mod camelia;
+pub mod daffodil;
 pub mod daisy;
 pub mod gourd;
 pub mod iso4217;
