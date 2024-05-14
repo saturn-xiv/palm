@@ -313,6 +313,11 @@ service Site {
   rpc SetAuthor(SiteLayoutResponse.Author) returns (google.protobuf.Empty) {}
   rpc SetFavicon(SiteSetFaviconRequest) returns (google.protobuf.Empty) {}
 
+  rpc SetIcpCode(SiteLayoutResponse.IcpCode) returns (google.protobuf.Empty) {}
+  rpc GetIcpCode(google.protobuf.Empty) returns (SiteLayoutResponse.IcpCode) {}
+  rpc SetGabCode(SiteLayoutResponse.GabCode) returns (google.protobuf.Empty) {}
+  rpc GetGabCode(google.protobuf.Empty) returns (SiteLayoutResponse.GabCode) {}
+
   rpc SetBaidu(BaiduProfile) returns (google.protobuf.Empty) {}
   rpc GetBaidu(google.protobuf.Empty) returns (BaiduProfile) {}
   rpc SetIndexNow(IndexNowProfile) returns (google.protobuf.Empty) {}
@@ -347,15 +352,28 @@ message SiteLayoutResponse {
     string name = 1;
     string email = 2;
   }
+  message GabCode {
+    string code = 1;
+    string name = 2;
+  }
+  message IcpCode {
+    string code = 1;
+  }
   string lang = 1;
   string title = 2;
   string subhead = 3;
   Author author = 4;
   string description = 5;
+  repeated string keywords = 6;
   string favicon = 8;
   string copyright = 9;
 
-  repeated string languages = 11;
+  GabCode gab = 11;
+  IcpCode icp = 12;
+
+  repeated string languages = 97;
+  string version = 98;
+  google.protobuf.Timestamp created_at = 99;
 }
 
 message SiteSetKeywordsRequest {
@@ -370,7 +388,8 @@ message SiteSetInfoRequest {
 }
 message SiteStatusResponse {
   message PostgreSql {
-    string version = 1;
+    repeated string migrations = 1;
+    string version = 9;
   }
   message Redis {
     repeated string nodes = 1;
@@ -380,5 +399,5 @@ message SiteStatusResponse {
   }
   PostgreSql postgresql = 1;
   Redis redis = 2;
-  OpenSearch open_search = 3;
+  OpenSearch opensearch = 3;
 }

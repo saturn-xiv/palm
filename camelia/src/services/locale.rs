@@ -13,6 +13,7 @@ use tonic::{Request, Response};
 use validator::Validate;
 
 use super::super::{
+    i18n::I18n,
     models::locale::{Dao as LocaleDao, Item as Locale},
     orm::postgresql::{Connection as Db, Pool as DbPool},
 };
@@ -127,10 +128,7 @@ impl Form {
         user.is_administrator(policy)?;
 
         db.transaction::<_, Error, _>(move |db| {
-            match LocaleDao::by_lang_and_code(db, &self.lang, &self.code) {
-                Ok(ref it) => LocaleDao::update(db, it.id, &self.message)?,
-                Err(_) => LocaleDao::create(db, &self.lang, &self.code, &self.message)?,
-            };
+            I18n::set(db, &self.lang, &self.code, &self.message)?;
             Ok(())
         })?;
 
