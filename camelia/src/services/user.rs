@@ -1,25 +1,36 @@
+use std::collections::{BTreeSet, HashMap};
 use std::ops::{Deref, DerefMut};
 use std::str::FromStr;
 use std::sync::Arc;
 
+use chrono::Duration;
 use chrono_tz::Tz;
 use diesel::Connection as DieselConntection;
 use hibiscus::{
     cache::redis::Pool as CachePool,
-    queue::rabbitmq::{amqp::Amqp, Config as RabbitMq},
+    queue::rabbitmq::{
+        amqp::{Amqp, Thrift as ThriftAmqpProtocol},
+        Config as RabbitMq,
+    },
 };
 use hyper::StatusCode;
 use language_tags::LanguageTag;
+use palm::to_chrono_duration;
 use palm::{
     azalea::v1::{IdRequest, Pager, Pagination},
     camelia::v1,
+    daisy::protocols::{Address as EmailAddress, Body as EmailBody, EmailSendTask},
+    gourd::Policy,
     random::uuid,
-    to_code, to_timestamp, try_grpc, Error, GrpcResult, HttpError, Jwt, Password, Result, Thrift,
+    to_code, to_timestamp, try_grpc,
+    tuberose::protocols::SmsSendTask,
+    Error, GrpcResult, HttpError, Jwt, Password, Result, Thrift,
 };
 use tonic::{Request, Response, Status};
 use validator::Validate;
 
 use super::super::{
+    i18n::I18n,
     models::{
         google::user::{Dao as GoogleUserDao, Item as GoogleUser},
         log::{Dao as LogDao, Item as Log},
@@ -53,9 +64,11 @@ impl v1::user_server::User for Service {
         &self,
         req: Request<v1::UserSignInByPasswordRequest>,
     ) -> GrpcResult<v1::UserSignInResponse> {
+        let ss = Session::new(&req);
         let mut db = try_grpc!(self.db.get())?;
         let db = db.deref_mut();
         let jwt_hmac = self.loquat.deref();
+        let policy = self.gourd.deref();
         let req = req.into_inner();
 
         let (user, detail, provider_id) =
@@ -63,9 +76,14 @@ impl v1::user_server::User for Service {
         let res = try_grpc!(new_sign_in_response(
             db,
             jwt_hmac,
-            &user,
-            &detail,
-            provider_id
+            policy,
+            (&user, detail, provider_id),
+            (
+                &ss.client_ip,
+                req.ttl
+                    .map(|x| to_chrono_duration!(x))
+                    .unwrap_or(Duration::days(1))
+            ),
         ))?;
         Ok(Response::new(res))
     }
@@ -125,16 +143,18 @@ impl v1::user_server::User for Service {
             }))?;
         }
 
-        try_grpc!(send_email(
-            db,
-            jwt_hmac,
-            queue,
-            &ss.lang,
-            &real_name,
-            &email,
-            &req.home,
-            v1::UserTokenAction::Confirm
-        ))?;
+        try_grpc!(
+            send_email(
+                db,
+                jwt_hmac,
+                queue,
+                &ss.lang,
+                (&real_name, &email),
+                &req.home,
+                v1::UserTokenAction::Confirm
+            )
+            .await
+        )?;
         Ok(Response::new(()))
     }
     async fn confirm_by_email(&self, req: Request<v1::UserEmailRequest>) -> GrpcResult<()> {
@@ -165,16 +185,18 @@ impl v1::user_server::User for Service {
                 return Err(Status::invalid_argument("user is deleted"));
             }
         }
-        try_grpc!(send_email(
-            db,
-            jwt,
-            queue,
-            &ss.lang,
-            &it.real_name,
-            &it.email,
-            &req.home,
-            v1::UserTokenAction::Confirm,
-        ))?;
+        try_grpc!(
+            send_email(
+                db,
+                jwt,
+                queue,
+                &ss.lang,
+                (&it.real_name, &it.email),
+                &req.home,
+                v1::UserTokenAction::Confirm,
+            )
+            .await
+        )?;
 
         Ok(Response::new(()))
     }
@@ -240,16 +262,18 @@ impl v1::user_server::User for Service {
                 return Err(Status::invalid_argument("user isn't locked"));
             }
         }
-        try_grpc!(send_email(
-            db,
-            jwt,
-            queue,
-            &ss.lang,
-            &it.real_name,
-            &it.email,
-            &req.home,
-            v1::UserTokenAction::Unlock,
-        ))?;
+        try_grpc!(
+            send_email(
+                db,
+                jwt,
+                queue,
+                &ss.lang,
+                (&it.real_name, &it.email),
+                &req.home,
+                v1::UserTokenAction::Unlock,
+            )
+            .await
+        )?;
 
         Ok(Response::new(()))
     }
@@ -310,16 +334,18 @@ impl v1::user_server::User for Service {
             let user = try_grpc!(UserDao::by_id(db, it.user_id))?;
             try_grpc!(user.available())?;
         }
-        try_grpc!(send_email(
-            db,
-            jwt,
-            queue,
-            &ss.lang,
-            &it.real_name,
-            &it.email,
-            &req.home,
-            v1::UserTokenAction::ResetPassword,
-        ))?;
+        try_grpc!(
+            send_email(
+                db,
+                jwt,
+                queue,
+                &ss.lang,
+                (&it.real_name, &it.email),
+                &req.home,
+                v1::UserTokenAction::ResetPassword,
+            )
+            .await
+        )?;
 
         Ok(Response::new(()))
     }
@@ -555,16 +581,18 @@ impl v1::user_server::User for Service {
             v1::user_details::Type::Email => {
                 let it = try_grpc!(EmailUserDao::by_id(db, provider_id))?;
                 try_grpc!(it.available())?;
-                try_grpc!(send_email(
-                    db,
-                    jwt,
-                    queue,
-                    &ss.lang,
-                    &it.real_name,
-                    &it.email,
-                    &req.home,
-                    v1::UserTokenAction::Cancel
-                ))?;
+                try_grpc!(
+                    send_email(
+                        db,
+                        jwt,
+                        queue,
+                        &ss.lang,
+                        (&it.real_name, &it.email),
+                        &req.home,
+                        v1::UserTokenAction::Cancel
+                    )
+                    .await
+                )?;
                 Ok(Response::new(v1::UserCancelResponse {
                     payload: Some(v1::user_cancel_response::Payload::Reminder(
                         "you will receive an email to delete your account.".to_string(),
@@ -605,16 +633,18 @@ impl v1::user_server::User for Service {
                 // TODO
                 let name = "who-am-i";
                 let phone = "xxx";
-                try_grpc!(send_sms(
-                    db,
-                    jwt,
-                    queue,
-                    &ss.lang,
-                    name,
-                    phone,
-                    &req.home,
-                    v1::UserTokenAction::Cancel
-                ))?;
+                try_grpc!(
+                    send_sms(
+                        db,
+                        jwt,
+                        queue,
+                        &ss.lang,
+                        (name, phone),
+                        &req.home,
+                        v1::UserTokenAction::Cancel
+                    )
+                    .await
+                )?;
                 Ok(Response::new(v1::UserCancelResponse {
                     payload: Some(v1::user_cancel_response::Payload::Reminder(
                         "you will receive an sms to cancel your account.".to_string(),
@@ -1183,37 +1213,146 @@ fn user_details_by_wechat_oauth2(user: &User, it: &WechatOauth2User) -> v1::User
         avatar: it.head_img_url.clone(),
     }
 }
-fn send_email<J: Jwt>(
+async fn send_email<J: Jwt>(
     db: &mut Db,
     jwt: &J,
     queue: &RabbitMq,
     lang: &str,
-    name: &str,
-    email: &str,
+    (name, email): (&str, &str),
     home: &str,
     action: v1::UserTokenAction,
 ) -> Result<()> {
+    let token = Jwt::sign_by_duration(
+        jwt,
+        NAME,
+        email,
+        action.as_str_name(),
+        &Some(v1::user_details::Type::Email as i32),
+        Duration::hours(1),
+    )?;
+    let subject = I18n::t(
+        db,
+        lang,
+        &format!("users.email.{}.subject", action.as_str_name()),
+        &Some(HashMap::from([("username", name)])),
+    );
+    let body = I18n::t(
+        db,
+        lang,
+        &format!("users.email.{}.body", action.as_str_name()),
+        &Some(HashMap::from([
+            ("username", name),
+            ("home", home),
+            ("token", &token),
+        ])),
+    );
+    let task = EmailSendTask {
+        to: EmailAddress {
+            name: name.to_string(),
+            email: email.to_string(),
+        },
+        subject,
+        body: EmailBody {
+            text: body,
+            html: true,
+        },
+        cc: BTreeSet::new(),
+        bcc: BTreeSet::new(),
+        attachments: BTreeSet::new(),
+    };
+    let queue = Amqp::open(queue).await?;
+    ThriftAmqpProtocol::produce(&queue, &task).await?;
     Ok(())
 }
-fn send_sms<J: Jwt>(
+async fn send_sms<J: Jwt>(
     db: &mut Db,
     jwt: &J,
     queue: &RabbitMq,
     lang: &str,
-    name: &str,
-    phone: &str,
+    (name, phone): (&str, &str),
     home: &str,
     action: v1::UserTokenAction,
 ) -> Result<()> {
+    let token = Jwt::sign_by_duration(
+        jwt,
+        NAME,
+        phone,
+        action.as_str_name(),
+        &Some(v1::user_details::Type::Phone as i32),
+        Duration::hours(1),
+    )?;
+    let body = I18n::t(
+        db,
+        lang,
+        &format!("users.sms.{}.body", action.as_str_name()),
+        &Some(HashMap::from([("username", name)])),
+    );
+    let task = SmsSendTask {
+        to: BTreeSet::from([phone.to_string()]),
+        body,
+        callback: Some(format!("{home}/twilio/callbacks/sms-reply/{token}")),
+    };
+    let queue = Amqp::open(queue).await?;
+    ThriftAmqpProtocol::produce(&queue, &task).await?;
     Ok(())
 }
 
-fn new_sign_in_response<J: Jwt>(
+fn new_sign_in_response<J: Jwt, P: Policy>(
     db: &mut Db,
     jwt: &J,
-    user: &User,
-    detail: &v1::UserDetails,
-    provider_id: i64,
+    policy: &P,
+    (user, details, provider_id): (&User, v1::UserDetails, i64),
+    (ip, ttl): (&str, Duration),
 ) -> Result<v1::UserSignInResponse> {
-    todo!()
+    let sid = uuid();
+    let provider_type = v1::user_details::Type::try_from(details.r#type)?;
+    {
+        let did = details.id.clone();
+        db.transaction::<_, Error, _>(move |db| {
+            SessionDao::create(db, user.id, provider_type, provider_id, ip, ttl)?;
+            LogDao::add::<_, User>(
+                db,
+                user.id,
+                NAME,
+                v1::user_logs_response::item::Level::Info,
+                ip,
+                None,
+                format!("sign in by ({}, {})", provider_type.as_str_name(), &did),
+            )?;
+
+            Ok(())
+        })?;
+    }
+    let token = Jwt::sign_by_duration::<i32>(
+        jwt,
+        NAME,
+        &sid,
+        v1::UserTokenAction::SignIn.as_str_name(),
+        &None,
+        ttl,
+    )?;
+    let roles = {
+        let items = policy.get_implicit_roles_for_user(user.id)?;
+        items.into_iter().collect()
+    };
+    let permissions = {
+        let mut items = Vec::new();
+        for pm in policy.get_implicit_permissions_for_user(user.id)?.iter() {
+            items.push(v1::Permission {
+                operation: pm.operation.clone(),
+                resource: Some(v1::Resource {
+                    r#type: pm.resource.type_.clone(),
+                    id: pm.resource.id,
+                }),
+            });
+        }
+        items
+    };
+    Ok(v1::UserSignInResponse {
+        token,
+        details: Some(details),
+        menus: Vec::new(),
+        roles,
+        permissions,
+    })
 }

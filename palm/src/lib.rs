@@ -145,6 +145,7 @@ lazy_static::lazy_static! {
 // https://developers.cloudflare.com/support/speed/optimization-file-size/what-will-cloudflare-compress/
 pub const PROTOBUF: &str = "application/x-protobuf";
 pub const FLATBUFFER: &str = "application/x-flatbuffer";
+pub const THRIFT: &str = "apache/thrift";
 
 pub type Error = Box<dyn StdError + Send + Sync>;
 pub type Result<T> = StdResult<T, Error>;

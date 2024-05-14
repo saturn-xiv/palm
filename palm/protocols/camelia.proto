@@ -10,14 +10,6 @@ import "google/protobuf/timestamp.proto";
 
 import "azalea.proto";
 
-enum Operation {
-  Read = 0;
-  Write = 1;
-  Create = 2;
-  Update = 3;
-  Remove = 4;
-}
-
 enum UserTokenAction {
   SignIn = 0;
   Confirm = 1;
@@ -37,7 +29,7 @@ message Resource {
 }
 
 message Permission {
-  Operation operation = 1;
+  string operation = 1;
   Resource resource = 2;
 }
 

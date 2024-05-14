@@ -15,8 +15,9 @@ use amqprs::{
 use async_trait::async_trait;
 use hyper::StatusCode;
 use log::info;
-use palm::{random::uuid, HttpError, Result, FLATBUFFER, PROTOBUF};
+use palm::{random::uuid, to_bytes, HttpError, Result, FLATBUFFER, PROTOBUF, THRIFT};
 use serde::Serialize;
+use thrift::protocol::TSerializable;
 
 #[async_trait]
 pub trait Handler: Sync + Send {
@@ -93,6 +94,28 @@ impl Connection {
         ch.queue_bind(QueueBindArguments::new(queue, exchange, routing_key))
             .await?;
         Ok(())
+    }
+}
+
+pub trait Thrift {
+    fn produce<T: TSerializable + Sync>(
+        &self,
+        task: &T,
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
+    fn publish<T: TSerializable + Sync>(
+        &self,
+        task: &T,
+    ) -> impl std::future::Future<Output = Result<()>> + Send;
+}
+
+impl Thrift for Connection {
+    async fn produce<T: TSerializable + Sync>(&self, task: &T) -> Result<()> {
+        let payload = to_bytes(task)?;
+        self.produce(type_name::<T>(), THRIFT, &payload).await
+    }
+    async fn publish<T: TSerializable + Sync>(&self, task: &T) -> Result<()> {
+        let payload = to_bytes(task)?;
+        self.publish(type_name::<T>(), THRIFT, &payload).await
     }
 }
 
