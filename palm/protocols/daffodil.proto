@@ -231,7 +231,7 @@ message TransactionIndexResponse {
 message TransactionTrashResponse {
   message Item {
     int64 id = 1;
-    TransactionIndexResponse.Item orginal = 2;
+    TransactionIndexResponse.Item original = 2;
     string reason = 3;
     UserDetail deleted_by = 8;
     google.protobuf.Timestamp deleted_at = 9;

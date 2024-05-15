@@ -4,7 +4,7 @@ CREATE TABLE daffodil_books(
     user_id BIGINT NOT NULL,
     "name" VARCHAR(63) NOT NULL,
     description VARCHAR(511) NOT NULL,
-    cover VARCHAR(255),    
+    cover_id BIGINT,    
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE daffodil_accounts(
     currency CHAR(3) NOT NULL,
     "type" INT NOT NULL,
     description VARCHAR(511) NOT NULL,
-    cover VARCHAR(255),    
+    cover_id BIGINT,    
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE daffodil_merchants(
     address VARCHAR(255),
     contact VARCHAR(255),
     description VARCHAR(511),
-    cover VARCHAR(255),    
+    cover_id BIGINT,    
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     "version" INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE daffodil_transactions(
     source_account_id BIGINT NOT NULL,
     destination_account_id BIGINT NOT NULL,
     merchant_id BIGINT NOT NULL,
-    "type" BIGINT NOT NULL,       
+    "type" INT NOT NULL,       
     amount BIGINT NOT NULL,
     currency VARCHAR(3) NOT NULL,
     summary VARCHAR(511) NOT NULL,     
@@ -70,46 +70,27 @@ CREATE INDEX daffodil_transactions_summary ON daffodil_transactions(summary);
 
 CREATE TABLE daffodil_transaction_trash(
     id BIGSERIAL PRIMARY KEY,
-    transaction_id BIGINT NOT NULL,
+    original_id BIGINT NOT NULL,
     user_id BIGINT NOT NULL,
     book_id BIGINT NOT NULL,
     source_account_id BIGINT NOT NULL,
     destination_account_id BIGINT NOT NULL,
     merchant_id BIGINT NOT NULL,
-    "type" BIGINT NOT NULL,
+    "type" INT NOT NULL,
     amount BIGINT NOT NULL,
     currency VARCHAR(3) NOT NULL,
     summary VARCHAR(511) NOT NULL,      
-    deleted_reason VARCHAR(255) NOT NULL,
-    deleted_by BIGINT NOT NULL,    
-    deleted_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
+    original_created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    reason VARCHAR(255) NOT NULL,
+    operator_id BIGINT NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX daffodil_transaction_trash_currency ON daffodil_transaction_trash(currency);
 CREATE INDEX daffodil_transaction_trash_summary ON daffodil_transaction_trash(summary);
-CREATE INDEX daffodil_transaction_trash_deleted_reason ON daffodil_transaction_trash(deleted_reason);
-
-CREATE TABLE daffodil_transaction_attachments(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,    
-    transaction_id BIGINT NOT NULL,    
-    bucket VARCHAR(63) NOT NULL,
-    "object" VARCHAR(63) NOT NULL,
-    title VARCHAR(63) NOT NULL,
-    content_type VARCHAR(63) NOT NULL,
-    published_at TIMESTAMP WITHOUT TIME ZONE,
-    deleted_at TIMESTAMP WITHOUT TIME ZONE,    
-    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE UNIQUE INDEX daffodil_transaction_attachments_bucket_object ON daffodil_transaction_attachments(bucket, "object");
-CREATE INDEX daffodil_transaction_attachments_bucket ON daffodil_transaction_attachments(bucket);
-CREATE INDEX daffodil_transaction_attachments_object ON daffodil_transaction_attachments("object");
-CREATE INDEX daffodil_transaction_attachments_title ON daffodil_transaction_attachments(title);
-CREATE INDEX daffodil_transaction_attachments_content_type ON daffodil_transaction_attachments(content_type);
+CREATE INDEX daffodil_transaction_trash_reason ON daffodil_transaction_trash(reason);
 
 -- migrate:down
 DROP TABLE daffodil_transaction_trash;
-DROP TABLE daffodil_transaction_attachments;
 DROP TABLE daffodil_transactions;
 DROP TABLE daffodil_merchants;
 DROP TABLE daffodil_accounts;

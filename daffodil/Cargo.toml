@@ -70,6 +70,9 @@ features = [
 version = "4"
 features = ["cookies"]
 
+[dependencies.palm]
+path = '../palm'
+
 [dependencies.hibiscus]
 path = '../hibiscus'
 
