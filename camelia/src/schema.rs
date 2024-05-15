@@ -92,7 +92,7 @@ diesel::table! {
 diesel::table! {
     daffodil_transaction_attachments (id) {
         id -> Int8,
-        owner_id -> Int8,
+        user_id -> Int8,
         transaction_id -> Int8,
         #[max_length = 63]
         bucket -> Varchar,

@@ -4,78 +4,237 @@ option java_package = "com.github.saturn_xiv.palm.plugins.daffodil.v1";
 option go_package = "github.com/saturn-xiv/palm/daffodil/v2";
 package palm.daffodil.v1;
 
-// import "google/protobuf/duration.proto";
-// import "google/protobuf/empty.proto";
+import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
-// import "azalea.proto";
+import "azalea.proto";
+import "camelia.proto";
 
-enum Type {
-  Assets = 0;
-  Liability = 1;
-  Equity = 2;
-  Income = 3;
-  Expense = 4;
-}
-
-message Account {
-  enum Type {
-    Cash = 0;
-    Checking = 1;
-    Saving = 2;
-    CreditCard = 3;
-    Mortgage = 4;
-    Loan = 5;
-  }
-  string code = 1;
+message UserDetail {
+  int64 id = 1;
   string name = 2;
-  Type type = 3;
-  string description = 8;
-  optional string cover = 9;
+  optional string avatar = 3;
+  optional google.protobuf.Timestamp deleted_at = 99;
+}
+message BookDetail {
+  int64 id = 1;
+  string name = 2;
+  optional string cover = 3;
+  optional google.protobuf.Timestamp deleted_at = 99;
+}
+message AccountDetail {
+  int64 id = 1;
+  string name = 2;
+  optional string cover = 3;
+  AccountIndexResponse.Item.Type type = 4;
 
-  int64 balance = 11;
-  string currency = 12;
-
-  google.protobuf.Timestamp updated_at = 99;
+  optional google.protobuf.Timestamp deleted_at = 99;
+}
+message MerchantDetail {
+  int64 id = 1;
+  string name = 2;
+  optional string cover = 3;
+  optional google.protobuf.Timestamp deleted_at = 99;
+}
+message Amount {
+  int64 value = 1;
+  string currency = 2;
 }
 
-message Transaction {
-  message Attachment {
-    string bucket = 1;
-    string object = 2;
-    string title = 3;
-    string content_type = 4;
-  }
-  message Account {
-    string code = 1;
-    string name = 2;
-    optional string cover = 3;
-  }
-  string summary = 1;
-  Account source = 11;
-  Account destination = 12;
-  int64 amount = 13;
-  string currency = 14;
-  repeated Attachment attachments = 19;
+// ----------------------------------------------------------------------------
 
+service Book {
+  rpc Create(BookCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(BookUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Index(google.protobuf.Empty) returns (BookIndexResponse) {}
+  rpc Show(palm.azalea.v1.IdRequest) returns (BookShowResponse) {}
+  rpc Disable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+}
+message BookCreateRequest {
+  string name = 1;
+  string description = 2;
+  optional int64 cover_id = 3;
+}
+message BookUpdateRequest {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  optional int64 cover_id = 4;
+}
+message BookIndexResponse {
+  message Item {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    optional string cover = 4;
+
+    google.protobuf.Timestamp deleted_at = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+}
+message BookShowResponse {
+  BookIndexResponse.Item item = 1;
+  repeated MerchantDetail merchants = 2;
+  repeated AccountDetail accounts = 3;
+}
+
+// ----------------------------------------------------------------------------
+
+service Account {
+  rpc Create(AccountCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(AccountUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc ByBook(palm.azalea.v1.IdRequest) returns (AccountIndexResponse) {}
+  rpc Show(palm.azalea.v1.IdRequest) returns (AccountShowResponse) {}
+  rpc Disable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+}
+
+message AccountCreateRequest {
+  int64 book_id = 1;
+  string name = 2;
+  string currency = 3;
+  AccountIndexResponse.Item.Type type = 4;
+  string description = 5;
+  optional int64 cover_id = 6;
+}
+
+message AccountUpdateRequest {
+  int64 id = 1;
+  string name = 2;
+  string currency = 3;
+  AccountIndexResponse.Item.Type type = 4;
+  string description = 5;
+  optional int64 cover_id = 6;
+}
+message AccountIndexResponse {
+  message Item {
+    enum Type {
+      Cash = 0;
+      Checking = 1;
+      Saving = 2;
+      CreditCard = 3;
+      Mortgage = 4;
+      Loan = 5;
+    }
+
+    int64 id = 1;
+    string name = 2;
+    string currency = 3;
+    Type type = 4;
+    string description = 5;
+    optional string cover = 6;
+
+    UserDetail user = 11;
+
+    google.protobuf.Timestamp deleted_at = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+}
+
+message AccountShowResponse {
+  AccountIndexResponse.Item item = 1;
+  BookDetail book = 2;
+}
+// ----------------------------------------------------------------------------
+service Merchant {
+  rpc Create(MerchantCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Update(MerchantUpdateRequest) returns (google.protobuf.Empty) {}
+  rpc ByBook(palm.azalea.v1.IdRequest) returns (MerchantIndexResponse) {}
+  rpc Show(palm.azalea.v1.IdRequest) returns (MerchantShowResponse) {}
+  rpc Disable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+}
+message MerchantCreateRequest {
+  int64 book_id = 1;
+  string name = 2;
+  optional string address = 11;
+  optional string contact = 12;
+  optional string description = 13;
+  optional string cover = 14;
+}
+message MerchantUpdateRequest {
+  int64 id = 1;
+  string name = 2;
+  optional string address = 11;
+  optional string contact = 12;
+  optional string description = 13;
+  optional string cover = 14;
+}
+message MerchantIndexResponse {
+  message Item {
+    int64 id = 1;
+    string name = 2;
+    optional string address = 11;
+    optional string contact = 12;
+    optional string description = 13;
+    optional string cover = 14;
+
+    UserDetail user = 21;
+
+    google.protobuf.Timestamp deleted_at = 98;
+    google.protobuf.Timestamp updated_at = 99;
+  }
+  repeated Item items = 1;
+}
+message MerchantShowResponse {
+  MerchantIndexResponse.Item item = 1;
+  BookDetail book = 2;
+}
+// ----------------------------------------------------------------------------
+service Transaction {
+  rpc Create(TransactionCreateRequest) returns (google.protobuf.Empty) {}
+  rpc ByBook(palm.azalea.v1.IdRequest) returns (TransactionIndexResponse) {}
+  rpc ByAccount(palm.azalea.v1.IdRequest) returns (TransactionIndexResponse) {}
+  rpc ByMerchant(palm.azalea.v1.IdRequest) returns (TransactionIndexResponse) {}
+  rpc Trash(palm.azalea.v1.IdRequest) returns (TransactionTrashResponse) {}
+  rpc Delete(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+}
+message TransactionCreateRequest {
+  int64 book_id = 1;
+  int64 source_account_id = 2;
+  int64 destination_account_id = 3;
+  int64 merchant_id = 4;
+  int64 amount = 5;
+  string currency = 6;
+  string summary = 7;
+  TransactionIndexResponse.Item.Type type = 8;
+
+  optional string deleted_reason = 97;
+  optional google.protobuf.Timestamp deleted_at = 98;
   google.protobuf.Timestamp created_at = 99;
 }
+message TransactionIndexResponse {
+  message Item {
+    enum Type {
+      Assets = 0;
+      Liabilities = 1;
+      Equity = 2;
+      Income = 3;
+      Expenses = 4;
+    }
+    int64 id = 1;
+    string summary = 2;
 
-message Merchant {
-  string name = 1;
-  optional string description = 2;
-  optional string address = 3;
-  optional string contact = 4;
+    UserDetail user = 11;
+    Amount amount = 12;
+    BookDetail book = 13;
+    AccountDetail source = 14;
+    AccountDetail destination = 15;
+    MerchantDetail merchant = 16;
+
+    google.protobuf.Timestamp created_at = 99;
+  }
 }
-
-message Account1 {
-  message Item {}
-
-  string name = 1;
-
-  repeated Item assets = 11;
-  repeated Item liabilities = 12;
-  repeated Item equity = 13;
-  repeated Item income = 14;
-  repeated Item expenses = 15;
+message TransactionTrashResponse {
+  message Item {
+    int64 id = 1;
+    TransactionIndexResponse.Item orginal = 2;
+    string reason = 3;
+    UserDetail deleted_by = 8;
+    google.protobuf.Timestamp deleted_at = 9;
+  }
+  repeated Item items = 1;
 }
