@@ -8,6 +8,7 @@ use palm::{Result, Thrift};
 use super::{models::locale::Dao as LocaleDao, orm::postgresql::Connection as Db};
 
 pub type Jasmine = Thrift;
+pub type Loquat = Thrift;
 
 pub fn register(config: &mut web::ServiceConfig) {
     if cfg!(debug_assertions) {

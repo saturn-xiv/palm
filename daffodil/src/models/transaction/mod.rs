@@ -20,18 +20,24 @@ pub struct Item {
     pub amount: i64,
     pub currency: String,
     pub summary: String,
+    pub paid_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {
     fn by_book(&mut self, book: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
+    fn first_by_book(&mut self, book: i64) -> Result<Item>;
     fn create(
         &mut self,
         user: i64,
         book: i64,
         accounts: (i64, i64),
-        merchant: (i64, v1::transaction_index_response::item::Type),
+        merchant: (
+            i64,
+            v1::transaction_index_response::item::Type,
+            NaiveDateTime,
+        ),
         amount: (i64, &str),
         summary: &str,
     ) -> Result<()>;
@@ -46,6 +52,13 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
+    fn first_by_book(&mut self, book: i64) -> Result<Item> {
+        let it = daffodil_transactions::dsl::daffodil_transactions
+            .filter(daffodil_transactions::dsl::book_id.eq(book))
+            .order(daffodil_transactions::dsl::created_at.asc())
+            .first::<Item>(self)?;
+        Ok(it)
+    }
     fn by_id(&mut self, id: i64) -> Result<Item> {
         let it = daffodil_transactions::dsl::daffodil_transactions
             .filter(daffodil_transactions::dsl::id.eq(id))
@@ -57,7 +70,11 @@ impl Dao for Connection {
         user: i64,
         book: i64,
         (source_account, destination_account): (i64, i64),
-        (merchant, type_): (i64, v1::transaction_index_response::item::Type),
+        (merchant, type_, paid_at): (
+            i64,
+            v1::transaction_index_response::item::Type,
+            NaiveDateTime,
+        ),
         (amount, currency): (i64, &str),
         summary: &str,
     ) -> Result<()> {
@@ -72,6 +89,7 @@ impl Dao for Connection {
                 daffodil_transactions::dsl::amount.eq(amount),
                 daffodil_transactions::dsl::currency.eq(currency),
                 daffodil_transactions::dsl::summary.eq(summary),
+                daffodil_transactions::dsl::paid_at.eq(paid_at),
             ))
             .execute(self)?;
         Ok(())

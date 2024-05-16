@@ -2,6 +2,7 @@
 CREATE TABLE daffodil_books(
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
+    "uid" VARCHAR(36) NOT NULL,
     "name" VARCHAR(63) NOT NULL,
     description VARCHAR(511) NOT NULL,
     cover_id BIGINT,    
@@ -10,6 +11,7 @@ CREATE TABLE daffodil_books(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_daffodil_books_uid ON daffodil_books("uid");
 CREATE UNIQUE INDEX idx_daffodil_books_user_name ON daffodil_books(user_id, "name");
 CREATE INDEX idx_daffodil_books_name ON daffodil_books("name");
 CREATE TABLE daffodil_accounts(
@@ -62,7 +64,8 @@ CREATE TABLE daffodil_transactions(
     "type" INT NOT NULL,       
     amount BIGINT NOT NULL,
     currency VARCHAR(3) NOT NULL,
-    summary VARCHAR(511) NOT NULL,     
+    summary VARCHAR(511) NOT NULL,   
+    paid_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,  
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX daffodil_transactions_currency ON daffodil_transactions(currency);
@@ -80,6 +83,7 @@ CREATE TABLE daffodil_transaction_trash(
     amount BIGINT NOT NULL,
     currency VARCHAR(3) NOT NULL,
     summary VARCHAR(511) NOT NULL,      
+    paid_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     original_created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     reason VARCHAR(255) NOT NULL,
     operator_id BIGINT NOT NULL,    

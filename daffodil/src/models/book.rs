@@ -1,7 +1,7 @@
 use camelia::orm::postgresql::Connection;
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use palm::Result;
+use palm::{random::uuid, Result};
 use serde::{Deserialize, Serialize};
 
 use super::super::schema::daffodil_books;
@@ -10,6 +10,7 @@ use super::super::schema::daffodil_books;
 pub struct Item {
     pub id: i64,
     pub user_id: i64,
+    pub uid: String,
     pub name: String,
     pub description: String,
     pub cover_id: Option<i64>,
@@ -22,6 +23,7 @@ pub struct Item {
 pub trait Dao {
     fn by_user(&mut self, user: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
+    fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn create(
         &mut self,
         user: i64,
@@ -47,6 +49,12 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
+    fn by_uid(&mut self, uid: &str) -> Result<Item> {
+        let it = daffodil_books::dsl::daffodil_books
+            .filter(daffodil_books::dsl::uid.eq(uid))
+            .first::<Item>(self)?;
+        Ok(it)
+    }
     fn create(
         &mut self,
         user: i64,
@@ -58,6 +66,7 @@ impl Dao for Connection {
         insert_into(daffodil_books::dsl::daffodil_books)
             .values((
                 daffodil_books::dsl::user_id.eq(user),
+                daffodil_books::dsl::uid.eq(&uuid()),
                 daffodil_books::dsl::name.eq(name),
                 daffodil_books::dsl::description.eq(description),
                 daffodil_books::dsl::cover_id.eq(cover),

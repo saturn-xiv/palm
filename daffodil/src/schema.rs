@@ -25,6 +25,8 @@ diesel::table! {
     daffodil_books (id) {
         id -> Int8,
         user_id -> Int8,
+        #[max_length = 36]
+        uid -> Varchar,
         #[max_length = 63]
         name -> Varchar,
         #[max_length = 511]
@@ -74,6 +76,7 @@ diesel::table! {
         currency -> Varchar,
         #[max_length = 511]
         summary -> Varchar,
+        paid_at -> Timestamp,
         original_created_at -> Timestamp,
         #[max_length = 255]
         reason -> Varchar,
@@ -97,6 +100,7 @@ diesel::table! {
         currency -> Varchar,
         #[max_length = 511]
         summary -> Varchar,
+        paid_at -> Timestamp,
         created_at -> Timestamp,
     }
 }
