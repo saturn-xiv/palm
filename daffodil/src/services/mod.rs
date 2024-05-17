@@ -12,6 +12,32 @@ use palm::{daffodil::v1, jasmine::S3, to_timestamp, Result};
 
 use super::models::{account::Item as Account, book::Item as Book, merchant::Item as Merchant};
 
+pub fn new_merchant_item<S: S3>(
+    db: &mut Db,
+    s3: &S,
+    x: &Merchant,
+) -> Result<v1::merchant_index_response::Item> {
+    let cover = match x.cover_id {
+        Some(id) => {
+            let it = AttachmentDao::by_id(db, id)?;
+            let url = it.url(s3, Duration::hours(1))?;
+            Some(url)
+        }
+        None => None,
+    };
+    let user = UserDao::by_id(db, x.user_id)?;
+    Ok(v1::merchant_index_response::Item {
+        id: x.id,
+        name: x.name.clone(),
+        description: x.description.clone(),
+        address: x.address.clone(),
+        contact: x.contact.clone(),
+        deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
+        updated_at: Some(to_timestamp!(x.updated_at)),
+        user: Some(user.into()),
+        cover,
+    })
+}
 pub fn new_account_item<S: S3>(
     db: &mut Db,
     s3: &S,

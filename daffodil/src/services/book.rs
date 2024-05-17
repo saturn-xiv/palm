@@ -61,7 +61,7 @@ impl v1::book_server::Book for Service {
 
         try_grpc!(db.transaction::<_, Error, _>(move |db| {
             let uid = uuid();
-            BookDao::create(db, user.id, &uid, &req.name, &req.description, req.cover_id)?;
+            BookDao::create(db, user.id, &uid, &req.name, &req.description, req.cover)?;
             let book = BookDao::by_uid(db, &uid)?;
             LogDao::add::<_, Book>(
                 db,
@@ -102,7 +102,7 @@ impl v1::book_server::Book for Service {
         }
 
         try_grpc!(db.transaction::<_, Error, _>(move |db| {
-            BookDao::update(db, req.id, &req.name, &req.description, req.cover_id)?;
+            BookDao::update(db, req.id, &req.name, &req.description, req.cover)?;
             if req.name != book.name {
                 LogDao::add::<_, Book>(
                     db,

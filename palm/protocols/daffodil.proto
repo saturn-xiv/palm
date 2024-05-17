@@ -48,13 +48,13 @@ service Book {
 message BookCreateRequest {
   string name = 1;
   string description = 2;
-  optional int64 cover_id = 3;
+  optional int64 cover = 3;
 }
 message BookUpdateRequest {
   int64 id = 1;
   string name = 2;
   string description = 3;
-  optional int64 cover_id = 4;
+  optional int64 cover = 4;
 }
 message BookIndexResponse {
   message Item {
@@ -91,7 +91,7 @@ message AccountCreateRequest {
   string currency = 3;
   AccountIndexResponse.Item.Type type = 4;
   string description = 5;
-  optional int64 cover_id = 6;
+  optional int64 cover = 6;
 }
 
 message AccountUpdateRequest {
@@ -100,7 +100,7 @@ message AccountUpdateRequest {
   string currency = 3;
   AccountIndexResponse.Item.Type type = 4;
   string description = 5;
-  optional int64 cover_id = 6;
+  optional int64 cover = 6;
 }
 message AccountIndexResponse {
   message Item {
@@ -147,7 +147,7 @@ message MerchantCreateRequest {
   optional string address = 11;
   optional string contact = 12;
   optional string description = 13;
-  optional string cover = 14;
+  optional int64 cover = 14;
 }
 message MerchantUpdateRequest {
   int64 id = 1;
@@ -155,7 +155,7 @@ message MerchantUpdateRequest {
   optional string address = 11;
   optional string contact = 12;
   optional string description = 13;
-  optional string cover = 14;
+  optional int64 cover = 14;
 }
 message MerchantIndexResponse {
   message Item {

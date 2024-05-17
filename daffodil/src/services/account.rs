@@ -15,7 +15,7 @@ use validator::Validate;
 
 use super::super::{
     models::{
-        account::{Dao as AccountDao, Item as Account},
+        account::Dao as AccountDao,
         book::{Dao as BookDao, Item as Book},
     },
     NAME,
@@ -63,7 +63,7 @@ impl v1::account_server::Account for Service {
                 &req.name,
                 req.r#type(),
                 &req.description,
-                req.cover_id,
+                req.cover,
             )?;
             LogDao::add::<_, Book>(
                 db,
@@ -107,7 +107,7 @@ impl v1::account_server::Account for Service {
         }
 
         try_grpc!(db.transaction::<_, Error, _>(move |db| {
-            AccountDao::update(db, req.id, &req.name, &req.description, req.cover_id)?;
+            AccountDao::update(db, req.id, &req.name, &req.description, req.cover)?;
             LogDao::add::<_, Book>(
                 db,
                 user.id,
@@ -196,13 +196,13 @@ impl v1::account_server::Account for Service {
 
         try_grpc!(db.transaction::<_, Error, _>(move |db| {
             AccountDao::enable(db, req.id, true)?;
-            LogDao::add::<_, Account>(
+            LogDao::add::<_, Book>(
                 db,
                 user.id,
                 NAME,
                 LogLevel::Info,
                 &ss.client_ip,
-                Some(account.id),
+                Some(account.book_id),
                 &format!("enable account({})", account.name),
             )?;
             Ok(())
@@ -234,13 +234,13 @@ impl v1::account_server::Account for Service {
 
         try_grpc!(db.transaction::<_, Error, _>(move |db| {
             AccountDao::enable(db, req.id, false)?;
-            LogDao::add::<_, Account>(
+            LogDao::add::<_, Book>(
                 db,
                 user.id,
                 NAME,
                 LogLevel::Info,
                 &ss.client_ip,
-                Some(account.id),
+                Some(account.book_id),
                 &format!("disable account({})", account.name),
             )?;
             Ok(())
