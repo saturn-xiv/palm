@@ -91,6 +91,21 @@ function generate_grpc_for_node() {
         --grpc_out=grpc_js:$2 $1/*.proto
 }
 
+# https://github.com/grpc/grpc-web#code-generator-plugin
+function generate_grpc_for_typescript() {
+    echo "generate typescript sdk $1 => $2"
+    if [ -d $2 ]; then
+        rm -r $2
+    fi
+    mkdir -p $2
+
+    $PROTOBUF_ROOT/bin/protoc -I $1 \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$2 \
+        --grpc-web_out=import_style=typescript,mode=grpcweb:$2 \
+        $1/*.proto
+}
+
 function generate_diesel_postgresql_scheme() {
     echo "generate diesel schema for postgresql"
 
@@ -132,15 +147,16 @@ generate_thrift_for_rust $WORKSPACE/palm/protocols musa-wechat-pay $WORKSPACE/pa
 generate_thrift_for_rust $WORKSPACE/palm/protocols tuberose $WORKSPACE/palm/src/tuberose
 generate_thrift_for_rust $WORKSPACE/palm/protocols daisy $WORKSPACE/palm/src/daisy
 generate_thrift_for_rust $WORKSPACE/palm/protocols loquat $WORKSPACE/palm/src/loquat
-# # tutorials
-# generate_thrift_for_php $WORKSPACE/loquat/loquat.thrift loquat $WORKSPACE/tutorials/php/lib
-# generate_thrift_for_php $WORKSPACE/lily/lily.thrift lily $WORKSPACE/tutorials/php/lib
-# generate_thrift_for_php $WORKSPACE/tuberose/tuberose.thrift tuberose $WORKSPACE/tutorials/php/lib
-# generate_thrift_for_php $WORKSPACE/daisy/daisy.thrift daisy $WORKSPACE/tutorials/php/lib
-# generate_thrift_for_php $WORKSPACE/morus/markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
-# generate_thrift_for_php $WORKSPACE/musa/wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
-# generate_thrift_for_java $WORKSPACE/morus/markdown.thrift $WORKSPACE/tutorials/java/src/main/java com/github/saturn_xiv/palm/plugins/morus/v1/markdown
-
+# tutorials
+generate_thrift_for_php $WORKSPACE/palm/protocols/loquat.thrift loquat $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/palm/protocols/lily.thrift lily $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/palm/protocols/tuberose.thrift tuberose $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/palm/protocols/daisy.thrift daisy $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/palm/protocols/morus-markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
+generate_thrift_for_php $WORKSPACE/palm/protocols/musa-wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
+generate_thrift_for_java $WORKSPACE/palm/protocols/morus-markdown.thrift $WORKSPACE/tutorials/java/src/main/java com/github/saturn_xiv/palm/plugins/morus/v1/markdown
+# fig
+generate_grpc_for_typescript palm/protocols fig/dashboard/src/protocols
 # postgresql
 generate_diesel_postgresql_scheme "postgres://www:change-me@127.0.0.1:5432/palm?sslmode=disable"
 
