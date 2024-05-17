@@ -31,7 +31,7 @@ pub trait Dao {
         user: i64,
         book: i64,
         name: &str,
-        type_: v1::account_index_response::item::Type,
+        type_: (v1::account_index_response::item::Type, &str),
         description: &str,
         cover: Option<i64>,
     ) -> Result<()>;
@@ -65,7 +65,7 @@ impl Dao for Connection {
         user: i64,
         book: i64,
         name: &str,
-        type_: v1::account_index_response::item::Type,
+        (type_, currency): (v1::account_index_response::item::Type, &str),
         description: &str,
         cover: Option<i64>,
     ) -> Result<()> {
@@ -76,6 +76,7 @@ impl Dao for Connection {
                 daffodil_accounts::dsl::book_id.eq(book),
                 daffodil_accounts::dsl::name.eq(name),
                 daffodil_accounts::dsl::description.eq(description),
+                daffodil_accounts::dsl::currency.eq(currency),
                 daffodil_accounts::dsl::type_.eq(type_ as i32),
                 daffodil_accounts::dsl::cover_id.eq(cover),
                 daffodil_accounts::dsl::updated_at.eq(&now),

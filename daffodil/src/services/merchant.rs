@@ -53,7 +53,7 @@ impl v1::merchant_server::Merchant for Service {
 
         let (user, _, _) = try_grpc!(ss.current_user(db, ch, jwt))?;
         {
-            let book = try_grpc!(BookDao::by_id(db, req.book_id))?;
+            let book = try_grpc!(BookDao::by_id(db, req.book))?;
             try_grpc!(book.can_manage(policy, &user))?;
         }
 
@@ -61,7 +61,7 @@ impl v1::merchant_server::Merchant for Service {
             MerchantDao::create(
                 db,
                 user.id,
-                req.book_id,
+                req.book,
                 &req.name,
                 (
                     req.address.as_deref(),
@@ -76,7 +76,7 @@ impl v1::merchant_server::Merchant for Service {
                 NAME,
                 LogLevel::Info,
                 &ss.client_ip,
-                Some(req.book_id),
+                Some(req.book),
                 &format!("create merchant({})", req.name),
             )?;
             Ok(())
@@ -268,11 +268,11 @@ impl v1::merchant_server::Merchant for Service {
 #[derive(Validate)]
 struct Form<'a> {
     #[validate(length(min = 1, max = 63))]
-    pub name: &'a str,
+    name: &'a str,
     #[validate(length(min = 1, max = 511))]
-    pub description: Option<&'a str>,
+    description: Option<&'a str>,
     #[validate(length(min = 1, max = 255))]
-    pub address: Option<&'a str>,
+    address: Option<&'a str>,
     #[validate(length(min = 1, max = 255))]
-    pub contact: Option<&'a str>,
+    contact: Option<&'a str>,
 }

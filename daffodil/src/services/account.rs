@@ -8,7 +8,7 @@ use diesel::Connection as DieselConntection;
 use hibiscus::{cache::redis::Pool as CachePool, session::Session};
 use palm::{
     azalea::v1::IdRequest, camelia::v1::user_logs_response::item::Level as LogLevel, daffodil::v1,
-    try_grpc, Error, GrpcResult, Thrift,
+    to_code, try_grpc, Error, GrpcResult, Thrift,
 };
 use tonic::{Request, Response, Status};
 use validator::Validate;
@@ -41,17 +41,20 @@ impl v1::account_server::Account for Service {
         let jwt = self.loquat.deref();
         let policy = self.gourd.deref();
         let req = req.into_inner();
+
+        let currency = to_code!(req.currency);
         {
-            let form = Form {
+            let form = Create {
                 name: &req.name,
                 description: &req.description,
+                currency: &currency,
             };
             try_grpc!(form.validate())?;
         }
 
         let (user, _, _) = try_grpc!(ss.current_user(db, ch, jwt))?;
         {
-            let book = try_grpc!(BookDao::by_id(db, req.book_id))?;
+            let book = try_grpc!(BookDao::by_id(db, req.book))?;
             try_grpc!(book.can_manage(policy, &user))?;
         }
 
@@ -59,9 +62,9 @@ impl v1::account_server::Account for Service {
             AccountDao::create(
                 db,
                 user.id,
-                req.book_id,
+                req.book,
                 &req.name,
-                req.r#type(),
+                (req.r#type(), &currency),
                 &req.description,
                 req.cover,
             )?;
@@ -71,7 +74,7 @@ impl v1::account_server::Account for Service {
                 NAME,
                 LogLevel::Info,
                 &ss.client_ip,
-                Some(req.book_id),
+                Some(req.book),
                 &format!("create account({})", req.name),
             )?;
             Ok(())
@@ -89,7 +92,7 @@ impl v1::account_server::Account for Service {
         let policy = self.gourd.deref();
         let req = req.into_inner();
         {
-            let form = Form {
+            let form = Update {
                 name: &req.name,
                 description: &req.description,
             };
@@ -251,9 +254,19 @@ impl v1::account_server::Account for Service {
 }
 
 #[derive(Validate)]
-struct Form<'a> {
+struct Create<'a> {
     #[validate(length(min = 1, max = 63))]
-    pub name: &'a str,
+    name: &'a str,
     #[validate(length(min = 1, max = 511))]
-    pub description: &'a str,
+    description: &'a str,
+    #[validate(length(equal = 3))]
+    currency: &'a str,
+}
+
+#[derive(Validate)]
+struct Update<'a> {
+    #[validate(length(min = 1, max = 63))]
+    name: &'a str,
+    #[validate(length(min = 1, max = 511))]
+    description: &'a str,
 }

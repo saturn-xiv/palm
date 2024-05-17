@@ -51,7 +51,12 @@ macro_rules! to_timestamp {
 #[macro_export]
 macro_rules! to_datetime {
     ($x:expr) => {{
-        chrono::NaiveDateTime::from_timestamp_opt($x.seconds, $x.nanos as u32).unwrap_or_default()
+        match $x {
+            Some(ref x) => {
+                chrono::DateTime::<chrono::Utc>::from_timestamp(x.seconds, x.nanos as u32)
+            }
+            None => None,
+        }
     }};
 }
 

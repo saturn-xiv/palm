@@ -86,7 +86,7 @@ service Account {
 }
 
 message AccountCreateRequest {
-  int64 book_id = 1;
+  int64 book = 1;
   string name = 2;
   string currency = 3;
   AccountIndexResponse.Item.Type type = 4;
@@ -142,7 +142,7 @@ service Merchant {
   rpc Enable(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
 }
 message MerchantCreateRequest {
-  int64 book_id = 1;
+  int64 book = 1;
   string name = 2;
   optional string address = 11;
   optional string contact = 12;
@@ -183,22 +183,23 @@ service Transaction {
   rpc ByBook(palm.azalea.v1.IdRequest) returns (TransactionIndexResponse) {}
   rpc ByAccount(palm.azalea.v1.IdRequest) returns (TransactionIndexResponse) {}
   rpc ByMerchant(palm.azalea.v1.IdRequest) returns (TransactionIndexResponse) {}
-  rpc Trash(palm.azalea.v1.IdRequest) returns (TransactionTrashResponse) {}
-  rpc Delete(palm.azalea.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc TrashByBook(palm.azalea.v1.IdRequest) returns (TransactionTrashResponse) {
+  }
+  rpc Delete(TransactionDeleteRequest) returns (google.protobuf.Empty) {}
+}
+message TransactionDeleteRequest {
+  int64 id = 1;
+  string reason = 2;
 }
 message TransactionCreateRequest {
-  int64 book_id = 1;
-  int64 source_account_id = 2;
-  int64 destination_account_id = 3;
-  int64 merchant_id = 4;
+  int64 book = 1;
+  int64 source_account = 2;
+  int64 destination_account = 3;
+  int64 merchant = 4;
   int64 amount = 5;
-  string currency = 6;
-  string summary = 7;
-  TransactionIndexResponse.Item.Type type = 8;
-
-  optional string deleted_reason = 97;
-  optional google.protobuf.Timestamp deleted_at = 98;
-  google.protobuf.Timestamp created_at = 99;
+  string summary = 6;
+  google.protobuf.Timestamp paid_at = 8;
+  TransactionIndexResponse.Item.Type type = 9;
 }
 message TransactionIndexResponse {
   message Item {
@@ -211,6 +212,7 @@ message TransactionIndexResponse {
     }
     int64 id = 1;
     string summary = 2;
+    google.protobuf.Timestamp paid_at = 9;
 
     palm.camelia.v1.UserInfo user = 11;
     Amount amount = 12;
@@ -221,14 +223,15 @@ message TransactionIndexResponse {
 
     google.protobuf.Timestamp created_at = 99;
   }
+  repeated Item items = 1;
 }
 message TransactionTrashResponse {
   message Item {
     int64 id = 1;
     TransactionIndexResponse.Item original = 2;
     string reason = 3;
-    palm.camelia.v1.UserInfo deleted_by = 8;
-    google.protobuf.Timestamp deleted_at = 9;
+    palm.camelia.v1.UserInfo operator = 8;
+    google.protobuf.Timestamp created_at = 9;
   }
   repeated Item items = 1;
 }

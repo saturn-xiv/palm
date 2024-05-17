@@ -26,6 +26,8 @@ pub struct Item {
 
 pub trait Dao {
     fn by_book(&mut self, book: i64) -> Result<Vec<Item>>;
+    fn by_merchant(&mut self, merchant: i64) -> Result<Vec<Item>>;
+    fn by_account(&mut self, account: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn first_by_book(&mut self, book: i64) -> Result<Item>;
     fn create(
@@ -48,6 +50,24 @@ impl Dao for Connection {
     fn by_book(&mut self, book: i64) -> Result<Vec<Item>> {
         let items = daffodil_transactions::dsl::daffodil_transactions
             .filter(daffodil_transactions::dsl::book_id.eq(book))
+            .order(daffodil_transactions::dsl::created_at.desc())
+            .load::<Item>(self)?;
+        Ok(items)
+    }
+    fn by_merchant(&mut self, merchant: i64) -> Result<Vec<Item>> {
+        let items = daffodil_transactions::dsl::daffodil_transactions
+            .filter(daffodil_transactions::dsl::merchant_id.eq(merchant))
+            .order(daffodil_transactions::dsl::created_at.desc())
+            .load::<Item>(self)?;
+        Ok(items)
+    }
+    fn by_account(&mut self, account: i64) -> Result<Vec<Item>> {
+        let items = daffodil_transactions::dsl::daffodil_transactions
+            .filter(
+                daffodil_transactions::dsl::source_account_id
+                    .eq(account)
+                    .or(daffodil_transactions::dsl::destination_account_id.eq(account)),
+            )
             .order(daffodil_transactions::dsl::created_at.desc())
             .load::<Item>(self)?;
         Ok(items)

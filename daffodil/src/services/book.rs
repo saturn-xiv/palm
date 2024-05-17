@@ -264,7 +264,7 @@ impl Book {
 #[derive(Validate)]
 struct Form<'a> {
     #[validate(length(min = 1, max = 63))]
-    pub name: &'a str,
+    name: &'a str,
     #[validate(length(min = 1, max = 511))]
-    pub description: &'a str,
+    description: &'a str,
 }
