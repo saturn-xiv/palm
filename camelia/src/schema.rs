@@ -400,6 +400,10 @@ diesel::table! {
         id -> Int8,
         #[max_length = 36]
         uid -> Varchar,
+        #[max_length = 31]
+        name -> Nullable<Varchar>,
+        #[max_length = 127]
+        avatar -> Nullable<Varchar>,
         #[max_length = 8]
         lang -> Varchar,
         #[max_length = 32]

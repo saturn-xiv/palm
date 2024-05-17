@@ -2,13 +2,16 @@ use std::fmt;
 use std::string::ToString;
 
 use chrono::{NaiveDateTime, Utc};
+use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, update};
 use hyper::StatusCode;
-use palm::{openssl::gravatar, HttpError, Password, Result};
+use language_tags::LanguageTag;
+use palm::{openssl::gravatar, random::uuid, HttpError, Password, Result};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 use super::super::super::{orm::postgresql::Connection, schema::email_users};
+use super::{Dao as UserDao, Item as User};
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -85,12 +88,12 @@ pub trait Dao {
     fn create<P: Password>(
         &mut self,
         enc: &P,
-        user_id: i64,
         real_name: &str,
         nickname: &str,
         email: &str,
         password: &str,
-    ) -> Result<()>;
+        location: (&LanguageTag, Tz),
+    ) -> Result<User>;
     fn confirm(&mut self, id: i64) -> Result<()>;
     fn count(&mut self) -> Result<i64>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
@@ -122,26 +125,30 @@ impl Dao for Connection {
     fn create<P: Password>(
         &mut self,
         enc: &P,
-        user_id: i64,
         real_name: &str,
         nickname: &str,
         email: &str,
         password: &str,
-    ) -> Result<()> {
+        (lang, timezone): (&LanguageTag, Tz),
+    ) -> Result<User> {
+        let uid = uuid();
+        let avatar = gravatar(&email)?;
+        UserDao::create(self, &uid, Some(real_name), Some(&avatar), lang, timezone)?;
+        let user = UserDao::by_uid(self, &uid)?;
         let (password, salt) = enc.compute(password.as_bytes(), Item::SALT_SIZE)?;
         insert_into(email_users::dsl::email_users)
             .values((
-                email_users::dsl::user_id.eq(user_id),
+                email_users::dsl::user_id.eq(user.id),
                 email_users::dsl::real_name.eq(real_name),
                 email_users::dsl::nickname.eq(nickname),
                 email_users::dsl::email.eq(email),
                 email_users::dsl::password.eq(&password),
                 email_users::dsl::salt.eq(&salt),
-                email_users::dsl::avatar.eq(&gravatar(&email)?),
+                email_users::dsl::avatar.eq(&avatar),
                 email_users::dsl::updated_at.eq(&Utc::now().naive_utc()),
             ))
             .execute(self)?;
-        Ok(())
+        Ok(user)
     }
 
     fn set_real_name(&mut self, id: i64, real_name: &str) -> Result<()> {

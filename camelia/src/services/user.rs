@@ -116,17 +116,14 @@ impl v1::user_server::User for Service {
             let email = email.clone();
             let real_name = real_name.clone();
             try_grpc!(db.transaction::<_, Error, _>(move |db| {
-                let uid = uuid();
-                UserDao::create(db, &uid, &lang, timezone)?;
-                let user = UserDao::by_uid(db, &uid)?;
-                EmailUserDao::create(
+                let user = EmailUserDao::create(
                     db,
                     jwt_hmac,
-                    user.id,
                     &real_name,
                     &nickname,
                     &email,
                     &req.password,
+                    (&lang, timezone),
                 )?;
 
                 LogDao::add::<_, User>(

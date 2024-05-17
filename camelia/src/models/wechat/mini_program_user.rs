@@ -136,7 +136,7 @@ impl Dao for Connection {
             Ok((_, user)) => user,
             Err(_) => {
                 let uid = uuid();
-                UserDao::create(self, &uid, lang, timezone)?;
+                UserDao::create(self, &uid, None, None, lang, timezone)?;
                 let user = UserDao::by_uid(self, &uid)?;
                 insert_into(wechat_mini_program_users::dsl::wechat_mini_program_users)
                     .values((

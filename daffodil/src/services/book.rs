@@ -84,7 +84,6 @@ impl v1::book_server::Book for Service {
         let mut ch = try_grpc!(self.cache.get())?;
         let ch = ch.deref_mut();
         let jwt = self.loquat.deref();
-        let policy = self.gourd.deref();
         let req = req.into_inner();
 
         {
@@ -98,7 +97,9 @@ impl v1::book_server::Book for Service {
         let (user, _, _) = try_grpc!(ss.current_user(db, ch, jwt))?;
 
         let book = try_grpc!(BookDao::by_id(db, req.id))?;
-        try_grpc!(book.can_manage(policy, &user))?;
+        if book.user_id != user.id {
+            return Err(Status::permission_denied(""));
+        }
 
         try_grpc!(db.transaction::<_, Error, _>(move |db| {
             BookDao::update(db, req.id, &req.name, &req.description, req.cover_id)?;
@@ -222,9 +223,7 @@ impl v1::book_server::Book for Service {
             return Err(Status::permission_denied("only owner can do this"));
         }
         if book.deleted_at.is_some() {
-            return Err(Status::resource_exhausted(
-                "this book already already disabled",
-            ));
+            return Err(Status::resource_exhausted("this book is already disabled"));
         }
         try_grpc!(db.transaction::<_, Error, _>(move |db| {
             BookDao::enable(db, req.id, false)?;

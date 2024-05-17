@@ -103,6 +103,15 @@ impl Dao for Connection {
                     .execute(self)?;
             }
         }
+        {
+            let it = UserDao::by_id(self, user.user_id)?;
+            if it.name != token.name {
+                UserDao::set_name(self, it.id, token.name.as_deref())?;
+            }
+            if it.avatar != token.picture {
+                UserDao::set_avatar(self, it.id, token.picture.as_deref())?;
+            }
+        }
         Ok(())
     }
 
@@ -151,13 +160,24 @@ impl Dao for Connection {
                     }
                     None => {
                         let uid = uuid();
-                        UserDao::create(self, &uid, lang, timezone)?;
+                        UserDao::create(
+                            self,
+                            &uid,
+                            token.name.as_deref(),
+                            token.picture.as_deref(),
+                            lang,
+                            timezone,
+                        )?;
                         UserDao::by_uid(self, &uid)?
                     }
                 };
                 insert_into(google_users::dsl::google_users)
                     .values((
                         google_users::dsl::user_id.eq(user.id),
+                        google_users::dsl::name.eq(&token.name),
+                        google_users::dsl::email.eq(&token.email),
+                        google_users::dsl::email_verified.eq(token.email_verified),
+                        google_users::dsl::picture.eq(&token.picture),
                         google_users::dsl::sub.eq(&token.sub),
                         google_users::dsl::code.eq(&code_v),
                         google_users::dsl::token.eq(&token_v),

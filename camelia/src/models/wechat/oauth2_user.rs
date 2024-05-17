@@ -155,7 +155,14 @@ impl Dao for Connection {
                 ))
                 .execute(self)?;
                 Dao::set_profile(self, it.user_id, info)?;
-                UserDao::by_id(self, it.user_id)?
+                let user = UserDao::by_id(self, it.user_id)?;
+                if !(user.name.is_some() && user.name.as_deref() == Some(&info.nickname)) {
+                    UserDao::set_name(self, user.id, Some(&info.nickname))?;
+                }
+                if user.avatar != info.headimgurl {
+                    UserDao::set_avatar(self, user.id, info.headimgurl.as_deref())?;
+                }
+                user
             }
             Err(_) => {
                 let user = match user_id {
@@ -170,7 +177,14 @@ impl Dao for Connection {
                             Language::Cn => LanguageTag::parse("zh-Hans")?,
                             Language::En => LanguageTag::parse("en-US")?,
                         };
-                        UserDao::create(self, &uid, &lang, timezone)?;
+                        UserDao::create(
+                            self,
+                            &uid,
+                            Some(&info.nickname),
+                            info.headimgurl.as_deref(),
+                            &lang,
+                            timezone,
+                        )?;
                         UserDao::by_uid(self, &uid)?
                     }
                 };

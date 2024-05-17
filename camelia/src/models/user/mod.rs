@@ -19,6 +19,8 @@ use super::super::{orm::postgresql::Connection, schema::users};
 pub struct Item {
     pub id: i64,
     pub uid: String,
+    pub name: Option<String>,
+    pub avatar: Option<String>,
     pub lang: String,
     pub timezone: String,
     pub sign_in_count: i32,
@@ -54,10 +56,19 @@ impl Item {
 pub trait Dao {
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
+    fn set_name(&mut self, id: i64, name: Option<&str>) -> Result<()>;
+    fn set_avatar(&mut self, id: i64, avatar: Option<&str>) -> Result<()>;
     fn set_lang(&mut self, id: i64, lang: &LanguageTag) -> Result<()>;
     fn set_timezone(&mut self, id: i64, timezone: Tz) -> Result<()>;
     fn sign_in(&mut self, id: i64, ip: &str) -> Result<()>;
-    fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()>;
+    fn create(
+        &mut self,
+        uid: &str,
+        name: Option<&str>,
+        avatar: Option<&str>,
+        lang: &LanguageTag,
+        timezone: Tz,
+    ) -> Result<()>;
     fn lock(&mut self, id: i64, on: bool) -> Result<()>;
     fn enable(&mut self, id: i64, on: bool) -> Result<()>;
     fn count(&mut self) -> Result<i64>;
@@ -99,10 +110,19 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()> {
+    fn create(
+        &mut self,
+        uid: &str,
+        name: Option<&str>,
+        avatar: Option<&str>,
+        lang: &LanguageTag,
+        timezone: Tz,
+    ) -> Result<()> {
         insert_into(users::dsl::users)
             .values((
                 users::dsl::uid.eq(uid),
+                users::dsl::name.eq(name),
+                users::dsl::avatar.eq(avatar),
                 users::dsl::lang.eq(&lang.to_string()),
                 users::dsl::timezone.eq(&timezone.to_string()),
                 users::dsl::updated_at.eq(&Utc::now().naive_utc()),
@@ -128,6 +148,23 @@ impl Dao for Connection {
         update(it)
             .set((
                 users::dsl::deleted_at.eq(&if on { None } else { Some(now) }),
+                users::dsl::updated_at.eq(&now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
+    fn set_name(&mut self, id: i64, name: Option<&str>) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        update(users::dsl::users.filter(users::dsl::id.eq(id)))
+            .set((users::dsl::name.eq(name), users::dsl::updated_at.eq(&now)))
+            .execute(self)?;
+        Ok(())
+    }
+    fn set_avatar(&mut self, id: i64, avatar: Option<&str>) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        update(users::dsl::users.filter(users::dsl::id.eq(id)))
+            .set((
+                users::dsl::avatar.eq(avatar),
                 users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
