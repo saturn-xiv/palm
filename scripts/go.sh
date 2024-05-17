@@ -23,7 +23,7 @@ fi
 apt update
 apt install -y git wget
 
-export GO_VERSION="1.22.2"
+export GO_VERSION="1.22.3"
 if [ ! -d /opt/go ]; then
     wget -P /tmp/ https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
     tar -C /opt -xf /tmp/go${GO_VERSION}.linux-amd64.tar.gz
