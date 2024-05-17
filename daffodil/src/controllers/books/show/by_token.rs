@@ -41,13 +41,14 @@ pub async fn index(
     let s3 = s3.deref();
     let s3 = s3.deref();
 
-    let (_, uid, _) = try_web!(Jwt::verify::<String>(jwt_aes, &token, NAME, AUDIENCE))?;
+    let (_, uid, _) = try_web!(Jwt::verify::<String>(&jwt_aes.0, &token, NAME, AUDIENCE))?;
     let item = try_web!(BookDao::by_uid(db, &uid))?;
     let from = try_web!(TransactionDao::first_by_book(db, item.id))?.paid_at;
     let to = Utc::now().naive_utc();
 
     let tpl = {
-        let mut it = try_web!(Show::new(db, ch, s3, jwt_aes, &lang, &item, (from, to)).await)?;
+        let mut it =
+            try_web!(Show::new(db, ch, &s3.0, &jwt_aes.0, &lang, &item, (from, to)).await)?;
         it.set_archives();
         it
     };
@@ -90,10 +91,11 @@ pub async fn by_year(
             Some(format!("bad next year({year})")),
         ))))?;
 
-    let (_, uid, _) = try_web!(Jwt::verify::<String>(jwt_aes, &token, NAME, AUDIENCE))?;
+    let (_, uid, _) = try_web!(Jwt::verify::<String>(&jwt_aes.0, &token, NAME, AUDIENCE))?;
     let item = try_web!(BookDao::by_uid(db, &uid))?;
     let tpl = {
-        let mut it = try_web!(Show::new(db, ch, s3, jwt_aes, &lang, &item, (from, to)).await)?;
+        let mut it =
+            try_web!(Show::new(db, ch, &s3.0, &jwt_aes.0, &lang, &item, (from, to)).await)?;
         it.set_archives_by_year();
         it
     };
@@ -136,10 +138,11 @@ pub async fn by_month(
             Some(format!("bad next month({year},{month})")),
         ))))?;
 
-    let (_, uid, _) = try_web!(Jwt::verify::<String>(jwt_aes, &token, NAME, AUDIENCE))?;
+    let (_, uid, _) = try_web!(Jwt::verify::<String>(&jwt_aes.0, &token, NAME, AUDIENCE))?;
     let item = try_web!(BookDao::by_uid(db, &uid))?;
     let tpl = {
-        let mut it = try_web!(Show::new(db, ch, s3, jwt_aes, &lang, &item, (from, to)).await)?;
+        let mut it =
+            try_web!(Show::new(db, ch, &s3.0, &jwt_aes.0, &lang, &item, (from, to)).await)?;
         try_web!(it.set_archives_by_month())?;
         it
     };
@@ -182,10 +185,11 @@ pub async fn by_day(
             Some(format!("bad next date({year},{month},{day})")),
         ))))?;
 
-    let (_, uid, _) = try_web!(Jwt::verify::<String>(jwt_aes, &token, NAME, AUDIENCE))?;
+    let (_, uid, _) = try_web!(Jwt::verify::<String>(&jwt_aes.0, &token, NAME, AUDIENCE))?;
     let item = try_web!(BookDao::by_uid(db, &uid))?;
     let tpl = {
-        let mut it = try_web!(Show::new(db, ch, s3, jwt_aes, &lang, &item, (from, to)).await)?;
+        let mut it =
+            try_web!(Show::new(db, ch, &s3.0, &jwt_aes.0, &lang, &item, (from, to)).await)?;
         try_web!(it.set_archives_by_day())?;
         it
     };

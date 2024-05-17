@@ -1,11 +1,11 @@
 use std::ops::DerefMut;
 use std::path::Path;
 
-use palm::{
+use hibiscus::{
     cache::{redis::Config as Redis, Provider as CacheProvider},
     parser::from_toml,
-    Result,
 };
+use palm::Result;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

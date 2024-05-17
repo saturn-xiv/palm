@@ -1,6 +1,4 @@
-use std::any::type_name;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
-use std::ops::Deref;
 use std::path::Path;
 use std::sync::Arc;
 
@@ -24,23 +22,14 @@ use chrono::Duration;
 use clap::Parser;
 use daffodil::controllers as daffodil_controllers;
 use data_encoding::BASE64;
-use hyper::StatusCode;
-use juniper::EmptySubscription;
-use log::{debug, info};
-use palm::{
-    cache::redis::Config as Redis,
-    crypto::{aes::Aes, hmac::Hmac, Key},
-    env::Environment,
-    jwt::openssl::Jwt,
-    minio::Config as Minio,
-    parser::from_toml,
-    queue::rabbitmq::{
-        stream::{watcher::start_consumer as start_casbin_rabbitmq_stream_watcher, Stream},
-        Config as RabbitMq,
-    },
-    search::Config as OpenSearch,
-    HttpError, Result,
+use hibiscus::{
+    cache::redis::Config as Redis, env::Environment, parser::from_toml,
+    queue::rabbitmq::Config as RabbitMq, search::Config as OpenSearch,
 };
+use hyper::StatusCode;
+use juniper::{EmptyMutation, EmptySubscription};
+use log::{debug, info};
+use palm::{HttpError, Key, Result, Thrift};
 use serde::{Deserialize, Serialize};
 
 use super::super::{graphql, NAME};
@@ -64,41 +53,14 @@ impl Server {
         let pgsql = web::Data::new(pg_pool);
 
         let redis = web::Data::new(config.redis.open()?);
-        let rabbitmq = web::Data::new(config.rabbitmq.open(type_name::<Server>()).await?);
-        let minio = web::Data::new(config.minio.open()?);
-        {
-            let items = minio.list_buckets().await?;
-            debug!("found buckets: {:?}", items);
-        }
         let opensearch = web::Data::new(config.opensearch.open()?);
         {
             debug!("{:?}", opensearch.info().await?);
-            // for it in opensearch.info().await?.iter() {
-            //     debug!("{:?}", it);
-            // }
-        }
-        let jwt = web::Data::new(Jwt::new(&config.cookie_key.0));
-        let hmac = web::Data::new(Hmac::new(&config.secret_key.0)?);
-        let aes = web::Data::new(Aes::new(&config.secret_key.0)?);
-
-        let enforcer = {
-            let rabbitmq = rabbitmq.deref();
-            let rabbitmq = rabbitmq.clone();
-
-            web::Data::from(config.postgresql.casbin_enforcer(rabbitmq).await?)
-        };
-        {
-            let rabbitmq = rabbitmq.deref();
-            let rabbitmq = rabbitmq.clone();
-
-            let enforcer = enforcer.deref();
-            let enforcer = enforcer.clone();
-            start_casbin_rabbitmq_stream_watcher(rabbitmq, enforcer).await?;
         }
 
         let schema = Arc::new(graphql::Schema::new(
             graphql::query::Query {},
-            graphql::mutation::Mutation {},
+            EmptyMutation::new(),
             EmptySubscription::new(),
         ));
         let cookie_max_age = Duration::try_hours(1)
@@ -119,15 +81,13 @@ impl Server {
         info!("listen on http://{}", addr);
         HttpServer::new(move || {
             App::new()
-                .app_data(jwt.clone())
-                .app_data(aes.clone())
-                .app_data(hmac.clone())
+                .app_data(camelia_controllers::Loquat(config.loquat.clone()))
+                .app_data(camelia_controllers::Gourd(config.loquat.clone()))
+                .app_data(camelia_controllers::Jasmine(config.loquat.clone()))
                 .app_data(pgsql.clone())
                 .app_data(redis.clone())
-                .app_data(rabbitmq.clone())
-                .app_data(minio.clone())
+                .app_data(config.rabbitmq.clone())
                 .app_data(opensearch.clone())
-                .app_data(enforcer.clone())
                 .app_data(web::Data::from(schema.clone()))
                 // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
                 .wrap(
@@ -193,19 +153,16 @@ impl Default for Rpc {
 }
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
-pub struct Config {
-    pub env: Environment,
+struct Config {
+    env: Environment,
     // openssl rand -base64 128
     #[serde(rename = "cookie-key")]
-    pub cookie_key: Key,
-    // openssl rand -base64 32
-    #[serde(rename = "secret-key")]
-    pub secret_key: Key,
-    // pub musa: Rpc,
-    // pub orchid: Rpc,
-    pub postgresql: PostgreSql,
-    pub redis: Redis,
-    pub rabbitmq: RabbitMq,
-    pub opensearch: OpenSearch,
-    pub minio: Minio,
+    cookie_key: Key,
+    loquat: Thrift,
+    gourd: Thrift,
+    jasmine: Thrift,
+    postgresql: PostgreSql,
+    redis: Redis,
+    rabbitmq: RabbitMq,
+    opensearch: OpenSearch,
 }

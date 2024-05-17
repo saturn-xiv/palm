@@ -4,7 +4,7 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use thrift::Result as ThriftResult;
 
-use super::Thrift;
+use super::{to_code, Thrift};
 
 use self::protocols::{
     HealthSyncClient, Permission, PolicySyncClient, Resource, THealthSyncClient, TPolicySyncClient,
@@ -88,7 +88,7 @@ impl Policy for Thrift {
     fn delete_role(&self, role: &str) -> ThriftResult<()> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        client.delete_role(role.to_string())
+        client.delete_role(to_code!(role))
     }
     fn get_roles_for_user(&self, user: i64) -> ThriftResult<BTreeSet<String>> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
@@ -103,23 +103,23 @@ impl Policy for Thrift {
     fn get_users_for_role(&self, role: &str) -> ThriftResult<BTreeSet<i64>> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        client.get_users_for_role(role.to_string())
+        client.get_users_for_role(to_code!(role))
     }
     fn get_implicit_users_for_role(&self, role: &str) -> ThriftResult<BTreeSet<i64>> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        client.get_implicit_users_for_role(role.to_string())
+        client.get_implicit_users_for_role(to_code!(role))
     }
     fn add_roles_for_user(&self, user: i64, roles: &[&str]) -> ThriftResult<()> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        let roles: BTreeSet<String> = roles.iter().map(|x| x.to_string()).collect();
+        let roles: BTreeSet<String> = roles.iter().map(|x| to_code!(x)).collect();
         client.add_roles_for_user(user, roles)
     }
     fn delete_roles_for_user(&self, user: i64, roles: &[&str]) -> ThriftResult<()> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        let roles: BTreeSet<String> = roles.iter().map(|x| x.to_string()).collect();
+        let roles: BTreeSet<String> = roles.iter().map(|x| to_code!(x)).collect();
         client.delete_roles_for_user(user, roles)
     }
     fn get_permissions_for_user(&self, user: i64) -> ThriftResult<BTreeSet<Permission>> {
@@ -153,12 +153,12 @@ impl Policy for Thrift {
     fn get_permissions_for_role(&self, role: &str) -> ThriftResult<BTreeSet<Permission>> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        client.get_permissions_for_role(role.to_string())
+        client.get_permissions_for_role(to_code!(role))
     }
     fn get_implicit_permissions_for_role(&self, role: &str) -> ThriftResult<BTreeSet<Permission>> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        client.get_implicit_permissions_for_role(role.to_string())
+        client.get_implicit_permissions_for_role(to_code!(role))
     }
     fn add_permissions_for_role(
         &self,
@@ -167,7 +167,7 @@ impl Policy for Thrift {
     ) -> ThriftResult<()> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        client.add_permissions_for_role(role.to_string(), permissions)
+        client.add_permissions_for_role(to_code!(role), permissions)
     }
     fn delete_permissions_for_role(
         &self,
@@ -176,7 +176,7 @@ impl Policy for Thrift {
     ) -> ThriftResult<()> {
         let (i_prot, o_prot) = self.open(POLICY_SERVICE_NAME)?;
         let mut client: PolicySyncClient<_, _> = PolicySyncClient::new(i_prot, o_prot);
-        client.delete_permissions_for_role(role.to_string(), permissions)
+        client.delete_permissions_for_role(to_code!(role), permissions)
     }
 }
 

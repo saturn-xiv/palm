@@ -11,9 +11,10 @@ use std::ops::Deref;
 use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
+use hibiscus::{check_config_permission, is_stopped};
 use hyper::StatusCode;
 use log::info;
-use palm::{is_stopped, HttpError, Result, BANNER, HOMEPAGE, VERSION};
+use palm::{HttpError, Result, BANNER, HOMEPAGE, VERSION};
 
 #[derive(Parser, Debug)]
 #[clap(about, version=&VERSION.deref()[..], before_help=BANNER, after_help=HOMEPAGE, author)]
@@ -70,7 +71,7 @@ pub async fn launch() -> Result<()> {
 
     {
         info!("load config from {}", args.config.display());
-        palm::check_config_permission(&args.config)?;
+        check_config_permission(&args.config)?;
     }
 
     if let SubCommand::CacheClear = args.command {

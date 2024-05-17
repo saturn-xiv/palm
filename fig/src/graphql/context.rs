@@ -1,28 +1,22 @@
 use std::sync::Arc;
 
-use camelia::orm::postgresql::Pool as PostgreSql;
-use casbin::Enforcer;
-use palm::{
-    cache::redis::Pool as Redis,
-    crypto::{aes::Aes, hmac::Hmac},
-    jwt::openssl::Jwt,
-    minio::Connection as Minio,
-    queue::rabbitmq::stream::Client as RabbitMq,
-    search::Client as OpenSearch,
+use camelia::{
+    controllers::{Gourd, Jasmine, Loquat},
+    orm::postgresql::Pool as PostgreSql,
+};
+use hibiscus::{
+    cache::redis::Pool as Redis, queue::rabbitmq::Config as RabbitMq, search::Config as OpenSearch,
     session::Session,
 };
-use tokio::sync::Mutex;
 
 pub struct Context {
-    pub jwt: Arc<Jwt>,
-    pub aes: Arc<Aes>,
-    pub hmac: Arc<Hmac>,
+    pub loquat: Arc<Loquat>,
+    pub gourd: Arc<Gourd>,
+    pub jasmine: Arc<Jasmine>,
     pub postgresql: PostgreSql,
     pub redis: Redis,
-    pub minio: Arc<Minio>,
     pub rabbitmq: Arc<RabbitMq>,
     pub opensearch: Arc<OpenSearch>,
-    pub enforcer: Arc<Mutex<Enforcer>>,
 
     pub home: String,
     pub session: Session,

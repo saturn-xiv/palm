@@ -4,11 +4,16 @@ use std::collections::HashMap;
 
 use actix_web::web;
 use palm::{Result, Thrift};
+use serde::{Deserialize, Serialize};
 
 use super::{models::locale::Dao as LocaleDao, orm::postgresql::Connection as Db};
 
-pub type Jasmine = Thrift;
-pub type Loquat = Thrift;
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+pub struct Jasmine(pub Thrift);
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+pub struct Loquat(pub Thrift);
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+pub struct Gourd(pub Thrift);
 
 pub fn register(config: &mut web::ServiceConfig) {
     if cfg!(debug_assertions) {

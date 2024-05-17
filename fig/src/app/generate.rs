@@ -5,16 +5,15 @@ use std::path::Path;
 
 use askama::Template;
 use clap::Parser;
-use log::info;
-use nix::unistd::{Gid, Uid};
-use palm::{
-    crypto::random::string as random_string,
+use hibiscus::{
     minio::{
         NginxConfig as MinioNginxConfig, Node as MinioNode, SystemdConfig as MinioSystemdConfig,
     },
     network::nginx::Www as WwwNginxConf,
-    Result, DESCRIPTION, NAME,
 };
+use log::info;
+use nix::unistd::{Gid, Uid};
+use palm::{random::string as random_string, Result, DESCRIPTION, NAME};
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Nginx {

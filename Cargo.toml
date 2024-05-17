@@ -16,7 +16,7 @@ members = [
     # "cms",
     # "forum",
 
-    # "fig",
+    "fig",
     # "aloe",
     # "bougainvillea",
 ]

@@ -13,6 +13,7 @@ pub mod env;
 pub mod google;
 pub mod handlers;
 pub mod line;
+pub mod minio;
 pub mod network;
 pub mod parser;
 pub mod queue;

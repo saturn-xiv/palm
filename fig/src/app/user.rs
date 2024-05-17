@@ -1,28 +1,25 @@
-use std::any::type_name;
 use std::ops::DerefMut;
 use std::path::Path;
-use std::sync::Arc;
 
 use camelia::{
     models::{
-        log::{Dao as LogDao, Level as LogLevel},
-        user::{Action, Dao as UserDao, Item as User},
+        log::Dao as LogDao,
+        user::{
+            email::{Dao as EmailUserDao, Item as EmailUser},
+            Item as User,
+        },
     },
     orm::postgresql::Config as PostgreSql,
 };
-use casbin::RbacApi;
 use chrono::Duration;
 use clap::Parser;
 use diesel::Connection as DieselConntection;
+use hibiscus::parser::from_toml;
 use hyper::StatusCode;
-use log::{info, warn};
+use log::info;
 use palm::{
-    crypto::{hmac::Hmac, Key},
-    jwt::{openssl::Jwt, Jwt as JwtProvider},
-    parser::from_toml,
-    queue::rabbitmq::{stream::Stream, Config as RabbitMq},
-    rbac::v1 as rbac_v1,
-    Error, HttpError, Result,
+    camelia::v1::user_logs_response::item::Level as LogLevel, gourd::Policy, Error, HttpError, Jwt,
+    Result, Thrift,
 };
 use serde::{Deserialize, Serialize};
 
@@ -30,22 +27,18 @@ use super::super::NAME;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct TokenConfig {
-    #[serde(rename = "secret-key")]
-    secret_key: Key,
+    loquat: Thrift,
 }
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct CreateConfig {
-    #[serde(rename = "secret-key")]
-    pub secret_key: Key,
+    loquat: Thrift,
     postgresql: PostgreSql,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 struct RoleConfig {
-    #[serde(rename = "secret-key")]
-    pub secret_key: Key,
+    gourd: Thrift,
     postgresql: PostgreSql,
-    rabbitmq: RabbitMq,
 }
 
 #[derive(Parser, PartialEq, Eq, Debug)]
@@ -61,36 +54,39 @@ pub struct Create {
 impl Create {
     pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let config: CreateConfig = from_toml(config_file)?;
-        let mac = Hmac::new(&config.secret_key.0)?;
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;
             let db = db.deref_mut();
-            if UserDao::by_nickname(db, &self.nickname).is_ok() {
+            if EmailUserDao::by_nickname(db, &self.nickname).is_ok() {
                 return Err(Box::new(HttpError(
                     StatusCode::BAD_REQUEST,
                     Some(format!("user {} already existed", self.nickname)),
                 )));
             }
-            if UserDao::by_email(db, &self.email).is_ok() {
+            if EmailUserDao::by_email(db, &self.email).is_ok() {
                 return Err(Box::new(HttpError(
                     StatusCode::BAD_REQUEST,
                     Some(format!("user {} already existed", self.email)),
                 )));
             }
-            let user = db.transaction::<_, Error, _>(move |db| {
-                UserDao::sign_up(
+            db.transaction::<_, Error, _>(move |db| {
+                let user = EmailUserDao::create(
                     db,
-                    &mac,
-                    "Nil Gate",
+                    &config.loquat,
+                    EmailUser::GUEST_NAME,
                     &self.nickname,
                     &self.email,
                     &self.password,
-                    &"en-US".parse()?,
-                    &"UTC".parse()?,
+                    (
+                        &EmailUser::GUEST_LANG.parse()?,
+                        EmailUser::GUEST_TIMEZONE.parse()?,
+                    ),
                 )?;
-                let user = UserDao::by_email(db, &self.email)?;
-                UserDao::confirm(db, user.id)?;
+                {
+                    let it = EmailUserDao::by_email(db, &self.email)?;
+                    EmailUserDao::confirm(db, it.id)?;
+                }
                 LogDao::add::<String, User>(
                     db,
                     user.id,
@@ -100,9 +96,9 @@ impl Create {
                     Some(user.id),
                     format!("Created by system user {}.", current_user()),
                 )?;
-                Ok(user)
+                Ok(())
             })?;
-            info!("create user {}", user);
+            info!("create user {}<{}>", self.nickname, self.email);
         }
 
         Ok(())
@@ -126,13 +122,14 @@ pub struct Token {
 impl Token {
     pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let config: TokenConfig = from_toml(config_file)?;
-        let jwt = Jwt::new(&config.secret_key.0);
 
         {
-            let token = jwt.sign_by_duration(
-                NAME,
+            let token = Jwt::sign_by_duration(
+                &config.loquat,
+                &self.issuer,
                 &self.subject,
-                &Action::SignIn.to_string(),
+                &self.audience,
+                &None::<String>,
                 Duration::try_weeks(self.weeks as i64).ok_or(Box::new(HttpError(
                     StatusCode::BAD_REQUEST,
                     Some("bad weeks for jwt".to_string()),
@@ -153,44 +150,22 @@ pub struct Role {
 }
 
 impl Role {
-    fn role(&self) -> String {
-        let it = match &self.role[..] {
-            "admin" => rbac_v1::Role::administrator(),
-            "root" => rbac_v1::Role::root(),
-            other => rbac_v1::Role::member(other.to_string()),
-        };
-        it.to_string()
-    }
     pub async fn apply<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
-
-        let rabbitmq = Arc::new(config.rabbitmq.open(type_name::<Role>()).await?);
-        let enforcer = config.postgresql.casbin_enforcer(rabbitmq.clone()).await?;
 
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;
             let db = db.deref_mut();
-            let user = UserDao::by_nickname(db, &self.user)?;
-
-            {
-                let user = user.to_subject();
-                let mut enforcer = enforcer.lock().await;
-
-                if enforcer.has_role_for_user(&user, &role, None) {
-                    warn!("user({}) already has role({})", self.user, self.role);
-                    return Ok(());
-                }
-                enforcer.add_role_for_user(&user, &role, None).await?;
-            }
+            let user = EmailUserDao::by_nickname(db, &self.user)?;
+            Policy::add_roles_for_user(&config.gourd, user.user_id, &[&self.role])?;
             LogDao::add::<String, User>(
                 db,
-                user.id,
+                user.user_id,
                 NAME,
                 LogLevel::Info,
                 &hostname(),
-                Some(user.id),
+                None,
                 format!("Apply role {} by system user {}", self.role, current_user()),
             )?;
             info!("apple role {} to user {}", self.role, user);
@@ -198,27 +173,15 @@ impl Role {
         Ok(())
     }
     pub async fn exempt<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let role = self.role();
         let config: RoleConfig = from_toml(config_file)?;
-
-        let rabbitmq = Arc::new(config.rabbitmq.open(type_name::<Role>()).await?);
-        let enforcer = config.postgresql.casbin_enforcer(rabbitmq.clone()).await?;
 
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;
             let db = db.deref_mut();
-            let user = UserDao::by_nickname(db, &self.user)?;
+            let user = EmailUserDao::by_nickname(db, &self.user)?;
 
-            {
-                let user = user.to_subject();
-                let mut enforcer = enforcer.lock().await;
-                if !enforcer.has_role_for_user(&user, &role, None) {
-                    warn!("user({}) didn't has role({})", self.user, self.role);
-                    return Ok(());
-                }
-                enforcer.delete_role_for_user(&user, &role, None).await?;
-            }
+            Policy::delete_roles_for_user(&config.gourd, user.user_id, &[&self.role])?;
 
             LogDao::add::<String, User>(
                 db,
@@ -226,7 +189,7 @@ impl Role {
                 NAME,
                 LogLevel::Info,
                 &hostname(),
-                Some(user.id),
+                None,
                 format!(
                     "Exempt role {} by system user {}",
                     self.role,
@@ -250,14 +213,14 @@ pub struct ResetPassword {
 impl ResetPassword {
     pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
         let config: CreateConfig = from_toml(config_file)?;
-        let mac = Hmac::new(&config.secret_key.0)?;
+
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;
             let db = db.deref_mut();
-            let user = UserDao::by_nickname(db, &self.user)?;
+            let user = EmailUserDao::by_nickname(db, &self.user)?;
             db.transaction::<_, Error, _>(move |db| {
-                UserDao::password(db, &mac, user.id, &self.password)?;
+                EmailUserDao::password(db, &config.loquat, user.id, &self.password)?;
                 LogDao::add::<String, User>(
                     db,
                     user.id,
@@ -283,11 +246,11 @@ pub fn list<P: AsRef<Path>>(config_file: P) -> Result<()> {
         let mut db = db.get()?;
         let db = db.deref_mut();
 
-        let total = UserDao::count(db)?;
+        let total = EmailUserDao::count(db)?;
         let page = 20;
         println!("{:<6} {:<32} USER", "ID", "NICKNAME");
         for i in 1.. {
-            for it in UserDao::all(db, (i - 1) * page, page)?.iter() {
+            for it in EmailUserDao::all(db, (i - 1) * page, page)?.iter() {
                 println!("{:<6} {:<32} {}", it.id, it.nickname, it);
             }
             if i * page >= total {

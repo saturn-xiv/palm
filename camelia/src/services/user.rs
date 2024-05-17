@@ -51,7 +51,6 @@ use super::{CurrentUserAdapter, Session};
 
 pub struct Service {
     pub loquat: Arc<Thrift>,
-    pub daisy: Arc<Thrift>,
     pub gourd: Arc<Thrift>,
     pub db: DbPool,
     pub cache: CachePool,

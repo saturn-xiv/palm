@@ -2,10 +2,11 @@ use std::ops::DerefMut;
 use std::path::Path;
 
 use camelia::orm::postgresql::Config as PostgreSql;
-use palm::{
+use hibiscus::{
     cache::redis::Config as Redis, parser::from_toml, queue::rabbitmq::Config as RabbitMq,
-    search::Config as OpenSearch, Result,
+    search::Config as OpenSearch,
 };
+use palm::Result;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

@@ -49,7 +49,7 @@ pub async fn create(
 
     let mut items = Vec::new();
     for it in form.files.iter() {
-        let it = try_web!(save(db, user.id, s3, &bucket, it, &resource).await)?;
+        let it = try_web!(save(db, user.id, &s3.0, &bucket, it, &resource).await)?;
         items.push(it);
     }
 

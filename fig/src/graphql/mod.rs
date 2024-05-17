@@ -1,9 +1,12 @@
 pub mod context;
 pub mod controllers;
-pub mod mutation;
 pub mod query;
 
-use juniper::{EmptySubscription, RootNode};
+use juniper::{EmptyMutation, EmptySubscription, RootNode};
 
-pub type Schema =
-    RootNode<'static, query::Query, mutation::Mutation, EmptySubscription<context::Context>>;
+pub type Schema = RootNode<
+    'static,
+    query::Query,
+    EmptyMutation<context::Context>,
+    EmptySubscription<context::Context>,
+>;

@@ -4,7 +4,8 @@ use std::path::Path;
 use camelia::{models::locale::Dao as LocaleDao, orm::postgresql::Config as PostgreSql};
 use clap::Parser;
 use diesel::Connection as DieselConntection;
-use palm::{parser::from_toml, Error, Result};
+use hibiscus::parser::from_toml;
+use palm::{Error, Result};
 use serde::{Deserialize, Serialize};
 
 #[derive(Parser, PartialEq, Eq, Debug)]
