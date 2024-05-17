@@ -1,10 +1,7 @@
-use std::fmt;
 use std::ops::{Deref, DerefMut};
-use std::path::Path;
-use std::str::FromStr;
 use std::sync::Arc;
 
-use chrono::{Datelike, Duration, Utc};
+use chrono::Duration;
 use diesel::Connection as DieselConntection;
 use hibiscus::cache::redis::Pool as CachePool;
 use hyper::StatusCode;
@@ -13,7 +10,6 @@ use palm::{
     camelia::v1,
     gourd::Policy,
     jasmine::S3,
-    random::uuid,
     to_chrono_duration, to_timestamp, try_grpc, Error, GrpcResult, HttpError, Result, Thrift,
 };
 use tonic::{Request, Response, Status};
@@ -21,7 +17,7 @@ use validator::Validate;
 
 use super::super::{
     models::{
-        attachment::{Dao as AttachmentDao, Item as Attachment},
+        attachment::{Bucket, Dao as AttachmentDao, Item as Attachment},
         user::Item as User,
     },
     orm::postgresql::{Connection as Db, Pool as DbPool},
@@ -288,80 +284,6 @@ fn upload<S: S3>(
     })?;
 
     Ok(url)
-}
-
-pub struct Bucket {
-    pub namespace: String,
-    pub public: bool,
-    pub expiration_days: Option<i32>,
-}
-
-impl Bucket {
-    pub fn object<P: AsRef<Path>>(file: P) -> String {
-        let name = uuid();
-        let file = file.as_ref();
-        if let Some(ext) = file.extension() {
-            return Path::new(&name).with_extension(ext).display().to_string();
-        }
-
-        name
-    }
-}
-
-impl fmt::Display for Bucket {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let now = Utc::now();
-        write!(
-            f,
-            "{}.{}.{}{}",
-            self.namespace,
-            now.year(),
-            if self.public { "o" } else { "p" },
-            self.expiration_days.unwrap_or_default()
-        )
-    }
-}
-
-impl FromStr for Bucket {
-    type Err = Error;
-
-    fn from_str(s: &str) -> Result<Self> {
-        let items = s.split('.').collect::<Vec<&str>>();
-        if items.len() == 3 {
-            let namespace = items[0].to_string();
-            let _year: i32 = items[1].parse()?;
-            if items[2].len() > 1 {
-                let expiration_days = {
-                    let it: i32 = items[2][1..].parse()?;
-                    if it == 0 {
-                        None
-                    } else {
-                        Some(it)
-                    }
-                };
-
-                if items[2].starts_with('o') {
-                    return Ok(Self {
-                        namespace,
-                        public: true,
-                        expiration_days,
-                    });
-                }
-                if items[2].starts_with('p') {
-                    return Ok(Self {
-                        namespace,
-                        public: false,
-                        expiration_days,
-                    });
-                }
-            }
-        }
-
-        Err(Box::new(HttpError(
-            StatusCode::BAD_REQUEST,
-            Some(format!("bad bucket name{}", s)),
-        )))
-    }
 }
 
 impl Attachment {

@@ -22,9 +22,9 @@ features = ["serde", "std"]
 version = "0.9"
 features = ["serde"]
 
-[dependencies.juniper]
-version = "0.16"
-features = ["chrono"]
+[dependencies.tonic]
+version = "0.11"
+features = ["transport"]
 
 [dependencies.validator]
 version = "0.18"

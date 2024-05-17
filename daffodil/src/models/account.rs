@@ -24,6 +24,7 @@ pub struct Item {
 
 pub trait Dao {
     fn by_user(&mut self, user: i64) -> Result<Vec<Item>>;
+    fn by_book(&mut self, book: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn create(
         &mut self,
@@ -42,6 +43,13 @@ impl Dao for Connection {
     fn by_user(&mut self, user: i64) -> Result<Vec<Item>> {
         let items = daffodil_accounts::dsl::daffodil_accounts
             .filter(daffodil_accounts::dsl::user_id.eq(user))
+            .order(daffodil_accounts::dsl::updated_at.desc())
+            .load::<Item>(self)?;
+        Ok(items)
+    }
+    fn by_book(&mut self, book: i64) -> Result<Vec<Item>> {
+        let items = daffodil_accounts::dsl::daffodil_accounts
+            .filter(daffodil_accounts::dsl::book_id.eq(book))
             .order(daffodil_accounts::dsl::updated_at.desc())
             .load::<Item>(self)?;
         Ok(items)

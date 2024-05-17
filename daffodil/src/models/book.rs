@@ -1,7 +1,7 @@
 use camelia::orm::postgresql::Connection;
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use palm::{random::uuid, Result};
+use palm::Result;
 use serde::{Deserialize, Serialize};
 
 use super::super::schema::daffodil_books;
@@ -27,6 +27,7 @@ pub trait Dao {
     fn create(
         &mut self,
         user: i64,
+        uid: &str,
         name: &str,
         description: &str,
         cover: Option<i64>,
@@ -58,6 +59,7 @@ impl Dao for Connection {
     fn create(
         &mut self,
         user: i64,
+        uid: &str,
         name: &str,
         description: &str,
         cover: Option<i64>,
@@ -66,7 +68,7 @@ impl Dao for Connection {
         insert_into(daffodil_books::dsl::daffodil_books)
             .values((
                 daffodil_books::dsl::user_id.eq(user),
-                daffodil_books::dsl::uid.eq(&uuid()),
+                daffodil_books::dsl::uid.eq(uid),
                 daffodil_books::dsl::name.eq(name),
                 daffodil_books::dsl::description.eq(description),
                 daffodil_books::dsl::cover_id.eq(cover),

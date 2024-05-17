@@ -23,6 +23,13 @@ message UserOauth2State {
   string code = 2;
 }
 
+enum Operation {
+  VIEW = 0;
+  READ = 1;
+  WRITE = 2;
+  MANAGE = 3;
+}
+
 message Resource {
   string type = 1;
   optional int64 id = 2;

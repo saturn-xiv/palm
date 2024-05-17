@@ -1,15 +1,16 @@
 use std::any::type_name;
 use std::fmt;
 use std::path::Path;
+use std::str::FromStr;
 use std::string::ToString;
 
 use actix_files::file_extension_to_mime;
-use chrono::{NaiveDateTime, Utc};
+use chrono::{Datelike, Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use hyper::StatusCode;
 use log::warn;
 use mime::{Mime, IMAGE};
-use palm::{HttpError, Result};
+use palm::{jasmine::S3, random::uuid, Error, HttpError, Result};
 use serde::Serialize;
 use uuid::Uuid;
 
@@ -18,15 +19,78 @@ use super::super::{
     schema::{attachment_resources, attachments},
 };
 
-pub fn cover<T>(db: &mut Connection, id: i64) -> Result<Item> {
-    let it = Dao::by_resource::<T>(db, id)?
-        .into_iter()
-        .find(|x| x.is_picture())
-        .ok_or(Box::new(HttpError(
+pub struct Bucket {
+    pub namespace: String,
+    pub public: bool,
+    pub expiration_days: Option<i32>,
+}
+
+impl Bucket {
+    pub fn object<P: AsRef<Path>>(file: P) -> String {
+        let name = uuid();
+        let file = file.as_ref();
+        if let Some(ext) = file.extension() {
+            return Path::new(&name).with_extension(ext).display().to_string();
+        }
+
+        name
+    }
+}
+
+impl fmt::Display for Bucket {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let now = Utc::now();
+        write!(
+            f,
+            "{}.{}.{}{}",
+            self.namespace,
+            now.year(),
+            if self.public { "o" } else { "p" },
+            self.expiration_days.unwrap_or_default()
+        )
+    }
+}
+
+impl FromStr for Bucket {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        let items = s.split('.').collect::<Vec<&str>>();
+        if items.len() == 3 {
+            let namespace = items[0].to_string();
+            let _year: i32 = items[1].parse()?;
+            if items[2].len() > 1 {
+                let expiration_days = {
+                    let it: i32 = items[2][1..].parse()?;
+                    if it == 0 {
+                        None
+                    } else {
+                        Some(it)
+                    }
+                };
+
+                if items[2].starts_with('o') {
+                    return Ok(Self {
+                        namespace,
+                        public: true,
+                        expiration_days,
+                    });
+                }
+                if items[2].starts_with('p') {
+                    return Ok(Self {
+                        namespace,
+                        public: false,
+                        expiration_days,
+                    });
+                }
+            }
+        }
+
+        Err(Box::new(HttpError(
             StatusCode::BAD_REQUEST,
-            Some("empty cover".to_string()),
-        )))?;
-    Ok(it)
+            Some(format!("bad bucket name{}", s)),
+        )))
+    }
 }
 
 #[derive(Queryable, Clone, Serialize)]
@@ -52,6 +116,16 @@ impl fmt::Display for Item {
     }
 }
 impl Item {
+    pub fn url<S: S3>(&self, s3: &S, ttl: Duration) -> Result<String> {
+        let bucket: Bucket = self.bucket.parse()?;
+        let url = if bucket.public {
+            s3.get_permanent_url(&self.bucket, &self.name)?
+        } else {
+            s3.get_presigned_url(&self.bucket, &self.name, &self.title, ttl)?
+        };
+        Ok(url)
+    }
+
     pub fn size(body: &[u8]) -> usize {
         body.len() / (1 << 10)
     }
@@ -110,6 +184,7 @@ pub trait Dao {
     fn clear<T>(&mut self, resource_id: i64) -> Result<()>;
     fn by_resource<T>(&mut self, resource_id: i64) -> Result<Vec<Item>>;
     fn resources(&mut self, id: i64) -> Result<Vec<(String, i64)>>;
+    fn cover<T>(&mut self, resource_id: i64) -> Result<Item>;
 }
 
 impl Dao for Connection {
@@ -284,5 +359,15 @@ impl Dao for Connection {
             .order(attachment_resources::dsl::created_at.desc())
             .load(self)?;
         Ok(items)
+    }
+    fn cover<T>(&mut self, resource_id: i64) -> Result<Item> {
+        let it = Dao::by_resource::<T>(self, resource_id)?
+            .into_iter()
+            .find(|x| x.is_picture())
+            .ok_or(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("empty cover".to_string()),
+            )))?;
+        Ok(it)
     }
 }

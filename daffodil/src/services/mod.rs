@@ -1,0 +1,83 @@
+pub mod account;
+pub mod book;
+pub mod merchant;
+pub mod transaction;
+
+use camelia::{models::attachment::Dao as AttachmentDao, orm::postgresql::Connection as Db};
+use chrono::Duration;
+use palm::{daffodil::v1, jasmine::S3, to_timestamp, Result};
+
+use super::models::{account::Item as Account, book::Item as Book, merchant::Item as Merchant};
+
+pub fn new_book_item<S: S3>(
+    db: &mut Db,
+    s3: &S,
+    x: &Book,
+) -> Result<v1::book_index_response::Item> {
+    let cover = match x.cover_id {
+        Some(id) => {
+            let it = AttachmentDao::by_id(db, id)?;
+            let url = it.url(s3, Duration::hours(1))?;
+            Some(url)
+        }
+        None => None,
+    };
+    Ok(v1::book_index_response::Item {
+        id: x.id,
+        name: x.name.clone(),
+        description: x.description.clone(),
+        deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
+        updated_at: Some(to_timestamp!(x.updated_at)),
+        cover,
+    })
+}
+
+pub fn new_book_detail<S: S3>(db: &mut Db, s3: &S, x: &Book) -> Result<v1::BookDetail> {
+    let cover = match x.cover_id {
+        Some(id) => {
+            let it = AttachmentDao::by_id(db, id)?;
+            let url = it.url(s3, Duration::hours(1))?;
+            Some(url)
+        }
+        None => None,
+    };
+    Ok(v1::BookDetail {
+        id: x.id,
+        name: x.name.clone(),
+        deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
+        cover,
+    })
+}
+pub fn new_merchant_detail<S: S3>(db: &mut Db, s3: &S, x: &Merchant) -> Result<v1::MerchantDetail> {
+    let cover = match x.cover_id {
+        Some(id) => {
+            let it = AttachmentDao::by_id(db, id)?;
+            let url = it.url(s3, Duration::hours(1))?;
+            Some(url)
+        }
+        None => None,
+    };
+    Ok(v1::MerchantDetail {
+        id: x.id,
+        name: x.name.clone(),
+        deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
+        cover,
+    })
+}
+pub fn new_account_detail<S: S3>(db: &mut Db, s3: &S, x: &Account) -> Result<v1::AccountDetail> {
+    let cover = match x.cover_id {
+        Some(id) => {
+            let it = AttachmentDao::by_id(db, id)?;
+            let url = it.url(s3, Duration::hours(1))?;
+            Some(url)
+        }
+        None => None,
+    };
+    Ok(v1::AccountDetail {
+        id: x.id,
+        name: x.name.clone(),
+        deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
+        cover,
+        r#type: x.type_,
+    })
+}
