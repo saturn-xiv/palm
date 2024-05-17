@@ -10,16 +10,18 @@ use std::fmt::Display;
 use hibiscus::{cache::redis::ClusterConnection as Cache, session::Session};
 use hyper::StatusCode;
 use palm::{
-    camelia::v1::{user_details::Type as UserProviderType, UserTokenAction},
+    camelia::v1::{user_index_response::item::Type as UserProviderType, UserInfo, UserTokenAction},
     gourd::{
         protocols::{ROLE_ADMINISTRATOR, ROLE_ROOT},
         Policy,
     },
-    HttpError, Jwt, Result,
+    to_timestamp, HttpError, Jwt, Result,
 };
 
 use super::{
-    models::user::{session::Dao as UserSessionDao, Dao as UserDao, Item as User},
+    models::user::{
+        email::Item as EmailUser, session::Dao as UserSessionDao, Dao as UserDao, Item as User,
+    },
     orm::postgresql::Connection as Db,
     NAME,
 };
@@ -106,5 +108,16 @@ impl User {
     ) -> Result<()> {
         let resource_type = type_name::<R>();
         self.can_(policy, operation, resource_type, resource_id)
+    }
+}
+
+impl From<User> for UserInfo {
+    fn from(x: User) -> Self {
+        Self {
+            uid: x.uid.clone(),
+            name: x.name.clone().unwrap_or(EmailUser::GUEST_NAME.to_string()),
+            avatar: x.avatar.clone(),
+            deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
+        }
     }
 }

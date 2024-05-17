@@ -3,7 +3,7 @@ use std::string::ToString;
 use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*};
 use hyper::StatusCode;
-use palm::{camelia::v1::user_details::Type as ProviderType, HttpError, Result};
+use palm::{camelia::v1::user_index_response::item::Type as ProviderType, HttpError, Result};
 use serde::{Deserialize, Serialize};
 
 use uuid::Uuid;

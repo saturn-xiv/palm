@@ -10,12 +10,6 @@ import "google/protobuf/timestamp.proto";
 import "azalea.proto";
 import "camelia.proto";
 
-message UserDetail {
-  int64 id = 1;
-  string name = 2;
-  optional string avatar = 3;
-  optional google.protobuf.Timestamp deleted_at = 99;
-}
 message BookDetail {
   int64 id = 1;
   string name = 2;
@@ -126,7 +120,7 @@ message AccountIndexResponse {
     string description = 5;
     optional string cover = 6;
 
-    UserDetail user = 11;
+    palm.camelia.v1.UserInfo user = 11;
 
     google.protobuf.Timestamp deleted_at = 98;
     google.protobuf.Timestamp updated_at = 99;
@@ -172,7 +166,7 @@ message MerchantIndexResponse {
     optional string description = 13;
     optional string cover = 14;
 
-    UserDetail user = 21;
+    palm.camelia.v1.UserInfo user = 21;
 
     google.protobuf.Timestamp deleted_at = 98;
     google.protobuf.Timestamp updated_at = 99;
@@ -218,7 +212,7 @@ message TransactionIndexResponse {
     int64 id = 1;
     string summary = 2;
 
-    UserDetail user = 11;
+    palm.camelia.v1.UserInfo user = 11;
     Amount amount = 12;
     BookDetail book = 13;
     AccountDetail source = 14;
@@ -233,7 +227,7 @@ message TransactionTrashResponse {
     int64 id = 1;
     TransactionIndexResponse.Item original = 2;
     string reason = 3;
-    UserDetail deleted_by = 8;
+    palm.camelia.v1.UserInfo deleted_by = 8;
     google.protobuf.Timestamp deleted_at = 9;
   }
   repeated Item items = 1;

@@ -212,8 +212,9 @@ impl v1::user_server::User for Service {
         ))?;
 
         if let Some(provider_type) = provider_type {
-            let provider_type = try_grpc!(v1::user_details::Type::try_from(provider_type))?;
-            if provider_type == v1::user_details::Type::Email {
+            let provider_type =
+                try_grpc!(v1::user_index_response::item::Type::try_from(provider_type))?;
+            if provider_type == v1::user_index_response::item::Type::Email {
                 try_grpc!(db.transaction::<_, Error, _>(move |db| {
                     let it = EmailUserDao::by_email(db, &sid)?;
                     EmailUserDao::confirm(db, it.id)?;
@@ -289,8 +290,9 @@ impl v1::user_server::User for Service {
         ))?;
 
         if let Some(provider_type) = provider_type {
-            let provider_type = try_grpc!(v1::user_details::Type::try_from(provider_type))?;
-            if provider_type == v1::user_details::Type::Email {
+            let provider_type =
+                try_grpc!(v1::user_index_response::item::Type::try_from(provider_type))?;
+            if provider_type == v1::user_index_response::item::Type::Email {
                 try_grpc!(db.transaction::<_, Error, _>(move |db| {
                     let it = EmailUserDao::by_email(db, &sid)?;
                     UserDao::lock(db, it.user_id, false)?;
@@ -369,8 +371,9 @@ impl v1::user_server::User for Service {
         ))?;
 
         if let Some(provider_type) = provider_type {
-            let provider_type = try_grpc!(v1::user_details::Type::try_from(provider_type))?;
-            if provider_type == v1::user_details::Type::Email {
+            let provider_type =
+                try_grpc!(v1::user_index_response::item::Type::try_from(provider_type))?;
+            if provider_type == v1::user_index_response::item::Type::Email {
                 try_grpc!(db.transaction::<_, Error, _>(move |db| {
                     let it = EmailUserDao::by_email(db, &sid)?;
                     it.available()?;
@@ -429,7 +432,7 @@ impl v1::user_server::User for Service {
             };
             try_grpc!(form.validate())?;
         }
-        if provider_type != v1::user_details::Type::Email {
+        if provider_type != v1::user_index_response::item::Type::Email {
             try_grpc!(db.transaction::<_, Error, _>(move |db| {
                 let it = EmailUserDao::by_id(db, provider_id)?;
                 it.auth(jwt_hmac, &req.current_password)?;
@@ -503,7 +506,7 @@ impl v1::user_server::User for Service {
 
         let (_, _, (provider_type, provider_id)) = try_grpc!(ss.current_user(db, ch, jwt))?;
 
-        if provider_type != v1::user_details::Type::Email {
+        if provider_type != v1::user_index_response::item::Type::Email {
             {
                 let form = ProfileForm {
                     real_name: &req.real_name,
@@ -575,7 +578,7 @@ impl v1::user_server::User for Service {
         }))?;
 
         match provider_type {
-            v1::user_details::Type::Email => {
+            v1::user_index_response::item::Type::Email => {
                 let it = try_grpc!(EmailUserDao::by_id(db, provider_id))?;
                 try_grpc!(it.available())?;
                 try_grpc!(
@@ -596,7 +599,7 @@ impl v1::user_server::User for Service {
                     )),
                 }))
             }
-            v1::user_details::Type::Google => {
+            v1::user_index_response::item::Type::Google => {
                 // TODO
                 let token = "xxx";
                 Ok(Response::new(v1::UserCancelResponse {
@@ -606,7 +609,7 @@ impl v1::user_server::User for Service {
                     ))),
                 }))
             }
-            v1::user_details::Type::WechatOauth2 => {
+            v1::user_index_response::item::Type::WechatOauth2 => {
                 // TODO
                 let token = "xxx";
                 Ok(Response::new(v1::UserCancelResponse {
@@ -616,7 +619,7 @@ impl v1::user_server::User for Service {
                     ))),
                 }))
             }
-            v1::user_details::Type::WechatMiniProgram => {
+            v1::user_index_response::item::Type::WechatMiniProgram => {
                 // TODO
                 let token = "xxx";
                 Ok(Response::new(v1::UserCancelResponse {
@@ -626,7 +629,7 @@ impl v1::user_server::User for Service {
                     ))),
                 }))
             }
-            v1::user_details::Type::Phone => {
+            v1::user_index_response::item::Type::Phone => {
                 // TODO
                 let name = "who-am-i";
                 let phone = "xxx";
@@ -665,26 +668,27 @@ impl v1::user_server::User for Service {
             v1::UserTokenAction::Cancel.as_str_name()
         ))?;
         if let Some(provider_type) = provider_type {
-            let provider_type = try_grpc!(v1::user_details::Type::try_from(provider_type))?;
+            let provider_type =
+                try_grpc!(v1::user_index_response::item::Type::try_from(provider_type))?;
             let user = match provider_type {
-                v1::user_details::Type::Email => {
+                v1::user_index_response::item::Type::Email => {
                     let it = try_grpc!(EmailUserDao::by_email(db, &sid))?;
                     try_grpc!(it.available())?;
                     Ok(it.user_id)
                 }
-                v1::user_details::Type::Google => {
+                v1::user_index_response::item::Type::Google => {
                     let it = try_grpc!(GoogleUserDao::by_sub(db, &sid))?;
                     Ok(it.user_id)
                 }
-                v1::user_details::Type::WechatMiniProgram => {
+                v1::user_index_response::item::Type::WechatMiniProgram => {
                     let it = try_grpc!(WechatMiniProgramDao::by_union_id(db, &sid))?;
                     Ok(it.user_id)
                 }
-                v1::user_details::Type::WechatOauth2 => {
+                v1::user_index_response::item::Type::WechatOauth2 => {
                     let it = try_grpc!(WechatOauth2Dao::by_union_id(db, &sid))?;
                     Ok(it.user_id)
                 }
-                v1::user_details::Type::Phone => {
+                v1::user_index_response::item::Type::Phone => {
                     // TODO
                     Err(Status::invalid_argument(
                         "cancel by phone not supported yet",
@@ -896,8 +900,10 @@ impl v1::user_server::User for Service {
             try_grpc!(form.validate())?;
         }
 
-        let provider_type = try_grpc!(v1::user_details::Type::try_from(req.provider_type))?;
-        if provider_type == v1::user_details::Type::Email {
+        let provider_type = try_grpc!(v1::user_index_response::item::Type::try_from(
+            req.provider_type
+        ))?;
+        if provider_type == v1::user_index_response::item::Type::Email {
             try_grpc!(db.transaction::<_, Error, _>(move |db| {
                 let it = EmailUserDao::by_id(db, req.provider_id)?;
                 EmailUserDao::password(db, jwt_hmac, it.id, &req.password)?;
@@ -1142,7 +1148,7 @@ fn user_from_sign_in_by_password_request<S: Password>(
     db: &mut Db,
     hmac: &S,
     req: &v1::UserSignInByPasswordRequest,
-) -> Result<(User, v1::UserDetails, i64)> {
+) -> Result<(User, v1::user_index_response::Item, i64)> {
     match req.who {
         Some(v1::user_sign_in_by_password_request::Who::Email(ref email)) => {
             let email = to_code!(email);
@@ -1170,9 +1176,9 @@ fn user_from_sign_in_by_password_request<S: Password>(
         ))),
     }
 }
-fn user_details_by_email(user: &User, it: &EmailUser) -> v1::UserDetails {
-    v1::UserDetails {
-        r#type: v1::user_details::Type::Email as i32,
+fn user_details_by_email(user: &User, it: &EmailUser) -> v1::user_index_response::Item {
+    v1::user_index_response::Item {
+        r#type: v1::user_index_response::item::Type::Email as i32,
         name: Some(it.real_name.clone()),
         id: it.email.clone(),
         lang: user.lang.clone(),
@@ -1180,9 +1186,9 @@ fn user_details_by_email(user: &User, it: &EmailUser) -> v1::UserDetails {
         avatar: Some(it.avatar.clone()),
     }
 }
-fn user_details_by_google(user: &User, it: &GoogleUser) -> v1::UserDetails {
-    v1::UserDetails {
-        r#type: v1::user_details::Type::Google as i32,
+fn user_details_by_google(user: &User, it: &GoogleUser) -> v1::user_index_response::Item {
+    v1::user_index_response::Item {
+        r#type: v1::user_index_response::item::Type::Google as i32,
         name: it.name.clone(),
         id: it.sub.clone(),
         lang: user.lang.clone(),
@@ -1190,9 +1196,12 @@ fn user_details_by_google(user: &User, it: &GoogleUser) -> v1::UserDetails {
         avatar: it.picture.clone(),
     }
 }
-fn user_details_by_wechat_mini_program(user: &User, it: &WechatMiniProgramUser) -> v1::UserDetails {
-    v1::UserDetails {
-        r#type: v1::user_details::Type::WechatMiniProgram as i32,
+fn user_details_by_wechat_mini_program(
+    user: &User,
+    it: &WechatMiniProgramUser,
+) -> v1::user_index_response::Item {
+    v1::user_index_response::Item {
+        r#type: v1::user_index_response::item::Type::WechatMiniProgram as i32,
         name: it.nickname.clone(),
         id: it.union_id.clone(),
         lang: user.lang.clone(),
@@ -1200,9 +1209,12 @@ fn user_details_by_wechat_mini_program(user: &User, it: &WechatMiniProgramUser) 
         avatar: it.avatar_url.clone(),
     }
 }
-fn user_details_by_wechat_oauth2(user: &User, it: &WechatOauth2User) -> v1::UserDetails {
-    v1::UserDetails {
-        r#type: v1::user_details::Type::WechatOauth2 as i32,
+fn user_details_by_wechat_oauth2(
+    user: &User,
+    it: &WechatOauth2User,
+) -> v1::user_index_response::Item {
+    v1::user_index_response::Item {
+        r#type: v1::user_index_response::item::Type::WechatOauth2 as i32,
         name: Some(it.nickname.clone()),
         id: it.union_id.clone(),
         lang: user.lang.clone(),
@@ -1210,6 +1222,7 @@ fn user_details_by_wechat_oauth2(user: &User, it: &WechatOauth2User) -> v1::User
         avatar: it.head_img_url.clone(),
     }
 }
+
 async fn send_email<J: Jwt>(
     db: &mut Db,
     jwt: &J,
@@ -1224,7 +1237,7 @@ async fn send_email<J: Jwt>(
         NAME,
         email,
         action.as_str_name(),
-        &Some(v1::user_details::Type::Email as i32),
+        &Some(v1::user_index_response::item::Type::Email as i32),
         Duration::hours(1),
     )?;
     let subject = I18n::t(
@@ -1275,7 +1288,7 @@ async fn send_sms<J: Jwt>(
         NAME,
         phone,
         action.as_str_name(),
-        &Some(v1::user_details::Type::Phone as i32),
+        &Some(v1::user_index_response::item::Type::Phone as i32),
         Duration::hours(1),
     )?;
     let body = I18n::t(
@@ -1298,11 +1311,11 @@ fn new_sign_in_response<J: Jwt, P: Policy>(
     db: &mut Db,
     jwt: &J,
     policy: &P,
-    (user, details, provider_id): (&User, v1::UserDetails, i64),
+    (user, details, provider_id): (&User, v1::user_index_response::Item, i64),
     (ip, ttl): (&str, Duration),
 ) -> Result<v1::UserSignInResponse> {
     let sid = uuid();
-    let provider_type = v1::user_details::Type::try_from(details.r#type)?;
+    let provider_type = v1::user_index_response::item::Type::try_from(details.r#type)?;
     {
         let did = details.id.clone();
         db.transaction::<_, Error, _>(move |db| {
@@ -1347,7 +1360,7 @@ fn new_sign_in_response<J: Jwt, P: Policy>(
     };
     Ok(v1::UserSignInResponse {
         token,
-        details: Some(details),
+        user: Some(details),
         menus: Vec::new(),
         roles,
         permissions,

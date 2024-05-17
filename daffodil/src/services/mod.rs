@@ -4,10 +4,7 @@ pub mod merchant;
 pub mod transaction;
 
 use camelia::{
-    models::{
-        attachment::Dao as AttachmentDao,
-        user::{email::Item as EmailUser, Dao as UserDao, Item as User},
-    },
+    models::{attachment::Dao as AttachmentDao, user::Dao as UserDao},
     orm::postgresql::Connection as Db,
 };
 use chrono::Duration;
@@ -37,7 +34,7 @@ pub fn new_account_item<S: S3>(
         updated_at: Some(to_timestamp!(x.updated_at)),
         currency: x.currency.clone(),
         r#type: x.type_,
-        user: Some(new_user_detail(&user)),
+        user: Some(user.into()),
         cover,
     })
 }
@@ -113,13 +110,4 @@ pub fn new_account_detail<S: S3>(db: &mut Db, s3: &S, x: &Account) -> Result<v1:
         cover,
         r#type: x.type_,
     })
-}
-
-fn new_user_detail(x: &User) -> v1::UserDetail {
-    v1::UserDetail {
-        id: x.id,
-        name: x.name.clone().unwrap_or(EmailUser::GUEST_NAME.to_string()),
-        avatar: x.avatar.clone(),
-        deleted_at: x.deleted_at.map(|x| to_timestamp!(x)),
-    }
 }

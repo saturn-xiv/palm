@@ -10,6 +10,13 @@ import "google/protobuf/timestamp.proto";
 
 import "azalea.proto";
 
+message UserInfo {
+  string uid = 1;
+  string name = 2;
+  optional string avatar = 3;
+  optional google.protobuf.Timestamp deleted_at = 99;
+}
+
 enum UserTokenAction {
   SignIn = 0;
   Confirm = 1;
@@ -79,7 +86,23 @@ service User {
   rpc IndexByWechatOauth2(palm.azalea.v1.Pager) returns (UserIndexResponse) {}
 }
 message UserIndexResponse {
-  repeated UserDetails items = 1;
+  message Item {
+    enum Type {
+      Email = 0;
+      Phone = 1;
+      Google = 2;
+      WechatMiniProgram = 11;
+      WechatOauth2 = 12;
+    }
+    Type type = 1;
+    string id = 2;
+
+    optional string name = 11;
+    string lang = 12;
+    string timezone = 13;
+    optional string avatar = 19;
+  }
+  repeated Item items = 1;
   palm.azalea.v1.Pagination pagination = 2;
 }
 message UserCancelRequest {
@@ -106,7 +129,7 @@ message UserChangePasswordRequest {
 }
 
 message UserSetPasswordRequest {
-  UserDetails.Type provider_type = 1;
+  UserIndexResponse.Item.Type provider_type = 1;
   int64 provider_id = 2;
   string password = 3;
 }
@@ -125,26 +148,9 @@ message UserTokenRequest {
   string token = 1;
 }
 
-message UserDetails {
-  enum Type {
-    Email = 0;
-    Phone = 1;
-    Google = 2;
-    WechatMiniProgram = 11;
-    WechatOauth2 = 12;
-  }
-  Type type = 1;
-  string id = 2;
-
-  optional string name = 11;
-  string lang = 12;
-  string timezone = 13;
-  optional string avatar = 19;
-}
-
 message UserSignInResponse {
   string token = 1;
-  UserDetails details = 2;
+  UserIndexResponse.Item user = 2;
   repeated string roles = 11;
   repeated Permission permissions = 12;
   repeated Menu menus = 13;
