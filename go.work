@@ -5,5 +5,6 @@ use (
 	./gourd
 	./jasmine
 	./lily
+	./sedge
 	./tuberose
 )
