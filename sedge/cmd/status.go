@@ -1,5 +1,5 @@
 package cmd
 
-func Status() error {
+func Status(url string) error {
 	return nil
 }

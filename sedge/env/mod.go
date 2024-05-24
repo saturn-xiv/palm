@@ -18,9 +18,3 @@ type Database interface {
 	Status() ([]Migration, error)
 	Latest() (*Migration, error)
 }
-
-type Config struct {
-	PostgreSql PostgreSql `toml:"postgresql,omitempty"`
-	MySql      MySql      `toml:"mysql,omitempty"`
-	SqlServer  SqlServer  `toml:"sqlserver,omitempty"`
-}

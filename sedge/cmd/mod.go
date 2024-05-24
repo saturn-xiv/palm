@@ -25,7 +25,7 @@ var root_cmd = &cobra.Command{
 		if err := cmd.Help(); err != nil {
 			log.Fatal(err)
 		}
-	},
+	},	
 }
 
 func Execute() {
@@ -35,13 +35,21 @@ func Execute() {
 }
 
 var (
-	gl_debug bool
-	gl_url   string
+	gl_debug            bool
+	gl_url              string
+	gl_migrations_dir   string
+	gl_migrations_table string
+	gl_schema_file      string
+
+	gl_new_name string
 )
 
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
-	root_cmd.PersistentFlags().StringVarP(&gl_url, "url", "u", "db", "specify the database URL")
+	root_cmd.PersistentFlags().StringVarP(&gl_url, "url", "u", "sqlite3://file:db?cache=shared&mode=memory", "specify the database URL")
+	root_cmd.PersistentFlags().StringVar(&gl_migrations_dir, "migrations-dir", "migrations", "specify the directory containing migration files")
+	root_cmd.PersistentFlags().StringVar(&gl_migrations_table, "migrations-table", "schema_migrations", "specify the database table to record migrations in")
+	root_cmd.PersistentFlags().StringVar(&gl_schema_file, "schema-file", "schema.sql", "specify the schema file location")
 
 	{
 		var cmd = &cobra.Command{
@@ -49,7 +57,9 @@ func init() {
 			Short: "Migrate to the latest version",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				if err := Migrate(gl_url, gl_migrations_dir, gl_migrations_table); err != nil {
+					log.Fatalln(err)
+				}
 			},
 		}
 
@@ -61,7 +71,9 @@ func init() {
 			Short: "Rollback the most recent migration",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				if err := Rollback(gl_url, gl_migrations_table); err != nil {
+					log.Fatalln(err)
+				}
 			},
 		}
 
@@ -73,7 +85,9 @@ func init() {
 			Short: "List applied and pending migrations",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				if err := Status(gl_url); err != nil {
+					log.Fatalln(err)
+				}
 			},
 		}
 
@@ -85,7 +99,9 @@ func init() {
 			Short: "Write the database schema to disk",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				if err := Dump(gl_url, gl_schema_file); err != nil {
+					log.Fatalln(err)
+				}
 			},
 		}
 
@@ -97,7 +113,9 @@ func init() {
 			Short: "Load schema file to the database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				if err := Load(gl_url, gl_schema_file); err != nil {
+					log.Fatalln(err)
+				}
 			},
 		}
 
@@ -109,7 +127,12 @@ func init() {
 			Short: "Create database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				usage, err := Create(gl_url)
+				if err != nil {
+					log.Fatalln(err)
+					return
+				}
+				fmt.Println(usage)
 			},
 		}
 
@@ -121,7 +144,12 @@ func init() {
 			Short: "Drop database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				usage, err := Drop(gl_url)
+				if err != nil {
+					log.Fatalln(err)
+					return
+				}
+				fmt.Println(usage)
 			},
 		}
 
@@ -133,10 +161,16 @@ func init() {
 			Short: "Generate a new migration file",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				// TODO
+				if gl_new_name == "" {
+					log.Fatalln("please specify a name for the new migration")
+					return
+				}
+				if err := New(gl_migrations_dir, gl_new_name); err != nil {
+					log.Fatalln(err)
+				}
 			},
 		}
-
+		cmd.Flags().StringVarP(&gl_new_name, "name", "n", "", "name")
 		root_cmd.AddCommand(cmd)
 	}
 }

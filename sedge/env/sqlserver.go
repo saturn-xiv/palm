@@ -1,18 +1,16 @@
 package env
 
-import "fmt"
+import (
+	"database/sql"
+	"log/slog"
+
+	_ "github.com/microsoft/go-mssqldb"
+)
 
 type SqlServer struct {
-	Host     string `toml:"host"`
-	Port     uint16 `toml:"port"`
-	DbName   string `toml:"dbname"`
-	User     string `toml:"user"`
-	Password string `toml:"password"`
-	PoolSize int    `toml:"pool-size"`
 }
 
-func (p *SqlServer) Url() string {
-	return fmt.Sprintf("sqlserver://%s:%s@%s:%d?database=%s",
-		p.User, p.Password, p.Host, p.Port, p.DbName,
-	)
+func (p *SqlServer) Open(dsn string) (*sql.DB, error) {
+	slog.Debug("open sqlserver", slog.String("dsn", dsn))
+	return sql.Open("sqlserver", dsn)
 }

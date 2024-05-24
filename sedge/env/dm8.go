@@ -1,17 +1,17 @@
 package env
 
-import "fmt"
+import (
+	"database/sql"
+	"log/slog"
 
-type DaMeng8 struct {
-	Host     string `toml:"host"`
-	Port     uint16 `toml:"port"`
-	DbName   string `toml:"dbname"`
-	User     string `toml:"user"`
-	Password string `toml:"password"`
+	_ "github.com/saturn-xiv/palm/sedge/vendors/dm8-20240326"
+)
+
+// dm://userName:password@ip:port
+type DM8 struct {
 }
 
-func (p *DaMeng8) Url() string {
-	return fmt.Sprintf("dm://%s:%s@%s:%d?database=%s",
-		p.User, p.Password, p.Host, p.Port, p.DbName,
-	)
+func (p *DM8) Open(dsn string) (*sql.DB, error) {
+	slog.Debug("open dm8", slog.String("dsn", dsn))
+	return sql.Open("dm", dsn)
 }

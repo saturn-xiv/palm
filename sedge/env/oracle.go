@@ -1,17 +1,16 @@
 package env
 
-import "fmt"
+import (
+	"database/sql"
+	"log/slog"
+
+	_ "github.com/sijms/go-ora/v2"
+)
 
 type Oracle struct {
-	Host       string `toml:"host"`
-	Port       uint16 `toml:"port"`
-	TableSpace string `toml:"tablespace"`
-	User       string `toml:"user"`
-	Password   string `toml:"password"`
 }
 
-func (p *Oracle) Url() string {
-	return fmt.Sprintf("oracle://%s:%s@%s:%d?database=%s",
-		p.User, p.Password, p.Host, p.Port, p.TableSpace,
-	)
+func (p *Oracle) Open(dsn string) (*sql.DB, error) {
+	slog.Debug("open oracle", slog.String("dsn", dsn))
+	return sql.Open("oracle", dsn)
 }
