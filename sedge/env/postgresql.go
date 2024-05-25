@@ -41,7 +41,7 @@ func (p *PostgreSql) Version() string {
 	return "SELECT VERSION()"
 }
 
-func (p *PostgreSql) Create() string {
+func (p *PostgreSql) CreateTable() string {
 	return `
 CREATE TABLE IF NOT EXISTS {{ .name }}(
 	id SERIAL PRIMARY KEY,
@@ -56,4 +56,16 @@ CREATE INDEX IF NOT EXISTS idx_{{ .name }}_name ON {{ .name }}(name);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version);
 `
 
+}
+
+func (p *PostgreSql) Create() string {
+	return `
+CREATE USER user-name WITH PASSWORD 'change-me';
+CREATE DATABASE db-name WITH ENCODING = 'UTF8' OWNER user-name;
+`
+}
+func (p *PostgreSql) Drop() string {
+	return `
+DROP DATABASE db-name;
+`
 }

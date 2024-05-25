@@ -27,7 +27,9 @@ type Migration struct {
 type Database interface {
 	Open(dsn string) (*sql.DB, error)
 	Version() string
+	CreateTable() string
 	Create() string
+	Drop() string
 	ByVersion() string
 	Insert() string
 	Up() string
@@ -71,13 +73,19 @@ func New(migrations_dir string, name string) error {
 }
 
 func Create(url string) (string, error) {
-	// TODO
-	return "", nil
+	driver, err := Open(url)
+	if err != nil {
+		return "", err
+	}
+	return driver.Create(), nil
 }
 
 func Drop(url string) (string, error) {
-	// TODO
-	return "", nil
+	driver, err := Open(url)
+	if err != nil {
+		return "", err
+	}
+	return driver.Drop(), nil
 }
 
 func Dump(url string, schema_file string) error {
@@ -403,7 +411,7 @@ func select_by_version(tx *sql.Tx, driver Database, migrations_table string, ver
 func check_migrations_table(tx *sql.Tx, driver Database, migrations_table string) error {
 
 	slog.Debug("check migrations table", slog.String("name", migrations_table))
-	tpl, err := template.New("").Parse(driver.Create())
+	tpl, err := template.New("").Parse(driver.CreateTable())
 	if err != nil {
 		return err
 	}

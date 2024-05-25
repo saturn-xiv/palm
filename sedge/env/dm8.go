@@ -42,19 +42,37 @@ func (p *DM8) Version() string {
 	return "SELECT VERSION()"
 }
 
-func (p *DM8) Create() string {
+func (p *DM8) CreateTable() string {
 	return `
 CREATE TABLE IF NOT EXISTS {{ .name }}(
-	id SERIAL PRIMARY KEY,
+	id INT IDENTITY(1, 1) NOT NULL,
 	version CHAR(14) NOT NULL,
 	name VARCHAR(63) NOT NULL,
 	up TEXT NOT NULL,
 	down TEXT NOT NULL,	
 	run_at TIMESTAMP,
-	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	NOT CLUSTER PRIMARY KEY(id)
 );
 CREATE INDEX IF NOT EXISTS idx_{{ .name }}_name ON {{ .name }}(name);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version);
 `
 
+}
+
+func (p *DM8) Create() string {
+	return `
+CREATE TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' SIZE 10240;
+ALTER TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' AUTOEXTEND ON NEXT 512 MAXSIZE 102400;
+
+CREATE USER "TEST" IDENTIFIED BY "www" HASH WITH SHA512 SALT ENCRYPT BY "change-me" DEFAULT TABLESPACE "demo" DEFAULT INDEX TABLESPACE "demo";
+
+GRANT "PUBLIC", "SOI" to "www";
+
+`
+}
+func (p *DM8) Drop() string {
+	return `
+DROP TABLESPACE "demo";
+`
 }
