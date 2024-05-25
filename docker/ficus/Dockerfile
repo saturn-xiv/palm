@@ -3,8 +3,7 @@ LABEL maintainer="Jeremy Zheng"
 
 RUN apk update
 RUN apk upgrade
-RUN apk add vim curl bash zsh pwgen openssl git tmux rsync xz zip \
-    openssh-client sshpass \
+RUN apk add vim curl bash zsh pwgen openssl git tmux xz zip sshpass \
     build-base cmake \
     python3 py3-pip python3-dev \
     nginx nodejs npm yarn \
