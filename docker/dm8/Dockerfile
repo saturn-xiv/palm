@@ -7,7 +7,6 @@ RUN yum install -y redhat-lsb-core zsh git vim tmux sudo \
     cmake python3
 RUN yum clean all 
 
-
 RUN useradd -s /bin/zsh -m deploy
 RUN passwd -l deploy
 RUN echo 'deploy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-deploy
@@ -36,13 +35,15 @@ COPY auto-install.xml /etc/dm8-auto-install.xml
 RUN sudo mkdir /opt/dmdbms /var/lib/dm8
 RUN sudo chown -R deploy:deploy /opt/dmdbms /var/lib/dm8
 RUN /DMInstall.bin -q /etc/dm8-auto-install.xml
-# RUN sudo /opt/dmdbms/script/root/root_installer.sh
 
-USER root
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
+RUN sed -i '/^systemctl/s//#&/' /opt/dmdbms/script/root/root_installer.sh
+RUN sudo /opt/dmdbms/script/root/root_installer.sh
 
-USER deploy
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
+
+EXPOSE 5326/tcp
+
 VOLUME /workspace
 WORKDIR /workspace
 
-CMD ["/bin/zsh", "-l"]
+CMD ["/usr/sbin/init"]
