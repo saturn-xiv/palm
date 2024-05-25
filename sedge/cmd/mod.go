@@ -6,6 +6,8 @@ import (
 	"log/slog"
 
 	"github.com/spf13/cobra"
+
+	"github.com/saturn-xiv/palm/sedge/env"
 )
 
 var (
@@ -25,7 +27,7 @@ var root_cmd = &cobra.Command{
 		if err := cmd.Help(); err != nil {
 			log.Fatal(err)
 		}
-	},	
+	},
 }
 
 func Execute() {
@@ -165,7 +167,7 @@ func init() {
 					log.Fatalln("please specify a name for the new migration")
 					return
 				}
-				if err := New(gl_migrations_dir, gl_new_name); err != nil {
+				if err := env.New(gl_migrations_dir, gl_new_name); err != nil {
 					log.Fatalln(err)
 				}
 			},
