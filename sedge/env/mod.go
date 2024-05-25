@@ -219,6 +219,9 @@ func Open(url string) (Database, error) {
 	if strings.HasPrefix(url, "postgres://") {
 		return &PostgreSql{}, nil
 	}
+	if strings.HasPrefix(url, "dm://") {
+		return &DM8{}, nil
+	}
 	return nil, fmt.Errorf("unsupported %s", url)
 }
 

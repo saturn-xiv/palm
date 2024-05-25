@@ -10,6 +10,11 @@ import (
 type PostgreSql struct {
 }
 
+func (p *PostgreSql) Open(dsn string) (*sql.DB, error) {
+	slog.Debug("open postgresql", slog.String("dsn", dsn))
+	return sql.Open("postgres", dsn)
+}
+
 func (p *PostgreSql) Up() string {
 	return "UPDATE {{ .name }} SET run_at = CURRENT_TIMESTAMP WHERE VERSION = $1"
 }
@@ -34,11 +39,6 @@ func (p *PostgreSql) Insert() string {
 
 func (p *PostgreSql) Version() string {
 	return "SELECT VERSION()"
-}
-
-func (p *PostgreSql) Open(dsn string) (*sql.DB, error) {
-	slog.Debug("open postgresql", slog.String("dsn", dsn))
-	return sql.Open("postgres", dsn)
 }
 
 func (p *PostgreSql) Create() string {
