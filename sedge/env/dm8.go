@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log/slog"
 
-	_ "github.com/saturn-xiv/palm/sedge/vendors/dm8-20240326"
+	_ "dm"
 )
 
 // dm://userName:password@ip:port

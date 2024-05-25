@@ -59,7 +59,7 @@ func init() {
 			Short: "Migrate to the latest version",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := Migrate(gl_url, gl_migrations_dir, gl_migrations_table); err != nil {
+				if err := env.Migrate(gl_url, gl_migrations_dir, gl_migrations_table); err != nil {
 					log.Fatalln(err)
 				}
 			},
@@ -73,7 +73,7 @@ func init() {
 			Short: "Rollback the most recent migration",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := Rollback(gl_url, gl_migrations_table); err != nil {
+				if err := env.Rollback(gl_url, gl_migrations_table); err != nil {
 					log.Fatalln(err)
 				}
 			},
@@ -87,7 +87,7 @@ func init() {
 			Short: "List applied and pending migrations",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := Status(gl_url); err != nil {
+				if err := env.Status(gl_url, gl_migrations_table); err != nil {
 					log.Fatalln(err)
 				}
 			},
@@ -101,7 +101,7 @@ func init() {
 			Short: "Write the database schema to disk",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := Dump(gl_url, gl_schema_file); err != nil {
+				if err := env.Dump(gl_url, gl_schema_file); err != nil {
 					log.Fatalln(err)
 				}
 			},
@@ -115,7 +115,7 @@ func init() {
 			Short: "Load schema file to the database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := Load(gl_url, gl_schema_file); err != nil {
+				if err := env.Load(gl_url, gl_schema_file); err != nil {
 					log.Fatalln(err)
 				}
 			},
@@ -129,7 +129,7 @@ func init() {
 			Short: "Create database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				usage, err := Create(gl_url)
+				usage, err := env.Create(gl_url)
 				if err != nil {
 					log.Fatalln(err)
 					return
@@ -146,7 +146,7 @@ func init() {
 			Short: "Drop database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				usage, err := Drop(gl_url)
+				usage, err := env.Drop(gl_url)
 				if err != nil {
 					log.Fatalln(err)
 					return
