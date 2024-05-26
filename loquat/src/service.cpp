@@ -16,9 +16,40 @@
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TSocket.h>
 #include <thrift/transport/TTransportUtils.h>
+#include <inja/inja.hpp>
 
-void loquat::application::launch(const uint16_t port,
-                                 std::optional<loquat::application::Ssl> ssl) {
+void loquat::application::generate_systemd_config(const std::string& name,
+                                                  const uint16_t port) {
+  const std::filesystem::path file(name + ".conf");
+  spdlog::info("generate file {}", file.string());
+  nlohmann::json data = {
+      {"name", name},
+      {"description", PROJECT_DESCRIPTION},
+      {"port", port},
+  };
+  std::ofstream output(file);
+  inja::render_to(output, R"PLAIN(
+[Unit]
+Description={{ description }}
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+User=root
+Group=root
+ExecStart=/usr/bin/loquat rpc -p {{ port }}
+WorkingDirectory=/var/lib/{{ name }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+)PLAIN",
+                  data);
+}
+
+void loquat::application::launch_rpc_server(
+    const uint16_t port, std::optional<loquat::application::Ssl> ssl) {
   std::shared_ptr<AesHandler> aesHandler = std::make_shared<AesHandler>();
   std::shared_ptr<v1::AesProcessor> aesProcessor =
       std::make_shared<v1::AesProcessor>(aesHandler);

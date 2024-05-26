@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
-	"path/filepath"
 	"text/template"
 )
 
@@ -30,7 +29,7 @@ WantedBy=multi-user.target
 		return err
 	}
 
-	file := filepath.Join("tmp", fmt.Sprintf("%s.conf", name))
+	file := fmt.Sprintf("%s.conf", name)
 	slog.Info("generate", slog.String("file", file))
 	fd, err := os.Create(file)
 	if err != nil {

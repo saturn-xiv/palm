@@ -27,7 +27,10 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 # --------------------------------------------------------
 
 find_package(OpenSSL REQUIRED)
+find_package(argparse CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
+find_package(nlohmann_json CONFIG REQUIRED)
+find_package(inja CONFIG REQUIRED)
 find_package(Thrift CONFIG REQUIRED)
 
 find_package(PkgConfig REQUIRED)
@@ -57,7 +60,9 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 
 target_link_libraries(loquat gourd
   OpenSSL::SSL OpenSSL::Crypto
+  argparse::argparse
   spdlog::spdlog_header_only
+  pantor::inja nlohmann_json::nlohmann_json
  
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
   thrift::thrift PkgConfig::thriftz PkgConfig::thriftnb

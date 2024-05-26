@@ -1,11 +1,13 @@
 {
   "dependencies": [
     "openssl",
+    "inja",
+    "nlohmann-json",
     {
       "name": "libevent",
       "features": ["openssl"]
     },
-    "spdlog",    
+    "spdlog",
     "argparse",
     "thrift"
   ]
