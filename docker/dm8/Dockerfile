@@ -42,7 +42,7 @@ RUN sed -i 's/INI_PATH=%INI_PATH%/INI_PATH="\/var\/lib\/dm8\/DAMENG\/dm.ini"/g' 
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
-EXPOSE 5326/tcp
+EXPOSE 5236/tcp
 
 VOLUME /workspace
 WORKDIR /workspace

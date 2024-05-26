@@ -11,5 +11,5 @@ fi
 if podman container exists $NAME; then
     podman start -i -a $NAME
 else
-    podman run --name $NAME -it --events-backend=file -v $PWD:/workspace:z -p $1:5326/tcp $CODE
+    podman run --name $NAME -it --events-backend=file -v $PWD:/workspace:z -p $1:5236/tcp $CODE
 fi
