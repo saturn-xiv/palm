@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.plugins.musa.wechatpay.controllers;
+package com.github.saturn_xiv.palm.plugins.musa.controllers;
 
 import com.github.saturn_xiv.palm.plugins.musa.models.NginxConf;
 import com.samskivert.mustache.Mustache;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("palm.musa.controller.wechat-pay.nginx-conf")
-@RequestMapping("/api/wechat-pay/nginx.conf")
+@RestController("palm.musa.controller.nginx-conf")
+@RequestMapping("/api")
 @Validated
 public class NginxConfigController {
 
-    @GetMapping("/notification")
-    public String notification(@NotBlank @RequestParam("domain") String domain) {
+    @GetMapping("/nginx.conf")
+    public String get(@NotBlank @RequestParam("domain") String domain) {
         return mustacheCompiler.loadTemplate("nginx-config").execute(new NginxConf(domain, httpPort));
     }
 
