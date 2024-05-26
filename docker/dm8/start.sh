@@ -3,7 +3,7 @@
 export CODE="palm-dm8"
 export NAME="$CODE-$USER-$1"
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 1 ]; then
     echo "USAGE: $0 PORT"
     exit 0
 fi

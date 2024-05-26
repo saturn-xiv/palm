@@ -3,7 +3,7 @@ LABEL maintainer="Jeremy Zheng"
 
 RUN yum update -y
 RUN yum groupinstall -y 'Development Tools'
-RUN yum install -y redhat-lsb-core zsh git vim tmux sudo \
+RUN yum install -y redhat-lsb-core zsh git vim tmux sudo net-tools \
     cmake python3
 RUN yum clean all 
 
@@ -31,13 +31,14 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 # Install dm8 server
 COPY downloads/DMInstall.bin /
 COPY auto-install.xml /etc/dm8-auto-install.xml
+RUN sudo mkdir /opt/dmdbms /var/lib/dm8 /opt/bin
+RUN sudo chown -R deploy:deploy /opt/dmdbms /var/lib/dm8 /opt/bin
 # /DMInstall.bin -i
-RUN sudo mkdir /opt/dmdbms /var/lib/dm8
-RUN sudo chown -R deploy:deploy /opt/dmdbms /var/lib/dm8
 RUN /DMInstall.bin -q /etc/dm8-auto-install.xml
-
 RUN sed -i '/^systemctl/s//#&/' /opt/dmdbms/script/root/root_installer.sh
 RUN sudo /opt/dmdbms/script/root/root_installer.sh
+RUN cp /opt/dmdbms/bin/service_template/DmService /opt/bin/DmServiceDMSERVER
+RUN sed -i 's/INI_PATH=%INI_PATH%/INI_PATH="\/var\/lib\/dm8\/DAMENG\/dm.ini"/g' /opt/bin/DmServiceDMSERVER
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
@@ -46,4 +47,4 @@ EXPOSE 5326/tcp
 VOLUME /workspace
 WORKDIR /workspace
 
-CMD ["/usr/sbin/init"]
+CMD ["/bin/zsh", "-l"]
