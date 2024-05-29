@@ -3,7 +3,8 @@ package rpc
 import "github.com/saturn-xiv/palm/jasmine/env"
 
 type Config struct {
-	Minio env.Minio `toml:"minio"`
+	Namespace string    `toml:"namespace"`
+	Minio     env.Minio `toml:"minio"`
 }
 
 type Ssl struct {

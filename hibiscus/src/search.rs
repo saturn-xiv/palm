@@ -16,12 +16,14 @@ pub type Pool = SingleNodeConnectionPool;
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Config {
+    pub namespace: String,
     pub url: String,
 }
 
 impl Default for Config {
     fn default() -> Self {
         Self {
+            namespace: "demo".to_string(),
             url: "http://127.0.0.1:9200".to_string(),
         }
     }
@@ -30,7 +32,10 @@ impl Config {
     pub fn open(&self) -> Result<Client> {
         debug!("open opensearch {}", self.url);
         let pool = SingleNodeConnectionPool::new(self.url.parse()?);
-        Ok(Client { pool })
+        Ok(Client {
+            pool,
+            namespace: self.namespace.clone(),
+        })
     }
 }
 
@@ -49,6 +54,7 @@ macro_rules! check_response {
 }
 
 pub struct Client {
+    namespace: String,
     pool: SingleNodeConnectionPool,
 }
 
@@ -113,7 +119,7 @@ impl Client {
 
     fn index<T>(&self) -> String {
         // type_name::<T>().replace("::", "-").to_lowercase()
-        type_name::<T>().to_string()
+        format!("{}.{}", self.namespace, type_name::<T>())
     }
     fn open(&self) -> Result<OpenSearchClient> {
         let transport = TransportBuilder::new(self.pool.clone())

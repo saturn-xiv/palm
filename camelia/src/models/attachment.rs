@@ -6,12 +6,13 @@ use std::string::ToString;
 
 use actix_files::file_extension_to_mime;
 use chrono::{Datelike, Duration, NaiveDateTime, Utc};
+use data_encoding::BASE32_NOPAD;
 use diesel::{delete, insert_into, prelude::*, update};
 use hyper::StatusCode;
 use log::warn;
 use mime::{Mime, IMAGE};
 use palm::{jasmine::S3, random::uuid, Error, HttpError, Result};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 use super::super::{
@@ -19,13 +20,23 @@ use super::super::{
     schema::{attachment_resources, attachments},
 };
 
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct Bucket {
-    pub namespace: String,
     pub public: bool,
+    pub year: i32,
     pub expiration_days: Option<i32>,
 }
 
 impl Bucket {
+    pub fn new(public: bool, expiration_days: Option<i32>) -> Self {
+        let now = Utc::now();
+        Self {
+            public,
+            year: now.year(),
+            expiration_days,
+        }
+    }
     pub fn object<P: AsRef<Path>>(file: P) -> String {
         let name = uuid();
         let file = file.as_ref();
@@ -39,15 +50,11 @@ impl Bucket {
 
 impl fmt::Display for Bucket {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let now = Utc::now();
-        write!(
-            f,
-            "{}.{}.{}{}",
-            self.namespace,
-            now.year(),
-            if self.public { "o" } else { "p" },
-            self.expiration_days.unwrap_or_default()
-        )
+        let buf = flexbuffers::to_vec(self).map_err(|e| {
+            log::error!("{:?}", e);
+            fmt::Error
+        })?;
+        write!(f, "{}", BASE32_NOPAD.encode(&buf))
     }
 }
 
@@ -55,41 +62,9 @@ impl FromStr for Bucket {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self> {
-        let items = s.split('.').collect::<Vec<&str>>();
-        if items.len() == 3 {
-            let namespace = items[0].to_string();
-            let _year: i32 = items[1].parse()?;
-            if items[2].len() > 1 {
-                let expiration_days = {
-                    let it: i32 = items[2][1..].parse()?;
-                    if it == 0 {
-                        None
-                    } else {
-                        Some(it)
-                    }
-                };
-
-                if items[2].starts_with('o') {
-                    return Ok(Self {
-                        namespace,
-                        public: true,
-                        expiration_days,
-                    });
-                }
-                if items[2].starts_with('p') {
-                    return Ok(Self {
-                        namespace,
-                        public: false,
-                        expiration_days,
-                    });
-                }
-            }
-        }
-
-        Err(Box::new(HttpError(
-            StatusCode::BAD_REQUEST,
-            Some(format!("bad bucket name{}", s)),
-        )))
+        let buf = BASE32_NOPAD.decode(s.as_bytes())?;
+        let it = flexbuffers::from_slice(&buf)?;
+        Ok(it)
     }
 }
 
