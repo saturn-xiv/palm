@@ -53,7 +53,6 @@ impl Server {
             ))
             .add_service(camelia_v1::attachment_server::AttachmentServer::new(
                 camelia_services::attachment::Service {
-                    namespace: config.namespace.clone(),
                     loquat: loquat.clone(),
                     gourd: gourd.clone(),
                     jasmine: jasmine.clone(),
@@ -130,7 +129,6 @@ impl Server {
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 struct Config {
-    namespace: String,
     loquat: Thrift,
     gourd: Thrift,
     jasmine: Thrift,

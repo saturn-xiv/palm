@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 
 	send_email_worker "github.com/saturn-xiv/palm/daisy/cmd/send-email-worker"
+	"github.com/saturn-xiv/palm/daisy/cmd/service"
 )
 
 var (
@@ -42,6 +43,8 @@ var (
 
 	gl_send_email_worker_queue_name    string
 	gl_send_email_worker_consumer_name string
+
+	gl_service_name string
 )
 
 func init() {
@@ -62,6 +65,24 @@ func init() {
 
 		cmd.Flags().StringVarP(&gl_send_email_worker_queue_name, "queue", "q", "emails", "queue name")
 		cmd.Flags().StringVarP(&gl_send_email_worker_consumer_name, "name", "n", "send-email", "consumer name")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "systemd",
+			Short: "Generate a systemd service file",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+
+				if err := service.SendEmailWorkerSystemdConf(gl_service_name, gl_send_email_worker_queue_name); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+
+		cmd.Flags().StringVarP(&gl_service_name, "name", "n", "daisy", "service name")
+		cmd.Flags().StringVarP(&gl_send_email_worker_queue_name, "queue", "q", "emails", "queue name")
 		root_cmd.AddCommand(cmd)
 	}
 

@@ -30,7 +30,6 @@ pub struct Service {
     pub jasmine: Arc<Thrift>,
     pub db: DbPool,
     pub cache: CachePool,
-    pub namespace: String,
 }
 
 #[tonic::async_trait]
@@ -54,11 +53,7 @@ impl v1::attachment_server::Attachment for Service {
             db,
             s3,
             user.id,
-            &Bucket {
-                namespace: self.namespace.clone(),
-                public: req.public,
-                expiration_days: req.expiration_days,
-            },
+            &Bucket::new(req.public, req.expiration_days),
             &req.title,
             &req.content_type,
             req.size

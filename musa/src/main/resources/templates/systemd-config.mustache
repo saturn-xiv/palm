@@ -1,0 +1,15 @@
+[Unit]
+Description=A markdown-to-html service.
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+User=root
+Group=root
+ExecStart=/usr/bin/java -jar musa-{{ version }}.jar
+WorkingDirectory=/var/lib/{{ name }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -12,11 +12,12 @@ import (
 )
 
 type S3Handler struct {
-	client *minio.Client
+	namespace string
+	client    *minio.Client
 }
 
 func (p *S3Handler) CreateBucket(ctx context.Context, name string, public bool, expiration_days int32) error {
-
+	name = p.namespace + "." + name
 	found, err := p.client.BucketExists(ctx, name)
 	if err != nil {
 		return err
@@ -96,6 +97,6 @@ func (p *S3Handler) GetPermanentURL(ctx context.Context, bucket string, object s
 	return fmt.Sprintf("%s/%s/%s", p.client.EndpointURL(), bucket, object), nil
 }
 
-func NewS3Handler(client *minio.Client) *S3Handler {
-	return &S3Handler{client: client}
+func NewS3Handler(client *minio.Client, namespace string) *S3Handler {
+	return &S3Handler{client: client, namespace: namespace}
 }

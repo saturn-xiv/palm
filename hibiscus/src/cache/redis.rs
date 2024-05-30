@@ -14,6 +14,7 @@ pub type PooledConnection = r2d2::PooledConnection<Connection>;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
+    pub namespace: String,
     pub pool_size: Option<u32>,
     pub nodes: Vec<String>,
 }
@@ -42,6 +43,7 @@ impl Config {
 impl Default for Config {
     fn default() -> Self {
         Self {
+            namespace: "demo".to_string(),
             nodes: vec!["redis://127.0.0.1:6371".to_string()],
             pool_size: Some(32),
         }
@@ -68,10 +70,10 @@ impl super::Provider for ClusterConnection {
 
         Ok(items.join("\n"))
     }
-    fn keys(&mut self) -> Result<Vec<(String, String, i64)>> {
+    fn keys(&mut self, namespace: &str) -> Result<Vec<(String, String, i64)>> {
         let mut items = Vec::new();
 
-        let keys: Vec<Value> = Commands::keys(self, "*")?;
+        let keys: Vec<Value> = Commands::keys(self, Self::key(namespace, &"*".to_string()))?;
 
         for it in keys.iter() {
             if let Value::Bulk(ref it) = it {
@@ -83,8 +85,10 @@ impl super::Provider for ClusterConnection {
                             for key in keys {
                                 if let Value::Data(ref key) = key {
                                     let key = std::str::from_utf8(key)?;
-                                    let ttl: i64 = self.ttl(key)?;
-                                    items.push((node.to_string(), key.to_string(), ttl));
+                                    if let Some(key) = key.strip_prefix(namespace) {
+                                        let ttl: i64 = self.ttl(key)?;
+                                        items.push((node.to_string(), key.to_string(), ttl));
+                                    }
                                 }
                             }
                         }
@@ -95,22 +99,22 @@ impl super::Provider for ClusterConnection {
         Ok(items)
     }
 
-    fn fetch<K, V>(&mut self, key: &K) -> Result<V>
+    fn fetch<K, V>(&mut self, namespace: &str, key: &K) -> Result<V>
     where
         K: Display,
         V: DeserializeOwned,
     {
-        let key = key.to_string();
+        let key = Self::key(namespace, key);
         let buf: RedisResult<Vec<u8>> = Commands::get(self, &key);
         let it = flexbuffers::from_slice(buf?.as_slice())?;
         Ok(it)
     }
-    fn set<K, V>(&mut self, key: &K, val: &V, ttl: Duration) -> Result<()>
+    fn set<K, V>(&mut self, namespace: &str, key: &K, val: &V, ttl: Duration) -> Result<()>
     where
         K: Display,
         V: Serialize,
     {
-        let key = key.to_string();
+        let key = Self::key(namespace, key);
         self.set_ex(
             &key,
             flexbuffers::to_vec(val)?.as_slice(),
@@ -128,13 +132,13 @@ impl super::Provider for ClusterConnection {
     //     fun()
     // }
     // #[cfg(not(debug_assertions))]
-    fn get<K, V, F>(&mut self, key: &K, fun: F, ttl: Duration) -> Result<V>
+    fn get<K, V, F>(&mut self, namespace: &str, key: &K, fun: F, ttl: Duration) -> Result<V>
     where
         F: FnOnce() -> Result<V>,
         K: Display,
         V: DeserializeOwned + Serialize,
     {
-        let key = key.to_string();
+        let key = Self::key(namespace, key);
         let buf: RedisResult<Vec<u8>> = Commands::get(self, &key);
         if let Ok(buf) = buf {
             if let Ok(val) = flexbuffers::from_slice(buf.as_slice()) {
@@ -151,10 +155,8 @@ impl super::Provider for ClusterConnection {
         Ok(val)
     }
 
-    fn clear(&mut self) -> Result<()> {
-        let rst = cmd("flushall").query::<String>(self)?;
-        info!("{}", rst);
-        Ok(())
+    fn clear(&mut self, namespace: &str) -> Result<()> {
+        Self::destroy(self, namespace, &"*".to_string())
     }
 
     fn heartbeat(&mut self) -> Result<()> {
@@ -163,10 +165,13 @@ impl super::Provider for ClusterConnection {
         Ok(())
     }
 
-    fn destroy<K: Display>(&mut self, key: &K) -> Result<()> {
+    fn destroy<K: Display>(&mut self, namespace: &str, key: &K) -> Result<()> {
+        let key = Self::key(namespace, key);
         warn!("clear cache with prefix {}", key);
-        let keys: Vec<String> = Commands::keys(self, &format!("{key}*"))?;
-        self.del::<_, ()>(&keys)?;
+        let keys: Vec<String> = Commands::keys(self, &key)?;
+        if !keys.is_empty() {
+            self.del::<_, ()>(&keys)?;
+        }
         Ok(())
     }
 }

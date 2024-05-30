@@ -52,8 +52,19 @@ int main(int argc, char** argv) {
     rpc_command.add_argument("--ca-file").default_value("ca.crt").required();
   }
 
+  argparse::ArgumentParser systemd_config_command("systemd");
+  {
+    systemd_config_command.add_argument("-p", "--port")
+        .default_value(9999)
+        .scan<'i', int>();
+    systemd_config_command.add_argument("-n", "--name")
+        .default_value(loquat::PROJECT_NAME)
+        .required();
+  }
+
   program.add_subparser(rpc_command);
   program.add_subparser(generate_token_command);
+  program.add_subparser(systemd_config_command);
 
   try {
     program.parse_args(argc, argv);
@@ -100,7 +111,7 @@ int main(int argc, char** argv) {
 
     apache::thrift::GlobalOutput.setOutputFunction(loquat::set_thrift_logger);
 
-    loquat::application::launch(
+    loquat::application::launch_rpc_server(
         static_cast<uint16_t>(port),
         rpc_command.get<bool>("--ssl") ? ssl : std::nullopt);
 
@@ -129,6 +140,10 @@ int main(int argc, char** argv) {
                  now + absl::Seconds(ttl.count()), std::nullopt);
 
     std::cout << token << std::endl;
+  } else if (program.is_subcommand_used(systemd_config_command)) {
+    const int port = systemd_config_command.get<int>("--port");
+    const std::string name = systemd_config_command.get<std::string>("--name");
+    loquat::application::generate_systemd_config(name, port);
   }
 
   return EXIT_SUCCESS;

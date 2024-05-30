@@ -26,7 +26,8 @@ struct Ssl {
   std::string ca_file;
 };
 
-void launch(const uint16_t port, std::optional<Ssl> ssl);
+void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl);
+void generate_systemd_config(const std::string& name, const uint16_t port);
 }  // namespace application
 
 class AesHandler final : public v1::AesIf {

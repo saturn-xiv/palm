@@ -5,8 +5,10 @@ import (
 	"log"
 	"log/slog"
 
-	tex_to_pdf "github.com/saturn-xiv/palm/lily/cmd/tex-to-pdf"
 	"github.com/spf13/cobra"
+
+	"github.com/saturn-xiv/palm/lily/cmd/service"
+	tex_to_pdf "github.com/saturn-xiv/palm/lily/cmd/tex-to-pdf"
 )
 
 var (
@@ -41,6 +43,8 @@ var (
 
 	gl_tex_to_pdf_worker_queue_name    string
 	gl_tex_to_pdf_worker_consumer_name string
+
+	gl_service_name string
 )
 
 func init() {
@@ -63,7 +67,24 @@ func init() {
 		cmd.Flags().StringVarP(&gl_tex_to_pdf_worker_consumer_name, "name", "n", "build-tex-to-pdf", "consumer name")
 		root_cmd.AddCommand(cmd)
 	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "systemd",
+			Short: "Generate a systemd service file",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
 
+				if err := service.TexToPdfWorkerSystemdConf(gl_service_name, gl_tex_to_pdf_worker_queue_name); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+
+		cmd.Flags().StringVarP(&gl_service_name, "name", "n", "lily", "service name")
+		cmd.Flags().StringVarP(&gl_tex_to_pdf_worker_queue_name, "queue", "q", "tex2pdf", "queue name")
+
+		root_cmd.AddCommand(cmd)
+	}
 }
 
 func set_log(debug bool) {

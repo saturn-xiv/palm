@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/saturn-xiv/palm/gourd/cmd/rpc"
+	"github.com/saturn-xiv/palm/gourd/cmd/service"
 )
 
 var (
@@ -45,6 +46,8 @@ var (
 	gl_rpc_ca_file   string
 	gl_rpc_key_file  string
 	gl_rpc_cert_file string
+
+	gl_service_name string
 )
 
 func init() {
@@ -71,7 +74,7 @@ func init() {
 				}
 
 				if err != nil {
-					log.Fatalf("start rpc server: %s", err)
+					log.Fatalf("%v", err)
 				}
 			},
 		}
@@ -81,6 +84,24 @@ func init() {
 		cmd.Flags().StringVar(&gl_rpc_cert_file, "cert-file", "server.crt", "cert file")
 		cmd.Flags().StringVar(&gl_rpc_key_file, "key-file", "server.key", "key file")
 		cmd.Flags().StringVar(&gl_rpc_ca_file, "ca-file", "ca.crt", "ca file")
+		root_cmd.AddCommand(cmd)
+	}
+
+	{
+		var cmd = &cobra.Command{
+			Use:   "systemd",
+			Short: "Generate a systemd service file",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+
+				if err := service.SystemdConf(gl_service_name, gl_rpc_port); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+
+		cmd.Flags().StringVarP(&gl_service_name, "name", "n", "gourd", "service name")
+		cmd.Flags().Uint16VarP(&gl_rpc_port, "port", "p", 9999, "port to listen")
 		root_cmd.AddCommand(cmd)
 	}
 

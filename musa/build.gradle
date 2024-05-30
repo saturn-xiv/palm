@@ -8,7 +8,7 @@ plugins {
 }
 
 group = 'com.github.saturn_xiv.palm.plugins'
-version = '2024.5.5'
+version = '2024.5.26'
 
 java {
     sourceCompatibility = '21'

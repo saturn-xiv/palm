@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 
 	send_sms_worker "github.com/saturn-xiv/palm/tuberose/cmd/send-sms-worker"
+	"github.com/saturn-xiv/palm/tuberose/cmd/service"
 	"github.com/saturn-xiv/palm/tuberose/cmd/web"
 )
 
@@ -45,6 +46,8 @@ var (
 	gl_send_sms_worker_consumer_name string
 
 	gl_web_listen_port uint16
+
+	gl_service_name string
 )
 
 func init() {
@@ -80,6 +83,29 @@ func init() {
 		}
 
 		cmd.Flags().Uint16VarP(&gl_web_listen_port, "port", "o", 8080, "listening port")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "systemd",
+			Short: "Generate a systemd service file",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+
+				if err := service.WebSystemdConf(gl_service_name, gl_web_listen_port); err != nil {
+					log.Fatalf("%v", err)
+					return
+				}
+				if err := service.SendSmsWorkerSystemdConf(gl_service_name, gl_send_sms_worker_queue_name); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+
+		cmd.Flags().StringVarP(&gl_service_name, "name", "n", "tuberose", "service name")
+		cmd.Flags().Uint16VarP(&gl_web_listen_port, "port", "o", 8080, "http listening port")
+		cmd.Flags().StringVarP(&gl_send_sms_worker_queue_name, "queue", "q", "sms", "queue name")
+
 		root_cmd.AddCommand(cmd)
 	}
 }

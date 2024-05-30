@@ -51,7 +51,7 @@ func Launch(port uint16, config_file string, ssl *Ssl) error {
 	processors := thrift.NewTMultiplexedProcessor()
 	{
 		name := serviceName((*v1.S3)(nil))
-		handler := services.NewS3Handler(s3)
+		handler := services.NewS3Handler(s3, config.Namespace)
 		processor := v1.NewS3Processor(handler)
 		slog.Debug("register processor", slog.String("name", name))
 		processors.RegisterProcessor(name, processor)

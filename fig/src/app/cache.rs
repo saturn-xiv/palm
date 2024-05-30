@@ -19,7 +19,7 @@ pub fn list<P: AsRef<Path>>(config_file: P) -> Result<()> {
     {
         let mut ch = ch.get()?;
         let ch = ch.deref_mut();
-        let items = ch.keys()?;
+        let items = ch.keys(&config.redis.namespace)?;
         println!("{:<14} KEY", "TTL");
         for (node, key, ttl) in items.iter() {
             println!("{:<32} {:<14} {}", node, ttl, key);
@@ -34,7 +34,7 @@ pub fn clear<P: AsRef<Path>>(config_file: P) -> Result<()> {
     {
         let mut ch = ch.get()?;
         let ch = ch.deref_mut();
-        ch.clear()?;
+        ch.clear(&config.redis.namespace)?;
     }
     Ok(())
 }
