@@ -17,12 +17,13 @@ RUN echo "deb [arch=armhf,arm64,riscv64] http://ports.ubuntu.com/ $(lsb_release 
 RUN apt update
 RUN apt -y upgrade
 
+ENV CPP_STD_VERSION 13
 RUN apt -y install zsh git locales locales-all \
     vim tzdata zip unzip tree tmux \
-    build-essential g++ libstdc++-dev \
-    crossbuild-essential-arm64 g++-aarch64-linux-gnu libstdc++-dev:arm64 \
-    crossbuild-essential-armhf g++-arm-linux-gnueabihf libstdc++-dev:armhf \
-    crossbuild-essential-riscv64 g++-riscv64-linux-gnu libstdc++-dev:riscv64 \
+    build-essential g++ libstdc++-${CPP_STD_VERSION}-dev \
+    crossbuild-essential-arm64 g++-aarch64-linux-gnu libstdc++-${CPP_STD_VERSION}-dev:arm64 \
+    crossbuild-essential-armhf g++-arm-linux-gnueabihf libstdc++-${CPP_STD_VERSION}-dev:armhf \
+    crossbuild-essential-riscv64 g++-riscv64-linux-gnu libstdc++-${CPP_STD_VERSION}-dev:riscv64 \
     clang clangd clang-tools clang-format clang-tidy lldb lld \
     cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio mold \
     debhelper bison flex ninja-build \
