@@ -8,4 +8,3 @@ $ ./start.sh 15236
 > cd /opt/dmdbms/bin/
 > ./disql # user: sysdba, password: 123456789
 ```
-
