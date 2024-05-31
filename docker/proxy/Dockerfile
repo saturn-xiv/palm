@@ -12,7 +12,7 @@ RUN mkdir -p $HOME/downloads $HOME/local $HOME/tmp
 # https://github.com/qwj/python-proxy
 RUN python3 -m venv $HOME/local/python3
 RUN sh -c ". $HOME/local/python3/bin/activate \
-    && pip install pproxy[accelerated]"
+    && pip install asyncssh pproxy[accelerated]"
 
 COPY proxy.sh /opt/
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
