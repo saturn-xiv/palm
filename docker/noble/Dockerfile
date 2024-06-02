@@ -82,13 +82,12 @@ RUN zsh -c "source $HOME/.zshrc \
 
 ENV JDK_VERSION "22-open"
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV GRADLE_VERSION "8.7"
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
 RUN zsh -c "source $HOME/.zshrc \
     && sdk install java ${JDK_VERSION} \
     && sdk install maven \
-    && sdk install gradle ${GRADLE_VERSION}"
+    && sdk install gradle"
 
 # https://go.dev/doc/install
 ENV GO_VERSION "1.22.3"
