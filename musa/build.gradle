@@ -8,10 +8,14 @@ plugins {
 }
 
 group = 'com.github.saturn_xiv.palm.plugins'
-version = '2024.5.26'
+version = '2024.6.2'
 
 java {
     sourceCompatibility = '21'
+}
+
+jar {
+    enabled = false
 }
 
 repositories {

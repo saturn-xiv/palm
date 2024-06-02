@@ -9,11 +9,44 @@ export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export PACKAGE_NAME="palm-$VERSION_CODENAME-$GIT_VERSION"
 export TARGET_DIR=$WORKSPACE/tmp/$PACKAGE_NAME
 
-# -----------------------------------------------------------------------------
+function build_loquat() {
+    export source_root=$WORKSPACE/loquat
+    export build_root=$WORKSPACE/loquat/build/Release
 
-function build_morus() {
-    echo "build morus project"
-    cd $WORKSPACE/morus/
+    mkdir -p $build_root
+    cmake -DCMAKE_BUILD_TYPE=Release \
+        -DABSL_PROPAGATE_CXX_STD=ON \
+        -DTINK_USE_SYSTEM_OPENSSL=ON -DTINK_BUILD_TESTS=OFF \
+        -B $build_root -S $source_root
+    make -C $build_root loquat
+    mkdir -p $TARGET_DIR/bin/x86_64
+    cp -v $build_root/loquat $TARGET_DIR/bin/x86_64/
+}
+
+function build_go() {
+    cd $WORKSPACE/$1
+
+    local pkg="github.com/saturn-xiv/palm/$1/cmd"
+    # ldflags="-extldflags=-static" -tags sqlite_omit_load_extension
+    local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
+
+    echo "build $1.$2"
+    GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $WORKSPACE/$1/tmp/$1.$2
+
+    mkdir -p $TARGET_DIR/bin/$3
+    cp -v tmp/$1.$2 $TARGET_DIR/bin/$3/$1
+}
+
+function build_java() {
+    cd $WORKSPACE/$1
+    gradle clean
+    gradle build
+
+    cp -v build/libs/*.jar $TARGET_DIR/
+}
+
+function build_js() {
+    cd $WORKSPACE/$1
     if [ ! -d node_modules ]; then
         npm install
     fi
@@ -21,21 +54,7 @@ function build_morus() {
         rm -r dist
     fi
     npx webpack --mode=production
-
-    mv dist $TARGET_DIR/morus
-    cp README.md config.json.orig $TARGET_DIR/morus/
-}
-
-function build_musa() {
-    echo "build musa project"
-    cd $WORKSPACE/musa/
-    mvn clean
-    mvn package -Dmaven.test.skip=true
-
-    mkdir -p $TARGET_DIR/musa
-    cp -r README.md application-orig.properties mybatis-config.xml com wechatpay-orig \
-        target/musa-*.jar $TARGET_DIR/musa/
-
+    cp -r dist $TARGET_DIR/$1
 }
 
 function install_deb() {
@@ -43,27 +62,12 @@ function install_deb() {
         libpq5:$1 libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 libczmq-dev:$1
 }
 
-function build_go_project() {
-    cd $WORKSPACE/$1
-
-    local pkg="github.com/saturn-xiv/palm/$1/cmd"
-    local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
-
-    echo "build $1 for $3"
-    GOOS=linux GOARCH=$2 go build -ldflags "$ldflags"
-    mkdir -p $TARGET_DIR/bin/$3
-    mv $1 $TARGET_DIR/bin/$3/
-}
-
-function build_cargo_x86_64() {
+function build_rust_x86_64() {
     echo "build $1 for x84-64"
     cd $WORKSPACE
 
     local CC=gcc
     local CXX=g++
-
-    local PKG_CONFIG_ALL_STATIC=1
-
     local target="x86_64-unknown-linux-gnu"
 
     cargo build --release --target $target -p $1
@@ -71,7 +75,7 @@ function build_cargo_x86_64() {
     cp target/$target/release/$1 $TARGET_DIR/bin/x86_64/
 }
 
-function build_cargo_aarch64() {
+function build_rust_aarch64() {
     echo "build $1 for aarch64"
     cd $WORKSPACE
 
@@ -91,7 +95,7 @@ function build_cargo_aarch64() {
     cp target/$target/release/$1 $TARGET_DIR/bin/aarch64/
 }
 
-function build_cargo_armhf() {
+function build_rust_armhf() {
     echo "build $1 for armhf"
     cd $WORKSPACE
 
@@ -113,10 +117,11 @@ function build_cargo_armhf() {
 
 function copy_jdk() {
     echo "install jdk..."
-    local x64_url="https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-x64_bin.tar.gz"
-    local aarch64_url="https://download.java.net/java/GA/jdk22/830ec9fcccef480bb3e73fb7ecafe059/36/GPL/openjdk-22_linux-aarch64_bin.tar.gz"
+    local jdk_version="22.0.1"
 
-    local jdk_version="22"
+    local x64_url="https://download.java.net/java/GA/jdk22.0.1/c7ec1332f7bb44aeba2eb341ae18aca4/8/GPL/openjdk-22.0.1_linux-x64_bin.tar.gz"
+    local aarch64_url="https://download.java.net/java/GA/jdk22.0.1/c7ec1332f7bb44aeba2eb341ae18aca4/8/GPL/openjdk-22.0.1_linux-aarch64_bin.tar.gz"
+
     local x64_file=$HOME/downloads/openjdk-${jdk_version}_linux-x64_bin.tar.gz
     local aarch64_file=$HOME/downloads/openjdk-${jdk_version}_linux-aarch64_bin.tar.gz
 
@@ -135,9 +140,10 @@ function copy_jdk() {
     mv jdk-$jdk_version aarch64
 }
 
+# https://github.com/envoyproxy/envoy/tags
 function copy_envoy() {
     echo "install envoy..."
-    local envoy_version="1.29.2"
+    local envoy_version="1.30.1"
     local x86_64_url="https://github.com/envoyproxy/envoy/releases/download/v${envoy_version}/envoy-${envoy_version}-linux-x86_64"
     local aarch64_url="https://github.com/envoyproxy/envoy/releases/download/v${envoy_version}/envoy-${envoy_version}-linux-aarch_64"
 
@@ -160,9 +166,10 @@ function copy_envoy() {
     chmod +x $TARGET_DIR/bin/aarch64/envoy
 }
 
+# https://nodejs.org/en/download/prebuilt-binaries
 function copy_nodejs() {
     echo "install nodejs..."
-    local node_version="20.12.0"
+    local node_version="20.14.0"
     local x64_url="https://nodejs.org/dist/v${node_version}/node-v${node_version}-linux-x64.tar.xz"
     local arm64_url="https://nodejs.org/dist/v${node_version}/node-v${node_version}-linux-arm64.tar.xz"
 
@@ -246,175 +253,55 @@ function build_dashboard() {
 
 # -----------------------------------------------------------------------------
 
-if [ $ID != "ubuntu" ]; then
-    echo "unsupported system $ID"
+if [[ "$ID" == "ubuntu" ]]; then
+    echo "Unsupported system: $ID"
     exit 1
 fi
 
-if [ -f ${TARGET_DIR}.tar.xz ]; then
-    echo "check passed(${TARGET_DIR}.tar.xz)."
-    exit 0
-fi
+build_js morus
+build_java musa
+build_loquat
 
-if [ -d $TARGET_DIR ]; then
-    rm -r $TARGET_DIR
-fi
-mkdir -p $TARGET_DIR
-
-build_go_project lilac amd64 x86_64
-build_go_project lilac arm64 aarch64
-build_go_project lilac riscv64 riscv64
-
-install_deb amd64
-build_cargo_x86_64 aloe
-build_cargo_x86_64 fig
-
-install_deb arm64
-build_cargo_aarch64 aloe
-build_cargo_aarch64 fig
-
-build_musa
-copy_jdk
-
-build_morus
-copy_nodejs
-
+build_rust_aarch64 fig
+build_rust_x86_64 fig
 build_dashboard fig
 
-copy_envoy
+build_go gourd amd64 x86_64
+build_go gourd arm64 aarch64
+build_go gourd riscv64 riscv64
+
+build_go sedge amd64 x86_64
+build_go sedge arm64 aarch64
+build_go sedge riscv64 riscv64
+
+build_go daisy amd64 x86_64
+build_go daisy arm64 aarch64
+build_go daisy riscv64 riscv64
+
+build_go tuberose amd64 x86_64
+build_go tuberose arm64 aarch64
+build_go tuberose riscv64 riscv64
+
+build_go lily amd64 x86_64
+build_go lily arm64 aarch64
+build_go lily riscv64 riscv64
+
+build_go jasmine amd64 x86_64
+build_go jasmine arm64 aarch64
+build_go jasmine riscv64 riscv64
+
 copy_assets
+
+copy_jdk
+copy_nodejs
+copy_envoy
+
+# -----------------------------------------------------------------------------
 
 cd $(dirname $TARGET_DIR)
 echo "compressing $PACKAGE_NAME..."
 XZ_OPT=-9 tar -cJf $PACKAGE_NAME.tar.xz $PACKAGE_NAME
 md5sum $PACKAGE_NAME.tar.xz >$PACKAGE_NAME.md5
-
 echo "done($GIT_VERSION)."
+
 exit 0
-
-# function build_cargo_musl() {
-#     echo "build $2 for $1"
-#     local target="$1-unknown-linux-musl"
-
-#     cargo clean
-#     cargo build --quiet --release --target $target -p $2
-
-#     mkdir -p $WORKSPACE/bin/$1
-#     cp target/$target/release/$2 $TARGET_DIR/bin/$1/
-# }
-
-# function build_lily() {
-#     echo "build lily project"
-#     cd $WORKSPACE
-#     cp -a lily $TARGET_DIR/
-# }
-
-# function build_gardenia() {
-#     echo "build gardenia project"
-#     cd $WORKSPACE/gardenia/
-#     mvn clean
-#     mvn package -Dmaven.test.skip=true
-
-#     mkdir -p $TARGET_DIR/gardenia
-#     cp -r application-orig.properties \
-#         target/gardenia-*.jar $TARGET_DIR/gardenia/
-
-# }
-
-# function build_loquat() {
-#     echo "build loquat with gcc-$1"
-#     apt install -y cmake g++-$1 golang libunwind-dev libboost-all-dev
-
-#     local arch=$(uname -p)
-#     local build_root=$HOME/build/loquat-$arch
-
-#     mkdir -p $build_root
-#     CC=gcc-$1 CXX=g++-$1 cmake -DCMAKE_BUILD_TYPE=Release \
-#         -DABSL_PROPAGATE_CXX_STD=ON -DTINK_USE_SYSTEM_OPENSSL=ON \
-#         -DBUILD_COMPILER=OFF -DWITH_OPENSSL=ON -DWITH_QT5=OFF -DBUILD_C_GLIB=OFF -DBUILD_JAVA=OFF -DBUILD_JAVASCRIPT=OFF -DBUILD_NODEJS=OFF -DBUILD_PYTHON=OFF \
-#         -B $build_root -S $WORKSPACE/loquat
-#     # -j $(nproc --ignore=2)
-#     make -C $build_root
-
-#     mkdir -p $TARGET_DIR/bin/$arch
-#     cp $build_root/loquat $TARGET_DIR/bin/$arch/
-# }
-
-# function build_casbin_server() {
-#     # https://pkg.go.dev/cmd/link
-#     echo "build casbin-server@$2"
-
-#     GOOS=linux GOARCH=$1 go build -o casbin -ldflags "-s -w"
-#     mkdir -p $TARGET_DIR/bin/$2
-#     mv casbin $TARGET_DIR/bin/$2/
-# }
-
-# # -----------------------------------------------------------------------------
-
-# if [ -f $TARGET_DIR.tar.xz ]; then
-#     echo "$PACKAGE_NAME.tar.xz already exists!"
-#     exit 0
-# fi
-
-# if [ -d $TARGET_DIR ]; then
-#     rm -r $TARGET_DIR
-# fi
-# mkdir -p $TARGET_DIR
-
-# build_lily
-# build_morus
-# build_musa
-# build_gardenia
-
-# # ---------------------------
-# cd $WORKSPACE/casbin-server/
-# # diff -u casbin-server/proto/casbin.proto palm/protocols/casbin.proto >scripts/casbin/proto.patch
-# patch proto/casbin.proto $WORKSPACE/scripts/casbin/proto.patch
-# # git diff server > ../scripts/casbin/enforcer.patch
-# git apply $WORKSPACE/scripts/casbin/enforcer.patch
-# # https://github.com/casbin/casbin-server#protobuf-if-not-installed
-# protoc -I proto \
-#     --go_out=proto --go_opt=paths=source_relative \
-#     --go-grpc_out=proto --go-grpc_opt=paths=source_relative \
-#     proto/casbin.proto
-# go get -u google.golang.org/protobuf
-# go get -u google.golang.org/grpc
-# go mod tidy
-# build_casbin_server amd64 x86_64
-# build_casbin_server arm64 aarch64
-# build_casbin_server arm armhf
-# build_casbin_server riscv64 riscv64
-# mkdir -p $TARGET_DIR/casbin
-# cp examples/rbac_model.conf $TARGET_DIR/casbin/
-# cp config/connection_config_psql_example.json $TARGET_DIR/casbin/config-orig.json
-# git checkout -f
-# # ---------------------------
-
-# if [ $UBUNTU_CODENAME == "jammy" ]; then
-#     build_loquat 12
-# fi
-
-# if [ $UBUNTU_CODENAME == "focal" ]; then
-#     build_loquat 11
-# fi
-
-# if [ $UBUNTU_CODENAME == "bionic" ]; then
-#     build_loquat 11
-# fi
-
-# build_cargo_musl x86_64 coconut
-# build_cargo_musl aarch64 coconut
-
-# build_dashboard fig
-# build_dashboard aloe
-
-# build_cargo_x86_64
-
-# install_deb arm64
-# build_cargo_aarch64
-
-# install_deb armhf
-# build_cargo_armhf
-
-# copy_assets
-# copy_jdk
