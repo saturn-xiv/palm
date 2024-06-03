@@ -30,7 +30,7 @@ After=network-online.target
 Type=notify
 User=root
 Group=root
-ExecStart=/usr/bin/node {{ file }} rpc config.toml
+ExecStart=/usr/bin/node {{ file }} rpc config.json
 WorkingDirectory=/var/lib/morus
 Restart=always
 

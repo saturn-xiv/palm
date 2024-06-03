@@ -231,7 +231,7 @@ copy_assets() {
     cd $WORKSPACE
     cp -a README.md LICENSE \
         $TARGET_DIR/
-    cp -a assets db locales themes $TARGET_DIR/fig/
+    cp -a assets db themes $TARGET_DIR/fig/
 
     echo "$GIT_VERSION" >$TARGET_DIR/VERSION
     echo "$(date -R)" >>$TARGET_DIR/VERSION
@@ -253,18 +253,32 @@ function build_dashboard() {
 
 # -----------------------------------------------------------------------------
 
-if [[ "$ID" == "ubuntu" ]]; then
+if [[ "$ID" != "ubuntu" ]]; then
     echo "Unsupported system: $ID"
     exit 1
 fi
+
+if [ -f ${TARGET_DIR}.tar.xz ]; then
+    echo "check passed(${TARGET_DIR}.tar.xz)."
+    exit 0
+fi
+
+if [ -d $TARGET_DIR ]; then
+    rm -r $TARGET_DIR
+fi
+mkdir -p $TARGET_DIR
+
+# -----------------------------------------------------------------------------
 
 build_js morus
 build_java musa
 build_loquat
 
+install_deb arm64
 build_rust_aarch64 fig
+install_deb amd64
 build_rust_x86_64 fig
-build_dashboard fig
+#build_dashboard fig
 
 build_go gourd amd64 x86_64
 build_go gourd arm64 aarch64
