@@ -5,8 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update
 RUN apt -y upgrade
-RUN apt install -y vim sudo locales locales-all tree \
-    build-essential xmake clang 7zip curl git
+RUN apt install -y vim sudo locales locales-all tree wget zsh \
+    build-essential xmake clang 7zip curl git file
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -64,7 +64,7 @@ RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >>
 RUN zsh -c "source $HOME/.zshrc \
     && nvm install --lts"
 
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 VOLUME /workspace
 WORKDIR /workspace
