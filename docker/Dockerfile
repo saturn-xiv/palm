@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt update
 RUN apt -y upgrade
 RUN apt install -y vim sudo locales locales-all tree wget zsh \
-    build-essential xmake clang 7zip curl git file
+    build-essential xmake clang ccache 7zip curl git file
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -38,7 +38,7 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 # https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
 RUN wget -q -P $HOME/downloads https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz \
     && tar xf $HOME/downloads/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz -C $HOME/local \
-    && echo 'export PATH=$HOME/local/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu:$PATH' >> $HOME/.zshrc
+    && echo 'export PATH=$HOME/local/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin:$PATH' >> $HOME/.zshrc
 
 # https://musl.cc/
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/x86_64-linux-musl-cross.tgz \

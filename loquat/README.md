@@ -5,9 +5,10 @@
   ```bash
   $ podman run --rm -it --events-backend=file --network host -v $(dirname $PWD):/workspace:z ubuntu:noble
   > apt update
-  > apt install -y build-essential xmake clang \
+  > apt install -y build-essential xmake clang ccache \
       7zip curl git
-  >
+  > apt install -y libsqlitecpp-dev libmysql++-dev libpqxx-dev libssl-dev python3-dev libboost-all-dev
+  > xmake service --clean
   ```
 
 - For x86_64
