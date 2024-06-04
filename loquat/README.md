@@ -1,9 +1,19 @@
 # USAGE
 
+- Install toolchains
+
+  ```bash
+  $ podman run --rm -it --events-backend=file --network host -v $(dirname $PWD):/workspace:z ubuntu:noble
+  > apt update
+  > apt install -y build-essential xmake clang \
+      7zip curl git
+  >
+  ```
+
 - For x86_64
 
   ```bash
-  xmake f -p linux -a x86_64 -m release
+  xmake f -p linux -a x86_64 -m release --toolchain=clang
   ```
 
 - For aarch64
