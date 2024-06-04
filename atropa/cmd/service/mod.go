@@ -18,7 +18,7 @@ After=network-online.target
 Type=notify
 User=root
 Group=root
-ExecStart=/usr/bin/gourd rpc -p {{ .port }}
+ExecStart=/usr/bin/atropa rpc -p {{ .port }}
 WorkingDirectory=/var/lib/{{ .name }}
 Restart=always
 

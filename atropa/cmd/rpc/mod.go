@@ -1,8 +1,8 @@
 package rpc
 
 import (
-	"github.com/saturn-xiv/palm/gourd/env"
-	"github.com/saturn-xiv/palm/gourd/env/redis"
+	"github.com/saturn-xiv/palm/atropa/env"
+	"github.com/saturn-xiv/palm/atropa/env/redis"
 )
 
 type Config struct {

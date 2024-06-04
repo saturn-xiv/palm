@@ -7,8 +7,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/saturn-xiv/palm/gourd/cmd/rpc"
-	"github.com/saturn-xiv/palm/gourd/cmd/service"
+	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
+	"github.com/saturn-xiv/palm/atropa/cmd/service"
 )
 
 var (
@@ -20,9 +20,9 @@ var (
 )
 
 var root_cmd = &cobra.Command{
-	Use:     "gourd",
-	Short:   "Gourd",
-	Long:    fmt.Sprintf("A rbac service based on Casbin.(%s).", repo_url),
+	Use:     "atropa",
+	Short:   "Atropa",
+	Long:    fmt.Sprintf("A collection of rpc services by Go.(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
@@ -100,7 +100,7 @@ func init() {
 			},
 		}
 
-		cmd.Flags().StringVarP(&gl_service_name, "name", "n", "gourd", "service name")
+		cmd.Flags().StringVarP(&gl_service_name, "name", "n", "atropa", "service name")
 		cmd.Flags().Uint16VarP(&gl_rpc_port, "port", "p", 9999, "port to listen")
 		root_cmd.AddCommand(cmd)
 	}

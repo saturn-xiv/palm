@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/saturn-xiv/palm/gourd/cmd"
+	"github.com/saturn-xiv/palm/atropa/cmd"
 )
 
 func main() {
