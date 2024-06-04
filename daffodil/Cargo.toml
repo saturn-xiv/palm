@@ -50,7 +50,6 @@ features = ["full"]
 version = "2"
 default-features = false
 features = [
-    "bigdecimal",
     "postgres",
     "mysql",
     "sqlite",

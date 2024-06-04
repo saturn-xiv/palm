@@ -51,10 +51,6 @@ features = ["derive", "card", "unic"]
 version = "0.26"
 features = ["derive"]
 
-[dependencies.diesel-adapter]
-version = "1"
-features = ["postgres"]
-
 [dependencies.hyper]
 version = "1"
 features = ["full"]
@@ -75,7 +71,6 @@ features = ["v4", "serde"]
 version = "2"
 default-features = false
 features = [
-    "bigdecimal",
     "postgres",
     "mysql",
     "sqlite",
