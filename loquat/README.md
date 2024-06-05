@@ -7,7 +7,7 @@
   > apt update
   > apt install -y build-essential xmake clang ccache \
       7zip curl git
-  > apt install -y libsqlitecpp-dev libmysql++-dev libpqxx-dev libssl-dev python3-dev libboost-all-dev
+  > apt install -y libsqlitecpp-dev libmysql++-dev libpqxx-dev libssl-dev python3-dev libboost-all-dev libgrpc++-dev
   > xmake service --clean
   ```
 
