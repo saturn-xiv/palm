@@ -79,6 +79,26 @@ function generate_thrift_for_php() {
     thrift -out $3 --gen php:nsglobal=$2 -r $1
 }
 
+function generate_grpc_for_go() {
+    echo "generate grpc $1 => $2"
+
+    if [ -d $2 ]; then
+        rm $2/*.pb.go
+    else
+        mkdir -p $2
+    fi
+
+    if [ ! -f $2/mod.go ]; then
+        echo "package v2" >$2/mod.go
+    fi
+
+    $PROTOBUF_ROOT/bin/protoc -I $(dirname $1) \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --go_out=$2 --go_opt=paths=source_relative \
+        --go-grpc_out=$2 --go-grpc_opt=paths=source_relative \
+        $1
+}
+
 function generate_grpc_for_node() {
     echo "generate grpc $1 => $2"
     if [ -d $2 ]; then
@@ -155,6 +175,8 @@ generate_thrift_for_php $WORKSPACE/palm/protocols/daisy.thrift daisy $WORKSPACE/
 generate_thrift_for_php $WORKSPACE/palm/protocols/morus-markdown.thrift 'morus\markdwown' $WORKSPACE/tutorials/php/lib
 generate_thrift_for_php $WORKSPACE/palm/protocols/musa-wechat-pay.thrift 'musa\wechat-pay' $WORKSPACE/tutorials/php/lib
 generate_thrift_for_java $WORKSPACE/palm/protocols/morus-markdown.thrift $WORKSPACE/tutorials/java/src/main/java com/github/saturn_xiv/palm/plugins/morus/v1/markdown
+# atropa
+generate_grpc_for_go $WORKSPACE/palm/protocols/atropa.proto $WORKSPACE/atropa/services/v2
 # fig
 generate_grpc_for_typescript palm/protocols fig/dashboard/src/protocols
 # postgresql
