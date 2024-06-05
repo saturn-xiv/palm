@@ -7,8 +7,9 @@ import (
 
 	"github.com/spf13/cobra"
 
+	"github.com/saturn-xiv/palm/atropa/cmd/etc"
 	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
-	"github.com/saturn-xiv/palm/atropa/cmd/service"
+	"github.com/saturn-xiv/palm/atropa/cmd/web"
 )
 
 var (
@@ -41,13 +42,10 @@ var (
 	gl_debug  bool
 	gl_config string
 
-	gl_rpc_port      uint16
-	gl_rpc_ssl       bool
-	gl_rpc_ca_file   string
-	gl_rpc_key_file  string
-	gl_rpc_cert_file string
+	gl_rpc_port uint16
+	gl_web_port uint16
 
-	gl_service_name string
+	gl_etc_domain string
 )
 
 func init() {
@@ -60,48 +58,55 @@ func init() {
 			Short: "Start a gRPC server",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-
-				var err error
-				if gl_rpc_ssl {
-					err = rpc.Launch(gl_rpc_port, gl_config, git_version, &rpc.Ssl{
-						CaFile:   gl_rpc_ca_file,
-						KeyFile:  gl_rpc_key_file,
-						CertFile: gl_rpc_cert_file,
-					})
-
-				} else {
-					err = rpc.Launch(gl_rpc_port, gl_config, git_version, nil)
-				}
-
-				if err != nil {
+				if err := rpc.Launch(gl_rpc_port, gl_config, git_version); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},
 		}
 
 		cmd.Flags().Uint16VarP(&gl_rpc_port, "port", "p", 9999, "port to listen")
-		cmd.Flags().BoolVarP(&gl_rpc_ssl, "ssl", "s", false, "enable ssl")
-		cmd.Flags().StringVar(&gl_rpc_cert_file, "cert-file", "server.crt", "cert file")
-		cmd.Flags().StringVar(&gl_rpc_key_file, "key-file", "server.key", "key file")
-		cmd.Flags().StringVar(&gl_rpc_ca_file, "ca-file", "ca.crt", "ca file")
 		root_cmd.AddCommand(cmd)
 	}
-
 	{
 		var cmd = &cobra.Command{
-			Use:   "systemd",
-			Short: "Generate a systemd service file",
+			Use:   "web",
+			Short: "Start a HTTP server",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				if err := web.Launch(gl_web_port, gl_config, git_version); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+
+		cmd.Flags().Uint16VarP(&gl_web_port, "port", "p", 8080, "port to listen")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "etc",
+			Short: "Generate systemd & nginx configuration file",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
 
-				if err := service.SystemdConf(gl_service_name, gl_rpc_port); err != nil {
+				if err := etc.RpcSystemdConf(gl_etc_domain, gl_rpc_port); err != nil {
+					log.Fatalf("%v", err)
+				}
+				if err := etc.WwwSystemdConf(gl_etc_domain, gl_web_port); err != nil {
+					log.Fatalf("%v", err)
+				}
+				if err := etc.MinioSystemdConf(gl_etc_domain); err != nil {
+					log.Fatalf("%v", err)
+				}
+				if err := etc.MinioNginxConf(gl_etc_domain); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},
 		}
 
-		cmd.Flags().StringVarP(&gl_service_name, "name", "n", "atropa", "service name")
-		cmd.Flags().Uint16VarP(&gl_rpc_port, "port", "p", 9999, "port to listen")
+		cmd.Flags().StringVarP(&gl_etc_domain, "domain", "D", "change-me.org", "domain name")
+		cmd.Flags().Uint16Var(&gl_rpc_port, "rpc-port", 9999, "gRPC server port")
+		cmd.Flags().Uint16Var(&gl_web_port, "web-port", 8080, "http server port")
 		root_cmd.AddCommand(cmd)
 	}
 

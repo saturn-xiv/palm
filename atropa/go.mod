@@ -4,6 +4,7 @@ go 1.22.3
 
 require (
 	github.com/BurntSushi/toml v1.4.0
+	github.com/btcsuite/btcutil v1.0.2
 	github.com/casbin/casbin/v2 v2.90.0
 	github.com/casbin/gorm-adapter/v3 v3.25.0
 	github.com/casbin/redis-watcher/v2 v2.5.0
@@ -14,6 +15,7 @@ require (
 	github.com/spf13/cobra v1.8.0
 	github.com/tink-crypto/tink-go/v2 v2.2.0
 	github.com/twilio/twilio-go v1.21.0
+	github.com/wechatpay-apiv3/wechatpay-go v0.2.18
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.1
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
