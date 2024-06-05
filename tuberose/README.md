@@ -53,3 +53,4 @@ mix ecto.rollback
 
 - [Elixir](https://hexdocs.pm/elixir/introduction.html)
 - [Phoenix](https://hexdocs.pm/phoenix/overview.html)
+- [Simple. Fast. Reliable. Content delivery at its finest.](https://cdnjs.com/)

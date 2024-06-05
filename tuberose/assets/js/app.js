@@ -15,13 +15,6 @@
 //     import "some-package"
 //
 
-import "../vendor/bootstrap-v5.3.3/bootstrap.bundle.js";
-import "../vendor/marked-v12.0.2/marked.min.js";
-import "../vendor/moment-v2.30.1/moment.js";
-import "../vendor/moment-v2.30.1/locale/zh-cn.js";
-import "../vendor/moment-v2.30.1/locale/zh-tw.js";
-import "../vendor/moment-timezone-v0.5.45/moment-timezone-with-data.js";
-
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import "phoenix_html";
 // Establish Phoenix Socket and LiveView configuration.
