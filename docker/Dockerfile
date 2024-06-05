@@ -4,9 +4,28 @@ LABEL maintainer="Jeremy Zheng"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update
+RUN apt install -y lsb-release apt-utils \
+    debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg
+# https://wiki.debian.org/ToolChain/Cross
+RUN dpkg --add-architecture armhf
+RUN dpkg --add-architecture arm64
+RUN dpkg --add-architecture riscv64
+RUN perl -pi -e '$_ .= qq(Architectures: amd64\n) if /Components: main/' /etc/apt/sources.list.d/ubuntu.sources
+RUN echo "deb [arch=armhf,arm64,riscv64] http://ports.ubuntu.com/ $(lsb_release -cs) main restricted universe multiverse" > /etc/apt/sources.list.d/ports.list
+RUN echo "deb [arch=armhf,arm64,riscv64] http://ports.ubuntu.com/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list.d/ports.list
+RUN echo "deb [arch=armhf,arm64,riscv64] http://ports.ubuntu.com/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list.d/ports.list
+RUN apt update
 RUN apt -y upgrade
-RUN apt install -y vim sudo locales locales-all tree wget zsh \
-    build-essential xmake clang ccache 7zip curl git file
+ENV CPP_STD_VERSION 13
+RUN apt install -y vim sudo locales locales-all tree zsh \
+    build-essential xmake ccache 7zip git file \
+    clang clangd clang-tools clang-format clang-tidy lldb lld \
+    crossbuild-essential-arm64 g++-aarch64-linux-gnu libstdc++-${CPP_STD_VERSION}-dev:arm64 \
+    crossbuild-essential-armhf g++-arm-linux-gnueabihf libstdc++-${CPP_STD_VERSION}-dev:armhf \
+    crossbuild-essential-riscv64 g++-riscv64-linux-gnu libstdc++-${CPP_STD_VERSION}-dev:riscv64 \
+    cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio mold \
+    debhelper bison flex ninja-build \
+    python3-full python3-dev
 RUN apt -y autoremove
 RUN apt -y clean
 

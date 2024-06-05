@@ -3,12 +3,12 @@
 - Install toolchains
 
   ```bash
-  $ podman run --rm -it --events-backend=file --network host -v $(dirname $PWD):/workspace:z ubuntu:noble
-  > apt update
-  > apt install -y build-essential xmake clang ccache \
-      7zip curl git
-  > apt install -y libsqlitecpp-dev libmysql++-dev libpqxx-dev libssl-dev python3-dev libboost-all-dev libgrpc++-dev
-  > xmake service --clean
+  $ cd ~/workspace/saturn-xiv/palm
+  $ ./docker/start.sh
+  > mkdir ~/build/loquat
+  > cd ~/build/loquat
+  > /workspace/loquat/setup.sh amd64 # OR arm64
+  > xmake
   ```
 
 - For x86_64
