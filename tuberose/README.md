@@ -25,13 +25,7 @@
 
 ## Deployment
 
-- Build package
-
-  ```bash
-
-
-
-  ```
+- Build package `./priv/scripts/build.sh`
 
 - Starting
 
@@ -39,6 +33,7 @@
   export SECRET_KEY_BASE="really long secret string" # mix phx.gen.secret
   export DATABASE_URL="postgres://www:change-me@127.0.0.1/palm?sslmode=disable"
 
+  ./bin/migrate
   ./bin/server
   ```
 

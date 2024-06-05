@@ -4,7 +4,7 @@ defmodule Tuberose.MixProject do
   def project do
     [
       app: :tuberose,
-      version: "0.1.0",
+      version: "2024.6.5",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,

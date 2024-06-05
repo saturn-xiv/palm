@@ -2,8 +2,12 @@
 
 set -e
 
-export MIX_ENV=prod
+export MIX_ENV=prod --only prod
 export PACKAGE_NAME=tuberose-$(date "+%4Y%m%d%H%M%S")
+
+if [ -d _build]; then
+    rm -r _build
+fi
 
 mix deps.get
 mix compile
@@ -12,9 +16,10 @@ mix phx.gen.release
 MIX_ENV=prod mix release
 
 mkdir -p tmp
-tar -cf tmp/$PACKAGE_NAME.tar.xz -C _build/prod/rel _build/prod/rel/tuberose
+echo "build tmp/$PACKAGE_NAME.tar.xz ..."
+tar -cf tmp/$PACKAGE_NAME.tar.xz -C _build/prod/rel/tuberose .
 md5sum tmp/$PACKAGE_NAME.tar.xz >tmp/$PACKAGE_NAME.md5
 
-echo "done($PACKAGE_NAME.tar.xz)."
+echo 'done.'
 
 exit 0
