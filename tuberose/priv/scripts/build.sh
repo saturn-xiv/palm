@@ -2,14 +2,14 @@
 
 set -e
 
-export MIX_ENV=prod --only prod
+export MIX_ENV=prod
 export PACKAGE_NAME=tuberose-$(date "+%4Y%m%d%H%M%S")
 
-if [ -d _build]; then
+if [ -d _build ]; then
     rm -r _build
 fi
 
-mix deps.get
+mix deps.get --only prod
 mix compile
 MIX_ENV=prod mix assets.deploy
 mix phx.gen.release

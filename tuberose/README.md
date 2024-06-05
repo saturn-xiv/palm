@@ -21,6 +21,14 @@
   mix phx.server # http://localhost:4000
   ```
 
+- Database
+
+```bash
+mix phx.gen.schema Model Table Field:string
+mix ecto.migrate
+mix ecto.rollback
+```
+
 ### Upgrade notices
 
 ## Deployment
