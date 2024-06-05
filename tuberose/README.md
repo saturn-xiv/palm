@@ -24,6 +24,8 @@
 - Database
 
 ```bash
+mix phx.routes
+
 mix phx.gen.schema Model Table Field:string
 mix ecto.migrate
 mix ecto.rollback
