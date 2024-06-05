@@ -3,6 +3,7 @@ defmodule TuberoseWeb.Etc.SystemdConfController do
 
   def get(conn, %{"domain" => domain, "port" => port}) do
     text(conn, """
+    # /usr/lib/systemd/system/#{domain}.conf
     [Unit]
     Description=A total free education & translation solution(#{domain}).
     Wants=network-online.target

@@ -3,6 +3,7 @@ defmodule TuberoseWeb.Etc.NginxConfController do
 
   def get(conn, %{"domain" => domain, "port" => port}) do
     text(conn, """
+    # /etc/nginx/sites-enabled/#{domain}.conf
     server {
       listen 80;
 
