@@ -3,5 +3,6 @@ package web
 import "github.com/saturn-xiv/palm/atropa/env"
 
 type Config struct {
-	Database env.Database `toml:"database"`
+	TwilioCallbackToken string       `toml:"twilio-callback-token"`
+	Database            env.Database `toml:"database"`
 }

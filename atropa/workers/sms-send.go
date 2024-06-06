@@ -8,6 +8,7 @@ import (
 	twilio_api "github.com/twilio/twilio-go/rest/api/v2010"
 	"google.golang.org/protobuf/proto"
 
+	"github.com/saturn-xiv/palm/atropa/controllers"
 	"github.com/saturn-xiv/palm/atropa/env"
 	v2 "github.com/saturn-xiv/palm/atropa/services/v2"
 )
@@ -27,7 +28,7 @@ func NewSendSmsWorker(config *env.Twilio) *SendSmsWorker {
 
 func (p *SendSmsWorker) Handle(id string, content_type string, body []byte) error {
 	var task v2.SmsSendRequest
-	if content_type == env.PROTOBUF_CONTENT_TYPE {
+	if content_type == controllers.PROTOBUF_CONTENT_TYPE {
 		if err := proto.Unmarshal(body, &task); err != nil {
 			return err
 		}
