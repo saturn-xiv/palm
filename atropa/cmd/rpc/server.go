@@ -87,6 +87,7 @@ func mount(server *grpc.Server, namespace string,
 	pb.RegisterAesServer(server, services.NewAesService(aes))
 	pb.RegisterJwtServer(server, services.NewJwtService(jwt))
 	pb.RegisterHMacServer(server, services.NewHmacService(mac))
+	pb.RegisterPolicyServer(server, services.NewPolicyService(enforcer))
 	pb.RegisterS3Server(server, services.NewS3Service(namespace, s3))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())

@@ -109,9 +109,8 @@ defmodule Palm.Atropa.V1.PolicyUsersResponse.Item do
 
   oneof :by, 0
 
-  field :iid, 1, type: :int32, oneof: 0
-  field :lid, 2, type: :int64, oneof: 0
-  field :code, 9, type: :string, oneof: 0
+  field :i, 2, type: :int64, oneof: 0
+  field :s, 9, type: :string, oneof: 0
 end
 
 defmodule Palm.Atropa.V1.PolicyUsersResponse do
@@ -190,31 +189,43 @@ defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Resource do
   field :id, 2, proto3_optional: true, type: :int64
 end
 
-defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Create do
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Read do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 end
 
-defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Show do
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Write do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 end
 
-defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Update do
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Append do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 end
 
-defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Destroy do
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Execute do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 end
 
-defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Manage do
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Credit do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+end
+
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Debit do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+end
+
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Inquiry do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
@@ -227,15 +238,21 @@ defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation do
 
   oneof :by, 0
 
-  field :create, 1, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Create, oneof: 0
-  field :show, 2, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Show, oneof: 0
-  field :update, 3, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Update, oneof: 0
+  field :read, 1, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Read, oneof: 0
+  field :write, 2, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Write, oneof: 0
+  field :append, 3, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Append, oneof: 0
 
-  field :destroy, 4,
-    type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Destroy,
+  field :execute, 4,
+    type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Execute,
     oneof: 0
 
-  field :manage, 9, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Manage, oneof: 0
+  field :credit, 5, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Credit, oneof: 0
+  field :debit, 6, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Debit, oneof: 0
+
+  field :inquiry, 7,
+    type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Inquiry,
+    oneof: 0
+
   field :code, 99, type: :string, oneof: 0
 end
 

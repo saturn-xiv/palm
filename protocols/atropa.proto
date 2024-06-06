@@ -107,9 +107,8 @@ message PolicyCanRequest {
 message PolicyUsersResponse {
   message Item {
     oneof by {
-      int32 iid = 1;
-      int64 lid = 2;
-      string code = 9;
+      int64 i = 2;
+      string s = 9;
     }
   }
   repeated Item items = 1;
@@ -150,17 +149,21 @@ message PolicyPermissionsResponse {
       optional int64 id = 2;
     }
     message Operation {
-      message Create {}
-      message Show {}
-      message Update {}
-      message Destroy {}
-      message Manage {}
+      message Read {}
+      message Write {}
+      message Append {}
+      message Execute {}
+      message Credit {}
+      message Debit {}
+      message Inquiry {}
       oneof by {
-        Create create = 1;
-        Show show = 2;
-        Update update = 3;
-        Destroy destroy = 4;
-        Manage manage = 9;
+        Read read = 1;
+        Write write = 2;
+        Append append = 3;
+        Execute execute = 4;
+        Credit credit = 5;
+        Debit debit = 6;
+        Inquiry inquiry = 7;
         string code = 99;
       }
     }
