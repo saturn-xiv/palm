@@ -7,14 +7,14 @@ defmodule Tuberose.Repo.Migrations.CreateEmailUsers do
       add(:real_name, :string, size: 63, null: false)
       add(:nickname, :string, size: 63, null: false)
       add(:email, :string, size: 127, null: false)
-      add(:password, :bytea, null: false)
-      add(:salt, :bytea, null: false)
+      add(:password, :bytea, null: false, redact: true)
+      add(:salt, :bytea, null: false, redact: true)
       add(:avatar, :string, size: 127, null: false)
-      add(:confirmed_at, :utc_datetime)
-      add(:deleted_at, :utc_datetime)
+      add(:confirmed_at, :utc_datetime_usec)
+      add(:deleted_at, :utc_datetime_usec)
       add(:version, :integer, default: 0, null: false)
 
-      timestamps(type: :utc_datetime)
+      timestamps(type: :utc_datetime_usec)
     end
 
     create(unique_index(:email_users, [:email]))

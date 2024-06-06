@@ -5,11 +5,10 @@ defmodule Tuberose.Repo.Migrations.CreateSettings do
     create table(:settings) do
       add(:user_id, references(:users))
       add(:key, :string, null: false)
-      add(:value, :bytea, null: false)
-      add(:deleted_at, :utc_datetime)
+      add(:value, :bytea, null: false, redact: true)
       add(:version, :integer, default: 0, null: false)
 
-      timestamps(type: :utc_datetime)
+      timestamps(type: :utc_datetime_usec)
     end
 
     create(unique_index(:settings, [:key], where: "user_id IS NULL"))

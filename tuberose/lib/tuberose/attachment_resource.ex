@@ -7,7 +7,7 @@ defmodule Tuberose.AttachmentResource do
 
     field(:resource_type, :string)
     field(:resource_id, :integer)
-    field(:created_at, :utc_datetime)
+    field(:created_at, :utc_datetime_usec)
   end
 
   @doc false

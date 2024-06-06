@@ -11,7 +11,7 @@ defmodule Tuberose.Log do
     field(:resource_type, :string)
     field(:resource_id, :integer)
     field(:message, :string)
-    field(:created_at, :utc_datetime)
+    field(:created_at, :utc_datetime_usec)
   end
 
   @doc false

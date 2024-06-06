@@ -8,7 +8,7 @@ defmodule Tuberose.Repo.Migrations.CreateLocales do
       add(:message, :text, null: false)
       add(:version, :integer, default: 0, null: false)
 
-      timestamps(type: :utc_datetime)
+      timestamps(type: :utc_datetime_usec)
     end
 
     create(unique_index(:locales, [:lang, :code]))

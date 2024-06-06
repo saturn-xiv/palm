@@ -9,8 +9,8 @@ defmodule Tuberose.UserSession do
     field(:provider_type, :string)
     field(:provider_id, :integer)
     field(:ip, :string)
-    field(:expires_at, :utc_datetime)
-    field(:created_at, :utc_datetime)
+    field(:expires_at, :utc_datetime_usec)
+    field(:created_at, :utc_datetime_usec)
   end
 
   @doc false

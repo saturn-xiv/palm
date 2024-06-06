@@ -7,10 +7,9 @@ defmodule Tuberose.Setting do
 
     field(:key, :string)
     field(:value, :binary)
-    field(:deleted_at, :utc_datetime)
     field(:version, :integer)
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :utc_datetime_usec)
   end
 
   @doc false

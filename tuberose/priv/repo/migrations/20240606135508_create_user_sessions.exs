@@ -8,8 +8,8 @@ defmodule Tuberose.Repo.Migrations.CreateUserSessions do
       add(:provider_type, :string, size: 31, null: false)
       add(:provider_id, :bigint, null: false)
       add(:ip, :string, size: 45, null: false)
-      add(:expires_at, :utc_datetime, null: false)
-      add(:created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP"))
+      add(:expires_at, :utc_datetime_usec, null: false)
+      add(:created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP"))
     end
 
     create(unique_index(:user_sessions, [:uid]))

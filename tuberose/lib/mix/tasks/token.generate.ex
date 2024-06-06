@@ -1,12 +1,13 @@
-defmodule Mix.Tasks.Token.Generate do
+defmodule Mix.Tasks.Tuberose.Token.Generate do
+  require Logger
+
   use Mix.Task
 
-  @shortdoc "Generate a jwt token"
+  @shortdoc "Generate a jwt token for third-party endpoints"
 
   @moduledoc """
-  Generate a jwt token for third-party endpoints.
   Usage:
-  mix token.generate --subject sss --issuer iii --audience a1 --audience a2 --years 20
+  mix tuberose.token.generate --subject sss --issuer iii --audience a1 --audience a2 --years 20
   """
 
   @requirements ["app.start"]
@@ -35,11 +36,9 @@ defmodule Mix.Tasks.Token.Generate do
 
     audiences = Keyword.get_values(parsed, :audience)
 
-    Mix.shell().info(
+    Logger.info(
       "Generate token for issuer(#{parsed[:issuer]}) audiences(#{Enum.join(audiences, ",")}) for years(#{parsed[:years]})"
     )
-
-    {:ok, channel} = GRPC.Stub.connect(Application.get_env(:tuberose, Tuberose.Atropa)[:host])
 
     not_before = %Google.Protobuf.Timestamp{
       seconds: (DateTime.utc_now() |> DateTime.to_unix()) - 1
@@ -49,16 +48,15 @@ defmodule Mix.Tasks.Token.Generate do
       seconds: DateTime.utc_now() |> Timex.shift(years: parsed[:years]) |> DateTime.to_unix()
     }
 
-    request =
-      %Palm.Atropa.V1.JwtSignRequest{
-        issuer: parsed[:issuer],
-        subject: parsed[:subject],
-        audiences: audiences,
-        not_before: not_before,
-        expires_at: expires_at
-      }
+    token =
+      Tuberose.Atropa.Client.jwt_sign(
+        parsed[:issuer],
+        parsed[:subject],
+        audiences,
+        not_before,
+        expires_at
+      )
 
-    {:ok, reply} = channel |> Palm.Atropa.V1.Jwt.Stub.sign(request)
-    Mix.shell().info("#{reply.token}")
+    IO.puts("#{token}")
   end
 end

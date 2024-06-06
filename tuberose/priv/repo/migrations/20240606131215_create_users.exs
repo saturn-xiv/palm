@@ -9,15 +9,15 @@ defmodule Tuberose.Repo.Migrations.CreateUsers do
       add(:lang, :string, size: 15, null: false, default: "en-US")
       add(:timezone, :string, size: 31, null: false, default: "UTC")
       add(:sign_in_count, :integer, default: 0, null: false)
-      add(:current_sign_in_at, :utc_datetime)
+      add(:current_sign_in_at, :utc_datetime_usec)
       add(:current_sign_in_ip, :string, size: 45)
-      add(:last_sign_in_at, :utc_datetime)
+      add(:last_sign_in_at, :utc_datetime_usec)
       add(:last_sign_in_ip, :string, size: 45)
-      add(:locked_at, :utc_datetime)
-      add(:deleted_at, :utc_datetime)
+      add(:locked_at, :utc_datetime_usec)
+      add(:deleted_at, :utc_datetime_usec)
       add(:version, :integer, default: 0, null: false)
 
-      timestamps(type: :utc_datetime)
+      timestamps(type: :utc_datetime_usec)
     end
 
     create(unique_index(:users, [:uid]))

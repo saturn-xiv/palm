@@ -9,15 +9,15 @@ defmodule Tuberose.User do
     field(:lang, :string)
     field(:timezone, :string)
     field(:sign_in_count, :integer)
-    field(:current_sign_in_at, :utc_datetime)
+    field(:current_sign_in_at, :utc_datetime_usec)
     field(:current_sign_in_ip, :string)
-    field(:last_sign_in_at, :utc_datetime)
+    field(:last_sign_in_at, :utc_datetime_usec)
     field(:last_sign_in_ip, :string)
-    field(:locked_at, :utc_datetime)
-    field(:deleted_at, :utc_datetime)
+    field(:locked_at, :utc_datetime_usec)
+    field(:deleted_at, :utc_datetime_usec)
     field(:version, :integer)
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :utc_datetime_usec)
   end
 
   @doc false

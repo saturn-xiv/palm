@@ -10,7 +10,7 @@ defmodule Tuberose.Repo.Migrations.CreateLogs do
       add(:resource_type, :string, size: 127, null: false)
       add(:resource_id, :bigint)
       add(:message, :text, null: false)
-      add(:created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP"))
+      add(:created_at, :utc_datetime_usec, null: false, default: fragment("CURRENT_TIMESTAMP"))
     end
 
     create(index(:logs, [:plugin]))

@@ -8,7 +8,7 @@ defmodule Tuberose.Locale do
     field(:message, :string)
     field(:version, :integer)
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :utc_datetime_usec)
   end
 
   @doc false
