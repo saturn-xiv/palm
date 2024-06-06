@@ -380,3 +380,143 @@ defmodule Palm.Atropa.V1.EmailSendRequest do
   field :bcc, 5, repeated: true, type: Palm.Atropa.V1.EmailSendRequest.Address
   field :attachments, 9, repeated: true, type: Palm.Atropa.V1.EmailSendRequest.Attachment
 end
+
+defmodule Palm.Atropa.V1.Aes.Service do
+  @moduledoc false
+
+  use GRPC.Service, name: "palm.atropa.v1.Aes", protoc_gen_elixir_version: "0.12.0"
+
+  rpc :Encrypt, Palm.Atropa.V1.AesPlainMessage, Palm.Atropa.V1.AesCodeMessage
+
+  rpc :Decrypt, Palm.Atropa.V1.AesCodeMessage, Palm.Atropa.V1.AesPlainMessage
+end
+
+defmodule Palm.Atropa.V1.Aes.Stub do
+  @moduledoc false
+
+  use GRPC.Stub, service: Palm.Atropa.V1.Aes.Service
+end
+
+defmodule Palm.Atropa.V1.Jwt.Service do
+  @moduledoc false
+
+  use GRPC.Service, name: "palm.atropa.v1.Jwt", protoc_gen_elixir_version: "0.12.0"
+
+  rpc :Sign, Palm.Atropa.V1.JwtSignRequest, Palm.Atropa.V1.JwtSignResponse
+
+  rpc :Verify, Palm.Atropa.V1.JwtVerifyRequest, Palm.Atropa.V1.JwtVerifyResponse
+end
+
+defmodule Palm.Atropa.V1.Jwt.Stub do
+  @moduledoc false
+
+  use GRPC.Stub, service: Palm.Atropa.V1.Jwt.Service
+end
+
+defmodule Palm.Atropa.V1.HMac.Service do
+  @moduledoc false
+
+  use GRPC.Service, name: "palm.atropa.v1.HMac", protoc_gen_elixir_version: "0.12.0"
+
+  rpc :Sign, Palm.Atropa.V1.HMacSignRequest, Palm.Atropa.V1.HMacSignResponse
+
+  rpc :Verify, Palm.Atropa.V1.HMacVerifyRequest, Google.Protobuf.Empty
+end
+
+defmodule Palm.Atropa.V1.HMac.Stub do
+  @moduledoc false
+
+  use GRPC.Stub, service: Palm.Atropa.V1.HMac.Service
+end
+
+defmodule Palm.Atropa.V1.Policy.Service do
+  @moduledoc false
+
+  use GRPC.Service, name: "palm.atropa.v1.Policy", protoc_gen_elixir_version: "0.12.0"
+
+  rpc :Has, Palm.Atropa.V1.PolicyHasRequest, Google.Protobuf.Empty
+
+  rpc :Can, Palm.Atropa.V1.PolicyCanRequest, Google.Protobuf.Empty
+
+  rpc :DeleteUser, Palm.Atropa.V1.PolicyUsersResponse.Item, Google.Protobuf.Empty
+
+  rpc :DeleteRole, Palm.Atropa.V1.PolicyRolesResponse.Item, Google.Protobuf.Empty
+
+  rpc :GetRolesForUser,
+      Palm.Atropa.V1.PolicyUsersResponse.Item,
+      Palm.Atropa.V1.PolicyRolesResponse
+
+  rpc :GetImplicitRolesForUser,
+      Palm.Atropa.V1.PolicyUsersResponse.Item,
+      Palm.Atropa.V1.PolicyRolesResponse
+
+  rpc :GetUsersForRole,
+      Palm.Atropa.V1.PolicyRolesResponse.Item,
+      Palm.Atropa.V1.PolicyUsersResponse
+
+  rpc :GetImplicitUsersForRole,
+      Palm.Atropa.V1.PolicyRolesResponse.Item,
+      Palm.Atropa.V1.PolicyUsersResponse
+
+  rpc :AddRolesForUser, Palm.Atropa.V1.PolicyRolesForUserRequest, Google.Protobuf.Empty
+
+  rpc :DeleteRolesForUser, Palm.Atropa.V1.PolicyRolesForUserRequest, Google.Protobuf.Empty
+
+  rpc :GetPermissionsForUser,
+      Palm.Atropa.V1.PolicyUsersResponse.Item,
+      Palm.Atropa.V1.PolicyPermissionsResponse
+
+  rpc :GetImplicitPermissionsForUser,
+      Palm.Atropa.V1.PolicyUsersResponse.Item,
+      Palm.Atropa.V1.PolicyPermissionsResponse
+
+  rpc :AddPermissionsForUser,
+      Palm.Atropa.V1.PolicyPermissionsForUserRequest,
+      Google.Protobuf.Empty
+
+  rpc :DeletePermissionsForUser,
+      Palm.Atropa.V1.PolicyPermissionsForUserRequest,
+      Google.Protobuf.Empty
+
+  rpc :GetPermissionsForRole,
+      Palm.Atropa.V1.PolicyRolesResponse.Item,
+      Palm.Atropa.V1.PolicyPermissionsResponse
+
+  rpc :GetImplicitPermissionsForRole,
+      Palm.Atropa.V1.PolicyRolesResponse.Item,
+      Palm.Atropa.V1.PolicyPermissionsResponse
+
+  rpc :AddPermissionsForRole,
+      Palm.Atropa.V1.PolicyPermissionsForRoleRequest,
+      Google.Protobuf.Empty
+
+  rpc :DeletePermissionsForRole,
+      Palm.Atropa.V1.PolicyPermissionsForRoleRequest,
+      Google.Protobuf.Empty
+end
+
+defmodule Palm.Atropa.V1.Policy.Stub do
+  @moduledoc false
+
+  use GRPC.Stub, service: Palm.Atropa.V1.Policy.Service
+end
+
+defmodule Palm.Atropa.V1.S3.Service do
+  @moduledoc false
+
+  use GRPC.Service, name: "palm.atropa.v1.S3", protoc_gen_elixir_version: "0.12.0"
+
+  rpc :CreateBucket, Palm.Atropa.V1.S3CreateBucketRequest, Palm.Atropa.V1.S3CreateBucketResponse
+
+  rpc :Upload, Palm.Atropa.V1.S3UploadRequest, Palm.Atropa.V1.S3UrlResponse
+
+  rpc :PermanentUrl, Palm.Atropa.V1.S3PermanentUrlRequest, Palm.Atropa.V1.S3UrlResponse
+
+  rpc :PresignedUrl, Palm.Atropa.V1.S3PresignedUrlRequest, Palm.Atropa.V1.S3UrlResponse
+end
+
+defmodule Palm.Atropa.V1.S3.Stub do
+  @moduledoc false
+
+  use GRPC.Stub, service: Palm.Atropa.V1.S3.Service
+end

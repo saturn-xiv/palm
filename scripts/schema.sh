@@ -32,7 +32,7 @@ function generate_grpc_for_elixir() {
     fi
     $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/protocols \
         -I $PROTOBUF_ROOT/include/google/protobuf \
-        --elixir_out=$2 \
+        --elixir_out=plugins=grpc:$2 \
         $WORKSPACE/protocols/$1.proto
 }
 

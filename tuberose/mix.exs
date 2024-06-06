@@ -61,7 +61,8 @@ defmodule Tuberose.MixProject do
 
       # my add
       {:grpc, "~> 0.8"},
-      {:protobuf, "~> 0.12"}
+      {:protobuf, "~> 0.12"},
+      {:google_protos, "~> 0.4.0"}
     ]
   end
 
