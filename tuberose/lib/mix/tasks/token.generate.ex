@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Token.Generate do
   @moduledoc """
   Generate a jwt token for third-party endpoints.
   Usage:
-  mix token.generate --subject sss --issuer iii --audience aaa --years 10
+  mix token.generate --subject sss --issuer iii --audience a1 --audience a2 --years 20
   """
 
   @requirements ["app.start"]
@@ -36,13 +36,18 @@ defmodule Mix.Tasks.Token.Generate do
     audiences = Keyword.get_values(parsed, :audience)
 
     Mix.shell().info(
-      "generate token for issuer(#{parsed[:issuer]}) audiences(#{Enum.join(audiences, ",")}) for years(#{parsed[:years]})"
+      "Generate token for issuer(#{parsed[:issuer]}) audiences(#{Enum.join(audiences, ",")}) for years(#{parsed[:years]})"
     )
 
-    {:ok, channel} = GRPC.Stub.connect("127.0.0.1:9999")
+    {:ok, channel} = GRPC.Stub.connect(Application.get_env(:tuberose, Tuberose.Atropa)[:host])
 
-    not_before = %Google.Protobuf.Timestamp{seconds: 100}
-    expires_at = %Google.Protobuf.Timestamp{seconds: 200}
+    not_before = %Google.Protobuf.Timestamp{
+      seconds: (DateTime.utc_now() |> DateTime.to_unix()) - 1
+    }
+
+    expires_at = %Google.Protobuf.Timestamp{
+      seconds: DateTime.utc_now() |> Timex.shift(years: parsed[:years]) |> DateTime.to_unix()
+    }
 
     request =
       %Palm.Atropa.V1.JwtSignRequest{

@@ -83,3 +83,6 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+# my add
+config :tuberose, Tuberose.Atropa, host: "127.0.0.1:10001"

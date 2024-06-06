@@ -114,4 +114,14 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  # my add
+  atropa_host =
+    System.get_env("ATROPA_HOST") ||
+      raise """
+      environment variable ATROPA_HOST is missing.
+      For example: 127.0.0.1:9999
+      """
+
+  config :tuberose, Tuberose.Atropa, host: atropa_host
 end
