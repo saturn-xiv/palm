@@ -3,7 +3,7 @@ defmodule Tuberose.Repo.Migrations.CreateEmailUsers do
 
   def change do
     create table(:email_users) do
-      add(:user_id, :bigint, null: false)
+      add(:user_id, references(:users), null: false)
       add(:real_name, :string, size: 63, null: false)
       add(:nickname, :string, size: 63, null: false)
       add(:email, :string, size: 127, null: false)

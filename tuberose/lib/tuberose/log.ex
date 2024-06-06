@@ -3,7 +3,8 @@ defmodule Tuberose.Log do
   import Ecto.Changeset
 
   schema "logs" do
-    field(:user_id, :integer)
+    belongs_to(:user, Tuberose.User)
+
     field(:plugin, :string)
     field(:ip, :string)
     field(:level, :string)

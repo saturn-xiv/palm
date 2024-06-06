@@ -3,7 +3,8 @@ defmodule Tuberose.AttachmentResource do
   import Ecto.Changeset
 
   schema "attachment_resources" do
-    field(:attachment_id, :integer)
+    belongs_to(:attachment, Tuberose.Attachment)
+
     field(:resource_type, :string)
     field(:resource_id, :integer)
     field(:created_at, :utc_datetime)

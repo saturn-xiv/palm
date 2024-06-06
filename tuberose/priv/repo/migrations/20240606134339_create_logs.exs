@@ -3,7 +3,7 @@ defmodule Tuberose.Repo.Migrations.CreateLogs do
 
   def change do
     create table(:logs) do
-      add(:user_id, :bigint, null: false)
+      add(:user_id, references(:users), null: false)
       add(:plugin, :string, size: 31, null: false)
       add(:ip, :string, size: 45, null: false)
       add(:level, :string, size: 8, null: false)

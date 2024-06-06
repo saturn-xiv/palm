@@ -3,7 +3,8 @@ defmodule Tuberose.Setting do
   import Ecto.Changeset
 
   schema "settings" do
-    field(:user_id, :integer)
+    belongs_to(:user, Tuberose.User)
+
     field(:key, :string)
     field(:value, :binary)
     field(:deleted_at, :utc_datetime)

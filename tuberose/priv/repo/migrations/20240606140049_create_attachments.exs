@@ -3,7 +3,7 @@ defmodule Tuberose.Repo.Migrations.CreateAttachments do
 
   def change do
     create table(:attachments) do
-      add(:user_id, :bigint, null: false)
+      add(:user_id, references(:users), null: false)
       add(:bucket, :string, size: 63, null: false)
       add(:object, :string, size: 63, null: false)
       add(:title, :string, size: 127, null: false)

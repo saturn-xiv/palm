@@ -3,7 +3,8 @@ defmodule Tuberose.EmailUser do
   import Ecto.Changeset
 
   schema "email_users" do
-    field(:user_id, :integer)
+    belongs_to(:user, Tuberose.User)
+
     field(:real_name, :string)
     field(:nickname, :string)
     field(:email, :string)

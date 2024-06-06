@@ -8,7 +8,7 @@
 
   ```sql
   > CREATE USER www WITH PASSWORD 'change-me';
-  > CREATE DATABASE palm_dev WITH ENCODING = 'UTF8' OWNER www;
+  > CREATE DATABASE tuberose_dev WITH ENCODING = 'UTF8' OWNER www;
   ```
 
 - For ArchLinux

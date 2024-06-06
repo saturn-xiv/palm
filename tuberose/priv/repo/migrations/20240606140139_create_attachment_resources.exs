@@ -3,7 +3,7 @@ defmodule Tuberose.Repo.Migrations.CreateAttachmentResources do
 
   def change do
     create table(:attachment_resources) do
-      add(:attachment_id, :bigint, null: false)
+      add(:attachment_id, references(:attachments), null: false)
       add(:resource_type, :string, size: 127, null: false)
       add(:resource_id, :bigint, null: false)
       add(:created_at, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP"))

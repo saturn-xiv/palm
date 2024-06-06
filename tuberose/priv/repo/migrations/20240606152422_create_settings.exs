@@ -3,7 +3,7 @@ defmodule Tuberose.Repo.Migrations.CreateSettings do
 
   def change do
     create table(:settings) do
-      add(:user_id, :bigint)
+      add(:user_id, references(:users))
       add(:key, :string, null: false)
       add(:value, :bytea, null: false)
       add(:deleted_at, :utc_datetime)

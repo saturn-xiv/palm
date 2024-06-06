@@ -3,7 +3,8 @@ defmodule Tuberose.Attachment do
   import Ecto.Changeset
 
   schema "attachments" do
-    field(:user_id, :integer)
+    belongs_to(:user, Tuberose.User)
+
     field(:bucket, :string)
     field(:object, :string)
     field(:title, :string)
