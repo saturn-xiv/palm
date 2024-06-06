@@ -38,11 +38,15 @@ mix ecto.migrate
 mix ecto.rollback
 ```
 
-### Upgrade notices
-
 ## Deployment
 
-- Build package `./priv/scripts/build.sh`
+- Build
+
+```bash
+$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
+> cd /workspace/tuberose
+> ./priv/scripts/build.sh
+```
 
 - Starting
 

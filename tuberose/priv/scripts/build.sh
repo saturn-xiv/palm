@@ -5,6 +5,9 @@ set -e
 export MIX_ENV=prod
 export PACKAGE_NAME=tuberose-$(date "+%4Y%m%d%H%M%S")
 
+apt update
+DEBIAN_FRONTEND=noninteractive apt install -y erlang elixir git
+
 if [ -d _build ]; then
     rm -r _build
 fi

@@ -21,7 +21,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 apt update
-apt install -y git wget
+DEBIAN_FRONTEND=noninteractive apt install -y git wget
 
 export GO_VERSION="1.22.3"
 if [ ! -d /opt/go ]; then
