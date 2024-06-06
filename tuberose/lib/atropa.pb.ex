@@ -1,3 +1,80 @@
+defmodule Palm.Atropa.V1.AesMessage do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :payload, 1, type: :bytes
+end
+
+defmodule Palm.Atropa.V1.JwtSignRequest do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :jwt_id, 1, proto3_optional: true, type: :string, json_name: "jwtId"
+  field :key_id, 2, proto3_optional: true, type: :string, json_name: "keyId"
+  field :issuer, 11, type: :string
+  field :subject, 12, type: :string
+  field :audiences, 13, repeated: true, type: :string
+  field :not_before, 18, type: Google.Protobuf.Timestamp, json_name: "notBefore"
+  field :expired_at, 19, type: Google.Protobuf.Timestamp, json_name: "expiredAt"
+  field :extra, 99, proto3_optional: true, type: :string
+end
+
+defmodule Palm.Atropa.V1.JwtSignResponse do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :token, 1, type: :string
+end
+
+defmodule Palm.Atropa.V1.JwtVerifyRequest do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :token, 1, type: :string
+  field :issuer, 2, type: :string
+  field :audience, 3, type: :string
+end
+
+defmodule Palm.Atropa.V1.JwtVerifyResponse do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :jwt_id, 1, proto3_optional: true, type: :string, json_name: "jwtId"
+  field :key_id, 2, proto3_optional: true, type: :string, json_name: "keyId"
+  field :subject, 11, type: :string
+  field :extra, 19, proto3_optional: true, type: :string
+end
+
+defmodule Palm.Atropa.V1.HmacSignRequest do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :plain, 1, type: :bytes
+end
+
+defmodule Palm.Atropa.V1.HmacSignResponse do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :code, 1, type: :bytes
+end
+
+defmodule Palm.Atropa.V1.HmacVerifyRequest do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :plain, 1, type: :bytes
+  field :code, 2, type: :bytes
+end
+
 defmodule Palm.Atropa.V1.PolicyHasRequest do
   @moduledoc false
 

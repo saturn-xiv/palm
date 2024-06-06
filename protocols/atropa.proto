@@ -6,7 +6,55 @@ package palm.atropa.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 
+// ----------------------------------------------------------------------------
+service Aes {
+  rpc Encrypt(AesMessage) returns (AesMessage) {}
+  rpc Decrypt(AesMessage) returns (AesMessage) {}
+}
+message AesMessage { bytes payload = 1; }
+// ----------------------------------------------------------------------------
+service Jwt {
+  rpc Sign(JwtSignRequest) returns (JwtSignResponse) {}
+  rpc Verify(JwtVerifyRequest) returns (JwtVerifyResponse) {}
+}
+message JwtSignRequest {
+  optional string jwt_id = 1;
+  optional string key_id = 2;
+
+  string issuer = 11;
+  string subject = 12;
+  repeated string audiences = 13;
+  google.protobuf.Timestamp not_before = 18;
+  google.protobuf.Timestamp expired_at = 19;
+
+  optional string extra = 99;
+}
+message JwtSignResponse { string token = 1; }
+message JwtVerifyRequest {
+  string token = 1;
+  string issuer = 2;
+  string audience = 3;
+}
+message JwtVerifyResponse {
+  optional string jwt_id = 1;
+  optional string key_id = 2;
+
+  string subject = 11;
+  optional string extra = 19;
+}
+// ----------------------------------------------------------------------------
+service Hmac {
+  rpc Sign(HmacSignRequest) returns (HmacSignResponse) {}
+  rpc Verify(HmacVerifyRequest) returns (google.protobuf.Empty) {}
+}
+message HmacSignRequest { bytes plain = 1; }
+message HmacSignResponse { bytes code = 1; }
+message HmacVerifyRequest {
+  bytes plain = 1;
+  bytes code = 2;
+}
 // ----------------------------------------------------------------------------
 
 service Policy {
@@ -133,17 +181,13 @@ message S3CreateBucketRequest {
   bool public = 2;
   int32 expiration_days = 9;
 }
-message S3CreateBucketResponse {
-  string name = 1;
-}
+message S3CreateBucketResponse { string name = 1; }
 message S3UploadRequest {
   string bucket = 1;
   string object = 2;
   google.protobuf.Duration ttl = 9;
 }
-message S3UploadUrlResponse {
-  string url = 1;
-}
+message S3UploadUrlResponse { string url = 1; }
 message PresignedUrlRequest {
   string bucket = 1;
   string object = 2;
