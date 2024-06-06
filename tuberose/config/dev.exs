@@ -5,7 +5,7 @@ config :tuberose, Tuberose.Repo,
   username: "www",
   password: "change-me",
   hostname: "127.0.0.1",
-  database: "palm_dev",
+  database: "tuberose_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
