@@ -9,6 +9,8 @@ import (
 	"github.com/google/uuid"
 	amqp "github.com/rabbitmq/amqp091-go"
 	"google.golang.org/protobuf/proto"
+
+	"github.com/saturn-xiv/palm/atropa/env"
 )
 
 type Consumer interface {
@@ -79,7 +81,7 @@ func (p *Config) send_protobuf_message(ctx context.Context, ch *amqp.Channel, ex
 	if err != nil {
 		return err
 	}
-	return p.send(ctx, ch, exchange, routing_key, reflect.TypeOf((*proto.Message)(nil)).String(), buf)
+	return p.send(ctx, ch, exchange, routing_key, env.PROTOBUF_CONTENT_TYPE, buf)
 }
 func (p *Config) send(ctx context.Context, ch *amqp.Channel, exchange string, routing_key string, content_type string, message []byte) error {
 	message_id := uuid.New().String()

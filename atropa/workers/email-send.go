@@ -1,7 +1,7 @@
 package workers
 
 import (
-	"context"
+	"crypto/tls"
 	"fmt"
 	"log/slog"
 	"os"
@@ -10,6 +10,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	"gopkg.in/gomail.v2"
 
+	"github.com/saturn-xiv/palm/atropa/env"
 	v2 "github.com/saturn-xiv/palm/atropa/services/v2"
 )
 
@@ -20,14 +21,21 @@ type SendEmailWorker struct {
 	bcc    []string
 }
 
-func NewSendEmailWorker(dialer *gomail.Dialer, from string, cc []string, bcc []string) *SendEmailWorker {
-	return &SendEmailWorker{dialer: dialer, from: from, cc: cc, bcc: bcc}
+func NewSendEmailWorker(config *env.Smtp) *SendEmailWorker {
+	dialer := gomail.NewDialer(config.Host, config.Port, config.User, config.Password)
+	dialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+	return &SendEmailWorker{dialer: dialer, from: config.User, cc: config.Cc, bcc: config.Bcc}
 }
 
-func (p *SendEmailWorker) Handle(ctx context.Context, message []byte) error {
+func (p *SendEmailWorker) Handle(id string, content_type string, body []byte) error {
 	var task v2.EmailSendRequest
-	if err := proto.Unmarshal(message, &task); err != nil {
-		return err
+
+	if content_type == env.PROTOBUF_CONTENT_TYPE {
+		if err := proto.Unmarshal(body, &task); err != nil {
+			return err
+		}
+	} else {
+		return fmt.Errorf("unsupported content-type(%s)", content_type)
 	}
 
 	slog.Info(fmt.Sprintf("send email(%s) => %s", task.Subject, task.To.Display()))

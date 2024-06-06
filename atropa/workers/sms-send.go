@@ -1,13 +1,14 @@
 package workers
 
 import (
-	"context"
 	"fmt"
 	"log/slog"
 
 	"github.com/twilio/twilio-go"
 	twilio_api "github.com/twilio/twilio-go/rest/api/v2010"
+	"google.golang.org/protobuf/proto"
 
+	"github.com/saturn-xiv/palm/atropa/env"
 	v2 "github.com/saturn-xiv/palm/atropa/services/v2"
 )
 
@@ -16,12 +17,23 @@ type SendSmsWorker struct {
 	from   string
 }
 
-func NewSendSmsWorker(client *twilio.RestClient, from string) *SendSmsWorker {
-	return &SendSmsWorker{client: client, from: from}
+func NewSendSmsWorker(config *env.Twilio) *SendSmsWorker {
+	client := twilio.NewRestClientWithParams(twilio.ClientParams{
+		Username: config.AccountSid,
+		Password: config.AuthToken,
+	})
+	return &SendSmsWorker{client: client, from: config.From}
 }
 
-func (p *SendSmsWorker) Handle(ctx context.Context, message []byte) error {
+func (p *SendSmsWorker) Handle(id string, content_type string, body []byte) error {
 	var task v2.SmsSendRequest
+	if content_type == env.PROTOBUF_CONTENT_TYPE {
+		if err := proto.Unmarshal(body, &task); err != nil {
+			return err
+		}
+	} else {
+		return fmt.Errorf("unsupported content-type(%s)", content_type)
+	}
 
 	for _, to := range task.To {
 		params := &twilio_api.CreateMessageParams{}

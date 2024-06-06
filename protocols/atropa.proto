@@ -200,20 +200,13 @@ message PermanentUrlRequest {
 }
 // ----------------------------------------------------------------------------
 
-service Sms {
-  rpc Send(SmsSendRequest) returns (google.protobuf.Empty) {}
-}
-
 message SmsSendRequest {
   repeated string to = 1;
   string body = 2;
   optional string callback_uri = 3;
 }
-// ----------------------------------------------------------------------------
 
-service Email {
-  rpc Send(EmailSendRequest) returns (google.protobuf.Empty) {}
-}
+// ----------------------------------------------------------------------------
 
 message EmailSendRequest {
   message Address {

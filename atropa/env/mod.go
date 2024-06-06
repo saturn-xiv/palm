@@ -2,6 +2,8 @@ package env
 
 import "gorm.io/gorm"
 
+var PROTOBUF_CONTENT_TYPE = "application/grpc+proto"
+
 type Database struct {
 	PostgreSql PostgreSql `toml:"postgresql,omitempty"`
 	MySql      MySql      `toml:"mysql,omitempty"`

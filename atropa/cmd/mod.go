@@ -4,11 +4,14 @@ import (
 	"fmt"
 	"log"
 	"log/slog"
+	"os"
 
 	"github.com/spf13/cobra"
 
+	email_send_worker "github.com/saturn-xiv/palm/atropa/cmd/email-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/etc"
 	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
+	sms_send_worker "github.com/saturn-xiv/palm/atropa/cmd/sms-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/web"
 )
 
@@ -46,6 +49,9 @@ var (
 	gl_web_port uint16
 
 	gl_etc_domain string
+
+	gl_worker_consumer_name string
+	gl_worker_queue_name    string
 )
 
 func init() {
@@ -95,6 +101,12 @@ func init() {
 				if err := etc.WwwSystemdConf(gl_etc_domain, gl_web_port); err != nil {
 					log.Fatalf("%v", err)
 				}
+				if err := etc.SmsSendWorkerSystemdConf(gl_etc_domain); err != nil {
+					log.Fatalf("%v", err)
+				}
+				if err := etc.EmailSendWorkerSystemdConf(gl_etc_domain); err != nil {
+					log.Fatalf("%v", err)
+				}
 				if err := etc.MinioSystemdConf(gl_etc_domain); err != nil {
 					log.Fatalf("%v", err)
 				}
@@ -110,6 +122,44 @@ func init() {
 		root_cmd.AddCommand(cmd)
 	}
 
+	{
+		var cmd = &cobra.Command{
+			Use:   "sms-send-consumer",
+			Short: "Start a sms-send consumer",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+
+				if err := sms_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		hostname, _ := os.Hostname()
+
+		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
+		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "sms", "queue name")
+
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "email-send-consumer",
+			Short: "Start a email-send consumer",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+
+				if err := email_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name); err != nil {
+					log.Fatalf("%v", err)
+				}
+			},
+		}
+		hostname, _ := os.Hostname()
+
+		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
+		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "emails", "queue name")
+
+		root_cmd.AddCommand(cmd)
+	}
 }
 
 func set_log(debug bool) {

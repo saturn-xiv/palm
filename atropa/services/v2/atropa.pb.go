@@ -2755,23 +2755,13 @@ var file_atropa_proto_rawDesc = []byte{
 	0x33, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23,
 	0x2e, 0x70, 0x61, 0x6c, 0x6d, 0x2e, 0x61, 0x74, 0x72, 0x6f, 0x70, 0x61, 0x2e, 0x76, 0x31, 0x2e,
 	0x53, 0x33, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x72, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x00, 0x32, 0x47, 0x0a, 0x03, 0x53, 0x6d, 0x73, 0x12, 0x40, 0x0a, 0x04,
-	0x53, 0x65, 0x6e, 0x64, 0x12, 0x1e, 0x2e, 0x70, 0x61, 0x6c, 0x6d, 0x2e, 0x61, 0x74, 0x72, 0x6f,
-	0x70, 0x61, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x6d, 0x73, 0x53, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x32, 0x4b,
-	0x0a, 0x05, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x42, 0x0a, 0x04, 0x53, 0x65, 0x6e, 0x64, 0x12,
-	0x20, 0x2e, 0x70, 0x61, 0x6c, 0x6d, 0x2e, 0x61, 0x74, 0x72, 0x6f, 0x70, 0x61, 0x2e, 0x76, 0x31,
-	0x2e, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x53, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x42, 0x5f, 0x0a, 0x2c, 0x63,
-	0x6f, 0x6d, 0x2e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x73, 0x61, 0x74, 0x75, 0x72, 0x6e,
-	0x5f, 0x78, 0x69, 0x76, 0x2e, 0x70, 0x61, 0x6c, 0x6d, 0x2e, 0x70, 0x6c, 0x75, 0x67, 0x69, 0x6e,
-	0x73, 0x2e, 0x61, 0x74, 0x72, 0x6f, 0x70, 0x61, 0x2e, 0x76, 0x31, 0x50, 0x01, 0x5a, 0x2d, 0x67,
-	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x74, 0x75, 0x72, 0x6e,
-	0x2d, 0x78, 0x69, 0x76, 0x2f, 0x70, 0x61, 0x6c, 0x6d, 0x2f, 0x61, 0x74, 0x72, 0x6f, 0x70, 0x61,
-	0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x2f, 0x76, 0x32, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x5f, 0x0a, 0x2c, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x69, 0x74,
+	0x68, 0x75, 0x62, 0x2e, 0x73, 0x61, 0x74, 0x75, 0x72, 0x6e, 0x5f, 0x78, 0x69, 0x76, 0x2e, 0x70,
+	0x61, 0x6c, 0x6d, 0x2e, 0x70, 0x6c, 0x75, 0x67, 0x69, 0x6e, 0x73, 0x2e, 0x61, 0x74, 0x72, 0x6f,
+	0x70, 0x61, 0x2e, 0x76, 0x31, 0x50, 0x01, 0x5a, 0x2d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x74, 0x75, 0x72, 0x6e, 0x2d, 0x78, 0x69, 0x76, 0x2f, 0x70,
+	0x61, 0x6c, 0x6d, 0x2f, 0x61, 0x74, 0x72, 0x6f, 0x70, 0x61, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x73, 0x2f, 0x76, 0x32, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2892,40 +2882,36 @@ var file_atropa_proto_depIdxs = []int32{
 	18, // 57: palm.atropa.v1.S3.Upload:input_type -> palm.atropa.v1.S3UploadRequest
 	18, // 58: palm.atropa.v1.S3.PermanentUrl:input_type -> palm.atropa.v1.S3UploadRequest
 	18, // 59: palm.atropa.v1.S3.PresignedUrl:input_type -> palm.atropa.v1.S3UploadRequest
-	22, // 60: palm.atropa.v1.Sms.Send:input_type -> palm.atropa.v1.SmsSendRequest
-	23, // 61: palm.atropa.v1.Email.Send:input_type -> palm.atropa.v1.EmailSendRequest
-	0,  // 62: palm.atropa.v1.Aes.Encrypt:output_type -> palm.atropa.v1.AesMessage
-	0,  // 63: palm.atropa.v1.Aes.Decrypt:output_type -> palm.atropa.v1.AesMessage
-	2,  // 64: palm.atropa.v1.Jwt.Sign:output_type -> palm.atropa.v1.JwtSignResponse
-	4,  // 65: palm.atropa.v1.Jwt.Verify:output_type -> palm.atropa.v1.JwtVerifyResponse
-	6,  // 66: palm.atropa.v1.Hmac.Sign:output_type -> palm.atropa.v1.HmacSignResponse
-	41, // 67: palm.atropa.v1.Hmac.Verify:output_type -> google.protobuf.Empty
-	41, // 68: palm.atropa.v1.Policy.Has:output_type -> google.protobuf.Empty
-	41, // 69: palm.atropa.v1.Policy.Can:output_type -> google.protobuf.Empty
-	41, // 70: palm.atropa.v1.Policy.DeleteUser:output_type -> google.protobuf.Empty
-	41, // 71: palm.atropa.v1.Policy.DeleteRole:output_type -> google.protobuf.Empty
-	11, // 72: palm.atropa.v1.Policy.GetRolesForUser:output_type -> palm.atropa.v1.PolicyRolesResponse
-	11, // 73: palm.atropa.v1.Policy.GetImplicitRolesForUser:output_type -> palm.atropa.v1.PolicyRolesResponse
-	10, // 74: palm.atropa.v1.Policy.GetUsersForRole:output_type -> palm.atropa.v1.PolicyUsersResponse
-	10, // 75: palm.atropa.v1.Policy.GetImplicitUsersForRole:output_type -> palm.atropa.v1.PolicyUsersResponse
-	41, // 76: palm.atropa.v1.Policy.AddRolesForUser:output_type -> google.protobuf.Empty
-	41, // 77: palm.atropa.v1.Policy.DeleteRolesForUser:output_type -> google.protobuf.Empty
-	15, // 78: palm.atropa.v1.Policy.GetPermissionsForUser:output_type -> palm.atropa.v1.PolicyPermissionsResponse
-	15, // 79: palm.atropa.v1.Policy.GetImplicitPermissionsForUser:output_type -> palm.atropa.v1.PolicyPermissionsResponse
-	41, // 80: palm.atropa.v1.Policy.AddPermissionsForUser:output_type -> google.protobuf.Empty
-	41, // 81: palm.atropa.v1.Policy.DeletePermissionsForUser:output_type -> google.protobuf.Empty
-	15, // 82: palm.atropa.v1.Policy.GetPermissionsForRole:output_type -> palm.atropa.v1.PolicyPermissionsResponse
-	15, // 83: palm.atropa.v1.Policy.GetImplicitPermissionsForRole:output_type -> palm.atropa.v1.PolicyPermissionsResponse
-	41, // 84: palm.atropa.v1.Policy.AddPermissionsForRole:output_type -> google.protobuf.Empty
-	41, // 85: palm.atropa.v1.Policy.DeletePermissionsForRole:output_type -> google.protobuf.Empty
-	17, // 86: palm.atropa.v1.S3.CreateBucket:output_type -> palm.atropa.v1.S3CreateBucketResponse
-	19, // 87: palm.atropa.v1.S3.Upload:output_type -> palm.atropa.v1.S3UploadUrlResponse
-	19, // 88: palm.atropa.v1.S3.PermanentUrl:output_type -> palm.atropa.v1.S3UploadUrlResponse
-	19, // 89: palm.atropa.v1.S3.PresignedUrl:output_type -> palm.atropa.v1.S3UploadUrlResponse
-	41, // 90: palm.atropa.v1.Sms.Send:output_type -> google.protobuf.Empty
-	41, // 91: palm.atropa.v1.Email.Send:output_type -> google.protobuf.Empty
-	62, // [62:92] is the sub-list for method output_type
-	32, // [32:62] is the sub-list for method input_type
+	0,  // 60: palm.atropa.v1.Aes.Encrypt:output_type -> palm.atropa.v1.AesMessage
+	0,  // 61: palm.atropa.v1.Aes.Decrypt:output_type -> palm.atropa.v1.AesMessage
+	2,  // 62: palm.atropa.v1.Jwt.Sign:output_type -> palm.atropa.v1.JwtSignResponse
+	4,  // 63: palm.atropa.v1.Jwt.Verify:output_type -> palm.atropa.v1.JwtVerifyResponse
+	6,  // 64: palm.atropa.v1.Hmac.Sign:output_type -> palm.atropa.v1.HmacSignResponse
+	41, // 65: palm.atropa.v1.Hmac.Verify:output_type -> google.protobuf.Empty
+	41, // 66: palm.atropa.v1.Policy.Has:output_type -> google.protobuf.Empty
+	41, // 67: palm.atropa.v1.Policy.Can:output_type -> google.protobuf.Empty
+	41, // 68: palm.atropa.v1.Policy.DeleteUser:output_type -> google.protobuf.Empty
+	41, // 69: palm.atropa.v1.Policy.DeleteRole:output_type -> google.protobuf.Empty
+	11, // 70: palm.atropa.v1.Policy.GetRolesForUser:output_type -> palm.atropa.v1.PolicyRolesResponse
+	11, // 71: palm.atropa.v1.Policy.GetImplicitRolesForUser:output_type -> palm.atropa.v1.PolicyRolesResponse
+	10, // 72: palm.atropa.v1.Policy.GetUsersForRole:output_type -> palm.atropa.v1.PolicyUsersResponse
+	10, // 73: palm.atropa.v1.Policy.GetImplicitUsersForRole:output_type -> palm.atropa.v1.PolicyUsersResponse
+	41, // 74: palm.atropa.v1.Policy.AddRolesForUser:output_type -> google.protobuf.Empty
+	41, // 75: palm.atropa.v1.Policy.DeleteRolesForUser:output_type -> google.protobuf.Empty
+	15, // 76: palm.atropa.v1.Policy.GetPermissionsForUser:output_type -> palm.atropa.v1.PolicyPermissionsResponse
+	15, // 77: palm.atropa.v1.Policy.GetImplicitPermissionsForUser:output_type -> palm.atropa.v1.PolicyPermissionsResponse
+	41, // 78: palm.atropa.v1.Policy.AddPermissionsForUser:output_type -> google.protobuf.Empty
+	41, // 79: palm.atropa.v1.Policy.DeletePermissionsForUser:output_type -> google.protobuf.Empty
+	15, // 80: palm.atropa.v1.Policy.GetPermissionsForRole:output_type -> palm.atropa.v1.PolicyPermissionsResponse
+	15, // 81: palm.atropa.v1.Policy.GetImplicitPermissionsForRole:output_type -> palm.atropa.v1.PolicyPermissionsResponse
+	41, // 82: palm.atropa.v1.Policy.AddPermissionsForRole:output_type -> google.protobuf.Empty
+	41, // 83: palm.atropa.v1.Policy.DeletePermissionsForRole:output_type -> google.protobuf.Empty
+	17, // 84: palm.atropa.v1.S3.CreateBucket:output_type -> palm.atropa.v1.S3CreateBucketResponse
+	19, // 85: palm.atropa.v1.S3.Upload:output_type -> palm.atropa.v1.S3UploadUrlResponse
+	19, // 86: palm.atropa.v1.S3.PermanentUrl:output_type -> palm.atropa.v1.S3UploadUrlResponse
+	19, // 87: palm.atropa.v1.S3.PresignedUrl:output_type -> palm.atropa.v1.S3UploadUrlResponse
+	60, // [60:88] is the sub-list for method output_type
+	32, // [32:60] is the sub-list for method input_type
 	32, // [32:32] is the sub-list for extension type_name
 	32, // [32:32] is the sub-list for extension extendee
 	0,  // [0:32] is the sub-list for field type_name
@@ -3436,7 +3422,7 @@ func file_atropa_proto_init() {
 			NumEnums:      0,
 			NumMessages:   39,
 			NumExtensions: 0,
-			NumServices:   7,
+			NumServices:   5,
 		},
 		GoTypes:           file_atropa_proto_goTypes,
 		DependencyIndexes: file_atropa_proto_depIdxs,
