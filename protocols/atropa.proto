@@ -10,24 +10,27 @@ import "google/protobuf/timestamp.proto";
 
 // ----------------------------------------------------------------------------
 service Aes {
-  rpc Encrypt(AesMessage) returns (AesMessage) {}
-  rpc Decrypt(AesMessage) returns (AesMessage) {}
+  rpc Encrypt(AesPlainMessage) returns (AesCodeMessage) {}
+  rpc Decrypt(AesCodeMessage) returns (AesPlainMessage) {}
 }
-message AesMessage { bytes payload = 1; }
+message AesPlainMessage { bytes payload = 1; }
+message AesCodeMessage {
+  bytes payload = 1;
+  bytes salt = 2;
+}
 // ----------------------------------------------------------------------------
 service Jwt {
   rpc Sign(JwtSignRequest) returns (JwtSignResponse) {}
   rpc Verify(JwtVerifyRequest) returns (JwtVerifyResponse) {}
 }
 message JwtSignRequest {
-  optional string jwt_id = 1;
-  optional string key_id = 2;
+  optional string key_id = 1;
 
   string issuer = 11;
   string subject = 12;
   repeated string audiences = 13;
   google.protobuf.Timestamp not_before = 18;
-  google.protobuf.Timestamp expired_at = 19;
+  google.protobuf.Timestamp expires_at = 19;
 
   optional string extra = 99;
 }
@@ -38,7 +41,7 @@ message JwtVerifyRequest {
   string audience = 3;
 }
 message JwtVerifyResponse {
-  optional string jwt_id = 1;
+  string jwt_id = 1;
   optional string key_id = 2;
 
   string subject = 11;

@@ -1,6 +1,7 @@
 package crypto
 
 import (
+	"log/slog"
 	"time"
 
 	"github.com/google/uuid"
@@ -12,7 +13,7 @@ type Jwt struct {
 	mac jwt.MAC
 }
 
-func (p *Jwt) Verify(token string, issuer string, audience string) (string, string, map[string]string, error) {
+func (p *Jwt) Verify(token string, issuer string, audience string) (string, string, map[string]interface{}, error) {
 	validator, err := jwt.NewValidator(&jwt.ValidatorOpts{
 		ExpectedAudience: &audience,
 		ExpectedIssuer:   &issuer,
@@ -34,41 +35,47 @@ func (p *Jwt) Verify(token string, issuer string, audience string) (string, stri
 		return "", "", nil, err
 	}
 
-	claims := make(map[string]string)
+	claims := make(map[string]interface{})
+
 	for _, k := range verified_jwt.CustomClaimNames() {
-		v, err := verified_jwt.StringClaim(k)
-		if err != nil {
-			return "", subject, nil, nil
+		{
+			v, err := verified_jwt.StringClaim(k)
+			if err == nil {
+				claims[k] = v
+				continue
+			}
 		}
-		claims[k] = v
+		{
+			v, err := verified_jwt.NumberClaim(k)
+			if err == nil {
+				claims[k] = v
+				continue
+			}
+		}
+		slog.Error("unknown custom claim type", slog.String("name", k))
 	}
 
 	return jwt_id, subject, claims, nil
 }
 
-func (p *Jwt) Sign(issuer string, subject string, audience string, claims map[string]string, ttl time.Duration) (string, error) {
-	custom_claims := make(map[string]interface{})
-	for k, v := range claims {
-		custom_claims[k] = v
-	}
-
-	kid := uuid.NewString()
+func (p *Jwt) Sign(issuer string, subject string, audiences []string, claims map[string]interface{}, not_before *time.Time, expires_at *time.Time) (string, error) {
+	id := uuid.NewString()
 	now := time.Now()
-	exp := now.Add(ttl)
 
 	raw, err := jwt.NewRawJWT(&jwt.RawJWTOptions{
-		JWTID:        &kid,
-		Audience:     &audience,
+		JWTID:        &id,
 		Subject:      &subject,
-		CustomClaims: custom_claims,
-		ExpiresAt:    &exp,
-		NotBefore:    &now,
+		CustomClaims: claims,
+		ExpiresAt:    expires_at,
+		NotBefore:    not_before,
 		Issuer:       &issuer,
 		IssuedAt:     &now,
+		Audiences:    audiences,
 	})
 	if err != nil {
 		return "", err
 	}
+
 	return p.mac.ComputeMACAndEncode(raw)
 }
 

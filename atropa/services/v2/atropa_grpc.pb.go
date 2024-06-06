@@ -30,8 +30,8 @@ const (
 //
 // ----------------------------------------------------------------------------
 type AesClient interface {
-	Encrypt(ctx context.Context, in *AesMessage, opts ...grpc.CallOption) (*AesMessage, error)
-	Decrypt(ctx context.Context, in *AesMessage, opts ...grpc.CallOption) (*AesMessage, error)
+	Encrypt(ctx context.Context, in *AesPlainMessage, opts ...grpc.CallOption) (*AesCodeMessage, error)
+	Decrypt(ctx context.Context, in *AesCodeMessage, opts ...grpc.CallOption) (*AesPlainMessage, error)
 }
 
 type aesClient struct {
@@ -42,9 +42,9 @@ func NewAesClient(cc grpc.ClientConnInterface) AesClient {
 	return &aesClient{cc}
 }
 
-func (c *aesClient) Encrypt(ctx context.Context, in *AesMessage, opts ...grpc.CallOption) (*AesMessage, error) {
+func (c *aesClient) Encrypt(ctx context.Context, in *AesPlainMessage, opts ...grpc.CallOption) (*AesCodeMessage, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AesMessage)
+	out := new(AesCodeMessage)
 	err := c.cc.Invoke(ctx, Aes_Encrypt_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -52,9 +52,9 @@ func (c *aesClient) Encrypt(ctx context.Context, in *AesMessage, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *aesClient) Decrypt(ctx context.Context, in *AesMessage, opts ...grpc.CallOption) (*AesMessage, error) {
+func (c *aesClient) Decrypt(ctx context.Context, in *AesCodeMessage, opts ...grpc.CallOption) (*AesPlainMessage, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AesMessage)
+	out := new(AesPlainMessage)
 	err := c.cc.Invoke(ctx, Aes_Decrypt_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -68,8 +68,8 @@ func (c *aesClient) Decrypt(ctx context.Context, in *AesMessage, opts ...grpc.Ca
 //
 // ----------------------------------------------------------------------------
 type AesServer interface {
-	Encrypt(context.Context, *AesMessage) (*AesMessage, error)
-	Decrypt(context.Context, *AesMessage) (*AesMessage, error)
+	Encrypt(context.Context, *AesPlainMessage) (*AesCodeMessage, error)
+	Decrypt(context.Context, *AesCodeMessage) (*AesPlainMessage, error)
 	mustEmbedUnimplementedAesServer()
 }
 
@@ -77,10 +77,10 @@ type AesServer interface {
 type UnimplementedAesServer struct {
 }
 
-func (UnimplementedAesServer) Encrypt(context.Context, *AesMessage) (*AesMessage, error) {
+func (UnimplementedAesServer) Encrypt(context.Context, *AesPlainMessage) (*AesCodeMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Encrypt not implemented")
 }
-func (UnimplementedAesServer) Decrypt(context.Context, *AesMessage) (*AesMessage, error) {
+func (UnimplementedAesServer) Decrypt(context.Context, *AesCodeMessage) (*AesPlainMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Decrypt not implemented")
 }
 func (UnimplementedAesServer) mustEmbedUnimplementedAesServer() {}
@@ -97,7 +97,7 @@ func RegisterAesServer(s grpc.ServiceRegistrar, srv AesServer) {
 }
 
 func _Aes_Encrypt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AesMessage)
+	in := new(AesPlainMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -109,13 +109,13 @@ func _Aes_Encrypt_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: Aes_Encrypt_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AesServer).Encrypt(ctx, req.(*AesMessage))
+		return srv.(AesServer).Encrypt(ctx, req.(*AesPlainMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Aes_Decrypt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AesMessage)
+	in := new(AesCodeMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func _Aes_Decrypt_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: Aes_Decrypt_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AesServer).Decrypt(ctx, req.(*AesMessage))
+		return srv.(AesServer).Decrypt(ctx, req.(*AesCodeMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }

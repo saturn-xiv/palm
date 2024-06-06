@@ -15,11 +15,9 @@ import (
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/reflection"
-	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
-	"github.com/saturn-xiv/palm/atropa/env/redis"
 	"github.com/saturn-xiv/palm/atropa/services"
 	pb "github.com/saturn-xiv/palm/atropa/services/v2"
 )
@@ -32,10 +30,6 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	}
 
 	db, err := config.Database.Open()
-	if err != nil {
-		return err
-	}
-	cache, err := config.Redis.Open(config.Namespace)
 	if err != nil {
 		return err
 	}
@@ -64,7 +58,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	var options []grpc.ServerOption
 
 	server := grpc.NewServer(options...)
-	if err = mount(server, config.Namespace, db, cache, aes, mac, jwt, enforcer, s3, version); err != nil {
+	if err = mount(server, config.Namespace, aes, mac, jwt, enforcer, s3); err != nil {
 		return err
 	}
 	reflection.Register(server)
@@ -86,11 +80,13 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 }
 
 func mount(server *grpc.Server, namespace string,
-	db *gorm.DB, cache *redis.Client,
-	aes *crypto.Aes, mac *crypto.HMac, jwt *crypto.Jwt, enforcer *casbin.Enforcer,
+	aes *crypto.Aes, mac *crypto.HMac, jwt *crypto.Jwt,
+	enforcer *casbin.Enforcer,
 	s3 *minio.Client,
-	version string,
 ) error {
+	pb.RegisterAesServer(server, services.NewAesService(aes))
+	pb.RegisterJwtServer(server, services.NewJwtService(jwt))
+	pb.RegisterHMacServer(server, services.NewHmacService(mac))
 	pb.RegisterS3Server(server, services.NewS3Service(namespace, s3))
 
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
