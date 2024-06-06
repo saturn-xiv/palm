@@ -40,14 +40,13 @@ defmodule Mix.Tasks.Tuberose.User.Create do
     Logger.info("create user #{parsed[:realname]}<#{parsed[:email]}>")
 
     email = String.downcase(parsed[:email])
-
-    if Tuberose.Repo.get_by(Tuberose.EmailUser, email: email) do
-      raise ArgumentError, message: "#{parsed[:email]} already exists"
-    end
-
     nickname = String.downcase(parsed[:nickname])
 
     Tuberose.Repo.transaction(fn ->
+      if Tuberose.Repo.get_by(Tuberose.EmailUser, email: email) do
+        raise ArgumentError, message: "#{parsed[:email]} already exists"
+      end
+
       if Tuberose.Repo.get_by(Tuberose.EmailUser, nickname: nickname) do
         raise ArgumentError, message: "#{parsed[:nickname]} already exists"
       end
@@ -68,15 +67,15 @@ defmodule Mix.Tasks.Tuberose.User.Create do
       }
       |> Tuberose.Repo.insert()
 
-      # %Tuberose.Log{
-      #   user_id: user.id,
-      #   plugin: :core,
-      #   ip: :localhost,
-      #   level: :info,
-      #   resource_type: :email_user,
-      #   message: "created by system administrator."
-      # }
-      # |> Tuberose.Repo.insert()
+      %Tuberose.Log{
+        user_id: user.id,
+        plugin: "core",
+        ip: "localhost",
+        level: "info",
+        resource_type: "email_user",
+        message: "created by system administrator."
+      }
+      |> Tuberose.Repo.insert()
     end)
   end
 end

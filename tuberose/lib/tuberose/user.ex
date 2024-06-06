@@ -3,6 +3,12 @@ defmodule Tuberose.User do
   import Ecto.Changeset
 
   schema "users" do
+    has_many(:by_email, Tuberose.EmailUser)
+    has_many(:logs, Tuberose.Log)
+    has_many(:sessions, Tuberose.UserSession)
+    has_many(:settings, Tuberose.Setting)
+    has_many(:attachments, Tuberose.Attachment)
+
     field(:uid, :string)
     field(:name, :string)
     field(:avatar, :string)

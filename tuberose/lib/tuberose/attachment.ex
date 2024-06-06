@@ -4,6 +4,7 @@ defmodule Tuberose.Attachment do
 
   schema "attachments" do
     belongs_to(:user, Tuberose.User)
+    has_many(:resources, Tuberose.AttachmentResource)
 
     field(:bucket, :string)
     field(:object, :string)

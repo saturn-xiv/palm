@@ -25,4 +25,20 @@ defmodule Tuberose.Atropa.Client do
     {:ok, reply} = channel |> Palm.Atropa.V1.HMac.Stub.sign(request)
     {reply.code, salt}
   end
+
+  def add_roles_for_user(user, roles) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.PolicyRolesForUserRequest{user: user, roles: roles}
+
+    {:ok, _} = channel |> Palm.Atropa.V1.Policy.Stub.add_roles_for_user(request)
+  end
+
+  def delete_roles_for_user(user, roles) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.PolicyRolesForUserRequest{user: user, roles: roles}
+
+    {:ok, _} = channel |> Palm.Atropa.V1.Policy.Stub.delete_roles_for_user(request)
+  end
 end
