@@ -58,7 +58,7 @@ var (
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
 	root_cmd.PersistentFlags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
-	root_cmd.PersistentFlags().StringVarP(&gl_config, "keys-dir", "k", "tmp", "load keys")
+	root_cmd.PersistentFlags().StringVarP(&gl_keys_dir, "keys-dir", "k", "tmp", "load keys")
 
 	{
 		var cmd = &cobra.Command{
