@@ -286,132 +286,132 @@ var Jwt_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Hmac_Sign_FullMethodName   = "/palm.atropa.v1.Hmac/Sign"
-	Hmac_Verify_FullMethodName = "/palm.atropa.v1.Hmac/Verify"
+	HMac_Sign_FullMethodName   = "/palm.atropa.v1.HMac/Sign"
+	HMac_Verify_FullMethodName = "/palm.atropa.v1.HMac/Verify"
 )
 
-// HmacClient is the client API for Hmac service.
+// HMacClient is the client API for HMac service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // ----------------------------------------------------------------------------
-type HmacClient interface {
-	Sign(ctx context.Context, in *HmacSignRequest, opts ...grpc.CallOption) (*HmacSignResponse, error)
-	Verify(ctx context.Context, in *HmacVerifyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+type HMacClient interface {
+	Sign(ctx context.Context, in *HMacSignRequest, opts ...grpc.CallOption) (*HMacSignResponse, error)
+	Verify(ctx context.Context, in *HMacVerifyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type hmacClient struct {
+type hMacClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewHmacClient(cc grpc.ClientConnInterface) HmacClient {
-	return &hmacClient{cc}
+func NewHMacClient(cc grpc.ClientConnInterface) HMacClient {
+	return &hMacClient{cc}
 }
 
-func (c *hmacClient) Sign(ctx context.Context, in *HmacSignRequest, opts ...grpc.CallOption) (*HmacSignResponse, error) {
+func (c *hMacClient) Sign(ctx context.Context, in *HMacSignRequest, opts ...grpc.CallOption) (*HMacSignResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HmacSignResponse)
-	err := c.cc.Invoke(ctx, Hmac_Sign_FullMethodName, in, out, cOpts...)
+	out := new(HMacSignResponse)
+	err := c.cc.Invoke(ctx, HMac_Sign_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *hmacClient) Verify(ctx context.Context, in *HmacVerifyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *hMacClient) Verify(ctx context.Context, in *HMacVerifyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Hmac_Verify_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, HMac_Verify_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// HmacServer is the server API for Hmac service.
-// All implementations must embed UnimplementedHmacServer
+// HMacServer is the server API for HMac service.
+// All implementations must embed UnimplementedHMacServer
 // for forward compatibility
 //
 // ----------------------------------------------------------------------------
-type HmacServer interface {
-	Sign(context.Context, *HmacSignRequest) (*HmacSignResponse, error)
-	Verify(context.Context, *HmacVerifyRequest) (*emptypb.Empty, error)
-	mustEmbedUnimplementedHmacServer()
+type HMacServer interface {
+	Sign(context.Context, *HMacSignRequest) (*HMacSignResponse, error)
+	Verify(context.Context, *HMacVerifyRequest) (*emptypb.Empty, error)
+	mustEmbedUnimplementedHMacServer()
 }
 
-// UnimplementedHmacServer must be embedded to have forward compatible implementations.
-type UnimplementedHmacServer struct {
+// UnimplementedHMacServer must be embedded to have forward compatible implementations.
+type UnimplementedHMacServer struct {
 }
 
-func (UnimplementedHmacServer) Sign(context.Context, *HmacSignRequest) (*HmacSignResponse, error) {
+func (UnimplementedHMacServer) Sign(context.Context, *HMacSignRequest) (*HMacSignResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sign not implemented")
 }
-func (UnimplementedHmacServer) Verify(context.Context, *HmacVerifyRequest) (*emptypb.Empty, error) {
+func (UnimplementedHMacServer) Verify(context.Context, *HMacVerifyRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
 }
-func (UnimplementedHmacServer) mustEmbedUnimplementedHmacServer() {}
+func (UnimplementedHMacServer) mustEmbedUnimplementedHMacServer() {}
 
-// UnsafeHmacServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to HmacServer will
+// UnsafeHMacServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to HMacServer will
 // result in compilation errors.
-type UnsafeHmacServer interface {
-	mustEmbedUnimplementedHmacServer()
+type UnsafeHMacServer interface {
+	mustEmbedUnimplementedHMacServer()
 }
 
-func RegisterHmacServer(s grpc.ServiceRegistrar, srv HmacServer) {
-	s.RegisterService(&Hmac_ServiceDesc, srv)
+func RegisterHMacServer(s grpc.ServiceRegistrar, srv HMacServer) {
+	s.RegisterService(&HMac_ServiceDesc, srv)
 }
 
-func _Hmac_Sign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HmacSignRequest)
+func _HMac_Sign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HMacSignRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HmacServer).Sign(ctx, in)
+		return srv.(HMacServer).Sign(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Hmac_Sign_FullMethodName,
+		FullMethod: HMac_Sign_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HmacServer).Sign(ctx, req.(*HmacSignRequest))
+		return srv.(HMacServer).Sign(ctx, req.(*HMacSignRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Hmac_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HmacVerifyRequest)
+func _HMac_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HMacVerifyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HmacServer).Verify(ctx, in)
+		return srv.(HMacServer).Verify(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Hmac_Verify_FullMethodName,
+		FullMethod: HMac_Verify_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HmacServer).Verify(ctx, req.(*HmacVerifyRequest))
+		return srv.(HMacServer).Verify(ctx, req.(*HMacVerifyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Hmac_ServiceDesc is the grpc.ServiceDesc for Hmac service.
+// HMac_ServiceDesc is the grpc.ServiceDesc for HMac service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Hmac_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "palm.atropa.v1.Hmac",
-	HandlerType: (*HmacServer)(nil),
+var HMac_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.atropa.v1.HMac",
+	HandlerType: (*HMacServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Sign",
-			Handler:    _Hmac_Sign_Handler,
+			Handler:    _HMac_Sign_Handler,
 		},
 		{
 			MethodName: "Verify",
-			Handler:    _Hmac_Verify_Handler,
+			Handler:    _HMac_Verify_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1167,9 +1167,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type S3Client interface {
 	CreateBucket(ctx context.Context, in *S3CreateBucketRequest, opts ...grpc.CallOption) (*S3CreateBucketResponse, error)
-	Upload(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UploadUrlResponse, error)
-	PermanentUrl(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UploadUrlResponse, error)
-	PresignedUrl(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UploadUrlResponse, error)
+	Upload(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UrlResponse, error)
+	PermanentUrl(ctx context.Context, in *S3PermanentUrlRequest, opts ...grpc.CallOption) (*S3UrlResponse, error)
+	PresignedUrl(ctx context.Context, in *S3PresignedUrlRequest, opts ...grpc.CallOption) (*S3UrlResponse, error)
 }
 
 type s3Client struct {
@@ -1190,9 +1190,9 @@ func (c *s3Client) CreateBucket(ctx context.Context, in *S3CreateBucketRequest, 
 	return out, nil
 }
 
-func (c *s3Client) Upload(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UploadUrlResponse, error) {
+func (c *s3Client) Upload(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UrlResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(S3UploadUrlResponse)
+	out := new(S3UrlResponse)
 	err := c.cc.Invoke(ctx, S3_Upload_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1200,9 +1200,9 @@ func (c *s3Client) Upload(ctx context.Context, in *S3UploadRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *s3Client) PermanentUrl(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UploadUrlResponse, error) {
+func (c *s3Client) PermanentUrl(ctx context.Context, in *S3PermanentUrlRequest, opts ...grpc.CallOption) (*S3UrlResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(S3UploadUrlResponse)
+	out := new(S3UrlResponse)
 	err := c.cc.Invoke(ctx, S3_PermanentUrl_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1210,9 +1210,9 @@ func (c *s3Client) PermanentUrl(ctx context.Context, in *S3UploadRequest, opts .
 	return out, nil
 }
 
-func (c *s3Client) PresignedUrl(ctx context.Context, in *S3UploadRequest, opts ...grpc.CallOption) (*S3UploadUrlResponse, error) {
+func (c *s3Client) PresignedUrl(ctx context.Context, in *S3PresignedUrlRequest, opts ...grpc.CallOption) (*S3UrlResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(S3UploadUrlResponse)
+	out := new(S3UrlResponse)
 	err := c.cc.Invoke(ctx, S3_PresignedUrl_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1225,9 +1225,9 @@ func (c *s3Client) PresignedUrl(ctx context.Context, in *S3UploadRequest, opts .
 // for forward compatibility
 type S3Server interface {
 	CreateBucket(context.Context, *S3CreateBucketRequest) (*S3CreateBucketResponse, error)
-	Upload(context.Context, *S3UploadRequest) (*S3UploadUrlResponse, error)
-	PermanentUrl(context.Context, *S3UploadRequest) (*S3UploadUrlResponse, error)
-	PresignedUrl(context.Context, *S3UploadRequest) (*S3UploadUrlResponse, error)
+	Upload(context.Context, *S3UploadRequest) (*S3UrlResponse, error)
+	PermanentUrl(context.Context, *S3PermanentUrlRequest) (*S3UrlResponse, error)
+	PresignedUrl(context.Context, *S3PresignedUrlRequest) (*S3UrlResponse, error)
 	mustEmbedUnimplementedS3Server()
 }
 
@@ -1238,13 +1238,13 @@ type UnimplementedS3Server struct {
 func (UnimplementedS3Server) CreateBucket(context.Context, *S3CreateBucketRequest) (*S3CreateBucketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBucket not implemented")
 }
-func (UnimplementedS3Server) Upload(context.Context, *S3UploadRequest) (*S3UploadUrlResponse, error) {
+func (UnimplementedS3Server) Upload(context.Context, *S3UploadRequest) (*S3UrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
 }
-func (UnimplementedS3Server) PermanentUrl(context.Context, *S3UploadRequest) (*S3UploadUrlResponse, error) {
+func (UnimplementedS3Server) PermanentUrl(context.Context, *S3PermanentUrlRequest) (*S3UrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PermanentUrl not implemented")
 }
-func (UnimplementedS3Server) PresignedUrl(context.Context, *S3UploadRequest) (*S3UploadUrlResponse, error) {
+func (UnimplementedS3Server) PresignedUrl(context.Context, *S3PresignedUrlRequest) (*S3UrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PresignedUrl not implemented")
 }
 func (UnimplementedS3Server) mustEmbedUnimplementedS3Server() {}
@@ -1297,7 +1297,7 @@ func _S3_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface
 }
 
 func _S3_PermanentUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(S3UploadRequest)
+	in := new(S3PermanentUrlRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1309,13 +1309,13 @@ func _S3_PermanentUrl_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: S3_PermanentUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).PermanentUrl(ctx, req.(*S3UploadRequest))
+		return srv.(S3Server).PermanentUrl(ctx, req.(*S3PermanentUrlRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _S3_PresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(S3UploadRequest)
+	in := new(S3PresignedUrlRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1327,7 +1327,7 @@ func _S3_PresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(int
 		FullMethod: S3_PresignedUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).PresignedUrl(ctx, req.(*S3UploadRequest))
+		return srv.(S3Server).PresignedUrl(ctx, req.(*S3PresignedUrlRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

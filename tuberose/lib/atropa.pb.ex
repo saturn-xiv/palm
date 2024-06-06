@@ -50,7 +50,7 @@ defmodule Palm.Atropa.V1.JwtVerifyResponse do
   field :extra, 19, proto3_optional: true, type: :string
 end
 
-defmodule Palm.Atropa.V1.HmacSignRequest do
+defmodule Palm.Atropa.V1.HMacSignRequest do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
@@ -58,7 +58,7 @@ defmodule Palm.Atropa.V1.HmacSignRequest do
   field :plain, 1, type: :bytes
 end
 
-defmodule Palm.Atropa.V1.HmacSignResponse do
+defmodule Palm.Atropa.V1.HMacSignResponse do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
@@ -66,7 +66,7 @@ defmodule Palm.Atropa.V1.HmacSignResponse do
   field :code, 1, type: :bytes
 end
 
-defmodule Palm.Atropa.V1.HmacVerifyRequest do
+defmodule Palm.Atropa.V1.HMacVerifyRequest do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
@@ -276,7 +276,7 @@ defmodule Palm.Atropa.V1.S3UploadRequest do
   field :ttl, 9, type: Google.Protobuf.Duration
 end
 
-defmodule Palm.Atropa.V1.S3UploadUrlResponse do
+defmodule Palm.Atropa.V1.S3UrlResponse do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
@@ -284,7 +284,7 @@ defmodule Palm.Atropa.V1.S3UploadUrlResponse do
   field :url, 1, type: :string
 end
 
-defmodule Palm.Atropa.V1.PresignedUrlRequest do
+defmodule Palm.Atropa.V1.S3PresignedUrlRequest do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
@@ -295,7 +295,7 @@ defmodule Palm.Atropa.V1.PresignedUrlRequest do
   field :ttl, 9, type: Google.Protobuf.Duration
 end
 
-defmodule Palm.Atropa.V1.PermanentUrlRequest do
+defmodule Palm.Atropa.V1.S3PermanentUrlRequest do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"

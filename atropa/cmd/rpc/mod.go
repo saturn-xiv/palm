@@ -6,6 +6,8 @@ import (
 )
 
 type Config struct {
-	Redis    redis.Cluster `toml:"redis"`
-	Database env.Database  `toml:"database"`
+	Namespace string        `toml:"namespace"`
+	Redis     redis.Cluster `toml:"redis"`
+	Database  env.Database  `toml:"database"`
+	Minio     env.Minio     `toml:"minio"`
 }

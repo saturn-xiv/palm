@@ -45,13 +45,13 @@ message JwtVerifyResponse {
   optional string extra = 19;
 }
 // ----------------------------------------------------------------------------
-service Hmac {
-  rpc Sign(HmacSignRequest) returns (HmacSignResponse) {}
-  rpc Verify(HmacVerifyRequest) returns (google.protobuf.Empty) {}
+service HMac {
+  rpc Sign(HMacSignRequest) returns (HMacSignResponse) {}
+  rpc Verify(HMacVerifyRequest) returns (google.protobuf.Empty) {}
 }
-message HmacSignRequest { bytes plain = 1; }
-message HmacSignResponse { bytes code = 1; }
-message HmacVerifyRequest {
+message HMacSignRequest { bytes plain = 1; }
+message HMacSignResponse { bytes code = 1; }
+message HMacVerifyRequest {
   bytes plain = 1;
   bytes code = 2;
 }
@@ -171,9 +171,9 @@ message PolicyPermissionsResponse {
 
 service S3 {
   rpc CreateBucket(S3CreateBucketRequest) returns (S3CreateBucketResponse) {}
-  rpc Upload(S3UploadRequest) returns (S3UploadUrlResponse) {}
-  rpc PermanentUrl(S3UploadRequest) returns (S3UploadUrlResponse) {}
-  rpc PresignedUrl(S3UploadRequest) returns (S3UploadUrlResponse) {}
+  rpc Upload(S3UploadRequest) returns (S3UrlResponse) {}
+  rpc PermanentUrl(S3PermanentUrlRequest) returns (S3UrlResponse) {}
+  rpc PresignedUrl(S3PresignedUrlRequest) returns (S3UrlResponse) {}
 }
 
 message S3CreateBucketRequest {
@@ -187,14 +187,14 @@ message S3UploadRequest {
   string object = 2;
   google.protobuf.Duration ttl = 9;
 }
-message S3UploadUrlResponse { string url = 1; }
-message PresignedUrlRequest {
+message S3UrlResponse { string url = 1; }
+message S3PresignedUrlRequest {
   string bucket = 1;
   string object = 2;
   string title = 3;
   google.protobuf.Duration ttl = 9;
 }
-message PermanentUrlRequest {
+message S3PermanentUrlRequest {
   string bucket = 1;
   string object = 2;
 }

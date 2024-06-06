@@ -42,8 +42,9 @@ func Execute() {
 }
 
 var (
-	gl_debug  bool
-	gl_config string
+	gl_debug    bool
+	gl_config   string
+	gl_keys_dir string
 
 	gl_rpc_port uint16
 	gl_web_port uint16
@@ -57,6 +58,7 @@ var (
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
 	root_cmd.PersistentFlags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
+	root_cmd.PersistentFlags().StringVarP(&gl_config, "keys-dir", "k", "tmp", "load keys")
 
 	{
 		var cmd = &cobra.Command{
@@ -64,7 +66,7 @@ func init() {
 			Short: "Start a gRPC server",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := rpc.Launch(gl_rpc_port, gl_config, git_version); err != nil {
+				if err := rpc.Launch(gl_rpc_port, gl_config, gl_keys_dir, git_version); err != nil {
 					log.Fatalf("%v", err)
 				}
 			},

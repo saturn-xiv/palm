@@ -1,14 +1,16 @@
 package redis
 
 import (
+	"context"
 	"fmt"
+	"log/slog"
+	"strings"
 
 	"github.com/redis/go-redis/v9"
 )
 
 type Cluster struct {
-	Namespace string `toml:"namespace"`
-	Nodes     []Node `toml:"nodes"`
+	Nodes []Node `toml:"nodes"`
 }
 
 func (p *Cluster) Addrs() []string {
@@ -21,6 +23,24 @@ func (p *Cluster) Addrs() []string {
 
 func (p *Cluster) Options() redis.ClusterOptions {
 	return redis.ClusterOptions{Addrs: p.Addrs()}
+}
+
+func (p *Cluster) Open(namespace string) (*Client, error) {
+	slog.Info(fmt.Sprintf("open redis %s", strings.Join(p.Addrs(), ",")))
+	options := p.Options()
+	client := Client{
+		namespace: namespace,
+		db:        redis.NewClusterClient(&options),
+	}
+	{
+		ctx := context.Background()
+		status, err := client.Heartbeat(ctx)
+		if err != nil {
+			return nil, err
+		}
+		slog.Debug(fmt.Sprintf("redis nodes:\n%s", strings.Join(status, "\n")))
+	}
+	return &client, nil
 }
 
 type Node struct {
