@@ -1,0 +1,200 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.atropa.v1";
+option go_package = "github.com/saturn-xiv/palm/atropa/services/v2";
+package palm.atropa.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/duration.proto";
+
+// ----------------------------------------------------------------------------
+
+service Policy {
+  rpc Has(PolicyHasRequest) returns (google.protobuf.Empty) {}
+  rpc Can(PolicyCanRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteUser(PolicyUsersResponse.Item) returns (google.protobuf.Empty) {}
+  rpc DeleteRole(PolicyRolesResponse.Item) returns (google.protobuf.Empty) {}
+  rpc GetRolesForUser(PolicyUsersResponse.Item) returns (PolicyRolesResponse) {}
+  rpc GetImplicitRolesForUser(PolicyUsersResponse.Item)
+      returns (PolicyRolesResponse) {}
+  rpc GetUsersForRole(PolicyRolesResponse.Item) returns (PolicyUsersResponse) {}
+  rpc GetImplicitUsersForRole(PolicyRolesResponse.Item)
+      returns (PolicyUsersResponse) {}
+  rpc AddRolesForUser(PolicyRolesForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeleteRolesForUser(PolicyRolesForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetPermissionsForUser(PolicyUsersResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc GetImplicitPermissionsForUser(PolicyUsersResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc AddPermissionsForUser(PolicyPermissionsForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionsForUser(PolicyPermissionsForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetPermissionsForRole(PolicyRolesResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc GetImplicitPermissionsForRole(PolicyRolesResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc AddPermissionsForRole(PolicyPermissionsForRoleRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionsForRole(PolicyPermissionsForRoleRequest)
+      returns (google.protobuf.Empty) {}
+}
+
+message PolicyHasRequest {
+  PolicyUsersResponse.Item user = 1;
+  PolicyRolesResponse.Item role = 2;
+}
+
+message PolicyCanRequest {
+  PolicyUsersResponse.Item user = 1;
+  PolicyPermissionsResponse.Item.Resource resource = 2;
+  PolicyPermissionsResponse.Item.Operation operation = 3;
+}
+
+message PolicyUsersResponse {
+  message Item {
+    oneof by {
+      int32 iid = 1;
+      int64 lid = 2;
+      string code = 9;
+    }
+  }
+  repeated Item items = 1;
+}
+
+message PolicyRolesResponse {
+  message Item {
+    message Administrator {}
+    message Root {}
+    oneof by {
+      Root root = 1;
+      Administrator administrator = 2;
+      string code = 9;
+    }
+  }
+  repeated Item items = 1;
+}
+
+message PolicyRolesForUserRequest {
+  PolicyUsersResponse.Item user = 1;
+  repeated PolicyRolesResponse.Item roles = 2;
+}
+
+message PolicyPermissionsForUserRequest {
+  PolicyUsersResponse.Item user = 1;
+  repeated PolicyPermissionsResponse.Item permissions = 2;
+}
+
+message PolicyPermissionsForRoleRequest {
+  PolicyRolesResponse.Item role = 1;
+  repeated PolicyPermissionsResponse.Item permissions = 2;
+}
+
+message PolicyPermissionsResponse {
+  message Item {
+    message Resource {
+      string type = 1;
+      optional int64 id = 2;
+    }
+    message Operation {
+      message Create {}
+      message Show {}
+      message Update {}
+      message Destroy {}
+      message Manage {}
+      oneof by {
+        Create create = 1;
+        Show show = 2;
+        Update update = 3;
+        Destroy destroy = 4;
+        Manage manage = 9;
+        string code = 99;
+      }
+    }
+    Resource resource = 1;
+    Operation operation = 2;
+  }
+
+  repeated Item items = 1;
+}
+// ----------------------------------------------------------------------------
+
+service S3 {
+  rpc CreateBucket(S3CreateBucketRequest) returns (S3CreateBucketResponse) {}
+  rpc Upload(S3UploadRequest) returns (S3UploadUrlResponse) {}
+  rpc PermanentUrl(S3UploadRequest) returns (S3UploadUrlResponse) {}
+  rpc PresignedUrl(S3UploadRequest) returns (S3UploadUrlResponse) {}
+}
+
+message S3CreateBucketRequest {
+  string name = 1;
+  bool public = 2;
+  int32 expiration_days = 9;
+}
+message S3CreateBucketResponse {
+  string name = 1;
+}
+message S3UploadRequest {
+  string bucket = 1;
+  string object = 2;
+  google.protobuf.Duration ttl = 9;
+}
+message S3UploadUrlResponse {
+  string url = 1;
+}
+message PresignedUrlRequest {
+  string bucket = 1;
+  string object = 2;
+  string title = 3;
+  google.protobuf.Duration ttl = 9;
+}
+message PermanentUrlRequest {
+  string bucket = 1;
+  string object = 2;
+}
+// ----------------------------------------------------------------------------
+
+service Sms {
+  rpc Send(SmsSendRequest) returns (google.protobuf.Empty) {}
+}
+
+message SmsSendRequest {
+  repeated string to = 1;
+  string body = 2;
+  optional string callback_uri = 3;
+}
+// ----------------------------------------------------------------------------
+
+service Email {
+  rpc Send(EmailSendRequest) returns (google.protobuf.Empty) {}
+}
+
+message EmailSendRequest {
+  message Address {
+    string name = 1;
+    string email = 2;
+  }
+
+  message Body {
+    string text = 1;
+    bool html = 2;
+  }
+
+  message Attachment {
+    string title = 1;
+    string content_type = 2;
+    bool inline = 3;
+    bytes body = 9;
+  }
+
+  string subject = 1;
+  Body body = 2;
+  Address to = 3;
+  repeated Address cc = 4;
+  repeated Address bcc = 5;
+  repeated Attachment attachments = 9;
+}
+
+// ----------------------------------------------------------------------------

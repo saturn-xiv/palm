@@ -57,7 +57,11 @@ defmodule Tuberose.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.2"}
+      {:bandit, "~> 1.2"},
+
+      # my add
+      {:grpc, "~> 0.8"},
+      {:protobuf, "~> 0.12"}
     ]
   end
 
