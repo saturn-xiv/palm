@@ -8,7 +8,10 @@ defmodule TuberoseWeb.Api.AttachmentsController do
 
   def index(conn, _params) do
     # TODO
-    json(conn, %{id: "up"})
+    json(conn, %{
+      "sign-in": gettext("Sign in"),
+      "sign-up": gettext("Sign up")
+    })
   end
 
   def show(conn, _params) do

@@ -54,6 +54,8 @@ defmodule TuberoseWeb.Router do
   scope "/api", TuberoseWeb.Api do
     pipe_through(:api)
 
+    get("/layout", HomeController, :layout)
+
     resources("/leave-words", LeaveWordsController, only: [:show, :index, :create, :delete])
     post("/leave-words/:id/publish", LeaveWordsController, :publish)
     delete("/leave-words/:id/revoke", LeaveWordsController, :revoke)

@@ -37,6 +37,14 @@ mix phx.gen.schema Model Table Field:string
 mix help --search ecto
 ```
 
+- I18n
+
+```bash
+mix gettext.extract
+# update all locale-specific files
+$ mix gettext.merge priv/gettext
+```
+
 ## Deployment
 
 - Build
