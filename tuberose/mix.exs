@@ -60,6 +60,7 @@ defmodule Tuberose.MixProject do
       {:bandit, "~> 1.2"},
 
       # my add
+      {:ecto_psql_extras, "~> 0.8"},
       {:grpc, "~> 0.8"},
       {:protobuf, "~> 0.12"},
       {:google_protos, "~> 0.4.0"},
