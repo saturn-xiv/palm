@@ -19,7 +19,7 @@ defmodule Tuberose.MixProject do
   def application do
     [
       mod: {Tuberose.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
