@@ -124,4 +124,22 @@ if config_env() == :prod do
       """
 
   config :tuberose, Tuberose.Atropa, host: atropa_host
+
+  basic_auth_user_name =
+    System.get_env("BASIC_AUTH_USER_NAME") ||
+      raise """
+      environment variable BASIC_AUTH_USER_NAME is missing.
+      For example: admin
+      """
+
+  basic_auth_user_password =
+    System.get_env("BASIC_AUTH_USER_PASSWORD") ||
+      raise """
+      environment variable BASIC_AUTH_USER_PASSWORD is missing.
+      For example: $(pwgen 32 1)
+      """
+
+  config :tuberose, TuberoseWeb.BasicAuthUser,
+    name: basic_auth_user_name,
+    password: basic_auth_user_password
 end

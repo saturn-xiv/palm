@@ -86,3 +86,4 @@ config :swoosh, :api_client, false
 
 # my add
 config :tuberose, Tuberose.Atropa, host: "127.0.0.1:10001"
+config :tuberose, TuberoseWeb.BasicAuthUser, name: "admin", password: "change-me"
