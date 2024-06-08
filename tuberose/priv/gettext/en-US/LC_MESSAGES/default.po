@@ -8,8 +8,8 @@
 ### to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: zh_TW\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/tuberose_web/components/core_components.ex:484
 #, elixir-autogen, elixir-format
@@ -52,12 +52,13 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/tuberose_web/controllers/api/attachments_controller.ex:11
+#: lib/tuberose_web/controllers/api/attachments_controller.ex:12
 #, elixir-autogen, elixir-format
 msgid "Sign in"
-msgstr ""
+msgstr "Sign in"
 
-#: lib/tuberose_web/controllers/api/attachments_controller.ex:11
-#, elixir-autogen, elixir-format, fuzzy
+#: lib/tuberose_web/controllers/api/attachments_controller.ex:13
+#: lib/tuberose_web/controllers/page_html/home.html.heex:7
+#, elixir-autogen, elixir-format
 msgid "Sign up"
-msgstr ""
+msgstr "Sign up"

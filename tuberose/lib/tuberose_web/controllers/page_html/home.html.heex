@@ -1,4 +1,8 @@
 <.flash_group flash={@flash} />
 <div>
   home page
+  <p>Locale: <%= @locale %></p>
+  <p>gettext locale: <%= Gettext.get_locale(TuberoseWeb.Gettext) %></p>
+  <p>gettext known locales: <%= Gettext.known_locales(TuberoseWeb.Gettext) %></p>
+  <p>sign in: <%= gettext("Sign up") %> </p>
 </div>

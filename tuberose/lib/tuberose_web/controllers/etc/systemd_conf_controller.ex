@@ -19,6 +19,7 @@ defmodule TuberoseWeb.Etc.SystemdConfController do
     RestartSec=10s
     Environment="SECRET_KEY_BASE='$(mix phx.gen.secret)'"
     Environment="DATABASE_URL='postgres://www:$(pwgen 32 1)@127.0.0.1/palm?sslmode=disable'"
+    Environment="ATROPA_HOST=127.0.0.1:9999"
     Environment="PORT=#{port}"
 
     [Install]

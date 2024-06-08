@@ -5,6 +5,7 @@ defmodule TuberoseWeb.Api.HomeController do
     # TODO
     json(conn, %{
       locale: Gettext.get_locale(TuberoseWeb.Gettext),
+      lang: "aa",
       locales: Gettext.known_locales(TuberoseWeb.Gettext)
     })
   end
