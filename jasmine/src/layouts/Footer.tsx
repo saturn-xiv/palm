@@ -3,11 +3,9 @@ import { DefaultFooter } from "@ant-design/pro-components";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import {
-  layout2state,
   refresh as refreshLayout,
   siteInfo as selectSiteInfo,
 } from "../reducers/site-info";
-import { get as get_locale } from "../locales";
 import {
   get as get_token,
   refresh as refreshUser,
@@ -17,9 +15,8 @@ import {
 import { home_url } from "../utils";
 import icon_img from "../assets/beian/1.jpg";
 import SwitchLanguage from "./SwitchLanguage";
-import { HOST as GRPC_HOST, metadata as grpc_metadata } from "../api/grpc";
-import { SiteClient } from "../protocols/lilac/AuthServiceClientPb";
-import { SiteLayoutRequest } from "../protocols/lilac/auth_pb";
+import { fetch_layout } from "../api/site";
+import { current_user } from "../api/users";
 
 const Widget = () => {
   const site_info = useAppSelector(selectSiteInfo);
@@ -27,23 +24,19 @@ const Widget = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (site_info.languages.length === 0) {
-      const client = new SiteClient(GRPC_HOST);
-      const request = new SiteLayoutRequest();
-      request.setLang(get_locale());
-      client.layout(request, grpc_metadata()).then((res) => {
-        const data = layout2state(res);
-        dispatch(refreshLayout(data));
+      fetch_layout().then((res) => {
+        dispatch(refreshLayout(res));
       });
     }
     const token = get_token();
     if (!is_signed_in && token !== null) {
-      // current_user()
-      //   .then((res) => {
-      //     dispatch(refreshUser(res));
-      //   })
-      //   .catch(() => {
-      //     dispatch(signOut());
-      //   });
+      current_user()
+        .then((res) => {
+          dispatch(refreshUser(res));
+        })
+        .catch(() => {
+          dispatch(signOut());
+        });
     }
   }, [is_signed_in, dispatch, site_info]);
 

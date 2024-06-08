@@ -6,7 +6,8 @@ export const USERS_CONFIRM_BY_EMAIL_PATH = "/anonymous/users/confirm";
 export const USERS_CONFIRM_BY_TOKEN_PATH = "/anonymous/users/confirm/:token";
 export const USERS_UNLOCK_BY_EMAIL_PATH = "/anonymous/users/unlock";
 export const USERS_UNLOCK_BY_TOKEN_PATH = "/anonymous/users/unlock/:token";
-export const USERS_FORGOT_PASSWORD_PATH = "/anonymous/users/forgot-password";
+export const USERS_FORGOT_PASSWORD_BY_EMAIL_PATH =
+  "/anonymous/users/forgot-password";
 export const USERS_RESET_PASSWORD_PATH =
   "/anonymous/users/reset-password/:token";
 export const LEAVE_WORDS_NEW_PATH = "/anonymous/leave-words/new";
@@ -119,7 +120,7 @@ const router = createBrowserRouter(
           lazy: () => import("./pages/users/sign-up"),
         },
         {
-          path: USERS_FORGOT_PASSWORD_PATH,
+          path: USERS_FORGOT_PASSWORD_BY_EMAIL_PATH,
           lazy: () => import("./pages/users/forgot-password"),
         },
         {
@@ -151,7 +152,7 @@ const router = createBrowserRouter(
     { path: "*", lazy: () => import("./pages/not-found") },
   ],
   {
-    basename: process.env.PUBLIC_URL,
+    basename: import.meta.env.BASE_URL,
   }
 );
 

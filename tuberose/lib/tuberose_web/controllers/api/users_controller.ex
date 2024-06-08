@@ -60,4 +60,9 @@ defmodule TuberoseWeb.Api.UsersController do
     # TODO
     json(conn, %{id: 1})
   end
+
+  def current(conn, _params) do
+    # TODO
+    json(conn, %{id: 1})
+  end
 end

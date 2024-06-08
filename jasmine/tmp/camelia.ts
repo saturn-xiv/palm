@@ -637,28 +637,6 @@ query call($pager: Pager!){
   return res.logs;
 };
 
-export interface ICurrentUser {
-  nickname: string;
-  email: string;
-  realName: string;
-  avatar: string;
-  isAdministrator: boolean;
-  isRoot: boolean;
-  roles: string[];
-  permissions: IPermission[];
-  hasWechatMiniProgram: boolean;
-  hasWechatOauth2: boolean;
-  hasGoogle: boolean;
-  providerType: string;
-  lang: string;
-  timezone: string;
-}
-
-export interface ISignInResponse {
-  token: string;
-  user: ICurrentUser;
-}
-
 export const update_profile = async (
   realName: string,
   avatar: string,

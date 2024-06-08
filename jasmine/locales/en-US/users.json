@@ -1,0 +1,23 @@
+{
+  "sign-in": {
+    "title": "Sign in"
+  },
+  "sign-up": {
+    "title": "Sign up"
+  },
+  "confirm": {
+    "by-email": {
+      "title": "Didn't receive confirmation instructions?"
+    }
+  },
+  "unlock": {
+    "by-email": {
+      "title": "Didn't receive unlock instructions?"
+    }
+  },
+  "forgot-password": {
+    "by-email": {
+      "title": "Forgot your password?"
+    }
+  }
+}

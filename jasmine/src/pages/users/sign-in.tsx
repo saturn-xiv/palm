@@ -3,11 +3,11 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-import { sign_in_by_email } from "../../api/camelia";
 import { useAppDispatch } from "../../hooks";
 import { signIn } from "../../reducers/current-user";
-import { IErrorMessage } from "../../api/graphql";
+import { IErrorMessage } from "../../api";
 import { PERSONAL_LOGS_PATH } from "../../Router";
+import { sign_in_by_email } from "../../api/users";
 
 interface IForm {
   user: string;

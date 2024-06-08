@@ -10,7 +10,7 @@ import "./index.css";
 import Router from "./Router";
 import { store } from "./store";
 import { get as get_locale, antd as antd_locale } from "./locales";
-import { HOST as GRPC_HOST, metadata as grpc_metadata } from "./api/grpc";
+import { intl_messages_by_lang } from "./api/locales";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,13 +19,7 @@ const root = ReactDOM.createRoot(
 const lang = get_locale();
 const LAYOUT_ID = "root-pro-layout";
 
-const client = new LocaleClient(GRPC_HOST);
-const request = new LocaleByLangRequest();
-request.setLang(lang);
-client.byLang(request, grpc_metadata()).then((res) => {
-  const messages = res
-    .getItemsList()
-    .reduce((ac, it) => ({ ...ac, [it.getCode()]: it.getMessage() }), {});
+intl_messages_by_lang(lang).then((messages) => {
   root.render(
     <React.StrictMode>
       <ReduxProvider store={store}>

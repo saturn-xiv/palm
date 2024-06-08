@@ -21,34 +21,28 @@ defmodule Mix.Tasks.Tuberose.Locales.Import do
       raise ArgumentError, message: "empty folder"
     end
 
-    Path.wildcard("#{root}/*/*.json")
-    |> Enum.map(fn it ->
-      lang = Path.dirname(it) |> Path.basename()
-      load_json_file(lang, it)
-    end)
+    languages =
+      Path.wildcard("#{root}/*/*.json")
+      |> Enum.map(fn it ->
+        lang = Path.dirname(it) |> Path.basename()
+        load_json_file(lang, it)
+        lang
+      end)
 
-    Path.wildcard("#{parsed[:folder]}/*.json")
-    |> Enum.map(fn it ->
-      Logger.info("load locale from #{it}")
-    end)
+    Enum.map(languages, fn lang ->
+      Path.wildcard("#{parsed[:folder]}/*.json")
+      |> Enum.map(fn file ->
+        load_json_file(lang, file)
+      end)
 
-    # Tuberose.Repo.transaction(fn ->
-    #   %Tuberose.Log{
-    #     user_id: user.id,
-    #     plugin: "core",
-    #     ip: "localhost",
-    #     level: "warning",
-    #     resource_type: "user",
-    #     message: "apply to role(#{parsed[:role]})"
-    #   }
-    #   |> Tuberose.Repo.insert()
-    # end)
+      nil
+    end)
   end
 
   def load_json_file(lang, file) do
     Logger.info("load locale from #{file} for #{lang}")
     zone = Path.rootname(file) |> Path.basename()
-    json = Poison.decode!(File.read!(file))
+    json = Jason.decode!(File.read!(file))
 
     Enum.each(json, fn {k, v} ->
       loop_json(lang, zone, k, v)

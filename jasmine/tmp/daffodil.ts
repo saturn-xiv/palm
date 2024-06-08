@@ -1,4 +1,4 @@
-import { query } from "./graphql";
+import { query } from "../src/api/graphql";
 import {
   ICurrencyOption,
   IAttachmentShow,

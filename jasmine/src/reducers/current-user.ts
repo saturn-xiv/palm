@@ -1,13 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "../store";
-import {
-  ICurrentUser,
-  ISignInResponse,
-  ICurrentUser as IState,
-} from "../api/camelia";
 import { get as getLocale } from "../locales";
 import { guess_timezone } from "../utils";
+import { ICurrentUser as IState, ISignInResponse } from "../api/users";
 
 const KEY = "token";
 export const DURATION = 60 * 60 * 24;
@@ -15,17 +11,7 @@ export const DURATION = 60 * 60 * 24;
 export const MAX_PASSWORD_LENGTH = 31;
 export const MIN_PASSWORD_LENGTH = 6;
 
-const ENABLE_LOCAL_TOKEN = process.env.REACT_APP_ENABLE_LOCAL_TOKEN === "true";
-
-export interface IResource {
-  type: string;
-  iid: number | null;
-  sid: string | null;
-}
-export interface IPermission {
-  resource: IResource;
-  action: string;
-}
+const ENABLE_LOCAL_TOKEN = import.meta.env.VITE_ENABLE_LOCAL_TOKEN === "true";
 
 export const get = (): string | null => {
   const token = sessionStorage.getItem(KEY);
@@ -84,7 +70,7 @@ export const currentUserSlice = createSlice({
       state.lang = action.payload.lang;
       state.timezone = action.payload.timezone;
     },
-    refresh: (state, action: PayloadAction<ICurrentUser>) => {
+    refresh: (state, action: PayloadAction<IState>) => {
       state.realName = action.payload.realName;
       state.avatar = action.payload.avatar;
       state.isAdministrator = action.payload.isAdministrator;

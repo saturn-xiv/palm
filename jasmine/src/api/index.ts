@@ -1,5 +1,10 @@
 import { get as getToken } from "../reducers/current-user";
 
+export interface IErrorMessage {
+  message: string;
+  locations: { line: number; column: number }[];
+}
+
 export const options = (method: string): RequestInit => {
   return {
     credentials: "include",

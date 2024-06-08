@@ -26,6 +26,20 @@ defmodule Tuberose.Atropa.Client do
     {reply.code, salt}
   end
 
+  def aes_encrypt(plain) do
+    {:ok, channel} = connect()
+    request = %Palm.Atropa.V1.AesPlainMessage{payload: plain}
+    {:ok, reply} = channel |> Palm.Atropa.V1.Aes.Stub.encrypt(request)
+    {reply.payload, reply.salt}
+  end
+
+  def aes_decrypt(code, salt) do
+    {:ok, channel} = connect()
+    request = %Palm.Atropa.V1.AesCodeMessage{payload: code, salt: salt}
+    {:ok, reply} = channel |> Palm.Atropa.V1.Aes.Stub.decrypt(request)
+    reply.payload
+  end
+
   def add_roles_for_user(user, roles) do
     {:ok, channel} = connect()
 

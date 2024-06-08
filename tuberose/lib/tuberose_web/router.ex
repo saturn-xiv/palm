@@ -51,6 +51,7 @@ defmodule TuberoseWeb.Router do
     get("/logs", UsersController, :logs)
     post("/change-password", UsersController, :change_password)
     delete("/sign-out", UsersController, :sign_out)
+    get("/current", UsersController, :current)
   end
 
   scope "/api", TuberoseWeb.Api do
@@ -59,6 +60,7 @@ defmodule TuberoseWeb.Router do
     get("/layout", HomeController, :layout)
 
     resources("/locales", LocalesController, only: [:show, :index, :create, :update, :delete])
+    get("/locales/by-lang/:lang", LocalesController, :by_lang)
 
     resources("/leave-words", LeaveWordsController, only: [:show, :index, :create, :delete])
     post("/leave-words/:id/publish", LeaveWordsController, :publish)

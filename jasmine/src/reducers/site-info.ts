@@ -1,29 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import { ILayout as IState } from "../api/site";
 import type { RootState } from "../store";
-import { SiteLayoutResponse } from "../protocols/lilac/auth_pb";
-
-interface IGab {
-  code: string;
-  name: string;
-}
-interface IAuthor {
-  name: string;
-  email: string;
-}
-interface IState {
-  favicon: string;
-  title: string;
-  subhead: string;
-  description: string;
-  keywords: string[];
-  copyright: string;
-  languages: string[];
-  authors: IAuthor[];
-  version: string;
-  icp?: string;
-  gab?: IGab;
-}
+import { get as get_locale } from "../locales";
 
 const initialState: IState = {
   favicon: "",
@@ -32,33 +11,9 @@ const initialState: IState = {
   description: "",
   copyright: "",
   keywords: [],
+  locale: get_locale(),
   languages: [],
-  authors: [],
   version: "",
-};
-
-export const layout2state = (res: SiteLayoutResponse): IState => {
-  var it: IState = {
-    favicon: res.getFavicon(),
-    version: res.getVersion(),
-    title: res.getTitle(),
-    subhead: res.getSubhead(),
-    description: res.getDescription(),
-    copyright: res.getCopyright(),
-    languages: res.getLanguagesList(),
-    keywords: res.getKeywordsList(),
-    authors: res.getAuthorsList().map((x) => {
-      return { name: x.getName(), email: x.getEmail() };
-    }),
-    icp: res.getIcp()?.getCode(),
-  };
-  {
-    const g = res.getGab();
-    if (g) {
-      it.gab = { code: g.getCode(), name: g.getName() };
-    }
-  }
-  return it;
 };
 
 export const siteInfoSlice = createSlice({
@@ -73,8 +28,14 @@ export const siteInfoSlice = createSlice({
       state.description = action.payload.description;
       state.copyright = action.payload.copyright;
       state.keywords = action.payload.keywords;
+      state.locale = action.payload.locale;
       state.languages = action.payload.languages;
-      state.authors = action.payload.authors;
+      {
+        const it = action.payload.author;
+        if (it) {
+          state.author = it;
+        }
+      }
       state.icp = action.payload.icp;
       {
         const it = action.payload.gab;

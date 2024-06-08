@@ -64,7 +64,6 @@ defmodule Tuberose.MixProject do
       {:grpc, "~> 0.8"},
       {:protobuf, "~> 0.12"},
       {:google_protos, "~> 0.4.0"},
-      {:poison, "~> 5.0"},
       {:timex, "~> 3.7"}
     ]
   end

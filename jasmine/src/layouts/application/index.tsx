@@ -15,7 +15,7 @@ import Footer from "../Footer";
 import {
   LEAVE_WORDS_NEW_PATH,
   USERS_CONFIRM_BY_EMAIL_PATH,
-  USERS_FORGOT_PASSWORD_PATH,
+  USERS_FORGOT_PASSWORD_BY_EMAIL_PATH,
   USERS_SIGN_IN_PATH,
   USERS_SIGN_UP_PATH,
   USERS_UNLOCK_BY_EMAIL_PATH,
@@ -73,9 +73,9 @@ export const Component = () => {
                   icon: <UnlockOutlined />,
                 },
                 {
-                  key: USERS_FORGOT_PASSWORD_PATH,
+                  key: USERS_FORGOT_PASSWORD_BY_EMAIL_PATH,
                   label: intl.formatMessage({
-                    id: "users.forgot-password.title",
+                    id: "users.forgot-password.by-email.title",
                   }),
                   icon: <IdcardOutlined />,
                 },
