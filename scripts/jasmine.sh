@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e
+
+# https://vitejs.dev/guide/
+npm install --save filesize timezones-list \
+    moment moment-timezone \
+    marked \
+    diff @types/diff \
+    lodash @types/lodash \
+    @fortawesome/fontawesome-free \
+    famfamfam-flags famfamfam-silk famfamfam-mini \
+    js-cookie @types/js-cookie \
+    mermaid \
+    jwt-decode \
+    dinero.js@alpha @dinero.js/currencies@alpha react-currency-input-field \
+    video.js @types/video.js \
+    react-copy-to-clipboard @types/react-copy-to-clipboard \
+    react-quill react-dropzone \
+    google-map-react qrcode.react \
+    react-markdown @uiw/react-md-editor \
+    react-color @types/react-color \
+    react-pdf \
+    react-syntax-highlighter \
+    emoji-mart react-sparklines react-highlight-words \
+    react-number-format react-image-crop \
+    react-player \
+    react-draggable \
+    react-big-calendar @types/react-big-calendar \
+    react-helmet-async \
+    react-intl \
+    react-router-dom@latest \
+    @reduxjs/toolkit react-redux
+
+npm install --save \
+    antd @ant-design/pro-components @ant-design/charts \
+    @emotion/css
+
+echo 'done.'
+exit 0
