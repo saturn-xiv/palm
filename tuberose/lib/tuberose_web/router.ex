@@ -81,7 +81,6 @@ defmodule TuberoseWeb.Router do
 
   defp admin_basic_auth(conn, _opts) do
     user = Application.get_env(:tuberose, TuberoseWeb.BasicAuthUser)
-    Logger.info("$$$$$ #{inspect(user)}")
     Plug.BasicAuth.basic_auth(conn, username: user[:name], password: user[:password])
   end
 end
