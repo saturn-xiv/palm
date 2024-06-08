@@ -56,6 +56,8 @@ defmodule TuberoseWeb.Router do
 
     get("/layout", HomeController, :layout)
 
+    resources("/locales", LocalesController, only: [:show, :index, :create, :update, :delete])
+
     resources("/leave-words", LeaveWordsController, only: [:show, :index, :create, :delete])
     post("/leave-words/:id/publish", LeaveWordsController, :publish)
     delete("/leave-words/:id/revoke", LeaveWordsController, :revoke)
