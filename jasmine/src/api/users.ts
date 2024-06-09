@@ -1,14 +1,32 @@
+import moment from "moment-timezone";
+
 import { get as http_get, post as http_post } from ".";
+import { home_url } from "../utils";
 
 export interface IResource {
   type: string;
-  iid: number | null;
-  sid: string | null;
+  id: number | null;
 }
 export interface IPermission {
   resource: IResource;
   action: string;
 }
+
+export const sign_up_by_email = async (
+  real_name: string,
+  nickname: string,
+  email: string,
+  password: string
+): Promise<ISignInResponse> => {
+  return await http_post(`/api/users/current`, {
+    real_name,
+    nickname,
+    email,
+    password,
+    home: home_url(),
+    timezone: moment.tz.guess(),
+  });
+};
 
 export interface ICurrentUser {
   nickname: string;

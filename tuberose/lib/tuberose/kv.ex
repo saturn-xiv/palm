@@ -1,4 +1,4 @@
-defmodule Tuberose.Kv do
+defmodule Tuberose.KV do
   import Ecto.Query
 
   def get(key) do

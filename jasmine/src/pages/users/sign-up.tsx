@@ -3,8 +3,8 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-import { sign_up_by_email } from "../../api/camelia";
-import { IErrorMessage } from "../../api/graphql";
+import { sign_up_by_email } from "../../api/users";
+import { IErrorMessage } from "../../api";
 import { USERS_SIGN_IN_PATH } from "../../Router";
 
 export const PASSWORD_MIN_LENGTH = 6;

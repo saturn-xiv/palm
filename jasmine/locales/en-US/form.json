@@ -5,6 +5,18 @@
     },
     "password": {
       "label": "Password"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "nickname": {
+      "label": "Nickname"
+    },
+    "real-name": {
+      "label": "Real name"
+    },
+    "password-confirmation": {
+      "label": "Password confirmation"
     }
   }
 }

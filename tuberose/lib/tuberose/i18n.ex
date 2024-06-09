@@ -1,4 +1,4 @@
-defmodule Tuberose.I18n do
+defmodule Tuberose.I18N do
   import Ecto.Query
 
   def t(lang, code) do

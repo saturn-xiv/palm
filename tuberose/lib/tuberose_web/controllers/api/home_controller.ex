@@ -7,15 +7,15 @@ defmodule TuberoseWeb.Api.HomeController do
     locale = conn.assigns[:locale]
 
     json(conn, %{
-      favicon: Tuberose.I18n.t(locale, "site.favicon"),
-      title: Tuberose.I18n.t(locale, "site.title"),
-      subhead: Tuberose.I18n.t(locale, "site.subhead"),
-      description: Tuberose.I18n.t(locale, "site.description"),
-      copyright: Tuberose.I18n.t(locale, "site.copyright"),
-      author: Tuberose.Kv.get("site.author"),
-      keywords: Tuberose.Kv.get("site.keywords") || [],
-      icp: Tuberose.Kv.get("site.icp"),
-      gab: Tuberose.Kv.get("site.gab"),
+      favicon: Tuberose.I18N.t(locale, "site.favicon"),
+      title: Tuberose.I18N.t(locale, "site.title"),
+      subhead: Tuberose.I18N.t(locale, "site.subhead"),
+      description: Tuberose.I18N.t(locale, "site.description"),
+      copyright: Tuberose.I18N.t(locale, "site.copyright"),
+      author: Tuberose.KV.get("site.author"),
+      keywords: Tuberose.KV.get("site.keywords") || [],
+      icp: Tuberose.KV.get("site.icp"),
+      gab: Tuberose.KV.get("site.gab"),
       locale: locale,
       languages: Gettext.known_locales(TuberoseWeb.Gettext),
       version: "v#{Application.spec(:tuberose)[:vsn]}"

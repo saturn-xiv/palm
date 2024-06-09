@@ -25,7 +25,7 @@ defmodule Mix.Tasks.Tuberose.Role.Exempt do
 
     user = Tuberose.Repo.get_by(Tuberose.User, uid: parsed[:user])
 
-    user_it = %Palm.Atropa.V1.PolicyUsersResponse.Item{by: {:i, user.id}}
+    user_it = %Palm.Atropa.V1.PolicyUsersResponse.Item{id: {:i, user.id}}
     role_it = %Palm.Atropa.V1.PolicyRolesResponse.Item{by: {:code, parsed[:role]}}
 
     role_it =

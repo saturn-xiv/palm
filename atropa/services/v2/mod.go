@@ -289,7 +289,7 @@ func (p *PolicyUsersResponse_Item) Code() (string, error) {
 	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
 func (p *PolicyUsersResponse_Item) Display() string {
-	switch it := p.By.(type) {
+	switch it := p.Id.(type) {
 	case *PolicyUsersResponse_Item_I:
 		return fmt.Sprintf("int(%d)", it.I)
 	case *PolicyUsersResponse_Item_S:

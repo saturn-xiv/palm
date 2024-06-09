@@ -106,7 +106,7 @@ message PolicyCanRequest {
 
 message PolicyUsersResponse {
   message Item {
-    oneof by {
+    oneof id {
       int64 i = 2;
       string s = 9;
     }

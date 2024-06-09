@@ -1,5 +1,5 @@
 defmodule Tuberose.Atropa.Client do
-  def connect() do
+  defp connect() do
     GRPC.Stub.connect(Application.get_env(:tuberose, Tuberose.Atropa)[:host])
   end
 

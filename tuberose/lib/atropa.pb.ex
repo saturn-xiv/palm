@@ -107,7 +107,7 @@ defmodule Palm.Atropa.V1.PolicyUsersResponse.Item do
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
-  oneof :by, 0
+  oneof :id, 0
 
   field :i, 2, type: :int64, oneof: 0
   field :s, 9, type: :string, oneof: 0

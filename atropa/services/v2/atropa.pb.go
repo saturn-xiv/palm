@@ -1475,11 +1475,11 @@ type PolicyUsersResponse_Item struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Types that are assignable to By:
+	// Types that are assignable to Id:
 	//
 	//	*PolicyUsersResponse_Item_I
 	//	*PolicyUsersResponse_Item_S
-	By isPolicyUsersResponse_Item_By `protobuf_oneof:"by"`
+	Id isPolicyUsersResponse_Item_Id `protobuf_oneof:"id"`
 }
 
 func (x *PolicyUsersResponse_Item) Reset() {
@@ -1514,29 +1514,29 @@ func (*PolicyUsersResponse_Item) Descriptor() ([]byte, []int) {
 	return file_atropa_proto_rawDescGZIP(), []int{11, 0}
 }
 
-func (m *PolicyUsersResponse_Item) GetBy() isPolicyUsersResponse_Item_By {
+func (m *PolicyUsersResponse_Item) GetId() isPolicyUsersResponse_Item_Id {
 	if m != nil {
-		return m.By
+		return m.Id
 	}
 	return nil
 }
 
 func (x *PolicyUsersResponse_Item) GetI() int64 {
-	if x, ok := x.GetBy().(*PolicyUsersResponse_Item_I); ok {
+	if x, ok := x.GetId().(*PolicyUsersResponse_Item_I); ok {
 		return x.I
 	}
 	return 0
 }
 
 func (x *PolicyUsersResponse_Item) GetS() string {
-	if x, ok := x.GetBy().(*PolicyUsersResponse_Item_S); ok {
+	if x, ok := x.GetId().(*PolicyUsersResponse_Item_S); ok {
 		return x.S
 	}
 	return ""
 }
 
-type isPolicyUsersResponse_Item_By interface {
-	isPolicyUsersResponse_Item_By()
+type isPolicyUsersResponse_Item_Id interface {
+	isPolicyUsersResponse_Item_Id()
 }
 
 type PolicyUsersResponse_Item_I struct {
@@ -1547,9 +1547,9 @@ type PolicyUsersResponse_Item_S struct {
 	S string `protobuf:"bytes,9,opt,name=s,proto3,oneof"`
 }
 
-func (*PolicyUsersResponse_Item_I) isPolicyUsersResponse_Item_By() {}
+func (*PolicyUsersResponse_Item_I) isPolicyUsersResponse_Item_Id() {}
 
-func (*PolicyUsersResponse_Item_S) isPolicyUsersResponse_Item_By() {}
+func (*PolicyUsersResponse_Item_S) isPolicyUsersResponse_Item_Id() {}
 
 type PolicyRolesResponse_Item struct {
 	state         protoimpl.MessageState
@@ -2547,7 +2547,7 @@ var file_atropa_proto_rawDesc = []byte{
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d,
 	0x73, 0x1a, 0x2c, 0x0a, 0x04, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x0e, 0x0a, 0x01, 0x69, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52, 0x01, 0x69, 0x12, 0x0e, 0x0a, 0x01, 0x73, 0x18, 0x09,
-	0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x01, 0x73, 0x42, 0x04, 0x0a, 0x02, 0x62, 0x79, 0x22,
+	0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x01, 0x73, 0x42, 0x04, 0x0a, 0x02, 0x69, 0x64, 0x22,
 	0xb8, 0x02, 0x0a, 0x13, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x6f, 0x6c, 0x65, 0x73, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73,
 	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x70, 0x61, 0x6c, 0x6d, 0x2e, 0x61, 0x74,
