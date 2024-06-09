@@ -15,16 +15,25 @@ export const options = (method: string): RequestInit => {
 
 export const get = async <R>(path: string): Promise<R> => {
   const response = await fetch(path, options("GET"));
-  const res: R = await response.json();
-  return res;
+  if (response.ok) {
+    const res: R = await response.json();
+    return res;
+  }
+  const reason = await response.text();
+  throw reason;
 };
 
 export const delete_ = async <R>(path: string): Promise<R> => {
   const response = await fetch(path, options("DELETE"));
-  const res: R = await response.json();
-  return res;
+  if (response.ok) {
+    const res: R = await response.json();
+    return res;
+  }
+  const reason = await response.text();
+  throw reason;
 };
 
+// TODO
 export const upload = async <R>(path: string, files: File[]): Promise<R> => {
   const form = new FormData();
   for (const file of files) {
@@ -58,6 +67,7 @@ export const post = async <Q, R>(path: string, body: Q): Promise<R> => {
   throw reason;
 };
 
+// TODO
 export const patch = <Request, Response>(
   path: string,
   body: Request
@@ -72,6 +82,7 @@ export const patch = <Request, Response>(
   });
 };
 
+// TODO
 export const put = <Request, Response>(
   path: string,
   body: Request
@@ -87,6 +98,7 @@ export const put = <Request, Response>(
   );
 };
 
+// TODO
 export const download = (path: string, name: string) => {
   const data = options("GET");
   fetch(path, data)
@@ -101,3 +113,5 @@ export const download = (path: string, name: string) => {
       a.remove();
     });
 };
+
+export const EDITOR_TEXTAREA = "textarea";

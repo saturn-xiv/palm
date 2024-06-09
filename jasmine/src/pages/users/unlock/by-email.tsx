@@ -3,8 +3,7 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-import { unlock_by_email } from "../../../api/camelia";
-import { IErrorMessage } from "../../../api/graphql";
+import { unlock_by_email } from "../../../api/users";
 import { USERS_SIGN_IN_PATH } from "../../../Router";
 
 interface IForm {
@@ -26,13 +25,18 @@ export const Component = () => {
         onFinish={async (values) => {
           unlock_by_email(values.user)
             .then(() => {
-              messageApi.success(
-                intl.formatMessage({ id: "users.unlock.by-email.succeed" })
-              );
-              navigate(USERS_SIGN_IN_PATH);
+              messageApi.info({
+                type: "success",
+                content: intl.formatMessage({
+                  id: "users.unlock.by-email.succeed",
+                }),
+                onClose: () => {
+                  navigate(USERS_SIGN_IN_PATH);
+                },
+              });
             })
-            .catch((reason: IErrorMessage[]) => {
-              messageApi.error(reason.map((x) => x.message).join("\n"));
+            .catch((reason: string) => {
+              messageApi.error(reason);
             });
         }}
       >

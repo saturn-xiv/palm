@@ -2,8 +2,8 @@ import { ProForm, ProFormTextArea } from "@ant-design/pro-components";
 import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { create_leave_word, EDITOR_TEXTAREA } from "../../api/camelia";
-import { IErrorMessage } from "../../api/graphql";
+import { create_leave_word } from "../../api/leave-words";
+import { EDITOR_TEXTAREA } from "../../api";
 
 interface IForm {
   content: string;
@@ -22,8 +22,8 @@ export const Component = () => {
             .then(() => {
               messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
             })
-            .catch((reason: IErrorMessage[]) => {
-              messageApi.error(reason.map((x) => x.message).join("\n"));
+            .catch((reason: string) => {
+              messageApi.error(reason);
             });
         }}
       >

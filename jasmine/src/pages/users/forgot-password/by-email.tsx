@@ -3,9 +3,8 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-import { forgot_password } from "../../api/camelia";
-import { IErrorMessage } from "../../api/graphql";
-import { USERS_SIGN_IN_PATH } from "../../Router";
+import { forgot_password_by_email } from "../../../api/users";
+import { USERS_SIGN_IN_PATH } from "../../../Router";
 
 interface IForm {
   user: string;
@@ -18,21 +17,26 @@ export const Component = () => {
 
   return (
     <Card
-      title={<FormattedMessage id="users.forgot-password.title" />}
+      title={<FormattedMessage id="users.forgot-password.by-email.title" />}
       hoverable
     >
       {contextHolder}
       <ProForm<IForm>
         onFinish={async (values) => {
-          forgot_password(values.user)
+          forgot_password_by_email(values.user)
             .then(() => {
-              messageApi.success(
-                intl.formatMessage({ id: "users.forgot-password.succeed" })
-              );
-              navigate(USERS_SIGN_IN_PATH);
+              messageApi.info({
+                type: "success",
+                content: intl.formatMessage({
+                  id: "users.forgot-password.by-email.succeed",
+                }),
+                onClose: () => {
+                  navigate(USERS_SIGN_IN_PATH);
+                },
+              });
             })
-            .catch((reason: IErrorMessage[]) => {
-              messageApi.error(reason.map((x) => x.message).join("\n"));
+            .catch((reason: string) => {
+              messageApi.error(reason);
             });
         }}
       >

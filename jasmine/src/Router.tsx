@@ -2,12 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 export const USERS_SIGN_UP_PATH = "/anonymous/users/sign-up";
 export const USERS_SIGN_IN_PATH = "/anonymous/users/sign-in";
-export const USERS_CONFIRM_BY_EMAIL_PATH = "/anonymous/users/confirm";
+export const USERS_CONFIRM_BY_EMAIL_PATH = "/anonymous/users/confirm-by-email";
 export const USERS_CONFIRM_BY_TOKEN_PATH = "/anonymous/users/confirm/:token";
-export const USERS_UNLOCK_BY_EMAIL_PATH = "/anonymous/users/unlock";
+export const USERS_UNLOCK_BY_EMAIL_PATH = "/anonymous/users/unlock-by-email";
 export const USERS_UNLOCK_BY_TOKEN_PATH = "/anonymous/users/unlock/:token";
 export const USERS_FORGOT_PASSWORD_BY_EMAIL_PATH =
-  "/anonymous/users/forgot-password";
+  "/anonymous/users/forgot-password-by-email";
 export const USERS_RESET_PASSWORD_PATH =
   "/anonymous/users/reset-password/:token";
 export const LEAVE_WORDS_NEW_PATH = "/anonymous/leave-words/new";
@@ -121,7 +121,7 @@ const router = createBrowserRouter(
         },
         {
           path: USERS_FORGOT_PASSWORD_BY_EMAIL_PATH,
-          lazy: () => import("./pages/users/forgot-password"),
+          lazy: () => import("./pages/users/forgot-password/by-email"),
         },
         {
           path: USERS_RESET_PASSWORD_PATH,

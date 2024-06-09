@@ -1,9 +1,20 @@
 defmodule TuberoseWeb.Api.LeaveWordsController do
   use TuberoseWeb, :controller
 
-  def create(conn, _params) do
-    # TODO
-    json(conn, %{id: "in"})
+  def create(conn, %{
+        "content" => content,
+        "editor" => editor
+      }) do
+    %Tuberose.LeaveWord{
+      lang: conn.assigns.locale,
+      ip: conn.assigns.client_ip,
+      body: content,
+      editor: editor,
+      status: "pending"
+    }
+    |> Tuberose.Repo.insert()
+
+    json(conn, %{})
   end
 
   def index(conn, _params) do

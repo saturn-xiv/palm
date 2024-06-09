@@ -43,19 +43,22 @@ defmodule TuberoseWeb.Router do
     get("/locales/by-lang/:lang", LocalesController, :by_lang)
 
     scope "/users" do
-      post("/sign-in", UsersController, :sign_in)
-      post("/sign-up", UsersController, :sign_up)
-      post("/confirm", UsersController, :confirm_by_email)
-      post("/confirm/:token", UsersController, :confirm_by_token)
-      post("/unlock", UsersController, :unlock_by_email)
-      post("/unlock/:token", UsersController, :unlock_by_token)
-      post("/forgot-password", UsersController, :forgot_password)
-      post("/reset-password/:token", UsersController, :reset_password)
+      scope "/by-email" do
+        post("/sign-in", EmailUsersController, :sign_in)
+        post("/sign-up", EmailUsersController, :sign_up)
+        post("/confirm", EmailUsersController, :confirm_by_email)
+        post("/confirm/:token", EmailUsersController, :confirm_by_token)
+        post("/unlock", EmailUsersController, :unlock_by_email)
+        post("/unlock/:token", EmailUsersController, :unlock_by_token)
+        post("/forgot-password", EmailUsersController, :forgot_password)
+        post("/reset-password/:token", EmailUsersController, :reset_password)
 
-      get("/profile", UsersController, :get_profile)
-      post("/profile", UsersController, :set_profile)
+        get("/profile", EmailUsersController, :get_profile)
+        post("/profile", EmailUsersController, :set_profile)
+        post("/change-password", EmailUsersController, :change_password)
+      end
+
       get("/logs", UsersController, :logs)
-      post("/change-password", UsersController, :change_password)
       delete("/sign-out", UsersController, :sign_out)
       get("/current", UsersController, :current)
     end

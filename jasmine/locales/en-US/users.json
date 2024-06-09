@@ -19,6 +19,7 @@
   "unlock": {
     "by-email": {
       "title": "Didn't receive unlock instructions?",
+      "submit": "Resend unlock instructions",
       "succeed": "You will receive an email with instructions for how to unlock your account in a few minutes."
     },
     "by-token": {
@@ -28,7 +29,8 @@
   "forgot-password": {
     "by-email": {
       "title": "Forgot your password?",
-      "submit": "Send me reset password instructions"
+      "submit": "Send me reset password instructions",
+      "succeed": "You will receive an email with instructions on how to reset your password in a few minutes."
     }
   },
   "reset-password": {

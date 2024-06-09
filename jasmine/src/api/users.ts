@@ -13,13 +13,38 @@ export interface IPermission {
   action: string;
 }
 
+export const forgot_password_by_email = async (
+  user: string
+): Promise<Record<string, string>> => {
+  return await http_post(`/api/users/by-email/forgot-password`, {
+    user,
+    home: home_url(),
+  });
+};
+export const unlock_by_email = async (
+  user: string
+): Promise<Record<string, string>> => {
+  return await http_post(`/api/users/by-email/unlock`, {
+    user,
+    home: home_url(),
+  });
+};
+export const confirm_by_email = async (
+  user: string
+): Promise<Record<string, string>> => {
+  return await http_post(`/api/users/by-email/confirm`, {
+    user,
+    home: home_url(),
+  });
+};
+
 export const sign_up_by_email = async (
   real_name: string,
   nickname: string,
   email: string,
   password: string
 ): Promise<ISignInResponse> => {
-  return await http_post(`/api/users/sign-up`, {
+  return await http_post(`/api/users/by-email/sign-up`, {
     real_name,
     nickname,
     email,

@@ -17,6 +17,9 @@
     },
     "password-confirmation": {
       "label": "Password confirmation"
+    },
+    "content": {
+      "label": "Content"
     }
   }
 }
