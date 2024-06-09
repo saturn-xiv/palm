@@ -54,5 +54,6 @@ defmodule TuberoseWeb.Endpoint do
   plug(Plug.Head)
   plug(Plug.Session, @session_options)
   plug(TuberoseWeb.Plugs.Locale, "en-US")
+  plug(TuberoseWeb.Plugs.ClientIP, "n/a")
   plug(TuberoseWeb.Router)
 end

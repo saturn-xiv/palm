@@ -6,7 +6,7 @@ defmodule Tuberose.Repo.Migrations.CreateSettings do
       add(:user_id, references(:users))
       add(:key, :string, null: false)
       add(:value, :binary, null: false, redact: true)
-      add(:salt, :bit, size: 32, redact: true)
+      add(:salt, :binary, redact: true)
       add(:version, :integer, default: 0, null: false)
 
       timestamps(type: :utc_datetime_usec)

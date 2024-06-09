@@ -35,20 +35,22 @@ defmodule Mix.Tasks.Tuberose.User.Create do
     end
 
     avatar = Tuberose.EmailUser.gravatar(parsed[:email])
-    {password, salt} = Tuberose.Atropa.Client.hmac_sign(parsed[:password], 16)
+    password = Tuberose.Validation.password!(parsed[:password])
+    {password, salt} = Tuberose.Atropa.Client.hmac_sign(password, 16)
 
-    Logger.info("create user #{parsed[:realname]}<#{parsed[:email]}>")
+    email = Tuberose.Validation.email!(parsed[:email])
+    nickname = Tuberose.Validation.code!(parsed[:nickname], 3)
+    real_name = Tuberose.Validation.label!(parsed[:realname], 2)
 
-    email = String.downcase(parsed[:email])
-    nickname = String.downcase(parsed[:nickname])
+    Logger.info("create user #{real_name}<#{email}>")
 
     Tuberose.Repo.transaction(fn ->
       if Tuberose.Repo.get_by(Tuberose.EmailUser, email: email) do
-        raise ArgumentError, message: "#{parsed[:email]} already exists"
+        raise ArgumentError, message: "#{email} already exists"
       end
 
       if Tuberose.Repo.get_by(Tuberose.EmailUser, nickname: nickname) do
-        raise ArgumentError, message: "#{parsed[:nickname]} already exists"
+        raise ArgumentError, message: "#{nickname} already exists"
       end
 
       uid = Ecto.UUID.generate()
@@ -61,7 +63,7 @@ defmodule Mix.Tasks.Tuberose.User.Create do
         password: password,
         salt: salt,
         nickname: nickname,
-        real_name: parsed[:realname],
+        real_name: real_name,
         avatar: avatar,
         confirmed_at: DateTime.utc_now()
       }

@@ -2,6 +2,7 @@ import moment from "moment-timezone";
 
 import { get as http_get, post as http_post } from ".";
 import { home_url } from "../utils";
+import { get as get_locale } from "../locales";
 
 export interface IResource {
   type: string;
@@ -18,13 +19,14 @@ export const sign_up_by_email = async (
   email: string,
   password: string
 ): Promise<ISignInResponse> => {
-  return await http_post(`/api/users/current`, {
+  return await http_post(`/api/users/sign-up`, {
     real_name,
     nickname,
     email,
     password,
     home: home_url(),
     timezone: moment.tz.guess(),
+    locale: get_locale(),
   });
 };
 

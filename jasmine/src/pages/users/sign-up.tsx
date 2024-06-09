@@ -4,7 +4,6 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
 import { sign_up_by_email } from "../../api/users";
-import { IErrorMessage } from "../../api";
 import { USERS_SIGN_IN_PATH } from "../../Router";
 
 export const PASSWORD_MIN_LENGTH = 6;
@@ -48,13 +47,16 @@ export const Component = () => {
             values.password
           )
             .then(() => {
-              messageApi.success(
-                intl.formatMessage({ id: "users.confirm.by-email.succeed" })
-              );
-              navigate(USERS_SIGN_IN_PATH);
+              messageApi.open({
+                type: "success",
+                content: intl.formatMessage({
+                  id: "users.confirm.by-email.succeed",
+                }),
+                onClose: () => navigate(USERS_SIGN_IN_PATH),
+              });
             })
-            .catch((reason: IErrorMessage[]) => {
-              messageApi.error(reason.map((x) => x.message).join("\n"));
+            .catch((reason: string) => {
+              messageApi.error(reason);
             });
         }}
       >

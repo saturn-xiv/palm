@@ -1,15 +1,11 @@
 import { get as getToken } from "../reducers/current-user";
 
-export interface IErrorMessage {
-  message: string;
-  locations: { line: number; column: number }[];
-}
-
 export const options = (method: string): RequestInit => {
   return {
     credentials: "include",
     headers: {
       Authorization: `Bearer ${getToken()}`,
+      Accept: "application/json",
       "Content-Type": "application/json; charset=utf-8",
     },
     mode: "cors",
@@ -54,8 +50,12 @@ export const post = async <Q, R>(path: string, body: Q): Promise<R> => {
   const data = options("POST");
   data.body = JSON.stringify(body);
   const response = await fetch(path, data);
-  const res: R = await response.json();
-  return res;
+  if (response.ok) {
+    const res: R = await response.json();
+    return res;
+  }
+  const reason = await response.text();
+  throw reason;
 };
 
 export const patch = <Request, Response>(
