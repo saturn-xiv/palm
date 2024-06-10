@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { unlock_by_email } from "../../../api/users";
 import { USERS_SIGN_IN_PATH } from "../../../Router";
+import { IErrorMessage } from "../../../api/graphql";
 
 interface IForm {
   user: string;
@@ -35,8 +36,8 @@ export const Component = () => {
                 },
               });
             })
-            .catch((reason: string) => {
-              messageApi.error(reason);
+            .catch((reason: IErrorMessage[]) => {
+              messageApi.error(reason.map((x) => x.message).join("\n"));
             });
         }}
       >

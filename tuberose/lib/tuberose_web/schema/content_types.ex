@@ -70,15 +70,6 @@ defmodule TuberoseWeb.Schema.ContentTypes do
   end
 
   # ---------------------------------------------------------------------------
-  input_object :user_sign_up_by_email_request do
-    field(:nickname, non_null(:string))
-    field(:real_name, non_null(:string))
-    field(:email, non_null(:string))
-    field(:password, non_null(:string))
-    field(:lang, non_null(:string))
-    field(:timezone, non_null(:string))
-    field(:home, non_null(:string))
-  end
 
   # ---------------------------------------------------------------------------
   enum :leave_word_status do

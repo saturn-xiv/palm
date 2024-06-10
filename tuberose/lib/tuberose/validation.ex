@@ -59,7 +59,7 @@ defmodule Tuberose.Validation do
     s = String.trim(s)
     l = String.length(s)
 
-    unless l >= 5 and l <= 127 and String.contains?(s, "://") do
+    if l >= 5 and l <= 127 and String.contains?(s, "://") do
       {:ok, :s}
     else
       {:error, :not_a_valid_url}

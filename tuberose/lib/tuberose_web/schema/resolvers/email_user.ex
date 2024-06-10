@@ -2,9 +2,9 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
   require Logger
   import Ecto.Query
 
-  def confirm(_parent, %{request: request}, _resolution) do
-    user = String.trim(request.user) |> String.downcase()
-    home = Tuberose.Validation.url!(request.home)
+  def confirm(_parent, %{user: user, home: home}, _resolution) do
+    user = String.trim(user) |> String.downcase()
+    {:ok, home} = Tuberose.Validation.url(home)
 
     it =
       from(p in Tuberose.EmailUser,
@@ -15,24 +15,24 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       |> Tuberose.Repo.one()
 
     unless it do
-      raise ArgumentError, message: :user_is_not_exists
+      raise ArgumentError, message: "User is not exists"
     end
 
     if it.deleted_at do
-      raise ArgumentError, message: :user_is_disabled
+      raise ArgumentError, message: "User is disabled"
     end
 
     if it.confirmed_at do
-      raise ArgumentError, message: :user_is_active
+      raise ArgumentError, message: "User is active"
     end
 
     send_email(it.email, home, :confirm)
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
-  def unlock(_parent, %{request: request}, _resolution) do
-    user = String.trim(request.user) |> String.downcase()
-    {:ok, home} = Tuberose.Validation.url(request.home)
+  def unlock(_parent, %{user: user, home: home}, _resolution) do
+    user = String.trim(user) |> String.downcase()
+    {:ok, home} = Tuberose.Validation.url(home)
 
     it =
       from(p in Tuberose.EmailUser,
@@ -43,34 +43,34 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       |> Tuberose.Repo.one()
 
     unless it do
-      raise ArgumentError, message: :user_is_not_exists
+      raise ArgumentError, message: "User isn't exists"
     end
 
     if it.deleted_at do
-      raise ArgumentError, message: :user_is_disabled
+      raise ArgumentError, message: "User is disabled"
     end
 
     unless it.confirmed_at do
-      raise ArgumentError, message: :user_is_inactive
+      raise ArgumentError, message: "User is inactive"
     end
 
     ur = Tuberose.Repo.get(Tuberose.User, it.user_id)
 
     if ur.deleted_at do
-      raise ArgumentError, message: :user_is_disabled
+      raise ArgumentError, message: "User is disabled"
     end
 
     unless ur.locked_at do
-      raise ArgumentError, message: :user_is_not_locked
+      raise ArgumentError, message: "User isn't locked"
     end
 
     send_email(it.email, home, :unlock)
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
-  def forgot_password(_parent, %{request: request}, _resolution) do
-    user = String.trim(request.user) |> String.downcase()
-    {:ok, home} = Tuberose.Validation.url(request.home)
+  def forgot_password(_parent, %{user: user, home: home}, _resolution) do
+    user = String.trim(user) |> String.downcase()
+    {:ok, home} = Tuberose.Validation.url(home)
 
     it =
       from(p in Tuberose.EmailUser,
@@ -81,39 +81,49 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       |> Tuberose.Repo.one()
 
     unless it do
-      raise ArgumentError, message: :user_is_not_exists
+      raise ArgumentError, message: "User isn't exists"
     end
 
     if it.deleted_at do
-      raise ArgumentError, message: :user_is_disabled
+      raise ArgumentError, message: "User is disabled"
     end
 
     unless it.confirmed_at do
-      raise ArgumentError, message: :user_is_inactive
+      raise ArgumentError, message: "User is inactive"
     end
 
     ur = Tuberose.Repo.get(Tuberose.User, it.user_id)
 
     if ur.deleted_at do
-      raise ArgumentError, message: :user_is_disabled
+      raise ArgumentError, message: "User is disabled"
     end
 
     if ur.locked_at do
-      raise ArgumentError, message: :user_is_locked
+      raise ArgumentError, message: "User is locked"
     end
 
     send_email(it.email, home, :reset_password)
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
-  def sign_up(_parent, %{request: request}, _resolution) do
-    {:ok, nickname} = Tuberose.Validation.code(request.nickname, 3)
-    {:ok, real_name} = Tuberose.Validation.label(request.real_name, 2)
-    {:ok, email} = Tuberose.Validation.email(request.email)
-    {:ok, password} = Tuberose.Validation.password(request.password)
-    {:ok, locale} = Tuberose.Validation.language_code(request.locale)
-    {:ok, timezone} = Tuberose.Validation.timezone(request.timezone)
-    {:ok, home} = Tuberose.Validation.url(request.home)
+  def sign_up(
+        _parent,
+        %{
+          real_name: real_name,
+          nickname: nickname,
+          email: email,
+          password: password,
+          home: home,
+          timezone: timezone
+        },
+        %{context: context}
+      ) do
+    {:ok, nickname} = Tuberose.Validation.code(nickname, 3)
+    {:ok, real_name} = Tuberose.Validation.label(real_name, 2)
+    {:ok, email} = Tuberose.Validation.email(email)
+    {:ok, password} = Tuberose.Validation.password(password)
+    {:ok, timezone} = Tuberose.Validation.timezone(timezone)
+    {:ok, home} = Tuberose.Validation.url(home)
 
     avatar = Tuberose.EmailUser.gravatar(email)
     {password, salt} = Tuberose.Atropa.Client.hmac_sign(password, 16)
@@ -130,7 +140,7 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       end
 
       uid = Ecto.UUID.generate()
-      %Tuberose.User{uid: uid, lang: locale, timezone: timezone} |> Tuberose.Repo.insert()
+      %Tuberose.User{uid: uid, lang: context.locale, timezone: timezone} |> Tuberose.Repo.insert()
       user = Tuberose.Repo.get_by(Tuberose.User, uid: uid)
 
       %Tuberose.EmailUser{
@@ -147,7 +157,7 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       %Tuberose.Log{
         user_id: user.id,
         plugin: "core",
-        ip: "aa",
+        ip: context.client_ip,
         level: "info",
         resource_type: "email_user",
         message: "signed up by email"
@@ -155,6 +165,7 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       |> Tuberose.Repo.insert()
     end)
 
+    send_email(email, home, :confirm)
     {:ok, %{:created_at => DateTime.utc_now()}}
   end
 

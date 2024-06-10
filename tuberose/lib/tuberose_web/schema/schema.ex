@@ -40,15 +40,38 @@ defmodule TuberoseWeb.Schema do
 
   # ---------------------------------------------------------------------------
   mutation do
+    field :sign_up_user_by_email, non_null(:succeed) do
+      arg(:real_name, non_null(:string))
+      arg(:nickname, non_null(:string))
+      arg(:email, non_null(:string))
+      arg(:password, non_null(:string))
+      arg(:home, non_null(:string))
+      arg(:timezone, non_null(:string))
+      resolve(&Resolvers.EmailUser.sign_up/3)
+    end
+
+    field :confirm_user_by_email, non_null(:succeed) do
+      arg(:user, non_null(:string))
+      arg(:home, non_null(:string))
+      resolve(&Resolvers.EmailUser.confirm/3)
+    end
+
+    field :unlock_user_by_email, non_null(:succeed) do
+      arg(:user, non_null(:string))
+      arg(:home, non_null(:string))
+      resolve(&Resolvers.EmailUser.unlock/3)
+    end
+
+    field :forgot_user_password_by_email, non_null(:succeed) do
+      arg(:user, non_null(:string))
+      arg(:home, non_null(:string))
+      resolve(&Resolvers.EmailUser.forgot_password/3)
+    end
+
     field :create_leave_word, non_null(:succeed) do
       arg(:content, non_null(:string))
       arg(:editor, non_null(:text_editor))
       resolve(&Resolvers.LeaveWord.create/3)
-    end
-
-    field :user_sign_up_by_email, non_null(:succeed) do
-      arg(:request, non_null(:user_sign_up_by_email_request))
-      resolve(&Resolvers.EmailUser.sign_up/3)
     end
   end
 

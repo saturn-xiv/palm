@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
 import { sign_up_by_email } from "../../api/users";
+import { IErrorMessage } from "../../api/graphql";
 import { USERS_SIGN_IN_PATH } from "../../Router";
 
 export const PASSWORD_MIN_LENGTH = 6;
@@ -55,8 +56,8 @@ export const Component = () => {
                 onClose: () => navigate(USERS_SIGN_IN_PATH),
               });
             })
-            .catch((reason: string) => {
-              messageApi.error(reason);
+            .catch((reason: IErrorMessage[]) => {
+              messageApi.error(reason.map((x) => x.message).join("\n"));
             });
         }}
       >

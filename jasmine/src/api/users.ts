@@ -1,6 +1,5 @@
 import moment from "moment-timezone";
 
-import { get as http_get, post as http_post } from ".";
 import { home_url } from "../utils";
 import { query, ISucceed } from "./graphql";
 
@@ -15,27 +14,53 @@ export interface IPermission {
 
 export const forgot_password_by_email = async (
   user: string
-): Promise<Record<string, string>> => {
-  return await http_post(`/api/users/by-email/forgot-password`, {
-    user,
-    home: home_url(),
-  });
+): Promise<ISucceed> => {
+  const res = await query<{ forgotUserPasswordByEmail: ISucceed }>(
+    `
+mutation call($user: String!, $home: String!){
+  forgotUserPasswordByEmail(user: $user, home: $home){
+    createdAt
+  }
+}
+`,
+    {
+      user,
+      home: home_url(),
+    }
+  );
+  return res.forgotUserPasswordByEmail;
 };
-export const unlock_by_email = async (
-  user: string
-): Promise<Record<string, string>> => {
-  return await http_post(`/api/users/by-email/unlock`, {
-    user,
-    home: home_url(),
-  });
+export const unlock_by_email = async (user: string): Promise<ISucceed> => {
+  const res = await query<{ unlockUserByEmail: ISucceed }>(
+    `
+mutation call($user: String!, $home: String!){
+  unlockUserByEmail(user: $user, home: $home){
+    createdAt
+  }
+}
+`,
+    {
+      user,
+      home: home_url(),
+    }
+  );
+  return res.unlockUserByEmail;
 };
-export const confirm_by_email = async (
-  user: string
-): Promise<Record<string, string>> => {
-  return await http_post(`/api/users/by-email/confirm`, {
-    user,
-    home: home_url(),
-  });
+export const confirm_by_email = async (user: string): Promise<ISucceed> => {
+  const res = await query<{ confirmUserByEmail: ISucceed }>(
+    `
+mutation call($user: String!, $home: String!){
+  confirmUserByEmail(user: $user, home: $home){
+    createdAt
+  }
+}
+`,
+    {
+      user,
+      home: home_url(),
+    }
+  );
+  return res.confirmUserByEmail;
 };
 
 export const sign_up_by_email = async (
@@ -64,6 +89,8 @@ mutation call($realName: String!, $nickname: String!, $email: String!, $password
   return res.signUpUserByEmail;
 };
 
+// ----------------------------------------------------------------------------
+
 export interface ICurrentUser {
   nickname: string;
   email: string;
@@ -87,12 +114,53 @@ export interface ISignInResponse {
 }
 
 export const current_user = async (): Promise<ICurrentUser> => {
-  return await http_get(`/api/users/current`);
+  const res = await query<{ currentUser: ICurrentUser }>(
+    `
+query call{
+  currentUser{
+    nickname, email, realName, avatar, providerType, lang, timezone,
+    isAdministrator, isRoot,
+    roles, 
+    permissions{ 
+      resource{type, sid, iid},
+      action
+    },
+    hasWechatMiniProgram, hasWechatOauth2, hasGoogle
+  }
+}
+`,
+    {}
+  );
+  return res.currentUser;
 };
 
 export const sign_in_by_email = async (
   user: string,
   password: string
 ): Promise<ISignInResponse> => {
-  return await http_post(`/api/users/current`, { user, password });
+  const res = await query<{ signInUserByEmail: ISignInResponse }>(
+    `
+mutation call($user: String!, $password: String!){
+  signInUserByEmail(user: $user, password: $password){    
+    token, 
+    user{
+      realName, avatar, providerType, lang, timezone,
+      isAdministrator, isRoot,
+      roles, 
+      permissions{ 
+        resource{type, sid, iid},
+        action
+      },
+      hasWechatMiniProgram, hasWechatOauth2, hasGoogle
+    }
+  }
+}
+`,
+    {
+      user,
+      password,
+      ttl: 60 * 60 * 24,
+    }
+  );
+  return res.signInUserByEmail;
 };
