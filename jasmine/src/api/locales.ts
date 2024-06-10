@@ -1,4 +1,4 @@
-import { get as http_get } from "./";
+import { query, IPagination } from "./graphql";
 
 interface ILocale {
   id: number;
@@ -8,15 +8,51 @@ interface ILocale {
   updatedAt: Date;
 }
 
+interface IIndexLocaleByLangResponse {
+  indexLocaleByLang: { code: string; message: string }[];
+}
+
 export const intl_messages_by_lang = async (
   lang: string
 ): Promise<Record<string, string>> => {
-  const items: ILocale[] = await http_get(`/api/locales/by-lang/${lang}`);
-  return items.reduce((ac, it) => ({ ...ac, [it.code]: it.message }), {});
+  const res = await query<IIndexLocaleByLangResponse>(
+    `
+query call($lang: String!){
+  indexLocaleByLang(lang: $lang){
+    code, message
+  }
+}
+`,
+    { lang }
+  );
+
+  const messages = res.indexLocaleByLang.reduce(
+    (ac, it) => ({ ...ac, [it.code]: it.message }),
+    {}
+  );
+  return messages;
 };
 
-export const all = async (): Promise<ILocale[]> => {
-  // TODO
-  const items: ILocale[] = await http_get("/api/locales");
-  return items;
+interface IIndexLocaleResponse {
+  items: ILocale[];
+  pagination: IPagination;
+}
+export const index_locale = async (
+  page: number,
+  size: number
+): Promise<IIndexLocaleResponse> => {
+  const res = await query<{ indexLocale: IIndexLocaleResponse }>(
+    `
+query call($pager: Pager!){
+  indexLocale(pager: $pager){
+    items{id, lang, code, message, updatedAt},
+    pagination{page, size, total, hasNext, hasPrevious}
+  }
+}
+`,
+    {
+      pager: { page, size },
+    }
+  );
+  return res.indexLocale;
 };

@@ -1,11 +1,18 @@
-import { post as http_post } from ".";
+import { ISucceed, query } from "./graphql";
 
 export const create_leave_word = async (
   content: string,
   editor: string
-): Promise<Record<string, string>> => {
-  return await http_post(`/api/leave-words`, {
-    content,
-    editor,
-  });
+): Promise<ISucceed> => {
+  const res = await query<{ createLeaveWord: ISucceed }>(
+    `
+mutation call($content: String!, $editor: TextEditor!){
+  createLeaveWord(content: $content, editor: $editor){
+    createdAt
+  }
+}
+`,
+    { content, editor }
+  );
+  return res.createLeaveWord;
 };

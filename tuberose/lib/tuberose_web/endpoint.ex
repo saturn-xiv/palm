@@ -45,7 +45,7 @@ defmodule TuberoseWeb.Endpoint do
   plug(Plug.Telemetry, event_prefix: [:phoenix, :endpoint])
 
   plug(Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
+    parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
   )
@@ -53,7 +53,10 @@ defmodule TuberoseWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
   plug(Plug.Session, @session_options)
+
   plug(TuberoseWeb.Plugs.Locale, "en-US")
   plug(TuberoseWeb.Plugs.ClientIP, "n/a")
+  plug(TuberoseWeb.Plugs.Token)
+
   plug(TuberoseWeb.Router)
 end

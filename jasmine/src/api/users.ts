@@ -2,7 +2,7 @@ import moment from "moment-timezone";
 
 import { get as http_get, post as http_post } from ".";
 import { home_url } from "../utils";
-import { get as get_locale } from "../locales";
+import { query, ISucceed } from "./graphql";
 
 export interface IResource {
   type: string;
@@ -39,20 +39,29 @@ export const confirm_by_email = async (
 };
 
 export const sign_up_by_email = async (
-  real_name: string,
+  realName: string,
   nickname: string,
   email: string,
   password: string
-): Promise<ISignInResponse> => {
-  return await http_post(`/api/users/by-email/sign-up`, {
-    real_name,
-    nickname,
-    email,
-    password,
-    home: home_url(),
-    timezone: moment.tz.guess(),
-    locale: get_locale(),
-  });
+): Promise<ISucceed> => {
+  const res = await query<{ signUpUserByEmail: ISucceed }>(
+    `
+mutation call($realName: String!, $nickname: String!, $email: String!, $password: String!, $home: String!, $timezone: String!){
+  signUpUserByEmail(realName: $realName, nickname: $nickname, email: $email, password: $password, home: $home, timezone: $timezone){
+    createdAt
+  }
+}
+`,
+    {
+      realName,
+      nickname,
+      email,
+      password,
+      home: home_url(),
+      timezone: moment.tz.guess(),
+    }
+  );
+  return res.signUpUserByEmail;
 };
 
 export interface ICurrentUser {

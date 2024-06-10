@@ -33,7 +33,6 @@ export const delete_ = async <R>(path: string): Promise<R> => {
   throw reason;
 };
 
-// TODO
 export const upload = async <R>(path: string, files: File[]): Promise<R> => {
   const form = new FormData();
   for (const file of files) {
@@ -50,8 +49,12 @@ export const upload = async <R>(path: string, files: File[]): Promise<R> => {
   };
   data.body = form;
   const response = await fetch(path, data);
-  const res: R = await response.json();
-  return res;
+  if (response.ok) {
+    const res: R = await response.json();
+    return res;
+  }
+  const reason = await response.text();
+  throw reason;
 };
 
 // https://github.github.io/fetch/#options
@@ -67,38 +70,30 @@ export const post = async <Q, R>(path: string, body: Q): Promise<R> => {
   throw reason;
 };
 
-// TODO
-export const patch = <Request, Response>(
-  path: string,
-  body: Request
-): Promise<Response> => {
+export const patch = async <Q, R>(path: string, body: Q): Promise<R> => {
   const data = options("PATCH");
   data.body = JSON.stringify(body);
-  return fetch(path, data).then((res) => {
-    if (res.status === 200) {
-      return res.json();
-    }
-    throw res.text();
-  });
+  const response = await fetch(path, data);
+  if (response.ok) {
+    const res: R = await response.json();
+    return res;
+  }
+  const reason = await response.text();
+  throw reason;
 };
 
-// TODO
-export const put = <Request, Response>(
-  path: string,
-  body: Request
-): Promise<Response> => {
+export const put = async <Q, R>(path: string, body: Q): Promise<R> => {
   const data = options("PUT");
   data.body = JSON.stringify(body);
-  return fetch(path, data).then((res) =>
-    res.status === 200
-      ? res.json()
-      : res.json().then((err) => {
-          throw err;
-        })
-  );
+  const response = await fetch(path, data);
+  if (response.ok) {
+    const res: R = await response.json();
+    return res;
+  }
+  const reason = await response.text();
+  throw reason;
 };
 
-// TODO
 export const download = (path: string, name: string) => {
   const data = options("GET");
   fetch(path, data)
@@ -113,5 +108,3 @@ export const download = (path: string, name: string) => {
       a.remove();
     });
 };
-
-export const EDITOR_TEXTAREA = "textarea";

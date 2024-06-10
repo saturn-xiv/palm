@@ -5,14 +5,14 @@ defmodule TuberoseWeb.Plugs.Locale do
 
   def init(default), do: default
 
-  def call(%Plug.Conn{req_cookies: %{"locale" => loc}} = conn, _default) when loc in @locales do
-    Gettext.put_locale(loc)
-    assign(conn, :locale, loc)
+  def call(%Plug.Conn{req_cookies: %{"locale" => v}} = conn, _default) when v in @locales do
+    Gettext.put_locale(v)
+    assign(conn, :locale, v)
   end
 
-  def call(%Plug.Conn{params: %{"locale" => loc}} = conn, _default) when loc in @locales do
-    Gettext.put_locale(loc)
-    assign(conn, :locale, loc)
+  def call(%Plug.Conn{params: %{"locale" => v}} = conn, _default) when v in @locales do
+    Gettext.put_locale(v)
+    assign(conn, :locale, v)
   end
 
   def call(conn, default) do

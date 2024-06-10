@@ -35,12 +35,12 @@ defmodule Mix.Tasks.Tuberose.User.Create do
     end
 
     avatar = Tuberose.EmailUser.gravatar(parsed[:email])
-    password = Tuberose.Validation.password!(parsed[:password])
+    {:ok, password} = Tuberose.Validation.password(parsed[:password])
     {password, salt} = Tuberose.Atropa.Client.hmac_sign(password, 16)
 
-    email = Tuberose.Validation.email!(parsed[:email])
-    nickname = Tuberose.Validation.code!(parsed[:nickname], 3)
-    real_name = Tuberose.Validation.label!(parsed[:realname], 2)
+    {:ok, email} = Tuberose.Validation.email(parsed[:email])
+    {:ok, nickname} = Tuberose.Validation.code(parsed[:nickname], 3)
+    {:ok, real_name} = Tuberose.Validation.label(parsed[:realname], 2)
 
     Logger.info("create user #{real_name}<#{email}>")
 

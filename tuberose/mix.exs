@@ -9,7 +9,8 @@ defmodule Tuberose.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      compilers: [:yecc] ++ Mix.compilers()
     ]
   end
 
@@ -61,6 +62,8 @@ defmodule Tuberose.MixProject do
 
       # my add
       {:ecto_psql_extras, "~> 0.8"},
+      {:absinthe, "~> 1.7"},
+      {:absinthe_plug, "~> 1.5"},
       {:grpc, "~> 0.8"},
       {:protobuf, "~> 0.12"},
       {:google_protos, "~> 0.4.0"},

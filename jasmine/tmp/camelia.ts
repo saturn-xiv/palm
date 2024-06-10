@@ -1,24 +1,9 @@
 import moment from "moment-timezone";
 
-import { query } from "./graphql";
+import { query } from "../src/api/graphql";
 import { home_url } from "../utils";
 import { IPermission } from "../reducers/current-user";
 import { upload } from ".";
-
-export const EDITOR_TEXTAREA = "TEXTAREA";
-export const UTC = "UTC";
-
-export interface ISucceed {
-  createdAt: Date;
-}
-
-export interface IPagination {
-  page: number;
-  size: number;
-  total: number;
-  hasNext: boolean;
-  hasPrevious: boolean;
-}
 
 export interface IPostgreSqlStatus {
   version: string;
@@ -843,61 +828,12 @@ mutation call($token: String!){
   );
   return res.confirmUserByToken;
 };
-export const sign_up_by_email = async (
-  realName: string,
-  nickname: string,
-  email: string,
-  password: string
-): Promise<ISucceed> => {
-  const res = await query<{ signUpUserByEmail: ISucceed }>(
-    `
-mutation call($realName: String!, $nickname: String!, $email: String!, $password: String!, $home: String!, $timezone: String!){
-  signUpUserByEmail(realName: $realName, nickname: $nickname, email: $email, password: $password, home: $home, timezone: $timezone){
-    createdAt
-  }
-}
-`,
-    {
-      realName,
-      nickname,
-      email,
-      password,
-      home: home_url(),
-      timezone: moment.tz.guess(),
-    }
-  );
-  return res.signUpUserByEmail;
-};
-
-export const create_leave_word = async (
-  content: string,
-  editor: string
-): Promise<ISucceed> => {
-  const res = await query<{ createLeaveWord: ISucceed }>(
-    `
-mutation call($content: String!, $editor: MediaTextEditor!){
-  createLeaveWord(content: $content, editor: $editor){
-    createdAt
-  }
-}
-`,
-    { content, editor }
-  );
-  return res.createLeaveWord;
-};
 
 export interface IAuthor {
   name: string;
   email: string;
 }
 
-export interface IGabCode {
-  code: string;
-  name: string;
-}
-export interface IIcpCode {
-  code: string;
-}
 interface ISiteInfoResponse {
   favicon: string;
   title: string;
@@ -910,27 +846,6 @@ interface ISiteInfoResponse {
   icpCode?: IIcpCode;
   gabCode?: IGabCode;
 }
-export interface ILayoutResponse {
-  apiVersion: string;
-  siteInfo: ISiteInfoResponse;
-}
-export const fetch_layout = async (lang: string): Promise<ILayoutResponse> => {
-  const res = await query<ILayoutResponse>(
-    `
-query call($lang: String!){
-  apiVersion
-  siteInfo(lang: $lang){
-    favicon, title, subhead, description, keywords, copyright, languages, 
-    authors{name, email}, 
-    icpCode{code}, 
-    gabCode{code, name},
-  }
-}
-`,
-    { lang }
-  );
-  return res;
-};
 
 export const set_locale = async (
   lang: string,
@@ -962,60 +877,4 @@ mutation call($id: Int!){
     { id }
   );
   return res.destroyLocale;
-};
-export interface ILocale {
-  id: number;
-  lang: string;
-  code: string;
-  message: string;
-  updatedAt: string;
-}
-
-interface IIndexLocaleResponse {
-  items: ILocale[];
-  pagination: IPagination;
-}
-export const index_locale = async (
-  page: number,
-  size: number
-): Promise<IIndexLocaleResponse> => {
-  const res = await query<{ indexLocale: IIndexLocaleResponse }>(
-    `
-query call($pager: Pager!){
-  indexLocale(pager: $pager){
-    items{id, lang, code, message, updatedAt},
-    pagination{page, size, total, hasNext, hasPrevious}
-  }
-}
-`,
-    {
-      pager: { page, size },
-    }
-  );
-  return res.indexLocale;
-};
-
-interface IIndexLocaleByLangResponse {
-  indexLocaleByLang: { code: string; message: string }[];
-}
-
-export const locales = async (
-  lang: string
-): Promise<Record<string, string>> => {
-  const res = await query<IIndexLocaleByLangResponse>(
-    `
-query call($lang: String!){
-  indexLocaleByLang(lang: $lang){
-    code, message
-  }
-}
-`,
-    { lang }
-  );
-
-  const messages = res.indexLocaleByLang.reduce(
-    (ac, it) => ({ ...ac, [it.code]: it.message }),
-    {}
-  );
-  return messages;
 };

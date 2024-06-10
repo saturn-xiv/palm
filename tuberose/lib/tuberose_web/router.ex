@@ -21,58 +21,26 @@ defmodule TuberoseWeb.Router do
     plug(:admin_basic_auth)
   end
 
+  pipeline :graphql do
+    plug(TuberoseWeb.Context)
+  end
+
   scope "/", TuberoseWeb do
     pipe_through(:browser)
 
     get("/", PageController, :home)
-  end
 
-  scope "/etc", TuberoseWeb.Etc do
-    pipe_through(:browser)
-
-    get("/nginx.conf", NginxConfController, :get)
-    get("/systemd.conf", SystemdConfController, :get)
-  end
-
-  scope "/api", TuberoseWeb.Api do
-    pipe_through(:api)
-
-    get("/layout", HomeController, :layout)
-
-    resources("/locales", LocalesController, only: [:show, :index, :create, :update, :delete])
-    get("/locales/by-lang/:lang", LocalesController, :by_lang)
-
-    scope "/users" do
-      scope "/by-email" do
-        post("/sign-in", EmailUsersController, :sign_in)
-        post("/sign-up", EmailUsersController, :sign_up)
-        post("/confirm", EmailUsersController, :confirm_by_email)
-        post("/confirm/:token", EmailUsersController, :confirm_by_token)
-        post("/unlock", EmailUsersController, :unlock_by_email)
-        post("/unlock/:token", EmailUsersController, :unlock_by_token)
-        post("/forgot-password", EmailUsersController, :forgot_password)
-        post("/reset-password/:token", EmailUsersController, :reset_password)
-
-        get("/profile", EmailUsersController, :get_profile)
-        post("/profile", EmailUsersController, :set_profile)
-        post("/change-password", EmailUsersController, :change_password)
-      end
-
-      get("/logs", UsersController, :logs)
-      delete("/sign-out", UsersController, :sign_out)
-      get("/current", UsersController, :current)
+    scope "/etc", Etc do
+      get("/nginx.conf", NginxConfController, :get)
+      get("/systemd.conf", SystemdConfController, :get)
     end
+  end
 
-    resources("/leave-words", LeaveWordsController, only: [:show, :index, :create, :delete])
-    post("/leave-words/:id/publish", LeaveWordsController, :publish)
-    delete("/leave-words/:id/revoke", LeaveWordsController, :revoke)
+  scope "/" do
+    pipe_through(:graphql)
 
-    resources("/attachments", AttachmentsController,
-      only: [:show, :index, :create, :update, :delete]
-    )
-
-    post("/attachments/:id/associate", AttachmentsController, :associate)
-    post("/attachments/:id/dissociate", AttachmentsController, :dissociate)
+    forward("/graphql", Absinthe.Plug, schema: TuberoseWeb.Schema)
+    forward("/graphiql", Absinthe.Plug.GraphiQL, schema: TuberoseWeb.Schema)
   end
 
   scope "/dev" do

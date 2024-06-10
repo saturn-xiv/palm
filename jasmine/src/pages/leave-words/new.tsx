@@ -3,7 +3,7 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { create_leave_word } from "../../api/leave-words";
-import { EDITOR_TEXTAREA } from "../../api";
+import { EDITOR_TEXTAREA, IErrorMessage } from "../../api/graphql";
 
 interface IForm {
   content: string;
@@ -22,8 +22,8 @@ export const Component = () => {
             .then(() => {
               messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
             })
-            .catch((reason: string) => {
-              messageApi.error(reason);
+            .catch((reason: IErrorMessage[]) => {
+              messageApi.error(reason.map((x) => x.message).join("\n"));
             });
         }}
       >

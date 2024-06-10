@@ -25,7 +25,7 @@ const Widget = () => {
   useEffect(() => {
     if (site_info.languages.length === 0) {
       fetch_layout().then((res) => {
-        dispatch(refreshLayout(res));
+        dispatch(refreshLayout(res.layout));
       });
     }
     const token = get_token();
