@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../hooks";
 import { signIn } from "../../reducers/current-user";
-import { IErrorMessage } from "../../api";
+import { IErrorMessage } from "../../api/graphql";
 import { PERSONAL_LOGS_PATH } from "../../Router";
 import { sign_in_by_email } from "../../api/users";
 

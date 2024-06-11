@@ -86,7 +86,7 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     field(:is_administrator, non_null(:boolean))
     field(:is_root, non_null(:boolean))
     field(:roles, list_of(:string))
-    field(:token, list_of(:permission))
+    field(:permissions, list_of(:permission))
     field(:has_wechat_mini_program, non_null(:boolean))
     field(:has_wechat_oauth2, non_null(:boolean))
     field(:has_google, non_null(:boolean))

@@ -9,7 +9,7 @@ export interface IResource {
 }
 export interface IPermission {
   resource: IResource;
-  action: string;
+  operation: string;
 }
 
 // ----------------------------------------------------------------------------
@@ -205,7 +205,7 @@ mutation call($user: String!, $password: String!, $ttl: Int!){
       roles, 
       permissions{ 
         resource{type, id},
-        action
+        operation
       },
       hasWechatMiniProgram, hasWechatOauth2, hasGoogle
     }

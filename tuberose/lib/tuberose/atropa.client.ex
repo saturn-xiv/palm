@@ -172,10 +172,13 @@ defmodule Tuberose.Atropa.Client do
     items
     |> Enum.map(fn x ->
       case x.resource.id do
-        %Palm.Atropa.V1.PolicyRolesResponse.Item{
-          by: {:code, code}
+        %Palm.Atropa.V1.PolicyPermissionsResponse.Item.Resource.Id{
+          by: {:i, id}
         } ->
-          code
+          %{operation: x.operation, resource: %{type: x.resource.type, id: id}}
+
+        nil ->
+          %{operation: x.operation, resource: %{type: x.resource.type, id: nil}}
 
         _ ->
           nil

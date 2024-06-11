@@ -20,8 +20,7 @@ defmodule TuberoseWeb.Resolvers.User do
 
     it =
       from(p in Tuberose.EmailUser,
-        where: p.nickname == ^user or p.email == ^user,
-        select: map(p, [:email, :real_name, :deleted_at, :confirmed_at])
+        where: p.nickname == ^user or p.email == ^user
       )
       |> first
       |> Tuberose.Repo.one()
@@ -44,26 +43,27 @@ defmodule TuberoseWeb.Resolvers.User do
       sign_in(
         context.client_ip,
         it.user_id,
-        :email,
+        %{type: :email, id: it.id},
         it.real_name,
-        Tuberose.EmailUser.gravatar(it.email)
+        Tuberose.EmailUser.gravatar(it.email),
+        ttl
       )
 
     {:ok, response}
   end
 
-  defp sign_in(ip, user, provider_type, name, avatar) do
+  defp sign_in(ip, user, provider, name, avatar, ttl) do
     user = Tuberose.Repo.get(Tuberose.User, user)
 
     if user.deleted_at do
       raise ArgumentError, message: "User is disabled"
     end
 
-    unless user.locked_at do
+    if user.locked_at do
       raise ArgumentError, message: "User isn't locked"
     end
 
-    Logger.info("user (#{user.id}, #{provider_type}, #{name}) sign in")
+    Logger.info("user (#{provider.type}, #{provider.id}, #{name}) sign in")
     avatar = if user.avatar, do: user.avatar, else: avatar
     name = if user.name, do: user.name, else: avatar
 
@@ -74,7 +74,26 @@ defmodule TuberoseWeb.Resolvers.User do
       permissions: Tuberose.Atropa.Client.implicit_permissions(user.id)
     }
 
-    oauth =
+    uid = Ecto.UUID.generate()
+
+    not_before = %Google.Protobuf.Timestamp{
+      seconds: (DateTime.utc_now() |> DateTime.to_unix()) - 1
+    }
+
+    expires_at = %Google.Protobuf.Timestamp{
+      seconds: DateTime.utc_now() |> Timex.shift(seconds: ttl) |> DateTime.to_unix()
+    }
+
+    token =
+      Tuberose.Atropa.Client.jwt_sign(
+        to_string(:tuberose),
+        uid,
+        [to_string(:sign_in)],
+        not_before,
+        expires_at
+      )
+
+    {:ok, oauth} =
       Tuberose.Repo.transaction(fn ->
         Tuberose.Repo.update(
           change(user, %{
@@ -86,13 +105,23 @@ defmodule TuberoseWeb.Resolvers.User do
           })
         )
 
+        %Tuberose.UserSession{
+          user_id: user.id,
+          uid: uid,
+          provider_type: to_string(provider.type),
+          provider_id: provider.id,
+          ip: ip,
+          expires_at: DateTime.utc_now() |> Timex.shift(seconds: ttl)
+        }
+        |> Tuberose.Repo.insert()
+
         %Tuberose.Log{
           user_id: user.id,
           plugin: "core",
           ip: ip,
           level: "info",
-          resource_type: "email_user",
-          message: "signed in by email"
+          resource_type: "#{provider.type}_user",
+          message: "signed in by #{provider.type}"
         }
         |> Tuberose.Repo.insert()
 
@@ -109,13 +138,17 @@ defmodule TuberoseWeb.Resolvers.User do
       end)
 
     %{
-      name: name,
-      avatar: avatar,
-      provider_type: provider_type,
-      lang: user.lang,
-      timezone: user.timezone
+      token: token,
+      user:
+        %{
+          name: name,
+          avatar: avatar,
+          provider_type: to_string(provider.type),
+          lang: user.lang,
+          timezone: user.timezone
+        }
+        |> Map.merge(oauth)
+        |> Map.merge(rbac)
     }
-    |> Map.merge(oauth)
-    |> Map.merge(rbac)
   end
 end
