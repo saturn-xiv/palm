@@ -68,6 +68,13 @@ defmodule TuberoseWeb.Schema do
       resolve(&Resolvers.EmailUser.forgot_password/3)
     end
 
+    field :reset_user_password_by_email, non_null(:succeed) do
+      arg(:token, non_null(:string))
+      arg(:password, non_null(:string))
+      arg(:home, non_null(:string))
+      resolve(&Resolvers.EmailUser.reset_password/3)
+    end
+
     field :create_leave_word, non_null(:succeed) do
       arg(:content, non_null(:string))
       arg(:editor, non_null(:text_editor))

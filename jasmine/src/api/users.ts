@@ -12,6 +12,29 @@ export interface IPermission {
   action: string;
 }
 
+// ----------------------------------------------------------------------------
+
+export const reset_password_by_email = async (
+  token: string,
+  password: string
+): Promise<ISucceed> => {
+  const res = await query<{ resetUserPasswordByEmail: ISucceed }>(
+    `
+mutation call($token: String!, $password: String!, $home: String!){
+  resetUserPasswordByEmail(token: $token, password: $password, home: $home){
+    createdAt
+  }
+}
+`,
+    {
+      token,
+      password,
+      home: home_url(),
+    }
+  );
+  return res.resetUserPasswordByEmail;
+};
+
 export const forgot_password_by_email = async (
   user: string
 ): Promise<ISucceed> => {

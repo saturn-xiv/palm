@@ -116,6 +116,15 @@ if config_env() == :prod do
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
 
   # my add
+  amqp_url =
+    System.get_env("AMQP_URL") ||
+      raise """
+      environment variable AMQP_URL is missing.
+      For example: amqp://USER:PASSWORD@HOST:PORT/VIRTUAL_HOST
+      """
+
+  config :tuberose, Tuberose.AmqpClient, url: amqp_url
+
   atropa_host =
     System.get_env("ATROPA_HOST") ||
       raise """
@@ -123,7 +132,7 @@ if config_env() == :prod do
       For example: 127.0.0.1:9999
       """
 
-  config :tuberose, Tuberose.Atropa, host: atropa_host
+  config :tuberose, Tuberose.AtropaClient, host: atropa_host
 
   basic_auth_user_name =
     System.get_env("BASIC_AUTH_USER_NAME") ||

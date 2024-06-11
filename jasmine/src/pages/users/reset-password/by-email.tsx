@@ -3,10 +3,10 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { reset_password } from "../../api/camelia";
-import { IErrorMessage } from "../../api/graphql";
-import { USERS_SIGN_IN_PATH } from "../../Router";
-import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "./sign-up";
+import { reset_password_by_email } from "../../../api/users";
+import { IErrorMessage } from "../../../api/graphql";
+import { USERS_SIGN_IN_PATH } from "../../../Router";
+import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "../sign-up";
 
 interface IForm {
   password: string;
@@ -37,12 +37,17 @@ export const Component = () => {
             return;
           }
           if (token) {
-            reset_password(token, values.password)
+            reset_password_by_email(token, values.password)
               .then(() => {
-                messageApi.success(
-                  intl.formatMessage({ id: "users.reset-password.succeed" })
-                );
-                navigate(USERS_SIGN_IN_PATH);
+                messageApi.info({
+                  type: "success",
+                  content: intl.formatMessage({
+                    id: "users.reset-password.succeed",
+                  }),
+                  onClose: () => {
+                    navigate(USERS_SIGN_IN_PATH);
+                  },
+                });
               })
               .catch((reason: IErrorMessage[]) => {
                 messageApi.error(reason.map((x) => x.message).join("\n"));

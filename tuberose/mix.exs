@@ -61,6 +61,8 @@ defmodule Tuberose.MixProject do
       {:bandit, "~> 1.2"},
 
       # my add
+      {:mustache, "~> 0.5"},
+      {:amqp, "~> 3.3"},
       {:ecto_psql_extras, "~> 0.8"},
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},

@@ -1,8 +1,9 @@
 defmodule TuberoseWeb.Resolvers.EmailUser do
   require Logger
   import Ecto.Query
+  import Ecto.Changeset
 
-  def confirm(_parent, %{user: user, home: home}, _resolution) do
+  def confirm(_parent, %{user: user, home: home}, %{context: context}) do
     user = String.trim(user) |> String.downcase()
     {:ok, home} = Tuberose.Validation.url(home)
 
@@ -26,11 +27,11 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       raise ArgumentError, message: "User is active"
     end
 
-    send_email(it.email, home, :confirm)
+    send_email(it.email, home, context.locale, :confirm)
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
-  def unlock(_parent, %{user: user, home: home}, _resolution) do
+  def unlock(_parent, %{user: user, home: home}, %{context: context}) do
     user = String.trim(user) |> String.downcase()
     {:ok, home} = Tuberose.Validation.url(home)
 
@@ -64,11 +65,11 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       raise ArgumentError, message: "User isn't locked"
     end
 
-    send_email(it.email, home, :unlock)
+    send_email(it.email, home, context.locale, :unlock)
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
-  def forgot_password(_parent, %{user: user, home: home}, _resolution) do
+  def forgot_password(_parent, %{user: user, home: home}, %{context: context}) do
     user = String.trim(user) |> String.downcase()
     {:ok, home} = Tuberose.Validation.url(home)
 
@@ -102,7 +103,58 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       raise ArgumentError, message: "User is locked"
     end
 
-    send_email(it.email, home, :reset_password)
+    send_email(it.email, home, context.locale, :"reset-password")
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def reset_password(_parent, %{token: token, password: password, home: home}, %{context: context}) do
+    {:ok, password} = Tuberose.Validation.password(password)
+    {:ok, home} = Tuberose.Validation.url(home)
+
+    {subject, _} =
+      Tuberose.Atropa.Client.jwt_verify(token, to_string(:tuberose), "reset-password")
+
+    it = Tuberose.Repo.get_by(Tuberose.EmailUser, nickname: subject)
+
+    unless it do
+      raise ArgumentError, message: "User isn't exists"
+    end
+
+    if it.deleted_at do
+      raise ArgumentError, message: "User is disabled"
+    end
+
+    unless it.confirmed_at do
+      raise ArgumentError, message: "User is inactive"
+    end
+
+    ur = Tuberose.Repo.get(Tuberose.User, it.user_id)
+
+    if ur.deleted_at do
+      raise ArgumentError, message: "User is disabled"
+    end
+
+    if ur.locked_at do
+      raise ArgumentError, message: "User is locked"
+    end
+
+    {password, salt} = Tuberose.Atropa.Client.hmac_sign(password, 16)
+
+    Tuberose.Repo.transaction(fn ->
+      Tuberose.Repo.update(change(it, %{password: password, salt: salt}))
+
+      %Tuberose.Log{
+        user_id: ur.id,
+        plugin: "core",
+        ip: context.client_ip,
+        level: "info",
+        resource_type: "email_user",
+        message: "password has been reset by email."
+      }
+      |> Tuberose.Repo.insert()
+    end)
+
+    send_email(it.email, home, context.locale, :"password-changed")
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
@@ -165,13 +217,52 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
       |> Tuberose.Repo.insert()
     end)
 
-    send_email(email, home, :confirm)
+    send_email(email, home, context.locale, :confirm)
     {:ok, %{:created_at => DateTime.utc_now()}}
   end
 
-  defp send_email(email, _home, action) do
+  defp send_email(email, home, locale, action) do
     email_user = Tuberose.Repo.get_by(Tuberose.EmailUser, email: email)
+    subject = Tuberose.I18N.t(locale, "users.mailer.#{action}.subject")
+
+    args =
+      cond do
+        action == :confirm or action == :unlock or action == :"reset-password" ->
+          not_before = %Google.Protobuf.Timestamp{
+            seconds: (DateTime.utc_now() |> DateTime.to_unix()) - 1
+          }
+
+          expires_at = %Google.Protobuf.Timestamp{
+            seconds: DateTime.utc_now() |> Timex.shift(hours: 2) |> DateTime.to_unix()
+          }
+
+          %{
+            home: home,
+            token:
+              Tuberose.Atropa.Client.jwt_sign(
+                to_string(:tuberose),
+                email_user.nickname,
+                [to_string(action)],
+                not_before,
+                expires_at
+              )
+          }
+
+        action == :"password-changed" ->
+          %{}
+
+        action == :"change-email" or action == :"email-changed" ->
+          %{email: email}
+      end
+
+    body =
+      Mustache.render(
+        Tuberose.I18N.t(locale, "users.mailer.#{action}.body"),
+        Map.put(args, :recipient, email_user.real_name)
+      )
+
     Logger.info("send a #{action} email to #{email_user.real_name}<#{email_user.email}>")
-    # TODO
+    Logger.debug("#{subject}:\n#{body}")
+    Tuberose.Amqp.Client.produce(:emails, :protobuf, "#{home} #{email} ")
   end
 end

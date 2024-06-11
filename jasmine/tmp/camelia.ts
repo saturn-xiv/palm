@@ -677,26 +677,6 @@ mutation call{
   return res.signOutUser;
 };
 
-export const reset_password = async (
-  token: string,
-  password: string
-): Promise<ISucceed> => {
-  const res = await query<{ resetUserPassword: ISucceed }>(
-    `
-mutation call($token: String!, $password: String!){
-  resetUserPassword(token: $token, password: $password){
-    createdAt
-  }
-}
-`,
-    {
-      token,
-      password,
-    }
-  );
-  return res.resetUserPassword;
-};
-
 export const unlock_by_token = async (token: string): Promise<ISucceed> => {
   const res = await query<{ unlockUserByToken: ISucceed }>(
     `

@@ -85,5 +85,6 @@ config :phoenix_live_view,
 config :swoosh, :api_client, false
 
 # my add
-config :tuberose, Tuberose.Atropa, host: "127.0.0.1:10001"
+config :tuberose, Tuberose.AmqpClient, url: "amqp://guest:guest@127.0.0.1/tuberose-dev"
+config :tuberose, Tuberose.AtropaClient, host: "127.0.0.1:10001"
 config :tuberose, TuberoseWeb.BasicAuthUser, name: "admin", password: "change-me"

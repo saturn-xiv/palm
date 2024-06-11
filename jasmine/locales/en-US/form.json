@@ -16,7 +16,8 @@
       "label": "Real name"
     },
     "password-confirmation": {
-      "label": "Password confirmation"
+      "label": "Password confirmation",
+      "error": "Passwords input must be matched"
     },
     "content": {
       "label": "Content"

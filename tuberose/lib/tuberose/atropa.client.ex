@@ -1,8 +1,4 @@
 defmodule Tuberose.Atropa.Client do
-  defp connect() do
-    GRPC.Stub.connect(Application.get_env(:tuberose, Tuberose.Atropa)[:host])
-  end
-
   def jwt_sign(issuer, subject, audiences, not_before, expires_at) do
     {:ok, channel} = connect()
 
@@ -16,6 +12,19 @@ defmodule Tuberose.Atropa.Client do
 
     {:ok, reply} = channel |> Palm.Atropa.V1.Jwt.Stub.sign(request)
     reply.token
+  end
+
+  def jwt_verify(token, issuer, audience) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.JwtVerifyRequest{
+      token: token,
+      issuer: issuer,
+      audience: audience
+    }
+
+    {:ok, reply} = channel |> Palm.Atropa.V1.Jwt.Stub.verify(request)
+    {reply.subject, reply.extra}
   end
 
   def hmac_sign(password, salt_len) do
@@ -54,5 +63,9 @@ defmodule Tuberose.Atropa.Client do
     request = %Palm.Atropa.V1.PolicyRolesForUserRequest{user: user, roles: roles}
 
     {:ok, _} = channel |> Palm.Atropa.V1.Policy.Stub.delete_roles_for_user(request)
+  end
+
+  defp connect() do
+    GRPC.Stub.connect(Application.get_env(:tuberose, Tuberose.AtropaClient)[:host])
   end
 end
