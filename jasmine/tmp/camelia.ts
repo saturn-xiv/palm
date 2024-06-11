@@ -677,38 +677,6 @@ mutation call{
   return res.signOutUser;
 };
 
-export const unlock_by_token = async (token: string): Promise<ISucceed> => {
-  const res = await query<{ unlockUserByToken: ISucceed }>(
-    `
-mutation call($token: String!){
-  unlockUserByToken(token: $token){
-    createdAt
-  }
-}
-`,
-    {
-      token,
-    }
-  );
-  return res.unlockUserByToken;
-};
-
-export const confirm_by_token = async (token: string): Promise<ISucceed> => {
-  const res = await query<{ confirmUserByToken: ISucceed }>(
-    `
-mutation call($token: String!){
-  confirmUserByToken(token: $token){
-    createdAt
-  }
-}
-`,
-    {
-      token,
-    }
-  );
-  return res.confirmUserByToken;
-};
-
 export interface IAuthor {
   name: string;
   email: string;

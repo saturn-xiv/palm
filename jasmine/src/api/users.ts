@@ -14,6 +14,41 @@ export interface IPermission {
 
 // ----------------------------------------------------------------------------
 
+export const unlock_by_email_token = async (
+  token: string
+): Promise<ISucceed> => {
+  const res = await query<{ unlockUserByEmailToken: ISucceed }>(
+    `
+mutation call($token: String!){
+  unlockUserByEmailToken(token: $token){
+    createdAt
+  }
+}
+`,
+    {
+      token,
+    }
+  );
+  return res.unlockUserByEmailToken;
+};
+
+export const confirm_by_email_token = async (
+  token: string
+): Promise<ISucceed> => {
+  const res = await query<{ confirmUserByEmailToken: ISucceed }>(
+    `
+mutation call($token: String!){
+  confirmUserByEmailToken(token: $token){
+    createdAt
+  }
+}
+`,
+    {
+      token,
+    }
+  );
+  return res.confirmUserByEmailToken;
+};
 export const reset_password_by_email = async (
   token: string,
   password: string
@@ -40,7 +75,7 @@ export const forgot_password_by_email = async (
 ): Promise<ISucceed> => {
   const res = await query<{ forgotUserPasswordByEmail: ISucceed }>(
     `
-mutation call($user: String!, $home: String!){
+query call($user: String!, $home: String!){
   forgotUserPasswordByEmail(user: $user, home: $home){
     createdAt
   }
@@ -56,7 +91,7 @@ mutation call($user: String!, $home: String!){
 export const unlock_by_email = async (user: string): Promise<ISucceed> => {
   const res = await query<{ unlockUserByEmail: ISucceed }>(
     `
-mutation call($user: String!, $home: String!){
+query call($user: String!, $home: String!){
   unlockUserByEmail(user: $user, home: $home){
     createdAt
   }
@@ -72,7 +107,7 @@ mutation call($user: String!, $home: String!){
 export const confirm_by_email = async (user: string): Promise<ISucceed> => {
   const res = await query<{ confirmUserByEmail: ISucceed }>(
     `
-mutation call($user: String!, $home: String!){
+query call($user: String!, $home: String!){
   confirmUserByEmail(user: $user, home: $home){
     createdAt
   }

@@ -32,6 +32,24 @@ defmodule TuberoseWeb.Schema do
       resolve(&Resolvers.Locale.index/3)
     end
 
+    field :confirm_user_by_email, non_null(:succeed) do
+      arg(:user, non_null(:string))
+      arg(:home, non_null(:string))
+      resolve(&Resolvers.EmailUser.confirm/3)
+    end
+
+    field :unlock_user_by_email, non_null(:succeed) do
+      arg(:user, non_null(:string))
+      arg(:home, non_null(:string))
+      resolve(&Resolvers.EmailUser.unlock/3)
+    end
+
+    field :forgot_user_password_by_email, non_null(:succeed) do
+      arg(:user, non_null(:string))
+      arg(:home, non_null(:string))
+      resolve(&Resolvers.EmailUser.forgot_password/3)
+    end
+
     field :index_leave_word, :index_leave_word_response do
       arg(:pager, non_null(:pager))
       resolve(&Resolvers.LeaveWord.index/3)
@@ -50,22 +68,14 @@ defmodule TuberoseWeb.Schema do
       resolve(&Resolvers.EmailUser.sign_up/3)
     end
 
-    field :confirm_user_by_email, non_null(:succeed) do
-      arg(:user, non_null(:string))
-      arg(:home, non_null(:string))
-      resolve(&Resolvers.EmailUser.confirm/3)
+    field :confirm_user_by_email_token, non_null(:succeed) do
+      arg(:token, non_null(:string))
+      resolve(&Resolvers.EmailUser.confirm_by_token/3)
     end
 
-    field :unlock_user_by_email, non_null(:succeed) do
-      arg(:user, non_null(:string))
-      arg(:home, non_null(:string))
-      resolve(&Resolvers.EmailUser.unlock/3)
-    end
-
-    field :forgot_user_password_by_email, non_null(:succeed) do
-      arg(:user, non_null(:string))
-      arg(:home, non_null(:string))
-      resolve(&Resolvers.EmailUser.forgot_password/3)
+    field :unlock_user_by_email_token, non_null(:succeed) do
+      arg(:token, non_null(:string))
+      resolve(&Resolvers.EmailUser.unlock_by_token/3)
     end
 
     field :reset_user_password_by_email, non_null(:succeed) do

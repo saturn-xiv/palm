@@ -3,14 +3,10 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { confirm_by_token } from "../../../api/camelia";
+import { confirm_by_email_token } from "../../../api/users";
 import { IErrorMessage } from "../../../api/graphql";
 import { useAppDispatch } from "../../../hooks";
-import { set_pathname } from "../../../reducers/side-bar";
-import {
-  USERS_CONFIRM_BY_TOKEN_PATH,
-  USERS_SIGN_IN_PATH,
-} from "../../../Router";
+import { USERS_SIGN_IN_PATH } from "../../../Router";
 
 export const Component = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -20,14 +16,18 @@ export const Component = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(set_pathname(USERS_CONFIRM_BY_TOKEN_PATH));
     if (token) {
-      confirm_by_token(token)
+      confirm_by_email_token(token)
         .then(() => {
-          messageApi.success(
-            intl.formatMessage({ id: "users.confirm.by-token.succeed" })
-          );
-          navigate(USERS_SIGN_IN_PATH);
+          messageApi.info({
+            type: "success",
+            content: intl.formatMessage({
+              id: "users.confirm.by-token.succeed",
+            }),
+            onClose: () => {
+              navigate(USERS_SIGN_IN_PATH);
+            },
+          });
         })
         .catch((reason: IErrorMessage[]) => {
           messageApi.error(reason.map((x) => x.message).join("\n"));
