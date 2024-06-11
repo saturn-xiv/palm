@@ -150,9 +150,7 @@ mutation call($realName: String!, $nickname: String!, $email: String!, $password
 // ----------------------------------------------------------------------------
 
 export interface ICurrentUser {
-  nickname: string;
-  email: string;
-  realName: string;
+  name: string;
   avatar: string;
   isAdministrator: boolean;
   isRoot: boolean;
@@ -198,15 +196,15 @@ export const sign_in_by_email = async (
 ): Promise<ISignInResponse> => {
   const res = await query<{ signInUserByEmail: ISignInResponse }>(
     `
-mutation call($user: String!, $password: String!){
-  signInUserByEmail(user: $user, password: $password){    
+mutation call($user: String!, $password: String!, $ttl: Int!){
+  signInUserByEmail(user: $user, password: $password, ttl: $ttl){    
     token, 
     user{
-      realName, avatar, providerType, lang, timezone,
+      name, avatar, providerType, lang, timezone,
       isAdministrator, isRoot,
       roles, 
       permissions{ 
-        resource{type, sid, iid},
+        resource{type, id},
         action
       },
       hasWechatMiniProgram, hasWechatOauth2, hasGoogle

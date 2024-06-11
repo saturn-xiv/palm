@@ -58,6 +58,13 @@ defmodule TuberoseWeb.Schema do
 
   # ---------------------------------------------------------------------------
   mutation do
+    field :sign_in_user_by_email, non_null(:user_sign_in_response) do
+      arg(:user, non_null(:string))
+      arg(:password, non_null(:string))
+      arg(:ttl, non_null(:integer))
+      resolve(&Resolvers.User.sign_in_by_email/3)
+    end
+
     field :sign_up_user_by_email, non_null(:succeed) do
       arg(:real_name, non_null(:string))
       arg(:nickname, non_null(:string))

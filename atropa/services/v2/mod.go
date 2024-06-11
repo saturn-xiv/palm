@@ -195,11 +195,35 @@ func (p *PolicyPermissionsResponse_Item_Resource) Code() (string, error) {
 	}
 	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
 }
-func (p *PolicyPermissionsResponse_Item_Resource) Display() string {
-	if p.Id != nil {
-		return fmt.Sprintf("%s://%d", p.Type, *p.Id)
+func (p *PolicyPermissionsResponse_Item_Resource_Id) Equal(o *PolicyPermissionsResponse_Item_Resource_Id) bool {
+	if o != nil {
+		switch pt := p.By.(type) {
+		case *PolicyPermissionsResponse_Item_Resource_Id_S:
+			switch ot := o.By.(type) {
+			case *PolicyPermissionsResponse_Item_Resource_Id_S:
+				return pt.S == ot.S
+			}
+		case *PolicyPermissionsResponse_Item_Resource_Id_I:
+			switch ot := o.By.(type) {
+			case *PolicyPermissionsResponse_Item_Resource_Id_I:
+				return pt.I == ot.I
+			}
+		}
 	}
-	return fmt.Sprintf("%s://*", p.Type)
+	return false
+}
+func (p *PolicyPermissionsResponse_Item_Resource) Display() string {
+	if p.Id == nil {
+		return fmt.Sprintf("%s://*", p.Type)
+	}
+	switch it := p.Id.By.(type) {
+	case *PolicyPermissionsResponse_Item_Resource_Id_S:
+		return fmt.Sprintf("%s://%s", p.Type, it.S)
+	case *PolicyPermissionsResponse_Item_Resource_Id_I:
+		return fmt.Sprintf("%s://%d", p.Type, it.I)
+	default:
+		return "unknown resource"
+	}
 }
 
 func (p *PolicyPermissionsResponse_Item_Resource) IsRoot() bool {

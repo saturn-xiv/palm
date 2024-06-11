@@ -74,7 +74,7 @@ func (p *PolicyService) Can(ctx context.Context, req *pb.PolicyCanRequest) (*emp
 				if it.Resource.Id == nil {
 					return &emptypb.Empty{}, nil
 				}
-				if req.Resource.Id != nil && *it.Resource.Id == *req.Resource.Id {
+				if it.Resource.Id.Equal(req.Resource.Id) {
 					return &emptypb.Empty{}, nil
 				}
 			}

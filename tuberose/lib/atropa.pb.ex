@@ -180,13 +180,27 @@ defmodule Palm.Atropa.V1.PolicyPermissionsForRoleRequest do
   field :permissions, 2, repeated: true, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item
 end
 
+defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Resource.Id do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  oneof :by, 0
+
+  field :i, 11, type: :int64, oneof: 0
+  field :s, 12, type: :string, oneof: 0
+end
+
 defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Resource do
   @moduledoc false
 
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
   field :type, 1, type: :string
-  field :id, 2, proto3_optional: true, type: :int64
+
+  field :id, 2,
+    proto3_optional: true,
+    type: Palm.Atropa.V1.PolicyPermissionsResponse.Item.Resource.Id
 end
 
 defmodule Palm.Atropa.V1.PolicyPermissionsResponse.Item.Operation.Read do

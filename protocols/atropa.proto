@@ -145,8 +145,14 @@ message PolicyPermissionsForRoleRequest {
 message PolicyPermissionsResponse {
   message Item {
     message Resource {
+      message Id {
+        oneof by {
+          int64 i = 11;
+          string s = 12;
+        }
+      }
       string type = 1;
-      optional int64 id = 2;
+      optional Id id = 2;
     }
     message Operation {
       message Read {}

@@ -70,6 +70,43 @@ defmodule TuberoseWeb.Schema.ContentTypes do
   end
 
   # ---------------------------------------------------------------------------
+  object :resource do
+    field(:type, non_null(:string))
+    field(:id, :integer)
+  end
+
+  object :permission do
+    field(:operation, non_null(:string))
+    field(:resource, non_null(:resource))
+  end
+
+  object :current_user do
+    field(:name, non_null(:string))
+    field(:avatar, non_null(:string))
+    field(:is_administrator, non_null(:boolean))
+    field(:is_root, non_null(:boolean))
+    field(:roles, list_of(:string))
+    field(:token, list_of(:permission))
+    field(:has_wechat_mini_program, non_null(:boolean))
+    field(:has_wechat_oauth2, non_null(:boolean))
+    field(:has_google, non_null(:boolean))
+    field(:provider_type, non_null(:user_provider_type))
+    field(:lang, non_null(:string))
+    field(:timezone, non_null(:string))
+  end
+
+  object :user_sign_in_response do
+    field(:token, non_null(:string))
+    field(:user, non_null(:current_user))
+  end
+
+  enum :user_provider_type do
+    value(:email, as: "email")
+    value(:phone, as: "phone")
+    value(:wechat_mini_program, as: "wechat-mini-program")
+    value(:wechat_oauth2, as: "wechat-oauth2")
+    value(:google, as: "google")
+  end
 
   # ---------------------------------------------------------------------------
   enum :leave_word_status do
