@@ -52,7 +52,7 @@ $ mix gettext.merge priv/gettext
 ```bash
 $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
 > cd /workspace/
-> ./priv/scripts/phoenix.sh tuberose
+> ./scripts/phoenix.sh tuberose
 ```
 
 - Starting

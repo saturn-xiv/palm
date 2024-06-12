@@ -16,7 +16,7 @@ mix phx.server
 ```bash
 $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
 > cd /workspace
-> ./priv/scripts/phoenix.sh aloe
+> ./scripts/phoenix.sh aloe
 ```
 
 - Deployment
