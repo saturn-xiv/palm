@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt update
 RUN apt -y install build-essential autoconf m4 libncurses5-dev libwxgtk3.2-dev libwxgtk-webview3.2-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk \
     curl wget git zip \
-    lsb-release vim tmux locales locales-all 
+    lsb-release zsh vim tmux locales locales-all 
 RUN apt -y autoremove
 RUN apt -y clean
 
@@ -58,6 +58,7 @@ RUN echo 'source $HOME/.asdf/asdf.sh' >> $HOME/.zshrc
 RUN echo 'export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"' >> $HOME/.zshrc 
 RUN zsh -c "source $HOME/.zshrc \
     && asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git \
+    && asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git \
     && asdf install erlang latest \
     && asdf global erlang latest \
     && asdf install elixir latest \
