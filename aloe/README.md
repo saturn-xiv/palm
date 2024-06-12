@@ -1,18 +1,30 @@
-# Aloe
+# ALOE - A smart router inspired by OpenWrt
 
-To start your Phoenix server:
+## USAGE
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+- Development
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```bash
+cd aloe
+mix deps.get
+mix ecto.create
+mix phx.server
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+- Build for production
 
-## Learn more
+```bash
+$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
+> cd /workspace
+> ./priv/scripts/phoenix.sh aloe
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+- Deployment
+
+```bash
+export SECRET_KEY_BASE="really long secret string" # mix phx.gen.secret
+export DATABASE_URL="/var/lib/aloe/db"
+
+./bin/migrate
+./bin/server
+```
