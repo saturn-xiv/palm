@@ -4,7 +4,7 @@ defmodule Aloe.MixProject do
   def project do
     [
       app: :aloe,
-      version: "0.1.0",
+      version: "2024.6.12",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -19,7 +19,7 @@ defmodule Aloe.MixProject do
   def application do
     [
       mod: {Aloe.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -57,7 +57,14 @@ defmodule Aloe.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.2"}
+      {:bandit, "~> 1.2"},
+
+      # my add
+      {:cloak, "~> 1.1"},
+      {:argon2_elixir, "~> 4.0"},
+      {:mustache, "~> 0.5"},
+      {:ecto_sqlite3_extras, "~> 1.2"},
+      {:timex, "~> 3.7"}
     ]
   end
 

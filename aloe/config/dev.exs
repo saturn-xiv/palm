@@ -16,7 +16,7 @@ config :aloe, Aloe.Repo,
 config :aloe, AloeWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
@@ -24,6 +24,15 @@ config :aloe, AloeWeb.Endpoint,
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:aloe, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:aloe, ~w(--watch)]}
+  ]
+
+config :aloe, Aloe.Vault,
+  ciphers: [
+    default:
+      {Cloak.Ciphers.AES.GCM,
+       tag: "AES.GCM.V1",
+       key: Base.decode64!("UuUNb522kmrcwHKSdba2ARgj9fV32Q6G3nm8tqi0HS4="),
+       iv_length: 12}
   ]
 
 # ## SSL Support

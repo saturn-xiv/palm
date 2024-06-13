@@ -8,6 +8,7 @@
 cd aloe
 mix deps.get
 mix ecto.create
+mix assets.build
 mix phx.server
 ```
 
