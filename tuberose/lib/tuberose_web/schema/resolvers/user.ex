@@ -3,11 +3,6 @@ defmodule TuberoseWeb.Resolvers.User do
   import Ecto.Query
   import Ecto.Changeset
 
-  def routes(_parent, _args, %{context: _context}) do
-    # TODO
-    {:ok, []}
-  end
-
   def current(_parent, _args, %{context: context}) do
     {:ok, name, avatar} =
       case context.current_user.provider.type do

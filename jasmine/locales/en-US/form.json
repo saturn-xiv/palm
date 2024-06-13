@@ -3,9 +3,6 @@
     "account": {
       "label": "Account"
     },
-    "password": {
-      "label": "Password"
-    },
     "email": {
       "label": "Email"
     },
@@ -14,6 +11,15 @@
     },
     "real-name": {
       "label": "Real name"
+    },
+    "password": {
+      "label": "Password"
+    },
+    "current-password": {
+      "label": "Current password"
+    },
+    "new-password": {
+      "label": "New password"
     },
     "password-confirmation": {
       "label": "Password confirmation",
@@ -30,6 +36,18 @@
     },
     "message": {
       "label": "Message"
+    },
+    "avatar": {
+      "label": "Avatar"
+    },
+    "timezone": {
+      "label": "Timezone"
+    },
+    "language": {
+      "label": "language"
+    },
+    "updated-at": {
+      "label": "Updated at"
     },
     "created-at": {
       "label": "Created At"

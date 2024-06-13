@@ -561,49 +561,6 @@ query call{
   return res.indexPicture;
 };
 
-export const update_profile = async (
-  realName: string,
-  avatar: string,
-  lang: string,
-  timezone: string
-): Promise<ISucceed> => {
-  const res = await query<{ updateUserProfile: ISucceed }>(
-    `
-mutation call($realName: String!, $avatar: String!, $lang: String!, $timezone: String!){
-  updateUserProfile(realName: $realName, avatar: $avatar, lang: $lang, timezone: $timezone){
-    createdAt
-  }
-}
-`,
-    {
-      realName,
-      avatar,
-      lang,
-      timezone,
-    }
-  );
-  return res.updateUserProfile;
-};
-export const change_password = async (
-  currentPassword: string,
-  newPassword: string
-): Promise<ISucceed> => {
-  const res = await query<{ changeUserPassword: ISucceed }>(
-    `
-mutation call($currentPassword: String!, $newPassword: String!){
-  changeUserPassword(currentPassword: $currentPassword, newPassword: $newPassword){
-    createdAt
-  }
-}
-`,
-    {
-      currentPassword,
-      newPassword,
-    }
-  );
-  return res.changeUserPassword;
-};
-
 export interface IAuthor {
   name: string;
   email: string;

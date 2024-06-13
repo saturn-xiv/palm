@@ -1,5 +1,34 @@
 import { query } from "./graphql";
 
+export interface IRoute {
+  path: string;
+  name: string;
+  children: IRoute[];
+}
+
+export const routes = async (): Promise<IRoute[]> => {
+  const res = await query<{
+    indexRoute: IRoute[];
+  }>(
+    `
+query call{
+  indexRoute{
+    path, name,
+    children {
+      path, name, children{
+        path, name, children{
+          path, name
+        }
+      }
+    }
+  }
+}
+`,
+    {}
+  );
+  return res.indexRoute;
+};
+
 interface IGab {
   code: string;
   name: string;

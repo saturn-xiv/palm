@@ -301,6 +301,43 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
     {:ok, %{:created_at => DateTime.utc_now()}}
   end
 
+  def change_password(
+        _parent,
+        %{home: home, current_password: current_password, new_password: new_password},
+        %{
+          context: context
+        }
+      ) do
+    {:ok, home} = Tuberose.Validation.url(home)
+
+    unless context.current_user.provider.type == :email do
+      raise ArgumentError, message: "Bad request"
+    end
+
+    it = Tuberose.Repo.get(Tuberose.EmailUser, context.current_user.provider.id)
+
+    {:ok, _} = Tuberose.Atropa.Client.hmac_verify(it.password, current_password, it.salt)
+    {:ok, new_password} = Tuberose.Validation.password(new_password)
+    {new_password, new_salt} = Tuberose.Atropa.Client.hmac_sign(new_password, 16)
+
+    Tuberose.Repo.transaction(fn ->
+      Tuberose.Repo.update(change(it, %{password: new_password, salt: new_salt}))
+
+      %Tuberose.Log{
+        user_id: it.user_id,
+        plugin: "core",
+        ip: context.client_ip,
+        level: "info",
+        resource_type: "email_user",
+        message: "password changed."
+      }
+      |> Tuberose.Repo.insert()
+    end)
+
+    send_email(it.email, home, context.locale, :"password-changed")
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
   defp send_email(email, home, locale, action) do
     email_user = Tuberose.Repo.get_by(Tuberose.EmailUser, email: email)
     subject = Tuberose.I18N.t(locale, "users.mailer.#{action}.subject")

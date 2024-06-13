@@ -3,10 +3,15 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-import { change_password } from "../../../api/camelia";
+import { change_password_by_email as change_password } from "../../../api/users";
 import { IErrorMessage } from "../../../api/graphql";
 import { USERS_SIGN_IN_PATH } from "../../../Router";
 import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "../../users/sign-up";
+import {
+  remove as remove_token,
+  signOut,
+} from "../../../reducers/current-user";
+import { useAppDispatch } from "../../../hooks";
 
 interface IForm {
   current_password: string;
@@ -18,6 +23,7 @@ const Widget = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const intl = useIntl();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   return (
     <Card
@@ -37,10 +43,18 @@ const Widget = () => {
           }
           change_password(values.current_password, values.new_password)
             .then(() => {
-              messageApi.success(
-                intl.formatMessage({ id: "users.confirm.by-email.succeed" })
-              );
-              navigate(USERS_SIGN_IN_PATH);
+              remove_token();
+              messageApi.info({
+                type: "success",
+                content: intl.formatMessage({
+                  id: "users.confirm.by-email.succeed",
+                }),
+                onClose: () => {
+                  dispatch(signOut());
+                  navigate(USERS_SIGN_IN_PATH);
+                },
+                duration: 1,
+              });
             })
             .catch((reason: IErrorMessage[]) => {
               messageApi.error(reason.map((x) => x.message).join("\n"));

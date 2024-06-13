@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { updateProfile } from "../../../reducers/current-user";
 import { siteInfo as selectSiteInfo } from "../../../reducers/site-info";
 import { IErrorMessage } from "../../../api/graphql";
-import { update_profile, current_user } from "../../../api/camelia";
+import { update_profile, current_user } from "../../../api/users";
 import {
   REAL_NAME_MAX_LENGTH,
   REAL_NAME_MIN_LENGTH,

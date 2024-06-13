@@ -24,7 +24,7 @@ import {
   set_pathname,
   sideBar as selectSideBar,
 } from "../../reducers/side-bar";
-import { routes as fetch_routes, IRoute } from "../../api/users";
+import { routes as fetch_routes, IRoute } from "../../api/site";
 
 const to_route_menu = (rt: IRoute): MenuDataItem => {
   const it: MenuDataItem = {

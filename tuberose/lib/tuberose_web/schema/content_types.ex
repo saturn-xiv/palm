@@ -61,10 +61,6 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     field(:children, list_of(non_null(:route)))
   end
 
-  object :index_route_response do
-    field(:items, list_of(non_null(:route)))
-  end
-
   # ---------------------------------------------------------------------------
   object :locale do
     field(:id, non_null(:id))

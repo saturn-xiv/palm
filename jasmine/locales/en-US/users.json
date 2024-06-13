@@ -39,21 +39,11 @@
     "title": "Confirm new password",
     "succeed": "Your password has been changed successfully."
   },
-  "update-profile": {
-    "succeed": "Your account has been updated successfully."
-  },
-  "change-password": {
-    "title": "Change my password",
-    "succeed": "Your account has been updated successfully, but since your password was changed, you need to sign in again."
-  },
+
   "sign-out": {
     "title": "Sign out",
     "confirm": "You will sign out from this system.",
     "succeed": "Signed out successfully."
-  },
-  "cancel": {
-    "title": "Cancel my account",
-    "succeed": "Bye! Your account has been successfully cancelled. We hope to see you again soon."
   },
   "errors": {
     "inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",

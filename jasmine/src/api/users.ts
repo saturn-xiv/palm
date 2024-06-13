@@ -267,31 +267,47 @@ mutation call{
   return res.signOutUser;
 };
 
-export interface IRoute {
-  path: string;
-  name: string;
-  children: IRoute[];
-}
-
-export const routes = async (): Promise<IRoute[]> => {
-  const res = await query<{
-    indexRoute: IRoute[];
-  }>(
+export const update_profile = async (
+  realName: string,
+  avatar: string,
+  lang: string,
+  timezone: string
+): Promise<ISucceed> => {
+  const res = await query<{ updateUserProfile: ISucceed }>(
     `
-query call{
-  indexRoute{
-    path, name,
-    children {
-      path, name, children{
-        path, name, children{
-          path, name
-        }
-      }
-    }
+mutation call($realName: String!, $avatar: String!, $lang: String!, $timezone: String!){
+  updateUserProfile(realName: $realName, avatar: $avatar, lang: $lang, timezone: $timezone){
+    createdAt
   }
 }
 `,
-    {}
+    {
+      realName,
+      avatar,
+      lang,
+      timezone,
+    }
   );
-  return res.indexRoute;
+  return res.updateUserProfile;
+};
+
+export const change_password_by_email = async (
+  currentPassword: string,
+  newPassword: string
+): Promise<ISucceed> => {
+  const res = await query<{ changeUserPasswordByEmail: ISucceed }>(
+    `
+mutation call($home: String!, $currentPassword: String!, $newPassword: String!){
+  changeUserPasswordByEmail(home: $home, currentPassword: $currentPassword, newPassword: $newPassword){
+    createdAt
+  }
+}
+`,
+    {
+      home: home_url(),
+      currentPassword,
+      newPassword,
+    }
+  );
+  return res.changeUserPasswordByEmail;
 };

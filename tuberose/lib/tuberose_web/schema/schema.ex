@@ -17,8 +17,8 @@ defmodule TuberoseWeb.Schema do
       resolve(&Resolvers.Site.layout/3)
     end
 
-    field :index_route, non_null(:index_route_response) do
-      resolve(&Resolvers.User.routes/3)
+    field :index_route, list_of(:route) do
+      resolve(&Resolvers.Site.routes/3)
     end
 
     field :index_locale_by_lang, list_of(non_null(:locale)) do
@@ -103,6 +103,13 @@ defmodule TuberoseWeb.Schema do
       arg(:password, non_null(:string))
       arg(:home, non_null(:string))
       resolve(&Resolvers.EmailUser.reset_password/3)
+    end
+
+    field :change_user_password_by_email, non_null(:succeed) do
+      arg(:home, non_null(:string))
+      arg(:current_password, non_null(:string))
+      arg(:new_password, non_null(:string))
+      resolve(&Resolvers.EmailUser.change_password/3)
     end
 
     field :sign_out_user, non_null(:succeed) do
