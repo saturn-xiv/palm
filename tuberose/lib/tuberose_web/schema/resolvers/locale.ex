@@ -24,11 +24,14 @@ defmodule TuberoseWeb.Resolvers.Locale do
       )
 
     pagination = Tuberose.Validation.pagination(pager, total)
+    offset = (pagination.page - 1) * pagination.size
 
     items =
       from(p in Tuberose.Locale,
         select: map(p, [:id, :code, :lang, :message, :updated_at]),
-        order_by: [desc: :updated_at]
+        order_by: [desc: :updated_at],
+        limit: ^pagination.size,
+        offset: ^offset
       )
       |> Tuberose.Repo.all()
 

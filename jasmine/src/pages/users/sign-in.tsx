@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../hooks";
-import { signIn } from "../../reducers/current-user";
+import { signIn, set as set_token } from "../../reducers/current-user";
 import { IErrorMessage } from "../../api/graphql";
 import { PERSONAL_LOGS_PATH } from "../../Router";
 import { sign_in_by_email } from "../../api/users";
@@ -27,11 +27,16 @@ export const Component = () => {
         onFinish={async (values) => {
           sign_in_by_email(values.user, values.password)
             .then((res) => {
-              messageApi.success(
-                intl.formatMessage({ id: "users.sign-in.succeed" })
-              );
-              dispatch(signIn(res));
-              navigate(PERSONAL_LOGS_PATH);
+              set_token(res.token);
+              messageApi.info({
+                type: "success",
+                content: intl.formatMessage({ id: "users.sign-in.succeed" }),
+                onClose: () => {
+                  dispatch(signIn(res));
+                  navigate(PERSONAL_LOGS_PATH);
+                },
+                duration: 1,
+              });
             })
             .catch((reason: IErrorMessage[]) => {
               messageApi.error(reason.map((x) => x.message).join("\n"));

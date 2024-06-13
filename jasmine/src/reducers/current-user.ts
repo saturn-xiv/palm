@@ -4,6 +4,7 @@ import type { RootState } from "../store";
 import { get as getLocale } from "../locales";
 import { guess_timezone } from "../utils";
 import { ICurrentUser as IState, ISignInResponse } from "../api/users";
+import favicon_svg from "../assets/user.svg";
 
 const KEY = "token";
 export const DURATION = 60 * 60 * 24;
@@ -37,8 +38,8 @@ export const remove = () => {
 };
 
 const initialState: IState = {
-  realName: "",
-  avatar: "",
+  name: "",
+  avatar: favicon_svg,
   isAdministrator: false,
   isRoot: false,
   roles: [],
@@ -49,8 +50,6 @@ const initialState: IState = {
   providerType: "",
   lang: getLocale(),
   timezone: guess_timezone(),
-  email: "who-am-i@change-me.org",
-  nickname: "nill-gate",
 };
 
 interface IProfile {
@@ -65,13 +64,13 @@ export const currentUserSlice = createSlice({
   initialState,
   reducers: {
     updateProfile: (state, action: PayloadAction<IProfile>) => {
-      state.realName = action.payload.realName;
+      state.name = action.payload.realName;
       state.avatar = action.payload.avatar;
       state.lang = action.payload.lang;
       state.timezone = action.payload.timezone;
     },
     refresh: (state, action: PayloadAction<IState>) => {
-      state.realName = action.payload.realName;
+      state.name = action.payload.name;
       state.avatar = action.payload.avatar;
       state.isAdministrator = action.payload.isAdministrator;
       state.isRoot = action.payload.isRoot;
@@ -83,12 +82,9 @@ export const currentUserSlice = createSlice({
       state.providerType = action.payload.providerType;
       state.lang = action.payload.lang;
       state.timezone = action.payload.timezone;
-      state.email = action.payload.email;
-      state.nickname = action.payload.nickname;
     },
     signIn: (state, action: PayloadAction<ISignInResponse>) => {
-      set(action.payload.token);
-      state.realName = action.payload.user.realName;
+      state.name = action.payload.user.name;
       state.avatar = action.payload.user.avatar;
       state.isAdministrator = action.payload.user.isAdministrator;
       state.isRoot = action.payload.user.isRoot;
@@ -100,13 +96,10 @@ export const currentUserSlice = createSlice({
       state.providerType = action.payload.user.providerType;
       state.lang = action.payload.user.lang;
       state.timezone = action.payload.user.timezone;
-      state.email = action.payload.user.email;
-      state.nickname = action.payload.user.nickname;
     },
     signOut: (state) => {
-      remove();
-      state.realName = "";
-      state.avatar = "";
+      state.name = "";
+      state.avatar = favicon_svg;
       state.isAdministrator = false;
       state.isRoot = false;
       state.roles = [];

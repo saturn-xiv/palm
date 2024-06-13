@@ -3,7 +3,7 @@ import { ProTable } from "@ant-design/pro-components";
 
 import { FormattedMessage } from "react-intl";
 
-import { logs as fetch_logs, ILog } from "../../../api/camelia";
+import { logs as fetch_logs, ILog } from "../../../api/users";
 
 const columns: ProColumns<ILog>[] = [
   {

@@ -55,6 +55,16 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     field(:languages, list_of(non_null(:string)))
   end
 
+  object :route do
+    field(:path, non_null(:string))
+    field(:name, non_null(:string))
+    field(:children, list_of(non_null(:route)))
+  end
+
+  object :index_route_response do
+    field(:items, list_of(non_null(:route)))
+  end
+
   # ---------------------------------------------------------------------------
   object :locale do
     field(:id, non_null(:id))
@@ -106,6 +116,29 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     value(:wechat_mini_program, as: "wechat-mini-program")
     value(:wechat_oauth2, as: "wechat-oauth2")
     value(:google, as: "google")
+  end
+
+  enum :log_level do
+    value(:debug, as: "debug")
+    value(:info, as: "info")
+    value(:warn, as: "warn")
+    value(:error, as: "error")
+  end
+
+  object :log do
+    field(:id, non_null(:id))
+    field(:plugin, non_null(:string))
+    field(:ip, non_null(:string))
+    field(:level, non_null(:log_level))
+    field(:resource_type, non_null(:string))
+    field(:resource_id, :integer)
+    field(:message, non_null(:string))
+    field(:created_at, non_null(:datetime))
+  end
+
+  object :index_log_response do
+    field(:pagination, non_null(:pagination))
+    field(:items, list_of(:log))
   end
 
   # ---------------------------------------------------------------------------

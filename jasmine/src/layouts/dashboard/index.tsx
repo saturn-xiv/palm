@@ -24,13 +24,13 @@ import {
   set_pathname,
   sideBar as selectSideBar,
 } from "../../reducers/side-bar";
-import { routes as fetch_routes, IRoute } from "../../api/camelia";
+import { routes as fetch_routes, IRoute } from "../../api/users";
 
 const to_route_menu = (rt: IRoute): MenuDataItem => {
   const it: MenuDataItem = {
     name: rt.name,
     path: rt.path,
-    children: rt.routes.map(to_route_menu),
+    children: rt.children.map(to_route_menu),
   };
   return it;
 };
@@ -71,7 +71,7 @@ export const Component = () => {
       avatarProps={{
         src: current_user.avatar,
         size: "small",
-        title: current_user.realName,
+        title: current_user.name,
         render: (_props, dom) => {
           return <SignOut>{dom}</SignOut>;
         },

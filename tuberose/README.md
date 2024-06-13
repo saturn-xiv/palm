@@ -18,6 +18,7 @@ sudo pacman -S erlang elixir inotify-to
 mix local.hex
 mix archive.install hex phx_new
 mix deps.get
+mix assets.build
 mix phx.server # http://localhost:4000
 ```
 

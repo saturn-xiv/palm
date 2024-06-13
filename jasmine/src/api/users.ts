@@ -1,7 +1,7 @@
 import moment from "moment-timezone";
 
 import { home_url } from "../utils";
-import { query, ISucceed } from "./graphql";
+import { query, ISucceed, IPagination } from "./graphql";
 
 export interface IResource {
   type: string;
@@ -174,12 +174,12 @@ export const current_user = async (): Promise<ICurrentUser> => {
     `
 query call{
   currentUser{
-    nickname, email, realName, avatar, providerType, lang, timezone,
+    name, avatar, providerType, lang, timezone,
     isAdministrator, isRoot,
     roles, 
     permissions{ 
-      resource{type, sid, iid},
-      action
+      resource{type, id},
+      operation
     },
     hasWechatMiniProgram, hasWechatOauth2, hasGoogle
   }
@@ -219,4 +219,79 @@ mutation call($user: String!, $password: String!, $ttl: Int!){
     }
   );
   return res.signInUserByEmail;
+};
+
+export interface ILog {
+  id: number;
+  plugin: string;
+  level: string;
+  ip: string;
+  resourceType: string;
+  resourceId: number;
+  message: string;
+  createdAt: Date;
+}
+export interface IIndexLogResponse {
+  items: ILog[];
+  pagination: IPagination;
+}
+export const logs = async (
+  page: number,
+  size: number
+): Promise<IIndexLogResponse> => {
+  const res = await query<{ index_log: IIndexLogResponse }>(
+    `
+query call($pager: Pager!){
+  index_log(pager: $pager){
+    items{id, plugin, level, ip, resourceType, resourceId, message, createdAt},
+    pagination{page, size, total, hasNext, hasPrevious}
+  }
+}
+`,
+    {
+      pager: { page, size },
+    }
+  );
+  return res.index_log;
+};
+
+export const sign_out = async (): Promise<ISucceed> => {
+  const res = await query<{ signOutUser: ISucceed }>(
+    `
+mutation call{
+  signOutUser{ createdAt }
+}
+`,
+    {}
+  );
+  return res.signOutUser;
+};
+
+export interface IRoute {
+  path: string;
+  name: string;
+  children: IRoute[];
+}
+
+export const routes = async (): Promise<IRoute[]> => {
+  const res = await query<{
+    indexRoute: IRoute[];
+  }>(
+    `
+query call{
+  indexRoute{
+    path, name,
+    children {
+      path, name, children{
+        path, name, children{
+          path, name
+        }
+      }
+    }
+  }
+}
+`,
+    {}
+  );
+  return res.indexRoute;
 };

@@ -48,6 +48,7 @@
   },
   "sign-out": {
     "title": "Sign out",
+    "confirm": "You will sign out from this system.",
     "succeed": "Signed out successfully."
   },
   "cancel": {

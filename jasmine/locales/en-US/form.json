@@ -21,6 +21,18 @@
     },
     "content": {
       "label": "Content"
+    },
+    "id": {
+      "label": "ID"
+    },
+    "ip": {
+      "label": "IP"
+    },
+    "message": {
+      "label": "Message"
+    },
+    "created-at": {
+      "label": "Created At"
     }
   }
 }

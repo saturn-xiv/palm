@@ -32,7 +32,7 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
   end
 
   def confirm_by_token(_parent, %{token: token}, %{context: context}) do
-    {subject, _} =
+    {:ok, subject, _} =
       Tuberose.Atropa.Client.jwt_verify(token, to_string(:tuberose), to_string(:confirm))
 
     it = Tuberose.Repo.get_by(Tuberose.EmailUser, nickname: subject)
@@ -105,7 +105,7 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
   end
 
   def unlock_by_token(_parent, %{token: token}, %{context: context}) do
-    {subject, _} =
+    {:ok, subject, _} =
       Tuberose.Atropa.Client.jwt_verify(token, to_string(:tuberose), to_string(:unlock))
 
     it = Tuberose.Repo.get_by(Tuberose.EmailUser, nickname: subject)
@@ -191,7 +191,7 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
     {:ok, password} = Tuberose.Validation.password(password)
     {:ok, home} = Tuberose.Validation.url(home)
 
-    {subject, _} =
+    {:ok, subject, _} =
       Tuberose.Atropa.Client.jwt_verify(token, to_string(:tuberose), "reset-password")
 
     it = Tuberose.Repo.get_by(Tuberose.EmailUser, nickname: subject)

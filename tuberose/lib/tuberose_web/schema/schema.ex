@@ -17,6 +17,10 @@ defmodule TuberoseWeb.Schema do
       resolve(&Resolvers.Site.layout/3)
     end
 
+    field :index_route, non_null(:index_route_response) do
+      resolve(&Resolvers.User.routes/3)
+    end
+
     field :index_locale_by_lang, list_of(non_null(:locale)) do
       arg(:lang, non_null(:string))
       resolve(&Resolvers.Locale.by_lang/3)
@@ -48,6 +52,15 @@ defmodule TuberoseWeb.Schema do
       arg(:user, non_null(:string))
       arg(:home, non_null(:string))
       resolve(&Resolvers.EmailUser.forgot_password/3)
+    end
+
+    field :current_user, non_null(:current_user) do
+      resolve(&Resolvers.User.current/3)
+    end
+
+    field :index_log, non_null(:index_log_response) do
+      arg(:pager, non_null(:pager))
+      resolve(&Resolvers.User.logs/3)
     end
 
     field :index_leave_word, :index_leave_word_response do
@@ -90,6 +103,10 @@ defmodule TuberoseWeb.Schema do
       arg(:password, non_null(:string))
       arg(:home, non_null(:string))
       resolve(&Resolvers.EmailUser.reset_password/3)
+    end
+
+    field :sign_out_user, non_null(:succeed) do
+      resolve(&Resolvers.User.sign_out/3)
     end
 
     field :create_leave_word, non_null(:succeed) do

@@ -94,8 +94,10 @@ defmodule Tuberose.Atropa.Client do
       audience: audience
     }
 
-    {:ok, reply} = channel |> Palm.Atropa.V1.Jwt.Stub.verify(request)
-    {reply.subject, reply.extra}
+    case channel |> Palm.Atropa.V1.Jwt.Stub.verify(request) do
+      {:ok, reply} -> {:ok, reply.subject, reply.extra}
+      error -> error
+    end
   end
 
   def hmac_sign(password, salt_len) do

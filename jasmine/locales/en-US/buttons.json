@@ -1,6 +1,11 @@
 {
   "submit": "Submit",
   "reset": "Reset",
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "yes": "Yes",
+  "no": "No",
+  "close": "Close",
   "go-back": "Go back",
   "go-home": "Go Home"
 }

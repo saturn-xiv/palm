@@ -38,34 +38,6 @@ query call{
   return { postgresql: res.postgresqlStatus, redis: res.redisStatus };
 };
 
-export interface IRoute {
-  path: string;
-  name: string;
-  routes: IRoute[];
-}
-
-export const routes = async (): Promise<IRoute[]> => {
-  const res = await query<{
-    routes: IRoute[];
-  }>(
-    `
-query call{
-  routes{
-    path, name,
-    routes {
-      path, name, routes{
-        path, name, routes{
-          path, name
-        }
-      }
-    }
-  }
-}
-`,
-    {}
-  );
-  return res.routes;
-};
 export interface IUserDetails {
   nickname: string;
   realName: string;
@@ -588,39 +560,6 @@ query call{
   );
   return res.indexPicture;
 };
-export interface ILog {
-  id: number;
-  plugin: string;
-  level: string;
-  ip: string;
-  resourceType: string;
-  resourceId: number;
-  message: string;
-  createdAt: Date;
-}
-export interface IIndexLogResponse {
-  items: ILog[];
-  pagination: IPagination;
-}
-export const logs = async (
-  page: number,
-  size: number
-): Promise<IIndexLogResponse> => {
-  const res = await query<{ logs: IIndexLogResponse }>(
-    `
-query call($pager: Pager!){
-  logs(pager: $pager){
-    items{id, plugin, level, ip, resourceType, resourceId, message, createdAt},
-    pagination{page, size, total, hasNext, hasPrevious}
-  }
-}
-`,
-    {
-      pager: { page, size },
-    }
-  );
-  return res.logs;
-};
 
 export const update_profile = async (
   realName: string,
@@ -663,18 +602,6 @@ mutation call($currentPassword: String!, $newPassword: String!){
     }
   );
   return res.changeUserPassword;
-};
-
-export const sign_out = async (): Promise<ISucceed> => {
-  const res = await query<{ signOutUser: ISucceed }>(
-    `
-mutation call{
-  signOutUser{ createdAt }
-}
-`,
-    {}
-  );
-  return res.signOutUser;
 };
 
 export interface IAuthor {

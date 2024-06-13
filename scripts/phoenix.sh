@@ -28,7 +28,7 @@ function build() {
 
 source /etc/os-release
 
-if [ "$ID" -ne "ubuntu" ]; then
+if [ "$ID" != "ubuntu" ]; then
     echo "only ubuntu was supported"
     exit 1
 fi
@@ -38,14 +38,11 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-# https://elixir-lang.org/install.html#distributions
-if [ ! -f /etc/apt/sources.list.d/rabbitmq-ubuntu-rabbitmq-erlang-${VERSION_CODENAME}.sources ]; then
-    apt update
-    apt install -y software-properties-common
-    add-apt-repository -y ppa:rabbitmq/rabbitmq-erlang
-    apt update
-    apt install -y elixir erlang-dev erlang-xmerl git
-fi
+apt update
+apt install -y erlang elixir git
+
+mix local.hex --force
+mix local.rebar --force
 
 build $1
 
