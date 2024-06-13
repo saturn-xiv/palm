@@ -47,7 +47,7 @@ const Widget = () => {
               messageApi.info({
                 type: "success",
                 content: intl.formatMessage({
-                  id: "users.confirm.by-email.succeed",
+                  id: "personal.profile.change-password.succeed",
                 }),
                 onClose: () => {
                   dispatch(signOut());

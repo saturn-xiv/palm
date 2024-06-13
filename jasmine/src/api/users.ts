@@ -12,6 +12,9 @@ export interface IPermission {
   operation: string;
 }
 
+export const is_email_user = (provider_type: string | undefined): boolean =>
+  provider_type === "EMAIL";
+
 // ----------------------------------------------------------------------------
 
 export const unlock_by_email_token = async (
@@ -190,6 +193,23 @@ query call{
   return res.currentUser;
 };
 
+interface IEmailUser {
+  nickname: string;
+  email: string;
+}
+export const current_email_user = async (): Promise<IEmailUser> => {
+  const res = await query<{ currentEmailUser: IEmailUser }>(
+    `
+query call{
+  currentEmailUser{
+    nickname, email
+  }
+}
+`,
+    {}
+  );
+  return res.currentEmailUser;
+};
 export const sign_in_by_email = async (
   user: string,
   password: string
@@ -310,4 +330,23 @@ mutation call($home: String!, $currentPassword: String!, $newPassword: String!){
     }
   );
   return res.changeUserPasswordByEmail;
+};
+
+export const cancel_account = async (
+  reason: string | undefined
+): Promise<ISucceed> => {
+  const res = await query<{ cancelAccount: ISucceed }>(
+    `
+mutation call($home: String!, $reason: String){
+  cancelAccount(home: $home, reason: $reason){
+    createdAt
+  }
+}
+`,
+    {
+      home: home_url(),
+      reason: reason,
+    }
+  );
+  return res.cancelAccount;
 };

@@ -3,6 +3,78 @@ defmodule TuberoseWeb.Resolvers.User do
   import Ecto.Query
   import Ecto.Changeset
 
+  def cancel(_parent, %{home: home}, %{context: context}) do
+    cancel_account(
+      context.current_user.id,
+      context.current_user.provider,
+      home,
+      context.client_ip,
+      ""
+    )
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def cancel(_parent, %{home: home, reason: reason}, %{context: context}) do
+    cancel_account(
+      context.current_user.id,
+      context.current_user.provider,
+      home,
+      context.client_ip,
+      reason
+    )
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def update_profile(
+        _parent,
+        %{home: home, real_name: real_name, lang: lang, timezone: timezone, avatar: avatar},
+        %{context: context}
+      ) do
+    {:ok, _home} = Tuberose.Validation.url(home)
+    {:ok, real_name} = Tuberose.Validation.label(real_name, 2)
+    {:ok, lang} = Tuberose.Validation.language_code(lang)
+    {:ok, timezone} = Tuberose.Validation.timezone(timezone)
+    {:ok, avatar} = Tuberose.Validation.url(avatar)
+
+    Tuberose.Repo.transaction(fn ->
+      it = Tuberose.Repo.get(Tuberose.User, context.current_user.id)
+
+      Tuberose.Repo.update(
+        change(it, %{
+          name: real_name,
+          lang: lang,
+          timezone: timezone,
+          avatar: avatar
+        })
+      )
+
+      if context.current_user.provider.type == :email do
+        it = Tuberose.Repo.get(Tuberose.EmailUser, context.current_user.provider.id)
+        Tuberose.Repo.update(change(it, %{real_name: real_name}))
+      end
+
+      %Tuberose.Log{
+        user_id: it.id,
+        plugin: "core",
+        ip: context.client_ip,
+        level: "info",
+        resource_type: to_string(context.current_user.provider.type),
+        message: "update profile."
+      }
+      |> Tuberose.Repo.insert()
+    end)
+
+    if context.current_user.provider.type == :email do
+      it = Tuberose.Repo.get(Tuberose.EmailUser, context.current_user.provider.id)
+      Logger.debug("send update-profile email to #{it.email}")
+      # TODO
+    end
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
   def current(_parent, _args, %{context: context}) do
     {:ok, name, avatar} =
       case context.current_user.provider.type do
@@ -223,5 +295,30 @@ defmodule TuberoseWeb.Resolvers.User do
     }
     |> Map.merge(oauth)
     |> Map.merge(rbac)
+  end
+
+  defp cancel_account(user, provider, home, ip, reason) do
+    {:ok, _home} = Tuberose.Validation.url(home)
+
+    Tuberose.Repo.transaction(fn ->
+      it = Tuberose.Repo.get(Tuberose.User, user)
+      Tuberose.Repo.delete(it)
+
+      %Tuberose.Log{
+        user_id: it.id,
+        plugin: "core",
+        ip: ip,
+        level: "warn",
+        resource_type: to_string(provider.type),
+        message: "cancel account(#{reason})."
+      }
+      |> Tuberose.Repo.insert()
+    end)
+
+    if provider.type == :email do
+      it = Tuberose.Repo.get(Tuberose.EmailUser, provider.id)
+      Logger.debug("send cancel email to #{it.email}")
+      # TODO
+    end
   end
 end

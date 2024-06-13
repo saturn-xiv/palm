@@ -9,7 +9,7 @@ import {
   IAttachment,
   IAttachmentShowResponse,
   show_attachment_by_id,
-} from "../../../api/camelia";
+} from "../../../api/attachments";
 import { IErrorMessage } from "../../../api/graphql";
 
 interface IProps {

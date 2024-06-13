@@ -3,7 +3,7 @@ import { ModalForm, ProFormText } from "@ant-design/pro-components";
 import { Form, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { IAttachment, update_attachment } from "../../../api/camelia";
+import { IAttachment, update_attachment } from "../../../api/attachments";
 import { IErrorMessage } from "../../../api/graphql";
 
 interface IProps {

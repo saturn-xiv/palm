@@ -44,7 +44,16 @@
       "label": "Timezone"
     },
     "language": {
-      "label": "language"
+      "label": "Language"
+    },
+    "title": {
+      "label": "Title"
+    },
+    "reason": {
+      "label": "Reason"
+    },
+    "content-type": {
+      "label": "Content type"
     },
     "updated-at": {
       "label": "Updated at"

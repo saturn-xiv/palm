@@ -338,6 +338,15 @@ defmodule TuberoseWeb.Resolvers.EmailUser do
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
+  def current(_parent, _args, %{context: context}) do
+    unless context.current_user.provider.type == :email do
+      raise ArgumentError, message: "Bad request"
+    end
+
+    it = Tuberose.Repo.get(Tuberose.EmailUser, context.current_user.provider.id)
+    {:ok, %{nickname: it.nickname, email: it.email}}
+  end
+
   defp send_email(email, home, locale, action) do
     email_user = Tuberose.Repo.get_by(Tuberose.EmailUser, email: email)
     subject = Tuberose.I18N.t(locale, "users.mailer.#{action}.subject")

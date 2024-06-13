@@ -54,6 +54,10 @@ defmodule TuberoseWeb.Schema do
       resolve(&Resolvers.EmailUser.forgot_password/3)
     end
 
+    field :current_email_user, non_null(:current_email_user) do
+      resolve(&Resolvers.EmailUser.current/3)
+    end
+
     field :current_user, non_null(:current_user) do
       resolve(&Resolvers.User.current/3)
     end
@@ -114,6 +118,20 @@ defmodule TuberoseWeb.Schema do
 
     field :sign_out_user, non_null(:succeed) do
       resolve(&Resolvers.User.sign_out/3)
+    end
+
+    field :update_user_profile, non_null(:succeed) do
+      arg(:real_name, non_null(:string))
+      arg(:avatar, non_null(:string))
+      arg(:lang, non_null(:string))
+      arg(:timezone, non_null(:string))
+      resolve(&Resolvers.User.update_profile/3)
+    end
+
+    field :cancel_account, non_null(:succeed) do
+      arg(:home, non_null(:string))
+      arg(:reason, :string)
+      resolve(&Resolvers.User.cancel/3)
     end
 
     field :create_leave_word, non_null(:succeed) do

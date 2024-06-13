@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ProForm,
   ProFormSelect,
@@ -10,7 +11,12 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { updateProfile } from "../../../reducers/current-user";
 import { siteInfo as selectSiteInfo } from "../../../reducers/site-info";
 import { IErrorMessage } from "../../../api/graphql";
-import { update_profile, current_user } from "../../../api/users";
+import {
+  update_profile,
+  current_email_user,
+  current_user,
+  is_email_user,
+} from "../../../api/users";
 import {
   REAL_NAME_MAX_LENGTH,
   REAL_NAME_MIN_LENGTH,
@@ -18,15 +24,16 @@ import {
 import { timezones } from "../../../utils";
 
 interface IForm {
-  email: string;
+  email?: string;
   avatar: string;
-  nickname: string;
+  nickname?: string;
   real_name: string;
   lang: string;
   timezone: string;
 }
 
 const Widget = () => {
+  const [providerType, setProviderType] = useState<string | undefined>();
   const [messageApi, contextHolder] = message.useMessage();
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -64,14 +71,19 @@ const Widget = () => {
         }}
         request={async () => {
           const it = await current_user();
-          return {
-            email: it.email,
-            nickname: it.nickname,
-            real_name: it.realName,
+          const ret: IForm = {
+            real_name: it.name,
             avatar: it.avatar,
             lang: it.lang,
             timezone: it.timezone,
           };
+          if (is_email_user(it.providerType)) {
+            const it = await current_email_user();
+            ret.email = it.email;
+            ret.nickname = it.nickname;
+          }
+          setProviderType(it.providerType);
+          return ret;
         }}
       >
         <ProFormText
@@ -86,18 +98,24 @@ const Widget = () => {
             },
           ]}
         />
-        <ProFormText
-          width="md"
-          name="nickname"
-          disabled
-          label={<FormattedMessage id="form.fields.nickname.label" />}
-        />
-        <ProFormText
-          width="md"
-          name="email"
-          disabled
-          label={<FormattedMessage id="form.fields.email.label" />}
-        />
+        {is_email_user(providerType) && (
+          <ProFormText
+            width="md"
+            name="nickname"
+            disabled
+            label={<FormattedMessage id="form.fields.nickname.label" />}
+          />
+        )}
+
+        {is_email_user(providerType) && (
+          <ProFormText
+            width="md"
+            name="email"
+            disabled
+            label={<FormattedMessage id="form.fields.email.label" />}
+          />
+        )}
+
         <ProFormText
           width="md"
           name="avatar"

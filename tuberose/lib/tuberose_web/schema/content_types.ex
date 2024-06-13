@@ -101,6 +101,11 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     field(:timezone, non_null(:string))
   end
 
+  object :current_email_user do
+    field(:nickname, non_null(:string))
+    field(:email, non_null(:string))
+  end
+
   object :user_sign_in_response do
     field(:token, non_null(:string))
     field(:user, non_null(:current_user))

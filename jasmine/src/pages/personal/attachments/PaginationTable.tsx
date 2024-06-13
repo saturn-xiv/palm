@@ -2,7 +2,7 @@ import type { ProColumns } from "@ant-design/pro-components";
 import { ProTable } from "@ant-design/pro-components";
 import { FormattedMessage } from "react-intl";
 
-import { index_attachment, IAttachment } from "../../../api/camelia";
+import { index_attachment, IAttachment } from "../../../api/attachments";
 import ShareButton from "./ShareButton";
 import EditButton from "./EditButton";
 import UploadButton from "./UploadButton";

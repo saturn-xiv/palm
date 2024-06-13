@@ -13,7 +13,6 @@ const initialState: IState = {
   keywords: [],
   locale: get_locale(),
   languages: [],
-  version: "",
 };
 
 export const siteInfoSlice = createSlice({
@@ -22,7 +21,6 @@ export const siteInfoSlice = createSlice({
   reducers: {
     refresh: (state, action: PayloadAction<IState>) => {
       state.favicon = action.payload.favicon;
-      state.version = action.payload.version;
       state.title = action.payload.title;
       state.subhead = action.payload.subhead;
       state.description = action.payload.description;
