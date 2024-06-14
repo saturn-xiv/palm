@@ -1,0 +1,21 @@
+{
+  "index": {
+    "title": "Settings"
+  },
+  "site": {
+    "seo": {
+      "title": "SEO"
+    },
+    "status": {
+      "title": "Site Status"
+    },
+    "info": {
+      "title": "Site info"
+    }
+  },
+  "locales": {
+    "index": {
+      "title": "Locales"
+    }
+  }
+}

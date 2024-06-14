@@ -183,21 +183,31 @@ message PolicyPermissionsResponse {
 
 service S3 {
   rpc CreateBucket(S3CreateBucketRequest) returns (S3CreateBucketResponse) {}
-  rpc Upload(S3UploadRequest) returns (S3UrlResponse) {}
+  rpc Upload(S3UploadRequest) returns (S3UploadResponse) {}
   rpc PermanentUrl(S3PermanentUrlRequest) returns (S3UrlResponse) {}
   rpc PresignedUrl(S3PresignedUrlRequest) returns (S3UrlResponse) {}
 }
 
+message S3Bucket {
+  string namespace = 1;
+  string name = 2;
+  bool public = 3;
+  uint32 expiration_days = 4;
+}
 message S3CreateBucketRequest {
   string name = 1;
   bool public = 2;
-  int32 expiration_days = 9;
+  uint32 expiration_days = 9;
 }
 message S3CreateBucketResponse { string name = 1; }
 message S3UploadRequest {
   string bucket = 1;
-  string object = 2;
+  string title = 2;
   google.protobuf.Duration ttl = 9;
+}
+message S3UploadResponse {
+  string object = 1;
+  string url = 9;
 }
 message S3UrlResponse { string url = 1; }
 message S3PresignedUrlRequest {

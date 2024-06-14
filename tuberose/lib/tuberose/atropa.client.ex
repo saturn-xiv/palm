@@ -70,6 +70,74 @@ defmodule Tuberose.Atropa.Client do
     to_original_permissions(reply.items)
   end
 
+  def add_roles_for_user(user, roles) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.PolicyRolesForUserRequest{user: user, roles: roles}
+
+    {:ok, _} = channel |> Palm.Atropa.V1.Policy.Stub.add_roles_for_user(request)
+  end
+
+  def delete_roles_for_user(user, roles) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.PolicyRolesForUserRequest{user: user, roles: roles}
+
+    {:ok, _} = channel |> Palm.Atropa.V1.Policy.Stub.delete_roles_for_user(request)
+  end
+
+  def s3_create_bucket(name, public, expiration_days) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.S3CreateBucketRequest{
+      name: name,
+      public: public,
+      expiration_days: expiration_days
+    }
+
+    {:ok, reply} = channel |> Palm.Atropa.V1.S3.Stub.create_bucket(request)
+    reply.name
+  end
+
+  def s3_upload(bucket, title, ttl) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.S3UploadRequest{
+      bucket: bucket,
+      title: title,
+      ttl: %Google.Protobuf.Duration{seconds: ttl, nanos: 0}
+    }
+
+    {:ok, reply} = channel |> Palm.Atropa.V1.S3.Stub.upload(request)
+    {reply.object, reply.url}
+  end
+
+  def s3_permanent_url(bucket, object) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.S3PermanentUrlRequest{
+      bucket: bucket,
+      object: object
+    }
+
+    {:ok, reply} = channel |> Palm.Atropa.V1.S3.Stub.permanent_url(request)
+    reply.url
+  end
+
+  def s3_presigned_url(bucket, object, title, ttl) do
+    {:ok, channel} = connect()
+
+    request = %Palm.Atropa.V1.S3PresignedUrlRequest{
+      bucket: bucket,
+      object: object,
+      title: title,
+      ttl: %Google.Protobuf.Duration{seconds: ttl, nanos: 0}
+    }
+
+    {:ok, reply} = channel |> Palm.Atropa.V1.S3.Stub.presigned_url(request)
+    reply.url
+  end
+
   def jwt_sign(issuer, subject, audiences, not_before, expires_at) do
     {:ok, channel} = connect()
 
@@ -126,22 +194,6 @@ defmodule Tuberose.Atropa.Client do
     request = %Palm.Atropa.V1.AesCodeMessage{payload: code, salt: salt}
     {:ok, reply} = channel |> Palm.Atropa.V1.Aes.Stub.decrypt(request)
     reply.payload
-  end
-
-  def add_roles_for_user(user, roles) do
-    {:ok, channel} = connect()
-
-    request = %Palm.Atropa.V1.PolicyRolesForUserRequest{user: user, roles: roles}
-
-    {:ok, _} = channel |> Palm.Atropa.V1.Policy.Stub.add_roles_for_user(request)
-  end
-
-  def delete_roles_for_user(user, roles) do
-    {:ok, channel} = connect()
-
-    request = %Palm.Atropa.V1.PolicyRolesForUserRequest{user: user, roles: roles}
-
-    {:ok, _} = channel |> Palm.Atropa.V1.Policy.Stub.delete_roles_for_user(request)
   end
 
   defp connect() do

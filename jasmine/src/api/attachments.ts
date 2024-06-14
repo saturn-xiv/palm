@@ -22,11 +22,11 @@ export interface IAttachment {
   id: number;
   title: string;
   bucket: string;
-  name: string;
+  object: string;
   size: number;
   contentType: string;
-  status: string;
-  updatedAt: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
 }
 
 export interface IIndexAttachmentResponse {
@@ -41,7 +41,7 @@ export const index_attachment = async (
     `
   query call($pager: Pager!){
     indexAttachment(pager: $pager){
-      items{id, title, bucket, name, size, contentType, status, updatedAt},
+      items{id, title, bucket, object, size, contentType, updatedAt, deletedAt},
       pagination{page, size, total, hasNext, hasPrevious}
     }
   }
@@ -57,7 +57,7 @@ export const index_picture = async (): Promise<IAttachment[]> => {
     `
   query call{
     indexPicture{
-      id, title, bucket, name, size, contentType, status, updatedAt
+      id, title, bucket, object, size, contentType, updatedAt, deletedAt
     }
   }
   `,
@@ -97,4 +97,32 @@ export const show_attachment_by_id = async (
     }
   );
   return res.showAttachmentById;
+};
+
+interface IUploadUrlResponse {
+  bucket: string;
+  object: string;
+  url: string;
+}
+export const upload_url = async (
+  title: string,
+  content_type: string,
+  size: number
+): Promise<IUploadUrlResponse> => {
+  const res = await query<{ uploadAttachmentUrl: IUploadUrlResponse }>(
+    `
+  mutation call($title: String!, $content_type: String!, $size: Int!, $ttl: Int!){
+    uploadAttachmentUrl(title: $title, contentType: $content_type, size: $size, ttl: $ttl){
+      bucket, object, url
+    }
+  }
+  `,
+    {
+      title,
+      content_type,
+      size,
+      ttl: 60 * 60 * 10,
+    }
+  );
+  return res.uploadAttachmentUrl;
 };

@@ -3,7 +3,11 @@
     "title": "Personal"
   },
   "attachments": {
-    "title": "Attachments"
+    "title": "Attachments",
+    "upload": {
+      "failed": "upload { title } failed",
+      "succeed": "upload { title } succeed"
+    }
   },
   "logs": {
     "title": "Logs"

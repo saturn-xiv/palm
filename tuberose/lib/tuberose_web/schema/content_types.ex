@@ -122,7 +122,7 @@ defmodule TuberoseWeb.Schema.ContentTypes do
   enum :log_level do
     value(:debug, as: "debug")
     value(:info, as: "info")
-    value(:warn, as: "warn")
+    value(:warning, as: "warning")
     value(:error, as: "error")
   end
 
@@ -161,4 +161,31 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     field(:pagination, non_null(:pagination))
     field(:items, list_of(non_null(:leave_word)))
   end
+
+  # ---------------------------------------------------------------------------
+
+  object :attachment do
+    field(:id, non_null(:id))
+    field(:title, non_null(:string))
+    field(:bucket, non_null(:string))
+    field(:object, non_null(:string))
+    field(:size, non_null(:integer))
+    field(:content_type, non_null(:string))
+    field(:uploaded_at, :datetime)
+    field(:deleted_at, :datetime)
+    field(:updated_at, non_null(:datetime))
+  end
+
+  object :index_attachment_response do
+    field(:pagination, non_null(:pagination))
+    field(:items, list_of(non_null(:attachment)))
+  end
+
+  object :upload_attachment_url_response do
+    field(:bucket, non_null(:string))
+    field(:object, non_null(:string))
+    field(:url, non_null(:string))
+  end
+
+  # ---------------------------------------------------------------------------
 end

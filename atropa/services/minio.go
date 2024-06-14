@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"log/slog"
 	"net/url"
+	"path/filepath"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/lifecycle"
 
@@ -29,6 +31,7 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequ
 	if err != nil {
 		return nil, err
 	}
+
 	found, err := p.client.BucketExists(ctx, name)
 	if err != nil {
 		return nil, err
@@ -85,7 +88,7 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.S3CreateBucketRequ
 }
 
 // https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
-func (p *S3Service) Upload(ctx context.Context, req *pb.S3UploadRequest) (*pb.S3UrlResponse, error) {
+func (p *S3Service) Upload(ctx context.Context, req *pb.S3UploadRequest) (*pb.S3UploadResponse, error) {
 	{
 		_, err := p.bucket(req.Bucket)
 		if err != nil {
@@ -93,11 +96,19 @@ func (p *S3Service) Upload(ctx context.Context, req *pb.S3UploadRequest) (*pb.S3
 		}
 	}
 	expiry := time.Second * time.Duration(req.Ttl.Seconds)
-	url, err := p.client.PresignedPutObject(ctx, req.Bucket, req.Object, expiry)
+
+	object := uuid.New().String()
+	{
+		ext := filepath.Ext(req.Title)
+		if ext != "" {
+			object += ext
+		}
+	}
+	url, err := p.client.PresignedPutObject(ctx, req.Bucket, object, expiry)
 	if err != nil {
 		return nil, err
 	}
-	return &pb.S3UrlResponse{Url: url.String()}, nil
+	return &pb.S3UploadResponse{Url: url.String(), Object: object}, nil
 }
 
 func (p *S3Service) PermanentUrl(ctx context.Context, req *pb.S3PermanentUrlRequest) (*pb.S3UrlResponse, error) {

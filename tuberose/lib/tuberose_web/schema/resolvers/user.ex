@@ -308,7 +308,7 @@ defmodule TuberoseWeb.Resolvers.User do
         user_id: it.id,
         plugin: "core",
         ip: ip,
-        level: "warn",
+        level: "warning",
         resource_type: to_string(provider.type),
         message: "cancel account(#{reason})."
       }

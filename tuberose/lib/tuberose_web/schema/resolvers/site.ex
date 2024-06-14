@@ -28,13 +28,40 @@ defmodule TuberoseWeb.Resolvers.Site do
                 children: []
               }
             ]
-          },
+          }
+        ]
+      else
+        []
+      end
+
+    settings =
+      if context.current_user != nil and
+           Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+        [
           %{
-            path: "aaa.2",
-            name: "bbb.2",
+            path: "/dashboard/settings",
+            name: Tuberose.I18N.t(locale, "settings.index.title"),
             children: [
-              %{path: "aaa1", name: "bbb1", children: []},
-              %{path: "aaa2", name: "bbb2", children: []}
+              %{
+                path: "/dashboard/settings/site/status",
+                name: Tuberose.I18N.t(locale, "settings.site.status.title"),
+                children: []
+              },
+              %{
+                path: "/dashboard/settings/site/info",
+                name: Tuberose.I18N.t(locale, "settings.site.info.title"),
+                children: []
+              },
+              %{
+                path: "/dashboard/settings/site/seo",
+                name: Tuberose.I18N.t(locale, "settings.site.seo.title"),
+                children: []
+              },
+              %{
+                path: "/dashboard/settings/site/locales",
+                name: Tuberose.I18N.t(locale, "settings.locales.index.title"),
+                children: []
+              }
             ]
           }
         ]
@@ -42,7 +69,7 @@ defmodule TuberoseWeb.Resolvers.Site do
         []
       end
 
-    {:ok, items ++ personal}
+    {:ok, items ++ personal ++ settings}
   end
 
   def layout(_parent, _args, %{context: context}) do

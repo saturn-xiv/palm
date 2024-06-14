@@ -287,6 +287,17 @@ defmodule Palm.Atropa.V1.PolicyPermissionsResponse do
   field :items, 1, repeated: true, type: Palm.Atropa.V1.PolicyPermissionsResponse.Item
 end
 
+defmodule Palm.Atropa.V1.S3Bucket do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :namespace, 1, type: :string
+  field :name, 2, type: :string
+  field :public, 3, type: :bool
+  field :expiration_days, 4, type: :uint32, json_name: "expirationDays"
+end
+
 defmodule Palm.Atropa.V1.S3CreateBucketRequest do
   @moduledoc false
 
@@ -294,7 +305,7 @@ defmodule Palm.Atropa.V1.S3CreateBucketRequest do
 
   field :name, 1, type: :string
   field :public, 2, type: :bool
-  field :expiration_days, 9, type: :int32, json_name: "expirationDays"
+  field :expiration_days, 9, type: :uint32, json_name: "expirationDays"
 end
 
 defmodule Palm.Atropa.V1.S3CreateBucketResponse do
@@ -311,8 +322,17 @@ defmodule Palm.Atropa.V1.S3UploadRequest do
   use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
 
   field :bucket, 1, type: :string
-  field :object, 2, type: :string
+  field :title, 2, type: :string
   field :ttl, 9, type: Google.Protobuf.Duration
+end
+
+defmodule Palm.Atropa.V1.S3UploadResponse do
+  @moduledoc false
+
+  use Protobuf, syntax: :proto3, protoc_gen_elixir_version: "0.12.0"
+
+  field :object, 1, type: :string
+  field :url, 9, type: :string
 end
 
 defmodule Palm.Atropa.V1.S3UrlResponse do
@@ -522,7 +542,7 @@ defmodule Palm.Atropa.V1.S3.Service do
 
   rpc :CreateBucket, Palm.Atropa.V1.S3CreateBucketRequest, Palm.Atropa.V1.S3CreateBucketResponse
 
-  rpc :Upload, Palm.Atropa.V1.S3UploadRequest, Palm.Atropa.V1.S3UrlResponse
+  rpc :Upload, Palm.Atropa.V1.S3UploadRequest, Palm.Atropa.V1.S3UploadResponse
 
   rpc :PermanentUrl, Palm.Atropa.V1.S3PermanentUrlRequest, Palm.Atropa.V1.S3UrlResponse
 

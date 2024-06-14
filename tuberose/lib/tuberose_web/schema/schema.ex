@@ -71,6 +71,20 @@ defmodule TuberoseWeb.Schema do
       arg(:pager, non_null(:pager))
       resolve(&Resolvers.LeaveWord.index/3)
     end
+
+    field :show_attachment, :attachment do
+      arg(:id, non_null(:id))
+      resolve(&Resolvers.Attachment.show/3)
+    end
+
+    field :index_attachment, :index_attachment_response do
+      arg(:pager, non_null(:pager))
+      resolve(&Resolvers.Attachment.index/3)
+    end
+
+    field :index_attachment_by_images, list_of(non_null(:attachment)) do
+      resolve(&Resolvers.Attachment.by_image/3)
+    end
   end
 
   # ---------------------------------------------------------------------------
@@ -138,6 +152,31 @@ defmodule TuberoseWeb.Schema do
       arg(:content, non_null(:string))
       arg(:editor, non_null(:text_editor))
       resolve(&Resolvers.LeaveWord.create/3)
+    end
+
+    field :set_attachment_uploaded, non_null(:succeed) do
+      arg(:bucket, non_null(:string))
+      arg(:object, non_null(:string))
+      resolve(&Resolvers.Attachment.set_uploaded/3)
+    end
+
+    field :upload_attachment_url, non_null(:upload_attachment_url_response) do
+      arg(:title, non_null(:string))
+      arg(:content_type, non_null(:string))
+      arg(:size, non_null(:integer))
+      arg(:ttl, non_null(:integer))
+      resolve(&Resolvers.Attachment.upload_url/3)
+    end
+
+    field :update_attachment, non_null(:succeed) do
+      arg(:id, non_null(:id))
+      arg(:title, non_null(:string))
+      resolve(&Resolvers.Attachment.update/3)
+    end
+
+    field :destroy_attachment, non_null(:succeed) do
+      arg(:id, non_null(:id))
+      resolve(&Resolvers.Attachment.destroy/3)
     end
   end
 
