@@ -1,16 +1,51 @@
 package env
 
 import (
-	"database/sql"
-	"log/slog"
-
 	_ "github.com/microsoft/go-mssqldb"
 )
 
 type SqlServer struct {
 }
 
-func (p *SqlServer) Open(dsn string) (*sql.DB, error) {
-	slog.Debug("open sqlserver", slog.String("dsn", dsn))
-	return sql.Open("sqlserver", dsn)
+func (p *SqlServer) Up() string {
+	return "UPDATE {{ .name }} SET run_at = CURRENT_TIMESTAMP WHERE VERSION = $1"
+}
+
+func (p *SqlServer) Down() string {
+	return "UPDATE {{ .name }} SET run_at = NULL WHERE VERSION = $1"
+}
+
+func (p *SqlServer) All() string {
+	return "SELECT version, name, up, down, run_at FROM {{ .name }} ORDER BY version ASC"
+}
+func (p *SqlServer) ByVersion() string {
+	return "SELECT version, name, up, down, run_at FROM {{ .name }} WHERE VERSION = $1"
+}
+func (p *SqlServer) Latest() string {
+	return "SELECT version, name, up, down, run_at FROM {{ .name }} WHERE RUN_AT IS NOT NULL ORDER BY VERSION DESC LIMIT 1"
+}
+
+func (p *SqlServer) Insert() string {
+	return "INSERT INTO {{ .name }}(version, name, up, down) VALUES($1, $2, $3, $4)"
+}
+
+func (p *SqlServer) Version() string {
+	return "SELECT VERSION()"
+}
+
+func (p *SqlServer) CreateTable() string {
+	return `
+CREATE TABLE IF NOT EXISTS {{ .name }}(
+	id SERIAL PRIMARY KEY,
+	version CHAR(14) NOT NULL,
+	name VARCHAR(63) NOT NULL,
+	up TEXT NOT NULL,
+	down TEXT NOT NULL,	
+	run_at TIMESTAMP WITHOUT TIME ZONE,
+	created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_{{ .name }}_name ON {{ .name }}(name);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version);
+`
+
 }

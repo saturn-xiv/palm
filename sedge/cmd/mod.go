@@ -48,7 +48,16 @@ var (
 
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
-	root_cmd.PersistentFlags().StringVarP(&gl_url, "url", "u", "sqlite3://file:db?cache=shared&mode=memory", "specify the database URL")
+	root_cmd.PersistentFlags().StringVarP(&gl_url, "url", "u", "sqlite3://file:db",
+		`specify the database URL
+Sqlite3: sqlite3://file:PATH?cache=shared&mode=memory
+MySql: mysql://USER:PASSWORD@HOST:PORT/DBNAME?charset=utf8mb4
+PostgreSQL: postgres://USER:PASSWORD@HOST:PORT/DBNAME?sslmode=disable
+SqlServer: sqlserver://USER:PASSWORD@HOST:PORT/INSTANCE
+Oracle: oracle:thin:@HOST:PORT/INSTANCE
+DM8: dm://USER:PASSWORD@HOST:PORT
+`,
+	)
 	root_cmd.PersistentFlags().StringVar(&gl_migrations_dir, "migrations-dir", "migrations", "specify the directory containing migration files")
 	root_cmd.PersistentFlags().StringVar(&gl_migrations_table, "migrations-table", "schema_migrations", "specify the database table to record migrations in")
 	root_cmd.PersistentFlags().StringVar(&gl_schema_file, "schema-file", "schema.sql", "specify the schema file location")
@@ -129,12 +138,7 @@ func init() {
 			Short: "Create database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				usage, err := env.Create(gl_url)
-				if err != nil {
-					log.Fatalln(err)
-					return
-				}
-				fmt.Println(usage)
+				fmt.Println(env.Create())
 			},
 		}
 
@@ -146,12 +150,7 @@ func init() {
 			Short: "Drop database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				usage, err := env.Drop(gl_url)
-				if err != nil {
-					log.Fatalln(err)
-					return
-				}
-				fmt.Println(usage)
+				fmt.Println(env.Drop())
 			},
 		}
 

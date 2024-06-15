@@ -1,19 +1,10 @@
 package env
 
 import (
-	"database/sql"
-	"log/slog"
-
 	_ "dm"
 )
 
-// dm://userName:password@ip:port
 type DM8 struct {
-}
-
-func (p *DM8) Open(dsn string) (*sql.DB, error) {
-	slog.Debug("open dm8", slog.String("dsn", dsn))
-	return sql.Open("dm", dsn)
 }
 
 func (p *DM8) Up() string {
@@ -58,21 +49,4 @@ CREATE INDEX IF NOT EXISTS idx_{{ .name }}_name ON {{ .name }}(name);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version);
 `
 
-}
-
-func (p *DM8) Create() string {
-	return `
-CREATE TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' SIZE 10240;
-ALTER TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' AUTOEXTEND ON NEXT 512 MAXSIZE 102400;
-
-CREATE USER "www" IDENTIFIED BY "change-ME@2024" HASH WITH SHA512 SALT ENCRYPT BY "123456" DEFAULT TABLESPACE "demo" DEFAULT INDEX TABLESPACE "demo";
-
-GRANT "DBA" TO "www";
-
-`
-}
-func (p *DM8) Drop() string {
-	return `
-DROP TABLESPACE "demo";
-`
 }

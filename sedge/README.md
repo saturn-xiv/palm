@@ -18,8 +18,8 @@ mv dm $GOROOT/src/
 ### Data Source Name
 
 - [Sqlite3](https://github.com/mattn/go-sqlite3?tab=readme-ov-file#connection-string)
-- [PostgreSql](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters) `postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full`
+- [PostgreSql](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters)
 - [MySql](https://github.com/go-sql-driver/mysql#dsn-data-source-name)
 - [SqlServer](https://github.com/microsoft/go-mssqldb?tab=readme-ov-file#connection-parameters-and-dsn)
 - [Oracle](https://github.com/sijms/go-ora?tab=readme-ov-file#connect-using-sid)
-- [DM8](https://eco.dameng.com/document/dm/zh-cn/app-dev/go_dm.html#Linux%20%E7%8E%AF%E5%A2%83%E4%B8%8B%20go%20%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93) `dm://SYSDBA:SYSDBA@localhost:5236`
+- [DM8](https://eco.dameng.com/document/dm/zh-cn/app-dev/go_dm.html#Linux%20%E7%8E%AF%E5%A2%83%E4%B8%8B%20go%20%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93)

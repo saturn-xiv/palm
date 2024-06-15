@@ -25,11 +25,8 @@ type Migration struct {
 }
 
 type Database interface {
-	Open(dsn string) (*sql.DB, error)
 	Version() string
 	CreateTable() string
-	Create() string
-	Drop() string
 	ByVersion() string
 	Insert() string
 	Up() string
@@ -72,20 +69,28 @@ func New(migrations_dir string, name string) error {
 	return nil
 }
 
-func Create(url string) (string, error) {
-	driver, err := Open(url)
-	if err != nil {
-		return "", err
-	}
-	return driver.Create(), nil
+func Create() string {
+	return `
+PostgreSql:
+CREATE USER user-name WITH PASSWORD 'change-me';
+CREATE DATABASE db-name WITH ENCODING = 'UTF8' OWNER user-name;
+
+DM8:
+CREATE TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' SIZE 10240;
+ALTER TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' AUTOEXTEND ON NEXT 512 MAXSIZE 102400;
+CREATE USER "www" IDENTIFIED BY "change-ME@2024" HASH WITH SHA512 SALT ENCRYPT BY "123456" DEFAULT TABLESPACE "demo" DEFAULT INDEX TABLESPACE "demo";
+GRANT "DBA" TO "www";
+`
 }
 
-func Drop(url string) (string, error) {
-	driver, err := Open(url)
-	if err != nil {
-		return "", err
-	}
-	return driver.Drop(), nil
+func Drop() string {
+	return `
+PostgreSql/MySql:
+DROP DATABASE db-name;
+
+DM8:
+DROP TABLESPACE "demo";
+`
 }
 
 func Dump(url string, schema_file string) error {
@@ -99,14 +104,11 @@ func Load(url string, schema_file string) error {
 }
 
 func Migrate(url string, migrations_dir string, migrations_table string) error {
-	driver, err := Open(url)
+	driver, db, err := Open(url)
 	if err != nil {
 		return err
 	}
-	db, err := driver.Open(url)
-	if err != nil {
-		return err
-	}
+
 	tx, err := db.Begin()
 	if err != nil {
 		return err
@@ -137,11 +139,7 @@ func Migrate(url string, migrations_dir string, migrations_table string) error {
 }
 
 func Rollback(url string, migrations_table string) error {
-	driver, err := Open(url)
-	if err != nil {
-		return err
-	}
-	db, err := driver.Open(url)
+	driver, db, err := Open(url)
 	if err != nil {
 		return err
 	}
@@ -169,14 +167,11 @@ func Rollback(url string, migrations_table string) error {
 }
 
 func Status(url string, migrations_table string) error {
-	driver, err := Open(url)
+	driver, db, err := Open(url)
 	if err != nil {
 		return err
 	}
-	db, err := driver.Open(url)
-	if err != nil {
-		return err
-	}
+
 	{
 		slog.Debug("ping database")
 		if err = db.Ping(); err != nil {
@@ -188,6 +183,10 @@ func Status(url string, migrations_table string) error {
 		return err
 	}
 	defer tx.Rollback()
+
+	if err = check_migrations_table(tx, driver, migrations_table); err != nil {
+		return err
+	}
 
 	{
 		tpl, err := template.New("").Parse(driver.Version())
@@ -210,27 +209,74 @@ func Status(url string, migrations_table string) error {
 
 	items, err := select_all(tx, driver, migrations_table)
 	if err != nil {
-		return nil
+		return err
 	}
-	fmt.Println("VERSION NAME\tRUN AT")
+
+	fmt.Printf("%-15s %-32s\t%s\n", "VERSION", "NAME", "RUN AT")
 	for _, it := range items {
 		run_at := "n/a"
 		if it.RunAt != nil {
 			run_at = it.RunAt.Format(time.UnixDate)
 		}
-		fmt.Printf("%s %s\t%s\n", it.Version, it.Name, run_at)
+		fmt.Printf("%-15s %-32s\t%s\n", it.Version, it.Name, run_at)
+	}
+	if err = tx.Commit(); err != nil {
+		return err
 	}
 	return nil
 }
 
-func Open(url string) (Database, error) {
+func Open(url string) (Database, *sql.DB, error) {
+	if dsn, ok := strings.CutPrefix(url, "sqlite3://"); ok {
+		slog.Debug("open sqlite3", slog.String("dsn", dsn))
+		db, err := sql.Open("sqlite3", dsn)
+		if err != nil {
+			return nil, nil, err
+		}
+		return &Sqlite3{}, db, nil
+	}
+	if dsn, ok := strings.CutPrefix(url, "mysql://"); ok {
+		slog.Debug("open mysql", slog.String("dsn", dsn))
+		db, err := sql.Open("mysql", dsn)
+		if err != nil {
+			return nil, nil, err
+		}
+		return &MySql{}, db, nil
+	}
 	if strings.HasPrefix(url, "postgres://") {
-		return &PostgreSql{}, nil
+		slog.Debug("open postgresql", slog.String("dsn", url))
+		db, err := sql.Open("postgres", url)
+		if err != nil {
+			return nil, nil, err
+		}
+		return &PostgreSql{}, db, nil
+	}
+	if strings.HasPrefix(url, "sqlserver://") {
+		slog.Debug("open sqlserver", slog.String("dsn", url))
+		db, err := sql.Open("sqlserver", url)
+		if err != nil {
+			return nil, nil, err
+		}
+		return &SqlServer{}, db, nil
+	}
+	if strings.HasPrefix(url, "oracle://") {
+		slog.Debug("open oracle", slog.String("dsn", url))
+		// TODO
+		db, err := sql.Open("oracle", url)
+		if err != nil {
+			return nil, nil, err
+		}
+		return &Oracle{}, db, nil
 	}
 	if strings.HasPrefix(url, "dm://") {
-		return &DM8{}, nil
+		slog.Debug("open dm8", slog.String("dsn", url))
+		db, err := sql.Open("dm", url)
+		if err != nil {
+			return nil, nil, err
+		}
+		return &DM8{}, db, nil
 	}
-	return nil, fmt.Errorf("unsupported %s", url)
+	return nil, nil, fmt.Errorf("unsupported %s", url)
 }
 
 func init() {

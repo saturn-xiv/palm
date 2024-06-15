@@ -1,18 +1,10 @@
 package env
 
 import (
-	"database/sql"
-	"log/slog"
-
 	_ "github.com/lib/pq"
 )
 
 type PostgreSql struct {
-}
-
-func (p *PostgreSql) Open(dsn string) (*sql.DB, error) {
-	slog.Debug("open postgresql", slog.String("dsn", dsn))
-	return sql.Open("postgres", dsn)
 }
 
 func (p *PostgreSql) Up() string {
@@ -56,16 +48,4 @@ CREATE INDEX IF NOT EXISTS idx_{{ .name }}_name ON {{ .name }}(name);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version);
 `
 
-}
-
-func (p *PostgreSql) Create() string {
-	return `
-CREATE USER user-name WITH PASSWORD 'change-me';
-CREATE DATABASE db-name WITH ENCODING = 'UTF8' OWNER user-name;
-`
-}
-func (p *PostgreSql) Drop() string {
-	return `
-DROP DATABASE db-name;
-`
 }
