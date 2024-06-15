@@ -77,8 +77,7 @@ CREATE DATABASE db-name WITH ENCODING = 'UTF8' OWNER user-name;
 
 DM8:
 CREATE TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' SIZE 10240;
-ALTER TABLESPACE "demo" DATAFILE '/var/lib/dm8/demo.dbf' AUTOEXTEND ON NEXT 512 MAXSIZE 102400;
-CREATE USER "www" IDENTIFIED BY "change-ME@2024" HASH WITH SHA512 SALT ENCRYPT BY "123456" DEFAULT TABLESPACE "demo" DEFAULT INDEX TABLESPACE "demo";
+CREATE USER "www" IDENTIFIED BY "change-ME.2024" HASH WITH SHA512 SALT ENCRYPT BY "123456" DEFAULT TABLESPACE "demo" DEFAULT INDEX TABLESPACE "demo";
 GRANT "DBA" TO "www";
 `
 }
@@ -466,7 +465,9 @@ func check_migrations_table(tx *sql.Tx, driver Database, migrations_table string
 		return err
 	}
 	sq := buf.String()
+
 	slog.Debug(sq)
+
 	if _, err = tx.Exec(sq); err != nil {
 		return err
 	}

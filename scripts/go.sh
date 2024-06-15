@@ -23,7 +23,7 @@ fi
 apt update
 DEBIAN_FRONTEND=noninteractive apt install -y git wget
 
-export GO_VERSION="1.22.3"
+export GO_VERSION="1.22.4"
 if [ ! -d /opt/go ]; then
     wget -P /tmp/ https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
     tar -C /opt -xf /tmp/go${GO_VERSION}.linux-amd64.tar.gz

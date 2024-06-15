@@ -51,9 +51,9 @@ func init() {
 	root_cmd.PersistentFlags().StringVarP(&gl_url, "url", "u", "sqlite3://file:db",
 		`specify the database URL
 Sqlite3: sqlite3://file:PATH?cache=shared&mode=memory
-MySql: mysql://USER:PASSWORD@HOST:PORT/DBNAME?charset=utf8mb4
+MySql: mysql://USER:PASSWORD@HOST:PORT/DBNAME?charset=utf8mb4&allowMultiQueries=true
 PostgreSQL: postgres://USER:PASSWORD@HOST:PORT/DBNAME?sslmode=disable
-SqlServer: sqlserver://USER:PASSWORD@HOST:PORT/INSTANCE
+SqlServer: sqlserver://USER:PASSWORD@HOST:PORT/INSTANCE?allowMultiQueries=true
 Oracle: oracle:thin:@HOST:PORT/INSTANCE
 DM8: dm://USER:PASSWORD@HOST:PORT
 `,

@@ -35,18 +35,22 @@ func (p *DM8) Version() string {
 
 func (p *DM8) CreateTable() string {
 	return `
-CREATE TABLE IF NOT EXISTS {{ .name }}(
-	id INT IDENTITY(1, 1) NOT NULL,
-	version CHAR(14) NOT NULL,
-	name VARCHAR(63) NOT NULL,
-	up TEXT NOT NULL,
-	down TEXT NOT NULL,	
-	run_at TIMESTAMP,
-	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	NOT CLUSTER PRIMARY KEY(id)
-);
-CREATE INDEX IF NOT EXISTS idx_{{ .name }}_name ON {{ .name }}(name);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version);
+CREATE OR REPLACE PROCEDURE t_{{ .name }}
+AS
+BEGIN
+	EXECUTE IMMEDIATE 'CREATE TABLE IF NOT EXISTS {{ .name }}(
+		id INT IDENTITY(1, 1) NOT NULL,
+		version CHAR(14) NOT NULL,
+		name VARCHAR(63) NOT NULL,
+		up TEXT NOT NULL,
+		down TEXT NOT NULL,	
+		run_at TIMESTAMP,
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		NOT CLUSTER PRIMARY KEY(id)
+	)';
+	EXECUTE IMMEDIATE 'CREATE INDEX IF NOT EXISTS idx_{{ .name }}_name ON {{ .name }}(name)';
+	EXECUTE IMMEDIATE 'CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version)';
+END
 `
 
 }
