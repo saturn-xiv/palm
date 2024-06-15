@@ -39,7 +39,7 @@ func (p *DM8) Insert() string {
 }
 
 func (p *DM8) Version() string {
-	return "SELECT VERSION()"
+	return "SELECT BANNER FROM V$VERSION LIMIT 1"
 }
 
 func (p *DM8) CreateTable() string {
