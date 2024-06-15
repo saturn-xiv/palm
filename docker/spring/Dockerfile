@@ -41,7 +41,7 @@ RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/downloa
 
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION "1.29.0"
+ENV ENVOY_VERSION "1.30.2"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo mv $HOME/downloads/envoy /usr/local/bin/envoy \
     && sudo chmod +x /usr/local/bin/envoy \
@@ -107,14 +107,14 @@ RUN cd $HOME/downloads \
 
 
 # https://github.com/bazelbuild/bazelisk
-ENV BAZEL_VERSION "v1.19.0"
+ENV BAZEL_VERSION "v1.20.0"
 RUN wget -q -O $HOME/.local/bin/bazel \
     https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64
 RUN chmod +x $HOME/.local/bin/bazel
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION "3.3.2"
+ENV RUBY_VERSION "3.3.3"
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
@@ -126,7 +126,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && gem install bundler"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.22.3"
+ENV GO_VERSION "1.22.4"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -185,7 +185,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && cargo install mdbook"
 
 # https://www.swift.org/download/#releases
-ENV SWIFT_VERSION "5.9.2"
+ENV SWIFT_VERSION "5.10.1"
 RUN wget -q -P $HOME/downloads https://download.swift.org/swift-${SWIFT_VERSION}-release/ubuntu2204/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-ubuntu22.04.tar.gz \
     && cd /opt \
     && sudo tar xf $HOME/downloads/swift-${SWIFT_VERSION}-RELEASE-ubuntu22.04.tar.gz \
@@ -219,7 +219,7 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && sudo chmod +x /usr/local/bin/dbmate
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.64.1"
+ENV GRPC_VERSION "v1.64.2"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 # ENV PROTOBUF_VERSION "v3.21.8"
 # RUN cd $HOME/downloads/grpc/third_party/protobuf \

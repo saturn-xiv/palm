@@ -65,7 +65,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && asdf global elixir latest"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.22.3"
+ENV GO_VERSION "1.22.4"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \

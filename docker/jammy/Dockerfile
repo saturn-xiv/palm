@@ -37,6 +37,7 @@ RUN apt -y install zsh git locales locales-all \
     clang-${CLANG_VERSION} clangd-${CLANG_VERSION} clang-tools-${CLANG_VERSION} clang-format-${CLANG_VERSION} clang-tidy-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} \
     cmake pkg-config libtool automake autoconf autoconf-archive binutils cpio mold \
     debhelper bison flex ninja-build \
+    erlang elixir \
     python3-full python3-dev
 
 RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} 100 \
@@ -115,7 +116,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk install gradle"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.22.3"
+ENV GO_VERSION "1.22.4"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -142,7 +143,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.64.1"
+ENV GRPC_VERSION "v1.64.3"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN apt install -y libssl-dev
 RUN zsh -c "source $HOME/.zshrc \
