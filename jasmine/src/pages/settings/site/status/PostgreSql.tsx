@@ -1,6 +1,6 @@
 import { Card, List } from "antd";
 
-import { IPostgreSqlStatus } from "../../../../api/camelia";
+import { IPostgreSqlStatus } from "../../../../api/site";
 
 interface IProps {
   item: IPostgreSqlStatus;

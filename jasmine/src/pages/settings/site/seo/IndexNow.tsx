@@ -13,7 +13,7 @@ import {
   get_index_now_site_verification,
   ping_index_now,
   set_index_now_site_verification,
-} from "../../../../api/camelia";
+} from "../../../../api/site";
 import { home_url } from "../../../../utils";
 
 interface IForm {

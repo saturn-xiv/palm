@@ -7,8 +7,7 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { IErrorMessage } from "../../../../api/graphql";
-import { fetch_layout, set_site_info } from "../../../../api/camelia";
-import { get as get_locale } from "../../../../locales";
+import { fetch_layout, set_site_info } from "../../../../api/site";
 
 interface IProps {
   handleRefresh: () => void;
@@ -47,12 +46,12 @@ const Widget = ({ handleRefresh }: IProps) => {
             });
         }}
         request={async () => {
-          const it = await fetch_layout(get_locale());
+          const it = await fetch_layout();
           return {
-            title: it.siteInfo.title,
-            subhead: it.siteInfo.subhead,
-            description: it.siteInfo.description,
-            copyright: it.siteInfo.copyright,
+            title: it.layout.title,
+            subhead: it.layout.subhead,
+            description: it.layout.description,
+            copyright: it.layout.copyright,
           };
         }}
       >

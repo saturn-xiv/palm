@@ -12,7 +12,7 @@ import {
   delete_google_recaptcha,
   get_google_recaptcha,
   set_google_recaptcha,
-} from "../../../../api/camelia";
+} from "../../../../api/site";
 
 interface IForm {
   site_key: string;

@@ -11,10 +11,8 @@ import { IErrorMessage } from "../../../../api/graphql";
 import {
   delete_baidu_site_verification,
   get_baidu_site_verification,
-  ping_baidu,
   set_baidu_site_verification,
-} from "../../../../api/camelia";
-import { home_url } from "../../../../utils";
+} from "../../../../api/site";
 
 interface IForm {
   code: string;
@@ -60,7 +58,6 @@ const Widget = () => {
                   formRef.current?.setFieldsValue({ code: "", content: "" });
                 }}
               />,
-              <PingButton key="ping" />,
             ];
           },
         }}
@@ -106,33 +103,6 @@ const DeleteButton = ({ handleRefresh }: { handleRefresh: () => void }) => {
       {contextHolder}
       <Button type="dashed">
         <FormattedMessage id="buttons.delete" />
-      </Button>
-    </Popconfirm>
-  );
-};
-
-const PingButton = () => {
-  const intl = useIntl();
-  const home = home_url();
-  const [messageApi, contextHolder] = message.useMessage();
-  return (
-    <Popconfirm
-      title={<FormattedMessage id="flashes.are-you-sure" />}
-      onConfirm={() => {
-        ping_baidu(home)
-          .then(() => {
-            messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
-          })
-          .catch((reason: IErrorMessage[]) => {
-            message.error(reason.map((x) => x.message).join("\n"));
-          });
-      }}
-      okText={<FormattedMessage id="buttons.ok" />}
-      cancelText={<FormattedMessage id="buttons.cancel" />}
-    >
-      {contextHolder}
-      <Button type="dashed">
-        <FormattedMessage id="buttons.ping" />
       </Button>
     </Popconfirm>
   );

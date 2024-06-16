@@ -3,8 +3,7 @@ import { Card, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { IErrorMessage } from "../../../../api/graphql";
-import { fetch_layout, set_site_authors } from "../../../../api/camelia";
-import { get as get_locale } from "../../../../locales";
+import { fetch_layout, set_site_authors } from "../../../../api/site";
 import {
   EMAIL_MAX_LENGTH,
   REAL_NAME_MAX_LENGTH,
@@ -41,10 +40,10 @@ const Widget = ({ handleRefresh }: IProps) => {
             });
         }}
         request={async () => {
-          const it = await fetch_layout(get_locale());
+          const it = await fetch_layout();
           return {
-            name: it.siteInfo.authors[0]?.name || "",
-            email: it.siteInfo.authors[0]?.email || "",
+            name: it.layout.author?.name || "",
+            email: it.layout.author?.email || "",
           };
         }}
       >

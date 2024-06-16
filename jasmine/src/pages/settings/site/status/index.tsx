@@ -4,7 +4,7 @@ import { Col } from "antd";
 import { useAppDispatch } from "../../../../hooks";
 import { set_pathname } from "../../../../reducers/side-bar";
 import { SETTINGS_SITE_STATUS_PATH } from "../../../../Router";
-import { ISystemStatusResponse, system_status } from "../../../../api/camelia";
+import { ISystemStatusResponse, system_status } from "../../../../api/site";
 import PostgreSql from "./PostgreSql";
 import Redis from "./Redis";
 

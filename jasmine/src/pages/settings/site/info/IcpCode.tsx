@@ -12,8 +12,7 @@ import {
   delete_site_icp_code,
   fetch_layout,
   set_site_icp_code,
-} from "../../../../api/camelia";
-import { get as get_locale } from "../../../../locales";
+} from "../../../../api/site";
 
 interface IProps {
   handleRefresh: () => void;
@@ -46,9 +45,9 @@ const Widget = ({ handleRefresh }: IProps) => {
             });
         }}
         request={async () => {
-          const it = await fetch_layout(get_locale());
+          const it = await fetch_layout();
           return {
-            code: it.siteInfo.icpCode?.code || "",
+            code: it.layout.icp?.code || "",
           };
         }}
         submitter={{

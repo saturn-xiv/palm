@@ -12,8 +12,7 @@ import {
   delete_site_gab_code,
   fetch_layout,
   set_site_gab_code,
-} from "../../../../api/camelia";
-import { get as get_locale } from "../../../../locales";
+} from "../../../../api/site";
 
 interface IProps {
   handleRefresh: () => void;
@@ -47,10 +46,10 @@ const Widget = ({ handleRefresh }: IProps) => {
             });
         }}
         request={async () => {
-          const it = await fetch_layout(get_locale());
+          const it = await fetch_layout();
           return {
-            code: it.siteInfo.gabCode?.code || "",
-            name: it.siteInfo.gabCode?.name || "",
+            code: it.layout.gab?.code || "",
+            name: it.layout.gab?.name || "",
           };
         }}
         submitter={{

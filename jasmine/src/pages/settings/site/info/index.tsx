@@ -4,7 +4,7 @@ import { Col } from "antd";
 import { useAppDispatch } from "../../../../hooks";
 import { set_pathname } from "../../../../reducers/side-bar";
 import { SETTINGS_SITE_INFO_PATH } from "../../../../Router";
-import Authors from "./Authors";
+import Author from "./Author";
 import Base from "./Base";
 import Favicon from "./Favicon";
 import GabCode from "./GabCode";
@@ -27,7 +27,7 @@ export const Component = () => {
         <Favicon handleRefresh={handleRefresh} />
       </Col>
       <Col sm={24} md={8}>
-        <Authors handleRefresh={handleRefresh} />
+        <Author handleRefresh={handleRefresh} />
       </Col>
       <Col sm={24} md={8}>
         <Keywords handleRefresh={handleRefresh} />

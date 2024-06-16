@@ -1,6 +1,6 @@
 import { Card, List } from "antd";
 
-import { IRedisStatus } from "../../../../api/camelia";
+import { IRedisStatus } from "../../../../api/site";
 
 interface IProps {
   item: IRedisStatus;
