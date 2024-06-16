@@ -136,7 +136,12 @@ func (p *S3Service) PresignedUrl(ctx context.Context, req *pb.S3PresignedUrlRequ
 	}
 	expiry := time.Second * time.Duration(req.Ttl.Seconds)
 	params := make(url.Values)
-	params.Set("response-content-disposition", fmt.Sprintf(`attachment; filename="%s"`, req.Title))
+
+	if req.ContentType == nil {
+		params.Set("response-content-disposition", fmt.Sprintf(`attachment; filename="%s"`, req.Title))
+	} else {
+		params.Set("response-content-type", *req.ContentType)
+	}
 
 	url, err := p.client.PresignedGetObject(ctx, req.Bucket, req.Object, expiry, params)
 	if err != nil {

@@ -30,7 +30,7 @@ const Widget = ({ item }: IProps) => {
     <ModalForm<IForm>
       title={
         <FormattedMessage
-          id="attachments.share.title"
+          id="personal.attachments.share.title"
           values={{ id: item.id }}
         />
       }
@@ -75,13 +75,15 @@ const Widget = ({ item }: IProps) => {
         {attachment && (
           <div>
             <a href={attachment.url} target="_blank" rel="noreferrer">
-              {attachment.title}
+              {attachment.item.title}
             </a>
-            &nbsp; ({attachment.contentType}) &nbsp;
-            {attachment.size}kb &nbsp;
-            <CopyToClipboard text={attachment.url}>
-              <Button shape="round" icon={<CopyOutlined />} size="small" />
-            </CopyToClipboard>
+            &nbsp; ({attachment.item.contentType}) &nbsp;
+            {attachment.item.size}kb &nbsp;
+            {attachment.url && (
+              <CopyToClipboard text={attachment.url}>
+                <Button shape="round" icon={<CopyOutlined />} size="small" />
+              </CopyToClipboard>
+            )}
           </div>
         )}
       </ProForm.Group>

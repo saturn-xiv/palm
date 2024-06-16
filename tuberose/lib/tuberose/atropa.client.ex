@@ -124,18 +124,27 @@ defmodule Tuberose.Atropa.Client do
     reply.url
   end
 
-  def s3_presigned_url(bucket, object, title, ttl) do
+  def s3_presigned_url(bucket, object, title, content_type, ttl) do
     {:ok, channel} = connect()
 
     request = %Palm.Atropa.V1.S3PresignedUrlRequest{
       bucket: bucket,
       object: object,
       title: title,
+      content_type: content_type,
       ttl: %Google.Protobuf.Duration{seconds: ttl, nanos: 0}
     }
 
     {:ok, reply} = channel |> Palm.Atropa.V1.S3.Stub.presigned_url(request)
     reply.url
+  end
+
+  def s3_inline?(content_type) do
+    Enum.member?(["application/x-yaml", "application/pdf"], content_type) or
+      String.starts_with?(content_type, "text/") or
+      String.starts_with?(content_type, "image/") or
+      String.starts_with?(content_type, "video/") or
+      String.starts_with?(content_type, "audio/")
   end
 
   def jwt_sign(issuer, subject, audiences, not_before, expires_at) do

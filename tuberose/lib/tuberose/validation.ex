@@ -98,7 +98,7 @@ defmodule Tuberose.Validation do
 
     page =
       cond do
-        page < 1 -> 1
+        page <= 1 -> 1
         page * size <= total -> page
         rem(total, size) == 0 -> div(total, size)
         true -> div(total, size) + 1

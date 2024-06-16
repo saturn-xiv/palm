@@ -181,7 +181,13 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     field(:items, list_of(non_null(:attachment)))
   end
 
+  object :show_attachment_response do
+    field(:item, non_null(:attachment))
+    field(:url, :string)
+  end
+
   object :upload_attachment_url_response do
+    field(:id, non_null(:id))
     field(:bucket, non_null(:string))
     field(:object, non_null(:string))
     field(:url, non_null(:string))

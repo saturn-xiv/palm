@@ -3,10 +3,15 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Upload, Button, message } from "antd";
 import { useIntl } from "react-intl";
 
-import { upload_url as upload_attachment_url } from "../../../api/attachments";
+import {
+  upload_url as upload_attachment_url,
+  set_uploaded as set_attachment_uploaded,
+  attach as attach_attachment,
+} from "../../../api/attachments";
 
 interface IProps {
   resource?: IResource;
+  handleRefresh: () => void;
 }
 interface IResource {
   type: string;
@@ -14,11 +19,12 @@ interface IResource {
 }
 
 interface IS3File {
+  id: number;
   bucket: string;
   object: string;
 }
 
-const Widget = ({ resource }: IProps) => {
+const Widget = ({ resource, handleRefresh }: IProps) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [files, setFiles] = useState<Map<string, IS3File>>(
     new Map<string, IS3File>()
@@ -32,30 +38,38 @@ const Widget = ({ resource }: IProps) => {
       action={async (file) => {
         const it = await upload_attachment_url(file.name, file.type, file.size);
         const tmp = new Map<string, IS3File>([
-          [file.uid, { bucket: it.bucket, object: it.object }],
+          [file.uid, { id: it.id, bucket: it.bucket, object: it.object }],
         ]);
-        setFiles(new Map([...files.entries(), ...tmp.entries()]));
+        setFiles((items) => new Map([...items.entries(), ...tmp.entries()]));
         return it.url;
       }}
       method="put"
-      onChange={(info) => {
-        if (info.file.status !== "uploading") {
-          console.log(info.file, info.fileList);
-        }
-        if (info.file.status === "done") {
-          messageApi.success(
-            intl.formatMessage(
-              { id: "personal.attachments.upload.succeed" },
-              { title: info.file.name }
-            )
-          );
-        } else if (info.file.status === "error") {
-          messageApi.error(
-            intl.formatMessage(
-              { id: "personal.attachments.upload.failed" },
-              { title: info.file.name }
-            )
-          );
+      onChange={async (info) => {
+        const it = files.get(info.file.uid);
+        if (it) {
+          if (info.file.status === "done") {
+            await set_attachment_uploaded(it.id, true);
+            if (resource) {
+              await attach_attachment(it.id, resource.type, resource.id);
+            }
+            messageApi.info({
+              type: "success",
+              content: intl.formatMessage(
+                { id: "personal.attachments.upload.succeed" },
+                { title: info.file.name }
+              ),
+              onClose: handleRefresh,
+              duration: 2,
+            });
+          } else if (info.file.status === "error") {
+            await set_attachment_uploaded(it.id, false);
+            messageApi.error(
+              intl.formatMessage(
+                { id: "personal.attachments.upload.failed" },
+                { title: info.file.name }
+              )
+            );
+          }
         }
       }}
     >

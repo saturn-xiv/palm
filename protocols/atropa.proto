@@ -214,6 +214,7 @@ message S3PresignedUrlRequest {
   string bucket = 1;
   string object = 2;
   string title = 3;
+  optional string content_type = 4;
   google.protobuf.Duration ttl = 9;
 }
 message S3PermanentUrlRequest {

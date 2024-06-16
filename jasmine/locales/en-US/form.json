@@ -40,6 +40,12 @@
     "avatar": {
       "label": "Avatar"
     },
+    "days": {
+      "label": "Days"
+    },
+    "operation": {
+      "label": "Operation"
+    },
     "timezone": {
       "label": "Timezone"
     },

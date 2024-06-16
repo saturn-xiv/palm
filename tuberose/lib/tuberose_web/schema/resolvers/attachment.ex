@@ -3,8 +3,68 @@ defmodule TuberoseWeb.Resolvers.Attachment do
   import Ecto.Query
   import Ecto.Changeset
 
-  def set_uploaded(_parent, %{bucket: bucket, object: object}, %{context: context}) do
-    item = Tuberose.Repo.get_by(Tuberose.Attachment, bucket: bucket, object: object)
+  def attach(_parent, %{id: id, resource_type: resource_type, resource_id: resource_id}, %{
+        context: context
+      }) do
+    item = Tuberose.Repo.get(Tuberose.Attachment, id)
+
+    unless item.user_id == context.current_user.id do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    unless item.uploaded_at do
+      raise ArgumentError, message: "Bad request"
+    end
+
+    if item.deleted_at do
+      raise ArgumentError, message: "Not found"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      %Tuberose.AttachmentResource{
+        attachment_id: id,
+        resource_type: resource_type,
+        resource_id: resource_id
+      }
+      |> Tuberose.Repo.insert()
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def detach(_parent, %{id: id, resource_type: resource_type, resource_id: resource_id}, %{
+        context: context
+      }) do
+    item = Tuberose.Repo.get(Tuberose.Attachment, id)
+
+    unless item.user_id == context.current_user.id do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    unless item.uploaded_at do
+      raise ArgumentError, message: "Bad request"
+    end
+
+    if item.deleted_at do
+      raise ArgumentError, message: "Not found"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      Tuberose.Repo.get_by(Tuberose.AttachmentResource,
+        attachment_id: id,
+        resource_type: resource_type,
+        resource_id: resource_id
+      )
+      |> Tuberose.Repo.delete()
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def set_uploaded(_parent, %{id: id, succeed: succeed}, %{
+        context: context
+      }) do
+    item = Tuberose.Repo.get(Tuberose.Attachment, id)
 
     unless item.user_id == context.current_user.id do
       raise ArgumentError, message: "Forbidden"
@@ -15,9 +75,13 @@ defmodule TuberoseWeb.Resolvers.Attachment do
     end
 
     Tuberose.Repo.transaction(fn ->
-      Tuberose.Repo.update(
-        change(item, %{uploaded_at: DateTime.utc_now(), version: item.version + 1})
-      )
+      if succeed do
+        Tuberose.Repo.update(
+          change(item, %{uploaded_at: DateTime.utc_now(), version: item.version + 1})
+        )
+      else
+        Tuberose.Repo.delete(item)
+      end
     end)
 
     {:ok, %{created_at: DateTime.utc_now()}}
@@ -49,7 +113,8 @@ defmodule TuberoseWeb.Resolvers.Attachment do
       |> Tuberose.Repo.insert()
     end)
 
-    {:ok, %{bucket: bucket, object: object, url: url}}
+    item = Tuberose.Repo.get_by(Tuberose.Attachment, bucket: bucket, object: object)
+    {:ok, %{id: item.id, bucket: bucket, object: object, url: url}}
   end
 
   def update(_parent, %{id: id, title: title}, %{context: context}) do
@@ -57,6 +122,10 @@ defmodule TuberoseWeb.Resolvers.Attachment do
 
     unless item.user_id == context.current_user.id do
       raise ArgumentError, message: "Forbidden"
+    end
+
+    if item.deleted_at do
+      raise ArgumentError, message: "Bad request"
     end
 
     Tuberose.Repo.transaction(fn ->
@@ -89,30 +158,48 @@ defmodule TuberoseWeb.Resolvers.Attachment do
     Tuberose.Repo.transaction(fn ->
       it = Tuberose.Repo.get(Tuberose.Attachment, id)
 
-      Tuberose.Repo.update(change(it, %{updated_at: DateTime.utc_now()}))
+      Tuberose.Repo.update(change(it, %{deleted_at: DateTime.utc_now()}))
     end)
 
     {:ok, %{created_at: DateTime.utc_now()}}
   end
 
-  def show(_parent, %{id: id}, %{context: context}) do
+  def show(_parent, %{id: id, ttl: ttl}, %{context: context}) do
     item = Tuberose.Repo.get(Tuberose.Attachment, id)
 
     unless item.user_id == context.current_user.id do
       raise ArgumentError, message: "Forbidden"
     end
 
+    content_type =
+      if Tuberose.Atropa.Client.s3_inline?(item.content_type), do: item.content_type, else: nil
+
+    url =
+      if item.deleted_at,
+        do: nil,
+        else:
+          Tuberose.Atropa.Client.s3_presigned_url(
+            item.bucket,
+            item.object,
+            item.title,
+            content_type,
+            ttl
+          )
+
     {:ok,
      %{
-       id: item.id,
-       title: item.title,
-       bucket: item.bucket,
-       object: item.object,
-       size: item.size,
-       content_type: item.content_type,
-       uploaded_at: item.uploaded_at,
-       deleted_at: item.deleted_at,
-       updated_at: item.updated_at
+       url: url,
+       item: %{
+         id: item.id,
+         title: item.title,
+         bucket: item.bucket,
+         object: item.object,
+         size: item.size,
+         content_type: item.content_type,
+         uploaded_at: item.uploaded_at,
+         deleted_at: item.deleted_at,
+         updated_at: item.updated_at
+       }
      }}
   end
 
@@ -120,7 +207,7 @@ defmodule TuberoseWeb.Resolvers.Attachment do
     total =
       Tuberose.Repo.one(
         from(p in Tuberose.Attachment,
-          where: p.user_id == ^context.current_user.id,
+          where: p.user_id == ^context.current_user.id and is_nil(p.deleted_at),
           select: count()
         )
       )
@@ -130,7 +217,7 @@ defmodule TuberoseWeb.Resolvers.Attachment do
 
     items =
       from(p in Tuberose.Attachment,
-        where: p.user_id == ^context.current_user.id,
+        where: p.user_id == ^context.current_user.id and is_nil(p.deleted_at),
         select:
           map(p, [
             :id,

@@ -72,8 +72,9 @@ defmodule TuberoseWeb.Schema do
       resolve(&Resolvers.LeaveWord.index/3)
     end
 
-    field :show_attachment, :attachment do
+    field :show_attachment, :show_attachment_response do
       arg(:id, non_null(:id))
+      arg(:ttl, non_null(:integer))
       resolve(&Resolvers.Attachment.show/3)
     end
 
@@ -155,8 +156,8 @@ defmodule TuberoseWeb.Schema do
     end
 
     field :set_attachment_uploaded, non_null(:succeed) do
-      arg(:bucket, non_null(:string))
-      arg(:object, non_null(:string))
+      arg(:id, non_null(:id))
+      arg(:succeed, non_null(:boolean))
       resolve(&Resolvers.Attachment.set_uploaded/3)
     end
 
@@ -177,6 +178,20 @@ defmodule TuberoseWeb.Schema do
     field :destroy_attachment, non_null(:succeed) do
       arg(:id, non_null(:id))
       resolve(&Resolvers.Attachment.destroy/3)
+    end
+
+    field :attach_attachment_to_resource, non_null(:succeed) do
+      arg(:id, non_null(:id))
+      arg(:resource_type, non_null(:string))
+      arg(:resource_id, non_null(:id))
+      resolve(&Resolvers.Attachment.attach/3)
+    end
+
+    field :detach_attachment_from_resource, non_null(:succeed) do
+      arg(:id, non_null(:id))
+      arg(:resource_type, non_null(:string))
+      arg(:resource_id, non_null(:id))
+      resolve(&Resolvers.Attachment.attach/3)
     end
   end
 

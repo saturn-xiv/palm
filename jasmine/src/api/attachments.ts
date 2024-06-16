@@ -8,7 +8,7 @@ export const update_attachment = async (
     updateAttachment: ISucceed;
   }>(
     `
-    mutation call($id: Int!, $title: String!){
+    mutation call($id: ID!, $title: String!){
       updateAttachment(id: $id, title: $title){
         createdAt
       }
@@ -25,6 +25,7 @@ export interface IAttachment {
   object: string;
   size: number;
   contentType: string;
+  uploadedAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
 }
@@ -41,7 +42,7 @@ export const index_attachment = async (
     `
   query call($pager: Pager!){
     indexAttachment(pager: $pager){
-      items{id, title, bucket, object, size, contentType, updatedAt, deletedAt},
+      items{id, title, bucket, object, size, contentType, uploadedAt, updatedAt, deletedAt},
       pagination{page, size, total, hasNext, hasPrevious}
     }
   }
@@ -57,7 +58,7 @@ export const index_picture = async (): Promise<IAttachment[]> => {
     `
   query call{
     indexPicture{
-      id, title, bucket, object, size, contentType, updatedAt, deletedAt
+      id, title, bucket, object, size, contentType, uploadedAt, updatedAt, deletedAt
     }
   }
   `,
@@ -73,21 +74,19 @@ export interface IAttachmentShow {
 }
 
 export interface IAttachmentShowResponse {
-  url: string;
-  title: string;
-  size: number;
-  contentType: string;
-  updatedAt: Date;
+  url?: string;
+  item: IAttachment;
 }
 export const show_attachment_by_id = async (
   id: number,
   ttl: number
 ): Promise<IAttachmentShowResponse> => {
-  const res = await query<{ showAttachmentById: IAttachmentShowResponse }>(
+  const res = await query<{ showAttachment: IAttachmentShowResponse }>(
     `
-  query call($id: Int!, $ttl: Int){
-    showAttachmentById(id: $id, ttl: $ttl){
-      url, title, size, contentType, updatedAt
+  query call($id: ID!, $ttl: Int!){
+    showAttachment(id: $id, ttl: $ttl){
+      url, 
+      item{id, title, bucket, object, size, contentType, uploadedAt, updatedAt, deletedAt}
     }
   }
   `,
@@ -96,10 +95,11 @@ export const show_attachment_by_id = async (
       ttl,
     }
   );
-  return res.showAttachmentById;
+  return res.showAttachment;
 };
 
 interface IUploadUrlResponse {
+  id: number;
   bucket: string;
   object: string;
   url: string;
@@ -113,7 +113,7 @@ export const upload_url = async (
     `
   mutation call($title: String!, $content_type: String!, $size: Int!, $ttl: Int!){
     uploadAttachmentUrl(title: $title, contentType: $content_type, size: $size, ttl: $ttl){
-      bucket, object, url
+      id, bucket, object, url
     }
   }
   `,
@@ -125,4 +125,83 @@ export const upload_url = async (
     }
   );
   return res.uploadAttachmentUrl;
+};
+export const set_uploaded = async (
+  id: number,
+  succeed: boolean
+): Promise<ISucceed> => {
+  const res = await query<{ setAttachmentUploaded: ISucceed }>(
+    `
+  mutation call($id: ID!, $succeed: Boolean!){
+    setAttachmentUploaded(id: $id, succeed: $succeed){
+      createdAt
+    }
+  }
+  `,
+    {
+      id,
+      succeed,
+    }
+  );
+  return res.setAttachmentUploaded;
+};
+
+export const attach = async (
+  id: number,
+  resource_type: string,
+  resource_id: number
+): Promise<ISucceed> => {
+  const res = await query<{ attachAttachmentToResource: ISucceed }>(
+    `
+  mutation call($id: ID!, $object: resource_type!, $resource_id: ID!){
+    attachAttachmentToResource(bucket: $bucket, resource_type: $resource_type, resource_id: $resource_id){
+      createdAt
+    }
+  }
+  `,
+    {
+      id,
+      resource_type,
+      resource_id,
+    }
+  );
+  return res.attachAttachmentToResource;
+};
+
+export const detach = async (
+  id: number,
+  resource_type: string,
+  resource_id: number
+): Promise<ISucceed> => {
+  const res = await query<{ detachAttachmentFromResource: ISucceed }>(
+    `
+  mutation call($id: ID!, $object: resource_type!, $resource_id: ID!){
+    detachAttachmentFromResource(bucket: $bucket, resource_type: $resource_type, resource_id: $resource_id){
+      createdAt
+    }
+  }
+  `,
+    {
+      id,
+      resource_type,
+      resource_id,
+    }
+  );
+  return res.detachAttachmentFromResource;
+};
+
+export const destroy = async (id: number): Promise<ISucceed> => {
+  const res = await query<{ destroyAttachment: ISucceed }>(
+    `
+  mutation call($id: ID!){
+    destroyAttachment(id: $id){
+      createdAt
+    }
+  }
+  `,
+    {
+      id,
+    }
+  );
+  return res.destroyAttachment;
 };

@@ -8,12 +8,13 @@ import { IErrorMessage } from "../../../api/graphql";
 
 interface IProps {
   item: IAttachment;
+  handleRefresh: () => void;
 }
 
 interface IForm {
   title: string;
 }
-const Widget = ({ item }: IProps) => {
+const Widget = ({ item, handleRefresh }: IProps) => {
   const [messageApi, contextHolder] = message.useMessage();
   const intl = useIntl();
   const [form] = Form.useForm<IForm>();
@@ -21,7 +22,7 @@ const Widget = ({ item }: IProps) => {
     <ModalForm<IForm>
       title={
         <FormattedMessage
-          id="attachments.edit.title"
+          id="personal.attachments.edit.title"
           values={{ id: item.id }}
         />
       }
@@ -36,7 +37,12 @@ const Widget = ({ item }: IProps) => {
       onFinish={async (values) => {
         update_attachment(item.id, values.title)
           .then(() => {
-            messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
+            handleRefresh();
+            messageApi.info({
+              type: "success",
+              content: intl.formatMessage({ id: "flashes.succeed" }),
+              duration: 2,
+            });
           })
           .catch((reason: IErrorMessage[]) => {
             messageApi.error(reason.map((x) => x.message).join("\n"));

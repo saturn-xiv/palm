@@ -1,54 +1,80 @@
+import { useRef } from "react";
 import type { ProColumns } from "@ant-design/pro-components";
-import { ProTable } from "@ant-design/pro-components";
+import { ProTable, ActionType } from "@ant-design/pro-components";
 import { FormattedMessage } from "react-intl";
 
 import { index_attachment, IAttachment } from "../../../api/attachments";
 import ShareButton from "./ShareButton";
 import EditButton from "./EditButton";
 import UploadButton from "./UploadButton";
-
-const columns: ProColumns<IAttachment>[] = [
-  {
-    title: <FormattedMessage id="form.fields.id.label" />,
-    dataIndex: "id",
-    ellipsis: true,
-    hideInSearch: true,
-  },
-  {
-    title: <FormattedMessage id="form.fields.content-type.label" />,
-    dataIndex: "contentType",
-    ellipsis: true,
-    sorter: true,
-    hideInSearch: true,
-  },
-  {
-    title: <FormattedMessage id="form.fields.title.label" />,
-    dataIndex: "title",
-    ellipsis: true,
-    sorter: true,
-    hideInSearch: true,
-  },
-  {
-    title: <FormattedMessage id="form.fields.updated-at.label" />,
-    dataIndex: "updatedAt",
-    valueType: "dateTime",
-    sorter: true,
-    hideInSearch: true,
-  },
-  {
-    title: "操作",
-    valueType: "option",
-    key: "operation",
-    render: (_text, record) => [
-      <EditButton key={`edit-${record.id}`} item={record} />,
-      <ShareButton key={`share-${record.id}`} item={record} />,
-    ],
-  },
-];
+import DeleteButton from "./DeleteButton";
 
 const Widget = () => {
+  const ref = useRef<ActionType>();
+  const onRefresh = () => {
+    if (ref.current?.reloadAndRest) {
+      ref.current?.reloadAndRest();
+    }
+  };
+  const columns: ProColumns<IAttachment>[] = [
+    {
+      title: <FormattedMessage id="form.fields.id.label" />,
+      dataIndex: "id",
+      ellipsis: true,
+      hideInSearch: true,
+    },
+    {
+      title: <FormattedMessage id="form.fields.content-type.label" />,
+      dataIndex: "contentType",
+      ellipsis: true,
+      sorter: true,
+      hideInSearch: true,
+    },
+    {
+      title: <FormattedMessage id="form.fields.title.label" />,
+      dataIndex: "title",
+      ellipsis: true,
+      sorter: true,
+      hideInSearch: true,
+    },
+    {
+      title: <FormattedMessage id="form.fields.updated-at.label" />,
+      dataIndex: "updatedAt",
+      valueType: "dateTime",
+      sorter: true,
+      hideInSearch: true,
+    },
+    {
+      title: <FormattedMessage id="form.fields.operation.label" />,
+      valueType: "option",
+      key: "operation",
+      render: (_text, record) => {
+        const items = [
+          <EditButton
+            handleRefresh={onRefresh}
+            key={`edit-${record.id}`}
+            item={record}
+          />,
+        ];
+        if (record.uploadedAt) {
+          items.push(<ShareButton key={`share-${record.id}`} item={record} />);
+        }
+        if (!record.deletedAt) {
+          items.push(
+            <DeleteButton
+              handleRefresh={onRefresh}
+              key={`delete-${record.id}`}
+              item={record}
+            />
+          );
+        }
+        return items;
+      },
+    },
+  ];
   return (
     <ProTable<IAttachment>
+      actionRef={ref}
       columns={columns}
       cardBordered
       request={async (params) => {
@@ -75,7 +101,7 @@ const Widget = () => {
       }}
       dateFormatter="string"
       toolBarRender={() => {
-        return [<UploadButton key="upload" />];
+        return [<UploadButton handleRefresh={onRefresh} key="upload" />];
       }}
     />
   );

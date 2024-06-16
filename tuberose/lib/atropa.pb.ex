@@ -351,6 +351,7 @@ defmodule Palm.Atropa.V1.S3PresignedUrlRequest do
   field :bucket, 1, type: :string
   field :object, 2, type: :string
   field :title, 3, type: :string
+  field :content_type, 4, proto3_optional: true, type: :string, json_name: "contentType"
   field :ttl, 9, type: Google.Protobuf.Duration
 end
 

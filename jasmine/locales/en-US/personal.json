@@ -7,6 +7,18 @@
     "upload": {
       "failed": "upload { title } failed",
       "succeed": "upload { title } succeed"
+    },
+    "edit": {
+      "title": "Edit attachment [{ id }]"
+    },
+    "share": {
+      "title": "Share attachment [{ id }]"
+    },
+    "delete": {
+      "confirm": {
+        "title": "Delete attachment [{ title }]",
+        "description": "Are you sure to delete this attachment?"
+      }
     }
   },
   "logs": {
