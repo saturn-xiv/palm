@@ -16,6 +16,11 @@
   "locales": {
     "index": {
       "title": "Locales"
+    },
+    "destroy": {
+      "confirm": {
+        "description": "You will delete {lang}.{code}"
+      }
     }
   }
 }

@@ -321,4 +321,6 @@ defmodule TuberoseWeb.Resolvers.User do
       # TODO
     end
   end
+
+  {:ok, %{created_at: DateTime.utc_now()}}
 end

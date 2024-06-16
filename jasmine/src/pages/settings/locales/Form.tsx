@@ -11,7 +11,7 @@ import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { useAppSelector } from "../../../hooks";
 import { siteInfo as selectSiteInfo } from "../../../reducers/site-info";
 import { IErrorMessage } from "../../../api/graphql";
-import { set_locale } from "../../../api/camelia";
+import { save as save_locale } from "../../../api/locales";
 
 interface IForm {
   lang: string;
@@ -42,7 +42,7 @@ const Widget = ({ item, edit, handleRefresh }: IProps) => {
       }}
       submitTimeout={2000}
       onFinish={async (values) => {
-        set_locale(values.lang, values.code, values.message)
+        save_locale(values.lang, values.code, values.message)
           .then(() => {
             messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
             handleRefresh();

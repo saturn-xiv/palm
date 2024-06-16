@@ -34,6 +34,9 @@
     "ip": {
       "label": "IP"
     },
+    "code": {
+      "label": "Code"
+    },
     "message": {
       "label": "Message"
     },

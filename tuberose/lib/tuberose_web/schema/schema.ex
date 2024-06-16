@@ -90,6 +90,18 @@ defmodule TuberoseWeb.Schema do
 
   # ---------------------------------------------------------------------------
   mutation do
+    field :set_locale, non_null(:succeed) do
+      arg(:lang, non_null(:string))
+      arg(:code, non_null(:string))
+      arg(:message, non_null(:string))
+      resolve(&Resolvers.Locale.set/3)
+    end
+
+    field :destroy_locale, non_null(:succeed) do
+      arg(:id, non_null(:id))
+      resolve(&Resolvers.Locale.destroy/3)
+    end
+
     field :sign_in_user_by_email, non_null(:user_sign_in_response) do
       arg(:user, non_null(:string))
       arg(:password, non_null(:string))

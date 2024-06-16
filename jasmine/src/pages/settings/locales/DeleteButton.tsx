@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { DeleteOutlined } from "@ant-design/icons";
 
 import { IErrorMessage } from "../../../api/graphql";
-import { ILocale, destroy_locale } from "../../../api/camelia";
+import { ILocale, destroy as destroy_locale } from "../../../api/locales";
 
 interface IProps {
   item: ILocale;
@@ -18,7 +18,7 @@ const Widget = ({ item, handleRefresh }: IProps) => {
       title={<FormattedMessage id="flashes.are-you-sure" />}
       description={
         <FormattedMessage
-          id="settings.locales.destroy.confirm"
+          id="settings.locales.destroy.confirm.description"
           values={{
             code: item.code,
             lang: intl.formatMessage({ id: `languages.${item.lang}` }),

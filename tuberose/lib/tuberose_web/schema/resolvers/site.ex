@@ -58,7 +58,7 @@ defmodule TuberoseWeb.Resolvers.Site do
                 children: []
               },
               %{
-                path: "/dashboard/settings/site/locales",
+                path: "/dashboard/settings/locales",
                 name: Tuberose.I18N.t(locale, "settings.locales.index.title"),
                 children: []
               }

@@ -1,6 +1,6 @@
-import { query, IPagination } from "./graphql";
+import { query, IPagination, ISucceed } from "./graphql";
 
-interface ILocale {
+export interface ILocale {
   id: number;
   lang: string;
   code: string;
@@ -37,7 +37,7 @@ interface IIndexLocaleResponse {
   items: ILocale[];
   pagination: IPagination;
 }
-export const index_locale = async (
+export const index = async (
   page: number,
   size: number
 ): Promise<IIndexLocaleResponse> => {
@@ -55,4 +55,36 @@ query call($pager: Pager!){
     }
   );
   return res.indexLocale;
+};
+
+export const save = async (
+  lang: string,
+  code: string,
+  message: string
+): Promise<ISucceed> => {
+  const res = await query<{ setLocale: ISucceed }>(
+    `
+mutation call($lang: String!, $code: String!, $message: String!){
+  setLocale(lang: $lang, code: $code, message: $message){
+    createdAt
+  }
+}
+`,
+    { lang, code, message }
+  );
+  return res.setLocale;
+};
+
+export const destroy = async (id: number): Promise<ISucceed> => {
+  const res = await query<{ destroyLocale: ISucceed }>(
+    `
+mutation call($id: ID!){
+  destroyLocale(id: $id){
+    createdAt
+  }
+}
+`,
+    { id }
+  );
+  return res.destroyLocale;
 };

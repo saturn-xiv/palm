@@ -3,7 +3,7 @@ import type { ProColumns, ActionType } from "@ant-design/pro-components";
 import { ProTable } from "@ant-design/pro-components";
 import { FormattedMessage } from "react-intl";
 
-import { index_locale, ILocale } from "../../../api/camelia";
+import { index as index_locale, ILocale } from "../../../api/locales";
 import { useAppSelector } from "../../../hooks";
 import { currentUser as selectCurrentUser } from "../../../reducers/current-user";
 import Form from "./Form";
