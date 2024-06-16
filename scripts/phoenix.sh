@@ -44,7 +44,7 @@ if [ ! -d $HOME/local/elixir ]; then
     apt update
     apt install -y software-properties-common
     add-apt-repository -y ppa:rabbitmq/rabbitmq-erlang
-    apt install -y erlang git wget unzip locales locales-all
+    apt install -y build-essential erlang git wget unzip locales locales-all
     echo "en_US.UTF-8 UTF-8" >/etc/locale.gen
     locale-gen
     update-locale LANG=en_US.UTF-8

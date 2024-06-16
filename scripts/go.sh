@@ -24,12 +24,13 @@ apt update
 DEBIAN_FRONTEND=noninteractive apt install -y git wget
 
 export GO_VERSION="1.22.4"
-if [ ! -d /opt/go ]; then
+if [ ! -d $HOME/local/go ]; then
     wget -P /tmp/ https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
-    tar -C /opt -xf /tmp/go${GO_VERSION}.linux-amd64.tar.gz
+    mkdir -p $HOME/local
+    tar -C $HOME/local -xf /tmp/go${GO_VERSION}.linux-amd64.tar.gz
 fi
 
-export PATH=/opt/go/bin:$PATH
+export PATH=$HOME/local/go/bin:$PATH
 
 # https://go.dev/src/internal/goarch/goarch.go
 declare -a targets=(
