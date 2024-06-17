@@ -3,11 +3,13 @@
 set -e
 
 export GO_VERSION="1.22.4"
+export OTP_VERSION="26"
+export ELIXIR_VERSION="1.17.0"
+export NODE_VERSION="20.14.0"
 
+export DEBIAN_FRONTEND=noninteractive
+export MIX_ENV=prod
 export WORKSPACE=$PWD
-export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
-export PACKAGE_NAME="palm-$VERSION_CODENAME-$GIT_VERSION"
-export TARGET_DIR=$WORKSPACE/tmp/$PACKAGE_NAME
 
 # -----------------------------------------------------------------------------
 
@@ -54,6 +56,18 @@ function build_phoenix() {
 
 # -----------------------------------------------------------------------------
 
+source /etc/os-release
+
+if [ "$ID" != "ubuntu" ]; then
+    echo "only ubuntu was supported."
+    exit 1
+fi
+
+if [ ! -f $HOME/downloads/dm-go-driver.zip ]; then
+    echo "couldn't find dm driver for golang."
+    exit 1
+fi
+
 # https://launchpad.net/~rabbitmq/+archive/ubuntu/rabbitmq-erlang
 # https://elixir-lang.org/install.html#precompiled-package
 if [ ! -d $HOME/local/elixir ]; then
@@ -65,10 +79,9 @@ if [ ! -d $HOME/local/elixir ]; then
     locale-gen
     update-locale LANG=en_US.UTF-8
 
-    wget -q -P /tmp/ https://github.com/elixir-lang/elixir/releases/download/v1.17.0/elixir-otp-26.zip
+    wget -q -P $HOME/downloads/ https://github.com/elixir-lang/elixir/releases/download/v${ELIXIR_VERSION}/elixir-otp-${OTP_VERSION}.zip
     mkdir -p $HOME/local/elixir
-    cd $HOME/local/elixir/
-    unzip /tmp/elixir-otp-26.zip
+    unzip $HOME/downloads/elixir-otp-${OTP_VERSION}.zip -d $HOME/local/elixir
 fi
 
 export LANG=en_US.UTF-8
@@ -82,20 +95,40 @@ mix local.rebar --force
 
 # -----------------------------------------------------------------------------
 
+if [ ! -d $HOME/local/node-v${NODE_VERSION}-linux-x64 ]; then
+    wget -P $HOME/downloads/ https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz
+    wget -P $HOME/downloads/ https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-arm64.tar.xz
+    tar -xf $HOME/downloads/node-v${NODE_VERSION}-linux-x64.tar.xz -C $HOME/local
+fi
+
+export NODE_HOME=$HOME/local/node-v${NODE_VERSION}-linux-x64
+export PATH=$NODE_HOME/bin:$PATH
+
+# -----------------------------------------------------------------------------
+
 if [ ! -d $HOME/local/go ]; then
-    if [ ! -f /workspace/tmp/dm-go-driver.zip ]; then
-        echo "couldn't find dm driver for golang."
-        exit 1
-    fi
-    wget -P /tmp/ https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
+    wget -P $HOME/downloads/ https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
     mkdir -p $HOME/local
-    tar -C $HOME/local -xf /tmp/go${GO_VERSION}.linux-amd64.tar.gz
-    unzip /workspace/tmp/dm-go-driver.zip -d $HOME/local/go/src
+    tar -C $HOME/local -xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz
+    unzip $HOME/downloads/dm-go-driver.zip -d $HOME/local/go/src
 fi
 
 export PATH=$HOME/local/go/bin:$PATH
 
 # -----------------------------------------------------------------------------
+
+export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
+export PACKAGE_NAME="palm-$VERSION_CODENAME-$GIT_VERSION"
+export TARGET_DIR=$WORKSPACE/tmp/$PACKAGE_NAME
+
+if [ -f ${TARGET_DIR}.tar.xz ]; then
+    echo "file ${TARGET_DIR}.tar.xz already exists."
+    exit 1
+fi
+
+if [ -d $TARGET_DIR ]; then
+    rm -r $TARGET_DIR
+fi
 
 # https://go.dev/src/internal/goarch/goarch.go
 declare -a go_targets=(
@@ -105,7 +138,7 @@ declare -a go_targets=(
     # "loong64"
 )
 
-declare -a go_progjects=(
+declare -a go_projects=(
     "atropa"
     "sedge"
 )
@@ -119,6 +152,15 @@ done
 build_dashboard jasmine
 build_phoenix aloe
 build_phoenix tuberose
+
+declare -a node_targets=(
+    "x64"
+    "arm64"
+)
+
+for t in "${node_targets[@]}"; do
+    tar -xf $HOME/downloads/node-v${NODE_VERSION}-linux-${t}.tar.xz -C $TARGET_DIR
+done
 
 # -----------------------------------------------------------------------------
 
