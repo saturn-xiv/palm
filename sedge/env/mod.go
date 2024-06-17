@@ -285,7 +285,11 @@ func init() {
 func (p *Migration) Rollback(tx *sql.Tx, driver Database, migrations_table string) error {
 	slog.Info("rollback", slog.String("version", p.Version), slog.String("name", p.Name))
 	slog.Debug(p.Down)
-	if _, err := tx.Exec(p.Down); err != nil {
+	st, err := tx.Prepare(p.Down)
+	if err != nil {
+		return err
+	}
+	if _, err := st.Exec(); err != nil {
 		return err
 	}
 
@@ -300,7 +304,11 @@ func (p *Migration) Rollback(tx *sql.Tx, driver Database, migrations_table strin
 		}
 		sq := buf.String()
 		slog.Debug(sq)
-		if _, err = tx.Exec(sq, p.Version); err != nil {
+		st, err := tx.Prepare(sq)
+		if err != nil {
+			return err
+		}
+		if _, err = st.Exec(p.Version); err != nil {
 			return err
 		}
 	}
@@ -309,7 +317,11 @@ func (p *Migration) Rollback(tx *sql.Tx, driver Database, migrations_table strin
 func (p *Migration) Migrate(tx *sql.Tx, driver Database, migrations_table string) error {
 	slog.Info("migrate", slog.String("version", p.Version), slog.String("name", p.Name))
 	slog.Debug(p.Up)
-	if _, err := tx.Exec(p.Up); err != nil {
+	st, err := tx.Prepare(p.Up)
+	if err != nil {
+		return err
+	}
+	if _, err := st.Exec(); err != nil {
 		return err
 	}
 
@@ -324,7 +336,11 @@ func (p *Migration) Migrate(tx *sql.Tx, driver Database, migrations_table string
 		}
 		sq := buf.String()
 		slog.Debug(sq)
-		if _, err = tx.Exec(sq, p.Version); err != nil {
+		st, err := tx.Prepare(sq)
+		if err != nil {
+			return err
+		}
+		if _, err = st.Exec(p.Version); err != nil {
 			return err
 		}
 	}
@@ -373,7 +389,11 @@ func check_migrations_dir(tx *sql.Tx, driver Database, migrations_dir string, mi
 			}
 			sq := buf.String()
 			slog.Debug(sq)
-			if _, err = tx.Exec(sq, version, name, up, down); err != nil {
+			st, err := tx.Prepare(sq)
+			if err != nil {
+				return err
+			}
+			if _, err = st.Exec(version, name, up, down); err != nil {
 				return err
 			}
 		case err != nil:
@@ -467,9 +487,13 @@ func check_migrations_table(tx *sql.Tx, driver Database, migrations_table string
 	sq := buf.String()
 
 	slog.Debug(sq)
-
-	if _, err = tx.Exec(sq); err != nil {
+	st, err := tx.Prepare(sq)
+	if err != nil {
 		return err
 	}
+	if _, err = st.Exec(); err != nil {
+		return err
+	}
+
 	return nil
 }
