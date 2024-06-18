@@ -164,6 +164,48 @@ func Rollback(url string, migrations_table string) error {
 	return nil
 }
 
+func Reset(url string, migrations_table string) error {
+	driver, db, err := Open(url)
+	if err != nil {
+		return err
+	}
+
+	tx, err := db.Begin()
+	if err != nil {
+		return err
+	}
+L:
+	for {
+		item, err := select_latest(tx, driver, migrations_table)
+		switch {
+		case err == sql.ErrNoRows:
+			break L
+		case err != nil:
+			return err
+		default:
+			if err = item.Rollback(tx, driver, migrations_table); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	{
+		items, err := select_all(tx, driver, migrations_table)
+		if err != nil {
+			return err
+		}
+		for _, it := range items {
+			it.Migrate(tx, driver, migrations_table)
+		}
+	}
+
+	if err = tx.Commit(); err != nil {
+		return err
+	}
+	return nil
+}
+
 func Status(url string, migrations_table string) error {
 	driver, db, err := Open(url)
 	if err != nil {
