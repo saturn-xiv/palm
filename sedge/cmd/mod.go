@@ -68,9 +68,12 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 			Short: "Migrate to the latest version",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := env.Migrate(gl_url, gl_migrations_dir, gl_migrations_table); err != nil {
-					log.Fatalln(err)
+				err := env.Migrate(gl_url, gl_migrations_dir, gl_migrations_table)
+				if err == nil {
+					slog.Info("done.")
+					return
 				}
+				log.Fatalln(err)
 			},
 		}
 
@@ -82,9 +85,12 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 			Short: "Rollback the most recent migration",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := env.Rollback(gl_url, gl_migrations_table); err != nil {
-					log.Fatalln(err)
+				err := env.Rollback(gl_url, gl_migrations_table)
+				if err == nil {
+					slog.Info("done.")
+					return
 				}
+				log.Fatalln(err)
 			},
 		}
 
@@ -96,9 +102,12 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 			Short: "List applied and pending migrations",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := env.Status(gl_url, gl_migrations_table); err != nil {
-					log.Fatalln(err)
+				err := env.Status(gl_url, gl_migrations_table)
+				if err == nil {
+					slog.Info("done.")
+					return
 				}
+				log.Fatalln(err)
 			},
 		}
 
@@ -110,9 +119,12 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 			Short: "Write the database schema to disk",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := env.Dump(gl_url, gl_schema_file); err != nil {
-					log.Fatalln(err)
+				err := env.Dump(gl_url, gl_schema_file)
+				if err == nil {
+					slog.Info("done.")
+					return
 				}
+				log.Fatalln(err)
 			},
 		}
 
@@ -124,9 +136,12 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 			Short: "Load schema file to the database",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				if err := env.Load(gl_url, gl_schema_file); err != nil {
-					log.Fatalln(err)
+				err := env.Load(gl_url, gl_schema_file)
+				if err == nil {
+					slog.Info("done.")
+					return
 				}
+				log.Fatalln(err)
 			},
 		}
 
@@ -166,9 +181,12 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 					log.Fatalln("please specify a name for the new migration")
 					return
 				}
-				if err := env.New(gl_migrations_dir, gl_new_name); err != nil {
-					log.Fatalln(err)
+				err := env.New(gl_migrations_dir, gl_new_name)
+				if err == nil {
+					slog.Info("done.")
+					return
 				}
+				log.Fatalln(err)
 			},
 		}
 		cmd.Flags().StringVarP(&gl_new_name, "name", "n", "", "name")
