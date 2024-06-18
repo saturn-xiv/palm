@@ -36,7 +36,7 @@ type Database interface {
 }
 
 func New(migrations_dir string, name string) error {
-	if err := validate.Var(name, "required,alphanum,min=2,max=63"); err != nil {
+	if err := validate.Var(name, "required,alphanumunicode,min=2,max=255"); err != nil {
 		return err
 	}
 	root := filepath.Join(migrations_dir, time.Now().Format("20060102150405")+"-"+name)
@@ -65,7 +65,6 @@ func New(migrations_dir string, name string) error {
 		fd.WriteString(fmt.Sprintf("DROP TABLE IF EXISTS %s;", name))
 	}
 
-	slog.Info("done.")
 	return nil
 }
 
@@ -133,7 +132,7 @@ func Migrate(url string, migrations_dir string, migrations_table string) error {
 	if err = tx.Commit(); err != nil {
 		return err
 	}
-	slog.Info("done.")
+
 	return nil
 }
 
