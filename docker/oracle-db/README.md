@@ -4,11 +4,11 @@
 
 ```bash
 # start database
-$ ./start.sh
+$ ./start.sh 11521 tmp
 # check logs
-$ podman logs palm-oracle-db
+$ podman logs palm-oracle-11521
 # connect to db
-$ ./connect.sh
+$ ./connect.sh 11521
 ```
 
 ## Documents

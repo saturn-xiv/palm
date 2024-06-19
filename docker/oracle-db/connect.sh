@@ -1,3 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-podman exec -it palm-oracle-db sqlplus sys@localhost:1521/FREE as sysdba
+set -e
+
+if [ "$#" -ne 1 ]; then
+    echo "USAGE: $0 PORT"
+    exit 0
+fi
+
+podman exec -it palm-oracle-db sqlplus sys@localhost:$1/FREE as sysdba

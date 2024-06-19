@@ -1,18 +1,26 @@
 #!/bin/bash
 
-export CODE="container-registry.oracle.com/database/free:latest"
-export NAME="palm-oracle-db"
-export DATA_DIR=$PWD/data
+set -e
 
-if [ ! -d $DATA_DIR ]; then
-    mkdir -p $DATA_DIR
-    chmod 777 $DATA_DIR
+export CODE="container-registry.oracle.com/database/free:latest"
+export NAME="palm-oracle-$1"
+
+if [ "$#" -ne 2 ]; then
+    echo "USAGE: $0 PORT DATA_DIR "
+    exit 0
+fi
+
+if [ ! -d $2 ]; then
+    mkdir -p $2
+    chmod 777 $2
 fi
 
 if podman container exists $NAME; then
     podman start $NAME
 else
-    podman run -d --name $NAME --events-backend=file -p 1521:1521 \
-        -e ORACLE_PWD=change-me -e ORACLE_CHARACTERSET=AL32UTF8 -v $DATA_DIR:/opt/oracle/oradata \
+    podman run -d --name $NAME --events-backend=file -p $1:1521 \
+        -e ORACLE_PWD=change-me -e ORACLE_CHARACTERSET=AL32UTF8 -v $2:/opt/oracle/oradata \
         $CODE
 fi
+
+exit 0
