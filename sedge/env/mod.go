@@ -27,6 +27,7 @@ type Migration struct {
 type Database interface {
 	Version() string
 	CreateTable() string
+	DropTable() string
 	ByVersion() string
 	Insert() string
 	Up() string
@@ -164,7 +165,7 @@ func Rollback(url string, migrations_table string) error {
 	return nil
 }
 
-func Reset(url string, migrations_table string) error {
+func Reset(url string, migrations_dir string, migrations_table string) error {
 	driver, db, err := Open(url)
 	if err != nil {
 		return err
@@ -190,6 +191,32 @@ L:
 
 	}
 
+	{
+		tpl, err := template.New("").Parse(driver.DropTable())
+		if err != nil {
+			return err
+		}
+		var buf bytes.Buffer
+		if err = tpl.Execute(&buf, map[string]interface{}{"name": migrations_table}); err != nil {
+			return err
+		}
+		sq := buf.String()
+		slog.Debug(sq)
+		st, err := tx.Prepare(sq)
+		if err != nil {
+			return err
+		}
+		if _, err = st.Exec(); err != nil {
+			return err
+		}
+	}
+
+	if err = check_migrations_table(tx, driver, migrations_table); err != nil {
+		return err
+	}
+	if err = check_migrations_dir(tx, driver, migrations_dir, migrations_table); err != nil {
+		return err
+	}
 	{
 		items, err := select_all(tx, driver, migrations_table)
 		if err != nil {

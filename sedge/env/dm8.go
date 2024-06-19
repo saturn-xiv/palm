@@ -51,3 +51,7 @@ BEGIN
 END;
 `
 }
+
+func (p *DM8) DropTable() string {
+	return `DROP TABLE IF EXISTS {{ .name }};`
+}

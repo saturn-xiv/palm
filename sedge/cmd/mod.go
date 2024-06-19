@@ -117,7 +117,7 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 			Short: "Rollback all records and migrate then.",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				err := env.Reset(gl_url, gl_migrations_table)
+				err := env.Reset(gl_url, gl_migrations_dir, gl_migrations_table)
 				if err == nil {
 					slog.Info("done.")
 					return

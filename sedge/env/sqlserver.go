@@ -49,3 +49,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version
 `
 
 }
+
+func (p *SqlServer) DropTable() string {
+	return `DROP TABLE IF EXISTS {{ .name }};`
+}
