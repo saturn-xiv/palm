@@ -118,7 +118,7 @@ func Migrate(url string, migrations_dir string, migrations_table string) error {
 	if err = tx.Commit(); err != nil {
 		return err
 	}
-
+	slog.Info("done.")
 	return nil
 }
 
@@ -148,6 +148,7 @@ func Rollback(url string, migrations_table string) error {
 	if err = tx.Commit(); err != nil {
 		return err
 	}
+	slog.Info("done.")
 	return nil
 }
 func Clear(url string, migrations_dir string, migrations_table string) error {
@@ -166,6 +167,7 @@ func Clear(url string, migrations_dir string, migrations_table string) error {
 	if err = tx.Commit(); err != nil {
 		return err
 	}
+	slog.Info("done.")
 	return nil
 }
 func Reset(url string, migrations_dir string, migrations_table string) error {
@@ -189,6 +191,7 @@ func Reset(url string, migrations_dir string, migrations_table string) error {
 	if err = tx.Commit(); err != nil {
 		return err
 	}
+	slog.Info("done.")
 	return nil
 }
 

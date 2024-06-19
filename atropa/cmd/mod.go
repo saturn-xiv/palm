@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"log/slog"
 	"os"
 
@@ -28,17 +27,13 @@ var root_cmd = &cobra.Command{
 	Short:   "Atropa",
 	Long:    fmt.Sprintf("A collection of rpc services by Go.(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
-	Run: func(cmd *cobra.Command, args []string) {
-		if err := cmd.Help(); err != nil {
-			log.Fatal(err)
-		}
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
 	},
 }
 
-func Execute() {
-	if err := root_cmd.Execute(); err != nil {
-		log.Fatal(err)
-	}
+func Execute() error {
+	return root_cmd.Execute()
 }
 
 var (
@@ -64,11 +59,9 @@ func init() {
 		var cmd = &cobra.Command{
 			Use:   "rpc",
 			Short: "Start a gRPC server",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				if err := rpc.Launch(gl_rpc_port, gl_config, gl_keys_dir, git_version); err != nil {
-					log.Fatalf("%v", err)
-				}
+				return rpc.Launch(gl_rpc_port, gl_config, gl_keys_dir, git_version)
 			},
 		}
 
@@ -79,11 +72,9 @@ func init() {
 		var cmd = &cobra.Command{
 			Use:   "web",
 			Short: "Start a HTTP server",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				if err := web.Launch(gl_web_port, gl_config, git_version); err != nil {
-					log.Fatalf("%v", err)
-				}
+				return web.Launch(gl_web_port, gl_config, git_version)
 			},
 		}
 
@@ -94,27 +85,28 @@ func init() {
 		var cmd = &cobra.Command{
 			Use:   "etc",
 			Short: "Generate systemd & nginx configuration file",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
 
 				if err := etc.RpcSystemdConf(gl_etc_domain, gl_rpc_port); err != nil {
-					log.Fatalf("%v", err)
+					return err
 				}
 				if err := etc.WwwSystemdConf(gl_etc_domain, gl_web_port); err != nil {
-					log.Fatalf("%v", err)
+					return err
 				}
 				if err := etc.SmsSendWorkerSystemdConf(gl_etc_domain); err != nil {
-					log.Fatalf("%v", err)
+					return err
 				}
 				if err := etc.EmailSendWorkerSystemdConf(gl_etc_domain); err != nil {
-					log.Fatalf("%v", err)
+					return err
 				}
 				if err := etc.MinioSystemdConf(gl_etc_domain); err != nil {
-					log.Fatalf("%v", err)
+					return err
 				}
 				if err := etc.MinioNginxConf(gl_etc_domain); err != nil {
-					log.Fatalf("%v", err)
+					return err
 				}
+				return nil
 			},
 		}
 
@@ -128,12 +120,9 @@ func init() {
 		var cmd = &cobra.Command{
 			Use:   "sms-send-consumer",
 			Short: "Start a sms-send consumer",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-
-				if err := sms_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name); err != nil {
-					log.Fatalf("%v", err)
-				}
+				return sms_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
 			},
 		}
 		hostname, _ := os.Hostname()
@@ -147,12 +136,9 @@ func init() {
 		var cmd = &cobra.Command{
 			Use:   "email-send-consumer",
 			Short: "Start a email-send consumer",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-
-				if err := email_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name); err != nil {
-					log.Fatalf("%v", err)
-				}
+				return email_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
 			},
 		}
 		hostname, _ := os.Hostname()

@@ -1,8 +1,8 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
-	"log"
 	"log/slog"
 
 	"github.com/spf13/cobra"
@@ -23,17 +23,13 @@ var root_cmd = &cobra.Command{
 	Short:   "Sedge",
 	Long:    fmt.Sprintf("A lightweight, framework-agnostic database migration tool.(%s).", repo_url),
 	Version: fmt.Sprintf("%s(%s) by %s<%s>", git_version, build_time, author_name, author_email),
-	Run: func(cmd *cobra.Command, args []string) {
-		if err := cmd.Help(); err != nil {
-			log.Fatal(err)
-		}
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
 	},
 }
 
-func Execute() {
-	if err := root_cmd.Execute(); err != nil {
-		log.Fatal(err)
-	}
+func Execute() error {
+	return root_cmd.Execute()
 }
 
 var (
@@ -66,14 +62,9 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "migrate",
 			Short: "Migrate to the latest version",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				err := env.Migrate(gl_url, gl_migrations_dir, gl_migrations_table)
-				if err == nil {
-					slog.Info("done.")
-					return
-				}
-				log.Fatalln(err)
+				return env.Migrate(gl_url, gl_migrations_dir, gl_migrations_table)
 			},
 		}
 
@@ -83,14 +74,9 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "rollback",
 			Short: "Rollback the most recent migration",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				err := env.Rollback(gl_url, gl_migrations_table)
-				if err == nil {
-					slog.Info("done.")
-					return
-				}
-				log.Fatalln(err)
+				return env.Rollback(gl_url, gl_migrations_table)
 			},
 		}
 
@@ -100,12 +86,9 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "status",
 			Short: "List applied and pending migrations",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				err := env.Status(gl_url, gl_migrations_dir, gl_migrations_table)
-				if err != nil {
-					log.Fatalln(err)
-				}
+				return env.Status(gl_url, gl_migrations_dir, gl_migrations_table)
 			},
 		}
 
@@ -115,14 +98,9 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "clear",
 			Short: "Clear all schema in the database.",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				err := env.Clear(gl_url, gl_migrations_dir, gl_migrations_table)
-				if err == nil {
-					slog.Info("done.")
-					return
-				}
-				log.Fatalln(err)
+				return env.Clear(gl_url, gl_migrations_dir, gl_migrations_table)
 			},
 		}
 
@@ -132,14 +110,9 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "reset",
 			Short: "Rollback all records and migrate then.",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				err := env.Reset(gl_url, gl_migrations_dir, gl_migrations_table)
-				if err == nil {
-					slog.Info("done.")
-					return
-				}
-				log.Fatalln(err)
+				return env.Reset(gl_url, gl_migrations_dir, gl_migrations_table)
 			},
 		}
 
@@ -149,14 +122,9 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "dump",
 			Short: "Write the database schema to disk",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				err := env.Dump(gl_url, gl_schema_file)
-				if err == nil {
-					slog.Info("done.")
-					return
-				}
-				log.Fatalln(err)
+				return env.Dump(gl_url, gl_schema_file)
 			},
 		}
 
@@ -166,14 +134,9 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "load",
 			Short: "Load schema file to the database",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				err := env.Load(gl_url, gl_schema_file)
-				if err == nil {
-					slog.Info("done.")
-					return
-				}
-				log.Fatalln(err)
+				return env.Load(gl_url, gl_schema_file)
 			},
 		}
 
@@ -183,9 +146,10 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "create",
 			Short: "Create database",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
 				fmt.Println(env.Create())
+				return nil
 			},
 		}
 
@@ -195,9 +159,10 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "drop",
 			Short: "Drop database",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
 				fmt.Println(env.Drop())
+				return nil
 			},
 		}
 
@@ -207,18 +172,12 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 		var cmd = &cobra.Command{
 			Use:   "new",
 			Short: "Generate a new migration file",
-			Run: func(cmd *cobra.Command, args []string) {
+			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
 				if gl_new_name == "" {
-					log.Fatalln("please specify a name for the new migration")
-					return
+					return errors.New("please specify a name for the new migration")
 				}
-				err := env.New(gl_migrations_dir, gl_new_name)
-				if err == nil {
-					slog.Info("done.")
-					return
-				}
-				log.Fatalln(err)
+				return env.New(gl_migrations_dir, gl_new_name)
 			},
 		}
 		cmd.Flags().StringVarP(&gl_new_name, "name", "n", "", "name")
