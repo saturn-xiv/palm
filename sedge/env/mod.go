@@ -112,24 +112,9 @@ func Migrate(url string, migrations_dir string, migrations_table string) error {
 	if err != nil {
 		return err
 	}
-	if err = check_migrations_table(tx, driver, migrations_table); err != nil {
+	if err = migrate(tx, driver, migrations_dir, migrations_table); err != nil {
 		return err
 	}
-	if err = check_migrations_dir(tx, driver, migrations_dir, migrations_table); err != nil {
-		return err
-	}
-	{
-		items, err := select_all(tx, driver, migrations_table)
-		if err != nil {
-			return err
-		}
-		for _, it := range items {
-			if it.RunAt == nil {
-				it.Migrate(tx, driver, migrations_table)
-			}
-		}
-	}
-
 	if err = tx.Commit(); err != nil {
 		return err
 	}
@@ -159,12 +144,30 @@ func Rollback(url string, migrations_table string) error {
 			return err
 		}
 	}
+
 	if err = tx.Commit(); err != nil {
 		return err
 	}
 	return nil
 }
+func Clear(url string, migrations_dir string, migrations_table string) error {
+	driver, db, err := Open(url)
+	if err != nil {
+		return err
+	}
 
+	tx, err := db.Begin()
+	if err != nil {
+		return err
+	}
+	if err = clear(tx, driver, migrations_table); err != nil {
+		return err
+	}
+	if err = tx.Commit(); err != nil {
+		return err
+	}
+	return nil
+}
 func Reset(url string, migrations_dir string, migrations_table string) error {
 	driver, db, err := Open(url)
 	if err != nil {
@@ -175,56 +178,12 @@ func Reset(url string, migrations_dir string, migrations_table string) error {
 	if err != nil {
 		return err
 	}
-L:
-	for {
-		item, err := select_latest(tx, driver, migrations_table)
-		switch {
-		case err == sql.ErrNoRows:
-			break L
-		case err != nil:
-			return err
-		default:
-			if err = item.Rollback(tx, driver, migrations_table); err != nil {
-				return err
-			}
-		}
 
-	}
-
-	{
-		tpl, err := template.New("").Parse(driver.DropTable())
-		if err != nil {
-			return err
-		}
-		var buf bytes.Buffer
-		if err = tpl.Execute(&buf, map[string]interface{}{"name": migrations_table}); err != nil {
-			return err
-		}
-		sq := buf.String()
-		slog.Debug(sq)
-		st, err := tx.Prepare(sq)
-		if err != nil {
-			return err
-		}
-		if _, err = st.Exec(); err != nil {
-			return err
-		}
-	}
-
-	if err = check_migrations_table(tx, driver, migrations_table); err != nil {
+	if err = clear(tx, driver, migrations_table); err != nil {
 		return err
 	}
-	if err = check_migrations_dir(tx, driver, migrations_dir, migrations_table); err != nil {
+	if err = migrate(tx, driver, migrations_dir, migrations_table); err != nil {
 		return err
-	}
-	{
-		items, err := select_all(tx, driver, migrations_table)
-		if err != nil {
-			return err
-		}
-		for _, it := range items {
-			it.Migrate(tx, driver, migrations_table)
-		}
 	}
 
 	if err = tx.Commit(); err != nil {
@@ -233,7 +192,7 @@ L:
 	return nil
 }
 
-func Status(url string, migrations_table string) error {
+func Status(url string, migrations_dir string, migrations_table string) error {
 	driver, db, err := Open(url)
 	if err != nil {
 		return err
@@ -252,6 +211,9 @@ func Status(url string, migrations_table string) error {
 	defer tx.Rollback()
 
 	if err = check_migrations_table(tx, driver, migrations_table); err != nil {
+		return err
+	}
+	if err = check_migrations_dir(tx, driver, migrations_dir, migrations_table); err != nil {
 		return err
 	}
 
@@ -563,5 +525,72 @@ func check_migrations_table(tx *sql.Tx, driver Database, migrations_table string
 		return err
 	}
 
+	return nil
+}
+
+func clear(tx *sql.Tx, driver Database, migrations_table string) error {
+	{
+		slog.Warn("clear the database schema")
+	L:
+		for {
+			item, err := select_latest(tx, driver, migrations_table)
+			switch {
+			case err == sql.ErrNoRows:
+				break L
+			case err != nil:
+				return err
+			default:
+				if err = item.Rollback(tx, driver, migrations_table); err != nil {
+					return err
+				}
+			}
+
+		}
+	}
+
+	{
+		slog.Debug("drop the migrations table", slog.String("name", migrations_table))
+		tpl, err := template.New("").Parse(driver.DropTable())
+		if err != nil {
+			return err
+		}
+		var buf bytes.Buffer
+		if err = tpl.Execute(&buf, map[string]interface{}{"name": migrations_table}); err != nil {
+			return err
+		}
+		sq := buf.String()
+		slog.Debug(sq)
+		st, err := tx.Prepare(sq)
+		if err != nil {
+			return err
+		}
+		if _, err = st.Exec(); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func migrate(tx *sql.Tx, driver Database, migrations_dir string, migrations_table string) error {
+	if err := check_migrations_table(tx, driver, migrations_table); err != nil {
+		return err
+	}
+	if err := check_migrations_dir(tx, driver, migrations_dir, migrations_table); err != nil {
+		return err
+	}
+	{
+		items, err := select_all(tx, driver, migrations_table)
+		if err != nil {
+			return err
+		}
+		for _, it := range items {
+			if it.RunAt == nil {
+				if err = it.Migrate(tx, driver, migrations_table); err != nil {
+					return err
+				}
+			}
+		}
+	}
 	return nil
 }

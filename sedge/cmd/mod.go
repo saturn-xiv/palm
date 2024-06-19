@@ -102,10 +102,27 @@ DM8: dm://USER:PASSWORD@HOST:PORT
 			Short: "List applied and pending migrations",
 			Run: func(cmd *cobra.Command, args []string) {
 				set_log(gl_debug)
-				err := env.Status(gl_url, gl_migrations_table)
+				err := env.Status(gl_url, gl_migrations_dir, gl_migrations_table)
 				if err != nil {
 					log.Fatalln(err)
 				}
+			},
+		}
+
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "clear",
+			Short: "Clear all schema in the database.",
+			Run: func(cmd *cobra.Command, args []string) {
+				set_log(gl_debug)
+				err := env.Clear(gl_url, gl_migrations_dir, gl_migrations_table)
+				if err == nil {
+					slog.Info("done.")
+					return
+				}
+				log.Fatalln(err)
 			},
 		}
 
