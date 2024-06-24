@@ -13,7 +13,7 @@ const Widget = ({ languages }: IProps) => {
       <List<string>
         bordered
         dataSource={["/robots.txt", "/sitemap.xml"].concat(
-          languages.map((x) => `/${x}/sitemap.xml`)
+          languages.map((x) => `/sitemap/${x}.xml`)
         )}
         renderItem={(item) => (
           <List.Item

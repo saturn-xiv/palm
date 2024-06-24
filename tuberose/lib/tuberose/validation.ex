@@ -77,14 +77,12 @@ defmodule Tuberose.Validation do
   end
 
   def domain_name(s) when is_binary(s) do
-    s = String.trim(s)
+    s = String.trim(s) |> String.downcase()
     l = String.length(s)
 
+    # https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch08s15.html
     if l >= 5 and l <= 63 and
-         String.match?(
-           s,
-           ~r/^((http:\/\/)|(https:\/\/))?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}(\/)/
-         ) do
+         String.match?(s, ~r/^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/) do
       {:ok, s}
     else
       {:error, :not_a_valid_domain_name}

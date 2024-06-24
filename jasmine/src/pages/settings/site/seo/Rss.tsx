@@ -13,13 +13,13 @@ const Widget = ({ languages }: IProps) => {
       <List<string>
         bordered
         dataSource={languages}
-        renderItem={(item) => (
+        renderItem={(x) => (
           <List.Item
             onClick={() => {
-              window.open(`/${item}/rss.xml`, "_blank")?.focus();
+              window.open(`/rss/${x}.xml`, "_blank")?.focus();
             }}
           >
-            <FormattedMessage id={`languages.${item}`} />
+            <FormattedMessage id={`languages.${x}`} />
           </List.Item>
         )}
       />

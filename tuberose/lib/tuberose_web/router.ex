@@ -30,6 +30,10 @@ defmodule TuberoseWeb.Router do
 
     get("/", PageController, :home)
 
+    scope "/:lang" do
+      get("/home.html", PageController, :home_by_lang)
+    end
+
     scope "/etc", Etc do
       get("/nginx.conf", NginxConfController, :get)
       get("/systemd.conf", SystemdConfController, :get)
