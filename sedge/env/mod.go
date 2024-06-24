@@ -411,7 +411,7 @@ func check_migrations_dir(tx *sql.Tx, driver Database, migrations_dir string, mi
 		item, err := select_by_version(tx, driver, migrations_table, version)
 		switch {
 		case err == sql.ErrNoRows:
-			slog.Info("insert migrations", slog.String("version", version), slog.String("name", name))
+			slog.Debug("insert migrations", slog.String("version", version), slog.String("name", name))
 			tpl, err := template.New("").Parse(driver.Insert())
 			if err != nil {
 				return err
@@ -433,7 +433,7 @@ func check_migrations_dir(tx *sql.Tx, driver Database, migrations_dir string, mi
 			return err
 		default:
 			if item.Name != name || item.Up != up || item.Down != down {
-				return fmt.Errorf("migration %s is dirty", version)
+				return fmt.Errorf("migration %s-%s is dirty", version, name)
 			}
 		}
 
