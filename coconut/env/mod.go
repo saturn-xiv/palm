@@ -82,5 +82,6 @@ func Dump(target string, keep uint, plugin Plugin) error {
 		}
 		fmt.Println("======= END =======")
 	}
+	slog.Info("done.")
 	return nil
 }

@@ -3,6 +3,7 @@ package env
 import (
 	"errors"
 	"fmt"
+	"log/slog"
 	"os/exec"
 	"path/filepath"
 	"strconv"
@@ -23,13 +24,11 @@ func NewMySql(host string, port uint16, db_name string, user string, password st
 	if db_name == "" {
 		return nil, errors.New("empty db name")
 	}
-	if user == "" {
-		return nil, errors.New("empty user")
-	}
 
 	return &MySql{host: host, port: port, db_name: db_name, user: user, password: password}, nil
 }
 func (p *MySql) Dump(target string) []*exec.Cmd {
+	slog.Info("backup mysql", slog.String("host", p.host), slog.Int("port", int(p.port)), slog.String("user", p.user), slog.String("db-name", p.db_name))
 	args := []string{"--no-create-db", "-h", p.host, "-P", strconv.Itoa(int(p.port)), "-u", p.user}
 	if p.password != "" {
 		args = append(args, fmt.Sprintf("-p%s", p.password))

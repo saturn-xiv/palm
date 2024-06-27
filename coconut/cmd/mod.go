@@ -3,9 +3,12 @@ package cmd
 import (
 	"fmt"
 	"log/slog"
+	"os"
+	"path/filepath"
+
+	"github.com/spf13/cobra"
 
 	"github.com/saturn-xiv/palm/coconut/env"
-	"github.com/spf13/cobra"
 )
 
 var (
@@ -76,8 +79,11 @@ func init() {
 			Short: "Backup PostgreSql",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return nil
-
+				plugin, err := env.NewPostgreSql(gl_postgresql_host, gl_postgresql_port, gl_postgresql_db_name, gl_postgresql_user, gl_postgresql_password)
+				if err != nil {
+					return err
+				}
+				return env.Dump(gl_target, gl_keep, plugin)
 			},
 		}
 		cmd.Flags().StringVarP(&gl_postgresql_host, "host", "H", "127.0.0.1", "host")
@@ -133,8 +139,11 @@ func init() {
 			Short: "Backup Oracle",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return nil
-
+				plugin, err := env.NewOracle(gl_oracle_home, gl_oracle_sid, gl_oracle_user, gl_oracle_password, gl_oracle_directory_path)
+				if err != nil {
+					return err
+				}
+				return env.Dump(gl_target, gl_keep, plugin)
 			},
 		}
 		cmd.Flags().StringVarP(&gl_oracle_home, "home", "H", "/opt/oracle/product/19c/dbhome_1", "home folder")
@@ -152,14 +161,14 @@ func init() {
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
 				return nil
-
 			},
 		}
+		home, _ := os.UserHomeDir()
 		cmd.Flags().StringVarP(&gl_sync_host, "host", "H", "", "keep it empty if backup from local")
 		cmd.Flags().Uint16VarP(&gl_sync_port, "port", "p", 22, "ssh port")
 		cmd.Flags().StringVarP(&gl_sync_user, "user", "u", "root", "ssh user")
 		cmd.Flags().StringVarP(&gl_sync_password, "password", "P", "", "ssh password")
-		cmd.Flags().StringVarP(&gl_sync_key_file, "key-file", "K", "~/.ssh/id_ed25519", "private ssh key file")
+		cmd.Flags().StringVarP(&gl_sync_key_file, "key-file", "K", filepath.Join(home, ".ssh", "id_ed25519"), "private ssh key file")
 		cmd.Flags().StringVarP(&gl_sync_source, "source", "s", "", "source filepath")
 		root_cmd.AddCommand(cmd)
 	}
