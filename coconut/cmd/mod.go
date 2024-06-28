@@ -146,11 +146,11 @@ func init() {
 				return env.Dump(gl_target, gl_keep, plugin)
 			},
 		}
-		cmd.Flags().StringVarP(&gl_oracle_home, "home", "H", "/opt/oracle/product/19c/dbhome_1", "home folder")
+		cmd.Flags().StringVarP(&gl_oracle_home, "home", "H", "/opt/oracle/product/23c/dbhomeFree", "oracle install folder")
 		cmd.Flags().StringVarP(&gl_oracle_sid, "sid", "s", "orclcdb", "sid")
 		cmd.Flags().StringVarP(&gl_oracle_user, "user", "u", "", "user")
 		cmd.Flags().StringVarP(&gl_oracle_password, "password", "P", "", "password")
-		cmd.Flags().StringVarP(&gl_oracle_directory_path, "directory-path", "D", "", "select directory_path from dba_directories where directory_name='DATA_PUMP_DIR'")
+		cmd.Flags().StringVarP(&gl_oracle_directory_path, "directory-path", "D", "/opt/oracle/admin/FREE/dpdump", "select directory_path from dba_directories where directory_name='DATA_PUMP_DIR'")
 		root_cmd.AddCommand(cmd)
 	}
 
