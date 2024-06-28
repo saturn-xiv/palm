@@ -13,6 +13,7 @@ app_gradle_version: "8.8"
 
 app_nodejs_version: "20.15.0"
 app_nodejs_architecture: "x64"
+app_yarn_version: "1.22.22"
 
 app_kylin_nodejs_iron_version: "20.15.0"
 app_kylin_nodejs_fermium_version: "14.21.3"

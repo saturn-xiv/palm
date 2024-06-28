@@ -1,5 +1,10 @@
 # update-desktop-database ~/.local/share/applications
 
+- name: Install yarn
+  ansible.builtin.unarchive:
+    src: yarn-v{{ app_yarn_version }}.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
 - name: Install nodejs iron
   ansible.builtin.unarchive:
     src: node-v{{ app_kylin_nodejs_iron_version }}-linux-x64.tar.xz
