@@ -41,7 +41,7 @@ RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/downloa
 
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION "1.30.2"
+ENV ENVOY_VERSION "1.30.3"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo mv $HOME/downloads/envoy /usr/local/bin/envoy \
     && sudo chmod +x /usr/local/bin/envoy \
@@ -198,7 +198,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
 
 
 # https://opensearch.org/downloads.html#opensearch
-ENV OPENSEARCH_VERSION "2.14.0"
+ENV OPENSEARCH_VERSION "2.15.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
 RUN cd $HOME/build \
