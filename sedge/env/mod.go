@@ -3,6 +3,7 @@ package env
 import (
 	"bytes"
 	"database/sql"
+	"errors"
 	"fmt"
 	"log/slog"
 	"os"
@@ -26,8 +27,9 @@ type Migration struct {
 
 type Database interface {
 	Version() string
-	CreateTable() string
-	DropTable() string
+	CreateSchemaMigrationsTable() string
+	DropSchemaMigrationsTable() string
+	HibernateSequence() (string, string)
 	ByVersion() string
 	Insert() string
 	Up() string
@@ -380,7 +382,75 @@ func (p *Migration) Migrate(tx *sql.Tx, driver Database, migrations_table string
 	return nil
 }
 
+func check_hibernate_sequence(driver Database, migrations_dir string) error {
+	slog.Debug("check hibernate sequence")
+	root := filepath.Join(migrations_dir, "00000000000000-CreateHibernateSequence")
+	{
+		fi, err := os.Stat(root)
+		switch {
+		case errors.Is(err, os.ErrNotExist):
+			slog.Debug("create", slog.String("folder", root))
+			if err = os.MkdirAll(root, 0700); err != nil {
+				return err
+			}
+		case err == nil:
+			if !fi.IsDir() {
+				return fmt.Errorf("%s isn't a folder", root)
+			}
+		default:
+			return err
+		}
+	}
+	up, down := driver.HibernateSequence()
+	{
+		file := filepath.Join(root, "up.sql")
+		fi, err := os.Stat(file)
+		switch {
+		case errors.Is(err, os.ErrNotExist):
+			slog.Info("generate", slog.String("file", file))
+			fd, err := os.Create(file)
+			if err != nil {
+				return err
+			}
+			if _, err = fd.WriteString(up); err != nil {
+				return err
+			}
+		case err == nil:
+			if fi.IsDir() {
+				return fmt.Errorf("%s is a folder", file)
+			}
+		default:
+			return err
+		}
+	}
+	{
+		file := filepath.Join(root, "down.sql")
+		fi, err := os.Stat(file)
+		switch {
+		case errors.Is(err, os.ErrNotExist):
+			slog.Info("generate", slog.String("file", file))
+			fd, err := os.Create(file)
+			if err != nil {
+				return err
+			}
+			if _, err = fd.WriteString(down); err != nil {
+				return err
+			}
+		case err == nil:
+			if fi.IsDir() {
+				return fmt.Errorf("%s is a folder", file)
+			}
+		default:
+			return err
+		}
+	}
+	return nil
+}
 func check_migrations_dir(tx *sql.Tx, driver Database, migrations_dir string, migrations_table string) error {
+	if err := check_hibernate_sequence(driver, migrations_dir); err != nil {
+		return err
+	}
+
 	items, err := os.ReadDir(migrations_dir)
 	if err != nil {
 		return err
@@ -509,7 +579,7 @@ func select_by_version(tx *sql.Tx, driver Database, migrations_table string, ver
 func check_migrations_table(tx *sql.Tx, driver Database, migrations_table string) error {
 
 	slog.Debug("check migrations table", slog.String("name", migrations_table))
-	tpl, err := template.New("").Parse(driver.CreateTable())
+	tpl, err := template.New("").Parse(driver.CreateSchemaMigrationsTable())
 	if err != nil {
 		return err
 	}
@@ -553,7 +623,7 @@ func clear(tx *sql.Tx, driver Database, migrations_table string) error {
 
 	{
 		slog.Debug("drop the migrations table", slog.String("name", migrations_table))
-		tpl, err := template.New("").Parse(driver.DropTable())
+		tpl, err := template.New("").Parse(driver.DropSchemaMigrationsTable())
 		if err != nil {
 			return err
 		}

@@ -33,7 +33,7 @@ func (p *DM8) Version() string {
 	return "SELECT BANNER FROM V$VERSION LIMIT 1"
 }
 
-func (p *DM8) CreateTable() string {
+func (p *DM8) CreateSchemaMigrationsTable() string {
 	return `
 BEGIN
 	EXECUTE IMMEDIATE 'CREATE TABLE IF NOT EXISTS {{ .name }}(
@@ -52,6 +52,13 @@ END;
 `
 }
 
-func (p *DM8) DropTable() string {
-	return `DROP TABLE IF EXISTS {{ .name }};`
+func (p *DM8) DropSchemaMigrationsTable() string {
+	return `
+BEGIN
+	DROP TABLE IF EXISTS {{ .name }};
+`
+}
+
+func (p *DM8) HibernateSequence() (string, string) {
+	return "CREATE SEQUENCE IF NOT EXISTS hibernate_sequence MINVALUE 1 MAXVALUE 2147483647 START WITH 1 INCREMENT BY 1 CACHE 128;", "DROP SEQUENCE IF EXISTS hibernate_sequence;"
 }

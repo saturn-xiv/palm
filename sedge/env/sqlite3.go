@@ -41,7 +41,7 @@ func (p *Sqlite3) Version() string {
 	return "SELECT SQLITE_VERSION()"
 }
 
-func (p *Sqlite3) CreateTable() string {
+func (p *Sqlite3) CreateSchemaMigrationsTable() string {
 	return `
 CREATE TABLE IF NOT EXISTS {{ .name }}(
 	id INTEGER NOT NULL PRIMARY KEY,
@@ -58,6 +58,10 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version
 
 }
 
-func (p *Sqlite3) DropTable() string {
+func (p *Sqlite3) DropSchemaMigrationsTable() string {
 	return `DROP TABLE IF EXISTS {{ .name }};`
+}
+
+func (p *Sqlite3) HibernateSequence() (string, string) {
+	return "SELECT 1;", "SELECT 0;"
 }

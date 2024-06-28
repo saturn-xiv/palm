@@ -33,7 +33,7 @@ func (p *SqlServer) Version() string {
 	return "SELECT VERSION()"
 }
 
-func (p *SqlServer) CreateTable() string {
+func (p *SqlServer) CreateSchemaMigrationsTable() string {
 	return `
 CREATE TABLE IF NOT EXISTS {{ .name }}(
 	id SERIAL PRIMARY KEY,
@@ -50,6 +50,10 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_{{ .name }}_version ON {{ .name }}(version
 
 }
 
-func (p *SqlServer) DropTable() string {
+func (p *SqlServer) DropSchemaMigrationsTable() string {
 	return `DROP TABLE IF EXISTS {{ .name }};`
+}
+
+func (p *SqlServer) HibernateSequence() (string, string) {
+	return "CREATE SEQUENCE IF NOT EXISTS hibernate_sequence MINVALUE 1 MAXVALUE 2147483647 START WITH 1 INCREMENT BY 1 CACHE 128;", "DROP SEQUENCE IF EXISTS hibernate_sequence;"
 }
