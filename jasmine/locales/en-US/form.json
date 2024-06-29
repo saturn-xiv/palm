@@ -37,6 +37,12 @@
     "code": {
       "label": "Code"
     },
+    "key": {
+      "label": "Key"
+    },
+    "secret": {
+      "label": "Secret"
+    },
     "message": {
       "label": "Message"
     },

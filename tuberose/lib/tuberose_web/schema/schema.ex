@@ -86,6 +86,10 @@ defmodule TuberoseWeb.Schema do
     field :index_attachment_by_images, list_of(non_null(:attachment)) do
       resolve(&Resolvers.Attachment.by_image/3)
     end
+
+    field :get_google_recaptcha, non_null(:google_recaptcha) do
+      resolve(&Resolvers.Site.get_google_recaptcha/3)
+    end
   end
 
   # ---------------------------------------------------------------------------
@@ -204,6 +208,16 @@ defmodule TuberoseWeb.Schema do
       arg(:resource_type, non_null(:string))
       arg(:resource_id, non_null(:id))
       resolve(&Resolvers.Attachment.attach/3)
+    end
+
+    field :set_google_recaptcha, non_null(:succeed) do
+      arg(:site_key, non_null(:string))
+      arg(:secret, non_null(:string))
+      resolve(&Resolvers.Site.set_google_recaptcha/3)
+    end
+
+    field :delete_google_recaptcha, non_null(:succeed) do
+      resolve(&Resolvers.Site.delete_google_recaptcha/3)
     end
   end
 

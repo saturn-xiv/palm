@@ -7,6 +7,7 @@ defmodule Tuberose.Setting do
 
     field(:key, :string)
     field(:value, :binary)
+    field(:salt, :binary)
     field(:version, :integer)
 
     timestamps(type: :utc_datetime_usec)
@@ -15,7 +16,7 @@ defmodule Tuberose.Setting do
   @doc false
   def changeset(setting, attrs) do
     setting
-    |> cast(attrs, [:user_id, :key, :value, :deleted_at, :version])
-    |> validate_required([:key])
+    |> cast(attrs, [:user_id, :key, :value, :salt, :version])
+    |> validate_required([:key, :value])
   end
 end

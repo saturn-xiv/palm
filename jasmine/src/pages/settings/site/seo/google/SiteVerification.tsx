@@ -7,16 +7,15 @@ import {
 import { Button, Card, Popconfirm, message } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { IErrorMessage } from "../../../../api/graphql";
+import { IErrorMessage } from "../../../../../api/graphql";
 import {
-  delete_google_recaptcha,
-  get_google_recaptcha,
-  set_google_recaptcha,
-} from "../../../../api/site";
+  delete_google_site_verification,
+  get_google_site_verification,
+  set_google_site_verification,
+} from "../../../../../api/site";
 
 interface IForm {
-  site_key: string;
-  secret: string;
+  code: string;
 }
 
 const Widget = () => {
@@ -26,14 +25,16 @@ const Widget = () => {
 
   return (
     <Card
-      title={<FormattedMessage id="settings.site.seo.recaptcha.title" />}
+      title={
+        <FormattedMessage id="settings.site.seo.google.site-verification.title" />
+      }
       hoverable
     >
       {contextHolder}
       <ProForm<IForm>
         formRef={formRef}
         onFinish={async (values) => {
-          set_google_recaptcha(values.site_key, values.secret)
+          set_google_site_verification(values.code)
             .then(() => {
               messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
             })
@@ -42,10 +43,9 @@ const Widget = () => {
             });
         }}
         request={async () => {
-          const it = await get_google_recaptcha();
+          const it = await get_google_site_verification();
           return {
-            site_key: it.siteKey,
-            secret: it.secret,
+            code: it.code,
           };
         }}
         submitter={{
@@ -55,7 +55,7 @@ const Widget = () => {
               <DeleteButton
                 key="delete"
                 handleRefresh={() => {
-                  formRef.current?.setFieldsValue({ site_key: "", secret: "" });
+                  formRef.current?.setFieldsValue({ code: "" });
                 }}
               />,
             ];
@@ -64,16 +64,8 @@ const Widget = () => {
       >
         <ProFormText
           width="md"
-          name="site_key"
-          label={
-            <FormattedMessage id="settings.site.seo.recaptcha.fields.site-key.label" />
-          }
-          rules={[{ required: true }]}
-        />
-        <ProFormText
-          width="md"
-          name="secret"
-          label={<FormattedMessage id="form.fields.secret.label" />}
+          name="code"
+          label={<FormattedMessage id="form.fields.code.label" />}
           rules={[{ required: true }]}
         />
       </ProForm>
@@ -90,7 +82,7 @@ const DeleteButton = ({ handleRefresh }: { handleRefresh: () => void }) => {
     <Popconfirm
       title={<FormattedMessage id="flashes.are-you-sure" />}
       onConfirm={() => {
-        delete_google_recaptcha()
+        delete_google_site_verification()
           .then(() => {
             messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
             handleRefresh();

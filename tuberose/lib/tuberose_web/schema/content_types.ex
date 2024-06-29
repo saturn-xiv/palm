@@ -194,4 +194,10 @@ defmodule TuberoseWeb.Schema.ContentTypes do
   end
 
   # ---------------------------------------------------------------------------
+  object :google_recaptcha do
+    field(:site_key, non_null(:string))
+    field(:secret, non_null(:string))
+  end
+
+  # ---------------------------------------------------------------------------
 end

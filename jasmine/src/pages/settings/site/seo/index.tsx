@@ -6,9 +6,9 @@ import { set_pathname } from "../../../../reducers/side-bar";
 import { siteInfo as selectSiteInfo } from "../../../../reducers/site-info";
 import { SETTINGS_SITE_SEO_PATH } from "../../../../Router";
 import Baidu from "./Baidu";
-import Google from "./Google";
+import Google from "./google/SiteVerification";
 import IndexNow from "./IndexNow";
-import ReCaptcha from "./ReCaptcha";
+import ReCaptcha from "./google/ReCaptcha";
 import Rss from "./Rss";
 import Sitemap from "./Sitemap";
 

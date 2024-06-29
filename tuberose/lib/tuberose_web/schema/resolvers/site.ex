@@ -1,5 +1,52 @@
 defmodule TuberoseWeb.Resolvers.Site do
+  import Ecto.Query
+
   require Logger
+
+  def delete_google_recaptcha(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      it =
+        from(p in Tuberose.Setting,
+          where: is_nil(p.user_id) and p.key == "google.recaptcha"
+        )
+        |> first
+        |> Tuberose.Repo.one()
+
+      if it do
+        Tuberose.Repo.delete(it)
+      end
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def get_google_recaptcha(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    item = Tuberose.KV.get("google.recaptcha")
+
+    if item,
+      do: {:ok, %{site_key: item.site_key, secret: item.secret}},
+      else: {:ok, %{site_key: "", secret: ""}}
+  end
+
+  def set_google_recaptcha(_parent, %{site_key: site_key, secret: secret}, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      Tuberose.KV.set("google.recaptcha", %{site_key: site_key, secret: secret}, true)
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
 
   def routes(_parent, _args, %{context: context}) do
     locale = context.locale

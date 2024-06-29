@@ -4,7 +4,30 @@
   },
   "site": {
     "seo": {
-      "title": "SEO"
+      "title": "SEO",
+      "rss": {
+        "title": "RSS"
+      },
+      "sitemap": {
+        "title": "Sitemap"
+      },
+      "google": {
+        "site-verification": {
+          "title": "Google site verification"
+        },
+        "re-captcha": {
+          "title": "Google reCAPTCHA",
+          "fields": {
+            "site-key": { "label": "Site key" }
+          }
+        }
+      },
+      "baidu": {
+        "title": "Baidu site verification"
+      },
+      "index-now": {
+        "title": "IndexNow site verification"
+      }
     },
     "status": {
       "title": "Site Status"
