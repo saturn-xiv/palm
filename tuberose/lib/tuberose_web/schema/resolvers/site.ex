@@ -1,7 +1,147 @@
 defmodule TuberoseWeb.Resolvers.Site do
   import Ecto.Query
-
   require Logger
+
+  def delete_index_now_site_verification(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      it =
+        from(p in Tuberose.Setting,
+          where: is_nil(p.user_id) and p.key == "index-now.site-verification"
+        )
+        |> first
+        |> Tuberose.Repo.one()
+
+      if it do
+        Tuberose.Repo.delete(it)
+      end
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def get_index_now_site_verification(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    item = Tuberose.KV.get("index-now.site-verification")
+
+    if item,
+      do: {:ok, %{key: item.key}},
+      else: {:ok, %{key: ""}}
+  end
+
+  def set_index_now_site_verification(_parent, %{key: key}, %{
+        context: context
+      }) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      Tuberose.KV.set("index-now.site-verification", %{key: key}, true)
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def delete_baidu_site_verification(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      it =
+        from(p in Tuberose.Setting,
+          where: is_nil(p.user_id) and p.key == "baidu.site-verification"
+        )
+        |> first
+        |> Tuberose.Repo.one()
+
+      if it do
+        Tuberose.Repo.delete(it)
+      end
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def get_baidu_site_verification(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    item = Tuberose.KV.get("baidu.site-verification")
+
+    if item,
+      do: {:ok, %{code: item.code, content: item.content}},
+      else: {:ok, %{code: "", content: ""}}
+  end
+
+  def set_baidu_site_verification(_parent, %{code: code, content: content}, %{
+        context: context
+      }) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      Tuberose.KV.set("baidu.site-verification", %{code: code, content: content}, true)
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def delete_google_site_verification(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      it =
+        from(p in Tuberose.Setting,
+          where: is_nil(p.user_id) and p.key == "google.site-verification"
+        )
+        |> first
+        |> Tuberose.Repo.one()
+
+      if it do
+        Tuberose.Repo.delete(it)
+      end
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
+
+  def get_google_site_verification(_parent, _args, %{context: context}) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    item = Tuberose.KV.get("google.site-verification")
+
+    if item,
+      do: {:ok, %{code: item.code}},
+      else: {:ok, %{code: ""}}
+  end
+
+  def set_google_site_verification(_parent, %{code: code}, %{
+        context: context
+      }) do
+    unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do
+      raise ArgumentError, message: "Forbidden"
+    end
+
+    Tuberose.Repo.transaction(fn ->
+      Tuberose.KV.set("google.site-verification", %{code: code}, true)
+    end)
+
+    {:ok, %{created_at: DateTime.utc_now()}}
+  end
 
   def delete_google_recaptcha(_parent, _args, %{context: context}) do
     unless Tuberose.Atropa.Client.administrator?(context.current_user.id) do

@@ -239,22 +239,6 @@ mutation call($title: String!, $subhead: String!, $description: String!, $copyri
   return res.setSiteInfo;
 };
 
-export const ping_index_now = async (home: string): Promise<ISucceed> => {
-  const res = await query<{
-    pingIndexNow: ISucceed;
-  }>(
-    `
-query call($home: String!){
-  pingIndexNow(home: $home){
-    createdAt
-  }
-}
-`,
-    { home }
-  );
-  return res.pingIndexNow;
-};
-
 interface IBaiduSiteVerification {
   content: string;
   code: string;

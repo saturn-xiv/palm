@@ -90,6 +90,18 @@ defmodule TuberoseWeb.Schema do
     field :get_google_recaptcha, non_null(:google_recaptcha) do
       resolve(&Resolvers.Site.get_google_recaptcha/3)
     end
+
+    field :get_google_site_verification, non_null(:google_site_verification) do
+      resolve(&Resolvers.Site.get_google_site_verification/3)
+    end
+
+    field :get_baidu_site_verification, non_null(:baidu_site_verification) do
+      resolve(&Resolvers.Site.get_baidu_site_verification/3)
+    end
+
+    field :get_index_now_site_verification, non_null(:index_now_site_verification) do
+      resolve(&Resolvers.Site.get_index_now_site_verification/3)
+    end
   end
 
   # ---------------------------------------------------------------------------
@@ -218,6 +230,34 @@ defmodule TuberoseWeb.Schema do
 
     field :delete_google_recaptcha, non_null(:succeed) do
       resolve(&Resolvers.Site.delete_google_recaptcha/3)
+    end
+
+    field :set_google_site_verification, non_null(:succeed) do
+      arg(:code, non_null(:string))
+      resolve(&Resolvers.Site.set_google_site_verification/3)
+    end
+
+    field :delete_google_site_verification, non_null(:succeed) do
+      resolve(&Resolvers.Site.delete_google_site_verification/3)
+    end
+
+    field :set_baidu_site_verification, non_null(:succeed) do
+      arg(:code, non_null(:string))
+      arg(:content, non_null(:string))
+      resolve(&Resolvers.Site.set_baidu_site_verification/3)
+    end
+
+    field :delete_baidu_site_verification, non_null(:succeed) do
+      resolve(&Resolvers.Site.delete_baidu_site_verification/3)
+    end
+
+    field :set_index_now_site_verification, non_null(:succeed) do
+      arg(:key, non_null(:string))
+      resolve(&Resolvers.Site.set_index_now_site_verification/3)
+    end
+
+    field :delete_index_now_site_verification, non_null(:succeed) do
+      resolve(&Resolvers.Site.delete_index_now_site_verification/3)
     end
   end
 

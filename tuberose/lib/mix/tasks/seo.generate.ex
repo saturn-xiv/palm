@@ -34,5 +34,14 @@ defmodule Mix.Tasks.Tuberose.Seo.Generate do
       # TODO
       Logger.info("Generate #{home}/rss/#{lang}.xml")
     end)
+
+    # TODO
+    Logger.info("Generate Baidu site-verification file")
+    # TODO
+    # https://support.google.com/webmasters/answer/9008080?hl=en
+    Logger.info("Generate Google site-verification file")
+    # TODO
+    # https://www.indexnow.org/documentation
+    Logger.info("Generate IndexNow site-verification file")
   end
 end

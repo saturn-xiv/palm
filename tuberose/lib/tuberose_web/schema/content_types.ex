@@ -199,5 +199,19 @@ defmodule TuberoseWeb.Schema.ContentTypes do
     field(:secret, non_null(:string))
   end
 
+  object :google_site_verification do
+    field(:code, non_null(:string))
+  end
+
+  object :baidu_site_verification do
+    field(:code, non_null(:string))
+    field(:content, non_null(:string))
+  end
+
+  object :index_now_site_verification do
+    field(:code, non_null(:string))
+    field(:key, non_null(:string))
+  end
+
   # ---------------------------------------------------------------------------
 end

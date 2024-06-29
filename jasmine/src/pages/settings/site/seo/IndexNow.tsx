@@ -11,10 +11,8 @@ import { IErrorMessage } from "../../../../api/graphql";
 import {
   delete_index_now_site_verification,
   get_index_now_site_verification,
-  ping_index_now,
   set_index_now_site_verification,
 } from "../../../../api/site";
-import { home_url } from "../../../../utils";
 
 interface IForm {
   key: string;
@@ -58,7 +56,6 @@ const Widget = () => {
                   formRef.current?.setFieldsValue({ key: "" });
                 }}
               />,
-              <PingButton key="ping" />,
             ];
           },
         }}
@@ -98,33 +95,6 @@ const DeleteButton = ({ handleRefresh }: { handleRefresh: () => void }) => {
       {contextHolder}
       <Button type="dashed">
         <FormattedMessage id="buttons.delete" />
-      </Button>
-    </Popconfirm>
-  );
-};
-
-const PingButton = () => {
-  const intl = useIntl();
-  const home = home_url();
-  const [messageApi, contextHolder] = message.useMessage();
-  return (
-    <Popconfirm
-      title={<FormattedMessage id="flashes.are-you-sure" />}
-      onConfirm={() => {
-        ping_index_now(home)
-          .then(() => {
-            messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
-          })
-          .catch((reason: IErrorMessage[]) => {
-            message.error(reason.map((x) => x.message).join("\n"));
-          });
-      }}
-      okText={<FormattedMessage id="buttons.ok" />}
-      cancelText={<FormattedMessage id="buttons.cancel" />}
-    >
-      {contextHolder}
-      <Button type="dashed">
-        <FormattedMessage id="buttons.ping" />
       </Button>
     </Popconfirm>
   );
