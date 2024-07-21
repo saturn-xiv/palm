@@ -2,6 +2,7 @@
 
 set -e
 
+export PROTOBUF_ROOT=$HOME/.local
 export WORKSPACE=$PWD
 
 function generate_gourd() {
@@ -27,13 +28,32 @@ function generate_grpc_by_lang() {
         -I $PROTOBUF_ROOT/include/google/protobuf \
         --${1}_out=$target --grpc_out=$target \
         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_${1}_plugin \
-        $WORKSPACE/protocols/*.proto
+        $WORKSPACE/petunia/*.proto
 }
 
+function generate_lemon() {
+    if [ -d $WORKSPACE/lemon/include ]; then
+        rm -r $WORKSPACE/lemon/include
+    fi
+    if [ -d $WORKSPACE/lemon/src ]; then
+        rm -r $WORKSPACE/lemon/src
+    fi
+    mkdir -p $WORKSPACE/lemon/src
+    echo "generate lemon project"
+
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --cpp_out=$WORKSPACE/lemon/src --grpc_out=$WORKSPACE/lemon/src \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_cpp_plugin \
+        $WORKSPACE/petunia/*.proto
+
+    mkdir -p $WORKSPACE/lemon/include
+    mv $WORKSPACE/lemon/src/*.h $WORKSPACE/lemon/include/
+}
 # -----------------------------------------------------------------------------
 
 generate_gourd
-generate_grpc_by_lang cpp lemon/src
+generate_lemon
 
 echo 'done.'
 
