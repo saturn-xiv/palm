@@ -4,19 +4,18 @@ FetchContent_Declare(thrift
 )
 FetchContent_MakeAvailable(thrift)
 
-file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 add_library(gourd STATIC ${SOURCE_LIST})
 target_link_directories(gourd PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/lib)
 
 target_link_libraries(gourd PUBLIC
-  libevent::core libevent::extra libevent::pthreads
   thrift thriftnb thriftz
 )
 
 target_include_directories(gourd PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/src
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
   
   ${thrift_SOURCE_DIR}/lib/cpp/src
   ${thrift_SOURCE_DIR}/compiler/cpp/src

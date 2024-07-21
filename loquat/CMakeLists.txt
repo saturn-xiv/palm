@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.28)
 include(ExternalProject)
 include(FetchContent)
 
@@ -25,7 +25,7 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 
 # --------------------------------------------------------
 
-find_package(Libevent CONFIG REQUIRED)
+find_package(OpenSSL CONFIG REQUIRED)
 
 # --------------------------------------------------------
 

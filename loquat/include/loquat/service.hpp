@@ -8,10 +8,10 @@
 #include <thrift/Thrift.h>
 #pragma GCC diagnostic pop
 
-#include "Aes.h"
-#include "Health.h"
-#include "Hmac.h"
-#include "Jwt.h"
+#include "petunia/Aes.h"
+#include "petunia/Health.h"
+#include "petunia/Hmac.h"
+#include "petunia/Jwt.h"
 
 namespace loquat {
 

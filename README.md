@@ -5,7 +5,7 @@ A total free education &amp; translation solution.
 ## Usage
 
 ```bash
-$ podman run --rm -it --events-backend=file --network host -v $(dirname $PWD):/workspace:z ubuntu:latest
-> cd loquat
-> ./build.sh
+$ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z ubuntu:latest
+> cd /workspace
+> ./scripts/loquat.sh
 ```
