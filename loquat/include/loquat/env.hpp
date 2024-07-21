@@ -32,8 +32,11 @@
 #include <variant>
 #include <vector>
 
-#define TOML_EXCEPTIONS 1
-#include <toml++/toml.h>
+// TODO
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#include <tink/internal/ssl_unique_ptr.h>
+#pragma GCC diagnostic pop
 
 #include <spdlog/spdlog.h>
 #include <tink/aead/aead_key_templates.h>
@@ -44,21 +47,7 @@
 
 namespace loquat {
 
-class Config final {
- public:
-  Config(const std::filesystem::path& file);
-  inline uint32_t port() const { return this->_port; }
-  inline std::vector<std::string> clients() const {
-    const std::vector<std::string> items(this->_clients.begin(),
-                                         this->_clients.end());
-    return items;
-  }
-
- private:
-  uint16_t _port;
-  std::optional<std::string> _jwt_secret_key;
-  std::vector<std::string> _clients;
-};
+std::string thrift_version();
 
 class Keyset {
  public:
@@ -83,7 +72,7 @@ class Keyset {
     std::string msg(it.begin(), it.end());
     if (!status.ok()) {
       spdlog::error("{}", msg);
-      throw std::runtime_error("");
+      throw std::runtime_error(msg);
     }
   }
 
@@ -96,26 +85,27 @@ class Keyset {
 class Jwt final : public Keyset {
  public:
   Jwt() : Keyset("jwt") {}
-  inline std::string sign(const std::string& subject,
-                          const std::chrono::seconds& ttl) {
-    return this->sign(subject, std::nullopt, ttl);
-  }
-  std::string sign(const std::string& subject,
-                   const std::optional<std::string> audience,
-                   const std::chrono::seconds& ttl);
-  std::string verify(const std::string& token,
-                     const std::optional<std::string> audience);
-  inline std::string verify(const std::string& token) {
-    return this->verify(token, std::nullopt);
-  }
+
+  std::tuple<std::optional<std::string>, std::optional<std::string>,
+             std::string, std::optional<std::string>>
+  verify(const std::string& token, const std::string& issuer,
+         const std::string& audience);
+  std::string sign(const std::optional<std::string> jwt_id,
+                   const std::optional<std::string> key_id,
+                   const std::string& issuer, const std::string& subject,
+                   const std::set<std::string> audiences,
+                   const absl::Time& issued_at, const absl::Time& not_before,
+                   const absl::Time& expired_at,
+                   const std::optional<std::string> payload);
 
  private:
   std::unique_ptr<crypto::tink::JwtMac> load();
+  inline static const std::string PAYLOAD_KEY = "pyd";
 };
 
 class HMac final : public Keyset {
  public:
-  HMac() : Keyset("mac") {}
+  HMac() : Keyset("hmac") {}
   std::string sign(const std::string& plain);
   void verify(const std::string& code, const std::string& plain);
 
@@ -133,5 +123,4 @@ class Aes final : public Keyset {
   std::unique_ptr<crypto::tink::Aead> load();
 };
 
-std::string audience();
 }  // namespace loquat

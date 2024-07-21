@@ -16,8 +16,19 @@
 namespace loquat {
 
 namespace application {
-void launch(const uint16_t port);
-}
+
+struct Ssl {
+  Ssl(const std::string& cert_file, const std::string& key_file,
+      const std::string& ca_file)
+      : cert_file(cert_file), key_file(key_file), ca_file(ca_file) {}
+  std::string cert_file;
+  std::string key_file;
+  std::string ca_file;
+};
+
+void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl);
+void generate_systemd_config(const std::string& name, const uint16_t port);
+}  // namespace application
 
 class AesHandler final : public v1::AesIf {
  public:
@@ -39,16 +50,17 @@ class JwtHandler final : public v1::JwtIf {
  public:
   JwtHandler() = default;
 
-  void sign(std::string& token, const std::string& subject,
-            const std::string& action, const int64_t ttl) override;
-  void verify(std::string& subject, const std::string& token,
-              const std::string& action) override;
+  void sign(std::string& token,
+            const loquat::v1::JwtSignRequest& request) override;
+  void verify(loquat::v1::JwtVerfifyResponse& response,
+              const std::string& token, const std::string& issuer,
+              const std::string& audience) override;
 };
 
 class HealthHandler final : public v1::HealthIf {
  public:
   HealthHandler() = default;
 
-  void check() override;
+  void check(std::map<std::string, std::string>& response) override;
 };
 }  // namespace loquat

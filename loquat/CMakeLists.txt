@@ -25,7 +25,7 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 
 # --------------------------------------------------------
 
-find_package(OpenSSL CONFIG REQUIRED)
+find_package(OpenSSL REQUIRED)
 
 # --------------------------------------------------------
 
@@ -41,11 +41,15 @@ FetchContent_Declare(argparse
   GIT_REPOSITORY  "https://github.com/p-ranav/argparse.git"
   GIT_TAG         "v3.1"
 )
+FetchContent_Declare(inja
+  GIT_REPOSITORY  "https://github.com/pantor/inja.git"
+  GIT_TAG         "v3.4.0"
+)
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
   GIT_TAG         "v2.2.0"
 )
-FetchContent_MakeAvailable(spdlog argparse tomlplusplus tink)
+FetchContent_MakeAvailable(spdlog argparse tomlplusplus inja tink)
 
 # --------------------------------------------------------
 
@@ -68,5 +72,7 @@ target_include_directories(loquat PUBLIC
     
   ${spdlog_SOURCE_DIR}/include
   ${argparse_SOURCE_DIR}/include
-  ${tomlplusplus_SOURCE_DIR}/include  
+  ${tomlplusplus_SOURCE_DIR}/include
+  ${inja_SOURCE_DIR}/single_include
+  ${inja_SOURCE_DIR}/third_party/include
 )
