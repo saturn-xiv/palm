@@ -3,7 +3,8 @@
 set -e
 
 . /etc/os-release
-function build_tuberose() {}
+
+export WORKSPACE=$PWD
 
 if [[ $ID == "ubuntu" ]]; then
     apt update
@@ -26,21 +27,21 @@ function build_tuberose() {
     mkdir -p $build_dir
 
     cmake -S $WORKSPACE/tuberose -B $build_dir -DCMAKE_MAKE_PROGRAM=make -DCMAKE_BUILD_TYPE=Release \
-        -DVCPKG_HOST_TRIPLET=x64-linux -DVCPKG_TARGET_TRIPLET=$2-linux \
+        -DVCPKG_HOST_TRIPLET=x64-linux-release -DVCPKG_TARGET_TRIPLET=$1-linux-release \
         -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/tuberose/vcpkg/scripts/buildsystems/vcpkg.cmake \
-        -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORKSPACE/tuberose/toolchains/$2.cmake \
+        -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORKSPACE/tuberose/toolchains/$1.cmake \
         $mailio_args $casbin_args $thrift_args -DBoost_NO_WARN_NEW_VERSIONS=1
 
     make -j -C $build_dir
 
 }
 
-declare -a triples=(
-    "x86_64"
-    "aarch64"
+declare -a triplets=(
+    # "x64"
+    "arm64"
     # "riscv64"
 )
-for t in "${triples[@]}"; do
+for t in "${triplets[@]}"; do
     build_tuberose $t
 done
 

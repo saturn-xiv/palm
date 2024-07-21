@@ -47,6 +47,6 @@ function build_grpc() {
     echo "done($1, $2)."
 }
 
-build_grpc "v1.60.0" "v4.25.1"
+build_grpc "v1.51.1" "v3.21.12"
 
 exit 0

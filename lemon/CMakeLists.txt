@@ -17,7 +17,7 @@ target_include_directories(lemon PUBLIC
 )
 
 source_group(
-  TREE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+  TREE "${CMAKE_CURRENT_SOURCE_DIR}/include"
   PREFIX "Header Files"
   FILES ${HEADER_LIST}
 )

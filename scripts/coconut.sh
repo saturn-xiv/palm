@@ -9,7 +9,7 @@ export WORKSPACE=$PWD
 function build_on_ubuntu() {
     local build_dir=$WORKSPACE/build/coconut-$1
     mkdir -p $build_dir
-    CXX=$1-linux-musl-g++ cmake -S $WORKSPACE/coconut -B $build_dir -DCMAKE_BUILD_TYPE=Release
+    CXX=$1-g++ cmake -S $WORKSPACE/coconut -B $build_dir -DCMAKE_BUILD_TYPE=Release
     make -j -C $build_dir coconut
 }
 
@@ -24,13 +24,15 @@ if [[ $ID == "ubuntu" ]]; then
     apt update
     apt -y upgrade
     DEBIAN_FRONTEND=noninteractive apt install -y build-essential git cmake
-    declare -a triples=(
-        "x86_64"
-        "aarch64"
-        "armv7l"
-        # "riscv64"
+
+    # https://musl.cc/
+    declare -a triplets=(
+        "x86_64-linux-musl"
+        "aarch64-linux-musl"
+        "armv7l-linux-musleabihf"
+        "riscv64-linux-musl"
     )
-    for t in "${triples[@]}"; do
+    for t in "${triplets[@]}"; do
         build_on_ubuntu $t
     done
 elif [[ $ID == "arch" ]]; then

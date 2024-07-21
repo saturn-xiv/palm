@@ -1,0 +1,12 @@
+diff --git a/ports/grpc/portfile.cmake b/ports/grpc/portfile.cmake
+index 402905a53..3588272d7 100644
+--- a/ports/grpc/portfile.cmake
++++ b/ports/grpc/portfile.cmake
+@@ -43,6 +43,7 @@ vcpkg_cmake_configure(
+     SOURCE_PATH "${SOURCE_PATH}"
+     OPTIONS ${FEATURE_OPTIONS}
+         -DgRPC_INSTALL=ON
++	-DgRPC_USE_SYSTEMD=OFF
+         -DgRPC_BUILD_TESTS=OFF
+         -DgRPC_STATIC_LINKING=${gRPC_STATIC_LINKING}
+         -DgRPC_MSVC_STATIC_RUNTIME=${gRPC_MSVC_STATIC_RUNTIME}

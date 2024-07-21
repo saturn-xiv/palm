@@ -47,10 +47,11 @@
     { "name": "libmariadb", "features": ["openssl", "zlib"] },
     { "name": "sqlite3", "features": ["math", "zlib"] },
     "sqlitecpp",
-    { "name": "soci", "features": ["boost", "postgresql"] },
+    { "name": "soci", "features": ["empty", "boost", "sqlite3", "postgresql"] },
     { "name": "redis-plus-plus", "features": ["cxx17"] },
     { "name": "leveldb", "features": ["crc32c"] },
     "minio-cpp",
+    "mailio",
 
     "date",
     "cppcodec",
@@ -62,7 +63,6 @@
     "mstch",
     "inja",
     "cpp-httplib",
-    "poco",
 
     { "name": "abseil", "features": ["cxx17"] },
     "flatbuffers",

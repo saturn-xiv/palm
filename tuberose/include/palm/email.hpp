@@ -2,8 +2,6 @@
 
 #include "palm/env.hpp"
 
-#include "nut.pb.h"
-
 #include <mailio/message.hpp>
 
 namespace palm {

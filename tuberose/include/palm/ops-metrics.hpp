@@ -5,7 +5,6 @@
 
 #include <grpcpp/grpcpp.h>
 
-#include "ops-metrics.grpc.pb.h"
 
 // namespace palm {
 // namespace ops {

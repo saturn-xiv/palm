@@ -1,6 +1,5 @@
 #pragma once
 
-#include "nut.grpc.pb.h"
 #include "palm/cache.hpp"
 #include "palm/crypto.hpp"
 #include "palm/i18n.hpp"
