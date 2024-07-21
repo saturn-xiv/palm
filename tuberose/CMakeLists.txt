@@ -28,7 +28,6 @@ configure_file(include/palm/version.h.in ${PROJECT_SOURCE_DIR}/include/palm/vers
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../gourd ${CMAKE_CURRENT_BINARY_DIR}/gourd)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../lemon ${CMAKE_CURRENT_BINARY_DIR}/lemon)
-add_subdirectory(balsam)
 add_subdirectory(src)
 add_subdirectory(apps)
 add_subdirectory(tests)

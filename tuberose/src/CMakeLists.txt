@@ -34,33 +34,25 @@ find_package(redis++ CONFIG REQUIRED)
 find_package(SOCI CONFIG REQUIRED)
 find_package(Flatbuffers CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
+find_package(miniocpp CONFIG REQUIRED)
 
 pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 find_path(CPP_HTTPLIB_INCLUDE_DIRS "httplib.h")
 
-find_library(MINIO_LIBRARY miniocpp)
 find_library(CURLPP_LIBRARY curlpp)
 find_library(INIH_LIBRARY inih)
 
-# FetchContent_Declare(mailio
-#   GIT_REPOSITORY    "https://github.com/karastojko/mailio.git"  
-#   GIT_TAG           "0.23.0"
-# )
-# FetchContent_Declare(casbin
-#   GIT_REPOSITORY    "https://github.com/casbin/casbin-cpp.git"
-#   GIT_TAG           "v1.59.0"
-#   PATCH_COMMAND     touch FindExtPackages
-# )
-# FetchContent_Declare(mariadb_cpp
-#   GIT_REPOSITORY    "https://github.com/mariadb-corporation/mariadb-connector-cpp.git"
-#   GIT_TAG           "1.1.2"
-# )
-# FetchContent_MakeAvailable(mailio)
+FetchContent_Declare(casbin
+  GIT_REPOSITORY    "https://github.com/casbin/casbin-cpp.git"
+  GIT_TAG           "v1.59.0"
+  PATCH_COMMAND     git apply "${palm_SOURCE_DIR}/casbin.patch"
+)
+FetchContent_MakeAvailable(casbin)
 
 target_link_libraries(palm PUBLIC 
-  lemon gourd #mailio casbin
+  lemon gourd casbin
 
   Boost::chrono Boost::date_time Boost::timer Boost::log Boost::log_setup
   Boost::filesystem Boost::system Boost::thread Boost::program_options
@@ -68,12 +60,11 @@ target_link_libraries(palm PUBLIC
 
   unofficial-sodium::sodium Libssh2::libssh2_static LibLZMA::LibLZMA
 
-  cppzmq-static 
-  PahoMqttCpp::paho-mqttpp3-static rabbitmq::rabbitmq-static
+  cppzmq-static PahoMqttCpp::paho-mqttpp3-static rabbitmq::rabbitmq-static
     
   aws-cpp-sdk-s3 aws-cpp-sdk-sqs 
   ${MINIO_LIBRARY} CURL::libcurl ${CURLPP_LIBRARY} ${INIH_LIBRARY}
-  cpr::cpr SAIL::sail-c++
+  cpr::cpr miniocpp::miniocpp SAIL::sail-c++
   
   nlohmann_json::nlohmann_json PkgConfig::tomlplusplus pugixml::static yaml-cpp msgpack-c
   mstch::mstch pantor::inja
@@ -93,6 +84,7 @@ target_include_directories(palm PUBLIC
 
   ${CPPCODEC_INCLUDE_DIRS}
   ${CPP_HTTPLIB_INCLUDE_DIRS}
+  ${casbin_SOURCE_DIR}/include
 )
 
 source_group(

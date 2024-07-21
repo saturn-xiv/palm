@@ -30,7 +30,7 @@ if [[ $ID == "ubuntu" ]]; then
         "x86_64-linux-musl"
         "aarch64-linux-musl"
         "armv7l-linux-musleabihf"
-        "riscv64-linux-musl"
+        # "riscv64-linux-musl"
     )
     for t in "${triplets[@]}"; do
         build_on_ubuntu $t
