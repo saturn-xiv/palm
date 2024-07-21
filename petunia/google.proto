@@ -1,0 +1,36 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.google.v1";
+option go_package = "github.com/saturn-xiv/palm/google/services/v2";
+package palm.google.v1;
+
+service Oauth2 {
+  rpc AuthCodeURL(Oauth2AuthCodeURLRequest)
+      returns (Oauth2AuthCodeURLResponse) {}
+  rpc SignIn(Oauth2SignInRequest) returns (Oauth2SignInResponse) {}
+}
+
+message Oauth2AuthCodeURLRequest {
+  optional string subject = 1;
+}
+message Oauth2AuthCodeURLResponse {
+  string url = 1;
+}
+message Oauth2SignInRequest {
+  string code = 1;
+  string state = 2;
+}
+message Oauth2SignInResponse {
+  message OpenId {
+    string subject = 1;
+    optional string name = 2;
+    optional string email = 3;
+    bool email_verified = 4;
+    optional string picture = 7;
+    optional string locale = 8;
+    optional string profile = 9;
+  }
+  OpenId open_id = 1;
+  bytes token = 2;
+  optional string subject = 99;
+}

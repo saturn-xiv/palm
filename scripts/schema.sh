@@ -20,7 +20,20 @@ function generate_gourd() {
     mv gourd/src/*.h gourd/include/petunia/
 }
 
+function generate_grpc_by_lang() {
+    local target=$WORKSPACE/$2
+    echo "generate grpc($1) => $2"
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/protocols \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --${1}_out=$target --grpc_out=$target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_${1}_plugin \
+        $WORKSPACE/protocols/*.proto
+}
+
+# -----------------------------------------------------------------------------
+
 generate_gourd
+generate_grpc_by_lang cpp lemon/src
 
 echo 'done.'
 

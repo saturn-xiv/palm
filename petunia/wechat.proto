@@ -1,0 +1,61 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.wechat.v1";
+option go_package = "github.com/saturn-xiv/palm/wechat/services/v2";
+package palm.wechat.v1;
+
+// ----------------------------------------------------------------------------
+
+service Oauth2 {
+  rpc QrConnectUrl(Oauth2QrConnectUrlRequest)
+      returns (Oauth2QrConnectUrlResponse) {}
+  rpc SignIn(Oauth2SignInRequest) returns (Oauth2SignInResponse) {}
+}
+message Oauth2QrConnectUrlRequest {
+  enum Lang {
+    Cn = 0;
+    En = 1;
+  }
+  optional string subject = 1;
+  Lang lang = 9;
+}
+message Oauth2QrConnectUrlResponse {
+  string url = 1;
+}
+message Oauth2SignInRequest {
+  string code = 1;
+  string state = 2;
+  Oauth2QrConnectUrlRequest.Lang lang = 9;
+}
+message Oauth2SignInResponse {
+  message UserInfo {
+    string open_id = 1;
+    string nickname = 2;
+    uint32 sex = 3;
+    string province = 4;
+    string city = 5;
+    string country = 6;
+    optional string head_img_url = 7;
+    repeated string privilege = 8;
+    string union_id = 9;
+  }
+  UserInfo user_info = 1;
+  bytes token = 2;
+  optional string subject = 9;
+}
+
+// ----------------------------------------------------------------------------
+
+service MiniProgram {
+  rpc Code2Session(MiniProgramCode2SessionRequest)
+      returns (MiniProgramCode2SessionResponse) {}
+}
+message MiniProgramCode2SessionRequest {
+  string code = 1;
+}
+message MiniProgramCode2SessionResponse {
+  optional string union_id = 1;
+  string open_id = 2;
+}
+
+// ----------------------------------------------------------------------------

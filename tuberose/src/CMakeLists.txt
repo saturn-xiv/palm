@@ -44,13 +44,12 @@ find_library(CURLPP_LIBRARY curlpp)
 find_library(INIH_LIBRARY inih)
 
 FetchContent_Declare(mailio
-  GIT_REPOSITORY    "https://github.com/karastojko/mailio.git"
-  # TODO
-  GIT_TAG           "0.22.0"
+  GIT_REPOSITORY    "https://github.com/karastojko/mailio.git"  
+  GIT_TAG           "0.23.0"
 )
 FetchContent_Declare(casbin
   GIT_REPOSITORY    "https://github.com/casbin/casbin-cpp.git"
-  GIT_TAG           "v1.52.3"
+  GIT_TAG           "v1.59.0"
   PATCH_COMMAND     touch FindExtPackages
 )
 # FetchContent_Declare(mariadb_cpp
