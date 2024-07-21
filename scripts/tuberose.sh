@@ -32,12 +32,12 @@ function build_tuberose() {
         -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$WORKSPACE/tuberose/toolchains/$1.cmake \
         $mailio_args $casbin_args $thrift_args -DBoost_NO_WARN_NEW_VERSIONS=1
 
-    make -j -C $build_dir
+    # make -j -C $build_dir
 
 }
 
 declare -a triplets=(
-    # "x64"
+    "x64"
     "arm64"
     # "riscv64"
 )

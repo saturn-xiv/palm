@@ -1,7 +1,7 @@
 file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/balsam/*.hpp")
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-add_executable(balsam ${itn})
+add_executable(balsam ${SOURCE_LIST})
 set_target_properties(balsam PROPERTIES LINK_FLAGS_RELEASE -s)
 
 find_package(cppzmq CONFIG REQUIRED)
@@ -18,7 +18,7 @@ find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 FetchContent_Declare(casbin
   GIT_REPOSITORY    "https://github.com/casbin/casbin-cpp.git"
   GIT_TAG           "v1.59.0"
-#   PATCH_COMMAND     touch FindExtPackages
+  PATCH_COMMAND     git apply "${CMAKE_CURRENT_SOURCE_DIR}/casbin.patch"
 )
 FetchContent_MakeAvailable(casbin)
 
