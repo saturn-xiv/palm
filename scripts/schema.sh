@@ -6,7 +6,7 @@ export PROTOBUF_ROOT=$HOME/.local
 export WORKSPACE=$PWD
 
 function generate_gourd() {
-    echo "generate gourd project"
+    echo "generate gourd"
     if [ -d $WORKSPACE/gourd/include ]; then
         rm -r $WORKSPACE/gourd/include
     fi
@@ -39,7 +39,7 @@ function generate_lemon() {
         rm -r $WORKSPACE/lemon/src
     fi
     mkdir -p $WORKSPACE/lemon/src
-    echo "generate lemon project"
+    echo "generate lemon"
 
     $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
         -I $PROTOBUF_ROOT/include/google/protobuf \
@@ -50,10 +50,31 @@ function generate_lemon() {
     mkdir -p $WORKSPACE/lemon/include
     mv $WORKSPACE/lemon/src/*.h $WORKSPACE/lemon/include/
 }
+
+function generate_grpc_for_go() {
+    echo "generate grpc $1 => $2"
+
+    if [ -d $2 ]; then
+        rm $2/*.pb.go
+    else
+        mkdir -p $2
+    fi
+
+    if [ ! -f $2/mod.go ]; then
+        echo "package v2" >$2/mod.go
+    fi
+
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --go_out=$2 --go_opt=paths=source_relative \
+        --go-grpc_out=$2 --go-grpc_opt=paths=source_relative \
+        $WORKSPACE/petunia/$1.proto
+}
 # -----------------------------------------------------------------------------
 
 generate_gourd
 generate_lemon
+generate_grpc_for_go daisy atropa/daisy/services/v2
 
 echo 'done.'
 
