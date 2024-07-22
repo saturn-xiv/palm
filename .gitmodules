@@ -1,3 +1,12 @@
 [submodule "tuberose/vcpkg"]
 	path = tuberose/vcpkg
 	url = https://github.com/microsoft/vcpkg.git
+[submodule "atropa/controllers/themes/jekyll-al-folio"]
+	path = atropa/controllers/themes/jekyll-al-folio
+	url = https://github.com/alshedivat/al-folio.git
+[submodule "atropa/controllers/themes/hugo-even"]
+	path = atropa/controllers/themes/hugo-even
+	url = https://github.com/olOwOlo/hugo-theme-even.git
+[submodule "atropa/controllers/themes/hugo-universal"]
+	path = atropa/controllers/themes/hugo-universal
+	url = https://github.com/devcows/hugo-universal-theme.git

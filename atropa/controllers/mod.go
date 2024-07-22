@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"embed"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -13,6 +14,12 @@ import (
 	"github.com/saturn-xiv/palm/atropa/daisy"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
+
+//go:embed views/*
+var gl_views_fs embed.FS
+
+//go:embed assets/* themes/jekyll-al-folio/assets/* themes/hugo-even/static/* themes/hugo-universal/static/*
+var gl_assets_fs embed.FS
 
 func Mount(router *gin.Engine, theme string, db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) error {
 	{
