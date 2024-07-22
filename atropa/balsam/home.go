@@ -1,11 +1,13 @@
-package controllers
+package balsam
 
 import (
 	"bytes"
+	"io/fs"
 	"net/http"
 	"text/template"
 
 	"github.com/gin-gonic/gin"
+
 	"github.com/saturn-xiv/palm/atropa/env"
 )
 
@@ -17,9 +19,9 @@ func Home() gin.HandlerFunc {
 	}
 }
 
-func RobotsTxt() gin.HandlerFunc {
+func RobotsTxt(views_fs fs.FS) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		tpl, err := template.ParseFS(gl_views_fs, "views/robots.txt.tpl")
+		tpl, err := template.ParseFS(views_fs, "views/robots.txt.tpl")
 		if err != nil {
 			c.AbortWithError(http.StatusBadRequest, err)
 			return

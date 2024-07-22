@@ -5,13 +5,16 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
+	"github.com/saturn-xiv/palm/atropa/balsam"
+	"github.com/saturn-xiv/palm/atropa/daisy"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
-func Mount(router *gin.Engine, theme string, db *gorm.DB, jwt *crypto.Jwt) error {
+func Mount(router *gin.Engine, theme string, db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) error {
 	{
 		tpl, err := template.New("").ParseFS(gl_views_fs, "views/*.tpl", fmt.Sprintf("views/%s/*.tpl", theme))
 		if err != nil {
@@ -31,13 +34,11 @@ func Mount(router *gin.Engine, theme string, db *gorm.DB, jwt *crypto.Jwt) error
 		router.GET("/graphql", gin.WrapH(handler))
 		router.POST("/graphql", gin.WrapH(handler))
 	}
-	{
-		group := router.Group("/api/twilio")
-		group.GET("/sms-status-callback/:token", TwilioSmsStatusCallback(db, jwt))
+	if err := daisy.Mount(router, db, jwt); err != nil {
+		return err
 	}
-	{
-		router.GET("/robots.txt", RobotsTxt())
-		router.GET("/", Home())
+	if err := balsam.Mount(router, gl_views_fs, theme, db, jwt); err != nil {
+		return err
 	}
 
 	return nil

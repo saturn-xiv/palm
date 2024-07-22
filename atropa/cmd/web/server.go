@@ -15,6 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/saturn-xiv/palm/atropa/controllers"
+	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
@@ -32,13 +33,17 @@ func Launch(port uint16, config_file string, keys_dir string, version string, de
 	if err != nil {
 		return err
 	}
+	enforcer, err := env.OpenCasbinEnforcer(config.Namespace, db, config.Redis.Options().Addrs)
+	if err != nil {
+		return err
+	}
 
 	gin.DisableConsoleColor()
 	if !debug {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	router := gin.Default()
-	if err = controllers.Mount(router, config.Theme, db, jwt); err != nil {
+	if err = controllers.Mount(router, config.Theme, db, jwt, enforcer); err != nil {
 		return err
 	}
 
