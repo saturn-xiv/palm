@@ -1,5 +1,6 @@
 #pragma once
 
+#include "daisy.grpc.pb.h"
 #include "palm/env.hpp"
 
 #include <mailio/message.hpp>
@@ -32,12 +33,7 @@ class Config {
         _cc(cc),
         _bcc(bcc) {}
 
-  void send(const palm::nut::v1::EmailTask* task) const;
-  void send(
-      const Address& to, const std::string& subject, const std::string& content,
-      const bool html = true,
-      const std::vector<std::tuple<std::string, mailio::message::media_type_t,
-                                   std::string>>& attachments = {}) const;
+  void send(const palm::daisy::v1::EmailTask* task) const;
 
  private:
   static std::pair<mailio::message::media_type_t, std::string> detect(

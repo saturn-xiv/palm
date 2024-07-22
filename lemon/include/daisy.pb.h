@@ -47,30 +47,30 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace palm {
 namespace daisy {
 namespace v1 {
-class EmailSendRequest;
-struct EmailSendRequestDefaultTypeInternal;
-extern EmailSendRequestDefaultTypeInternal _EmailSendRequest_default_instance_;
-class EmailSendRequest_Address;
-struct EmailSendRequest_AddressDefaultTypeInternal;
-extern EmailSendRequest_AddressDefaultTypeInternal _EmailSendRequest_Address_default_instance_;
-class EmailSendRequest_Attachment;
-struct EmailSendRequest_AttachmentDefaultTypeInternal;
-extern EmailSendRequest_AttachmentDefaultTypeInternal _EmailSendRequest_Attachment_default_instance_;
-class EmailSendRequest_Body;
-struct EmailSendRequest_BodyDefaultTypeInternal;
-extern EmailSendRequest_BodyDefaultTypeInternal _EmailSendRequest_Body_default_instance_;
-class SmsSendRequest;
-struct SmsSendRequestDefaultTypeInternal;
-extern SmsSendRequestDefaultTypeInternal _SmsSendRequest_default_instance_;
+class EmailTask;
+struct EmailTaskDefaultTypeInternal;
+extern EmailTaskDefaultTypeInternal _EmailTask_default_instance_;
+class EmailTask_Address;
+struct EmailTask_AddressDefaultTypeInternal;
+extern EmailTask_AddressDefaultTypeInternal _EmailTask_Address_default_instance_;
+class EmailTask_Attachment;
+struct EmailTask_AttachmentDefaultTypeInternal;
+extern EmailTask_AttachmentDefaultTypeInternal _EmailTask_Attachment_default_instance_;
+class EmailTask_Body;
+struct EmailTask_BodyDefaultTypeInternal;
+extern EmailTask_BodyDefaultTypeInternal _EmailTask_Body_default_instance_;
+class SmsTask;
+struct SmsTaskDefaultTypeInternal;
+extern SmsTaskDefaultTypeInternal _SmsTask_default_instance_;
 }  // namespace v1
 }  // namespace daisy
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::palm::daisy::v1::EmailSendRequest* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailSendRequest>(Arena*);
-template<> ::palm::daisy::v1::EmailSendRequest_Address* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailSendRequest_Address>(Arena*);
-template<> ::palm::daisy::v1::EmailSendRequest_Attachment* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailSendRequest_Attachment>(Arena*);
-template<> ::palm::daisy::v1::EmailSendRequest_Body* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailSendRequest_Body>(Arena*);
-template<> ::palm::daisy::v1::SmsSendRequest* Arena::CreateMaybeMessage<::palm::daisy::v1::SmsSendRequest>(Arena*);
+template<> ::palm::daisy::v1::EmailTask* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailTask>(Arena*);
+template<> ::palm::daisy::v1::EmailTask_Address* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailTask_Address>(Arena*);
+template<> ::palm::daisy::v1::EmailTask_Attachment* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailTask_Attachment>(Arena*);
+template<> ::palm::daisy::v1::EmailTask_Body* Arena::CreateMaybeMessage<::palm::daisy::v1::EmailTask_Body>(Arena*);
+template<> ::palm::daisy::v1::SmsTask* Arena::CreateMaybeMessage<::palm::daisy::v1::SmsTask>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
 namespace daisy {
@@ -78,24 +78,24 @@ namespace v1 {
 
 // ===================================================================
 
-class SmsSendRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.SmsSendRequest) */ {
+class SmsTask final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.SmsTask) */ {
  public:
-  inline SmsSendRequest() : SmsSendRequest(nullptr) {}
-  ~SmsSendRequest() override;
-  explicit PROTOBUF_CONSTEXPR SmsSendRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline SmsTask() : SmsTask(nullptr) {}
+  ~SmsTask() override;
+  explicit PROTOBUF_CONSTEXPR SmsTask(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  SmsSendRequest(const SmsSendRequest& from);
-  SmsSendRequest(SmsSendRequest&& from) noexcept
-    : SmsSendRequest() {
+  SmsTask(const SmsTask& from);
+  SmsTask(SmsTask&& from) noexcept
+    : SmsTask() {
     *this = ::std::move(from);
   }
 
-  inline SmsSendRequest& operator=(const SmsSendRequest& from) {
+  inline SmsTask& operator=(const SmsTask& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SmsSendRequest& operator=(SmsSendRequest&& from) noexcept {
+  inline SmsTask& operator=(SmsTask&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -118,20 +118,20 @@ class SmsSendRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SmsSendRequest& default_instance() {
+  static const SmsTask& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SmsSendRequest* internal_default_instance() {
-    return reinterpret_cast<const SmsSendRequest*>(
-               &_SmsSendRequest_default_instance_);
+  static inline const SmsTask* internal_default_instance() {
+    return reinterpret_cast<const SmsTask*>(
+               &_SmsTask_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(SmsSendRequest& a, SmsSendRequest& b) {
+  friend void swap(SmsTask& a, SmsTask& b) {
     a.Swap(&b);
   }
-  inline void Swap(SmsSendRequest* other) {
+  inline void Swap(SmsTask* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -144,7 +144,7 @@ class SmsSendRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SmsSendRequest* other) {
+  void UnsafeArenaSwap(SmsTask* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -152,14 +152,14 @@ class SmsSendRequest final :
 
   // implements Message ----------------------------------------------
 
-  SmsSendRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SmsSendRequest>(arena);
+  SmsTask* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SmsTask>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const SmsSendRequest& from);
+  void CopyFrom(const SmsTask& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const SmsSendRequest& from) {
-    SmsSendRequest::MergeImpl(*this, from);
+  void MergeFrom( const SmsTask& from) {
+    SmsTask::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -177,15 +177,15 @@ class SmsSendRequest final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(SmsSendRequest* other);
+  void InternalSwap(SmsTask* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.daisy.v1.SmsSendRequest";
+    return "palm.daisy.v1.SmsTask";
   }
   protected:
-  explicit SmsSendRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit SmsTask(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -259,7 +259,7 @@ class SmsSendRequest final :
   std::string* _internal_mutable_callback_uri();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.daisy.v1.SmsSendRequest)
+  // @@protoc_insertion_point(class_scope:palm.daisy.v1.SmsTask)
  private:
   class _Internal;
 
@@ -278,24 +278,24 @@ class SmsSendRequest final :
 };
 // -------------------------------------------------------------------
 
-class EmailSendRequest_Address final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailSendRequest.Address) */ {
+class EmailTask_Address final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailTask.Address) */ {
  public:
-  inline EmailSendRequest_Address() : EmailSendRequest_Address(nullptr) {}
-  ~EmailSendRequest_Address() override;
-  explicit PROTOBUF_CONSTEXPR EmailSendRequest_Address(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline EmailTask_Address() : EmailTask_Address(nullptr) {}
+  ~EmailTask_Address() override;
+  explicit PROTOBUF_CONSTEXPR EmailTask_Address(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EmailSendRequest_Address(const EmailSendRequest_Address& from);
-  EmailSendRequest_Address(EmailSendRequest_Address&& from) noexcept
-    : EmailSendRequest_Address() {
+  EmailTask_Address(const EmailTask_Address& from);
+  EmailTask_Address(EmailTask_Address&& from) noexcept
+    : EmailTask_Address() {
     *this = ::std::move(from);
   }
 
-  inline EmailSendRequest_Address& operator=(const EmailSendRequest_Address& from) {
+  inline EmailTask_Address& operator=(const EmailTask_Address& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EmailSendRequest_Address& operator=(EmailSendRequest_Address&& from) noexcept {
+  inline EmailTask_Address& operator=(EmailTask_Address&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -318,20 +318,20 @@ class EmailSendRequest_Address final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EmailSendRequest_Address& default_instance() {
+  static const EmailTask_Address& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EmailSendRequest_Address* internal_default_instance() {
-    return reinterpret_cast<const EmailSendRequest_Address*>(
-               &_EmailSendRequest_Address_default_instance_);
+  static inline const EmailTask_Address* internal_default_instance() {
+    return reinterpret_cast<const EmailTask_Address*>(
+               &_EmailTask_Address_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(EmailSendRequest_Address& a, EmailSendRequest_Address& b) {
+  friend void swap(EmailTask_Address& a, EmailTask_Address& b) {
     a.Swap(&b);
   }
-  inline void Swap(EmailSendRequest_Address* other) {
+  inline void Swap(EmailTask_Address* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -344,7 +344,7 @@ class EmailSendRequest_Address final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EmailSendRequest_Address* other) {
+  void UnsafeArenaSwap(EmailTask_Address* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -352,14 +352,14 @@ class EmailSendRequest_Address final :
 
   // implements Message ----------------------------------------------
 
-  EmailSendRequest_Address* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EmailSendRequest_Address>(arena);
+  EmailTask_Address* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EmailTask_Address>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EmailSendRequest_Address& from);
+  void CopyFrom(const EmailTask_Address& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const EmailSendRequest_Address& from) {
-    EmailSendRequest_Address::MergeImpl(*this, from);
+  void MergeFrom( const EmailTask_Address& from) {
+    EmailTask_Address::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -377,15 +377,15 @@ class EmailSendRequest_Address final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EmailSendRequest_Address* other);
+  void InternalSwap(EmailTask_Address* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.daisy.v1.EmailSendRequest.Address";
+    return "palm.daisy.v1.EmailTask.Address";
   }
   protected:
-  explicit EmailSendRequest_Address(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit EmailTask_Address(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -430,7 +430,7 @@ class EmailSendRequest_Address final :
   std::string* _internal_mutable_email();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailSendRequest.Address)
+  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailTask.Address)
  private:
   class _Internal;
 
@@ -447,24 +447,24 @@ class EmailSendRequest_Address final :
 };
 // -------------------------------------------------------------------
 
-class EmailSendRequest_Body final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailSendRequest.Body) */ {
+class EmailTask_Body final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailTask.Body) */ {
  public:
-  inline EmailSendRequest_Body() : EmailSendRequest_Body(nullptr) {}
-  ~EmailSendRequest_Body() override;
-  explicit PROTOBUF_CONSTEXPR EmailSendRequest_Body(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline EmailTask_Body() : EmailTask_Body(nullptr) {}
+  ~EmailTask_Body() override;
+  explicit PROTOBUF_CONSTEXPR EmailTask_Body(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EmailSendRequest_Body(const EmailSendRequest_Body& from);
-  EmailSendRequest_Body(EmailSendRequest_Body&& from) noexcept
-    : EmailSendRequest_Body() {
+  EmailTask_Body(const EmailTask_Body& from);
+  EmailTask_Body(EmailTask_Body&& from) noexcept
+    : EmailTask_Body() {
     *this = ::std::move(from);
   }
 
-  inline EmailSendRequest_Body& operator=(const EmailSendRequest_Body& from) {
+  inline EmailTask_Body& operator=(const EmailTask_Body& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EmailSendRequest_Body& operator=(EmailSendRequest_Body&& from) noexcept {
+  inline EmailTask_Body& operator=(EmailTask_Body&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -487,20 +487,20 @@ class EmailSendRequest_Body final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EmailSendRequest_Body& default_instance() {
+  static const EmailTask_Body& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EmailSendRequest_Body* internal_default_instance() {
-    return reinterpret_cast<const EmailSendRequest_Body*>(
-               &_EmailSendRequest_Body_default_instance_);
+  static inline const EmailTask_Body* internal_default_instance() {
+    return reinterpret_cast<const EmailTask_Body*>(
+               &_EmailTask_Body_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(EmailSendRequest_Body& a, EmailSendRequest_Body& b) {
+  friend void swap(EmailTask_Body& a, EmailTask_Body& b) {
     a.Swap(&b);
   }
-  inline void Swap(EmailSendRequest_Body* other) {
+  inline void Swap(EmailTask_Body* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -513,7 +513,7 @@ class EmailSendRequest_Body final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EmailSendRequest_Body* other) {
+  void UnsafeArenaSwap(EmailTask_Body* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -521,14 +521,14 @@ class EmailSendRequest_Body final :
 
   // implements Message ----------------------------------------------
 
-  EmailSendRequest_Body* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EmailSendRequest_Body>(arena);
+  EmailTask_Body* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EmailTask_Body>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EmailSendRequest_Body& from);
+  void CopyFrom(const EmailTask_Body& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const EmailSendRequest_Body& from) {
-    EmailSendRequest_Body::MergeImpl(*this, from);
+  void MergeFrom( const EmailTask_Body& from) {
+    EmailTask_Body::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -546,15 +546,15 @@ class EmailSendRequest_Body final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EmailSendRequest_Body* other);
+  void InternalSwap(EmailTask_Body* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.daisy.v1.EmailSendRequest.Body";
+    return "palm.daisy.v1.EmailTask.Body";
   }
   protected:
-  explicit EmailSendRequest_Body(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit EmailTask_Body(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -594,7 +594,7 @@ class EmailSendRequest_Body final :
   void _internal_set_html(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailSendRequest.Body)
+  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailTask.Body)
  private:
   class _Internal;
 
@@ -611,24 +611,24 @@ class EmailSendRequest_Body final :
 };
 // -------------------------------------------------------------------
 
-class EmailSendRequest_Attachment final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailSendRequest.Attachment) */ {
+class EmailTask_Attachment final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailTask.Attachment) */ {
  public:
-  inline EmailSendRequest_Attachment() : EmailSendRequest_Attachment(nullptr) {}
-  ~EmailSendRequest_Attachment() override;
-  explicit PROTOBUF_CONSTEXPR EmailSendRequest_Attachment(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline EmailTask_Attachment() : EmailTask_Attachment(nullptr) {}
+  ~EmailTask_Attachment() override;
+  explicit PROTOBUF_CONSTEXPR EmailTask_Attachment(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EmailSendRequest_Attachment(const EmailSendRequest_Attachment& from);
-  EmailSendRequest_Attachment(EmailSendRequest_Attachment&& from) noexcept
-    : EmailSendRequest_Attachment() {
+  EmailTask_Attachment(const EmailTask_Attachment& from);
+  EmailTask_Attachment(EmailTask_Attachment&& from) noexcept
+    : EmailTask_Attachment() {
     *this = ::std::move(from);
   }
 
-  inline EmailSendRequest_Attachment& operator=(const EmailSendRequest_Attachment& from) {
+  inline EmailTask_Attachment& operator=(const EmailTask_Attachment& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EmailSendRequest_Attachment& operator=(EmailSendRequest_Attachment&& from) noexcept {
+  inline EmailTask_Attachment& operator=(EmailTask_Attachment&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -651,20 +651,20 @@ class EmailSendRequest_Attachment final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EmailSendRequest_Attachment& default_instance() {
+  static const EmailTask_Attachment& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EmailSendRequest_Attachment* internal_default_instance() {
-    return reinterpret_cast<const EmailSendRequest_Attachment*>(
-               &_EmailSendRequest_Attachment_default_instance_);
+  static inline const EmailTask_Attachment* internal_default_instance() {
+    return reinterpret_cast<const EmailTask_Attachment*>(
+               &_EmailTask_Attachment_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(EmailSendRequest_Attachment& a, EmailSendRequest_Attachment& b) {
+  friend void swap(EmailTask_Attachment& a, EmailTask_Attachment& b) {
     a.Swap(&b);
   }
-  inline void Swap(EmailSendRequest_Attachment* other) {
+  inline void Swap(EmailTask_Attachment* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -677,7 +677,7 @@ class EmailSendRequest_Attachment final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EmailSendRequest_Attachment* other) {
+  void UnsafeArenaSwap(EmailTask_Attachment* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -685,14 +685,14 @@ class EmailSendRequest_Attachment final :
 
   // implements Message ----------------------------------------------
 
-  EmailSendRequest_Attachment* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EmailSendRequest_Attachment>(arena);
+  EmailTask_Attachment* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EmailTask_Attachment>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EmailSendRequest_Attachment& from);
+  void CopyFrom(const EmailTask_Attachment& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const EmailSendRequest_Attachment& from) {
-    EmailSendRequest_Attachment::MergeImpl(*this, from);
+  void MergeFrom( const EmailTask_Attachment& from) {
+    EmailTask_Attachment::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -710,15 +710,15 @@ class EmailSendRequest_Attachment final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EmailSendRequest_Attachment* other);
+  void InternalSwap(EmailTask_Attachment* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.daisy.v1.EmailSendRequest.Attachment";
+    return "palm.daisy.v1.EmailTask.Attachment";
   }
   protected:
-  explicit EmailSendRequest_Attachment(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit EmailTask_Attachment(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -788,7 +788,7 @@ class EmailSendRequest_Attachment final :
   void _internal_set_inline_(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailSendRequest.Attachment)
+  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailTask.Attachment)
  private:
   class _Internal;
 
@@ -807,24 +807,24 @@ class EmailSendRequest_Attachment final :
 };
 // -------------------------------------------------------------------
 
-class EmailSendRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailSendRequest) */ {
+class EmailTask final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.daisy.v1.EmailTask) */ {
  public:
-  inline EmailSendRequest() : EmailSendRequest(nullptr) {}
-  ~EmailSendRequest() override;
-  explicit PROTOBUF_CONSTEXPR EmailSendRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline EmailTask() : EmailTask(nullptr) {}
+  ~EmailTask() override;
+  explicit PROTOBUF_CONSTEXPR EmailTask(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  EmailSendRequest(const EmailSendRequest& from);
-  EmailSendRequest(EmailSendRequest&& from) noexcept
-    : EmailSendRequest() {
+  EmailTask(const EmailTask& from);
+  EmailTask(EmailTask&& from) noexcept
+    : EmailTask() {
     *this = ::std::move(from);
   }
 
-  inline EmailSendRequest& operator=(const EmailSendRequest& from) {
+  inline EmailTask& operator=(const EmailTask& from) {
     CopyFrom(from);
     return *this;
   }
-  inline EmailSendRequest& operator=(EmailSendRequest&& from) noexcept {
+  inline EmailTask& operator=(EmailTask&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -847,20 +847,20 @@ class EmailSendRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const EmailSendRequest& default_instance() {
+  static const EmailTask& default_instance() {
     return *internal_default_instance();
   }
-  static inline const EmailSendRequest* internal_default_instance() {
-    return reinterpret_cast<const EmailSendRequest*>(
-               &_EmailSendRequest_default_instance_);
+  static inline const EmailTask* internal_default_instance() {
+    return reinterpret_cast<const EmailTask*>(
+               &_EmailTask_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(EmailSendRequest& a, EmailSendRequest& b) {
+  friend void swap(EmailTask& a, EmailTask& b) {
     a.Swap(&b);
   }
-  inline void Swap(EmailSendRequest* other) {
+  inline void Swap(EmailTask* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -873,7 +873,7 @@ class EmailSendRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(EmailSendRequest* other) {
+  void UnsafeArenaSwap(EmailTask* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -881,14 +881,14 @@ class EmailSendRequest final :
 
   // implements Message ----------------------------------------------
 
-  EmailSendRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<EmailSendRequest>(arena);
+  EmailTask* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EmailTask>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const EmailSendRequest& from);
+  void CopyFrom(const EmailTask& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const EmailSendRequest& from) {
-    EmailSendRequest::MergeImpl(*this, from);
+  void MergeFrom( const EmailTask& from) {
+    EmailTask::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -906,15 +906,15 @@ class EmailSendRequest final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(EmailSendRequest* other);
+  void InternalSwap(EmailTask* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.daisy.v1.EmailSendRequest";
+    return "palm.daisy.v1.EmailTask";
   }
   protected:
-  explicit EmailSendRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit EmailTask(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -925,9 +925,9 @@ class EmailSendRequest final :
 
   // nested types ----------------------------------------------------
 
-  typedef EmailSendRequest_Address Address;
-  typedef EmailSendRequest_Body Body;
-  typedef EmailSendRequest_Attachment Attachment;
+  typedef EmailTask_Address Address;
+  typedef EmailTask_Body Body;
+  typedef EmailTask_Attachment Attachment;
 
   // accessors -------------------------------------------------------
 
@@ -939,58 +939,58 @@ class EmailSendRequest final :
     kBodyFieldNumber = 2,
     kToFieldNumber = 3,
   };
-  // repeated .palm.daisy.v1.EmailSendRequest.Address cc = 4;
+  // repeated .palm.daisy.v1.EmailTask.Address cc = 4;
   int cc_size() const;
   private:
   int _internal_cc_size() const;
   public:
   void clear_cc();
-  ::palm::daisy::v1::EmailSendRequest_Address* mutable_cc(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >*
+  ::palm::daisy::v1::EmailTask_Address* mutable_cc(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >*
       mutable_cc();
   private:
-  const ::palm::daisy::v1::EmailSendRequest_Address& _internal_cc(int index) const;
-  ::palm::daisy::v1::EmailSendRequest_Address* _internal_add_cc();
+  const ::palm::daisy::v1::EmailTask_Address& _internal_cc(int index) const;
+  ::palm::daisy::v1::EmailTask_Address* _internal_add_cc();
   public:
-  const ::palm::daisy::v1::EmailSendRequest_Address& cc(int index) const;
-  ::palm::daisy::v1::EmailSendRequest_Address* add_cc();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >&
+  const ::palm::daisy::v1::EmailTask_Address& cc(int index) const;
+  ::palm::daisy::v1::EmailTask_Address* add_cc();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >&
       cc() const;
 
-  // repeated .palm.daisy.v1.EmailSendRequest.Address bcc = 5;
+  // repeated .palm.daisy.v1.EmailTask.Address bcc = 5;
   int bcc_size() const;
   private:
   int _internal_bcc_size() const;
   public:
   void clear_bcc();
-  ::palm::daisy::v1::EmailSendRequest_Address* mutable_bcc(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >*
+  ::palm::daisy::v1::EmailTask_Address* mutable_bcc(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >*
       mutable_bcc();
   private:
-  const ::palm::daisy::v1::EmailSendRequest_Address& _internal_bcc(int index) const;
-  ::palm::daisy::v1::EmailSendRequest_Address* _internal_add_bcc();
+  const ::palm::daisy::v1::EmailTask_Address& _internal_bcc(int index) const;
+  ::palm::daisy::v1::EmailTask_Address* _internal_add_bcc();
   public:
-  const ::palm::daisy::v1::EmailSendRequest_Address& bcc(int index) const;
-  ::palm::daisy::v1::EmailSendRequest_Address* add_bcc();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >&
+  const ::palm::daisy::v1::EmailTask_Address& bcc(int index) const;
+  ::palm::daisy::v1::EmailTask_Address* add_bcc();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >&
       bcc() const;
 
-  // repeated .palm.daisy.v1.EmailSendRequest.Attachment attachments = 9;
+  // repeated .palm.daisy.v1.EmailTask.Attachment attachments = 9;
   int attachments_size() const;
   private:
   int _internal_attachments_size() const;
   public:
   void clear_attachments();
-  ::palm::daisy::v1::EmailSendRequest_Attachment* mutable_attachments(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Attachment >*
+  ::palm::daisy::v1::EmailTask_Attachment* mutable_attachments(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Attachment >*
       mutable_attachments();
   private:
-  const ::palm::daisy::v1::EmailSendRequest_Attachment& _internal_attachments(int index) const;
-  ::palm::daisy::v1::EmailSendRequest_Attachment* _internal_add_attachments();
+  const ::palm::daisy::v1::EmailTask_Attachment& _internal_attachments(int index) const;
+  ::palm::daisy::v1::EmailTask_Attachment* _internal_add_attachments();
   public:
-  const ::palm::daisy::v1::EmailSendRequest_Attachment& attachments(int index) const;
-  ::palm::daisy::v1::EmailSendRequest_Attachment* add_attachments();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Attachment >&
+  const ::palm::daisy::v1::EmailTask_Attachment& attachments(int index) const;
+  ::palm::daisy::v1::EmailTask_Attachment* add_attachments();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Attachment >&
       attachments() const;
 
   // string subject = 1;
@@ -1007,43 +1007,43 @@ class EmailSendRequest final :
   std::string* _internal_mutable_subject();
   public:
 
-  // .palm.daisy.v1.EmailSendRequest.Body body = 2;
+  // .palm.daisy.v1.EmailTask.Body body = 2;
   bool has_body() const;
   private:
   bool _internal_has_body() const;
   public:
   void clear_body();
-  const ::palm::daisy::v1::EmailSendRequest_Body& body() const;
-  PROTOBUF_NODISCARD ::palm::daisy::v1::EmailSendRequest_Body* release_body();
-  ::palm::daisy::v1::EmailSendRequest_Body* mutable_body();
-  void set_allocated_body(::palm::daisy::v1::EmailSendRequest_Body* body);
+  const ::palm::daisy::v1::EmailTask_Body& body() const;
+  PROTOBUF_NODISCARD ::palm::daisy::v1::EmailTask_Body* release_body();
+  ::palm::daisy::v1::EmailTask_Body* mutable_body();
+  void set_allocated_body(::palm::daisy::v1::EmailTask_Body* body);
   private:
-  const ::palm::daisy::v1::EmailSendRequest_Body& _internal_body() const;
-  ::palm::daisy::v1::EmailSendRequest_Body* _internal_mutable_body();
+  const ::palm::daisy::v1::EmailTask_Body& _internal_body() const;
+  ::palm::daisy::v1::EmailTask_Body* _internal_mutable_body();
   public:
   void unsafe_arena_set_allocated_body(
-      ::palm::daisy::v1::EmailSendRequest_Body* body);
-  ::palm::daisy::v1::EmailSendRequest_Body* unsafe_arena_release_body();
+      ::palm::daisy::v1::EmailTask_Body* body);
+  ::palm::daisy::v1::EmailTask_Body* unsafe_arena_release_body();
 
-  // .palm.daisy.v1.EmailSendRequest.Address to = 3;
+  // .palm.daisy.v1.EmailTask.Address to = 3;
   bool has_to() const;
   private:
   bool _internal_has_to() const;
   public:
   void clear_to();
-  const ::palm::daisy::v1::EmailSendRequest_Address& to() const;
-  PROTOBUF_NODISCARD ::palm::daisy::v1::EmailSendRequest_Address* release_to();
-  ::palm::daisy::v1::EmailSendRequest_Address* mutable_to();
-  void set_allocated_to(::palm::daisy::v1::EmailSendRequest_Address* to);
+  const ::palm::daisy::v1::EmailTask_Address& to() const;
+  PROTOBUF_NODISCARD ::palm::daisy::v1::EmailTask_Address* release_to();
+  ::palm::daisy::v1::EmailTask_Address* mutable_to();
+  void set_allocated_to(::palm::daisy::v1::EmailTask_Address* to);
   private:
-  const ::palm::daisy::v1::EmailSendRequest_Address& _internal_to() const;
-  ::palm::daisy::v1::EmailSendRequest_Address* _internal_mutable_to();
+  const ::palm::daisy::v1::EmailTask_Address& _internal_to() const;
+  ::palm::daisy::v1::EmailTask_Address* _internal_mutable_to();
   public:
   void unsafe_arena_set_allocated_to(
-      ::palm::daisy::v1::EmailSendRequest_Address* to);
-  ::palm::daisy::v1::EmailSendRequest_Address* unsafe_arena_release_to();
+      ::palm::daisy::v1::EmailTask_Address* to);
+  ::palm::daisy::v1::EmailTask_Address* unsafe_arena_release_to();
 
-  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailSendRequest)
+  // @@protoc_insertion_point(class_scope:palm.daisy.v1.EmailTask)
  private:
   class _Internal;
 
@@ -1051,12 +1051,12 @@ class EmailSendRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address > cc_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address > bcc_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Attachment > attachments_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address > cc_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address > bcc_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Attachment > attachments_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr subject_;
-    ::palm::daisy::v1::EmailSendRequest_Body* body_;
-    ::palm::daisy::v1::EmailSendRequest_Address* to_;
+    ::palm::daisy::v1::EmailTask_Body* body_;
+    ::palm::daisy::v1::EmailTask_Address* to_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1071,119 +1071,119 @@ class EmailSendRequest final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// SmsSendRequest
+// SmsTask
 
 // repeated string to = 1;
-inline int SmsSendRequest::_internal_to_size() const {
+inline int SmsTask::_internal_to_size() const {
   return _impl_.to_.size();
 }
-inline int SmsSendRequest::to_size() const {
+inline int SmsTask::to_size() const {
   return _internal_to_size();
 }
-inline void SmsSendRequest::clear_to() {
+inline void SmsTask::clear_to() {
   _impl_.to_.Clear();
 }
-inline std::string* SmsSendRequest::add_to() {
+inline std::string* SmsTask::add_to() {
   std::string* _s = _internal_add_to();
-  // @@protoc_insertion_point(field_add_mutable:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_add_mutable:palm.daisy.v1.SmsTask.to)
   return _s;
 }
-inline const std::string& SmsSendRequest::_internal_to(int index) const {
+inline const std::string& SmsTask::_internal_to(int index) const {
   return _impl_.to_.Get(index);
 }
-inline const std::string& SmsSendRequest::to(int index) const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.SmsSendRequest.to)
+inline const std::string& SmsTask::to(int index) const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.SmsTask.to)
   return _internal_to(index);
 }
-inline std::string* SmsSendRequest::mutable_to(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.SmsSendRequest.to)
+inline std::string* SmsTask::mutable_to(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.SmsTask.to)
   return _impl_.to_.Mutable(index);
 }
-inline void SmsSendRequest::set_to(int index, const std::string& value) {
+inline void SmsTask::set_to(int index, const std::string& value) {
   _impl_.to_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsTask.to)
 }
-inline void SmsSendRequest::set_to(int index, std::string&& value) {
+inline void SmsTask::set_to(int index, std::string&& value) {
   _impl_.to_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsTask.to)
 }
-inline void SmsSendRequest::set_to(int index, const char* value) {
+inline void SmsTask::set_to(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   _impl_.to_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_set_char:palm.daisy.v1.SmsTask.to)
 }
-inline void SmsSendRequest::set_to(int index, const char* value, size_t size) {
+inline void SmsTask::set_to(int index, const char* value, size_t size) {
   _impl_.to_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_set_pointer:palm.daisy.v1.SmsTask.to)
 }
-inline std::string* SmsSendRequest::_internal_add_to() {
+inline std::string* SmsTask::_internal_add_to() {
   return _impl_.to_.Add();
 }
-inline void SmsSendRequest::add_to(const std::string& value) {
+inline void SmsTask::add_to(const std::string& value) {
   _impl_.to_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_add:palm.daisy.v1.SmsTask.to)
 }
-inline void SmsSendRequest::add_to(std::string&& value) {
+inline void SmsTask::add_to(std::string&& value) {
   _impl_.to_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_add:palm.daisy.v1.SmsTask.to)
 }
-inline void SmsSendRequest::add_to(const char* value) {
+inline void SmsTask::add_to(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   _impl_.to_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_add_char:palm.daisy.v1.SmsTask.to)
 }
-inline void SmsSendRequest::add_to(const char* value, size_t size) {
+inline void SmsTask::add_to(const char* value, size_t size) {
   _impl_.to_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:palm.daisy.v1.SmsSendRequest.to)
+  // @@protoc_insertion_point(field_add_pointer:palm.daisy.v1.SmsTask.to)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
-SmsSendRequest::to() const {
-  // @@protoc_insertion_point(field_list:palm.daisy.v1.SmsSendRequest.to)
+SmsTask::to() const {
+  // @@protoc_insertion_point(field_list:palm.daisy.v1.SmsTask.to)
   return _impl_.to_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
-SmsSendRequest::mutable_to() {
-  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.SmsSendRequest.to)
+SmsTask::mutable_to() {
+  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.SmsTask.to)
   return &_impl_.to_;
 }
 
 // string body = 2;
-inline void SmsSendRequest::clear_body() {
+inline void SmsTask::clear_body() {
   _impl_.body_.ClearToEmpty();
 }
-inline const std::string& SmsSendRequest::body() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.SmsSendRequest.body)
+inline const std::string& SmsTask::body() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.SmsTask.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void SmsSendRequest::set_body(ArgT0&& arg0, ArgT... args) {
+void SmsTask::set_body(ArgT0&& arg0, ArgT... args) {
  
  _impl_.body_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsSendRequest.body)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsTask.body)
 }
-inline std::string* SmsSendRequest::mutable_body() {
+inline std::string* SmsTask::mutable_body() {
   std::string* _s = _internal_mutable_body();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.SmsSendRequest.body)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.SmsTask.body)
   return _s;
 }
-inline const std::string& SmsSendRequest::_internal_body() const {
+inline const std::string& SmsTask::_internal_body() const {
   return _impl_.body_.Get();
 }
-inline void SmsSendRequest::_internal_set_body(const std::string& value) {
+inline void SmsTask::_internal_set_body(const std::string& value) {
   
   _impl_.body_.Set(value, GetArenaForAllocation());
 }
-inline std::string* SmsSendRequest::_internal_mutable_body() {
+inline std::string* SmsTask::_internal_mutable_body() {
   
   return _impl_.body_.Mutable(GetArenaForAllocation());
 }
-inline std::string* SmsSendRequest::release_body() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.SmsSendRequest.body)
+inline std::string* SmsTask::release_body() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.SmsTask.body)
   return _impl_.body_.Release();
 }
-inline void SmsSendRequest::set_allocated_body(std::string* body) {
+inline void SmsTask::set_allocated_body(std::string* body) {
   if (body != nullptr) {
     
   } else {
@@ -1195,50 +1195,50 @@ inline void SmsSendRequest::set_allocated_body(std::string* body) {
     _impl_.body_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.SmsSendRequest.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.SmsTask.body)
 }
 
 // optional string callback_uri = 3;
-inline bool SmsSendRequest::_internal_has_callback_uri() const {
+inline bool SmsTask::_internal_has_callback_uri() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline bool SmsSendRequest::has_callback_uri() const {
+inline bool SmsTask::has_callback_uri() const {
   return _internal_has_callback_uri();
 }
-inline void SmsSendRequest::clear_callback_uri() {
+inline void SmsTask::clear_callback_uri() {
   _impl_.callback_uri_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& SmsSendRequest::callback_uri() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.SmsSendRequest.callback_uri)
+inline const std::string& SmsTask::callback_uri() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.SmsTask.callback_uri)
   return _internal_callback_uri();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void SmsSendRequest::set_callback_uri(ArgT0&& arg0, ArgT... args) {
+void SmsTask::set_callback_uri(ArgT0&& arg0, ArgT... args) {
  _impl_._has_bits_[0] |= 0x00000001u;
  _impl_.callback_uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsSendRequest.callback_uri)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.SmsTask.callback_uri)
 }
-inline std::string* SmsSendRequest::mutable_callback_uri() {
+inline std::string* SmsTask::mutable_callback_uri() {
   std::string* _s = _internal_mutable_callback_uri();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.SmsSendRequest.callback_uri)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.SmsTask.callback_uri)
   return _s;
 }
-inline const std::string& SmsSendRequest::_internal_callback_uri() const {
+inline const std::string& SmsTask::_internal_callback_uri() const {
   return _impl_.callback_uri_.Get();
 }
-inline void SmsSendRequest::_internal_set_callback_uri(const std::string& value) {
+inline void SmsTask::_internal_set_callback_uri(const std::string& value) {
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.callback_uri_.Set(value, GetArenaForAllocation());
 }
-inline std::string* SmsSendRequest::_internal_mutable_callback_uri() {
+inline std::string* SmsTask::_internal_mutable_callback_uri() {
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.callback_uri_.Mutable(GetArenaForAllocation());
 }
-inline std::string* SmsSendRequest::release_callback_uri() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.SmsSendRequest.callback_uri)
+inline std::string* SmsTask::release_callback_uri() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.SmsTask.callback_uri)
   if (!_internal_has_callback_uri()) {
     return nullptr;
   }
@@ -1251,7 +1251,7 @@ inline std::string* SmsSendRequest::release_callback_uri() {
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
-inline void SmsSendRequest::set_allocated_callback_uri(std::string* callback_uri) {
+inline void SmsTask::set_allocated_callback_uri(std::string* callback_uri) {
   if (callback_uri != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -1263,49 +1263,49 @@ inline void SmsSendRequest::set_allocated_callback_uri(std::string* callback_uri
     _impl_.callback_uri_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.SmsSendRequest.callback_uri)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.SmsTask.callback_uri)
 }
 
 // -------------------------------------------------------------------
 
-// EmailSendRequest_Address
+// EmailTask_Address
 
 // string name = 1;
-inline void EmailSendRequest_Address::clear_name() {
+inline void EmailTask_Address::clear_name() {
   _impl_.name_.ClearToEmpty();
 }
-inline const std::string& EmailSendRequest_Address::name() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Address.name)
+inline const std::string& EmailTask_Address::name() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Address.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void EmailSendRequest_Address::set_name(ArgT0&& arg0, ArgT... args) {
+void EmailTask_Address::set_name(ArgT0&& arg0, ArgT... args) {
  
  _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Address.name)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Address.name)
 }
-inline std::string* EmailSendRequest_Address::mutable_name() {
+inline std::string* EmailTask_Address::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.Address.name)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.Address.name)
   return _s;
 }
-inline const std::string& EmailSendRequest_Address::_internal_name() const {
+inline const std::string& EmailTask_Address::_internal_name() const {
   return _impl_.name_.Get();
 }
-inline void EmailSendRequest_Address::_internal_set_name(const std::string& value) {
+inline void EmailTask_Address::_internal_set_name(const std::string& value) {
   
   _impl_.name_.Set(value, GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Address::_internal_mutable_name() {
+inline std::string* EmailTask_Address::_internal_mutable_name() {
   
   return _impl_.name_.Mutable(GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Address::release_name() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.Address.name)
+inline std::string* EmailTask_Address::release_name() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.Address.name)
   return _impl_.name_.Release();
 }
-inline void EmailSendRequest_Address::set_allocated_name(std::string* name) {
+inline void EmailTask_Address::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     
   } else {
@@ -1317,45 +1317,45 @@ inline void EmailSendRequest_Address::set_allocated_name(std::string* name) {
     _impl_.name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.Address.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.Address.name)
 }
 
 // string email = 2;
-inline void EmailSendRequest_Address::clear_email() {
+inline void EmailTask_Address::clear_email() {
   _impl_.email_.ClearToEmpty();
 }
-inline const std::string& EmailSendRequest_Address::email() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Address.email)
+inline const std::string& EmailTask_Address::email() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Address.email)
   return _internal_email();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void EmailSendRequest_Address::set_email(ArgT0&& arg0, ArgT... args) {
+void EmailTask_Address::set_email(ArgT0&& arg0, ArgT... args) {
  
  _impl_.email_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Address.email)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Address.email)
 }
-inline std::string* EmailSendRequest_Address::mutable_email() {
+inline std::string* EmailTask_Address::mutable_email() {
   std::string* _s = _internal_mutable_email();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.Address.email)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.Address.email)
   return _s;
 }
-inline const std::string& EmailSendRequest_Address::_internal_email() const {
+inline const std::string& EmailTask_Address::_internal_email() const {
   return _impl_.email_.Get();
 }
-inline void EmailSendRequest_Address::_internal_set_email(const std::string& value) {
+inline void EmailTask_Address::_internal_set_email(const std::string& value) {
   
   _impl_.email_.Set(value, GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Address::_internal_mutable_email() {
+inline std::string* EmailTask_Address::_internal_mutable_email() {
   
   return _impl_.email_.Mutable(GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Address::release_email() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.Address.email)
+inline std::string* EmailTask_Address::release_email() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.Address.email)
   return _impl_.email_.Release();
 }
-inline void EmailSendRequest_Address::set_allocated_email(std::string* email) {
+inline void EmailTask_Address::set_allocated_email(std::string* email) {
   if (email != nullptr) {
     
   } else {
@@ -1367,49 +1367,49 @@ inline void EmailSendRequest_Address::set_allocated_email(std::string* email) {
     _impl_.email_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.Address.email)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.Address.email)
 }
 
 // -------------------------------------------------------------------
 
-// EmailSendRequest_Body
+// EmailTask_Body
 
 // string text = 1;
-inline void EmailSendRequest_Body::clear_text() {
+inline void EmailTask_Body::clear_text() {
   _impl_.text_.ClearToEmpty();
 }
-inline const std::string& EmailSendRequest_Body::text() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Body.text)
+inline const std::string& EmailTask_Body::text() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Body.text)
   return _internal_text();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void EmailSendRequest_Body::set_text(ArgT0&& arg0, ArgT... args) {
+void EmailTask_Body::set_text(ArgT0&& arg0, ArgT... args) {
  
  _impl_.text_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Body.text)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Body.text)
 }
-inline std::string* EmailSendRequest_Body::mutable_text() {
+inline std::string* EmailTask_Body::mutable_text() {
   std::string* _s = _internal_mutable_text();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.Body.text)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.Body.text)
   return _s;
 }
-inline const std::string& EmailSendRequest_Body::_internal_text() const {
+inline const std::string& EmailTask_Body::_internal_text() const {
   return _impl_.text_.Get();
 }
-inline void EmailSendRequest_Body::_internal_set_text(const std::string& value) {
+inline void EmailTask_Body::_internal_set_text(const std::string& value) {
   
   _impl_.text_.Set(value, GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Body::_internal_mutable_text() {
+inline std::string* EmailTask_Body::_internal_mutable_text() {
   
   return _impl_.text_.Mutable(GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Body::release_text() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.Body.text)
+inline std::string* EmailTask_Body::release_text() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.Body.text)
   return _impl_.text_.Release();
 }
-inline void EmailSendRequest_Body::set_allocated_text(std::string* text) {
+inline void EmailTask_Body::set_allocated_text(std::string* text) {
   if (text != nullptr) {
     
   } else {
@@ -1421,69 +1421,69 @@ inline void EmailSendRequest_Body::set_allocated_text(std::string* text) {
     _impl_.text_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.Body.text)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.Body.text)
 }
 
 // bool html = 2;
-inline void EmailSendRequest_Body::clear_html() {
+inline void EmailTask_Body::clear_html() {
   _impl_.html_ = false;
 }
-inline bool EmailSendRequest_Body::_internal_html() const {
+inline bool EmailTask_Body::_internal_html() const {
   return _impl_.html_;
 }
-inline bool EmailSendRequest_Body::html() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Body.html)
+inline bool EmailTask_Body::html() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Body.html)
   return _internal_html();
 }
-inline void EmailSendRequest_Body::_internal_set_html(bool value) {
+inline void EmailTask_Body::_internal_set_html(bool value) {
   
   _impl_.html_ = value;
 }
-inline void EmailSendRequest_Body::set_html(bool value) {
+inline void EmailTask_Body::set_html(bool value) {
   _internal_set_html(value);
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Body.html)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Body.html)
 }
 
 // -------------------------------------------------------------------
 
-// EmailSendRequest_Attachment
+// EmailTask_Attachment
 
 // string title = 1;
-inline void EmailSendRequest_Attachment::clear_title() {
+inline void EmailTask_Attachment::clear_title() {
   _impl_.title_.ClearToEmpty();
 }
-inline const std::string& EmailSendRequest_Attachment::title() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Attachment.title)
+inline const std::string& EmailTask_Attachment::title() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Attachment.title)
   return _internal_title();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void EmailSendRequest_Attachment::set_title(ArgT0&& arg0, ArgT... args) {
+void EmailTask_Attachment::set_title(ArgT0&& arg0, ArgT... args) {
  
  _impl_.title_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Attachment.title)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Attachment.title)
 }
-inline std::string* EmailSendRequest_Attachment::mutable_title() {
+inline std::string* EmailTask_Attachment::mutable_title() {
   std::string* _s = _internal_mutable_title();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.Attachment.title)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.Attachment.title)
   return _s;
 }
-inline const std::string& EmailSendRequest_Attachment::_internal_title() const {
+inline const std::string& EmailTask_Attachment::_internal_title() const {
   return _impl_.title_.Get();
 }
-inline void EmailSendRequest_Attachment::_internal_set_title(const std::string& value) {
+inline void EmailTask_Attachment::_internal_set_title(const std::string& value) {
   
   _impl_.title_.Set(value, GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Attachment::_internal_mutable_title() {
+inline std::string* EmailTask_Attachment::_internal_mutable_title() {
   
   return _impl_.title_.Mutable(GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Attachment::release_title() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.Attachment.title)
+inline std::string* EmailTask_Attachment::release_title() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.Attachment.title)
   return _impl_.title_.Release();
 }
-inline void EmailSendRequest_Attachment::set_allocated_title(std::string* title) {
+inline void EmailTask_Attachment::set_allocated_title(std::string* title) {
   if (title != nullptr) {
     
   } else {
@@ -1495,45 +1495,45 @@ inline void EmailSendRequest_Attachment::set_allocated_title(std::string* title)
     _impl_.title_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.Attachment.title)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.Attachment.title)
 }
 
 // string content_type = 2;
-inline void EmailSendRequest_Attachment::clear_content_type() {
+inline void EmailTask_Attachment::clear_content_type() {
   _impl_.content_type_.ClearToEmpty();
 }
-inline const std::string& EmailSendRequest_Attachment::content_type() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Attachment.content_type)
+inline const std::string& EmailTask_Attachment::content_type() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Attachment.content_type)
   return _internal_content_type();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void EmailSendRequest_Attachment::set_content_type(ArgT0&& arg0, ArgT... args) {
+void EmailTask_Attachment::set_content_type(ArgT0&& arg0, ArgT... args) {
  
  _impl_.content_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Attachment.content_type)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Attachment.content_type)
 }
-inline std::string* EmailSendRequest_Attachment::mutable_content_type() {
+inline std::string* EmailTask_Attachment::mutable_content_type() {
   std::string* _s = _internal_mutable_content_type();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.Attachment.content_type)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.Attachment.content_type)
   return _s;
 }
-inline const std::string& EmailSendRequest_Attachment::_internal_content_type() const {
+inline const std::string& EmailTask_Attachment::_internal_content_type() const {
   return _impl_.content_type_.Get();
 }
-inline void EmailSendRequest_Attachment::_internal_set_content_type(const std::string& value) {
+inline void EmailTask_Attachment::_internal_set_content_type(const std::string& value) {
   
   _impl_.content_type_.Set(value, GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Attachment::_internal_mutable_content_type() {
+inline std::string* EmailTask_Attachment::_internal_mutable_content_type() {
   
   return _impl_.content_type_.Mutable(GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Attachment::release_content_type() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.Attachment.content_type)
+inline std::string* EmailTask_Attachment::release_content_type() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.Attachment.content_type)
   return _impl_.content_type_.Release();
 }
-inline void EmailSendRequest_Attachment::set_allocated_content_type(std::string* content_type) {
+inline void EmailTask_Attachment::set_allocated_content_type(std::string* content_type) {
   if (content_type != nullptr) {
     
   } else {
@@ -1545,65 +1545,65 @@ inline void EmailSendRequest_Attachment::set_allocated_content_type(std::string*
     _impl_.content_type_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.Attachment.content_type)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.Attachment.content_type)
 }
 
 // bool inline = 3;
-inline void EmailSendRequest_Attachment::clear_inline_() {
+inline void EmailTask_Attachment::clear_inline_() {
   _impl_.inline__ = false;
 }
-inline bool EmailSendRequest_Attachment::_internal_inline_() const {
+inline bool EmailTask_Attachment::_internal_inline_() const {
   return _impl_.inline__;
 }
-inline bool EmailSendRequest_Attachment::inline_() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Attachment.inline)
+inline bool EmailTask_Attachment::inline_() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Attachment.inline)
   return _internal_inline_();
 }
-inline void EmailSendRequest_Attachment::_internal_set_inline_(bool value) {
+inline void EmailTask_Attachment::_internal_set_inline_(bool value) {
   
   _impl_.inline__ = value;
 }
-inline void EmailSendRequest_Attachment::set_inline_(bool value) {
+inline void EmailTask_Attachment::set_inline_(bool value) {
   _internal_set_inline_(value);
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Attachment.inline)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Attachment.inline)
 }
 
 // bytes body = 9;
-inline void EmailSendRequest_Attachment::clear_body() {
+inline void EmailTask_Attachment::clear_body() {
   _impl_.body_.ClearToEmpty();
 }
-inline const std::string& EmailSendRequest_Attachment::body() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.Attachment.body)
+inline const std::string& EmailTask_Attachment::body() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.Attachment.body)
   return _internal_body();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void EmailSendRequest_Attachment::set_body(ArgT0&& arg0, ArgT... args) {
+void EmailTask_Attachment::set_body(ArgT0&& arg0, ArgT... args) {
  
  _impl_.body_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.Attachment.body)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.Attachment.body)
 }
-inline std::string* EmailSendRequest_Attachment::mutable_body() {
+inline std::string* EmailTask_Attachment::mutable_body() {
   std::string* _s = _internal_mutable_body();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.Attachment.body)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.Attachment.body)
   return _s;
 }
-inline const std::string& EmailSendRequest_Attachment::_internal_body() const {
+inline const std::string& EmailTask_Attachment::_internal_body() const {
   return _impl_.body_.Get();
 }
-inline void EmailSendRequest_Attachment::_internal_set_body(const std::string& value) {
+inline void EmailTask_Attachment::_internal_set_body(const std::string& value) {
   
   _impl_.body_.Set(value, GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Attachment::_internal_mutable_body() {
+inline std::string* EmailTask_Attachment::_internal_mutable_body() {
   
   return _impl_.body_.Mutable(GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest_Attachment::release_body() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.Attachment.body)
+inline std::string* EmailTask_Attachment::release_body() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.Attachment.body)
   return _impl_.body_.Release();
 }
-inline void EmailSendRequest_Attachment::set_allocated_body(std::string* body) {
+inline void EmailTask_Attachment::set_allocated_body(std::string* body) {
   if (body != nullptr) {
     
   } else {
@@ -1615,49 +1615,49 @@ inline void EmailSendRequest_Attachment::set_allocated_body(std::string* body) {
     _impl_.body_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.Attachment.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.Attachment.body)
 }
 
 // -------------------------------------------------------------------
 
-// EmailSendRequest
+// EmailTask
 
 // string subject = 1;
-inline void EmailSendRequest::clear_subject() {
+inline void EmailTask::clear_subject() {
   _impl_.subject_.ClearToEmpty();
 }
-inline const std::string& EmailSendRequest::subject() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.subject)
+inline const std::string& EmailTask::subject() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.subject)
   return _internal_subject();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void EmailSendRequest::set_subject(ArgT0&& arg0, ArgT... args) {
+void EmailTask::set_subject(ArgT0&& arg0, ArgT... args) {
  
  _impl_.subject_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailSendRequest.subject)
+  // @@protoc_insertion_point(field_set:palm.daisy.v1.EmailTask.subject)
 }
-inline std::string* EmailSendRequest::mutable_subject() {
+inline std::string* EmailTask::mutable_subject() {
   std::string* _s = _internal_mutable_subject();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.subject)
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.subject)
   return _s;
 }
-inline const std::string& EmailSendRequest::_internal_subject() const {
+inline const std::string& EmailTask::_internal_subject() const {
   return _impl_.subject_.Get();
 }
-inline void EmailSendRequest::_internal_set_subject(const std::string& value) {
+inline void EmailTask::_internal_set_subject(const std::string& value) {
   
   _impl_.subject_.Set(value, GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest::_internal_mutable_subject() {
+inline std::string* EmailTask::_internal_mutable_subject() {
   
   return _impl_.subject_.Mutable(GetArenaForAllocation());
 }
-inline std::string* EmailSendRequest::release_subject() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.subject)
+inline std::string* EmailTask::release_subject() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.subject)
   return _impl_.subject_.Release();
 }
-inline void EmailSendRequest::set_allocated_subject(std::string* subject) {
+inline void EmailTask::set_allocated_subject(std::string* subject) {
   if (subject != nullptr) {
     
   } else {
@@ -1669,33 +1669,33 @@ inline void EmailSendRequest::set_allocated_subject(std::string* subject) {
     _impl_.subject_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.subject)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.subject)
 }
 
-// .palm.daisy.v1.EmailSendRequest.Body body = 2;
-inline bool EmailSendRequest::_internal_has_body() const {
+// .palm.daisy.v1.EmailTask.Body body = 2;
+inline bool EmailTask::_internal_has_body() const {
   return this != internal_default_instance() && _impl_.body_ != nullptr;
 }
-inline bool EmailSendRequest::has_body() const {
+inline bool EmailTask::has_body() const {
   return _internal_has_body();
 }
-inline void EmailSendRequest::clear_body() {
+inline void EmailTask::clear_body() {
   if (GetArenaForAllocation() == nullptr && _impl_.body_ != nullptr) {
     delete _impl_.body_;
   }
   _impl_.body_ = nullptr;
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Body& EmailSendRequest::_internal_body() const {
-  const ::palm::daisy::v1::EmailSendRequest_Body* p = _impl_.body_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::daisy::v1::EmailSendRequest_Body&>(
-      ::palm::daisy::v1::_EmailSendRequest_Body_default_instance_);
+inline const ::palm::daisy::v1::EmailTask_Body& EmailTask::_internal_body() const {
+  const ::palm::daisy::v1::EmailTask_Body* p = _impl_.body_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::daisy::v1::EmailTask_Body&>(
+      ::palm::daisy::v1::_EmailTask_Body_default_instance_);
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Body& EmailSendRequest::body() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.body)
+inline const ::palm::daisy::v1::EmailTask_Body& EmailTask::body() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.body)
   return _internal_body();
 }
-inline void EmailSendRequest::unsafe_arena_set_allocated_body(
-    ::palm::daisy::v1::EmailSendRequest_Body* body) {
+inline void EmailTask::unsafe_arena_set_allocated_body(
+    ::palm::daisy::v1::EmailTask_Body* body) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.body_);
   }
@@ -1705,11 +1705,11 @@ inline void EmailSendRequest::unsafe_arena_set_allocated_body(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.daisy.v1.EmailSendRequest.body)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.daisy.v1.EmailTask.body)
 }
-inline ::palm::daisy::v1::EmailSendRequest_Body* EmailSendRequest::release_body() {
+inline ::palm::daisy::v1::EmailTask_Body* EmailTask::release_body() {
   
-  ::palm::daisy::v1::EmailSendRequest_Body* temp = _impl_.body_;
+  ::palm::daisy::v1::EmailTask_Body* temp = _impl_.body_;
   _impl_.body_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -1722,27 +1722,27 @@ inline ::palm::daisy::v1::EmailSendRequest_Body* EmailSendRequest::release_body(
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::palm::daisy::v1::EmailSendRequest_Body* EmailSendRequest::unsafe_arena_release_body() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.body)
+inline ::palm::daisy::v1::EmailTask_Body* EmailTask::unsafe_arena_release_body() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.body)
   
-  ::palm::daisy::v1::EmailSendRequest_Body* temp = _impl_.body_;
+  ::palm::daisy::v1::EmailTask_Body* temp = _impl_.body_;
   _impl_.body_ = nullptr;
   return temp;
 }
-inline ::palm::daisy::v1::EmailSendRequest_Body* EmailSendRequest::_internal_mutable_body() {
+inline ::palm::daisy::v1::EmailTask_Body* EmailTask::_internal_mutable_body() {
   
   if (_impl_.body_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::daisy::v1::EmailSendRequest_Body>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::daisy::v1::EmailTask_Body>(GetArenaForAllocation());
     _impl_.body_ = p;
   }
   return _impl_.body_;
 }
-inline ::palm::daisy::v1::EmailSendRequest_Body* EmailSendRequest::mutable_body() {
-  ::palm::daisy::v1::EmailSendRequest_Body* _msg = _internal_mutable_body();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.body)
+inline ::palm::daisy::v1::EmailTask_Body* EmailTask::mutable_body() {
+  ::palm::daisy::v1::EmailTask_Body* _msg = _internal_mutable_body();
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.body)
   return _msg;
 }
-inline void EmailSendRequest::set_allocated_body(::palm::daisy::v1::EmailSendRequest_Body* body) {
+inline void EmailTask::set_allocated_body(::palm::daisy::v1::EmailTask_Body* body) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete _impl_.body_;
@@ -1759,33 +1759,33 @@ inline void EmailSendRequest::set_allocated_body(::palm::daisy::v1::EmailSendReq
     
   }
   _impl_.body_ = body;
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.body)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.body)
 }
 
-// .palm.daisy.v1.EmailSendRequest.Address to = 3;
-inline bool EmailSendRequest::_internal_has_to() const {
+// .palm.daisy.v1.EmailTask.Address to = 3;
+inline bool EmailTask::_internal_has_to() const {
   return this != internal_default_instance() && _impl_.to_ != nullptr;
 }
-inline bool EmailSendRequest::has_to() const {
+inline bool EmailTask::has_to() const {
   return _internal_has_to();
 }
-inline void EmailSendRequest::clear_to() {
+inline void EmailTask::clear_to() {
   if (GetArenaForAllocation() == nullptr && _impl_.to_ != nullptr) {
     delete _impl_.to_;
   }
   _impl_.to_ = nullptr;
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Address& EmailSendRequest::_internal_to() const {
-  const ::palm::daisy::v1::EmailSendRequest_Address* p = _impl_.to_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::daisy::v1::EmailSendRequest_Address&>(
-      ::palm::daisy::v1::_EmailSendRequest_Address_default_instance_);
+inline const ::palm::daisy::v1::EmailTask_Address& EmailTask::_internal_to() const {
+  const ::palm::daisy::v1::EmailTask_Address* p = _impl_.to_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::daisy::v1::EmailTask_Address&>(
+      ::palm::daisy::v1::_EmailTask_Address_default_instance_);
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Address& EmailSendRequest::to() const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.to)
+inline const ::palm::daisy::v1::EmailTask_Address& EmailTask::to() const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.to)
   return _internal_to();
 }
-inline void EmailSendRequest::unsafe_arena_set_allocated_to(
-    ::palm::daisy::v1::EmailSendRequest_Address* to) {
+inline void EmailTask::unsafe_arena_set_allocated_to(
+    ::palm::daisy::v1::EmailTask_Address* to) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.to_);
   }
@@ -1795,11 +1795,11 @@ inline void EmailSendRequest::unsafe_arena_set_allocated_to(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.daisy.v1.EmailSendRequest.to)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.daisy.v1.EmailTask.to)
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::release_to() {
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::release_to() {
   
-  ::palm::daisy::v1::EmailSendRequest_Address* temp = _impl_.to_;
+  ::palm::daisy::v1::EmailTask_Address* temp = _impl_.to_;
   _impl_.to_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -1812,27 +1812,27 @@ inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::release_to
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::unsafe_arena_release_to() {
-  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailSendRequest.to)
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::unsafe_arena_release_to() {
+  // @@protoc_insertion_point(field_release:palm.daisy.v1.EmailTask.to)
   
-  ::palm::daisy::v1::EmailSendRequest_Address* temp = _impl_.to_;
+  ::palm::daisy::v1::EmailTask_Address* temp = _impl_.to_;
   _impl_.to_ = nullptr;
   return temp;
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::_internal_mutable_to() {
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::_internal_mutable_to() {
   
   if (_impl_.to_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::daisy::v1::EmailSendRequest_Address>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::palm::daisy::v1::EmailTask_Address>(GetArenaForAllocation());
     _impl_.to_ = p;
   }
   return _impl_.to_;
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::mutable_to() {
-  ::palm::daisy::v1::EmailSendRequest_Address* _msg = _internal_mutable_to();
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.to)
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::mutable_to() {
+  ::palm::daisy::v1::EmailTask_Address* _msg = _internal_mutable_to();
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.to)
   return _msg;
 }
-inline void EmailSendRequest::set_allocated_to(::palm::daisy::v1::EmailSendRequest_Address* to) {
+inline void EmailTask::set_allocated_to(::palm::daisy::v1::EmailTask_Address* to) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete _impl_.to_;
@@ -1849,126 +1849,126 @@ inline void EmailSendRequest::set_allocated_to(::palm::daisy::v1::EmailSendReque
     
   }
   _impl_.to_ = to;
-  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailSendRequest.to)
+  // @@protoc_insertion_point(field_set_allocated:palm.daisy.v1.EmailTask.to)
 }
 
-// repeated .palm.daisy.v1.EmailSendRequest.Address cc = 4;
-inline int EmailSendRequest::_internal_cc_size() const {
+// repeated .palm.daisy.v1.EmailTask.Address cc = 4;
+inline int EmailTask::_internal_cc_size() const {
   return _impl_.cc_.size();
 }
-inline int EmailSendRequest::cc_size() const {
+inline int EmailTask::cc_size() const {
   return _internal_cc_size();
 }
-inline void EmailSendRequest::clear_cc() {
+inline void EmailTask::clear_cc() {
   _impl_.cc_.Clear();
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::mutable_cc(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.cc)
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::mutable_cc(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.cc)
   return _impl_.cc_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >*
-EmailSendRequest::mutable_cc() {
-  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.EmailSendRequest.cc)
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >*
+EmailTask::mutable_cc() {
+  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.EmailTask.cc)
   return &_impl_.cc_;
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Address& EmailSendRequest::_internal_cc(int index) const {
+inline const ::palm::daisy::v1::EmailTask_Address& EmailTask::_internal_cc(int index) const {
   return _impl_.cc_.Get(index);
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Address& EmailSendRequest::cc(int index) const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.cc)
+inline const ::palm::daisy::v1::EmailTask_Address& EmailTask::cc(int index) const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.cc)
   return _internal_cc(index);
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::_internal_add_cc() {
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::_internal_add_cc() {
   return _impl_.cc_.Add();
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::add_cc() {
-  ::palm::daisy::v1::EmailSendRequest_Address* _add = _internal_add_cc();
-  // @@protoc_insertion_point(field_add:palm.daisy.v1.EmailSendRequest.cc)
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::add_cc() {
+  ::palm::daisy::v1::EmailTask_Address* _add = _internal_add_cc();
+  // @@protoc_insertion_point(field_add:palm.daisy.v1.EmailTask.cc)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >&
-EmailSendRequest::cc() const {
-  // @@protoc_insertion_point(field_list:palm.daisy.v1.EmailSendRequest.cc)
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >&
+EmailTask::cc() const {
+  // @@protoc_insertion_point(field_list:palm.daisy.v1.EmailTask.cc)
   return _impl_.cc_;
 }
 
-// repeated .palm.daisy.v1.EmailSendRequest.Address bcc = 5;
-inline int EmailSendRequest::_internal_bcc_size() const {
+// repeated .palm.daisy.v1.EmailTask.Address bcc = 5;
+inline int EmailTask::_internal_bcc_size() const {
   return _impl_.bcc_.size();
 }
-inline int EmailSendRequest::bcc_size() const {
+inline int EmailTask::bcc_size() const {
   return _internal_bcc_size();
 }
-inline void EmailSendRequest::clear_bcc() {
+inline void EmailTask::clear_bcc() {
   _impl_.bcc_.Clear();
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::mutable_bcc(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.bcc)
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::mutable_bcc(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.bcc)
   return _impl_.bcc_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >*
-EmailSendRequest::mutable_bcc() {
-  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.EmailSendRequest.bcc)
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >*
+EmailTask::mutable_bcc() {
+  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.EmailTask.bcc)
   return &_impl_.bcc_;
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Address& EmailSendRequest::_internal_bcc(int index) const {
+inline const ::palm::daisy::v1::EmailTask_Address& EmailTask::_internal_bcc(int index) const {
   return _impl_.bcc_.Get(index);
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Address& EmailSendRequest::bcc(int index) const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.bcc)
+inline const ::palm::daisy::v1::EmailTask_Address& EmailTask::bcc(int index) const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.bcc)
   return _internal_bcc(index);
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::_internal_add_bcc() {
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::_internal_add_bcc() {
   return _impl_.bcc_.Add();
 }
-inline ::palm::daisy::v1::EmailSendRequest_Address* EmailSendRequest::add_bcc() {
-  ::palm::daisy::v1::EmailSendRequest_Address* _add = _internal_add_bcc();
-  // @@protoc_insertion_point(field_add:palm.daisy.v1.EmailSendRequest.bcc)
+inline ::palm::daisy::v1::EmailTask_Address* EmailTask::add_bcc() {
+  ::palm::daisy::v1::EmailTask_Address* _add = _internal_add_bcc();
+  // @@protoc_insertion_point(field_add:palm.daisy.v1.EmailTask.bcc)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Address >&
-EmailSendRequest::bcc() const {
-  // @@protoc_insertion_point(field_list:palm.daisy.v1.EmailSendRequest.bcc)
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Address >&
+EmailTask::bcc() const {
+  // @@protoc_insertion_point(field_list:palm.daisy.v1.EmailTask.bcc)
   return _impl_.bcc_;
 }
 
-// repeated .palm.daisy.v1.EmailSendRequest.Attachment attachments = 9;
-inline int EmailSendRequest::_internal_attachments_size() const {
+// repeated .palm.daisy.v1.EmailTask.Attachment attachments = 9;
+inline int EmailTask::_internal_attachments_size() const {
   return _impl_.attachments_.size();
 }
-inline int EmailSendRequest::attachments_size() const {
+inline int EmailTask::attachments_size() const {
   return _internal_attachments_size();
 }
-inline void EmailSendRequest::clear_attachments() {
+inline void EmailTask::clear_attachments() {
   _impl_.attachments_.Clear();
 }
-inline ::palm::daisy::v1::EmailSendRequest_Attachment* EmailSendRequest::mutable_attachments(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailSendRequest.attachments)
+inline ::palm::daisy::v1::EmailTask_Attachment* EmailTask::mutable_attachments(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.daisy.v1.EmailTask.attachments)
   return _impl_.attachments_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Attachment >*
-EmailSendRequest::mutable_attachments() {
-  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.EmailSendRequest.attachments)
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Attachment >*
+EmailTask::mutable_attachments() {
+  // @@protoc_insertion_point(field_mutable_list:palm.daisy.v1.EmailTask.attachments)
   return &_impl_.attachments_;
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Attachment& EmailSendRequest::_internal_attachments(int index) const {
+inline const ::palm::daisy::v1::EmailTask_Attachment& EmailTask::_internal_attachments(int index) const {
   return _impl_.attachments_.Get(index);
 }
-inline const ::palm::daisy::v1::EmailSendRequest_Attachment& EmailSendRequest::attachments(int index) const {
-  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailSendRequest.attachments)
+inline const ::palm::daisy::v1::EmailTask_Attachment& EmailTask::attachments(int index) const {
+  // @@protoc_insertion_point(field_get:palm.daisy.v1.EmailTask.attachments)
   return _internal_attachments(index);
 }
-inline ::palm::daisy::v1::EmailSendRequest_Attachment* EmailSendRequest::_internal_add_attachments() {
+inline ::palm::daisy::v1::EmailTask_Attachment* EmailTask::_internal_add_attachments() {
   return _impl_.attachments_.Add();
 }
-inline ::palm::daisy::v1::EmailSendRequest_Attachment* EmailSendRequest::add_attachments() {
-  ::palm::daisy::v1::EmailSendRequest_Attachment* _add = _internal_add_attachments();
-  // @@protoc_insertion_point(field_add:palm.daisy.v1.EmailSendRequest.attachments)
+inline ::palm::daisy::v1::EmailTask_Attachment* EmailTask::add_attachments() {
+  ::palm::daisy::v1::EmailTask_Attachment* _add = _internal_add_attachments();
+  // @@protoc_insertion_point(field_add:palm.daisy.v1.EmailTask.attachments)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailSendRequest_Attachment >&
-EmailSendRequest::attachments() const {
-  // @@protoc_insertion_point(field_list:palm.daisy.v1.EmailSendRequest.attachments)
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::daisy::v1::EmailTask_Attachment >&
+EmailTask::attachments() const {
+  // @@protoc_insertion_point(field_list:palm.daisy.v1.EmailTask.attachments)
   return _impl_.attachments_;
 }
 

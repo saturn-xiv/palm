@@ -4,13 +4,13 @@ option java_package = "com.github.saturn_xiv.palm.plugins.daisy.v1";
 option go_package = "github.com/saturn-xiv/palm/daisy/services/v2";
 package palm.daisy.v1;
 
-message SmsSendRequest {
+message SmsTask {
   repeated string to = 1;
   string body = 2;
   optional string callback_uri = 3;
 }
 
-message EmailSendRequest {
+message EmailTask {
   message Address {
     string name = 1;
     string email = 2;

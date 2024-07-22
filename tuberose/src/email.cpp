@@ -38,51 +38,7 @@ palm::smtp::Config::Config(const toml::table& root) {
   }
 }
 
-void palm::smtp::Config::send(
-    const Address& to, const std::string& subject, const std::string& content,
-    const bool html,
-    const std::vector<std::tuple<std::string, mailio::message::media_type_t,
-                                 std::string>>& attachments) const {
-  mailio::message msg;
-
-  msg.subject(subject);
-  mailio::mime body;
-  {
-    body.content_transfer_encoding(
-        mailio::mime::content_transfer_encoding_t::BASE_64);
-    body.content_type(mailio::message::media_type_t::TEXT,
-                      (html ? "html" : "plain"), "utf-8");
-    body.content(content);
-  }
-  msg.add_part(body);
-
-  msg.add_recipient(mailio::mail_address(to.name, to.email));
-
-  // {
-  //   std::list<
-  //       std::tuple<std::istream&, std::string,
-  //       mailio::message::content_type_t>> atts;
-  //   for (const auto& [att_name, type_, sub_type] : attachments) {
-  //     std::ifstream ifs(att_name, std::ios::binary);
-  //     auto it =
-  //         std::make_tuple(std::ref(ifs), att_name,
-  //                         mailio::message::content_type_t(type_, sub_type));
-  //     atts.push_back(it);
-  //   }
-  //   msg.attach(atts);
-  // }
-
-  for (const auto& [att_name, type_, sub_type] : attachments) {
-    std::ifstream ifs(att_name, std::ios::binary);
-    msg.attach(std::ref(ifs), att_name, type_, sub_type);
-  }
-
-  spdlog::info("send email '{}' to {} by {}:{}", subject, to.email, this->_host,
-               this->_port);
-  this->send(msg);
-}
-
-void palm::smtp::Config::send(const palm::nut::v1::EmailTask* task) const {
+void palm::smtp::Config::send(const palm::daisy::v1::EmailTask* task) const {
   mailio::message msg;
 
   msg.subject(task->subject());
@@ -109,11 +65,18 @@ void palm::smtp::Config::send(const palm::nut::v1::EmailTask* task) const {
     msg.add_bcc_recipient(mailio::mail_address(it.name(), it.email()));
   }
 
-  for (const auto& attachment : task->attachments()) {
-    std::istringstream iss(attachment.payload());
-    const auto type_ = Config::detect(attachment.name());
-    msg.attach(std::ref(iss), attachment.name(), type_.first, type_.second);
+  std::list<
+      std::tuple<std::istream&, std::string, mailio::message::content_type_t>>
+      attachments;
+
+  for (const auto& it : task->attachments()) {
+    std::istringstream iss(it.body());
+    const auto type_ = Config::detect(it.title());
+    attachments.push_back(std::make_tuple(
+        std::ref(iss), it.title(),
+        mailio::message::content_type_t(type_.first, type_.second)));
   }
+  msg.attach(attachments);
 
   spdlog::info("send email '{}' to {} by {}:{}", task->subject(),
                task->to().email(), this->_host, this->_port);
