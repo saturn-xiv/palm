@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"github.com/saturn-xiv/palm/atropa/env"
+	"github.com/saturn-xiv/palm/atropa/env/minio"
 	"github.com/saturn-xiv/palm/atropa/env/redis"
 	wechat_mini_program "github.com/saturn-xiv/palm/atropa/env/wechat-mini-program"
 	wechat_oauth2 "github.com/saturn-xiv/palm/atropa/env/wechat-oauth2"
@@ -16,7 +17,7 @@ type Config struct {
 	WechatPay         *wechat_pay.Config          `toml:"wechat-mini-pay,omitempty"`
 	Redis             redis.Cluster               `toml:"redis"`
 	Database          env.Database                `toml:"database"`
-	Minio             env.Minio                   `toml:"minio"`
+	Minio             minio.Config                `toml:"minio"`
 }
 
 type GoogleOauth2 struct {

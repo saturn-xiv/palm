@@ -212,26 +212,11 @@ class Bucket final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNamespaceFieldNumber = 1,
-    kNameFieldNumber = 2,
-    kPublicFieldNumber = 3,
-    kExpirationDaysFieldNumber = 4,
+    kNameFieldNumber = 1,
+    kPublicFieldNumber = 2,
+    kExpirationDaysFieldNumber = 3,
   };
-  // string namespace = 1;
-  void clear_namespace_();
-  const std::string& namespace_() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_namespace_(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_namespace_();
-  PROTOBUF_NODISCARD std::string* release_namespace_();
-  void set_allocated_namespace_(std::string* namespace_);
-  private:
-  const std::string& _internal_namespace_() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_namespace_(const std::string& value);
-  std::string* _internal_mutable_namespace_();
-  public:
-
-  // string name = 2;
+  // string name = 1;
   void clear_name();
   const std::string& name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -245,7 +230,7 @@ class Bucket final :
   std::string* _internal_mutable_name();
   public:
 
-  // bool public = 3;
+  // bool public = 2;
   void clear_public_();
   bool public_() const;
   void set_public_(bool value);
@@ -254,13 +239,13 @@ class Bucket final :
   void _internal_set_public_(bool value);
   public:
 
-  // uint32 expiration_days = 4;
+  // int32 expiration_days = 3;
   void clear_expiration_days();
-  uint32_t expiration_days() const;
-  void set_expiration_days(uint32_t value);
+  int32_t expiration_days() const;
+  void set_expiration_days(int32_t value);
   private:
-  uint32_t _internal_expiration_days() const;
-  void _internal_set_expiration_days(uint32_t value);
+  int32_t _internal_expiration_days() const;
+  void _internal_set_expiration_days(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:palm.s3.v1.Bucket)
@@ -271,10 +256,9 @@ class Bucket final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     bool public__;
-    uint32_t expiration_days_;
+    int32_t expiration_days_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1470,6 +1454,8 @@ class PermanentUrlRequest final :
   enum : int {
     kBucketFieldNumber = 1,
     kObjectFieldNumber = 2,
+    kTitleFieldNumber = 3,
+    kContentTypeFieldNumber = 4,
   };
   // string bucket = 1;
   void clear_bucket();
@@ -1499,6 +1485,38 @@ class PermanentUrlRequest final :
   std::string* _internal_mutable_object();
   public:
 
+  // string title = 3;
+  void clear_title();
+  const std::string& title() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_title(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_title();
+  PROTOBUF_NODISCARD std::string* release_title();
+  void set_allocated_title(std::string* title);
+  private:
+  const std::string& _internal_title() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(const std::string& value);
+  std::string* _internal_mutable_title();
+  public:
+
+  // optional string content_type = 4;
+  bool has_content_type() const;
+  private:
+  bool _internal_has_content_type() const;
+  public:
+  void clear_content_type();
+  const std::string& content_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_content_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_content_type();
+  PROTOBUF_NODISCARD std::string* release_content_type();
+  void set_allocated_content_type(std::string* content_type);
+  private:
+  const std::string& _internal_content_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content_type(const std::string& value);
+  std::string* _internal_mutable_content_type();
+  public:
+
   // @@protoc_insertion_point(class_scope:palm.s3.v1.PermanentUrlRequest)
  private:
   class _Internal;
@@ -1507,9 +1525,12 @@ class PermanentUrlRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bucket_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr object_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_type_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_s3_2eproto;
@@ -1525,57 +1546,7 @@ class PermanentUrlRequest final :
 #endif  // __GNUC__
 // Bucket
 
-// string namespace = 1;
-inline void Bucket::clear_namespace_() {
-  _impl_.namespace__.ClearToEmpty();
-}
-inline const std::string& Bucket::namespace_() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.Bucket.namespace)
-  return _internal_namespace_();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Bucket::set_namespace_(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.namespace__.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.Bucket.namespace)
-}
-inline std::string* Bucket::mutable_namespace_() {
-  std::string* _s = _internal_mutable_namespace_();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.Bucket.namespace)
-  return _s;
-}
-inline const std::string& Bucket::_internal_namespace_() const {
-  return _impl_.namespace__.Get();
-}
-inline void Bucket::_internal_set_namespace_(const std::string& value) {
-  
-  _impl_.namespace__.Set(value, GetArenaForAllocation());
-}
-inline std::string* Bucket::_internal_mutable_namespace_() {
-  
-  return _impl_.namespace__.Mutable(GetArenaForAllocation());
-}
-inline std::string* Bucket::release_namespace_() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.Bucket.namespace)
-  return _impl_.namespace__.Release();
-}
-inline void Bucket::set_allocated_namespace_(std::string* namespace_) {
-  if (namespace_ != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.namespace__.SetAllocated(namespace_, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.namespace__.IsDefault()) {
-    _impl_.namespace__.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.Bucket.namespace)
-}
-
-// string name = 2;
+// string name = 1;
 inline void Bucket::clear_name() {
   _impl_.name_.ClearToEmpty();
 }
@@ -1625,7 +1596,7 @@ inline void Bucket::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.Bucket.name)
 }
 
-// bool public = 3;
+// bool public = 2;
 inline void Bucket::clear_public_() {
   _impl_.public__ = false;
 }
@@ -1645,22 +1616,22 @@ inline void Bucket::set_public_(bool value) {
   // @@protoc_insertion_point(field_set:palm.s3.v1.Bucket.public)
 }
 
-// uint32 expiration_days = 4;
+// int32 expiration_days = 3;
 inline void Bucket::clear_expiration_days() {
-  _impl_.expiration_days_ = 0u;
+  _impl_.expiration_days_ = 0;
 }
-inline uint32_t Bucket::_internal_expiration_days() const {
+inline int32_t Bucket::_internal_expiration_days() const {
   return _impl_.expiration_days_;
 }
-inline uint32_t Bucket::expiration_days() const {
+inline int32_t Bucket::expiration_days() const {
   // @@protoc_insertion_point(field_get:palm.s3.v1.Bucket.expiration_days)
   return _internal_expiration_days();
 }
-inline void Bucket::_internal_set_expiration_days(uint32_t value) {
+inline void Bucket::_internal_set_expiration_days(int32_t value) {
   
   _impl_.expiration_days_ = value;
 }
-inline void Bucket::set_expiration_days(uint32_t value) {
+inline void Bucket::set_expiration_days(int32_t value) {
   _internal_set_expiration_days(value);
   // @@protoc_insertion_point(field_set:palm.s3.v1.Bucket.expiration_days)
 }
@@ -2569,6 +2540,124 @@ inline void PermanentUrlRequest::set_allocated_object(std::string* object) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PermanentUrlRequest.object)
+}
+
+// string title = 3;
+inline void PermanentUrlRequest::clear_title() {
+  _impl_.title_.ClearToEmpty();
+}
+inline const std::string& PermanentUrlRequest::title() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PermanentUrlRequest.title)
+  return _internal_title();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PermanentUrlRequest::set_title(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.title_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PermanentUrlRequest.title)
+}
+inline std::string* PermanentUrlRequest::mutable_title() {
+  std::string* _s = _internal_mutable_title();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PermanentUrlRequest.title)
+  return _s;
+}
+inline const std::string& PermanentUrlRequest::_internal_title() const {
+  return _impl_.title_.Get();
+}
+inline void PermanentUrlRequest::_internal_set_title(const std::string& value) {
+  
+  _impl_.title_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PermanentUrlRequest::_internal_mutable_title() {
+  
+  return _impl_.title_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PermanentUrlRequest::release_title() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PermanentUrlRequest.title)
+  return _impl_.title_.Release();
+}
+inline void PermanentUrlRequest::set_allocated_title(std::string* title) {
+  if (title != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.title_.SetAllocated(title, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.title_.IsDefault()) {
+    _impl_.title_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PermanentUrlRequest.title)
+}
+
+// optional string content_type = 4;
+inline bool PermanentUrlRequest::_internal_has_content_type() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool PermanentUrlRequest::has_content_type() const {
+  return _internal_has_content_type();
+}
+inline void PermanentUrlRequest::clear_content_type() {
+  _impl_.content_type_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& PermanentUrlRequest::content_type() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PermanentUrlRequest.content_type)
+  return _internal_content_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PermanentUrlRequest::set_content_type(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000001u;
+ _impl_.content_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PermanentUrlRequest.content_type)
+}
+inline std::string* PermanentUrlRequest::mutable_content_type() {
+  std::string* _s = _internal_mutable_content_type();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PermanentUrlRequest.content_type)
+  return _s;
+}
+inline const std::string& PermanentUrlRequest::_internal_content_type() const {
+  return _impl_.content_type_.Get();
+}
+inline void PermanentUrlRequest::_internal_set_content_type(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.content_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* PermanentUrlRequest::_internal_mutable_content_type() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.content_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* PermanentUrlRequest::release_content_type() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PermanentUrlRequest.content_type)
+  if (!_internal_has_content_type()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* p = _impl_.content_type_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.content_type_.IsDefault()) {
+    _impl_.content_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void PermanentUrlRequest::set_allocated_content_type(std::string* content_type) {
+  if (content_type != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.content_type_.SetAllocated(content_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.content_type_.IsDefault()) {
+    _impl_.content_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PermanentUrlRequest.content_type)
 }
 
 #ifdef __GNUC__

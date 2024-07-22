@@ -14,10 +14,9 @@ service S3 {
 }
 
 message Bucket {
-  string namespace = 1;
-  string name = 2;
-  bool public = 3;
-  uint32 expiration_days = 4;
+  string name = 1;
+  bool public = 2;
+  int32 expiration_days = 3;
 }
 message CreateBucketRequest {
   string name = 1;
@@ -49,4 +48,6 @@ message PresignedUrlRequest {
 message PermanentUrlRequest {
   string bucket = 1;
   string object = 2;
+  string title = 3;
+  optional string content_type = 4;
 }

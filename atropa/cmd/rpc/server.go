@@ -10,7 +10,6 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/casbin/casbin/v2"
-	"github.com/minio/minio-go/v7"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
@@ -18,6 +17,7 @@ import (
 
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
+	"github.com/saturn-xiv/palm/atropa/env/minio"
 	"github.com/saturn-xiv/palm/atropa/env/redis"
 	wechat_mini_program "github.com/saturn-xiv/palm/atropa/env/wechat-mini-program"
 	wechat_oauth2 "github.com/saturn-xiv/palm/atropa/env/wechat-oauth2"
