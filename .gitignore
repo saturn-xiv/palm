@@ -1,4 +1,7 @@
 /tmp/
 /build/
 /config.toml
+
 /go.work.sum
+/node_modules/
+/package-lock.json

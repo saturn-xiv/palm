@@ -5,9 +5,10 @@ import (
 
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
+	"gorm.io/gorm"
 )
 
-func Graphql() (http.Handler, error) {
+func Graphql(db *gorm.DB) (http.Handler, error) {
 	query := graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
