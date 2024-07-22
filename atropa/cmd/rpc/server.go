@@ -52,7 +52,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 		return err
 	}
 
-	aes, mac, jwt, err := crypto.Open(keys_dir)
+	_, _, jwt, err := crypto.Open(keys_dir)
 	if err != nil {
 		return err
 	}
@@ -74,7 +74,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	server := grpc.NewServer(options...)
 	if err = mount(server,
 		config.Namespace,
-		redis, aes, mac, jwt, enforcer, s3,
+		redis, jwt, enforcer, s3,
 		config.GoogleOauth2,
 		config.WechatOauth2, config.WechatMiniProgram, config.WechatPay); err != nil {
 		return err
@@ -99,7 +99,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 
 func mount(server *grpc.Server, namespace string,
 	redis *redis.Client,
-	aes *crypto.Aes, mac *crypto.HMac, jwt *crypto.Jwt,
+	jwt *crypto.Jwt,
 	enforcer *casbin.Enforcer,
 	s3 *minio.Client,
 	google_oauth2 *GoogleOauth2,

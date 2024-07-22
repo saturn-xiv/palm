@@ -61,7 +61,7 @@ func init() {
 			Short: "Start a HTTP server",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return web.Launch(gl_web_port, gl_config, git_version)
+				return web.Launch(gl_web_port, gl_config, gl_keys_dir, git_version, gl_debug)
 			},
 		}
 

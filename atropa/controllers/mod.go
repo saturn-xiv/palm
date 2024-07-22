@@ -1,36 +1,43 @@
 package controllers
 
 import (
+	"fmt"
+	"html/template"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+
+	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
-type HandlerFunc = func(c *gin.Context) error
-
-func Warp(f HandlerFunc) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		if err := f(c); err != nil {
-			c.AbortWithError(http.StatusInternalServerError, err)
-		}
-	}
-}
-
-func Mount(router gin.IRouter, db *gorm.DB, twilio_validate_token string) error {
+func Mount(router *gin.Engine, theme string, db *gorm.DB, jwt *crypto.Jwt) error {
 	{
-		group := router.Group("/api/twilio")
-		group.GET("/sms-status-callback/:token", Warp(TwilioSmsStatusCallback(db, twilio_validate_token)))
+		tpl, err := template.New("").ParseFS(gl_views_fs, "views/*.tpl", fmt.Sprintf("views/%s/*.tpl", theme))
+		if err != nil {
+			return err
+		}
+		router.SetHTMLTemplate(tpl)
+	}
+	{
+		router.Static("/3rd", "./node_modules")
+		router.StaticFS("/public", http.FS(gl_assets_fs))
 	}
 	{
 		handler, err := Graphql(db)
 		if err != nil {
 			return err
 		}
-		router.Any("/graphql", gin.WrapH(handler))
+		router.GET("/graphql", gin.WrapH(handler))
+		router.POST("/graphql", gin.WrapH(handler))
 	}
 	{
-		router.Static("/3rd", "./node_modules")
+		group := router.Group("/api/twilio")
+		group.GET("/sms-status-callback/:token", TwilioSmsStatusCallback(db, jwt))
+	}
+	{
+		router.GET("/robots.txt", RobotsTxt())
+		router.GET("/", Home())
 	}
 
 	return nil

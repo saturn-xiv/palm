@@ -15,12 +15,17 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/saturn-xiv/palm/atropa/controllers"
+	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
-func Launch(port uint16, config_file string, version string) error {
+func Launch(port uint16, config_file string, keys_dir string, version string, debug bool) error {
 	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+	_, _, jwt, err := crypto.Open(keys_dir)
+	if err != nil {
 		return err
 	}
 	db, err := config.Database.Open()
@@ -29,8 +34,11 @@ func Launch(port uint16, config_file string, version string) error {
 	}
 
 	gin.DisableConsoleColor()
-	router := gin.New()
-	if err = controllers.Mount(router, db, config.TwilioCallbackToken); err != nil {
+	if !debug {
+		gin.SetMode(gin.ReleaseMode)
+	}
+	router := gin.Default()
+	if err = controllers.Mount(router, config.Theme, db, jwt); err != nil {
 		return err
 	}
 

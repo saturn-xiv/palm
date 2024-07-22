@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"errors"
-	"fmt"
 	"log/slog"
 	"net/http"
 
@@ -11,32 +9,41 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/atropa/env"
+	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
 type TwilioSmsStatusCallbackParams struct {
 	Token string `uri:"token" binding:"required"`
 }
 
-func TwilioSmsStatusCallback(db *gorm.DB, token string) HandlerFunc {
-	return func(c *gin.Context) error {
+func TwilioSmsStatusCallback(db *gorm.DB, jwt *crypto.Jwt) gin.HandlerFunc {
+	return func(c *gin.Context) {
 		var params TwilioSmsStatusCallbackParams
 		if err := c.ShouldBindUri(&params); err != nil {
-			return err
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
 		}
-		if params.Token != token {
-			return errors.New("back token")
+		{
+			_, subject, _, err := jwt.Verify(params.Token, env.JWT_ISSUER, "twilio")
+			if err != nil {
+				c.AbortWithError(http.StatusBadRequest, err)
+				return
+			}
+			slog.Info("twilio callback", slog.String("subject", subject))
 		}
 		var msg = &twiml.MessagingMessage{}
 
 		body := c.PostForm("Body")
-		slog.Info(fmt.Sprintf("receive message: %s", body))
+		slog.Info("receive a message", slog.String("body", body))
+
+		// TODO save message into database
 
 		twiml, err := twiml.Messages([]twiml.Element{msg})
 		if err != nil {
-			return err
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
 		}
-		c.Header(env.CONTENT_TYPE_HEADER, env.XML_CONTENT_TYPE)
-		c.String(http.StatusOK, twiml)
-		return nil
+
+		c.Data(http.StatusOK, env.APPLICATION_XML, []byte(twiml))
 	}
 }

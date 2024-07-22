@@ -30,7 +30,7 @@ func NewSendEmailWorker(config *env.Smtp) *SendEmailWorker {
 func (p *SendEmailWorker) Handle(id string, content_type string, body []byte) error {
 	var task v2.EmailTask
 
-	if content_type == env.PROTOBUF_CONTENT_TYPE {
+	if content_type == env.APPLICATION_GRPC_PROTO {
 		if err := proto.Unmarshal(body, &task); err != nil {
 			return err
 		}
