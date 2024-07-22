@@ -22,6 +22,13 @@ func Mount(router gin.IRouter, db *gorm.DB, twilio_validate_token string) error 
 		group := router.Group("/api/twilio")
 		group.GET("/sms-status-callback/:token", Warp(TwilioSmsStatusCallback(db, twilio_validate_token)))
 	}
+	{
+		handler, err := Graphql()
+		if err != nil {
+			return err
+		}
+		router.Any("/graphql", gin.WrapH(handler))
+	}
 
 	return nil
 }
