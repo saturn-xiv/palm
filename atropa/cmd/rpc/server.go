@@ -18,9 +18,18 @@ import (
 
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
+	"github.com/saturn-xiv/palm/atropa/env/redis"
+	wechat_mini_program "github.com/saturn-xiv/palm/atropa/env/wechat-mini-program"
 	wechat_oauth2 "github.com/saturn-xiv/palm/atropa/env/wechat-oauth2"
-	"github.com/saturn-xiv/palm/atropa/services"
-	pb "github.com/saturn-xiv/palm/atropa/services/v2"
+	wechat_pay "github.com/saturn-xiv/palm/atropa/env/wechat-pay"
+	google_services "github.com/saturn-xiv/palm/atropa/google/services"
+	google_pb "github.com/saturn-xiv/palm/atropa/google/services/v2"
+	rbac_services "github.com/saturn-xiv/palm/atropa/rbac/services"
+	rbac_pb "github.com/saturn-xiv/palm/atropa/rbac/services/v2"
+	s3_services "github.com/saturn-xiv/palm/atropa/s3/services"
+	s3_pb "github.com/saturn-xiv/palm/atropa/s3/services/v2"
+	wechat_services "github.com/saturn-xiv/palm/atropa/wechat/services"
+	wechat_pb "github.com/saturn-xiv/palm/atropa/wechat/services/v2"
 )
 
 func Launch(port uint16, config_file string, keys_dir string, version string) error {
@@ -31,6 +40,10 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	}
 
 	db, err := config.Database.Open()
+	if err != nil {
+		return err
+	}
+	redis, err := config.Redis.Open(config.Namespace)
 	if err != nil {
 		return err
 	}
@@ -59,7 +72,11 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	var options []grpc.ServerOption
 
 	server := grpc.NewServer(options...)
-	if err = mount(server, config.Namespace, aes, mac, jwt, enforcer, s3, config.GoogleOauth2, config.WechatOauth2); err != nil {
+	if err = mount(server,
+		config.Namespace,
+		redis, aes, mac, jwt, enforcer, s3,
+		config.GoogleOauth2,
+		config.WechatOauth2, config.WechatMiniProgram, config.WechatPay); err != nil {
 		return err
 	}
 	reflection.Register(server)
@@ -81,27 +98,34 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 }
 
 func mount(server *grpc.Server, namespace string,
+	redis *redis.Client,
 	aes *crypto.Aes, mac *crypto.HMac, jwt *crypto.Jwt,
 	enforcer *casbin.Enforcer,
-	s3 *minio.Client, google_oauth2 *GoogleOauth2, wechat_oauth2 *wechat_oauth2.Config,
+	s3 *minio.Client,
+	google_oauth2 *GoogleOauth2,
+	wechat_oauth2 *wechat_oauth2.Config,
+	wechat_mini_program *wechat_mini_program.Config,
+	wechat_pay *wechat_pay.Config,
 ) error {
-	pb.RegisterAesServer(server, services.NewAesService(aes))
-	pb.RegisterJwtServer(server, services.NewJwtService(jwt))
-	pb.RegisterHMacServer(server, services.NewHmacService(mac))
-	pb.RegisterPolicyServer(server, services.NewPolicyService(enforcer))
-	pb.RegisterS3Server(server, services.NewS3Service(namespace, s3))
+	rbac_pb.RegisterPolicyServer(server, rbac_services.NewPolicyService(enforcer))
+	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(namespace, s3))
 	if google_oauth2 != nil {
-		service, err := services.NewGoogleOauth2Service(jwt, google_oauth2.ProjectID, google_oauth2.RedirectURL)
+		service, err := google_services.NewOauth2Service(jwt, google_oauth2.ProjectID, google_oauth2.RedirectURL)
 		if err != nil {
 			return err
 		}
-		pb.RegisterGoogleOauth2Server(server, service)
+		google_pb.RegisterOauth2Server(server, service)
 	}
 
 	if wechat_oauth2 != nil {
-		pb.RegisterWechatOauth2Server(server, services.NewWechatOauth2Service(jwt, wechat_oauth2))
+		wechat_pb.RegisterOauth2Server(server, wechat_services.NewOauth2Service(jwt, wechat_oauth2))
 	}
-
+	if wechat_mini_program != nil {
+		wechat_pb.RegisterMiniProgramServer(server, wechat_services.NewMiniProgramService(redis, wechat_mini_program))
+	}
+	if wechat_pay != nil {
+		wechat_pb.RegisterPayServer(server, wechat_services.NewPayService(redis, wechat_pay))
+	}
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
 	return nil
 }

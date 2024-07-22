@@ -9,6 +9,7 @@ import (
 
 	email_send_worker "github.com/saturn-xiv/palm/atropa/cmd/email-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/etc"
+	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
 	sms_send_worker "github.com/saturn-xiv/palm/atropa/cmd/sms-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/web"
 )
@@ -61,6 +62,19 @@ func init() {
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
 				return web.Launch(gl_web_port, gl_config, git_version)
+			},
+		}
+
+		cmd.Flags().Uint16VarP(&gl_web_port, "port", "p", 8080, "port to listen")
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "rpc",
+			Short: "Start a gRPC server",
+			RunE: func(cmd *cobra.Command, args []string) error {
+				set_log(gl_debug)
+				return rpc.Launch(gl_web_port, gl_config, gl_keys_dir, git_version)
 			},
 		}
 

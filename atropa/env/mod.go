@@ -6,4 +6,6 @@ const (
 	PROTOBUF_CONTENT_TYPE = "application/grpc+proto"
 	XML_CONTENT_TYPE      = "application/xml; charset=UTF-8"
 	CONTENT_TYPE_HEADER   = "Content-Type"
+
+	JWT_ISSUER = "palm.atropa"
 )
