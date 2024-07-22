@@ -269,14 +269,14 @@ const char descriptor_table_protodef_wechat_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "ponse\"\0002\200\001\n\013MiniProgram\022q\n\014Code2Session\022"
   "..palm.wechat.v1.MiniProgramCode2Session"
   "Request\032/.palm.wechat.v1.MiniProgramCode"
-  "2SessionResponse\"\000B_\n,com.github.saturn_"
-  "xiv.palm.plugins.wechat.v1P\001Z-github.com"
-  "/saturn-xiv/palm/wechat/services/v2b\006pro"
-  "to3"
+  "2SessionResponse\"\0002\005\n\003PayB_\n,com.github."
+  "saturn_xiv.palm.plugins.wechat.v1P\001Z-git"
+  "hub.com/saturn-xiv/palm/wechat/services/"
+  "v2b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_wechat_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_wechat_2eproto = {
-    false, false, 1243, descriptor_table_protodef_wechat_2eproto,
+    false, false, 1250, descriptor_table_protodef_wechat_2eproto,
     "wechat.proto",
     &descriptor_table_wechat_2eproto_once, nullptr, 0, 7,
     schemas, file_default_instances, TableStruct_wechat_2eproto::offsets,

@@ -75,6 +75,10 @@ function generate_grpc_for_go() {
 generate_gourd
 generate_lemon
 generate_grpc_for_go daisy atropa/daisy/services/v2
+generate_grpc_for_go s3 atropa/s3/services/v2
+generate_grpc_for_go rbac atropa/rbac/services/v2
+generate_grpc_for_go google atropa/google/services/v2
+generate_grpc_for_go wechat atropa/wechat/services/v2
 
 echo 'done.'
 

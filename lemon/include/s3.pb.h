@@ -48,42 +48,42 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace palm {
 namespace s3 {
 namespace v1 {
-class S3Bucket;
-struct S3BucketDefaultTypeInternal;
-extern S3BucketDefaultTypeInternal _S3Bucket_default_instance_;
-class S3CreateBucketRequest;
-struct S3CreateBucketRequestDefaultTypeInternal;
-extern S3CreateBucketRequestDefaultTypeInternal _S3CreateBucketRequest_default_instance_;
-class S3CreateBucketResponse;
-struct S3CreateBucketResponseDefaultTypeInternal;
-extern S3CreateBucketResponseDefaultTypeInternal _S3CreateBucketResponse_default_instance_;
-class S3PermanentUrlRequest;
-struct S3PermanentUrlRequestDefaultTypeInternal;
-extern S3PermanentUrlRequestDefaultTypeInternal _S3PermanentUrlRequest_default_instance_;
-class S3PresignedUrlRequest;
-struct S3PresignedUrlRequestDefaultTypeInternal;
-extern S3PresignedUrlRequestDefaultTypeInternal _S3PresignedUrlRequest_default_instance_;
-class S3UploadRequest;
-struct S3UploadRequestDefaultTypeInternal;
-extern S3UploadRequestDefaultTypeInternal _S3UploadRequest_default_instance_;
-class S3UploadResponse;
-struct S3UploadResponseDefaultTypeInternal;
-extern S3UploadResponseDefaultTypeInternal _S3UploadResponse_default_instance_;
-class S3UrlResponse;
-struct S3UrlResponseDefaultTypeInternal;
-extern S3UrlResponseDefaultTypeInternal _S3UrlResponse_default_instance_;
+class Bucket;
+struct BucketDefaultTypeInternal;
+extern BucketDefaultTypeInternal _Bucket_default_instance_;
+class CreateBucketRequest;
+struct CreateBucketRequestDefaultTypeInternal;
+extern CreateBucketRequestDefaultTypeInternal _CreateBucketRequest_default_instance_;
+class CreateBucketResponse;
+struct CreateBucketResponseDefaultTypeInternal;
+extern CreateBucketResponseDefaultTypeInternal _CreateBucketResponse_default_instance_;
+class PermanentUrlRequest;
+struct PermanentUrlRequestDefaultTypeInternal;
+extern PermanentUrlRequestDefaultTypeInternal _PermanentUrlRequest_default_instance_;
+class PresignedUrlRequest;
+struct PresignedUrlRequestDefaultTypeInternal;
+extern PresignedUrlRequestDefaultTypeInternal _PresignedUrlRequest_default_instance_;
+class UploadRequest;
+struct UploadRequestDefaultTypeInternal;
+extern UploadRequestDefaultTypeInternal _UploadRequest_default_instance_;
+class UploadResponse;
+struct UploadResponseDefaultTypeInternal;
+extern UploadResponseDefaultTypeInternal _UploadResponse_default_instance_;
+class UrlResponse;
+struct UrlResponseDefaultTypeInternal;
+extern UrlResponseDefaultTypeInternal _UrlResponse_default_instance_;
 }  // namespace v1
 }  // namespace s3
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::palm::s3::v1::S3Bucket* Arena::CreateMaybeMessage<::palm::s3::v1::S3Bucket>(Arena*);
-template<> ::palm::s3::v1::S3CreateBucketRequest* Arena::CreateMaybeMessage<::palm::s3::v1::S3CreateBucketRequest>(Arena*);
-template<> ::palm::s3::v1::S3CreateBucketResponse* Arena::CreateMaybeMessage<::palm::s3::v1::S3CreateBucketResponse>(Arena*);
-template<> ::palm::s3::v1::S3PermanentUrlRequest* Arena::CreateMaybeMessage<::palm::s3::v1::S3PermanentUrlRequest>(Arena*);
-template<> ::palm::s3::v1::S3PresignedUrlRequest* Arena::CreateMaybeMessage<::palm::s3::v1::S3PresignedUrlRequest>(Arena*);
-template<> ::palm::s3::v1::S3UploadRequest* Arena::CreateMaybeMessage<::palm::s3::v1::S3UploadRequest>(Arena*);
-template<> ::palm::s3::v1::S3UploadResponse* Arena::CreateMaybeMessage<::palm::s3::v1::S3UploadResponse>(Arena*);
-template<> ::palm::s3::v1::S3UrlResponse* Arena::CreateMaybeMessage<::palm::s3::v1::S3UrlResponse>(Arena*);
+template<> ::palm::s3::v1::Bucket* Arena::CreateMaybeMessage<::palm::s3::v1::Bucket>(Arena*);
+template<> ::palm::s3::v1::CreateBucketRequest* Arena::CreateMaybeMessage<::palm::s3::v1::CreateBucketRequest>(Arena*);
+template<> ::palm::s3::v1::CreateBucketResponse* Arena::CreateMaybeMessage<::palm::s3::v1::CreateBucketResponse>(Arena*);
+template<> ::palm::s3::v1::PermanentUrlRequest* Arena::CreateMaybeMessage<::palm::s3::v1::PermanentUrlRequest>(Arena*);
+template<> ::palm::s3::v1::PresignedUrlRequest* Arena::CreateMaybeMessage<::palm::s3::v1::PresignedUrlRequest>(Arena*);
+template<> ::palm::s3::v1::UploadRequest* Arena::CreateMaybeMessage<::palm::s3::v1::UploadRequest>(Arena*);
+template<> ::palm::s3::v1::UploadResponse* Arena::CreateMaybeMessage<::palm::s3::v1::UploadResponse>(Arena*);
+template<> ::palm::s3::v1::UrlResponse* Arena::CreateMaybeMessage<::palm::s3::v1::UrlResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace palm {
 namespace s3 {
@@ -91,24 +91,24 @@ namespace v1 {
 
 // ===================================================================
 
-class S3Bucket final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3Bucket) */ {
+class Bucket final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.Bucket) */ {
  public:
-  inline S3Bucket() : S3Bucket(nullptr) {}
-  ~S3Bucket() override;
-  explicit PROTOBUF_CONSTEXPR S3Bucket(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline Bucket() : Bucket(nullptr) {}
+  ~Bucket() override;
+  explicit PROTOBUF_CONSTEXPR Bucket(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3Bucket(const S3Bucket& from);
-  S3Bucket(S3Bucket&& from) noexcept
-    : S3Bucket() {
+  Bucket(const Bucket& from);
+  Bucket(Bucket&& from) noexcept
+    : Bucket() {
     *this = ::std::move(from);
   }
 
-  inline S3Bucket& operator=(const S3Bucket& from) {
+  inline Bucket& operator=(const Bucket& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3Bucket& operator=(S3Bucket&& from) noexcept {
+  inline Bucket& operator=(Bucket&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -131,20 +131,20 @@ class S3Bucket final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3Bucket& default_instance() {
+  static const Bucket& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3Bucket* internal_default_instance() {
-    return reinterpret_cast<const S3Bucket*>(
-               &_S3Bucket_default_instance_);
+  static inline const Bucket* internal_default_instance() {
+    return reinterpret_cast<const Bucket*>(
+               &_Bucket_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(S3Bucket& a, S3Bucket& b) {
+  friend void swap(Bucket& a, Bucket& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3Bucket* other) {
+  inline void Swap(Bucket* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -157,7 +157,7 @@ class S3Bucket final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3Bucket* other) {
+  void UnsafeArenaSwap(Bucket* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -165,14 +165,14 @@ class S3Bucket final :
 
   // implements Message ----------------------------------------------
 
-  S3Bucket* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3Bucket>(arena);
+  Bucket* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Bucket>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3Bucket& from);
+  void CopyFrom(const Bucket& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3Bucket& from) {
-    S3Bucket::MergeImpl(*this, from);
+  void MergeFrom( const Bucket& from) {
+    Bucket::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -190,15 +190,15 @@ class S3Bucket final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3Bucket* other);
+  void InternalSwap(Bucket* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3Bucket";
+    return "palm.s3.v1.Bucket";
   }
   protected:
-  explicit S3Bucket(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit Bucket(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -263,7 +263,7 @@ class S3Bucket final :
   void _internal_set_expiration_days(uint32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3Bucket)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.Bucket)
  private:
   class _Internal;
 
@@ -282,24 +282,24 @@ class S3Bucket final :
 };
 // -------------------------------------------------------------------
 
-class S3CreateBucketRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3CreateBucketRequest) */ {
+class CreateBucketRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.CreateBucketRequest) */ {
  public:
-  inline S3CreateBucketRequest() : S3CreateBucketRequest(nullptr) {}
-  ~S3CreateBucketRequest() override;
-  explicit PROTOBUF_CONSTEXPR S3CreateBucketRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline CreateBucketRequest() : CreateBucketRequest(nullptr) {}
+  ~CreateBucketRequest() override;
+  explicit PROTOBUF_CONSTEXPR CreateBucketRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3CreateBucketRequest(const S3CreateBucketRequest& from);
-  S3CreateBucketRequest(S3CreateBucketRequest&& from) noexcept
-    : S3CreateBucketRequest() {
+  CreateBucketRequest(const CreateBucketRequest& from);
+  CreateBucketRequest(CreateBucketRequest&& from) noexcept
+    : CreateBucketRequest() {
     *this = ::std::move(from);
   }
 
-  inline S3CreateBucketRequest& operator=(const S3CreateBucketRequest& from) {
+  inline CreateBucketRequest& operator=(const CreateBucketRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3CreateBucketRequest& operator=(S3CreateBucketRequest&& from) noexcept {
+  inline CreateBucketRequest& operator=(CreateBucketRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -322,20 +322,20 @@ class S3CreateBucketRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3CreateBucketRequest& default_instance() {
+  static const CreateBucketRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3CreateBucketRequest* internal_default_instance() {
-    return reinterpret_cast<const S3CreateBucketRequest*>(
-               &_S3CreateBucketRequest_default_instance_);
+  static inline const CreateBucketRequest* internal_default_instance() {
+    return reinterpret_cast<const CreateBucketRequest*>(
+               &_CreateBucketRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(S3CreateBucketRequest& a, S3CreateBucketRequest& b) {
+  friend void swap(CreateBucketRequest& a, CreateBucketRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3CreateBucketRequest* other) {
+  inline void Swap(CreateBucketRequest* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -348,7 +348,7 @@ class S3CreateBucketRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3CreateBucketRequest* other) {
+  void UnsafeArenaSwap(CreateBucketRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -356,14 +356,14 @@ class S3CreateBucketRequest final :
 
   // implements Message ----------------------------------------------
 
-  S3CreateBucketRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3CreateBucketRequest>(arena);
+  CreateBucketRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateBucketRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3CreateBucketRequest& from);
+  void CopyFrom(const CreateBucketRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3CreateBucketRequest& from) {
-    S3CreateBucketRequest::MergeImpl(*this, from);
+  void MergeFrom( const CreateBucketRequest& from) {
+    CreateBucketRequest::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -381,15 +381,15 @@ class S3CreateBucketRequest final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3CreateBucketRequest* other);
+  void InternalSwap(CreateBucketRequest* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3CreateBucketRequest";
+    return "palm.s3.v1.CreateBucketRequest";
   }
   protected:
-  explicit S3CreateBucketRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit CreateBucketRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -439,7 +439,7 @@ class S3CreateBucketRequest final :
   void _internal_set_expiration_days(uint32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3CreateBucketRequest)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.CreateBucketRequest)
  private:
   class _Internal;
 
@@ -457,24 +457,24 @@ class S3CreateBucketRequest final :
 };
 // -------------------------------------------------------------------
 
-class S3CreateBucketResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3CreateBucketResponse) */ {
+class CreateBucketResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.CreateBucketResponse) */ {
  public:
-  inline S3CreateBucketResponse() : S3CreateBucketResponse(nullptr) {}
-  ~S3CreateBucketResponse() override;
-  explicit PROTOBUF_CONSTEXPR S3CreateBucketResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline CreateBucketResponse() : CreateBucketResponse(nullptr) {}
+  ~CreateBucketResponse() override;
+  explicit PROTOBUF_CONSTEXPR CreateBucketResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3CreateBucketResponse(const S3CreateBucketResponse& from);
-  S3CreateBucketResponse(S3CreateBucketResponse&& from) noexcept
-    : S3CreateBucketResponse() {
+  CreateBucketResponse(const CreateBucketResponse& from);
+  CreateBucketResponse(CreateBucketResponse&& from) noexcept
+    : CreateBucketResponse() {
     *this = ::std::move(from);
   }
 
-  inline S3CreateBucketResponse& operator=(const S3CreateBucketResponse& from) {
+  inline CreateBucketResponse& operator=(const CreateBucketResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3CreateBucketResponse& operator=(S3CreateBucketResponse&& from) noexcept {
+  inline CreateBucketResponse& operator=(CreateBucketResponse&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -497,20 +497,20 @@ class S3CreateBucketResponse final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3CreateBucketResponse& default_instance() {
+  static const CreateBucketResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3CreateBucketResponse* internal_default_instance() {
-    return reinterpret_cast<const S3CreateBucketResponse*>(
-               &_S3CreateBucketResponse_default_instance_);
+  static inline const CreateBucketResponse* internal_default_instance() {
+    return reinterpret_cast<const CreateBucketResponse*>(
+               &_CreateBucketResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(S3CreateBucketResponse& a, S3CreateBucketResponse& b) {
+  friend void swap(CreateBucketResponse& a, CreateBucketResponse& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3CreateBucketResponse* other) {
+  inline void Swap(CreateBucketResponse* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -523,7 +523,7 @@ class S3CreateBucketResponse final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3CreateBucketResponse* other) {
+  void UnsafeArenaSwap(CreateBucketResponse* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -531,14 +531,14 @@ class S3CreateBucketResponse final :
 
   // implements Message ----------------------------------------------
 
-  S3CreateBucketResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3CreateBucketResponse>(arena);
+  CreateBucketResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateBucketResponse>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3CreateBucketResponse& from);
+  void CopyFrom(const CreateBucketResponse& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3CreateBucketResponse& from) {
-    S3CreateBucketResponse::MergeImpl(*this, from);
+  void MergeFrom( const CreateBucketResponse& from) {
+    CreateBucketResponse::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -556,15 +556,15 @@ class S3CreateBucketResponse final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3CreateBucketResponse* other);
+  void InternalSwap(CreateBucketResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3CreateBucketResponse";
+    return "palm.s3.v1.CreateBucketResponse";
   }
   protected:
-  explicit S3CreateBucketResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit CreateBucketResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -594,7 +594,7 @@ class S3CreateBucketResponse final :
   std::string* _internal_mutable_name();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3CreateBucketResponse)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.CreateBucketResponse)
  private:
   class _Internal;
 
@@ -610,24 +610,24 @@ class S3CreateBucketResponse final :
 };
 // -------------------------------------------------------------------
 
-class S3UploadRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3UploadRequest) */ {
+class UploadRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.UploadRequest) */ {
  public:
-  inline S3UploadRequest() : S3UploadRequest(nullptr) {}
-  ~S3UploadRequest() override;
-  explicit PROTOBUF_CONSTEXPR S3UploadRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline UploadRequest() : UploadRequest(nullptr) {}
+  ~UploadRequest() override;
+  explicit PROTOBUF_CONSTEXPR UploadRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3UploadRequest(const S3UploadRequest& from);
-  S3UploadRequest(S3UploadRequest&& from) noexcept
-    : S3UploadRequest() {
+  UploadRequest(const UploadRequest& from);
+  UploadRequest(UploadRequest&& from) noexcept
+    : UploadRequest() {
     *this = ::std::move(from);
   }
 
-  inline S3UploadRequest& operator=(const S3UploadRequest& from) {
+  inline UploadRequest& operator=(const UploadRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3UploadRequest& operator=(S3UploadRequest&& from) noexcept {
+  inline UploadRequest& operator=(UploadRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -650,20 +650,20 @@ class S3UploadRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3UploadRequest& default_instance() {
+  static const UploadRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3UploadRequest* internal_default_instance() {
-    return reinterpret_cast<const S3UploadRequest*>(
-               &_S3UploadRequest_default_instance_);
+  static inline const UploadRequest* internal_default_instance() {
+    return reinterpret_cast<const UploadRequest*>(
+               &_UploadRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(S3UploadRequest& a, S3UploadRequest& b) {
+  friend void swap(UploadRequest& a, UploadRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3UploadRequest* other) {
+  inline void Swap(UploadRequest* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -676,7 +676,7 @@ class S3UploadRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3UploadRequest* other) {
+  void UnsafeArenaSwap(UploadRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -684,14 +684,14 @@ class S3UploadRequest final :
 
   // implements Message ----------------------------------------------
 
-  S3UploadRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3UploadRequest>(arena);
+  UploadRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3UploadRequest& from);
+  void CopyFrom(const UploadRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3UploadRequest& from) {
-    S3UploadRequest::MergeImpl(*this, from);
+  void MergeFrom( const UploadRequest& from) {
+    UploadRequest::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -709,15 +709,15 @@ class S3UploadRequest final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3UploadRequest* other);
+  void InternalSwap(UploadRequest* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3UploadRequest";
+    return "palm.s3.v1.UploadRequest";
   }
   protected:
-  explicit S3UploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit UploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -781,7 +781,7 @@ class S3UploadRequest final :
       ::PROTOBUF_NAMESPACE_ID::Duration* ttl);
   ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_ttl();
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3UploadRequest)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.UploadRequest)
  private:
   class _Internal;
 
@@ -799,24 +799,24 @@ class S3UploadRequest final :
 };
 // -------------------------------------------------------------------
 
-class S3UploadResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3UploadResponse) */ {
+class UploadResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.UploadResponse) */ {
  public:
-  inline S3UploadResponse() : S3UploadResponse(nullptr) {}
-  ~S3UploadResponse() override;
-  explicit PROTOBUF_CONSTEXPR S3UploadResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline UploadResponse() : UploadResponse(nullptr) {}
+  ~UploadResponse() override;
+  explicit PROTOBUF_CONSTEXPR UploadResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3UploadResponse(const S3UploadResponse& from);
-  S3UploadResponse(S3UploadResponse&& from) noexcept
-    : S3UploadResponse() {
+  UploadResponse(const UploadResponse& from);
+  UploadResponse(UploadResponse&& from) noexcept
+    : UploadResponse() {
     *this = ::std::move(from);
   }
 
-  inline S3UploadResponse& operator=(const S3UploadResponse& from) {
+  inline UploadResponse& operator=(const UploadResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3UploadResponse& operator=(S3UploadResponse&& from) noexcept {
+  inline UploadResponse& operator=(UploadResponse&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -839,20 +839,20 @@ class S3UploadResponse final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3UploadResponse& default_instance() {
+  static const UploadResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3UploadResponse* internal_default_instance() {
-    return reinterpret_cast<const S3UploadResponse*>(
-               &_S3UploadResponse_default_instance_);
+  static inline const UploadResponse* internal_default_instance() {
+    return reinterpret_cast<const UploadResponse*>(
+               &_UploadResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(S3UploadResponse& a, S3UploadResponse& b) {
+  friend void swap(UploadResponse& a, UploadResponse& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3UploadResponse* other) {
+  inline void Swap(UploadResponse* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -865,7 +865,7 @@ class S3UploadResponse final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3UploadResponse* other) {
+  void UnsafeArenaSwap(UploadResponse* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -873,14 +873,14 @@ class S3UploadResponse final :
 
   // implements Message ----------------------------------------------
 
-  S3UploadResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3UploadResponse>(arena);
+  UploadResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadResponse>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3UploadResponse& from);
+  void CopyFrom(const UploadResponse& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3UploadResponse& from) {
-    S3UploadResponse::MergeImpl(*this, from);
+  void MergeFrom( const UploadResponse& from) {
+    UploadResponse::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -898,15 +898,15 @@ class S3UploadResponse final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3UploadResponse* other);
+  void InternalSwap(UploadResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3UploadResponse";
+    return "palm.s3.v1.UploadResponse";
   }
   protected:
-  explicit S3UploadResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit UploadResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -951,7 +951,7 @@ class S3UploadResponse final :
   std::string* _internal_mutable_url();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3UploadResponse)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.UploadResponse)
  private:
   class _Internal;
 
@@ -968,24 +968,24 @@ class S3UploadResponse final :
 };
 // -------------------------------------------------------------------
 
-class S3UrlResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3UrlResponse) */ {
+class UrlResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.UrlResponse) */ {
  public:
-  inline S3UrlResponse() : S3UrlResponse(nullptr) {}
-  ~S3UrlResponse() override;
-  explicit PROTOBUF_CONSTEXPR S3UrlResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline UrlResponse() : UrlResponse(nullptr) {}
+  ~UrlResponse() override;
+  explicit PROTOBUF_CONSTEXPR UrlResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3UrlResponse(const S3UrlResponse& from);
-  S3UrlResponse(S3UrlResponse&& from) noexcept
-    : S3UrlResponse() {
+  UrlResponse(const UrlResponse& from);
+  UrlResponse(UrlResponse&& from) noexcept
+    : UrlResponse() {
     *this = ::std::move(from);
   }
 
-  inline S3UrlResponse& operator=(const S3UrlResponse& from) {
+  inline UrlResponse& operator=(const UrlResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3UrlResponse& operator=(S3UrlResponse&& from) noexcept {
+  inline UrlResponse& operator=(UrlResponse&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1008,20 +1008,20 @@ class S3UrlResponse final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3UrlResponse& default_instance() {
+  static const UrlResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3UrlResponse* internal_default_instance() {
-    return reinterpret_cast<const S3UrlResponse*>(
-               &_S3UrlResponse_default_instance_);
+  static inline const UrlResponse* internal_default_instance() {
+    return reinterpret_cast<const UrlResponse*>(
+               &_UrlResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     5;
 
-  friend void swap(S3UrlResponse& a, S3UrlResponse& b) {
+  friend void swap(UrlResponse& a, UrlResponse& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3UrlResponse* other) {
+  inline void Swap(UrlResponse* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1034,7 +1034,7 @@ class S3UrlResponse final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3UrlResponse* other) {
+  void UnsafeArenaSwap(UrlResponse* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1042,14 +1042,14 @@ class S3UrlResponse final :
 
   // implements Message ----------------------------------------------
 
-  S3UrlResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3UrlResponse>(arena);
+  UrlResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UrlResponse>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3UrlResponse& from);
+  void CopyFrom(const UrlResponse& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3UrlResponse& from) {
-    S3UrlResponse::MergeImpl(*this, from);
+  void MergeFrom( const UrlResponse& from) {
+    UrlResponse::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1067,15 +1067,15 @@ class S3UrlResponse final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3UrlResponse* other);
+  void InternalSwap(UrlResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3UrlResponse";
+    return "palm.s3.v1.UrlResponse";
   }
   protected:
-  explicit S3UrlResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit UrlResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1105,7 +1105,7 @@ class S3UrlResponse final :
   std::string* _internal_mutable_url();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3UrlResponse)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.UrlResponse)
  private:
   class _Internal;
 
@@ -1121,24 +1121,24 @@ class S3UrlResponse final :
 };
 // -------------------------------------------------------------------
 
-class S3PresignedUrlRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3PresignedUrlRequest) */ {
+class PresignedUrlRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.PresignedUrlRequest) */ {
  public:
-  inline S3PresignedUrlRequest() : S3PresignedUrlRequest(nullptr) {}
-  ~S3PresignedUrlRequest() override;
-  explicit PROTOBUF_CONSTEXPR S3PresignedUrlRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline PresignedUrlRequest() : PresignedUrlRequest(nullptr) {}
+  ~PresignedUrlRequest() override;
+  explicit PROTOBUF_CONSTEXPR PresignedUrlRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3PresignedUrlRequest(const S3PresignedUrlRequest& from);
-  S3PresignedUrlRequest(S3PresignedUrlRequest&& from) noexcept
-    : S3PresignedUrlRequest() {
+  PresignedUrlRequest(const PresignedUrlRequest& from);
+  PresignedUrlRequest(PresignedUrlRequest&& from) noexcept
+    : PresignedUrlRequest() {
     *this = ::std::move(from);
   }
 
-  inline S3PresignedUrlRequest& operator=(const S3PresignedUrlRequest& from) {
+  inline PresignedUrlRequest& operator=(const PresignedUrlRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3PresignedUrlRequest& operator=(S3PresignedUrlRequest&& from) noexcept {
+  inline PresignedUrlRequest& operator=(PresignedUrlRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1161,20 +1161,20 @@ class S3PresignedUrlRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3PresignedUrlRequest& default_instance() {
+  static const PresignedUrlRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3PresignedUrlRequest* internal_default_instance() {
-    return reinterpret_cast<const S3PresignedUrlRequest*>(
-               &_S3PresignedUrlRequest_default_instance_);
+  static inline const PresignedUrlRequest* internal_default_instance() {
+    return reinterpret_cast<const PresignedUrlRequest*>(
+               &_PresignedUrlRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     6;
 
-  friend void swap(S3PresignedUrlRequest& a, S3PresignedUrlRequest& b) {
+  friend void swap(PresignedUrlRequest& a, PresignedUrlRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3PresignedUrlRequest* other) {
+  inline void Swap(PresignedUrlRequest* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1187,7 +1187,7 @@ class S3PresignedUrlRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3PresignedUrlRequest* other) {
+  void UnsafeArenaSwap(PresignedUrlRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1195,14 +1195,14 @@ class S3PresignedUrlRequest final :
 
   // implements Message ----------------------------------------------
 
-  S3PresignedUrlRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3PresignedUrlRequest>(arena);
+  PresignedUrlRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PresignedUrlRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3PresignedUrlRequest& from);
+  void CopyFrom(const PresignedUrlRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3PresignedUrlRequest& from) {
-    S3PresignedUrlRequest::MergeImpl(*this, from);
+  void MergeFrom( const PresignedUrlRequest& from) {
+    PresignedUrlRequest::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1220,15 +1220,15 @@ class S3PresignedUrlRequest final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3PresignedUrlRequest* other);
+  void InternalSwap(PresignedUrlRequest* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3PresignedUrlRequest";
+    return "palm.s3.v1.PresignedUrlRequest";
   }
   protected:
-  explicit S3PresignedUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit PresignedUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1326,7 +1326,7 @@ class S3PresignedUrlRequest final :
       ::PROTOBUF_NAMESPACE_ID::Duration* ttl);
   ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_ttl();
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3PresignedUrlRequest)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.PresignedUrlRequest)
  private:
   class _Internal;
 
@@ -1347,24 +1347,24 @@ class S3PresignedUrlRequest final :
 };
 // -------------------------------------------------------------------
 
-class S3PermanentUrlRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.S3PermanentUrlRequest) */ {
+class PermanentUrlRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.s3.v1.PermanentUrlRequest) */ {
  public:
-  inline S3PermanentUrlRequest() : S3PermanentUrlRequest(nullptr) {}
-  ~S3PermanentUrlRequest() override;
-  explicit PROTOBUF_CONSTEXPR S3PermanentUrlRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline PermanentUrlRequest() : PermanentUrlRequest(nullptr) {}
+  ~PermanentUrlRequest() override;
+  explicit PROTOBUF_CONSTEXPR PermanentUrlRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  S3PermanentUrlRequest(const S3PermanentUrlRequest& from);
-  S3PermanentUrlRequest(S3PermanentUrlRequest&& from) noexcept
-    : S3PermanentUrlRequest() {
+  PermanentUrlRequest(const PermanentUrlRequest& from);
+  PermanentUrlRequest(PermanentUrlRequest&& from) noexcept
+    : PermanentUrlRequest() {
     *this = ::std::move(from);
   }
 
-  inline S3PermanentUrlRequest& operator=(const S3PermanentUrlRequest& from) {
+  inline PermanentUrlRequest& operator=(const PermanentUrlRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline S3PermanentUrlRequest& operator=(S3PermanentUrlRequest&& from) noexcept {
+  inline PermanentUrlRequest& operator=(PermanentUrlRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1387,20 +1387,20 @@ class S3PermanentUrlRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const S3PermanentUrlRequest& default_instance() {
+  static const PermanentUrlRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const S3PermanentUrlRequest* internal_default_instance() {
-    return reinterpret_cast<const S3PermanentUrlRequest*>(
-               &_S3PermanentUrlRequest_default_instance_);
+  static inline const PermanentUrlRequest* internal_default_instance() {
+    return reinterpret_cast<const PermanentUrlRequest*>(
+               &_PermanentUrlRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     7;
 
-  friend void swap(S3PermanentUrlRequest& a, S3PermanentUrlRequest& b) {
+  friend void swap(PermanentUrlRequest& a, PermanentUrlRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(S3PermanentUrlRequest* other) {
+  inline void Swap(PermanentUrlRequest* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1413,7 +1413,7 @@ class S3PermanentUrlRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(S3PermanentUrlRequest* other) {
+  void UnsafeArenaSwap(PermanentUrlRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1421,14 +1421,14 @@ class S3PermanentUrlRequest final :
 
   // implements Message ----------------------------------------------
 
-  S3PermanentUrlRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<S3PermanentUrlRequest>(arena);
+  PermanentUrlRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PermanentUrlRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const S3PermanentUrlRequest& from);
+  void CopyFrom(const PermanentUrlRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const S3PermanentUrlRequest& from) {
-    S3PermanentUrlRequest::MergeImpl(*this, from);
+  void MergeFrom( const PermanentUrlRequest& from) {
+    PermanentUrlRequest::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -1446,15 +1446,15 @@ class S3PermanentUrlRequest final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(S3PermanentUrlRequest* other);
+  void InternalSwap(PermanentUrlRequest* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.s3.v1.S3PermanentUrlRequest";
+    return "palm.s3.v1.PermanentUrlRequest";
   }
   protected:
-  explicit S3PermanentUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit PermanentUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1499,7 +1499,7 @@ class S3PermanentUrlRequest final :
   std::string* _internal_mutable_object();
   public:
 
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.S3PermanentUrlRequest)
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.PermanentUrlRequest)
  private:
   class _Internal;
 
@@ -1523,44 +1523,44 @@ class S3PermanentUrlRequest final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// S3Bucket
+// Bucket
 
 // string namespace = 1;
-inline void S3Bucket::clear_namespace_() {
+inline void Bucket::clear_namespace_() {
   _impl_.namespace__.ClearToEmpty();
 }
-inline const std::string& S3Bucket::namespace_() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3Bucket.namespace)
+inline const std::string& Bucket::namespace_() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.Bucket.namespace)
   return _internal_namespace_();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3Bucket::set_namespace_(ArgT0&& arg0, ArgT... args) {
+void Bucket::set_namespace_(ArgT0&& arg0, ArgT... args) {
  
  _impl_.namespace__.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3Bucket.namespace)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.Bucket.namespace)
 }
-inline std::string* S3Bucket::mutable_namespace_() {
+inline std::string* Bucket::mutable_namespace_() {
   std::string* _s = _internal_mutable_namespace_();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3Bucket.namespace)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.Bucket.namespace)
   return _s;
 }
-inline const std::string& S3Bucket::_internal_namespace_() const {
+inline const std::string& Bucket::_internal_namespace_() const {
   return _impl_.namespace__.Get();
 }
-inline void S3Bucket::_internal_set_namespace_(const std::string& value) {
+inline void Bucket::_internal_set_namespace_(const std::string& value) {
   
   _impl_.namespace__.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3Bucket::_internal_mutable_namespace_() {
+inline std::string* Bucket::_internal_mutable_namespace_() {
   
   return _impl_.namespace__.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3Bucket::release_namespace_() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3Bucket.namespace)
+inline std::string* Bucket::release_namespace_() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.Bucket.namespace)
   return _impl_.namespace__.Release();
 }
-inline void S3Bucket::set_allocated_namespace_(std::string* namespace_) {
+inline void Bucket::set_allocated_namespace_(std::string* namespace_) {
   if (namespace_ != nullptr) {
     
   } else {
@@ -1572,45 +1572,45 @@ inline void S3Bucket::set_allocated_namespace_(std::string* namespace_) {
     _impl_.namespace__.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3Bucket.namespace)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.Bucket.namespace)
 }
 
 // string name = 2;
-inline void S3Bucket::clear_name() {
+inline void Bucket::clear_name() {
   _impl_.name_.ClearToEmpty();
 }
-inline const std::string& S3Bucket::name() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3Bucket.name)
+inline const std::string& Bucket::name() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.Bucket.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3Bucket::set_name(ArgT0&& arg0, ArgT... args) {
+void Bucket::set_name(ArgT0&& arg0, ArgT... args) {
  
  _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3Bucket.name)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.Bucket.name)
 }
-inline std::string* S3Bucket::mutable_name() {
+inline std::string* Bucket::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3Bucket.name)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.Bucket.name)
   return _s;
 }
-inline const std::string& S3Bucket::_internal_name() const {
+inline const std::string& Bucket::_internal_name() const {
   return _impl_.name_.Get();
 }
-inline void S3Bucket::_internal_set_name(const std::string& value) {
+inline void Bucket::_internal_set_name(const std::string& value) {
   
   _impl_.name_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3Bucket::_internal_mutable_name() {
+inline std::string* Bucket::_internal_mutable_name() {
   
   return _impl_.name_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3Bucket::release_name() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3Bucket.name)
+inline std::string* Bucket::release_name() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.Bucket.name)
   return _impl_.name_.Release();
 }
-inline void S3Bucket::set_allocated_name(std::string* name) {
+inline void Bucket::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     
   } else {
@@ -1622,89 +1622,89 @@ inline void S3Bucket::set_allocated_name(std::string* name) {
     _impl_.name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3Bucket.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.Bucket.name)
 }
 
 // bool public = 3;
-inline void S3Bucket::clear_public_() {
+inline void Bucket::clear_public_() {
   _impl_.public__ = false;
 }
-inline bool S3Bucket::_internal_public_() const {
+inline bool Bucket::_internal_public_() const {
   return _impl_.public__;
 }
-inline bool S3Bucket::public_() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3Bucket.public)
+inline bool Bucket::public_() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.Bucket.public)
   return _internal_public_();
 }
-inline void S3Bucket::_internal_set_public_(bool value) {
+inline void Bucket::_internal_set_public_(bool value) {
   
   _impl_.public__ = value;
 }
-inline void S3Bucket::set_public_(bool value) {
+inline void Bucket::set_public_(bool value) {
   _internal_set_public_(value);
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3Bucket.public)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.Bucket.public)
 }
 
 // uint32 expiration_days = 4;
-inline void S3Bucket::clear_expiration_days() {
+inline void Bucket::clear_expiration_days() {
   _impl_.expiration_days_ = 0u;
 }
-inline uint32_t S3Bucket::_internal_expiration_days() const {
+inline uint32_t Bucket::_internal_expiration_days() const {
   return _impl_.expiration_days_;
 }
-inline uint32_t S3Bucket::expiration_days() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3Bucket.expiration_days)
+inline uint32_t Bucket::expiration_days() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.Bucket.expiration_days)
   return _internal_expiration_days();
 }
-inline void S3Bucket::_internal_set_expiration_days(uint32_t value) {
+inline void Bucket::_internal_set_expiration_days(uint32_t value) {
   
   _impl_.expiration_days_ = value;
 }
-inline void S3Bucket::set_expiration_days(uint32_t value) {
+inline void Bucket::set_expiration_days(uint32_t value) {
   _internal_set_expiration_days(value);
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3Bucket.expiration_days)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.Bucket.expiration_days)
 }
 
 // -------------------------------------------------------------------
 
-// S3CreateBucketRequest
+// CreateBucketRequest
 
 // string name = 1;
-inline void S3CreateBucketRequest::clear_name() {
+inline void CreateBucketRequest::clear_name() {
   _impl_.name_.ClearToEmpty();
 }
-inline const std::string& S3CreateBucketRequest::name() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3CreateBucketRequest.name)
+inline const std::string& CreateBucketRequest::name() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.CreateBucketRequest.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3CreateBucketRequest::set_name(ArgT0&& arg0, ArgT... args) {
+void CreateBucketRequest::set_name(ArgT0&& arg0, ArgT... args) {
  
  _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3CreateBucketRequest.name)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.CreateBucketRequest.name)
 }
-inline std::string* S3CreateBucketRequest::mutable_name() {
+inline std::string* CreateBucketRequest::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3CreateBucketRequest.name)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.CreateBucketRequest.name)
   return _s;
 }
-inline const std::string& S3CreateBucketRequest::_internal_name() const {
+inline const std::string& CreateBucketRequest::_internal_name() const {
   return _impl_.name_.Get();
 }
-inline void S3CreateBucketRequest::_internal_set_name(const std::string& value) {
+inline void CreateBucketRequest::_internal_set_name(const std::string& value) {
   
   _impl_.name_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3CreateBucketRequest::_internal_mutable_name() {
+inline std::string* CreateBucketRequest::_internal_mutable_name() {
   
   return _impl_.name_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3CreateBucketRequest::release_name() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3CreateBucketRequest.name)
+inline std::string* CreateBucketRequest::release_name() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.CreateBucketRequest.name)
   return _impl_.name_.Release();
 }
-inline void S3CreateBucketRequest::set_allocated_name(std::string* name) {
+inline void CreateBucketRequest::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     
   } else {
@@ -1716,89 +1716,89 @@ inline void S3CreateBucketRequest::set_allocated_name(std::string* name) {
     _impl_.name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3CreateBucketRequest.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.CreateBucketRequest.name)
 }
 
 // bool public = 2;
-inline void S3CreateBucketRequest::clear_public_() {
+inline void CreateBucketRequest::clear_public_() {
   _impl_.public__ = false;
 }
-inline bool S3CreateBucketRequest::_internal_public_() const {
+inline bool CreateBucketRequest::_internal_public_() const {
   return _impl_.public__;
 }
-inline bool S3CreateBucketRequest::public_() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3CreateBucketRequest.public)
+inline bool CreateBucketRequest::public_() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.CreateBucketRequest.public)
   return _internal_public_();
 }
-inline void S3CreateBucketRequest::_internal_set_public_(bool value) {
+inline void CreateBucketRequest::_internal_set_public_(bool value) {
   
   _impl_.public__ = value;
 }
-inline void S3CreateBucketRequest::set_public_(bool value) {
+inline void CreateBucketRequest::set_public_(bool value) {
   _internal_set_public_(value);
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3CreateBucketRequest.public)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.CreateBucketRequest.public)
 }
 
 // uint32 expiration_days = 9;
-inline void S3CreateBucketRequest::clear_expiration_days() {
+inline void CreateBucketRequest::clear_expiration_days() {
   _impl_.expiration_days_ = 0u;
 }
-inline uint32_t S3CreateBucketRequest::_internal_expiration_days() const {
+inline uint32_t CreateBucketRequest::_internal_expiration_days() const {
   return _impl_.expiration_days_;
 }
-inline uint32_t S3CreateBucketRequest::expiration_days() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3CreateBucketRequest.expiration_days)
+inline uint32_t CreateBucketRequest::expiration_days() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.CreateBucketRequest.expiration_days)
   return _internal_expiration_days();
 }
-inline void S3CreateBucketRequest::_internal_set_expiration_days(uint32_t value) {
+inline void CreateBucketRequest::_internal_set_expiration_days(uint32_t value) {
   
   _impl_.expiration_days_ = value;
 }
-inline void S3CreateBucketRequest::set_expiration_days(uint32_t value) {
+inline void CreateBucketRequest::set_expiration_days(uint32_t value) {
   _internal_set_expiration_days(value);
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3CreateBucketRequest.expiration_days)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.CreateBucketRequest.expiration_days)
 }
 
 // -------------------------------------------------------------------
 
-// S3CreateBucketResponse
+// CreateBucketResponse
 
 // string name = 1;
-inline void S3CreateBucketResponse::clear_name() {
+inline void CreateBucketResponse::clear_name() {
   _impl_.name_.ClearToEmpty();
 }
-inline const std::string& S3CreateBucketResponse::name() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3CreateBucketResponse.name)
+inline const std::string& CreateBucketResponse::name() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.CreateBucketResponse.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3CreateBucketResponse::set_name(ArgT0&& arg0, ArgT... args) {
+void CreateBucketResponse::set_name(ArgT0&& arg0, ArgT... args) {
  
  _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3CreateBucketResponse.name)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.CreateBucketResponse.name)
 }
-inline std::string* S3CreateBucketResponse::mutable_name() {
+inline std::string* CreateBucketResponse::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3CreateBucketResponse.name)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.CreateBucketResponse.name)
   return _s;
 }
-inline const std::string& S3CreateBucketResponse::_internal_name() const {
+inline const std::string& CreateBucketResponse::_internal_name() const {
   return _impl_.name_.Get();
 }
-inline void S3CreateBucketResponse::_internal_set_name(const std::string& value) {
+inline void CreateBucketResponse::_internal_set_name(const std::string& value) {
   
   _impl_.name_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3CreateBucketResponse::_internal_mutable_name() {
+inline std::string* CreateBucketResponse::_internal_mutable_name() {
   
   return _impl_.name_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3CreateBucketResponse::release_name() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3CreateBucketResponse.name)
+inline std::string* CreateBucketResponse::release_name() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.CreateBucketResponse.name)
   return _impl_.name_.Release();
 }
-inline void S3CreateBucketResponse::set_allocated_name(std::string* name) {
+inline void CreateBucketResponse::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     
   } else {
@@ -1810,49 +1810,49 @@ inline void S3CreateBucketResponse::set_allocated_name(std::string* name) {
     _impl_.name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3CreateBucketResponse.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.CreateBucketResponse.name)
 }
 
 // -------------------------------------------------------------------
 
-// S3UploadRequest
+// UploadRequest
 
 // string bucket = 1;
-inline void S3UploadRequest::clear_bucket() {
+inline void UploadRequest::clear_bucket() {
   _impl_.bucket_.ClearToEmpty();
 }
-inline const std::string& S3UploadRequest::bucket() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3UploadRequest.bucket)
+inline const std::string& UploadRequest::bucket() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.UploadRequest.bucket)
   return _internal_bucket();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3UploadRequest::set_bucket(ArgT0&& arg0, ArgT... args) {
+void UploadRequest::set_bucket(ArgT0&& arg0, ArgT... args) {
  
  _impl_.bucket_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3UploadRequest.bucket)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.UploadRequest.bucket)
 }
-inline std::string* S3UploadRequest::mutable_bucket() {
+inline std::string* UploadRequest::mutable_bucket() {
   std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3UploadRequest.bucket)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.UploadRequest.bucket)
   return _s;
 }
-inline const std::string& S3UploadRequest::_internal_bucket() const {
+inline const std::string& UploadRequest::_internal_bucket() const {
   return _impl_.bucket_.Get();
 }
-inline void S3UploadRequest::_internal_set_bucket(const std::string& value) {
+inline void UploadRequest::_internal_set_bucket(const std::string& value) {
   
   _impl_.bucket_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3UploadRequest::_internal_mutable_bucket() {
+inline std::string* UploadRequest::_internal_mutable_bucket() {
   
   return _impl_.bucket_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3UploadRequest::release_bucket() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3UploadRequest.bucket)
+inline std::string* UploadRequest::release_bucket() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.UploadRequest.bucket)
   return _impl_.bucket_.Release();
 }
-inline void S3UploadRequest::set_allocated_bucket(std::string* bucket) {
+inline void UploadRequest::set_allocated_bucket(std::string* bucket) {
   if (bucket != nullptr) {
     
   } else {
@@ -1864,45 +1864,45 @@ inline void S3UploadRequest::set_allocated_bucket(std::string* bucket) {
     _impl_.bucket_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3UploadRequest.bucket)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.UploadRequest.bucket)
 }
 
 // string title = 2;
-inline void S3UploadRequest::clear_title() {
+inline void UploadRequest::clear_title() {
   _impl_.title_.ClearToEmpty();
 }
-inline const std::string& S3UploadRequest::title() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3UploadRequest.title)
+inline const std::string& UploadRequest::title() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.UploadRequest.title)
   return _internal_title();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3UploadRequest::set_title(ArgT0&& arg0, ArgT... args) {
+void UploadRequest::set_title(ArgT0&& arg0, ArgT... args) {
  
  _impl_.title_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3UploadRequest.title)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.UploadRequest.title)
 }
-inline std::string* S3UploadRequest::mutable_title() {
+inline std::string* UploadRequest::mutable_title() {
   std::string* _s = _internal_mutable_title();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3UploadRequest.title)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.UploadRequest.title)
   return _s;
 }
-inline const std::string& S3UploadRequest::_internal_title() const {
+inline const std::string& UploadRequest::_internal_title() const {
   return _impl_.title_.Get();
 }
-inline void S3UploadRequest::_internal_set_title(const std::string& value) {
+inline void UploadRequest::_internal_set_title(const std::string& value) {
   
   _impl_.title_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3UploadRequest::_internal_mutable_title() {
+inline std::string* UploadRequest::_internal_mutable_title() {
   
   return _impl_.title_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3UploadRequest::release_title() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3UploadRequest.title)
+inline std::string* UploadRequest::release_title() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.UploadRequest.title)
   return _impl_.title_.Release();
 }
-inline void S3UploadRequest::set_allocated_title(std::string* title) {
+inline void UploadRequest::set_allocated_title(std::string* title) {
   if (title != nullptr) {
     
   } else {
@@ -1914,26 +1914,26 @@ inline void S3UploadRequest::set_allocated_title(std::string* title) {
     _impl_.title_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3UploadRequest.title)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.UploadRequest.title)
 }
 
 // .google.protobuf.Duration ttl = 9;
-inline bool S3UploadRequest::_internal_has_ttl() const {
+inline bool UploadRequest::_internal_has_ttl() const {
   return this != internal_default_instance() && _impl_.ttl_ != nullptr;
 }
-inline bool S3UploadRequest::has_ttl() const {
+inline bool UploadRequest::has_ttl() const {
   return _internal_has_ttl();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Duration& S3UploadRequest::_internal_ttl() const {
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& UploadRequest::_internal_ttl() const {
   const ::PROTOBUF_NAMESPACE_ID::Duration* p = _impl_.ttl_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
       ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Duration& S3UploadRequest::ttl() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3UploadRequest.ttl)
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& UploadRequest::ttl() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.UploadRequest.ttl)
   return _internal_ttl();
 }
-inline void S3UploadRequest::unsafe_arena_set_allocated_ttl(
+inline void UploadRequest::unsafe_arena_set_allocated_ttl(
     ::PROTOBUF_NAMESPACE_ID::Duration* ttl) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ttl_);
@@ -1944,9 +1944,9 @@ inline void S3UploadRequest::unsafe_arena_set_allocated_ttl(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.s3.v1.S3UploadRequest.ttl)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.s3.v1.UploadRequest.ttl)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3UploadRequest::release_ttl() {
+inline ::PROTOBUF_NAMESPACE_ID::Duration* UploadRequest::release_ttl() {
   
   ::PROTOBUF_NAMESPACE_ID::Duration* temp = _impl_.ttl_;
   _impl_.ttl_ = nullptr;
@@ -1961,14 +1961,14 @@ inline ::PROTOBUF_NAMESPACE_ID::Duration* S3UploadRequest::release_ttl() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3UploadRequest::unsafe_arena_release_ttl() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3UploadRequest.ttl)
+inline ::PROTOBUF_NAMESPACE_ID::Duration* UploadRequest::unsafe_arena_release_ttl() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.UploadRequest.ttl)
   
   ::PROTOBUF_NAMESPACE_ID::Duration* temp = _impl_.ttl_;
   _impl_.ttl_ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3UploadRequest::_internal_mutable_ttl() {
+inline ::PROTOBUF_NAMESPACE_ID::Duration* UploadRequest::_internal_mutable_ttl() {
   
   if (_impl_.ttl_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
@@ -1976,12 +1976,12 @@ inline ::PROTOBUF_NAMESPACE_ID::Duration* S3UploadRequest::_internal_mutable_ttl
   }
   return _impl_.ttl_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3UploadRequest::mutable_ttl() {
+inline ::PROTOBUF_NAMESPACE_ID::Duration* UploadRequest::mutable_ttl() {
   ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_ttl();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3UploadRequest.ttl)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.UploadRequest.ttl)
   return _msg;
 }
-inline void S3UploadRequest::set_allocated_ttl(::PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+inline void UploadRequest::set_allocated_ttl(::PROTOBUF_NAMESPACE_ID::Duration* ttl) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ttl_);
@@ -1999,49 +1999,49 @@ inline void S3UploadRequest::set_allocated_ttl(::PROTOBUF_NAMESPACE_ID::Duration
     
   }
   _impl_.ttl_ = ttl;
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3UploadRequest.ttl)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.UploadRequest.ttl)
 }
 
 // -------------------------------------------------------------------
 
-// S3UploadResponse
+// UploadResponse
 
 // string object = 1;
-inline void S3UploadResponse::clear_object() {
+inline void UploadResponse::clear_object() {
   _impl_.object_.ClearToEmpty();
 }
-inline const std::string& S3UploadResponse::object() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3UploadResponse.object)
+inline const std::string& UploadResponse::object() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.UploadResponse.object)
   return _internal_object();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3UploadResponse::set_object(ArgT0&& arg0, ArgT... args) {
+void UploadResponse::set_object(ArgT0&& arg0, ArgT... args) {
  
  _impl_.object_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3UploadResponse.object)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.UploadResponse.object)
 }
-inline std::string* S3UploadResponse::mutable_object() {
+inline std::string* UploadResponse::mutable_object() {
   std::string* _s = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3UploadResponse.object)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.UploadResponse.object)
   return _s;
 }
-inline const std::string& S3UploadResponse::_internal_object() const {
+inline const std::string& UploadResponse::_internal_object() const {
   return _impl_.object_.Get();
 }
-inline void S3UploadResponse::_internal_set_object(const std::string& value) {
+inline void UploadResponse::_internal_set_object(const std::string& value) {
   
   _impl_.object_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3UploadResponse::_internal_mutable_object() {
+inline std::string* UploadResponse::_internal_mutable_object() {
   
   return _impl_.object_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3UploadResponse::release_object() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3UploadResponse.object)
+inline std::string* UploadResponse::release_object() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.UploadResponse.object)
   return _impl_.object_.Release();
 }
-inline void S3UploadResponse::set_allocated_object(std::string* object) {
+inline void UploadResponse::set_allocated_object(std::string* object) {
   if (object != nullptr) {
     
   } else {
@@ -2053,45 +2053,45 @@ inline void S3UploadResponse::set_allocated_object(std::string* object) {
     _impl_.object_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3UploadResponse.object)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.UploadResponse.object)
 }
 
 // string url = 9;
-inline void S3UploadResponse::clear_url() {
+inline void UploadResponse::clear_url() {
   _impl_.url_.ClearToEmpty();
 }
-inline const std::string& S3UploadResponse::url() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3UploadResponse.url)
+inline const std::string& UploadResponse::url() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.UploadResponse.url)
   return _internal_url();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3UploadResponse::set_url(ArgT0&& arg0, ArgT... args) {
+void UploadResponse::set_url(ArgT0&& arg0, ArgT... args) {
  
  _impl_.url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3UploadResponse.url)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.UploadResponse.url)
 }
-inline std::string* S3UploadResponse::mutable_url() {
+inline std::string* UploadResponse::mutable_url() {
   std::string* _s = _internal_mutable_url();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3UploadResponse.url)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.UploadResponse.url)
   return _s;
 }
-inline const std::string& S3UploadResponse::_internal_url() const {
+inline const std::string& UploadResponse::_internal_url() const {
   return _impl_.url_.Get();
 }
-inline void S3UploadResponse::_internal_set_url(const std::string& value) {
+inline void UploadResponse::_internal_set_url(const std::string& value) {
   
   _impl_.url_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3UploadResponse::_internal_mutable_url() {
+inline std::string* UploadResponse::_internal_mutable_url() {
   
   return _impl_.url_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3UploadResponse::release_url() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3UploadResponse.url)
+inline std::string* UploadResponse::release_url() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.UploadResponse.url)
   return _impl_.url_.Release();
 }
-inline void S3UploadResponse::set_allocated_url(std::string* url) {
+inline void UploadResponse::set_allocated_url(std::string* url) {
   if (url != nullptr) {
     
   } else {
@@ -2103,49 +2103,49 @@ inline void S3UploadResponse::set_allocated_url(std::string* url) {
     _impl_.url_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3UploadResponse.url)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.UploadResponse.url)
 }
 
 // -------------------------------------------------------------------
 
-// S3UrlResponse
+// UrlResponse
 
 // string url = 1;
-inline void S3UrlResponse::clear_url() {
+inline void UrlResponse::clear_url() {
   _impl_.url_.ClearToEmpty();
 }
-inline const std::string& S3UrlResponse::url() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3UrlResponse.url)
+inline const std::string& UrlResponse::url() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.UrlResponse.url)
   return _internal_url();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3UrlResponse::set_url(ArgT0&& arg0, ArgT... args) {
+void UrlResponse::set_url(ArgT0&& arg0, ArgT... args) {
  
  _impl_.url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3UrlResponse.url)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.UrlResponse.url)
 }
-inline std::string* S3UrlResponse::mutable_url() {
+inline std::string* UrlResponse::mutable_url() {
   std::string* _s = _internal_mutable_url();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3UrlResponse.url)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.UrlResponse.url)
   return _s;
 }
-inline const std::string& S3UrlResponse::_internal_url() const {
+inline const std::string& UrlResponse::_internal_url() const {
   return _impl_.url_.Get();
 }
-inline void S3UrlResponse::_internal_set_url(const std::string& value) {
+inline void UrlResponse::_internal_set_url(const std::string& value) {
   
   _impl_.url_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3UrlResponse::_internal_mutable_url() {
+inline std::string* UrlResponse::_internal_mutable_url() {
   
   return _impl_.url_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3UrlResponse::release_url() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3UrlResponse.url)
+inline std::string* UrlResponse::release_url() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.UrlResponse.url)
   return _impl_.url_.Release();
 }
-inline void S3UrlResponse::set_allocated_url(std::string* url) {
+inline void UrlResponse::set_allocated_url(std::string* url) {
   if (url != nullptr) {
     
   } else {
@@ -2157,49 +2157,49 @@ inline void S3UrlResponse::set_allocated_url(std::string* url) {
     _impl_.url_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3UrlResponse.url)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.UrlResponse.url)
 }
 
 // -------------------------------------------------------------------
 
-// S3PresignedUrlRequest
+// PresignedUrlRequest
 
 // string bucket = 1;
-inline void S3PresignedUrlRequest::clear_bucket() {
+inline void PresignedUrlRequest::clear_bucket() {
   _impl_.bucket_.ClearToEmpty();
 }
-inline const std::string& S3PresignedUrlRequest::bucket() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3PresignedUrlRequest.bucket)
+inline const std::string& PresignedUrlRequest::bucket() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedUrlRequest.bucket)
   return _internal_bucket();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3PresignedUrlRequest::set_bucket(ArgT0&& arg0, ArgT... args) {
+void PresignedUrlRequest::set_bucket(ArgT0&& arg0, ArgT... args) {
  
  _impl_.bucket_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3PresignedUrlRequest.bucket)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedUrlRequest.bucket)
 }
-inline std::string* S3PresignedUrlRequest::mutable_bucket() {
+inline std::string* PresignedUrlRequest::mutable_bucket() {
   std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3PresignedUrlRequest.bucket)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedUrlRequest.bucket)
   return _s;
 }
-inline const std::string& S3PresignedUrlRequest::_internal_bucket() const {
+inline const std::string& PresignedUrlRequest::_internal_bucket() const {
   return _impl_.bucket_.Get();
 }
-inline void S3PresignedUrlRequest::_internal_set_bucket(const std::string& value) {
+inline void PresignedUrlRequest::_internal_set_bucket(const std::string& value) {
   
   _impl_.bucket_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::_internal_mutable_bucket() {
+inline std::string* PresignedUrlRequest::_internal_mutable_bucket() {
   
   return _impl_.bucket_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::release_bucket() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3PresignedUrlRequest.bucket)
+inline std::string* PresignedUrlRequest::release_bucket() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedUrlRequest.bucket)
   return _impl_.bucket_.Release();
 }
-inline void S3PresignedUrlRequest::set_allocated_bucket(std::string* bucket) {
+inline void PresignedUrlRequest::set_allocated_bucket(std::string* bucket) {
   if (bucket != nullptr) {
     
   } else {
@@ -2211,45 +2211,45 @@ inline void S3PresignedUrlRequest::set_allocated_bucket(std::string* bucket) {
     _impl_.bucket_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3PresignedUrlRequest.bucket)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedUrlRequest.bucket)
 }
 
 // string object = 2;
-inline void S3PresignedUrlRequest::clear_object() {
+inline void PresignedUrlRequest::clear_object() {
   _impl_.object_.ClearToEmpty();
 }
-inline const std::string& S3PresignedUrlRequest::object() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3PresignedUrlRequest.object)
+inline const std::string& PresignedUrlRequest::object() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedUrlRequest.object)
   return _internal_object();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3PresignedUrlRequest::set_object(ArgT0&& arg0, ArgT... args) {
+void PresignedUrlRequest::set_object(ArgT0&& arg0, ArgT... args) {
  
  _impl_.object_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3PresignedUrlRequest.object)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedUrlRequest.object)
 }
-inline std::string* S3PresignedUrlRequest::mutable_object() {
+inline std::string* PresignedUrlRequest::mutable_object() {
   std::string* _s = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3PresignedUrlRequest.object)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedUrlRequest.object)
   return _s;
 }
-inline const std::string& S3PresignedUrlRequest::_internal_object() const {
+inline const std::string& PresignedUrlRequest::_internal_object() const {
   return _impl_.object_.Get();
 }
-inline void S3PresignedUrlRequest::_internal_set_object(const std::string& value) {
+inline void PresignedUrlRequest::_internal_set_object(const std::string& value) {
   
   _impl_.object_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::_internal_mutable_object() {
+inline std::string* PresignedUrlRequest::_internal_mutable_object() {
   
   return _impl_.object_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::release_object() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3PresignedUrlRequest.object)
+inline std::string* PresignedUrlRequest::release_object() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedUrlRequest.object)
   return _impl_.object_.Release();
 }
-inline void S3PresignedUrlRequest::set_allocated_object(std::string* object) {
+inline void PresignedUrlRequest::set_allocated_object(std::string* object) {
   if (object != nullptr) {
     
   } else {
@@ -2261,45 +2261,45 @@ inline void S3PresignedUrlRequest::set_allocated_object(std::string* object) {
     _impl_.object_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3PresignedUrlRequest.object)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedUrlRequest.object)
 }
 
 // string title = 3;
-inline void S3PresignedUrlRequest::clear_title() {
+inline void PresignedUrlRequest::clear_title() {
   _impl_.title_.ClearToEmpty();
 }
-inline const std::string& S3PresignedUrlRequest::title() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3PresignedUrlRequest.title)
+inline const std::string& PresignedUrlRequest::title() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedUrlRequest.title)
   return _internal_title();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3PresignedUrlRequest::set_title(ArgT0&& arg0, ArgT... args) {
+void PresignedUrlRequest::set_title(ArgT0&& arg0, ArgT... args) {
  
  _impl_.title_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3PresignedUrlRequest.title)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedUrlRequest.title)
 }
-inline std::string* S3PresignedUrlRequest::mutable_title() {
+inline std::string* PresignedUrlRequest::mutable_title() {
   std::string* _s = _internal_mutable_title();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3PresignedUrlRequest.title)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedUrlRequest.title)
   return _s;
 }
-inline const std::string& S3PresignedUrlRequest::_internal_title() const {
+inline const std::string& PresignedUrlRequest::_internal_title() const {
   return _impl_.title_.Get();
 }
-inline void S3PresignedUrlRequest::_internal_set_title(const std::string& value) {
+inline void PresignedUrlRequest::_internal_set_title(const std::string& value) {
   
   _impl_.title_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::_internal_mutable_title() {
+inline std::string* PresignedUrlRequest::_internal_mutable_title() {
   
   return _impl_.title_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::release_title() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3PresignedUrlRequest.title)
+inline std::string* PresignedUrlRequest::release_title() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedUrlRequest.title)
   return _impl_.title_.Release();
 }
-inline void S3PresignedUrlRequest::set_allocated_title(std::string* title) {
+inline void PresignedUrlRequest::set_allocated_title(std::string* title) {
   if (title != nullptr) {
     
   } else {
@@ -2311,50 +2311,50 @@ inline void S3PresignedUrlRequest::set_allocated_title(std::string* title) {
     _impl_.title_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3PresignedUrlRequest.title)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedUrlRequest.title)
 }
 
 // optional string content_type = 4;
-inline bool S3PresignedUrlRequest::_internal_has_content_type() const {
+inline bool PresignedUrlRequest::_internal_has_content_type() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline bool S3PresignedUrlRequest::has_content_type() const {
+inline bool PresignedUrlRequest::has_content_type() const {
   return _internal_has_content_type();
 }
-inline void S3PresignedUrlRequest::clear_content_type() {
+inline void PresignedUrlRequest::clear_content_type() {
   _impl_.content_type_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& S3PresignedUrlRequest::content_type() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3PresignedUrlRequest.content_type)
+inline const std::string& PresignedUrlRequest::content_type() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedUrlRequest.content_type)
   return _internal_content_type();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3PresignedUrlRequest::set_content_type(ArgT0&& arg0, ArgT... args) {
+void PresignedUrlRequest::set_content_type(ArgT0&& arg0, ArgT... args) {
  _impl_._has_bits_[0] |= 0x00000001u;
  _impl_.content_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3PresignedUrlRequest.content_type)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PresignedUrlRequest.content_type)
 }
-inline std::string* S3PresignedUrlRequest::mutable_content_type() {
+inline std::string* PresignedUrlRequest::mutable_content_type() {
   std::string* _s = _internal_mutable_content_type();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3PresignedUrlRequest.content_type)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedUrlRequest.content_type)
   return _s;
 }
-inline const std::string& S3PresignedUrlRequest::_internal_content_type() const {
+inline const std::string& PresignedUrlRequest::_internal_content_type() const {
   return _impl_.content_type_.Get();
 }
-inline void S3PresignedUrlRequest::_internal_set_content_type(const std::string& value) {
+inline void PresignedUrlRequest::_internal_set_content_type(const std::string& value) {
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.content_type_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::_internal_mutable_content_type() {
+inline std::string* PresignedUrlRequest::_internal_mutable_content_type() {
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.content_type_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3PresignedUrlRequest::release_content_type() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3PresignedUrlRequest.content_type)
+inline std::string* PresignedUrlRequest::release_content_type() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedUrlRequest.content_type)
   if (!_internal_has_content_type()) {
     return nullptr;
   }
@@ -2367,7 +2367,7 @@ inline std::string* S3PresignedUrlRequest::release_content_type() {
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   return p;
 }
-inline void S3PresignedUrlRequest::set_allocated_content_type(std::string* content_type) {
+inline void PresignedUrlRequest::set_allocated_content_type(std::string* content_type) {
   if (content_type != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -2379,26 +2379,26 @@ inline void S3PresignedUrlRequest::set_allocated_content_type(std::string* conte
     _impl_.content_type_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3PresignedUrlRequest.content_type)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedUrlRequest.content_type)
 }
 
 // .google.protobuf.Duration ttl = 9;
-inline bool S3PresignedUrlRequest::_internal_has_ttl() const {
+inline bool PresignedUrlRequest::_internal_has_ttl() const {
   return this != internal_default_instance() && _impl_.ttl_ != nullptr;
 }
-inline bool S3PresignedUrlRequest::has_ttl() const {
+inline bool PresignedUrlRequest::has_ttl() const {
   return _internal_has_ttl();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Duration& S3PresignedUrlRequest::_internal_ttl() const {
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& PresignedUrlRequest::_internal_ttl() const {
   const ::PROTOBUF_NAMESPACE_ID::Duration* p = _impl_.ttl_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
       ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Duration& S3PresignedUrlRequest::ttl() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3PresignedUrlRequest.ttl)
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& PresignedUrlRequest::ttl() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PresignedUrlRequest.ttl)
   return _internal_ttl();
 }
-inline void S3PresignedUrlRequest::unsafe_arena_set_allocated_ttl(
+inline void PresignedUrlRequest::unsafe_arena_set_allocated_ttl(
     ::PROTOBUF_NAMESPACE_ID::Duration* ttl) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ttl_);
@@ -2409,9 +2409,9 @@ inline void S3PresignedUrlRequest::unsafe_arena_set_allocated_ttl(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.s3.v1.S3PresignedUrlRequest.ttl)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.s3.v1.PresignedUrlRequest.ttl)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3PresignedUrlRequest::release_ttl() {
+inline ::PROTOBUF_NAMESPACE_ID::Duration* PresignedUrlRequest::release_ttl() {
   
   ::PROTOBUF_NAMESPACE_ID::Duration* temp = _impl_.ttl_;
   _impl_.ttl_ = nullptr;
@@ -2426,14 +2426,14 @@ inline ::PROTOBUF_NAMESPACE_ID::Duration* S3PresignedUrlRequest::release_ttl() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3PresignedUrlRequest::unsafe_arena_release_ttl() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3PresignedUrlRequest.ttl)
+inline ::PROTOBUF_NAMESPACE_ID::Duration* PresignedUrlRequest::unsafe_arena_release_ttl() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PresignedUrlRequest.ttl)
   
   ::PROTOBUF_NAMESPACE_ID::Duration* temp = _impl_.ttl_;
   _impl_.ttl_ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3PresignedUrlRequest::_internal_mutable_ttl() {
+inline ::PROTOBUF_NAMESPACE_ID::Duration* PresignedUrlRequest::_internal_mutable_ttl() {
   
   if (_impl_.ttl_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
@@ -2441,12 +2441,12 @@ inline ::PROTOBUF_NAMESPACE_ID::Duration* S3PresignedUrlRequest::_internal_mutab
   }
   return _impl_.ttl_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Duration* S3PresignedUrlRequest::mutable_ttl() {
+inline ::PROTOBUF_NAMESPACE_ID::Duration* PresignedUrlRequest::mutable_ttl() {
   ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_ttl();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3PresignedUrlRequest.ttl)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PresignedUrlRequest.ttl)
   return _msg;
 }
-inline void S3PresignedUrlRequest::set_allocated_ttl(::PROTOBUF_NAMESPACE_ID::Duration* ttl) {
+inline void PresignedUrlRequest::set_allocated_ttl(::PROTOBUF_NAMESPACE_ID::Duration* ttl) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ttl_);
@@ -2464,49 +2464,49 @@ inline void S3PresignedUrlRequest::set_allocated_ttl(::PROTOBUF_NAMESPACE_ID::Du
     
   }
   _impl_.ttl_ = ttl;
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3PresignedUrlRequest.ttl)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PresignedUrlRequest.ttl)
 }
 
 // -------------------------------------------------------------------
 
-// S3PermanentUrlRequest
+// PermanentUrlRequest
 
 // string bucket = 1;
-inline void S3PermanentUrlRequest::clear_bucket() {
+inline void PermanentUrlRequest::clear_bucket() {
   _impl_.bucket_.ClearToEmpty();
 }
-inline const std::string& S3PermanentUrlRequest::bucket() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3PermanentUrlRequest.bucket)
+inline const std::string& PermanentUrlRequest::bucket() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PermanentUrlRequest.bucket)
   return _internal_bucket();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3PermanentUrlRequest::set_bucket(ArgT0&& arg0, ArgT... args) {
+void PermanentUrlRequest::set_bucket(ArgT0&& arg0, ArgT... args) {
  
  _impl_.bucket_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3PermanentUrlRequest.bucket)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PermanentUrlRequest.bucket)
 }
-inline std::string* S3PermanentUrlRequest::mutable_bucket() {
+inline std::string* PermanentUrlRequest::mutable_bucket() {
   std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3PermanentUrlRequest.bucket)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PermanentUrlRequest.bucket)
   return _s;
 }
-inline const std::string& S3PermanentUrlRequest::_internal_bucket() const {
+inline const std::string& PermanentUrlRequest::_internal_bucket() const {
   return _impl_.bucket_.Get();
 }
-inline void S3PermanentUrlRequest::_internal_set_bucket(const std::string& value) {
+inline void PermanentUrlRequest::_internal_set_bucket(const std::string& value) {
   
   _impl_.bucket_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3PermanentUrlRequest::_internal_mutable_bucket() {
+inline std::string* PermanentUrlRequest::_internal_mutable_bucket() {
   
   return _impl_.bucket_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3PermanentUrlRequest::release_bucket() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3PermanentUrlRequest.bucket)
+inline std::string* PermanentUrlRequest::release_bucket() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PermanentUrlRequest.bucket)
   return _impl_.bucket_.Release();
 }
-inline void S3PermanentUrlRequest::set_allocated_bucket(std::string* bucket) {
+inline void PermanentUrlRequest::set_allocated_bucket(std::string* bucket) {
   if (bucket != nullptr) {
     
   } else {
@@ -2518,45 +2518,45 @@ inline void S3PermanentUrlRequest::set_allocated_bucket(std::string* bucket) {
     _impl_.bucket_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3PermanentUrlRequest.bucket)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PermanentUrlRequest.bucket)
 }
 
 // string object = 2;
-inline void S3PermanentUrlRequest::clear_object() {
+inline void PermanentUrlRequest::clear_object() {
   _impl_.object_.ClearToEmpty();
 }
-inline const std::string& S3PermanentUrlRequest::object() const {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.S3PermanentUrlRequest.object)
+inline const std::string& PermanentUrlRequest::object() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.PermanentUrlRequest.object)
   return _internal_object();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void S3PermanentUrlRequest::set_object(ArgT0&& arg0, ArgT... args) {
+void PermanentUrlRequest::set_object(ArgT0&& arg0, ArgT... args) {
  
  _impl_.object_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.S3PermanentUrlRequest.object)
+  // @@protoc_insertion_point(field_set:palm.s3.v1.PermanentUrlRequest.object)
 }
-inline std::string* S3PermanentUrlRequest::mutable_object() {
+inline std::string* PermanentUrlRequest::mutable_object() {
   std::string* _s = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.S3PermanentUrlRequest.object)
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.PermanentUrlRequest.object)
   return _s;
 }
-inline const std::string& S3PermanentUrlRequest::_internal_object() const {
+inline const std::string& PermanentUrlRequest::_internal_object() const {
   return _impl_.object_.Get();
 }
-inline void S3PermanentUrlRequest::_internal_set_object(const std::string& value) {
+inline void PermanentUrlRequest::_internal_set_object(const std::string& value) {
   
   _impl_.object_.Set(value, GetArenaForAllocation());
 }
-inline std::string* S3PermanentUrlRequest::_internal_mutable_object() {
+inline std::string* PermanentUrlRequest::_internal_mutable_object() {
   
   return _impl_.object_.Mutable(GetArenaForAllocation());
 }
-inline std::string* S3PermanentUrlRequest::release_object() {
-  // @@protoc_insertion_point(field_release:palm.s3.v1.S3PermanentUrlRequest.object)
+inline std::string* PermanentUrlRequest::release_object() {
+  // @@protoc_insertion_point(field_release:palm.s3.v1.PermanentUrlRequest.object)
   return _impl_.object_.Release();
 }
-inline void S3PermanentUrlRequest::set_allocated_object(std::string* object) {
+inline void PermanentUrlRequest::set_allocated_object(std::string* object) {
   if (object != nullptr) {
     
   } else {
@@ -2568,7 +2568,7 @@ inline void S3PermanentUrlRequest::set_allocated_object(std::string* object) {
     _impl_.object_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.S3PermanentUrlRequest.object)
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.PermanentUrlRequest.object)
 }
 
 #ifdef __GNUC__

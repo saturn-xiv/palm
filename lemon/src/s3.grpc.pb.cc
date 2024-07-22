@@ -43,92 +43,92 @@ S3::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const 
   , rpcmethod_PresignedUrl_(S3_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status S3::Stub::CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::palm::s3::v1::S3CreateBucketResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateBucket_, context, request, response);
+::grpc::Status S3::Stub::CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::palm::s3::v1::CreateBucketResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CreateBucket_, context, request, response);
 }
 
-void S3::Stub::async::CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateBucket_, context, request, response, std::move(f));
+void S3::Stub::async::CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateBucket_, context, request, response, std::move(f));
 }
 
-void S3::Stub::async::CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void S3::Stub::async::CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CreateBucket_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>* S3::Stub::PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::S3CreateBucketResponse, ::palm::s3::v1::S3CreateBucketRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateBucket_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>* S3::Stub::PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::CreateBucketResponse, ::palm::s3::v1::CreateBucketRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CreateBucket_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>* S3::Stub::AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>* S3::Stub::AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncCreateBucketRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status S3::Stub::Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::palm::s3::v1::S3UploadResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Upload_, context, request, response);
+::grpc::Status S3::Stub::Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::palm::s3::v1::UploadResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Upload_, context, request, response);
 }
 
-void S3::Stub::async::Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, request, response, std::move(f));
+void S3::Stub::async::Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, request, response, std::move(f));
 }
 
-void S3::Stub::async::Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void S3::Stub::async::Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>* S3::Stub::PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::S3UploadResponse, ::palm::s3::v1::S3UploadRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Upload_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>* S3::Stub::PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::UploadResponse, ::palm::s3::v1::UploadRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Upload_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>* S3::Stub::AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>* S3::Stub::AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncUploadRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status S3::Stub::PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::palm::s3::v1::S3UrlResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PermanentUrl_, context, request, response);
+::grpc::Status S3::Stub::PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::palm::s3::v1::UrlResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PermanentUrl_, context, request, response);
 }
 
-void S3::Stub::async::PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PermanentUrl_, context, request, response, std::move(f));
+void S3::Stub::async::PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PermanentUrl_, context, request, response, std::move(f));
 }
 
-void S3::Stub::async::PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void S3::Stub::async::PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PermanentUrl_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* S3::Stub::PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::S3UrlResponse, ::palm::s3::v1::S3PermanentUrlRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PermanentUrl_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* S3::Stub::PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::UrlResponse, ::palm::s3::v1::PermanentUrlRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PermanentUrl_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* S3::Stub::AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* S3::Stub::AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncPermanentUrlRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status S3::Stub::PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::palm::s3::v1::S3UrlResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PresignedUrl_, context, request, response);
+::grpc::Status S3::Stub::PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::palm::s3::v1::UrlResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PresignedUrl_, context, request, response);
 }
 
-void S3::Stub::async::PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PresignedUrl_, context, request, response, std::move(f));
+void S3::Stub::async::PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PresignedUrl_, context, request, response, std::move(f));
 }
 
-void S3::Stub::async::PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void S3::Stub::async::PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PresignedUrl_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* S3::Stub::PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::S3UrlResponse, ::palm::s3::v1::S3PresignedUrlRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PresignedUrl_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* S3::Stub::PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::UrlResponse, ::palm::s3::v1::PresignedUrlRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PresignedUrl_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* S3::Stub::AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* S3::Stub::AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncPresignedUrlRaw(context, request, cq);
   result->StartCall();
@@ -139,41 +139,41 @@ S3::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       S3_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](S3::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::s3::v1::S3CreateBucketRequest* req,
-             ::palm::s3::v1::S3CreateBucketResponse* resp) {
+             const ::palm::s3::v1::CreateBucketRequest* req,
+             ::palm::s3::v1::CreateBucketResponse* resp) {
                return service->CreateBucket(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       S3_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](S3::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::s3::v1::S3UploadRequest* req,
-             ::palm::s3::v1::S3UploadResponse* resp) {
+             const ::palm::s3::v1::UploadRequest* req,
+             ::palm::s3::v1::UploadResponse* resp) {
                return service->Upload(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       S3_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](S3::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::s3::v1::S3PermanentUrlRequest* req,
-             ::palm::s3::v1::S3UrlResponse* resp) {
+             const ::palm::s3::v1::PermanentUrlRequest* req,
+             ::palm::s3::v1::UrlResponse* resp) {
                return service->PermanentUrl(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       S3_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](S3::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::s3::v1::S3PresignedUrlRequest* req,
-             ::palm::s3::v1::S3UrlResponse* resp) {
+             const ::palm::s3::v1::PresignedUrlRequest* req,
+             ::palm::s3::v1::UrlResponse* resp) {
                return service->PresignedUrl(ctx, req, resp);
              }, this)));
 }
@@ -181,28 +181,28 @@ S3::Service::Service() {
 S3::Service::~Service() {
 }
 
-::grpc::Status S3::Service::CreateBucket(::grpc::ServerContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response) {
+::grpc::Status S3::Service::CreateBucket(::grpc::ServerContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status S3::Service::Upload(::grpc::ServerContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response) {
+::grpc::Status S3::Service::Upload(::grpc::ServerContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status S3::Service::PermanentUrl(::grpc::ServerContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response) {
+::grpc::Status S3::Service::PermanentUrl(::grpc::ServerContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status S3::Service::PresignedUrl(::grpc::ServerContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response) {
+::grpc::Status S3::Service::PresignedUrl(::grpc::ServerContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response) {
   (void) context;
   (void) request;
   (void) response;

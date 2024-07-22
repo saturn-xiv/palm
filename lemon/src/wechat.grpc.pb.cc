@@ -187,6 +187,22 @@ MiniProgram::Service::~Service() {
 }
 
 
+std::unique_ptr< Pay::Stub> Pay::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Pay::Stub> stub(new Pay::Stub(channel, options));
+  return stub;
+}
+
+Pay::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel){}
+
+Pay::Service::Service() {
+}
+
+Pay::Service::~Service() {
+}
+
+
 }  // namespace palm
 }  // namespace wechat
 }  // namespace v1

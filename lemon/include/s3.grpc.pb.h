@@ -37,101 +37,101 @@ class S3 final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::palm::s3::v1::S3CreateBucketResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3CreateBucketResponse>> AsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3CreateBucketResponse>>(AsyncCreateBucketRaw(context, request, cq));
+    virtual ::grpc::Status CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::palm::s3::v1::CreateBucketResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>> AsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>>(AsyncCreateBucketRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3CreateBucketResponse>> PrepareAsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3CreateBucketResponse>>(PrepareAsyncCreateBucketRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>> PrepareAsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>>(PrepareAsyncCreateBucketRaw(context, request, cq));
     }
-    virtual ::grpc::Status Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::palm::s3::v1::S3UploadResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UploadResponse>> AsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UploadResponse>>(AsyncUploadRaw(context, request, cq));
+    virtual ::grpc::Status Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::palm::s3::v1::UploadResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>> AsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>>(AsyncUploadRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UploadResponse>>(PrepareAsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>>(PrepareAsyncUploadRaw(context, request, cq));
     }
-    virtual ::grpc::Status PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::palm::s3::v1::S3UrlResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>> AsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>>(AsyncPermanentUrlRaw(context, request, cq));
+    virtual ::grpc::Status PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::palm::s3::v1::UrlResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> AsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(AsyncPermanentUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>> PrepareAsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>>(PrepareAsyncPermanentUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> PrepareAsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPermanentUrlRaw(context, request, cq));
     }
-    virtual ::grpc::Status PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::palm::s3::v1::S3UrlResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>> AsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>>(AsyncPresignedUrlRaw(context, request, cq));
+    virtual ::grpc::Status PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::palm::s3::v1::UrlResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> AsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(AsyncPresignedUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>> PrepareAsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>>(PrepareAsyncPresignedUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> PrepareAsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPresignedUrlRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3CreateBucketResponse>* AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3CreateBucketResponse>* PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>* AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>* PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>* AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::S3UrlResponse>* PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>* AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>* PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::palm::s3::v1::S3CreateBucketResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>> AsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>>(AsyncCreateBucketRaw(context, request, cq));
+    ::grpc::Status CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::palm::s3::v1::CreateBucketResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>> AsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>>(AsyncCreateBucketRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>> PrepareAsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>>(PrepareAsyncCreateBucketRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>> PrepareAsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>>(PrepareAsyncCreateBucketRaw(context, request, cq));
     }
-    ::grpc::Status Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::palm::s3::v1::S3UploadResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>> AsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>>(AsyncUploadRaw(context, request, cq));
+    ::grpc::Status Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::palm::s3::v1::UploadResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>> AsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>>(AsyncUploadRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>>(PrepareAsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>>(PrepareAsyncUploadRaw(context, request, cq));
     }
-    ::grpc::Status PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::palm::s3::v1::S3UrlResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>> AsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>>(AsyncPermanentUrlRaw(context, request, cq));
+    ::grpc::Status PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::palm::s3::v1::UrlResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> AsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(AsyncPermanentUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>> PrepareAsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>>(PrepareAsyncPermanentUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> PrepareAsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPermanentUrlRaw(context, request, cq));
     }
-    ::grpc::Status PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::palm::s3::v1::S3UrlResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>> AsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>>(AsyncPresignedUrlRaw(context, request, cq));
+    ::grpc::Status PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::palm::s3::v1::UrlResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> AsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(AsyncPresignedUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>> PrepareAsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>>(PrepareAsyncPresignedUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> PrepareAsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPresignedUrlRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response, std::function<void(::grpc::Status)>) override;
-      void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response, std::function<void(::grpc::Status)>) override;
-      void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, std::function<void(::grpc::Status)>) override;
-      void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, std::function<void(::grpc::Status)>) override;
-      void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, std::function<void(::grpc::Status)>) override;
+      void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, std::function<void(::grpc::Status)>) override;
+      void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) override;
+      void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) override;
+      void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -143,14 +143,14 @@ class S3 final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>* AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3CreateBucketResponse>* PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3CreateBucketRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3UploadRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::S3UrlResponse>* PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::S3PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>* AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>* PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_CreateBucket_;
     const ::grpc::internal::RpcMethod rpcmethod_Upload_;
     const ::grpc::internal::RpcMethod rpcmethod_PermanentUrl_;
@@ -162,10 +162,10 @@ class S3 final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status CreateBucket(::grpc::ServerContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response);
-    virtual ::grpc::Status Upload(::grpc::ServerContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response);
-    virtual ::grpc::Status PermanentUrl(::grpc::ServerContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response);
-    virtual ::grpc::Status PresignedUrl(::grpc::ServerContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response);
+    virtual ::grpc::Status CreateBucket(::grpc::ServerContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response);
+    virtual ::grpc::Status Upload(::grpc::ServerContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response);
+    virtual ::grpc::Status PermanentUrl(::grpc::ServerContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response);
+    virtual ::grpc::Status PresignedUrl(::grpc::ServerContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_CreateBucket : public BaseClass {
@@ -179,11 +179,11 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3CreateBucketRequest* /*request*/, ::palm::s3::v1::S3CreateBucketResponse* /*response*/) override {
+    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreateBucket(::grpc::ServerContext* context, ::palm::s3::v1::S3CreateBucketRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::S3CreateBucketResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestCreateBucket(::grpc::ServerContext* context, ::palm::s3::v1::CreateBucketRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::CreateBucketResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -199,11 +199,11 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3UploadRequest* /*request*/, ::palm::s3::v1::S3UploadResponse* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpload(::grpc::ServerContext* context, ::palm::s3::v1::S3UploadRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::S3UploadResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpload(::grpc::ServerContext* context, ::palm::s3::v1::UploadRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UploadResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -219,11 +219,11 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PermanentUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPermanentUrl(::grpc::ServerContext* context, ::palm::s3::v1::S3PermanentUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::S3UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPermanentUrl(::grpc::ServerContext* context, ::palm::s3::v1::PermanentUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -239,11 +239,11 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PresignedUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPresignedUrl(::grpc::ServerContext* context, ::palm::s3::v1::S3PresignedUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::S3UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPresignedUrl(::grpc::ServerContext* context, ::palm::s3::v1::PresignedUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -255,25 +255,25 @@ class S3 final {
    public:
     WithCallbackMethod_CreateBucket() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::S3CreateBucketRequest* request, ::palm::s3::v1::S3CreateBucketResponse* response) { return this->CreateBucket(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response) { return this->CreateBucket(context, request, response); }));}
     void SetMessageAllocatorFor_CreateBucket(
-        ::grpc::MessageAllocator< ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_CreateBucket() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3CreateBucketRequest* /*request*/, ::palm::s3::v1::S3CreateBucketResponse* /*response*/) override {
+    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* CreateBucket(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::S3CreateBucketRequest* /*request*/, ::palm::s3::v1::S3CreateBucketResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Upload : public BaseClass {
@@ -282,25 +282,25 @@ class S3 final {
    public:
     WithCallbackMethod_Upload() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::S3UploadRequest* request, ::palm::s3::v1::S3UploadResponse* response) { return this->Upload(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response) { return this->Upload(context, request, response); }));}
     void SetMessageAllocatorFor_Upload(
-        ::grpc::MessageAllocator< ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Upload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3UploadRequest* /*request*/, ::palm::s3::v1::S3UploadResponse* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Upload(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::S3UploadRequest* /*request*/, ::palm::s3::v1::S3UploadResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_PermanentUrl : public BaseClass {
@@ -309,25 +309,25 @@ class S3 final {
    public:
     WithCallbackMethod_PermanentUrl() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::S3PermanentUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response) { return this->PermanentUrl(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response) { return this->PermanentUrl(context, request, response); }));}
     void SetMessageAllocatorFor_PermanentUrl(
-        ::grpc::MessageAllocator< ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_PermanentUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PermanentUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* PermanentUrl(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::S3PermanentUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_PresignedUrl : public BaseClass {
@@ -336,25 +336,25 @@ class S3 final {
    public:
     WithCallbackMethod_PresignedUrl() {
       ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::S3PresignedUrlRequest* request, ::palm::s3::v1::S3UrlResponse* response) { return this->PresignedUrl(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response) { return this->PresignedUrl(context, request, response); }));}
     void SetMessageAllocatorFor_PresignedUrl(
-        ::grpc::MessageAllocator< ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_PresignedUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PresignedUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* PresignedUrl(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::S3PresignedUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_CreateBucket<WithCallbackMethod_Upload<WithCallbackMethod_PermanentUrl<WithCallbackMethod_PresignedUrl<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -370,7 +370,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3CreateBucketRequest* /*request*/, ::palm::s3::v1::S3CreateBucketResponse* /*response*/) override {
+    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -387,7 +387,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3UploadRequest* /*request*/, ::palm::s3::v1::S3UploadResponse* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -404,7 +404,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PermanentUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -421,7 +421,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PresignedUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -438,7 +438,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3CreateBucketRequest* /*request*/, ::palm::s3::v1::S3CreateBucketResponse* /*response*/) override {
+    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -458,7 +458,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3UploadRequest* /*request*/, ::palm::s3::v1::S3UploadResponse* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -478,7 +478,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PermanentUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -498,7 +498,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PresignedUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -521,7 +521,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3CreateBucketRequest* /*request*/, ::palm::s3::v1::S3CreateBucketResponse* /*response*/) override {
+    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -543,7 +543,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3UploadRequest* /*request*/, ::palm::s3::v1::S3UploadResponse* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -565,7 +565,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PermanentUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -587,7 +587,7 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PresignedUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -602,10 +602,10 @@ class S3 final {
     WithStreamedUnaryMethod_CreateBucket() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse>(
+          ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::S3CreateBucketRequest, ::palm::s3::v1::S3CreateBucketResponse>* streamer) {
+                     ::palm::s3::v1::CreateBucketRequest, ::palm::s3::v1::CreateBucketResponse>* streamer) {
                        return this->StreamedCreateBucket(context,
                          streamer);
                   }));
@@ -614,12 +614,12 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3CreateBucketRequest* /*request*/, ::palm::s3::v1::S3CreateBucketResponse* /*response*/) override {
+    ::grpc::Status CreateBucket(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreateBucket(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::S3CreateBucketRequest,::palm::s3::v1::S3CreateBucketResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedCreateBucket(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::CreateBucketRequest,::palm::s3::v1::CreateBucketResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Upload : public BaseClass {
@@ -629,10 +629,10 @@ class S3 final {
     WithStreamedUnaryMethod_Upload() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse>(
+          ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::S3UploadRequest, ::palm::s3::v1::S3UploadResponse>* streamer) {
+                     ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>* streamer) {
                        return this->StreamedUpload(context,
                          streamer);
                   }));
@@ -641,12 +641,12 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3UploadRequest* /*request*/, ::palm::s3::v1::S3UploadResponse* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::S3UploadRequest,::palm::s3::v1::S3UploadResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::UploadRequest,::palm::s3::v1::UploadResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_PermanentUrl : public BaseClass {
@@ -656,10 +656,10 @@ class S3 final {
     WithStreamedUnaryMethod_PermanentUrl() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse>(
+          ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::S3PermanentUrlRequest, ::palm::s3::v1::S3UrlResponse>* streamer) {
+                     ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>* streamer) {
                        return this->StreamedPermanentUrl(context,
                          streamer);
                   }));
@@ -668,12 +668,12 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PermanentUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPermanentUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::S3PermanentUrlRequest,::palm::s3::v1::S3UrlResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedPermanentUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::PermanentUrlRequest,::palm::s3::v1::UrlResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_PresignedUrl : public BaseClass {
@@ -683,10 +683,10 @@ class S3 final {
     WithStreamedUnaryMethod_PresignedUrl() {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse>(
+          ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::S3PresignedUrlRequest, ::palm::s3::v1::S3UrlResponse>* streamer) {
+                     ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>* streamer) {
                        return this->StreamedPresignedUrl(context,
                          streamer);
                   }));
@@ -695,12 +695,12 @@ class S3 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::S3PresignedUrlRequest* /*request*/, ::palm::s3::v1::S3UrlResponse* /*response*/) override {
+    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPresignedUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::S3PresignedUrlRequest,::palm::s3::v1::S3UrlResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedPresignedUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::PresignedUrlRequest,::palm::s3::v1::UrlResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_CreateBucket<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_PermanentUrl<WithStreamedUnaryMethod_PresignedUrl<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;

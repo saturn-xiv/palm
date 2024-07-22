@@ -7,46 +7,46 @@ package palm.s3.v1;
 import "google/protobuf/duration.proto";
 
 service S3 {
-  rpc CreateBucket(S3CreateBucketRequest) returns (S3CreateBucketResponse) {}
-  rpc Upload(S3UploadRequest) returns (S3UploadResponse) {}
-  rpc PermanentUrl(S3PermanentUrlRequest) returns (S3UrlResponse) {}
-  rpc PresignedUrl(S3PresignedUrlRequest) returns (S3UrlResponse) {}
+  rpc CreateBucket(CreateBucketRequest) returns (CreateBucketResponse) {}
+  rpc Upload(UploadRequest) returns (UploadResponse) {}
+  rpc PermanentUrl(PermanentUrlRequest) returns (UrlResponse) {}
+  rpc PresignedUrl(PresignedUrlRequest) returns (UrlResponse) {}
 }
 
-message S3Bucket {
+message Bucket {
   string namespace = 1;
   string name = 2;
   bool public = 3;
   uint32 expiration_days = 4;
 }
-message S3CreateBucketRequest {
+message CreateBucketRequest {
   string name = 1;
   bool public = 2;
   uint32 expiration_days = 9;
 }
-message S3CreateBucketResponse {
+message CreateBucketResponse {
   string name = 1;
 }
-message S3UploadRequest {
+message UploadRequest {
   string bucket = 1;
   string title = 2;
   google.protobuf.Duration ttl = 9;
 }
-message S3UploadResponse {
+message UploadResponse {
   string object = 1;
   string url = 9;
 }
-message S3UrlResponse {
+message UrlResponse {
   string url = 1;
 }
-message S3PresignedUrlRequest {
+message PresignedUrlRequest {
   string bucket = 1;
   string object = 2;
   string title = 3;
   optional string content_type = 4;
   google.protobuf.Duration ttl = 9;
 }
-message S3PermanentUrlRequest {
+message PermanentUrlRequest {
   string bucket = 1;
   string object = 2;
 }
