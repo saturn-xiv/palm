@@ -9,6 +9,7 @@ import (
 
 	email_send_worker "github.com/saturn-xiv/palm/atropa/cmd/email-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/etc"
+	generate_token "github.com/saturn-xiv/palm/atropa/cmd/generate-token"
 	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
 	sms_send_worker "github.com/saturn-xiv/palm/atropa/cmd/sms-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/web"
@@ -48,6 +49,10 @@ var (
 
 	gl_worker_consumer_name string
 	gl_worker_queue_name    string
+
+	gl_generate_token_years     uint8
+	gl_generate_token_subject   string
+	gl_generate_token_audiences []string
 )
 
 func init() {
@@ -145,6 +150,22 @@ func init() {
 
 		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
 		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "emails", "queue name")
+
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "generate-token",
+			Short: "Generate a jwt token",
+			RunE: func(cmd *cobra.Command, args []string) error {
+				set_log(gl_debug)
+				return generate_token.Launch(gl_keys_dir, gl_generate_token_subject, gl_generate_token_audiences, int(gl_generate_token_years))
+			},
+		}
+
+		cmd.Flags().StringVar(&gl_generate_token_subject, "subject", "", "subject")
+		cmd.Flags().Uint8Var(&gl_generate_token_years, "years", 10, "years")
+		cmd.Flags().StringSliceVar(&gl_generate_token_audiences, "audience", []string{}, "audiences")
 
 		root_cmd.AddCommand(cmd)
 	}
