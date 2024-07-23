@@ -199,13 +199,14 @@ const char descriptor_table_protodef_google_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\032).palm.google.v1.Oauth2AuthCodeURLRespo"
   "nse\"\000\022U\n\006SignIn\022#.palm.google.v1.Oauth2S"
   "ignInRequest\032$.palm.google.v1.Oauth2Sign"
-  "InResponse\"\000B_\n,com.github.saturn_xiv.pa"
-  "lm.plugins.google.v1P\001Z-github.com/satur"
-  "n-xiv/palm/google/services/v2b\006proto3"
+  "InResponse\"\000Bf\n,com.github.saturn_xiv.pa"
+  "lm.plugins.google.v1P\001Z4github.com/satur"
+  "n-xiv/palm/atropa/google/services/v2b\006pr"
+  "oto3"
   ;
 static ::_pbi::once_flag descriptor_table_google_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_google_2eproto = {
-    false, false, 837, descriptor_table_protodef_google_2eproto,
+    false, false, 844, descriptor_table_protodef_google_2eproto,
     "google.proto",
     &descriptor_table_google_2eproto_once, nullptr, 0, 5,
     schemas, file_default_instances, TableStruct_google_2eproto::offsets,

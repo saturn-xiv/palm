@@ -136,7 +136,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace wechat
 }  // namespace palm
 static ::_pb::Metadata file_level_metadata_wechat_2eproto[7];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_wechat_2eproto[1];
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_wechat_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_wechat_2eproto = nullptr;
 
 const uint32_t TableStruct_wechat_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -241,44 +241,47 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_wechat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014wechat.proto\022\016palm.wechat.v1\"\223\001\n\031Oauth"
-  "2QrConnectUrlRequest\022\024\n\007subject\030\001 \001(\tH\000\210"
-  "\001\001\022<\n\004lang\030\t \001(\0162..palm.wechat.v1.Oauth2"
-  "QrConnectUrlRequest.Lang\"\026\n\004Lang\022\006\n\002Cn\020\000"
-  "\022\006\n\002En\020\001B\n\n\010_subject\")\n\032Oauth2QrConnectU"
-  "rlResponse\022\013\n\003url\030\001 \001(\t\"p\n\023Oauth2SignInR"
-  "equest\022\014\n\004code\030\001 \001(\t\022\r\n\005state\030\002 \001(\t\022<\n\004l"
-  "ang\030\t \001(\0162..palm.wechat.v1.Oauth2QrConne"
-  "ctUrlRequest.Lang\"\310\002\n\024Oauth2SignInRespon"
-  "se\022@\n\tuser_info\030\001 \001(\0132-.palm.wechat.v1.O"
-  "auth2SignInResponse.UserInfo\022\r\n\005token\030\002 "
-  "\001(\014\022\024\n\007subject\030\t \001(\tH\000\210\001\001\032\274\001\n\010UserInfo\022\017"
-  "\n\007open_id\030\001 \001(\t\022\020\n\010nickname\030\002 \001(\t\022\013\n\003sex"
-  "\030\003 \001(\r\022\020\n\010province\030\004 \001(\t\022\014\n\004city\030\005 \001(\t\022\017"
-  "\n\007country\030\006 \001(\t\022\031\n\014head_img_url\030\007 \001(\tH\000\210"
-  "\001\001\022\021\n\tprivilege\030\010 \003(\t\022\020\n\010union_id\030\t \001(\tB"
-  "\017\n\r_head_img_urlB\n\n\010_subject\".\n\036MiniProg"
-  "ramCode2SessionRequest\022\014\n\004code\030\001 \001(\t\"V\n\037"
-  "MiniProgramCode2SessionResponse\022\025\n\010union"
-  "_id\030\001 \001(\tH\000\210\001\001\022\017\n\007open_id\030\002 \001(\tB\013\n\t_unio"
-  "n_id2\310\001\n\006Oauth2\022g\n\014QrConnectUrl\022).palm.w"
-  "echat.v1.Oauth2QrConnectUrlRequest\032*.pal"
-  "m.wechat.v1.Oauth2QrConnectUrlResponse\"\000"
-  "\022U\n\006SignIn\022#.palm.wechat.v1.Oauth2SignIn"
-  "Request\032$.palm.wechat.v1.Oauth2SignInRes"
-  "ponse\"\0002\200\001\n\013MiniProgram\022q\n\014Code2Session\022"
-  "..palm.wechat.v1.MiniProgramCode2Session"
-  "Request\032/.palm.wechat.v1.MiniProgramCode"
-  "2SessionResponse\"\0002\005\n\003PayB_\n,com.github."
-  "saturn_xiv.palm.plugins.wechat.v1P\001Z-git"
-  "hub.com/saturn-xiv/palm/wechat/services/"
-  "v2b\006proto3"
+  "\n\014wechat.proto\022\016palm.wechat.v1\032\014balsam.p"
+  "roto\"\204\001\n\031Oauth2QrConnectUrlRequest\022\024\n\007su"
+  "bject\030\001 \001(\tH\000\210\001\001\022E\n\004lang\030\t \001(\01627.palm.ba"
+  "lsam.v1.WechatOauth2UserIndexResponse.It"
+  "em.LangB\n\n\010_subject\")\n\032Oauth2QrConnectUr"
+  "lResponse\022\013\n\003url\030\001 \001(\t\"y\n\023Oauth2SignInRe"
+  "quest\022\014\n\004code\030\001 \001(\t\022\r\n\005state\030\002 \001(\t\022E\n\004la"
+  "ng\030\t \001(\01627.palm.balsam.v1.WechatOauth2Us"
+  "erIndexResponse.Item.Lang\"\310\002\n\024Oauth2Sign"
+  "InResponse\022@\n\tuser_info\030\001 \001(\0132-.palm.wec"
+  "hat.v1.Oauth2SignInResponse.UserInfo\022\r\n\005"
+  "token\030\002 \001(\014\022\024\n\007subject\030\t \001(\tH\000\210\001\001\032\274\001\n\010Us"
+  "erInfo\022\017\n\007open_id\030\001 \001(\t\022\020\n\010nickname\030\002 \001("
+  "\t\022\013\n\003sex\030\003 \001(\r\022\020\n\010province\030\004 \001(\t\022\014\n\004city"
+  "\030\005 \001(\t\022\017\n\007country\030\006 \001(\t\022\031\n\014head_img_url\030"
+  "\007 \001(\tH\000\210\001\001\022\021\n\tprivilege\030\010 \003(\t\022\020\n\010union_i"
+  "d\030\t \001(\tB\017\n\r_head_img_urlB\n\n\010_subject\".\n\036"
+  "MiniProgramCode2SessionRequest\022\014\n\004code\030\001"
+  " \001(\t\"V\n\037MiniProgramCode2SessionResponse\022"
+  "\025\n\010union_id\030\001 \001(\tH\000\210\001\001\022\017\n\007open_id\030\002 \001(\tB"
+  "\013\n\t_union_id2\310\001\n\006Oauth2\022g\n\014QrConnectUrl\022"
+  ").palm.wechat.v1.Oauth2QrConnectUrlReque"
+  "st\032*.palm.wechat.v1.Oauth2QrConnectUrlRe"
+  "sponse\"\000\022U\n\006SignIn\022#.palm.wechat.v1.Oaut"
+  "h2SignInRequest\032$.palm.wechat.v1.Oauth2S"
+  "ignInResponse\"\0002\200\001\n\013MiniProgram\022q\n\014Code2"
+  "Session\022..palm.wechat.v1.MiniProgramCode"
+  "2SessionRequest\032/.palm.wechat.v1.MiniPro"
+  "gramCode2SessionResponse\"\0002\005\n\003PayBf\n,com"
+  ".github.saturn_xiv.palm.plugins.wechat.v"
+  "1P\001Z4github.com/saturn-xiv/palm/atropa/w"
+  "echat/services/v2b\006proto3"
   ;
+static const ::_pbi::DescriptorTable* const descriptor_table_wechat_2eproto_deps[1] = {
+  &::descriptor_table_balsam_2eproto,
+};
 static ::_pbi::once_flag descriptor_table_wechat_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_wechat_2eproto = {
-    false, false, 1250, descriptor_table_protodef_wechat_2eproto,
+    false, false, 1265, descriptor_table_protodef_wechat_2eproto,
     "wechat.proto",
-    &descriptor_table_wechat_2eproto_once, nullptr, 0, 7,
+    &descriptor_table_wechat_2eproto_once, descriptor_table_wechat_2eproto_deps, 1, 7,
     schemas, file_default_instances, TableStruct_wechat_2eproto::offsets,
     file_level_metadata_wechat_2eproto, file_level_enum_descriptors_wechat_2eproto,
     file_level_service_descriptors_wechat_2eproto,
@@ -292,27 +295,6 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_in
 namespace palm {
 namespace wechat {
 namespace v1 {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Oauth2QrConnectUrlRequest_Lang_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_wechat_2eproto);
-  return file_level_enum_descriptors_wechat_2eproto[0];
-}
-bool Oauth2QrConnectUrlRequest_Lang_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-      return true;
-    default:
-      return false;
-  }
-}
-
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-constexpr Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest::Cn;
-constexpr Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest::En;
-constexpr Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest::Lang_MIN;
-constexpr Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest::Lang_MAX;
-constexpr int Oauth2QrConnectUrlRequest::Lang_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
 // ===================================================================
 
@@ -418,12 +400,12 @@ const char* Oauth2QrConnectUrlRequest::_InternalParse(const char* ptr, ::_pbi::P
         } else
           goto handle_unusual;
         continue;
-      // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+      // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          _internal_set_lang(static_cast<::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang>(val));
+          _internal_set_lang(static_cast<::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang>(val));
         } else
           goto handle_unusual;
         continue;
@@ -467,7 +449,7 @@ uint8_t* Oauth2QrConnectUrlRequest::_InternalSerialize(
         1, this->_internal_subject(), target);
   }
 
-  // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
   if (this->_internal_lang() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -498,7 +480,7 @@ size_t Oauth2QrConnectUrlRequest::ByteSizeLong() const {
         this->_internal_subject());
   }
 
-  // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
   if (this->_internal_lang() != 0) {
     total_size += 1 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_lang());
@@ -883,12 +865,12 @@ const char* Oauth2SignInRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
         } else
           goto handle_unusual;
         continue;
-      // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+      // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          _internal_set_lang(static_cast<::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang>(val));
+          _internal_set_lang(static_cast<::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang>(val));
         } else
           goto handle_unusual;
         continue;
@@ -941,7 +923,7 @@ uint8_t* Oauth2SignInRequest::_InternalSerialize(
         2, this->_internal_state(), target);
   }
 
-  // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
   if (this->_internal_lang() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -978,7 +960,7 @@ size_t Oauth2SignInRequest::ByteSizeLong() const {
         this->_internal_state());
   }
 
-  // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
   if (this->_internal_lang() != 0) {
     total_size += 1 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_lang());

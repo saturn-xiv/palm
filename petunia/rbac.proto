@@ -1,7 +1,7 @@
 syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.rbac.v1";
-option go_package = "github.com/saturn-xiv/palm/rbac/services/v2";
+option go_package = "github.com/saturn-xiv/palm/atropa/rbac/services/v2";
 package palm.rbac.v1;
 
 import "google/protobuf/empty.proto";

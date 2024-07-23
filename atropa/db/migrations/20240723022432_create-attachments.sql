@@ -1,7 +1,8 @@
 -- migrate:up
 CREATE TABLE attachments(
     id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,    
+    user_id BIGINT NOT NULL,
+    public BOOL NOT NULL DEFAULT FALSE,
     bucket VARCHAR(63) NOT NULL,
     object VARCHAR(63) NOT NULL,
     title VARCHAR(127) NOT NULL,

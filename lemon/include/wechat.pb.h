@@ -29,8 +29,8 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "balsam.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_wechat_2eproto
@@ -85,31 +85,6 @@ namespace palm {
 namespace wechat {
 namespace v1 {
 
-enum Oauth2QrConnectUrlRequest_Lang : int {
-  Oauth2QrConnectUrlRequest_Lang_Cn = 0,
-  Oauth2QrConnectUrlRequest_Lang_En = 1,
-  Oauth2QrConnectUrlRequest_Lang_Oauth2QrConnectUrlRequest_Lang_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  Oauth2QrConnectUrlRequest_Lang_Oauth2QrConnectUrlRequest_Lang_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool Oauth2QrConnectUrlRequest_Lang_IsValid(int value);
-constexpr Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest_Lang_Lang_MIN = Oauth2QrConnectUrlRequest_Lang_Cn;
-constexpr Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest_Lang_Lang_MAX = Oauth2QrConnectUrlRequest_Lang_En;
-constexpr int Oauth2QrConnectUrlRequest_Lang_Lang_ARRAYSIZE = Oauth2QrConnectUrlRequest_Lang_Lang_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Oauth2QrConnectUrlRequest_Lang_descriptor();
-template<typename T>
-inline const std::string& Oauth2QrConnectUrlRequest_Lang_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, Oauth2QrConnectUrlRequest_Lang>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function Oauth2QrConnectUrlRequest_Lang_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    Oauth2QrConnectUrlRequest_Lang_descriptor(), enum_t_value);
-}
-inline bool Oauth2QrConnectUrlRequest_Lang_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Oauth2QrConnectUrlRequest_Lang* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Oauth2QrConnectUrlRequest_Lang>(
-    Oauth2QrConnectUrlRequest_Lang_descriptor(), name, value);
-}
 // ===================================================================
 
 class Oauth2QrConnectUrlRequest final :
@@ -230,36 +205,6 @@ class Oauth2QrConnectUrlRequest final :
 
   // nested types ----------------------------------------------------
 
-  typedef Oauth2QrConnectUrlRequest_Lang Lang;
-  static constexpr Lang Cn =
-    Oauth2QrConnectUrlRequest_Lang_Cn;
-  static constexpr Lang En =
-    Oauth2QrConnectUrlRequest_Lang_En;
-  static inline bool Lang_IsValid(int value) {
-    return Oauth2QrConnectUrlRequest_Lang_IsValid(value);
-  }
-  static constexpr Lang Lang_MIN =
-    Oauth2QrConnectUrlRequest_Lang_Lang_MIN;
-  static constexpr Lang Lang_MAX =
-    Oauth2QrConnectUrlRequest_Lang_Lang_MAX;
-  static constexpr int Lang_ARRAYSIZE =
-    Oauth2QrConnectUrlRequest_Lang_Lang_ARRAYSIZE;
-  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
-  Lang_descriptor() {
-    return Oauth2QrConnectUrlRequest_Lang_descriptor();
-  }
-  template<typename T>
-  static inline const std::string& Lang_Name(T enum_t_value) {
-    static_assert(::std::is_same<T, Lang>::value ||
-      ::std::is_integral<T>::value,
-      "Incorrect type passed to function Lang_Name.");
-    return Oauth2QrConnectUrlRequest_Lang_Name(enum_t_value);
-  }
-  static inline bool Lang_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
-      Lang* value) {
-    return Oauth2QrConnectUrlRequest_Lang_Parse(name, value);
-  }
-
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -284,13 +229,13 @@ class Oauth2QrConnectUrlRequest final :
   std::string* _internal_mutable_subject();
   public:
 
-  // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
   void clear_lang();
-  ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang lang() const;
-  void set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value);
+  ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang lang() const;
+  void set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value);
   private:
-  ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang _internal_lang() const;
-  void _internal_set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value);
+  ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang _internal_lang() const;
+  void _internal_set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value);
   public:
 
   // @@protoc_insertion_point(class_scope:palm.wechat.v1.Oauth2QrConnectUrlRequest)
@@ -617,13 +562,13 @@ class Oauth2SignInRequest final :
   std::string* _internal_mutable_state();
   public:
 
-  // .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
   void clear_lang();
-  ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang lang() const;
-  void set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value);
+  ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang lang() const;
+  void set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value);
   private:
-  ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang _internal_lang() const;
-  void _internal_set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value);
+  ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang _internal_lang() const;
+  void _internal_set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value);
   public:
 
   // @@protoc_insertion_point(class_scope:palm.wechat.v1.Oauth2SignInRequest)
@@ -1535,22 +1480,22 @@ inline void Oauth2QrConnectUrlRequest::set_allocated_subject(std::string* subjec
   // @@protoc_insertion_point(field_set_allocated:palm.wechat.v1.Oauth2QrConnectUrlRequest.subject)
 }
 
-// .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+// .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
 inline void Oauth2QrConnectUrlRequest::clear_lang() {
   _impl_.lang_ = 0;
 }
-inline ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest::_internal_lang() const {
-  return static_cast< ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang >(_impl_.lang_);
+inline ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang Oauth2QrConnectUrlRequest::_internal_lang() const {
+  return static_cast< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang >(_impl_.lang_);
 }
-inline ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang Oauth2QrConnectUrlRequest::lang() const {
+inline ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang Oauth2QrConnectUrlRequest::lang() const {
   // @@protoc_insertion_point(field_get:palm.wechat.v1.Oauth2QrConnectUrlRequest.lang)
   return _internal_lang();
 }
-inline void Oauth2QrConnectUrlRequest::_internal_set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value) {
+inline void Oauth2QrConnectUrlRequest::_internal_set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value) {
   
   _impl_.lang_ = value;
 }
-inline void Oauth2QrConnectUrlRequest::set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value) {
+inline void Oauth2QrConnectUrlRequest::set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value) {
   _internal_set_lang(value);
   // @@protoc_insertion_point(field_set:palm.wechat.v1.Oauth2QrConnectUrlRequest.lang)
 }
@@ -1713,22 +1658,22 @@ inline void Oauth2SignInRequest::set_allocated_state(std::string* state) {
   // @@protoc_insertion_point(field_set_allocated:palm.wechat.v1.Oauth2SignInRequest.state)
 }
 
-// .palm.wechat.v1.Oauth2QrConnectUrlRequest.Lang lang = 9;
+// .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 9;
 inline void Oauth2SignInRequest::clear_lang() {
   _impl_.lang_ = 0;
 }
-inline ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang Oauth2SignInRequest::_internal_lang() const {
-  return static_cast< ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang >(_impl_.lang_);
+inline ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang Oauth2SignInRequest::_internal_lang() const {
+  return static_cast< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang >(_impl_.lang_);
 }
-inline ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang Oauth2SignInRequest::lang() const {
+inline ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang Oauth2SignInRequest::lang() const {
   // @@protoc_insertion_point(field_get:palm.wechat.v1.Oauth2SignInRequest.lang)
   return _internal_lang();
 }
-inline void Oauth2SignInRequest::_internal_set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value) {
+inline void Oauth2SignInRequest::_internal_set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value) {
   
   _impl_.lang_ = value;
 }
-inline void Oauth2SignInRequest::set_lang(::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang value) {
+inline void Oauth2SignInRequest::set_lang(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang value) {
   _internal_set_lang(value);
   // @@protoc_insertion_point(field_set:palm.wechat.v1.Oauth2SignInRequest.lang)
 }
@@ -2609,16 +2554,6 @@ inline void MiniProgramCode2SessionResponse::set_allocated_open_id(std::string* 
 }  // namespace v1
 }  // namespace wechat
 }  // namespace palm
-
-PROTOBUF_NAMESPACE_OPEN
-
-template <> struct is_proto_enum< ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang>() {
-  return ::palm::wechat::v1::Oauth2QrConnectUrlRequest_Lang_descriptor();
-}
-
-PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

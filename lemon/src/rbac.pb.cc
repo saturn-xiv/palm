@@ -656,17 +656,17 @@ const char descriptor_table_protodef_rbac_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "licyPermissionsForRoleRequest\032\026.google.p"
   "rotobuf.Empty\"\000\022c\n\030DeletePermissionsForR"
   "ole\022-.palm.rbac.v1.PolicyPermissionsForR"
-  "oleRequest\032\026.google.protobuf.Empty\"\000B[\n*"
+  "oleRequest\032\026.google.protobuf.Empty\"\000Bb\n*"
   "com.github.saturn_xiv.palm.plugins.rbac."
-  "v1P\001Z+github.com/saturn-xiv/palm/rbac/se"
-  "rvices/v2b\006proto3"
+  "v1P\001Z2github.com/saturn-xiv/palm/atropa/"
+  "rbac/services/v2b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_rbac_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_rbac_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_rbac_2eproto = {
-    false, false, 4137, descriptor_table_protodef_rbac_2eproto,
+    false, false, 4144, descriptor_table_protodef_rbac_2eproto,
     "rbac.proto",
     &descriptor_table_rbac_2eproto_once, descriptor_table_rbac_2eproto_deps, 1, 23,
     schemas, file_default_instances, TableStruct_rbac_2eproto::offsets,

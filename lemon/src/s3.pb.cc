@@ -278,16 +278,17 @@ const char descriptor_table_protodef_s3_2eproto[] PROTOBUF_SECTION_VARIABLE(prot
   "rl\022\037.palm.s3.v1.PermanentUrlRequest\032\027.pa"
   "lm.s3.v1.UrlResponse\"\000\022J\n\014PresignedUrl\022\037"
   ".palm.s3.v1.PresignedUrlRequest\032\027.palm.s"
-  "3.v1.UrlResponse\"\000BW\n(com.github.saturn_"
-  "xiv.palm.plugins.s3.v1P\001Z)github.com/sat"
-  "urn-xiv/palm/s3/services/v2b\006proto3"
+  "3.v1.UrlResponse\"\000B^\n(com.github.saturn_"
+  "xiv.palm.plugins.s3.v1P\001Z0github.com/sat"
+  "urn-xiv/palm/atropa/s3/services/v2b\006prot"
+  "o3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_s3_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_s3_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_s3_2eproto = {
-    false, false, 1075, descriptor_table_protodef_s3_2eproto,
+    false, false, 1082, descriptor_table_protodef_s3_2eproto,
     "s3.proto",
     &descriptor_table_s3_2eproto_once, descriptor_table_s3_2eproto_deps, 1, 8,
     schemas, file_default_instances, TableStruct_s3_2eproto::offsets,

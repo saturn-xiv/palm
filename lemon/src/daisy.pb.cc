@@ -190,14 +190,14 @@ const char descriptor_table_protodef_daisy_2eproto[] PROTOBUF_SECTION_VARIABLE(p
   "e\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\032\"\n\004Body\022\014\n\004text\030\001"
   " \001(\t\022\014\n\004html\030\002 \001(\010\032O\n\nAttachment\022\r\n\005titl"
   "e\030\001 \001(\t\022\024\n\014content_type\030\002 \001(\t\022\016\n\006inline\030"
-  "\003 \001(\010\022\014\n\004body\030\t \001(\014B]\n+com.github.saturn"
-  "_xiv.palm.plugins.daisy.v1P\001Z,github.com"
-  "/saturn-xiv/palm/daisy/services/v2b\006prot"
-  "o3"
+  "\003 \001(\010\022\014\n\004body\030\t \001(\014Bd\n+com.github.saturn"
+  "_xiv.palm.plugins.daisy.v1P\001Z3github.com"
+  "/saturn-xiv/palm/atropa/daisy/services/v"
+  "2b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_daisy_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_daisy_2eproto = {
-    false, false, 642, descriptor_table_protodef_daisy_2eproto,
+    false, false, 649, descriptor_table_protodef_daisy_2eproto,
     "daisy.proto",
     &descriptor_table_daisy_2eproto_once, nullptr, 0, 5,
     schemas, file_default_instances, TableStruct_daisy_2eproto::offsets,

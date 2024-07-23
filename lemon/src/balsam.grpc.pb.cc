@@ -333,7 +333,16 @@ HMac::Service::~Service() {
 
 
 static const char* User_method_names[] = {
-  "/palm.balsam.v1.User/SignInByEmail",
+  "/palm.balsam.v1.User/Lock",
+  "/palm.balsam.v1.User/Unlock",
+  "/palm.balsam.v1.User/Disable",
+  "/palm.balsam.v1.User/Enable",
+  "/palm.balsam.v1.User/Logs",
+  "/palm.balsam.v1.User/SignOut",
+  "/palm.balsam.v1.User/Index",
+  "/palm.balsam.v1.User/UpdateProfile",
+  "/palm.balsam.v1.User/ById",
+  "/palm.balsam.v1.User/ByUid",
 };
 
 std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -343,28 +352,244 @@ std::unique_ptr< User::Stub> User::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_SignInByEmail_(User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Lock_(User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Unlock_(User_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Disable_(User_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(User_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Logs_(User_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SignOut_(User_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(User_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateProfile_(User_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ById_(User_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByUid_(User_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status User::Stub::SignInByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmail& request, ::palm::balsam::v1::UserSignInResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserSignInByEmail, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignInByEmail_, context, request, response);
+::grpc::Status User::Stub::Lock(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Lock_, context, request, response);
 }
 
-void User::Stub::async::SignInByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmail* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserSignInByEmail, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignInByEmail_, context, request, response, std::move(f));
+void User::Stub::async::Lock(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Lock_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::SignInByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmail* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignInByEmail_, context, request, response, reactor);
+void User::Stub::async::Lock(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Lock_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* User::Stub::PrepareAsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmail& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserSignInResponse, ::palm::balsam::v1::UserSignInByEmail, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignInByEmail_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncLockRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Lock_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* User::Stub::AsyncSignInByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmail& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncLockRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncSignInByEmailRaw(context, request, cq);
+    this->PrepareAsyncLockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Unlock(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Unlock_, context, request, response);
+}
+
+void User::Stub::async::Unlock(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Unlock_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Unlock(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Unlock_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Unlock_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncUnlockRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUnlockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::palm::balsam::v1::UserLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
+}
+
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* User::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserLogsResponse, ::palm::balsam::v1::LogsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* User::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLogsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignOut_, context, request, response);
+}
+
+void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignOut_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignOut_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignOut_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSignOutRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::UserIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse>* User::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse>* User::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::UpdateProfile(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserUpdateProfileRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateProfile_, context, request, response);
+}
+
+void User::Stub::async::UpdateProfile(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserUpdateProfileRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateProfile_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::UpdateProfile(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateProfile_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncUpdateProfileRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserUpdateProfileRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateProfile_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncUpdateProfileRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdateProfileRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::UserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ById_, context, request, response);
+}
+
+void User::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::UserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::UserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse_Item>* User::Stub::PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserIndexResponse_Item, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ById_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse_Item>* User::Stub::AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status User::Stub::ByUid(::grpc::ClientContext* context, const ::palm::balsam::v1::UidRequest& request, ::palm::balsam::v1::UserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UidRequest, ::palm::balsam::v1::UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByUid_, context, request, response);
+}
+
+void User::Stub::async::ByUid(::grpc::ClientContext* context, const ::palm::balsam::v1::UidRequest* request, ::palm::balsam::v1::UserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UidRequest, ::palm::balsam::v1::UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUid_, context, request, response, std::move(f));
+}
+
+void User::Stub::async::ByUid(::grpc::ClientContext* context, const ::palm::balsam::v1::UidRequest* request, ::palm::balsam::v1::UserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUid_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse_Item>* User::Stub::PrepareAsyncByUidRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UidRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserIndexResponse_Item, ::palm::balsam::v1::UidRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByUid_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse_Item>* User::Stub::AsyncByUidRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UidRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByUidRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -373,19 +598,2176 @@ User::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::UserSignInByEmail, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::balsam::v1::UserSignInByEmail* req,
-             ::palm::balsam::v1::UserSignInResponse* resp) {
-               return service->SignInByEmail(ctx, req, resp);
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Lock(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Unlock(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::LogsRequest* req,
+             ::palm::balsam::v1::UserLogsResponse* resp) {
+               return service->Logs(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SignOut(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::Pager, ::palm::balsam::v1::UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::balsam::v1::UserIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::UserUpdateProfileRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserUpdateProfileRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->UpdateProfile(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::UserIndexResponse_Item* resp) {
+               return service->ById(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      User_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::UidRequest, ::palm::balsam::v1::UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UidRequest* req,
+             ::palm::balsam::v1::UserIndexResponse_Item* resp) {
+               return service->ByUid(ctx, req, resp);
              }, this)));
 }
 
 User::Service::~Service() {
 }
 
-::grpc::Status User::Service::SignInByEmail(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignInByEmail* request, ::palm::balsam::v1::UserSignInResponse* response) {
+::grpc::Status User::Service::Lock(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Unlock(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Enable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Logs(::grpc::ServerContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::SignOut(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::UpdateProfile(::grpc::ServerContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::UserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status User::Service::ByUid(::grpc::ServerContext* context, const ::palm::balsam::v1::UidRequest* request, ::palm::balsam::v1::UserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* EmailUser_method_names[] = {
+  "/palm.balsam.v1.EmailUser/SignIn",
+  "/palm.balsam.v1.EmailUser/SignUp",
+  "/palm.balsam.v1.EmailUser/ConfirmByEmail",
+  "/palm.balsam.v1.EmailUser/ConfirmByToken",
+  "/palm.balsam.v1.EmailUser/UnlockByEmail",
+  "/palm.balsam.v1.EmailUser/UnlockByToken",
+  "/palm.balsam.v1.EmailUser/ForgotPassword",
+  "/palm.balsam.v1.EmailUser/ResetPassword",
+  "/palm.balsam.v1.EmailUser/Confirm",
+  "/palm.balsam.v1.EmailUser/Disable",
+  "/palm.balsam.v1.EmailUser/Enable",
+  "/palm.balsam.v1.EmailUser/Index",
+  "/palm.balsam.v1.EmailUser/ById",
+  "/palm.balsam.v1.EmailUser/ByNickname",
+  "/palm.balsam.v1.EmailUser/ByEmail",
+};
+
+std::unique_ptr< EmailUser::Stub> EmailUser::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< EmailUser::Stub> stub(new EmailUser::Stub(channel, options));
+  return stub;
+}
+
+EmailUser::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_SignIn_(EmailUser_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SignUp_(EmailUser_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConfirmByEmail_(EmailUser_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ConfirmByToken_(EmailUser_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UnlockByEmail_(EmailUser_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UnlockByToken_(EmailUser_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ForgotPassword_(EmailUser_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ResetPassword_(EmailUser_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Confirm_(EmailUser_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Disable_(EmailUser_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(EmailUser_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(EmailUser_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ById_(EmailUser_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByNickname_(EmailUser_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByEmail_(EmailUser_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status EmailUser::Stub::SignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::palm::balsam::v1::UserSignInResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserSignInByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignIn_, context, request, response);
+}
+
+void EmailUser::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserSignInByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignIn_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignIn_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* EmailUser::Stub::PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserSignInResponse, ::palm::balsam::v1::UserSignInByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignIn_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* EmailUser::Stub::AsyncSignInRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSignInRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::palm::balsam::v1::UserSignInResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignUp_, context, request, response);
+}
+
+void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignUp_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignUp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* EmailUser::Stub::PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserSignInResponse, ::palm::balsam::v1::UserSignUpByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignUp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* EmailUser::Stub::AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSignUpRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ConfirmByEmail_, context, request, response);
+}
+
+void EmailUser::Stub::async::ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByEmail_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ConfirmByEmail_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncConfirmByEmailRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ConfirmByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ConfirmByToken_, context, request, response);
+}
+
+void EmailUser::Stub::async::ConfirmByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByToken_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ConfirmByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ConfirmByToken_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserByTokenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ConfirmByToken_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncConfirmByTokenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::UnlockByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UnlockByEmail_, context, request, response);
+}
+
+void EmailUser::Stub::async::UnlockByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByEmail_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::UnlockByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncUnlockByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UnlockByEmail_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncUnlockByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUnlockByEmailRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::UnlockByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UnlockByToken_, context, request, response);
+}
+
+void EmailUser::Stub::async::UnlockByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByToken_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::UnlockByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnlockByToken_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserByTokenRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UnlockByToken_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncUnlockByTokenRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUnlockByTokenRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ForgotPassword(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ForgotPassword_, context, request, response);
+}
+
+void EmailUser::Stub::async::ForgotPassword(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ForgotPassword_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ForgotPassword(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ForgotPassword_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ForgotPassword_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncForgotPasswordRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncForgotPasswordRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ResetPassword(::grpc::ClientContext* context, const ::palm::balsam::v1::UserResetPasswordRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserResetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ResetPassword_, context, request, response);
+}
+
+void EmailUser::Stub::async::ResetPassword(::grpc::ClientContext* context, const ::palm::balsam::v1::UserResetPasswordRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserResetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetPassword_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ResetPassword(::grpc::ClientContext* context, const ::palm::balsam::v1::UserResetPasswordRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ResetPassword_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserResetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserResetPasswordRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ResetPassword_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncResetPasswordRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserResetPasswordRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncResetPasswordRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Confirm(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Confirm_, context, request, response);
+}
+
+void EmailUser::Stub::async::Confirm(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Confirm_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Confirm(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Confirm_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Confirm_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncConfirmRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncConfirmRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void EmailUser::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void EmailUser::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::EmailUserIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::EmailUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void EmailUser::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::EmailUserIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::EmailUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::EmailUserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse>* EmailUser::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::EmailUserIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse>* EmailUser::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ById_, context, request, response);
+}
+
+void EmailUser::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse_Item>* EmailUser::Stub::PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::EmailUserIndexResponse_Item, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ById_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse_Item>* EmailUser::Stub::AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ByNickname(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByNicknameRequest& request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::EmailUserByNicknameRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByNickname_, context, request, response);
+}
+
+void EmailUser::Stub::async::ByNickname(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByNicknameRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::EmailUserByNicknameRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByNickname_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ByNickname(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByNicknameRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByNickname_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse_Item>* EmailUser::Stub::PrepareAsyncByNicknameRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByNicknameRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::EmailUserIndexResponse_Item, ::palm::balsam::v1::EmailUserByNicknameRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByNickname_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse_Item>* EmailUser::Stub::AsyncByNicknameRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByNicknameRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByNicknameRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status EmailUser::Stub::ByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByEmailRequest& request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::EmailUserByEmailRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByEmail_, context, request, response);
+}
+
+void EmailUser::Stub::async::ByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByEmailRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::EmailUserByEmailRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByEmail_, context, request, response, std::move(f));
+}
+
+void EmailUser::Stub::async::ByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByEmailRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByEmail_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse_Item>* EmailUser::Stub::PrepareAsyncByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::EmailUserIndexResponse_Item, ::palm::balsam::v1::EmailUserByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByEmail_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::EmailUserIndexResponse_Item>* EmailUser::Stub::AsyncByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::EmailUserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByEmailRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+EmailUser::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserSignInByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserSignInByEmailRequest* req,
+             ::palm::balsam::v1::UserSignInResponse* resp) {
+               return service->SignIn(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserSignUpByEmailRequest* req,
+             ::palm::balsam::v1::UserSignInResponse* resp) {
+               return service->SignUp(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserByEmailRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ConfirmByEmail(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserByTokenRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ConfirmByToken(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserByEmailRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->UnlockByEmail(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserByTokenRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserByTokenRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->UnlockByToken(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserByEmailRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ForgotPassword(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserResetPasswordRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::UserResetPasswordRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->ResetPassword(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Confirm(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::Pager, ::palm::balsam::v1::EmailUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::balsam::v1::EmailUserIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[12],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::EmailUserIndexResponse_Item* resp) {
+               return service->ById(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[13],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::EmailUserByNicknameRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::EmailUserByNicknameRequest* req,
+             ::palm::balsam::v1::EmailUserIndexResponse_Item* resp) {
+               return service->ByNickname(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      EmailUser_method_names[14],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::EmailUserByEmailRequest, ::palm::balsam::v1::EmailUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](EmailUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::EmailUserByEmailRequest* req,
+             ::palm::balsam::v1::EmailUserIndexResponse_Item* resp) {
+               return service->ByEmail(ctx, req, resp);
+             }, this)));
+}
+
+EmailUser::Service::~Service() {
+}
+
+::grpc::Status EmailUser::Service::SignIn(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::SignUp(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ConfirmByEmail(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ConfirmByToken(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::UnlockByEmail(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::UnlockByToken(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ForgotPassword(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ResetPassword(::grpc::ServerContext* context, const ::palm::balsam::v1::UserResetPasswordRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Confirm(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Enable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::EmailUserIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ByNickname(::grpc::ServerContext* context, const ::palm::balsam::v1::EmailUserByNicknameRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status EmailUser::Service::ByEmail(::grpc::ServerContext* context, const ::palm::balsam::v1::EmailUserByEmailRequest* request, ::palm::balsam::v1::EmailUserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* GoogleOauth2User_method_names[] = {
+  "/palm.balsam.v1.GoogleOauth2User/Disable",
+  "/palm.balsam.v1.GoogleOauth2User/Enable",
+  "/palm.balsam.v1.GoogleOauth2User/Index",
+  "/palm.balsam.v1.GoogleOauth2User/ById",
+  "/palm.balsam.v1.GoogleOauth2User/BySubject",
+};
+
+std::unique_ptr< GoogleOauth2User::Stub> GoogleOauth2User::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< GoogleOauth2User::Stub> stub(new GoogleOauth2User::Stub(channel, options));
+  return stub;
+}
+
+GoogleOauth2User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Disable_(GoogleOauth2User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(GoogleOauth2User_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(GoogleOauth2User_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ById_(GoogleOauth2User_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_BySubject_(GoogleOauth2User_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status GoogleOauth2User::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void GoogleOauth2User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void GoogleOauth2User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* GoogleOauth2User::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* GoogleOauth2User::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GoogleOauth2User::Stub::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void GoogleOauth2User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void GoogleOauth2User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* GoogleOauth2User::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* GoogleOauth2User::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GoogleOauth2User::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::GoogleOauth2UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void GoogleOauth2User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::GoogleOauth2UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void GoogleOauth2User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::GoogleOauth2UserIndexResponse>* GoogleOauth2User::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::GoogleOauth2UserIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::GoogleOauth2UserIndexResponse>* GoogleOauth2User::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GoogleOauth2User::Stub::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ById_, context, request, response);
+}
+
+void GoogleOauth2User::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, std::move(f));
+}
+
+void GoogleOauth2User::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item>* GoogleOauth2User::Stub::PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ById_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item>* GoogleOauth2User::Stub::AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status GoogleOauth2User::Stub::BySubject(::grpc::ClientContext* context, const ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest& request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_BySubject_, context, request, response);
+}
+
+void GoogleOauth2User::Stub::async::BySubject(::grpc::ClientContext* context, const ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_BySubject_, context, request, response, std::move(f));
+}
+
+void GoogleOauth2User::Stub::async::BySubject(::grpc::ClientContext* context, const ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_BySubject_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item>* GoogleOauth2User::Stub::PrepareAsyncBySubjectRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_BySubject_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item>* GoogleOauth2User::Stub::AsyncBySubjectRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncBySubjectRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+GoogleOauth2User::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GoogleOauth2User_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GoogleOauth2User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GoogleOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GoogleOauth2User_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GoogleOauth2User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GoogleOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GoogleOauth2User_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GoogleOauth2User::Service, ::palm::balsam::v1::Pager, ::palm::balsam::v1::GoogleOauth2UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GoogleOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::balsam::v1::GoogleOauth2UserIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GoogleOauth2User_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GoogleOauth2User::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GoogleOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* resp) {
+               return service->ById(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GoogleOauth2User_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GoogleOauth2User::Service, ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GoogleOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest* req,
+             ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* resp) {
+               return service->BySubject(ctx, req, resp);
+             }, this)));
+}
+
+GoogleOauth2User::Service::~Service() {
+}
+
+::grpc::Status GoogleOauth2User::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GoogleOauth2User::Service::Enable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GoogleOauth2User::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GoogleOauth2User::Service::ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GoogleOauth2User::Service::BySubject(::grpc::ServerContext* context, const ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest* request, ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* WechatOauth2User_method_names[] = {
+  "/palm.balsam.v1.WechatOauth2User/Disable",
+  "/palm.balsam.v1.WechatOauth2User/Enable",
+  "/palm.balsam.v1.WechatOauth2User/Index",
+  "/palm.balsam.v1.WechatOauth2User/ById",
+  "/palm.balsam.v1.WechatOauth2User/ByUnionId",
+  "/palm.balsam.v1.WechatOauth2User/ByAppIdAndUnionId",
+};
+
+std::unique_ptr< WechatOauth2User::Stub> WechatOauth2User::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< WechatOauth2User::Stub> stub(new WechatOauth2User::Stub(channel, options));
+  return stub;
+}
+
+WechatOauth2User::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Disable_(WechatOauth2User_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(WechatOauth2User_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(WechatOauth2User_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ById_(WechatOauth2User_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByUnionId_(WechatOauth2User_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByAppIdAndUnionId_(WechatOauth2User_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status WechatOauth2User::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void WechatOauth2User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void WechatOauth2User::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatOauth2User::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatOauth2User::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatOauth2User::Stub::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void WechatOauth2User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void WechatOauth2User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatOauth2User::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatOauth2User::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatOauth2User::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::WechatOauth2UserIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::WechatOauth2UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void WechatOauth2User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::WechatOauth2UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void WechatOauth2User::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse>* WechatOauth2User::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatOauth2UserIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse>* WechatOauth2User::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatOauth2User::Stub::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ById_, context, request, response);
+}
+
+void WechatOauth2User::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, std::move(f));
+}
+
+void WechatOauth2User::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item>* WechatOauth2User::Stub::PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ById_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item>* WechatOauth2User::Stub::AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatOauth2User::Stub::ByUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest& request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::WechatByUnionIdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByUnionId_, context, request, response);
+}
+
+void WechatOauth2User::Stub::async::ByUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::WechatByUnionIdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUnionId_, context, request, response, std::move(f));
+}
+
+void WechatOauth2User::Stub::async::ByUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUnionId_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item>* WechatOauth2User::Stub::PrepareAsyncByUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::palm::balsam::v1::WechatByUnionIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByUnionId_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item>* WechatOauth2User::Stub::AsyncByUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByUnionIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatOauth2User::Stub::ByAppIdAndUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest& request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByAppIdAndUnionId_, context, request, response);
+}
+
+void WechatOauth2User::Stub::async::ByAppIdAndUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByAppIdAndUnionId_, context, request, response, std::move(f));
+}
+
+void WechatOauth2User::Stub::async::ByAppIdAndUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByAppIdAndUnionId_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item>* WechatOauth2User::Stub::PrepareAsyncByAppIdAndUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByAppIdAndUnionId_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item>* WechatOauth2User::Stub::AsyncByAppIdAndUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByAppIdAndUnionIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+WechatOauth2User::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatOauth2User_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatOauth2User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatOauth2User_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatOauth2User::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatOauth2User_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatOauth2User::Service, ::palm::balsam::v1::Pager, ::palm::balsam::v1::WechatOauth2UserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::balsam::v1::WechatOauth2UserIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatOauth2User_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatOauth2User::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* resp) {
+               return service->ById(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatOauth2User_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatOauth2User::Service, ::palm::balsam::v1::WechatByUnionIdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::WechatByUnionIdRequest* req,
+             ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* resp) {
+               return service->ByUnionId(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatOauth2User_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatOauth2User::Service, ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatOauth2User::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* req,
+             ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* resp) {
+               return service->ByAppIdAndUnionId(ctx, req, resp);
+             }, this)));
+}
+
+WechatOauth2User::Service::~Service() {
+}
+
+::grpc::Status WechatOauth2User::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatOauth2User::Service::Enable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatOauth2User::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatOauth2User::Service::ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatOauth2User::Service::ByUnionId(::grpc::ServerContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatOauth2User::Service::ByAppIdAndUnionId(::grpc::ServerContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* request, ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* WechatMiniProgramUser_method_names[] = {
+  "/palm.balsam.v1.WechatMiniProgramUser/Disable",
+  "/palm.balsam.v1.WechatMiniProgramUser/Enable",
+  "/palm.balsam.v1.WechatMiniProgramUser/Index",
+  "/palm.balsam.v1.WechatMiniProgramUser/ById",
+  "/palm.balsam.v1.WechatMiniProgramUser/ByUnionId",
+  "/palm.balsam.v1.WechatMiniProgramUser/ByAppIdAndUnionId",
+};
+
+std::unique_ptr< WechatMiniProgramUser::Stub> WechatMiniProgramUser::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< WechatMiniProgramUser::Stub> stub(new WechatMiniProgramUser::Stub(channel, options));
+  return stub;
+}
+
+WechatMiniProgramUser::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Disable_(WechatMiniProgramUser_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Enable_(WechatMiniProgramUser_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(WechatMiniProgramUser_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ById_(WechatMiniProgramUser_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByUnionId_(WechatMiniProgramUser_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByAppIdAndUnionId_(WechatMiniProgramUser_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status WechatMiniProgramUser::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void WechatMiniProgramUser::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void WechatMiniProgramUser::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatMiniProgramUser::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatMiniProgramUser::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatMiniProgramUser::Stub::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Enable_, context, request, response);
+}
+
+void WechatMiniProgramUser::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, std::move(f));
+}
+
+void WechatMiniProgramUser::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Enable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatMiniProgramUser::Stub::PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Enable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* WechatMiniProgramUser::Stub::AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncEnableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatMiniProgramUser::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void WechatMiniProgramUser::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void WechatMiniProgramUser::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse>* WechatMiniProgramUser::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse>* WechatMiniProgramUser::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatMiniProgramUser::Stub::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ById_, context, request, response);
+}
+
+void WechatMiniProgramUser::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, std::move(f));
+}
+
+void WechatMiniProgramUser::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item>* WechatMiniProgramUser::Stub::PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ById_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item>* WechatMiniProgramUser::Stub::AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatMiniProgramUser::Stub::ByUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest& request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::WechatByUnionIdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByUnionId_, context, request, response);
+}
+
+void WechatMiniProgramUser::Stub::async::ByUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::WechatByUnionIdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUnionId_, context, request, response, std::move(f));
+}
+
+void WechatMiniProgramUser::Stub::async::ByUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUnionId_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item>* WechatMiniProgramUser::Stub::PrepareAsyncByUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::palm::balsam::v1::WechatByUnionIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByUnionId_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item>* WechatMiniProgramUser::Stub::AsyncByUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByUnionIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status WechatMiniProgramUser::Stub::ByAppIdAndUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest& request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByAppIdAndUnionId_, context, request, response);
+}
+
+void WechatMiniProgramUser::Stub::async::ByAppIdAndUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByAppIdAndUnionId_, context, request, response, std::move(f));
+}
+
+void WechatMiniProgramUser::Stub::async::ByAppIdAndUnionId(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByAppIdAndUnionId_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item>* WechatMiniProgramUser::Stub::PrepareAsyncByAppIdAndUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByAppIdAndUnionId_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item>* WechatMiniProgramUser::Stub::AsyncByAppIdAndUnionIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByAppIdAndUnionIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+WechatMiniProgramUser::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatMiniProgramUser_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatMiniProgramUser::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatMiniProgramUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatMiniProgramUser_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatMiniProgramUser::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatMiniProgramUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Enable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatMiniProgramUser_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatMiniProgramUser::Service, ::palm::balsam::v1::Pager, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatMiniProgramUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::balsam::v1::WechatMiniProgramUserIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatMiniProgramUser_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatMiniProgramUser::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatMiniProgramUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* resp) {
+               return service->ById(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatMiniProgramUser_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatMiniProgramUser::Service, ::palm::balsam::v1::WechatByUnionIdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatMiniProgramUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::WechatByUnionIdRequest* req,
+             ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* resp) {
+               return service->ByUnionId(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      WechatMiniProgramUser_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< WechatMiniProgramUser::Service, ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](WechatMiniProgramUser::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* req,
+             ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* resp) {
+               return service->ByAppIdAndUnionId(ctx, req, resp);
+             }, this)));
+}
+
+WechatMiniProgramUser::Service::~Service() {
+}
+
+::grpc::Status WechatMiniProgramUser::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatMiniProgramUser::Service::Enable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatMiniProgramUser::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatMiniProgramUser::Service::ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatMiniProgramUser::Service::ByUnionId(::grpc::ServerContext* context, const ::palm::balsam::v1::WechatByUnionIdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status WechatMiniProgramUser::Service::ByAppIdAndUnionId(::grpc::ServerContext* context, const ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest* request, ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Session_method_names[] = {
+  "/palm.balsam.v1.Session/Disable",
+  "/palm.balsam.v1.Session/Index",
+  "/palm.balsam.v1.Session/ByUser",
+};
+
+std::unique_ptr< Session::Stub> Session::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Session::Stub> stub(new Session::Stub(channel, options));
+  return stub;
+}
+
+Session::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Disable_(Session_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(Session_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByUser_(Session_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Session::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void Session::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Session::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Session::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Session::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::SessionIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::SessionIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Session::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::SessionIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::SessionIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::SessionIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::SessionIndexResponse>* Session::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::SessionIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::SessionIndexResponse>* Session::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Session::Stub::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::SessionIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::SessionIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByUser_, context, request, response);
+}
+
+void Session::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::SessionIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::SessionIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, std::move(f));
+}
+
+void Session::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::SessionIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::SessionIndexResponse>* Session::Stub::PrepareAsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::SessionIndexResponse, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::SessionIndexResponse>* Session::Stub::AsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Session::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::palm::balsam::v1::Pager, ::palm::balsam::v1::SessionIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::balsam::v1::SessionIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Session_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Session::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::SessionIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Session::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::SessionIndexResponse* resp) {
+               return service->ByUser(ctx, req, resp);
+             }, this)));
+}
+
+Session::Service::~Service() {
+}
+
+::grpc::Status Session::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Session::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::SessionIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Session::Service::ByUser(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::SessionIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* Attachment_method_names[] = {
+  "/palm.balsam.v1.Attachment/Disable",
+  "/palm.balsam.v1.Attachment/Index",
+  "/palm.balsam.v1.Attachment/SetTitle",
+  "/palm.balsam.v1.Attachment/ById",
+  "/palm.balsam.v1.Attachment/ByUser",
+  "/palm.balsam.v1.Attachment/ByResourceType",
+  "/palm.balsam.v1.Attachment/Clear",
+  "/palm.balsam.v1.Attachment/ByResource",
+  "/palm.balsam.v1.Attachment/Create",
+  "/palm.balsam.v1.Attachment/SetUploadedAt",
+};
+
+std::unique_ptr< Attachment::Stub> Attachment::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Attachment::Stub> stub(new Attachment::Stub(channel, options));
+  return stub;
+}
+
+Attachment::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Disable_(Attachment_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(Attachment_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTitle_(Attachment_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ById_(Attachment_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByUser_(Attachment_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByResourceType_(Attachment_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Clear_(Attachment_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByResource_(Attachment_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Create_(Attachment_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetUploadedAt_(Attachment_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Attachment::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void Attachment::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Attachment::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::AttachmentIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::SetTitle(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentSetTitleRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetTitle_, context, request, response);
+}
+
+void Attachment::Stub::async::SetTitle(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTitle_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::SetTitle(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTitle_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::AttachmentSetTitleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetTitle_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetTitleRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::AttachmentIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ById_, context, request, response);
+}
+
+void Attachment::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse_Item>* Attachment::Stub::PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::AttachmentIndexResponse_Item, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ById_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse_Item>* Attachment::Stub::AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByUser_, context, request, response);
+}
+
+void Attachment::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::PrepareAsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::AttachmentIndexResponse, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::AsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::ByResourceType(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByResourceType_, context, request, response);
+}
+
+void Attachment::Stub::async::ByResourceType(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByResourceType_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::ByResourceType(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByResourceType_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::PrepareAsyncByResourceTypeRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::AttachmentIndexResponse, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByResourceType_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::AsyncByResourceTypeRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByResourceTypeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Clear_, context, request, response);
+}
+
+void Attachment::Stub::async::Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Clear_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Clear_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Clear_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncClearRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentByResourceRequest& request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::AttachmentByResourceRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByResource_, context, request, response);
+}
+
+void Attachment::Stub::async::ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentByResourceRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::AttachmentByResourceRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByResource_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentByResourceRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByResource_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::PrepareAsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentByResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::AttachmentIndexResponse, ::palm::balsam::v1::AttachmentByResourceRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByResource_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::AttachmentIndexResponse>* Attachment::Stub::AsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentByResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByResourceRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::Create(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentCreateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::AttachmentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Attachment::Stub::async::Create(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::AttachmentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Create(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::AttachmentCreateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetUploadedAt_, context, request, response);
+}
+
+void Attachment::Stub::async::SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetUploadedAt_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetUploadedAt_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetUploadedAt_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetUploadedAtRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Attachment::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::Pager, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::balsam::v1::AttachmentIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::AttachmentSetTitleRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetTitle(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::AttachmentIndexResponse_Item* resp) {
+               return service->ById(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::AttachmentIndexResponse* resp) {
+               return service->ByUser(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::balsam::v1::AttachmentIndexResponse* resp) {
+               return service->ByResourceType(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Clear(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::AttachmentByResourceRequest, ::palm::balsam::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::AttachmentByResourceRequest* req,
+             ::palm::balsam::v1::AttachmentIndexResponse* resp) {
+               return service->ByResource(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::AttachmentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::AttachmentCreateRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetUploadedAt(ctx, req, resp);
+             }, this)));
+}
+
+Attachment::Service::~Service() {
+}
+
+::grpc::Status Attachment::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::SetTitle(::grpc::ServerContext* context, const ::palm::balsam::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::ByUser(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::ByResourceType(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::Clear(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::ByResource(::grpc::ServerContext* context, const ::palm::balsam::v1::AttachmentByResourceRequest* request, ::palm::balsam::v1::AttachmentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::Create(::grpc::ServerContext* context, const ::palm::balsam::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::SetUploadedAt(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

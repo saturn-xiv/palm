@@ -407,14 +407,34 @@ var HMac_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	User_SignInByEmail_FullMethodName = "/palm.balsam.v1.User/SignInByEmail"
+	User_Lock_FullMethodName          = "/palm.balsam.v1.User/Lock"
+	User_Unlock_FullMethodName        = "/palm.balsam.v1.User/Unlock"
+	User_Disable_FullMethodName       = "/palm.balsam.v1.User/Disable"
+	User_Enable_FullMethodName        = "/palm.balsam.v1.User/Enable"
+	User_Logs_FullMethodName          = "/palm.balsam.v1.User/Logs"
+	User_SignOut_FullMethodName       = "/palm.balsam.v1.User/SignOut"
+	User_Index_FullMethodName         = "/palm.balsam.v1.User/Index"
+	User_UpdateProfile_FullMethodName = "/palm.balsam.v1.User/UpdateProfile"
+	User_ById_FullMethodName          = "/palm.balsam.v1.User/ById"
+	User_ByUid_FullMethodName         = "/palm.balsam.v1.User/ByUid"
 )
 
 // UserClient is the client API for User service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
 type UserClient interface {
-	SignInByEmail(ctx context.Context, in *UserSignInByEmail, opts ...grpc.CallOption) (*UserSignInResponse, error)
+	Lock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Unlock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Logs(ctx context.Context, in *LogsRequest, opts ...grpc.CallOption) (*UserLogsResponse, error)
+	SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserIndexResponse, error)
+	UpdateProfile(ctx context.Context, in *UserUpdateProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*UserIndexResponse_Item, error)
+	ByUid(ctx context.Context, in *UidRequest, opts ...grpc.CallOption) (*UserIndexResponse_Item, error)
 }
 
 type userClient struct {
@@ -425,10 +445,100 @@ func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 	return &userClient{cc}
 }
 
-func (c *userClient) SignInByEmail(ctx context.Context, in *UserSignInByEmail, opts ...grpc.CallOption) (*UserSignInResponse, error) {
+func (c *userClient) Lock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserSignInResponse)
-	err := c.cc.Invoke(ctx, User_SignInByEmail_FullMethodName, in, out, cOpts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Lock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Unlock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Unlock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Logs(ctx context.Context, in *LogsRequest, opts ...grpc.CallOption) (*UserLogsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserLogsResponse)
+	err := c.cc.Invoke(ctx, User_Logs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SignOut_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserIndexResponse)
+	err := c.cc.Invoke(ctx, User_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) UpdateProfile(ctx context.Context, in *UserUpdateProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_UpdateProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*UserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, User_ById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) ByUid(ctx context.Context, in *UidRequest, opts ...grpc.CallOption) (*UserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, User_ByUid_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -438,8 +548,19 @@ func (c *userClient) SignInByEmail(ctx context.Context, in *UserSignInByEmail, o
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility
+//
+// ----------------------------------------------------------------------------
 type UserServer interface {
-	SignInByEmail(context.Context, *UserSignInByEmail) (*UserSignInResponse, error)
+	Lock(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Unlock(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Enable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Logs(context.Context, *LogsRequest) (*UserLogsResponse, error)
+	SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*UserIndexResponse, error)
+	UpdateProfile(context.Context, *UserUpdateProfileRequest) (*emptypb.Empty, error)
+	ById(context.Context, *IdRequest) (*UserIndexResponse_Item, error)
+	ByUid(context.Context, *UidRequest) (*UserIndexResponse_Item, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -447,8 +568,35 @@ type UserServer interface {
 type UnimplementedUserServer struct {
 }
 
-func (UnimplementedUserServer) SignInByEmail(context.Context, *UserSignInByEmail) (*UserSignInResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SignInByEmail not implemented")
+func (UnimplementedUserServer) Lock(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Lock not implemented")
+}
+func (UnimplementedUserServer) Unlock(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unlock not implemented")
+}
+func (UnimplementedUserServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedUserServer) Enable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedUserServer) Logs(context.Context, *LogsRequest) (*UserLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Logs not implemented")
+}
+func (UnimplementedUserServer) SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignOut not implemented")
+}
+func (UnimplementedUserServer) Index(context.Context, *Pager) (*UserIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedUserServer) UpdateProfile(context.Context, *UserUpdateProfileRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfile not implemented")
+}
+func (UnimplementedUserServer) ById(context.Context, *IdRequest) (*UserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
+}
+func (UnimplementedUserServer) ByUid(context.Context, *UidRequest) (*UserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByUid not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 
@@ -463,20 +611,182 @@ func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
 	s.RegisterService(&User_ServiceDesc, srv)
 }
 
-func _User_SignInByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserSignInByEmail)
+func _User_Lock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).SignInByEmail(ctx, in)
+		return srv.(UserServer).Lock(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: User_SignInByEmail_FullMethodName,
+		FullMethod: User_Lock_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).SignInByEmail(ctx, req.(*UserSignInByEmail))
+		return srv.(UserServer).Lock(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Unlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Unlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Unlock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Unlock(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Enable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Logs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Logs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Logs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Logs(ctx, req.(*LogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SignOut_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SignOut(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SignOut_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SignOut(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_UpdateProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserUpdateProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).UpdateProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_UpdateProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).UpdateProfile(ctx, req.(*UserUpdateProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).ById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_ById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).ById(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_ByUid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UidRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).ByUid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_ByUid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).ByUid(ctx, req.(*UidRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -489,8 +799,2096 @@ var User_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SignInByEmail",
-			Handler:    _User_SignInByEmail_Handler,
+			MethodName: "Lock",
+			Handler:    _User_Lock_Handler,
+		},
+		{
+			MethodName: "Unlock",
+			Handler:    _User_Unlock_Handler,
+		},
+		{
+			MethodName: "Disable",
+			Handler:    _User_Disable_Handler,
+		},
+		{
+			MethodName: "Enable",
+			Handler:    _User_Enable_Handler,
+		},
+		{
+			MethodName: "Logs",
+			Handler:    _User_Logs_Handler,
+		},
+		{
+			MethodName: "SignOut",
+			Handler:    _User_SignOut_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _User_Index_Handler,
+		},
+		{
+			MethodName: "UpdateProfile",
+			Handler:    _User_UpdateProfile_Handler,
+		},
+		{
+			MethodName: "ById",
+			Handler:    _User_ById_Handler,
+		},
+		{
+			MethodName: "ByUid",
+			Handler:    _User_ByUid_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	EmailUser_SignIn_FullMethodName         = "/palm.balsam.v1.EmailUser/SignIn"
+	EmailUser_SignUp_FullMethodName         = "/palm.balsam.v1.EmailUser/SignUp"
+	EmailUser_ConfirmByEmail_FullMethodName = "/palm.balsam.v1.EmailUser/ConfirmByEmail"
+	EmailUser_ConfirmByToken_FullMethodName = "/palm.balsam.v1.EmailUser/ConfirmByToken"
+	EmailUser_UnlockByEmail_FullMethodName  = "/palm.balsam.v1.EmailUser/UnlockByEmail"
+	EmailUser_UnlockByToken_FullMethodName  = "/palm.balsam.v1.EmailUser/UnlockByToken"
+	EmailUser_ForgotPassword_FullMethodName = "/palm.balsam.v1.EmailUser/ForgotPassword"
+	EmailUser_ResetPassword_FullMethodName  = "/palm.balsam.v1.EmailUser/ResetPassword"
+	EmailUser_Confirm_FullMethodName        = "/palm.balsam.v1.EmailUser/Confirm"
+	EmailUser_Disable_FullMethodName        = "/palm.balsam.v1.EmailUser/Disable"
+	EmailUser_Enable_FullMethodName         = "/palm.balsam.v1.EmailUser/Enable"
+	EmailUser_Index_FullMethodName          = "/palm.balsam.v1.EmailUser/Index"
+	EmailUser_ById_FullMethodName           = "/palm.balsam.v1.EmailUser/ById"
+	EmailUser_ByNickname_FullMethodName     = "/palm.balsam.v1.EmailUser/ByNickname"
+	EmailUser_ByEmail_FullMethodName        = "/palm.balsam.v1.EmailUser/ByEmail"
+)
+
+// EmailUserClient is the client API for EmailUser service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type EmailUserClient interface {
+	SignIn(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
+	SignUp(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
+	ConfirmByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfirmByToken(ctx context.Context, in *UserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UnlockByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UnlockByToken(ctx context.Context, in *UserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ForgotPassword(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ResetPassword(ctx context.Context, in *UserResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Confirm(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*EmailUserIndexResponse, error)
+	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*EmailUserIndexResponse_Item, error)
+	ByNickname(ctx context.Context, in *EmailUserByNicknameRequest, opts ...grpc.CallOption) (*EmailUserIndexResponse_Item, error)
+	ByEmail(ctx context.Context, in *EmailUserByEmailRequest, opts ...grpc.CallOption) (*EmailUserIndexResponse_Item, error)
+}
+
+type emailUserClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEmailUserClient(cc grpc.ClientConnInterface) EmailUserClient {
+	return &emailUserClient{cc}
+}
+
+func (c *emailUserClient) SignIn(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserSignInResponse)
+	err := c.cc.Invoke(ctx, EmailUser_SignIn_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SignUp(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserSignInResponse)
+	err := c.cc.Invoke(ctx, EmailUser_SignUp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ConfirmByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ConfirmByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ConfirmByToken(ctx context.Context, in *UserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ConfirmByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) UnlockByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_UnlockByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) UnlockByToken(ctx context.Context, in *UserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_UnlockByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ForgotPassword(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ForgotPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ResetPassword(ctx context.Context, in *UserResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ResetPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Confirm(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Confirm_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*EmailUserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmailUserIndexResponse)
+	err := c.cc.Invoke(ctx, EmailUser_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*EmailUserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmailUserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, EmailUser_ById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ByNickname(ctx context.Context, in *EmailUserByNicknameRequest, opts ...grpc.CallOption) (*EmailUserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmailUserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, EmailUser_ByNickname_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ByEmail(ctx context.Context, in *EmailUserByEmailRequest, opts ...grpc.CallOption) (*EmailUserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmailUserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, EmailUser_ByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EmailUserServer is the server API for EmailUser service.
+// All implementations must embed UnimplementedEmailUserServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type EmailUserServer interface {
+	SignIn(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error)
+	SignUp(context.Context, *UserSignUpByEmailRequest) (*UserSignInResponse, error)
+	ConfirmByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
+	ConfirmByToken(context.Context, *UserByTokenRequest) (*emptypb.Empty, error)
+	UnlockByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
+	UnlockByToken(context.Context, *UserByTokenRequest) (*emptypb.Empty, error)
+	ForgotPassword(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
+	ResetPassword(context.Context, *UserResetPasswordRequest) (*emptypb.Empty, error)
+	Confirm(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Enable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*EmailUserIndexResponse, error)
+	ById(context.Context, *IdRequest) (*EmailUserIndexResponse_Item, error)
+	ByNickname(context.Context, *EmailUserByNicknameRequest) (*EmailUserIndexResponse_Item, error)
+	ByEmail(context.Context, *EmailUserByEmailRequest) (*EmailUserIndexResponse_Item, error)
+	mustEmbedUnimplementedEmailUserServer()
+}
+
+// UnimplementedEmailUserServer must be embedded to have forward compatible implementations.
+type UnimplementedEmailUserServer struct {
+}
+
+func (UnimplementedEmailUserServer) SignIn(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
+}
+func (UnimplementedEmailUserServer) SignUp(context.Context, *UserSignUpByEmailRequest) (*UserSignInResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
+}
+func (UnimplementedEmailUserServer) ConfirmByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) ConfirmByToken(context.Context, *UserByTokenRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmByToken not implemented")
+}
+func (UnimplementedEmailUserServer) UnlockByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) UnlockByToken(context.Context, *UserByTokenRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnlockByToken not implemented")
+}
+func (UnimplementedEmailUserServer) ForgotPassword(context.Context, *UserByEmailRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
+}
+func (UnimplementedEmailUserServer) ResetPassword(context.Context, *UserResetPasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedEmailUserServer) Confirm(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
+}
+func (UnimplementedEmailUserServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedEmailUserServer) Enable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedEmailUserServer) Index(context.Context, *Pager) (*EmailUserIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedEmailUserServer) ById(context.Context, *IdRequest) (*EmailUserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
+}
+func (UnimplementedEmailUserServer) ByNickname(context.Context, *EmailUserByNicknameRequest) (*EmailUserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByNickname not implemented")
+}
+func (UnimplementedEmailUserServer) ByEmail(context.Context, *EmailUserByEmailRequest) (*EmailUserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) mustEmbedUnimplementedEmailUserServer() {}
+
+// UnsafeEmailUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EmailUserServer will
+// result in compilation errors.
+type UnsafeEmailUserServer interface {
+	mustEmbedUnimplementedEmailUserServer()
+}
+
+func RegisterEmailUserServer(s grpc.ServiceRegistrar, srv EmailUserServer) {
+	s.RegisterService(&EmailUser_ServiceDesc, srv)
+}
+
+func _EmailUser_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSignInByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SignIn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SignIn_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SignIn(ctx, req.(*UserSignInByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSignUpByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SignUp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SignUp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SignUp(ctx, req.(*UserSignUpByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ConfirmByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ConfirmByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ConfirmByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ConfirmByEmail(ctx, req.(*UserByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ConfirmByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ConfirmByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ConfirmByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ConfirmByToken(ctx, req.(*UserByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_UnlockByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).UnlockByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_UnlockByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).UnlockByEmail(ctx, req.(*UserByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_UnlockByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).UnlockByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_UnlockByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).UnlockByToken(ctx, req.(*UserByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ForgotPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ForgotPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ForgotPassword(ctx, req.(*UserByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserResetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ResetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ResetPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ResetPassword(ctx, req.(*UserResetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Confirm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Confirm_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Confirm(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Enable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ById(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ByNickname_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserByNicknameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ByNickname(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ByNickname_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ByNickname(ctx, req.(*EmailUserByNicknameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ByEmail(ctx, req.(*EmailUserByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// EmailUser_ServiceDesc is the grpc.ServiceDesc for EmailUser service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var EmailUser_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.EmailUser",
+	HandlerType: (*EmailUserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SignIn",
+			Handler:    _EmailUser_SignIn_Handler,
+		},
+		{
+			MethodName: "SignUp",
+			Handler:    _EmailUser_SignUp_Handler,
+		},
+		{
+			MethodName: "ConfirmByEmail",
+			Handler:    _EmailUser_ConfirmByEmail_Handler,
+		},
+		{
+			MethodName: "ConfirmByToken",
+			Handler:    _EmailUser_ConfirmByToken_Handler,
+		},
+		{
+			MethodName: "UnlockByEmail",
+			Handler:    _EmailUser_UnlockByEmail_Handler,
+		},
+		{
+			MethodName: "UnlockByToken",
+			Handler:    _EmailUser_UnlockByToken_Handler,
+		},
+		{
+			MethodName: "ForgotPassword",
+			Handler:    _EmailUser_ForgotPassword_Handler,
+		},
+		{
+			MethodName: "ResetPassword",
+			Handler:    _EmailUser_ResetPassword_Handler,
+		},
+		{
+			MethodName: "Confirm",
+			Handler:    _EmailUser_Confirm_Handler,
+		},
+		{
+			MethodName: "Disable",
+			Handler:    _EmailUser_Disable_Handler,
+		},
+		{
+			MethodName: "Enable",
+			Handler:    _EmailUser_Enable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _EmailUser_Index_Handler,
+		},
+		{
+			MethodName: "ById",
+			Handler:    _EmailUser_ById_Handler,
+		},
+		{
+			MethodName: "ByNickname",
+			Handler:    _EmailUser_ByNickname_Handler,
+		},
+		{
+			MethodName: "ByEmail",
+			Handler:    _EmailUser_ByEmail_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	GoogleOauth2User_Disable_FullMethodName   = "/palm.balsam.v1.GoogleOauth2User/Disable"
+	GoogleOauth2User_Enable_FullMethodName    = "/palm.balsam.v1.GoogleOauth2User/Enable"
+	GoogleOauth2User_Index_FullMethodName     = "/palm.balsam.v1.GoogleOauth2User/Index"
+	GoogleOauth2User_ById_FullMethodName      = "/palm.balsam.v1.GoogleOauth2User/ById"
+	GoogleOauth2User_BySubject_FullMethodName = "/palm.balsam.v1.GoogleOauth2User/BySubject"
+)
+
+// GoogleOauth2UserClient is the client API for GoogleOauth2User service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type GoogleOauth2UserClient interface {
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*GoogleOauth2UserIndexResponse, error)
+	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*GoogleOauth2UserIndexResponse_Item, error)
+	BySubject(ctx context.Context, in *GoogleOauth2UserBySubjectRequest, opts ...grpc.CallOption) (*GoogleOauth2UserIndexResponse_Item, error)
+}
+
+type googleOauth2UserClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGoogleOauth2UserClient(cc grpc.ClientConnInterface) GoogleOauth2UserClient {
+	return &googleOauth2UserClient{cc}
+}
+
+func (c *googleOauth2UserClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, GoogleOauth2User_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *googleOauth2UserClient) Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, GoogleOauth2User_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *googleOauth2UserClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*GoogleOauth2UserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GoogleOauth2UserIndexResponse)
+	err := c.cc.Invoke(ctx, GoogleOauth2User_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *googleOauth2UserClient) ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*GoogleOauth2UserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GoogleOauth2UserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, GoogleOauth2User_ById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *googleOauth2UserClient) BySubject(ctx context.Context, in *GoogleOauth2UserBySubjectRequest, opts ...grpc.CallOption) (*GoogleOauth2UserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GoogleOauth2UserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, GoogleOauth2User_BySubject_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GoogleOauth2UserServer is the server API for GoogleOauth2User service.
+// All implementations must embed UnimplementedGoogleOauth2UserServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type GoogleOauth2UserServer interface {
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Enable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*GoogleOauth2UserIndexResponse, error)
+	ById(context.Context, *IdRequest) (*GoogleOauth2UserIndexResponse_Item, error)
+	BySubject(context.Context, *GoogleOauth2UserBySubjectRequest) (*GoogleOauth2UserIndexResponse_Item, error)
+	mustEmbedUnimplementedGoogleOauth2UserServer()
+}
+
+// UnimplementedGoogleOauth2UserServer must be embedded to have forward compatible implementations.
+type UnimplementedGoogleOauth2UserServer struct {
+}
+
+func (UnimplementedGoogleOauth2UserServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedGoogleOauth2UserServer) Enable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedGoogleOauth2UserServer) Index(context.Context, *Pager) (*GoogleOauth2UserIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedGoogleOauth2UserServer) ById(context.Context, *IdRequest) (*GoogleOauth2UserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
+}
+func (UnimplementedGoogleOauth2UserServer) BySubject(context.Context, *GoogleOauth2UserBySubjectRequest) (*GoogleOauth2UserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BySubject not implemented")
+}
+func (UnimplementedGoogleOauth2UserServer) mustEmbedUnimplementedGoogleOauth2UserServer() {}
+
+// UnsafeGoogleOauth2UserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GoogleOauth2UserServer will
+// result in compilation errors.
+type UnsafeGoogleOauth2UserServer interface {
+	mustEmbedUnimplementedGoogleOauth2UserServer()
+}
+
+func RegisterGoogleOauth2UserServer(s grpc.ServiceRegistrar, srv GoogleOauth2UserServer) {
+	s.RegisterService(&GoogleOauth2User_ServiceDesc, srv)
+}
+
+func _GoogleOauth2User_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GoogleOauth2UserServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GoogleOauth2User_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GoogleOauth2UserServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GoogleOauth2User_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GoogleOauth2UserServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GoogleOauth2User_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GoogleOauth2UserServer).Enable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GoogleOauth2User_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GoogleOauth2UserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GoogleOauth2User_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GoogleOauth2UserServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GoogleOauth2User_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GoogleOauth2UserServer).ById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GoogleOauth2User_ById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GoogleOauth2UserServer).ById(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GoogleOauth2User_BySubject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GoogleOauth2UserBySubjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GoogleOauth2UserServer).BySubject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GoogleOauth2User_BySubject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GoogleOauth2UserServer).BySubject(ctx, req.(*GoogleOauth2UserBySubjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// GoogleOauth2User_ServiceDesc is the grpc.ServiceDesc for GoogleOauth2User service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var GoogleOauth2User_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.GoogleOauth2User",
+	HandlerType: (*GoogleOauth2UserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Disable",
+			Handler:    _GoogleOauth2User_Disable_Handler,
+		},
+		{
+			MethodName: "Enable",
+			Handler:    _GoogleOauth2User_Enable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _GoogleOauth2User_Index_Handler,
+		},
+		{
+			MethodName: "ById",
+			Handler:    _GoogleOauth2User_ById_Handler,
+		},
+		{
+			MethodName: "BySubject",
+			Handler:    _GoogleOauth2User_BySubject_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	WechatOauth2User_Disable_FullMethodName           = "/palm.balsam.v1.WechatOauth2User/Disable"
+	WechatOauth2User_Enable_FullMethodName            = "/palm.balsam.v1.WechatOauth2User/Enable"
+	WechatOauth2User_Index_FullMethodName             = "/palm.balsam.v1.WechatOauth2User/Index"
+	WechatOauth2User_ById_FullMethodName              = "/palm.balsam.v1.WechatOauth2User/ById"
+	WechatOauth2User_ByUnionId_FullMethodName         = "/palm.balsam.v1.WechatOauth2User/ByUnionId"
+	WechatOauth2User_ByAppIdAndUnionId_FullMethodName = "/palm.balsam.v1.WechatOauth2User/ByAppIdAndUnionId"
+)
+
+// WechatOauth2UserClient is the client API for WechatOauth2User service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type WechatOauth2UserClient interface {
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse, error)
+	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse_Item, error)
+	ByUnionId(ctx context.Context, in *WechatByUnionIdRequest, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse_Item, error)
+	ByAppIdAndUnionId(ctx context.Context, in *WechatByAppIdAndOpenIdRequest, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse_Item, error)
+}
+
+type wechatOauth2UserClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWechatOauth2UserClient(cc grpc.ClientConnInterface) WechatOauth2UserClient {
+	return &wechatOauth2UserClient{cc}
+}
+
+func (c *wechatOauth2UserClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, WechatOauth2User_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatOauth2UserClient) Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, WechatOauth2User_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatOauth2UserClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatOauth2UserIndexResponse)
+	err := c.cc.Invoke(ctx, WechatOauth2User_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatOauth2UserClient) ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatOauth2UserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, WechatOauth2User_ById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatOauth2UserClient) ByUnionId(ctx context.Context, in *WechatByUnionIdRequest, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatOauth2UserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, WechatOauth2User_ByUnionId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatOauth2UserClient) ByAppIdAndUnionId(ctx context.Context, in *WechatByAppIdAndOpenIdRequest, opts ...grpc.CallOption) (*WechatOauth2UserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatOauth2UserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, WechatOauth2User_ByAppIdAndUnionId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// WechatOauth2UserServer is the server API for WechatOauth2User service.
+// All implementations must embed UnimplementedWechatOauth2UserServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type WechatOauth2UserServer interface {
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Enable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*WechatOauth2UserIndexResponse, error)
+	ById(context.Context, *IdRequest) (*WechatOauth2UserIndexResponse_Item, error)
+	ByUnionId(context.Context, *WechatByUnionIdRequest) (*WechatOauth2UserIndexResponse_Item, error)
+	ByAppIdAndUnionId(context.Context, *WechatByAppIdAndOpenIdRequest) (*WechatOauth2UserIndexResponse_Item, error)
+	mustEmbedUnimplementedWechatOauth2UserServer()
+}
+
+// UnimplementedWechatOauth2UserServer must be embedded to have forward compatible implementations.
+type UnimplementedWechatOauth2UserServer struct {
+}
+
+func (UnimplementedWechatOauth2UserServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedWechatOauth2UserServer) Enable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedWechatOauth2UserServer) Index(context.Context, *Pager) (*WechatOauth2UserIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedWechatOauth2UserServer) ById(context.Context, *IdRequest) (*WechatOauth2UserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
+}
+func (UnimplementedWechatOauth2UserServer) ByUnionId(context.Context, *WechatByUnionIdRequest) (*WechatOauth2UserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByUnionId not implemented")
+}
+func (UnimplementedWechatOauth2UserServer) ByAppIdAndUnionId(context.Context, *WechatByAppIdAndOpenIdRequest) (*WechatOauth2UserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByAppIdAndUnionId not implemented")
+}
+func (UnimplementedWechatOauth2UserServer) mustEmbedUnimplementedWechatOauth2UserServer() {}
+
+// UnsafeWechatOauth2UserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WechatOauth2UserServer will
+// result in compilation errors.
+type UnsafeWechatOauth2UserServer interface {
+	mustEmbedUnimplementedWechatOauth2UserServer()
+}
+
+func RegisterWechatOauth2UserServer(s grpc.ServiceRegistrar, srv WechatOauth2UserServer) {
+	s.RegisterService(&WechatOauth2User_ServiceDesc, srv)
+}
+
+func _WechatOauth2User_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatOauth2UserServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatOauth2User_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatOauth2UserServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatOauth2User_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatOauth2UserServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatOauth2User_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatOauth2UserServer).Enable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatOauth2User_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatOauth2UserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatOauth2User_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatOauth2UserServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatOauth2User_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatOauth2UserServer).ById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatOauth2User_ById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatOauth2UserServer).ById(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatOauth2User_ByUnionId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WechatByUnionIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatOauth2UserServer).ByUnionId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatOauth2User_ByUnionId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatOauth2UserServer).ByUnionId(ctx, req.(*WechatByUnionIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatOauth2User_ByAppIdAndUnionId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WechatByAppIdAndOpenIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatOauth2UserServer).ByAppIdAndUnionId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatOauth2User_ByAppIdAndUnionId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatOauth2UserServer).ByAppIdAndUnionId(ctx, req.(*WechatByAppIdAndOpenIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// WechatOauth2User_ServiceDesc is the grpc.ServiceDesc for WechatOauth2User service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var WechatOauth2User_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.WechatOauth2User",
+	HandlerType: (*WechatOauth2UserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Disable",
+			Handler:    _WechatOauth2User_Disable_Handler,
+		},
+		{
+			MethodName: "Enable",
+			Handler:    _WechatOauth2User_Enable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _WechatOauth2User_Index_Handler,
+		},
+		{
+			MethodName: "ById",
+			Handler:    _WechatOauth2User_ById_Handler,
+		},
+		{
+			MethodName: "ByUnionId",
+			Handler:    _WechatOauth2User_ByUnionId_Handler,
+		},
+		{
+			MethodName: "ByAppIdAndUnionId",
+			Handler:    _WechatOauth2User_ByAppIdAndUnionId_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	WechatMiniProgramUser_Disable_FullMethodName           = "/palm.balsam.v1.WechatMiniProgramUser/Disable"
+	WechatMiniProgramUser_Enable_FullMethodName            = "/palm.balsam.v1.WechatMiniProgramUser/Enable"
+	WechatMiniProgramUser_Index_FullMethodName             = "/palm.balsam.v1.WechatMiniProgramUser/Index"
+	WechatMiniProgramUser_ById_FullMethodName              = "/palm.balsam.v1.WechatMiniProgramUser/ById"
+	WechatMiniProgramUser_ByUnionId_FullMethodName         = "/palm.balsam.v1.WechatMiniProgramUser/ByUnionId"
+	WechatMiniProgramUser_ByAppIdAndUnionId_FullMethodName = "/palm.balsam.v1.WechatMiniProgramUser/ByAppIdAndUnionId"
+)
+
+// WechatMiniProgramUserClient is the client API for WechatMiniProgramUser service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type WechatMiniProgramUserClient interface {
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse, error)
+	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse_Item, error)
+	ByUnionId(ctx context.Context, in *WechatByUnionIdRequest, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse_Item, error)
+	ByAppIdAndUnionId(ctx context.Context, in *WechatByAppIdAndOpenIdRequest, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse_Item, error)
+}
+
+type wechatMiniProgramUserClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWechatMiniProgramUserClient(cc grpc.ClientConnInterface) WechatMiniProgramUserClient {
+	return &wechatMiniProgramUserClient{cc}
+}
+
+func (c *wechatMiniProgramUserClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, WechatMiniProgramUser_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatMiniProgramUserClient) Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, WechatMiniProgramUser_Enable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatMiniProgramUserClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatMiniProgramUserIndexResponse)
+	err := c.cc.Invoke(ctx, WechatMiniProgramUser_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatMiniProgramUserClient) ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatMiniProgramUserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, WechatMiniProgramUser_ById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatMiniProgramUserClient) ByUnionId(ctx context.Context, in *WechatByUnionIdRequest, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatMiniProgramUserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, WechatMiniProgramUser_ByUnionId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *wechatMiniProgramUserClient) ByAppIdAndUnionId(ctx context.Context, in *WechatByAppIdAndOpenIdRequest, opts ...grpc.CallOption) (*WechatMiniProgramUserIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(WechatMiniProgramUserIndexResponse_Item)
+	err := c.cc.Invoke(ctx, WechatMiniProgramUser_ByAppIdAndUnionId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// WechatMiniProgramUserServer is the server API for WechatMiniProgramUser service.
+// All implementations must embed UnimplementedWechatMiniProgramUserServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type WechatMiniProgramUserServer interface {
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Enable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*WechatMiniProgramUserIndexResponse, error)
+	ById(context.Context, *IdRequest) (*WechatMiniProgramUserIndexResponse_Item, error)
+	ByUnionId(context.Context, *WechatByUnionIdRequest) (*WechatMiniProgramUserIndexResponse_Item, error)
+	ByAppIdAndUnionId(context.Context, *WechatByAppIdAndOpenIdRequest) (*WechatMiniProgramUserIndexResponse_Item, error)
+	mustEmbedUnimplementedWechatMiniProgramUserServer()
+}
+
+// UnimplementedWechatMiniProgramUserServer must be embedded to have forward compatible implementations.
+type UnimplementedWechatMiniProgramUserServer struct {
+}
+
+func (UnimplementedWechatMiniProgramUserServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedWechatMiniProgramUserServer) Enable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
+}
+func (UnimplementedWechatMiniProgramUserServer) Index(context.Context, *Pager) (*WechatMiniProgramUserIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedWechatMiniProgramUserServer) ById(context.Context, *IdRequest) (*WechatMiniProgramUserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
+}
+func (UnimplementedWechatMiniProgramUserServer) ByUnionId(context.Context, *WechatByUnionIdRequest) (*WechatMiniProgramUserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByUnionId not implemented")
+}
+func (UnimplementedWechatMiniProgramUserServer) ByAppIdAndUnionId(context.Context, *WechatByAppIdAndOpenIdRequest) (*WechatMiniProgramUserIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByAppIdAndUnionId not implemented")
+}
+func (UnimplementedWechatMiniProgramUserServer) mustEmbedUnimplementedWechatMiniProgramUserServer() {}
+
+// UnsafeWechatMiniProgramUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WechatMiniProgramUserServer will
+// result in compilation errors.
+type UnsafeWechatMiniProgramUserServer interface {
+	mustEmbedUnimplementedWechatMiniProgramUserServer()
+}
+
+func RegisterWechatMiniProgramUserServer(s grpc.ServiceRegistrar, srv WechatMiniProgramUserServer) {
+	s.RegisterService(&WechatMiniProgramUser_ServiceDesc, srv)
+}
+
+func _WechatMiniProgramUser_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatMiniProgramUserServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatMiniProgramUser_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatMiniProgramUserServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatMiniProgramUser_Enable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatMiniProgramUserServer).Enable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatMiniProgramUser_Enable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatMiniProgramUserServer).Enable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatMiniProgramUser_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatMiniProgramUserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatMiniProgramUser_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatMiniProgramUserServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatMiniProgramUser_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatMiniProgramUserServer).ById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatMiniProgramUser_ById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatMiniProgramUserServer).ById(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatMiniProgramUser_ByUnionId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WechatByUnionIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatMiniProgramUserServer).ByUnionId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatMiniProgramUser_ByUnionId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatMiniProgramUserServer).ByUnionId(ctx, req.(*WechatByUnionIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WechatMiniProgramUser_ByAppIdAndUnionId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WechatByAppIdAndOpenIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WechatMiniProgramUserServer).ByAppIdAndUnionId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WechatMiniProgramUser_ByAppIdAndUnionId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WechatMiniProgramUserServer).ByAppIdAndUnionId(ctx, req.(*WechatByAppIdAndOpenIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// WechatMiniProgramUser_ServiceDesc is the grpc.ServiceDesc for WechatMiniProgramUser service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var WechatMiniProgramUser_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.WechatMiniProgramUser",
+	HandlerType: (*WechatMiniProgramUserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Disable",
+			Handler:    _WechatMiniProgramUser_Disable_Handler,
+		},
+		{
+			MethodName: "Enable",
+			Handler:    _WechatMiniProgramUser_Enable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _WechatMiniProgramUser_Index_Handler,
+		},
+		{
+			MethodName: "ById",
+			Handler:    _WechatMiniProgramUser_ById_Handler,
+		},
+		{
+			MethodName: "ByUnionId",
+			Handler:    _WechatMiniProgramUser_ByUnionId_Handler,
+		},
+		{
+			MethodName: "ByAppIdAndUnionId",
+			Handler:    _WechatMiniProgramUser_ByAppIdAndUnionId_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	Session_Disable_FullMethodName = "/palm.balsam.v1.Session/Disable"
+	Session_Index_FullMethodName   = "/palm.balsam.v1.Session/Index"
+	Session_ByUser_FullMethodName  = "/palm.balsam.v1.Session/ByUser"
+)
+
+// SessionClient is the client API for Session service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type SessionClient interface {
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*SessionIndexResponse, error)
+	ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*SessionIndexResponse, error)
+}
+
+type sessionClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSessionClient(cc grpc.ClientConnInterface) SessionClient {
+	return &sessionClient{cc}
+}
+
+func (c *sessionClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Session_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sessionClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*SessionIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SessionIndexResponse)
+	err := c.cc.Invoke(ctx, Session_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sessionClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*SessionIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SessionIndexResponse)
+	err := c.cc.Invoke(ctx, Session_ByUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SessionServer is the server API for Session service.
+// All implementations must embed UnimplementedSessionServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type SessionServer interface {
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*SessionIndexResponse, error)
+	ByUser(context.Context, *IdRequest) (*SessionIndexResponse, error)
+	mustEmbedUnimplementedSessionServer()
+}
+
+// UnimplementedSessionServer must be embedded to have forward compatible implementations.
+type UnimplementedSessionServer struct {
+}
+
+func (UnimplementedSessionServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedSessionServer) Index(context.Context, *Pager) (*SessionIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedSessionServer) ByUser(context.Context, *IdRequest) (*SessionIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByUser not implemented")
+}
+func (UnimplementedSessionServer) mustEmbedUnimplementedSessionServer() {}
+
+// UnsafeSessionServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SessionServer will
+// result in compilation errors.
+type UnsafeSessionServer interface {
+	mustEmbedUnimplementedSessionServer()
+}
+
+func RegisterSessionServer(s grpc.ServiceRegistrar, srv SessionServer) {
+	s.RegisterService(&Session_ServiceDesc, srv)
+}
+
+func _Session_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Session_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Session_ByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServer).ByUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Session_ByUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServer).ByUser(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Session_ServiceDesc is the grpc.ServiceDesc for Session service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Session_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.Session",
+	HandlerType: (*SessionServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Disable",
+			Handler:    _Session_Disable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _Session_Index_Handler,
+		},
+		{
+			MethodName: "ByUser",
+			Handler:    _Session_ByUser_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	Attachment_Disable_FullMethodName        = "/palm.balsam.v1.Attachment/Disable"
+	Attachment_Index_FullMethodName          = "/palm.balsam.v1.Attachment/Index"
+	Attachment_SetTitle_FullMethodName       = "/palm.balsam.v1.Attachment/SetTitle"
+	Attachment_ById_FullMethodName           = "/palm.balsam.v1.Attachment/ById"
+	Attachment_ByUser_FullMethodName         = "/palm.balsam.v1.Attachment/ByUser"
+	Attachment_ByResourceType_FullMethodName = "/palm.balsam.v1.Attachment/ByResourceType"
+	Attachment_Clear_FullMethodName          = "/palm.balsam.v1.Attachment/Clear"
+	Attachment_ByResource_FullMethodName     = "/palm.balsam.v1.Attachment/ByResource"
+	Attachment_Create_FullMethodName         = "/palm.balsam.v1.Attachment/Create"
+	Attachment_SetUploadedAt_FullMethodName  = "/palm.balsam.v1.Attachment/SetUploadedAt"
+)
+
+// AttachmentClient is the client API for Attachment service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type AttachmentClient interface {
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
+	SetTitle(ctx context.Context, in *AttachmentSetTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse_Item, error)
+	ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
+	ByResourceType(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
+	Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ByResource(ctx context.Context, in *AttachmentByResourceRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
+	Create(ctx context.Context, in *AttachmentCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetUploadedAt(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type attachmentClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewAttachmentClient(cc grpc.ClientConnInterface) AttachmentClient {
+	return &attachmentClient{cc}
+}
+
+func (c *attachmentClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse)
+	err := c.cc.Invoke(ctx, Attachment_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) SetTitle(ctx context.Context, in *AttachmentSetTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_SetTitle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse_Item)
+	err := c.cc.Invoke(ctx, Attachment_ById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse)
+	err := c.cc.Invoke(ctx, Attachment_ByUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) ByResourceType(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse)
+	err := c.cc.Invoke(ctx, Attachment_ByResourceType_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Clear_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) ByResource(ctx context.Context, in *AttachmentByResourceRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse)
+	err := c.cc.Invoke(ctx, Attachment_ByResource_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Create(ctx context.Context, in *AttachmentCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) SetUploadedAt(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_SetUploadedAt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AttachmentServer is the server API for Attachment service.
+// All implementations must embed UnimplementedAttachmentServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type AttachmentServer interface {
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*AttachmentIndexResponse, error)
+	SetTitle(context.Context, *AttachmentSetTitleRequest) (*emptypb.Empty, error)
+	ById(context.Context, *IdRequest) (*AttachmentIndexResponse_Item, error)
+	ByUser(context.Context, *IdRequest) (*AttachmentIndexResponse, error)
+	ByResourceType(context.Context, *IdRequest) (*AttachmentIndexResponse, error)
+	Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	ByResource(context.Context, *AttachmentByResourceRequest) (*AttachmentIndexResponse, error)
+	Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error)
+	SetUploadedAt(context.Context, *IdRequest) (*emptypb.Empty, error)
+	mustEmbedUnimplementedAttachmentServer()
+}
+
+// UnimplementedAttachmentServer must be embedded to have forward compatible implementations.
+type UnimplementedAttachmentServer struct {
+}
+
+func (UnimplementedAttachmentServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedAttachmentServer) Index(context.Context, *Pager) (*AttachmentIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedAttachmentServer) SetTitle(context.Context, *AttachmentSetTitleRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetTitle not implemented")
+}
+func (UnimplementedAttachmentServer) ById(context.Context, *IdRequest) (*AttachmentIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
+}
+func (UnimplementedAttachmentServer) ByUser(context.Context, *IdRequest) (*AttachmentIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByUser not implemented")
+}
+func (UnimplementedAttachmentServer) ByResourceType(context.Context, *IdRequest) (*AttachmentIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByResourceType not implemented")
+}
+func (UnimplementedAttachmentServer) Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Clear not implemented")
+}
+func (UnimplementedAttachmentServer) ByResource(context.Context, *AttachmentByResourceRequest) (*AttachmentIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByResource not implemented")
+}
+func (UnimplementedAttachmentServer) Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedAttachmentServer) SetUploadedAt(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetUploadedAt not implemented")
+}
+func (UnimplementedAttachmentServer) mustEmbedUnimplementedAttachmentServer() {}
+
+// UnsafeAttachmentServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AttachmentServer will
+// result in compilation errors.
+type UnsafeAttachmentServer interface {
+	mustEmbedUnimplementedAttachmentServer()
+}
+
+func RegisterAttachmentServer(s grpc.ServiceRegistrar, srv AttachmentServer) {
+	s.RegisterService(&Attachment_ServiceDesc, srv)
+}
+
+func _Attachment_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_SetTitle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentSetTitleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).SetTitle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_SetTitle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).SetTitle(ctx, req.(*AttachmentSetTitleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).ById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_ById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).ById(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_ByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).ByUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_ByUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).ByUser(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_ByResourceType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).ByResourceType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_ByResourceType_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).ByResourceType(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Clear_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Clear(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Clear_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Clear(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_ByResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentByResourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).ByResource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_ByResource_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).ByResource(ctx, req.(*AttachmentByResourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Create(ctx, req.(*AttachmentCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_SetUploadedAt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).SetUploadedAt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_SetUploadedAt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).SetUploadedAt(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Attachment_ServiceDesc is the grpc.ServiceDesc for Attachment service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Attachment_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.Attachment",
+	HandlerType: (*AttachmentServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Disable",
+			Handler:    _Attachment_Disable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _Attachment_Index_Handler,
+		},
+		{
+			MethodName: "SetTitle",
+			Handler:    _Attachment_SetTitle_Handler,
+		},
+		{
+			MethodName: "ById",
+			Handler:    _Attachment_ById_Handler,
+		},
+		{
+			MethodName: "ByUser",
+			Handler:    _Attachment_ByUser_Handler,
+		},
+		{
+			MethodName: "ByResourceType",
+			Handler:    _Attachment_ByResourceType_Handler,
+		},
+		{
+			MethodName: "Clear",
+			Handler:    _Attachment_Clear_Handler,
+		},
+		{
+			MethodName: "ByResource",
+			Handler:    _Attachment_ByResource_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _Attachment_Create_Handler,
+		},
+		{
+			MethodName: "SetUploadedAt",
+			Handler:    _Attachment_SetUploadedAt_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

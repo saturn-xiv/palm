@@ -1,13 +1,23 @@
 syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.balsam.v1";
-option go_package = "github.com/saturn-xiv/palm/balsam/services/v2";
+option go_package = "github.com/saturn-xiv/palm/atropa/balsam/services/v2";
 package palm.balsam.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
+message IdRequest {
+  uint64 id = 1;
+}
+message UidRequest {
+  string uid = 1;
+}
+message Pager {
+  uint64 page = 1;
+  uint64 size = 2;
+}
 // ----------------------------------------------------------------------------
 
 service Aes {
@@ -73,12 +83,125 @@ message HMacVerifyRequest {
 }
 
 // ----------------------------------------------------------------------------
-
 service User {
-  rpc SignInByEmail(UserSignInByEmail) returns (UserSignInResponse) {}
+  rpc Lock(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Unlock(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(IdRequest) returns (google.protobuf.Empty) {}
+
+  rpc Logs(LogsRequest) returns (UserLogsResponse) {}
+  rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (UserIndexResponse) {}
+  rpc UpdateProfile(UserUpdateProfileRequest) returns (google.protobuf.Empty) {}
+  rpc ById(IdRequest) returns (UserIndexResponse.Item) {}
+  rpc ByUid(UidRequest) returns (UserIndexResponse.Item) {}
+}
+message UserUpdateProfileRequest {
+  uint64 user = 1;
+  string lang = 2;
+  string timezone = 3;
+}
+message UserIndexResponse {
+  message Item {
+    uint64 id = 1;
+    string uid = 2;
+    string lang = 3;
+    string timezone = 4;
+    uint32 sign_in_count = 5;
+    optional google.protobuf.Timestamp current_sign_in_at = 6;
+    optional string current_sign_in_ip = 7;
+    optional google.protobuf.Timestamp last_sign_in_at = 8;
+    optional string last_sign_in_ip = 9;
+    optional google.protobuf.Timestamp lockeda_at = 10;
+    optional google.protobuf.Timestamp deleted_at = 11;
+    google.protobuf.Timestamp updated_at = 12;
+  }
+  repeated Item items = 1;
+  uint64 total = 9;
+}
+message LogsRequest {
+  optional uint64 user = 1;
+  uint64 page = 11;
+  uint64 size = 12;
+}
+message UserLogsResponse {
+  message Item {
+    enum Level {
+      Debug = 0;
+      Info = 1;
+      Warn = 2;
+      Error = 3;
+    }
+    uint64 id = 1;
+    string plugin = 2;
+    string ip = 3;
+    Level level = 4;
+    string resource_type = 5;
+    optional uint64 resource_id = 6;
+    string message = 7;
+    google.protobuf.Timestamp created_at = 8;
+  }
+  repeated Item items = 1;
+  uint64 total = 9;
+}
+// ----------------------------------------------------------------------------
+service EmailUser {
+  rpc SignIn(UserSignInByEmailRequest) returns (UserSignInResponse) {}
+  rpc SignUp(UserSignUpByEmailRequest) returns (UserSignInResponse) {}
+  rpc ConfirmByEmail(UserByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc ConfirmByToken(UserByTokenRequest) returns (google.protobuf.Empty) {}
+  rpc UnlockByEmail(UserByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc UnlockByToken(UserByTokenRequest) returns (google.protobuf.Empty) {}
+  rpc ForgotPassword(UserByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc ResetPassword(UserResetPasswordRequest) returns (google.protobuf.Empty) {}
+
+  rpc Confirm(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (EmailUserIndexResponse) {}
+  rpc ById(IdRequest) returns (EmailUserIndexResponse.Item) {}
+  rpc ByNickname(EmailUserByNicknameRequest)
+      returns (EmailUserIndexResponse.Item) {}
+  rpc ByEmail(EmailUserByEmailRequest) returns (EmailUserIndexResponse.Item) {}
+}
+message EmailUserByEmailRequest {
+  string email = 1;
+}
+message EmailUserByNicknameRequest {
+  string nickname = 1;
+}
+message EmailUserIndexResponse {
+  message Item {
+    uint64 id = 1;
+    uint64 user_id = 2;
+    string real_name = 3;
+    string nickname = 4;
+    string email = 5;
+    string avatar = 6;
+    optional google.protobuf.Timestamp confirmed_at = 7;
+    optional google.protobuf.Timestamp deleted_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  uint64 total = 2;
+}
+message UserResetPasswordRequest {
+  string token = 1;
+  string password = 2;
 }
 
-message UserSignInByEmail {
+message UserByEmailRequest {
+  oneof user {
+    string email = 1;
+    string nickname = 2;
+  }
+}
+
+message UserByTokenRequest {
+  string token = 1;
+}
+
+message UserSignInByEmailRequest {
   oneof user {
     string email = 1;
     string nickname = 2;
@@ -86,4 +209,229 @@ message UserSignInByEmail {
   string password = 8;
   google.protobuf.Duration ttl = 9;
 }
-message UserSignInResponse {}
+
+message UserSignUpByEmailRequest {
+  string real_name = 1;
+  string email = 2;
+  string nickname = 3;
+  string password = 4;
+  string lang = 5;
+  string timezone = 6;
+  string home = 7;
+  google.protobuf.Duration ttl = 9;
+}
+
+message UserSignInResponse {
+  message Detail {
+    enum ProviderType {
+      Email = 0;
+      Phone = 1;
+      GoogleOauth2 = 11;
+      WechatOauth2 = 12;
+      WechatMiniProgram = 13;
+      FacebookOauth2 = 14;
+    }
+    optional string name = 1;
+    optional string avatar = 2;
+    string lang = 3;
+    string timezone = 4;
+    ProviderType provider_type = 8;
+    uint64 provider_id = 9;
+
+    bool has_email = 11;
+    bool has_phone = 12;
+    bool has_google_oauth2 = 21;
+    bool has_wechat_oauth2 = 22;
+    bool has_wechat_mini_program = 23;
+    bool has_facebook_oauth2 = 24;
+  }
+  message Permission {
+    string operation = 1;
+    string resource_type = 2;
+    optional uint64 resource_id = 3;
+  }
+  message Menu {
+    string label = 1;
+    string to = 2;
+    optional string icon = 3;
+    repeated Menu menus = 9;
+  }
+  string token = 1;
+  Detail detail = 2;
+  repeated string roles = 11;
+  repeated Permission permissions = 12;
+  repeated Menu menus = 13;
+}
+// ----------------------------------------------------------------------------
+service GoogleOauth2User {
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (GoogleOauth2UserIndexResponse) {}
+  rpc ById(IdRequest) returns (GoogleOauth2UserIndexResponse.Item) {}
+  rpc BySubject(GoogleOauth2UserBySubjectRequest)
+      returns (GoogleOauth2UserIndexResponse.Item) {}
+}
+message GoogleOauth2UserBySubjectRequest {
+  string subject = 1;
+}
+message GoogleOauth2UserIndexResponse {
+  message Item {
+    uint64 id = 1;
+    uint64 user_id = 2;
+    string subject = 3;
+    optional string email = 4;
+    bool email_verified = 5;
+    optional string name = 6;
+    optional string picture = 7;
+    optional string locale = 8;
+    optional google.protobuf.Timestamp deleted_at = 9;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+  uint64 total = 2;
+}
+// ----------------------------------------------------------------------------
+service WechatOauth2User {
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (WechatOauth2UserIndexResponse) {}
+  rpc ById(IdRequest) returns (WechatOauth2UserIndexResponse.Item) {}
+  rpc ByUnionId(WechatByUnionIdRequest)
+      returns (WechatOauth2UserIndexResponse.Item) {}
+  rpc ByAppIdAndUnionId(WechatByAppIdAndOpenIdRequest)
+      returns (WechatOauth2UserIndexResponse.Item) {}
+}
+message WechatByUnionIdRequest {
+  string union_id = 1;
+}
+message WechatByAppIdAndOpenIdRequest {
+  string app_id = 1;
+  string open_id = 2;
+}
+message WechatOauth2UserIndexResponse {
+  message Item {
+    enum Sex {
+      Male = 0;
+      Female = 1;
+    }
+    enum Lang {
+      Cn = 0;
+      En = 1;
+    }
+    uint64 id = 1;
+    uint64 user_id = 2;
+    string union_id = 3;
+    string app_id = 4;
+    string open_id = 5;
+    string nickname = 6;
+    Sex sex = 7;
+    string city = 8;
+    string province = 9;
+    string country = 10;
+    optional string head_img_url = 11;
+    repeated string privilege = 12;
+    optional string picture = 13;
+    Lang lang = 14;
+    optional google.protobuf.Timestamp deleted_at = 15;
+    google.protobuf.Timestamp updated_at = 16;
+  }
+  repeated Item items = 1;
+  uint64 total = 2;
+}
+// ----------------------------------------------------------------------------
+service WechatMiniProgramUser {
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Enable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (WechatMiniProgramUserIndexResponse) {}
+  rpc ById(IdRequest) returns (WechatMiniProgramUserIndexResponse.Item) {}
+  rpc ByUnionId(WechatByUnionIdRequest)
+      returns (WechatMiniProgramUserIndexResponse.Item) {}
+  rpc ByAppIdAndUnionId(WechatByAppIdAndOpenIdRequest)
+      returns (WechatMiniProgramUserIndexResponse.Item) {}
+}
+message WechatMiniProgramUserIndexResponse {
+  message Item {
+    uint64 id = 1;
+    uint64 user_id = 2;
+    string union_id = 3;
+    string app_id = 4;
+    string open_id = 5;
+    optional string nickname = 6;
+    optional string avatar_url = 7;
+    optional google.protobuf.Timestamp deleted_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item items = 1;
+  uint64 total = 2;
+}
+// ----------------------------------------------------------------------------
+service Session {
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (SessionIndexResponse) {}
+  rpc ByUser(IdRequest) returns (SessionIndexResponse) {}
+}
+message SessionIndexResponse {
+  message Item {
+    uint64 user = 1;
+    string uid = 2;
+    UserSignInResponse.Detail.ProviderType provider_type = 3;
+    uint64 provider_id = 4;
+    string ip = 5;
+    google.protobuf.Timestamp expires_at = 6;
+    optional google.protobuf.Timestamp deleted_at = 7;
+    google.protobuf.Timestamp created_at = 8;
+  }
+  repeated Item items = 1;
+  uint64 total = 2;
+}
+// ----------------------------------------------------------------------------
+service Attachment {
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (AttachmentIndexResponse) {}
+  rpc SetTitle(AttachmentSetTitleRequest) returns (google.protobuf.Empty) {}
+  rpc ById(IdRequest) returns (AttachmentIndexResponse.Item) {}
+  rpc ByUser(IdRequest) returns (AttachmentIndexResponse) {}
+  rpc ByResourceType(IdRequest) returns (AttachmentIndexResponse) {}
+  rpc Clear(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc ByResource(AttachmentByResourceRequest)
+      returns (AttachmentIndexResponse) {}
+
+  rpc Create(AttachmentCreateRequest) returns (google.protobuf.Empty) {}
+  rpc SetUploadedAt(IdRequest) returns (google.protobuf.Empty) {}
+}
+message AttachmentCreateRequest {
+  uint64 user = 1;
+  string bucket = 2;
+  string object = 3;
+  string title = 4;
+  uint64 size = 5;
+  string content_type = 6;
+  bool public = 9;
+}
+message AttachmentByResourceRequest {
+  string resource_type = 1;
+  uint64 resource_id = 2;
+}
+message AttachmentSetTitleRequest {
+  uint64 id = 1;
+  string title = 2;
+}
+message AttachmentShowResponse {
+  string url = 1;
+}
+message AttachmentIndexResponse {
+  message Item {
+    uint64 user = 1;
+    string bucket = 2;
+    string object = 3;
+    string title = 4;
+    uint64 size = 5;
+    string content_type = 6;
+    bool public = 7;
+    optional google.protobuf.Timestamp published_at = 8;
+    optional google.protobuf.Timestamp deleted_at = 9;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+  uint64 total = 2;
+}

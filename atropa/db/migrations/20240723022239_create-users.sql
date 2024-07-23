@@ -2,8 +2,6 @@
 CREATE TABLE users(
     id BIGSERIAL PRIMARY KEY,
     uid VARCHAR(36) NOT NULL,    
-    name VARCHAR(63),
-    avatar VARCHAR(255),
     lang VARCHAR(15) NOT NULL DEFAULT 'en-US',
     timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',
     sign_in_count INT NOT NULL DEFAULT 0,
@@ -18,7 +16,6 @@ CREATE TABLE users(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX idx_users_uid ON users(uid);
-CREATE INDEX idx_users_name ON users(name) WHERE name IS NOT NULL;
 CREATE INDEX idx_users_lang ON users(lang);
 CREATE INDEX idx_users_timezone ON users(timezone);
 CREATE INDEX idx_users_current_sign_in_ip ON users(current_sign_in_ip) WHERE current_sign_in_ip IS NOT NULL;
@@ -46,8 +43,8 @@ CREATE TABLE sessions(
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
     uid VARCHAR(36) NOT NULL, 
-    resource_type VARCHAR(127) NOT NULL,
-    resource_id BIGINT NOT NULL,
+    provider_type VARCHAR(127) NOT NULL,
+    provider_id BIGINT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     expires_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,    
@@ -55,7 +52,7 @@ CREATE TABLE sessions(
 );
 CREATE UNIQUE INDEX idx_sessions_uid ON sessions(uid);
 CREATE INDEX idx_sessions_ip ON sessions(ip);
-CREATE INDEX idx_sessions_resource_type ON sessions(resource_type);
+CREATE INDEX idx_sessions_provider_type ON sessions(provider_type);
 
 
 -- migrate:down

@@ -1,7 +1,7 @@
 syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.github.saturn_xiv.palm.plugins.daisy.v1";
-option go_package = "github.com/saturn-xiv/palm/daisy/services/v2";
+option go_package = "github.com/saturn-xiv/palm/atropa/daisy/services/v2";
 package palm.daisy.v1;
 
 message SmsTask {

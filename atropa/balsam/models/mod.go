@@ -28,8 +28,6 @@ type Setting struct {
 type User struct {
 	ID              uint
 	UID             string
-	Name            *string
-	Avatar          *string
 	Lang            string
 	Timezone        string
 	SignInCount     int

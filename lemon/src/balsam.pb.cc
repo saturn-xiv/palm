@@ -23,6 +23,46 @@ namespace _pbi = _pb::internal;
 namespace palm {
 namespace balsam {
 namespace v1 {
+PROTOBUF_CONSTEXPR IdRequest::IdRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct IdRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IdRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IdRequestDefaultTypeInternal() {}
+  union {
+    IdRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IdRequestDefaultTypeInternal _IdRequest_default_instance_;
+PROTOBUF_CONSTEXPR UidRequest::UidRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.uid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UidRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UidRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UidRequestDefaultTypeInternal() {}
+  union {
+    UidRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UidRequestDefaultTypeInternal _UidRequest_default_instance_;
+PROTOBUF_CONSTEXPR Pager::Pager(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.page_)*/uint64_t{0u}
+  , /*decltype(_impl_.size_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct PagerDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PagerDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PagerDefaultTypeInternal() {}
+  union {
+    Pager _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PagerDefaultTypeInternal _Pager_default_instance_;
 PROTOBUF_CONSTEXPR AesPlainMessage::AesPlainMessage(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.payload_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
@@ -155,24 +195,316 @@ struct HMacVerifyRequestDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HMacVerifyRequestDefaultTypeInternal _HMacVerifyRequest_default_instance_;
-PROTOBUF_CONSTEXPR UserSignInByEmail::UserSignInByEmail(
+PROTOBUF_CONSTEXPR UserUpdateProfileRequest::UserUpdateProfileRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.timezone_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.user_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UserUpdateProfileRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserUpdateProfileRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserUpdateProfileRequestDefaultTypeInternal() {}
+  union {
+    UserUpdateProfileRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserUpdateProfileRequestDefaultTypeInternal _UserUpdateProfileRequest_default_instance_;
+PROTOBUF_CONSTEXPR UserIndexResponse_Item::UserIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.uid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.timezone_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.current_sign_in_ip_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.last_sign_in_ip_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.current_sign_in_at_)*/nullptr
+  , /*decltype(_impl_.last_sign_in_at_)*/nullptr
+  , /*decltype(_impl_.lockeda_at_)*/nullptr
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.sign_in_count_)*/0u} {}
+struct UserIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    UserIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponse_ItemDefaultTypeInternal _UserIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR UserIndexResponse::UserIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UserIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserIndexResponseDefaultTypeInternal() {}
+  union {
+    UserIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserIndexResponseDefaultTypeInternal _UserIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR LogsRequest::LogsRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.user_)*/uint64_t{0u}
+  , /*decltype(_impl_.page_)*/uint64_t{0u}
+  , /*decltype(_impl_.size_)*/uint64_t{0u}} {}
+struct LogsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LogsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LogsRequestDefaultTypeInternal() {}
+  union {
+    LogsRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LogsRequestDefaultTypeInternal _LogsRequest_default_instance_;
+PROTOBUF_CONSTEXPR UserLogsResponse_Item::UserLogsResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.plugin_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.ip_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.resource_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.message_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.created_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.resource_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.level_)*/0} {}
+struct UserLogsResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserLogsResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserLogsResponse_ItemDefaultTypeInternal() {}
+  union {
+    UserLogsResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserLogsResponse_ItemDefaultTypeInternal _UserLogsResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR UserLogsResponse::UserLogsResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UserLogsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserLogsResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserLogsResponseDefaultTypeInternal() {}
+  union {
+    UserLogsResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserLogsResponseDefaultTypeInternal _UserLogsResponse_default_instance_;
+PROTOBUF_CONSTEXPR EmailUserByEmailRequest::EmailUserByEmailRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct EmailUserByEmailRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EmailUserByEmailRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EmailUserByEmailRequestDefaultTypeInternal() {}
+  union {
+    EmailUserByEmailRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailUserByEmailRequestDefaultTypeInternal _EmailUserByEmailRequest_default_instance_;
+PROTOBUF_CONSTEXPR EmailUserByNicknameRequest::EmailUserByNicknameRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct EmailUserByNicknameRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EmailUserByNicknameRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EmailUserByNicknameRequestDefaultTypeInternal() {}
+  union {
+    EmailUserByNicknameRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailUserByNicknameRequestDefaultTypeInternal _EmailUserByNicknameRequest_default_instance_;
+PROTOBUF_CONSTEXPR EmailUserIndexResponse_Item::EmailUserIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.real_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.avatar_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.confirmed_at_)*/nullptr
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.user_id_)*/uint64_t{0u}} {}
+struct EmailUserIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EmailUserIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EmailUserIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    EmailUserIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailUserIndexResponse_ItemDefaultTypeInternal _EmailUserIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR EmailUserIndexResponse::EmailUserIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct EmailUserIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EmailUserIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EmailUserIndexResponseDefaultTypeInternal() {}
+  union {
+    EmailUserIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailUserIndexResponseDefaultTypeInternal _EmailUserIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR UserResetPasswordRequest::UserResetPasswordRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.password_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UserResetPasswordRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserResetPasswordRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserResetPasswordRequestDefaultTypeInternal() {}
+  union {
+    UserResetPasswordRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserResetPasswordRequestDefaultTypeInternal _UserResetPasswordRequest_default_instance_;
+PROTOBUF_CONSTEXPR UserByEmailRequest::UserByEmailRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.user_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_._oneof_case_)*/{}} {}
+struct UserByEmailRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserByEmailRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserByEmailRequestDefaultTypeInternal() {}
+  union {
+    UserByEmailRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserByEmailRequestDefaultTypeInternal _UserByEmailRequest_default_instance_;
+PROTOBUF_CONSTEXPR UserByTokenRequest::UserByTokenRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UserByTokenRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserByTokenRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserByTokenRequestDefaultTypeInternal() {}
+  union {
+    UserByTokenRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserByTokenRequestDefaultTypeInternal _UserByTokenRequest_default_instance_;
+PROTOBUF_CONSTEXPR UserSignInByEmailRequest::UserSignInByEmailRequest(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.password_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.ttl_)*/nullptr
   , /*decltype(_impl_.user_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
   , /*decltype(_impl_._oneof_case_)*/{}} {}
-struct UserSignInByEmailDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UserSignInByEmailDefaultTypeInternal()
+struct UserSignInByEmailRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserSignInByEmailRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UserSignInByEmailDefaultTypeInternal() {}
+  ~UserSignInByEmailRequestDefaultTypeInternal() {}
   union {
-    UserSignInByEmail _instance;
+    UserSignInByEmailRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignInByEmailDefaultTypeInternal _UserSignInByEmail_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignInByEmailRequestDefaultTypeInternal _UserSignInByEmailRequest_default_instance_;
+PROTOBUF_CONSTEXPR UserSignUpByEmailRequest::UserSignUpByEmailRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.real_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.password_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.timezone_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.home_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.ttl_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UserSignUpByEmailRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserSignUpByEmailRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserSignUpByEmailRequestDefaultTypeInternal() {}
+  union {
+    UserSignUpByEmailRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignUpByEmailRequestDefaultTypeInternal _UserSignUpByEmailRequest_default_instance_;
+PROTOBUF_CONSTEXPR UserSignInResponse_Detail::UserSignInResponse_Detail(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.avatar_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.timezone_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.provider_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.provider_type_)*/0
+  , /*decltype(_impl_.has_email_)*/false
+  , /*decltype(_impl_.has_phone_)*/false
+  , /*decltype(_impl_.has_google_oauth2_)*/false
+  , /*decltype(_impl_.has_wechat_oauth2_)*/false
+  , /*decltype(_impl_.has_wechat_mini_program_)*/false
+  , /*decltype(_impl_.has_facebook_oauth2_)*/false} {}
+struct UserSignInResponse_DetailDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserSignInResponse_DetailDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserSignInResponse_DetailDefaultTypeInternal() {}
+  union {
+    UserSignInResponse_Detail _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignInResponse_DetailDefaultTypeInternal _UserSignInResponse_Detail_default_instance_;
+PROTOBUF_CONSTEXPR UserSignInResponse_Permission::UserSignInResponse_Permission(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.operation_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.resource_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.resource_id_)*/uint64_t{0u}} {}
+struct UserSignInResponse_PermissionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserSignInResponse_PermissionDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserSignInResponse_PermissionDefaultTypeInternal() {}
+  union {
+    UserSignInResponse_Permission _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignInResponse_PermissionDefaultTypeInternal _UserSignInResponse_Permission_default_instance_;
+PROTOBUF_CONSTEXPR UserSignInResponse_Menu::UserSignInResponse_Menu(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.menus_)*/{}
+  , /*decltype(_impl_.label_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.to_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.icon_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
+struct UserSignInResponse_MenuDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserSignInResponse_MenuDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserSignInResponse_MenuDefaultTypeInternal() {}
+  union {
+    UserSignInResponse_Menu _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignInResponse_MenuDefaultTypeInternal _UserSignInResponse_Menu_default_instance_;
 PROTOBUF_CONSTEXPR UserSignInResponse::UserSignInResponse(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.roles_)*/{}
+  , /*decltype(_impl_.permissions_)*/{}
+  , /*decltype(_impl_.menus_)*/{}
+  , /*decltype(_impl_.token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.detail_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct UserSignInResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UserSignInResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -182,14 +514,324 @@ struct UserSignInResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSignInResponseDefaultTypeInternal _UserSignInResponse_default_instance_;
+PROTOBUF_CONSTEXPR GoogleOauth2UserBySubjectRequest::GoogleOauth2UserBySubjectRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.subject_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct GoogleOauth2UserBySubjectRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GoogleOauth2UserBySubjectRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GoogleOauth2UserBySubjectRequestDefaultTypeInternal() {}
+  union {
+    GoogleOauth2UserBySubjectRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GoogleOauth2UserBySubjectRequestDefaultTypeInternal _GoogleOauth2UserBySubjectRequest_default_instance_;
+PROTOBUF_CONSTEXPR GoogleOauth2UserIndexResponse_Item::GoogleOauth2UserIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.subject_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.picture_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.locale_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.user_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.email_verified_)*/false} {}
+struct GoogleOauth2UserIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GoogleOauth2UserIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GoogleOauth2UserIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    GoogleOauth2UserIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GoogleOauth2UserIndexResponse_ItemDefaultTypeInternal _GoogleOauth2UserIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR GoogleOauth2UserIndexResponse::GoogleOauth2UserIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct GoogleOauth2UserIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GoogleOauth2UserIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GoogleOauth2UserIndexResponseDefaultTypeInternal() {}
+  union {
+    GoogleOauth2UserIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GoogleOauth2UserIndexResponseDefaultTypeInternal _GoogleOauth2UserIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR WechatByUnionIdRequest::WechatByUnionIdRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.union_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct WechatByUnionIdRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WechatByUnionIdRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WechatByUnionIdRequestDefaultTypeInternal() {}
+  union {
+    WechatByUnionIdRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WechatByUnionIdRequestDefaultTypeInternal _WechatByUnionIdRequest_default_instance_;
+PROTOBUF_CONSTEXPR WechatByAppIdAndOpenIdRequest::WechatByAppIdAndOpenIdRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.app_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.open_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct WechatByAppIdAndOpenIdRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WechatByAppIdAndOpenIdRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WechatByAppIdAndOpenIdRequestDefaultTypeInternal() {}
+  union {
+    WechatByAppIdAndOpenIdRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WechatByAppIdAndOpenIdRequestDefaultTypeInternal _WechatByAppIdAndOpenIdRequest_default_instance_;
+PROTOBUF_CONSTEXPR WechatOauth2UserIndexResponse_Item::WechatOauth2UserIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.privilege_)*/{}
+  , /*decltype(_impl_.union_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.app_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.open_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.city_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.province_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.country_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.head_img_url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.picture_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.user_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.sex_)*/0
+  , /*decltype(_impl_.lang_)*/0} {}
+struct WechatOauth2UserIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WechatOauth2UserIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WechatOauth2UserIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    WechatOauth2UserIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WechatOauth2UserIndexResponse_ItemDefaultTypeInternal _WechatOauth2UserIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR WechatOauth2UserIndexResponse::WechatOauth2UserIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct WechatOauth2UserIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WechatOauth2UserIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WechatOauth2UserIndexResponseDefaultTypeInternal() {}
+  union {
+    WechatOauth2UserIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WechatOauth2UserIndexResponseDefaultTypeInternal _WechatOauth2UserIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR WechatMiniProgramUserIndexResponse_Item::WechatMiniProgramUserIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.union_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.app_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.open_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.nickname_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.avatar_url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.user_id_)*/uint64_t{0u}} {}
+struct WechatMiniProgramUserIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WechatMiniProgramUserIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WechatMiniProgramUserIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    WechatMiniProgramUserIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WechatMiniProgramUserIndexResponse_ItemDefaultTypeInternal _WechatMiniProgramUserIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR WechatMiniProgramUserIndexResponse::WechatMiniProgramUserIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct WechatMiniProgramUserIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WechatMiniProgramUserIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WechatMiniProgramUserIndexResponseDefaultTypeInternal() {}
+  union {
+    WechatMiniProgramUserIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WechatMiniProgramUserIndexResponseDefaultTypeInternal _WechatMiniProgramUserIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR SessionIndexResponse_Item::SessionIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.uid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.ip_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.expires_at_)*/nullptr
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.created_at_)*/nullptr
+  , /*decltype(_impl_.user_)*/uint64_t{0u}
+  , /*decltype(_impl_.provider_id_)*/uint64_t{0u}
+  , /*decltype(_impl_.provider_type_)*/0} {}
+struct SessionIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SessionIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SessionIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    SessionIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SessionIndexResponse_ItemDefaultTypeInternal _SessionIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR SessionIndexResponse::SessionIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SessionIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SessionIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SessionIndexResponseDefaultTypeInternal() {}
+  union {
+    SessionIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SessionIndexResponseDefaultTypeInternal _SessionIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR AttachmentCreateRequest::AttachmentCreateRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.user_)*/uint64_t{0u}
+  , /*decltype(_impl_.size_)*/uint64_t{0u}
+  , /*decltype(_impl_.public__)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct AttachmentCreateRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AttachmentCreateRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AttachmentCreateRequestDefaultTypeInternal() {}
+  union {
+    AttachmentCreateRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentCreateRequestDefaultTypeInternal _AttachmentCreateRequest_default_instance_;
+PROTOBUF_CONSTEXPR AttachmentByResourceRequest::AttachmentByResourceRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.resource_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.resource_id_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct AttachmentByResourceRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AttachmentByResourceRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AttachmentByResourceRequestDefaultTypeInternal() {}
+  union {
+    AttachmentByResourceRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentByResourceRequestDefaultTypeInternal _AttachmentByResourceRequest_default_instance_;
+PROTOBUF_CONSTEXPR AttachmentSetTitleRequest::AttachmentSetTitleRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct AttachmentSetTitleRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AttachmentSetTitleRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AttachmentSetTitleRequestDefaultTypeInternal() {}
+  union {
+    AttachmentSetTitleRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentSetTitleRequestDefaultTypeInternal _AttachmentSetTitleRequest_default_instance_;
+PROTOBUF_CONSTEXPR AttachmentShowResponse::AttachmentShowResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct AttachmentShowResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AttachmentShowResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AttachmentShowResponseDefaultTypeInternal() {}
+  union {
+    AttachmentShowResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentShowResponseDefaultTypeInternal _AttachmentShowResponse_default_instance_;
+PROTOBUF_CONSTEXPR AttachmentIndexResponse_Item::AttachmentIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.published_at_)*/nullptr
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.user_)*/uint64_t{0u}
+  , /*decltype(_impl_.size_)*/uint64_t{0u}
+  , /*decltype(_impl_.public__)*/false} {}
+struct AttachmentIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AttachmentIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AttachmentIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    AttachmentIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentIndexResponse_ItemDefaultTypeInternal _AttachmentIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR AttachmentIndexResponse::AttachmentIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct AttachmentIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AttachmentIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AttachmentIndexResponseDefaultTypeInternal() {}
+  union {
+    AttachmentIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentIndexResponseDefaultTypeInternal _AttachmentIndexResponse_default_instance_;
 }  // namespace v1
 }  // namespace balsam
 }  // namespace palm
-static ::_pb::Metadata file_level_metadata_balsam_2eproto[11];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_balsam_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_balsam_2eproto[48];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_balsam_2eproto[4];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_balsam_2eproto = nullptr;
 
 const uint32_t TableStruct_balsam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::IdRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::IdRequest, _impl_.id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UidRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UidRequest, _impl_.uid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::Pager, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::Pager, _impl_.page_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::Pager, _impl_.size_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AesPlainMessage, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -278,38 +920,546 @@ const uint32_t TableStruct_balsam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacVerifyRequest, _impl_.plain_),
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacVerifyRequest, _impl_.code_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmail, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserUpdateProfileRequest, _internal_metadata_),
   ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmail, _impl_._oneof_case_[0]),
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserUpdateProfileRequest, _impl_.user_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserUpdateProfileRequest, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserUpdateProfileRequest, _impl_.timezone_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.uid_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.timezone_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.sign_in_count_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.current_sign_in_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.current_sign_in_ip_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.last_sign_in_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.last_sign_in_ip_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.lockeda_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse_Item, _impl_.updated_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  2,
+  0,
+  3,
+  1,
+  4,
+  5,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserIndexResponse, _impl_.total_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LogsRequest, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LogsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LogsRequest, _impl_.user_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LogsRequest, _impl_.page_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LogsRequest, _impl_.size_),
+  0,
+  ~0u,
+  ~0u,
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.plugin_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.ip_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.level_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.resource_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.resource_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.message_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse_Item, _impl_.created_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  ~0u,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserLogsResponse, _impl_.total_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserByEmailRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserByEmailRequest, _impl_.email_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserByNicknameRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserByNicknameRequest, _impl_.nickname_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.user_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.real_name_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.nickname_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.email_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.avatar_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.confirmed_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse_Item, _impl_.updated_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::EmailUserIndexResponse, _impl_.total_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserResetPasswordRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserResetPasswordRequest, _impl_.token_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserResetPasswordRequest, _impl_.password_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserByEmailRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserByEmailRequest, _impl_._oneof_case_[0]),
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmail, _impl_.password_),
-  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmail, _impl_.ttl_),
-  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmail, _impl_.user_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserByEmailRequest, _impl_.user_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserByTokenRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserByTokenRequest, _impl_.token_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmailRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmailRequest, _impl_._oneof_case_[0]),
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmailRequest, _impl_.password_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmailRequest, _impl_.ttl_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInByEmailRequest, _impl_.user_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.real_name_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.email_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.nickname_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.password_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.timezone_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.home_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignUpByEmailRequest, _impl_.ttl_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.avatar_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.timezone_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.provider_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.provider_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.has_email_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.has_phone_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.has_google_oauth2_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.has_wechat_oauth2_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.has_wechat_mini_program_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Detail, _impl_.has_facebook_oauth2_),
+  0,
+  1,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Permission, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Permission, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Permission, _impl_.operation_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Permission, _impl_.resource_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Permission, _impl_.resource_id_),
+  ~0u,
+  ~0u,
+  0,
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Menu, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Menu, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Menu, _impl_.label_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Menu, _impl_.to_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Menu, _impl_.icon_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse_Menu, _impl_.menus_),
+  ~0u,
+  ~0u,
+  0,
+  ~0u,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse, _impl_.token_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse, _impl_.detail_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse, _impl_.roles_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse, _impl_.permissions_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserSignInResponse, _impl_.menus_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserBySubjectRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserBySubjectRequest, _impl_.subject_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.user_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.subject_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.email_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.email_verified_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.picture_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.locale_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item, _impl_.updated_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  ~0u,
+  1,
+  2,
+  3,
+  4,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::GoogleOauth2UserIndexResponse, _impl_.total_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatByUnionIdRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatByUnionIdRequest, _impl_.union_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, _impl_.app_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatByAppIdAndOpenIdRequest, _impl_.open_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.user_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.union_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.app_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.open_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.nickname_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.sex_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.city_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.province_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.country_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.head_img_url_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.privilege_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.picture_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item, _impl_.updated_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  ~0u,
+  1,
+  ~0u,
+  2,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatOauth2UserIndexResponse, _impl_.total_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.user_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.union_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.app_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.open_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.nickname_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.avatar_url_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item, _impl_.updated_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
+  2,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::WechatMiniProgramUserIndexResponse, _impl_.total_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.user_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.uid_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.provider_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.provider_id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.ip_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.expires_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse_Item, _impl_.created_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SessionIndexResponse, _impl_.total_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _impl_.user_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _impl_.bucket_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _impl_.object_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _impl_.size_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _impl_.content_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentCreateRequest, _impl_.public__),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentByResourceRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentByResourceRequest, _impl_.resource_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentByResourceRequest, _impl_.resource_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentSetTitleRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentSetTitleRequest, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentSetTitleRequest, _impl_.title_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentShowResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentShowResponse, _impl_.url_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.user_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.bucket_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.object_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.size_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.content_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.public__),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.published_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse_Item, _impl_.updated_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse, _impl_.total_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::palm::balsam::v1::AesPlainMessage)},
-  { 7, -1, -1, sizeof(::palm::balsam::v1::AesCodeMessage)},
-  { 15, 28, -1, sizeof(::palm::balsam::v1::JwtSignRequest)},
-  { 35, -1, -1, sizeof(::palm::balsam::v1::JwtSignResponse)},
-  { 42, -1, -1, sizeof(::palm::balsam::v1::JwtVerifyRequest)},
-  { 51, 61, -1, sizeof(::palm::balsam::v1::JwtVerifyResponse)},
-  { 65, -1, -1, sizeof(::palm::balsam::v1::HMacSignRequest)},
-  { 72, -1, -1, sizeof(::palm::balsam::v1::HMacSignResponse)},
-  { 79, -1, -1, sizeof(::palm::balsam::v1::HMacVerifyRequest)},
-  { 87, -1, -1, sizeof(::palm::balsam::v1::UserSignInByEmail)},
-  { 98, -1, -1, sizeof(::palm::balsam::v1::UserSignInResponse)},
+  { 0, -1, -1, sizeof(::palm::balsam::v1::IdRequest)},
+  { 7, -1, -1, sizeof(::palm::balsam::v1::UidRequest)},
+  { 14, -1, -1, sizeof(::palm::balsam::v1::Pager)},
+  { 22, -1, -1, sizeof(::palm::balsam::v1::AesPlainMessage)},
+  { 29, -1, -1, sizeof(::palm::balsam::v1::AesCodeMessage)},
+  { 37, 50, -1, sizeof(::palm::balsam::v1::JwtSignRequest)},
+  { 57, -1, -1, sizeof(::palm::balsam::v1::JwtSignResponse)},
+  { 64, -1, -1, sizeof(::palm::balsam::v1::JwtVerifyRequest)},
+  { 73, 83, -1, sizeof(::palm::balsam::v1::JwtVerifyResponse)},
+  { 87, -1, -1, sizeof(::palm::balsam::v1::HMacSignRequest)},
+  { 94, -1, -1, sizeof(::palm::balsam::v1::HMacSignResponse)},
+  { 101, -1, -1, sizeof(::palm::balsam::v1::HMacVerifyRequest)},
+  { 109, -1, -1, sizeof(::palm::balsam::v1::UserUpdateProfileRequest)},
+  { 118, 136, -1, sizeof(::palm::balsam::v1::UserIndexResponse_Item)},
+  { 148, -1, -1, sizeof(::palm::balsam::v1::UserIndexResponse)},
+  { 156, 165, -1, sizeof(::palm::balsam::v1::LogsRequest)},
+  { 168, 182, -1, sizeof(::palm::balsam::v1::UserLogsResponse_Item)},
+  { 190, -1, -1, sizeof(::palm::balsam::v1::UserLogsResponse)},
+  { 198, -1, -1, sizeof(::palm::balsam::v1::EmailUserByEmailRequest)},
+  { 205, -1, -1, sizeof(::palm::balsam::v1::EmailUserByNicknameRequest)},
+  { 212, 227, -1, sizeof(::palm::balsam::v1::EmailUserIndexResponse_Item)},
+  { 236, -1, -1, sizeof(::palm::balsam::v1::EmailUserIndexResponse)},
+  { 244, -1, -1, sizeof(::palm::balsam::v1::UserResetPasswordRequest)},
+  { 252, -1, -1, sizeof(::palm::balsam::v1::UserByEmailRequest)},
+  { 261, -1, -1, sizeof(::palm::balsam::v1::UserByTokenRequest)},
+  { 268, -1, -1, sizeof(::palm::balsam::v1::UserSignInByEmailRequest)},
+  { 279, -1, -1, sizeof(::palm::balsam::v1::UserSignUpByEmailRequest)},
+  { 293, 311, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Detail)},
+  { 323, 332, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Permission)},
+  { 335, 345, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Menu)},
+  { 349, -1, -1, sizeof(::palm::balsam::v1::UserSignInResponse)},
+  { 360, -1, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserBySubjectRequest)},
+  { 367, 383, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item)},
+  { 393, -1, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserIndexResponse)},
+  { 401, -1, -1, sizeof(::palm::balsam::v1::WechatByUnionIdRequest)},
+  { 408, -1, -1, sizeof(::palm::balsam::v1::WechatByAppIdAndOpenIdRequest)},
+  { 416, 438, -1, sizeof(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item)},
+  { 454, -1, -1, sizeof(::palm::balsam::v1::WechatOauth2UserIndexResponse)},
+  { 462, 477, -1, sizeof(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item)},
+  { 486, -1, -1, sizeof(::palm::balsam::v1::WechatMiniProgramUserIndexResponse)},
+  { 494, 508, -1, sizeof(::palm::balsam::v1::SessionIndexResponse_Item)},
+  { 516, -1, -1, sizeof(::palm::balsam::v1::SessionIndexResponse)},
+  { 524, -1, -1, sizeof(::palm::balsam::v1::AttachmentCreateRequest)},
+  { 537, -1, -1, sizeof(::palm::balsam::v1::AttachmentByResourceRequest)},
+  { 545, -1, -1, sizeof(::palm::balsam::v1::AttachmentSetTitleRequest)},
+  { 553, -1, -1, sizeof(::palm::balsam::v1::AttachmentShowResponse)},
+  { 560, 576, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse_Item)},
+  { 586, -1, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
+  &::palm::balsam::v1::_IdRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UidRequest_default_instance_._instance,
+  &::palm::balsam::v1::_Pager_default_instance_._instance,
   &::palm::balsam::v1::_AesPlainMessage_default_instance_._instance,
   &::palm::balsam::v1::_AesCodeMessage_default_instance_._instance,
   &::palm::balsam::v1::_JwtSignRequest_default_instance_._instance,
@@ -319,52 +1469,341 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::palm::balsam::v1::_HMacSignRequest_default_instance_._instance,
   &::palm::balsam::v1::_HMacSignResponse_default_instance_._instance,
   &::palm::balsam::v1::_HMacVerifyRequest_default_instance_._instance,
-  &::palm::balsam::v1::_UserSignInByEmail_default_instance_._instance,
+  &::palm::balsam::v1::_UserUpdateProfileRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UserIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_UserIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_LogsRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UserLogsResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_UserLogsResponse_default_instance_._instance,
+  &::palm::balsam::v1::_EmailUserByEmailRequest_default_instance_._instance,
+  &::palm::balsam::v1::_EmailUserByNicknameRequest_default_instance_._instance,
+  &::palm::balsam::v1::_EmailUserIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_EmailUserIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_UserResetPasswordRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UserByEmailRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UserByTokenRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UserSignInByEmailRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UserSignUpByEmailRequest_default_instance_._instance,
+  &::palm::balsam::v1::_UserSignInResponse_Detail_default_instance_._instance,
+  &::palm::balsam::v1::_UserSignInResponse_Permission_default_instance_._instance,
+  &::palm::balsam::v1::_UserSignInResponse_Menu_default_instance_._instance,
   &::palm::balsam::v1::_UserSignInResponse_default_instance_._instance,
+  &::palm::balsam::v1::_GoogleOauth2UserBySubjectRequest_default_instance_._instance,
+  &::palm::balsam::v1::_GoogleOauth2UserIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_GoogleOauth2UserIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_WechatByUnionIdRequest_default_instance_._instance,
+  &::palm::balsam::v1::_WechatByAppIdAndOpenIdRequest_default_instance_._instance,
+  &::palm::balsam::v1::_WechatOauth2UserIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_WechatOauth2UserIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_WechatMiniProgramUserIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_WechatMiniProgramUserIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_SessionIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_SessionIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_AttachmentCreateRequest_default_instance_._instance,
+  &::palm::balsam::v1::_AttachmentByResourceRequest_default_instance_._instance,
+  &::palm::balsam::v1::_AttachmentSetTitleRequest_default_instance_._instance,
+  &::palm::balsam::v1::_AttachmentShowResponse_default_instance_._instance,
+  &::palm::balsam::v1::_AttachmentIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_AttachmentIndexResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_balsam_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\014balsam.proto\022\016palm.balsam.v1\032\033google/p"
   "rotobuf/empty.proto\032\036google/protobuf/dur"
   "ation.proto\032\037google/protobuf/timestamp.p"
-  "roto\"\"\n\017AesPlainMessage\022\017\n\007payload\030\001 \001(\014"
-  "\"/\n\016AesCodeMessage\022\017\n\007payload\030\001 \001(\014\022\014\n\004s"
-  "alt\030\002 \001(\014\"\342\001\n\016JwtSignRequest\022\023\n\006key_id\030\001"
-  " \001(\tH\000\210\001\001\022\016\n\006issuer\030\013 \001(\t\022\017\n\007subject\030\014 \001"
-  "(\t\022\021\n\taudiences\030\r \003(\t\022.\n\nnot_before\030\022 \001("
-  "\0132\032.google.protobuf.Timestamp\022.\n\nexpires"
-  "_at\030\023 \001(\0132\032.google.protobuf.Timestamp\022\022\n"
-  "\005extra\030c \001(\tH\001\210\001\001B\t\n\007_key_idB\010\n\006_extra\" "
-  "\n\017JwtSignResponse\022\r\n\005token\030\001 \001(\t\"C\n\020JwtV"
-  "erifyRequest\022\r\n\005token\030\001 \001(\t\022\016\n\006issuer\030\002 "
-  "\001(\t\022\020\n\010audience\030\003 \001(\t\"r\n\021JwtVerifyRespon"
-  "se\022\016\n\006jwt_id\030\001 \001(\t\022\023\n\006key_id\030\002 \001(\tH\000\210\001\001\022"
-  "\017\n\007subject\030\013 \001(\t\022\022\n\005extra\030\023 \001(\tH\001\210\001\001B\t\n\007"
-  "_key_idB\010\n\006_extra\" \n\017HMacSignRequest\022\r\n\005"
-  "plain\030\001 \001(\014\" \n\020HMacSignResponse\022\014\n\004code\030"
-  "\001 \001(\014\"0\n\021HMacVerifyRequest\022\r\n\005plain\030\001 \001("
-  "\014\022\014\n\004code\030\002 \001(\014\"z\n\021UserSignInByEmail\022\017\n\005"
-  "email\030\001 \001(\tH\000\022\022\n\010nickname\030\002 \001(\tH\000\022\020\n\010pas"
-  "sword\030\010 \001(\t\022&\n\003ttl\030\t \001(\0132\031.google.protob"
-  "uf.DurationB\006\n\004user\"\024\n\022UserSignInRespons"
-  "e2\241\001\n\003Aes\022L\n\007Encrypt\022\037.palm.balsam.v1.Ae"
-  "sPlainMessage\032\036.palm.balsam.v1.AesCodeMe"
-  "ssage\"\000\022L\n\007Decrypt\022\036.palm.balsam.v1.AesC"
-  "odeMessage\032\037.palm.balsam.v1.AesPlainMess"
-  "age\"\0002\241\001\n\003Jwt\022I\n\004Sign\022\036.palm.balsam.v1.J"
-  "wtSignRequest\032\037.palm.balsam.v1.JwtSignRe"
-  "sponse\"\000\022O\n\006Verify\022 .palm.balsam.v1.JwtV"
-  "erifyRequest\032!.palm.balsam.v1.JwtVerifyR"
-  "esponse\"\0002\232\001\n\004HMac\022K\n\004Sign\022\037.palm.balsam"
-  ".v1.HMacSignRequest\032 .palm.balsam.v1.HMa"
-  "cSignResponse\"\000\022E\n\006Verify\022!.palm.balsam."
-  "v1.HMacVerifyRequest\032\026.google.protobuf.E"
-  "mpty\"\0002`\n\004User\022X\n\rSignInByEmail\022!.palm.b"
-  "alsam.v1.UserSignInByEmail\032\".palm.balsam"
-  ".v1.UserSignInResponse\"\000B_\n,com.github.s"
-  "aturn_xiv.palm.plugins.balsam.v1P\001Z-gith"
-  "ub.com/saturn-xiv/palm/balsam/services/v"
-  "2b\006proto3"
+  "roto\"\027\n\tIdRequest\022\n\n\002id\030\001 \001(\004\"\031\n\nUidRequ"
+  "est\022\013\n\003uid\030\001 \001(\t\"#\n\005Pager\022\014\n\004page\030\001 \001(\004\022"
+  "\014\n\004size\030\002 \001(\004\"\"\n\017AesPlainMessage\022\017\n\007payl"
+  "oad\030\001 \001(\014\"/\n\016AesCodeMessage\022\017\n\007payload\030\001"
+  " \001(\014\022\014\n\004salt\030\002 \001(\014\"\342\001\n\016JwtSignRequest\022\023\n"
+  "\006key_id\030\001 \001(\tH\000\210\001\001\022\016\n\006issuer\030\013 \001(\t\022\017\n\007su"
+  "bject\030\014 \001(\t\022\021\n\taudiences\030\r \003(\t\022.\n\nnot_be"
+  "fore\030\022 \001(\0132\032.google.protobuf.Timestamp\022."
+  "\n\nexpires_at\030\023 \001(\0132\032.google.protobuf.Tim"
+  "estamp\022\022\n\005extra\030c \001(\tH\001\210\001\001B\t\n\007_key_idB\010\n"
+  "\006_extra\" \n\017JwtSignResponse\022\r\n\005token\030\001 \001("
+  "\t\"C\n\020JwtVerifyRequest\022\r\n\005token\030\001 \001(\t\022\016\n\006"
+  "issuer\030\002 \001(\t\022\020\n\010audience\030\003 \001(\t\"r\n\021JwtVer"
+  "ifyResponse\022\016\n\006jwt_id\030\001 \001(\t\022\023\n\006key_id\030\002 "
+  "\001(\tH\000\210\001\001\022\017\n\007subject\030\013 \001(\t\022\022\n\005extra\030\023 \001(\t"
+  "H\001\210\001\001B\t\n\007_key_idB\010\n\006_extra\" \n\017HMacSignRe"
+  "quest\022\r\n\005plain\030\001 \001(\014\" \n\020HMacSignResponse"
+  "\022\014\n\004code\030\001 \001(\014\"0\n\021HMacVerifyRequest\022\r\n\005p"
+  "lain\030\001 \001(\014\022\014\n\004code\030\002 \001(\014\"H\n\030UserUpdatePr"
+  "ofileRequest\022\014\n\004user\030\001 \001(\004\022\014\n\004lang\030\002 \001(\t"
+  "\022\020\n\010timezone\030\003 \001(\t\"\366\004\n\021UserIndexResponse"
+  "\0225\n\005items\030\001 \003(\0132&.palm.balsam.v1.UserInd"
+  "exResponse.Item\022\r\n\005total\030\t \001(\004\032\232\004\n\004Item\022"
+  "\n\n\002id\030\001 \001(\004\022\013\n\003uid\030\002 \001(\t\022\014\n\004lang\030\003 \001(\t\022\020"
+  "\n\010timezone\030\004 \001(\t\022\025\n\rsign_in_count\030\005 \001(\r\022"
+  ";\n\022current_sign_in_at\030\006 \001(\0132\032.google.pro"
+  "tobuf.TimestampH\000\210\001\001\022\037\n\022current_sign_in_"
+  "ip\030\007 \001(\tH\001\210\001\001\0228\n\017last_sign_in_at\030\010 \001(\0132\032"
+  ".google.protobuf.TimestampH\002\210\001\001\022\034\n\017last_"
+  "sign_in_ip\030\t \001(\tH\003\210\001\001\0223\n\nlockeda_at\030\n \001("
+  "\0132\032.google.protobuf.TimestampH\004\210\001\001\0223\n\nde"
+  "leted_at\030\013 \001(\0132\032.google.protobuf.Timesta"
+  "mpH\005\210\001\001\022.\n\nupdated_at\030\014 \001(\0132\032.google.pro"
+  "tobuf.TimestampB\025\n\023_current_sign_in_atB\025"
+  "\n\023_current_sign_in_ipB\022\n\020_last_sign_in_a"
+  "tB\022\n\020_last_sign_in_ipB\r\n\013_lockeda_atB\r\n\013"
+  "_deleted_at\"E\n\013LogsRequest\022\021\n\004user\030\001 \001(\004"
+  "H\000\210\001\001\022\014\n\004page\030\013 \001(\004\022\014\n\004size\030\014 \001(\004B\007\n\005_us"
+  "er\"\371\002\n\020UserLogsResponse\0224\n\005items\030\001 \003(\0132%"
+  ".palm.balsam.v1.UserLogsResponse.Item\022\r\n"
+  "\005total\030\t \001(\004\032\237\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\016\n\006plu"
+  "gin\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022:\n\005level\030\004 \001(\0162+.p"
+  "alm.balsam.v1.UserLogsResponse.Item.Leve"
+  "l\022\025\n\rresource_type\030\005 \001(\t\022\030\n\013resource_id\030"
+  "\006 \001(\004H\000\210\001\001\022\017\n\007message\030\007 \001(\t\022.\n\ncreated_a"
+  "t\030\010 \001(\0132\032.google.protobuf.Timestamp\"1\n\005L"
+  "evel\022\t\n\005Debug\020\000\022\010\n\004Info\020\001\022\010\n\004Warn\020\002\022\t\n\005E"
+  "rror\020\003B\016\n\014_resource_id\"(\n\027EmailUserByEma"
+  "ilRequest\022\r\n\005email\030\001 \001(\t\".\n\032EmailUserByN"
+  "icknameRequest\022\020\n\010nickname\030\001 \001(\t\"\211\003\n\026Ema"
+  "ilUserIndexResponse\022:\n\005items\030\001 \003(\0132+.pal"
+  "m.balsam.v1.EmailUserIndexResponse.Item\022"
+  "\r\n\005total\030\002 \001(\004\032\243\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\017\n\007u"
+  "ser_id\030\002 \001(\004\022\021\n\treal_name\030\003 \001(\t\022\020\n\010nickn"
+  "ame\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\016\n\006avatar\030\006 \001(\t"
+  "\0225\n\014confirmed_at\030\007 \001(\0132\032.google.protobuf"
+  ".TimestampH\000\210\001\001\0223\n\ndeleted_at\030\010 \001(\0132\032.go"
+  "ogle.protobuf.TimestampH\001\210\001\001\022.\n\nupdated_"
+  "at\030\t \001(\0132\032.google.protobuf.TimestampB\017\n\r"
+  "_confirmed_atB\r\n\013_deleted_at\";\n\030UserRese"
+  "tPasswordRequest\022\r\n\005token\030\001 \001(\t\022\020\n\010passw"
+  "ord\030\002 \001(\t\"A\n\022UserByEmailRequest\022\017\n\005email"
+  "\030\001 \001(\tH\000\022\022\n\010nickname\030\002 \001(\tH\000B\006\n\004user\"#\n\022"
+  "UserByTokenRequest\022\r\n\005token\030\001 \001(\t\"\201\001\n\030Us"
+  "erSignInByEmailRequest\022\017\n\005email\030\001 \001(\tH\000\022"
+  "\022\n\010nickname\030\002 \001(\tH\000\022\020\n\010password\030\010 \001(\t\022&\n"
+  "\003ttl\030\t \001(\0132\031.google.protobuf.DurationB\006\n"
+  "\004user\"\266\001\n\030UserSignUpByEmailRequest\022\021\n\tre"
+  "al_name\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010nickname"
+  "\030\003 \001(\t\022\020\n\010password\030\004 \001(\t\022\014\n\004lang\030\005 \001(\t\022\020"
+  "\n\010timezone\030\006 \001(\t\022\014\n\004home\030\007 \001(\t\022&\n\003ttl\030\t "
+  "\001(\0132\031.google.protobuf.Duration\"\234\007\n\022UserS"
+  "ignInResponse\022\r\n\005token\030\001 \001(\t\0229\n\006detail\030\002"
+  " \001(\0132).palm.balsam.v1.UserSignInResponse"
+  ".Detail\022\r\n\005roles\030\013 \003(\t\022B\n\013permissions\030\014 "
+  "\003(\0132-.palm.balsam.v1.UserSignInResponse."
+  "Permission\0226\n\005menus\030\r \003(\0132\'.palm.balsam."
+  "v1.UserSignInResponse.Menu\032\327\003\n\006Detail\022\021\n"
+  "\004name\030\001 \001(\tH\000\210\001\001\022\023\n\006avatar\030\002 \001(\tH\001\210\001\001\022\014\n"
+  "\004lang\030\003 \001(\t\022\020\n\010timezone\030\004 \001(\t\022M\n\rprovide"
+  "r_type\030\010 \001(\01626.palm.balsam.v1.UserSignIn"
+  "Response.Detail.ProviderType\022\023\n\013provider"
+  "_id\030\t \001(\004\022\021\n\thas_email\030\013 \001(\010\022\021\n\thas_phon"
+  "e\030\014 \001(\010\022\031\n\021has_google_oauth2\030\025 \001(\010\022\031\n\021ha"
+  "s_wechat_oauth2\030\026 \001(\010\022\037\n\027has_wechat_mini"
+  "_program\030\027 \001(\010\022\033\n\023has_facebook_oauth2\030\030 "
+  "\001(\010\"s\n\014ProviderType\022\t\n\005Email\020\000\022\t\n\005Phone\020"
+  "\001\022\020\n\014GoogleOauth2\020\013\022\020\n\014WechatOauth2\020\014\022\025\n"
+  "\021WechatMiniProgram\020\r\022\022\n\016FacebookOauth2\020\016"
+  "B\007\n\005_nameB\t\n\007_avatar\032`\n\nPermission\022\021\n\top"
+  "eration\030\001 \001(\t\022\025\n\rresource_type\030\002 \001(\t\022\030\n\013"
+  "resource_id\030\003 \001(\004H\000\210\001\001B\016\n\014_resource_id\032u"
+  "\n\004Menu\022\r\n\005label\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\021\n\004ico"
+  "n\030\003 \001(\tH\000\210\001\001\0226\n\005menus\030\t \003(\0132\'.palm.balsa"
+  "m.v1.UserSignInResponse.MenuB\007\n\005_icon\"3\n"
+  " GoogleOauth2UserBySubjectRequest\022\017\n\007sub"
+  "ject\030\001 \001(\t\"\260\003\n\035GoogleOauth2UserIndexResp"
+  "onse\022A\n\005items\030\001 \003(\01322.palm.balsam.v1.Goo"
+  "gleOauth2UserIndexResponse.Item\022\r\n\005total"
+  "\030\002 \001(\004\032\274\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002"
+  " \001(\004\022\017\n\007subject\030\003 \001(\t\022\022\n\005email\030\004 \001(\tH\000\210\001"
+  "\001\022\026\n\016email_verified\030\005 \001(\010\022\021\n\004name\030\006 \001(\tH"
+  "\001\210\001\001\022\024\n\007picture\030\007 \001(\tH\002\210\001\001\022\023\n\006locale\030\010 \001"
+  "(\tH\003\210\001\001\0223\n\ndeleted_at\030\t \001(\0132\032.google.pro"
+  "tobuf.TimestampH\004\210\001\001\022.\n\nupdated_at\030\n \001(\013"
+  "2\032.google.protobuf.TimestampB\010\n\006_emailB\007"
+  "\n\005_nameB\n\n\010_pictureB\t\n\007_localeB\r\n\013_delet"
+  "ed_at\"*\n\026WechatByUnionIdRequest\022\020\n\010union"
+  "_id\030\001 \001(\t\"@\n\035WechatByAppIdAndOpenIdReque"
+  "st\022\016\n\006app_id\030\001 \001(\t\022\017\n\007open_id\030\002 \001(\t\"\243\005\n\035"
+  "WechatOauth2UserIndexResponse\022A\n\005items\030\001"
+  " \003(\01322.palm.balsam.v1.WechatOauth2UserIn"
+  "dexResponse.Item\022\r\n\005total\030\002 \001(\004\032\257\004\n\004Item"
+  "\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002 \001(\004\022\020\n\010union_i"
+  "d\030\003 \001(\t\022\016\n\006app_id\030\004 \001(\t\022\017\n\007open_id\030\005 \001(\t"
+  "\022\020\n\010nickname\030\006 \001(\t\022C\n\003sex\030\007 \001(\01626.palm.b"
+  "alsam.v1.WechatOauth2UserIndexResponse.I"
+  "tem.Sex\022\014\n\004city\030\010 \001(\t\022\020\n\010province\030\t \001(\t\022"
+  "\017\n\007country\030\n \001(\t\022\031\n\014head_img_url\030\013 \001(\tH\000"
+  "\210\001\001\022\021\n\tprivilege\030\014 \003(\t\022\024\n\007picture\030\r \001(\tH"
+  "\001\210\001\001\022E\n\004lang\030\016 \001(\01627.palm.balsam.v1.Wech"
+  "atOauth2UserIndexResponse.Item.Lang\0223\n\nd"
+  "eleted_at\030\017 \001(\0132\032.google.protobuf.Timest"
+  "ampH\002\210\001\001\022.\n\nupdated_at\030\020 \001(\0132\032.google.pr"
+  "otobuf.Timestamp\"\033\n\003Sex\022\010\n\004Male\020\000\022\n\n\006Fem"
+  "ale\020\001\"\026\n\004Lang\022\006\n\002Cn\020\000\022\006\n\002En\020\001B\017\n\r_head_i"
+  "mg_urlB\n\n\010_pictureB\r\n\013_deleted_at\"\224\003\n\"We"
+  "chatMiniProgramUserIndexResponse\022F\n\005item"
+  "s\030\001 \003(\01327.palm.balsam.v1.WechatMiniProgr"
+  "amUserIndexResponse.Item\022\r\n\005total\030\002 \001(\004\032"
+  "\226\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002 \001(\004\022\020\n"
+  "\010union_id\030\003 \001(\t\022\016\n\006app_id\030\004 \001(\t\022\017\n\007open_"
+  "id\030\005 \001(\t\022\025\n\010nickname\030\006 \001(\tH\000\210\001\001\022\027\n\navata"
+  "r_url\030\007 \001(\tH\001\210\001\001\0223\n\ndeleted_at\030\010 \001(\0132\032.g"
+  "oogle.protobuf.TimestampH\002\210\001\001\022.\n\nupdated"
+  "_at\030\t \001(\0132\032.google.protobuf.TimestampB\013\n"
+  "\t_nicknameB\r\n\013_avatar_urlB\r\n\013_deleted_at"
+  "\"\227\003\n\024SessionIndexResponse\0228\n\005items\030\001 \003(\013"
+  "2).palm.balsam.v1.SessionIndexResponse.I"
+  "tem\022\r\n\005total\030\002 \001(\004\032\265\002\n\004Item\022\014\n\004user\030\001 \001("
+  "\004\022\013\n\003uid\030\002 \001(\t\022M\n\rprovider_type\030\003 \001(\01626."
+  "palm.balsam.v1.UserSignInResponse.Detail"
+  ".ProviderType\022\023\n\013provider_id\030\004 \001(\004\022\n\n\002ip"
+  "\030\005 \001(\t\022.\n\nexpires_at\030\006 \001(\0132\032.google.prot"
+  "obuf.Timestamp\0223\n\ndeleted_at\030\007 \001(\0132\032.goo"
+  "gle.protobuf.TimestampH\000\210\001\001\022.\n\ncreated_a"
+  "t\030\010 \001(\0132\032.google.protobuf.TimestampB\r\n\013_"
+  "deleted_at\"\212\001\n\027AttachmentCreateRequest\022\014"
+  "\n\004user\030\001 \001(\004\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003"
+  " \001(\t\022\r\n\005title\030\004 \001(\t\022\014\n\004size\030\005 \001(\004\022\024\n\014con"
+  "tent_type\030\006 \001(\t\022\016\n\006public\030\t \001(\010\"I\n\033Attac"
+  "hmentByResourceRequest\022\025\n\rresource_type\030"
+  "\001 \001(\t\022\023\n\013resource_id\030\002 \001(\004\"6\n\031Attachment"
+  "SetTitleRequest\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001"
+  "(\t\"%\n\026AttachmentShowResponse\022\013\n\003url\030\001 \001("
+  "\t\"\233\003\n\027AttachmentIndexResponse\022;\n\005items\030\001"
+  " \003(\0132,.palm.balsam.v1.AttachmentIndexRes"
+  "ponse.Item\022\r\n\005total\030\002 \001(\004\032\263\002\n\004Item\022\014\n\004us"
+  "er\030\001 \001(\004\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003 \001(\t"
+  "\022\r\n\005title\030\004 \001(\t\022\014\n\004size\030\005 \001(\004\022\024\n\014content"
+  "_type\030\006 \001(\t\022\016\n\006public\030\007 \001(\010\0225\n\014published"
+  "_at\030\010 \001(\0132\032.google.protobuf.TimestampH\000\210"
+  "\001\001\0223\n\ndeleted_at\030\t \001(\0132\032.google.protobuf"
+  ".TimestampH\001\210\001\001\022.\n\nupdated_at\030\n \001(\0132\032.go"
+  "ogle.protobuf.TimestampB\017\n\r_published_at"
+  "B\r\n\013_deleted_at2\241\001\n\003Aes\022L\n\007Encrypt\022\037.pal"
+  "m.balsam.v1.AesPlainMessage\032\036.palm.balsa"
+  "m.v1.AesCodeMessage\"\000\022L\n\007Decrypt\022\036.palm."
+  "balsam.v1.AesCodeMessage\032\037.palm.balsam.v"
+  "1.AesPlainMessage\"\0002\241\001\n\003Jwt\022I\n\004Sign\022\036.pa"
+  "lm.balsam.v1.JwtSignRequest\032\037.palm.balsa"
+  "m.v1.JwtSignResponse\"\000\022O\n\006Verify\022 .palm."
+  "balsam.v1.JwtVerifyRequest\032!.palm.balsam"
+  ".v1.JwtVerifyResponse\"\0002\232\001\n\004HMac\022K\n\004Sign"
+  "\022\037.palm.balsam.v1.HMacSignRequest\032 .palm"
+  ".balsam.v1.HMacSignResponse\"\000\022E\n\006Verify\022"
+  "!.palm.balsam.v1.HMacVerifyRequest\032\026.goo"
+  "gle.protobuf.Empty\"\0002\275\005\n\004User\022;\n\004Lock\022\031."
+  "palm.balsam.v1.IdRequest\032\026.google.protob"
+  "uf.Empty\"\000\022=\n\006Unlock\022\031.palm.balsam.v1.Id"
+  "Request\032\026.google.protobuf.Empty\"\000\022>\n\007Dis"
+  "able\022\031.palm.balsam.v1.IdRequest\032\026.google"
+  ".protobuf.Empty\"\000\022=\n\006Enable\022\031.palm.balsa"
+  "m.v1.IdRequest\032\026.google.protobuf.Empty\"\000"
+  "\022G\n\004Logs\022\033.palm.balsam.v1.LogsRequest\032 ."
+  "palm.balsam.v1.UserLogsResponse\"\000\022;\n\007Sig"
+  "nOut\022\026.google.protobuf.Empty\032\026.google.pr"
+  "otobuf.Empty\"\000\022C\n\005Index\022\025.palm.balsam.v1"
+  ".Pager\032!.palm.balsam.v1.UserIndexRespons"
+  "e\"\000\022S\n\rUpdateProfile\022(.palm.balsam.v1.Us"
+  "erUpdateProfileRequest\032\026.google.protobuf"
+  ".Empty\"\000\022K\n\004ById\022\031.palm.balsam.v1.IdRequ"
+  "est\032&.palm.balsam.v1.UserIndexResponse.I"
+  "tem\"\000\022M\n\005ByUid\022\032.palm.balsam.v1.UidReque"
+  "st\032&.palm.balsam.v1.UserIndexResponse.It"
+  "em\"\0002\311\t\n\tEmailUser\022X\n\006SignIn\022(.palm.bals"
+  "am.v1.UserSignInByEmailRequest\032\".palm.ba"
+  "lsam.v1.UserSignInResponse\"\000\022X\n\006SignUp\022("
+  ".palm.balsam.v1.UserSignUpByEmailRequest"
+  "\032\".palm.balsam.v1.UserSignInResponse\"\000\022N"
+  "\n\016ConfirmByEmail\022\".palm.balsam.v1.UserBy"
+  "EmailRequest\032\026.google.protobuf.Empty\"\000\022N"
+  "\n\016ConfirmByToken\022\".palm.balsam.v1.UserBy"
+  "TokenRequest\032\026.google.protobuf.Empty\"\000\022M"
+  "\n\rUnlockByEmail\022\".palm.balsam.v1.UserByE"
+  "mailRequest\032\026.google.protobuf.Empty\"\000\022M\n"
+  "\rUnlockByToken\022\".palm.balsam.v1.UserByTo"
+  "kenRequest\032\026.google.protobuf.Empty\"\000\022N\n\016"
+  "ForgotPassword\022\".palm.balsam.v1.UserByEm"
+  "ailRequest\032\026.google.protobuf.Empty\"\000\022S\n\r"
+  "ResetPassword\022(.palm.balsam.v1.UserReset"
+  "PasswordRequest\032\026.google.protobuf.Empty\""
+  "\000\022>\n\007Confirm\022\031.palm.balsam.v1.IdRequest\032"
+  "\026.google.protobuf.Empty\"\000\022>\n\007Disable\022\031.p"
+  "alm.balsam.v1.IdRequest\032\026.google.protobu"
+  "f.Empty\"\000\022=\n\006Enable\022\031.palm.balsam.v1.IdR"
+  "equest\032\026.google.protobuf.Empty\"\000\022H\n\005Inde"
+  "x\022\025.palm.balsam.v1.Pager\032&.palm.balsam.v"
+  "1.EmailUserIndexResponse\"\000\022P\n\004ById\022\031.pal"
+  "m.balsam.v1.IdRequest\032+.palm.balsam.v1.E"
+  "mailUserIndexResponse.Item\"\000\022g\n\nByNickna"
+  "me\022*.palm.balsam.v1.EmailUserByNicknameR"
+  "equest\032+.palm.balsam.v1.EmailUserIndexRe"
+  "sponse.Item\"\000\022a\n\007ByEmail\022\'.palm.balsam.v"
+  "1.EmailUserByEmailRequest\032+.palm.balsam."
+  "v1.EmailUserIndexResponse.Item\"\0002\260\003\n\020Goo"
+  "gleOauth2User\022>\n\007Disable\022\031.palm.balsam.v"
+  "1.IdRequest\032\026.google.protobuf.Empty\"\000\022=\n"
+  "\006Enable\022\031.palm.balsam.v1.IdRequest\032\026.goo"
+  "gle.protobuf.Empty\"\000\022O\n\005Index\022\025.palm.bal"
+  "sam.v1.Pager\032-.palm.balsam.v1.GoogleOaut"
+  "h2UserIndexResponse\"\000\022W\n\004ById\022\031.palm.bal"
+  "sam.v1.IdRequest\0322.palm.balsam.v1.Google"
+  "Oauth2UserIndexResponse.Item\"\000\022s\n\tBySubj"
+  "ect\0220.palm.balsam.v1.GoogleOauth2UserByS"
+  "ubjectRequest\0322.palm.balsam.v1.GoogleOau"
+  "th2UserIndexResponse.Item\"\0002\240\004\n\020WechatOa"
+  "uth2User\022>\n\007Disable\022\031.palm.balsam.v1.IdR"
+  "equest\032\026.google.protobuf.Empty\"\000\022=\n\006Enab"
+  "le\022\031.palm.balsam.v1.IdRequest\032\026.google.p"
+  "rotobuf.Empty\"\000\022O\n\005Index\022\025.palm.balsam.v"
+  "1.Pager\032-.palm.balsam.v1.WechatOauth2Use"
+  "rIndexResponse\"\000\022W\n\004ById\022\031.palm.balsam.v"
+  "1.IdRequest\0322.palm.balsam.v1.WechatOauth"
+  "2UserIndexResponse.Item\"\000\022i\n\tByUnionId\022&"
+  ".palm.balsam.v1.WechatByUnionIdRequest\0322"
+  ".palm.balsam.v1.WechatOauth2UserIndexRes"
+  "ponse.Item\"\000\022x\n\021ByAppIdAndUnionId\022-.palm"
+  ".balsam.v1.WechatByAppIdAndOpenIdRequest"
+  "\0322.palm.balsam.v1.WechatOauth2UserIndexR"
+  "esponse.Item\"\0002\271\004\n\025WechatMiniProgramUser"
+  "\022>\n\007Disable\022\031.palm.balsam.v1.IdRequest\032\026"
+  ".google.protobuf.Empty\"\000\022=\n\006Enable\022\031.pal"
+  "m.balsam.v1.IdRequest\032\026.google.protobuf."
+  "Empty\"\000\022T\n\005Index\022\025.palm.balsam.v1.Pager\032"
+  "2.palm.balsam.v1.WechatMiniProgramUserIn"
+  "dexResponse\"\000\022\\\n\004ById\022\031.palm.balsam.v1.I"
+  "dRequest\0327.palm.balsam.v1.WechatMiniProg"
+  "ramUserIndexResponse.Item\"\000\022n\n\tByUnionId"
+  "\022&.palm.balsam.v1.WechatByUnionIdRequest"
+  "\0327.palm.balsam.v1.WechatMiniProgramUserI"
+  "ndexResponse.Item\"\000\022}\n\021ByAppIdAndUnionId"
+  "\022-.palm.balsam.v1.WechatByAppIdAndOpenId"
+  "Request\0327.palm.balsam.v1.WechatMiniProgr"
+  "amUserIndexResponse.Item\"\0002\336\001\n\007Session\022>"
+  "\n\007Disable\022\031.palm.balsam.v1.IdRequest\032\026.g"
+  "oogle.protobuf.Empty\"\000\022F\n\005Index\022\025.palm.b"
+  "alsam.v1.Pager\032$.palm.balsam.v1.SessionI"
+  "ndexResponse\"\000\022K\n\006ByUser\022\031.palm.balsam.v"
+  "1.IdRequest\032$.palm.balsam.v1.SessionInde"
+  "xResponse\"\0002\227\006\n\nAttachment\022>\n\007Disable\022\031."
+  "palm.balsam.v1.IdRequest\032\026.google.protob"
+  "uf.Empty\"\000\022I\n\005Index\022\025.palm.balsam.v1.Pag"
+  "er\032\'.palm.balsam.v1.AttachmentIndexRespo"
+  "nse\"\000\022O\n\010SetTitle\022).palm.balsam.v1.Attac"
+  "hmentSetTitleRequest\032\026.google.protobuf.E"
+  "mpty\"\000\022Q\n\004ById\022\031.palm.balsam.v1.IdReques"
+  "t\032,.palm.balsam.v1.AttachmentIndexRespon"
+  "se.Item\"\000\022N\n\006ByUser\022\031.palm.balsam.v1.IdR"
+  "equest\032\'.palm.balsam.v1.AttachmentIndexR"
+  "esponse\"\000\022V\n\016ByResourceType\022\031.palm.balsa"
+  "m.v1.IdRequest\032\'.palm.balsam.v1.Attachme"
+  "ntIndexResponse\"\000\0229\n\005Clear\022\026.google.prot"
+  "obuf.Empty\032\026.google.protobuf.Empty\"\000\022d\n\n"
+  "ByResource\022+.palm.balsam.v1.AttachmentBy"
+  "ResourceRequest\032\'.palm.balsam.v1.Attachm"
+  "entIndexResponse\"\000\022K\n\006Create\022\'.palm.bals"
+  "am.v1.AttachmentCreateRequest\032\026.google.p"
+  "rotobuf.Empty\"\000\022D\n\rSetUploadedAt\022\031.palm."
+  "balsam.v1.IdRequest\032\026.google.protobuf.Em"
+  "pty\"\000Bf\n,com.github.saturn_xiv.palm.plug"
+  "ins.balsam.v1P\001Z4github.com/saturn-xiv/p"
+  "alm/atropa/balsam/services/v2b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_balsam_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -373,9 +1812,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_balsam_2eproto_deps
 };
 static ::_pbi::once_flag descriptor_table_balsam_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_balsam_2eproto = {
-    false, false, 1609, descriptor_table_protodef_balsam_2eproto,
+    false, false, 11837, descriptor_table_protodef_balsam_2eproto,
     "balsam.proto",
-    &descriptor_table_balsam_2eproto_once, descriptor_table_balsam_2eproto_deps, 3, 11,
+    &descriptor_table_balsam_2eproto_once, descriptor_table_balsam_2eproto_deps, 3, 48,
     schemas, file_default_instances, TableStruct_balsam_2eproto::offsets,
     file_level_metadata_balsam_2eproto, file_level_enum_descriptors_balsam_2eproto,
     file_level_service_descriptors_balsam_2eproto,
@@ -389,6 +1828,694 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_in
 namespace palm {
 namespace balsam {
 namespace v1 {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* UserLogsResponse_Item_Level_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_balsam_2eproto);
+  return file_level_enum_descriptors_balsam_2eproto[0];
+}
+bool UserLogsResponse_Item_Level_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr UserLogsResponse_Item_Level UserLogsResponse_Item::Debug;
+constexpr UserLogsResponse_Item_Level UserLogsResponse_Item::Info;
+constexpr UserLogsResponse_Item_Level UserLogsResponse_Item::Warn;
+constexpr UserLogsResponse_Item_Level UserLogsResponse_Item::Error;
+constexpr UserLogsResponse_Item_Level UserLogsResponse_Item::Level_MIN;
+constexpr UserLogsResponse_Item_Level UserLogsResponse_Item::Level_MAX;
+constexpr int UserLogsResponse_Item::Level_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* UserSignInResponse_Detail_ProviderType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_balsam_2eproto);
+  return file_level_enum_descriptors_balsam_2eproto[1];
+}
+bool UserSignInResponse_Detail_ProviderType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::Email;
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::Phone;
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::GoogleOauth2;
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::WechatOauth2;
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::WechatMiniProgram;
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::FacebookOauth2;
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::ProviderType_MIN;
+constexpr UserSignInResponse_Detail_ProviderType UserSignInResponse_Detail::ProviderType_MAX;
+constexpr int UserSignInResponse_Detail::ProviderType_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* WechatOauth2UserIndexResponse_Item_Sex_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_balsam_2eproto);
+  return file_level_enum_descriptors_balsam_2eproto[2];
+}
+bool WechatOauth2UserIndexResponse_Item_Sex_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr WechatOauth2UserIndexResponse_Item_Sex WechatOauth2UserIndexResponse_Item::Male;
+constexpr WechatOauth2UserIndexResponse_Item_Sex WechatOauth2UserIndexResponse_Item::Female;
+constexpr WechatOauth2UserIndexResponse_Item_Sex WechatOauth2UserIndexResponse_Item::Sex_MIN;
+constexpr WechatOauth2UserIndexResponse_Item_Sex WechatOauth2UserIndexResponse_Item::Sex_MAX;
+constexpr int WechatOauth2UserIndexResponse_Item::Sex_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* WechatOauth2UserIndexResponse_Item_Lang_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_balsam_2eproto);
+  return file_level_enum_descriptors_balsam_2eproto[3];
+}
+bool WechatOauth2UserIndexResponse_Item_Lang_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr WechatOauth2UserIndexResponse_Item_Lang WechatOauth2UserIndexResponse_Item::Cn;
+constexpr WechatOauth2UserIndexResponse_Item_Lang WechatOauth2UserIndexResponse_Item::En;
+constexpr WechatOauth2UserIndexResponse_Item_Lang WechatOauth2UserIndexResponse_Item::Lang_MIN;
+constexpr WechatOauth2UserIndexResponse_Item_Lang WechatOauth2UserIndexResponse_Item::Lang_MAX;
+constexpr int WechatOauth2UserIndexResponse_Item::Lang_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+// ===================================================================
+
+class IdRequest::_Internal {
+ public:
+};
+
+IdRequest::IdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.IdRequest)
+}
+IdRequest::IdRequest(const IdRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  IdRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.id_ = from._impl_.id_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.IdRequest)
+}
+
+inline void IdRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+IdRequest::~IdRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.IdRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void IdRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void IdRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void IdRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.IdRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.id_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* IdRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* IdRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.IdRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.IdRequest)
+  return target;
+}
+
+size_t IdRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.IdRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IdRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    IdRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IdRequest::GetClassData() const { return &_class_data_; }
+
+
+void IdRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<IdRequest*>(&to_msg);
+  auto& from = static_cast<const IdRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.IdRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void IdRequest::CopyFrom(const IdRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.IdRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool IdRequest::IsInitialized() const {
+  return true;
+}
+
+void IdRequest::InternalSwap(IdRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.id_, other->_impl_.id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata IdRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[0]);
+}
+
+// ===================================================================
+
+class UidRequest::_Internal {
+ public:
+};
+
+UidRequest::UidRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UidRequest)
+}
+UidRequest::UidRequest(const UidRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UidRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.uid_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.uid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_uid().empty()) {
+    _this->_impl_.uid_.Set(from._internal_uid(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UidRequest)
+}
+
+inline void UidRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.uid_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.uid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UidRequest::~UidRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UidRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UidRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.uid_.Destroy();
+}
+
+void UidRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UidRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UidRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.uid_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UidRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string uid = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_uid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UidRequest.uid"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UidRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UidRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string uid = 1;
+  if (!this->_internal_uid().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uid().data(), static_cast<int>(this->_internal_uid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UidRequest.uid");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_uid(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UidRequest)
+  return target;
+}
+
+size_t UidRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UidRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string uid = 1;
+  if (!this->_internal_uid().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UidRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UidRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UidRequest::GetClassData() const { return &_class_data_; }
+
+
+void UidRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UidRequest*>(&to_msg);
+  auto& from = static_cast<const UidRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UidRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_uid().empty()) {
+    _this->_internal_set_uid(from._internal_uid());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UidRequest::CopyFrom(const UidRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UidRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UidRequest::IsInitialized() const {
+  return true;
+}
+
+void UidRequest::InternalSwap(UidRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.uid_, lhs_arena,
+      &other->_impl_.uid_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UidRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[1]);
+}
+
+// ===================================================================
+
+class Pager::_Internal {
+ public:
+};
+
+Pager::Pager(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.Pager)
+}
+Pager::Pager(const Pager& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  Pager* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.page_){}
+    , decltype(_impl_.size_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.page_, &from._impl_.page_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.size_) -
+    reinterpret_cast<char*>(&_impl_.page_)) + sizeof(_impl_.size_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.Pager)
+}
+
+inline void Pager::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.page_){uint64_t{0u}}
+    , decltype(_impl_.size_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+Pager::~Pager() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.Pager)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Pager::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void Pager::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void Pager::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.Pager)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.page_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.size_) -
+      reinterpret_cast<char*>(&_impl_.page_)) + sizeof(_impl_.size_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Pager::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 page = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.page_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 size = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Pager::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.Pager)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 page = 1;
+  if (this->_internal_page() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_page(), target);
+  }
+
+  // uint64 size = 2;
+  if (this->_internal_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_size(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.Pager)
+  return target;
+}
+
+size_t Pager::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.Pager)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 page = 1;
+  if (this->_internal_page() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_page());
+  }
+
+  // uint64 size = 2;
+  if (this->_internal_size() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_size());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Pager::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    Pager::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Pager::GetClassData() const { return &_class_data_; }
+
+
+void Pager::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Pager*>(&to_msg);
+  auto& from = static_cast<const Pager&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.Pager)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_page() != 0) {
+    _this->_internal_set_page(from._internal_page());
+  }
+  if (from._internal_size() != 0) {
+    _this->_internal_set_size(from._internal_size());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Pager::CopyFrom(const Pager& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.Pager)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Pager::IsInitialized() const {
+  return true;
+}
+
+void Pager::InternalSwap(Pager* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Pager, _impl_.size_)
+      + sizeof(Pager::_impl_.size_)
+      - PROTOBUF_FIELD_OFFSET(Pager, _impl_.page_)>(
+          reinterpret_cast<char*>(&_impl_.page_),
+          reinterpret_cast<char*>(&other->_impl_.page_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Pager::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[2]);
+}
 
 // ===================================================================
 
@@ -585,7 +2712,7 @@ void AesPlainMessage::InternalSwap(AesPlainMessage* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AesPlainMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[0]);
+      file_level_metadata_balsam_2eproto[3]);
 }
 
 // ===================================================================
@@ -828,7 +2955,7 @@ void AesCodeMessage::InternalSwap(AesCodeMessage* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata AesCodeMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[1]);
+      file_level_metadata_balsam_2eproto[4]);
 }
 
 // ===================================================================
@@ -1339,7 +3466,7 @@ void JwtSignRequest::InternalSwap(JwtSignRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JwtSignRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[2]);
+      file_level_metadata_balsam_2eproto[5]);
 }
 
 // ===================================================================
@@ -1542,7 +3669,7 @@ void JwtSignResponse::InternalSwap(JwtSignResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JwtSignResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[3]);
+      file_level_metadata_balsam_2eproto[6]);
 }
 
 // ===================================================================
@@ -1845,7 +3972,7 @@ void JwtVerifyRequest::InternalSwap(JwtVerifyRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JwtVerifyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[4]);
+      file_level_metadata_balsam_2eproto[7]);
 }
 
 // ===================================================================
@@ -2217,7 +4344,7 @@ void JwtVerifyResponse::InternalSwap(JwtVerifyResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata JwtVerifyResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[5]);
+      file_level_metadata_balsam_2eproto[8]);
 }
 
 // ===================================================================
@@ -2415,7 +4542,7 @@ void HMacSignRequest::InternalSwap(HMacSignRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata HMacSignRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[6]);
+      file_level_metadata_balsam_2eproto[9]);
 }
 
 // ===================================================================
@@ -2613,7 +4740,7 @@ void HMacSignResponse::InternalSwap(HMacSignResponse* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata HMacSignResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[7]);
+      file_level_metadata_balsam_2eproto[10]);
 }
 
 // ===================================================================
@@ -2856,35 +4983,4127 @@ void HMacVerifyRequest::InternalSwap(HMacVerifyRequest* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata HMacVerifyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[8]);
+      file_level_metadata_balsam_2eproto[11]);
 }
 
 // ===================================================================
 
-class UserSignInByEmail::_Internal {
+class UserUpdateProfileRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const UserSignInByEmail* msg);
+};
+
+UserUpdateProfileRequest::UserUpdateProfileRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserUpdateProfileRequest)
+}
+UserUpdateProfileRequest::UserUpdateProfileRequest(const UserUpdateProfileRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserUpdateProfileRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.user_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_timezone().empty()) {
+    _this->_impl_.timezone_.Set(from._internal_timezone(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.user_ = from._impl_.user_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserUpdateProfileRequest)
+}
+
+inline void UserUpdateProfileRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.user_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserUpdateProfileRequest::~UserUpdateProfileRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserUpdateProfileRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserUpdateProfileRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.lang_.Destroy();
+  _impl_.timezone_.Destroy();
+}
+
+void UserUpdateProfileRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserUpdateProfileRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserUpdateProfileRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _impl_.timezone_.ClearToEmpty();
+  _impl_.user_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserUpdateProfileRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.user_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string lang = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserUpdateProfileRequest.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string timezone = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_timezone();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserUpdateProfileRequest.timezone"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserUpdateProfileRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserUpdateProfileRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_user(), target);
+  }
+
+  // string lang = 2;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserUpdateProfileRequest.lang");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_lang(), target);
+  }
+
+  // string timezone = 3;
+  if (!this->_internal_timezone().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_timezone().data(), static_cast<int>(this->_internal_timezone().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserUpdateProfileRequest.timezone");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_timezone(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserUpdateProfileRequest)
+  return target;
+}
+
+size_t UserUpdateProfileRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserUpdateProfileRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lang = 2;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string timezone = 3;
+  if (!this->_internal_timezone().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_timezone());
+  }
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserUpdateProfileRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserUpdateProfileRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserUpdateProfileRequest::GetClassData() const { return &_class_data_; }
+
+
+void UserUpdateProfileRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserUpdateProfileRequest*>(&to_msg);
+  auto& from = static_cast<const UserUpdateProfileRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserUpdateProfileRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_timezone().empty()) {
+    _this->_internal_set_timezone(from._internal_timezone());
+  }
+  if (from._internal_user() != 0) {
+    _this->_internal_set_user(from._internal_user());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserUpdateProfileRequest::CopyFrom(const UserUpdateProfileRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserUpdateProfileRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserUpdateProfileRequest::IsInitialized() const {
+  return true;
+}
+
+void UserUpdateProfileRequest::InternalSwap(UserUpdateProfileRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.timezone_, lhs_arena,
+      &other->_impl_.timezone_, rhs_arena
+  );
+  swap(_impl_.user_, other->_impl_.user_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserUpdateProfileRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[12]);
+}
+
+// ===================================================================
+
+class UserIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<UserIndexResponse_Item>()._impl_._has_bits_);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& current_sign_in_at(const UserIndexResponse_Item* msg);
+  static void set_has_current_sign_in_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_current_sign_in_ip(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_sign_in_at(const UserIndexResponse_Item* msg);
+  static void set_has_last_sign_in_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+  static void set_has_last_sign_in_ip(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& lockeda_at(const UserIndexResponse_Item* msg);
+  static void set_has_lockeda_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const UserIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 32u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const UserIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+UserIndexResponse_Item::_Internal::current_sign_in_at(const UserIndexResponse_Item* msg) {
+  return *msg->_impl_.current_sign_in_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+UserIndexResponse_Item::_Internal::last_sign_in_at(const UserIndexResponse_Item* msg) {
+  return *msg->_impl_.last_sign_in_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+UserIndexResponse_Item::_Internal::lockeda_at(const UserIndexResponse_Item* msg) {
+  return *msg->_impl_.lockeda_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+UserIndexResponse_Item::_Internal::deleted_at(const UserIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+UserIndexResponse_Item::_Internal::updated_at(const UserIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void UserIndexResponse_Item::clear_current_sign_in_at() {
+  if (_impl_.current_sign_in_at_ != nullptr) _impl_.current_sign_in_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+void UserIndexResponse_Item::clear_last_sign_in_at() {
+  if (_impl_.last_sign_in_at_ != nullptr) _impl_.last_sign_in_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+void UserIndexResponse_Item::clear_lockeda_at() {
+  if (_impl_.lockeda_at_ != nullptr) _impl_.lockeda_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+void UserIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+void UserIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+UserIndexResponse_Item::UserIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserIndexResponse.Item)
+}
+UserIndexResponse_Item::UserIndexResponse_Item(const UserIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.uid_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.current_sign_in_ip_){}
+    , decltype(_impl_.last_sign_in_ip_){}
+    , decltype(_impl_.current_sign_in_at_){nullptr}
+    , decltype(_impl_.last_sign_in_at_){nullptr}
+    , decltype(_impl_.lockeda_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.sign_in_count_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.uid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_uid().empty()) {
+    _this->_impl_.uid_.Set(from._internal_uid(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_timezone().empty()) {
+    _this->_impl_.timezone_.Set(from._internal_timezone(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.current_sign_in_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.current_sign_in_ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_current_sign_in_ip()) {
+    _this->_impl_.current_sign_in_ip_.Set(from._internal_current_sign_in_ip(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.last_sign_in_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.last_sign_in_ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_last_sign_in_ip()) {
+    _this->_impl_.last_sign_in_ip_.Set(from._internal_last_sign_in_ip(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_current_sign_in_at()) {
+    _this->_impl_.current_sign_in_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.current_sign_in_at_);
+  }
+  if (from._internal_has_last_sign_in_at()) {
+    _this->_impl_.last_sign_in_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.last_sign_in_at_);
+  }
+  if (from._internal_has_lockeda_at()) {
+    _this->_impl_.lockeda_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.lockeda_at_);
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.sign_in_count_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.sign_in_count_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserIndexResponse.Item)
+}
+
+inline void UserIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.uid_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.current_sign_in_ip_){}
+    , decltype(_impl_.last_sign_in_ip_){}
+    , decltype(_impl_.current_sign_in_at_){nullptr}
+    , decltype(_impl_.last_sign_in_at_){nullptr}
+    , decltype(_impl_.lockeda_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.sign_in_count_){0u}
+  };
+  _impl_.uid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.current_sign_in_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.current_sign_in_ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.last_sign_in_ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.last_sign_in_ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserIndexResponse_Item::~UserIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.uid_.Destroy();
+  _impl_.lang_.Destroy();
+  _impl_.timezone_.Destroy();
+  _impl_.current_sign_in_ip_.Destroy();
+  _impl_.last_sign_in_ip_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.current_sign_in_at_;
+  if (this != internal_default_instance()) delete _impl_.last_sign_in_at_;
+  if (this != internal_default_instance()) delete _impl_.lockeda_at_;
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void UserIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.uid_.ClearToEmpty();
+  _impl_.lang_.ClearToEmpty();
+  _impl_.timezone_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000003fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.current_sign_in_ip_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.last_sign_in_ip_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(_impl_.current_sign_in_at_ != nullptr);
+      _impl_.current_sign_in_at_->Clear();
+    }
+    if (cached_has_bits & 0x00000008u) {
+      GOOGLE_DCHECK(_impl_.last_sign_in_at_ != nullptr);
+      _impl_.last_sign_in_at_->Clear();
+    }
+    if (cached_has_bits & 0x00000010u) {
+      GOOGLE_DCHECK(_impl_.lockeda_at_ != nullptr);
+      _impl_.lockeda_at_->Clear();
+    }
+    if (cached_has_bits & 0x00000020u) {
+      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+      _impl_.deleted_at_->Clear();
+    }
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  ::memset(&_impl_.id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.sign_in_count_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.sign_in_count_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string uid = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_uid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserIndexResponse.Item.uid"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string lang = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserIndexResponse.Item.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string timezone = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_timezone();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserIndexResponse.Item.timezone"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 sign_in_count = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.sign_in_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp current_sign_in_at = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_current_sign_in_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string current_sign_in_ip = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_current_sign_in_ip();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserIndexResponse.Item.current_sign_in_ip"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp last_sign_in_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_last_sign_in_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string last_sign_in_ip = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          auto str = _internal_mutable_last_sign_in_ip();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserIndexResponse.Item.last_sign_in_ip"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp lockeda_at = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          ptr = ctx->ParseMessage(_internal_mutable_lockeda_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // string uid = 2;
+  if (!this->_internal_uid().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uid().data(), static_cast<int>(this->_internal_uid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserIndexResponse.Item.uid");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_uid(), target);
+  }
+
+  // string lang = 3;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserIndexResponse.Item.lang");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_lang(), target);
+  }
+
+  // string timezone = 4;
+  if (!this->_internal_timezone().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_timezone().data(), static_cast<int>(this->_internal_timezone().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserIndexResponse.Item.timezone");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_timezone(), target);
+  }
+
+  // uint32 sign_in_count = 5;
+  if (this->_internal_sign_in_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(5, this->_internal_sign_in_count(), target);
+  }
+
+  // optional .google.protobuf.Timestamp current_sign_in_at = 6;
+  if (_internal_has_current_sign_in_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::current_sign_in_at(this),
+        _Internal::current_sign_in_at(this).GetCachedSize(), target, stream);
+  }
+
+  // optional string current_sign_in_ip = 7;
+  if (_internal_has_current_sign_in_ip()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_current_sign_in_ip().data(), static_cast<int>(this->_internal_current_sign_in_ip().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserIndexResponse.Item.current_sign_in_ip");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_current_sign_in_ip(), target);
+  }
+
+  // optional .google.protobuf.Timestamp last_sign_in_at = 8;
+  if (_internal_has_last_sign_in_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::last_sign_in_at(this),
+        _Internal::last_sign_in_at(this).GetCachedSize(), target, stream);
+  }
+
+  // optional string last_sign_in_ip = 9;
+  if (_internal_has_last_sign_in_ip()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_last_sign_in_ip().data(), static_cast<int>(this->_internal_last_sign_in_ip().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserIndexResponse.Item.last_sign_in_ip");
+    target = stream->WriteStringMaybeAliased(
+        9, this->_internal_last_sign_in_ip(), target);
+  }
+
+  // optional .google.protobuf.Timestamp lockeda_at = 10;
+  if (_internal_has_lockeda_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(10, _Internal::lockeda_at(this),
+        _Internal::lockeda_at(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 11;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(11, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 12;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(12, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserIndexResponse.Item)
+  return target;
+}
+
+size_t UserIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string uid = 2;
+  if (!this->_internal_uid().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uid());
+  }
+
+  // string lang = 3;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string timezone = 4;
+  if (!this->_internal_timezone().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_timezone());
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000003fu) {
+    // optional string current_sign_in_ip = 7;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_current_sign_in_ip());
+    }
+
+    // optional string last_sign_in_ip = 9;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_last_sign_in_ip());
+    }
+
+    // optional .google.protobuf.Timestamp current_sign_in_at = 6;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.current_sign_in_at_);
+    }
+
+    // optional .google.protobuf.Timestamp last_sign_in_at = 8;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.last_sign_in_at_);
+    }
+
+    // optional .google.protobuf.Timestamp lockeda_at = 10;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.lockeda_at_);
+    }
+
+    // optional .google.protobuf.Timestamp deleted_at = 11;
+    if (cached_has_bits & 0x00000020u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.deleted_at_);
+    }
+
+  }
+  // .google.protobuf.Timestamp updated_at = 12;
+  if (this->_internal_has_updated_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // uint32 sign_in_count = 5;
+  if (this->_internal_sign_in_count() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_sign_in_count());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void UserIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const UserIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_uid().empty()) {
+    _this->_internal_set_uid(from._internal_uid());
+  }
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_timezone().empty()) {
+    _this->_internal_set_timezone(from._internal_timezone());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000003fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_current_sign_in_ip(from._internal_current_sign_in_ip());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_set_last_sign_in_ip(from._internal_last_sign_in_ip());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_internal_mutable_current_sign_in_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_current_sign_in_at());
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_internal_mutable_last_sign_in_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_last_sign_in_at());
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_internal_mutable_lockeda_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_lockeda_at());
+    }
+    if (cached_has_bits & 0x00000020u) {
+      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_deleted_at());
+    }
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_sign_in_count() != 0) {
+    _this->_internal_set_sign_in_count(from._internal_sign_in_count());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserIndexResponse_Item::CopyFrom(const UserIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void UserIndexResponse_Item::InternalSwap(UserIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.uid_, lhs_arena,
+      &other->_impl_.uid_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.timezone_, lhs_arena,
+      &other->_impl_.timezone_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.current_sign_in_ip_, lhs_arena,
+      &other->_impl_.current_sign_in_ip_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.last_sign_in_ip_, lhs_arena,
+      &other->_impl_.last_sign_in_ip_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.sign_in_count_)
+      + sizeof(UserIndexResponse_Item::_impl_.sign_in_count_)
+      - PROTOBUF_FIELD_OFFSET(UserIndexResponse_Item, _impl_.current_sign_in_at_)>(
+          reinterpret_cast<char*>(&_impl_.current_sign_in_at_),
+          reinterpret_cast<char*>(&other->_impl_.current_sign_in_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[13]);
+}
+
+// ===================================================================
+
+class UserIndexResponse::_Internal {
+ public:
+};
+
+UserIndexResponse::UserIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserIndexResponse)
+}
+UserIndexResponse::UserIndexResponse(const UserIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserIndexResponse)
+}
+
+inline void UserIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+UserIndexResponse::~UserIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void UserIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.UserIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.UserIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 9;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(9, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserIndexResponse)
+  return target;
+}
+
+size_t UserIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.UserIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 9;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void UserIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserIndexResponse*>(&to_msg);
+  auto& from = static_cast<const UserIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserIndexResponse::CopyFrom(const UserIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void UserIndexResponse::InternalSwap(UserIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[14]);
+}
+
+// ===================================================================
+
+class LogsRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<LogsRequest>()._impl_._has_bits_);
+  static void set_has_user(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+LogsRequest::LogsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LogsRequest)
+}
+LogsRequest::LogsRequest(const LogsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LogsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.user_){}
+    , decltype(_impl_.page_){}
+    , decltype(_impl_.size_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.user_, &from._impl_.user_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.size_) -
+    reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.size_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LogsRequest)
+}
+
+inline void LogsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.user_){uint64_t{0u}}
+    , decltype(_impl_.page_){uint64_t{0u}}
+    , decltype(_impl_.size_){uint64_t{0u}}
+  };
+}
+
+LogsRequest::~LogsRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LogsRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LogsRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void LogsRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LogsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LogsRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.user_ = uint64_t{0u};
+  ::memset(&_impl_.page_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.size_) -
+      reinterpret_cast<char*>(&_impl_.page_)) + sizeof(_impl_.size_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LogsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional uint64 user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _Internal::set_has_user(&has_bits);
+          _impl_.user_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 page = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
+          _impl_.page_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 size = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
+          _impl_.size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LogsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LogsRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional uint64 user = 1;
+  if (_internal_has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_user(), target);
+  }
+
+  // uint64 page = 11;
+  if (this->_internal_page() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(11, this->_internal_page(), target);
+  }
+
+  // uint64 size = 12;
+  if (this->_internal_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(12, this->_internal_size(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LogsRequest)
+  return target;
+}
+
+size_t LogsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LogsRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional uint64 user = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user());
+  }
+
+  // uint64 page = 11;
+  if (this->_internal_page() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_page());
+  }
+
+  // uint64 size = 12;
+  if (this->_internal_size() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_size());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LogsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LogsRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LogsRequest::GetClassData() const { return &_class_data_; }
+
+
+void LogsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LogsRequest*>(&to_msg);
+  auto& from = static_cast<const LogsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LogsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_user()) {
+    _this->_internal_set_user(from._internal_user());
+  }
+  if (from._internal_page() != 0) {
+    _this->_internal_set_page(from._internal_page());
+  }
+  if (from._internal_size() != 0) {
+    _this->_internal_set_size(from._internal_size());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LogsRequest::CopyFrom(const LogsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LogsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LogsRequest::IsInitialized() const {
+  return true;
+}
+
+void LogsRequest::InternalSwap(LogsRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LogsRequest, _impl_.size_)
+      + sizeof(LogsRequest::_impl_.size_)
+      - PROTOBUF_FIELD_OFFSET(LogsRequest, _impl_.user_)>(
+          reinterpret_cast<char*>(&_impl_.user_),
+          reinterpret_cast<char*>(&other->_impl_.user_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LogsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[15]);
+}
+
+// ===================================================================
+
+class UserLogsResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<UserLogsResponse_Item>()._impl_._has_bits_);
+  static void set_has_resource_id(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_at(const UserLogsResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+UserLogsResponse_Item::_Internal::created_at(const UserLogsResponse_Item* msg) {
+  return *msg->_impl_.created_at_;
+}
+void UserLogsResponse_Item::clear_created_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.created_at_ != nullptr) {
+    delete _impl_.created_at_;
+  }
+  _impl_.created_at_ = nullptr;
+}
+UserLogsResponse_Item::UserLogsResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserLogsResponse.Item)
+}
+UserLogsResponse_Item::UserLogsResponse_Item(const UserLogsResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserLogsResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.plugin_){}
+    , decltype(_impl_.ip_){}
+    , decltype(_impl_.resource_type_){}
+    , decltype(_impl_.message_){}
+    , decltype(_impl_.created_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.resource_id_){}
+    , decltype(_impl_.level_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.plugin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.plugin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_plugin().empty()) {
+    _this->_impl_.plugin_.Set(from._internal_plugin(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_ip().empty()) {
+    _this->_impl_.ip_.Set(from._internal_ip(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    _this->_impl_.resource_type_.Set(from._internal_resource_type(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    _this->_impl_.message_.Set(from._internal_message(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_created_at()) {
+    _this->_impl_.created_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.created_at_);
+  }
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.level_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.level_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserLogsResponse.Item)
+}
+
+inline void UserLogsResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.plugin_){}
+    , decltype(_impl_.ip_){}
+    , decltype(_impl_.resource_type_){}
+    , decltype(_impl_.message_){}
+    , decltype(_impl_.created_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.resource_id_){uint64_t{0u}}
+    , decltype(_impl_.level_){0}
+  };
+  _impl_.plugin_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.plugin_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserLogsResponse_Item::~UserLogsResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserLogsResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserLogsResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.plugin_.Destroy();
+  _impl_.ip_.Destroy();
+  _impl_.resource_type_.Destroy();
+  _impl_.message_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.created_at_;
+}
+
+void UserLogsResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserLogsResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserLogsResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.plugin_.ClearToEmpty();
+  _impl_.ip_.ClearToEmpty();
+  _impl_.resource_type_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.created_at_ != nullptr) {
+    delete _impl_.created_at_;
+  }
+  _impl_.created_at_ = nullptr;
+  _impl_.id_ = uint64_t{0u};
+  _impl_.resource_id_ = uint64_t{0u};
+  _impl_.level_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserLogsResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string plugin = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_plugin();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserLogsResponse.Item.plugin"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string ip = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_ip();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserLogsResponse.Item.ip"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.UserLogsResponse.Item.Level level = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_level(static_cast<::palm::balsam::v1::UserLogsResponse_Item_Level>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_type = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserLogsResponse.Item.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional uint64 resource_id = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _Internal::set_has_resource_id(&has_bits);
+          _impl_.resource_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string message = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserLogsResponse.Item.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp created_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_created_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserLogsResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserLogsResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // string plugin = 2;
+  if (!this->_internal_plugin().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_plugin().data(), static_cast<int>(this->_internal_plugin().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserLogsResponse.Item.plugin");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_plugin(), target);
+  }
+
+  // string ip = 3;
+  if (!this->_internal_ip().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_ip().data(), static_cast<int>(this->_internal_ip().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserLogsResponse.Item.ip");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_ip(), target);
+  }
+
+  // .palm.balsam.v1.UserLogsResponse.Item.Level level = 4;
+  if (this->_internal_level() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      4, this->_internal_level(), target);
+  }
+
+  // string resource_type = 5;
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserLogsResponse.Item.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_resource_type(), target);
+  }
+
+  // optional uint64 resource_id = 6;
+  if (_internal_has_resource_id()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(6, this->_internal_resource_id(), target);
+  }
+
+  // string message = 7;
+  if (!this->_internal_message().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserLogsResponse.Item.message");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_message(), target);
+  }
+
+  // .google.protobuf.Timestamp created_at = 8;
+  if (this->_internal_has_created_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::created_at(this),
+        _Internal::created_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserLogsResponse.Item)
+  return target;
+}
+
+size_t UserLogsResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserLogsResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string plugin = 2;
+  if (!this->_internal_plugin().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_plugin());
+  }
+
+  // string ip = 3;
+  if (!this->_internal_ip().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_ip());
+  }
+
+  // string resource_type = 5;
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // string message = 7;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
+  }
+
+  // .google.protobuf.Timestamp created_at = 8;
+  if (this->_internal_has_created_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.created_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // optional uint64 resource_id = 6;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_resource_id());
+  }
+
+  // .palm.balsam.v1.UserLogsResponse.Item.Level level = 4;
+  if (this->_internal_level() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_level());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserLogsResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserLogsResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserLogsResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void UserLogsResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserLogsResponse_Item*>(&to_msg);
+  auto& from = static_cast<const UserLogsResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserLogsResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_plugin().empty()) {
+    _this->_internal_set_plugin(from._internal_plugin());
+  }
+  if (!from._internal_ip().empty()) {
+    _this->_internal_set_ip(from._internal_ip());
+  }
+  if (!from._internal_resource_type().empty()) {
+    _this->_internal_set_resource_type(from._internal_resource_type());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_has_created_at()) {
+    _this->_internal_mutable_created_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_created_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_has_resource_id()) {
+    _this->_internal_set_resource_id(from._internal_resource_id());
+  }
+  if (from._internal_level() != 0) {
+    _this->_internal_set_level(from._internal_level());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserLogsResponse_Item::CopyFrom(const UserLogsResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserLogsResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserLogsResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void UserLogsResponse_Item::InternalSwap(UserLogsResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.plugin_, lhs_arena,
+      &other->_impl_.plugin_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.ip_, lhs_arena,
+      &other->_impl_.ip_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.resource_type_, lhs_arena,
+      &other->_impl_.resource_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.message_, lhs_arena,
+      &other->_impl_.message_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UserLogsResponse_Item, _impl_.level_)
+      + sizeof(UserLogsResponse_Item::_impl_.level_)
+      - PROTOBUF_FIELD_OFFSET(UserLogsResponse_Item, _impl_.created_at_)>(
+          reinterpret_cast<char*>(&_impl_.created_at_),
+          reinterpret_cast<char*>(&other->_impl_.created_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserLogsResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[16]);
+}
+
+// ===================================================================
+
+class UserLogsResponse::_Internal {
+ public:
+};
+
+UserLogsResponse::UserLogsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserLogsResponse)
+}
+UserLogsResponse::UserLogsResponse(const UserLogsResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserLogsResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserLogsResponse)
+}
+
+inline void UserLogsResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+UserLogsResponse::~UserLogsResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserLogsResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserLogsResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void UserLogsResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserLogsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserLogsResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserLogsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.UserLogsResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserLogsResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserLogsResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.UserLogsResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 9;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(9, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserLogsResponse)
+  return target;
+}
+
+size_t UserLogsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserLogsResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.UserLogsResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 9;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserLogsResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserLogsResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserLogsResponse::GetClassData() const { return &_class_data_; }
+
+
+void UserLogsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserLogsResponse*>(&to_msg);
+  auto& from = static_cast<const UserLogsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserLogsResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserLogsResponse::CopyFrom(const UserLogsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserLogsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserLogsResponse::IsInitialized() const {
+  return true;
+}
+
+void UserLogsResponse::InternalSwap(UserLogsResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserLogsResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[17]);
+}
+
+// ===================================================================
+
+class EmailUserByEmailRequest::_Internal {
+ public:
+};
+
+EmailUserByEmailRequest::EmailUserByEmailRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.EmailUserByEmailRequest)
+}
+EmailUserByEmailRequest::EmailUserByEmailRequest(const EmailUserByEmailRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  EmailUserByEmailRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.email_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_email().empty()) {
+    _this->_impl_.email_.Set(from._internal_email(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.EmailUserByEmailRequest)
+}
+
+inline void EmailUserByEmailRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.email_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+EmailUserByEmailRequest::~EmailUserByEmailRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.EmailUserByEmailRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void EmailUserByEmailRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.email_.Destroy();
+}
+
+void EmailUserByEmailRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void EmailUserByEmailRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.EmailUserByEmailRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.email_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* EmailUserByEmailRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string email = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_email();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.EmailUserByEmailRequest.email"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* EmailUserByEmailRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.EmailUserByEmailRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string email = 1;
+  if (!this->_internal_email().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.EmailUserByEmailRequest.email");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_email(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.EmailUserByEmailRequest)
+  return target;
+}
+
+size_t EmailUserByEmailRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.EmailUserByEmailRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string email = 1;
+  if (!this->_internal_email().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_email());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailUserByEmailRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    EmailUserByEmailRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailUserByEmailRequest::GetClassData() const { return &_class_data_; }
+
+
+void EmailUserByEmailRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<EmailUserByEmailRequest*>(&to_msg);
+  auto& from = static_cast<const EmailUserByEmailRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.EmailUserByEmailRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_email().empty()) {
+    _this->_internal_set_email(from._internal_email());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EmailUserByEmailRequest::CopyFrom(const EmailUserByEmailRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.EmailUserByEmailRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EmailUserByEmailRequest::IsInitialized() const {
+  return true;
+}
+
+void EmailUserByEmailRequest::InternalSwap(EmailUserByEmailRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.email_, lhs_arena,
+      &other->_impl_.email_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata EmailUserByEmailRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[18]);
+}
+
+// ===================================================================
+
+class EmailUserByNicknameRequest::_Internal {
+ public:
+};
+
+EmailUserByNicknameRequest::EmailUserByNicknameRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.EmailUserByNicknameRequest)
+}
+EmailUserByNicknameRequest::EmailUserByNicknameRequest(const EmailUserByNicknameRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  EmailUserByNicknameRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.nickname_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_nickname().empty()) {
+    _this->_impl_.nickname_.Set(from._internal_nickname(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.EmailUserByNicknameRequest)
+}
+
+inline void EmailUserByNicknameRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.nickname_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+EmailUserByNicknameRequest::~EmailUserByNicknameRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.EmailUserByNicknameRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void EmailUserByNicknameRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.nickname_.Destroy();
+}
+
+void EmailUserByNicknameRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void EmailUserByNicknameRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.EmailUserByNicknameRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.nickname_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* EmailUserByNicknameRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string nickname = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_nickname();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.EmailUserByNicknameRequest.nickname"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* EmailUserByNicknameRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.EmailUserByNicknameRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string nickname = 1;
+  if (!this->_internal_nickname().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.EmailUserByNicknameRequest.nickname");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_nickname(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.EmailUserByNicknameRequest)
+  return target;
+}
+
+size_t EmailUserByNicknameRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.EmailUserByNicknameRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string nickname = 1;
+  if (!this->_internal_nickname().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_nickname());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailUserByNicknameRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    EmailUserByNicknameRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailUserByNicknameRequest::GetClassData() const { return &_class_data_; }
+
+
+void EmailUserByNicknameRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<EmailUserByNicknameRequest*>(&to_msg);
+  auto& from = static_cast<const EmailUserByNicknameRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.EmailUserByNicknameRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_nickname().empty()) {
+    _this->_internal_set_nickname(from._internal_nickname());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EmailUserByNicknameRequest::CopyFrom(const EmailUserByNicknameRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.EmailUserByNicknameRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EmailUserByNicknameRequest::IsInitialized() const {
+  return true;
+}
+
+void EmailUserByNicknameRequest::InternalSwap(EmailUserByNicknameRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.nickname_, lhs_arena,
+      &other->_impl_.nickname_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata EmailUserByNicknameRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[19]);
+}
+
+// ===================================================================
+
+class EmailUserIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<EmailUserIndexResponse_Item>()._impl_._has_bits_);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& confirmed_at(const EmailUserIndexResponse_Item* msg);
+  static void set_has_confirmed_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const EmailUserIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const EmailUserIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+EmailUserIndexResponse_Item::_Internal::confirmed_at(const EmailUserIndexResponse_Item* msg) {
+  return *msg->_impl_.confirmed_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+EmailUserIndexResponse_Item::_Internal::deleted_at(const EmailUserIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+EmailUserIndexResponse_Item::_Internal::updated_at(const EmailUserIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void EmailUserIndexResponse_Item::clear_confirmed_at() {
+  if (_impl_.confirmed_at_ != nullptr) _impl_.confirmed_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+void EmailUserIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+void EmailUserIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+EmailUserIndexResponse_Item::EmailUserIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.EmailUserIndexResponse.Item)
+}
+EmailUserIndexResponse_Item::EmailUserIndexResponse_Item(const EmailUserIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  EmailUserIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.real_name_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.avatar_){}
+    , decltype(_impl_.confirmed_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.user_id_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.real_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.real_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_real_name().empty()) {
+    _this->_impl_.real_name_.Set(from._internal_real_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_nickname().empty()) {
+    _this->_impl_.nickname_.Set(from._internal_nickname(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_email().empty()) {
+    _this->_impl_.email_.Set(from._internal_email(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.avatar_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.avatar_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_avatar().empty()) {
+    _this->_impl_.avatar_.Set(from._internal_avatar(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_confirmed_at()) {
+    _this->_impl_.confirmed_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.confirmed_at_);
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.user_id_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.user_id_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.EmailUserIndexResponse.Item)
+}
+
+inline void EmailUserIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.real_name_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.avatar_){}
+    , decltype(_impl_.confirmed_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.user_id_){uint64_t{0u}}
+  };
+  _impl_.real_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.real_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.avatar_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.avatar_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+EmailUserIndexResponse_Item::~EmailUserIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.EmailUserIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void EmailUserIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.real_name_.Destroy();
+  _impl_.nickname_.Destroy();
+  _impl_.email_.Destroy();
+  _impl_.avatar_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.confirmed_at_;
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void EmailUserIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void EmailUserIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.EmailUserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.real_name_.ClearToEmpty();
+  _impl_.nickname_.ClearToEmpty();
+  _impl_.email_.ClearToEmpty();
+  _impl_.avatar_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(_impl_.confirmed_at_ != nullptr);
+      _impl_.confirmed_at_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+      _impl_.deleted_at_->Clear();
+    }
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  ::memset(&_impl_.id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.user_id_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.user_id_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* EmailUserIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.user_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string real_name = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_real_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.EmailUserIndexResponse.Item.real_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string nickname = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_nickname();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.EmailUserIndexResponse.Item.nickname"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string email = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_email();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.EmailUserIndexResponse.Item.email"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string avatar = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_avatar();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.EmailUserIndexResponse.Item.avatar"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp confirmed_at = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_confirmed_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* EmailUserIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.EmailUserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_user_id(), target);
+  }
+
+  // string real_name = 3;
+  if (!this->_internal_real_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_real_name().data(), static_cast<int>(this->_internal_real_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.EmailUserIndexResponse.Item.real_name");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_real_name(), target);
+  }
+
+  // string nickname = 4;
+  if (!this->_internal_nickname().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.EmailUserIndexResponse.Item.nickname");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_nickname(), target);
+  }
+
+  // string email = 5;
+  if (!this->_internal_email().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.EmailUserIndexResponse.Item.email");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_email(), target);
+  }
+
+  // string avatar = 6;
+  if (!this->_internal_avatar().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_avatar().data(), static_cast<int>(this->_internal_avatar().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.EmailUserIndexResponse.Item.avatar");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_avatar(), target);
+  }
+
+  // optional .google.protobuf.Timestamp confirmed_at = 7;
+  if (_internal_has_confirmed_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::confirmed_at(this),
+        _Internal::confirmed_at(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 8;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 9;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.EmailUserIndexResponse.Item)
+  return target;
+}
+
+size_t EmailUserIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.EmailUserIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string real_name = 3;
+  if (!this->_internal_real_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_real_name());
+  }
+
+  // string nickname = 4;
+  if (!this->_internal_nickname().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_nickname());
+  }
+
+  // string email = 5;
+  if (!this->_internal_email().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_email());
+  }
+
+  // string avatar = 6;
+  if (!this->_internal_avatar().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_avatar());
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .google.protobuf.Timestamp confirmed_at = 7;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.confirmed_at_);
+    }
+
+    // optional .google.protobuf.Timestamp deleted_at = 8;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.deleted_at_);
+    }
+
+  }
+  // .google.protobuf.Timestamp updated_at = 9;
+  if (this->_internal_has_updated_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailUserIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    EmailUserIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailUserIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void EmailUserIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<EmailUserIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const EmailUserIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.EmailUserIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_real_name().empty()) {
+    _this->_internal_set_real_name(from._internal_real_name());
+  }
+  if (!from._internal_nickname().empty()) {
+    _this->_internal_set_nickname(from._internal_nickname());
+  }
+  if (!from._internal_email().empty()) {
+    _this->_internal_set_email(from._internal_email());
+  }
+  if (!from._internal_avatar().empty()) {
+    _this->_internal_set_avatar(from._internal_avatar());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_confirmed_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_confirmed_at());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_deleted_at());
+    }
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_user_id() != 0) {
+    _this->_internal_set_user_id(from._internal_user_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EmailUserIndexResponse_Item::CopyFrom(const EmailUserIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.EmailUserIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EmailUserIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void EmailUserIndexResponse_Item::InternalSwap(EmailUserIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.real_name_, lhs_arena,
+      &other->_impl_.real_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.nickname_, lhs_arena,
+      &other->_impl_.nickname_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.email_, lhs_arena,
+      &other->_impl_.email_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.avatar_, lhs_arena,
+      &other->_impl_.avatar_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(EmailUserIndexResponse_Item, _impl_.user_id_)
+      + sizeof(EmailUserIndexResponse_Item::_impl_.user_id_)
+      - PROTOBUF_FIELD_OFFSET(EmailUserIndexResponse_Item, _impl_.confirmed_at_)>(
+          reinterpret_cast<char*>(&_impl_.confirmed_at_),
+          reinterpret_cast<char*>(&other->_impl_.confirmed_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata EmailUserIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[20]);
+}
+
+// ===================================================================
+
+class EmailUserIndexResponse::_Internal {
+ public:
+};
+
+EmailUserIndexResponse::EmailUserIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.EmailUserIndexResponse)
+}
+EmailUserIndexResponse::EmailUserIndexResponse(const EmailUserIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  EmailUserIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.EmailUserIndexResponse)
+}
+
+inline void EmailUserIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+EmailUserIndexResponse::~EmailUserIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.EmailUserIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void EmailUserIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void EmailUserIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void EmailUserIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.EmailUserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* EmailUserIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.EmailUserIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* EmailUserIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.EmailUserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.EmailUserIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.EmailUserIndexResponse)
+  return target;
+}
+
+size_t EmailUserIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.EmailUserIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.EmailUserIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailUserIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    EmailUserIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailUserIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void EmailUserIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<EmailUserIndexResponse*>(&to_msg);
+  auto& from = static_cast<const EmailUserIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.EmailUserIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EmailUserIndexResponse::CopyFrom(const EmailUserIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.EmailUserIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EmailUserIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void EmailUserIndexResponse::InternalSwap(EmailUserIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata EmailUserIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[21]);
+}
+
+// ===================================================================
+
+class UserResetPasswordRequest::_Internal {
+ public:
+};
+
+UserResetPasswordRequest::UserResetPasswordRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserResetPasswordRequest)
+}
+UserResetPasswordRequest::UserResetPasswordRequest(const UserResetPasswordRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserResetPasswordRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.token_){}
+    , decltype(_impl_.password_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_token().empty()) {
+    _this->_impl_.token_.Set(from._internal_token(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.password_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.password_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_password().empty()) {
+    _this->_impl_.password_.Set(from._internal_password(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserResetPasswordRequest)
+}
+
+inline void UserResetPasswordRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.token_){}
+    , decltype(_impl_.password_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.password_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.password_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserResetPasswordRequest::~UserResetPasswordRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserResetPasswordRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserResetPasswordRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.token_.Destroy();
+  _impl_.password_.Destroy();
+}
+
+void UserResetPasswordRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserResetPasswordRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserResetPasswordRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.token_.ClearToEmpty();
+  _impl_.password_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserResetPasswordRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string token = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserResetPasswordRequest.token"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string password = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_password();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserResetPasswordRequest.password"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserResetPasswordRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserResetPasswordRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string token = 1;
+  if (!this->_internal_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_token().data(), static_cast<int>(this->_internal_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserResetPasswordRequest.token");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_token(), target);
+  }
+
+  // string password = 2;
+  if (!this->_internal_password().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserResetPasswordRequest.password");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_password(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserResetPasswordRequest)
+  return target;
+}
+
+size_t UserResetPasswordRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserResetPasswordRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string token = 1;
+  if (!this->_internal_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_token());
+  }
+
+  // string password = 2;
+  if (!this->_internal_password().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserResetPasswordRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserResetPasswordRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserResetPasswordRequest::GetClassData() const { return &_class_data_; }
+
+
+void UserResetPasswordRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserResetPasswordRequest*>(&to_msg);
+  auto& from = static_cast<const UserResetPasswordRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserResetPasswordRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_token().empty()) {
+    _this->_internal_set_token(from._internal_token());
+  }
+  if (!from._internal_password().empty()) {
+    _this->_internal_set_password(from._internal_password());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserResetPasswordRequest::CopyFrom(const UserResetPasswordRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserResetPasswordRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserResetPasswordRequest::IsInitialized() const {
+  return true;
+}
+
+void UserResetPasswordRequest::InternalSwap(UserResetPasswordRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.token_, lhs_arena,
+      &other->_impl_.token_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.password_, lhs_arena,
+      &other->_impl_.password_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserResetPasswordRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[22]);
+}
+
+// ===================================================================
+
+class UserByEmailRequest::_Internal {
+ public:
+};
+
+UserByEmailRequest::UserByEmailRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserByEmailRequest)
+}
+UserByEmailRequest::UserByEmailRequest(const UserByEmailRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserByEmailRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.user_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  clear_has_user();
+  switch (from.user_case()) {
+    case kEmail: {
+      _this->_internal_set_email(from._internal_email());
+      break;
+    }
+    case kNickname: {
+      _this->_internal_set_nickname(from._internal_nickname());
+      break;
+    }
+    case USER_NOT_SET: {
+      break;
+    }
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserByEmailRequest)
+}
+
+inline void UserByEmailRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.user_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , /*decltype(_impl_._oneof_case_)*/{}
+  };
+  clear_has_user();
+}
+
+UserByEmailRequest::~UserByEmailRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserByEmailRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserByEmailRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (has_user()) {
+    clear_user();
+  }
+}
+
+void UserByEmailRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserByEmailRequest::clear_user() {
+// @@protoc_insertion_point(one_of_clear_start:palm.balsam.v1.UserByEmailRequest)
+  switch (user_case()) {
+    case kEmail: {
+      _impl_.user_.email_.Destroy();
+      break;
+    }
+    case kNickname: {
+      _impl_.user_.nickname_.Destroy();
+      break;
+    }
+    case USER_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = USER_NOT_SET;
+}
+
+
+void UserByEmailRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserByEmailRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_user();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserByEmailRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string email = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_email();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserByEmailRequest.email"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string nickname = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_nickname();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserByEmailRequest.nickname"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserByEmailRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserByEmailRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string email = 1;
+  if (_internal_has_email()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserByEmailRequest.email");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_email(), target);
+  }
+
+  // string nickname = 2;
+  if (_internal_has_nickname()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserByEmailRequest.nickname");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_nickname(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserByEmailRequest)
+  return target;
+}
+
+size_t UserByEmailRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserByEmailRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  switch (user_case()) {
+    // string email = 1;
+    case kEmail: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_email());
+      break;
+    }
+    // string nickname = 2;
+    case kNickname: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_nickname());
+      break;
+    }
+    case USER_NOT_SET: {
+      break;
+    }
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserByEmailRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserByEmailRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserByEmailRequest::GetClassData() const { return &_class_data_; }
+
+
+void UserByEmailRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserByEmailRequest*>(&to_msg);
+  auto& from = static_cast<const UserByEmailRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserByEmailRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  switch (from.user_case()) {
+    case kEmail: {
+      _this->_internal_set_email(from._internal_email());
+      break;
+    }
+    case kNickname: {
+      _this->_internal_set_nickname(from._internal_nickname());
+      break;
+    }
+    case USER_NOT_SET: {
+      break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserByEmailRequest::CopyFrom(const UserByEmailRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserByEmailRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserByEmailRequest::IsInitialized() const {
+  return true;
+}
+
+void UserByEmailRequest::InternalSwap(UserByEmailRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.user_, other->_impl_.user_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserByEmailRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[23]);
+}
+
+// ===================================================================
+
+class UserByTokenRequest::_Internal {
+ public:
+};
+
+UserByTokenRequest::UserByTokenRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserByTokenRequest)
+}
+UserByTokenRequest::UserByTokenRequest(const UserByTokenRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserByTokenRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.token_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_token().empty()) {
+    _this->_impl_.token_.Set(from._internal_token(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserByTokenRequest)
+}
+
+inline void UserByTokenRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.token_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserByTokenRequest::~UserByTokenRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserByTokenRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserByTokenRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.token_.Destroy();
+}
+
+void UserByTokenRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserByTokenRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserByTokenRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.token_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserByTokenRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string token = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserByTokenRequest.token"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserByTokenRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserByTokenRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string token = 1;
+  if (!this->_internal_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_token().data(), static_cast<int>(this->_internal_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserByTokenRequest.token");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_token(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserByTokenRequest)
+  return target;
+}
+
+size_t UserByTokenRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserByTokenRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string token = 1;
+  if (!this->_internal_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_token());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserByTokenRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserByTokenRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserByTokenRequest::GetClassData() const { return &_class_data_; }
+
+
+void UserByTokenRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserByTokenRequest*>(&to_msg);
+  auto& from = static_cast<const UserByTokenRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserByTokenRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_token().empty()) {
+    _this->_internal_set_token(from._internal_token());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserByTokenRequest::CopyFrom(const UserByTokenRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserByTokenRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserByTokenRequest::IsInitialized() const {
+  return true;
+}
+
+void UserByTokenRequest::InternalSwap(UserByTokenRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.token_, lhs_arena,
+      &other->_impl_.token_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserByTokenRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[24]);
+}
+
+// ===================================================================
+
+class UserSignInByEmailRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const UserSignInByEmailRequest* msg);
 };
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
-UserSignInByEmail::_Internal::ttl(const UserSignInByEmail* msg) {
+UserSignInByEmailRequest::_Internal::ttl(const UserSignInByEmailRequest* msg) {
   return *msg->_impl_.ttl_;
 }
-void UserSignInByEmail::clear_ttl() {
+void UserSignInByEmailRequest::clear_ttl() {
   if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
     delete _impl_.ttl_;
   }
   _impl_.ttl_ = nullptr;
 }
-UserSignInByEmail::UserSignInByEmail(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+UserSignInByEmailRequest::UserSignInByEmailRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserSignInByEmail)
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserSignInByEmailRequest)
 }
-UserSignInByEmail::UserSignInByEmail(const UserSignInByEmail& from)
+UserSignInByEmailRequest::UserSignInByEmailRequest(const UserSignInByEmailRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UserSignInByEmail* const _this = this; (void)_this;
+  UserSignInByEmailRequest* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.password_){}
     , decltype(_impl_.ttl_){nullptr}
@@ -2918,10 +9137,10 @@ UserSignInByEmail::UserSignInByEmail(const UserSignInByEmail& from)
       break;
     }
   }
-  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserSignInByEmail)
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserSignInByEmailRequest)
 }
 
-inline void UserSignInByEmail::SharedCtor(
+inline void UserSignInByEmailRequest::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -2939,8 +9158,8 @@ inline void UserSignInByEmail::SharedCtor(
   clear_has_user();
 }
 
-UserSignInByEmail::~UserSignInByEmail() {
-  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserSignInByEmail)
+UserSignInByEmailRequest::~UserSignInByEmailRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserSignInByEmailRequest)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2948,7 +9167,7 @@ UserSignInByEmail::~UserSignInByEmail() {
   SharedDtor();
 }
 
-inline void UserSignInByEmail::SharedDtor() {
+inline void UserSignInByEmailRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.password_.Destroy();
   if (this != internal_default_instance()) delete _impl_.ttl_;
@@ -2957,12 +9176,12 @@ inline void UserSignInByEmail::SharedDtor() {
   }
 }
 
-void UserSignInByEmail::SetCachedSize(int size) const {
+void UserSignInByEmailRequest::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void UserSignInByEmail::clear_user() {
-// @@protoc_insertion_point(one_of_clear_start:palm.balsam.v1.UserSignInByEmail)
+void UserSignInByEmailRequest::clear_user() {
+// @@protoc_insertion_point(one_of_clear_start:palm.balsam.v1.UserSignInByEmailRequest)
   switch (user_case()) {
     case kEmail: {
       _impl_.user_.email_.Destroy();
@@ -2980,8 +9199,8 @@ void UserSignInByEmail::clear_user() {
 }
 
 
-void UserSignInByEmail::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserSignInByEmail)
+void UserSignInByEmailRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserSignInByEmailRequest)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2995,7 +9214,7 @@ void UserSignInByEmail::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* UserSignInByEmail::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* UserSignInByEmailRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -3007,7 +9226,7 @@ const char* UserSignInByEmail::_InternalParse(const char* ptr, ::_pbi::ParseCont
           auto str = _internal_mutable_email();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInByEmail.email"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInByEmailRequest.email"));
         } else
           goto handle_unusual;
         continue;
@@ -3017,7 +9236,7 @@ const char* UserSignInByEmail::_InternalParse(const char* ptr, ::_pbi::ParseCont
           auto str = _internal_mutable_nickname();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInByEmail.nickname"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInByEmailRequest.nickname"));
         } else
           goto handle_unusual;
         continue;
@@ -3027,7 +9246,7 @@ const char* UserSignInByEmail::_InternalParse(const char* ptr, ::_pbi::ParseCont
           auto str = _internal_mutable_password();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInByEmail.password"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInByEmailRequest.password"));
         } else
           goto handle_unusual;
         continue;
@@ -3062,9 +9281,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* UserSignInByEmail::_InternalSerialize(
+uint8_t* UserSignInByEmailRequest::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserSignInByEmail)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserSignInByEmailRequest)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -3073,7 +9292,7 @@ uint8_t* UserSignInByEmail::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.balsam.v1.UserSignInByEmail.email");
+      "palm.balsam.v1.UserSignInByEmailRequest.email");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_email(), target);
   }
@@ -3083,7 +9302,7 @@ uint8_t* UserSignInByEmail::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.balsam.v1.UserSignInByEmail.nickname");
+      "palm.balsam.v1.UserSignInByEmailRequest.nickname");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_nickname(), target);
   }
@@ -3093,7 +9312,7 @@ uint8_t* UserSignInByEmail::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.balsam.v1.UserSignInByEmail.password");
+      "palm.balsam.v1.UserSignInByEmailRequest.password");
     target = stream->WriteStringMaybeAliased(
         8, this->_internal_password(), target);
   }
@@ -3109,12 +9328,12 @@ uint8_t* UserSignInByEmail::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserSignInByEmail)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserSignInByEmailRequest)
   return target;
 }
 
-size_t UserSignInByEmail::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserSignInByEmail)
+size_t UserSignInByEmailRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserSignInByEmailRequest)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -3157,17 +9376,17 @@ size_t UserSignInByEmail::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserSignInByEmail::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserSignInByEmailRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UserSignInByEmail::MergeImpl
+    UserSignInByEmailRequest::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignInByEmail::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignInByEmailRequest::GetClassData() const { return &_class_data_; }
 
 
-void UserSignInByEmail::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UserSignInByEmail*>(&to_msg);
-  auto& from = static_cast<const UserSignInByEmail&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserSignInByEmail)
+void UserSignInByEmailRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserSignInByEmailRequest*>(&to_msg);
+  auto& from = static_cast<const UserSignInByEmailRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserSignInByEmailRequest)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -3195,18 +9414,18 @@ void UserSignInByEmail::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UserSignInByEmail::CopyFrom(const UserSignInByEmail& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserSignInByEmail)
+void UserSignInByEmailRequest::CopyFrom(const UserSignInByEmailRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserSignInByEmailRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool UserSignInByEmail::IsInitialized() const {
+bool UserSignInByEmailRequest::IsInitialized() const {
   return true;
 }
 
-void UserSignInByEmail::InternalSwap(UserSignInByEmail* other) {
+void UserSignInByEmailRequest::InternalSwap(UserSignInByEmailRequest* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
@@ -3220,50 +9439,8127 @@ void UserSignInByEmail::InternalSwap(UserSignInByEmail* other) {
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UserSignInByEmail::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata UserSignInByEmailRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[9]);
+      file_level_metadata_balsam_2eproto[25]);
+}
+
+// ===================================================================
+
+class UserSignUpByEmailRequest::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const UserSignUpByEmailRequest* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Duration&
+UserSignUpByEmailRequest::_Internal::ttl(const UserSignUpByEmailRequest* msg) {
+  return *msg->_impl_.ttl_;
+}
+void UserSignUpByEmailRequest::clear_ttl() {
+  if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
+    delete _impl_.ttl_;
+  }
+  _impl_.ttl_ = nullptr;
+}
+UserSignUpByEmailRequest::UserSignUpByEmailRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserSignUpByEmailRequest)
+}
+UserSignUpByEmailRequest::UserSignUpByEmailRequest(const UserSignUpByEmailRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserSignUpByEmailRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.real_name_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.password_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.home_){}
+    , decltype(_impl_.ttl_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.real_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.real_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_real_name().empty()) {
+    _this->_impl_.real_name_.Set(from._internal_real_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_email().empty()) {
+    _this->_impl_.email_.Set(from._internal_email(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_nickname().empty()) {
+    _this->_impl_.nickname_.Set(from._internal_nickname(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.password_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.password_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_password().empty()) {
+    _this->_impl_.password_.Set(from._internal_password(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_timezone().empty()) {
+    _this->_impl_.timezone_.Set(from._internal_timezone(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.home_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.home_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_home().empty()) {
+    _this->_impl_.home_.Set(from._internal_home(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_ttl()) {
+    _this->_impl_.ttl_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.ttl_);
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserSignUpByEmailRequest)
+}
+
+inline void UserSignUpByEmailRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.real_name_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.password_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.home_){}
+    , decltype(_impl_.ttl_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.real_name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.real_name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.password_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.password_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.home_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.home_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserSignUpByEmailRequest::~UserSignUpByEmailRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserSignUpByEmailRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserSignUpByEmailRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.real_name_.Destroy();
+  _impl_.email_.Destroy();
+  _impl_.nickname_.Destroy();
+  _impl_.password_.Destroy();
+  _impl_.lang_.Destroy();
+  _impl_.timezone_.Destroy();
+  _impl_.home_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.ttl_;
+}
+
+void UserSignUpByEmailRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserSignUpByEmailRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserSignUpByEmailRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.real_name_.ClearToEmpty();
+  _impl_.email_.ClearToEmpty();
+  _impl_.nickname_.ClearToEmpty();
+  _impl_.password_.ClearToEmpty();
+  _impl_.lang_.ClearToEmpty();
+  _impl_.timezone_.ClearToEmpty();
+  _impl_.home_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
+    delete _impl_.ttl_;
+  }
+  _impl_.ttl_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserSignUpByEmailRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string real_name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_real_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignUpByEmailRequest.real_name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string email = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_email();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignUpByEmailRequest.email"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string nickname = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_nickname();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignUpByEmailRequest.nickname"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string password = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_password();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignUpByEmailRequest.password"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string lang = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignUpByEmailRequest.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string timezone = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_timezone();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignUpByEmailRequest.timezone"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string home = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_home();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignUpByEmailRequest.home"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Duration ttl = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_ttl(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserSignUpByEmailRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserSignUpByEmailRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string real_name = 1;
+  if (!this->_internal_real_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_real_name().data(), static_cast<int>(this->_internal_real_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignUpByEmailRequest.real_name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_real_name(), target);
+  }
+
+  // string email = 2;
+  if (!this->_internal_email().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignUpByEmailRequest.email");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_email(), target);
+  }
+
+  // string nickname = 3;
+  if (!this->_internal_nickname().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignUpByEmailRequest.nickname");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_nickname(), target);
+  }
+
+  // string password = 4;
+  if (!this->_internal_password().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignUpByEmailRequest.password");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_password(), target);
+  }
+
+  // string lang = 5;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignUpByEmailRequest.lang");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_lang(), target);
+  }
+
+  // string timezone = 6;
+  if (!this->_internal_timezone().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_timezone().data(), static_cast<int>(this->_internal_timezone().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignUpByEmailRequest.timezone");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_timezone(), target);
+  }
+
+  // string home = 7;
+  if (!this->_internal_home().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_home().data(), static_cast<int>(this->_internal_home().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignUpByEmailRequest.home");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_home(), target);
+  }
+
+  // .google.protobuf.Duration ttl = 9;
+  if (this->_internal_has_ttl()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::ttl(this),
+        _Internal::ttl(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserSignUpByEmailRequest)
+  return target;
+}
+
+size_t UserSignUpByEmailRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserSignUpByEmailRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string real_name = 1;
+  if (!this->_internal_real_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_real_name());
+  }
+
+  // string email = 2;
+  if (!this->_internal_email().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_email());
+  }
+
+  // string nickname = 3;
+  if (!this->_internal_nickname().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_nickname());
+  }
+
+  // string password = 4;
+  if (!this->_internal_password().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
+  }
+
+  // string lang = 5;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string timezone = 6;
+  if (!this->_internal_timezone().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_timezone());
+  }
+
+  // string home = 7;
+  if (!this->_internal_home().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_home());
+  }
+
+  // .google.protobuf.Duration ttl = 9;
+  if (this->_internal_has_ttl()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.ttl_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserSignUpByEmailRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserSignUpByEmailRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignUpByEmailRequest::GetClassData() const { return &_class_data_; }
+
+
+void UserSignUpByEmailRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserSignUpByEmailRequest*>(&to_msg);
+  auto& from = static_cast<const UserSignUpByEmailRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserSignUpByEmailRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_real_name().empty()) {
+    _this->_internal_set_real_name(from._internal_real_name());
+  }
+  if (!from._internal_email().empty()) {
+    _this->_internal_set_email(from._internal_email());
+  }
+  if (!from._internal_nickname().empty()) {
+    _this->_internal_set_nickname(from._internal_nickname());
+  }
+  if (!from._internal_password().empty()) {
+    _this->_internal_set_password(from._internal_password());
+  }
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_timezone().empty()) {
+    _this->_internal_set_timezone(from._internal_timezone());
+  }
+  if (!from._internal_home().empty()) {
+    _this->_internal_set_home(from._internal_home());
+  }
+  if (from._internal_has_ttl()) {
+    _this->_internal_mutable_ttl()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+        from._internal_ttl());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserSignUpByEmailRequest::CopyFrom(const UserSignUpByEmailRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserSignUpByEmailRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserSignUpByEmailRequest::IsInitialized() const {
+  return true;
+}
+
+void UserSignUpByEmailRequest::InternalSwap(UserSignUpByEmailRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.real_name_, lhs_arena,
+      &other->_impl_.real_name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.email_, lhs_arena,
+      &other->_impl_.email_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.nickname_, lhs_arena,
+      &other->_impl_.nickname_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.password_, lhs_arena,
+      &other->_impl_.password_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.timezone_, lhs_arena,
+      &other->_impl_.timezone_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.home_, lhs_arena,
+      &other->_impl_.home_, rhs_arena
+  );
+  swap(_impl_.ttl_, other->_impl_.ttl_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserSignUpByEmailRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[26]);
+}
+
+// ===================================================================
+
+class UserSignInResponse_Detail::_Internal {
+ public:
+  using HasBits = decltype(std::declval<UserSignInResponse_Detail>()._impl_._has_bits_);
+  static void set_has_name(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_avatar(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+UserSignInResponse_Detail::UserSignInResponse_Detail(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserSignInResponse.Detail)
+}
+UserSignInResponse_Detail::UserSignInResponse_Detail(const UserSignInResponse_Detail& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserSignInResponse_Detail* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.avatar_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.provider_id_){}
+    , decltype(_impl_.provider_type_){}
+    , decltype(_impl_.has_email_){}
+    , decltype(_impl_.has_phone_){}
+    , decltype(_impl_.has_google_oauth2_){}
+    , decltype(_impl_.has_wechat_oauth2_){}
+    , decltype(_impl_.has_wechat_mini_program_){}
+    , decltype(_impl_.has_facebook_oauth2_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_name()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.avatar_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.avatar_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_avatar()) {
+    _this->_impl_.avatar_.Set(from._internal_avatar(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_timezone().empty()) {
+    _this->_impl_.timezone_.Set(from._internal_timezone(), 
+      _this->GetArenaForAllocation());
+  }
+  ::memcpy(&_impl_.provider_id_, &from._impl_.provider_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.has_facebook_oauth2_) -
+    reinterpret_cast<char*>(&_impl_.provider_id_)) + sizeof(_impl_.has_facebook_oauth2_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserSignInResponse.Detail)
+}
+
+inline void UserSignInResponse_Detail::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.avatar_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.timezone_){}
+    , decltype(_impl_.provider_id_){uint64_t{0u}}
+    , decltype(_impl_.provider_type_){0}
+    , decltype(_impl_.has_email_){false}
+    , decltype(_impl_.has_phone_){false}
+    , decltype(_impl_.has_google_oauth2_){false}
+    , decltype(_impl_.has_wechat_oauth2_){false}
+    , decltype(_impl_.has_wechat_mini_program_){false}
+    , decltype(_impl_.has_facebook_oauth2_){false}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.avatar_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.avatar_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.timezone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.timezone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserSignInResponse_Detail::~UserSignInResponse_Detail() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserSignInResponse.Detail)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserSignInResponse_Detail::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.name_.Destroy();
+  _impl_.avatar_.Destroy();
+  _impl_.lang_.Destroy();
+  _impl_.timezone_.Destroy();
+}
+
+void UserSignInResponse_Detail::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserSignInResponse_Detail::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserSignInResponse.Detail)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.name_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.avatar_.ClearNonDefaultToEmpty();
+    }
+  }
+  _impl_.lang_.ClearToEmpty();
+  _impl_.timezone_.ClearToEmpty();
+  ::memset(&_impl_.provider_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.has_facebook_oauth2_) -
+      reinterpret_cast<char*>(&_impl_.provider_id_)) + sizeof(_impl_.has_facebook_oauth2_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserSignInResponse_Detail::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Detail.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string avatar = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_avatar();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Detail.avatar"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string lang = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Detail.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string timezone = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_timezone();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Detail.timezone"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_provider_type(static_cast<::palm::balsam::v1::UserSignInResponse_Detail_ProviderType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 provider_id = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _impl_.provider_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool has_email = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
+          _impl_.has_email_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool has_phone = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
+          _impl_.has_phone_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool has_google_oauth2 = 21;
+      case 21:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 168)) {
+          _impl_.has_google_oauth2_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool has_wechat_oauth2 = 22;
+      case 22:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
+          _impl_.has_wechat_oauth2_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool has_wechat_mini_program = 23;
+      case 23:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 184)) {
+          _impl_.has_wechat_mini_program_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool has_facebook_oauth2 = 24;
+      case 24:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 192)) {
+          _impl_.has_facebook_oauth2_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserSignInResponse_Detail::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserSignInResponse.Detail)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional string name = 1;
+  if (_internal_has_name()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Detail.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // optional string avatar = 2;
+  if (_internal_has_avatar()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_avatar().data(), static_cast<int>(this->_internal_avatar().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Detail.avatar");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_avatar(), target);
+  }
+
+  // string lang = 3;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Detail.lang");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_lang(), target);
+  }
+
+  // string timezone = 4;
+  if (!this->_internal_timezone().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_timezone().data(), static_cast<int>(this->_internal_timezone().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Detail.timezone");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_timezone(), target);
+  }
+
+  // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 8;
+  if (this->_internal_provider_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      8, this->_internal_provider_type(), target);
+  }
+
+  // uint64 provider_id = 9;
+  if (this->_internal_provider_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(9, this->_internal_provider_id(), target);
+  }
+
+  // bool has_email = 11;
+  if (this->_internal_has_email() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(11, this->_internal_has_email(), target);
+  }
+
+  // bool has_phone = 12;
+  if (this->_internal_has_phone() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(12, this->_internal_has_phone(), target);
+  }
+
+  // bool has_google_oauth2 = 21;
+  if (this->_internal_has_google_oauth2() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(21, this->_internal_has_google_oauth2(), target);
+  }
+
+  // bool has_wechat_oauth2 = 22;
+  if (this->_internal_has_wechat_oauth2() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(22, this->_internal_has_wechat_oauth2(), target);
+  }
+
+  // bool has_wechat_mini_program = 23;
+  if (this->_internal_has_wechat_mini_program() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(23, this->_internal_has_wechat_mini_program(), target);
+  }
+
+  // bool has_facebook_oauth2 = 24;
+  if (this->_internal_has_facebook_oauth2() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(24, this->_internal_has_facebook_oauth2(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserSignInResponse.Detail)
+  return target;
+}
+
+size_t UserSignInResponse_Detail::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserSignInResponse.Detail)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional string name = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_name());
+    }
+
+    // optional string avatar = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_avatar());
+    }
+
+  }
+  // string lang = 3;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string timezone = 4;
+  if (!this->_internal_timezone().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_timezone());
+  }
+
+  // uint64 provider_id = 9;
+  if (this->_internal_provider_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_provider_id());
+  }
+
+  // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 8;
+  if (this->_internal_provider_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_provider_type());
+  }
+
+  // bool has_email = 11;
+  if (this->_internal_has_email() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool has_phone = 12;
+  if (this->_internal_has_phone() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool has_google_oauth2 = 21;
+  if (this->_internal_has_google_oauth2() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool has_wechat_oauth2 = 22;
+  if (this->_internal_has_wechat_oauth2() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool has_wechat_mini_program = 23;
+  if (this->_internal_has_wechat_mini_program() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool has_facebook_oauth2 = 24;
+  if (this->_internal_has_facebook_oauth2() != 0) {
+    total_size += 2 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserSignInResponse_Detail::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserSignInResponse_Detail::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignInResponse_Detail::GetClassData() const { return &_class_data_; }
+
+
+void UserSignInResponse_Detail::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserSignInResponse_Detail*>(&to_msg);
+  auto& from = static_cast<const UserSignInResponse_Detail&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserSignInResponse.Detail)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_name(from._internal_name());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_set_avatar(from._internal_avatar());
+    }
+  }
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_timezone().empty()) {
+    _this->_internal_set_timezone(from._internal_timezone());
+  }
+  if (from._internal_provider_id() != 0) {
+    _this->_internal_set_provider_id(from._internal_provider_id());
+  }
+  if (from._internal_provider_type() != 0) {
+    _this->_internal_set_provider_type(from._internal_provider_type());
+  }
+  if (from._internal_has_email() != 0) {
+    _this->_internal_set_has_email(from._internal_has_email());
+  }
+  if (from._internal_has_phone() != 0) {
+    _this->_internal_set_has_phone(from._internal_has_phone());
+  }
+  if (from._internal_has_google_oauth2() != 0) {
+    _this->_internal_set_has_google_oauth2(from._internal_has_google_oauth2());
+  }
+  if (from._internal_has_wechat_oauth2() != 0) {
+    _this->_internal_set_has_wechat_oauth2(from._internal_has_wechat_oauth2());
+  }
+  if (from._internal_has_wechat_mini_program() != 0) {
+    _this->_internal_set_has_wechat_mini_program(from._internal_has_wechat_mini_program());
+  }
+  if (from._internal_has_facebook_oauth2() != 0) {
+    _this->_internal_set_has_facebook_oauth2(from._internal_has_facebook_oauth2());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserSignInResponse_Detail::CopyFrom(const UserSignInResponse_Detail& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserSignInResponse.Detail)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserSignInResponse_Detail::IsInitialized() const {
+  return true;
+}
+
+void UserSignInResponse_Detail::InternalSwap(UserSignInResponse_Detail* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.avatar_, lhs_arena,
+      &other->_impl_.avatar_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.timezone_, lhs_arena,
+      &other->_impl_.timezone_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UserSignInResponse_Detail, _impl_.has_facebook_oauth2_)
+      + sizeof(UserSignInResponse_Detail::_impl_.has_facebook_oauth2_)
+      - PROTOBUF_FIELD_OFFSET(UserSignInResponse_Detail, _impl_.provider_id_)>(
+          reinterpret_cast<char*>(&_impl_.provider_id_),
+          reinterpret_cast<char*>(&other->_impl_.provider_id_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserSignInResponse_Detail::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[27]);
+}
+
+// ===================================================================
+
+class UserSignInResponse_Permission::_Internal {
+ public:
+  using HasBits = decltype(std::declval<UserSignInResponse_Permission>()._impl_._has_bits_);
+  static void set_has_resource_id(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+UserSignInResponse_Permission::UserSignInResponse_Permission(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserSignInResponse.Permission)
+}
+UserSignInResponse_Permission::UserSignInResponse_Permission(const UserSignInResponse_Permission& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserSignInResponse_Permission* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.operation_){}
+    , decltype(_impl_.resource_type_){}
+    , decltype(_impl_.resource_id_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.operation_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.operation_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_operation().empty()) {
+    _this->_impl_.operation_.Set(from._internal_operation(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    _this->_impl_.resource_type_.Set(from._internal_resource_type(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.resource_id_ = from._impl_.resource_id_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserSignInResponse.Permission)
+}
+
+inline void UserSignInResponse_Permission::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.operation_){}
+    , decltype(_impl_.resource_type_){}
+    , decltype(_impl_.resource_id_){uint64_t{0u}}
+  };
+  _impl_.operation_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.operation_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserSignInResponse_Permission::~UserSignInResponse_Permission() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserSignInResponse.Permission)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserSignInResponse_Permission::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.operation_.Destroy();
+  _impl_.resource_type_.Destroy();
+}
+
+void UserSignInResponse_Permission::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserSignInResponse_Permission::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserSignInResponse.Permission)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.operation_.ClearToEmpty();
+  _impl_.resource_type_.ClearToEmpty();
+  _impl_.resource_id_ = uint64_t{0u};
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserSignInResponse_Permission::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string operation = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_operation();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Permission.operation"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string resource_type = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Permission.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional uint64 resource_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _Internal::set_has_resource_id(&has_bits);
+          _impl_.resource_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserSignInResponse_Permission::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserSignInResponse.Permission)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string operation = 1;
+  if (!this->_internal_operation().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_operation().data(), static_cast<int>(this->_internal_operation().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Permission.operation");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_operation(), target);
+  }
+
+  // string resource_type = 2;
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Permission.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_resource_type(), target);
+  }
+
+  // optional uint64 resource_id = 3;
+  if (_internal_has_resource_id()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(3, this->_internal_resource_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserSignInResponse.Permission)
+  return target;
+}
+
+size_t UserSignInResponse_Permission::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserSignInResponse.Permission)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string operation = 1;
+  if (!this->_internal_operation().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_operation());
+  }
+
+  // string resource_type = 2;
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // optional uint64 resource_id = 3;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_resource_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserSignInResponse_Permission::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserSignInResponse_Permission::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignInResponse_Permission::GetClassData() const { return &_class_data_; }
+
+
+void UserSignInResponse_Permission::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserSignInResponse_Permission*>(&to_msg);
+  auto& from = static_cast<const UserSignInResponse_Permission&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserSignInResponse.Permission)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_operation().empty()) {
+    _this->_internal_set_operation(from._internal_operation());
+  }
+  if (!from._internal_resource_type().empty()) {
+    _this->_internal_set_resource_type(from._internal_resource_type());
+  }
+  if (from._internal_has_resource_id()) {
+    _this->_internal_set_resource_id(from._internal_resource_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserSignInResponse_Permission::CopyFrom(const UserSignInResponse_Permission& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserSignInResponse.Permission)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserSignInResponse_Permission::IsInitialized() const {
+  return true;
+}
+
+void UserSignInResponse_Permission::InternalSwap(UserSignInResponse_Permission* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.operation_, lhs_arena,
+      &other->_impl_.operation_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.resource_type_, lhs_arena,
+      &other->_impl_.resource_type_, rhs_arena
+  );
+  swap(_impl_.resource_id_, other->_impl_.resource_id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserSignInResponse_Permission::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[28]);
+}
+
+// ===================================================================
+
+class UserSignInResponse_Menu::_Internal {
+ public:
+  using HasBits = decltype(std::declval<UserSignInResponse_Menu>()._impl_._has_bits_);
+  static void set_has_icon(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+UserSignInResponse_Menu::UserSignInResponse_Menu(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserSignInResponse.Menu)
+}
+UserSignInResponse_Menu::UserSignInResponse_Menu(const UserSignInResponse_Menu& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UserSignInResponse_Menu* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.menus_){from._impl_.menus_}
+    , decltype(_impl_.label_){}
+    , decltype(_impl_.to_){}
+    , decltype(_impl_.icon_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.label_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.label_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_label().empty()) {
+    _this->_impl_.label_.Set(from._internal_label(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.to_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.to_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_to().empty()) {
+    _this->_impl_.to_.Set(from._internal_to(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.icon_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.icon_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_icon()) {
+    _this->_impl_.icon_.Set(from._internal_icon(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserSignInResponse.Menu)
+}
+
+inline void UserSignInResponse_Menu::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.menus_){arena}
+    , decltype(_impl_.label_){}
+    , decltype(_impl_.to_){}
+    , decltype(_impl_.icon_){}
+  };
+  _impl_.label_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.label_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.to_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.to_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.icon_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.icon_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+UserSignInResponse_Menu::~UserSignInResponse_Menu() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserSignInResponse.Menu)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserSignInResponse_Menu::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.menus_.~RepeatedPtrField();
+  _impl_.label_.Destroy();
+  _impl_.to_.Destroy();
+  _impl_.icon_.Destroy();
+}
+
+void UserSignInResponse_Menu::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserSignInResponse_Menu::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserSignInResponse.Menu)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.menus_.Clear();
+  _impl_.label_.ClearToEmpty();
+  _impl_.to_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.icon_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserSignInResponse_Menu::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string label = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_label();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Menu.label"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string to = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_to();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Menu.to"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string icon = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_icon();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.Menu.icon"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .palm.balsam.v1.UserSignInResponse.Menu menus = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_menus(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<74>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserSignInResponse_Menu::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserSignInResponse.Menu)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string label = 1;
+  if (!this->_internal_label().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_label().data(), static_cast<int>(this->_internal_label().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Menu.label");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_label(), target);
+  }
+
+  // string to = 2;
+  if (!this->_internal_to().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_to().data(), static_cast<int>(this->_internal_to().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Menu.to");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_to(), target);
+  }
+
+  // optional string icon = 3;
+  if (_internal_has_icon()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_icon().data(), static_cast<int>(this->_internal_icon().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.Menu.icon");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_icon(), target);
+  }
+
+  // repeated .palm.balsam.v1.UserSignInResponse.Menu menus = 9;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_menus_size()); i < n; i++) {
+    const auto& repfield = this->_internal_menus(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(9, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserSignInResponse.Menu)
+  return target;
+}
+
+size_t UserSignInResponse_Menu::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserSignInResponse.Menu)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.UserSignInResponse.Menu menus = 9;
+  total_size += 1UL * this->_internal_menus_size();
+  for (const auto& msg : this->_impl_.menus_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string label = 1;
+  if (!this->_internal_label().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_label());
+  }
+
+  // string to = 2;
+  if (!this->_internal_to().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_to());
+  }
+
+  // optional string icon = 3;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_icon());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserSignInResponse_Menu::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserSignInResponse_Menu::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignInResponse_Menu::GetClassData() const { return &_class_data_; }
+
+
+void UserSignInResponse_Menu::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserSignInResponse_Menu*>(&to_msg);
+  auto& from = static_cast<const UserSignInResponse_Menu&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserSignInResponse.Menu)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.menus_.MergeFrom(from._impl_.menus_);
+  if (!from._internal_label().empty()) {
+    _this->_internal_set_label(from._internal_label());
+  }
+  if (!from._internal_to().empty()) {
+    _this->_internal_set_to(from._internal_to());
+  }
+  if (from._internal_has_icon()) {
+    _this->_internal_set_icon(from._internal_icon());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserSignInResponse_Menu::CopyFrom(const UserSignInResponse_Menu& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserSignInResponse.Menu)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserSignInResponse_Menu::IsInitialized() const {
+  return true;
+}
+
+void UserSignInResponse_Menu::InternalSwap(UserSignInResponse_Menu* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.menus_.InternalSwap(&other->_impl_.menus_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.label_, lhs_arena,
+      &other->_impl_.label_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.to_, lhs_arena,
+      &other->_impl_.to_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.icon_, lhs_arena,
+      &other->_impl_.icon_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserSignInResponse_Menu::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[29]);
 }
 
 // ===================================================================
 
 class UserSignInResponse::_Internal {
  public:
+  static const ::palm::balsam::v1::UserSignInResponse_Detail& detail(const UserSignInResponse* msg);
 };
 
+const ::palm::balsam::v1::UserSignInResponse_Detail&
+UserSignInResponse::_Internal::detail(const UserSignInResponse* msg) {
+  return *msg->_impl_.detail_;
+}
 UserSignInResponse::UserSignInResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.UserSignInResponse)
 }
 UserSignInResponse::UserSignInResponse(const UserSignInResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   UserSignInResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.roles_){from._impl_.roles_}
+    , decltype(_impl_.permissions_){from._impl_.permissions_}
+    , decltype(_impl_.menus_){from._impl_.menus_}
+    , decltype(_impl_.token_){}
+    , decltype(_impl_.detail_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_token().empty()) {
+    _this->_impl_.token_.Set(from._internal_token(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_detail()) {
+    _this->_impl_.detail_ = new ::palm::balsam::v1::UserSignInResponse_Detail(*from._impl_.detail_);
+  }
   // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.UserSignInResponse)
 }
 
+inline void UserSignInResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.roles_){arena}
+    , decltype(_impl_.permissions_){arena}
+    , decltype(_impl_.menus_){arena}
+    , decltype(_impl_.token_){}
+    , decltype(_impl_.detail_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
 
+UserSignInResponse::~UserSignInResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.UserSignInResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
 
+inline void UserSignInResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.roles_.~RepeatedPtrField();
+  _impl_.permissions_.~RepeatedPtrField();
+  _impl_.menus_.~RepeatedPtrField();
+  _impl_.token_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.detail_;
+}
 
+void UserSignInResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UserSignInResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.UserSignInResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.roles_.Clear();
+  _impl_.permissions_.Clear();
+  _impl_.menus_.Clear();
+  _impl_.token_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.detail_ != nullptr) {
+    delete _impl_.detail_;
+  }
+  _impl_.detail_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserSignInResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string token = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.token"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.UserSignInResponse.Detail detail = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_detail(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string roles = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_roles();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.UserSignInResponse.roles"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<90>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .palm.balsam.v1.UserSignInResponse.Permission permissions = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_permissions(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<98>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .palm.balsam.v1.UserSignInResponse.Menu menus = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_menus(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<106>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserSignInResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.UserSignInResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string token = 1;
+  if (!this->_internal_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_token().data(), static_cast<int>(this->_internal_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.token");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_token(), target);
+  }
+
+  // .palm.balsam.v1.UserSignInResponse.Detail detail = 2;
+  if (this->_internal_has_detail()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::detail(this),
+        _Internal::detail(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated string roles = 11;
+  for (int i = 0, n = this->_internal_roles_size(); i < n; i++) {
+    const auto& s = this->_internal_roles(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.UserSignInResponse.roles");
+    target = stream->WriteString(11, s, target);
+  }
+
+  // repeated .palm.balsam.v1.UserSignInResponse.Permission permissions = 12;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_permissions_size()); i < n; i++) {
+    const auto& repfield = this->_internal_permissions(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(12, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated .palm.balsam.v1.UserSignInResponse.Menu menus = 13;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_menus_size()); i < n; i++) {
+    const auto& repfield = this->_internal_menus(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(13, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.UserSignInResponse)
+  return target;
+}
+
+size_t UserSignInResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.UserSignInResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string roles = 11;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.roles_.size());
+  for (int i = 0, n = _impl_.roles_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.roles_.Get(i));
+  }
+
+  // repeated .palm.balsam.v1.UserSignInResponse.Permission permissions = 12;
+  total_size += 1UL * this->_internal_permissions_size();
+  for (const auto& msg : this->_impl_.permissions_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .palm.balsam.v1.UserSignInResponse.Menu menus = 13;
+  total_size += 1UL * this->_internal_menus_size();
+  for (const auto& msg : this->_impl_.menus_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // string token = 1;
+  if (!this->_internal_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_token());
+  }
+
+  // .palm.balsam.v1.UserSignInResponse.Detail detail = 2;
+  if (this->_internal_has_detail()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.detail_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserSignInResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UserSignInResponse::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignInResponse::GetClassData() const { return &_class_data_; }
 
 
+void UserSignInResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UserSignInResponse*>(&to_msg);
+  auto& from = static_cast<const UserSignInResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.UserSignInResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
+  _this->_impl_.roles_.MergeFrom(from._impl_.roles_);
+  _this->_impl_.permissions_.MergeFrom(from._impl_.permissions_);
+  _this->_impl_.menus_.MergeFrom(from._impl_.menus_);
+  if (!from._internal_token().empty()) {
+    _this->_internal_set_token(from._internal_token());
+  }
+  if (from._internal_has_detail()) {
+    _this->_internal_mutable_detail()->::palm::balsam::v1::UserSignInResponse_Detail::MergeFrom(
+        from._internal_detail());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
 
+void UserSignInResponse::CopyFrom(const UserSignInResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.UserSignInResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
+bool UserSignInResponse::IsInitialized() const {
+  return true;
+}
 
+void UserSignInResponse::InternalSwap(UserSignInResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.roles_.InternalSwap(&other->_impl_.roles_);
+  _impl_.permissions_.InternalSwap(&other->_impl_.permissions_);
+  _impl_.menus_.InternalSwap(&other->_impl_.menus_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.token_, lhs_arena,
+      &other->_impl_.token_, rhs_arena
+  );
+  swap(_impl_.detail_, other->_impl_.detail_);
+}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UserSignInResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
-      file_level_metadata_balsam_2eproto[10]);
+      file_level_metadata_balsam_2eproto[30]);
+}
+
+// ===================================================================
+
+class GoogleOauth2UserBySubjectRequest::_Internal {
+ public:
+};
+
+GoogleOauth2UserBySubjectRequest::GoogleOauth2UserBySubjectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+}
+GoogleOauth2UserBySubjectRequest::GoogleOauth2UserBySubjectRequest(const GoogleOauth2UserBySubjectRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GoogleOauth2UserBySubjectRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.subject_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.subject_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subject_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_subject().empty()) {
+    _this->_impl_.subject_.Set(from._internal_subject(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+}
+
+inline void GoogleOauth2UserBySubjectRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.subject_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.subject_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subject_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GoogleOauth2UserBySubjectRequest::~GoogleOauth2UserBySubjectRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GoogleOauth2UserBySubjectRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.subject_.Destroy();
+}
+
+void GoogleOauth2UserBySubjectRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void GoogleOauth2UserBySubjectRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.subject_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GoogleOauth2UserBySubjectRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string subject = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_subject();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.GoogleOauth2UserBySubjectRequest.subject"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GoogleOauth2UserBySubjectRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string subject = 1;
+  if (!this->_internal_subject().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_subject().data(), static_cast<int>(this->_internal_subject().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.GoogleOauth2UserBySubjectRequest.subject");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_subject(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+  return target;
+}
+
+size_t GoogleOauth2UserBySubjectRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string subject = 1;
+  if (!this->_internal_subject().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_subject());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GoogleOauth2UserBySubjectRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    GoogleOauth2UserBySubjectRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GoogleOauth2UserBySubjectRequest::GetClassData() const { return &_class_data_; }
+
+
+void GoogleOauth2UserBySubjectRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GoogleOauth2UserBySubjectRequest*>(&to_msg);
+  auto& from = static_cast<const GoogleOauth2UserBySubjectRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_subject().empty()) {
+    _this->_internal_set_subject(from._internal_subject());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GoogleOauth2UserBySubjectRequest::CopyFrom(const GoogleOauth2UserBySubjectRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.GoogleOauth2UserBySubjectRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GoogleOauth2UserBySubjectRequest::IsInitialized() const {
+  return true;
+}
+
+void GoogleOauth2UserBySubjectRequest::InternalSwap(GoogleOauth2UserBySubjectRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.subject_, lhs_arena,
+      &other->_impl_.subject_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GoogleOauth2UserBySubjectRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[31]);
+}
+
+// ===================================================================
+
+class GoogleOauth2UserIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<GoogleOauth2UserIndexResponse_Item>()._impl_._has_bits_);
+  static void set_has_email(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_name(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_picture(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_locale(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const GoogleOauth2UserIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const GoogleOauth2UserIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+GoogleOauth2UserIndexResponse_Item::_Internal::deleted_at(const GoogleOauth2UserIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+GoogleOauth2UserIndexResponse_Item::_Internal::updated_at(const GoogleOauth2UserIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void GoogleOauth2UserIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+void GoogleOauth2UserIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+GoogleOauth2UserIndexResponse_Item::GoogleOauth2UserIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+}
+GoogleOauth2UserIndexResponse_Item::GoogleOauth2UserIndexResponse_Item(const GoogleOauth2UserIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GoogleOauth2UserIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.subject_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.picture_){}
+    , decltype(_impl_.locale_){}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.user_id_){}
+    , decltype(_impl_.email_verified_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.subject_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subject_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_subject().empty()) {
+    _this->_impl_.subject_.Set(from._internal_subject(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_email()) {
+    _this->_impl_.email_.Set(from._internal_email(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_name()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.picture_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.picture_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_picture()) {
+    _this->_impl_.picture_.Set(from._internal_picture(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.locale_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.locale_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_locale()) {
+    _this->_impl_.locale_.Set(from._internal_locale(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.email_verified_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.email_verified_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+}
+
+inline void GoogleOauth2UserIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.subject_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.name_){}
+    , decltype(_impl_.picture_){}
+    , decltype(_impl_.locale_){}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.user_id_){uint64_t{0u}}
+    , decltype(_impl_.email_verified_){false}
+  };
+  _impl_.subject_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subject_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.picture_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.picture_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.locale_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.locale_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+GoogleOauth2UserIndexResponse_Item::~GoogleOauth2UserIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GoogleOauth2UserIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.subject_.Destroy();
+  _impl_.email_.Destroy();
+  _impl_.name_.Destroy();
+  _impl_.picture_.Destroy();
+  _impl_.locale_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void GoogleOauth2UserIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void GoogleOauth2UserIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.subject_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.email_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.name_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _impl_.picture_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _impl_.locale_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000010u) {
+      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+      _impl_.deleted_at_->Clear();
+    }
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  ::memset(&_impl_.id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.email_verified_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.email_verified_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GoogleOauth2UserIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.user_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string subject = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_subject();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.subject"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string email = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_email();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.email"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool email_verified = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.email_verified_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string name = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string picture = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_picture();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.picture"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string locale = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          auto str = _internal_mutable_locale();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.locale"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GoogleOauth2UserIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_user_id(), target);
+  }
+
+  // string subject = 3;
+  if (!this->_internal_subject().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_subject().data(), static_cast<int>(this->_internal_subject().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.subject");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_subject(), target);
+  }
+
+  // optional string email = 4;
+  if (_internal_has_email()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.email");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_email(), target);
+  }
+
+  // bool email_verified = 5;
+  if (this->_internal_email_verified() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(5, this->_internal_email_verified(), target);
+  }
+
+  // optional string name = 6;
+  if (_internal_has_name()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.name");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_name(), target);
+  }
+
+  // optional string picture = 7;
+  if (_internal_has_picture()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_picture().data(), static_cast<int>(this->_internal_picture().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.picture");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_picture(), target);
+  }
+
+  // optional string locale = 8;
+  if (_internal_has_locale()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_locale().data(), static_cast<int>(this->_internal_locale().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.GoogleOauth2UserIndexResponse.Item.locale");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_locale(), target);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 9;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 10;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(10, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+  return target;
+}
+
+size_t GoogleOauth2UserIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string subject = 3;
+  if (!this->_internal_subject().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_subject());
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    // optional string email = 4;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_email());
+    }
+
+    // optional string name = 6;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_name());
+    }
+
+    // optional string picture = 7;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_picture());
+    }
+
+    // optional string locale = 8;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_locale());
+    }
+
+    // optional .google.protobuf.Timestamp deleted_at = 9;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.deleted_at_);
+    }
+
+  }
+  // .google.protobuf.Timestamp updated_at = 10;
+  if (this->_internal_has_updated_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user_id());
+  }
+
+  // bool email_verified = 5;
+  if (this->_internal_email_verified() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GoogleOauth2UserIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    GoogleOauth2UserIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GoogleOauth2UserIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void GoogleOauth2UserIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GoogleOauth2UserIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const GoogleOauth2UserIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_subject().empty()) {
+    _this->_internal_set_subject(from._internal_subject());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_email(from._internal_email());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_set_name(from._internal_name());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_internal_set_picture(from._internal_picture());
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_internal_set_locale(from._internal_locale());
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_deleted_at());
+    }
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_user_id() != 0) {
+    _this->_internal_set_user_id(from._internal_user_id());
+  }
+  if (from._internal_email_verified() != 0) {
+    _this->_internal_set_email_verified(from._internal_email_verified());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GoogleOauth2UserIndexResponse_Item::CopyFrom(const GoogleOauth2UserIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.GoogleOauth2UserIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GoogleOauth2UserIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void GoogleOauth2UserIndexResponse_Item::InternalSwap(GoogleOauth2UserIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.subject_, lhs_arena,
+      &other->_impl_.subject_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.email_, lhs_arena,
+      &other->_impl_.email_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.picture_, lhs_arena,
+      &other->_impl_.picture_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.locale_, lhs_arena,
+      &other->_impl_.locale_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GoogleOauth2UserIndexResponse_Item, _impl_.email_verified_)
+      + sizeof(GoogleOauth2UserIndexResponse_Item::_impl_.email_verified_)
+      - PROTOBUF_FIELD_OFFSET(GoogleOauth2UserIndexResponse_Item, _impl_.deleted_at_)>(
+          reinterpret_cast<char*>(&_impl_.deleted_at_),
+          reinterpret_cast<char*>(&other->_impl_.deleted_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GoogleOauth2UserIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[32]);
+}
+
+// ===================================================================
+
+class GoogleOauth2UserIndexResponse::_Internal {
+ public:
+};
+
+GoogleOauth2UserIndexResponse::GoogleOauth2UserIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+}
+GoogleOauth2UserIndexResponse::GoogleOauth2UserIndexResponse(const GoogleOauth2UserIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  GoogleOauth2UserIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+}
+
+inline void GoogleOauth2UserIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+GoogleOauth2UserIndexResponse::~GoogleOauth2UserIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GoogleOauth2UserIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void GoogleOauth2UserIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void GoogleOauth2UserIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GoogleOauth2UserIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.GoogleOauth2UserIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GoogleOauth2UserIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.GoogleOauth2UserIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+  return target;
+}
+
+size_t GoogleOauth2UserIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.GoogleOauth2UserIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GoogleOauth2UserIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    GoogleOauth2UserIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GoogleOauth2UserIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void GoogleOauth2UserIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GoogleOauth2UserIndexResponse*>(&to_msg);
+  auto& from = static_cast<const GoogleOauth2UserIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GoogleOauth2UserIndexResponse::CopyFrom(const GoogleOauth2UserIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.GoogleOauth2UserIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GoogleOauth2UserIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void GoogleOauth2UserIndexResponse::InternalSwap(GoogleOauth2UserIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GoogleOauth2UserIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[33]);
+}
+
+// ===================================================================
+
+class WechatByUnionIdRequest::_Internal {
+ public:
+};
+
+WechatByUnionIdRequest::WechatByUnionIdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.WechatByUnionIdRequest)
+}
+WechatByUnionIdRequest::WechatByUnionIdRequest(const WechatByUnionIdRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  WechatByUnionIdRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.union_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.union_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.union_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_union_id().empty()) {
+    _this->_impl_.union_id_.Set(from._internal_union_id(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.WechatByUnionIdRequest)
+}
+
+inline void WechatByUnionIdRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.union_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.union_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.union_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+WechatByUnionIdRequest::~WechatByUnionIdRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.WechatByUnionIdRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void WechatByUnionIdRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.union_id_.Destroy();
+}
+
+void WechatByUnionIdRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void WechatByUnionIdRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.WechatByUnionIdRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.union_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WechatByUnionIdRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string union_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_union_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatByUnionIdRequest.union_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* WechatByUnionIdRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.WechatByUnionIdRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string union_id = 1;
+  if (!this->_internal_union_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_union_id().data(), static_cast<int>(this->_internal_union_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatByUnionIdRequest.union_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_union_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.WechatByUnionIdRequest)
+  return target;
+}
+
+size_t WechatByUnionIdRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.WechatByUnionIdRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string union_id = 1;
+  if (!this->_internal_union_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_union_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData WechatByUnionIdRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    WechatByUnionIdRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*WechatByUnionIdRequest::GetClassData() const { return &_class_data_; }
+
+
+void WechatByUnionIdRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<WechatByUnionIdRequest*>(&to_msg);
+  auto& from = static_cast<const WechatByUnionIdRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.WechatByUnionIdRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_union_id().empty()) {
+    _this->_internal_set_union_id(from._internal_union_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WechatByUnionIdRequest::CopyFrom(const WechatByUnionIdRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.WechatByUnionIdRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WechatByUnionIdRequest::IsInitialized() const {
+  return true;
+}
+
+void WechatByUnionIdRequest::InternalSwap(WechatByUnionIdRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.union_id_, lhs_arena,
+      &other->_impl_.union_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WechatByUnionIdRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[34]);
+}
+
+// ===================================================================
+
+class WechatByAppIdAndOpenIdRequest::_Internal {
+ public:
+};
+
+WechatByAppIdAndOpenIdRequest::WechatByAppIdAndOpenIdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+}
+WechatByAppIdAndOpenIdRequest::WechatByAppIdAndOpenIdRequest(const WechatByAppIdAndOpenIdRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  WechatByAppIdAndOpenIdRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.app_id_){}
+    , decltype(_impl_.open_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    _this->_impl_.app_id_.Set(from._internal_app_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.open_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.open_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_open_id().empty()) {
+    _this->_impl_.open_id_.Set(from._internal_open_id(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+}
+
+inline void WechatByAppIdAndOpenIdRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.app_id_){}
+    , decltype(_impl_.open_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.open_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.open_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+WechatByAppIdAndOpenIdRequest::~WechatByAppIdAndOpenIdRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void WechatByAppIdAndOpenIdRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.app_id_.Destroy();
+  _impl_.open_id_.Destroy();
+}
+
+void WechatByAppIdAndOpenIdRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void WechatByAppIdAndOpenIdRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.app_id_.ClearToEmpty();
+  _impl_.open_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WechatByAppIdAndOpenIdRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string app_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatByAppIdAndOpenIdRequest.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string open_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_open_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatByAppIdAndOpenIdRequest.open_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* WechatByAppIdAndOpenIdRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string app_id = 1;
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatByAppIdAndOpenIdRequest.app_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_app_id(), target);
+  }
+
+  // string open_id = 2;
+  if (!this->_internal_open_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_open_id().data(), static_cast<int>(this->_internal_open_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatByAppIdAndOpenIdRequest.open_id");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_open_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+  return target;
+}
+
+size_t WechatByAppIdAndOpenIdRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string app_id = 1;
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  // string open_id = 2;
+  if (!this->_internal_open_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_open_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData WechatByAppIdAndOpenIdRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    WechatByAppIdAndOpenIdRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*WechatByAppIdAndOpenIdRequest::GetClassData() const { return &_class_data_; }
+
+
+void WechatByAppIdAndOpenIdRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<WechatByAppIdAndOpenIdRequest*>(&to_msg);
+  auto& from = static_cast<const WechatByAppIdAndOpenIdRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_app_id().empty()) {
+    _this->_internal_set_app_id(from._internal_app_id());
+  }
+  if (!from._internal_open_id().empty()) {
+    _this->_internal_set_open_id(from._internal_open_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WechatByAppIdAndOpenIdRequest::CopyFrom(const WechatByAppIdAndOpenIdRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.WechatByAppIdAndOpenIdRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WechatByAppIdAndOpenIdRequest::IsInitialized() const {
+  return true;
+}
+
+void WechatByAppIdAndOpenIdRequest::InternalSwap(WechatByAppIdAndOpenIdRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.app_id_, lhs_arena,
+      &other->_impl_.app_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.open_id_, lhs_arena,
+      &other->_impl_.open_id_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WechatByAppIdAndOpenIdRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[35]);
+}
+
+// ===================================================================
+
+class WechatOauth2UserIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<WechatOauth2UserIndexResponse_Item>()._impl_._has_bits_);
+  static void set_has_head_img_url(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_picture(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const WechatOauth2UserIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const WechatOauth2UserIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+WechatOauth2UserIndexResponse_Item::_Internal::deleted_at(const WechatOauth2UserIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+WechatOauth2UserIndexResponse_Item::_Internal::updated_at(const WechatOauth2UserIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void WechatOauth2UserIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+void WechatOauth2UserIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+WechatOauth2UserIndexResponse_Item::WechatOauth2UserIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+}
+WechatOauth2UserIndexResponse_Item::WechatOauth2UserIndexResponse_Item(const WechatOauth2UserIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  WechatOauth2UserIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.privilege_){from._impl_.privilege_}
+    , decltype(_impl_.union_id_){}
+    , decltype(_impl_.app_id_){}
+    , decltype(_impl_.open_id_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.city_){}
+    , decltype(_impl_.province_){}
+    , decltype(_impl_.country_){}
+    , decltype(_impl_.head_img_url_){}
+    , decltype(_impl_.picture_){}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.user_id_){}
+    , decltype(_impl_.sex_){}
+    , decltype(_impl_.lang_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.union_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.union_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_union_id().empty()) {
+    _this->_impl_.union_id_.Set(from._internal_union_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    _this->_impl_.app_id_.Set(from._internal_app_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.open_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.open_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_open_id().empty()) {
+    _this->_impl_.open_id_.Set(from._internal_open_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_nickname().empty()) {
+    _this->_impl_.nickname_.Set(from._internal_nickname(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.city_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.city_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_city().empty()) {
+    _this->_impl_.city_.Set(from._internal_city(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.province_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.province_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_province().empty()) {
+    _this->_impl_.province_.Set(from._internal_province(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.country_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.country_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_country().empty()) {
+    _this->_impl_.country_.Set(from._internal_country(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.head_img_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.head_img_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_head_img_url()) {
+    _this->_impl_.head_img_url_.Set(from._internal_head_img_url(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.picture_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.picture_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_picture()) {
+    _this->_impl_.picture_.Set(from._internal_picture(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.lang_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.lang_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+}
+
+inline void WechatOauth2UserIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.privilege_){arena}
+    , decltype(_impl_.union_id_){}
+    , decltype(_impl_.app_id_){}
+    , decltype(_impl_.open_id_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.city_){}
+    , decltype(_impl_.province_){}
+    , decltype(_impl_.country_){}
+    , decltype(_impl_.head_img_url_){}
+    , decltype(_impl_.picture_){}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.user_id_){uint64_t{0u}}
+    , decltype(_impl_.sex_){0}
+    , decltype(_impl_.lang_){0}
+  };
+  _impl_.union_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.union_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.open_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.open_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.city_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.city_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.province_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.province_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.country_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.country_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.head_img_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.head_img_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.picture_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.picture_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+WechatOauth2UserIndexResponse_Item::~WechatOauth2UserIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void WechatOauth2UserIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.privilege_.~RepeatedPtrField();
+  _impl_.union_id_.Destroy();
+  _impl_.app_id_.Destroy();
+  _impl_.open_id_.Destroy();
+  _impl_.nickname_.Destroy();
+  _impl_.city_.Destroy();
+  _impl_.province_.Destroy();
+  _impl_.country_.Destroy();
+  _impl_.head_img_url_.Destroy();
+  _impl_.picture_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void WechatOauth2UserIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void WechatOauth2UserIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.privilege_.Clear();
+  _impl_.union_id_.ClearToEmpty();
+  _impl_.app_id_.ClearToEmpty();
+  _impl_.open_id_.ClearToEmpty();
+  _impl_.nickname_.ClearToEmpty();
+  _impl_.city_.ClearToEmpty();
+  _impl_.province_.ClearToEmpty();
+  _impl_.country_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.head_img_url_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.picture_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+      _impl_.deleted_at_->Clear();
+    }
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  ::memset(&_impl_.id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.lang_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.lang_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WechatOauth2UserIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.user_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string union_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_union_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.union_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string app_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string open_id = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_open_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.open_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string nickname = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_nickname();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.nickname"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Sex sex = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_sex(static_cast<::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Sex>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // string city = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          auto str = _internal_mutable_city();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.city"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string province = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          auto str = _internal_mutable_province();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.province"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string country = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          auto str = _internal_mutable_country();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.country"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string head_img_url = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          auto str = _internal_mutable_head_img_url();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.head_img_url"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string privilege = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_privilege();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.privilege"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<98>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string picture = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
+          auto str = _internal_mutable_picture();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.picture"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_lang(static_cast<::palm::balsam::v1::WechatOauth2UserIndexResponse_Item_Lang>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 122)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 130)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* WechatOauth2UserIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_user_id(), target);
+  }
+
+  // string union_id = 3;
+  if (!this->_internal_union_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_union_id().data(), static_cast<int>(this->_internal_union_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.union_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_union_id(), target);
+  }
+
+  // string app_id = 4;
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.app_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_app_id(), target);
+  }
+
+  // string open_id = 5;
+  if (!this->_internal_open_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_open_id().data(), static_cast<int>(this->_internal_open_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.open_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_open_id(), target);
+  }
+
+  // string nickname = 6;
+  if (!this->_internal_nickname().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.nickname");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_nickname(), target);
+  }
+
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Sex sex = 7;
+  if (this->_internal_sex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      7, this->_internal_sex(), target);
+  }
+
+  // string city = 8;
+  if (!this->_internal_city().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_city().data(), static_cast<int>(this->_internal_city().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.city");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_city(), target);
+  }
+
+  // string province = 9;
+  if (!this->_internal_province().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_province().data(), static_cast<int>(this->_internal_province().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.province");
+    target = stream->WriteStringMaybeAliased(
+        9, this->_internal_province(), target);
+  }
+
+  // string country = 10;
+  if (!this->_internal_country().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_country().data(), static_cast<int>(this->_internal_country().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.country");
+    target = stream->WriteStringMaybeAliased(
+        10, this->_internal_country(), target);
+  }
+
+  // optional string head_img_url = 11;
+  if (_internal_has_head_img_url()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_head_img_url().data(), static_cast<int>(this->_internal_head_img_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.head_img_url");
+    target = stream->WriteStringMaybeAliased(
+        11, this->_internal_head_img_url(), target);
+  }
+
+  // repeated string privilege = 12;
+  for (int i = 0, n = this->_internal_privilege_size(); i < n; i++) {
+    const auto& s = this->_internal_privilege(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.privilege");
+    target = stream->WriteString(12, s, target);
+  }
+
+  // optional string picture = 13;
+  if (_internal_has_picture()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_picture().data(), static_cast<int>(this->_internal_picture().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatOauth2UserIndexResponse.Item.picture");
+    target = stream->WriteStringMaybeAliased(
+        13, this->_internal_picture(), target);
+  }
+
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 14;
+  if (this->_internal_lang() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      14, this->_internal_lang(), target);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 15;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(15, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 16;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(16, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+  return target;
+}
+
+size_t WechatOauth2UserIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string privilege = 12;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.privilege_.size());
+  for (int i = 0, n = _impl_.privilege_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.privilege_.Get(i));
+  }
+
+  // string union_id = 3;
+  if (!this->_internal_union_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_union_id());
+  }
+
+  // string app_id = 4;
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  // string open_id = 5;
+  if (!this->_internal_open_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_open_id());
+  }
+
+  // string nickname = 6;
+  if (!this->_internal_nickname().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_nickname());
+  }
+
+  // string city = 8;
+  if (!this->_internal_city().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_city());
+  }
+
+  // string province = 9;
+  if (!this->_internal_province().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_province());
+  }
+
+  // string country = 10;
+  if (!this->_internal_country().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_country());
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    // optional string head_img_url = 11;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_head_img_url());
+    }
+
+    // optional string picture = 13;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_picture());
+    }
+
+    // optional .google.protobuf.Timestamp deleted_at = 15;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.deleted_at_);
+    }
+
+  }
+  // .google.protobuf.Timestamp updated_at = 16;
+  if (this->_internal_has_updated_at()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user_id());
+  }
+
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Sex sex = 7;
+  if (this->_internal_sex() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_sex());
+  }
+
+  // .palm.balsam.v1.WechatOauth2UserIndexResponse.Item.Lang lang = 14;
+  if (this->_internal_lang() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_lang());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData WechatOauth2UserIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    WechatOauth2UserIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*WechatOauth2UserIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void WechatOauth2UserIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<WechatOauth2UserIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const WechatOauth2UserIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.privilege_.MergeFrom(from._impl_.privilege_);
+  if (!from._internal_union_id().empty()) {
+    _this->_internal_set_union_id(from._internal_union_id());
+  }
+  if (!from._internal_app_id().empty()) {
+    _this->_internal_set_app_id(from._internal_app_id());
+  }
+  if (!from._internal_open_id().empty()) {
+    _this->_internal_set_open_id(from._internal_open_id());
+  }
+  if (!from._internal_nickname().empty()) {
+    _this->_internal_set_nickname(from._internal_nickname());
+  }
+  if (!from._internal_city().empty()) {
+    _this->_internal_set_city(from._internal_city());
+  }
+  if (!from._internal_province().empty()) {
+    _this->_internal_set_province(from._internal_province());
+  }
+  if (!from._internal_country().empty()) {
+    _this->_internal_set_country(from._internal_country());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_head_img_url(from._internal_head_img_url());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_set_picture(from._internal_picture());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_deleted_at());
+    }
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_user_id() != 0) {
+    _this->_internal_set_user_id(from._internal_user_id());
+  }
+  if (from._internal_sex() != 0) {
+    _this->_internal_set_sex(from._internal_sex());
+  }
+  if (from._internal_lang() != 0) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WechatOauth2UserIndexResponse_Item::CopyFrom(const WechatOauth2UserIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.WechatOauth2UserIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WechatOauth2UserIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void WechatOauth2UserIndexResponse_Item::InternalSwap(WechatOauth2UserIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.privilege_.InternalSwap(&other->_impl_.privilege_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.union_id_, lhs_arena,
+      &other->_impl_.union_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.app_id_, lhs_arena,
+      &other->_impl_.app_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.open_id_, lhs_arena,
+      &other->_impl_.open_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.nickname_, lhs_arena,
+      &other->_impl_.nickname_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.city_, lhs_arena,
+      &other->_impl_.city_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.province_, lhs_arena,
+      &other->_impl_.province_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.country_, lhs_arena,
+      &other->_impl_.country_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.head_img_url_, lhs_arena,
+      &other->_impl_.head_img_url_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.picture_, lhs_arena,
+      &other->_impl_.picture_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(WechatOauth2UserIndexResponse_Item, _impl_.lang_)
+      + sizeof(WechatOauth2UserIndexResponse_Item::_impl_.lang_)
+      - PROTOBUF_FIELD_OFFSET(WechatOauth2UserIndexResponse_Item, _impl_.deleted_at_)>(
+          reinterpret_cast<char*>(&_impl_.deleted_at_),
+          reinterpret_cast<char*>(&other->_impl_.deleted_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WechatOauth2UserIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[36]);
+}
+
+// ===================================================================
+
+class WechatOauth2UserIndexResponse::_Internal {
+ public:
+};
+
+WechatOauth2UserIndexResponse::WechatOauth2UserIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.WechatOauth2UserIndexResponse)
+}
+WechatOauth2UserIndexResponse::WechatOauth2UserIndexResponse(const WechatOauth2UserIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  WechatOauth2UserIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.WechatOauth2UserIndexResponse)
+}
+
+inline void WechatOauth2UserIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+WechatOauth2UserIndexResponse::~WechatOauth2UserIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.WechatOauth2UserIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void WechatOauth2UserIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void WechatOauth2UserIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void WechatOauth2UserIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.WechatOauth2UserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WechatOauth2UserIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.WechatOauth2UserIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* WechatOauth2UserIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.WechatOauth2UserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.WechatOauth2UserIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.WechatOauth2UserIndexResponse)
+  return target;
+}
+
+size_t WechatOauth2UserIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.WechatOauth2UserIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.WechatOauth2UserIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData WechatOauth2UserIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    WechatOauth2UserIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*WechatOauth2UserIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void WechatOauth2UserIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<WechatOauth2UserIndexResponse*>(&to_msg);
+  auto& from = static_cast<const WechatOauth2UserIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.WechatOauth2UserIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WechatOauth2UserIndexResponse::CopyFrom(const WechatOauth2UserIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.WechatOauth2UserIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WechatOauth2UserIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void WechatOauth2UserIndexResponse::InternalSwap(WechatOauth2UserIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WechatOauth2UserIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[37]);
+}
+
+// ===================================================================
+
+class WechatMiniProgramUserIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<WechatMiniProgramUserIndexResponse_Item>()._impl_._has_bits_);
+  static void set_has_nickname(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_avatar_url(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const WechatMiniProgramUserIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const WechatMiniProgramUserIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+WechatMiniProgramUserIndexResponse_Item::_Internal::deleted_at(const WechatMiniProgramUserIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+WechatMiniProgramUserIndexResponse_Item::_Internal::updated_at(const WechatMiniProgramUserIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void WechatMiniProgramUserIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+void WechatMiniProgramUserIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+WechatMiniProgramUserIndexResponse_Item::WechatMiniProgramUserIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+}
+WechatMiniProgramUserIndexResponse_Item::WechatMiniProgramUserIndexResponse_Item(const WechatMiniProgramUserIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  WechatMiniProgramUserIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.union_id_){}
+    , decltype(_impl_.app_id_){}
+    , decltype(_impl_.open_id_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.avatar_url_){}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.user_id_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.union_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.union_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_union_id().empty()) {
+    _this->_impl_.union_id_.Set(from._internal_union_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_app_id().empty()) {
+    _this->_impl_.app_id_.Set(from._internal_app_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.open_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.open_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_open_id().empty()) {
+    _this->_impl_.open_id_.Set(from._internal_open_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_nickname()) {
+    _this->_impl_.nickname_.Set(from._internal_nickname(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.avatar_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.avatar_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_avatar_url()) {
+    _this->_impl_.avatar_url_.Set(from._internal_avatar_url(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.user_id_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.user_id_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+}
+
+inline void WechatMiniProgramUserIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.union_id_){}
+    , decltype(_impl_.app_id_){}
+    , decltype(_impl_.open_id_){}
+    , decltype(_impl_.nickname_){}
+    , decltype(_impl_.avatar_url_){}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.user_id_){uint64_t{0u}}
+  };
+  _impl_.union_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.union_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.app_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.app_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.open_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.open_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.nickname_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.nickname_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.avatar_url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.avatar_url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+WechatMiniProgramUserIndexResponse_Item::~WechatMiniProgramUserIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void WechatMiniProgramUserIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.union_id_.Destroy();
+  _impl_.app_id_.Destroy();
+  _impl_.open_id_.Destroy();
+  _impl_.nickname_.Destroy();
+  _impl_.avatar_url_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void WechatMiniProgramUserIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void WechatMiniProgramUserIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.union_id_.ClearToEmpty();
+  _impl_.app_id_.ClearToEmpty();
+  _impl_.open_id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.nickname_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.avatar_url_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+      _impl_.deleted_at_->Clear();
+    }
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  ::memset(&_impl_.id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.user_id_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.user_id_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WechatMiniProgramUserIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 user_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.user_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string union_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_union_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.union_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string app_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_app_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.app_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string open_id = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_open_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.open_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string nickname = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_nickname();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.nickname"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string avatar_url = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_avatar_url();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.avatar_url"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* WechatMiniProgramUserIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_user_id(), target);
+  }
+
+  // string union_id = 3;
+  if (!this->_internal_union_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_union_id().data(), static_cast<int>(this->_internal_union_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.union_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_union_id(), target);
+  }
+
+  // string app_id = 4;
+  if (!this->_internal_app_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_app_id().data(), static_cast<int>(this->_internal_app_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.app_id");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_app_id(), target);
+  }
+
+  // string open_id = 5;
+  if (!this->_internal_open_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_open_id().data(), static_cast<int>(this->_internal_open_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.open_id");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_open_id(), target);
+  }
+
+  // optional string nickname = 6;
+  if (_internal_has_nickname()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_nickname().data(), static_cast<int>(this->_internal_nickname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.nickname");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_nickname(), target);
+  }
+
+  // optional string avatar_url = 7;
+  if (_internal_has_avatar_url()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_avatar_url().data(), static_cast<int>(this->_internal_avatar_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item.avatar_url");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_avatar_url(), target);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 8;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 9;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+  return target;
+}
+
+size_t WechatMiniProgramUserIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string union_id = 3;
+  if (!this->_internal_union_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_union_id());
+  }
+
+  // string app_id = 4;
+  if (!this->_internal_app_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_app_id());
+  }
+
+  // string open_id = 5;
+  if (!this->_internal_open_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_open_id());
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    // optional string nickname = 6;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_nickname());
+    }
+
+    // optional string avatar_url = 7;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_avatar_url());
+    }
+
+    // optional .google.protobuf.Timestamp deleted_at = 8;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.deleted_at_);
+    }
+
+  }
+  // .google.protobuf.Timestamp updated_at = 9;
+  if (this->_internal_has_updated_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // uint64 user_id = 2;
+  if (this->_internal_user_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData WechatMiniProgramUserIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    WechatMiniProgramUserIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*WechatMiniProgramUserIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void WechatMiniProgramUserIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<WechatMiniProgramUserIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const WechatMiniProgramUserIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_union_id().empty()) {
+    _this->_internal_set_union_id(from._internal_union_id());
+  }
+  if (!from._internal_app_id().empty()) {
+    _this->_internal_set_app_id(from._internal_app_id());
+  }
+  if (!from._internal_open_id().empty()) {
+    _this->_internal_set_open_id(from._internal_open_id());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_nickname(from._internal_nickname());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_set_avatar_url(from._internal_avatar_url());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_deleted_at());
+    }
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_user_id() != 0) {
+    _this->_internal_set_user_id(from._internal_user_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WechatMiniProgramUserIndexResponse_Item::CopyFrom(const WechatMiniProgramUserIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WechatMiniProgramUserIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void WechatMiniProgramUserIndexResponse_Item::InternalSwap(WechatMiniProgramUserIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.union_id_, lhs_arena,
+      &other->_impl_.union_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.app_id_, lhs_arena,
+      &other->_impl_.app_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.open_id_, lhs_arena,
+      &other->_impl_.open_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.nickname_, lhs_arena,
+      &other->_impl_.nickname_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.avatar_url_, lhs_arena,
+      &other->_impl_.avatar_url_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(WechatMiniProgramUserIndexResponse_Item, _impl_.user_id_)
+      + sizeof(WechatMiniProgramUserIndexResponse_Item::_impl_.user_id_)
+      - PROTOBUF_FIELD_OFFSET(WechatMiniProgramUserIndexResponse_Item, _impl_.deleted_at_)>(
+          reinterpret_cast<char*>(&_impl_.deleted_at_),
+          reinterpret_cast<char*>(&other->_impl_.deleted_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WechatMiniProgramUserIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[38]);
+}
+
+// ===================================================================
+
+class WechatMiniProgramUserIndexResponse::_Internal {
+ public:
+};
+
+WechatMiniProgramUserIndexResponse::WechatMiniProgramUserIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+}
+WechatMiniProgramUserIndexResponse::WechatMiniProgramUserIndexResponse(const WechatMiniProgramUserIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  WechatMiniProgramUserIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+}
+
+inline void WechatMiniProgramUserIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+WechatMiniProgramUserIndexResponse::~WechatMiniProgramUserIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void WechatMiniProgramUserIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void WechatMiniProgramUserIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void WechatMiniProgramUserIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* WechatMiniProgramUserIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* WechatMiniProgramUserIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+  return target;
+}
+
+size_t WechatMiniProgramUserIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.WechatMiniProgramUserIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData WechatMiniProgramUserIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    WechatMiniProgramUserIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*WechatMiniProgramUserIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void WechatMiniProgramUserIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<WechatMiniProgramUserIndexResponse*>(&to_msg);
+  auto& from = static_cast<const WechatMiniProgramUserIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WechatMiniProgramUserIndexResponse::CopyFrom(const WechatMiniProgramUserIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.WechatMiniProgramUserIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WechatMiniProgramUserIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void WechatMiniProgramUserIndexResponse::InternalSwap(WechatMiniProgramUserIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WechatMiniProgramUserIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[39]);
+}
+
+// ===================================================================
+
+class SessionIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SessionIndexResponse_Item>()._impl_._has_bits_);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& expires_at(const SessionIndexResponse_Item* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const SessionIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_at(const SessionIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+SessionIndexResponse_Item::_Internal::expires_at(const SessionIndexResponse_Item* msg) {
+  return *msg->_impl_.expires_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+SessionIndexResponse_Item::_Internal::deleted_at(const SessionIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+SessionIndexResponse_Item::_Internal::created_at(const SessionIndexResponse_Item* msg) {
+  return *msg->_impl_.created_at_;
+}
+void SessionIndexResponse_Item::clear_expires_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.expires_at_ != nullptr) {
+    delete _impl_.expires_at_;
+  }
+  _impl_.expires_at_ = nullptr;
+}
+void SessionIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+void SessionIndexResponse_Item::clear_created_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.created_at_ != nullptr) {
+    delete _impl_.created_at_;
+  }
+  _impl_.created_at_ = nullptr;
+}
+SessionIndexResponse_Item::SessionIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SessionIndexResponse.Item)
+}
+SessionIndexResponse_Item::SessionIndexResponse_Item(const SessionIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SessionIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.uid_){}
+    , decltype(_impl_.ip_){}
+    , decltype(_impl_.expires_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.created_at_){nullptr}
+    , decltype(_impl_.user_){}
+    , decltype(_impl_.provider_id_){}
+    , decltype(_impl_.provider_type_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.uid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_uid().empty()) {
+    _this->_impl_.uid_.Set(from._internal_uid(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_ip().empty()) {
+    _this->_impl_.ip_.Set(from._internal_ip(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_expires_at()) {
+    _this->_impl_.expires_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.expires_at_);
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_created_at()) {
+    _this->_impl_.created_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.created_at_);
+  }
+  ::memcpy(&_impl_.user_, &from._impl_.user_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.provider_type_) -
+    reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.provider_type_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SessionIndexResponse.Item)
+}
+
+inline void SessionIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.uid_){}
+    , decltype(_impl_.ip_){}
+    , decltype(_impl_.expires_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.created_at_){nullptr}
+    , decltype(_impl_.user_){uint64_t{0u}}
+    , decltype(_impl_.provider_id_){uint64_t{0u}}
+    , decltype(_impl_.provider_type_){0}
+  };
+  _impl_.uid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.uid_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SessionIndexResponse_Item::~SessionIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SessionIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SessionIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.uid_.Destroy();
+  _impl_.ip_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.expires_at_;
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.created_at_;
+}
+
+void SessionIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SessionIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SessionIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.uid_.ClearToEmpty();
+  _impl_.ip_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.expires_at_ != nullptr) {
+    delete _impl_.expires_at_;
+  }
+  _impl_.expires_at_ = nullptr;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+    _impl_.deleted_at_->Clear();
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.created_at_ != nullptr) {
+    delete _impl_.created_at_;
+  }
+  _impl_.created_at_ = nullptr;
+  ::memset(&_impl_.user_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.provider_type_) -
+      reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.provider_type_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SessionIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.user_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string uid = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_uid();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SessionIndexResponse.Item.uid"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_provider_type(static_cast<::palm::balsam::v1::UserSignInResponse_Detail_ProviderType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 provider_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.provider_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string ip = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_ip();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SessionIndexResponse.Item.ip"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp expires_at = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_expires_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp created_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_created_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SessionIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SessionIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_user(), target);
+  }
+
+  // string uid = 2;
+  if (!this->_internal_uid().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_uid().data(), static_cast<int>(this->_internal_uid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SessionIndexResponse.Item.uid");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_uid(), target);
+  }
+
+  // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 3;
+  if (this->_internal_provider_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_provider_type(), target);
+  }
+
+  // uint64 provider_id = 4;
+  if (this->_internal_provider_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(4, this->_internal_provider_id(), target);
+  }
+
+  // string ip = 5;
+  if (!this->_internal_ip().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_ip().data(), static_cast<int>(this->_internal_ip().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SessionIndexResponse.Item.ip");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_ip(), target);
+  }
+
+  // .google.protobuf.Timestamp expires_at = 6;
+  if (this->_internal_has_expires_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::expires_at(this),
+        _Internal::expires_at(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 7;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp created_at = 8;
+  if (this->_internal_has_created_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::created_at(this),
+        _Internal::created_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SessionIndexResponse.Item)
+  return target;
+}
+
+size_t SessionIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SessionIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string uid = 2;
+  if (!this->_internal_uid().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_uid());
+  }
+
+  // string ip = 5;
+  if (!this->_internal_ip().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_ip());
+  }
+
+  // .google.protobuf.Timestamp expires_at = 6;
+  if (this->_internal_has_expires_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.expires_at_);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 7;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.deleted_at_);
+  }
+
+  // .google.protobuf.Timestamp created_at = 8;
+  if (this->_internal_has_created_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.created_at_);
+  }
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user());
+  }
+
+  // uint64 provider_id = 4;
+  if (this->_internal_provider_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_provider_id());
+  }
+
+  // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 3;
+  if (this->_internal_provider_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_provider_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SessionIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SessionIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SessionIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void SessionIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SessionIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const SessionIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SessionIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_uid().empty()) {
+    _this->_internal_set_uid(from._internal_uid());
+  }
+  if (!from._internal_ip().empty()) {
+    _this->_internal_set_ip(from._internal_ip());
+  }
+  if (from._internal_has_expires_at()) {
+    _this->_internal_mutable_expires_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_expires_at());
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_deleted_at());
+  }
+  if (from._internal_has_created_at()) {
+    _this->_internal_mutable_created_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_created_at());
+  }
+  if (from._internal_user() != 0) {
+    _this->_internal_set_user(from._internal_user());
+  }
+  if (from._internal_provider_id() != 0) {
+    _this->_internal_set_provider_id(from._internal_provider_id());
+  }
+  if (from._internal_provider_type() != 0) {
+    _this->_internal_set_provider_type(from._internal_provider_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SessionIndexResponse_Item::CopyFrom(const SessionIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SessionIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SessionIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void SessionIndexResponse_Item::InternalSwap(SessionIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.uid_, lhs_arena,
+      &other->_impl_.uid_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.ip_, lhs_arena,
+      &other->_impl_.ip_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SessionIndexResponse_Item, _impl_.provider_type_)
+      + sizeof(SessionIndexResponse_Item::_impl_.provider_type_)
+      - PROTOBUF_FIELD_OFFSET(SessionIndexResponse_Item, _impl_.expires_at_)>(
+          reinterpret_cast<char*>(&_impl_.expires_at_),
+          reinterpret_cast<char*>(&other->_impl_.expires_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SessionIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[40]);
+}
+
+// ===================================================================
+
+class SessionIndexResponse::_Internal {
+ public:
+};
+
+SessionIndexResponse::SessionIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SessionIndexResponse)
+}
+SessionIndexResponse::SessionIndexResponse(const SessionIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SessionIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SessionIndexResponse)
+}
+
+inline void SessionIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+SessionIndexResponse::~SessionIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SessionIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SessionIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void SessionIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SessionIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SessionIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SessionIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.SessionIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SessionIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SessionIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.SessionIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SessionIndexResponse)
+  return target;
+}
+
+size_t SessionIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SessionIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.SessionIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SessionIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SessionIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SessionIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void SessionIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SessionIndexResponse*>(&to_msg);
+  auto& from = static_cast<const SessionIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SessionIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SessionIndexResponse::CopyFrom(const SessionIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SessionIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SessionIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void SessionIndexResponse::InternalSwap(SessionIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SessionIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[41]);
+}
+
+// ===================================================================
+
+class AttachmentCreateRequest::_Internal {
+ public:
+};
+
+AttachmentCreateRequest::AttachmentCreateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.AttachmentCreateRequest)
+}
+AttachmentCreateRequest::AttachmentCreateRequest(const AttachmentCreateRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  AttachmentCreateRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.bucket_){}
+    , decltype(_impl_.object_){}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.content_type_){}
+    , decltype(_impl_.user_){}
+    , decltype(_impl_.size_){}
+    , decltype(_impl_.public__){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.bucket_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.bucket_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_bucket().empty()) {
+    _this->_impl_.bucket_.Set(from._internal_bucket(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.object_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.object_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_object().empty()) {
+    _this->_impl_.object_.Set(from._internal_object(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_title().empty()) {
+    _this->_impl_.title_.Set(from._internal_title(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.content_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_content_type().empty()) {
+    _this->_impl_.content_type_.Set(from._internal_content_type(), 
+      _this->GetArenaForAllocation());
+  }
+  ::memcpy(&_impl_.user_, &from._impl_.user_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.public__) -
+    reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.AttachmentCreateRequest)
+}
+
+inline void AttachmentCreateRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.bucket_){}
+    , decltype(_impl_.object_){}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.content_type_){}
+    , decltype(_impl_.user_){uint64_t{0u}}
+    , decltype(_impl_.size_){uint64_t{0u}}
+    , decltype(_impl_.public__){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.bucket_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.bucket_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.object_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.object_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.content_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AttachmentCreateRequest::~AttachmentCreateRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.AttachmentCreateRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AttachmentCreateRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.bucket_.Destroy();
+  _impl_.object_.Destroy();
+  _impl_.title_.Destroy();
+  _impl_.content_type_.Destroy();
+}
+
+void AttachmentCreateRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void AttachmentCreateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.AttachmentCreateRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.bucket_.ClearToEmpty();
+  _impl_.object_.ClearToEmpty();
+  _impl_.title_.ClearToEmpty();
+  _impl_.content_type_.ClearToEmpty();
+  ::memset(&_impl_.user_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.public__) -
+      reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AttachmentCreateRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.user_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string bucket = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_bucket();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentCreateRequest.bucket"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string object = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_object();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentCreateRequest.object"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string title = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_title();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentCreateRequest.title"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 size = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string content_type = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_content_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentCreateRequest.content_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool public = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _impl_.public__ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AttachmentCreateRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.AttachmentCreateRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_user(), target);
+  }
+
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentCreateRequest.bucket");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_bucket(), target);
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentCreateRequest.object");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_object(), target);
+  }
+
+  // string title = 4;
+  if (!this->_internal_title().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentCreateRequest.title");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_title(), target);
+  }
+
+  // uint64 size = 5;
+  if (this->_internal_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(5, this->_internal_size(), target);
+  }
+
+  // string content_type = 6;
+  if (!this->_internal_content_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentCreateRequest.content_type");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_content_type(), target);
+  }
+
+  // bool public = 9;
+  if (this->_internal_public_() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(9, this->_internal_public_(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.AttachmentCreateRequest)
+  return target;
+}
+
+size_t AttachmentCreateRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.AttachmentCreateRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_bucket());
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_object());
+  }
+
+  // string title = 4;
+  if (!this->_internal_title().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_title());
+  }
+
+  // string content_type = 6;
+  if (!this->_internal_content_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_content_type());
+  }
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user());
+  }
+
+  // uint64 size = 5;
+  if (this->_internal_size() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_size());
+  }
+
+  // bool public = 9;
+  if (this->_internal_public_() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentCreateRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    AttachmentCreateRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentCreateRequest::GetClassData() const { return &_class_data_; }
+
+
+void AttachmentCreateRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AttachmentCreateRequest*>(&to_msg);
+  auto& from = static_cast<const AttachmentCreateRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.AttachmentCreateRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_bucket().empty()) {
+    _this->_internal_set_bucket(from._internal_bucket());
+  }
+  if (!from._internal_object().empty()) {
+    _this->_internal_set_object(from._internal_object());
+  }
+  if (!from._internal_title().empty()) {
+    _this->_internal_set_title(from._internal_title());
+  }
+  if (!from._internal_content_type().empty()) {
+    _this->_internal_set_content_type(from._internal_content_type());
+  }
+  if (from._internal_user() != 0) {
+    _this->_internal_set_user(from._internal_user());
+  }
+  if (from._internal_size() != 0) {
+    _this->_internal_set_size(from._internal_size());
+  }
+  if (from._internal_public_() != 0) {
+    _this->_internal_set_public_(from._internal_public_());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AttachmentCreateRequest::CopyFrom(const AttachmentCreateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.AttachmentCreateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AttachmentCreateRequest::IsInitialized() const {
+  return true;
+}
+
+void AttachmentCreateRequest::InternalSwap(AttachmentCreateRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.bucket_, lhs_arena,
+      &other->_impl_.bucket_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.object_, lhs_arena,
+      &other->_impl_.object_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.title_, lhs_arena,
+      &other->_impl_.title_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.content_type_, lhs_arena,
+      &other->_impl_.content_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AttachmentCreateRequest, _impl_.public__)
+      + sizeof(AttachmentCreateRequest::_impl_.public__)
+      - PROTOBUF_FIELD_OFFSET(AttachmentCreateRequest, _impl_.user_)>(
+          reinterpret_cast<char*>(&_impl_.user_),
+          reinterpret_cast<char*>(&other->_impl_.user_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AttachmentCreateRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[42]);
+}
+
+// ===================================================================
+
+class AttachmentByResourceRequest::_Internal {
+ public:
+};
+
+AttachmentByResourceRequest::AttachmentByResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.AttachmentByResourceRequest)
+}
+AttachmentByResourceRequest::AttachmentByResourceRequest(const AttachmentByResourceRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  AttachmentByResourceRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_type_){}
+    , decltype(_impl_.resource_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_resource_type().empty()) {
+    _this->_impl_.resource_type_.Set(from._internal_resource_type(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.resource_id_ = from._impl_.resource_id_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.AttachmentByResourceRequest)
+}
+
+inline void AttachmentByResourceRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.resource_type_){}
+    , decltype(_impl_.resource_id_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.resource_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.resource_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AttachmentByResourceRequest::~AttachmentByResourceRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.AttachmentByResourceRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AttachmentByResourceRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.resource_type_.Destroy();
+}
+
+void AttachmentByResourceRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void AttachmentByResourceRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.AttachmentByResourceRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.resource_type_.ClearToEmpty();
+  _impl_.resource_id_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AttachmentByResourceRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string resource_type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_resource_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentByResourceRequest.resource_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 resource_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.resource_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AttachmentByResourceRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.AttachmentByResourceRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string resource_type = 1;
+  if (!this->_internal_resource_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_resource_type().data(), static_cast<int>(this->_internal_resource_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentByResourceRequest.resource_type");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_resource_type(), target);
+  }
+
+  // uint64 resource_id = 2;
+  if (this->_internal_resource_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_resource_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.AttachmentByResourceRequest)
+  return target;
+}
+
+size_t AttachmentByResourceRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.AttachmentByResourceRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string resource_type = 1;
+  if (!this->_internal_resource_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_resource_type());
+  }
+
+  // uint64 resource_id = 2;
+  if (this->_internal_resource_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_resource_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentByResourceRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    AttachmentByResourceRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentByResourceRequest::GetClassData() const { return &_class_data_; }
+
+
+void AttachmentByResourceRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AttachmentByResourceRequest*>(&to_msg);
+  auto& from = static_cast<const AttachmentByResourceRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.AttachmentByResourceRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_resource_type().empty()) {
+    _this->_internal_set_resource_type(from._internal_resource_type());
+  }
+  if (from._internal_resource_id() != 0) {
+    _this->_internal_set_resource_id(from._internal_resource_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AttachmentByResourceRequest::CopyFrom(const AttachmentByResourceRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.AttachmentByResourceRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AttachmentByResourceRequest::IsInitialized() const {
+  return true;
+}
+
+void AttachmentByResourceRequest::InternalSwap(AttachmentByResourceRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.resource_type_, lhs_arena,
+      &other->_impl_.resource_type_, rhs_arena
+  );
+  swap(_impl_.resource_id_, other->_impl_.resource_id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AttachmentByResourceRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[43]);
+}
+
+// ===================================================================
+
+class AttachmentSetTitleRequest::_Internal {
+ public:
+};
+
+AttachmentSetTitleRequest::AttachmentSetTitleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.AttachmentSetTitleRequest)
+}
+AttachmentSetTitleRequest::AttachmentSetTitleRequest(const AttachmentSetTitleRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  AttachmentSetTitleRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.title_){}
+    , decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_title().empty()) {
+    _this->_impl_.title_.Set(from._internal_title(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.id_ = from._impl_.id_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.AttachmentSetTitleRequest)
+}
+
+inline void AttachmentSetTitleRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.title_){}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AttachmentSetTitleRequest::~AttachmentSetTitleRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.AttachmentSetTitleRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AttachmentSetTitleRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.title_.Destroy();
+}
+
+void AttachmentSetTitleRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void AttachmentSetTitleRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.AttachmentSetTitleRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.title_.ClearToEmpty();
+  _impl_.id_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AttachmentSetTitleRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string title = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_title();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentSetTitleRequest.title"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AttachmentSetTitleRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.AttachmentSetTitleRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // string title = 2;
+  if (!this->_internal_title().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentSetTitleRequest.title");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_title(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.AttachmentSetTitleRequest)
+  return target;
+}
+
+size_t AttachmentSetTitleRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.AttachmentSetTitleRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string title = 2;
+  if (!this->_internal_title().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_title());
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentSetTitleRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    AttachmentSetTitleRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentSetTitleRequest::GetClassData() const { return &_class_data_; }
+
+
+void AttachmentSetTitleRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AttachmentSetTitleRequest*>(&to_msg);
+  auto& from = static_cast<const AttachmentSetTitleRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.AttachmentSetTitleRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_title().empty()) {
+    _this->_internal_set_title(from._internal_title());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AttachmentSetTitleRequest::CopyFrom(const AttachmentSetTitleRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.AttachmentSetTitleRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AttachmentSetTitleRequest::IsInitialized() const {
+  return true;
+}
+
+void AttachmentSetTitleRequest::InternalSwap(AttachmentSetTitleRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.title_, lhs_arena,
+      &other->_impl_.title_, rhs_arena
+  );
+  swap(_impl_.id_, other->_impl_.id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AttachmentSetTitleRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[44]);
+}
+
+// ===================================================================
+
+class AttachmentShowResponse::_Internal {
+ public:
+};
+
+AttachmentShowResponse::AttachmentShowResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.AttachmentShowResponse)
+}
+AttachmentShowResponse::AttachmentShowResponse(const AttachmentShowResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  AttachmentShowResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.url_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_url().empty()) {
+    _this->_impl_.url_.Set(from._internal_url(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.AttachmentShowResponse)
+}
+
+inline void AttachmentShowResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.url_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.url_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.url_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AttachmentShowResponse::~AttachmentShowResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.AttachmentShowResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AttachmentShowResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.url_.Destroy();
+}
+
+void AttachmentShowResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void AttachmentShowResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.AttachmentShowResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.url_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AttachmentShowResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string url = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_url();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentShowResponse.url"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AttachmentShowResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.AttachmentShowResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string url = 1;
+  if (!this->_internal_url().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_url().data(), static_cast<int>(this->_internal_url().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentShowResponse.url");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_url(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.AttachmentShowResponse)
+  return target;
+}
+
+size_t AttachmentShowResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.AttachmentShowResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string url = 1;
+  if (!this->_internal_url().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_url());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentShowResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    AttachmentShowResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentShowResponse::GetClassData() const { return &_class_data_; }
+
+
+void AttachmentShowResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AttachmentShowResponse*>(&to_msg);
+  auto& from = static_cast<const AttachmentShowResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.AttachmentShowResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_url().empty()) {
+    _this->_internal_set_url(from._internal_url());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AttachmentShowResponse::CopyFrom(const AttachmentShowResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.AttachmentShowResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AttachmentShowResponse::IsInitialized() const {
+  return true;
+}
+
+void AttachmentShowResponse::InternalSwap(AttachmentShowResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.url_, lhs_arena,
+      &other->_impl_.url_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AttachmentShowResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[45]);
+}
+
+// ===================================================================
+
+class AttachmentIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<AttachmentIndexResponse_Item>()._impl_._has_bits_);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& published_at(const AttachmentIndexResponse_Item* msg);
+  static void set_has_published_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const AttachmentIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const AttachmentIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+AttachmentIndexResponse_Item::_Internal::published_at(const AttachmentIndexResponse_Item* msg) {
+  return *msg->_impl_.published_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+AttachmentIndexResponse_Item::_Internal::deleted_at(const AttachmentIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+AttachmentIndexResponse_Item::_Internal::updated_at(const AttachmentIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void AttachmentIndexResponse_Item::clear_published_at() {
+  if (_impl_.published_at_ != nullptr) _impl_.published_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+void AttachmentIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+void AttachmentIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+AttachmentIndexResponse_Item::AttachmentIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.AttachmentIndexResponse.Item)
+}
+AttachmentIndexResponse_Item::AttachmentIndexResponse_Item(const AttachmentIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  AttachmentIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.bucket_){}
+    , decltype(_impl_.object_){}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.content_type_){}
+    , decltype(_impl_.published_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.user_){}
+    , decltype(_impl_.size_){}
+    , decltype(_impl_.public__){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.bucket_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.bucket_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_bucket().empty()) {
+    _this->_impl_.bucket_.Set(from._internal_bucket(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.object_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.object_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_object().empty()) {
+    _this->_impl_.object_.Set(from._internal_object(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_title().empty()) {
+    _this->_impl_.title_.Set(from._internal_title(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.content_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_content_type().empty()) {
+    _this->_impl_.content_type_.Set(from._internal_content_type(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_published_at()) {
+    _this->_impl_.published_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.published_at_);
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  ::memcpy(&_impl_.user_, &from._impl_.user_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.public__) -
+    reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.AttachmentIndexResponse.Item)
+}
+
+inline void AttachmentIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.bucket_){}
+    , decltype(_impl_.object_){}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.content_type_){}
+    , decltype(_impl_.published_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.user_){uint64_t{0u}}
+    , decltype(_impl_.size_){uint64_t{0u}}
+    , decltype(_impl_.public__){false}
+  };
+  _impl_.bucket_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.bucket_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.object_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.object_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.content_type_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_type_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+AttachmentIndexResponse_Item::~AttachmentIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.AttachmentIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AttachmentIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.bucket_.Destroy();
+  _impl_.object_.Destroy();
+  _impl_.title_.Destroy();
+  _impl_.content_type_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.published_at_;
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void AttachmentIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void AttachmentIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.AttachmentIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.bucket_.ClearToEmpty();
+  _impl_.object_.ClearToEmpty();
+  _impl_.title_.ClearToEmpty();
+  _impl_.content_type_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(_impl_.published_at_ != nullptr);
+      _impl_.published_at_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+      _impl_.deleted_at_->Clear();
+    }
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  ::memset(&_impl_.user_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.public__) -
+      reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AttachmentIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.user_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string bucket = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_bucket();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentIndexResponse.Item.bucket"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string object = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_object();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentIndexResponse.Item.object"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string title = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_title();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentIndexResponse.Item.title"));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 size = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string content_type = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_content_type();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.AttachmentIndexResponse.Item.content_type"));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool public = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          _impl_.public__ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp published_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_published_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AttachmentIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.AttachmentIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_user(), target);
+  }
+
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentIndexResponse.Item.bucket");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_bucket(), target);
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentIndexResponse.Item.object");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_object(), target);
+  }
+
+  // string title = 4;
+  if (!this->_internal_title().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentIndexResponse.Item.title");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_title(), target);
+  }
+
+  // uint64 size = 5;
+  if (this->_internal_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(5, this->_internal_size(), target);
+  }
+
+  // string content_type = 6;
+  if (!this->_internal_content_type().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.AttachmentIndexResponse.Item.content_type");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_content_type(), target);
+  }
+
+  // bool public = 7;
+  if (this->_internal_public_() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(7, this->_internal_public_(), target);
+  }
+
+  // optional .google.protobuf.Timestamp published_at = 8;
+  if (_internal_has_published_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::published_at(this),
+        _Internal::published_at(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 9;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 10;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(10, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.AttachmentIndexResponse.Item)
+  return target;
+}
+
+size_t AttachmentIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.AttachmentIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_bucket());
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_object());
+  }
+
+  // string title = 4;
+  if (!this->_internal_title().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_title());
+  }
+
+  // string content_type = 6;
+  if (!this->_internal_content_type().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_content_type());
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .google.protobuf.Timestamp published_at = 8;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.published_at_);
+    }
+
+    // optional .google.protobuf.Timestamp deleted_at = 9;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.deleted_at_);
+    }
+
+  }
+  // .google.protobuf.Timestamp updated_at = 10;
+  if (this->_internal_has_updated_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 user = 1;
+  if (this->_internal_user() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user());
+  }
+
+  // uint64 size = 5;
+  if (this->_internal_size() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_size());
+  }
+
+  // bool public = 7;
+  if (this->_internal_public_() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    AttachmentIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void AttachmentIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AttachmentIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const AttachmentIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.AttachmentIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_bucket().empty()) {
+    _this->_internal_set_bucket(from._internal_bucket());
+  }
+  if (!from._internal_object().empty()) {
+    _this->_internal_set_object(from._internal_object());
+  }
+  if (!from._internal_title().empty()) {
+    _this->_internal_set_title(from._internal_title());
+  }
+  if (!from._internal_content_type().empty()) {
+    _this->_internal_set_content_type(from._internal_content_type());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_published_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_published_at());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_deleted_at());
+    }
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_user() != 0) {
+    _this->_internal_set_user(from._internal_user());
+  }
+  if (from._internal_size() != 0) {
+    _this->_internal_set_size(from._internal_size());
+  }
+  if (from._internal_public_() != 0) {
+    _this->_internal_set_public_(from._internal_public_());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AttachmentIndexResponse_Item::CopyFrom(const AttachmentIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.AttachmentIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AttachmentIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void AttachmentIndexResponse_Item::InternalSwap(AttachmentIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.bucket_, lhs_arena,
+      &other->_impl_.bucket_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.object_, lhs_arena,
+      &other->_impl_.object_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.title_, lhs_arena,
+      &other->_impl_.title_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.content_type_, lhs_arena,
+      &other->_impl_.content_type_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AttachmentIndexResponse_Item, _impl_.public__)
+      + sizeof(AttachmentIndexResponse_Item::_impl_.public__)
+      - PROTOBUF_FIELD_OFFSET(AttachmentIndexResponse_Item, _impl_.published_at_)>(
+          reinterpret_cast<char*>(&_impl_.published_at_),
+          reinterpret_cast<char*>(&other->_impl_.published_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AttachmentIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[46]);
+}
+
+// ===================================================================
+
+class AttachmentIndexResponse::_Internal {
+ public:
+};
+
+AttachmentIndexResponse::AttachmentIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.AttachmentIndexResponse)
+}
+AttachmentIndexResponse::AttachmentIndexResponse(const AttachmentIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  AttachmentIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.AttachmentIndexResponse)
+}
+
+inline void AttachmentIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+AttachmentIndexResponse::~AttachmentIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.AttachmentIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void AttachmentIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void AttachmentIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void AttachmentIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.AttachmentIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AttachmentIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.AttachmentIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* AttachmentIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.AttachmentIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.AttachmentIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.AttachmentIndexResponse)
+  return target;
+}
+
+size_t AttachmentIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.AttachmentIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.AttachmentIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    AttachmentIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void AttachmentIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<AttachmentIndexResponse*>(&to_msg);
+  auto& from = static_cast<const AttachmentIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.AttachmentIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AttachmentIndexResponse::CopyFrom(const AttachmentIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.AttachmentIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AttachmentIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void AttachmentIndexResponse::InternalSwap(AttachmentIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AttachmentIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[47]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3271,6 +17567,18 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserSignInResponse::GetClassDa
 }  // namespace balsam
 }  // namespace palm
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::IdRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::IdRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::IdRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UidRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UidRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UidRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::Pager*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::Pager >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::Pager >(arena);
+}
 template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AesPlainMessage*
 Arena::CreateMaybeMessage< ::palm::balsam::v1::AesPlainMessage >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::balsam::v1::AesPlainMessage >(arena);
@@ -3307,13 +17615,149 @@ template<> PROTOBUF_NOINLINE ::palm::balsam::v1::HMacVerifyRequest*
 Arena::CreateMaybeMessage< ::palm::balsam::v1::HMacVerifyRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::balsam::v1::HMacVerifyRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserSignInByEmail*
-Arena::CreateMaybeMessage< ::palm::balsam::v1::UserSignInByEmail >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserSignInByEmail >(arena);
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserUpdateProfileRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserUpdateProfileRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserUpdateProfileRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LogsRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LogsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LogsRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserLogsResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserLogsResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserLogsResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserLogsResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserLogsResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserLogsResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::EmailUserByEmailRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::EmailUserByEmailRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::EmailUserByEmailRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::EmailUserByNicknameRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::EmailUserByNicknameRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::EmailUserByNicknameRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::EmailUserIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::EmailUserIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::EmailUserIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::EmailUserIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::EmailUserIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::EmailUserIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserResetPasswordRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserResetPasswordRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserResetPasswordRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserByEmailRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserByEmailRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserByEmailRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserByTokenRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserByTokenRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserByTokenRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserSignInByEmailRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserSignInByEmailRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserSignInByEmailRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserSignUpByEmailRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserSignUpByEmailRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserSignUpByEmailRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserSignInResponse_Detail*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserSignInResponse_Detail >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserSignInResponse_Detail >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserSignInResponse_Permission*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserSignInResponse_Permission >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserSignInResponse_Permission >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserSignInResponse_Menu*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::UserSignInResponse_Menu >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::UserSignInResponse_Menu >(arena);
 }
 template<> PROTOBUF_NOINLINE ::palm::balsam::v1::UserSignInResponse*
 Arena::CreateMaybeMessage< ::palm::balsam::v1::UserSignInResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::balsam::v1::UserSignInResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::GoogleOauth2UserBySubjectRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::GoogleOauth2UserIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::GoogleOauth2UserIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::GoogleOauth2UserIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::WechatByUnionIdRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::WechatByUnionIdRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::WechatByUnionIdRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::WechatByAppIdAndOpenIdRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::WechatOauth2UserIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::WechatOauth2UserIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::WechatOauth2UserIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::WechatOauth2UserIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::WechatMiniProgramUserIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::WechatMiniProgramUserIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SessionIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SessionIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SessionIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SessionIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SessionIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SessionIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AttachmentCreateRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentCreateRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::AttachmentCreateRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AttachmentByResourceRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentByResourceRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::AttachmentByResourceRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AttachmentSetTitleRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentSetTitleRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::AttachmentSetTitleRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AttachmentShowResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentShowResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::AttachmentShowResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AttachmentIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::AttachmentIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AttachmentIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::AttachmentIndexResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
