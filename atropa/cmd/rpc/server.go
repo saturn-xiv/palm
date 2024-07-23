@@ -6,11 +6,13 @@ import (
 	"net"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"syscall"
 
 	"github.com/BurntSushi/toml"
 	"github.com/casbin/casbin/v2"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/reflection"
@@ -71,9 +73,18 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	if err != nil {
 		return err
 	}
-	var options []grpc.ServerOption
 
-	server := grpc.NewServer(options...)
+	tls_t := &env.Tls{
+		CaFile:   filepath.Join("ca.crt"),
+		CertFile: filepath.Join(keys_dir, "server.crt"),
+		KeyFile:  filepath.Join("server.key"),
+	}
+	tls, err := tls_t.Load(true)
+	if err != nil {
+		return err
+	}
+
+	server := grpc.NewServer(grpc.Creds(credentials.NewTLS(tls)))
 	if err = mount(server,
 		config.Namespace,
 		redis, aes, hmac, jwt, enforcer, s3,

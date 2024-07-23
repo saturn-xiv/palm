@@ -8,4 +8,7 @@ const (
 	TEXT_PLAIN             = "text/plain; charset=UTF-8"
 
 	JWT_ISSUER = "palm.atropa"
+	JWT_BEARER = "Bearer "
+
+	GRPC_AUTHORIZATION_HEADER = "authorization"
 )
