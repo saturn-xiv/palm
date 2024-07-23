@@ -21,14 +21,41 @@ function generate_gourd() {
     mv gourd/src/*.h gourd/include/petunia/
 }
 
-function generate_grpc_by_lang() {
+function generate_grpc_for_lang() {
     local target=$WORKSPACE/$2
     echo "generate grpc($1) => $2"
-    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/protocols \
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    mkdir -p $target
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
         -I $PROTOBUF_ROOT/include/google/protobuf \
         --${1}_out=$target --grpc_out=$target \
         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_${1}_plugin \
         $WORKSPACE/petunia/*.proto
+}
+
+function generate_grpc_for_php() {
+    echo "generate grpc for php"
+    local target=$WORKSPACE/$1
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    mkdir -p $target
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --php_out=$target --grpc_out=generate_server:$target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_php_plugin \
+        $WORKSPACE/petunia/*.proto
+}
+
+function generate_thrift_for_java() {
+    echo "generate thrift-java for $1"
+    local target=$2/com/github/saturn_xiv/palm/plugins/$1/v1
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    thrift -out $2 --gen java -r $PALM_PROTOCOLS/petunia/$1.thrift
 }
 
 function generate_lemon() {
@@ -53,7 +80,6 @@ function generate_lemon() {
 
 function generate_grpc_for_go() {
     echo "generate grpc $1 => $2"
-
     if [ -d $2 ]; then
         rm $2/*.pb.go
     else
@@ -80,6 +106,17 @@ generate_grpc_for_go s3 atropa/s3/services/v2
 generate_grpc_for_go rbac atropa/rbac/services/v2
 generate_grpc_for_go google atropa/google/services/v2
 generate_grpc_for_go wechat atropa/wechat/services/v2
+generate_grpc_for_php lemon/php
+
+declare -a langs=(
+    "csharp"
+    "java"
+    "python"
+    "ruby"
+)
+for l in "${langs[@]}"; do
+    generate_grpc_for_lang $l lemon/$l
+done
 
 echo 'done.'
 

@@ -18,6 +18,11 @@ message Pager {
   uint64 page = 1;
   uint64 size = 2;
 }
+enum MediaEditor {
+  Textarea = 0;
+  Markdown = 2;
+  Quill = 3;
+}
 // ----------------------------------------------------------------------------
 
 service Aes {
@@ -434,4 +439,168 @@ message AttachmentIndexResponse {
   }
   repeated Item items = 1;
   uint64 total = 2;
+}
+// ----------------------------------------------------------------------------
+service Locale {
+  rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (LocaleIndexResponse) {}
+  rpc ByLang(LocaleByLangRequest) returns (LocaleIndexResponse) {}
+}
+
+message LocaleSetRequest {
+  string lang = 1;
+  string code = 2;
+  string message = 3;
+}
+message LocaleIndexResponse {
+  message Item {
+    uint64 id = 1;
+    string lang = 2;
+    string code = 3;
+    string message = 4;
+    google.protobuf.Timestamp updated_at = 5;
+  }
+  repeated Item items = 1;
+  uint64 total = 2;
+}
+message LocaleByLangRequest {
+  string lang = 1;
+}
+// ----------------------------------------------------------------------------
+service LeaveWord {
+  rpc Create(LeaveWordCreateRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (LeaveWordIndexResponse) {}
+  rpc Publish(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Destroy(IdRequest) returns (google.protobuf.Empty) {}
+}
+message LeaveWordCreateRequest {
+  string body = 1;
+  string editor = 2;
+}
+message LeaveWordIndexResponse {
+  message Item {
+    enum Status {
+      Pending = 0;
+      Completed = 1;
+    }
+    uint64 id = 1;
+    string lang = 2;
+    string ip = 3;
+    string body = 4;
+    MediaEditor editor = 5;
+    Status status = 6;
+    optional google.protobuf.Timestamp published_at = 7;
+    optional google.protobuf.Timestamp deleted_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+  }
+  repeated Item item = 1;
+  uint64 total = 2;
+}
+// ----------------------------------------------------------------------------
+service Site {
+  rpc Status(google.protobuf.Empty) returns (SiteStatusResponse) {}
+  rpc Layout(google.protobuf.Empty) returns (SiteLayoutResponse) {}
+  rpc GetInfoByLang(SiteGetInfoByLangRequest)
+      returns (SiteGetInfoByLangResponse) {}
+  rpc SetInfo(SiteInfoRequest) returns (google.protobuf.Empty) {}
+  rpc SetKeywords(SiteKeywordsRequest) returns (google.protobuf.Empty) {}
+  rpc SetAuthor(SiteLayoutResponse.Author) returns (google.protobuf.Empty) {}
+
+  rpc SetBaiduAccount(SiteBaiduAccount) returns (google.protobuf.Empty) {}
+  rpc GetBaiduAccount(google.protobuf.Empty) returns (SiteBaiduAccount) {}
+  rpc DeleteBaiduAccount(google.protobuf.Empty)
+      returns (google.protobuf.Empty) {}
+  rpc SetGoogleAccount(SiteGoogleAccount) returns (google.protobuf.Empty) {}
+  rpc GetGoogleAccount(google.protobuf.Empty) returns (SiteGoogleAccount) {}
+  rpc DeleteGoogleAccount(google.protobuf.Empty)
+      returns (google.protobuf.Empty) {}
+  rpc SetIndexNowAccount(SiteIndexNowAccount) returns (google.protobuf.Empty) {}
+  rpc GetIndexNowAccount(google.protobuf.Empty) returns (SiteIndexNowAccount) {}
+  rpc DeleteIndexNowAccount(google.protobuf.Empty)
+      returns (google.protobuf.Empty) {}
+}
+message SiteStatusResponse {
+  message Redis {
+    repeated string info = 1;
+    repeated string nodes = 2;
+  }
+  message PostgreSql {
+    string version = 1;
+    repeated string versions = 2;
+  }
+  message OpenSearch {
+    string plugins = 1;
+  }
+  PostgreSql postgresql = 1;
+  Redis redis = 2;
+  OpenSearch opensearch = 3;
+}
+message SiteIndexNowAccount {
+  message WebSiteVerify {
+    string key = 1;
+  }
+  optional WebSiteVerify web_site_verify = 1;
+}
+message SiteGoogleAccount {
+  message WebSiteVerify {
+    string code = 1;
+  }
+  message ReCaptcha {
+    string site_key = 1;
+    string secret = 2;
+  }
+  optional WebSiteVerify web_site_verify = 1;
+  optional ReCaptcha re_captcha = 2;
+}
+message SiteBaiduAccount {
+  message WebSiteVerify {
+    string code = 1;
+    string content = 2;
+  }
+  optional WebSiteVerify web_site_verify = 1;
+}
+message SiteGetInfoByLangRequest {
+  string lang = 1;
+}
+message SiteGetInfoByLangResponse {
+  string title = 1;
+  string subhead = 2;
+  string description = 3;
+  string copyright = 4;
+}
+message SiteLayoutResponse {
+  message Author {
+    string name = 1;
+    string email = 2;
+  }
+  message CnGab {
+    string code = 1;
+    string name = 2;
+  }
+  message CnIcp {
+    string code = 1;
+  }
+  string title = 1;
+  string subhead = 2;
+  string description = 3;
+  string copyright = 4;
+  Author author = 5;
+  repeated string keywords = 6;
+
+  optional CnIcp cn_icp = 11;
+  optional CnGab cn_gab = 12;
+
+  string lang = 97;
+  string languages = 98;
+  string version = 99;
+}
+message SiteInfoRequest {
+  string lang = 1;
+  string title = 2;
+  string subhead = 3;
+  string description = 4;
+  string copyright = 5;
+}
+message SiteKeywordsRequest {
+  repeated string items = 1;
 }

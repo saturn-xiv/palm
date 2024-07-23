@@ -6,7 +6,6 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	"path/filepath"
 	"syscall"
 
 	"github.com/BurntSushi/toml"
@@ -74,12 +73,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 		return err
 	}
 
-	tls_t := &env.Tls{
-		CaFile:   filepath.Join("ca.crt"),
-		CertFile: filepath.Join(keys_dir, "server.crt"),
-		KeyFile:  filepath.Join("server.key"),
-	}
-	tls, err := tls_t.Load(true)
+	tls, err := config.Tls.Load(true)
 	if err != nil {
 		return err
 	}

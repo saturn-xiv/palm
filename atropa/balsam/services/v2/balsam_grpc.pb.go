@@ -2894,3 +2894,1010 @@ var Attachment_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "balsam.proto",
 }
+
+const (
+	Locale_Set_FullMethodName    = "/palm.balsam.v1.Locale/Set"
+	Locale_Index_FullMethodName  = "/palm.balsam.v1.Locale/Index"
+	Locale_ByLang_FullMethodName = "/palm.balsam.v1.Locale/ByLang"
+)
+
+// LocaleClient is the client API for Locale service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type LocaleClient interface {
+	Set(ctx context.Context, in *LocaleSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
+	ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
+}
+
+type localeClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewLocaleClient(cc grpc.ClientConnInterface) LocaleClient {
+	return &localeClient{cc}
+}
+
+func (c *localeClient) Set(ctx context.Context, in *LocaleSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Locale_Set_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *localeClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*LocaleIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LocaleIndexResponse)
+	err := c.cc.Invoke(ctx, Locale_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *localeClient) ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LocaleIndexResponse)
+	err := c.cc.Invoke(ctx, Locale_ByLang_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// LocaleServer is the server API for Locale service.
+// All implementations must embed UnimplementedLocaleServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type LocaleServer interface {
+	Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*LocaleIndexResponse, error)
+	ByLang(context.Context, *LocaleByLangRequest) (*LocaleIndexResponse, error)
+	mustEmbedUnimplementedLocaleServer()
+}
+
+// UnimplementedLocaleServer must be embedded to have forward compatible implementations.
+type UnimplementedLocaleServer struct {
+}
+
+func (UnimplementedLocaleServer) Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
+}
+func (UnimplementedLocaleServer) Index(context.Context, *Pager) (*LocaleIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedLocaleServer) ByLang(context.Context, *LocaleByLangRequest) (*LocaleIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByLang not implemented")
+}
+func (UnimplementedLocaleServer) mustEmbedUnimplementedLocaleServer() {}
+
+// UnsafeLocaleServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to LocaleServer will
+// result in compilation errors.
+type UnsafeLocaleServer interface {
+	mustEmbedUnimplementedLocaleServer()
+}
+
+func RegisterLocaleServer(s grpc.ServiceRegistrar, srv LocaleServer) {
+	s.RegisterService(&Locale_ServiceDesc, srv)
+}
+
+func _Locale_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LocaleSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).Set(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_Set_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).Set(ctx, req.(*LocaleSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Locale_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Locale_ByLang_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LocaleByLangRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocaleServer).ByLang(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Locale_ByLang_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocaleServer).ByLang(ctx, req.(*LocaleByLangRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Locale_ServiceDesc is the grpc.ServiceDesc for Locale service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Locale_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.Locale",
+	HandlerType: (*LocaleServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Set",
+			Handler:    _Locale_Set_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _Locale_Index_Handler,
+		},
+		{
+			MethodName: "ByLang",
+			Handler:    _Locale_ByLang_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	LeaveWord_Create_FullMethodName  = "/palm.balsam.v1.LeaveWord/Create"
+	LeaveWord_Index_FullMethodName   = "/palm.balsam.v1.LeaveWord/Index"
+	LeaveWord_Publish_FullMethodName = "/palm.balsam.v1.LeaveWord/Publish"
+	LeaveWord_Destroy_FullMethodName = "/palm.balsam.v1.LeaveWord/Destroy"
+)
+
+// LeaveWordClient is the client API for LeaveWord service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type LeaveWordClient interface {
+	Create(ctx context.Context, in *LeaveWordCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*LeaveWordIndexResponse, error)
+	Publish(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type leaveWordClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewLeaveWordClient(cc grpc.ClientConnInterface) LeaveWordClient {
+	return &leaveWordClient{cc}
+}
+
+func (c *leaveWordClient) Create(ctx context.Context, in *LeaveWordCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, LeaveWord_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *leaveWordClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*LeaveWordIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LeaveWordIndexResponse)
+	err := c.cc.Invoke(ctx, LeaveWord_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *leaveWordClient) Publish(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, LeaveWord_Publish_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *leaveWordClient) Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, LeaveWord_Destroy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// LeaveWordServer is the server API for LeaveWord service.
+// All implementations must embed UnimplementedLeaveWordServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type LeaveWordServer interface {
+	Create(context.Context, *LeaveWordCreateRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*LeaveWordIndexResponse, error)
+	Publish(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Destroy(context.Context, *IdRequest) (*emptypb.Empty, error)
+	mustEmbedUnimplementedLeaveWordServer()
+}
+
+// UnimplementedLeaveWordServer must be embedded to have forward compatible implementations.
+type UnimplementedLeaveWordServer struct {
+}
+
+func (UnimplementedLeaveWordServer) Create(context.Context, *LeaveWordCreateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedLeaveWordServer) Index(context.Context, *Pager) (*LeaveWordIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedLeaveWordServer) Publish(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
+}
+func (UnimplementedLeaveWordServer) Destroy(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Destroy not implemented")
+}
+func (UnimplementedLeaveWordServer) mustEmbedUnimplementedLeaveWordServer() {}
+
+// UnsafeLeaveWordServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to LeaveWordServer will
+// result in compilation errors.
+type UnsafeLeaveWordServer interface {
+	mustEmbedUnimplementedLeaveWordServer()
+}
+
+func RegisterLeaveWordServer(s grpc.ServiceRegistrar, srv LeaveWordServer) {
+	s.RegisterService(&LeaveWord_ServiceDesc, srv)
+}
+
+func _LeaveWord_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LeaveWordCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeaveWordServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LeaveWord_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeaveWordServer).Create(ctx, req.(*LeaveWordCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LeaveWord_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeaveWordServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LeaveWord_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeaveWordServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LeaveWord_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeaveWordServer).Publish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LeaveWord_Publish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeaveWordServer).Publish(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LeaveWord_Destroy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeaveWordServer).Destroy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LeaveWord_Destroy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeaveWordServer).Destroy(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// LeaveWord_ServiceDesc is the grpc.ServiceDesc for LeaveWord service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var LeaveWord_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.LeaveWord",
+	HandlerType: (*LeaveWordServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _LeaveWord_Create_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _LeaveWord_Index_Handler,
+		},
+		{
+			MethodName: "Publish",
+			Handler:    _LeaveWord_Publish_Handler,
+		},
+		{
+			MethodName: "Destroy",
+			Handler:    _LeaveWord_Destroy_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
+	Site_Status_FullMethodName                = "/palm.balsam.v1.Site/Status"
+	Site_Layout_FullMethodName                = "/palm.balsam.v1.Site/Layout"
+	Site_GetInfoByLang_FullMethodName         = "/palm.balsam.v1.Site/GetInfoByLang"
+	Site_SetInfo_FullMethodName               = "/palm.balsam.v1.Site/SetInfo"
+	Site_SetKeywords_FullMethodName           = "/palm.balsam.v1.Site/SetKeywords"
+	Site_SetAuthor_FullMethodName             = "/palm.balsam.v1.Site/SetAuthor"
+	Site_SetBaiduAccount_FullMethodName       = "/palm.balsam.v1.Site/SetBaiduAccount"
+	Site_GetBaiduAccount_FullMethodName       = "/palm.balsam.v1.Site/GetBaiduAccount"
+	Site_DeleteBaiduAccount_FullMethodName    = "/palm.balsam.v1.Site/DeleteBaiduAccount"
+	Site_SetGoogleAccount_FullMethodName      = "/palm.balsam.v1.Site/SetGoogleAccount"
+	Site_GetGoogleAccount_FullMethodName      = "/palm.balsam.v1.Site/GetGoogleAccount"
+	Site_DeleteGoogleAccount_FullMethodName   = "/palm.balsam.v1.Site/DeleteGoogleAccount"
+	Site_SetIndexNowAccount_FullMethodName    = "/palm.balsam.v1.Site/SetIndexNowAccount"
+	Site_GetIndexNowAccount_FullMethodName    = "/palm.balsam.v1.Site/GetIndexNowAccount"
+	Site_DeleteIndexNowAccount_FullMethodName = "/palm.balsam.v1.Site/DeleteIndexNowAccount"
+)
+
+// SiteClient is the client API for Site service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type SiteClient interface {
+	Status(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteStatusResponse, error)
+	Layout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteLayoutResponse, error)
+	GetInfoByLang(ctx context.Context, in *SiteGetInfoByLangRequest, opts ...grpc.CallOption) (*SiteGetInfoByLangResponse, error)
+	SetInfo(ctx context.Context, in *SiteInfoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetKeywords(ctx context.Context, in *SiteKeywordsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetAuthor(ctx context.Context, in *SiteLayoutResponse_Author, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetBaiduAccount(ctx context.Context, in *SiteBaiduAccount, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetBaiduAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteBaiduAccount, error)
+	DeleteBaiduAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetGoogleAccount(ctx context.Context, in *SiteGoogleAccount, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetGoogleAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteGoogleAccount, error)
+	DeleteGoogleAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetIndexNowAccount(ctx context.Context, in *SiteIndexNowAccount, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetIndexNowAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteIndexNowAccount, error)
+	DeleteIndexNowAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type siteClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSiteClient(cc grpc.ClientConnInterface) SiteClient {
+	return &siteClient{cc}
+}
+
+func (c *siteClient) Status(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteStatusResponse)
+	err := c.cc.Invoke(ctx, Site_Status_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) Layout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteLayoutResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteLayoutResponse)
+	err := c.cc.Invoke(ctx, Site_Layout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetInfoByLang(ctx context.Context, in *SiteGetInfoByLangRequest, opts ...grpc.CallOption) (*SiteGetInfoByLangResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteGetInfoByLangResponse)
+	err := c.cc.Invoke(ctx, Site_GetInfoByLang_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetInfo(ctx context.Context, in *SiteInfoRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetKeywords(ctx context.Context, in *SiteKeywordsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetKeywords_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetAuthor(ctx context.Context, in *SiteLayoutResponse_Author, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetAuthor_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetBaiduAccount(ctx context.Context, in *SiteBaiduAccount, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetBaiduAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetBaiduAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteBaiduAccount, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteBaiduAccount)
+	err := c.cc.Invoke(ctx, Site_GetBaiduAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) DeleteBaiduAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_DeleteBaiduAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetGoogleAccount(ctx context.Context, in *SiteGoogleAccount, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetGoogleAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetGoogleAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteGoogleAccount, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteGoogleAccount)
+	err := c.cc.Invoke(ctx, Site_GetGoogleAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) DeleteGoogleAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_DeleteGoogleAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) SetIndexNowAccount(ctx context.Context, in *SiteIndexNowAccount, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_SetIndexNowAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) GetIndexNowAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SiteIndexNowAccount, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SiteIndexNowAccount)
+	err := c.cc.Invoke(ctx, Site_GetIndexNowAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *siteClient) DeleteIndexNowAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Site_DeleteIndexNowAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SiteServer is the server API for Site service.
+// All implementations must embed UnimplementedSiteServer
+// for forward compatibility
+//
+// ----------------------------------------------------------------------------
+type SiteServer interface {
+	Status(context.Context, *emptypb.Empty) (*SiteStatusResponse, error)
+	Layout(context.Context, *emptypb.Empty) (*SiteLayoutResponse, error)
+	GetInfoByLang(context.Context, *SiteGetInfoByLangRequest) (*SiteGetInfoByLangResponse, error)
+	SetInfo(context.Context, *SiteInfoRequest) (*emptypb.Empty, error)
+	SetKeywords(context.Context, *SiteKeywordsRequest) (*emptypb.Empty, error)
+	SetAuthor(context.Context, *SiteLayoutResponse_Author) (*emptypb.Empty, error)
+	SetBaiduAccount(context.Context, *SiteBaiduAccount) (*emptypb.Empty, error)
+	GetBaiduAccount(context.Context, *emptypb.Empty) (*SiteBaiduAccount, error)
+	DeleteBaiduAccount(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	SetGoogleAccount(context.Context, *SiteGoogleAccount) (*emptypb.Empty, error)
+	GetGoogleAccount(context.Context, *emptypb.Empty) (*SiteGoogleAccount, error)
+	DeleteGoogleAccount(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	SetIndexNowAccount(context.Context, *SiteIndexNowAccount) (*emptypb.Empty, error)
+	GetIndexNowAccount(context.Context, *emptypb.Empty) (*SiteIndexNowAccount, error)
+	DeleteIndexNowAccount(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	mustEmbedUnimplementedSiteServer()
+}
+
+// UnimplementedSiteServer must be embedded to have forward compatible implementations.
+type UnimplementedSiteServer struct {
+}
+
+func (UnimplementedSiteServer) Status(context.Context, *emptypb.Empty) (*SiteStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Status not implemented")
+}
+func (UnimplementedSiteServer) Layout(context.Context, *emptypb.Empty) (*SiteLayoutResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Layout not implemented")
+}
+func (UnimplementedSiteServer) GetInfoByLang(context.Context, *SiteGetInfoByLangRequest) (*SiteGetInfoByLangResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInfoByLang not implemented")
+}
+func (UnimplementedSiteServer) SetInfo(context.Context, *SiteInfoRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetInfo not implemented")
+}
+func (UnimplementedSiteServer) SetKeywords(context.Context, *SiteKeywordsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetKeywords not implemented")
+}
+func (UnimplementedSiteServer) SetAuthor(context.Context, *SiteLayoutResponse_Author) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetAuthor not implemented")
+}
+func (UnimplementedSiteServer) SetBaiduAccount(context.Context, *SiteBaiduAccount) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetBaiduAccount not implemented")
+}
+func (UnimplementedSiteServer) GetBaiduAccount(context.Context, *emptypb.Empty) (*SiteBaiduAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBaiduAccount not implemented")
+}
+func (UnimplementedSiteServer) DeleteBaiduAccount(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBaiduAccount not implemented")
+}
+func (UnimplementedSiteServer) SetGoogleAccount(context.Context, *SiteGoogleAccount) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetGoogleAccount not implemented")
+}
+func (UnimplementedSiteServer) GetGoogleAccount(context.Context, *emptypb.Empty) (*SiteGoogleAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGoogleAccount not implemented")
+}
+func (UnimplementedSiteServer) DeleteGoogleAccount(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteGoogleAccount not implemented")
+}
+func (UnimplementedSiteServer) SetIndexNowAccount(context.Context, *SiteIndexNowAccount) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetIndexNowAccount not implemented")
+}
+func (UnimplementedSiteServer) GetIndexNowAccount(context.Context, *emptypb.Empty) (*SiteIndexNowAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetIndexNowAccount not implemented")
+}
+func (UnimplementedSiteServer) DeleteIndexNowAccount(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteIndexNowAccount not implemented")
+}
+func (UnimplementedSiteServer) mustEmbedUnimplementedSiteServer() {}
+
+// UnsafeSiteServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SiteServer will
+// result in compilation errors.
+type UnsafeSiteServer interface {
+	mustEmbedUnimplementedSiteServer()
+}
+
+func RegisterSiteServer(s grpc.ServiceRegistrar, srv SiteServer) {
+	s.RegisterService(&Site_ServiceDesc, srv)
+}
+
+func _Site_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).Status(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_Status_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).Status(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_Layout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).Layout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_Layout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).Layout(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetInfoByLang_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteGetInfoByLangRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetInfoByLang(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetInfoByLang_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetInfoByLang(ctx, req.(*SiteGetInfoByLangRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetInfo(ctx, req.(*SiteInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetKeywords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteKeywordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetKeywords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetKeywords_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetKeywords(ctx, req.(*SiteKeywordsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetAuthor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteLayoutResponse_Author)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetAuthor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetAuthor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetAuthor(ctx, req.(*SiteLayoutResponse_Author))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetBaiduAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteBaiduAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetBaiduAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetBaiduAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetBaiduAccount(ctx, req.(*SiteBaiduAccount))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetBaiduAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetBaiduAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetBaiduAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetBaiduAccount(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_DeleteBaiduAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).DeleteBaiduAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_DeleteBaiduAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).DeleteBaiduAccount(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetGoogleAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteGoogleAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetGoogleAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetGoogleAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetGoogleAccount(ctx, req.(*SiteGoogleAccount))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetGoogleAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetGoogleAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetGoogleAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetGoogleAccount(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_DeleteGoogleAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).DeleteGoogleAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_DeleteGoogleAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).DeleteGoogleAccount(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_SetIndexNowAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SiteIndexNowAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).SetIndexNowAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_SetIndexNowAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).SetIndexNowAccount(ctx, req.(*SiteIndexNowAccount))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_GetIndexNowAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).GetIndexNowAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_GetIndexNowAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).GetIndexNowAccount(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Site_DeleteIndexNowAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SiteServer).DeleteIndexNowAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Site_DeleteIndexNowAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SiteServer).DeleteIndexNowAccount(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Site_ServiceDesc is the grpc.ServiceDesc for Site service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Site_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.Site",
+	HandlerType: (*SiteServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Status",
+			Handler:    _Site_Status_Handler,
+		},
+		{
+			MethodName: "Layout",
+			Handler:    _Site_Layout_Handler,
+		},
+		{
+			MethodName: "GetInfoByLang",
+			Handler:    _Site_GetInfoByLang_Handler,
+		},
+		{
+			MethodName: "SetInfo",
+			Handler:    _Site_SetInfo_Handler,
+		},
+		{
+			MethodName: "SetKeywords",
+			Handler:    _Site_SetKeywords_Handler,
+		},
+		{
+			MethodName: "SetAuthor",
+			Handler:    _Site_SetAuthor_Handler,
+		},
+		{
+			MethodName: "SetBaiduAccount",
+			Handler:    _Site_SetBaiduAccount_Handler,
+		},
+		{
+			MethodName: "GetBaiduAccount",
+			Handler:    _Site_GetBaiduAccount_Handler,
+		},
+		{
+			MethodName: "DeleteBaiduAccount",
+			Handler:    _Site_DeleteBaiduAccount_Handler,
+		},
+		{
+			MethodName: "SetGoogleAccount",
+			Handler:    _Site_SetGoogleAccount_Handler,
+		},
+		{
+			MethodName: "GetGoogleAccount",
+			Handler:    _Site_GetGoogleAccount_Handler,
+		},
+		{
+			MethodName: "DeleteGoogleAccount",
+			Handler:    _Site_DeleteGoogleAccount_Handler,
+		},
+		{
+			MethodName: "SetIndexNowAccount",
+			Handler:    _Site_SetIndexNowAccount_Handler,
+		},
+		{
+			MethodName: "GetIndexNowAccount",
+			Handler:    _Site_GetIndexNowAccount_Handler,
+		},
+		{
+			MethodName: "DeleteIndexNowAccount",
+			Handler:    _Site_DeleteIndexNowAccount_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}

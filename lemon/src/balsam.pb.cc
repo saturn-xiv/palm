@@ -802,11 +802,397 @@ struct AttachmentIndexResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentIndexResponseDefaultTypeInternal _AttachmentIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR LocaleSetRequest::LocaleSetRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.message_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct LocaleSetRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleSetRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleSetRequestDefaultTypeInternal() {}
+  union {
+    LocaleSetRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleSetRequestDefaultTypeInternal _LocaleSetRequest_default_instance_;
+PROTOBUF_CONSTEXPR LocaleIndexResponse_Item::LocaleIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.message_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct LocaleIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    LocaleIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleIndexResponse_ItemDefaultTypeInternal _LocaleIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR LocaleIndexResponse::LocaleIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct LocaleIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleIndexResponseDefaultTypeInternal() {}
+  union {
+    LocaleIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleIndexResponseDefaultTypeInternal _LocaleIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR LocaleByLangRequest::LocaleByLangRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct LocaleByLangRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocaleByLangRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocaleByLangRequestDefaultTypeInternal() {}
+  union {
+    LocaleByLangRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocaleByLangRequestDefaultTypeInternal _LocaleByLangRequest_default_instance_;
+PROTOBUF_CONSTEXPR LeaveWordCreateRequest::LeaveWordCreateRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.body_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.editor_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct LeaveWordCreateRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LeaveWordCreateRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LeaveWordCreateRequestDefaultTypeInternal() {}
+  union {
+    LeaveWordCreateRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LeaveWordCreateRequestDefaultTypeInternal _LeaveWordCreateRequest_default_instance_;
+PROTOBUF_CONSTEXPR LeaveWordIndexResponse_Item::LeaveWordIndexResponse_Item(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.ip_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.body_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.published_at_)*/nullptr
+  , /*decltype(_impl_.deleted_at_)*/nullptr
+  , /*decltype(_impl_.updated_at_)*/nullptr
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.editor_)*/0
+  , /*decltype(_impl_.status_)*/0} {}
+struct LeaveWordIndexResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LeaveWordIndexResponse_ItemDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LeaveWordIndexResponse_ItemDefaultTypeInternal() {}
+  union {
+    LeaveWordIndexResponse_Item _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LeaveWordIndexResponse_ItemDefaultTypeInternal _LeaveWordIndexResponse_Item_default_instance_;
+PROTOBUF_CONSTEXPR LeaveWordIndexResponse::LeaveWordIndexResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.item_)*/{}
+  , /*decltype(_impl_.total_)*/uint64_t{0u}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct LeaveWordIndexResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LeaveWordIndexResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LeaveWordIndexResponseDefaultTypeInternal() {}
+  union {
+    LeaveWordIndexResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LeaveWordIndexResponseDefaultTypeInternal _LeaveWordIndexResponse_default_instance_;
+PROTOBUF_CONSTEXPR SiteStatusResponse_Redis::SiteStatusResponse_Redis(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.info_)*/{}
+  , /*decltype(_impl_.nodes_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteStatusResponse_RedisDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteStatusResponse_RedisDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteStatusResponse_RedisDefaultTypeInternal() {}
+  union {
+    SiteStatusResponse_Redis _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteStatusResponse_RedisDefaultTypeInternal _SiteStatusResponse_Redis_default_instance_;
+PROTOBUF_CONSTEXPR SiteStatusResponse_PostgreSql::SiteStatusResponse_PostgreSql(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.versions_)*/{}
+  , /*decltype(_impl_.version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteStatusResponse_PostgreSqlDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteStatusResponse_PostgreSqlDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteStatusResponse_PostgreSqlDefaultTypeInternal() {}
+  union {
+    SiteStatusResponse_PostgreSql _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteStatusResponse_PostgreSqlDefaultTypeInternal _SiteStatusResponse_PostgreSql_default_instance_;
+PROTOBUF_CONSTEXPR SiteStatusResponse_OpenSearch::SiteStatusResponse_OpenSearch(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.plugins_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteStatusResponse_OpenSearchDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteStatusResponse_OpenSearchDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteStatusResponse_OpenSearchDefaultTypeInternal() {}
+  union {
+    SiteStatusResponse_OpenSearch _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteStatusResponse_OpenSearchDefaultTypeInternal _SiteStatusResponse_OpenSearch_default_instance_;
+PROTOBUF_CONSTEXPR SiteStatusResponse::SiteStatusResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.postgresql_)*/nullptr
+  , /*decltype(_impl_.redis_)*/nullptr
+  , /*decltype(_impl_.opensearch_)*/nullptr
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteStatusResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteStatusResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteStatusResponseDefaultTypeInternal() {}
+  union {
+    SiteStatusResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteStatusResponseDefaultTypeInternal _SiteStatusResponse_default_instance_;
+PROTOBUF_CONSTEXPR SiteIndexNowAccount_WebSiteVerify::SiteIndexNowAccount_WebSiteVerify(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.key_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteIndexNowAccount_WebSiteVerifyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteIndexNowAccount_WebSiteVerifyDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteIndexNowAccount_WebSiteVerifyDefaultTypeInternal() {}
+  union {
+    SiteIndexNowAccount_WebSiteVerify _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteIndexNowAccount_WebSiteVerifyDefaultTypeInternal _SiteIndexNowAccount_WebSiteVerify_default_instance_;
+PROTOBUF_CONSTEXPR SiteIndexNowAccount::SiteIndexNowAccount(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.web_site_verify_)*/nullptr} {}
+struct SiteIndexNowAccountDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteIndexNowAccountDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteIndexNowAccountDefaultTypeInternal() {}
+  union {
+    SiteIndexNowAccount _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteIndexNowAccountDefaultTypeInternal _SiteIndexNowAccount_default_instance_;
+PROTOBUF_CONSTEXPR SiteGoogleAccount_WebSiteVerify::SiteGoogleAccount_WebSiteVerify(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteGoogleAccount_WebSiteVerifyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteGoogleAccount_WebSiteVerifyDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteGoogleAccount_WebSiteVerifyDefaultTypeInternal() {}
+  union {
+    SiteGoogleAccount_WebSiteVerify _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteGoogleAccount_WebSiteVerifyDefaultTypeInternal _SiteGoogleAccount_WebSiteVerify_default_instance_;
+PROTOBUF_CONSTEXPR SiteGoogleAccount_ReCaptcha::SiteGoogleAccount_ReCaptcha(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.site_key_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.secret_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteGoogleAccount_ReCaptchaDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteGoogleAccount_ReCaptchaDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteGoogleAccount_ReCaptchaDefaultTypeInternal() {}
+  union {
+    SiteGoogleAccount_ReCaptcha _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteGoogleAccount_ReCaptchaDefaultTypeInternal _SiteGoogleAccount_ReCaptcha_default_instance_;
+PROTOBUF_CONSTEXPR SiteGoogleAccount::SiteGoogleAccount(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.web_site_verify_)*/nullptr
+  , /*decltype(_impl_.re_captcha_)*/nullptr} {}
+struct SiteGoogleAccountDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteGoogleAccountDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteGoogleAccountDefaultTypeInternal() {}
+  union {
+    SiteGoogleAccount _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteGoogleAccountDefaultTypeInternal _SiteGoogleAccount_default_instance_;
+PROTOBUF_CONSTEXPR SiteBaiduAccount_WebSiteVerify::SiteBaiduAccount_WebSiteVerify(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.content_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteBaiduAccount_WebSiteVerifyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteBaiduAccount_WebSiteVerifyDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteBaiduAccount_WebSiteVerifyDefaultTypeInternal() {}
+  union {
+    SiteBaiduAccount_WebSiteVerify _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteBaiduAccount_WebSiteVerifyDefaultTypeInternal _SiteBaiduAccount_WebSiteVerify_default_instance_;
+PROTOBUF_CONSTEXPR SiteBaiduAccount::SiteBaiduAccount(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.web_site_verify_)*/nullptr} {}
+struct SiteBaiduAccountDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteBaiduAccountDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteBaiduAccountDefaultTypeInternal() {}
+  union {
+    SiteBaiduAccount _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteBaiduAccountDefaultTypeInternal _SiteBaiduAccount_default_instance_;
+PROTOBUF_CONSTEXPR SiteGetInfoByLangRequest::SiteGetInfoByLangRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteGetInfoByLangRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteGetInfoByLangRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteGetInfoByLangRequestDefaultTypeInternal() {}
+  union {
+    SiteGetInfoByLangRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteGetInfoByLangRequestDefaultTypeInternal _SiteGetInfoByLangRequest_default_instance_;
+PROTOBUF_CONSTEXPR SiteGetInfoByLangResponse::SiteGetInfoByLangResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.subhead_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.description_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.copyright_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteGetInfoByLangResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteGetInfoByLangResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteGetInfoByLangResponseDefaultTypeInternal() {}
+  union {
+    SiteGetInfoByLangResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteGetInfoByLangResponseDefaultTypeInternal _SiteGetInfoByLangResponse_default_instance_;
+PROTOBUF_CONSTEXPR SiteLayoutResponse_Author::SiteLayoutResponse_Author(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteLayoutResponse_AuthorDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutResponse_AuthorDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutResponse_AuthorDefaultTypeInternal() {}
+  union {
+    SiteLayoutResponse_Author _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponse_AuthorDefaultTypeInternal _SiteLayoutResponse_Author_default_instance_;
+PROTOBUF_CONSTEXPR SiteLayoutResponse_CnGab::SiteLayoutResponse_CnGab(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteLayoutResponse_CnGabDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutResponse_CnGabDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutResponse_CnGabDefaultTypeInternal() {}
+  union {
+    SiteLayoutResponse_CnGab _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponse_CnGabDefaultTypeInternal _SiteLayoutResponse_CnGab_default_instance_;
+PROTOBUF_CONSTEXPR SiteLayoutResponse_CnIcp::SiteLayoutResponse_CnIcp(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteLayoutResponse_CnIcpDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutResponse_CnIcpDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutResponse_CnIcpDefaultTypeInternal() {}
+  union {
+    SiteLayoutResponse_CnIcp _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponse_CnIcpDefaultTypeInternal _SiteLayoutResponse_CnIcp_default_instance_;
+PROTOBUF_CONSTEXPR SiteLayoutResponse::SiteLayoutResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.keywords_)*/{}
+  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.subhead_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.description_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.copyright_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.languages_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.version_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.author_)*/nullptr
+  , /*decltype(_impl_.cn_icp_)*/nullptr
+  , /*decltype(_impl_.cn_gab_)*/nullptr} {}
+struct SiteLayoutResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteLayoutResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteLayoutResponseDefaultTypeInternal() {}
+  union {
+    SiteLayoutResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteLayoutResponseDefaultTypeInternal _SiteLayoutResponse_default_instance_;
+PROTOBUF_CONSTEXPR SiteInfoRequest::SiteInfoRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.lang_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.subhead_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.description_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.copyright_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteInfoRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteInfoRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteInfoRequestDefaultTypeInternal() {}
+  union {
+    SiteInfoRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteInfoRequestDefaultTypeInternal _SiteInfoRequest_default_instance_;
+PROTOBUF_CONSTEXPR SiteKeywordsRequest::SiteKeywordsRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.items_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct SiteKeywordsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteKeywordsRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteKeywordsRequestDefaultTypeInternal() {}
+  union {
+    SiteKeywordsRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteKeywordsRequestDefaultTypeInternal _SiteKeywordsRequest_default_instance_;
 }  // namespace v1
 }  // namespace balsam
 }  // namespace palm
-static ::_pb::Metadata file_level_metadata_balsam_2eproto[48];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_balsam_2eproto[4];
+static ::_pb::Metadata file_level_metadata_balsam_2eproto[74];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_balsam_2eproto[6];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_balsam_2eproto = nullptr;
 
 const uint32_t TableStruct_balsam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -1404,6 +1790,255 @@ const uint32_t TableStruct_balsam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse, _impl_.items_),
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::AttachmentIndexResponse, _impl_.total_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleSetRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleSetRequest, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleSetRequest, _impl_.code_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleSetRequest, _impl_.message_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse_Item, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse_Item, _impl_.code_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse_Item, _impl_.message_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse_Item, _impl_.updated_at_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse, _impl_.items_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleIndexResponse, _impl_.total_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleByLangRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LocaleByLangRequest, _impl_.lang_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordCreateRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordCreateRequest, _impl_.body_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordCreateRequest, _impl_.editor_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.ip_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.body_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.editor_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.status_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.published_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.deleted_at_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse_Item, _impl_.updated_at_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse, _impl_.item_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::LeaveWordIndexResponse, _impl_.total_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_Redis, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_Redis, _impl_.info_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_Redis, _impl_.nodes_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_PostgreSql, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_PostgreSql, _impl_.version_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_PostgreSql, _impl_.versions_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_OpenSearch, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse_OpenSearch, _impl_.plugins_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse, _impl_.postgresql_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse, _impl_.redis_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteStatusResponse, _impl_.opensearch_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify, _impl_.key_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteIndexNowAccount, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteIndexNowAccount, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteIndexNowAccount, _impl_.web_site_verify_),
+  0,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify, _impl_.code_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount_ReCaptcha, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount_ReCaptcha, _impl_.site_key_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount_ReCaptcha, _impl_.secret_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount, _impl_.web_site_verify_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGoogleAccount, _impl_.re_captcha_),
+  0,
+  1,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify, _impl_.code_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify, _impl_.content_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteBaiduAccount, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteBaiduAccount, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteBaiduAccount, _impl_.web_site_verify_),
+  0,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGetInfoByLangRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGetInfoByLangRequest, _impl_.lang_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGetInfoByLangResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGetInfoByLangResponse, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGetInfoByLangResponse, _impl_.subhead_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGetInfoByLangResponse, _impl_.description_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteGetInfoByLangResponse, _impl_.copyright_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_Author, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_Author, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_Author, _impl_.email_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_CnGab, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_CnGab, _impl_.code_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_CnGab, _impl_.name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_CnIcp, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse_CnIcp, _impl_.code_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.subhead_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.description_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.copyright_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.author_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.keywords_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.cn_icp_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.cn_gab_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.languages_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteLayoutResponse, _impl_.version_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteInfoRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteInfoRequest, _impl_.lang_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteInfoRequest, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteInfoRequest, _impl_.subhead_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteInfoRequest, _impl_.description_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteInfoRequest, _impl_.copyright_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteKeywordsRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::SiteKeywordsRequest, _impl_.items_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::palm::balsam::v1::IdRequest)},
@@ -1454,6 +2089,32 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 553, -1, -1, sizeof(::palm::balsam::v1::AttachmentShowResponse)},
   { 560, 576, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse_Item)},
   { 586, -1, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse)},
+  { 594, -1, -1, sizeof(::palm::balsam::v1::LocaleSetRequest)},
+  { 603, -1, -1, sizeof(::palm::balsam::v1::LocaleIndexResponse_Item)},
+  { 614, -1, -1, sizeof(::palm::balsam::v1::LocaleIndexResponse)},
+  { 622, -1, -1, sizeof(::palm::balsam::v1::LocaleByLangRequest)},
+  { 629, -1, -1, sizeof(::palm::balsam::v1::LeaveWordCreateRequest)},
+  { 637, 652, -1, sizeof(::palm::balsam::v1::LeaveWordIndexResponse_Item)},
+  { 661, -1, -1, sizeof(::palm::balsam::v1::LeaveWordIndexResponse)},
+  { 669, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_Redis)},
+  { 677, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_PostgreSql)},
+  { 685, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_OpenSearch)},
+  { 692, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse)},
+  { 701, -1, -1, sizeof(::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify)},
+  { 708, 715, -1, sizeof(::palm::balsam::v1::SiteIndexNowAccount)},
+  { 716, -1, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify)},
+  { 723, -1, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount_ReCaptcha)},
+  { 731, 739, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount)},
+  { 741, -1, -1, sizeof(::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify)},
+  { 749, 756, -1, sizeof(::palm::balsam::v1::SiteBaiduAccount)},
+  { 757, -1, -1, sizeof(::palm::balsam::v1::SiteGetInfoByLangRequest)},
+  { 764, -1, -1, sizeof(::palm::balsam::v1::SiteGetInfoByLangResponse)},
+  { 774, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_Author)},
+  { 782, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_CnGab)},
+  { 790, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_CnIcp)},
+  { 797, 814, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse)},
+  { 825, -1, -1, sizeof(::palm::balsam::v1::SiteInfoRequest)},
+  { 836, -1, -1, sizeof(::palm::balsam::v1::SiteKeywordsRequest)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1505,6 +2166,32 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::palm::balsam::v1::_AttachmentShowResponse_default_instance_._instance,
   &::palm::balsam::v1::_AttachmentIndexResponse_Item_default_instance_._instance,
   &::palm::balsam::v1::_AttachmentIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_LocaleSetRequest_default_instance_._instance,
+  &::palm::balsam::v1::_LocaleIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_LocaleIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_LocaleByLangRequest_default_instance_._instance,
+  &::palm::balsam::v1::_LeaveWordCreateRequest_default_instance_._instance,
+  &::palm::balsam::v1::_LeaveWordIndexResponse_Item_default_instance_._instance,
+  &::palm::balsam::v1::_LeaveWordIndexResponse_default_instance_._instance,
+  &::palm::balsam::v1::_SiteStatusResponse_Redis_default_instance_._instance,
+  &::palm::balsam::v1::_SiteStatusResponse_PostgreSql_default_instance_._instance,
+  &::palm::balsam::v1::_SiteStatusResponse_OpenSearch_default_instance_._instance,
+  &::palm::balsam::v1::_SiteStatusResponse_default_instance_._instance,
+  &::palm::balsam::v1::_SiteIndexNowAccount_WebSiteVerify_default_instance_._instance,
+  &::palm::balsam::v1::_SiteIndexNowAccount_default_instance_._instance,
+  &::palm::balsam::v1::_SiteGoogleAccount_WebSiteVerify_default_instance_._instance,
+  &::palm::balsam::v1::_SiteGoogleAccount_ReCaptcha_default_instance_._instance,
+  &::palm::balsam::v1::_SiteGoogleAccount_default_instance_._instance,
+  &::palm::balsam::v1::_SiteBaiduAccount_WebSiteVerify_default_instance_._instance,
+  &::palm::balsam::v1::_SiteBaiduAccount_default_instance_._instance,
+  &::palm::balsam::v1::_SiteGetInfoByLangRequest_default_instance_._instance,
+  &::palm::balsam::v1::_SiteGetInfoByLangResponse_default_instance_._instance,
+  &::palm::balsam::v1::_SiteLayoutResponse_Author_default_instance_._instance,
+  &::palm::balsam::v1::_SiteLayoutResponse_CnGab_default_instance_._instance,
+  &::palm::balsam::v1::_SiteLayoutResponse_CnIcp_default_instance_._instance,
+  &::palm::balsam::v1::_SiteLayoutResponse_default_instance_._instance,
+  &::palm::balsam::v1::_SiteInfoRequest_default_instance_._instance,
+  &::palm::balsam::v1::_SiteKeywordsRequest_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_balsam_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -1676,134 +2363,243 @@ const char descriptor_table_protodef_balsam_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\001\001\0223\n\ndeleted_at\030\t \001(\0132\032.google.protobuf"
   ".TimestampH\001\210\001\001\022.\n\nupdated_at\030\n \001(\0132\032.go"
   "ogle.protobuf.TimestampB\017\n\r_published_at"
-  "B\r\n\013_deleted_at2\241\001\n\003Aes\022L\n\007Encrypt\022\037.pal"
-  "m.balsam.v1.AesPlainMessage\032\036.palm.balsa"
-  "m.v1.AesCodeMessage\"\000\022L\n\007Decrypt\022\036.palm."
-  "balsam.v1.AesCodeMessage\032\037.palm.balsam.v"
-  "1.AesPlainMessage\"\0002\241\001\n\003Jwt\022I\n\004Sign\022\036.pa"
-  "lm.balsam.v1.JwtSignRequest\032\037.palm.balsa"
-  "m.v1.JwtSignResponse\"\000\022O\n\006Verify\022 .palm."
-  "balsam.v1.JwtVerifyRequest\032!.palm.balsam"
-  ".v1.JwtVerifyResponse\"\0002\232\001\n\004HMac\022K\n\004Sign"
-  "\022\037.palm.balsam.v1.HMacSignRequest\032 .palm"
-  ".balsam.v1.HMacSignResponse\"\000\022E\n\006Verify\022"
-  "!.palm.balsam.v1.HMacVerifyRequest\032\026.goo"
-  "gle.protobuf.Empty\"\0002\275\005\n\004User\022;\n\004Lock\022\031."
-  "palm.balsam.v1.IdRequest\032\026.google.protob"
-  "uf.Empty\"\000\022=\n\006Unlock\022\031.palm.balsam.v1.Id"
-  "Request\032\026.google.protobuf.Empty\"\000\022>\n\007Dis"
-  "able\022\031.palm.balsam.v1.IdRequest\032\026.google"
-  ".protobuf.Empty\"\000\022=\n\006Enable\022\031.palm.balsa"
-  "m.v1.IdRequest\032\026.google.protobuf.Empty\"\000"
-  "\022G\n\004Logs\022\033.palm.balsam.v1.LogsRequest\032 ."
-  "palm.balsam.v1.UserLogsResponse\"\000\022;\n\007Sig"
-  "nOut\022\026.google.protobuf.Empty\032\026.google.pr"
-  "otobuf.Empty\"\000\022C\n\005Index\022\025.palm.balsam.v1"
-  ".Pager\032!.palm.balsam.v1.UserIndexRespons"
-  "e\"\000\022S\n\rUpdateProfile\022(.palm.balsam.v1.Us"
-  "erUpdateProfileRequest\032\026.google.protobuf"
-  ".Empty\"\000\022K\n\004ById\022\031.palm.balsam.v1.IdRequ"
-  "est\032&.palm.balsam.v1.UserIndexResponse.I"
-  "tem\"\000\022M\n\005ByUid\022\032.palm.balsam.v1.UidReque"
-  "st\032&.palm.balsam.v1.UserIndexResponse.It"
-  "em\"\0002\311\t\n\tEmailUser\022X\n\006SignIn\022(.palm.bals"
-  "am.v1.UserSignInByEmailRequest\032\".palm.ba"
-  "lsam.v1.UserSignInResponse\"\000\022X\n\006SignUp\022("
-  ".palm.balsam.v1.UserSignUpByEmailRequest"
-  "\032\".palm.balsam.v1.UserSignInResponse\"\000\022N"
-  "\n\016ConfirmByEmail\022\".palm.balsam.v1.UserBy"
-  "EmailRequest\032\026.google.protobuf.Empty\"\000\022N"
-  "\n\016ConfirmByToken\022\".palm.balsam.v1.UserBy"
-  "TokenRequest\032\026.google.protobuf.Empty\"\000\022M"
-  "\n\rUnlockByEmail\022\".palm.balsam.v1.UserByE"
-  "mailRequest\032\026.google.protobuf.Empty\"\000\022M\n"
-  "\rUnlockByToken\022\".palm.balsam.v1.UserByTo"
-  "kenRequest\032\026.google.protobuf.Empty\"\000\022N\n\016"
-  "ForgotPassword\022\".palm.balsam.v1.UserByEm"
-  "ailRequest\032\026.google.protobuf.Empty\"\000\022S\n\r"
-  "ResetPassword\022(.palm.balsam.v1.UserReset"
-  "PasswordRequest\032\026.google.protobuf.Empty\""
-  "\000\022>\n\007Confirm\022\031.palm.balsam.v1.IdRequest\032"
-  "\026.google.protobuf.Empty\"\000\022>\n\007Disable\022\031.p"
-  "alm.balsam.v1.IdRequest\032\026.google.protobu"
-  "f.Empty\"\000\022=\n\006Enable\022\031.palm.balsam.v1.IdR"
-  "equest\032\026.google.protobuf.Empty\"\000\022H\n\005Inde"
-  "x\022\025.palm.balsam.v1.Pager\032&.palm.balsam.v"
-  "1.EmailUserIndexResponse\"\000\022P\n\004ById\022\031.pal"
-  "m.balsam.v1.IdRequest\032+.palm.balsam.v1.E"
-  "mailUserIndexResponse.Item\"\000\022g\n\nByNickna"
-  "me\022*.palm.balsam.v1.EmailUserByNicknameR"
-  "equest\032+.palm.balsam.v1.EmailUserIndexRe"
-  "sponse.Item\"\000\022a\n\007ByEmail\022\'.palm.balsam.v"
-  "1.EmailUserByEmailRequest\032+.palm.balsam."
-  "v1.EmailUserIndexResponse.Item\"\0002\260\003\n\020Goo"
-  "gleOauth2User\022>\n\007Disable\022\031.palm.balsam.v"
-  "1.IdRequest\032\026.google.protobuf.Empty\"\000\022=\n"
-  "\006Enable\022\031.palm.balsam.v1.IdRequest\032\026.goo"
-  "gle.protobuf.Empty\"\000\022O\n\005Index\022\025.palm.bal"
-  "sam.v1.Pager\032-.palm.balsam.v1.GoogleOaut"
-  "h2UserIndexResponse\"\000\022W\n\004ById\022\031.palm.bal"
-  "sam.v1.IdRequest\0322.palm.balsam.v1.Google"
-  "Oauth2UserIndexResponse.Item\"\000\022s\n\tBySubj"
-  "ect\0220.palm.balsam.v1.GoogleOauth2UserByS"
-  "ubjectRequest\0322.palm.balsam.v1.GoogleOau"
-  "th2UserIndexResponse.Item\"\0002\240\004\n\020WechatOa"
-  "uth2User\022>\n\007Disable\022\031.palm.balsam.v1.IdR"
+  "B\r\n\013_deleted_at\"\?\n\020LocaleSetRequest\022\014\n\004l"
+  "ang\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\022\017\n\007message\030\003 \001(\t"
+  "\"\316\001\n\023LocaleIndexResponse\0227\n\005items\030\001 \003(\0132"
+  "(.palm.balsam.v1.LocaleIndexResponse.Ite"
+  "m\022\r\n\005total\030\002 \001(\004\032o\n\004Item\022\n\n\002id\030\001 \001(\004\022\014\n\004"
+  "lang\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007message\030\004 \001("
+  "\t\022.\n\nupdated_at\030\005 \001(\0132\032.google.protobuf."
+  "Timestamp\"#\n\023LocaleByLangRequest\022\014\n\004lang"
+  "\030\001 \001(\t\"6\n\026LeaveWordCreateRequest\022\014\n\004body"
+  "\030\001 \001(\t\022\016\n\006editor\030\002 \001(\t\"\362\003\n\026LeaveWordInde"
+  "xResponse\0229\n\004item\030\001 \003(\0132+.palm.balsam.v1"
+  ".LeaveWordIndexResponse.Item\022\r\n\005total\030\002 "
+  "\001(\004\032\215\003\n\004Item\022\n\n\002id\030\001 \001(\004\022\014\n\004lang\030\002 \001(\t\022\n"
+  "\n\002ip\030\003 \001(\t\022\014\n\004body\030\004 \001(\t\022+\n\006editor\030\005 \001(\016"
+  "2\033.palm.balsam.v1.MediaEditor\022B\n\006status\030"
+  "\006 \001(\01622.palm.balsam.v1.LeaveWordIndexRes"
+  "ponse.Item.Status\0225\n\014published_at\030\007 \001(\0132"
+  "\032.google.protobuf.TimestampH\000\210\001\001\0223\n\ndele"
+  "ted_at\030\010 \001(\0132\032.google.protobuf.Timestamp"
+  "H\001\210\001\001\022.\n\nupdated_at\030\t \001(\0132\032.google.proto"
+  "buf.Timestamp\"$\n\006Status\022\013\n\007Pending\020\000\022\r\n\t"
+  "Completed\020\001B\017\n\r_published_atB\r\n\013_deleted"
+  "_at\"\311\002\n\022SiteStatusResponse\022A\n\npostgresql"
+  "\030\001 \001(\0132-.palm.balsam.v1.SiteStatusRespon"
+  "se.PostgreSql\0227\n\005redis\030\002 \001(\0132(.palm.bals"
+  "am.v1.SiteStatusResponse.Redis\022A\n\nopense"
+  "arch\030\003 \001(\0132-.palm.balsam.v1.SiteStatusRe"
+  "sponse.OpenSearch\032$\n\005Redis\022\014\n\004info\030\001 \003(\t"
+  "\022\r\n\005nodes\030\002 \003(\t\032/\n\nPostgreSql\022\017\n\007version"
+  "\030\001 \001(\t\022\020\n\010versions\030\002 \003(\t\032\035\n\nOpenSearch\022\017"
+  "\n\007plugins\030\001 \001(\t\"\230\001\n\023SiteIndexNowAccount\022"
+  "O\n\017web_site_verify\030\001 \001(\01321.palm.balsam.v"
+  "1.SiteIndexNowAccount.WebSiteVerifyH\000\210\001\001"
+  "\032\034\n\rWebSiteVerify\022\013\n\003key\030\001 \001(\tB\022\n\020_web_s"
+  "ite_verify\"\231\002\n\021SiteGoogleAccount\022M\n\017web_"
+  "site_verify\030\001 \001(\0132/.palm.balsam.v1.SiteG"
+  "oogleAccount.WebSiteVerifyH\000\210\001\001\022D\n\nre_ca"
+  "ptcha\030\002 \001(\0132+.palm.balsam.v1.SiteGoogleA"
+  "ccount.ReCaptchaH\001\210\001\001\032\035\n\rWebSiteVerify\022\014"
+  "\n\004code\030\001 \001(\t\032-\n\tReCaptcha\022\020\n\010site_key\030\001 "
+  "\001(\t\022\016\n\006secret\030\002 \001(\tB\022\n\020_web_site_verifyB"
+  "\r\n\013_re_captcha\"\244\001\n\020SiteBaiduAccount\022L\n\017w"
+  "eb_site_verify\030\001 \001(\0132..palm.balsam.v1.Si"
+  "teBaiduAccount.WebSiteVerifyH\000\210\001\001\032.\n\rWeb"
+  "SiteVerify\022\014\n\004code\030\001 \001(\t\022\017\n\007content\030\002 \001("
+  "\tB\022\n\020_web_site_verify\"(\n\030SiteGetInfoByLa"
+  "ngRequest\022\014\n\004lang\030\001 \001(\t\"c\n\031SiteGetInfoBy"
+  "LangResponse\022\r\n\005title\030\001 \001(\t\022\017\n\007subhead\030\002"
+  " \001(\t\022\023\n\013description\030\003 \001(\t\022\021\n\tcopyright\030\004"
+  " \001(\t\"\322\003\n\022SiteLayoutResponse\022\r\n\005title\030\001 \001"
+  "(\t\022\017\n\007subhead\030\002 \001(\t\022\023\n\013description\030\003 \001(\t"
+  "\022\021\n\tcopyright\030\004 \001(\t\0229\n\006author\030\005 \001(\0132).pa"
+  "lm.balsam.v1.SiteLayoutResponse.Author\022\020"
+  "\n\010keywords\030\006 \003(\t\022=\n\006cn_icp\030\013 \001(\0132(.palm."
+  "balsam.v1.SiteLayoutResponse.CnIcpH\000\210\001\001\022"
+  "=\n\006cn_gab\030\014 \001(\0132(.palm.balsam.v1.SiteLay"
+  "outResponse.CnGabH\001\210\001\001\022\014\n\004lang\030a \001(\t\022\021\n\t"
+  "languages\030b \001(\t\022\017\n\007version\030c \001(\t\032%\n\006Auth"
+  "or\022\014\n\004name\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\032#\n\005CnGab"
+  "\022\014\n\004code\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\032\025\n\005CnIcp\022\014\n"
+  "\004code\030\001 \001(\tB\t\n\007_cn_icpB\t\n\007_cn_gab\"g\n\017Sit"
+  "eInfoRequest\022\014\n\004lang\030\001 \001(\t\022\r\n\005title\030\002 \001("
+  "\t\022\017\n\007subhead\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022"
+  "\021\n\tcopyright\030\005 \001(\t\"$\n\023SiteKeywordsReques"
+  "t\022\r\n\005items\030\001 \003(\t*4\n\013MediaEditor\022\014\n\010Texta"
+  "rea\020\000\022\014\n\010Markdown\020\002\022\t\n\005Quill\020\0032\241\001\n\003Aes\022L"
+  "\n\007Encrypt\022\037.palm.balsam.v1.AesPlainMessa"
+  "ge\032\036.palm.balsam.v1.AesCodeMessage\"\000\022L\n\007"
+  "Decrypt\022\036.palm.balsam.v1.AesCodeMessage\032"
+  "\037.palm.balsam.v1.AesPlainMessage\"\0002\241\001\n\003J"
+  "wt\022I\n\004Sign\022\036.palm.balsam.v1.JwtSignReque"
+  "st\032\037.palm.balsam.v1.JwtSignResponse\"\000\022O\n"
+  "\006Verify\022 .palm.balsam.v1.JwtVerifyReques"
+  "t\032!.palm.balsam.v1.JwtVerifyResponse\"\0002\232"
+  "\001\n\004HMac\022K\n\004Sign\022\037.palm.balsam.v1.HMacSig"
+  "nRequest\032 .palm.balsam.v1.HMacSignRespon"
+  "se\"\000\022E\n\006Verify\022!.palm.balsam.v1.HMacVeri"
+  "fyRequest\032\026.google.protobuf.Empty\"\0002\275\005\n\004"
+  "User\022;\n\004Lock\022\031.palm.balsam.v1.IdRequest\032"
+  "\026.google.protobuf.Empty\"\000\022=\n\006Unlock\022\031.pa"
+  "lm.balsam.v1.IdRequest\032\026.google.protobuf"
+  ".Empty\"\000\022>\n\007Disable\022\031.palm.balsam.v1.IdR"
   "equest\032\026.google.protobuf.Empty\"\000\022=\n\006Enab"
   "le\022\031.palm.balsam.v1.IdRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\022O\n\005Index\022\025.palm.balsam.v"
-  "1.Pager\032-.palm.balsam.v1.WechatOauth2Use"
-  "rIndexResponse\"\000\022W\n\004ById\022\031.palm.balsam.v"
-  "1.IdRequest\0322.palm.balsam.v1.WechatOauth"
-  "2UserIndexResponse.Item\"\000\022i\n\tByUnionId\022&"
-  ".palm.balsam.v1.WechatByUnionIdRequest\0322"
-  ".palm.balsam.v1.WechatOauth2UserIndexRes"
-  "ponse.Item\"\000\022x\n\021ByAppIdAndUnionId\022-.palm"
-  ".balsam.v1.WechatByAppIdAndOpenIdRequest"
-  "\0322.palm.balsam.v1.WechatOauth2UserIndexR"
-  "esponse.Item\"\0002\271\004\n\025WechatMiniProgramUser"
+  "rotobuf.Empty\"\000\022G\n\004Logs\022\033.palm.balsam.v1"
+  ".LogsRequest\032 .palm.balsam.v1.UserLogsRe"
+  "sponse\"\000\022;\n\007SignOut\022\026.google.protobuf.Em"
+  "pty\032\026.google.protobuf.Empty\"\000\022C\n\005Index\022\025"
+  ".palm.balsam.v1.Pager\032!.palm.balsam.v1.U"
+  "serIndexResponse\"\000\022S\n\rUpdateProfile\022(.pa"
+  "lm.balsam.v1.UserUpdateProfileRequest\032\026."
+  "google.protobuf.Empty\"\000\022K\n\004ById\022\031.palm.b"
+  "alsam.v1.IdRequest\032&.palm.balsam.v1.User"
+  "IndexResponse.Item\"\000\022M\n\005ByUid\022\032.palm.bal"
+  "sam.v1.UidRequest\032&.palm.balsam.v1.UserI"
+  "ndexResponse.Item\"\0002\311\t\n\tEmailUser\022X\n\006Sig"
+  "nIn\022(.palm.balsam.v1.UserSignInByEmailRe"
+  "quest\032\".palm.balsam.v1.UserSignInRespons"
+  "e\"\000\022X\n\006SignUp\022(.palm.balsam.v1.UserSignU"
+  "pByEmailRequest\032\".palm.balsam.v1.UserSig"
+  "nInResponse\"\000\022N\n\016ConfirmByEmail\022\".palm.b"
+  "alsam.v1.UserByEmailRequest\032\026.google.pro"
+  "tobuf.Empty\"\000\022N\n\016ConfirmByToken\022\".palm.b"
+  "alsam.v1.UserByTokenRequest\032\026.google.pro"
+  "tobuf.Empty\"\000\022M\n\rUnlockByEmail\022\".palm.ba"
+  "lsam.v1.UserByEmailRequest\032\026.google.prot"
+  "obuf.Empty\"\000\022M\n\rUnlockByToken\022\".palm.bal"
+  "sam.v1.UserByTokenRequest\032\026.google.proto"
+  "buf.Empty\"\000\022N\n\016ForgotPassword\022\".palm.bal"
+  "sam.v1.UserByEmailRequest\032\026.google.proto"
+  "buf.Empty\"\000\022S\n\rResetPassword\022(.palm.bals"
+  "am.v1.UserResetPasswordRequest\032\026.google."
+  "protobuf.Empty\"\000\022>\n\007Confirm\022\031.palm.balsa"
+  "m.v1.IdRequest\032\026.google.protobuf.Empty\"\000"
   "\022>\n\007Disable\022\031.palm.balsam.v1.IdRequest\032\026"
   ".google.protobuf.Empty\"\000\022=\n\006Enable\022\031.pal"
   "m.balsam.v1.IdRequest\032\026.google.protobuf."
-  "Empty\"\000\022T\n\005Index\022\025.palm.balsam.v1.Pager\032"
-  "2.palm.balsam.v1.WechatMiniProgramUserIn"
-  "dexResponse\"\000\022\\\n\004ById\022\031.palm.balsam.v1.I"
-  "dRequest\0327.palm.balsam.v1.WechatMiniProg"
-  "ramUserIndexResponse.Item\"\000\022n\n\tByUnionId"
-  "\022&.palm.balsam.v1.WechatByUnionIdRequest"
-  "\0327.palm.balsam.v1.WechatMiniProgramUserI"
-  "ndexResponse.Item\"\000\022}\n\021ByAppIdAndUnionId"
-  "\022-.palm.balsam.v1.WechatByAppIdAndOpenId"
-  "Request\0327.palm.balsam.v1.WechatMiniProgr"
-  "amUserIndexResponse.Item\"\0002\336\001\n\007Session\022>"
-  "\n\007Disable\022\031.palm.balsam.v1.IdRequest\032\026.g"
-  "oogle.protobuf.Empty\"\000\022F\n\005Index\022\025.palm.b"
-  "alsam.v1.Pager\032$.palm.balsam.v1.SessionI"
-  "ndexResponse\"\000\022K\n\006ByUser\022\031.palm.balsam.v"
-  "1.IdRequest\032$.palm.balsam.v1.SessionInde"
-  "xResponse\"\0002\227\006\n\nAttachment\022>\n\007Disable\022\031."
-  "palm.balsam.v1.IdRequest\032\026.google.protob"
-  "uf.Empty\"\000\022I\n\005Index\022\025.palm.balsam.v1.Pag"
-  "er\032\'.palm.balsam.v1.AttachmentIndexRespo"
-  "nse\"\000\022O\n\010SetTitle\022).palm.balsam.v1.Attac"
-  "hmentSetTitleRequest\032\026.google.protobuf.E"
-  "mpty\"\000\022Q\n\004ById\022\031.palm.balsam.v1.IdReques"
-  "t\032,.palm.balsam.v1.AttachmentIndexRespon"
-  "se.Item\"\000\022N\n\006ByUser\022\031.palm.balsam.v1.IdR"
-  "equest\032\'.palm.balsam.v1.AttachmentIndexR"
-  "esponse\"\000\022V\n\016ByResourceType\022\031.palm.balsa"
-  "m.v1.IdRequest\032\'.palm.balsam.v1.Attachme"
-  "ntIndexResponse\"\000\0229\n\005Clear\022\026.google.prot"
-  "obuf.Empty\032\026.google.protobuf.Empty\"\000\022d\n\n"
-  "ByResource\022+.palm.balsam.v1.AttachmentBy"
-  "ResourceRequest\032\'.palm.balsam.v1.Attachm"
-  "entIndexResponse\"\000\022K\n\006Create\022\'.palm.bals"
-  "am.v1.AttachmentCreateRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\022D\n\rSetUploadedAt\022\031.palm."
-  "balsam.v1.IdRequest\032\026.google.protobuf.Em"
-  "pty\"\000Bf\n,com.github.saturn_xiv.palm.plug"
-  "ins.balsam.v1P\001Z4github.com/saturn-xiv/p"
-  "alm/atropa/balsam/services/v2b\006proto3"
+  "Empty\"\000\022H\n\005Index\022\025.palm.balsam.v1.Pager\032"
+  "&.palm.balsam.v1.EmailUserIndexResponse\""
+  "\000\022P\n\004ById\022\031.palm.balsam.v1.IdRequest\032+.p"
+  "alm.balsam.v1.EmailUserIndexResponse.Ite"
+  "m\"\000\022g\n\nByNickname\022*.palm.balsam.v1.Email"
+  "UserByNicknameRequest\032+.palm.balsam.v1.E"
+  "mailUserIndexResponse.Item\"\000\022a\n\007ByEmail\022"
+  "\'.palm.balsam.v1.EmailUserByEmailRequest"
+  "\032+.palm.balsam.v1.EmailUserIndexResponse"
+  ".Item\"\0002\260\003\n\020GoogleOauth2User\022>\n\007Disable\022"
+  "\031.palm.balsam.v1.IdRequest\032\026.google.prot"
+  "obuf.Empty\"\000\022=\n\006Enable\022\031.palm.balsam.v1."
+  "IdRequest\032\026.google.protobuf.Empty\"\000\022O\n\005I"
+  "ndex\022\025.palm.balsam.v1.Pager\032-.palm.balsa"
+  "m.v1.GoogleOauth2UserIndexResponse\"\000\022W\n\004"
+  "ById\022\031.palm.balsam.v1.IdRequest\0322.palm.b"
+  "alsam.v1.GoogleOauth2UserIndexResponse.I"
+  "tem\"\000\022s\n\tBySubject\0220.palm.balsam.v1.Goog"
+  "leOauth2UserBySubjectRequest\0322.palm.bals"
+  "am.v1.GoogleOauth2UserIndexResponse.Item"
+  "\"\0002\240\004\n\020WechatOauth2User\022>\n\007Disable\022\031.pal"
+  "m.balsam.v1.IdRequest\032\026.google.protobuf."
+  "Empty\"\000\022=\n\006Enable\022\031.palm.balsam.v1.IdReq"
+  "uest\032\026.google.protobuf.Empty\"\000\022O\n\005Index\022"
+  "\025.palm.balsam.v1.Pager\032-.palm.balsam.v1."
+  "WechatOauth2UserIndexResponse\"\000\022W\n\004ById\022"
+  "\031.palm.balsam.v1.IdRequest\0322.palm.balsam"
+  ".v1.WechatOauth2UserIndexResponse.Item\"\000"
+  "\022i\n\tByUnionId\022&.palm.balsam.v1.WechatByU"
+  "nionIdRequest\0322.palm.balsam.v1.WechatOau"
+  "th2UserIndexResponse.Item\"\000\022x\n\021ByAppIdAn"
+  "dUnionId\022-.palm.balsam.v1.WechatByAppIdA"
+  "ndOpenIdRequest\0322.palm.balsam.v1.WechatO"
+  "auth2UserIndexResponse.Item\"\0002\271\004\n\025Wechat"
+  "MiniProgramUser\022>\n\007Disable\022\031.palm.balsam"
+  ".v1.IdRequest\032\026.google.protobuf.Empty\"\000\022"
+  "=\n\006Enable\022\031.palm.balsam.v1.IdRequest\032\026.g"
+  "oogle.protobuf.Empty\"\000\022T\n\005Index\022\025.palm.b"
+  "alsam.v1.Pager\0322.palm.balsam.v1.WechatMi"
+  "niProgramUserIndexResponse\"\000\022\\\n\004ById\022\031.p"
+  "alm.balsam.v1.IdRequest\0327.palm.balsam.v1"
+  ".WechatMiniProgramUserIndexResponse.Item"
+  "\"\000\022n\n\tByUnionId\022&.palm.balsam.v1.WechatB"
+  "yUnionIdRequest\0327.palm.balsam.v1.WechatM"
+  "iniProgramUserIndexResponse.Item\"\000\022}\n\021By"
+  "AppIdAndUnionId\022-.palm.balsam.v1.WechatB"
+  "yAppIdAndOpenIdRequest\0327.palm.balsam.v1."
+  "WechatMiniProgramUserIndexResponse.Item\""
+  "\0002\336\001\n\007Session\022>\n\007Disable\022\031.palm.balsam.v"
+  "1.IdRequest\032\026.google.protobuf.Empty\"\000\022F\n"
+  "\005Index\022\025.palm.balsam.v1.Pager\032$.palm.bal"
+  "sam.v1.SessionIndexResponse\"\000\022K\n\006ByUser\022"
+  "\031.palm.balsam.v1.IdRequest\032$.palm.balsam"
+  ".v1.SessionIndexResponse\"\0002\227\006\n\nAttachmen"
+  "t\022>\n\007Disable\022\031.palm.balsam.v1.IdRequest\032"
+  "\026.google.protobuf.Empty\"\000\022I\n\005Index\022\025.pal"
+  "m.balsam.v1.Pager\032\'.palm.balsam.v1.Attac"
+  "hmentIndexResponse\"\000\022O\n\010SetTitle\022).palm."
+  "balsam.v1.AttachmentSetTitleRequest\032\026.go"
+  "ogle.protobuf.Empty\"\000\022Q\n\004ById\022\031.palm.bal"
+  "sam.v1.IdRequest\032,.palm.balsam.v1.Attach"
+  "mentIndexResponse.Item\"\000\022N\n\006ByUser\022\031.pal"
+  "m.balsam.v1.IdRequest\032\'.palm.balsam.v1.A"
+  "ttachmentIndexResponse\"\000\022V\n\016ByResourceTy"
+  "pe\022\031.palm.balsam.v1.IdRequest\032\'.palm.bal"
+  "sam.v1.AttachmentIndexResponse\"\000\0229\n\005Clea"
+  "r\022\026.google.protobuf.Empty\032\026.google.proto"
+  "buf.Empty\"\000\022d\n\nByResource\022+.palm.balsam."
+  "v1.AttachmentByResourceRequest\032\'.palm.ba"
+  "lsam.v1.AttachmentIndexResponse\"\000\022K\n\006Cre"
+  "ate\022\'.palm.balsam.v1.AttachmentCreateReq"
+  "uest\032\026.google.protobuf.Empty\"\000\022D\n\rSetUpl"
+  "oadedAt\022\031.palm.balsam.v1.IdRequest\032\026.goo"
+  "gle.protobuf.Empty\"\0002\350\001\n\006Locale\022A\n\003Set\022 "
+  ".palm.balsam.v1.LocaleSetRequest\032\026.googl"
+  "e.protobuf.Empty\"\000\022E\n\005Index\022\025.palm.balsa"
+  "m.v1.Pager\032#.palm.balsam.v1.LocaleIndexR"
+  "esponse\"\000\022T\n\006ByLang\022#.palm.balsam.v1.Loc"
+  "aleByLangRequest\032#.palm.balsam.v1.Locale"
+  "IndexResponse\"\0002\241\002\n\tLeaveWord\022J\n\006Create\022"
+  "&.palm.balsam.v1.LeaveWordCreateRequest\032"
+  "\026.google.protobuf.Empty\"\000\022H\n\005Index\022\025.pal"
+  "m.balsam.v1.Pager\032&.palm.balsam.v1.Leave"
+  "WordIndexResponse\"\000\022>\n\007Publish\022\031.palm.ba"
+  "lsam.v1.IdRequest\032\026.google.protobuf.Empt"
+  "y\"\000\022>\n\007Destroy\022\031.palm.balsam.v1.IdReques"
+  "t\032\026.google.protobuf.Empty\"\0002\252\t\n\004Site\022F\n\006"
+  "Status\022\026.google.protobuf.Empty\032\".palm.ba"
+  "lsam.v1.SiteStatusResponse\"\000\022F\n\006Layout\022\026"
+  ".google.protobuf.Empty\032\".palm.balsam.v1."
+  "SiteLayoutResponse\"\000\022f\n\rGetInfoByLang\022(."
+  "palm.balsam.v1.SiteGetInfoByLangRequest\032"
+  ").palm.balsam.v1.SiteGetInfoByLangRespon"
+  "se\"\000\022D\n\007SetInfo\022\037.palm.balsam.v1.SiteInf"
+  "oRequest\032\026.google.protobuf.Empty\"\000\022L\n\013Se"
+  "tKeywords\022#.palm.balsam.v1.SiteKeywordsR"
+  "equest\032\026.google.protobuf.Empty\"\000\022P\n\tSetA"
+  "uthor\022).palm.balsam.v1.SiteLayoutRespons"
+  "e.Author\032\026.google.protobuf.Empty\"\000\022M\n\017Se"
+  "tBaiduAccount\022 .palm.balsam.v1.SiteBaidu"
+  "Account\032\026.google.protobuf.Empty\"\000\022M\n\017Get"
+  "BaiduAccount\022\026.google.protobuf.Empty\032 .p"
+  "alm.balsam.v1.SiteBaiduAccount\"\000\022F\n\022Dele"
+  "teBaiduAccount\022\026.google.protobuf.Empty\032\026"
+  ".google.protobuf.Empty\"\000\022O\n\020SetGoogleAcc"
+  "ount\022!.palm.balsam.v1.SiteGoogleAccount\032"
+  "\026.google.protobuf.Empty\"\000\022O\n\020GetGoogleAc"
+  "count\022\026.google.protobuf.Empty\032!.palm.bal"
+  "sam.v1.SiteGoogleAccount\"\000\022G\n\023DeleteGoog"
+  "leAccount\022\026.google.protobuf.Empty\032\026.goog"
+  "le.protobuf.Empty\"\000\022S\n\022SetIndexNowAccoun"
+  "t\022#.palm.balsam.v1.SiteIndexNowAccount\032\026"
+  ".google.protobuf.Empty\"\000\022S\n\022GetIndexNowA"
+  "ccount\022\026.google.protobuf.Empty\032#.palm.ba"
+  "lsam.v1.SiteIndexNowAccount\"\000\022I\n\025DeleteI"
+  "ndexNowAccount\022\026.google.protobuf.Empty\032\026"
+  ".google.protobuf.Empty\"\000Bf\n,com.github.s"
+  "aturn_xiv.palm.plugins.balsam.v1P\001Z4gith"
+  "ub.com/saturn-xiv/palm/atropa/balsam/ser"
+  "vices/v2b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_balsam_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -1812,9 +2608,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_balsam_2eproto_deps
 };
 static ::_pbi::once_flag descriptor_table_balsam_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_balsam_2eproto = {
-    false, false, 11837, descriptor_table_protodef_balsam_2eproto,
+    false, false, 16176, descriptor_table_protodef_balsam_2eproto,
     "balsam.proto",
-    &descriptor_table_balsam_2eproto_once, descriptor_table_balsam_2eproto_deps, 3, 48,
+    &descriptor_table_balsam_2eproto_once, descriptor_table_balsam_2eproto_deps, 3, 74,
     schemas, file_default_instances, TableStruct_balsam_2eproto::offsets,
     file_level_metadata_balsam_2eproto, file_level_enum_descriptors_balsam_2eproto,
     file_level_service_descriptors_balsam_2eproto,
@@ -1924,6 +2720,42 @@ constexpr WechatOauth2UserIndexResponse_Item_Lang WechatOauth2UserIndexResponse_
 constexpr WechatOauth2UserIndexResponse_Item_Lang WechatOauth2UserIndexResponse_Item::Lang_MAX;
 constexpr int WechatOauth2UserIndexResponse_Item::Lang_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LeaveWordIndexResponse_Item_Status_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_balsam_2eproto);
+  return file_level_enum_descriptors_balsam_2eproto[4];
+}
+bool LeaveWordIndexResponse_Item_Status_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr LeaveWordIndexResponse_Item_Status LeaveWordIndexResponse_Item::Pending;
+constexpr LeaveWordIndexResponse_Item_Status LeaveWordIndexResponse_Item::Completed;
+constexpr LeaveWordIndexResponse_Item_Status LeaveWordIndexResponse_Item::Status_MIN;
+constexpr LeaveWordIndexResponse_Item_Status LeaveWordIndexResponse_Item::Status_MAX;
+constexpr int LeaveWordIndexResponse_Item::Status_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MediaEditor_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_balsam_2eproto);
+  return file_level_enum_descriptors_balsam_2eproto[5];
+}
+bool MediaEditor_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -17562,6 +18394,7211 @@ void AttachmentIndexResponse::InternalSwap(AttachmentIndexResponse* other) {
       file_level_metadata_balsam_2eproto[47]);
 }
 
+// ===================================================================
+
+class LocaleSetRequest::_Internal {
+ public:
+};
+
+LocaleSetRequest::LocaleSetRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LocaleSetRequest)
+}
+LocaleSetRequest::LocaleSetRequest(const LocaleSetRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LocaleSetRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.code_){}
+    , decltype(_impl_.message_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_code().empty()) {
+    _this->_impl_.code_.Set(from._internal_code(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    _this->_impl_.message_.Set(from._internal_message(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LocaleSetRequest)
+}
+
+inline void LocaleSetRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.code_){}
+    , decltype(_impl_.message_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+LocaleSetRequest::~LocaleSetRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LocaleSetRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LocaleSetRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.lang_.Destroy();
+  _impl_.code_.Destroy();
+  _impl_.message_.Destroy();
+}
+
+void LocaleSetRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LocaleSetRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LocaleSetRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _impl_.code_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LocaleSetRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string lang = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LocaleSetRequest.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string code = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LocaleSetRequest.code"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string message = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LocaleSetRequest.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LocaleSetRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LocaleSetRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LocaleSetRequest.lang");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_lang(), target);
+  }
+
+  // string code = 2;
+  if (!this->_internal_code().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LocaleSetRequest.code");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_code(), target);
+  }
+
+  // string message = 3;
+  if (!this->_internal_message().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LocaleSetRequest.message");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_message(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LocaleSetRequest)
+  return target;
+}
+
+size_t LocaleSetRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LocaleSetRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string code = 2;
+  if (!this->_internal_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_code());
+  }
+
+  // string message = 3;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LocaleSetRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LocaleSetRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LocaleSetRequest::GetClassData() const { return &_class_data_; }
+
+
+void LocaleSetRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LocaleSetRequest*>(&to_msg);
+  auto& from = static_cast<const LocaleSetRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LocaleSetRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleSetRequest::CopyFrom(const LocaleSetRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LocaleSetRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocaleSetRequest::IsInitialized() const {
+  return true;
+}
+
+void LocaleSetRequest::InternalSwap(LocaleSetRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.code_, lhs_arena,
+      &other->_impl_.code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.message_, lhs_arena,
+      &other->_impl_.message_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LocaleSetRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[48]);
+}
+
+// ===================================================================
+
+class LocaleIndexResponse_Item::_Internal {
+ public:
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const LocaleIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+LocaleIndexResponse_Item::_Internal::updated_at(const LocaleIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void LocaleIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+LocaleIndexResponse_Item::LocaleIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LocaleIndexResponse.Item)
+}
+LocaleIndexResponse_Item::LocaleIndexResponse_Item(const LocaleIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LocaleIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.code_){}
+    , decltype(_impl_.message_){}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_code().empty()) {
+    _this->_impl_.code_.Set(from._internal_code(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    _this->_impl_.message_.Set(from._internal_message(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  _this->_impl_.id_ = from._impl_.id_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LocaleIndexResponse.Item)
+}
+
+inline void LocaleIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.code_){}
+    , decltype(_impl_.message_){}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.message_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+LocaleIndexResponse_Item::~LocaleIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LocaleIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LocaleIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.lang_.Destroy();
+  _impl_.code_.Destroy();
+  _impl_.message_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void LocaleIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LocaleIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LocaleIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _impl_.code_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  _impl_.id_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LocaleIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string lang = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LocaleIndexResponse.Item.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string code = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LocaleIndexResponse.Item.code"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string message = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_message();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LocaleIndexResponse.Item.message"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LocaleIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LocaleIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // string lang = 2;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LocaleIndexResponse.Item.lang");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_lang(), target);
+  }
+
+  // string code = 3;
+  if (!this->_internal_code().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LocaleIndexResponse.Item.code");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_code(), target);
+  }
+
+  // string message = 4;
+  if (!this->_internal_message().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LocaleIndexResponse.Item.message");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_message(), target);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 5;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LocaleIndexResponse.Item)
+  return target;
+}
+
+size_t LocaleIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LocaleIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lang = 2;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string code = 3;
+  if (!this->_internal_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_code());
+  }
+
+  // string message = 4;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_message());
+  }
+
+  // .google.protobuf.Timestamp updated_at = 5;
+  if (this->_internal_has_updated_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LocaleIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LocaleIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LocaleIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void LocaleIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LocaleIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const LocaleIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LocaleIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleIndexResponse_Item::CopyFrom(const LocaleIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LocaleIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocaleIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void LocaleIndexResponse_Item::InternalSwap(LocaleIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.code_, lhs_arena,
+      &other->_impl_.code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.message_, lhs_arena,
+      &other->_impl_.message_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.id_)
+      + sizeof(LocaleIndexResponse_Item::_impl_.id_)
+      - PROTOBUF_FIELD_OFFSET(LocaleIndexResponse_Item, _impl_.updated_at_)>(
+          reinterpret_cast<char*>(&_impl_.updated_at_),
+          reinterpret_cast<char*>(&other->_impl_.updated_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LocaleIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[49]);
+}
+
+// ===================================================================
+
+class LocaleIndexResponse::_Internal {
+ public:
+};
+
+LocaleIndexResponse::LocaleIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LocaleIndexResponse)
+}
+LocaleIndexResponse::LocaleIndexResponse(const LocaleIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LocaleIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LocaleIndexResponse)
+}
+
+inline void LocaleIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+LocaleIndexResponse::~LocaleIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LocaleIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LocaleIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void LocaleIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LocaleIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LocaleIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LocaleIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.LocaleIndexResponse.Item items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LocaleIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LocaleIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.LocaleIndexResponse.Item items = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
+    const auto& repfield = this->_internal_items(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LocaleIndexResponse)
+  return target;
+}
+
+size_t LocaleIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LocaleIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.LocaleIndexResponse.Item items = 1;
+  total_size += 1UL * this->_internal_items_size();
+  for (const auto& msg : this->_impl_.items_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LocaleIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LocaleIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LocaleIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void LocaleIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LocaleIndexResponse*>(&to_msg);
+  auto& from = static_cast<const LocaleIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LocaleIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleIndexResponse::CopyFrom(const LocaleIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LocaleIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocaleIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void LocaleIndexResponse::InternalSwap(LocaleIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LocaleIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[50]);
+}
+
+// ===================================================================
+
+class LocaleByLangRequest::_Internal {
+ public:
+};
+
+LocaleByLangRequest::LocaleByLangRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LocaleByLangRequest)
+}
+LocaleByLangRequest::LocaleByLangRequest(const LocaleByLangRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LocaleByLangRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LocaleByLangRequest)
+}
+
+inline void LocaleByLangRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+LocaleByLangRequest::~LocaleByLangRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LocaleByLangRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LocaleByLangRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.lang_.Destroy();
+}
+
+void LocaleByLangRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LocaleByLangRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LocaleByLangRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LocaleByLangRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string lang = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LocaleByLangRequest.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LocaleByLangRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LocaleByLangRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LocaleByLangRequest.lang");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_lang(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LocaleByLangRequest)
+  return target;
+}
+
+size_t LocaleByLangRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LocaleByLangRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LocaleByLangRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LocaleByLangRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LocaleByLangRequest::GetClassData() const { return &_class_data_; }
+
+
+void LocaleByLangRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LocaleByLangRequest*>(&to_msg);
+  auto& from = static_cast<const LocaleByLangRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LocaleByLangRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocaleByLangRequest::CopyFrom(const LocaleByLangRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LocaleByLangRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocaleByLangRequest::IsInitialized() const {
+  return true;
+}
+
+void LocaleByLangRequest::InternalSwap(LocaleByLangRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LocaleByLangRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[51]);
+}
+
+// ===================================================================
+
+class LeaveWordCreateRequest::_Internal {
+ public:
+};
+
+LeaveWordCreateRequest::LeaveWordCreateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LeaveWordCreateRequest)
+}
+LeaveWordCreateRequest::LeaveWordCreateRequest(const LeaveWordCreateRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LeaveWordCreateRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.body_){}
+    , decltype(_impl_.editor_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.body_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.body_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_body().empty()) {
+    _this->_impl_.body_.Set(from._internal_body(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.editor_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.editor_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_editor().empty()) {
+    _this->_impl_.editor_.Set(from._internal_editor(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LeaveWordCreateRequest)
+}
+
+inline void LeaveWordCreateRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.body_){}
+    , decltype(_impl_.editor_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.body_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.body_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.editor_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.editor_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+LeaveWordCreateRequest::~LeaveWordCreateRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LeaveWordCreateRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LeaveWordCreateRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.body_.Destroy();
+  _impl_.editor_.Destroy();
+}
+
+void LeaveWordCreateRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LeaveWordCreateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LeaveWordCreateRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.body_.ClearToEmpty();
+  _impl_.editor_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LeaveWordCreateRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string body = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_body();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LeaveWordCreateRequest.body"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string editor = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_editor();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LeaveWordCreateRequest.editor"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LeaveWordCreateRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LeaveWordCreateRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string body = 1;
+  if (!this->_internal_body().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_body().data(), static_cast<int>(this->_internal_body().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LeaveWordCreateRequest.body");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_body(), target);
+  }
+
+  // string editor = 2;
+  if (!this->_internal_editor().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_editor().data(), static_cast<int>(this->_internal_editor().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LeaveWordCreateRequest.editor");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_editor(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LeaveWordCreateRequest)
+  return target;
+}
+
+size_t LeaveWordCreateRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LeaveWordCreateRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string body = 1;
+  if (!this->_internal_body().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_body());
+  }
+
+  // string editor = 2;
+  if (!this->_internal_editor().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_editor());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LeaveWordCreateRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LeaveWordCreateRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LeaveWordCreateRequest::GetClassData() const { return &_class_data_; }
+
+
+void LeaveWordCreateRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LeaveWordCreateRequest*>(&to_msg);
+  auto& from = static_cast<const LeaveWordCreateRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LeaveWordCreateRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_body().empty()) {
+    _this->_internal_set_body(from._internal_body());
+  }
+  if (!from._internal_editor().empty()) {
+    _this->_internal_set_editor(from._internal_editor());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LeaveWordCreateRequest::CopyFrom(const LeaveWordCreateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LeaveWordCreateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LeaveWordCreateRequest::IsInitialized() const {
+  return true;
+}
+
+void LeaveWordCreateRequest::InternalSwap(LeaveWordCreateRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.body_, lhs_arena,
+      &other->_impl_.body_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.editor_, lhs_arena,
+      &other->_impl_.editor_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LeaveWordCreateRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[52]);
+}
+
+// ===================================================================
+
+class LeaveWordIndexResponse_Item::_Internal {
+ public:
+  using HasBits = decltype(std::declval<LeaveWordIndexResponse_Item>()._impl_._has_bits_);
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& published_at(const LeaveWordIndexResponse_Item* msg);
+  static void set_has_published_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const LeaveWordIndexResponse_Item* msg);
+  static void set_has_deleted_at(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const LeaveWordIndexResponse_Item* msg);
+};
+
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+LeaveWordIndexResponse_Item::_Internal::published_at(const LeaveWordIndexResponse_Item* msg) {
+  return *msg->_impl_.published_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+LeaveWordIndexResponse_Item::_Internal::deleted_at(const LeaveWordIndexResponse_Item* msg) {
+  return *msg->_impl_.deleted_at_;
+}
+const ::PROTOBUF_NAMESPACE_ID::Timestamp&
+LeaveWordIndexResponse_Item::_Internal::updated_at(const LeaveWordIndexResponse_Item* msg) {
+  return *msg->_impl_.updated_at_;
+}
+void LeaveWordIndexResponse_Item::clear_published_at() {
+  if (_impl_.published_at_ != nullptr) _impl_.published_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+void LeaveWordIndexResponse_Item::clear_deleted_at() {
+  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+void LeaveWordIndexResponse_Item::clear_updated_at() {
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+}
+LeaveWordIndexResponse_Item::LeaveWordIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LeaveWordIndexResponse.Item)
+}
+LeaveWordIndexResponse_Item::LeaveWordIndexResponse_Item(const LeaveWordIndexResponse_Item& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LeaveWordIndexResponse_Item* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.ip_){}
+    , decltype(_impl_.body_){}
+    , decltype(_impl_.published_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.editor_){}
+    , decltype(_impl_.status_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_ip().empty()) {
+    _this->_impl_.ip_.Set(from._internal_ip(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.body_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.body_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_body().empty()) {
+    _this->_impl_.body_.Set(from._internal_body(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_published_at()) {
+    _this->_impl_.published_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.published_at_);
+  }
+  if (from._internal_has_deleted_at()) {
+    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
+  }
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.status_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.status_));
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LeaveWordIndexResponse.Item)
+}
+
+inline void LeaveWordIndexResponse_Item::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.ip_){}
+    , decltype(_impl_.body_){}
+    , decltype(_impl_.published_at_){nullptr}
+    , decltype(_impl_.deleted_at_){nullptr}
+    , decltype(_impl_.updated_at_){nullptr}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.editor_){0}
+    , decltype(_impl_.status_){0}
+  };
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.ip_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.ip_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.body_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.body_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+LeaveWordIndexResponse_Item::~LeaveWordIndexResponse_Item() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LeaveWordIndexResponse.Item)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LeaveWordIndexResponse_Item::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.lang_.Destroy();
+  _impl_.ip_.Destroy();
+  _impl_.body_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.published_at_;
+  if (this != internal_default_instance()) delete _impl_.deleted_at_;
+  if (this != internal_default_instance()) delete _impl_.updated_at_;
+}
+
+void LeaveWordIndexResponse_Item::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LeaveWordIndexResponse_Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LeaveWordIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _impl_.ip_.ClearToEmpty();
+  _impl_.body_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(_impl_.published_at_ != nullptr);
+      _impl_.published_at_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
+      _impl_.deleted_at_->Clear();
+    }
+  }
+  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
+    delete _impl_.updated_at_;
+  }
+  _impl_.updated_at_ = nullptr;
+  ::memset(&_impl_.id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.status_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.status_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LeaveWordIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string lang = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LeaveWordIndexResponse.Item.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string ip = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_ip();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LeaveWordIndexResponse.Item.ip"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string body = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_body();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.LeaveWordIndexResponse.Item.body"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.MediaEditor editor = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_editor(static_cast<::palm::balsam::v1::MediaEditor>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.LeaveWordIndexResponse.Item.Status status = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_status(static_cast<::palm::balsam::v1::LeaveWordIndexResponse_Item_Status>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp published_at = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_published_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .google.protobuf.Timestamp deleted_at = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp updated_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LeaveWordIndexResponse_Item::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LeaveWordIndexResponse.Item)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // string lang = 2;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LeaveWordIndexResponse.Item.lang");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_lang(), target);
+  }
+
+  // string ip = 3;
+  if (!this->_internal_ip().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_ip().data(), static_cast<int>(this->_internal_ip().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LeaveWordIndexResponse.Item.ip");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_ip(), target);
+  }
+
+  // string body = 4;
+  if (!this->_internal_body().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_body().data(), static_cast<int>(this->_internal_body().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.LeaveWordIndexResponse.Item.body");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_body(), target);
+  }
+
+  // .palm.balsam.v1.MediaEditor editor = 5;
+  if (this->_internal_editor() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_editor(), target);
+  }
+
+  // .palm.balsam.v1.LeaveWordIndexResponse.Item.Status status = 6;
+  if (this->_internal_status() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      6, this->_internal_status(), target);
+  }
+
+  // optional .google.protobuf.Timestamp published_at = 7;
+  if (_internal_has_published_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::published_at(this),
+        _Internal::published_at(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .google.protobuf.Timestamp deleted_at = 8;
+  if (_internal_has_deleted_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::deleted_at(this),
+        _Internal::deleted_at(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.Timestamp updated_at = 9;
+  if (this->_internal_has_updated_at()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::updated_at(this),
+        _Internal::updated_at(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LeaveWordIndexResponse.Item)
+  return target;
+}
+
+size_t LeaveWordIndexResponse_Item::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LeaveWordIndexResponse.Item)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lang = 2;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string ip = 3;
+  if (!this->_internal_ip().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_ip());
+  }
+
+  // string body = 4;
+  if (!this->_internal_body().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_body());
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .google.protobuf.Timestamp published_at = 7;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.published_at_);
+    }
+
+    // optional .google.protobuf.Timestamp deleted_at = 8;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.deleted_at_);
+    }
+
+  }
+  // .google.protobuf.Timestamp updated_at = 9;
+  if (this->_internal_has_updated_at()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.updated_at_);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // .palm.balsam.v1.MediaEditor editor = 5;
+  if (this->_internal_editor() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_editor());
+  }
+
+  // .palm.balsam.v1.LeaveWordIndexResponse.Item.Status status = 6;
+  if (this->_internal_status() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LeaveWordIndexResponse_Item::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LeaveWordIndexResponse_Item::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LeaveWordIndexResponse_Item::GetClassData() const { return &_class_data_; }
+
+
+void LeaveWordIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LeaveWordIndexResponse_Item*>(&to_msg);
+  auto& from = static_cast<const LeaveWordIndexResponse_Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LeaveWordIndexResponse.Item)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_ip().empty()) {
+    _this->_internal_set_ip(from._internal_ip());
+  }
+  if (!from._internal_body().empty()) {
+    _this->_internal_set_body(from._internal_body());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_published_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_published_at());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+          from._internal_deleted_at());
+    }
+  }
+  if (from._internal_has_updated_at()) {
+    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
+        from._internal_updated_at());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_editor() != 0) {
+    _this->_internal_set_editor(from._internal_editor());
+  }
+  if (from._internal_status() != 0) {
+    _this->_internal_set_status(from._internal_status());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LeaveWordIndexResponse_Item::CopyFrom(const LeaveWordIndexResponse_Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LeaveWordIndexResponse.Item)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LeaveWordIndexResponse_Item::IsInitialized() const {
+  return true;
+}
+
+void LeaveWordIndexResponse_Item::InternalSwap(LeaveWordIndexResponse_Item* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.ip_, lhs_arena,
+      &other->_impl_.ip_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.body_, lhs_arena,
+      &other->_impl_.body_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LeaveWordIndexResponse_Item, _impl_.status_)
+      + sizeof(LeaveWordIndexResponse_Item::_impl_.status_)
+      - PROTOBUF_FIELD_OFFSET(LeaveWordIndexResponse_Item, _impl_.published_at_)>(
+          reinterpret_cast<char*>(&_impl_.published_at_),
+          reinterpret_cast<char*>(&other->_impl_.published_at_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LeaveWordIndexResponse_Item::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[53]);
+}
+
+// ===================================================================
+
+class LeaveWordIndexResponse::_Internal {
+ public:
+};
+
+LeaveWordIndexResponse::LeaveWordIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.LeaveWordIndexResponse)
+}
+LeaveWordIndexResponse::LeaveWordIndexResponse(const LeaveWordIndexResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  LeaveWordIndexResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.item_){from._impl_.item_}
+    , decltype(_impl_.total_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.total_ = from._impl_.total_;
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.LeaveWordIndexResponse)
+}
+
+inline void LeaveWordIndexResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.item_){arena}
+    , decltype(_impl_.total_){uint64_t{0u}}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+LeaveWordIndexResponse::~LeaveWordIndexResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.LeaveWordIndexResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void LeaveWordIndexResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.item_.~RepeatedPtrField();
+}
+
+void LeaveWordIndexResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void LeaveWordIndexResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.LeaveWordIndexResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.item_.Clear();
+  _impl_.total_ = uint64_t{0u};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LeaveWordIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .palm.balsam.v1.LeaveWordIndexResponse.Item item = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_item(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 total = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.total_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* LeaveWordIndexResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.LeaveWordIndexResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.LeaveWordIndexResponse.Item item = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_item_size()); i < n; i++) {
+    const auto& repfield = this->_internal_item(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_total(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.LeaveWordIndexResponse)
+  return target;
+}
+
+size_t LeaveWordIndexResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.LeaveWordIndexResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .palm.balsam.v1.LeaveWordIndexResponse.Item item = 1;
+  total_size += 1UL * this->_internal_item_size();
+  for (const auto& msg : this->_impl_.item_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 total = 2;
+  if (this->_internal_total() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_total());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LeaveWordIndexResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    LeaveWordIndexResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LeaveWordIndexResponse::GetClassData() const { return &_class_data_; }
+
+
+void LeaveWordIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<LeaveWordIndexResponse*>(&to_msg);
+  auto& from = static_cast<const LeaveWordIndexResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.LeaveWordIndexResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.item_.MergeFrom(from._impl_.item_);
+  if (from._internal_total() != 0) {
+    _this->_internal_set_total(from._internal_total());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LeaveWordIndexResponse::CopyFrom(const LeaveWordIndexResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.LeaveWordIndexResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LeaveWordIndexResponse::IsInitialized() const {
+  return true;
+}
+
+void LeaveWordIndexResponse::InternalSwap(LeaveWordIndexResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.item_.InternalSwap(&other->_impl_.item_);
+  swap(_impl_.total_, other->_impl_.total_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LeaveWordIndexResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[54]);
+}
+
+// ===================================================================
+
+class SiteStatusResponse_Redis::_Internal {
+ public:
+};
+
+SiteStatusResponse_Redis::SiteStatusResponse_Redis(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteStatusResponse.Redis)
+}
+SiteStatusResponse_Redis::SiteStatusResponse_Redis(const SiteStatusResponse_Redis& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteStatusResponse_Redis* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.info_){from._impl_.info_}
+    , decltype(_impl_.nodes_){from._impl_.nodes_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteStatusResponse.Redis)
+}
+
+inline void SiteStatusResponse_Redis::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.info_){arena}
+    , decltype(_impl_.nodes_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+SiteStatusResponse_Redis::~SiteStatusResponse_Redis() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteStatusResponse.Redis)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteStatusResponse_Redis::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.info_.~RepeatedPtrField();
+  _impl_.nodes_.~RepeatedPtrField();
+}
+
+void SiteStatusResponse_Redis::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteStatusResponse_Redis::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteStatusResponse.Redis)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.info_.Clear();
+  _impl_.nodes_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteStatusResponse_Redis::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated string info = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_info();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteStatusResponse.Redis.info"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string nodes = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_nodes();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteStatusResponse.Redis.nodes"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteStatusResponse_Redis::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteStatusResponse.Redis)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string info = 1;
+  for (int i = 0, n = this->_internal_info_size(); i < n; i++) {
+    const auto& s = this->_internal_info(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteStatusResponse.Redis.info");
+    target = stream->WriteString(1, s, target);
+  }
+
+  // repeated string nodes = 2;
+  for (int i = 0, n = this->_internal_nodes_size(); i < n; i++) {
+    const auto& s = this->_internal_nodes(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteStatusResponse.Redis.nodes");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteStatusResponse.Redis)
+  return target;
+}
+
+size_t SiteStatusResponse_Redis::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteStatusResponse.Redis)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string info = 1;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.info_.size());
+  for (int i = 0, n = _impl_.info_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.info_.Get(i));
+  }
+
+  // repeated string nodes = 2;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.nodes_.size());
+  for (int i = 0, n = _impl_.nodes_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.nodes_.Get(i));
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteStatusResponse_Redis::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteStatusResponse_Redis::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteStatusResponse_Redis::GetClassData() const { return &_class_data_; }
+
+
+void SiteStatusResponse_Redis::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteStatusResponse_Redis*>(&to_msg);
+  auto& from = static_cast<const SiteStatusResponse_Redis&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteStatusResponse.Redis)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.info_.MergeFrom(from._impl_.info_);
+  _this->_impl_.nodes_.MergeFrom(from._impl_.nodes_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteStatusResponse_Redis::CopyFrom(const SiteStatusResponse_Redis& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteStatusResponse.Redis)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteStatusResponse_Redis::IsInitialized() const {
+  return true;
+}
+
+void SiteStatusResponse_Redis::InternalSwap(SiteStatusResponse_Redis* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.info_.InternalSwap(&other->_impl_.info_);
+  _impl_.nodes_.InternalSwap(&other->_impl_.nodes_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteStatusResponse_Redis::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[55]);
+}
+
+// ===================================================================
+
+class SiteStatusResponse_PostgreSql::_Internal {
+ public:
+};
+
+SiteStatusResponse_PostgreSql::SiteStatusResponse_PostgreSql(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+}
+SiteStatusResponse_PostgreSql::SiteStatusResponse_PostgreSql(const SiteStatusResponse_PostgreSql& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteStatusResponse_PostgreSql* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.versions_){from._impl_.versions_}
+    , decltype(_impl_.version_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_version().empty()) {
+    _this->_impl_.version_.Set(from._internal_version(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+}
+
+inline void SiteStatusResponse_PostgreSql::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.versions_){arena}
+    , decltype(_impl_.version_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteStatusResponse_PostgreSql::~SiteStatusResponse_PostgreSql() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteStatusResponse_PostgreSql::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.versions_.~RepeatedPtrField();
+  _impl_.version_.Destroy();
+}
+
+void SiteStatusResponse_PostgreSql::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteStatusResponse_PostgreSql::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.versions_.Clear();
+  _impl_.version_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteStatusResponse_PostgreSql::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string version = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_version();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteStatusResponse.PostgreSql.version"));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string versions = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_versions();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteStatusResponse.PostgreSql.versions"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteStatusResponse_PostgreSql::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string version = 1;
+  if (!this->_internal_version().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_version().data(), static_cast<int>(this->_internal_version().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteStatusResponse.PostgreSql.version");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_version(), target);
+  }
+
+  // repeated string versions = 2;
+  for (int i = 0, n = this->_internal_versions_size(); i < n; i++) {
+    const auto& s = this->_internal_versions(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteStatusResponse.PostgreSql.versions");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+  return target;
+}
+
+size_t SiteStatusResponse_PostgreSql::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string versions = 2;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.versions_.size());
+  for (int i = 0, n = _impl_.versions_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.versions_.Get(i));
+  }
+
+  // string version = 1;
+  if (!this->_internal_version().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_version());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteStatusResponse_PostgreSql::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteStatusResponse_PostgreSql::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteStatusResponse_PostgreSql::GetClassData() const { return &_class_data_; }
+
+
+void SiteStatusResponse_PostgreSql::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteStatusResponse_PostgreSql*>(&to_msg);
+  auto& from = static_cast<const SiteStatusResponse_PostgreSql&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.versions_.MergeFrom(from._impl_.versions_);
+  if (!from._internal_version().empty()) {
+    _this->_internal_set_version(from._internal_version());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteStatusResponse_PostgreSql::CopyFrom(const SiteStatusResponse_PostgreSql& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteStatusResponse.PostgreSql)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteStatusResponse_PostgreSql::IsInitialized() const {
+  return true;
+}
+
+void SiteStatusResponse_PostgreSql::InternalSwap(SiteStatusResponse_PostgreSql* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.versions_.InternalSwap(&other->_impl_.versions_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.version_, lhs_arena,
+      &other->_impl_.version_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteStatusResponse_PostgreSql::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[56]);
+}
+
+// ===================================================================
+
+class SiteStatusResponse_OpenSearch::_Internal {
+ public:
+};
+
+SiteStatusResponse_OpenSearch::SiteStatusResponse_OpenSearch(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+}
+SiteStatusResponse_OpenSearch::SiteStatusResponse_OpenSearch(const SiteStatusResponse_OpenSearch& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteStatusResponse_OpenSearch* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.plugins_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.plugins_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.plugins_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_plugins().empty()) {
+    _this->_impl_.plugins_.Set(from._internal_plugins(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+}
+
+inline void SiteStatusResponse_OpenSearch::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.plugins_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.plugins_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.plugins_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteStatusResponse_OpenSearch::~SiteStatusResponse_OpenSearch() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteStatusResponse_OpenSearch::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.plugins_.Destroy();
+}
+
+void SiteStatusResponse_OpenSearch::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteStatusResponse_OpenSearch::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.plugins_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteStatusResponse_OpenSearch::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string plugins = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_plugins();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteStatusResponse.OpenSearch.plugins"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteStatusResponse_OpenSearch::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string plugins = 1;
+  if (!this->_internal_plugins().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_plugins().data(), static_cast<int>(this->_internal_plugins().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteStatusResponse.OpenSearch.plugins");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_plugins(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+  return target;
+}
+
+size_t SiteStatusResponse_OpenSearch::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string plugins = 1;
+  if (!this->_internal_plugins().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_plugins());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteStatusResponse_OpenSearch::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteStatusResponse_OpenSearch::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteStatusResponse_OpenSearch::GetClassData() const { return &_class_data_; }
+
+
+void SiteStatusResponse_OpenSearch::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteStatusResponse_OpenSearch*>(&to_msg);
+  auto& from = static_cast<const SiteStatusResponse_OpenSearch&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_plugins().empty()) {
+    _this->_internal_set_plugins(from._internal_plugins());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteStatusResponse_OpenSearch::CopyFrom(const SiteStatusResponse_OpenSearch& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteStatusResponse.OpenSearch)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteStatusResponse_OpenSearch::IsInitialized() const {
+  return true;
+}
+
+void SiteStatusResponse_OpenSearch::InternalSwap(SiteStatusResponse_OpenSearch* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.plugins_, lhs_arena,
+      &other->_impl_.plugins_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteStatusResponse_OpenSearch::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[57]);
+}
+
+// ===================================================================
+
+class SiteStatusResponse::_Internal {
+ public:
+  static const ::palm::balsam::v1::SiteStatusResponse_PostgreSql& postgresql(const SiteStatusResponse* msg);
+  static const ::palm::balsam::v1::SiteStatusResponse_Redis& redis(const SiteStatusResponse* msg);
+  static const ::palm::balsam::v1::SiteStatusResponse_OpenSearch& opensearch(const SiteStatusResponse* msg);
+};
+
+const ::palm::balsam::v1::SiteStatusResponse_PostgreSql&
+SiteStatusResponse::_Internal::postgresql(const SiteStatusResponse* msg) {
+  return *msg->_impl_.postgresql_;
+}
+const ::palm::balsam::v1::SiteStatusResponse_Redis&
+SiteStatusResponse::_Internal::redis(const SiteStatusResponse* msg) {
+  return *msg->_impl_.redis_;
+}
+const ::palm::balsam::v1::SiteStatusResponse_OpenSearch&
+SiteStatusResponse::_Internal::opensearch(const SiteStatusResponse* msg) {
+  return *msg->_impl_.opensearch_;
+}
+SiteStatusResponse::SiteStatusResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteStatusResponse)
+}
+SiteStatusResponse::SiteStatusResponse(const SiteStatusResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteStatusResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.postgresql_){nullptr}
+    , decltype(_impl_.redis_){nullptr}
+    , decltype(_impl_.opensearch_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_postgresql()) {
+    _this->_impl_.postgresql_ = new ::palm::balsam::v1::SiteStatusResponse_PostgreSql(*from._impl_.postgresql_);
+  }
+  if (from._internal_has_redis()) {
+    _this->_impl_.redis_ = new ::palm::balsam::v1::SiteStatusResponse_Redis(*from._impl_.redis_);
+  }
+  if (from._internal_has_opensearch()) {
+    _this->_impl_.opensearch_ = new ::palm::balsam::v1::SiteStatusResponse_OpenSearch(*from._impl_.opensearch_);
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteStatusResponse)
+}
+
+inline void SiteStatusResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.postgresql_){nullptr}
+    , decltype(_impl_.redis_){nullptr}
+    , decltype(_impl_.opensearch_){nullptr}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+SiteStatusResponse::~SiteStatusResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteStatusResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteStatusResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.postgresql_;
+  if (this != internal_default_instance()) delete _impl_.redis_;
+  if (this != internal_default_instance()) delete _impl_.opensearch_;
+}
+
+void SiteStatusResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteStatusResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteStatusResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && _impl_.postgresql_ != nullptr) {
+    delete _impl_.postgresql_;
+  }
+  _impl_.postgresql_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.redis_ != nullptr) {
+    delete _impl_.redis_;
+  }
+  _impl_.redis_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.opensearch_ != nullptr) {
+    delete _impl_.opensearch_;
+  }
+  _impl_.opensearch_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteStatusResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .palm.balsam.v1.SiteStatusResponse.PostgreSql postgresql = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_postgresql(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.SiteStatusResponse.Redis redis = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_redis(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.SiteStatusResponse.OpenSearch opensearch = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_opensearch(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteStatusResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteStatusResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .palm.balsam.v1.SiteStatusResponse.PostgreSql postgresql = 1;
+  if (this->_internal_has_postgresql()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::postgresql(this),
+        _Internal::postgresql(this).GetCachedSize(), target, stream);
+  }
+
+  // .palm.balsam.v1.SiteStatusResponse.Redis redis = 2;
+  if (this->_internal_has_redis()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::redis(this),
+        _Internal::redis(this).GetCachedSize(), target, stream);
+  }
+
+  // .palm.balsam.v1.SiteStatusResponse.OpenSearch opensearch = 3;
+  if (this->_internal_has_opensearch()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::opensearch(this),
+        _Internal::opensearch(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteStatusResponse)
+  return target;
+}
+
+size_t SiteStatusResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteStatusResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .palm.balsam.v1.SiteStatusResponse.PostgreSql postgresql = 1;
+  if (this->_internal_has_postgresql()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.postgresql_);
+  }
+
+  // .palm.balsam.v1.SiteStatusResponse.Redis redis = 2;
+  if (this->_internal_has_redis()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.redis_);
+  }
+
+  // .palm.balsam.v1.SiteStatusResponse.OpenSearch opensearch = 3;
+  if (this->_internal_has_opensearch()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.opensearch_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteStatusResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteStatusResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteStatusResponse::GetClassData() const { return &_class_data_; }
+
+
+void SiteStatusResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteStatusResponse*>(&to_msg);
+  auto& from = static_cast<const SiteStatusResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteStatusResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_postgresql()) {
+    _this->_internal_mutable_postgresql()->::palm::balsam::v1::SiteStatusResponse_PostgreSql::MergeFrom(
+        from._internal_postgresql());
+  }
+  if (from._internal_has_redis()) {
+    _this->_internal_mutable_redis()->::palm::balsam::v1::SiteStatusResponse_Redis::MergeFrom(
+        from._internal_redis());
+  }
+  if (from._internal_has_opensearch()) {
+    _this->_internal_mutable_opensearch()->::palm::balsam::v1::SiteStatusResponse_OpenSearch::MergeFrom(
+        from._internal_opensearch());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteStatusResponse::CopyFrom(const SiteStatusResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteStatusResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteStatusResponse::IsInitialized() const {
+  return true;
+}
+
+void SiteStatusResponse::InternalSwap(SiteStatusResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SiteStatusResponse, _impl_.opensearch_)
+      + sizeof(SiteStatusResponse::_impl_.opensearch_)
+      - PROTOBUF_FIELD_OFFSET(SiteStatusResponse, _impl_.postgresql_)>(
+          reinterpret_cast<char*>(&_impl_.postgresql_),
+          reinterpret_cast<char*>(&other->_impl_.postgresql_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteStatusResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[58]);
+}
+
+// ===================================================================
+
+class SiteIndexNowAccount_WebSiteVerify::_Internal {
+ public:
+};
+
+SiteIndexNowAccount_WebSiteVerify::SiteIndexNowAccount_WebSiteVerify(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+}
+SiteIndexNowAccount_WebSiteVerify::SiteIndexNowAccount_WebSiteVerify(const SiteIndexNowAccount_WebSiteVerify& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteIndexNowAccount_WebSiteVerify* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.key_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.key_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.key_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_key().empty()) {
+    _this->_impl_.key_.Set(from._internal_key(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+}
+
+inline void SiteIndexNowAccount_WebSiteVerify::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.key_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.key_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.key_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteIndexNowAccount_WebSiteVerify::~SiteIndexNowAccount_WebSiteVerify() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteIndexNowAccount_WebSiteVerify::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.key_.Destroy();
+}
+
+void SiteIndexNowAccount_WebSiteVerify::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteIndexNowAccount_WebSiteVerify::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.key_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteIndexNowAccount_WebSiteVerify::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string key = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_key();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify.key"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteIndexNowAccount_WebSiteVerify::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string key = 1;
+  if (!this->_internal_key().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_key().data(), static_cast<int>(this->_internal_key().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify.key");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_key(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+  return target;
+}
+
+size_t SiteIndexNowAccount_WebSiteVerify::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string key = 1;
+  if (!this->_internal_key().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_key());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteIndexNowAccount_WebSiteVerify::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteIndexNowAccount_WebSiteVerify::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteIndexNowAccount_WebSiteVerify::GetClassData() const { return &_class_data_; }
+
+
+void SiteIndexNowAccount_WebSiteVerify::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteIndexNowAccount_WebSiteVerify*>(&to_msg);
+  auto& from = static_cast<const SiteIndexNowAccount_WebSiteVerify&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_key().empty()) {
+    _this->_internal_set_key(from._internal_key());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteIndexNowAccount_WebSiteVerify::CopyFrom(const SiteIndexNowAccount_WebSiteVerify& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteIndexNowAccount_WebSiteVerify::IsInitialized() const {
+  return true;
+}
+
+void SiteIndexNowAccount_WebSiteVerify::InternalSwap(SiteIndexNowAccount_WebSiteVerify* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.key_, lhs_arena,
+      &other->_impl_.key_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteIndexNowAccount_WebSiteVerify::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[59]);
+}
+
+// ===================================================================
+
+class SiteIndexNowAccount::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SiteIndexNowAccount>()._impl_._has_bits_);
+  static const ::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify& web_site_verify(const SiteIndexNowAccount* msg);
+  static void set_has_web_site_verify(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify&
+SiteIndexNowAccount::_Internal::web_site_verify(const SiteIndexNowAccount* msg) {
+  return *msg->_impl_.web_site_verify_;
+}
+SiteIndexNowAccount::SiteIndexNowAccount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteIndexNowAccount)
+}
+SiteIndexNowAccount::SiteIndexNowAccount(const SiteIndexNowAccount& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteIndexNowAccount* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.web_site_verify_){nullptr}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_web_site_verify()) {
+    _this->_impl_.web_site_verify_ = new ::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify(*from._impl_.web_site_verify_);
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteIndexNowAccount)
+}
+
+inline void SiteIndexNowAccount::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.web_site_verify_){nullptr}
+  };
+}
+
+SiteIndexNowAccount::~SiteIndexNowAccount() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteIndexNowAccount)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteIndexNowAccount::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.web_site_verify_;
+}
+
+void SiteIndexNowAccount::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteIndexNowAccount::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteIndexNowAccount)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(_impl_.web_site_verify_ != nullptr);
+    _impl_.web_site_verify_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteIndexNowAccount::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify web_site_verify = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_web_site_verify(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteIndexNowAccount::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteIndexNowAccount)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify web_site_verify = 1;
+  if (_internal_has_web_site_verify()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::web_site_verify(this),
+        _Internal::web_site_verify(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteIndexNowAccount)
+  return target;
+}
+
+size_t SiteIndexNowAccount::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteIndexNowAccount)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional .palm.balsam.v1.SiteIndexNowAccount.WebSiteVerify web_site_verify = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.web_site_verify_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteIndexNowAccount::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteIndexNowAccount::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteIndexNowAccount::GetClassData() const { return &_class_data_; }
+
+
+void SiteIndexNowAccount::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteIndexNowAccount*>(&to_msg);
+  auto& from = static_cast<const SiteIndexNowAccount&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteIndexNowAccount)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_web_site_verify()) {
+    _this->_internal_mutable_web_site_verify()->::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify::MergeFrom(
+        from._internal_web_site_verify());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteIndexNowAccount::CopyFrom(const SiteIndexNowAccount& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteIndexNowAccount)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteIndexNowAccount::IsInitialized() const {
+  return true;
+}
+
+void SiteIndexNowAccount::InternalSwap(SiteIndexNowAccount* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.web_site_verify_, other->_impl_.web_site_verify_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteIndexNowAccount::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[60]);
+}
+
+// ===================================================================
+
+class SiteGoogleAccount_WebSiteVerify::_Internal {
+ public:
+};
+
+SiteGoogleAccount_WebSiteVerify::SiteGoogleAccount_WebSiteVerify(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+}
+SiteGoogleAccount_WebSiteVerify::SiteGoogleAccount_WebSiteVerify(const SiteGoogleAccount_WebSiteVerify& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteGoogleAccount_WebSiteVerify* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_code().empty()) {
+    _this->_impl_.code_.Set(from._internal_code(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+}
+
+inline void SiteGoogleAccount_WebSiteVerify::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteGoogleAccount_WebSiteVerify::~SiteGoogleAccount_WebSiteVerify() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteGoogleAccount_WebSiteVerify::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.code_.Destroy();
+}
+
+void SiteGoogleAccount_WebSiteVerify::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteGoogleAccount_WebSiteVerify::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.code_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteGoogleAccount_WebSiteVerify::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGoogleAccount.WebSiteVerify.code"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteGoogleAccount_WebSiteVerify::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGoogleAccount.WebSiteVerify.code");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+  return target;
+}
+
+size_t SiteGoogleAccount_WebSiteVerify::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteGoogleAccount_WebSiteVerify::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteGoogleAccount_WebSiteVerify::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteGoogleAccount_WebSiteVerify::GetClassData() const { return &_class_data_; }
+
+
+void SiteGoogleAccount_WebSiteVerify::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteGoogleAccount_WebSiteVerify*>(&to_msg);
+  auto& from = static_cast<const SiteGoogleAccount_WebSiteVerify&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteGoogleAccount_WebSiteVerify::CopyFrom(const SiteGoogleAccount_WebSiteVerify& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteGoogleAccount.WebSiteVerify)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteGoogleAccount_WebSiteVerify::IsInitialized() const {
+  return true;
+}
+
+void SiteGoogleAccount_WebSiteVerify::InternalSwap(SiteGoogleAccount_WebSiteVerify* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.code_, lhs_arena,
+      &other->_impl_.code_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteGoogleAccount_WebSiteVerify::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[61]);
+}
+
+// ===================================================================
+
+class SiteGoogleAccount_ReCaptcha::_Internal {
+ public:
+};
+
+SiteGoogleAccount_ReCaptcha::SiteGoogleAccount_ReCaptcha(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+}
+SiteGoogleAccount_ReCaptcha::SiteGoogleAccount_ReCaptcha(const SiteGoogleAccount_ReCaptcha& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteGoogleAccount_ReCaptcha* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.site_key_){}
+    , decltype(_impl_.secret_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.site_key_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.site_key_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_site_key().empty()) {
+    _this->_impl_.site_key_.Set(from._internal_site_key(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.secret_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.secret_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_secret().empty()) {
+    _this->_impl_.secret_.Set(from._internal_secret(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+}
+
+inline void SiteGoogleAccount_ReCaptcha::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.site_key_){}
+    , decltype(_impl_.secret_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.site_key_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.site_key_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.secret_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.secret_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteGoogleAccount_ReCaptcha::~SiteGoogleAccount_ReCaptcha() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteGoogleAccount_ReCaptcha::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.site_key_.Destroy();
+  _impl_.secret_.Destroy();
+}
+
+void SiteGoogleAccount_ReCaptcha::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteGoogleAccount_ReCaptcha::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.site_key_.ClearToEmpty();
+  _impl_.secret_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteGoogleAccount_ReCaptcha::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string site_key = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_site_key();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGoogleAccount.ReCaptcha.site_key"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string secret = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_secret();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGoogleAccount.ReCaptcha.secret"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteGoogleAccount_ReCaptcha::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string site_key = 1;
+  if (!this->_internal_site_key().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_site_key().data(), static_cast<int>(this->_internal_site_key().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGoogleAccount.ReCaptcha.site_key");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_site_key(), target);
+  }
+
+  // string secret = 2;
+  if (!this->_internal_secret().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_secret().data(), static_cast<int>(this->_internal_secret().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGoogleAccount.ReCaptcha.secret");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_secret(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+  return target;
+}
+
+size_t SiteGoogleAccount_ReCaptcha::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string site_key = 1;
+  if (!this->_internal_site_key().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_site_key());
+  }
+
+  // string secret = 2;
+  if (!this->_internal_secret().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_secret());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteGoogleAccount_ReCaptcha::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteGoogleAccount_ReCaptcha::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteGoogleAccount_ReCaptcha::GetClassData() const { return &_class_data_; }
+
+
+void SiteGoogleAccount_ReCaptcha::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteGoogleAccount_ReCaptcha*>(&to_msg);
+  auto& from = static_cast<const SiteGoogleAccount_ReCaptcha&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_site_key().empty()) {
+    _this->_internal_set_site_key(from._internal_site_key());
+  }
+  if (!from._internal_secret().empty()) {
+    _this->_internal_set_secret(from._internal_secret());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteGoogleAccount_ReCaptcha::CopyFrom(const SiteGoogleAccount_ReCaptcha& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteGoogleAccount.ReCaptcha)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteGoogleAccount_ReCaptcha::IsInitialized() const {
+  return true;
+}
+
+void SiteGoogleAccount_ReCaptcha::InternalSwap(SiteGoogleAccount_ReCaptcha* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.site_key_, lhs_arena,
+      &other->_impl_.site_key_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.secret_, lhs_arena,
+      &other->_impl_.secret_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteGoogleAccount_ReCaptcha::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[62]);
+}
+
+// ===================================================================
+
+class SiteGoogleAccount::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SiteGoogleAccount>()._impl_._has_bits_);
+  static const ::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify& web_site_verify(const SiteGoogleAccount* msg);
+  static void set_has_web_site_verify(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::palm::balsam::v1::SiteGoogleAccount_ReCaptcha& re_captcha(const SiteGoogleAccount* msg);
+  static void set_has_re_captcha(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+const ::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify&
+SiteGoogleAccount::_Internal::web_site_verify(const SiteGoogleAccount* msg) {
+  return *msg->_impl_.web_site_verify_;
+}
+const ::palm::balsam::v1::SiteGoogleAccount_ReCaptcha&
+SiteGoogleAccount::_Internal::re_captcha(const SiteGoogleAccount* msg) {
+  return *msg->_impl_.re_captcha_;
+}
+SiteGoogleAccount::SiteGoogleAccount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteGoogleAccount)
+}
+SiteGoogleAccount::SiteGoogleAccount(const SiteGoogleAccount& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteGoogleAccount* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.web_site_verify_){nullptr}
+    , decltype(_impl_.re_captcha_){nullptr}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_web_site_verify()) {
+    _this->_impl_.web_site_verify_ = new ::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify(*from._impl_.web_site_verify_);
+  }
+  if (from._internal_has_re_captcha()) {
+    _this->_impl_.re_captcha_ = new ::palm::balsam::v1::SiteGoogleAccount_ReCaptcha(*from._impl_.re_captcha_);
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteGoogleAccount)
+}
+
+inline void SiteGoogleAccount::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.web_site_verify_){nullptr}
+    , decltype(_impl_.re_captcha_){nullptr}
+  };
+}
+
+SiteGoogleAccount::~SiteGoogleAccount() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteGoogleAccount)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteGoogleAccount::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.web_site_verify_;
+  if (this != internal_default_instance()) delete _impl_.re_captcha_;
+}
+
+void SiteGoogleAccount::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteGoogleAccount::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteGoogleAccount)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(_impl_.web_site_verify_ != nullptr);
+      _impl_.web_site_verify_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(_impl_.re_captcha_ != nullptr);
+      _impl_.re_captcha_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteGoogleAccount::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .palm.balsam.v1.SiteGoogleAccount.WebSiteVerify web_site_verify = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_web_site_verify(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .palm.balsam.v1.SiteGoogleAccount.ReCaptcha re_captcha = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_re_captcha(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteGoogleAccount::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteGoogleAccount)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .palm.balsam.v1.SiteGoogleAccount.WebSiteVerify web_site_verify = 1;
+  if (_internal_has_web_site_verify()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::web_site_verify(this),
+        _Internal::web_site_verify(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .palm.balsam.v1.SiteGoogleAccount.ReCaptcha re_captcha = 2;
+  if (_internal_has_re_captcha()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::re_captcha(this),
+        _Internal::re_captcha(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteGoogleAccount)
+  return target;
+}
+
+size_t SiteGoogleAccount::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteGoogleAccount)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .palm.balsam.v1.SiteGoogleAccount.WebSiteVerify web_site_verify = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.web_site_verify_);
+    }
+
+    // optional .palm.balsam.v1.SiteGoogleAccount.ReCaptcha re_captcha = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.re_captcha_);
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteGoogleAccount::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteGoogleAccount::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteGoogleAccount::GetClassData() const { return &_class_data_; }
+
+
+void SiteGoogleAccount::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteGoogleAccount*>(&to_msg);
+  auto& from = static_cast<const SiteGoogleAccount&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteGoogleAccount)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_web_site_verify()->::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify::MergeFrom(
+          from._internal_web_site_verify());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_re_captcha()->::palm::balsam::v1::SiteGoogleAccount_ReCaptcha::MergeFrom(
+          from._internal_re_captcha());
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteGoogleAccount::CopyFrom(const SiteGoogleAccount& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteGoogleAccount)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteGoogleAccount::IsInitialized() const {
+  return true;
+}
+
+void SiteGoogleAccount::InternalSwap(SiteGoogleAccount* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SiteGoogleAccount, _impl_.re_captcha_)
+      + sizeof(SiteGoogleAccount::_impl_.re_captcha_)
+      - PROTOBUF_FIELD_OFFSET(SiteGoogleAccount, _impl_.web_site_verify_)>(
+          reinterpret_cast<char*>(&_impl_.web_site_verify_),
+          reinterpret_cast<char*>(&other->_impl_.web_site_verify_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteGoogleAccount::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[63]);
+}
+
+// ===================================================================
+
+class SiteBaiduAccount_WebSiteVerify::_Internal {
+ public:
+};
+
+SiteBaiduAccount_WebSiteVerify::SiteBaiduAccount_WebSiteVerify(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+}
+SiteBaiduAccount_WebSiteVerify::SiteBaiduAccount_WebSiteVerify(const SiteBaiduAccount_WebSiteVerify& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteBaiduAccount_WebSiteVerify* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , decltype(_impl_.content_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_code().empty()) {
+    _this->_impl_.code_.Set(from._internal_code(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.content_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_content().empty()) {
+    _this->_impl_.content_.Set(from._internal_content(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+}
+
+inline void SiteBaiduAccount_WebSiteVerify::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , decltype(_impl_.content_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.content_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteBaiduAccount_WebSiteVerify::~SiteBaiduAccount_WebSiteVerify() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteBaiduAccount_WebSiteVerify::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.code_.Destroy();
+  _impl_.content_.Destroy();
+}
+
+void SiteBaiduAccount_WebSiteVerify::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteBaiduAccount_WebSiteVerify::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.code_.ClearToEmpty();
+  _impl_.content_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteBaiduAccount_WebSiteVerify::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteBaiduAccount.WebSiteVerify.code"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string content = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_content();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteBaiduAccount.WebSiteVerify.content"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteBaiduAccount_WebSiteVerify::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteBaiduAccount.WebSiteVerify.code");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_code(), target);
+  }
+
+  // string content = 2;
+  if (!this->_internal_content().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_content().data(), static_cast<int>(this->_internal_content().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteBaiduAccount.WebSiteVerify.content");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_content(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+  return target;
+}
+
+size_t SiteBaiduAccount_WebSiteVerify::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_code());
+  }
+
+  // string content = 2;
+  if (!this->_internal_content().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_content());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteBaiduAccount_WebSiteVerify::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteBaiduAccount_WebSiteVerify::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteBaiduAccount_WebSiteVerify::GetClassData() const { return &_class_data_; }
+
+
+void SiteBaiduAccount_WebSiteVerify::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteBaiduAccount_WebSiteVerify*>(&to_msg);
+  auto& from = static_cast<const SiteBaiduAccount_WebSiteVerify&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  if (!from._internal_content().empty()) {
+    _this->_internal_set_content(from._internal_content());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteBaiduAccount_WebSiteVerify::CopyFrom(const SiteBaiduAccount_WebSiteVerify& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteBaiduAccount.WebSiteVerify)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteBaiduAccount_WebSiteVerify::IsInitialized() const {
+  return true;
+}
+
+void SiteBaiduAccount_WebSiteVerify::InternalSwap(SiteBaiduAccount_WebSiteVerify* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.code_, lhs_arena,
+      &other->_impl_.code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.content_, lhs_arena,
+      &other->_impl_.content_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteBaiduAccount_WebSiteVerify::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[64]);
+}
+
+// ===================================================================
+
+class SiteBaiduAccount::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SiteBaiduAccount>()._impl_._has_bits_);
+  static const ::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify& web_site_verify(const SiteBaiduAccount* msg);
+  static void set_has_web_site_verify(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify&
+SiteBaiduAccount::_Internal::web_site_verify(const SiteBaiduAccount* msg) {
+  return *msg->_impl_.web_site_verify_;
+}
+SiteBaiduAccount::SiteBaiduAccount(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteBaiduAccount)
+}
+SiteBaiduAccount::SiteBaiduAccount(const SiteBaiduAccount& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteBaiduAccount* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.web_site_verify_){nullptr}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_web_site_verify()) {
+    _this->_impl_.web_site_verify_ = new ::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify(*from._impl_.web_site_verify_);
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteBaiduAccount)
+}
+
+inline void SiteBaiduAccount::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.web_site_verify_){nullptr}
+  };
+}
+
+SiteBaiduAccount::~SiteBaiduAccount() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteBaiduAccount)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteBaiduAccount::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.web_site_verify_;
+}
+
+void SiteBaiduAccount::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteBaiduAccount::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteBaiduAccount)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    GOOGLE_DCHECK(_impl_.web_site_verify_ != nullptr);
+    _impl_.web_site_verify_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteBaiduAccount::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional .palm.balsam.v1.SiteBaiduAccount.WebSiteVerify web_site_verify = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_web_site_verify(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteBaiduAccount::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteBaiduAccount)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional .palm.balsam.v1.SiteBaiduAccount.WebSiteVerify web_site_verify = 1;
+  if (_internal_has_web_site_verify()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::web_site_verify(this),
+        _Internal::web_site_verify(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteBaiduAccount)
+  return target;
+}
+
+size_t SiteBaiduAccount::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteBaiduAccount)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional .palm.balsam.v1.SiteBaiduAccount.WebSiteVerify web_site_verify = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.web_site_verify_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteBaiduAccount::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteBaiduAccount::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteBaiduAccount::GetClassData() const { return &_class_data_; }
+
+
+void SiteBaiduAccount::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteBaiduAccount*>(&to_msg);
+  auto& from = static_cast<const SiteBaiduAccount&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteBaiduAccount)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_web_site_verify()) {
+    _this->_internal_mutable_web_site_verify()->::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify::MergeFrom(
+        from._internal_web_site_verify());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteBaiduAccount::CopyFrom(const SiteBaiduAccount& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteBaiduAccount)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteBaiduAccount::IsInitialized() const {
+  return true;
+}
+
+void SiteBaiduAccount::InternalSwap(SiteBaiduAccount* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.web_site_verify_, other->_impl_.web_site_verify_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteBaiduAccount::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[65]);
+}
+
+// ===================================================================
+
+class SiteGetInfoByLangRequest::_Internal {
+ public:
+};
+
+SiteGetInfoByLangRequest::SiteGetInfoByLangRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteGetInfoByLangRequest)
+}
+SiteGetInfoByLangRequest::SiteGetInfoByLangRequest(const SiteGetInfoByLangRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteGetInfoByLangRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteGetInfoByLangRequest)
+}
+
+inline void SiteGetInfoByLangRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteGetInfoByLangRequest::~SiteGetInfoByLangRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteGetInfoByLangRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteGetInfoByLangRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.lang_.Destroy();
+}
+
+void SiteGetInfoByLangRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteGetInfoByLangRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteGetInfoByLangRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteGetInfoByLangRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string lang = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGetInfoByLangRequest.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteGetInfoByLangRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteGetInfoByLangRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGetInfoByLangRequest.lang");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_lang(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteGetInfoByLangRequest)
+  return target;
+}
+
+size_t SiteGetInfoByLangRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteGetInfoByLangRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteGetInfoByLangRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteGetInfoByLangRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteGetInfoByLangRequest::GetClassData() const { return &_class_data_; }
+
+
+void SiteGetInfoByLangRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteGetInfoByLangRequest*>(&to_msg);
+  auto& from = static_cast<const SiteGetInfoByLangRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteGetInfoByLangRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteGetInfoByLangRequest::CopyFrom(const SiteGetInfoByLangRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteGetInfoByLangRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteGetInfoByLangRequest::IsInitialized() const {
+  return true;
+}
+
+void SiteGetInfoByLangRequest::InternalSwap(SiteGetInfoByLangRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteGetInfoByLangRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[66]);
+}
+
+// ===================================================================
+
+class SiteGetInfoByLangResponse::_Internal {
+ public:
+};
+
+SiteGetInfoByLangResponse::SiteGetInfoByLangResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteGetInfoByLangResponse)
+}
+SiteGetInfoByLangResponse::SiteGetInfoByLangResponse(const SiteGetInfoByLangResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteGetInfoByLangResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.title_){}
+    , decltype(_impl_.subhead_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.copyright_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_title().empty()) {
+    _this->_impl_.title_.Set(from._internal_title(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.subhead_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subhead_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_subhead().empty()) {
+    _this->_impl_.subhead_.Set(from._internal_subhead(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_description().empty()) {
+    _this->_impl_.description_.Set(from._internal_description(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.copyright_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.copyright_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_copyright().empty()) {
+    _this->_impl_.copyright_.Set(from._internal_copyright(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteGetInfoByLangResponse)
+}
+
+inline void SiteGetInfoByLangResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.title_){}
+    , decltype(_impl_.subhead_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.copyright_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.subhead_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subhead_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.copyright_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.copyright_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteGetInfoByLangResponse::~SiteGetInfoByLangResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteGetInfoByLangResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteGetInfoByLangResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.title_.Destroy();
+  _impl_.subhead_.Destroy();
+  _impl_.description_.Destroy();
+  _impl_.copyright_.Destroy();
+}
+
+void SiteGetInfoByLangResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteGetInfoByLangResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteGetInfoByLangResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.title_.ClearToEmpty();
+  _impl_.subhead_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
+  _impl_.copyright_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteGetInfoByLangResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string title = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_title();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGetInfoByLangResponse.title"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string subhead = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_subhead();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGetInfoByLangResponse.subhead"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string description = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_description();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGetInfoByLangResponse.description"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string copyright = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_copyright();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteGetInfoByLangResponse.copyright"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteGetInfoByLangResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteGetInfoByLangResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string title = 1;
+  if (!this->_internal_title().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGetInfoByLangResponse.title");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_title(), target);
+  }
+
+  // string subhead = 2;
+  if (!this->_internal_subhead().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_subhead().data(), static_cast<int>(this->_internal_subhead().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGetInfoByLangResponse.subhead");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_subhead(), target);
+  }
+
+  // string description = 3;
+  if (!this->_internal_description().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_description().data(), static_cast<int>(this->_internal_description().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGetInfoByLangResponse.description");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_description(), target);
+  }
+
+  // string copyright = 4;
+  if (!this->_internal_copyright().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_copyright().data(), static_cast<int>(this->_internal_copyright().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteGetInfoByLangResponse.copyright");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_copyright(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteGetInfoByLangResponse)
+  return target;
+}
+
+size_t SiteGetInfoByLangResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteGetInfoByLangResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string title = 1;
+  if (!this->_internal_title().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_title());
+  }
+
+  // string subhead = 2;
+  if (!this->_internal_subhead().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_subhead());
+  }
+
+  // string description = 3;
+  if (!this->_internal_description().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_description());
+  }
+
+  // string copyright = 4;
+  if (!this->_internal_copyright().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_copyright());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteGetInfoByLangResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteGetInfoByLangResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteGetInfoByLangResponse::GetClassData() const { return &_class_data_; }
+
+
+void SiteGetInfoByLangResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteGetInfoByLangResponse*>(&to_msg);
+  auto& from = static_cast<const SiteGetInfoByLangResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteGetInfoByLangResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_title().empty()) {
+    _this->_internal_set_title(from._internal_title());
+  }
+  if (!from._internal_subhead().empty()) {
+    _this->_internal_set_subhead(from._internal_subhead());
+  }
+  if (!from._internal_description().empty()) {
+    _this->_internal_set_description(from._internal_description());
+  }
+  if (!from._internal_copyright().empty()) {
+    _this->_internal_set_copyright(from._internal_copyright());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteGetInfoByLangResponse::CopyFrom(const SiteGetInfoByLangResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteGetInfoByLangResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteGetInfoByLangResponse::IsInitialized() const {
+  return true;
+}
+
+void SiteGetInfoByLangResponse::InternalSwap(SiteGetInfoByLangResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.title_, lhs_arena,
+      &other->_impl_.title_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.subhead_, lhs_arena,
+      &other->_impl_.subhead_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.description_, lhs_arena,
+      &other->_impl_.description_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.copyright_, lhs_arena,
+      &other->_impl_.copyright_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteGetInfoByLangResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[67]);
+}
+
+// ===================================================================
+
+class SiteLayoutResponse_Author::_Internal {
+ public:
+};
+
+SiteLayoutResponse_Author::SiteLayoutResponse_Author(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteLayoutResponse.Author)
+}
+SiteLayoutResponse_Author::SiteLayoutResponse_Author(const SiteLayoutResponse_Author& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteLayoutResponse_Author* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.email_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_email().empty()) {
+    _this->_impl_.email_.Set(from._internal_email(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteLayoutResponse.Author)
+}
+
+inline void SiteLayoutResponse_Author::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.email_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteLayoutResponse_Author::~SiteLayoutResponse_Author() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteLayoutResponse.Author)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteLayoutResponse_Author::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.name_.Destroy();
+  _impl_.email_.Destroy();
+}
+
+void SiteLayoutResponse_Author::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteLayoutResponse_Author::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteLayoutResponse.Author)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.email_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteLayoutResponse_Author::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.Author.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string email = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_email();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.Author.email"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteLayoutResponse_Author::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteLayoutResponse.Author)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.Author.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // string email = 2;
+  if (!this->_internal_email().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.Author.email");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_email(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteLayoutResponse.Author)
+  return target;
+}
+
+size_t SiteLayoutResponse_Author::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteLayoutResponse.Author)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string email = 2;
+  if (!this->_internal_email().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_email());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteLayoutResponse_Author::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteLayoutResponse_Author::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteLayoutResponse_Author::GetClassData() const { return &_class_data_; }
+
+
+void SiteLayoutResponse_Author::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteLayoutResponse_Author*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutResponse_Author&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteLayoutResponse.Author)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_email().empty()) {
+    _this->_internal_set_email(from._internal_email());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteLayoutResponse_Author::CopyFrom(const SiteLayoutResponse_Author& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteLayoutResponse.Author)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteLayoutResponse_Author::IsInitialized() const {
+  return true;
+}
+
+void SiteLayoutResponse_Author::InternalSwap(SiteLayoutResponse_Author* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.email_, lhs_arena,
+      &other->_impl_.email_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteLayoutResponse_Author::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[68]);
+}
+
+// ===================================================================
+
+class SiteLayoutResponse_CnGab::_Internal {
+ public:
+};
+
+SiteLayoutResponse_CnGab::SiteLayoutResponse_CnGab(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteLayoutResponse.CnGab)
+}
+SiteLayoutResponse_CnGab::SiteLayoutResponse_CnGab(const SiteLayoutResponse_CnGab& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteLayoutResponse_CnGab* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , decltype(_impl_.name_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_code().empty()) {
+    _this->_impl_.code_.Set(from._internal_code(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteLayoutResponse.CnGab)
+}
+
+inline void SiteLayoutResponse_CnGab::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , decltype(_impl_.name_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteLayoutResponse_CnGab::~SiteLayoutResponse_CnGab() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteLayoutResponse.CnGab)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteLayoutResponse_CnGab::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.code_.Destroy();
+  _impl_.name_.Destroy();
+}
+
+void SiteLayoutResponse_CnGab::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteLayoutResponse_CnGab::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteLayoutResponse.CnGab)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.code_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteLayoutResponse_CnGab::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.CnGab.code"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.CnGab.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteLayoutResponse_CnGab::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteLayoutResponse.CnGab)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.CnGab.code");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_code(), target);
+  }
+
+  // string name = 2;
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.CnGab.name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteLayoutResponse.CnGab)
+  return target;
+}
+
+size_t SiteLayoutResponse_CnGab::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteLayoutResponse.CnGab)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_code());
+  }
+
+  // string name = 2;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteLayoutResponse_CnGab::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteLayoutResponse_CnGab::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteLayoutResponse_CnGab::GetClassData() const { return &_class_data_; }
+
+
+void SiteLayoutResponse_CnGab::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteLayoutResponse_CnGab*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutResponse_CnGab&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteLayoutResponse.CnGab)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteLayoutResponse_CnGab::CopyFrom(const SiteLayoutResponse_CnGab& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteLayoutResponse.CnGab)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteLayoutResponse_CnGab::IsInitialized() const {
+  return true;
+}
+
+void SiteLayoutResponse_CnGab::InternalSwap(SiteLayoutResponse_CnGab* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.code_, lhs_arena,
+      &other->_impl_.code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteLayoutResponse_CnGab::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[69]);
+}
+
+// ===================================================================
+
+class SiteLayoutResponse_CnIcp::_Internal {
+ public:
+};
+
+SiteLayoutResponse_CnIcp::SiteLayoutResponse_CnIcp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+}
+SiteLayoutResponse_CnIcp::SiteLayoutResponse_CnIcp(const SiteLayoutResponse_CnIcp& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteLayoutResponse_CnIcp* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_code().empty()) {
+    _this->_impl_.code_.Set(from._internal_code(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+}
+
+inline void SiteLayoutResponse_CnIcp::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.code_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.code_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteLayoutResponse_CnIcp::~SiteLayoutResponse_CnIcp() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteLayoutResponse_CnIcp::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.code_.Destroy();
+}
+
+void SiteLayoutResponse_CnIcp::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteLayoutResponse_CnIcp::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.code_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteLayoutResponse_CnIcp::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string code = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.CnIcp.code"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteLayoutResponse_CnIcp::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.CnIcp.code");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_code(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+  return target;
+}
+
+size_t SiteLayoutResponse_CnIcp::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string code = 1;
+  if (!this->_internal_code().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteLayoutResponse_CnIcp::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteLayoutResponse_CnIcp::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteLayoutResponse_CnIcp::GetClassData() const { return &_class_data_; }
+
+
+void SiteLayoutResponse_CnIcp::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteLayoutResponse_CnIcp*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutResponse_CnIcp&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_code().empty()) {
+    _this->_internal_set_code(from._internal_code());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteLayoutResponse_CnIcp::CopyFrom(const SiteLayoutResponse_CnIcp& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteLayoutResponse.CnIcp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteLayoutResponse_CnIcp::IsInitialized() const {
+  return true;
+}
+
+void SiteLayoutResponse_CnIcp::InternalSwap(SiteLayoutResponse_CnIcp* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.code_, lhs_arena,
+      &other->_impl_.code_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteLayoutResponse_CnIcp::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[70]);
+}
+
+// ===================================================================
+
+class SiteLayoutResponse::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SiteLayoutResponse>()._impl_._has_bits_);
+  static const ::palm::balsam::v1::SiteLayoutResponse_Author& author(const SiteLayoutResponse* msg);
+  static const ::palm::balsam::v1::SiteLayoutResponse_CnIcp& cn_icp(const SiteLayoutResponse* msg);
+  static void set_has_cn_icp(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static const ::palm::balsam::v1::SiteLayoutResponse_CnGab& cn_gab(const SiteLayoutResponse* msg);
+  static void set_has_cn_gab(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+const ::palm::balsam::v1::SiteLayoutResponse_Author&
+SiteLayoutResponse::_Internal::author(const SiteLayoutResponse* msg) {
+  return *msg->_impl_.author_;
+}
+const ::palm::balsam::v1::SiteLayoutResponse_CnIcp&
+SiteLayoutResponse::_Internal::cn_icp(const SiteLayoutResponse* msg) {
+  return *msg->_impl_.cn_icp_;
+}
+const ::palm::balsam::v1::SiteLayoutResponse_CnGab&
+SiteLayoutResponse::_Internal::cn_gab(const SiteLayoutResponse* msg) {
+  return *msg->_impl_.cn_gab_;
+}
+SiteLayoutResponse::SiteLayoutResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteLayoutResponse)
+}
+SiteLayoutResponse::SiteLayoutResponse(const SiteLayoutResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteLayoutResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.keywords_){from._impl_.keywords_}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.subhead_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.copyright_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.languages_){}
+    , decltype(_impl_.version_){}
+    , decltype(_impl_.author_){nullptr}
+    , decltype(_impl_.cn_icp_){nullptr}
+    , decltype(_impl_.cn_gab_){nullptr}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_title().empty()) {
+    _this->_impl_.title_.Set(from._internal_title(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.subhead_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subhead_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_subhead().empty()) {
+    _this->_impl_.subhead_.Set(from._internal_subhead(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_description().empty()) {
+    _this->_impl_.description_.Set(from._internal_description(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.copyright_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.copyright_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_copyright().empty()) {
+    _this->_impl_.copyright_.Set(from._internal_copyright(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.languages_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.languages_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_languages().empty()) {
+    _this->_impl_.languages_.Set(from._internal_languages(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_version().empty()) {
+    _this->_impl_.version_.Set(from._internal_version(), 
+      _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_author()) {
+    _this->_impl_.author_ = new ::palm::balsam::v1::SiteLayoutResponse_Author(*from._impl_.author_);
+  }
+  if (from._internal_has_cn_icp()) {
+    _this->_impl_.cn_icp_ = new ::palm::balsam::v1::SiteLayoutResponse_CnIcp(*from._impl_.cn_icp_);
+  }
+  if (from._internal_has_cn_gab()) {
+    _this->_impl_.cn_gab_ = new ::palm::balsam::v1::SiteLayoutResponse_CnGab(*from._impl_.cn_gab_);
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteLayoutResponse)
+}
+
+inline void SiteLayoutResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.keywords_){arena}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.subhead_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.copyright_){}
+    , decltype(_impl_.lang_){}
+    , decltype(_impl_.languages_){}
+    , decltype(_impl_.version_){}
+    , decltype(_impl_.author_){nullptr}
+    , decltype(_impl_.cn_icp_){nullptr}
+    , decltype(_impl_.cn_gab_){nullptr}
+  };
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.subhead_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subhead_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.copyright_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.copyright_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.languages_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.languages_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.version_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.version_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteLayoutResponse::~SiteLayoutResponse() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteLayoutResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteLayoutResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.keywords_.~RepeatedPtrField();
+  _impl_.title_.Destroy();
+  _impl_.subhead_.Destroy();
+  _impl_.description_.Destroy();
+  _impl_.copyright_.Destroy();
+  _impl_.lang_.Destroy();
+  _impl_.languages_.Destroy();
+  _impl_.version_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.author_;
+  if (this != internal_default_instance()) delete _impl_.cn_icp_;
+  if (this != internal_default_instance()) delete _impl_.cn_gab_;
+}
+
+void SiteLayoutResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteLayoutResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteLayoutResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.keywords_.Clear();
+  _impl_.title_.ClearToEmpty();
+  _impl_.subhead_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
+  _impl_.copyright_.ClearToEmpty();
+  _impl_.lang_.ClearToEmpty();
+  _impl_.languages_.ClearToEmpty();
+  _impl_.version_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.author_ != nullptr) {
+    delete _impl_.author_;
+  }
+  _impl_.author_ = nullptr;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      GOOGLE_DCHECK(_impl_.cn_icp_ != nullptr);
+      _impl_.cn_icp_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      GOOGLE_DCHECK(_impl_.cn_gab_ != nullptr);
+      _impl_.cn_gab_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteLayoutResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string title = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_title();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.title"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string subhead = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_subhead();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.subhead"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string description = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_description();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.description"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string copyright = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_copyright();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.copyright"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .palm.balsam.v1.SiteLayoutResponse.Author author = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_author(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated string keywords = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_keywords();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.keywords"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .palm.balsam.v1.SiteLayoutResponse.CnIcp cn_icp = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          ptr = ctx->ParseMessage(_internal_mutable_cn_icp(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional .palm.balsam.v1.SiteLayoutResponse.CnGab cn_gab = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
+          ptr = ctx->ParseMessage(_internal_mutable_cn_gab(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string lang = 97;
+      case 97:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string languages = 98;
+      case 98:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_languages();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.languages"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string version = 99;
+      case 99:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_version();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteLayoutResponse.version"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteLayoutResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteLayoutResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string title = 1;
+  if (!this->_internal_title().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.title");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_title(), target);
+  }
+
+  // string subhead = 2;
+  if (!this->_internal_subhead().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_subhead().data(), static_cast<int>(this->_internal_subhead().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.subhead");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_subhead(), target);
+  }
+
+  // string description = 3;
+  if (!this->_internal_description().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_description().data(), static_cast<int>(this->_internal_description().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.description");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_description(), target);
+  }
+
+  // string copyright = 4;
+  if (!this->_internal_copyright().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_copyright().data(), static_cast<int>(this->_internal_copyright().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.copyright");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_copyright(), target);
+  }
+
+  // .palm.balsam.v1.SiteLayoutResponse.Author author = 5;
+  if (this->_internal_has_author()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::author(this),
+        _Internal::author(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated string keywords = 6;
+  for (int i = 0, n = this->_internal_keywords_size(); i < n; i++) {
+    const auto& s = this->_internal_keywords(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.keywords");
+    target = stream->WriteString(6, s, target);
+  }
+
+  // optional .palm.balsam.v1.SiteLayoutResponse.CnIcp cn_icp = 11;
+  if (_internal_has_cn_icp()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(11, _Internal::cn_icp(this),
+        _Internal::cn_icp(this).GetCachedSize(), target, stream);
+  }
+
+  // optional .palm.balsam.v1.SiteLayoutResponse.CnGab cn_gab = 12;
+  if (_internal_has_cn_gab()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(12, _Internal::cn_gab(this),
+        _Internal::cn_gab(this).GetCachedSize(), target, stream);
+  }
+
+  // string lang = 97;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.lang");
+    target = stream->WriteStringMaybeAliased(
+        97, this->_internal_lang(), target);
+  }
+
+  // string languages = 98;
+  if (!this->_internal_languages().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_languages().data(), static_cast<int>(this->_internal_languages().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.languages");
+    target = stream->WriteStringMaybeAliased(
+        98, this->_internal_languages(), target);
+  }
+
+  // string version = 99;
+  if (!this->_internal_version().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_version().data(), static_cast<int>(this->_internal_version().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteLayoutResponse.version");
+    target = stream->WriteStringMaybeAliased(
+        99, this->_internal_version(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteLayoutResponse)
+  return target;
+}
+
+size_t SiteLayoutResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteLayoutResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string keywords = 6;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.keywords_.size());
+  for (int i = 0, n = _impl_.keywords_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.keywords_.Get(i));
+  }
+
+  // string title = 1;
+  if (!this->_internal_title().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_title());
+  }
+
+  // string subhead = 2;
+  if (!this->_internal_subhead().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_subhead());
+  }
+
+  // string description = 3;
+  if (!this->_internal_description().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_description());
+  }
+
+  // string copyright = 4;
+  if (!this->_internal_copyright().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_copyright());
+  }
+
+  // string lang = 97;
+  if (!this->_internal_lang().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string languages = 98;
+  if (!this->_internal_languages().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_languages());
+  }
+
+  // string version = 99;
+  if (!this->_internal_version().empty()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_version());
+  }
+
+  // .palm.balsam.v1.SiteLayoutResponse.Author author = 5;
+  if (this->_internal_has_author()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.author_);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .palm.balsam.v1.SiteLayoutResponse.CnIcp cn_icp = 11;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.cn_icp_);
+    }
+
+    // optional .palm.balsam.v1.SiteLayoutResponse.CnGab cn_gab = 12;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *_impl_.cn_gab_);
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteLayoutResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteLayoutResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteLayoutResponse::GetClassData() const { return &_class_data_; }
+
+
+void SiteLayoutResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteLayoutResponse*>(&to_msg);
+  auto& from = static_cast<const SiteLayoutResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteLayoutResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.keywords_.MergeFrom(from._impl_.keywords_);
+  if (!from._internal_title().empty()) {
+    _this->_internal_set_title(from._internal_title());
+  }
+  if (!from._internal_subhead().empty()) {
+    _this->_internal_set_subhead(from._internal_subhead());
+  }
+  if (!from._internal_description().empty()) {
+    _this->_internal_set_description(from._internal_description());
+  }
+  if (!from._internal_copyright().empty()) {
+    _this->_internal_set_copyright(from._internal_copyright());
+  }
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_languages().empty()) {
+    _this->_internal_set_languages(from._internal_languages());
+  }
+  if (!from._internal_version().empty()) {
+    _this->_internal_set_version(from._internal_version());
+  }
+  if (from._internal_has_author()) {
+    _this->_internal_mutable_author()->::palm::balsam::v1::SiteLayoutResponse_Author::MergeFrom(
+        from._internal_author());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_cn_icp()->::palm::balsam::v1::SiteLayoutResponse_CnIcp::MergeFrom(
+          from._internal_cn_icp());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_cn_gab()->::palm::balsam::v1::SiteLayoutResponse_CnGab::MergeFrom(
+          from._internal_cn_gab());
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteLayoutResponse::CopyFrom(const SiteLayoutResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteLayoutResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteLayoutResponse::IsInitialized() const {
+  return true;
+}
+
+void SiteLayoutResponse::InternalSwap(SiteLayoutResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.keywords_.InternalSwap(&other->_impl_.keywords_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.title_, lhs_arena,
+      &other->_impl_.title_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.subhead_, lhs_arena,
+      &other->_impl_.subhead_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.description_, lhs_arena,
+      &other->_impl_.description_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.copyright_, lhs_arena,
+      &other->_impl_.copyright_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.languages_, lhs_arena,
+      &other->_impl_.languages_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.version_, lhs_arena,
+      &other->_impl_.version_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.cn_gab_)
+      + sizeof(SiteLayoutResponse::_impl_.cn_gab_)
+      - PROTOBUF_FIELD_OFFSET(SiteLayoutResponse, _impl_.author_)>(
+          reinterpret_cast<char*>(&_impl_.author_),
+          reinterpret_cast<char*>(&other->_impl_.author_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteLayoutResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[71]);
+}
+
+// ===================================================================
+
+class SiteInfoRequest::_Internal {
+ public:
+};
+
+SiteInfoRequest::SiteInfoRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteInfoRequest)
+}
+SiteInfoRequest::SiteInfoRequest(const SiteInfoRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteInfoRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.subhead_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.copyright_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_lang().empty()) {
+    _this->_impl_.lang_.Set(from._internal_lang(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_title().empty()) {
+    _this->_impl_.title_.Set(from._internal_title(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.subhead_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subhead_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_subhead().empty()) {
+    _this->_impl_.subhead_.Set(from._internal_subhead(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_description().empty()) {
+    _this->_impl_.description_.Set(from._internal_description(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.copyright_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.copyright_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_copyright().empty()) {
+    _this->_impl_.copyright_.Set(from._internal_copyright(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteInfoRequest)
+}
+
+inline void SiteInfoRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.lang_){}
+    , decltype(_impl_.title_){}
+    , decltype(_impl_.subhead_){}
+    , decltype(_impl_.description_){}
+    , decltype(_impl_.copyright_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.lang_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.title_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.title_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.subhead_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.subhead_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.description_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.description_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.copyright_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.copyright_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+SiteInfoRequest::~SiteInfoRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteInfoRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteInfoRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.lang_.Destroy();
+  _impl_.title_.Destroy();
+  _impl_.subhead_.Destroy();
+  _impl_.description_.Destroy();
+  _impl_.copyright_.Destroy();
+}
+
+void SiteInfoRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteInfoRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteInfoRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.lang_.ClearToEmpty();
+  _impl_.title_.ClearToEmpty();
+  _impl_.subhead_.ClearToEmpty();
+  _impl_.description_.ClearToEmpty();
+  _impl_.copyright_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteInfoRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string lang = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_lang();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteInfoRequest.lang"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string title = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_title();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteInfoRequest.title"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string subhead = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_subhead();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteInfoRequest.subhead"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string description = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_description();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteInfoRequest.description"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string copyright = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_copyright();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteInfoRequest.copyright"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteInfoRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteInfoRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lang().data(), static_cast<int>(this->_internal_lang().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteInfoRequest.lang");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_lang(), target);
+  }
+
+  // string title = 2;
+  if (!this->_internal_title().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteInfoRequest.title");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_title(), target);
+  }
+
+  // string subhead = 3;
+  if (!this->_internal_subhead().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_subhead().data(), static_cast<int>(this->_internal_subhead().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteInfoRequest.subhead");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_subhead(), target);
+  }
+
+  // string description = 4;
+  if (!this->_internal_description().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_description().data(), static_cast<int>(this->_internal_description().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteInfoRequest.description");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_description(), target);
+  }
+
+  // string copyright = 5;
+  if (!this->_internal_copyright().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_copyright().data(), static_cast<int>(this->_internal_copyright().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteInfoRequest.copyright");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_copyright(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteInfoRequest)
+  return target;
+}
+
+size_t SiteInfoRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteInfoRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lang = 1;
+  if (!this->_internal_lang().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lang());
+  }
+
+  // string title = 2;
+  if (!this->_internal_title().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_title());
+  }
+
+  // string subhead = 3;
+  if (!this->_internal_subhead().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_subhead());
+  }
+
+  // string description = 4;
+  if (!this->_internal_description().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_description());
+  }
+
+  // string copyright = 5;
+  if (!this->_internal_copyright().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_copyright());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteInfoRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteInfoRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteInfoRequest::GetClassData() const { return &_class_data_; }
+
+
+void SiteInfoRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteInfoRequest*>(&to_msg);
+  auto& from = static_cast<const SiteInfoRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteInfoRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lang().empty()) {
+    _this->_internal_set_lang(from._internal_lang());
+  }
+  if (!from._internal_title().empty()) {
+    _this->_internal_set_title(from._internal_title());
+  }
+  if (!from._internal_subhead().empty()) {
+    _this->_internal_set_subhead(from._internal_subhead());
+  }
+  if (!from._internal_description().empty()) {
+    _this->_internal_set_description(from._internal_description());
+  }
+  if (!from._internal_copyright().empty()) {
+    _this->_internal_set_copyright(from._internal_copyright());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteInfoRequest::CopyFrom(const SiteInfoRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteInfoRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteInfoRequest::IsInitialized() const {
+  return true;
+}
+
+void SiteInfoRequest::InternalSwap(SiteInfoRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.lang_, lhs_arena,
+      &other->_impl_.lang_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.title_, lhs_arena,
+      &other->_impl_.title_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.subhead_, lhs_arena,
+      &other->_impl_.subhead_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.description_, lhs_arena,
+      &other->_impl_.description_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.copyright_, lhs_arena,
+      &other->_impl_.copyright_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteInfoRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[72]);
+}
+
+// ===================================================================
+
+class SiteKeywordsRequest::_Internal {
+ public:
+};
+
+SiteKeywordsRequest::SiteKeywordsRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:palm.balsam.v1.SiteKeywordsRequest)
+}
+SiteKeywordsRequest::SiteKeywordsRequest(const SiteKeywordsRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  SiteKeywordsRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){from._impl_.items_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.SiteKeywordsRequest)
+}
+
+inline void SiteKeywordsRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.items_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+SiteKeywordsRequest::~SiteKeywordsRequest() {
+  // @@protoc_insertion_point(destructor:palm.balsam.v1.SiteKeywordsRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void SiteKeywordsRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.items_.~RepeatedPtrField();
+}
+
+void SiteKeywordsRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void SiteKeywordsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.balsam.v1.SiteKeywordsRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.items_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SiteKeywordsRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated string items = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_items();
+            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(ptr);
+            CHK_(::_pbi::VerifyUTF8(str, "palm.balsam.v1.SiteKeywordsRequest.items"));
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* SiteKeywordsRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.balsam.v1.SiteKeywordsRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string items = 1;
+  for (int i = 0, n = this->_internal_items_size(); i < n; i++) {
+    const auto& s = this->_internal_items(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "palm.balsam.v1.SiteKeywordsRequest.items");
+    target = stream->WriteString(1, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.balsam.v1.SiteKeywordsRequest)
+  return target;
+}
+
+size_t SiteKeywordsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.balsam.v1.SiteKeywordsRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string items = 1;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.items_.size());
+  for (int i = 0, n = _impl_.items_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      _impl_.items_.Get(i));
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SiteKeywordsRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    SiteKeywordsRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SiteKeywordsRequest::GetClassData() const { return &_class_data_; }
+
+
+void SiteKeywordsRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<SiteKeywordsRequest*>(&to_msg);
+  auto& from = static_cast<const SiteKeywordsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.balsam.v1.SiteKeywordsRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.items_.MergeFrom(from._impl_.items_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SiteKeywordsRequest::CopyFrom(const SiteKeywordsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.balsam.v1.SiteKeywordsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SiteKeywordsRequest::IsInitialized() const {
+  return true;
+}
+
+void SiteKeywordsRequest::InternalSwap(SiteKeywordsRequest* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SiteKeywordsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_balsam_2eproto_getter, &descriptor_table_balsam_2eproto_once,
+      file_level_metadata_balsam_2eproto[73]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace balsam
@@ -17758,6 +25795,110 @@ Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentIndexResponse_Item >(Ar
 template<> PROTOBUF_NOINLINE ::palm::balsam::v1::AttachmentIndexResponse*
 Arena::CreateMaybeMessage< ::palm::balsam::v1::AttachmentIndexResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::balsam::v1::AttachmentIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LocaleSetRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LocaleSetRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LocaleSetRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LocaleIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LocaleIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LocaleIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LocaleIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LocaleIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LocaleIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LocaleByLangRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LocaleByLangRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LocaleByLangRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LeaveWordCreateRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LeaveWordCreateRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LeaveWordCreateRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LeaveWordIndexResponse_Item*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LeaveWordIndexResponse_Item >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LeaveWordIndexResponse_Item >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::LeaveWordIndexResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::LeaveWordIndexResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::LeaveWordIndexResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteStatusResponse_Redis*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteStatusResponse_Redis >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteStatusResponse_Redis >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteStatusResponse_PostgreSql*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteStatusResponse_PostgreSql >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteStatusResponse_PostgreSql >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteStatusResponse_OpenSearch*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteStatusResponse_OpenSearch >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteStatusResponse_OpenSearch >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteStatusResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteStatusResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteStatusResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteIndexNowAccount*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteIndexNowAccount >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteIndexNowAccount >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteGoogleAccount_ReCaptcha*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteGoogleAccount_ReCaptcha >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteGoogleAccount_ReCaptcha >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteGoogleAccount*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteGoogleAccount >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteGoogleAccount >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteBaiduAccount*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteBaiduAccount >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteBaiduAccount >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteGetInfoByLangRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteGetInfoByLangRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteGetInfoByLangRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteGetInfoByLangResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteGetInfoByLangResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteGetInfoByLangResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteLayoutResponse_Author*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteLayoutResponse_Author >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteLayoutResponse_Author >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteLayoutResponse_CnGab*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteLayoutResponse_CnGab >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteLayoutResponse_CnGab >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteLayoutResponse_CnIcp*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteLayoutResponse_CnIcp >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteLayoutResponse_CnIcp >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteLayoutResponse*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteLayoutResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteLayoutResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteInfoRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteInfoRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteInfoRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::palm::balsam::v1::SiteKeywordsRequest*
+Arena::CreateMaybeMessage< ::palm::balsam::v1::SiteKeywordsRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::balsam::v1::SiteKeywordsRequest >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
