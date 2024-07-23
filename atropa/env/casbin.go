@@ -135,6 +135,8 @@ func OpenCasbinEnforcer(namespace string, db *gorm.DB, redis_addrs []string) (*c
 	}
 
 	slog.Debug("open casbin gorm adapter")
+	// https://github.com/jcasbin/jdbc-adapter/blob/master/src/main/java/org/casbin/adapter/JDBCBaseAdapter.java#L105
+	gormadapter.TurnOffAutoMigrate(db)
 	adp, err := gormadapter.NewAdapterByDB(db)
 	if err != nil {
 		return nil, err
