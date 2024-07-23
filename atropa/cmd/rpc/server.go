@@ -15,6 +15,8 @@ import (
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/reflection"
 
+	balsam_services "github.com/saturn-xiv/palm/atropa/balsam/services"
+	balsam_pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 	"github.com/saturn-xiv/palm/atropa/env/minio"
@@ -52,7 +54,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 		return err
 	}
 
-	_, _, jwt, err := crypto.Open(keys_dir)
+	aes, hmac, jwt, err := crypto.Open(keys_dir)
 	if err != nil {
 		return err
 	}
@@ -74,7 +76,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	server := grpc.NewServer(options...)
 	if err = mount(server,
 		config.Namespace,
-		redis, jwt, enforcer, s3,
+		redis, aes, hmac, jwt, enforcer, s3,
 		config.GoogleOauth2,
 		config.WechatOauth2, config.WechatMiniProgram, config.WechatPay); err != nil {
 		return err
@@ -99,7 +101,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 
 func mount(server *grpc.Server, namespace string,
 	redis *redis.Client,
-	jwt *crypto.Jwt,
+	aes *crypto.Aes, hmac *crypto.HMac, jwt *crypto.Jwt,
 	enforcer *casbin.Enforcer,
 	s3 *minio.Client,
 	google_oauth2 *GoogleOauth2,
@@ -107,6 +109,9 @@ func mount(server *grpc.Server, namespace string,
 	wechat_mini_program *wechat_mini_program.Config,
 	wechat_pay *wechat_pay.Config,
 ) error {
+	balsam_pb.RegisterAesServer(server, balsam_services.NewAesService(aes))
+	balsam_pb.RegisterHMacServer(server, balsam_services.NewHmacService(hmac))
+	balsam_pb.RegisterJwtServer(server, balsam_services.NewJwtService(jwt))
 	rbac_pb.RegisterPolicyServer(server, rbac_services.NewPolicyService(enforcer))
 	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(namespace, s3))
 	if google_oauth2 != nil {

@@ -1,10 +1,9 @@
 package models
 
-import (
-	balsam "github.com/saturn-xiv/palm/atropa/balsam/models"
-)
+import "time"
 
 type TwilioSmsLogs struct {
-	balsam.Model
-	Body []byte `gorm:"not null"`
+	ID        uint
+	Body      []byte `gorm:"not null"`
+	CreatedAt time.Time
 }

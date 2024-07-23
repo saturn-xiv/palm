@@ -42,7 +42,7 @@ CREATE INDEX idx_logs_level ON logs(level);
 CREATE INDEX idx_logs_resource_type ON logs(resource_type);
 
 
-CREATE TABLE user_sessions(
+CREATE TABLE sessions(
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
     uid VARCHAR(36) NOT NULL, 
@@ -53,12 +53,12 @@ CREATE TABLE user_sessions(
     deleted_at TIMESTAMP WITHOUT TIME ZONE,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE UNIQUE INDEX idx_user_sessions_uid ON user_sessions(uid);
-CREATE INDEX idx_user_sessions_ip ON user_sessions(ip);
-CREATE INDEX idx_user_sessions_resource_type ON user_sessions(resource_type);
+CREATE UNIQUE INDEX idx_sessions_uid ON sessions(uid);
+CREATE INDEX idx_sessions_ip ON sessions(ip);
+CREATE INDEX idx_sessions_resource_type ON sessions(resource_type);
 
 
 -- migrate:down
-DROP TABLE user_sessions;
+DROP TABLE sessions;
 DROP TABLE logs;
 DROP TABLE users;
