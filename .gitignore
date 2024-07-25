@@ -1,6 +1,6 @@
 /tmp/
 /build/
-/config.toml
+/*.toml
 /*.json
 
 /go.work.sum

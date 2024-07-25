@@ -5,6 +5,7 @@ import (
 	"crypto/x509"
 	"errors"
 	"fmt"
+	"log/slog"
 	"os"
 
 	"google.golang.org/grpc"
@@ -37,6 +38,7 @@ type Tls struct {
 }
 
 func (p *Tls) Load(server bool) (*tls.Config, error) {
+	slog.Debug("load tls", slog.String("ca", p.CaFile), slog.String("cert", p.CertFile), slog.String("key", p.KeyFile))
 	root_ca := x509.NewCertPool()
 	{
 		buf, err := os.ReadFile(p.CaFile)
