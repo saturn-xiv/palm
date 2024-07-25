@@ -1,15 +1,13 @@
 package daisy
 
 import (
-	"io"
 	"log/slog"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/twilio/twilio-go/twiml"
-	"gorm.io/gorm"
+	"google.golang.org/grpc"
 
-	"github.com/saturn-xiv/palm/atropa/daisy/models"
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
@@ -19,7 +17,7 @@ type TwilioSmsStatusCallbackParams struct {
 }
 
 // https://www.twilio.com/docs/usage/webhooks/messaging-webhooks
-func TwilioSmsStatusCallback(db *gorm.DB, jwt *crypto.Jwt) gin.HandlerFunc {
+func TwilioSmsStatusCallback(jwt *crypto.Jwt, backend *grpc.ClientConn) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var params TwilioSmsStatusCallbackParams
 		if err := c.ShouldBindUri(&params); err != nil {
@@ -35,28 +33,10 @@ func TwilioSmsStatusCallback(db *gorm.DB, jwt *crypto.Jwt) gin.HandlerFunc {
 			slog.Info("twilio callback", slog.String("subject", subject))
 		}
 
-		{
-
-			body, err := io.ReadAll(c.Request.Body)
-
-			if err != nil {
-				c.AbortWithError(http.StatusInternalServerError, err)
-				return
-			}
-			if err = db.Transaction(func(tx *gorm.DB) error {
-				if err := db.Create(&models.TwilioSmsLogs{Body: body}).Error; err != nil {
-					return err
-				}
-				return nil
-			}); err != nil {
-				c.AbortWithError(http.StatusInternalServerError, err)
-				return
-			}
-
-		}
-
 		body := c.PostForm("Body")
 		slog.Info("receive a message", slog.String("body", body))
+
+		// TODO save message
 
 		var msg = &twiml.MessagingMessage{}
 		twiml, err := twiml.Messages([]twiml.Element{msg})

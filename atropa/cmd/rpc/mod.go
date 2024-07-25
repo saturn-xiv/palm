@@ -10,7 +10,6 @@ import (
 )
 
 type Config struct {
-	Namespace         string                      `toml:"namespace"`
 	GoogleOauth2      *GoogleOauth2               `toml:"google-oauth2,omitempty"`
 	WechatOauth2      *wechat_oauth2.Config       `toml:"wechat-oauth2,omitempty"`
 	WechatMiniProgram *wechat_mini_program.Config `toml:"wechat-mini-program,omitempty"`

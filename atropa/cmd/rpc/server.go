@@ -46,11 +46,11 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	if err != nil {
 		return err
 	}
-	redis, err := config.Redis.Open(config.Namespace)
+	redis, err := config.Redis.Open()
 	if err != nil {
 		return err
 	}
-	enforcer, err := env.OpenCasbinEnforcer(config.Namespace, db, config.Redis.Options().Addrs)
+	enforcer, err := env.OpenCasbinEnforcer(db, &config.Redis)
 	if err != nil {
 		return err
 	}
@@ -73,14 +73,13 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 		return err
 	}
 
-	tls, err := config.Tls.Load(true)
+	tls, err := config.Tls.Load()
 	if err != nil {
 		return err
 	}
 
 	server := grpc.NewServer(grpc.Creds(credentials.NewTLS(tls)))
 	if err = mount(server,
-		config.Namespace,
 		redis, aes, hmac, jwt, enforcer, s3,
 		config.GoogleOauth2,
 		config.WechatOauth2, config.WechatMiniProgram, config.WechatPay); err != nil {
@@ -104,7 +103,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	return nil
 }
 
-func mount(server *grpc.Server, namespace string,
+func mount(server *grpc.Server,
 	redis *redis.Client,
 	aes *crypto.Aes, hmac *crypto.HMac, jwt *crypto.Jwt,
 	enforcer *casbin.Enforcer,
@@ -118,7 +117,7 @@ func mount(server *grpc.Server, namespace string,
 	balsam_pb.RegisterHMacServer(server, balsam_services.NewHmacService(hmac))
 	balsam_pb.RegisterJwtServer(server, balsam_services.NewJwtService(jwt))
 	rbac_pb.RegisterPolicyServer(server, rbac_services.NewPolicyService(enforcer))
-	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(namespace, s3))
+	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(s3))
 	if google_oauth2 != nil {
 		service, err := google_services.NewOauth2Service(jwt, google_oauth2.ProjectID, google_oauth2.RedirectURL)
 		if err != nil {

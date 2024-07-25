@@ -2,15 +2,15 @@ package daisy
 
 import (
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
+	"google.golang.org/grpc"
 
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
-func Mount(router gin.IRouter, db *gorm.DB, jwt *crypto.Jwt) error {
+func Mount(router gin.IRouter, jwt *crypto.Jwt, backend *grpc.ClientConn) error {
 	{
 		group := router.Group("/api/twilio")
-		callback := TwilioSmsStatusCallback(db, jwt)
+		callback := TwilioSmsStatusCallback(jwt, backend)
 		group.GET("/sms-status-callback/:token", callback)
 		group.POST("/sms-status-callback/:token", callback)
 	}

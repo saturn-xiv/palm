@@ -4,12 +4,12 @@ import (
 	"io/fs"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
+	"google.golang.org/grpc"
 
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
-func Mount(router gin.IRouter, views_fs fs.FS, theme string, db *gorm.DB, jwt *crypto.Jwt) error {
+func Mount(router gin.IRouter, views_fs fs.FS, theme string, jwt *crypto.Jwt, backend *grpc.ClientConn) error {
 
 	{
 		router.GET("/robots.txt", RobotsTxt(views_fs))

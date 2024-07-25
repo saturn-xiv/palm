@@ -2,6 +2,7 @@ package web
 
 import (
 	"context"
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"log/slog"
@@ -14,8 +15,8 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/gin-gonic/gin"
 
+	balsam_pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
 	"github.com/saturn-xiv/palm/atropa/controllers"
-	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
@@ -29,13 +30,27 @@ func Launch(port uint16, config_file string, keys_dir string, version string, de
 	if err != nil {
 		return err
 	}
-	db, err := config.Database.Open()
+	cache, err := config.Redis.Open()
 	if err != nil {
 		return err
 	}
-	enforcer, err := env.OpenCasbinEnforcer(config.Namespace, db, config.Redis.Options().Addrs)
+	backend, err := config.Backend.Open()
 	if err != nil {
 		return err
+	}
+	{
+		// TODO change to fetch layout
+		slog.Debug("test backend-rpc service")
+		hi := "hello, palm!"
+		ctx := context.Background()
+		cli := balsam_pb.NewHMacClient(backend)
+		res, err := cli.Sign(ctx, &balsam_pb.HMacSignRequest{
+			Plain: []byte(hi),
+		})
+		if err != nil {
+			return err
+		}
+		slog.Debug("receive", slog.String("hmac code", base64.StdEncoding.WithPadding(base64.NoPadding).EncodeToString(res.Code)))
 	}
 
 	gin.DisableConsoleColor()
@@ -43,7 +58,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string, de
 		gin.SetMode(gin.ReleaseMode)
 	}
 	router := gin.Default()
-	if err = controllers.Mount(router, config.Theme, db, jwt, enforcer); err != nil {
+	if err = controllers.Mount(router, config.Theme, cache, jwt, backend); err != nil {
 		return err
 	}
 

@@ -6,13 +6,13 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
+	"google.golang.org/grpc"
 
 	"github.com/saturn-xiv/palm/atropa/balsam"
 	"github.com/saturn-xiv/palm/atropa/daisy"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
+	"github.com/saturn-xiv/palm/atropa/env/redis"
 )
 
 //go:embed views/*
@@ -21,7 +21,7 @@ var gl_views_fs embed.FS
 //go:embed assets/* themes/jekyll-al-folio/assets/* themes/hugo-even/static/* themes/hugo-universal/static/*
 var gl_assets_fs embed.FS
 
-func Mount(router *gin.Engine, theme string, db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) error {
+func Mount(router *gin.Engine, theme string, cache *redis.Client, jwt *crypto.Jwt, backend *grpc.ClientConn) error {
 	{
 		tpl, err := template.New("").ParseFS(gl_views_fs, "views/*.tpl", fmt.Sprintf("views/%s/*.tpl", theme))
 		if err != nil {
@@ -34,17 +34,17 @@ func Mount(router *gin.Engine, theme string, db *gorm.DB, jwt *crypto.Jwt, enfor
 		router.StaticFS("/public", http.FS(gl_assets_fs))
 	}
 	{
-		handler, err := Graphql(db)
+		handler, err := Graphql(jwt, backend)
 		if err != nil {
 			return err
 		}
 		router.GET("/graphql", gin.WrapH(handler))
 		router.POST("/graphql", gin.WrapH(handler))
 	}
-	if err := daisy.Mount(router, db, jwt); err != nil {
+	if err := daisy.Mount(router, jwt, backend); err != nil {
 		return err
 	}
-	if err := balsam.Mount(router, gl_views_fs, theme, db, jwt); err != nil {
+	if err := balsam.Mount(router, gl_views_fs, theme, jwt, backend); err != nil {
 		return err
 	}
 

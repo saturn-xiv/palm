@@ -10,7 +10,8 @@ import (
 )
 
 type Cluster struct {
-	Nodes []Node `toml:"nodes"`
+	Namespace string `toml:"namespace"`
+	Nodes     []Node `toml:"nodes"`
 }
 
 func (p *Cluster) Addrs() []string {
@@ -25,11 +26,11 @@ func (p *Cluster) Options() redis.ClusterOptions {
 	return redis.ClusterOptions{Addrs: p.Addrs()}
 }
 
-func (p *Cluster) Open(namespace string) (*Client, error) {
+func (p *Cluster) Open() (*Client, error) {
 	slog.Info(fmt.Sprintf("open redis %s", strings.Join(p.Addrs(), ",")))
 	options := p.Options()
 	client := Client{
-		namespace: namespace,
+		namespace: p.Namespace,
 		db:        redis.NewClusterClient(&options),
 	}
 	{

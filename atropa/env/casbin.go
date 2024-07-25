@@ -11,6 +11,8 @@ import (
 	rediswatcher "github.com/casbin/redis-watcher/v2"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
+
+	redis_ "github.com/saturn-xiv/palm/atropa/env/redis"
 )
 
 type Logger struct {
@@ -98,7 +100,7 @@ func (l *Logger) LogError(err error, msg ...string) {
 	slog.Error(strings.Join(it, ", "))
 }
 
-var gl_casbin_rbac_model string = `
+const gl_casbin_rbac_model string = `
 [request_definition]
 r = sub, obj, act
 
@@ -119,15 +121,16 @@ func updateCallback(msg string) {
 	slog.Debug(msg)
 }
 
-func OpenCasbinEnforcer(namespace string, db *gorm.DB, redis_addrs []string) (*casbin.Enforcer, error) {
+func OpenCasbinEnforcer(db *gorm.DB, re *redis_.Cluster) (*casbin.Enforcer, error) {
+
 	slog.Debug("open casbin redis watcher")
 	wtc, err := rediswatcher.NewWatcherWithCluster(
-		strings.Join(redis_addrs, ","),
+		strings.Join(re.Options().Addrs, ","),
 		rediswatcher.WatcherOptions{
 			ClusterOptions: redis.ClusterOptions{
 				ClientName: "casbin-watcher",
 			},
-			Channel:    fmt.Sprintf("%s://casbin-watcher", namespace),
+			Channel:    fmt.Sprintf("%s://casbin-watcher", re.Namespace),
 			IgnoreSelf: false,
 		})
 	if err != nil {

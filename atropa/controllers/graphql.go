@@ -5,10 +5,12 @@ import (
 
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
-	"gorm.io/gorm"
+	"google.golang.org/grpc"
+
+	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
-func Graphql(db *gorm.DB) (http.Handler, error) {
+func Graphql(jwt *crypto.Jwt, backend *grpc.ClientConn) (http.Handler, error) {
 	query := graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
