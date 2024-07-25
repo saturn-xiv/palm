@@ -96,6 +96,18 @@ function generate_grpc_for_go() {
         --go-grpc_out=$2 --go-grpc_opt=paths=source_relative \
         $WORKSPACE/petunia/$1.proto
 }
+
+function generate_tutorials() {
+    local java_target=$WORKSPACE/tutorials/java/src/main/java
+    if [ -d $java_target/com/github/saturn_xiv/palm/plugins ]; then
+        rm -f $java_target/com/github/saturn_xiv/palm/plugins
+    fi
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --java_out=$java_target --grpc_out=$java_target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_java_plugin \
+        $WORKSPACE/petunia/*.proto
+}
 # -----------------------------------------------------------------------------
 
 generate_gourd
@@ -117,6 +129,8 @@ declare -a langs=(
 for l in "${langs[@]}"; do
     generate_grpc_for_lang $l lemon/$l
 done
+
+generate_tutorials
 
 echo 'done.'
 
