@@ -38,7 +38,11 @@ public class PalmApplication extends Application<PalmConfiguration> {
             var stub = HMacGrpc.newBlockingStub(atropaChannel);
             var res = stub.sign(HMacSignRequest.newBuilder().setPlain(ByteString.copyFromUtf8(hi)).build());
             logger.info("hmac sign({}): ({})", hi, res.getCode());
-            var empty = stub.verify(HMacVerifyRequest.newBuilder().setCode(res.getCode()).setPlain(ByteString.copyFromUtf8(hi)).build());
+            var empty = stub.verify(HMacVerifyRequest.newBuilder()
+                    .setCode(res.getCode())
+                    .setPlain(ByteString.copyFromUtf8(hi))
+                    .setSalt(res.getSalt())
+                    .build());
         }
     }
 

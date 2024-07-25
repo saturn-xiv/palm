@@ -17,16 +17,6 @@ type hmacPayloadWithSalt struct {
 	Salt []byte
 }
 
-func decodeHmacPayloadWithSalt(bin []byte) (*hmacPayloadWithSalt, error) {
-	buf := bytes.NewBuffer(bin)
-	dec := gob.NewDecoder(buf)
-	var it hmacPayloadWithSalt
-	if err := dec.Decode(&it); err != nil {
-		return nil, err
-	}
-	return &it, nil
-}
-
 func (p *hmacPayloadWithSalt) encode() ([]byte, error) {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
@@ -36,26 +26,27 @@ func (p *hmacPayloadWithSalt) encode() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-func (p *HMac) Sign(plain []byte) ([]byte, error) {
-	bin, err := p.mac.ComputeMAC(plain)
-	if err != nil {
-		return nil, err
-	}
+func (p *HMac) Sign(plain []byte) ([]byte, []byte, error) {
+	salt := RandomBytes(16)
 	it := hmacPayloadWithSalt{
-		Raw:  bin,
-		Salt: RandomBytes(8),
+		Raw:  plain,
+		Salt: salt,
 	}
-	return it.encode()
+	buf, err := it.encode()
+	if err != nil {
+		return nil, nil, err
+	}
+	code, err := p.mac.ComputeMAC(buf)
+	if err != nil {
+		return nil, nil, err
+	}
+	return code, salt, nil
 }
 
-func (p *HMac) Verify(code []byte, plain []byte) error {
-	tmp, err := decodeHmacPayloadWithSalt(code)
-	if err != nil {
-		return err
-	}
+func (p *HMac) Verify(code []byte, plain []byte, salt []byte) error {
 	it := &hmacPayloadWithSalt{
 		Raw:  plain,
-		Salt: tmp.Salt,
+		Salt: salt,
 	}
 	buf, err := it.encode()
 	if err != nil {

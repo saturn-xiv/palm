@@ -81,10 +81,12 @@ message HMacSignRequest {
 }
 message HMacSignResponse {
   bytes code = 1;
+  bytes salt = 2;
 }
 message HMacVerifyRequest {
   bytes plain = 1;
   bytes code = 2;
+  bytes salt = 3;
 }
 
 // ----------------------------------------------------------------------------

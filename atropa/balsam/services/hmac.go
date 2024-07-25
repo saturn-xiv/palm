@@ -19,14 +19,14 @@ type HmacService struct {
 }
 
 func (p *HmacService) Sign(ctx context.Context, req *pb.HMacSignRequest) (*pb.HMacSignResponse, error) {
-	code, err := p.hmac.Sign(req.Plain)
+	code, salt, err := p.hmac.Sign(req.Plain)
 	if err != nil {
 		return nil, err
 	}
-	return &pb.HMacSignResponse{Code: code}, nil
+	return &pb.HMacSignResponse{Code: code, Salt: salt}, nil
 }
 func (p *HmacService) Verify(ctx context.Context, req *pb.HMacVerifyRequest) (*emptypb.Empty, error) {
-	if err := p.hmac.Verify(req.Code, req.Plain); err != nil {
+	if err := p.hmac.Verify(req.Code, req.Plain, req.Salt); err != nil {
 		return nil, err
 	}
 	return &emptypb.Empty{}, nil

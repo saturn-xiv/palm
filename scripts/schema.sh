@@ -100,7 +100,7 @@ function generate_grpc_for_go() {
 function generate_tutorials() {
     local java_target=$WORKSPACE/tutorials/java/src/main/java
     if [ -d $java_target/com/github/saturn_xiv/palm/plugins ]; then
-        rm -f $java_target/com/github/saturn_xiv/palm/plugins
+        rm -r $java_target/com/github/saturn_xiv/palm/plugins
     fi
     $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
         -I $PROTOBUF_ROOT/include/google/protobuf \

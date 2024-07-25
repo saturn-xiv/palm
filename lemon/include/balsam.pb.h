@@ -2396,6 +2396,7 @@ class HMacSignResponse final :
 
   enum : int {
     kCodeFieldNumber = 1,
+    kSaltFieldNumber = 2,
   };
   // bytes code = 1;
   void clear_code();
@@ -2411,6 +2412,20 @@ class HMacSignResponse final :
   std::string* _internal_mutable_code();
   public:
 
+  // bytes salt = 2;
+  void clear_salt();
+  const std::string& salt() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_salt(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_salt();
+  PROTOBUF_NODISCARD std::string* release_salt();
+  void set_allocated_salt(std::string* salt);
+  private:
+  const std::string& _internal_salt() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_salt(const std::string& value);
+  std::string* _internal_mutable_salt();
+  public:
+
   // @@protoc_insertion_point(class_scope:palm.balsam.v1.HMacSignResponse)
  private:
   class _Internal;
@@ -2420,6 +2435,7 @@ class HMacSignResponse final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr salt_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2550,6 +2566,7 @@ class HMacVerifyRequest final :
   enum : int {
     kPlainFieldNumber = 1,
     kCodeFieldNumber = 2,
+    kSaltFieldNumber = 3,
   };
   // bytes plain = 1;
   void clear_plain();
@@ -2579,6 +2596,20 @@ class HMacVerifyRequest final :
   std::string* _internal_mutable_code();
   public:
 
+  // bytes salt = 3;
+  void clear_salt();
+  const std::string& salt() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_salt(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_salt();
+  PROTOBUF_NODISCARD std::string* release_salt();
+  void set_allocated_salt(std::string* salt);
+  private:
+  const std::string& _internal_salt() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_salt(const std::string& value);
+  std::string* _internal_mutable_salt();
+  public:
+
   // @@protoc_insertion_point(class_scope:palm.balsam.v1.HMacVerifyRequest)
  private:
   class _Internal;
@@ -2589,6 +2620,7 @@ class HMacVerifyRequest final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr plain_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr salt_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -16468,6 +16500,56 @@ inline void HMacSignResponse::set_allocated_code(std::string* code) {
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.HMacSignResponse.code)
 }
 
+// bytes salt = 2;
+inline void HMacSignResponse::clear_salt() {
+  _impl_.salt_.ClearToEmpty();
+}
+inline const std::string& HMacSignResponse::salt() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.HMacSignResponse.salt)
+  return _internal_salt();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void HMacSignResponse::set_salt(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.salt_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.HMacSignResponse.salt)
+}
+inline std::string* HMacSignResponse::mutable_salt() {
+  std::string* _s = _internal_mutable_salt();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.HMacSignResponse.salt)
+  return _s;
+}
+inline const std::string& HMacSignResponse::_internal_salt() const {
+  return _impl_.salt_.Get();
+}
+inline void HMacSignResponse::_internal_set_salt(const std::string& value) {
+  
+  _impl_.salt_.Set(value, GetArenaForAllocation());
+}
+inline std::string* HMacSignResponse::_internal_mutable_salt() {
+  
+  return _impl_.salt_.Mutable(GetArenaForAllocation());
+}
+inline std::string* HMacSignResponse::release_salt() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.HMacSignResponse.salt)
+  return _impl_.salt_.Release();
+}
+inline void HMacSignResponse::set_allocated_salt(std::string* salt) {
+  if (salt != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.salt_.SetAllocated(salt, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.salt_.IsDefault()) {
+    _impl_.salt_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.HMacSignResponse.salt)
+}
+
 // -------------------------------------------------------------------
 
 // HMacVerifyRequest
@@ -16570,6 +16652,56 @@ inline void HMacVerifyRequest::set_allocated_code(std::string* code) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.HMacVerifyRequest.code)
+}
+
+// bytes salt = 3;
+inline void HMacVerifyRequest::clear_salt() {
+  _impl_.salt_.ClearToEmpty();
+}
+inline const std::string& HMacVerifyRequest::salt() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.HMacVerifyRequest.salt)
+  return _internal_salt();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void HMacVerifyRequest::set_salt(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.salt_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.HMacVerifyRequest.salt)
+}
+inline std::string* HMacVerifyRequest::mutable_salt() {
+  std::string* _s = _internal_mutable_salt();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.HMacVerifyRequest.salt)
+  return _s;
+}
+inline const std::string& HMacVerifyRequest::_internal_salt() const {
+  return _impl_.salt_.Get();
+}
+inline void HMacVerifyRequest::_internal_set_salt(const std::string& value) {
+  
+  _impl_.salt_.Set(value, GetArenaForAllocation());
+}
+inline std::string* HMacVerifyRequest::_internal_mutable_salt() {
+  
+  return _impl_.salt_.Mutable(GetArenaForAllocation());
+}
+inline std::string* HMacVerifyRequest::release_salt() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.HMacVerifyRequest.salt)
+  return _impl_.salt_.Release();
+}
+inline void HMacVerifyRequest::set_allocated_salt(std::string* salt) {
+  if (salt != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.salt_.SetAllocated(salt, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.salt_.IsDefault()) {
+    _impl_.salt_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.HMacVerifyRequest.salt)
 }
 
 // -------------------------------------------------------------------

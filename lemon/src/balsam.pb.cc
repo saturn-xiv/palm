@@ -171,6 +171,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR HMacSignResponse::HMacSignResponse(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.salt_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct HMacSignResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR HMacSignResponseDefaultTypeInternal()
@@ -185,6 +186,7 @@ PROTOBUF_CONSTEXPR HMacVerifyRequest::HMacVerifyRequest(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.plain_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.code_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.salt_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct HMacVerifyRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR HMacVerifyRequestDefaultTypeInternal()
@@ -1297,6 +1299,7 @@ const uint32_t TableStruct_balsam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacSignResponse, _impl_.code_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacSignResponse, _impl_.salt_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacVerifyRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1305,6 +1308,7 @@ const uint32_t TableStruct_balsam_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacVerifyRequest, _impl_.plain_),
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacVerifyRequest, _impl_.code_),
+  PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::HMacVerifyRequest, _impl_.salt_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::palm::balsam::v1::UserUpdateProfileRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -2052,69 +2056,69 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 73, 83, -1, sizeof(::palm::balsam::v1::JwtVerifyResponse)},
   { 87, -1, -1, sizeof(::palm::balsam::v1::HMacSignRequest)},
   { 94, -1, -1, sizeof(::palm::balsam::v1::HMacSignResponse)},
-  { 101, -1, -1, sizeof(::palm::balsam::v1::HMacVerifyRequest)},
-  { 109, -1, -1, sizeof(::palm::balsam::v1::UserUpdateProfileRequest)},
-  { 118, 136, -1, sizeof(::palm::balsam::v1::UserIndexResponse_Item)},
-  { 148, -1, -1, sizeof(::palm::balsam::v1::UserIndexResponse)},
-  { 156, 165, -1, sizeof(::palm::balsam::v1::LogsRequest)},
-  { 168, 182, -1, sizeof(::palm::balsam::v1::UserLogsResponse_Item)},
-  { 190, -1, -1, sizeof(::palm::balsam::v1::UserLogsResponse)},
-  { 198, -1, -1, sizeof(::palm::balsam::v1::EmailUserByEmailRequest)},
-  { 205, -1, -1, sizeof(::palm::balsam::v1::EmailUserByNicknameRequest)},
-  { 212, 227, -1, sizeof(::palm::balsam::v1::EmailUserIndexResponse_Item)},
-  { 236, -1, -1, sizeof(::palm::balsam::v1::EmailUserIndexResponse)},
-  { 244, -1, -1, sizeof(::palm::balsam::v1::UserResetPasswordRequest)},
-  { 252, -1, -1, sizeof(::palm::balsam::v1::UserByEmailRequest)},
-  { 261, -1, -1, sizeof(::palm::balsam::v1::UserByTokenRequest)},
-  { 268, -1, -1, sizeof(::palm::balsam::v1::UserSignInByEmailRequest)},
-  { 279, -1, -1, sizeof(::palm::balsam::v1::UserSignUpByEmailRequest)},
-  { 293, 311, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Detail)},
-  { 323, 332, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Permission)},
-  { 335, 345, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Menu)},
-  { 349, -1, -1, sizeof(::palm::balsam::v1::UserSignInResponse)},
-  { 360, -1, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserBySubjectRequest)},
-  { 367, 383, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item)},
-  { 393, -1, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserIndexResponse)},
-  { 401, -1, -1, sizeof(::palm::balsam::v1::WechatByUnionIdRequest)},
-  { 408, -1, -1, sizeof(::palm::balsam::v1::WechatByAppIdAndOpenIdRequest)},
-  { 416, 438, -1, sizeof(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item)},
-  { 454, -1, -1, sizeof(::palm::balsam::v1::WechatOauth2UserIndexResponse)},
-  { 462, 477, -1, sizeof(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item)},
-  { 486, -1, -1, sizeof(::palm::balsam::v1::WechatMiniProgramUserIndexResponse)},
-  { 494, 508, -1, sizeof(::palm::balsam::v1::SessionIndexResponse_Item)},
-  { 516, -1, -1, sizeof(::palm::balsam::v1::SessionIndexResponse)},
-  { 524, -1, -1, sizeof(::palm::balsam::v1::AttachmentCreateRequest)},
-  { 537, -1, -1, sizeof(::palm::balsam::v1::AttachmentByResourceRequest)},
-  { 545, -1, -1, sizeof(::palm::balsam::v1::AttachmentSetTitleRequest)},
-  { 553, -1, -1, sizeof(::palm::balsam::v1::AttachmentShowResponse)},
-  { 560, 576, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse_Item)},
-  { 586, -1, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse)},
-  { 594, -1, -1, sizeof(::palm::balsam::v1::LocaleSetRequest)},
-  { 603, -1, -1, sizeof(::palm::balsam::v1::LocaleIndexResponse_Item)},
-  { 614, -1, -1, sizeof(::palm::balsam::v1::LocaleIndexResponse)},
-  { 622, -1, -1, sizeof(::palm::balsam::v1::LocaleByLangRequest)},
-  { 629, -1, -1, sizeof(::palm::balsam::v1::LeaveWordCreateRequest)},
-  { 637, 652, -1, sizeof(::palm::balsam::v1::LeaveWordIndexResponse_Item)},
-  { 661, -1, -1, sizeof(::palm::balsam::v1::LeaveWordIndexResponse)},
-  { 669, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_Redis)},
-  { 677, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_PostgreSql)},
-  { 685, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_OpenSearch)},
-  { 692, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse)},
-  { 701, -1, -1, sizeof(::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify)},
-  { 708, 715, -1, sizeof(::palm::balsam::v1::SiteIndexNowAccount)},
-  { 716, -1, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify)},
-  { 723, -1, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount_ReCaptcha)},
-  { 731, 739, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount)},
-  { 741, -1, -1, sizeof(::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify)},
-  { 749, 756, -1, sizeof(::palm::balsam::v1::SiteBaiduAccount)},
-  { 757, -1, -1, sizeof(::palm::balsam::v1::SiteGetInfoByLangRequest)},
-  { 764, -1, -1, sizeof(::palm::balsam::v1::SiteGetInfoByLangResponse)},
-  { 774, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_Author)},
-  { 782, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_CnGab)},
-  { 790, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_CnIcp)},
-  { 797, 814, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse)},
-  { 825, -1, -1, sizeof(::palm::balsam::v1::SiteInfoRequest)},
-  { 836, -1, -1, sizeof(::palm::balsam::v1::SiteKeywordsRequest)},
+  { 102, -1, -1, sizeof(::palm::balsam::v1::HMacVerifyRequest)},
+  { 111, -1, -1, sizeof(::palm::balsam::v1::UserUpdateProfileRequest)},
+  { 120, 138, -1, sizeof(::palm::balsam::v1::UserIndexResponse_Item)},
+  { 150, -1, -1, sizeof(::palm::balsam::v1::UserIndexResponse)},
+  { 158, 167, -1, sizeof(::palm::balsam::v1::LogsRequest)},
+  { 170, 184, -1, sizeof(::palm::balsam::v1::UserLogsResponse_Item)},
+  { 192, -1, -1, sizeof(::palm::balsam::v1::UserLogsResponse)},
+  { 200, -1, -1, sizeof(::palm::balsam::v1::EmailUserByEmailRequest)},
+  { 207, -1, -1, sizeof(::palm::balsam::v1::EmailUserByNicknameRequest)},
+  { 214, 229, -1, sizeof(::palm::balsam::v1::EmailUserIndexResponse_Item)},
+  { 238, -1, -1, sizeof(::palm::balsam::v1::EmailUserIndexResponse)},
+  { 246, -1, -1, sizeof(::palm::balsam::v1::UserResetPasswordRequest)},
+  { 254, -1, -1, sizeof(::palm::balsam::v1::UserByEmailRequest)},
+  { 263, -1, -1, sizeof(::palm::balsam::v1::UserByTokenRequest)},
+  { 270, -1, -1, sizeof(::palm::balsam::v1::UserSignInByEmailRequest)},
+  { 281, -1, -1, sizeof(::palm::balsam::v1::UserSignUpByEmailRequest)},
+  { 295, 313, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Detail)},
+  { 325, 334, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Permission)},
+  { 337, 347, -1, sizeof(::palm::balsam::v1::UserSignInResponse_Menu)},
+  { 351, -1, -1, sizeof(::palm::balsam::v1::UserSignInResponse)},
+  { 362, -1, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserBySubjectRequest)},
+  { 369, 385, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserIndexResponse_Item)},
+  { 395, -1, -1, sizeof(::palm::balsam::v1::GoogleOauth2UserIndexResponse)},
+  { 403, -1, -1, sizeof(::palm::balsam::v1::WechatByUnionIdRequest)},
+  { 410, -1, -1, sizeof(::palm::balsam::v1::WechatByAppIdAndOpenIdRequest)},
+  { 418, 440, -1, sizeof(::palm::balsam::v1::WechatOauth2UserIndexResponse_Item)},
+  { 456, -1, -1, sizeof(::palm::balsam::v1::WechatOauth2UserIndexResponse)},
+  { 464, 479, -1, sizeof(::palm::balsam::v1::WechatMiniProgramUserIndexResponse_Item)},
+  { 488, -1, -1, sizeof(::palm::balsam::v1::WechatMiniProgramUserIndexResponse)},
+  { 496, 510, -1, sizeof(::palm::balsam::v1::SessionIndexResponse_Item)},
+  { 518, -1, -1, sizeof(::palm::balsam::v1::SessionIndexResponse)},
+  { 526, -1, -1, sizeof(::palm::balsam::v1::AttachmentCreateRequest)},
+  { 539, -1, -1, sizeof(::palm::balsam::v1::AttachmentByResourceRequest)},
+  { 547, -1, -1, sizeof(::palm::balsam::v1::AttachmentSetTitleRequest)},
+  { 555, -1, -1, sizeof(::palm::balsam::v1::AttachmentShowResponse)},
+  { 562, 578, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse_Item)},
+  { 588, -1, -1, sizeof(::palm::balsam::v1::AttachmentIndexResponse)},
+  { 596, -1, -1, sizeof(::palm::balsam::v1::LocaleSetRequest)},
+  { 605, -1, -1, sizeof(::palm::balsam::v1::LocaleIndexResponse_Item)},
+  { 616, -1, -1, sizeof(::palm::balsam::v1::LocaleIndexResponse)},
+  { 624, -1, -1, sizeof(::palm::balsam::v1::LocaleByLangRequest)},
+  { 631, -1, -1, sizeof(::palm::balsam::v1::LeaveWordCreateRequest)},
+  { 639, 654, -1, sizeof(::palm::balsam::v1::LeaveWordIndexResponse_Item)},
+  { 663, -1, -1, sizeof(::palm::balsam::v1::LeaveWordIndexResponse)},
+  { 671, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_Redis)},
+  { 679, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_PostgreSql)},
+  { 687, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse_OpenSearch)},
+  { 694, -1, -1, sizeof(::palm::balsam::v1::SiteStatusResponse)},
+  { 703, -1, -1, sizeof(::palm::balsam::v1::SiteIndexNowAccount_WebSiteVerify)},
+  { 710, 717, -1, sizeof(::palm::balsam::v1::SiteIndexNowAccount)},
+  { 718, -1, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount_WebSiteVerify)},
+  { 725, -1, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount_ReCaptcha)},
+  { 733, 741, -1, sizeof(::palm::balsam::v1::SiteGoogleAccount)},
+  { 743, -1, -1, sizeof(::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify)},
+  { 751, 758, -1, sizeof(::palm::balsam::v1::SiteBaiduAccount)},
+  { 759, -1, -1, sizeof(::palm::balsam::v1::SiteGetInfoByLangRequest)},
+  { 766, -1, -1, sizeof(::palm::balsam::v1::SiteGetInfoByLangResponse)},
+  { 776, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_Author)},
+  { 784, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_CnGab)},
+  { 792, -1, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse_CnIcp)},
+  { 799, 816, -1, sizeof(::palm::balsam::v1::SiteLayoutResponse)},
+  { 827, -1, -1, sizeof(::palm::balsam::v1::SiteInfoRequest)},
+  { 838, -1, -1, sizeof(::palm::balsam::v1::SiteKeywordsRequest)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -2214,392 +2218,393 @@ const char descriptor_table_protodef_balsam_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "ifyResponse\022\016\n\006jwt_id\030\001 \001(\t\022\023\n\006key_id\030\002 "
   "\001(\tH\000\210\001\001\022\017\n\007subject\030\013 \001(\t\022\022\n\005extra\030\023 \001(\t"
   "H\001\210\001\001B\t\n\007_key_idB\010\n\006_extra\" \n\017HMacSignRe"
-  "quest\022\r\n\005plain\030\001 \001(\014\" \n\020HMacSignResponse"
-  "\022\014\n\004code\030\001 \001(\014\"0\n\021HMacVerifyRequest\022\r\n\005p"
-  "lain\030\001 \001(\014\022\014\n\004code\030\002 \001(\014\"H\n\030UserUpdatePr"
-  "ofileRequest\022\014\n\004user\030\001 \001(\004\022\014\n\004lang\030\002 \001(\t"
-  "\022\020\n\010timezone\030\003 \001(\t\"\366\004\n\021UserIndexResponse"
-  "\0225\n\005items\030\001 \003(\0132&.palm.balsam.v1.UserInd"
-  "exResponse.Item\022\r\n\005total\030\t \001(\004\032\232\004\n\004Item\022"
-  "\n\n\002id\030\001 \001(\004\022\013\n\003uid\030\002 \001(\t\022\014\n\004lang\030\003 \001(\t\022\020"
-  "\n\010timezone\030\004 \001(\t\022\025\n\rsign_in_count\030\005 \001(\r\022"
-  ";\n\022current_sign_in_at\030\006 \001(\0132\032.google.pro"
-  "tobuf.TimestampH\000\210\001\001\022\037\n\022current_sign_in_"
-  "ip\030\007 \001(\tH\001\210\001\001\0228\n\017last_sign_in_at\030\010 \001(\0132\032"
-  ".google.protobuf.TimestampH\002\210\001\001\022\034\n\017last_"
-  "sign_in_ip\030\t \001(\tH\003\210\001\001\0223\n\nlockeda_at\030\n \001("
-  "\0132\032.google.protobuf.TimestampH\004\210\001\001\0223\n\nde"
-  "leted_at\030\013 \001(\0132\032.google.protobuf.Timesta"
-  "mpH\005\210\001\001\022.\n\nupdated_at\030\014 \001(\0132\032.google.pro"
-  "tobuf.TimestampB\025\n\023_current_sign_in_atB\025"
-  "\n\023_current_sign_in_ipB\022\n\020_last_sign_in_a"
-  "tB\022\n\020_last_sign_in_ipB\r\n\013_lockeda_atB\r\n\013"
-  "_deleted_at\"E\n\013LogsRequest\022\021\n\004user\030\001 \001(\004"
-  "H\000\210\001\001\022\014\n\004page\030\013 \001(\004\022\014\n\004size\030\014 \001(\004B\007\n\005_us"
-  "er\"\371\002\n\020UserLogsResponse\0224\n\005items\030\001 \003(\0132%"
-  ".palm.balsam.v1.UserLogsResponse.Item\022\r\n"
-  "\005total\030\t \001(\004\032\237\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\016\n\006plu"
-  "gin\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022:\n\005level\030\004 \001(\0162+.p"
-  "alm.balsam.v1.UserLogsResponse.Item.Leve"
-  "l\022\025\n\rresource_type\030\005 \001(\t\022\030\n\013resource_id\030"
-  "\006 \001(\004H\000\210\001\001\022\017\n\007message\030\007 \001(\t\022.\n\ncreated_a"
-  "t\030\010 \001(\0132\032.google.protobuf.Timestamp\"1\n\005L"
-  "evel\022\t\n\005Debug\020\000\022\010\n\004Info\020\001\022\010\n\004Warn\020\002\022\t\n\005E"
-  "rror\020\003B\016\n\014_resource_id\"(\n\027EmailUserByEma"
-  "ilRequest\022\r\n\005email\030\001 \001(\t\".\n\032EmailUserByN"
-  "icknameRequest\022\020\n\010nickname\030\001 \001(\t\"\211\003\n\026Ema"
-  "ilUserIndexResponse\022:\n\005items\030\001 \003(\0132+.pal"
-  "m.balsam.v1.EmailUserIndexResponse.Item\022"
-  "\r\n\005total\030\002 \001(\004\032\243\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\017\n\007u"
-  "ser_id\030\002 \001(\004\022\021\n\treal_name\030\003 \001(\t\022\020\n\010nickn"
-  "ame\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\022\016\n\006avatar\030\006 \001(\t"
-  "\0225\n\014confirmed_at\030\007 \001(\0132\032.google.protobuf"
-  ".TimestampH\000\210\001\001\0223\n\ndeleted_at\030\010 \001(\0132\032.go"
-  "ogle.protobuf.TimestampH\001\210\001\001\022.\n\nupdated_"
-  "at\030\t \001(\0132\032.google.protobuf.TimestampB\017\n\r"
-  "_confirmed_atB\r\n\013_deleted_at\";\n\030UserRese"
-  "tPasswordRequest\022\r\n\005token\030\001 \001(\t\022\020\n\010passw"
-  "ord\030\002 \001(\t\"A\n\022UserByEmailRequest\022\017\n\005email"
-  "\030\001 \001(\tH\000\022\022\n\010nickname\030\002 \001(\tH\000B\006\n\004user\"#\n\022"
-  "UserByTokenRequest\022\r\n\005token\030\001 \001(\t\"\201\001\n\030Us"
-  "erSignInByEmailRequest\022\017\n\005email\030\001 \001(\tH\000\022"
-  "\022\n\010nickname\030\002 \001(\tH\000\022\020\n\010password\030\010 \001(\t\022&\n"
-  "\003ttl\030\t \001(\0132\031.google.protobuf.DurationB\006\n"
-  "\004user\"\266\001\n\030UserSignUpByEmailRequest\022\021\n\tre"
-  "al_name\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010nickname"
-  "\030\003 \001(\t\022\020\n\010password\030\004 \001(\t\022\014\n\004lang\030\005 \001(\t\022\020"
-  "\n\010timezone\030\006 \001(\t\022\014\n\004home\030\007 \001(\t\022&\n\003ttl\030\t "
-  "\001(\0132\031.google.protobuf.Duration\"\234\007\n\022UserS"
-  "ignInResponse\022\r\n\005token\030\001 \001(\t\0229\n\006detail\030\002"
-  " \001(\0132).palm.balsam.v1.UserSignInResponse"
-  ".Detail\022\r\n\005roles\030\013 \003(\t\022B\n\013permissions\030\014 "
-  "\003(\0132-.palm.balsam.v1.UserSignInResponse."
-  "Permission\0226\n\005menus\030\r \003(\0132\'.palm.balsam."
-  "v1.UserSignInResponse.Menu\032\327\003\n\006Detail\022\021\n"
-  "\004name\030\001 \001(\tH\000\210\001\001\022\023\n\006avatar\030\002 \001(\tH\001\210\001\001\022\014\n"
-  "\004lang\030\003 \001(\t\022\020\n\010timezone\030\004 \001(\t\022M\n\rprovide"
-  "r_type\030\010 \001(\01626.palm.balsam.v1.UserSignIn"
-  "Response.Detail.ProviderType\022\023\n\013provider"
-  "_id\030\t \001(\004\022\021\n\thas_email\030\013 \001(\010\022\021\n\thas_phon"
-  "e\030\014 \001(\010\022\031\n\021has_google_oauth2\030\025 \001(\010\022\031\n\021ha"
-  "s_wechat_oauth2\030\026 \001(\010\022\037\n\027has_wechat_mini"
-  "_program\030\027 \001(\010\022\033\n\023has_facebook_oauth2\030\030 "
-  "\001(\010\"s\n\014ProviderType\022\t\n\005Email\020\000\022\t\n\005Phone\020"
-  "\001\022\020\n\014GoogleOauth2\020\013\022\020\n\014WechatOauth2\020\014\022\025\n"
-  "\021WechatMiniProgram\020\r\022\022\n\016FacebookOauth2\020\016"
-  "B\007\n\005_nameB\t\n\007_avatar\032`\n\nPermission\022\021\n\top"
-  "eration\030\001 \001(\t\022\025\n\rresource_type\030\002 \001(\t\022\030\n\013"
-  "resource_id\030\003 \001(\004H\000\210\001\001B\016\n\014_resource_id\032u"
-  "\n\004Menu\022\r\n\005label\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\021\n\004ico"
-  "n\030\003 \001(\tH\000\210\001\001\0226\n\005menus\030\t \003(\0132\'.palm.balsa"
-  "m.v1.UserSignInResponse.MenuB\007\n\005_icon\"3\n"
-  " GoogleOauth2UserBySubjectRequest\022\017\n\007sub"
-  "ject\030\001 \001(\t\"\260\003\n\035GoogleOauth2UserIndexResp"
-  "onse\022A\n\005items\030\001 \003(\01322.palm.balsam.v1.Goo"
-  "gleOauth2UserIndexResponse.Item\022\r\n\005total"
-  "\030\002 \001(\004\032\274\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002"
-  " \001(\004\022\017\n\007subject\030\003 \001(\t\022\022\n\005email\030\004 \001(\tH\000\210\001"
-  "\001\022\026\n\016email_verified\030\005 \001(\010\022\021\n\004name\030\006 \001(\tH"
-  "\001\210\001\001\022\024\n\007picture\030\007 \001(\tH\002\210\001\001\022\023\n\006locale\030\010 \001"
-  "(\tH\003\210\001\001\0223\n\ndeleted_at\030\t \001(\0132\032.google.pro"
-  "tobuf.TimestampH\004\210\001\001\022.\n\nupdated_at\030\n \001(\013"
-  "2\032.google.protobuf.TimestampB\010\n\006_emailB\007"
-  "\n\005_nameB\n\n\010_pictureB\t\n\007_localeB\r\n\013_delet"
-  "ed_at\"*\n\026WechatByUnionIdRequest\022\020\n\010union"
-  "_id\030\001 \001(\t\"@\n\035WechatByAppIdAndOpenIdReque"
-  "st\022\016\n\006app_id\030\001 \001(\t\022\017\n\007open_id\030\002 \001(\t\"\243\005\n\035"
-  "WechatOauth2UserIndexResponse\022A\n\005items\030\001"
-  " \003(\01322.palm.balsam.v1.WechatOauth2UserIn"
-  "dexResponse.Item\022\r\n\005total\030\002 \001(\004\032\257\004\n\004Item"
-  "\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002 \001(\004\022\020\n\010union_i"
-  "d\030\003 \001(\t\022\016\n\006app_id\030\004 \001(\t\022\017\n\007open_id\030\005 \001(\t"
-  "\022\020\n\010nickname\030\006 \001(\t\022C\n\003sex\030\007 \001(\01626.palm.b"
-  "alsam.v1.WechatOauth2UserIndexResponse.I"
-  "tem.Sex\022\014\n\004city\030\010 \001(\t\022\020\n\010province\030\t \001(\t\022"
-  "\017\n\007country\030\n \001(\t\022\031\n\014head_img_url\030\013 \001(\tH\000"
-  "\210\001\001\022\021\n\tprivilege\030\014 \003(\t\022\024\n\007picture\030\r \001(\tH"
-  "\001\210\001\001\022E\n\004lang\030\016 \001(\01627.palm.balsam.v1.Wech"
-  "atOauth2UserIndexResponse.Item.Lang\0223\n\nd"
-  "eleted_at\030\017 \001(\0132\032.google.protobuf.Timest"
-  "ampH\002\210\001\001\022.\n\nupdated_at\030\020 \001(\0132\032.google.pr"
-  "otobuf.Timestamp\"\033\n\003Sex\022\010\n\004Male\020\000\022\n\n\006Fem"
-  "ale\020\001\"\026\n\004Lang\022\006\n\002Cn\020\000\022\006\n\002En\020\001B\017\n\r_head_i"
-  "mg_urlB\n\n\010_pictureB\r\n\013_deleted_at\"\224\003\n\"We"
-  "chatMiniProgramUserIndexResponse\022F\n\005item"
-  "s\030\001 \003(\01327.palm.balsam.v1.WechatMiniProgr"
-  "amUserIndexResponse.Item\022\r\n\005total\030\002 \001(\004\032"
-  "\226\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002 \001(\004\022\020\n"
-  "\010union_id\030\003 \001(\t\022\016\n\006app_id\030\004 \001(\t\022\017\n\007open_"
-  "id\030\005 \001(\t\022\025\n\010nickname\030\006 \001(\tH\000\210\001\001\022\027\n\navata"
-  "r_url\030\007 \001(\tH\001\210\001\001\0223\n\ndeleted_at\030\010 \001(\0132\032.g"
-  "oogle.protobuf.TimestampH\002\210\001\001\022.\n\nupdated"
-  "_at\030\t \001(\0132\032.google.protobuf.TimestampB\013\n"
-  "\t_nicknameB\r\n\013_avatar_urlB\r\n\013_deleted_at"
-  "\"\227\003\n\024SessionIndexResponse\0228\n\005items\030\001 \003(\013"
-  "2).palm.balsam.v1.SessionIndexResponse.I"
-  "tem\022\r\n\005total\030\002 \001(\004\032\265\002\n\004Item\022\014\n\004user\030\001 \001("
-  "\004\022\013\n\003uid\030\002 \001(\t\022M\n\rprovider_type\030\003 \001(\01626."
-  "palm.balsam.v1.UserSignInResponse.Detail"
-  ".ProviderType\022\023\n\013provider_id\030\004 \001(\004\022\n\n\002ip"
-  "\030\005 \001(\t\022.\n\nexpires_at\030\006 \001(\0132\032.google.prot"
-  "obuf.Timestamp\0223\n\ndeleted_at\030\007 \001(\0132\032.goo"
-  "gle.protobuf.TimestampH\000\210\001\001\022.\n\ncreated_a"
-  "t\030\010 \001(\0132\032.google.protobuf.TimestampB\r\n\013_"
-  "deleted_at\"\212\001\n\027AttachmentCreateRequest\022\014"
-  "\n\004user\030\001 \001(\004\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003"
-  " \001(\t\022\r\n\005title\030\004 \001(\t\022\014\n\004size\030\005 \001(\004\022\024\n\014con"
-  "tent_type\030\006 \001(\t\022\016\n\006public\030\t \001(\010\"I\n\033Attac"
-  "hmentByResourceRequest\022\025\n\rresource_type\030"
-  "\001 \001(\t\022\023\n\013resource_id\030\002 \001(\004\"6\n\031Attachment"
-  "SetTitleRequest\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001"
-  "(\t\"%\n\026AttachmentShowResponse\022\013\n\003url\030\001 \001("
-  "\t\"\233\003\n\027AttachmentIndexResponse\022;\n\005items\030\001"
-  " \003(\0132,.palm.balsam.v1.AttachmentIndexRes"
-  "ponse.Item\022\r\n\005total\030\002 \001(\004\032\263\002\n\004Item\022\014\n\004us"
-  "er\030\001 \001(\004\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003 \001(\t"
-  "\022\r\n\005title\030\004 \001(\t\022\014\n\004size\030\005 \001(\004\022\024\n\014content"
-  "_type\030\006 \001(\t\022\016\n\006public\030\007 \001(\010\0225\n\014published"
-  "_at\030\010 \001(\0132\032.google.protobuf.TimestampH\000\210"
-  "\001\001\0223\n\ndeleted_at\030\t \001(\0132\032.google.protobuf"
-  ".TimestampH\001\210\001\001\022.\n\nupdated_at\030\n \001(\0132\032.go"
-  "ogle.protobuf.TimestampB\017\n\r_published_at"
-  "B\r\n\013_deleted_at\"\?\n\020LocaleSetRequest\022\014\n\004l"
-  "ang\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\022\017\n\007message\030\003 \001(\t"
-  "\"\316\001\n\023LocaleIndexResponse\0227\n\005items\030\001 \003(\0132"
-  "(.palm.balsam.v1.LocaleIndexResponse.Ite"
-  "m\022\r\n\005total\030\002 \001(\004\032o\n\004Item\022\n\n\002id\030\001 \001(\004\022\014\n\004"
-  "lang\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007message\030\004 \001("
-  "\t\022.\n\nupdated_at\030\005 \001(\0132\032.google.protobuf."
-  "Timestamp\"#\n\023LocaleByLangRequest\022\014\n\004lang"
-  "\030\001 \001(\t\"6\n\026LeaveWordCreateRequest\022\014\n\004body"
-  "\030\001 \001(\t\022\016\n\006editor\030\002 \001(\t\"\362\003\n\026LeaveWordInde"
-  "xResponse\0229\n\004item\030\001 \003(\0132+.palm.balsam.v1"
-  ".LeaveWordIndexResponse.Item\022\r\n\005total\030\002 "
-  "\001(\004\032\215\003\n\004Item\022\n\n\002id\030\001 \001(\004\022\014\n\004lang\030\002 \001(\t\022\n"
-  "\n\002ip\030\003 \001(\t\022\014\n\004body\030\004 \001(\t\022+\n\006editor\030\005 \001(\016"
-  "2\033.palm.balsam.v1.MediaEditor\022B\n\006status\030"
-  "\006 \001(\01622.palm.balsam.v1.LeaveWordIndexRes"
-  "ponse.Item.Status\0225\n\014published_at\030\007 \001(\0132"
-  "\032.google.protobuf.TimestampH\000\210\001\001\0223\n\ndele"
-  "ted_at\030\010 \001(\0132\032.google.protobuf.Timestamp"
-  "H\001\210\001\001\022.\n\nupdated_at\030\t \001(\0132\032.google.proto"
-  "buf.Timestamp\"$\n\006Status\022\013\n\007Pending\020\000\022\r\n\t"
-  "Completed\020\001B\017\n\r_published_atB\r\n\013_deleted"
-  "_at\"\311\002\n\022SiteStatusResponse\022A\n\npostgresql"
-  "\030\001 \001(\0132-.palm.balsam.v1.SiteStatusRespon"
-  "se.PostgreSql\0227\n\005redis\030\002 \001(\0132(.palm.bals"
-  "am.v1.SiteStatusResponse.Redis\022A\n\nopense"
-  "arch\030\003 \001(\0132-.palm.balsam.v1.SiteStatusRe"
-  "sponse.OpenSearch\032$\n\005Redis\022\014\n\004info\030\001 \003(\t"
-  "\022\r\n\005nodes\030\002 \003(\t\032/\n\nPostgreSql\022\017\n\007version"
-  "\030\001 \001(\t\022\020\n\010versions\030\002 \003(\t\032\035\n\nOpenSearch\022\017"
-  "\n\007plugins\030\001 \001(\t\"\230\001\n\023SiteIndexNowAccount\022"
-  "O\n\017web_site_verify\030\001 \001(\01321.palm.balsam.v"
-  "1.SiteIndexNowAccount.WebSiteVerifyH\000\210\001\001"
-  "\032\034\n\rWebSiteVerify\022\013\n\003key\030\001 \001(\tB\022\n\020_web_s"
-  "ite_verify\"\231\002\n\021SiteGoogleAccount\022M\n\017web_"
-  "site_verify\030\001 \001(\0132/.palm.balsam.v1.SiteG"
-  "oogleAccount.WebSiteVerifyH\000\210\001\001\022D\n\nre_ca"
-  "ptcha\030\002 \001(\0132+.palm.balsam.v1.SiteGoogleA"
-  "ccount.ReCaptchaH\001\210\001\001\032\035\n\rWebSiteVerify\022\014"
-  "\n\004code\030\001 \001(\t\032-\n\tReCaptcha\022\020\n\010site_key\030\001 "
-  "\001(\t\022\016\n\006secret\030\002 \001(\tB\022\n\020_web_site_verifyB"
-  "\r\n\013_re_captcha\"\244\001\n\020SiteBaiduAccount\022L\n\017w"
-  "eb_site_verify\030\001 \001(\0132..palm.balsam.v1.Si"
-  "teBaiduAccount.WebSiteVerifyH\000\210\001\001\032.\n\rWeb"
-  "SiteVerify\022\014\n\004code\030\001 \001(\t\022\017\n\007content\030\002 \001("
-  "\tB\022\n\020_web_site_verify\"(\n\030SiteGetInfoByLa"
-  "ngRequest\022\014\n\004lang\030\001 \001(\t\"c\n\031SiteGetInfoBy"
-  "LangResponse\022\r\n\005title\030\001 \001(\t\022\017\n\007subhead\030\002"
-  " \001(\t\022\023\n\013description\030\003 \001(\t\022\021\n\tcopyright\030\004"
-  " \001(\t\"\322\003\n\022SiteLayoutResponse\022\r\n\005title\030\001 \001"
-  "(\t\022\017\n\007subhead\030\002 \001(\t\022\023\n\013description\030\003 \001(\t"
-  "\022\021\n\tcopyright\030\004 \001(\t\0229\n\006author\030\005 \001(\0132).pa"
-  "lm.balsam.v1.SiteLayoutResponse.Author\022\020"
-  "\n\010keywords\030\006 \003(\t\022=\n\006cn_icp\030\013 \001(\0132(.palm."
-  "balsam.v1.SiteLayoutResponse.CnIcpH\000\210\001\001\022"
-  "=\n\006cn_gab\030\014 \001(\0132(.palm.balsam.v1.SiteLay"
-  "outResponse.CnGabH\001\210\001\001\022\014\n\004lang\030a \001(\t\022\021\n\t"
-  "languages\030b \001(\t\022\017\n\007version\030c \001(\t\032%\n\006Auth"
-  "or\022\014\n\004name\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\032#\n\005CnGab"
-  "\022\014\n\004code\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\032\025\n\005CnIcp\022\014\n"
-  "\004code\030\001 \001(\tB\t\n\007_cn_icpB\t\n\007_cn_gab\"g\n\017Sit"
-  "eInfoRequest\022\014\n\004lang\030\001 \001(\t\022\r\n\005title\030\002 \001("
-  "\t\022\017\n\007subhead\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022"
-  "\021\n\tcopyright\030\005 \001(\t\"$\n\023SiteKeywordsReques"
-  "t\022\r\n\005items\030\001 \003(\t*4\n\013MediaEditor\022\014\n\010Texta"
-  "rea\020\000\022\014\n\010Markdown\020\002\022\t\n\005Quill\020\0032\241\001\n\003Aes\022L"
-  "\n\007Encrypt\022\037.palm.balsam.v1.AesPlainMessa"
-  "ge\032\036.palm.balsam.v1.AesCodeMessage\"\000\022L\n\007"
-  "Decrypt\022\036.palm.balsam.v1.AesCodeMessage\032"
-  "\037.palm.balsam.v1.AesPlainMessage\"\0002\241\001\n\003J"
-  "wt\022I\n\004Sign\022\036.palm.balsam.v1.JwtSignReque"
-  "st\032\037.palm.balsam.v1.JwtSignResponse\"\000\022O\n"
-  "\006Verify\022 .palm.balsam.v1.JwtVerifyReques"
-  "t\032!.palm.balsam.v1.JwtVerifyResponse\"\0002\232"
-  "\001\n\004HMac\022K\n\004Sign\022\037.palm.balsam.v1.HMacSig"
-  "nRequest\032 .palm.balsam.v1.HMacSignRespon"
-  "se\"\000\022E\n\006Verify\022!.palm.balsam.v1.HMacVeri"
-  "fyRequest\032\026.google.protobuf.Empty\"\0002\275\005\n\004"
-  "User\022;\n\004Lock\022\031.palm.balsam.v1.IdRequest\032"
-  "\026.google.protobuf.Empty\"\000\022=\n\006Unlock\022\031.pa"
-  "lm.balsam.v1.IdRequest\032\026.google.protobuf"
-  ".Empty\"\000\022>\n\007Disable\022\031.palm.balsam.v1.IdR"
-  "equest\032\026.google.protobuf.Empty\"\000\022=\n\006Enab"
-  "le\022\031.palm.balsam.v1.IdRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\022G\n\004Logs\022\033.palm.balsam.v1"
-  ".LogsRequest\032 .palm.balsam.v1.UserLogsRe"
-  "sponse\"\000\022;\n\007SignOut\022\026.google.protobuf.Em"
-  "pty\032\026.google.protobuf.Empty\"\000\022C\n\005Index\022\025"
-  ".palm.balsam.v1.Pager\032!.palm.balsam.v1.U"
-  "serIndexResponse\"\000\022S\n\rUpdateProfile\022(.pa"
-  "lm.balsam.v1.UserUpdateProfileRequest\032\026."
-  "google.protobuf.Empty\"\000\022K\n\004ById\022\031.palm.b"
-  "alsam.v1.IdRequest\032&.palm.balsam.v1.User"
-  "IndexResponse.Item\"\000\022M\n\005ByUid\022\032.palm.bal"
-  "sam.v1.UidRequest\032&.palm.balsam.v1.UserI"
-  "ndexResponse.Item\"\0002\311\t\n\tEmailUser\022X\n\006Sig"
-  "nIn\022(.palm.balsam.v1.UserSignInByEmailRe"
-  "quest\032\".palm.balsam.v1.UserSignInRespons"
-  "e\"\000\022X\n\006SignUp\022(.palm.balsam.v1.UserSignU"
-  "pByEmailRequest\032\".palm.balsam.v1.UserSig"
-  "nInResponse\"\000\022N\n\016ConfirmByEmail\022\".palm.b"
-  "alsam.v1.UserByEmailRequest\032\026.google.pro"
-  "tobuf.Empty\"\000\022N\n\016ConfirmByToken\022\".palm.b"
-  "alsam.v1.UserByTokenRequest\032\026.google.pro"
-  "tobuf.Empty\"\000\022M\n\rUnlockByEmail\022\".palm.ba"
-  "lsam.v1.UserByEmailRequest\032\026.google.prot"
-  "obuf.Empty\"\000\022M\n\rUnlockByToken\022\".palm.bal"
-  "sam.v1.UserByTokenRequest\032\026.google.proto"
-  "buf.Empty\"\000\022N\n\016ForgotPassword\022\".palm.bal"
-  "sam.v1.UserByEmailRequest\032\026.google.proto"
-  "buf.Empty\"\000\022S\n\rResetPassword\022(.palm.bals"
-  "am.v1.UserResetPasswordRequest\032\026.google."
-  "protobuf.Empty\"\000\022>\n\007Confirm\022\031.palm.balsa"
-  "m.v1.IdRequest\032\026.google.protobuf.Empty\"\000"
-  "\022>\n\007Disable\022\031.palm.balsam.v1.IdRequest\032\026"
-  ".google.protobuf.Empty\"\000\022=\n\006Enable\022\031.pal"
-  "m.balsam.v1.IdRequest\032\026.google.protobuf."
-  "Empty\"\000\022H\n\005Index\022\025.palm.balsam.v1.Pager\032"
-  "&.palm.balsam.v1.EmailUserIndexResponse\""
-  "\000\022P\n\004ById\022\031.palm.balsam.v1.IdRequest\032+.p"
-  "alm.balsam.v1.EmailUserIndexResponse.Ite"
-  "m\"\000\022g\n\nByNickname\022*.palm.balsam.v1.Email"
-  "UserByNicknameRequest\032+.palm.balsam.v1.E"
-  "mailUserIndexResponse.Item\"\000\022a\n\007ByEmail\022"
-  "\'.palm.balsam.v1.EmailUserByEmailRequest"
-  "\032+.palm.balsam.v1.EmailUserIndexResponse"
-  ".Item\"\0002\260\003\n\020GoogleOauth2User\022>\n\007Disable\022"
+  "quest\022\r\n\005plain\030\001 \001(\014\".\n\020HMacSignResponse"
+  "\022\014\n\004code\030\001 \001(\014\022\014\n\004salt\030\002 \001(\014\">\n\021HMacVeri"
+  "fyRequest\022\r\n\005plain\030\001 \001(\014\022\014\n\004code\030\002 \001(\014\022\014"
+  "\n\004salt\030\003 \001(\014\"H\n\030UserUpdateProfileRequest"
+  "\022\014\n\004user\030\001 \001(\004\022\014\n\004lang\030\002 \001(\t\022\020\n\010timezone"
+  "\030\003 \001(\t\"\366\004\n\021UserIndexResponse\0225\n\005items\030\001 "
+  "\003(\0132&.palm.balsam.v1.UserIndexResponse.I"
+  "tem\022\r\n\005total\030\t \001(\004\032\232\004\n\004Item\022\n\n\002id\030\001 \001(\004\022"
+  "\013\n\003uid\030\002 \001(\t\022\014\n\004lang\030\003 \001(\t\022\020\n\010timezone\030\004"
+  " \001(\t\022\025\n\rsign_in_count\030\005 \001(\r\022;\n\022current_s"
+  "ign_in_at\030\006 \001(\0132\032.google.protobuf.Timest"
+  "ampH\000\210\001\001\022\037\n\022current_sign_in_ip\030\007 \001(\tH\001\210\001"
+  "\001\0228\n\017last_sign_in_at\030\010 \001(\0132\032.google.prot"
+  "obuf.TimestampH\002\210\001\001\022\034\n\017last_sign_in_ip\030\t"
+  " \001(\tH\003\210\001\001\0223\n\nlockeda_at\030\n \001(\0132\032.google.p"
+  "rotobuf.TimestampH\004\210\001\001\0223\n\ndeleted_at\030\013 \001"
+  "(\0132\032.google.protobuf.TimestampH\005\210\001\001\022.\n\nu"
+  "pdated_at\030\014 \001(\0132\032.google.protobuf.Timest"
+  "ampB\025\n\023_current_sign_in_atB\025\n\023_current_s"
+  "ign_in_ipB\022\n\020_last_sign_in_atB\022\n\020_last_s"
+  "ign_in_ipB\r\n\013_lockeda_atB\r\n\013_deleted_at\""
+  "E\n\013LogsRequest\022\021\n\004user\030\001 \001(\004H\000\210\001\001\022\014\n\004pag"
+  "e\030\013 \001(\004\022\014\n\004size\030\014 \001(\004B\007\n\005_user\"\371\002\n\020UserL"
+  "ogsResponse\0224\n\005items\030\001 \003(\0132%.palm.balsam"
+  ".v1.UserLogsResponse.Item\022\r\n\005total\030\t \001(\004"
+  "\032\237\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\016\n\006plugin\030\002 \001(\t\022\n\n"
+  "\002ip\030\003 \001(\t\022:\n\005level\030\004 \001(\0162+.palm.balsam.v"
+  "1.UserLogsResponse.Item.Level\022\025\n\rresourc"
+  "e_type\030\005 \001(\t\022\030\n\013resource_id\030\006 \001(\004H\000\210\001\001\022\017"
+  "\n\007message\030\007 \001(\t\022.\n\ncreated_at\030\010 \001(\0132\032.go"
+  "ogle.protobuf.Timestamp\"1\n\005Level\022\t\n\005Debu"
+  "g\020\000\022\010\n\004Info\020\001\022\010\n\004Warn\020\002\022\t\n\005Error\020\003B\016\n\014_r"
+  "esource_id\"(\n\027EmailUserByEmailRequest\022\r\n"
+  "\005email\030\001 \001(\t\".\n\032EmailUserByNicknameReque"
+  "st\022\020\n\010nickname\030\001 \001(\t\"\211\003\n\026EmailUserIndexR"
+  "esponse\022:\n\005items\030\001 \003(\0132+.palm.balsam.v1."
+  "EmailUserIndexResponse.Item\022\r\n\005total\030\002 \001"
+  "(\004\032\243\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002 \001(\004"
+  "\022\021\n\treal_name\030\003 \001(\t\022\020\n\010nickname\030\004 \001(\t\022\r\n"
+  "\005email\030\005 \001(\t\022\016\n\006avatar\030\006 \001(\t\0225\n\014confirme"
+  "d_at\030\007 \001(\0132\032.google.protobuf.TimestampH\000"
+  "\210\001\001\0223\n\ndeleted_at\030\010 \001(\0132\032.google.protobu"
+  "f.TimestampH\001\210\001\001\022.\n\nupdated_at\030\t \001(\0132\032.g"
+  "oogle.protobuf.TimestampB\017\n\r_confirmed_a"
+  "tB\r\n\013_deleted_at\";\n\030UserResetPasswordReq"
+  "uest\022\r\n\005token\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"A\n"
+  "\022UserByEmailRequest\022\017\n\005email\030\001 \001(\tH\000\022\022\n\010"
+  "nickname\030\002 \001(\tH\000B\006\n\004user\"#\n\022UserByTokenR"
+  "equest\022\r\n\005token\030\001 \001(\t\"\201\001\n\030UserSignInByEm"
+  "ailRequest\022\017\n\005email\030\001 \001(\tH\000\022\022\n\010nickname\030"
+  "\002 \001(\tH\000\022\020\n\010password\030\010 \001(\t\022&\n\003ttl\030\t \001(\0132\031"
+  ".google.protobuf.DurationB\006\n\004user\"\266\001\n\030Us"
+  "erSignUpByEmailRequest\022\021\n\treal_name\030\001 \001("
+  "\t\022\r\n\005email\030\002 \001(\t\022\020\n\010nickname\030\003 \001(\t\022\020\n\010pa"
+  "ssword\030\004 \001(\t\022\014\n\004lang\030\005 \001(\t\022\020\n\010timezone\030\006"
+  " \001(\t\022\014\n\004home\030\007 \001(\t\022&\n\003ttl\030\t \001(\0132\031.google"
+  ".protobuf.Duration\"\234\007\n\022UserSignInRespons"
+  "e\022\r\n\005token\030\001 \001(\t\0229\n\006detail\030\002 \001(\0132).palm."
+  "balsam.v1.UserSignInResponse.Detail\022\r\n\005r"
+  "oles\030\013 \003(\t\022B\n\013permissions\030\014 \003(\0132-.palm.b"
+  "alsam.v1.UserSignInResponse.Permission\0226"
+  "\n\005menus\030\r \003(\0132\'.palm.balsam.v1.UserSignI"
+  "nResponse.Menu\032\327\003\n\006Detail\022\021\n\004name\030\001 \001(\tH"
+  "\000\210\001\001\022\023\n\006avatar\030\002 \001(\tH\001\210\001\001\022\014\n\004lang\030\003 \001(\t\022"
+  "\020\n\010timezone\030\004 \001(\t\022M\n\rprovider_type\030\010 \001(\016"
+  "26.palm.balsam.v1.UserSignInResponse.Det"
+  "ail.ProviderType\022\023\n\013provider_id\030\t \001(\004\022\021\n"
+  "\thas_email\030\013 \001(\010\022\021\n\thas_phone\030\014 \001(\010\022\031\n\021h"
+  "as_google_oauth2\030\025 \001(\010\022\031\n\021has_wechat_oau"
+  "th2\030\026 \001(\010\022\037\n\027has_wechat_mini_program\030\027 \001"
+  "(\010\022\033\n\023has_facebook_oauth2\030\030 \001(\010\"s\n\014Provi"
+  "derType\022\t\n\005Email\020\000\022\t\n\005Phone\020\001\022\020\n\014GoogleO"
+  "auth2\020\013\022\020\n\014WechatOauth2\020\014\022\025\n\021WechatMiniP"
+  "rogram\020\r\022\022\n\016FacebookOauth2\020\016B\007\n\005_nameB\t\n"
+  "\007_avatar\032`\n\nPermission\022\021\n\toperation\030\001 \001("
+  "\t\022\025\n\rresource_type\030\002 \001(\t\022\030\n\013resource_id\030"
+  "\003 \001(\004H\000\210\001\001B\016\n\014_resource_id\032u\n\004Menu\022\r\n\005la"
+  "bel\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\021\n\004icon\030\003 \001(\tH\000\210\001\001"
+  "\0226\n\005menus\030\t \003(\0132\'.palm.balsam.v1.UserSig"
+  "nInResponse.MenuB\007\n\005_icon\"3\n GoogleOauth"
+  "2UserBySubjectRequest\022\017\n\007subject\030\001 \001(\t\"\260"
+  "\003\n\035GoogleOauth2UserIndexResponse\022A\n\005item"
+  "s\030\001 \003(\01322.palm.balsam.v1.GoogleOauth2Use"
+  "rIndexResponse.Item\022\r\n\005total\030\002 \001(\004\032\274\002\n\004I"
+  "tem\022\n\n\002id\030\001 \001(\004\022\017\n\007user_id\030\002 \001(\004\022\017\n\007subj"
+  "ect\030\003 \001(\t\022\022\n\005email\030\004 \001(\tH\000\210\001\001\022\026\n\016email_v"
+  "erified\030\005 \001(\010\022\021\n\004name\030\006 \001(\tH\001\210\001\001\022\024\n\007pict"
+  "ure\030\007 \001(\tH\002\210\001\001\022\023\n\006locale\030\010 \001(\tH\003\210\001\001\0223\n\nd"
+  "eleted_at\030\t \001(\0132\032.google.protobuf.Timest"
+  "ampH\004\210\001\001\022.\n\nupdated_at\030\n \001(\0132\032.google.pr"
+  "otobuf.TimestampB\010\n\006_emailB\007\n\005_nameB\n\n\010_"
+  "pictureB\t\n\007_localeB\r\n\013_deleted_at\"*\n\026Wec"
+  "hatByUnionIdRequest\022\020\n\010union_id\030\001 \001(\t\"@\n"
+  "\035WechatByAppIdAndOpenIdRequest\022\016\n\006app_id"
+  "\030\001 \001(\t\022\017\n\007open_id\030\002 \001(\t\"\243\005\n\035WechatOauth2"
+  "UserIndexResponse\022A\n\005items\030\001 \003(\01322.palm."
+  "balsam.v1.WechatOauth2UserIndexResponse."
+  "Item\022\r\n\005total\030\002 \001(\004\032\257\004\n\004Item\022\n\n\002id\030\001 \001(\004"
+  "\022\017\n\007user_id\030\002 \001(\004\022\020\n\010union_id\030\003 \001(\t\022\016\n\006a"
+  "pp_id\030\004 \001(\t\022\017\n\007open_id\030\005 \001(\t\022\020\n\010nickname"
+  "\030\006 \001(\t\022C\n\003sex\030\007 \001(\01626.palm.balsam.v1.Wec"
+  "hatOauth2UserIndexResponse.Item.Sex\022\014\n\004c"
+  "ity\030\010 \001(\t\022\020\n\010province\030\t \001(\t\022\017\n\007country\030\n"
+  " \001(\t\022\031\n\014head_img_url\030\013 \001(\tH\000\210\001\001\022\021\n\tprivi"
+  "lege\030\014 \003(\t\022\024\n\007picture\030\r \001(\tH\001\210\001\001\022E\n\004lang"
+  "\030\016 \001(\01627.palm.balsam.v1.WechatOauth2User"
+  "IndexResponse.Item.Lang\0223\n\ndeleted_at\030\017 "
+  "\001(\0132\032.google.protobuf.TimestampH\002\210\001\001\022.\n\n"
+  "updated_at\030\020 \001(\0132\032.google.protobuf.Times"
+  "tamp\"\033\n\003Sex\022\010\n\004Male\020\000\022\n\n\006Female\020\001\"\026\n\004Lan"
+  "g\022\006\n\002Cn\020\000\022\006\n\002En\020\001B\017\n\r_head_img_urlB\n\n\010_p"
+  "ictureB\r\n\013_deleted_at\"\224\003\n\"WechatMiniProg"
+  "ramUserIndexResponse\022F\n\005items\030\001 \003(\01327.pa"
+  "lm.balsam.v1.WechatMiniProgramUserIndexR"
+  "esponse.Item\022\r\n\005total\030\002 \001(\004\032\226\002\n\004Item\022\n\n\002"
+  "id\030\001 \001(\004\022\017\n\007user_id\030\002 \001(\004\022\020\n\010union_id\030\003 "
+  "\001(\t\022\016\n\006app_id\030\004 \001(\t\022\017\n\007open_id\030\005 \001(\t\022\025\n\010"
+  "nickname\030\006 \001(\tH\000\210\001\001\022\027\n\navatar_url\030\007 \001(\tH"
+  "\001\210\001\001\0223\n\ndeleted_at\030\010 \001(\0132\032.google.protob"
+  "uf.TimestampH\002\210\001\001\022.\n\nupdated_at\030\t \001(\0132\032."
+  "google.protobuf.TimestampB\013\n\t_nicknameB\r"
+  "\n\013_avatar_urlB\r\n\013_deleted_at\"\227\003\n\024Session"
+  "IndexResponse\0228\n\005items\030\001 \003(\0132).palm.bals"
+  "am.v1.SessionIndexResponse.Item\022\r\n\005total"
+  "\030\002 \001(\004\032\265\002\n\004Item\022\014\n\004user\030\001 \001(\004\022\013\n\003uid\030\002 \001"
+  "(\t\022M\n\rprovider_type\030\003 \001(\01626.palm.balsam."
+  "v1.UserSignInResponse.Detail.ProviderTyp"
+  "e\022\023\n\013provider_id\030\004 \001(\004\022\n\n\002ip\030\005 \001(\t\022.\n\nex"
+  "pires_at\030\006 \001(\0132\032.google.protobuf.Timesta"
+  "mp\0223\n\ndeleted_at\030\007 \001(\0132\032.google.protobuf"
+  ".TimestampH\000\210\001\001\022.\n\ncreated_at\030\010 \001(\0132\032.go"
+  "ogle.protobuf.TimestampB\r\n\013_deleted_at\"\212"
+  "\001\n\027AttachmentCreateRequest\022\014\n\004user\030\001 \001(\004"
+  "\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003 \001(\t\022\r\n\005titl"
+  "e\030\004 \001(\t\022\014\n\004size\030\005 \001(\004\022\024\n\014content_type\030\006 "
+  "\001(\t\022\016\n\006public\030\t \001(\010\"I\n\033AttachmentByResou"
+  "rceRequest\022\025\n\rresource_type\030\001 \001(\t\022\023\n\013res"
+  "ource_id\030\002 \001(\004\"6\n\031AttachmentSetTitleRequ"
+  "est\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001(\t\"%\n\026Attach"
+  "mentShowResponse\022\013\n\003url\030\001 \001(\t\"\233\003\n\027Attach"
+  "mentIndexResponse\022;\n\005items\030\001 \003(\0132,.palm."
+  "balsam.v1.AttachmentIndexResponse.Item\022\r"
+  "\n\005total\030\002 \001(\004\032\263\002\n\004Item\022\014\n\004user\030\001 \001(\004\022\016\n\006"
+  "bucket\030\002 \001(\t\022\016\n\006object\030\003 \001(\t\022\r\n\005title\030\004 "
+  "\001(\t\022\014\n\004size\030\005 \001(\004\022\024\n\014content_type\030\006 \001(\t\022"
+  "\016\n\006public\030\007 \001(\010\0225\n\014published_at\030\010 \001(\0132\032."
+  "google.protobuf.TimestampH\000\210\001\001\0223\n\ndelete"
+  "d_at\030\t \001(\0132\032.google.protobuf.TimestampH\001"
+  "\210\001\001\022.\n\nupdated_at\030\n \001(\0132\032.google.protobu"
+  "f.TimestampB\017\n\r_published_atB\r\n\013_deleted"
+  "_at\"\?\n\020LocaleSetRequest\022\014\n\004lang\030\001 \001(\t\022\014\n"
+  "\004code\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\316\001\n\023LocaleI"
+  "ndexResponse\0227\n\005items\030\001 \003(\0132(.palm.balsa"
+  "m.v1.LocaleIndexResponse.Item\022\r\n\005total\030\002"
+  " \001(\004\032o\n\004Item\022\n\n\002id\030\001 \001(\004\022\014\n\004lang\030\002 \001(\t\022\014"
+  "\n\004code\030\003 \001(\t\022\017\n\007message\030\004 \001(\t\022.\n\nupdated"
+  "_at\030\005 \001(\0132\032.google.protobuf.Timestamp\"#\n"
+  "\023LocaleByLangRequest\022\014\n\004lang\030\001 \001(\t\"6\n\026Le"
+  "aveWordCreateRequest\022\014\n\004body\030\001 \001(\t\022\016\n\006ed"
+  "itor\030\002 \001(\t\"\362\003\n\026LeaveWordIndexResponse\0229\n"
+  "\004item\030\001 \003(\0132+.palm.balsam.v1.LeaveWordIn"
+  "dexResponse.Item\022\r\n\005total\030\002 \001(\004\032\215\003\n\004Item"
+  "\022\n\n\002id\030\001 \001(\004\022\014\n\004lang\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022\014"
+  "\n\004body\030\004 \001(\t\022+\n\006editor\030\005 \001(\0162\033.palm.bals"
+  "am.v1.MediaEditor\022B\n\006status\030\006 \001(\01622.palm"
+  ".balsam.v1.LeaveWordIndexResponse.Item.S"
+  "tatus\0225\n\014published_at\030\007 \001(\0132\032.google.pro"
+  "tobuf.TimestampH\000\210\001\001\0223\n\ndeleted_at\030\010 \001(\013"
+  "2\032.google.protobuf.TimestampH\001\210\001\001\022.\n\nupd"
+  "ated_at\030\t \001(\0132\032.google.protobuf.Timestam"
+  "p\"$\n\006Status\022\013\n\007Pending\020\000\022\r\n\tCompleted\020\001B"
+  "\017\n\r_published_atB\r\n\013_deleted_at\"\311\002\n\022Site"
+  "StatusResponse\022A\n\npostgresql\030\001 \001(\0132-.pal"
+  "m.balsam.v1.SiteStatusResponse.PostgreSq"
+  "l\0227\n\005redis\030\002 \001(\0132(.palm.balsam.v1.SiteSt"
+  "atusResponse.Redis\022A\n\nopensearch\030\003 \001(\0132-"
+  ".palm.balsam.v1.SiteStatusResponse.OpenS"
+  "earch\032$\n\005Redis\022\014\n\004info\030\001 \003(\t\022\r\n\005nodes\030\002 "
+  "\003(\t\032/\n\nPostgreSql\022\017\n\007version\030\001 \001(\t\022\020\n\010ve"
+  "rsions\030\002 \003(\t\032\035\n\nOpenSearch\022\017\n\007plugins\030\001 "
+  "\001(\t\"\230\001\n\023SiteIndexNowAccount\022O\n\017web_site_"
+  "verify\030\001 \001(\01321.palm.balsam.v1.SiteIndexN"
+  "owAccount.WebSiteVerifyH\000\210\001\001\032\034\n\rWebSiteV"
+  "erify\022\013\n\003key\030\001 \001(\tB\022\n\020_web_site_verify\"\231"
+  "\002\n\021SiteGoogleAccount\022M\n\017web_site_verify\030"
+  "\001 \001(\0132/.palm.balsam.v1.SiteGoogleAccount"
+  ".WebSiteVerifyH\000\210\001\001\022D\n\nre_captcha\030\002 \001(\0132"
+  "+.palm.balsam.v1.SiteGoogleAccount.ReCap"
+  "tchaH\001\210\001\001\032\035\n\rWebSiteVerify\022\014\n\004code\030\001 \001(\t"
+  "\032-\n\tReCaptcha\022\020\n\010site_key\030\001 \001(\t\022\016\n\006secre"
+  "t\030\002 \001(\tB\022\n\020_web_site_verifyB\r\n\013_re_captc"
+  "ha\"\244\001\n\020SiteBaiduAccount\022L\n\017web_site_veri"
+  "fy\030\001 \001(\0132..palm.balsam.v1.SiteBaiduAccou"
+  "nt.WebSiteVerifyH\000\210\001\001\032.\n\rWebSiteVerify\022\014"
+  "\n\004code\030\001 \001(\t\022\017\n\007content\030\002 \001(\tB\022\n\020_web_si"
+  "te_verify\"(\n\030SiteGetInfoByLangRequest\022\014\n"
+  "\004lang\030\001 \001(\t\"c\n\031SiteGetInfoByLangResponse"
+  "\022\r\n\005title\030\001 \001(\t\022\017\n\007subhead\030\002 \001(\t\022\023\n\013desc"
+  "ription\030\003 \001(\t\022\021\n\tcopyright\030\004 \001(\t\"\322\003\n\022Sit"
+  "eLayoutResponse\022\r\n\005title\030\001 \001(\t\022\017\n\007subhea"
+  "d\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\021\n\tcopyrigh"
+  "t\030\004 \001(\t\0229\n\006author\030\005 \001(\0132).palm.balsam.v1"
+  ".SiteLayoutResponse.Author\022\020\n\010keywords\030\006"
+  " \003(\t\022=\n\006cn_icp\030\013 \001(\0132(.palm.balsam.v1.Si"
+  "teLayoutResponse.CnIcpH\000\210\001\001\022=\n\006cn_gab\030\014 "
+  "\001(\0132(.palm.balsam.v1.SiteLayoutResponse."
+  "CnGabH\001\210\001\001\022\014\n\004lang\030a \001(\t\022\021\n\tlanguages\030b "
+  "\001(\t\022\017\n\007version\030c \001(\t\032%\n\006Author\022\014\n\004name\030\001"
+  " \001(\t\022\r\n\005email\030\002 \001(\t\032#\n\005CnGab\022\014\n\004code\030\001 \001"
+  "(\t\022\014\n\004name\030\002 \001(\t\032\025\n\005CnIcp\022\014\n\004code\030\001 \001(\tB"
+  "\t\n\007_cn_icpB\t\n\007_cn_gab\"g\n\017SiteInfoRequest"
+  "\022\014\n\004lang\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\017\n\007subhead"
+  "\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\022\021\n\tcopyright"
+  "\030\005 \001(\t\"$\n\023SiteKeywordsRequest\022\r\n\005items\030\001"
+  " \003(\t*4\n\013MediaEditor\022\014\n\010Textarea\020\000\022\014\n\010Mar"
+  "kdown\020\002\022\t\n\005Quill\020\0032\241\001\n\003Aes\022L\n\007Encrypt\022\037."
+  "palm.balsam.v1.AesPlainMessage\032\036.palm.ba"
+  "lsam.v1.AesCodeMessage\"\000\022L\n\007Decrypt\022\036.pa"
+  "lm.balsam.v1.AesCodeMessage\032\037.palm.balsa"
+  "m.v1.AesPlainMessage\"\0002\241\001\n\003Jwt\022I\n\004Sign\022\036"
+  ".palm.balsam.v1.JwtSignRequest\032\037.palm.ba"
+  "lsam.v1.JwtSignResponse\"\000\022O\n\006Verify\022 .pa"
+  "lm.balsam.v1.JwtVerifyRequest\032!.palm.bal"
+  "sam.v1.JwtVerifyResponse\"\0002\232\001\n\004HMac\022K\n\004S"
+  "ign\022\037.palm.balsam.v1.HMacSignRequest\032 .p"
+  "alm.balsam.v1.HMacSignResponse\"\000\022E\n\006Veri"
+  "fy\022!.palm.balsam.v1.HMacVerifyRequest\032\026."
+  "google.protobuf.Empty\"\0002\275\005\n\004User\022;\n\004Lock"
+  "\022\031.palm.balsam.v1.IdRequest\032\026.google.pro"
+  "tobuf.Empty\"\000\022=\n\006Unlock\022\031.palm.balsam.v1"
+  ".IdRequest\032\026.google.protobuf.Empty\"\000\022>\n\007"
+  "Disable\022\031.palm.balsam.v1.IdRequest\032\026.goo"
+  "gle.protobuf.Empty\"\000\022=\n\006Enable\022\031.palm.ba"
+  "lsam.v1.IdRequest\032\026.google.protobuf.Empt"
+  "y\"\000\022G\n\004Logs\022\033.palm.balsam.v1.LogsRequest"
+  "\032 .palm.balsam.v1.UserLogsResponse\"\000\022;\n\007"
+  "SignOut\022\026.google.protobuf.Empty\032\026.google"
+  ".protobuf.Empty\"\000\022C\n\005Index\022\025.palm.balsam"
+  ".v1.Pager\032!.palm.balsam.v1.UserIndexResp"
+  "onse\"\000\022S\n\rUpdateProfile\022(.palm.balsam.v1"
+  ".UserUpdateProfileRequest\032\026.google.proto"
+  "buf.Empty\"\000\022K\n\004ById\022\031.palm.balsam.v1.IdR"
+  "equest\032&.palm.balsam.v1.UserIndexRespons"
+  "e.Item\"\000\022M\n\005ByUid\022\032.palm.balsam.v1.UidRe"
+  "quest\032&.palm.balsam.v1.UserIndexResponse"
+  ".Item\"\0002\311\t\n\tEmailUser\022X\n\006SignIn\022(.palm.b"
+  "alsam.v1.UserSignInByEmailRequest\032\".palm"
+  ".balsam.v1.UserSignInResponse\"\000\022X\n\006SignU"
+  "p\022(.palm.balsam.v1.UserSignUpByEmailRequ"
+  "est\032\".palm.balsam.v1.UserSignInResponse\""
+  "\000\022N\n\016ConfirmByEmail\022\".palm.balsam.v1.Use"
+  "rByEmailRequest\032\026.google.protobuf.Empty\""
+  "\000\022N\n\016ConfirmByToken\022\".palm.balsam.v1.Use"
+  "rByTokenRequest\032\026.google.protobuf.Empty\""
+  "\000\022M\n\rUnlockByEmail\022\".palm.balsam.v1.User"
+  "ByEmailRequest\032\026.google.protobuf.Empty\"\000"
+  "\022M\n\rUnlockByToken\022\".palm.balsam.v1.UserB"
+  "yTokenRequest\032\026.google.protobuf.Empty\"\000\022"
+  "N\n\016ForgotPassword\022\".palm.balsam.v1.UserB"
+  "yEmailRequest\032\026.google.protobuf.Empty\"\000\022"
+  "S\n\rResetPassword\022(.palm.balsam.v1.UserRe"
+  "setPasswordRequest\032\026.google.protobuf.Emp"
+  "ty\"\000\022>\n\007Confirm\022\031.palm.balsam.v1.IdReque"
+  "st\032\026.google.protobuf.Empty\"\000\022>\n\007Disable\022"
   "\031.palm.balsam.v1.IdRequest\032\026.google.prot"
   "obuf.Empty\"\000\022=\n\006Enable\022\031.palm.balsam.v1."
-  "IdRequest\032\026.google.protobuf.Empty\"\000\022O\n\005I"
-  "ndex\022\025.palm.balsam.v1.Pager\032-.palm.balsa"
-  "m.v1.GoogleOauth2UserIndexResponse\"\000\022W\n\004"
-  "ById\022\031.palm.balsam.v1.IdRequest\0322.palm.b"
-  "alsam.v1.GoogleOauth2UserIndexResponse.I"
-  "tem\"\000\022s\n\tBySubject\0220.palm.balsam.v1.Goog"
-  "leOauth2UserBySubjectRequest\0322.palm.bals"
-  "am.v1.GoogleOauth2UserIndexResponse.Item"
-  "\"\0002\240\004\n\020WechatOauth2User\022>\n\007Disable\022\031.pal"
-  "m.balsam.v1.IdRequest\032\026.google.protobuf."
-  "Empty\"\000\022=\n\006Enable\022\031.palm.balsam.v1.IdReq"
-  "uest\032\026.google.protobuf.Empty\"\000\022O\n\005Index\022"
-  "\025.palm.balsam.v1.Pager\032-.palm.balsam.v1."
-  "WechatOauth2UserIndexResponse\"\000\022W\n\004ById\022"
-  "\031.palm.balsam.v1.IdRequest\0322.palm.balsam"
-  ".v1.WechatOauth2UserIndexResponse.Item\"\000"
-  "\022i\n\tByUnionId\022&.palm.balsam.v1.WechatByU"
-  "nionIdRequest\0322.palm.balsam.v1.WechatOau"
-  "th2UserIndexResponse.Item\"\000\022x\n\021ByAppIdAn"
-  "dUnionId\022-.palm.balsam.v1.WechatByAppIdA"
-  "ndOpenIdRequest\0322.palm.balsam.v1.WechatO"
-  "auth2UserIndexResponse.Item\"\0002\271\004\n\025Wechat"
-  "MiniProgramUser\022>\n\007Disable\022\031.palm.balsam"
-  ".v1.IdRequest\032\026.google.protobuf.Empty\"\000\022"
-  "=\n\006Enable\022\031.palm.balsam.v1.IdRequest\032\026.g"
-  "oogle.protobuf.Empty\"\000\022T\n\005Index\022\025.palm.b"
-  "alsam.v1.Pager\0322.palm.balsam.v1.WechatMi"
-  "niProgramUserIndexResponse\"\000\022\\\n\004ById\022\031.p"
-  "alm.balsam.v1.IdRequest\0327.palm.balsam.v1"
-  ".WechatMiniProgramUserIndexResponse.Item"
-  "\"\000\022n\n\tByUnionId\022&.palm.balsam.v1.WechatB"
-  "yUnionIdRequest\0327.palm.balsam.v1.WechatM"
-  "iniProgramUserIndexResponse.Item\"\000\022}\n\021By"
-  "AppIdAndUnionId\022-.palm.balsam.v1.WechatB"
-  "yAppIdAndOpenIdRequest\0327.palm.balsam.v1."
-  "WechatMiniProgramUserIndexResponse.Item\""
-  "\0002\336\001\n\007Session\022>\n\007Disable\022\031.palm.balsam.v"
-  "1.IdRequest\032\026.google.protobuf.Empty\"\000\022F\n"
-  "\005Index\022\025.palm.balsam.v1.Pager\032$.palm.bal"
-  "sam.v1.SessionIndexResponse\"\000\022K\n\006ByUser\022"
-  "\031.palm.balsam.v1.IdRequest\032$.palm.balsam"
-  ".v1.SessionIndexResponse\"\0002\227\006\n\nAttachmen"
-  "t\022>\n\007Disable\022\031.palm.balsam.v1.IdRequest\032"
-  "\026.google.protobuf.Empty\"\000\022I\n\005Index\022\025.pal"
-  "m.balsam.v1.Pager\032\'.palm.balsam.v1.Attac"
-  "hmentIndexResponse\"\000\022O\n\010SetTitle\022).palm."
-  "balsam.v1.AttachmentSetTitleRequest\032\026.go"
-  "ogle.protobuf.Empty\"\000\022Q\n\004ById\022\031.palm.bal"
-  "sam.v1.IdRequest\032,.palm.balsam.v1.Attach"
-  "mentIndexResponse.Item\"\000\022N\n\006ByUser\022\031.pal"
-  "m.balsam.v1.IdRequest\032\'.palm.balsam.v1.A"
-  "ttachmentIndexResponse\"\000\022V\n\016ByResourceTy"
-  "pe\022\031.palm.balsam.v1.IdRequest\032\'.palm.bal"
-  "sam.v1.AttachmentIndexResponse\"\000\0229\n\005Clea"
-  "r\022\026.google.protobuf.Empty\032\026.google.proto"
-  "buf.Empty\"\000\022d\n\nByResource\022+.palm.balsam."
-  "v1.AttachmentByResourceRequest\032\'.palm.ba"
-  "lsam.v1.AttachmentIndexResponse\"\000\022K\n\006Cre"
-  "ate\022\'.palm.balsam.v1.AttachmentCreateReq"
-  "uest\032\026.google.protobuf.Empty\"\000\022D\n\rSetUpl"
-  "oadedAt\022\031.palm.balsam.v1.IdRequest\032\026.goo"
-  "gle.protobuf.Empty\"\0002\350\001\n\006Locale\022A\n\003Set\022 "
-  ".palm.balsam.v1.LocaleSetRequest\032\026.googl"
-  "e.protobuf.Empty\"\000\022E\n\005Index\022\025.palm.balsa"
-  "m.v1.Pager\032#.palm.balsam.v1.LocaleIndexR"
-  "esponse\"\000\022T\n\006ByLang\022#.palm.balsam.v1.Loc"
-  "aleByLangRequest\032#.palm.balsam.v1.Locale"
-  "IndexResponse\"\0002\241\002\n\tLeaveWord\022J\n\006Create\022"
-  "&.palm.balsam.v1.LeaveWordCreateRequest\032"
-  "\026.google.protobuf.Empty\"\000\022H\n\005Index\022\025.pal"
-  "m.balsam.v1.Pager\032&.palm.balsam.v1.Leave"
-  "WordIndexResponse\"\000\022>\n\007Publish\022\031.palm.ba"
-  "lsam.v1.IdRequest\032\026.google.protobuf.Empt"
-  "y\"\000\022>\n\007Destroy\022\031.palm.balsam.v1.IdReques"
-  "t\032\026.google.protobuf.Empty\"\0002\252\t\n\004Site\022F\n\006"
-  "Status\022\026.google.protobuf.Empty\032\".palm.ba"
-  "lsam.v1.SiteStatusResponse\"\000\022F\n\006Layout\022\026"
-  ".google.protobuf.Empty\032\".palm.balsam.v1."
-  "SiteLayoutResponse\"\000\022f\n\rGetInfoByLang\022(."
-  "palm.balsam.v1.SiteGetInfoByLangRequest\032"
-  ").palm.balsam.v1.SiteGetInfoByLangRespon"
-  "se\"\000\022D\n\007SetInfo\022\037.palm.balsam.v1.SiteInf"
-  "oRequest\032\026.google.protobuf.Empty\"\000\022L\n\013Se"
-  "tKeywords\022#.palm.balsam.v1.SiteKeywordsR"
-  "equest\032\026.google.protobuf.Empty\"\000\022P\n\tSetA"
-  "uthor\022).palm.balsam.v1.SiteLayoutRespons"
-  "e.Author\032\026.google.protobuf.Empty\"\000\022M\n\017Se"
-  "tBaiduAccount\022 .palm.balsam.v1.SiteBaidu"
-  "Account\032\026.google.protobuf.Empty\"\000\022M\n\017Get"
-  "BaiduAccount\022\026.google.protobuf.Empty\032 .p"
-  "alm.balsam.v1.SiteBaiduAccount\"\000\022F\n\022Dele"
-  "teBaiduAccount\022\026.google.protobuf.Empty\032\026"
-  ".google.protobuf.Empty\"\000\022O\n\020SetGoogleAcc"
-  "ount\022!.palm.balsam.v1.SiteGoogleAccount\032"
-  "\026.google.protobuf.Empty\"\000\022O\n\020GetGoogleAc"
-  "count\022\026.google.protobuf.Empty\032!.palm.bal"
-  "sam.v1.SiteGoogleAccount\"\000\022G\n\023DeleteGoog"
-  "leAccount\022\026.google.protobuf.Empty\032\026.goog"
-  "le.protobuf.Empty\"\000\022S\n\022SetIndexNowAccoun"
-  "t\022#.palm.balsam.v1.SiteIndexNowAccount\032\026"
-  ".google.protobuf.Empty\"\000\022S\n\022GetIndexNowA"
-  "ccount\022\026.google.protobuf.Empty\032#.palm.ba"
-  "lsam.v1.SiteIndexNowAccount\"\000\022I\n\025DeleteI"
-  "ndexNowAccount\022\026.google.protobuf.Empty\032\026"
-  ".google.protobuf.Empty\"\000Bf\n,com.github.s"
-  "aturn_xiv.palm.plugins.balsam.v1P\001Z4gith"
-  "ub.com/saturn-xiv/palm/atropa/balsam/ser"
-  "vices/v2b\006proto3"
+  "IdRequest\032\026.google.protobuf.Empty\"\000\022H\n\005I"
+  "ndex\022\025.palm.balsam.v1.Pager\032&.palm.balsa"
+  "m.v1.EmailUserIndexResponse\"\000\022P\n\004ById\022\031."
+  "palm.balsam.v1.IdRequest\032+.palm.balsam.v"
+  "1.EmailUserIndexResponse.Item\"\000\022g\n\nByNic"
+  "kname\022*.palm.balsam.v1.EmailUserByNickna"
+  "meRequest\032+.palm.balsam.v1.EmailUserInde"
+  "xResponse.Item\"\000\022a\n\007ByEmail\022\'.palm.balsa"
+  "m.v1.EmailUserByEmailRequest\032+.palm.bals"
+  "am.v1.EmailUserIndexResponse.Item\"\0002\260\003\n\020"
+  "GoogleOauth2User\022>\n\007Disable\022\031.palm.balsa"
+  "m.v1.IdRequest\032\026.google.protobuf.Empty\"\000"
+  "\022=\n\006Enable\022\031.palm.balsam.v1.IdRequest\032\026."
+  "google.protobuf.Empty\"\000\022O\n\005Index\022\025.palm."
+  "balsam.v1.Pager\032-.palm.balsam.v1.GoogleO"
+  "auth2UserIndexResponse\"\000\022W\n\004ById\022\031.palm."
+  "balsam.v1.IdRequest\0322.palm.balsam.v1.Goo"
+  "gleOauth2UserIndexResponse.Item\"\000\022s\n\tByS"
+  "ubject\0220.palm.balsam.v1.GoogleOauth2User"
+  "BySubjectRequest\0322.palm.balsam.v1.Google"
+  "Oauth2UserIndexResponse.Item\"\0002\240\004\n\020Wecha"
+  "tOauth2User\022>\n\007Disable\022\031.palm.balsam.v1."
+  "IdRequest\032\026.google.protobuf.Empty\"\000\022=\n\006E"
+  "nable\022\031.palm.balsam.v1.IdRequest\032\026.googl"
+  "e.protobuf.Empty\"\000\022O\n\005Index\022\025.palm.balsa"
+  "m.v1.Pager\032-.palm.balsam.v1.WechatOauth2"
+  "UserIndexResponse\"\000\022W\n\004ById\022\031.palm.balsa"
+  "m.v1.IdRequest\0322.palm.balsam.v1.WechatOa"
+  "uth2UserIndexResponse.Item\"\000\022i\n\tByUnionI"
+  "d\022&.palm.balsam.v1.WechatByUnionIdReques"
+  "t\0322.palm.balsam.v1.WechatOauth2UserIndex"
+  "Response.Item\"\000\022x\n\021ByAppIdAndUnionId\022-.p"
+  "alm.balsam.v1.WechatByAppIdAndOpenIdRequ"
+  "est\0322.palm.balsam.v1.WechatOauth2UserInd"
+  "exResponse.Item\"\0002\271\004\n\025WechatMiniProgramU"
+  "ser\022>\n\007Disable\022\031.palm.balsam.v1.IdReques"
+  "t\032\026.google.protobuf.Empty\"\000\022=\n\006Enable\022\031."
+  "palm.balsam.v1.IdRequest\032\026.google.protob"
+  "uf.Empty\"\000\022T\n\005Index\022\025.palm.balsam.v1.Pag"
+  "er\0322.palm.balsam.v1.WechatMiniProgramUse"
+  "rIndexResponse\"\000\022\\\n\004ById\022\031.palm.balsam.v"
+  "1.IdRequest\0327.palm.balsam.v1.WechatMiniP"
+  "rogramUserIndexResponse.Item\"\000\022n\n\tByUnio"
+  "nId\022&.palm.balsam.v1.WechatByUnionIdRequ"
+  "est\0327.palm.balsam.v1.WechatMiniProgramUs"
+  "erIndexResponse.Item\"\000\022}\n\021ByAppIdAndUnio"
+  "nId\022-.palm.balsam.v1.WechatByAppIdAndOpe"
+  "nIdRequest\0327.palm.balsam.v1.WechatMiniPr"
+  "ogramUserIndexResponse.Item\"\0002\336\001\n\007Sessio"
+  "n\022>\n\007Disable\022\031.palm.balsam.v1.IdRequest\032"
+  "\026.google.protobuf.Empty\"\000\022F\n\005Index\022\025.pal"
+  "m.balsam.v1.Pager\032$.palm.balsam.v1.Sessi"
+  "onIndexResponse\"\000\022K\n\006ByUser\022\031.palm.balsa"
+  "m.v1.IdRequest\032$.palm.balsam.v1.SessionI"
+  "ndexResponse\"\0002\227\006\n\nAttachment\022>\n\007Disable"
+  "\022\031.palm.balsam.v1.IdRequest\032\026.google.pro"
+  "tobuf.Empty\"\000\022I\n\005Index\022\025.palm.balsam.v1."
+  "Pager\032\'.palm.balsam.v1.AttachmentIndexRe"
+  "sponse\"\000\022O\n\010SetTitle\022).palm.balsam.v1.At"
+  "tachmentSetTitleRequest\032\026.google.protobu"
+  "f.Empty\"\000\022Q\n\004ById\022\031.palm.balsam.v1.IdReq"
+  "uest\032,.palm.balsam.v1.AttachmentIndexRes"
+  "ponse.Item\"\000\022N\n\006ByUser\022\031.palm.balsam.v1."
+  "IdRequest\032\'.palm.balsam.v1.AttachmentInd"
+  "exResponse\"\000\022V\n\016ByResourceType\022\031.palm.ba"
+  "lsam.v1.IdRequest\032\'.palm.balsam.v1.Attac"
+  "hmentIndexResponse\"\000\0229\n\005Clear\022\026.google.p"
+  "rotobuf.Empty\032\026.google.protobuf.Empty\"\000\022"
+  "d\n\nByResource\022+.palm.balsam.v1.Attachmen"
+  "tByResourceRequest\032\'.palm.balsam.v1.Atta"
+  "chmentIndexResponse\"\000\022K\n\006Create\022\'.palm.b"
+  "alsam.v1.AttachmentCreateRequest\032\026.googl"
+  "e.protobuf.Empty\"\000\022D\n\rSetUploadedAt\022\031.pa"
+  "lm.balsam.v1.IdRequest\032\026.google.protobuf"
+  ".Empty\"\0002\350\001\n\006Locale\022A\n\003Set\022 .palm.balsam"
+  ".v1.LocaleSetRequest\032\026.google.protobuf.E"
+  "mpty\"\000\022E\n\005Index\022\025.palm.balsam.v1.Pager\032#"
+  ".palm.balsam.v1.LocaleIndexResponse\"\000\022T\n"
+  "\006ByLang\022#.palm.balsam.v1.LocaleByLangReq"
+  "uest\032#.palm.balsam.v1.LocaleIndexRespons"
+  "e\"\0002\241\002\n\tLeaveWord\022J\n\006Create\022&.palm.balsa"
+  "m.v1.LeaveWordCreateRequest\032\026.google.pro"
+  "tobuf.Empty\"\000\022H\n\005Index\022\025.palm.balsam.v1."
+  "Pager\032&.palm.balsam.v1.LeaveWordIndexRes"
+  "ponse\"\000\022>\n\007Publish\022\031.palm.balsam.v1.IdRe"
+  "quest\032\026.google.protobuf.Empty\"\000\022>\n\007Destr"
+  "oy\022\031.palm.balsam.v1.IdRequest\032\026.google.p"
+  "rotobuf.Empty\"\0002\252\t\n\004Site\022F\n\006Status\022\026.goo"
+  "gle.protobuf.Empty\032\".palm.balsam.v1.Site"
+  "StatusResponse\"\000\022F\n\006Layout\022\026.google.prot"
+  "obuf.Empty\032\".palm.balsam.v1.SiteLayoutRe"
+  "sponse\"\000\022f\n\rGetInfoByLang\022(.palm.balsam."
+  "v1.SiteGetInfoByLangRequest\032).palm.balsa"
+  "m.v1.SiteGetInfoByLangResponse\"\000\022D\n\007SetI"
+  "nfo\022\037.palm.balsam.v1.SiteInfoRequest\032\026.g"
+  "oogle.protobuf.Empty\"\000\022L\n\013SetKeywords\022#."
+  "palm.balsam.v1.SiteKeywordsRequest\032\026.goo"
+  "gle.protobuf.Empty\"\000\022P\n\tSetAuthor\022).palm"
+  ".balsam.v1.SiteLayoutResponse.Author\032\026.g"
+  "oogle.protobuf.Empty\"\000\022M\n\017SetBaiduAccoun"
+  "t\022 .palm.balsam.v1.SiteBaiduAccount\032\026.go"
+  "ogle.protobuf.Empty\"\000\022M\n\017GetBaiduAccount"
+  "\022\026.google.protobuf.Empty\032 .palm.balsam.v"
+  "1.SiteBaiduAccount\"\000\022F\n\022DeleteBaiduAccou"
+  "nt\022\026.google.protobuf.Empty\032\026.google.prot"
+  "obuf.Empty\"\000\022O\n\020SetGoogleAccount\022!.palm."
+  "balsam.v1.SiteGoogleAccount\032\026.google.pro"
+  "tobuf.Empty\"\000\022O\n\020GetGoogleAccount\022\026.goog"
+  "le.protobuf.Empty\032!.palm.balsam.v1.SiteG"
+  "oogleAccount\"\000\022G\n\023DeleteGoogleAccount\022\026."
+  "google.protobuf.Empty\032\026.google.protobuf."
+  "Empty\"\000\022S\n\022SetIndexNowAccount\022#.palm.bal"
+  "sam.v1.SiteIndexNowAccount\032\026.google.prot"
+  "obuf.Empty\"\000\022S\n\022GetIndexNowAccount\022\026.goo"
+  "gle.protobuf.Empty\032#.palm.balsam.v1.Site"
+  "IndexNowAccount\"\000\022I\n\025DeleteIndexNowAccou"
+  "nt\022\026.google.protobuf.Empty\032\026.google.prot"
+  "obuf.Empty\"\000Bf\n,com.github.saturn_xiv.pa"
+  "lm.plugins.balsam.v1P\001Z4github.com/satur"
+  "n-xiv/palm/atropa/balsam/services/v2b\006pr"
+  "oto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_balsam_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -2608,7 +2613,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_balsam_2eproto_deps
 };
 static ::_pbi::once_flag descriptor_table_balsam_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_balsam_2eproto = {
-    false, false, 16176, descriptor_table_protodef_balsam_2eproto,
+    false, false, 16204, descriptor_table_protodef_balsam_2eproto,
     "balsam.proto",
     &descriptor_table_balsam_2eproto_once, descriptor_table_balsam_2eproto_deps, 3, 74,
     schemas, file_default_instances, TableStruct_balsam_2eproto::offsets,
@@ -5394,6 +5399,7 @@ HMacSignResponse::HMacSignResponse(const HMacSignResponse& from)
   HMacSignResponse* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.code_){}
+    , decltype(_impl_.salt_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -5405,6 +5411,14 @@ HMacSignResponse::HMacSignResponse(const HMacSignResponse& from)
     _this->_impl_.code_.Set(from._internal_code(), 
       _this->GetArenaForAllocation());
   }
+  _impl_.salt_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.salt_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_salt().empty()) {
+    _this->_impl_.salt_.Set(from._internal_salt(), 
+      _this->GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.HMacSignResponse)
 }
 
@@ -5414,11 +5428,16 @@ inline void HMacSignResponse::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.code_){}
+    , decltype(_impl_.salt_){}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.code_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.salt_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.salt_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -5434,6 +5453,7 @@ HMacSignResponse::~HMacSignResponse() {
 inline void HMacSignResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.code_.Destroy();
+  _impl_.salt_.Destroy();
 }
 
 void HMacSignResponse::SetCachedSize(int size) const {
@@ -5447,6 +5467,7 @@ void HMacSignResponse::Clear() {
   (void) cached_has_bits;
 
   _impl_.code_.ClearToEmpty();
+  _impl_.salt_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5460,6 +5481,15 @@ const char* HMacSignResponse::_InternalParse(const char* ptr, ::_pbi::ParseConte
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bytes salt = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_salt();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
         } else
@@ -5500,6 +5530,12 @@ uint8_t* HMacSignResponse::_InternalSerialize(
         1, this->_internal_code(), target);
   }
 
+  // bytes salt = 2;
+  if (!this->_internal_salt().empty()) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_salt(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5523,6 +5559,13 @@ size_t HMacSignResponse::ByteSizeLong() const {
         this->_internal_code());
   }
 
+  // bytes salt = 2;
+  if (!this->_internal_salt().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_salt());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -5543,6 +5586,9 @@ void HMacSignResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const
 
   if (!from._internal_code().empty()) {
     _this->_internal_set_code(from._internal_code());
+  }
+  if (!from._internal_salt().empty()) {
+    _this->_internal_set_salt(from._internal_salt());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -5566,6 +5612,10 @@ void HMacSignResponse::InternalSwap(HMacSignResponse* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.code_, lhs_arena,
       &other->_impl_.code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.salt_, lhs_arena,
+      &other->_impl_.salt_, rhs_arena
   );
 }
 
@@ -5593,6 +5643,7 @@ HMacVerifyRequest::HMacVerifyRequest(const HMacVerifyRequest& from)
   new (&_impl_) Impl_{
       decltype(_impl_.plain_){}
     , decltype(_impl_.code_){}
+    , decltype(_impl_.salt_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -5612,6 +5663,14 @@ HMacVerifyRequest::HMacVerifyRequest(const HMacVerifyRequest& from)
     _this->_impl_.code_.Set(from._internal_code(), 
       _this->GetArenaForAllocation());
   }
+  _impl_.salt_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.salt_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_salt().empty()) {
+    _this->_impl_.salt_.Set(from._internal_salt(), 
+      _this->GetArenaForAllocation());
+  }
   // @@protoc_insertion_point(copy_constructor:palm.balsam.v1.HMacVerifyRequest)
 }
 
@@ -5622,6 +5681,7 @@ inline void HMacVerifyRequest::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.plain_){}
     , decltype(_impl_.code_){}
+    , decltype(_impl_.salt_){}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.plain_.InitDefault();
@@ -5631,6 +5691,10 @@ inline void HMacVerifyRequest::SharedCtor(
   _impl_.code_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.code_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.salt_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.salt_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -5647,6 +5711,7 @@ inline void HMacVerifyRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.plain_.Destroy();
   _impl_.code_.Destroy();
+  _impl_.salt_.Destroy();
 }
 
 void HMacVerifyRequest::SetCachedSize(int size) const {
@@ -5661,6 +5726,7 @@ void HMacVerifyRequest::Clear() {
 
   _impl_.plain_.ClearToEmpty();
   _impl_.code_.ClearToEmpty();
+  _impl_.salt_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -5683,6 +5749,15 @@ const char* HMacVerifyRequest::_InternalParse(const char* ptr, ::_pbi::ParseCont
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_code();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bytes salt = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_salt();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
         } else
@@ -5729,6 +5804,12 @@ uint8_t* HMacVerifyRequest::_InternalSerialize(
         2, this->_internal_code(), target);
   }
 
+  // bytes salt = 3;
+  if (!this->_internal_salt().empty()) {
+    target = stream->WriteBytesMaybeAliased(
+        3, this->_internal_salt(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5759,6 +5840,13 @@ size_t HMacVerifyRequest::ByteSizeLong() const {
         this->_internal_code());
   }
 
+  // bytes salt = 3;
+  if (!this->_internal_salt().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_salt());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -5782,6 +5870,9 @@ void HMacVerifyRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   }
   if (!from._internal_code().empty()) {
     _this->_internal_set_code(from._internal_code());
+  }
+  if (!from._internal_salt().empty()) {
+    _this->_internal_set_salt(from._internal_salt());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -5809,6 +5900,10 @@ void HMacVerifyRequest::InternalSwap(HMacVerifyRequest* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.code_, lhs_arena,
       &other->_impl_.code_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.salt_, lhs_arena,
+      &other->_impl_.salt_, rhs_arena
   );
 }
 
