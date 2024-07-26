@@ -1,0 +1,124 @@
+{
+  "fields": {
+    "account": {
+      "label": "Account"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "name": {
+      "label": "Name"
+    },
+    "keywords": {
+      "label": "Keywords"
+    },
+    "tags": {
+      "label": "Tags"
+    },
+    "categories": {
+      "label": "Categories"
+    },
+    "username": {
+      "label": "Username"
+    },
+    "subhead": {
+      "label": "Subhead"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "url": {
+      "label": "URL"
+    },
+    "nickname": {
+      "label": "Nickname"
+    },
+    "real-name": {
+      "label": "Real name"
+    },
+    "subject": {
+      "label": "Subject"
+    },
+    "password": {
+      "label": "Password"
+    },
+    "current-password": {
+      "label": "Current password"
+    },
+    "new-password": {
+      "label": "New password"
+    },
+    "password-confirmation": {
+      "label": "Password confirmation",
+      "error": "Passwords input must be matched"
+    },
+    "content": {
+      "label": "Content"
+    },
+    "id": {
+      "label": "ID"
+    },
+    "ip": {
+      "label": "IP"
+    },
+    "code": {
+      "label": "Code"
+    },
+    "key": {
+      "label": "Key"
+    },
+    "secret": {
+      "label": "Secret"
+    },
+    "message": {
+      "label": "Message"
+    },
+    "avatar": {
+      "label": "Avatar"
+    },
+    "days": {
+      "label": "Days"
+    },
+    "operation": {
+      "label": "Operation"
+    },
+    "timezone": {
+      "label": "Timezone"
+    },
+    "language": {
+      "label": "Language"
+    },
+    "title": {
+      "label": "Title"
+    },
+    "reason": {
+      "label": "Reason"
+    },
+    "content-type": {
+      "label": "Content type"
+    },
+    "expires-at": {
+      "label": "Expires at"
+    },
+    "updated-at": {
+      "label": "Updated at"
+    },
+    "deleted-at": {
+      "label": "Deleted At"
+    },
+    "created-at": {
+      "label": "Created At"
+    },
+    "wechat": {
+      "union-id": {
+        "label": "Union Id"
+      },
+      "open-id": {
+        "label": "Open Id"
+      },
+      "app-id": {
+        "label": "App Id"
+      }
+    }
+  }
+}

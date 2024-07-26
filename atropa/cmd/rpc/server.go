@@ -47,6 +47,9 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	if err != nil {
 		return err
 	}
+	if err = db.Transaction(i18n_sync); err != nil {
+		return err
+	}
 	redis, err := config.Redis.Open()
 	if err != nil {
 		return err
