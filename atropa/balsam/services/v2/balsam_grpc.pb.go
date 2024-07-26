@@ -2909,7 +2909,7 @@ const (
 type LocaleClient interface {
 	Set(ctx context.Context, in *LocaleSetRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
-	ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleIndexResponse, error)
+	ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleByLangResponse, error)
 }
 
 type localeClient struct {
@@ -2940,9 +2940,9 @@ func (c *localeClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOp
 	return out, nil
 }
 
-func (c *localeClient) ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleIndexResponse, error) {
+func (c *localeClient) ByLang(ctx context.Context, in *LocaleByLangRequest, opts ...grpc.CallOption) (*LocaleByLangResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LocaleIndexResponse)
+	out := new(LocaleByLangResponse)
 	err := c.cc.Invoke(ctx, Locale_ByLang_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -2958,7 +2958,7 @@ func (c *localeClient) ByLang(ctx context.Context, in *LocaleByLangRequest, opts
 type LocaleServer interface {
 	Set(context.Context, *LocaleSetRequest) (*emptypb.Empty, error)
 	Index(context.Context, *Pager) (*LocaleIndexResponse, error)
-	ByLang(context.Context, *LocaleByLangRequest) (*LocaleIndexResponse, error)
+	ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error)
 	mustEmbedUnimplementedLocaleServer()
 }
 
@@ -2972,7 +2972,7 @@ func (UnimplementedLocaleServer) Set(context.Context, *LocaleSetRequest) (*empty
 func (UnimplementedLocaleServer) Index(context.Context, *Pager) (*LocaleIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
 }
-func (UnimplementedLocaleServer) ByLang(context.Context, *LocaleByLangRequest) (*LocaleIndexResponse, error) {
+func (UnimplementedLocaleServer) ByLang(context.Context, *LocaleByLangRequest) (*LocaleByLangResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ByLang not implemented")
 }
 func (UnimplementedLocaleServer) mustEmbedUnimplementedLocaleServer() {}

@@ -15,6 +15,7 @@ import (
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/reflection"
+	"gorm.io/gorm"
 
 	balsam_services "github.com/saturn-xiv/palm/atropa/balsam/services"
 	balsam_pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
@@ -80,7 +81,8 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 
 	server := grpc.NewServer(grpc.Creds(credentials.NewTLS(tls)))
 	if err = mount(server,
-		redis, aes, hmac, jwt, enforcer, s3,
+		db, redis,
+		aes, hmac, jwt, enforcer, s3,
 		config.GoogleOauth2,
 		config.WechatOauth2, config.WechatMiniProgram, config.WechatPay); err != nil {
 		return err
@@ -104,7 +106,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 }
 
 func mount(server *grpc.Server,
-	redis *redis.Client,
+	db *gorm.DB, redis *redis.Client,
 	aes *crypto.Aes, hmac *crypto.HMac, jwt *crypto.Jwt,
 	enforcer *casbin.Enforcer,
 	s3 *minio.Client,
@@ -116,6 +118,7 @@ func mount(server *grpc.Server,
 	balsam_pb.RegisterAesServer(server, balsam_services.NewAesService(aes))
 	balsam_pb.RegisterHMacServer(server, balsam_services.NewHmacService(hmac))
 	balsam_pb.RegisterJwtServer(server, balsam_services.NewJwtService(jwt))
+	balsam_pb.RegisterLocaleServer(server, balsam_services.NewLocaleService(db))
 	rbac_pb.RegisterPolicyServer(server, rbac_services.NewPolicyService(enforcer))
 	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(s3))
 	if google_oauth2 != nil {

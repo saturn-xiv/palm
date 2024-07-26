@@ -15,8 +15,13 @@ message UidRequest {
   string uid = 1;
 }
 message Pager {
-  uint64 page = 1;
-  uint64 size = 2;
+  int64 page = 1;
+  int64 size = 2;
+}
+message Pagination {
+  int64 page = 1;
+  int64 size = 2;
+  int64 total = 3;
 }
 enum MediaEditor {
   Textarea = 0;
@@ -124,7 +129,7 @@ message UserIndexResponse {
     google.protobuf.Timestamp updated_at = 12;
   }
   repeated Item items = 1;
-  uint64 total = 9;
+  Pagination pagination = 9;
 }
 message LogsRequest {
   optional uint64 user = 1;
@@ -149,7 +154,7 @@ message UserLogsResponse {
     google.protobuf.Timestamp created_at = 8;
   }
   repeated Item items = 1;
-  uint64 total = 9;
+  Pagination pagination = 9;
 }
 // ----------------------------------------------------------------------------
 service EmailUser {
@@ -190,7 +195,7 @@ message EmailUserIndexResponse {
     google.protobuf.Timestamp updated_at = 9;
   }
   repeated Item items = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 message UserResetPasswordRequest {
   string token = 1;
@@ -295,7 +300,7 @@ message GoogleOauth2UserIndexResponse {
     google.protobuf.Timestamp updated_at = 10;
   }
   repeated Item items = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------
 service WechatOauth2User {
@@ -343,7 +348,7 @@ message WechatOauth2UserIndexResponse {
     google.protobuf.Timestamp updated_at = 16;
   }
   repeated Item items = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------
 service WechatMiniProgramUser {
@@ -369,7 +374,7 @@ message WechatMiniProgramUserIndexResponse {
     google.protobuf.Timestamp updated_at = 9;
   }
   repeated Item items = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------
 service Session {
@@ -389,7 +394,7 @@ message SessionIndexResponse {
     google.protobuf.Timestamp created_at = 8;
   }
   repeated Item items = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------
 service Attachment {
@@ -440,13 +445,13 @@ message AttachmentIndexResponse {
     google.protobuf.Timestamp updated_at = 10;
   }
   repeated Item items = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------
 service Locale {
   rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
   rpc Index(Pager) returns (LocaleIndexResponse) {}
-  rpc ByLang(LocaleByLangRequest) returns (LocaleIndexResponse) {}
+  rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
 }
 
 message LocaleSetRequest {
@@ -463,10 +468,13 @@ message LocaleIndexResponse {
     google.protobuf.Timestamp updated_at = 5;
   }
   repeated Item items = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 message LocaleByLangRequest {
   string lang = 1;
+}
+message LocaleByLangResponse {
+  repeated LocaleIndexResponse.Item items = 1;
 }
 // ----------------------------------------------------------------------------
 service LeaveWord {
@@ -496,7 +504,7 @@ message LeaveWordIndexResponse {
     google.protobuf.Timestamp updated_at = 9;
   }
   repeated Item item = 1;
-  uint64 total = 2;
+  Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------
 service Site {

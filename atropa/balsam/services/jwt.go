@@ -18,7 +18,7 @@ type JwtService struct {
 	jwt *crypto.Jwt
 }
 
-var (
+const (
 	gl_jwt_extra_key = "ext"
 )
 

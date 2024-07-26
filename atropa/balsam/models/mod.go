@@ -5,61 +5,61 @@ import (
 )
 
 type Locale struct {
-	ID        uint
+	ID        uint64
 	Lang      string
 	Code      string
 	Message   string
-	Version   int
+	Version   uint32
 	UpdatedAt time.Time
 	CreatedAt time.Time
 }
 
 type Setting struct {
-	ID        uint
+	ID        uint64
 	UserID    *uint
 	Key       string
 	Value     []byte
 	Salt      *[]byte
-	Version   int
+	Version   uint32
 	UpdatedAt time.Time
 	CreatedAt time.Time
 }
 
 type User struct {
-	ID              uint
+	ID              uint64
 	UID             string
 	Lang            string
 	Timezone        string
-	SignInCount     int
+	SignInCount     uint32
 	CurrentSignInAt *time.Time
 	CurrentSignInIP *string
 	LastSignInAt    *time.Time
 	LastSignInIP    *string
 	LockedAt        *time.Time
 	DeletedAt       *time.Time
-	Version         int
+	Version         uint32
 	UpdatedAt       time.Time
 	CreatedAt       time.Time
 }
 
 type Log struct {
-	ID           uint
-	UserID       uint
+	ID           uint64
+	UserID       uint64
 	Plugin       string
 	IP           string
 	Level        string
 	ResourceType string
-	ResourceID   *uint
+	ResourceID   *uint64
 	Message      string
 	CreatedAt    time.Time
 }
 
 type Session struct {
-	ID           uint
-	UserID       uint
+	ID           uint64
+	UserID       uint64
 	UID          string
 	ProviderType string
-	ProviderID   uint
+	ProviderID   uint64
 	IP           string
 	ExpiresAt    time.Time
 	DeletedAt    *time.Time
@@ -67,8 +67,8 @@ type Session struct {
 }
 
 type EmailUser struct {
-	ID          uint
-	UserID      uint
+	ID          uint64
+	UserID      uint64
 	RealName    string
 	Nickname    string
 	Email       string
@@ -77,14 +77,14 @@ type EmailUser struct {
 	Avatar      string
 	ConfirmedAt *time.Time
 	DeletedAt   *time.Time
-	Version     int
+	Version     uint32
 	UpdatedAt   time.Time
 	CreatedAt   time.Time
 }
 
 type GoogleOauth2User struct {
-	ID            uint
-	UserID        uint
+	ID            uint64
+	UserID        uint64
 	Subject       string
 	Email         *string
 	EmailVerified bool
@@ -93,19 +93,19 @@ type GoogleOauth2User struct {
 	Locale        *string
 	Token         []byte
 	DeletedAt     *time.Time
-	Version       int
+	Version       uint32
 	UpdatedAt     time.Time
 	CreatedAt     time.Time
 }
 
 type WechatOauth2User struct {
-	ID         uint
-	UserID     uint
+	ID         uint64
+	UserID     uint64
 	UnionID    string
 	AppID      string
 	OpenID     string
 	Nickname   string
-	Sex        int
+	Sex        uint8
 	City       string
 	Province   string
 	Country    string
@@ -113,58 +113,58 @@ type WechatOauth2User struct {
 	Privilege  []byte
 	Lang       string
 	DeletedAt  *time.Time
-	Version    int
+	Version    uint32
 	UpdatedAt  time.Time
 	CreatedAt  time.Time
 }
 
 type WechatMiniProgramUser struct {
-	ID        uint
-	UserID    uint
+	ID        uint64
+	UserID    uint64
 	UnionID   string
 	AppID     string
 	OpenID    string
 	Nickname  *string
 	AvatarURL *string
 	DeletedAt *time.Time
-	Version   int
+	Version   uint32
 	UpdatedAt time.Time
 	CreatedAt time.Time
 }
 
 type Attachment struct {
-	ID          uint
-	UserID      uint
+	ID          uint64
+	UserID      uint64
 	Bucket      string
 	Object      string
 	Title       string
-	Size        uint
+	Size        uint64
 	ContentType string
 	UploadedAt  *time.Time
 	DeletedAt   *time.Time
-	Version     int
+	Version     uint32
 	UpdatedAt   time.Time
 	CreatedAt   time.Time
 }
 
 type AttachmentResource struct {
-	ID           uint
-	AttachmentID uint
+	ID           uint64
+	AttachmentID uint64
 	ResourceType string
-	ResourceID   uint
+	ResourceID   uint64
 	CreatedAt    time.Time
 }
 
 type LeaveWord struct {
-	ID          uint
+	ID          uint64
 	Lang        string
-	IP          uint
+	IP          string
 	Body        string
 	Editor      string
 	Status      string
 	PublishedAt *time.Time
 	DeletedAt   *time.Time
-	Version     int
+	Version     uint32
 	UpdatedAt   time.Time
 	CreatedAt   time.Time
 }
