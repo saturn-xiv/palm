@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/redis/go-redis/v9"
+	redis_ "github.com/redis/go-redis/v9"
 )
 
 type Cluster struct {
@@ -22,8 +22,8 @@ func (p *Cluster) Addrs() []string {
 	return items
 }
 
-func (p *Cluster) Options() redis.ClusterOptions {
-	return redis.ClusterOptions{Addrs: p.Addrs()}
+func (p *Cluster) Options() redis_.ClusterOptions {
+	return redis_.ClusterOptions{Addrs: p.Addrs()}
 }
 
 func (p *Cluster) Open() (*Client, error) {
@@ -31,7 +31,7 @@ func (p *Cluster) Open() (*Client, error) {
 	options := p.Options()
 	client := Client{
 		namespace: p.Namespace,
-		db:        redis.NewClusterClient(&options),
+		db:        redis_.NewClusterClient(&options),
 	}
 	{
 		ctx := context.Background()

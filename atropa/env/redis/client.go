@@ -9,13 +9,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/redis/go-redis/v9"
+	redis_ "github.com/redis/go-redis/v9"
 )
 
 type HandlerFunc func(value interface{}) error
 
 type Client struct {
-	db        *redis.ClusterClient
+	db        *redis_.ClusterClient
 	namespace string
 }
 
@@ -78,7 +78,7 @@ func (p *Client) key(k string) string {
 }
 
 func (p *Client) Heartbeat(ctx context.Context) ([]string, error) {
-	if err := p.db.ForEachShard(ctx, func(ctx context.Context, shard *redis.Client) error {
+	if err := p.db.ForEachShard(ctx, func(ctx context.Context, shard *redis_.Client) error {
 		status := shard.Ping(ctx)
 		return status.Err()
 

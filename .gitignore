@@ -2,6 +2,7 @@
 /build/
 /*.toml
 /*.json
+/db/schema.sql
 
 /go.work.sum
 /node_modules/

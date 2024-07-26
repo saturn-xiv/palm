@@ -1,13 +1,17 @@
 package env
 
 import (
+	"embed"
 	"fmt"
 	"log/slog"
 	"time"
 
-	"gorm.io/driver/postgres"
+	postgres_ "gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
+
+//go:embed db/postgresql/migrations/*.sql
+var gl_postgresql_migrations embed.FS
 
 type PostgreSql struct {
 	Host     string `toml:"host"`
@@ -26,7 +30,13 @@ func (p *PostgreSql) Url() string {
 
 func (p *PostgreSql) Open(config *gorm.Config) (*gorm.DB, error) {
 	slog.Info(fmt.Sprintf("open postgresql://%s@%s:%d/%s", p.User, p.Host, p.Port, p.DbName))
-	db, err := gorm.Open(postgres.Open(p.Url()), config)
+	if err := db_migrate(
+		fmt.Sprintf("postgresql://%s:%s@%s:%d/%s?sslmode=disable", p.User, p.Password, p.Host, p.Port, p.DbName),
+		gl_postgresql_migrations,
+	); err != nil {
+		return nil, err
+	}
+	db, err := gorm.Open(postgres_.Open(p.Url()), config)
 	if err != nil {
 		return nil, err
 	}
