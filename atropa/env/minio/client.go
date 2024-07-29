@@ -2,7 +2,6 @@ package minio
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"log/slog"
 	"net/url"
@@ -15,40 +14,24 @@ import (
 )
 
 type Client struct {
-	namespace string
-	nodes     []*node
+	client   *minio_.Client
+	Readonly bool
 }
 
-type node struct {
-	client   *minio_.Client
-	readonly bool
+func (p *Client) String() string {
+	return p.client.EndpointURL().Host
 }
 
 // https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
-func (p *Client) CreateBucket(ctx context.Context, name string, public bool, expiration_days int) (string, error) {
-	client, err := p.writable()
+func (p *Client) CreateBucket(ctx context.Context, name string, public bool, expiration_days int) error {
+	found, err := p.client.BucketExists(ctx, name)
 	if err != nil {
-		return "", err
-	}
-	bucket_ := bucket{
-		namespace:       p.namespace,
-		name:            name,
-		public:          public,
-		expiration_days: expiration_days,
-	}
-	bucket, err := bucket_.code()
-	if err != nil {
-		return "", err
-	}
-
-	found, err := client.BucketExists(ctx, bucket)
-	if err != nil {
-		return "", err
+		return err
 	}
 	if !found {
-		slog.Info("create bucket", slog.String("name", bucket), slog.String("node", client.EndpointURL().Host))
-		if err = client.MakeBucket(ctx, bucket, minio_.MakeBucketOptions{}); err != nil {
-			return "", err
+		slog.Info("create bucket", slog.String("name", name), slog.String("node", p.client.EndpointURL().Host))
+		if err = p.client.MakeBucket(ctx, name, minio_.MakeBucketOptions{}); err != nil {
+			return err
 		}
 		if public {
 			slog.Info("set bucket to public")
@@ -67,10 +50,10 @@ func (p *Client) CreateBucket(ctx context.Context, name string, public bool, exp
 		},
 	],
 }
-			`, now.Format("2006-01-02"), bucket)
+			`, now.Format("2006-01-02"), name)
 			slog.Debug("set policy", slog.String("rule", policy))
-			if err = client.SetBucketPolicy(ctx, bucket, policy); err != nil {
-				return "", err
+			if err = p.client.SetBucketPolicy(ctx, name, policy); err != nil {
+				return err
 			}
 		}
 
@@ -87,21 +70,16 @@ func (p *Client) CreateBucket(ctx context.Context, name string, public bool, exp
 				},
 			}
 
-			if err = client.SetBucketLifecycle(ctx, bucket, config); err != nil {
-				return "", err
+			if err = p.client.SetBucketLifecycle(ctx, name, config); err != nil {
+				return err
 			}
 		}
 	}
-	return bucket, nil
+	return nil
 }
 
 // https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
 func (p *Client) Upload(ctx context.Context, bucket string, title string, expires time.Duration) (*url.URL, string, error) {
-	client, err := p.writable()
-	if err != nil {
-		return nil, "", err
-	}
-
 	object := uuid.New().String()
 	{
 		ext := filepath.Ext(title)
@@ -109,7 +87,8 @@ func (p *Client) Upload(ctx context.Context, bucket string, title string, expire
 			object += ext
 		}
 	}
-	url, err := client.PresignedPutObject(ctx, bucket, object, expires)
+
+	url, err := p.client.PresignedPutObject(ctx, bucket, object, expires)
 	if err != nil {
 		return nil, "", err
 	}
@@ -117,49 +96,31 @@ func (p *Client) Upload(ctx context.Context, bucket string, title string, expire
 }
 
 func (p *Client) PermanentUrl(ctx context.Context, bucket string, object string, title string, content_type *string) (*url.URL, error) {
-	client, err := p.exists(ctx, bucket, object)
-	if err != nil {
-		return nil, err
-	}
 	params := make(url.Values)
 	if content_type == nil {
 		params.Set("response-content-disposition", fmt.Sprintf(`attachment; filename="%s"`, title))
 	} else {
 		params.Set("response-content-type", *content_type)
 	}
-	it := client.EndpointURL().JoinPath(fmt.Sprintf("/%s/%s", bucket, object))
+	it := p.client.EndpointURL().JoinPath(fmt.Sprintf("/%s/%s", bucket, object))
 	it.RawQuery = params.Encode()
 	return it, nil
 }
 
 func (p *Client) PresignedUrl(ctx context.Context, bucket string, object string, title string, content_type *string, expires time.Duration) (*url.URL, error) {
-	client, err := p.exists(ctx, bucket, object)
-	if err != nil {
-		return nil, err
-	}
 	params := make(url.Values)
 	if content_type == nil {
 		params.Set("response-content-disposition", fmt.Sprintf(`attachment; filename="%s"`, title))
 	} else {
 		params.Set("response-content-type", *content_type)
 	}
-	return client.PresignedGetObject(ctx, bucket, object, expires, params)
+	return p.client.PresignedGetObject(ctx, bucket, object, expires, params)
 }
 
-func (p *Client) writable() (*minio_.Client, error) {
-	for _, it := range p.nodes {
-		if !it.readonly {
-			return it.client, nil
-		}
+func (p *Client) StatObject(ctx context.Context, bucket string, object string) (*minio_.ObjectInfo, error) {
+	stat, err := p.client.StatObject(ctx, bucket, object, minio_.StatObjectOptions{})
+	if err != nil {
+		return nil, err
 	}
-	return nil, errors.New("no writable minio node")
-}
-
-func (p *Client) exists(ctx context.Context, bucket string, object string) (*minio_.Client, error) {
-	for _, node := range p.nodes {
-		if _, err := node.client.StatObject(ctx, bucket, object, minio_.StatObjectOptions{}); err == nil {
-			return node.client, nil
-		}
-	}
-	return nil, errors.New("couldn't found the object")
+	return &stat, nil
 }

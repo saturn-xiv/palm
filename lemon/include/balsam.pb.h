@@ -57,24 +57,6 @@ extern AesCodeMessageDefaultTypeInternal _AesCodeMessage_default_instance_;
 class AesPlainMessage;
 struct AesPlainMessageDefaultTypeInternal;
 extern AesPlainMessageDefaultTypeInternal _AesPlainMessage_default_instance_;
-class AttachmentByResourceRequest;
-struct AttachmentByResourceRequestDefaultTypeInternal;
-extern AttachmentByResourceRequestDefaultTypeInternal _AttachmentByResourceRequest_default_instance_;
-class AttachmentCreateRequest;
-struct AttachmentCreateRequestDefaultTypeInternal;
-extern AttachmentCreateRequestDefaultTypeInternal _AttachmentCreateRequest_default_instance_;
-class AttachmentIndexResponse;
-struct AttachmentIndexResponseDefaultTypeInternal;
-extern AttachmentIndexResponseDefaultTypeInternal _AttachmentIndexResponse_default_instance_;
-class AttachmentIndexResponse_Item;
-struct AttachmentIndexResponse_ItemDefaultTypeInternal;
-extern AttachmentIndexResponse_ItemDefaultTypeInternal _AttachmentIndexResponse_Item_default_instance_;
-class AttachmentSetTitleRequest;
-struct AttachmentSetTitleRequestDefaultTypeInternal;
-extern AttachmentSetTitleRequestDefaultTypeInternal _AttachmentSetTitleRequest_default_instance_;
-class AttachmentShowResponse;
-struct AttachmentShowResponseDefaultTypeInternal;
-extern AttachmentShowResponseDefaultTypeInternal _AttachmentShowResponse_default_instance_;
 class EmailUserByEmailRequest;
 struct EmailUserByEmailRequestDefaultTypeInternal;
 extern EmailUserByEmailRequestDefaultTypeInternal _EmailUserByEmailRequest_default_instance_;
@@ -153,6 +135,9 @@ extern PagerDefaultTypeInternal _Pager_default_instance_;
 class Pagination;
 struct PaginationDefaultTypeInternal;
 extern PaginationDefaultTypeInternal _Pagination_default_instance_;
+class ResourceRequest;
+struct ResourceRequestDefaultTypeInternal;
+extern ResourceRequestDefaultTypeInternal _ResourceRequest_default_instance_;
 class SessionIndexResponse;
 struct SessionIndexResponseDefaultTypeInternal;
 extern SessionIndexResponseDefaultTypeInternal _SessionIndexResponse_default_instance_;
@@ -285,12 +270,6 @@ extern WechatOauth2UserIndexResponse_ItemDefaultTypeInternal _WechatOauth2UserIn
 PROTOBUF_NAMESPACE_OPEN
 template<> ::palm::balsam::v1::AesCodeMessage* Arena::CreateMaybeMessage<::palm::balsam::v1::AesCodeMessage>(Arena*);
 template<> ::palm::balsam::v1::AesPlainMessage* Arena::CreateMaybeMessage<::palm::balsam::v1::AesPlainMessage>(Arena*);
-template<> ::palm::balsam::v1::AttachmentByResourceRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentByResourceRequest>(Arena*);
-template<> ::palm::balsam::v1::AttachmentCreateRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentCreateRequest>(Arena*);
-template<> ::palm::balsam::v1::AttachmentIndexResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentIndexResponse>(Arena*);
-template<> ::palm::balsam::v1::AttachmentIndexResponse_Item* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentIndexResponse_Item>(Arena*);
-template<> ::palm::balsam::v1::AttachmentSetTitleRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentSetTitleRequest>(Arena*);
-template<> ::palm::balsam::v1::AttachmentShowResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentShowResponse>(Arena*);
 template<> ::palm::balsam::v1::EmailUserByEmailRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::EmailUserByEmailRequest>(Arena*);
 template<> ::palm::balsam::v1::EmailUserByNicknameRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::EmailUserByNicknameRequest>(Arena*);
 template<> ::palm::balsam::v1::EmailUserIndexResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::EmailUserIndexResponse>(Arena*);
@@ -317,6 +296,7 @@ template<> ::palm::balsam::v1::LocaleSetRequest* Arena::CreateMaybeMessage<::pal
 template<> ::palm::balsam::v1::LogsRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::LogsRequest>(Arena*);
 template<> ::palm::balsam::v1::Pager* Arena::CreateMaybeMessage<::palm::balsam::v1::Pager>(Arena*);
 template<> ::palm::balsam::v1::Pagination* Arena::CreateMaybeMessage<::palm::balsam::v1::Pagination>(Arena*);
+template<> ::palm::balsam::v1::ResourceRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::ResourceRequest>(Arena*);
 template<> ::palm::balsam::v1::SessionIndexResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::SessionIndexResponse>(Arena*);
 template<> ::palm::balsam::v1::SessionIndexResponse_Item* Arena::CreateMaybeMessage<::palm::balsam::v1::SessionIndexResponse_Item>(Arena*);
 template<> ::palm::balsam::v1::SiteBaiduAccount* Arena::CreateMaybeMessage<::palm::balsam::v1::SiteBaiduAccount>(Arena*);
@@ -671,6 +651,175 @@ class IdRequest final :
 };
 // -------------------------------------------------------------------
 
+class ResourceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.ResourceRequest) */ {
+ public:
+  inline ResourceRequest() : ResourceRequest(nullptr) {}
+  ~ResourceRequest() override;
+  explicit PROTOBUF_CONSTEXPR ResourceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ResourceRequest(const ResourceRequest& from);
+  ResourceRequest(ResourceRequest&& from) noexcept
+    : ResourceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ResourceRequest& operator=(const ResourceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ResourceRequest& operator=(ResourceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ResourceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ResourceRequest* internal_default_instance() {
+    return reinterpret_cast<const ResourceRequest*>(
+               &_ResourceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(ResourceRequest& a, ResourceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ResourceRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ResourceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ResourceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ResourceRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ResourceRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ResourceRequest& from) {
+    ResourceRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ResourceRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.balsam.v1.ResourceRequest";
+  }
+  protected:
+  explicit ResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTypeFieldNumber = 1,
+    kIdFieldNumber = 2,
+  };
+  // string type = 1;
+  void clear_type();
+  const std::string& type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* type);
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(const std::string& value);
+  std::string* _internal_mutable_type();
+  public:
+
+  // optional uint64 id = 2;
+  bool has_id() const;
+  private:
+  bool _internal_has_id() const;
+  public:
+  void clear_id();
+  uint64_t id() const;
+  void set_id(uint64_t value);
+  private:
+  uint64_t _internal_id() const;
+  void _internal_set_id(uint64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.balsam.v1.ResourceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
+    uint64_t id_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_balsam_2eproto;
+};
+// -------------------------------------------------------------------
+
 class UidRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.UidRequest) */ {
  public:
@@ -719,7 +868,7 @@ class UidRequest final :
                &_UidRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(UidRequest& a, UidRequest& b) {
     a.Swap(&b);
@@ -872,7 +1021,7 @@ class Pager final :
                &_Pager_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(Pager& a, Pager& b) {
     a.Swap(&b);
@@ -1031,7 +1180,7 @@ class Pagination final :
                &_Pagination_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(Pagination& a, Pagination& b) {
     a.Swap(&b);
@@ -1201,7 +1350,7 @@ class AesPlainMessage final :
                &_AesPlainMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(AesPlainMessage& a, AesPlainMessage& b) {
     a.Swap(&b);
@@ -1354,7 +1503,7 @@ class AesCodeMessage final :
                &_AesCodeMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(AesCodeMessage& a, AesCodeMessage& b) {
     a.Swap(&b);
@@ -1523,7 +1672,7 @@ class JwtSignRequest final :
                &_JwtSignRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(JwtSignRequest& a, JwtSignRequest& b) {
     a.Swap(&b);
@@ -1799,7 +1948,7 @@ class JwtSignResponse final :
                &_JwtSignResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(JwtSignResponse& a, JwtSignResponse& b) {
     a.Swap(&b);
@@ -1952,7 +2101,7 @@ class JwtVerifyRequest final :
                &_JwtVerifyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(JwtVerifyRequest& a, JwtVerifyRequest& b) {
     a.Swap(&b);
@@ -2137,7 +2286,7 @@ class JwtVerifyResponse final :
                &_JwtVerifyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(JwtVerifyResponse& a, JwtVerifyResponse& b) {
     a.Swap(&b);
@@ -2347,7 +2496,7 @@ class HMacSignRequest final :
                &_HMacSignRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(HMacSignRequest& a, HMacSignRequest& b) {
     a.Swap(&b);
@@ -2500,7 +2649,7 @@ class HMacSignResponse final :
                &_HMacSignResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(HMacSignResponse& a, HMacSignResponse& b) {
     a.Swap(&b);
@@ -2669,7 +2818,7 @@ class HMacVerifyRequest final :
                &_HMacVerifyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(HMacVerifyRequest& a, HMacVerifyRequest& b) {
     a.Swap(&b);
@@ -2854,7 +3003,7 @@ class UserUpdateProfileRequest final :
                &_UserUpdateProfileRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(UserUpdateProfileRequest& a, UserUpdateProfileRequest& b) {
     a.Swap(&b);
@@ -3034,7 +3183,7 @@ class UserIndexResponse_Item final :
                &_UserIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(UserIndexResponse_Item& a, UserIndexResponse_Item& b) {
     a.Swap(&b);
@@ -3382,7 +3531,7 @@ class UserIndexResponse final :
                &_UserIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(UserIndexResponse& a, UserIndexResponse& b) {
     a.Swap(&b);
@@ -3561,7 +3710,7 @@ class LogsRequest final :
                &_LogsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(LogsRequest& a, LogsRequest& b) {
     a.Swap(&b);
@@ -3736,7 +3885,7 @@ class UserLogsResponse_Item final :
                &_UserLogsResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(UserLogsResponse_Item& a, UserLogsResponse_Item& b) {
     a.Swap(&b);
@@ -4029,7 +4178,7 @@ class UserLogsResponse final :
                &_UserLogsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(UserLogsResponse& a, UserLogsResponse& b) {
     a.Swap(&b);
@@ -4208,7 +4357,7 @@ class EmailUserByEmailRequest final :
                &_EmailUserByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(EmailUserByEmailRequest& a, EmailUserByEmailRequest& b) {
     a.Swap(&b);
@@ -4361,7 +4510,7 @@ class EmailUserByNicknameRequest final :
                &_EmailUserByNicknameRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(EmailUserByNicknameRequest& a, EmailUserByNicknameRequest& b) {
     a.Swap(&b);
@@ -4514,7 +4663,7 @@ class EmailUserIndexResponse_Item final :
                &_EmailUserIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(EmailUserIndexResponse_Item& a, EmailUserIndexResponse_Item& b) {
     a.Swap(&b);
@@ -4798,7 +4947,7 @@ class EmailUserIndexResponse final :
                &_EmailUserIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(EmailUserIndexResponse& a, EmailUserIndexResponse& b) {
     a.Swap(&b);
@@ -4977,7 +5126,7 @@ class UserResetPasswordRequest final :
                &_UserResetPasswordRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(UserResetPasswordRequest& a, UserResetPasswordRequest& b) {
     a.Swap(&b);
@@ -5152,7 +5301,7 @@ class UserByEmailRequest final :
                &_UserByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    24;
+    25;
 
   friend void swap(UserByEmailRequest& a, UserByEmailRequest& b) {
     a.Swap(&b);
@@ -5342,7 +5491,7 @@ class UserByTokenRequest final :
                &_UserByTokenRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    25;
+    26;
 
   friend void swap(UserByTokenRequest& a, UserByTokenRequest& b) {
     a.Swap(&b);
@@ -5501,7 +5650,7 @@ class UserSignInByEmailRequest final :
                &_UserSignInByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    26;
+    27;
 
   friend void swap(UserSignInByEmailRequest& a, UserSignInByEmailRequest& b) {
     a.Swap(&b);
@@ -5727,7 +5876,7 @@ class UserSignUpByEmailRequest final :
                &_UserSignUpByEmailRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    27;
+    28;
 
   friend void swap(UserSignUpByEmailRequest& a, UserSignUpByEmailRequest& b) {
     a.Swap(&b);
@@ -5996,7 +6145,7 @@ class UserSignInResponse_Detail final :
                &_UserSignInResponse_Detail_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    28;
+    29;
 
   friend void swap(UserSignInResponse_Detail& a, UserSignInResponse_Detail& b) {
     a.Swap(&b);
@@ -6332,7 +6481,7 @@ class UserSignInResponse_Permission final :
                &_UserSignInResponse_Permission_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   friend void swap(UserSignInResponse_Permission& a, UserSignInResponse_Permission& b) {
     a.Swap(&b);
@@ -6517,7 +6666,7 @@ class UserSignInResponse_Menu final :
                &_UserSignInResponse_Menu_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   friend void swap(UserSignInResponse_Menu& a, UserSignInResponse_Menu& b) {
     a.Swap(&b);
@@ -6727,7 +6876,7 @@ class UserSignInResponse final :
                &_UserSignInResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   friend void swap(UserSignInResponse& a, UserSignInResponse& b) {
     a.Swap(&b);
@@ -6970,7 +7119,7 @@ class GoogleOauth2UserBySubjectRequest final :
                &_GoogleOauth2UserBySubjectRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   friend void swap(GoogleOauth2UserBySubjectRequest& a, GoogleOauth2UserBySubjectRequest& b) {
     a.Swap(&b);
@@ -7123,7 +7272,7 @@ class GoogleOauth2UserIndexResponse_Item final :
                &_GoogleOauth2UserIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   friend void swap(GoogleOauth2UserIndexResponse_Item& a, GoogleOauth2UserIndexResponse_Item& b) {
     a.Swap(&b);
@@ -7430,7 +7579,7 @@ class GoogleOauth2UserIndexResponse final :
                &_GoogleOauth2UserIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   friend void swap(GoogleOauth2UserIndexResponse& a, GoogleOauth2UserIndexResponse& b) {
     a.Swap(&b);
@@ -7609,7 +7758,7 @@ class WechatByUnionIdRequest final :
                &_WechatByUnionIdRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   friend void swap(WechatByUnionIdRequest& a, WechatByUnionIdRequest& b) {
     a.Swap(&b);
@@ -7762,7 +7911,7 @@ class WechatByAppIdAndOpenIdRequest final :
                &_WechatByAppIdAndOpenIdRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   friend void swap(WechatByAppIdAndOpenIdRequest& a, WechatByAppIdAndOpenIdRequest& b) {
     a.Swap(&b);
@@ -7931,7 +8080,7 @@ class WechatOauth2UserIndexResponse_Item final :
                &_WechatOauth2UserIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   friend void swap(WechatOauth2UserIndexResponse_Item& a, WechatOauth2UserIndexResponse_Item& b) {
     a.Swap(&b);
@@ -8391,7 +8540,7 @@ class WechatOauth2UserIndexResponse final :
                &_WechatOauth2UserIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   friend void swap(WechatOauth2UserIndexResponse& a, WechatOauth2UserIndexResponse& b) {
     a.Swap(&b);
@@ -8570,7 +8719,7 @@ class WechatMiniProgramUserIndexResponse_Item final :
                &_WechatMiniProgramUserIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   friend void swap(WechatMiniProgramUserIndexResponse_Item& a, WechatMiniProgramUserIndexResponse_Item& b) {
     a.Swap(&b);
@@ -8858,7 +9007,7 @@ class WechatMiniProgramUserIndexResponse final :
                &_WechatMiniProgramUserIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   friend void swap(WechatMiniProgramUserIndexResponse& a, WechatMiniProgramUserIndexResponse& b) {
     a.Swap(&b);
@@ -9037,7 +9186,7 @@ class SessionIndexResponse_Item final :
                &_SessionIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   friend void swap(SessionIndexResponse_Item& a, SessionIndexResponse_Item& b) {
     a.Swap(&b);
@@ -9300,7 +9449,7 @@ class SessionIndexResponse final :
                &_SessionIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(SessionIndexResponse& a, SessionIndexResponse& b) {
     a.Swap(&b);
@@ -9431,1195 +9580,6 @@ class SessionIndexResponse final :
 };
 // -------------------------------------------------------------------
 
-class AttachmentCreateRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentCreateRequest) */ {
- public:
-  inline AttachmentCreateRequest() : AttachmentCreateRequest(nullptr) {}
-  ~AttachmentCreateRequest() override;
-  explicit PROTOBUF_CONSTEXPR AttachmentCreateRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AttachmentCreateRequest(const AttachmentCreateRequest& from);
-  AttachmentCreateRequest(AttachmentCreateRequest&& from) noexcept
-    : AttachmentCreateRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline AttachmentCreateRequest& operator=(const AttachmentCreateRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AttachmentCreateRequest& operator=(AttachmentCreateRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AttachmentCreateRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AttachmentCreateRequest* internal_default_instance() {
-    return reinterpret_cast<const AttachmentCreateRequest*>(
-               &_AttachmentCreateRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    43;
-
-  friend void swap(AttachmentCreateRequest& a, AttachmentCreateRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AttachmentCreateRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AttachmentCreateRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AttachmentCreateRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AttachmentCreateRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AttachmentCreateRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const AttachmentCreateRequest& from) {
-    AttachmentCreateRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AttachmentCreateRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.balsam.v1.AttachmentCreateRequest";
-  }
-  protected:
-  explicit AttachmentCreateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kBucketFieldNumber = 2,
-    kObjectFieldNumber = 3,
-    kTitleFieldNumber = 4,
-    kContentTypeFieldNumber = 6,
-    kUserFieldNumber = 1,
-    kSizeFieldNumber = 5,
-    kPublicFieldNumber = 9,
-  };
-  // string bucket = 2;
-  void clear_bucket();
-  const std::string& bucket() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_bucket(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_bucket();
-  PROTOBUF_NODISCARD std::string* release_bucket();
-  void set_allocated_bucket(std::string* bucket);
-  private:
-  const std::string& _internal_bucket() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(const std::string& value);
-  std::string* _internal_mutable_bucket();
-  public:
-
-  // string object = 3;
-  void clear_object();
-  const std::string& object() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_object(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_object();
-  PROTOBUF_NODISCARD std::string* release_object();
-  void set_allocated_object(std::string* object);
-  private:
-  const std::string& _internal_object() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_object(const std::string& value);
-  std::string* _internal_mutable_object();
-  public:
-
-  // string title = 4;
-  void clear_title();
-  const std::string& title() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_title(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_title();
-  PROTOBUF_NODISCARD std::string* release_title();
-  void set_allocated_title(std::string* title);
-  private:
-  const std::string& _internal_title() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(const std::string& value);
-  std::string* _internal_mutable_title();
-  public:
-
-  // string content_type = 6;
-  void clear_content_type();
-  const std::string& content_type() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_content_type(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_content_type();
-  PROTOBUF_NODISCARD std::string* release_content_type();
-  void set_allocated_content_type(std::string* content_type);
-  private:
-  const std::string& _internal_content_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content_type(const std::string& value);
-  std::string* _internal_mutable_content_type();
-  public:
-
-  // uint64 user = 1;
-  void clear_user();
-  uint64_t user() const;
-  void set_user(uint64_t value);
-  private:
-  uint64_t _internal_user() const;
-  void _internal_set_user(uint64_t value);
-  public:
-
-  // uint64 size = 5;
-  void clear_size();
-  uint64_t size() const;
-  void set_size(uint64_t value);
-  private:
-  uint64_t _internal_size() const;
-  void _internal_set_size(uint64_t value);
-  public:
-
-  // bool public = 9;
-  void clear_public_();
-  bool public_() const;
-  void set_public_(bool value);
-  private:
-  bool _internal_public_() const;
-  void _internal_set_public_(bool value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentCreateRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bucket_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr object_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_type_;
-    uint64_t user_;
-    uint64_t size_;
-    bool public__;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_balsam_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AttachmentByResourceRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentByResourceRequest) */ {
- public:
-  inline AttachmentByResourceRequest() : AttachmentByResourceRequest(nullptr) {}
-  ~AttachmentByResourceRequest() override;
-  explicit PROTOBUF_CONSTEXPR AttachmentByResourceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AttachmentByResourceRequest(const AttachmentByResourceRequest& from);
-  AttachmentByResourceRequest(AttachmentByResourceRequest&& from) noexcept
-    : AttachmentByResourceRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline AttachmentByResourceRequest& operator=(const AttachmentByResourceRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AttachmentByResourceRequest& operator=(AttachmentByResourceRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AttachmentByResourceRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AttachmentByResourceRequest* internal_default_instance() {
-    return reinterpret_cast<const AttachmentByResourceRequest*>(
-               &_AttachmentByResourceRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    44;
-
-  friend void swap(AttachmentByResourceRequest& a, AttachmentByResourceRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AttachmentByResourceRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AttachmentByResourceRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AttachmentByResourceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AttachmentByResourceRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AttachmentByResourceRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const AttachmentByResourceRequest& from) {
-    AttachmentByResourceRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AttachmentByResourceRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.balsam.v1.AttachmentByResourceRequest";
-  }
-  protected:
-  explicit AttachmentByResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kResourceTypeFieldNumber = 1,
-    kResourceIdFieldNumber = 2,
-  };
-  // string resource_type = 1;
-  void clear_resource_type();
-  const std::string& resource_type() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_resource_type(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_resource_type();
-  PROTOBUF_NODISCARD std::string* release_resource_type();
-  void set_allocated_resource_type(std::string* resource_type);
-  private:
-  const std::string& _internal_resource_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource_type(const std::string& value);
-  std::string* _internal_mutable_resource_type();
-  public:
-
-  // uint64 resource_id = 2;
-  void clear_resource_id();
-  uint64_t resource_id() const;
-  void set_resource_id(uint64_t value);
-  private:
-  uint64_t _internal_resource_id() const;
-  void _internal_set_resource_id(uint64_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentByResourceRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_type_;
-    uint64_t resource_id_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_balsam_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AttachmentSetTitleRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentSetTitleRequest) */ {
- public:
-  inline AttachmentSetTitleRequest() : AttachmentSetTitleRequest(nullptr) {}
-  ~AttachmentSetTitleRequest() override;
-  explicit PROTOBUF_CONSTEXPR AttachmentSetTitleRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AttachmentSetTitleRequest(const AttachmentSetTitleRequest& from);
-  AttachmentSetTitleRequest(AttachmentSetTitleRequest&& from) noexcept
-    : AttachmentSetTitleRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline AttachmentSetTitleRequest& operator=(const AttachmentSetTitleRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AttachmentSetTitleRequest& operator=(AttachmentSetTitleRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AttachmentSetTitleRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AttachmentSetTitleRequest* internal_default_instance() {
-    return reinterpret_cast<const AttachmentSetTitleRequest*>(
-               &_AttachmentSetTitleRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    45;
-
-  friend void swap(AttachmentSetTitleRequest& a, AttachmentSetTitleRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AttachmentSetTitleRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AttachmentSetTitleRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AttachmentSetTitleRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AttachmentSetTitleRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AttachmentSetTitleRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const AttachmentSetTitleRequest& from) {
-    AttachmentSetTitleRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AttachmentSetTitleRequest* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.balsam.v1.AttachmentSetTitleRequest";
-  }
-  protected:
-  explicit AttachmentSetTitleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kTitleFieldNumber = 2,
-    kIdFieldNumber = 1,
-  };
-  // string title = 2;
-  void clear_title();
-  const std::string& title() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_title(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_title();
-  PROTOBUF_NODISCARD std::string* release_title();
-  void set_allocated_title(std::string* title);
-  private:
-  const std::string& _internal_title() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(const std::string& value);
-  std::string* _internal_mutable_title();
-  public:
-
-  // uint64 id = 1;
-  void clear_id();
-  uint64_t id() const;
-  void set_id(uint64_t value);
-  private:
-  uint64_t _internal_id() const;
-  void _internal_set_id(uint64_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentSetTitleRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
-    uint64_t id_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_balsam_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AttachmentShowResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentShowResponse) */ {
- public:
-  inline AttachmentShowResponse() : AttachmentShowResponse(nullptr) {}
-  ~AttachmentShowResponse() override;
-  explicit PROTOBUF_CONSTEXPR AttachmentShowResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AttachmentShowResponse(const AttachmentShowResponse& from);
-  AttachmentShowResponse(AttachmentShowResponse&& from) noexcept
-    : AttachmentShowResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline AttachmentShowResponse& operator=(const AttachmentShowResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AttachmentShowResponse& operator=(AttachmentShowResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AttachmentShowResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AttachmentShowResponse* internal_default_instance() {
-    return reinterpret_cast<const AttachmentShowResponse*>(
-               &_AttachmentShowResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    46;
-
-  friend void swap(AttachmentShowResponse& a, AttachmentShowResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AttachmentShowResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AttachmentShowResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AttachmentShowResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AttachmentShowResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AttachmentShowResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const AttachmentShowResponse& from) {
-    AttachmentShowResponse::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AttachmentShowResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.balsam.v1.AttachmentShowResponse";
-  }
-  protected:
-  explicit AttachmentShowResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kUrlFieldNumber = 1,
-  };
-  // string url = 1;
-  void clear_url();
-  const std::string& url() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_url(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_url();
-  PROTOBUF_NODISCARD std::string* release_url();
-  void set_allocated_url(std::string* url);
-  private:
-  const std::string& _internal_url() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(const std::string& value);
-  std::string* _internal_mutable_url();
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentShowResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr url_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_balsam_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AttachmentIndexResponse_Item final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentIndexResponse.Item) */ {
- public:
-  inline AttachmentIndexResponse_Item() : AttachmentIndexResponse_Item(nullptr) {}
-  ~AttachmentIndexResponse_Item() override;
-  explicit PROTOBUF_CONSTEXPR AttachmentIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AttachmentIndexResponse_Item(const AttachmentIndexResponse_Item& from);
-  AttachmentIndexResponse_Item(AttachmentIndexResponse_Item&& from) noexcept
-    : AttachmentIndexResponse_Item() {
-    *this = ::std::move(from);
-  }
-
-  inline AttachmentIndexResponse_Item& operator=(const AttachmentIndexResponse_Item& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AttachmentIndexResponse_Item& operator=(AttachmentIndexResponse_Item&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AttachmentIndexResponse_Item& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AttachmentIndexResponse_Item* internal_default_instance() {
-    return reinterpret_cast<const AttachmentIndexResponse_Item*>(
-               &_AttachmentIndexResponse_Item_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    47;
-
-  friend void swap(AttachmentIndexResponse_Item& a, AttachmentIndexResponse_Item& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AttachmentIndexResponse_Item* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AttachmentIndexResponse_Item* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AttachmentIndexResponse_Item* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AttachmentIndexResponse_Item>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AttachmentIndexResponse_Item& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const AttachmentIndexResponse_Item& from) {
-    AttachmentIndexResponse_Item::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AttachmentIndexResponse_Item* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.balsam.v1.AttachmentIndexResponse.Item";
-  }
-  protected:
-  explicit AttachmentIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kBucketFieldNumber = 2,
-    kObjectFieldNumber = 3,
-    kTitleFieldNumber = 4,
-    kContentTypeFieldNumber = 6,
-    kPublishedAtFieldNumber = 8,
-    kDeletedAtFieldNumber = 9,
-    kUpdatedAtFieldNumber = 10,
-    kUserFieldNumber = 1,
-    kSizeFieldNumber = 5,
-    kPublicFieldNumber = 7,
-  };
-  // string bucket = 2;
-  void clear_bucket();
-  const std::string& bucket() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_bucket(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_bucket();
-  PROTOBUF_NODISCARD std::string* release_bucket();
-  void set_allocated_bucket(std::string* bucket);
-  private:
-  const std::string& _internal_bucket() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(const std::string& value);
-  std::string* _internal_mutable_bucket();
-  public:
-
-  // string object = 3;
-  void clear_object();
-  const std::string& object() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_object(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_object();
-  PROTOBUF_NODISCARD std::string* release_object();
-  void set_allocated_object(std::string* object);
-  private:
-  const std::string& _internal_object() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_object(const std::string& value);
-  std::string* _internal_mutable_object();
-  public:
-
-  // string title = 4;
-  void clear_title();
-  const std::string& title() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_title(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_title();
-  PROTOBUF_NODISCARD std::string* release_title();
-  void set_allocated_title(std::string* title);
-  private:
-  const std::string& _internal_title() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_title(const std::string& value);
-  std::string* _internal_mutable_title();
-  public:
-
-  // string content_type = 6;
-  void clear_content_type();
-  const std::string& content_type() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_content_type(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_content_type();
-  PROTOBUF_NODISCARD std::string* release_content_type();
-  void set_allocated_content_type(std::string* content_type);
-  private:
-  const std::string& _internal_content_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content_type(const std::string& value);
-  std::string* _internal_mutable_content_type();
-  public:
-
-  // optional .google.protobuf.Timestamp published_at = 8;
-  bool has_published_at() const;
-  private:
-  bool _internal_has_published_at() const;
-  public:
-  void clear_published_at();
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& published_at() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_published_at();
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_published_at();
-  void set_allocated_published_at(::PROTOBUF_NAMESPACE_ID::Timestamp* published_at);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_published_at() const;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_published_at();
-  public:
-  void unsafe_arena_set_allocated_published_at(
-      ::PROTOBUF_NAMESPACE_ID::Timestamp* published_at);
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_published_at();
-
-  // optional .google.protobuf.Timestamp deleted_at = 9;
-  bool has_deleted_at() const;
-  private:
-  bool _internal_has_deleted_at() const;
-  public:
-  void clear_deleted_at();
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_deleted_at();
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_deleted_at();
-  void set_allocated_deleted_at(::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_deleted_at() const;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_deleted_at();
-  public:
-  void unsafe_arena_set_allocated_deleted_at(
-      ::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at);
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_deleted_at();
-
-  // .google.protobuf.Timestamp updated_at = 10;
-  bool has_updated_at() const;
-  private:
-  bool _internal_has_updated_at() const;
-  public:
-  void clear_updated_at();
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_updated_at();
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_updated_at();
-  void set_allocated_updated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_updated_at() const;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_updated_at();
-  public:
-  void unsafe_arena_set_allocated_updated_at(
-      ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
-
-  // uint64 user = 1;
-  void clear_user();
-  uint64_t user() const;
-  void set_user(uint64_t value);
-  private:
-  uint64_t _internal_user() const;
-  void _internal_set_user(uint64_t value);
-  public:
-
-  // uint64 size = 5;
-  void clear_size();
-  uint64_t size() const;
-  void set_size(uint64_t value);
-  private:
-  uint64_t _internal_size() const;
-  void _internal_set_size(uint64_t value);
-  public:
-
-  // bool public = 7;
-  void clear_public_();
-  bool public_() const;
-  void set_public_(bool value);
-  private:
-  bool _internal_public_() const;
-  void _internal_set_public_(bool value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentIndexResponse.Item)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bucket_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr object_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_type_;
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* published_at_;
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at_;
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
-    uint64_t user_;
-    uint64_t size_;
-    bool public__;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_balsam_2eproto;
-};
-// -------------------------------------------------------------------
-
-class AttachmentIndexResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentIndexResponse) */ {
- public:
-  inline AttachmentIndexResponse() : AttachmentIndexResponse(nullptr) {}
-  ~AttachmentIndexResponse() override;
-  explicit PROTOBUF_CONSTEXPR AttachmentIndexResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  AttachmentIndexResponse(const AttachmentIndexResponse& from);
-  AttachmentIndexResponse(AttachmentIndexResponse&& from) noexcept
-    : AttachmentIndexResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline AttachmentIndexResponse& operator=(const AttachmentIndexResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AttachmentIndexResponse& operator=(AttachmentIndexResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AttachmentIndexResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const AttachmentIndexResponse* internal_default_instance() {
-    return reinterpret_cast<const AttachmentIndexResponse*>(
-               &_AttachmentIndexResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    48;
-
-  friend void swap(AttachmentIndexResponse& a, AttachmentIndexResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(AttachmentIndexResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AttachmentIndexResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AttachmentIndexResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<AttachmentIndexResponse>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const AttachmentIndexResponse& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const AttachmentIndexResponse& from) {
-    AttachmentIndexResponse::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(AttachmentIndexResponse* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "palm.balsam.v1.AttachmentIndexResponse";
-  }
-  protected:
-  explicit AttachmentIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  typedef AttachmentIndexResponse_Item Item;
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kItemsFieldNumber = 1,
-    kPaginationFieldNumber = 2,
-  };
-  // repeated .palm.balsam.v1.AttachmentIndexResponse.Item items = 1;
-  int items_size() const;
-  private:
-  int _internal_items_size() const;
-  public:
-  void clear_items();
-  ::palm::balsam::v1::AttachmentIndexResponse_Item* mutable_items(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::AttachmentIndexResponse_Item >*
-      mutable_items();
-  private:
-  const ::palm::balsam::v1::AttachmentIndexResponse_Item& _internal_items(int index) const;
-  ::palm::balsam::v1::AttachmentIndexResponse_Item* _internal_add_items();
-  public:
-  const ::palm::balsam::v1::AttachmentIndexResponse_Item& items(int index) const;
-  ::palm::balsam::v1::AttachmentIndexResponse_Item* add_items();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::AttachmentIndexResponse_Item >&
-      items() const;
-
-  // .palm.balsam.v1.Pagination pagination = 2;
-  bool has_pagination() const;
-  private:
-  bool _internal_has_pagination() const;
-  public:
-  void clear_pagination();
-  const ::palm::balsam::v1::Pagination& pagination() const;
-  PROTOBUF_NODISCARD ::palm::balsam::v1::Pagination* release_pagination();
-  ::palm::balsam::v1::Pagination* mutable_pagination();
-  void set_allocated_pagination(::palm::balsam::v1::Pagination* pagination);
-  private:
-  const ::palm::balsam::v1::Pagination& _internal_pagination() const;
-  ::palm::balsam::v1::Pagination* _internal_mutable_pagination();
-  public:
-  void unsafe_arena_set_allocated_pagination(
-      ::palm::balsam::v1::Pagination* pagination);
-  ::palm::balsam::v1::Pagination* unsafe_arena_release_pagination();
-
-  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentIndexResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::AttachmentIndexResponse_Item > items_;
-    ::palm::balsam::v1::Pagination* pagination_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_balsam_2eproto;
-};
-// -------------------------------------------------------------------
-
 class LocaleSetRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.LocaleSetRequest) */ {
  public:
@@ -10668,7 +9628,7 @@ class LocaleSetRequest final :
                &_LocaleSetRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    44;
 
   friend void swap(LocaleSetRequest& a, LocaleSetRequest& b) {
     a.Swap(&b);
@@ -10853,7 +9813,7 @@ class LocaleIndexResponse_Item final :
                &_LocaleIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    45;
 
   friend void swap(LocaleIndexResponse_Item& a, LocaleIndexResponse_Item& b) {
     a.Swap(&b);
@@ -11069,7 +10029,7 @@ class LocaleIndexResponse final :
                &_LocaleIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    46;
 
   friend void swap(LocaleIndexResponse& a, LocaleIndexResponse& b) {
     a.Swap(&b);
@@ -11248,7 +10208,7 @@ class LocaleByLangRequest final :
                &_LocaleByLangRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    47;
 
   friend void swap(LocaleByLangRequest& a, LocaleByLangRequest& b) {
     a.Swap(&b);
@@ -11401,7 +10361,7 @@ class LocaleByLangResponse final :
                &_LocaleByLangResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    48;
 
   friend void swap(LocaleByLangResponse& a, LocaleByLangResponse& b) {
     a.Swap(&b);
@@ -11558,7 +10518,7 @@ class LeaveWordCreateRequest final :
                &_LeaveWordCreateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    49;
 
   friend void swap(LeaveWordCreateRequest& a, LeaveWordCreateRequest& b) {
     a.Swap(&b);
@@ -11631,10 +10591,26 @@ class LeaveWordCreateRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kBodyFieldNumber = 1,
-    kEditorFieldNumber = 2,
+    kLangFieldNumber = 1,
+    kBodyFieldNumber = 2,
+    kIpFieldNumber = 4,
+    kEditorFieldNumber = 3,
   };
-  // string body = 1;
+  // string lang = 1;
+  void clear_lang();
+  const std::string& lang() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_lang(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_lang();
+  PROTOBUF_NODISCARD std::string* release_lang();
+  void set_allocated_lang(std::string* lang);
+  private:
+  const std::string& _internal_lang() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const std::string& value);
+  std::string* _internal_mutable_lang();
+  public:
+
+  // string body = 2;
   void clear_body();
   const std::string& body() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -11648,18 +10624,27 @@ class LeaveWordCreateRequest final :
   std::string* _internal_mutable_body();
   public:
 
-  // string editor = 2;
-  void clear_editor();
-  const std::string& editor() const;
+  // string ip = 4;
+  void clear_ip();
+  const std::string& ip() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_editor(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_editor();
-  PROTOBUF_NODISCARD std::string* release_editor();
-  void set_allocated_editor(std::string* editor);
+  void set_ip(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_ip();
+  PROTOBUF_NODISCARD std::string* release_ip();
+  void set_allocated_ip(std::string* ip);
   private:
-  const std::string& _internal_editor() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_editor(const std::string& value);
-  std::string* _internal_mutable_editor();
+  const std::string& _internal_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ip(const std::string& value);
+  std::string* _internal_mutable_ip();
+  public:
+
+  // .palm.balsam.v1.MediaEditor editor = 3;
+  void clear_editor();
+  ::palm::balsam::v1::MediaEditor editor() const;
+  void set_editor(::palm::balsam::v1::MediaEditor value);
+  private:
+  ::palm::balsam::v1::MediaEditor _internal_editor() const;
+  void _internal_set_editor(::palm::balsam::v1::MediaEditor value);
   public:
 
   // @@protoc_insertion_point(class_scope:palm.balsam.v1.LeaveWordCreateRequest)
@@ -11670,8 +10655,10 @@ class LeaveWordCreateRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr lang_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr body_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr editor_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ip_;
+    int editor_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -11727,7 +10714,7 @@ class LeaveWordIndexResponse_Item final :
                &_LeaveWordIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    50;
 
   friend void swap(LeaveWordIndexResponse_Item& a, LeaveWordIndexResponse_Item& b) {
     a.Swap(&b);
@@ -12036,7 +11023,7 @@ class LeaveWordIndexResponse final :
                &_LeaveWordIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    51;
 
   friend void swap(LeaveWordIndexResponse& a, LeaveWordIndexResponse& b) {
     a.Swap(&b);
@@ -12111,26 +11098,26 @@ class LeaveWordIndexResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kItemFieldNumber = 1,
+    kItemsFieldNumber = 1,
     kPaginationFieldNumber = 2,
   };
-  // repeated .palm.balsam.v1.LeaveWordIndexResponse.Item item = 1;
-  int item_size() const;
+  // repeated .palm.balsam.v1.LeaveWordIndexResponse.Item items = 1;
+  int items_size() const;
   private:
-  int _internal_item_size() const;
+  int _internal_items_size() const;
   public:
-  void clear_item();
-  ::palm::balsam::v1::LeaveWordIndexResponse_Item* mutable_item(int index);
+  void clear_items();
+  ::palm::balsam::v1::LeaveWordIndexResponse_Item* mutable_items(int index);
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::LeaveWordIndexResponse_Item >*
-      mutable_item();
+      mutable_items();
   private:
-  const ::palm::balsam::v1::LeaveWordIndexResponse_Item& _internal_item(int index) const;
-  ::palm::balsam::v1::LeaveWordIndexResponse_Item* _internal_add_item();
+  const ::palm::balsam::v1::LeaveWordIndexResponse_Item& _internal_items(int index) const;
+  ::palm::balsam::v1::LeaveWordIndexResponse_Item* _internal_add_items();
   public:
-  const ::palm::balsam::v1::LeaveWordIndexResponse_Item& item(int index) const;
-  ::palm::balsam::v1::LeaveWordIndexResponse_Item* add_item();
+  const ::palm::balsam::v1::LeaveWordIndexResponse_Item& items(int index) const;
+  ::palm::balsam::v1::LeaveWordIndexResponse_Item* add_items();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::LeaveWordIndexResponse_Item >&
-      item() const;
+      items() const;
 
   // .palm.balsam.v1.Pagination pagination = 2;
   bool has_pagination() const;
@@ -12158,7 +11145,7 @@ class LeaveWordIndexResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::LeaveWordIndexResponse_Item > item_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::LeaveWordIndexResponse_Item > items_;
     ::palm::balsam::v1::Pagination* pagination_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -12215,7 +11202,7 @@ class SiteStatusResponse_Redis final :
                &_SiteStatusResponse_Redis_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    52;
 
   friend void swap(SiteStatusResponse_Redis& a, SiteStatusResponse_Redis& b) {
     a.Swap(&b);
@@ -12404,7 +11391,7 @@ class SiteStatusResponse_PostgreSql final :
                &_SiteStatusResponse_PostgreSql_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    53;
 
   friend void swap(SiteStatusResponse_PostgreSql& a, SiteStatusResponse_PostgreSql& b) {
     a.Swap(&b);
@@ -12583,7 +11570,7 @@ class SiteStatusResponse_OpenSearch final :
                &_SiteStatusResponse_OpenSearch_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    54;
 
   friend void swap(SiteStatusResponse_OpenSearch& a, SiteStatusResponse_OpenSearch& b) {
     a.Swap(&b);
@@ -12736,7 +11723,7 @@ class SiteStatusResponse final :
                &_SiteStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    55;
 
   friend void swap(SiteStatusResponse& a, SiteStatusResponse& b) {
     a.Swap(&b);
@@ -12937,7 +11924,7 @@ class SiteIndexNowAccount_WebSiteVerify final :
                &_SiteIndexNowAccount_WebSiteVerify_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    56;
 
   friend void swap(SiteIndexNowAccount_WebSiteVerify& a, SiteIndexNowAccount_WebSiteVerify& b) {
     a.Swap(&b);
@@ -13090,7 +12077,7 @@ class SiteIndexNowAccount final :
                &_SiteIndexNowAccount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    57;
 
   friend void swap(SiteIndexNowAccount& a, SiteIndexNowAccount& b) {
     a.Swap(&b);
@@ -13250,7 +12237,7 @@ class SiteGoogleAccount_WebSiteVerify final :
                &_SiteGoogleAccount_WebSiteVerify_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    58;
 
   friend void swap(SiteGoogleAccount_WebSiteVerify& a, SiteGoogleAccount_WebSiteVerify& b) {
     a.Swap(&b);
@@ -13403,7 +12390,7 @@ class SiteGoogleAccount_ReCaptcha final :
                &_SiteGoogleAccount_ReCaptcha_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    59;
 
   friend void swap(SiteGoogleAccount_ReCaptcha& a, SiteGoogleAccount_ReCaptcha& b) {
     a.Swap(&b);
@@ -13572,7 +12559,7 @@ class SiteGoogleAccount final :
                &_SiteGoogleAccount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    60;
 
   friend void swap(SiteGoogleAccount& a, SiteGoogleAccount& b) {
     a.Swap(&b);
@@ -13753,7 +12740,7 @@ class SiteBaiduAccount_WebSiteVerify final :
                &_SiteBaiduAccount_WebSiteVerify_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    61;
 
   friend void swap(SiteBaiduAccount_WebSiteVerify& a, SiteBaiduAccount_WebSiteVerify& b) {
     a.Swap(&b);
@@ -13922,7 +12909,7 @@ class SiteBaiduAccount final :
                &_SiteBaiduAccount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    62;
 
   friend void swap(SiteBaiduAccount& a, SiteBaiduAccount& b) {
     a.Swap(&b);
@@ -14082,7 +13069,7 @@ class SiteGetInfoByLangRequest final :
                &_SiteGetInfoByLangRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    63;
 
   friend void swap(SiteGetInfoByLangRequest& a, SiteGetInfoByLangRequest& b) {
     a.Swap(&b);
@@ -14235,7 +13222,7 @@ class SiteGetInfoByLangResponse final :
                &_SiteGetInfoByLangResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    64;
 
   friend void swap(SiteGetInfoByLangResponse& a, SiteGetInfoByLangResponse& b) {
     a.Swap(&b);
@@ -14436,7 +13423,7 @@ class SiteLayoutResponse_Author final :
                &_SiteLayoutResponse_Author_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    65;
 
   friend void swap(SiteLayoutResponse_Author& a, SiteLayoutResponse_Author& b) {
     a.Swap(&b);
@@ -14605,7 +13592,7 @@ class SiteLayoutResponse_CnGab final :
                &_SiteLayoutResponse_CnGab_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    66;
 
   friend void swap(SiteLayoutResponse_CnGab& a, SiteLayoutResponse_CnGab& b) {
     a.Swap(&b);
@@ -14774,7 +13761,7 @@ class SiteLayoutResponse_CnIcp final :
                &_SiteLayoutResponse_CnIcp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    67;
 
   friend void swap(SiteLayoutResponse_CnIcp& a, SiteLayoutResponse_CnIcp& b) {
     a.Swap(&b);
@@ -14927,7 +13914,7 @@ class SiteLayoutResponse final :
                &_SiteLayoutResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    68;
 
   friend void swap(SiteLayoutResponse& a, SiteLayoutResponse& b) {
     a.Swap(&b);
@@ -15267,7 +14254,7 @@ class SiteInfoRequest final :
                &_SiteInfoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    69;
 
   friend void swap(SiteInfoRequest& a, SiteInfoRequest& b) {
     a.Swap(&b);
@@ -15484,7 +14471,7 @@ class SiteKeywordsRequest final :
                &_SiteKeywordsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    70;
 
   friend void swap(SiteKeywordsRequest& a, SiteKeywordsRequest& b) {
     a.Swap(&b);
@@ -15626,6 +14613,88 @@ inline void IdRequest::_internal_set_id(uint64_t value) {
 inline void IdRequest::set_id(uint64_t value) {
   _internal_set_id(value);
   // @@protoc_insertion_point(field_set:palm.balsam.v1.IdRequest.id)
+}
+
+// -------------------------------------------------------------------
+
+// ResourceRequest
+
+// string type = 1;
+inline void ResourceRequest::clear_type() {
+  _impl_.type_.ClearToEmpty();
+}
+inline const std::string& ResourceRequest::type() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.ResourceRequest.type)
+  return _internal_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ResourceRequest::set_type(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.ResourceRequest.type)
+}
+inline std::string* ResourceRequest::mutable_type() {
+  std::string* _s = _internal_mutable_type();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.ResourceRequest.type)
+  return _s;
+}
+inline const std::string& ResourceRequest::_internal_type() const {
+  return _impl_.type_.Get();
+}
+inline void ResourceRequest::_internal_set_type(const std::string& value) {
+  
+  _impl_.type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ResourceRequest::_internal_mutable_type() {
+  
+  return _impl_.type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ResourceRequest::release_type() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.ResourceRequest.type)
+  return _impl_.type_.Release();
+}
+inline void ResourceRequest::set_allocated_type(std::string* type) {
+  if (type != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.type_.SetAllocated(type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.type_.IsDefault()) {
+    _impl_.type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.ResourceRequest.type)
+}
+
+// optional uint64 id = 2;
+inline bool ResourceRequest::_internal_has_id() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ResourceRequest::has_id() const {
+  return _internal_has_id();
+}
+inline void ResourceRequest::clear_id() {
+  _impl_.id_ = uint64_t{0u};
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline uint64_t ResourceRequest::_internal_id() const {
+  return _impl_.id_;
+}
+inline uint64_t ResourceRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.ResourceRequest.id)
+  return _internal_id();
+}
+inline void ResourceRequest::_internal_set_id(uint64_t value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.id_ = value;
+}
+inline void ResourceRequest::set_id(uint64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.ResourceRequest.id)
 }
 
 // -------------------------------------------------------------------
@@ -24679,1129 +23748,6 @@ inline void SessionIndexResponse::set_allocated_pagination(::palm::balsam::v1::P
 
 // -------------------------------------------------------------------
 
-// AttachmentCreateRequest
-
-// uint64 user = 1;
-inline void AttachmentCreateRequest::clear_user() {
-  _impl_.user_ = uint64_t{0u};
-}
-inline uint64_t AttachmentCreateRequest::_internal_user() const {
-  return _impl_.user_;
-}
-inline uint64_t AttachmentCreateRequest::user() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentCreateRequest.user)
-  return _internal_user();
-}
-inline void AttachmentCreateRequest::_internal_set_user(uint64_t value) {
-  
-  _impl_.user_ = value;
-}
-inline void AttachmentCreateRequest::set_user(uint64_t value) {
-  _internal_set_user(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentCreateRequest.user)
-}
-
-// string bucket = 2;
-inline void AttachmentCreateRequest::clear_bucket() {
-  _impl_.bucket_.ClearToEmpty();
-}
-inline const std::string& AttachmentCreateRequest::bucket() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentCreateRequest.bucket)
-  return _internal_bucket();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentCreateRequest::set_bucket(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.bucket_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentCreateRequest.bucket)
-}
-inline std::string* AttachmentCreateRequest::mutable_bucket() {
-  std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentCreateRequest.bucket)
-  return _s;
-}
-inline const std::string& AttachmentCreateRequest::_internal_bucket() const {
-  return _impl_.bucket_.Get();
-}
-inline void AttachmentCreateRequest::_internal_set_bucket(const std::string& value) {
-  
-  _impl_.bucket_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::_internal_mutable_bucket() {
-  
-  return _impl_.bucket_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::release_bucket() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentCreateRequest.bucket)
-  return _impl_.bucket_.Release();
-}
-inline void AttachmentCreateRequest::set_allocated_bucket(std::string* bucket) {
-  if (bucket != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.bucket_.SetAllocated(bucket, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.bucket_.IsDefault()) {
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentCreateRequest.bucket)
-}
-
-// string object = 3;
-inline void AttachmentCreateRequest::clear_object() {
-  _impl_.object_.ClearToEmpty();
-}
-inline const std::string& AttachmentCreateRequest::object() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentCreateRequest.object)
-  return _internal_object();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentCreateRequest::set_object(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.object_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentCreateRequest.object)
-}
-inline std::string* AttachmentCreateRequest::mutable_object() {
-  std::string* _s = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentCreateRequest.object)
-  return _s;
-}
-inline const std::string& AttachmentCreateRequest::_internal_object() const {
-  return _impl_.object_.Get();
-}
-inline void AttachmentCreateRequest::_internal_set_object(const std::string& value) {
-  
-  _impl_.object_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::_internal_mutable_object() {
-  
-  return _impl_.object_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::release_object() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentCreateRequest.object)
-  return _impl_.object_.Release();
-}
-inline void AttachmentCreateRequest::set_allocated_object(std::string* object) {
-  if (object != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.object_.SetAllocated(object, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.object_.IsDefault()) {
-    _impl_.object_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentCreateRequest.object)
-}
-
-// string title = 4;
-inline void AttachmentCreateRequest::clear_title() {
-  _impl_.title_.ClearToEmpty();
-}
-inline const std::string& AttachmentCreateRequest::title() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentCreateRequest.title)
-  return _internal_title();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentCreateRequest::set_title(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.title_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentCreateRequest.title)
-}
-inline std::string* AttachmentCreateRequest::mutable_title() {
-  std::string* _s = _internal_mutable_title();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentCreateRequest.title)
-  return _s;
-}
-inline const std::string& AttachmentCreateRequest::_internal_title() const {
-  return _impl_.title_.Get();
-}
-inline void AttachmentCreateRequest::_internal_set_title(const std::string& value) {
-  
-  _impl_.title_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::_internal_mutable_title() {
-  
-  return _impl_.title_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::release_title() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentCreateRequest.title)
-  return _impl_.title_.Release();
-}
-inline void AttachmentCreateRequest::set_allocated_title(std::string* title) {
-  if (title != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.title_.SetAllocated(title, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.title_.IsDefault()) {
-    _impl_.title_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentCreateRequest.title)
-}
-
-// uint64 size = 5;
-inline void AttachmentCreateRequest::clear_size() {
-  _impl_.size_ = uint64_t{0u};
-}
-inline uint64_t AttachmentCreateRequest::_internal_size() const {
-  return _impl_.size_;
-}
-inline uint64_t AttachmentCreateRequest::size() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentCreateRequest.size)
-  return _internal_size();
-}
-inline void AttachmentCreateRequest::_internal_set_size(uint64_t value) {
-  
-  _impl_.size_ = value;
-}
-inline void AttachmentCreateRequest::set_size(uint64_t value) {
-  _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentCreateRequest.size)
-}
-
-// string content_type = 6;
-inline void AttachmentCreateRequest::clear_content_type() {
-  _impl_.content_type_.ClearToEmpty();
-}
-inline const std::string& AttachmentCreateRequest::content_type() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentCreateRequest.content_type)
-  return _internal_content_type();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentCreateRequest::set_content_type(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.content_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentCreateRequest.content_type)
-}
-inline std::string* AttachmentCreateRequest::mutable_content_type() {
-  std::string* _s = _internal_mutable_content_type();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentCreateRequest.content_type)
-  return _s;
-}
-inline const std::string& AttachmentCreateRequest::_internal_content_type() const {
-  return _impl_.content_type_.Get();
-}
-inline void AttachmentCreateRequest::_internal_set_content_type(const std::string& value) {
-  
-  _impl_.content_type_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::_internal_mutable_content_type() {
-  
-  return _impl_.content_type_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentCreateRequest::release_content_type() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentCreateRequest.content_type)
-  return _impl_.content_type_.Release();
-}
-inline void AttachmentCreateRequest::set_allocated_content_type(std::string* content_type) {
-  if (content_type != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.content_type_.SetAllocated(content_type, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.content_type_.IsDefault()) {
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentCreateRequest.content_type)
-}
-
-// bool public = 9;
-inline void AttachmentCreateRequest::clear_public_() {
-  _impl_.public__ = false;
-}
-inline bool AttachmentCreateRequest::_internal_public_() const {
-  return _impl_.public__;
-}
-inline bool AttachmentCreateRequest::public_() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentCreateRequest.public)
-  return _internal_public_();
-}
-inline void AttachmentCreateRequest::_internal_set_public_(bool value) {
-  
-  _impl_.public__ = value;
-}
-inline void AttachmentCreateRequest::set_public_(bool value) {
-  _internal_set_public_(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentCreateRequest.public)
-}
-
-// -------------------------------------------------------------------
-
-// AttachmentByResourceRequest
-
-// string resource_type = 1;
-inline void AttachmentByResourceRequest::clear_resource_type() {
-  _impl_.resource_type_.ClearToEmpty();
-}
-inline const std::string& AttachmentByResourceRequest::resource_type() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentByResourceRequest.resource_type)
-  return _internal_resource_type();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentByResourceRequest::set_resource_type(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.resource_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentByResourceRequest.resource_type)
-}
-inline std::string* AttachmentByResourceRequest::mutable_resource_type() {
-  std::string* _s = _internal_mutable_resource_type();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentByResourceRequest.resource_type)
-  return _s;
-}
-inline const std::string& AttachmentByResourceRequest::_internal_resource_type() const {
-  return _impl_.resource_type_.Get();
-}
-inline void AttachmentByResourceRequest::_internal_set_resource_type(const std::string& value) {
-  
-  _impl_.resource_type_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentByResourceRequest::_internal_mutable_resource_type() {
-  
-  return _impl_.resource_type_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentByResourceRequest::release_resource_type() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentByResourceRequest.resource_type)
-  return _impl_.resource_type_.Release();
-}
-inline void AttachmentByResourceRequest::set_allocated_resource_type(std::string* resource_type) {
-  if (resource_type != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.resource_type_.SetAllocated(resource_type, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.resource_type_.IsDefault()) {
-    _impl_.resource_type_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentByResourceRequest.resource_type)
-}
-
-// uint64 resource_id = 2;
-inline void AttachmentByResourceRequest::clear_resource_id() {
-  _impl_.resource_id_ = uint64_t{0u};
-}
-inline uint64_t AttachmentByResourceRequest::_internal_resource_id() const {
-  return _impl_.resource_id_;
-}
-inline uint64_t AttachmentByResourceRequest::resource_id() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentByResourceRequest.resource_id)
-  return _internal_resource_id();
-}
-inline void AttachmentByResourceRequest::_internal_set_resource_id(uint64_t value) {
-  
-  _impl_.resource_id_ = value;
-}
-inline void AttachmentByResourceRequest::set_resource_id(uint64_t value) {
-  _internal_set_resource_id(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentByResourceRequest.resource_id)
-}
-
-// -------------------------------------------------------------------
-
-// AttachmentSetTitleRequest
-
-// uint64 id = 1;
-inline void AttachmentSetTitleRequest::clear_id() {
-  _impl_.id_ = uint64_t{0u};
-}
-inline uint64_t AttachmentSetTitleRequest::_internal_id() const {
-  return _impl_.id_;
-}
-inline uint64_t AttachmentSetTitleRequest::id() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentSetTitleRequest.id)
-  return _internal_id();
-}
-inline void AttachmentSetTitleRequest::_internal_set_id(uint64_t value) {
-  
-  _impl_.id_ = value;
-}
-inline void AttachmentSetTitleRequest::set_id(uint64_t value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentSetTitleRequest.id)
-}
-
-// string title = 2;
-inline void AttachmentSetTitleRequest::clear_title() {
-  _impl_.title_.ClearToEmpty();
-}
-inline const std::string& AttachmentSetTitleRequest::title() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentSetTitleRequest.title)
-  return _internal_title();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentSetTitleRequest::set_title(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.title_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentSetTitleRequest.title)
-}
-inline std::string* AttachmentSetTitleRequest::mutable_title() {
-  std::string* _s = _internal_mutable_title();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentSetTitleRequest.title)
-  return _s;
-}
-inline const std::string& AttachmentSetTitleRequest::_internal_title() const {
-  return _impl_.title_.Get();
-}
-inline void AttachmentSetTitleRequest::_internal_set_title(const std::string& value) {
-  
-  _impl_.title_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentSetTitleRequest::_internal_mutable_title() {
-  
-  return _impl_.title_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentSetTitleRequest::release_title() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentSetTitleRequest.title)
-  return _impl_.title_.Release();
-}
-inline void AttachmentSetTitleRequest::set_allocated_title(std::string* title) {
-  if (title != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.title_.SetAllocated(title, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.title_.IsDefault()) {
-    _impl_.title_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentSetTitleRequest.title)
-}
-
-// -------------------------------------------------------------------
-
-// AttachmentShowResponse
-
-// string url = 1;
-inline void AttachmentShowResponse::clear_url() {
-  _impl_.url_.ClearToEmpty();
-}
-inline const std::string& AttachmentShowResponse::url() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentShowResponse.url)
-  return _internal_url();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentShowResponse::set_url(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.url_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentShowResponse.url)
-}
-inline std::string* AttachmentShowResponse::mutable_url() {
-  std::string* _s = _internal_mutable_url();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentShowResponse.url)
-  return _s;
-}
-inline const std::string& AttachmentShowResponse::_internal_url() const {
-  return _impl_.url_.Get();
-}
-inline void AttachmentShowResponse::_internal_set_url(const std::string& value) {
-  
-  _impl_.url_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentShowResponse::_internal_mutable_url() {
-  
-  return _impl_.url_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentShowResponse::release_url() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentShowResponse.url)
-  return _impl_.url_.Release();
-}
-inline void AttachmentShowResponse::set_allocated_url(std::string* url) {
-  if (url != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.url_.SetAllocated(url, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.url_.IsDefault()) {
-    _impl_.url_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentShowResponse.url)
-}
-
-// -------------------------------------------------------------------
-
-// AttachmentIndexResponse_Item
-
-// uint64 user = 1;
-inline void AttachmentIndexResponse_Item::clear_user() {
-  _impl_.user_ = uint64_t{0u};
-}
-inline uint64_t AttachmentIndexResponse_Item::_internal_user() const {
-  return _impl_.user_;
-}
-inline uint64_t AttachmentIndexResponse_Item::user() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.user)
-  return _internal_user();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_user(uint64_t value) {
-  
-  _impl_.user_ = value;
-}
-inline void AttachmentIndexResponse_Item::set_user(uint64_t value) {
-  _internal_set_user(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.user)
-}
-
-// string bucket = 2;
-inline void AttachmentIndexResponse_Item::clear_bucket() {
-  _impl_.bucket_.ClearToEmpty();
-}
-inline const std::string& AttachmentIndexResponse_Item::bucket() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.bucket)
-  return _internal_bucket();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentIndexResponse_Item::set_bucket(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.bucket_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.bucket)
-}
-inline std::string* AttachmentIndexResponse_Item::mutable_bucket() {
-  std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.bucket)
-  return _s;
-}
-inline const std::string& AttachmentIndexResponse_Item::_internal_bucket() const {
-  return _impl_.bucket_.Get();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_bucket(const std::string& value) {
-  
-  _impl_.bucket_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::_internal_mutable_bucket() {
-  
-  return _impl_.bucket_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::release_bucket() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.bucket)
-  return _impl_.bucket_.Release();
-}
-inline void AttachmentIndexResponse_Item::set_allocated_bucket(std::string* bucket) {
-  if (bucket != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.bucket_.SetAllocated(bucket, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.bucket_.IsDefault()) {
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.bucket)
-}
-
-// string object = 3;
-inline void AttachmentIndexResponse_Item::clear_object() {
-  _impl_.object_.ClearToEmpty();
-}
-inline const std::string& AttachmentIndexResponse_Item::object() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.object)
-  return _internal_object();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentIndexResponse_Item::set_object(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.object_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.object)
-}
-inline std::string* AttachmentIndexResponse_Item::mutable_object() {
-  std::string* _s = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.object)
-  return _s;
-}
-inline const std::string& AttachmentIndexResponse_Item::_internal_object() const {
-  return _impl_.object_.Get();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_object(const std::string& value) {
-  
-  _impl_.object_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::_internal_mutable_object() {
-  
-  return _impl_.object_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::release_object() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.object)
-  return _impl_.object_.Release();
-}
-inline void AttachmentIndexResponse_Item::set_allocated_object(std::string* object) {
-  if (object != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.object_.SetAllocated(object, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.object_.IsDefault()) {
-    _impl_.object_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.object)
-}
-
-// string title = 4;
-inline void AttachmentIndexResponse_Item::clear_title() {
-  _impl_.title_.ClearToEmpty();
-}
-inline const std::string& AttachmentIndexResponse_Item::title() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.title)
-  return _internal_title();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentIndexResponse_Item::set_title(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.title_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.title)
-}
-inline std::string* AttachmentIndexResponse_Item::mutable_title() {
-  std::string* _s = _internal_mutable_title();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.title)
-  return _s;
-}
-inline const std::string& AttachmentIndexResponse_Item::_internal_title() const {
-  return _impl_.title_.Get();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_title(const std::string& value) {
-  
-  _impl_.title_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::_internal_mutable_title() {
-  
-  return _impl_.title_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::release_title() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.title)
-  return _impl_.title_.Release();
-}
-inline void AttachmentIndexResponse_Item::set_allocated_title(std::string* title) {
-  if (title != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.title_.SetAllocated(title, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.title_.IsDefault()) {
-    _impl_.title_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.title)
-}
-
-// uint64 size = 5;
-inline void AttachmentIndexResponse_Item::clear_size() {
-  _impl_.size_ = uint64_t{0u};
-}
-inline uint64_t AttachmentIndexResponse_Item::_internal_size() const {
-  return _impl_.size_;
-}
-inline uint64_t AttachmentIndexResponse_Item::size() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.size)
-  return _internal_size();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_size(uint64_t value) {
-  
-  _impl_.size_ = value;
-}
-inline void AttachmentIndexResponse_Item::set_size(uint64_t value) {
-  _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.size)
-}
-
-// string content_type = 6;
-inline void AttachmentIndexResponse_Item::clear_content_type() {
-  _impl_.content_type_.ClearToEmpty();
-}
-inline const std::string& AttachmentIndexResponse_Item::content_type() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.content_type)
-  return _internal_content_type();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void AttachmentIndexResponse_Item::set_content_type(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.content_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.content_type)
-}
-inline std::string* AttachmentIndexResponse_Item::mutable_content_type() {
-  std::string* _s = _internal_mutable_content_type();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.content_type)
-  return _s;
-}
-inline const std::string& AttachmentIndexResponse_Item::_internal_content_type() const {
-  return _impl_.content_type_.Get();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_content_type(const std::string& value) {
-  
-  _impl_.content_type_.Set(value, GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::_internal_mutable_content_type() {
-  
-  return _impl_.content_type_.Mutable(GetArenaForAllocation());
-}
-inline std::string* AttachmentIndexResponse_Item::release_content_type() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.content_type)
-  return _impl_.content_type_.Release();
-}
-inline void AttachmentIndexResponse_Item::set_allocated_content_type(std::string* content_type) {
-  if (content_type != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.content_type_.SetAllocated(content_type, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.content_type_.IsDefault()) {
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.content_type)
-}
-
-// bool public = 7;
-inline void AttachmentIndexResponse_Item::clear_public_() {
-  _impl_.public__ = false;
-}
-inline bool AttachmentIndexResponse_Item::_internal_public_() const {
-  return _impl_.public__;
-}
-inline bool AttachmentIndexResponse_Item::public_() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.public)
-  return _internal_public_();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_public_(bool value) {
-  
-  _impl_.public__ = value;
-}
-inline void AttachmentIndexResponse_Item::set_public_(bool value) {
-  _internal_set_public_(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.public)
-}
-
-// optional .google.protobuf.Timestamp published_at = 8;
-inline bool AttachmentIndexResponse_Item::_internal_has_published_at() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.published_at_ != nullptr);
-  return value;
-}
-inline bool AttachmentIndexResponse_Item::has_published_at() const {
-  return _internal_has_published_at();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::_internal_published_at() const {
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.published_at_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
-      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::published_at() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
-  return _internal_published_at();
-}
-inline void AttachmentIndexResponse_Item::unsafe_arena_set_allocated_published_at(
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* published_at) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.published_at_);
-  }
-  _impl_.published_at_ = published_at;
-  if (published_at) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::release_published_at() {
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.published_at_;
-  _impl_.published_at_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::unsafe_arena_release_published_at() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.published_at_;
-  _impl_.published_at_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::_internal_mutable_published_at() {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.published_at_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
-    _impl_.published_at_ = p;
-  }
-  return _impl_.published_at_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::mutable_published_at() {
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_published_at();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
-  return _msg;
-}
-inline void AttachmentIndexResponse_Item::set_allocated_published_at(::PROTOBUF_NAMESPACE_ID::Timestamp* published_at) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.published_at_);
-  }
-  if (published_at) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(published_at));
-    if (message_arena != submessage_arena) {
-      published_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, published_at, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.published_at_ = published_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
-}
-
-// optional .google.protobuf.Timestamp deleted_at = 9;
-inline bool AttachmentIndexResponse_Item::_internal_has_deleted_at() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.deleted_at_ != nullptr);
-  return value;
-}
-inline bool AttachmentIndexResponse_Item::has_deleted_at() const {
-  return _internal_has_deleted_at();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::_internal_deleted_at() const {
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.deleted_at_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
-      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::deleted_at() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.deleted_at)
-  return _internal_deleted_at();
-}
-inline void AttachmentIndexResponse_Item::unsafe_arena_set_allocated_deleted_at(
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.deleted_at_);
-  }
-  _impl_.deleted_at_ = deleted_at;
-  if (deleted_at) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.deleted_at)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::release_deleted_at() {
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.deleted_at_;
-  _impl_.deleted_at_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::unsafe_arena_release_deleted_at() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.deleted_at)
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.deleted_at_;
-  _impl_.deleted_at_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::_internal_mutable_deleted_at() {
-  _impl_._has_bits_[0] |= 0x00000002u;
-  if (_impl_.deleted_at_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
-    _impl_.deleted_at_ = p;
-  }
-  return _impl_.deleted_at_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::mutable_deleted_at() {
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_deleted_at();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.deleted_at)
-  return _msg;
-}
-inline void AttachmentIndexResponse_Item::set_allocated_deleted_at(::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.deleted_at_);
-  }
-  if (deleted_at) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(deleted_at));
-    if (message_arena != submessage_arena) {
-      deleted_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, deleted_at, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  _impl_.deleted_at_ = deleted_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.deleted_at)
-}
-
-// .google.protobuf.Timestamp updated_at = 10;
-inline bool AttachmentIndexResponse_Item::_internal_has_updated_at() const {
-  return this != internal_default_instance() && _impl_.updated_at_ != nullptr;
-}
-inline bool AttachmentIndexResponse_Item::has_updated_at() const {
-  return _internal_has_updated_at();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::_internal_updated_at() const {
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.updated_at_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
-      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::updated_at() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.updated_at)
-  return _internal_updated_at();
-}
-inline void AttachmentIndexResponse_Item::unsafe_arena_set_allocated_updated_at(
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.updated_at_);
-  }
-  _impl_.updated_at_ = updated_at;
-  if (updated_at) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.updated_at)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::release_updated_at() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.updated_at_;
-  _impl_.updated_at_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::unsafe_arena_release_updated_at() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.updated_at)
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.updated_at_;
-  _impl_.updated_at_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::_internal_mutable_updated_at() {
-  
-  if (_impl_.updated_at_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
-    _impl_.updated_at_ = p;
-  }
-  return _impl_.updated_at_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::mutable_updated_at() {
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_updated_at();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.updated_at)
-  return _msg;
-}
-inline void AttachmentIndexResponse_Item::set_allocated_updated_at(::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.updated_at_);
-  }
-  if (updated_at) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(updated_at));
-    if (message_arena != submessage_arena) {
-      updated_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, updated_at, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.updated_at_ = updated_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.updated_at)
-}
-
-// -------------------------------------------------------------------
-
-// AttachmentIndexResponse
-
-// repeated .palm.balsam.v1.AttachmentIndexResponse.Item items = 1;
-inline int AttachmentIndexResponse::_internal_items_size() const {
-  return _impl_.items_.size();
-}
-inline int AttachmentIndexResponse::items_size() const {
-  return _internal_items_size();
-}
-inline void AttachmentIndexResponse::clear_items() {
-  _impl_.items_.Clear();
-}
-inline ::palm::balsam::v1::AttachmentIndexResponse_Item* AttachmentIndexResponse::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.items)
-  return _impl_.items_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::AttachmentIndexResponse_Item >*
-AttachmentIndexResponse::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:palm.balsam.v1.AttachmentIndexResponse.items)
-  return &_impl_.items_;
-}
-inline const ::palm::balsam::v1::AttachmentIndexResponse_Item& AttachmentIndexResponse::_internal_items(int index) const {
-  return _impl_.items_.Get(index);
-}
-inline const ::palm::balsam::v1::AttachmentIndexResponse_Item& AttachmentIndexResponse::items(int index) const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.items)
-  return _internal_items(index);
-}
-inline ::palm::balsam::v1::AttachmentIndexResponse_Item* AttachmentIndexResponse::_internal_add_items() {
-  return _impl_.items_.Add();
-}
-inline ::palm::balsam::v1::AttachmentIndexResponse_Item* AttachmentIndexResponse::add_items() {
-  ::palm::balsam::v1::AttachmentIndexResponse_Item* _add = _internal_add_items();
-  // @@protoc_insertion_point(field_add:palm.balsam.v1.AttachmentIndexResponse.items)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::AttachmentIndexResponse_Item >&
-AttachmentIndexResponse::items() const {
-  // @@protoc_insertion_point(field_list:palm.balsam.v1.AttachmentIndexResponse.items)
-  return _impl_.items_;
-}
-
-// .palm.balsam.v1.Pagination pagination = 2;
-inline bool AttachmentIndexResponse::_internal_has_pagination() const {
-  return this != internal_default_instance() && _impl_.pagination_ != nullptr;
-}
-inline bool AttachmentIndexResponse::has_pagination() const {
-  return _internal_has_pagination();
-}
-inline void AttachmentIndexResponse::clear_pagination() {
-  if (GetArenaForAllocation() == nullptr && _impl_.pagination_ != nullptr) {
-    delete _impl_.pagination_;
-  }
-  _impl_.pagination_ = nullptr;
-}
-inline const ::palm::balsam::v1::Pagination& AttachmentIndexResponse::_internal_pagination() const {
-  const ::palm::balsam::v1::Pagination* p = _impl_.pagination_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::balsam::v1::Pagination&>(
-      ::palm::balsam::v1::_Pagination_default_instance_);
-}
-inline const ::palm::balsam::v1::Pagination& AttachmentIndexResponse::pagination() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.pagination)
-  return _internal_pagination();
-}
-inline void AttachmentIndexResponse::unsafe_arena_set_allocated_pagination(
-    ::palm::balsam::v1::Pagination* pagination) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.pagination_);
-  }
-  _impl_.pagination_ = pagination;
-  if (pagination) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.balsam.v1.AttachmentIndexResponse.pagination)
-}
-inline ::palm::balsam::v1::Pagination* AttachmentIndexResponse::release_pagination() {
-  
-  ::palm::balsam::v1::Pagination* temp = _impl_.pagination_;
-  _impl_.pagination_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::palm::balsam::v1::Pagination* AttachmentIndexResponse::unsafe_arena_release_pagination() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.pagination)
-  
-  ::palm::balsam::v1::Pagination* temp = _impl_.pagination_;
-  _impl_.pagination_ = nullptr;
-  return temp;
-}
-inline ::palm::balsam::v1::Pagination* AttachmentIndexResponse::_internal_mutable_pagination() {
-  
-  if (_impl_.pagination_ == nullptr) {
-    auto* p = CreateMaybeMessage<::palm::balsam::v1::Pagination>(GetArenaForAllocation());
-    _impl_.pagination_ = p;
-  }
-  return _impl_.pagination_;
-}
-inline ::palm::balsam::v1::Pagination* AttachmentIndexResponse::mutable_pagination() {
-  ::palm::balsam::v1::Pagination* _msg = _internal_mutable_pagination();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.pagination)
-  return _msg;
-}
-inline void AttachmentIndexResponse::set_allocated_pagination(::palm::balsam::v1::Pagination* pagination) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete _impl_.pagination_;
-  }
-  if (pagination) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(pagination);
-    if (message_arena != submessage_arena) {
-      pagination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, pagination, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.pagination_ = pagination;
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.pagination)
-}
-
-// -------------------------------------------------------------------
-
 // LocaleSetRequest
 
 // string lang = 1;
@@ -26449,7 +24395,57 @@ LocaleByLangResponse::items() const {
 
 // LeaveWordCreateRequest
 
-// string body = 1;
+// string lang = 1;
+inline void LeaveWordCreateRequest::clear_lang() {
+  _impl_.lang_.ClearToEmpty();
+}
+inline const std::string& LeaveWordCreateRequest::lang() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.LeaveWordCreateRequest.lang)
+  return _internal_lang();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LeaveWordCreateRequest::set_lang(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.lang_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.LeaveWordCreateRequest.lang)
+}
+inline std::string* LeaveWordCreateRequest::mutable_lang() {
+  std::string* _s = _internal_mutable_lang();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.LeaveWordCreateRequest.lang)
+  return _s;
+}
+inline const std::string& LeaveWordCreateRequest::_internal_lang() const {
+  return _impl_.lang_.Get();
+}
+inline void LeaveWordCreateRequest::_internal_set_lang(const std::string& value) {
+  
+  _impl_.lang_.Set(value, GetArenaForAllocation());
+}
+inline std::string* LeaveWordCreateRequest::_internal_mutable_lang() {
+  
+  return _impl_.lang_.Mutable(GetArenaForAllocation());
+}
+inline std::string* LeaveWordCreateRequest::release_lang() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.LeaveWordCreateRequest.lang)
+  return _impl_.lang_.Release();
+}
+inline void LeaveWordCreateRequest::set_allocated_lang(std::string* lang) {
+  if (lang != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.lang_.SetAllocated(lang, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.lang_.IsDefault()) {
+    _impl_.lang_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.LeaveWordCreateRequest.lang)
+}
+
+// string body = 2;
 inline void LeaveWordCreateRequest::clear_body() {
   _impl_.body_.ClearToEmpty();
 }
@@ -26499,54 +24495,74 @@ inline void LeaveWordCreateRequest::set_allocated_body(std::string* body) {
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.LeaveWordCreateRequest.body)
 }
 
-// string editor = 2;
+// .palm.balsam.v1.MediaEditor editor = 3;
 inline void LeaveWordCreateRequest::clear_editor() {
-  _impl_.editor_.ClearToEmpty();
+  _impl_.editor_ = 0;
 }
-inline const std::string& LeaveWordCreateRequest::editor() const {
+inline ::palm::balsam::v1::MediaEditor LeaveWordCreateRequest::_internal_editor() const {
+  return static_cast< ::palm::balsam::v1::MediaEditor >(_impl_.editor_);
+}
+inline ::palm::balsam::v1::MediaEditor LeaveWordCreateRequest::editor() const {
   // @@protoc_insertion_point(field_get:palm.balsam.v1.LeaveWordCreateRequest.editor)
   return _internal_editor();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LeaveWordCreateRequest::set_editor(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.editor_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline void LeaveWordCreateRequest::_internal_set_editor(::palm::balsam::v1::MediaEditor value) {
+  
+  _impl_.editor_ = value;
+}
+inline void LeaveWordCreateRequest::set_editor(::palm::balsam::v1::MediaEditor value) {
+  _internal_set_editor(value);
   // @@protoc_insertion_point(field_set:palm.balsam.v1.LeaveWordCreateRequest.editor)
 }
-inline std::string* LeaveWordCreateRequest::mutable_editor() {
-  std::string* _s = _internal_mutable_editor();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.LeaveWordCreateRequest.editor)
+
+// string ip = 4;
+inline void LeaveWordCreateRequest::clear_ip() {
+  _impl_.ip_.ClearToEmpty();
+}
+inline const std::string& LeaveWordCreateRequest::ip() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.LeaveWordCreateRequest.ip)
+  return _internal_ip();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LeaveWordCreateRequest::set_ip(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.ip_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.LeaveWordCreateRequest.ip)
+}
+inline std::string* LeaveWordCreateRequest::mutable_ip() {
+  std::string* _s = _internal_mutable_ip();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.LeaveWordCreateRequest.ip)
   return _s;
 }
-inline const std::string& LeaveWordCreateRequest::_internal_editor() const {
-  return _impl_.editor_.Get();
+inline const std::string& LeaveWordCreateRequest::_internal_ip() const {
+  return _impl_.ip_.Get();
 }
-inline void LeaveWordCreateRequest::_internal_set_editor(const std::string& value) {
+inline void LeaveWordCreateRequest::_internal_set_ip(const std::string& value) {
   
-  _impl_.editor_.Set(value, GetArenaForAllocation());
+  _impl_.ip_.Set(value, GetArenaForAllocation());
 }
-inline std::string* LeaveWordCreateRequest::_internal_mutable_editor() {
+inline std::string* LeaveWordCreateRequest::_internal_mutable_ip() {
   
-  return _impl_.editor_.Mutable(GetArenaForAllocation());
+  return _impl_.ip_.Mutable(GetArenaForAllocation());
 }
-inline std::string* LeaveWordCreateRequest::release_editor() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.LeaveWordCreateRequest.editor)
-  return _impl_.editor_.Release();
+inline std::string* LeaveWordCreateRequest::release_ip() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.LeaveWordCreateRequest.ip)
+  return _impl_.ip_.Release();
 }
-inline void LeaveWordCreateRequest::set_allocated_editor(std::string* editor) {
-  if (editor != nullptr) {
+inline void LeaveWordCreateRequest::set_allocated_ip(std::string* ip) {
+  if (ip != nullptr) {
     
   } else {
     
   }
-  _impl_.editor_.SetAllocated(editor, GetArenaForAllocation());
+  _impl_.ip_.SetAllocated(ip, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.editor_.IsDefault()) {
-    _impl_.editor_.Set("", GetArenaForAllocation());
+  if (_impl_.ip_.IsDefault()) {
+    _impl_.ip_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.LeaveWordCreateRequest.editor)
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.LeaveWordCreateRequest.ip)
 }
 
 // -------------------------------------------------------------------
@@ -27026,44 +25042,44 @@ inline void LeaveWordIndexResponse_Item::set_allocated_updated_at(::PROTOBUF_NAM
 
 // LeaveWordIndexResponse
 
-// repeated .palm.balsam.v1.LeaveWordIndexResponse.Item item = 1;
-inline int LeaveWordIndexResponse::_internal_item_size() const {
-  return _impl_.item_.size();
+// repeated .palm.balsam.v1.LeaveWordIndexResponse.Item items = 1;
+inline int LeaveWordIndexResponse::_internal_items_size() const {
+  return _impl_.items_.size();
 }
-inline int LeaveWordIndexResponse::item_size() const {
-  return _internal_item_size();
+inline int LeaveWordIndexResponse::items_size() const {
+  return _internal_items_size();
 }
-inline void LeaveWordIndexResponse::clear_item() {
-  _impl_.item_.Clear();
+inline void LeaveWordIndexResponse::clear_items() {
+  _impl_.items_.Clear();
 }
-inline ::palm::balsam::v1::LeaveWordIndexResponse_Item* LeaveWordIndexResponse::mutable_item(int index) {
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.LeaveWordIndexResponse.item)
-  return _impl_.item_.Mutable(index);
+inline ::palm::balsam::v1::LeaveWordIndexResponse_Item* LeaveWordIndexResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.LeaveWordIndexResponse.items)
+  return _impl_.items_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::LeaveWordIndexResponse_Item >*
-LeaveWordIndexResponse::mutable_item() {
-  // @@protoc_insertion_point(field_mutable_list:palm.balsam.v1.LeaveWordIndexResponse.item)
-  return &_impl_.item_;
+LeaveWordIndexResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.balsam.v1.LeaveWordIndexResponse.items)
+  return &_impl_.items_;
 }
-inline const ::palm::balsam::v1::LeaveWordIndexResponse_Item& LeaveWordIndexResponse::_internal_item(int index) const {
-  return _impl_.item_.Get(index);
+inline const ::palm::balsam::v1::LeaveWordIndexResponse_Item& LeaveWordIndexResponse::_internal_items(int index) const {
+  return _impl_.items_.Get(index);
 }
-inline const ::palm::balsam::v1::LeaveWordIndexResponse_Item& LeaveWordIndexResponse::item(int index) const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.LeaveWordIndexResponse.item)
-  return _internal_item(index);
+inline const ::palm::balsam::v1::LeaveWordIndexResponse_Item& LeaveWordIndexResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.LeaveWordIndexResponse.items)
+  return _internal_items(index);
 }
-inline ::palm::balsam::v1::LeaveWordIndexResponse_Item* LeaveWordIndexResponse::_internal_add_item() {
-  return _impl_.item_.Add();
+inline ::palm::balsam::v1::LeaveWordIndexResponse_Item* LeaveWordIndexResponse::_internal_add_items() {
+  return _impl_.items_.Add();
 }
-inline ::palm::balsam::v1::LeaveWordIndexResponse_Item* LeaveWordIndexResponse::add_item() {
-  ::palm::balsam::v1::LeaveWordIndexResponse_Item* _add = _internal_add_item();
-  // @@protoc_insertion_point(field_add:palm.balsam.v1.LeaveWordIndexResponse.item)
+inline ::palm::balsam::v1::LeaveWordIndexResponse_Item* LeaveWordIndexResponse::add_items() {
+  ::palm::balsam::v1::LeaveWordIndexResponse_Item* _add = _internal_add_items();
+  // @@protoc_insertion_point(field_add:palm.balsam.v1.LeaveWordIndexResponse.items)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::LeaveWordIndexResponse_Item >&
-LeaveWordIndexResponse::item() const {
-  // @@protoc_insertion_point(field_list:palm.balsam.v1.LeaveWordIndexResponse.item)
-  return _impl_.item_;
+LeaveWordIndexResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.balsam.v1.LeaveWordIndexResponse.items)
+  return _impl_.items_;
 }
 
 // .palm.balsam.v1.Pagination pagination = 2;
@@ -30010,16 +28026,6 @@ SiteKeywordsRequest::mutable_items() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

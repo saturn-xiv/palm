@@ -11,6 +11,10 @@ import "google/protobuf/timestamp.proto";
 message IdRequest {
   uint64 id = 1;
 }
+message ResourceRequest {
+  string type = 1;
+  optional uint64 id = 2;
+}
 message UidRequest {
   string uid = 1;
 }
@@ -397,57 +401,7 @@ message SessionIndexResponse {
   Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------
-service Attachment {
-  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
-  rpc Index(Pager) returns (AttachmentIndexResponse) {}
-  rpc SetTitle(AttachmentSetTitleRequest) returns (google.protobuf.Empty) {}
-  rpc ById(IdRequest) returns (AttachmentIndexResponse.Item) {}
-  rpc ByUser(IdRequest) returns (AttachmentIndexResponse) {}
-  rpc ByResourceType(IdRequest) returns (AttachmentIndexResponse) {}
-  rpc Clear(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-  rpc ByResource(AttachmentByResourceRequest)
-      returns (AttachmentIndexResponse) {}
 
-  rpc Create(AttachmentCreateRequest) returns (google.protobuf.Empty) {}
-  rpc SetUploadedAt(IdRequest) returns (google.protobuf.Empty) {}
-}
-message AttachmentCreateRequest {
-  uint64 user = 1;
-  string bucket = 2;
-  string object = 3;
-  string title = 4;
-  uint64 size = 5;
-  string content_type = 6;
-  bool public = 9;
-}
-message AttachmentByResourceRequest {
-  string resource_type = 1;
-  uint64 resource_id = 2;
-}
-message AttachmentSetTitleRequest {
-  uint64 id = 1;
-  string title = 2;
-}
-message AttachmentShowResponse {
-  string url = 1;
-}
-message AttachmentIndexResponse {
-  message Item {
-    uint64 user = 1;
-    string bucket = 2;
-    string object = 3;
-    string title = 4;
-    uint64 size = 5;
-    string content_type = 6;
-    bool public = 7;
-    optional google.protobuf.Timestamp published_at = 8;
-    optional google.protobuf.Timestamp deleted_at = 9;
-    google.protobuf.Timestamp updated_at = 10;
-  }
-  repeated Item items = 1;
-  Pagination pagination = 2;
-}
-// ----------------------------------------------------------------------------
 service Locale {
   rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
   rpc Index(Pager) returns (LocaleIndexResponse) {}
@@ -484,8 +438,10 @@ service LeaveWord {
   rpc Destroy(IdRequest) returns (google.protobuf.Empty) {}
 }
 message LeaveWordCreateRequest {
-  string body = 1;
-  string editor = 2;
+  string lang = 1;
+  string body = 2;
+  MediaEditor editor = 3;
+  string ip = 4;
 }
 message LeaveWordIndexResponse {
   message Item {
@@ -503,7 +459,7 @@ message LeaveWordIndexResponse {
     optional google.protobuf.Timestamp deleted_at = 8;
     google.protobuf.Timestamp updated_at = 9;
   }
-  repeated Item item = 1;
+  repeated Item items = 1;
   Pagination pagination = 2;
 }
 // ----------------------------------------------------------------------------

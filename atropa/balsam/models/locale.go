@@ -1,8 +1,6 @@
 package models
 
 import (
-	"time"
-
 	"gorm.io/gorm"
 )
 
@@ -19,10 +17,9 @@ func SetLocale(db *gorm.DB, lang string, code string, message string) error {
 	err := db.Where("lang = ? AND code = ?", lang, code).First(&it).Error
 	if err == gorm.ErrRecordNotFound {
 		return db.Create(&Locale{
-			Lang:      lang,
-			Code:      code,
-			Message:   message,
-			UpdatedAt: time.Now(),
+			Lang:    lang,
+			Code:    code,
+			Message: message,
 		}).Error
 	}
 	return db.Model(&it).Updates(map[string]interface{}{

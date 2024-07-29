@@ -45,13 +45,12 @@ func (p *LocaleService) Index(ctx context.Context, req *pb.Pager) (*pb.LocaleInd
 	}
 
 	for _, it := range items {
-		updated_at := timestamppb.New(it.UpdatedAt)
 		res.Items = append(res.Items, &pb.LocaleIndexResponse_Item{
 			Id:        it.ID,
 			Code:      it.Code,
 			Lang:      it.Lang,
 			Message:   it.Message,
-			UpdatedAt: updated_at,
+			UpdatedAt: timestamppb.New(it.UpdatedAt),
 		})
 	}
 

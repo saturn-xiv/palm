@@ -4,7 +4,11 @@ option java_package = "com.github.saturn_xiv.palm.plugins.s3.v1";
 option go_package = "github.com/saturn-xiv/palm/atropa/s3/services/v2";
 package palm.s3.v1;
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+import "balsam.proto";
 
 service S3 {
   rpc CreateBucket(CreateBucketRequest) returns (CreateBucketResponse) {}
@@ -50,4 +54,55 @@ message PermanentUrlRequest {
   string object = 2;
   string title = 3;
   optional string content_type = 4;
+}
+
+// ----------------------------------------------------------------------------
+
+service Attachment {
+  rpc Disable(palm.balsam.v1.IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(palm.balsam.v1.Pager) returns (AttachmentIndexResponse) {}
+  rpc SetTitle(AttachmentSetTitleRequest) returns (google.protobuf.Empty) {}
+  rpc ById(palm.balsam.v1.IdRequest) returns (AttachmentIndexResponse.Item) {}
+  rpc ByUser(palm.balsam.v1.IdRequest) returns (AttachmentIndexResponse) {}
+  rpc Clear(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc ByResource(palm.balsam.v1.ResourceRequest)
+      returns (AttachmentListResponse) {}
+
+  rpc Create(AttachmentCreateRequest) returns (google.protobuf.Empty) {}
+  rpc SetUploadedAt(palm.balsam.v1.IdRequest) returns (google.protobuf.Empty) {}
+}
+message AttachmentCreateRequest {
+  uint64 user = 1;
+  string bucket = 2;
+  string object = 3;
+  string title = 4;
+  uint64 size = 5;
+  string content_type = 6;
+  bool public = 9;
+}
+message AttachmentSetTitleRequest {
+  uint64 id = 1;
+  string title = 2;
+}
+message AttachmentShowResponse {
+  string url = 1;
+}
+message AttachmentListResponse {
+  repeated AttachmentIndexResponse.Item items = 1;
+}
+message AttachmentIndexResponse {
+  message Item {
+    uint64 user = 1;
+    string bucket = 2;
+    string object = 3;
+    string title = 4;
+    uint64 size = 5;
+    string content_type = 6;
+    bool public = 7;
+    optional google.protobuf.Timestamp published_at = 8;
+    optional google.protobuf.Timestamp deleted_at = 9;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+  palm.balsam.v1.Pagination pagination = 2;
 }

@@ -210,6 +210,403 @@ S3::Service::~Service() {
 }
 
 
+static const char* Attachment_method_names[] = {
+  "/palm.s3.v1.Attachment/Disable",
+  "/palm.s3.v1.Attachment/Index",
+  "/palm.s3.v1.Attachment/SetTitle",
+  "/palm.s3.v1.Attachment/ById",
+  "/palm.s3.v1.Attachment/ByUser",
+  "/palm.s3.v1.Attachment/Clear",
+  "/palm.s3.v1.Attachment/ByResource",
+  "/palm.s3.v1.Attachment/Create",
+  "/palm.s3.v1.Attachment/SetUploadedAt",
+};
+
+std::unique_ptr< Attachment::Stub> Attachment::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< Attachment::Stub> stub(new Attachment::Stub(channel, options));
+  return stub;
+}
+
+Attachment::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Disable_(Attachment_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Index_(Attachment_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTitle_(Attachment_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ById_(Attachment_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByUser_(Attachment_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Clear_(Attachment_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ByResource_(Attachment_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Create_(Attachment_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetUploadedAt_(Attachment_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Attachment::Stub::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Disable_, context, request, response);
+}
+
+void Attachment::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Disable_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Disable_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDisableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::s3::v1::AttachmentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Index_, context, request, response);
+}
+
+void Attachment::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Index_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* Attachment::Stub::PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::AttachmentIndexResponse, ::palm::balsam::v1::Pager, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Index_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* Attachment::Stub::AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIndexRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetTitle_, context, request, response);
+}
+
+void Attachment::Stub::async::SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTitle_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTitle_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::s3::v1::AttachmentSetTitleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetTitle_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetTitleRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::s3::v1::AttachmentIndexResponse_Item* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ById_, context, request, response);
+}
+
+void Attachment::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ById_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>* Attachment::Stub::PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::AttachmentIndexResponse_Item, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ById_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>* Attachment::Stub::AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::s3::v1::AttachmentIndexResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByUser_, context, request, response);
+}
+
+void Attachment::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByUser_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* Attachment::Stub::PrepareAsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::AttachmentIndexResponse, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByUser_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* Attachment::Stub::AsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByUserRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Clear_, context, request, response);
+}
+
+void Attachment::Stub::async::Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Clear_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Clear_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Clear_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncClearRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::palm::s3::v1::AttachmentListResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ByResource_, context, request, response);
+}
+
+void Attachment::Stub::async::ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByResource_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ByResource_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>* Attachment::Stub::PrepareAsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::AttachmentListResponse, ::palm::balsam::v1::ResourceRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ByResource_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>* Attachment::Stub::AsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncByResourceRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+}
+
+void Attachment::Stub::async::Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::s3::v1::AttachmentCreateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCreateRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Attachment::Stub::SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetUploadedAt_, context, request, response);
+}
+
+void Attachment::Stub::async::SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetUploadedAt_, context, request, response, std::move(f));
+}
+
+void Attachment::Stub::async::SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetUploadedAt_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::PrepareAsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::IdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetUploadedAt_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Attachment::Stub::AsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetUploadedAtRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+Attachment::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Disable(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::Pager* req,
+             ::palm::s3::v1::AttachmentIndexResponse* resp) {
+               return service->Index(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::s3::v1::AttachmentSetTitleRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetTitle(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::s3::v1::AttachmentIndexResponse_Item* resp) {
+               return service->ById(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::palm::s3::v1::AttachmentIndexResponse* resp) {
+               return service->ByUser(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Clear(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::ResourceRequest* req,
+             ::palm::s3::v1::AttachmentListResponse* resp) {
+               return service->ByResource(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::s3::v1::AttachmentCreateRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->Create(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Attachment_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Attachment::Service, ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Attachment::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::balsam::v1::IdRequest* req,
+             ::google::protobuf::Empty* resp) {
+               return service->SetUploadedAt(ctx, req, resp);
+             }, this)));
+}
+
+Attachment::Service::~Service() {
+}
+
+::grpc::Status Attachment::Service::Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::SetTitle(::grpc::ServerContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::ByUser(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::Clear(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::ByResource(::grpc::ServerContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::Create(::grpc::ServerContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Attachment::Service::SetUploadedAt(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 }  // namespace palm
 }  // namespace s3
 }  // namespace v1
