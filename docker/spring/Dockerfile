@@ -140,7 +140,7 @@ RUN zsh -c "source $HOME/.zshrc \
 
 # https://github.com/sdkman/sdkman-cli
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV JDK_VERSION "22-open"
+ENV JDK_VERSION "22.0.1-open"
 ENV GRADLE_VERSION "8.9"
 ENV THRIFT_JAVA_VERSION "19.0.2-open"
 ENV THRIFT_GRADLE_VERSION "7.6.4"
@@ -158,7 +158,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk default gradle ${GRADLE_VERSION}"
 
 # https://github.com/nvm-sh/nvm
-ENV NVM_VERSION "v0.39.7"
+ENV NVM_VERSION "v0.40.0"
 RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.zshrc \
     && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.zshrc \
