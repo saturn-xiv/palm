@@ -66,35 +66,35 @@ struct CreateBucketResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateBucketResponseDefaultTypeInternal _CreateBucketResponse_default_instance_;
-PROTOBUF_CONSTEXPR UploadRequest::UploadRequest(
+PROTOBUF_CONSTEXPR UploadObjectRequest::UploadObjectRequest(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.ttl_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct UploadRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UploadRequestDefaultTypeInternal()
+struct UploadObjectRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadObjectRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UploadRequestDefaultTypeInternal() {}
+  ~UploadObjectRequestDefaultTypeInternal() {}
   union {
-    UploadRequest _instance;
+    UploadObjectRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadRequestDefaultTypeInternal _UploadRequest_default_instance_;
-PROTOBUF_CONSTEXPR UploadResponse::UploadResponse(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadObjectRequestDefaultTypeInternal _UploadObjectRequest_default_instance_;
+PROTOBUF_CONSTEXPR UploadObjectResponse::UploadObjectResponse(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct UploadResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UploadResponseDefaultTypeInternal()
+struct UploadObjectResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadObjectResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UploadResponseDefaultTypeInternal() {}
+  ~UploadObjectResponseDefaultTypeInternal() {}
   union {
-    UploadResponse _instance;
+    UploadObjectResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadResponseDefaultTypeInternal _UploadResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadObjectResponseDefaultTypeInternal _UploadObjectResponse_default_instance_;
 PROTOBUF_CONSTEXPR UrlResponse::UrlResponse(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
@@ -108,7 +108,7 @@ struct UrlResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UrlResponseDefaultTypeInternal _UrlResponse_default_instance_;
-PROTOBUF_CONSTEXPR PresignedUrlRequest::PresignedUrlRequest(
+PROTOBUF_CONSTEXPR ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
@@ -117,16 +117,16 @@ PROTOBUF_CONSTEXPR PresignedUrlRequest::PresignedUrlRequest(
   , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.ttl_)*/nullptr} {}
-struct PresignedUrlRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PresignedUrlRequestDefaultTypeInternal()
+struct ObjectPresignedUrlRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ObjectPresignedUrlRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PresignedUrlRequestDefaultTypeInternal() {}
+  ~ObjectPresignedUrlRequestDefaultTypeInternal() {}
   union {
-    PresignedUrlRequest _instance;
+    ObjectPresignedUrlRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PresignedUrlRequestDefaultTypeInternal _PresignedUrlRequest_default_instance_;
-PROTOBUF_CONSTEXPR PermanentUrlRequest::PermanentUrlRequest(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjectPresignedUrlRequestDefaultTypeInternal _ObjectPresignedUrlRequest_default_instance_;
+PROTOBUF_CONSTEXPR ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_._has_bits_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}
@@ -134,115 +134,33 @@ PROTOBUF_CONSTEXPR PermanentUrlRequest::PermanentUrlRequest(
   , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
-struct PermanentUrlRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PermanentUrlRequestDefaultTypeInternal()
+struct ObjectPermanentUrlRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ObjectPermanentUrlRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PermanentUrlRequestDefaultTypeInternal() {}
+  ~ObjectPermanentUrlRequestDefaultTypeInternal() {}
   union {
-    PermanentUrlRequest _instance;
+    ObjectPermanentUrlRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PermanentUrlRequestDefaultTypeInternal _PermanentUrlRequest_default_instance_;
-PROTOBUF_CONSTEXPR AttachmentCreateRequest::AttachmentCreateRequest(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjectPermanentUrlRequestDefaultTypeInternal _ObjectPermanentUrlRequest_default_instance_;
+PROTOBUF_CONSTEXPR RemoveObjectRequest::RemoveObjectRequest(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.user_)*/uint64_t{0u}
-  , /*decltype(_impl_.size_)*/uint64_t{0u}
-  , /*decltype(_impl_.public__)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct AttachmentCreateRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AttachmentCreateRequestDefaultTypeInternal()
+struct RemoveObjectRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RemoveObjectRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AttachmentCreateRequestDefaultTypeInternal() {}
+  ~RemoveObjectRequestDefaultTypeInternal() {}
   union {
-    AttachmentCreateRequest _instance;
+    RemoveObjectRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentCreateRequestDefaultTypeInternal _AttachmentCreateRequest_default_instance_;
-PROTOBUF_CONSTEXPR AttachmentSetTitleRequest::AttachmentSetTitleRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.id_)*/uint64_t{0u}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct AttachmentSetTitleRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AttachmentSetTitleRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AttachmentSetTitleRequestDefaultTypeInternal() {}
-  union {
-    AttachmentSetTitleRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentSetTitleRequestDefaultTypeInternal _AttachmentSetTitleRequest_default_instance_;
-PROTOBUF_CONSTEXPR AttachmentShowResponse::AttachmentShowResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct AttachmentShowResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AttachmentShowResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AttachmentShowResponseDefaultTypeInternal() {}
-  union {
-    AttachmentShowResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentShowResponseDefaultTypeInternal _AttachmentShowResponse_default_instance_;
-PROTOBUF_CONSTEXPR AttachmentListResponse::AttachmentListResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.items_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct AttachmentListResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AttachmentListResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AttachmentListResponseDefaultTypeInternal() {}
-  union {
-    AttachmentListResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentListResponseDefaultTypeInternal _AttachmentListResponse_default_instance_;
-PROTOBUF_CONSTEXPR AttachmentIndexResponse_Item::AttachmentIndexResponse_Item(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.published_at_)*/nullptr
-  , /*decltype(_impl_.deleted_at_)*/nullptr
-  , /*decltype(_impl_.updated_at_)*/nullptr
-  , /*decltype(_impl_.user_)*/uint64_t{0u}
-  , /*decltype(_impl_.size_)*/uint64_t{0u}
-  , /*decltype(_impl_.public__)*/false} {}
-struct AttachmentIndexResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AttachmentIndexResponse_ItemDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AttachmentIndexResponse_ItemDefaultTypeInternal() {}
-  union {
-    AttachmentIndexResponse_Item _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentIndexResponse_ItemDefaultTypeInternal _AttachmentIndexResponse_Item_default_instance_;
-PROTOBUF_CONSTEXPR AttachmentIndexResponse::AttachmentIndexResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.items_)*/{}
-  , /*decltype(_impl_.pagination_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct AttachmentIndexResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AttachmentIndexResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AttachmentIndexResponseDefaultTypeInternal() {}
-  union {
-    AttachmentIndexResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttachmentIndexResponseDefaultTypeInternal _AttachmentIndexResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveObjectRequestDefaultTypeInternal _RemoveObjectRequest_default_instance_;
 }  // namespace v1
 }  // namespace s3
 }  // namespace palm
-static ::_pb::Metadata file_level_metadata_s3_2eproto[14];
+static ::_pb::Metadata file_level_metadata_s3_2eproto[9];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_s3_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_s3_2eproto = nullptr;
 
@@ -273,22 +191,22 @@ const uint32_t TableStruct_s3_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(proto
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketResponse, _impl_.name_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadRequest, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadRequest, _impl_.ttl_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.bucket_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.ttl_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadResponse, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadResponse, _impl_.url_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _impl_.object_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _impl_.url_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UrlResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -296,218 +214,113 @@ const uint32_t TableStruct_s3_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(proto
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UrlResponse, _impl_.url_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PresignedUrlRequest, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PresignedUrlRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PresignedUrlRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PresignedUrlRequest, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PresignedUrlRequest, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PresignedUrlRequest, _impl_.content_type_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PresignedUrlRequest, _impl_.ttl_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.bucket_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.object_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.content_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.ttl_),
   ~0u,
   ~0u,
   ~0u,
   0,
   ~0u,
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PermanentUrlRequest, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PermanentUrlRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PermanentUrlRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PermanentUrlRequest, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PermanentUrlRequest, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::PermanentUrlRequest, _impl_.content_type_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.bucket_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.object_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.title_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.content_type_),
   ~0u,
   ~0u,
   ~0u,
   0,
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _impl_.user_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _impl_.size_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _impl_.content_type_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentCreateRequest, _impl_.public__),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentSetTitleRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentSetTitleRequest, _impl_.id_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentSetTitleRequest, _impl_.title_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentShowResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentShowResponse, _impl_.url_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentListResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentListResponse, _impl_.items_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.user_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.size_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.content_type_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.public__),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.published_at_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.deleted_at_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse_Item, _impl_.updated_at_),
-  ~0u,
-  ~0u,
-  ~0u,
-  ~0u,
-  ~0u,
-  ~0u,
-  ~0u,
-  0,
-  1,
-  ~0u,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse, _impl_.items_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::AttachmentIndexResponse, _impl_.pagination_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _impl_.bucket_),
+  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _impl_.object_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::palm::s3::v1::Bucket)},
   { 9, -1, -1, sizeof(::palm::s3::v1::CreateBucketRequest)},
   { 18, -1, -1, sizeof(::palm::s3::v1::CreateBucketResponse)},
-  { 25, -1, -1, sizeof(::palm::s3::v1::UploadRequest)},
-  { 34, -1, -1, sizeof(::palm::s3::v1::UploadResponse)},
+  { 25, -1, -1, sizeof(::palm::s3::v1::UploadObjectRequest)},
+  { 34, -1, -1, sizeof(::palm::s3::v1::UploadObjectResponse)},
   { 42, -1, -1, sizeof(::palm::s3::v1::UrlResponse)},
-  { 49, 60, -1, sizeof(::palm::s3::v1::PresignedUrlRequest)},
-  { 65, 75, -1, sizeof(::palm::s3::v1::PermanentUrlRequest)},
-  { 79, -1, -1, sizeof(::palm::s3::v1::AttachmentCreateRequest)},
-  { 92, -1, -1, sizeof(::palm::s3::v1::AttachmentSetTitleRequest)},
-  { 100, -1, -1, sizeof(::palm::s3::v1::AttachmentShowResponse)},
-  { 107, -1, -1, sizeof(::palm::s3::v1::AttachmentListResponse)},
-  { 114, 130, -1, sizeof(::palm::s3::v1::AttachmentIndexResponse_Item)},
-  { 140, -1, -1, sizeof(::palm::s3::v1::AttachmentIndexResponse)},
+  { 49, 60, -1, sizeof(::palm::s3::v1::ObjectPresignedUrlRequest)},
+  { 65, 75, -1, sizeof(::palm::s3::v1::ObjectPermanentUrlRequest)},
+  { 79, -1, -1, sizeof(::palm::s3::v1::RemoveObjectRequest)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::palm::s3::v1::_Bucket_default_instance_._instance,
   &::palm::s3::v1::_CreateBucketRequest_default_instance_._instance,
   &::palm::s3::v1::_CreateBucketResponse_default_instance_._instance,
-  &::palm::s3::v1::_UploadRequest_default_instance_._instance,
-  &::palm::s3::v1::_UploadResponse_default_instance_._instance,
+  &::palm::s3::v1::_UploadObjectRequest_default_instance_._instance,
+  &::palm::s3::v1::_UploadObjectResponse_default_instance_._instance,
   &::palm::s3::v1::_UrlResponse_default_instance_._instance,
-  &::palm::s3::v1::_PresignedUrlRequest_default_instance_._instance,
-  &::palm::s3::v1::_PermanentUrlRequest_default_instance_._instance,
-  &::palm::s3::v1::_AttachmentCreateRequest_default_instance_._instance,
-  &::palm::s3::v1::_AttachmentSetTitleRequest_default_instance_._instance,
-  &::palm::s3::v1::_AttachmentShowResponse_default_instance_._instance,
-  &::palm::s3::v1::_AttachmentListResponse_default_instance_._instance,
-  &::palm::s3::v1::_AttachmentIndexResponse_Item_default_instance_._instance,
-  &::palm::s3::v1::_AttachmentIndexResponse_default_instance_._instance,
+  &::palm::s3::v1::_ObjectPresignedUrlRequest_default_instance_._instance,
+  &::palm::s3::v1::_ObjectPermanentUrlRequest_default_instance_._instance,
+  &::palm::s3::v1::_RemoveObjectRequest_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_s3_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\010s3.proto\022\npalm.s3.v1\032\033google/protobuf/"
-  "empty.proto\032\036google/protobuf/duration.pr"
-  "oto\032\037google/protobuf/timestamp.proto\032\014ba"
-  "lsam.proto\"\?\n\006Bucket\022\014\n\004name\030\001 \001(\t\022\016\n\006pu"
-  "blic\030\002 \001(\010\022\027\n\017expiration_days\030\003 \001(\005\"L\n\023C"
-  "reateBucketRequest\022\014\n\004name\030\001 \001(\t\022\016\n\006publ"
-  "ic\030\002 \001(\010\022\027\n\017expiration_days\030\t \001(\r\"$\n\024Cre"
-  "ateBucketResponse\022\014\n\004name\030\001 \001(\t\"V\n\rUploa"
-  "dRequest\022\016\n\006bucket\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022"
-  "&\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration\""
-  "-\n\016UploadResponse\022\016\n\006object\030\001 \001(\t\022\013\n\003url"
-  "\030\t \001(\t\"\032\n\013UrlResponse\022\013\n\003url\030\001 \001(\t\"\230\001\n\023P"
-  "resignedUrlRequest\022\016\n\006bucket\030\001 \001(\t\022\016\n\006ob"
-  "ject\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014content_typ"
-  "e\030\004 \001(\tH\000\210\001\001\022&\n\003ttl\030\t \001(\0132\031.google.proto"
-  "buf.DurationB\017\n\r_content_type\"p\n\023Permane"
-  "ntUrlRequest\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002"
-  " \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014content_type\030\004 \001("
-  "\tH\000\210\001\001B\017\n\r_content_type\"\212\001\n\027AttachmentCr"
-  "eateRequest\022\014\n\004user\030\001 \001(\004\022\016\n\006bucket\030\002 \001("
-  "\t\022\016\n\006object\030\003 \001(\t\022\r\n\005title\030\004 \001(\t\022\014\n\004size"
-  "\030\005 \001(\004\022\024\n\014content_type\030\006 \001(\t\022\016\n\006public\030\t"
-  " \001(\010\"6\n\031AttachmentSetTitleRequest\022\n\n\002id\030"
-  "\001 \001(\004\022\r\n\005title\030\002 \001(\t\"%\n\026AttachmentShowRe"
-  "sponse\022\013\n\003url\030\001 \001(\t\"Q\n\026AttachmentListRes"
-  "ponse\0227\n\005items\030\001 \003(\0132(.palm.s3.v1.Attach"
-  "mentIndexResponse.Item\"\270\003\n\027AttachmentInd"
-  "exResponse\0227\n\005items\030\001 \003(\0132(.palm.s3.v1.A"
-  "ttachmentIndexResponse.Item\022.\n\npaginatio"
-  "n\030\002 \001(\0132\032.palm.balsam.v1.Pagination\032\263\002\n\004"
-  "Item\022\014\n\004user\030\001 \001(\004\022\016\n\006bucket\030\002 \001(\t\022\016\n\006ob"
-  "ject\030\003 \001(\t\022\r\n\005title\030\004 \001(\t\022\014\n\004size\030\005 \001(\004\022"
-  "\024\n\014content_type\030\006 \001(\t\022\016\n\006public\030\007 \001(\010\0225\n"
-  "\014published_at\030\010 \001(\0132\032.google.protobuf.Ti"
-  "mestampH\000\210\001\001\0223\n\ndeleted_at\030\t \001(\0132\032.googl"
-  "e.protobuf.TimestampH\001\210\001\001\022.\n\nupdated_at\030"
-  "\n \001(\0132\032.google.protobuf.TimestampB\017\n\r_pu"
-  "blished_atB\r\n\013_deleted_at2\264\002\n\002S3\022S\n\014Crea"
-  "teBucket\022\037.palm.s3.v1.CreateBucketReques"
-  "t\032 .palm.s3.v1.CreateBucketResponse\"\000\022A\n"
-  "\006Upload\022\031.palm.s3.v1.UploadRequest\032\032.pal"
-  "m.s3.v1.UploadResponse\"\000\022J\n\014PermanentUrl"
-  "\022\037.palm.s3.v1.PermanentUrlRequest\032\027.palm"
-  ".s3.v1.UrlResponse\"\000\022J\n\014PresignedUrl\022\037.p"
-  "alm.s3.v1.PresignedUrlRequest\032\027.palm.s3."
-  "v1.UrlResponse\"\0002\232\005\n\nAttachment\022>\n\007Disab"
-  "le\022\031.palm.balsam.v1.IdRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\022E\n\005Index\022\025.palm.balsam.v"
-  "1.Pager\032#.palm.s3.v1.AttachmentIndexResp"
-  "onse\"\000\022K\n\010SetTitle\022%.palm.s3.v1.Attachme"
-  "ntSetTitleRequest\032\026.google.protobuf.Empt"
-  "y\"\000\022M\n\004ById\022\031.palm.balsam.v1.IdRequest\032("
-  ".palm.s3.v1.AttachmentIndexResponse.Item"
-  "\"\000\022J\n\006ByUser\022\031.palm.balsam.v1.IdRequest\032"
-  "#.palm.s3.v1.AttachmentIndexResponse\"\000\0229"
-  "\n\005Clear\022\026.google.protobuf.Empty\032\026.google"
-  ".protobuf.Empty\"\000\022S\n\nByResource\022\037.palm.b"
-  "alsam.v1.ResourceRequest\032\".palm.s3.v1.At"
-  "tachmentListResponse\"\000\022G\n\006Create\022#.palm."
-  "s3.v1.AttachmentCreateRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\022D\n\rSetUploadedAt\022\031.palm."
-  "balsam.v1.IdRequest\032\026.google.protobuf.Em"
-  "pty\"\000B^\n(com.github.saturn_xiv.palm.plug"
-  "ins.s3.v1P\001Z0github.com/saturn-xiv/palm/"
-  "atropa/s3/services/v2b\006proto3"
+  "\n\010s3.proto\022\npalm.s3.v1\032\036google/protobuf/"
+  "duration.proto\032\033google/protobuf/empty.pr"
+  "oto\"\?\n\006Bucket\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 "
+  "\001(\010\022\027\n\017expiration_days\030\003 \001(\005\"L\n\023CreateBu"
+  "cketRequest\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 \001("
+  "\010\022\027\n\017expiration_days\030\t \001(\r\"$\n\024CreateBuck"
+  "etResponse\022\014\n\004name\030\001 \001(\t\"\\\n\023UploadObject"
+  "Request\022\016\n\006bucket\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022&"
+  "\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration\"3"
+  "\n\024UploadObjectResponse\022\016\n\006object\030\001 \001(\t\022\013"
+  "\n\003url\030\t \001(\t\"\032\n\013UrlResponse\022\013\n\003url\030\001 \001(\t\""
+  "\236\001\n\031ObjectPresignedUrlRequest\022\016\n\006bucket\030"
+  "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
+  "content_type\030\004 \001(\tH\000\210\001\001\022&\n\003ttl\030\t \001(\0132\031.g"
+  "oogle.protobuf.DurationB\017\n\r_content_type"
+  "\"v\n\031ObjectPermanentUrlRequest\022\016\n\006bucket\030"
+  "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
+  "content_type\030\004 \001(\tH\000\210\001\001B\017\n\r_content_type"
+  "\"5\n\023RemoveObjectRequest\022\016\n\006bucket\030\001 \001(\t\022"
+  "\016\n\006object\030\002 \001(\t2\251\003\n\002S3\022S\n\014CreateBucket\022\037"
+  ".palm.s3.v1.CreateBucketRequest\032 .palm.s"
+  "3.v1.CreateBucketResponse\"\000\022S\n\014UploadObj"
+  "ect\022\037.palm.s3.v1.UploadObjectRequest\032 .p"
+  "alm.s3.v1.UploadObjectResponse\"\000\022V\n\022Obje"
+  "ctPermanentUrl\022%.palm.s3.v1.ObjectPerman"
+  "entUrlRequest\032\027.palm.s3.v1.UrlResponse\"\000"
+  "\022V\n\022ObjectPresignedUrl\022%.palm.s3.v1.Obje"
+  "ctPresignedUrlRequest\032\027.palm.s3.v1.UrlRe"
+  "sponse\"\000\022I\n\014RemoveObject\022\037.palm.s3.v1.Re"
+  "moveObjectRequest\032\026.google.protobuf.Empt"
+  "y\"\000B^\n(com.github.saturn_xiv.palm.plugin"
+  "s.s3.v1P\001Z0github.com/saturn-xiv/palm/at"
+  "ropa/s3/services/v2b\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_s3_2eproto_deps[4] = {
-  &::descriptor_table_balsam_2eproto,
+static const ::_pbi::DescriptorTable* const descriptor_table_s3_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
   &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
-  &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_s3_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_s3_2eproto = {
-    false, false, 2589, descriptor_table_protodef_s3_2eproto,
+    false, false, 1307, descriptor_table_protodef_s3_2eproto,
     "s3.proto",
-    &descriptor_table_s3_2eproto_once, descriptor_table_s3_2eproto_deps, 4, 14,
+    &descriptor_table_s3_2eproto_once, descriptor_table_s3_2eproto_deps, 2, 9,
     schemas, file_default_instances, TableStruct_s3_2eproto::offsets,
     file_level_metadata_s3_2eproto, file_level_enum_descriptors_s3_2eproto,
     file_level_service_descriptors_s3_2eproto,
@@ -1253,30 +1066,30 @@ void CreateBucketResponse::InternalSwap(CreateBucketResponse* other) {
 
 // ===================================================================
 
-class UploadRequest::_Internal {
+class UploadObjectRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const UploadRequest* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const UploadObjectRequest* msg);
 };
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
-UploadRequest::_Internal::ttl(const UploadRequest* msg) {
+UploadObjectRequest::_Internal::ttl(const UploadObjectRequest* msg) {
   return *msg->_impl_.ttl_;
 }
-void UploadRequest::clear_ttl() {
+void UploadObjectRequest::clear_ttl() {
   if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
     delete _impl_.ttl_;
   }
   _impl_.ttl_ = nullptr;
 }
-UploadRequest::UploadRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+UploadObjectRequest::UploadObjectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.UploadRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.UploadObjectRequest)
 }
-UploadRequest::UploadRequest(const UploadRequest& from)
+UploadObjectRequest::UploadObjectRequest(const UploadObjectRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UploadRequest* const _this = this; (void)_this;
+  UploadObjectRequest* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.bucket_){}
     , decltype(_impl_.title_){}
@@ -1303,10 +1116,10 @@ UploadRequest::UploadRequest(const UploadRequest& from)
   if (from._internal_has_ttl()) {
     _this->_impl_.ttl_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.ttl_);
   }
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.UploadRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.UploadObjectRequest)
 }
 
-inline void UploadRequest::SharedCtor(
+inline void UploadObjectRequest::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -1326,8 +1139,8 @@ inline void UploadRequest::SharedCtor(
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-UploadRequest::~UploadRequest() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.UploadRequest)
+UploadObjectRequest::~UploadObjectRequest() {
+  // @@protoc_insertion_point(destructor:palm.s3.v1.UploadObjectRequest)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1335,19 +1148,19 @@ UploadRequest::~UploadRequest() {
   SharedDtor();
 }
 
-inline void UploadRequest::SharedDtor() {
+inline void UploadObjectRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.title_.Destroy();
   if (this != internal_default_instance()) delete _impl_.ttl_;
 }
 
-void UploadRequest::SetCachedSize(int size) const {
+void UploadObjectRequest::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void UploadRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.UploadRequest)
+void UploadObjectRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.s3.v1.UploadObjectRequest)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1361,7 +1174,7 @@ void UploadRequest::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* UploadRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* UploadObjectRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1373,7 +1186,7 @@ const char* UploadRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext*
           auto str = _internal_mutable_bucket();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadRequest.bucket"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectRequest.bucket"));
         } else
           goto handle_unusual;
         continue;
@@ -1383,7 +1196,7 @@ const char* UploadRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext*
           auto str = _internal_mutable_title();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadRequest.title"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectRequest.title"));
         } else
           goto handle_unusual;
         continue;
@@ -1418,9 +1231,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* UploadRequest::_InternalSerialize(
+uint8_t* UploadObjectRequest::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.UploadRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.UploadObjectRequest)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1429,7 +1242,7 @@ uint8_t* UploadRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadRequest.bucket");
+      "palm.s3.v1.UploadObjectRequest.bucket");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_bucket(), target);
   }
@@ -1439,7 +1252,7 @@ uint8_t* UploadRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadRequest.title");
+      "palm.s3.v1.UploadObjectRequest.title");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_title(), target);
   }
@@ -1455,12 +1268,12 @@ uint8_t* UploadRequest::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.UploadRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.UploadObjectRequest)
   return target;
 }
 
-size_t UploadRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.UploadRequest)
+size_t UploadObjectRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.UploadObjectRequest)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -1491,17 +1304,17 @@ size_t UploadRequest::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadObjectRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UploadRequest::MergeImpl
+    UploadObjectRequest::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadObjectRequest::GetClassData() const { return &_class_data_; }
 
 
-void UploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UploadRequest*>(&to_msg);
-  auto& from = static_cast<const UploadRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.UploadRequest)
+void UploadObjectRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UploadObjectRequest*>(&to_msg);
+  auto& from = static_cast<const UploadObjectRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.UploadObjectRequest)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1519,18 +1332,18 @@ void UploadRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UploadRequest::CopyFrom(const UploadRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.UploadRequest)
+void UploadObjectRequest::CopyFrom(const UploadObjectRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.UploadObjectRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool UploadRequest::IsInitialized() const {
+bool UploadObjectRequest::IsInitialized() const {
   return true;
 }
 
-void UploadRequest::InternalSwap(UploadRequest* other) {
+void UploadObjectRequest::InternalSwap(UploadObjectRequest* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
@@ -1546,7 +1359,7 @@ void UploadRequest::InternalSwap(UploadRequest* other) {
   swap(_impl_.ttl_, other->_impl_.ttl_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UploadRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata UploadObjectRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[3]);
@@ -1554,19 +1367,19 @@ void UploadRequest::InternalSwap(UploadRequest* other) {
 
 // ===================================================================
 
-class UploadResponse::_Internal {
+class UploadObjectResponse::_Internal {
  public:
 };
 
-UploadResponse::UploadResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+UploadObjectResponse::UploadObjectResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.UploadResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.UploadObjectResponse)
 }
-UploadResponse::UploadResponse(const UploadResponse& from)
+UploadObjectResponse::UploadObjectResponse(const UploadObjectResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UploadResponse* const _this = this; (void)_this;
+  UploadObjectResponse* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.object_){}
     , decltype(_impl_.url_){}
@@ -1589,10 +1402,10 @@ UploadResponse::UploadResponse(const UploadResponse& from)
     _this->_impl_.url_.Set(from._internal_url(), 
       _this->GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.UploadResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.UploadObjectResponse)
 }
 
-inline void UploadResponse::SharedCtor(
+inline void UploadObjectResponse::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -1611,8 +1424,8 @@ inline void UploadResponse::SharedCtor(
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-UploadResponse::~UploadResponse() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.UploadResponse)
+UploadObjectResponse::~UploadObjectResponse() {
+  // @@protoc_insertion_point(destructor:palm.s3.v1.UploadObjectResponse)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1620,18 +1433,18 @@ UploadResponse::~UploadResponse() {
   SharedDtor();
 }
 
-inline void UploadResponse::SharedDtor() {
+inline void UploadObjectResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.object_.Destroy();
   _impl_.url_.Destroy();
 }
 
-void UploadResponse::SetCachedSize(int size) const {
+void UploadObjectResponse::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void UploadResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.UploadResponse)
+void UploadObjectResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.s3.v1.UploadObjectResponse)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1641,7 +1454,7 @@ void UploadResponse::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* UploadResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* UploadObjectResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1653,7 +1466,7 @@ const char* UploadResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext
           auto str = _internal_mutable_object();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadResponse.object"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectResponse.object"));
         } else
           goto handle_unusual;
         continue;
@@ -1663,7 +1476,7 @@ const char* UploadResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext
           auto str = _internal_mutable_url();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadResponse.url"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectResponse.url"));
         } else
           goto handle_unusual;
         continue;
@@ -1690,9 +1503,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* UploadResponse::_InternalSerialize(
+uint8_t* UploadObjectResponse::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.UploadResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.UploadObjectResponse)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1701,7 +1514,7 @@ uint8_t* UploadResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadResponse.object");
+      "palm.s3.v1.UploadObjectResponse.object");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_object(), target);
   }
@@ -1711,7 +1524,7 @@ uint8_t* UploadResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_url().data(), static_cast<int>(this->_internal_url().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadResponse.url");
+      "palm.s3.v1.UploadObjectResponse.url");
     target = stream->WriteStringMaybeAliased(
         9, this->_internal_url(), target);
   }
@@ -1720,12 +1533,12 @@ uint8_t* UploadResponse::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.UploadResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.UploadObjectResponse)
   return target;
 }
 
-size_t UploadResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.UploadResponse)
+size_t UploadObjectResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.UploadObjectResponse)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -1749,17 +1562,17 @@ size_t UploadResponse::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadResponse::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadObjectResponse::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UploadResponse::MergeImpl
+    UploadObjectResponse::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadResponse::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadObjectResponse::GetClassData() const { return &_class_data_; }
 
 
-void UploadResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<UploadResponse*>(&to_msg);
-  auto& from = static_cast<const UploadResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.UploadResponse)
+void UploadObjectResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UploadObjectResponse*>(&to_msg);
+  auto& from = static_cast<const UploadObjectResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.UploadObjectResponse)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1773,18 +1586,18 @@ void UploadResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const :
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UploadResponse::CopyFrom(const UploadResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.UploadResponse)
+void UploadObjectResponse::CopyFrom(const UploadObjectResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.UploadObjectResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool UploadResponse::IsInitialized() const {
+bool UploadObjectResponse::IsInitialized() const {
   return true;
 }
 
-void UploadResponse::InternalSwap(UploadResponse* other) {
+void UploadObjectResponse::InternalSwap(UploadObjectResponse* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
@@ -1799,7 +1612,7 @@ void UploadResponse::InternalSwap(UploadResponse* other) {
   );
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UploadResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata UploadObjectResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[4]);
@@ -2010,34 +1823,34 @@ void UrlResponse::InternalSwap(UrlResponse* other) {
 
 // ===================================================================
 
-class PresignedUrlRequest::_Internal {
+class ObjectPresignedUrlRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<PresignedUrlRequest>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<ObjectPresignedUrlRequest>()._impl_._has_bits_);
   static void set_has_content_type(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
-  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const PresignedUrlRequest* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const ObjectPresignedUrlRequest* msg);
 };
 
 const ::PROTOBUF_NAMESPACE_ID::Duration&
-PresignedUrlRequest::_Internal::ttl(const PresignedUrlRequest* msg) {
+ObjectPresignedUrlRequest::_Internal::ttl(const ObjectPresignedUrlRequest* msg) {
   return *msg->_impl_.ttl_;
 }
-void PresignedUrlRequest::clear_ttl() {
+void ObjectPresignedUrlRequest::clear_ttl() {
   if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
     delete _impl_.ttl_;
   }
   _impl_.ttl_ = nullptr;
 }
-PresignedUrlRequest::PresignedUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.PresignedUrlRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.ObjectPresignedUrlRequest)
 }
-PresignedUrlRequest::PresignedUrlRequest(const PresignedUrlRequest& from)
+ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(const ObjectPresignedUrlRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PresignedUrlRequest* const _this = this; (void)_this;
+  ObjectPresignedUrlRequest* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -2083,10 +1896,10 @@ PresignedUrlRequest::PresignedUrlRequest(const PresignedUrlRequest& from)
   if (from._internal_has_ttl()) {
     _this->_impl_.ttl_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.ttl_);
   }
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.PresignedUrlRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.ObjectPresignedUrlRequest)
 }
 
-inline void PresignedUrlRequest::SharedCtor(
+inline void ObjectPresignedUrlRequest::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -2117,8 +1930,8 @@ inline void PresignedUrlRequest::SharedCtor(
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-PresignedUrlRequest::~PresignedUrlRequest() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.PresignedUrlRequest)
+ObjectPresignedUrlRequest::~ObjectPresignedUrlRequest() {
+  // @@protoc_insertion_point(destructor:palm.s3.v1.ObjectPresignedUrlRequest)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2126,7 +1939,7 @@ PresignedUrlRequest::~PresignedUrlRequest() {
   SharedDtor();
 }
 
-inline void PresignedUrlRequest::SharedDtor() {
+inline void ObjectPresignedUrlRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.object_.Destroy();
@@ -2135,12 +1948,12 @@ inline void PresignedUrlRequest::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.ttl_;
 }
 
-void PresignedUrlRequest::SetCachedSize(int size) const {
+void ObjectPresignedUrlRequest::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void PresignedUrlRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.PresignedUrlRequest)
+void ObjectPresignedUrlRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.s3.v1.ObjectPresignedUrlRequest)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2160,7 +1973,7 @@ void PresignedUrlRequest::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* PresignedUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* ObjectPresignedUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
@@ -2173,7 +1986,7 @@ const char* PresignedUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_bucket();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PresignedUrlRequest.bucket"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.bucket"));
         } else
           goto handle_unusual;
         continue;
@@ -2183,7 +1996,7 @@ const char* PresignedUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_object();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PresignedUrlRequest.object"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.object"));
         } else
           goto handle_unusual;
         continue;
@@ -2193,7 +2006,7 @@ const char* PresignedUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_title();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PresignedUrlRequest.title"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.title"));
         } else
           goto handle_unusual;
         continue;
@@ -2203,7 +2016,7 @@ const char* PresignedUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_content_type();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PresignedUrlRequest.content_type"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.content_type"));
         } else
           goto handle_unusual;
         continue;
@@ -2239,9 +2052,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* PresignedUrlRequest::_InternalSerialize(
+uint8_t* ObjectPresignedUrlRequest::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.PresignedUrlRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.ObjectPresignedUrlRequest)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2250,7 +2063,7 @@ uint8_t* PresignedUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PresignedUrlRequest.bucket");
+      "palm.s3.v1.ObjectPresignedUrlRequest.bucket");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_bucket(), target);
   }
@@ -2260,7 +2073,7 @@ uint8_t* PresignedUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PresignedUrlRequest.object");
+      "palm.s3.v1.ObjectPresignedUrlRequest.object");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_object(), target);
   }
@@ -2270,7 +2083,7 @@ uint8_t* PresignedUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PresignedUrlRequest.title");
+      "palm.s3.v1.ObjectPresignedUrlRequest.title");
     target = stream->WriteStringMaybeAliased(
         3, this->_internal_title(), target);
   }
@@ -2280,7 +2093,7 @@ uint8_t* PresignedUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PresignedUrlRequest.content_type");
+      "palm.s3.v1.ObjectPresignedUrlRequest.content_type");
     target = stream->WriteStringMaybeAliased(
         4, this->_internal_content_type(), target);
   }
@@ -2296,12 +2109,12 @@ uint8_t* PresignedUrlRequest::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.PresignedUrlRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.ObjectPresignedUrlRequest)
   return target;
 }
 
-size_t PresignedUrlRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.PresignedUrlRequest)
+size_t ObjectPresignedUrlRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.ObjectPresignedUrlRequest)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -2347,17 +2160,17 @@ size_t PresignedUrlRequest::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PresignedUrlRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObjectPresignedUrlRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PresignedUrlRequest::MergeImpl
+    ObjectPresignedUrlRequest::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PresignedUrlRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObjectPresignedUrlRequest::GetClassData() const { return &_class_data_; }
 
 
-void PresignedUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<PresignedUrlRequest*>(&to_msg);
-  auto& from = static_cast<const PresignedUrlRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.PresignedUrlRequest)
+void ObjectPresignedUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ObjectPresignedUrlRequest*>(&to_msg);
+  auto& from = static_cast<const ObjectPresignedUrlRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.ObjectPresignedUrlRequest)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2381,18 +2194,18 @@ void PresignedUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void PresignedUrlRequest::CopyFrom(const PresignedUrlRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.PresignedUrlRequest)
+void ObjectPresignedUrlRequest::CopyFrom(const ObjectPresignedUrlRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.ObjectPresignedUrlRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool PresignedUrlRequest::IsInitialized() const {
+bool ObjectPresignedUrlRequest::IsInitialized() const {
   return true;
 }
 
-void PresignedUrlRequest::InternalSwap(PresignedUrlRequest* other) {
+void ObjectPresignedUrlRequest::InternalSwap(ObjectPresignedUrlRequest* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
@@ -2417,7 +2230,7 @@ void PresignedUrlRequest::InternalSwap(PresignedUrlRequest* other) {
   swap(_impl_.ttl_, other->_impl_.ttl_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PresignedUrlRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ObjectPresignedUrlRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[6]);
@@ -2425,23 +2238,23 @@ void PresignedUrlRequest::InternalSwap(PresignedUrlRequest* other) {
 
 // ===================================================================
 
-class PermanentUrlRequest::_Internal {
+class ObjectPermanentUrlRequest::_Internal {
  public:
-  using HasBits = decltype(std::declval<PermanentUrlRequest>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<ObjectPermanentUrlRequest>()._impl_._has_bits_);
   static void set_has_content_type(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
-PermanentUrlRequest::PermanentUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.PermanentUrlRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.ObjectPermanentUrlRequest)
 }
-PermanentUrlRequest::PermanentUrlRequest(const PermanentUrlRequest& from)
+ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(const ObjectPermanentUrlRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PermanentUrlRequest* const _this = this; (void)_this;
+  ObjectPermanentUrlRequest* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_._has_bits_){from._impl_._has_bits_}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -2483,10 +2296,10 @@ PermanentUrlRequest::PermanentUrlRequest(const PermanentUrlRequest& from)
     _this->_impl_.content_type_.Set(from._internal_content_type(), 
       _this->GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.PermanentUrlRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.ObjectPermanentUrlRequest)
 }
 
-inline void PermanentUrlRequest::SharedCtor(
+inline void ObjectPermanentUrlRequest::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -2516,8 +2329,8 @@ inline void PermanentUrlRequest::SharedCtor(
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-PermanentUrlRequest::~PermanentUrlRequest() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.PermanentUrlRequest)
+ObjectPermanentUrlRequest::~ObjectPermanentUrlRequest() {
+  // @@protoc_insertion_point(destructor:palm.s3.v1.ObjectPermanentUrlRequest)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2525,7 +2338,7 @@ PermanentUrlRequest::~PermanentUrlRequest() {
   SharedDtor();
 }
 
-inline void PermanentUrlRequest::SharedDtor() {
+inline void ObjectPermanentUrlRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.object_.Destroy();
@@ -2533,12 +2346,12 @@ inline void PermanentUrlRequest::SharedDtor() {
   _impl_.content_type_.Destroy();
 }
 
-void PermanentUrlRequest::SetCachedSize(int size) const {
+void ObjectPermanentUrlRequest::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void PermanentUrlRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.PermanentUrlRequest)
+void ObjectPermanentUrlRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.s3.v1.ObjectPermanentUrlRequest)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2554,7 +2367,7 @@ void PermanentUrlRequest::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* PermanentUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* ObjectPermanentUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
@@ -2567,7 +2380,7 @@ const char* PermanentUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_bucket();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PermanentUrlRequest.bucket"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.bucket"));
         } else
           goto handle_unusual;
         continue;
@@ -2577,7 +2390,7 @@ const char* PermanentUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_object();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PermanentUrlRequest.object"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.object"));
         } else
           goto handle_unusual;
         continue;
@@ -2587,7 +2400,7 @@ const char* PermanentUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_title();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PermanentUrlRequest.title"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.title"));
         } else
           goto handle_unusual;
         continue;
@@ -2597,7 +2410,7 @@ const char* PermanentUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseCo
           auto str = _internal_mutable_content_type();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.PermanentUrlRequest.content_type"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.content_type"));
         } else
           goto handle_unusual;
         continue;
@@ -2625,9 +2438,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* PermanentUrlRequest::_InternalSerialize(
+uint8_t* ObjectPermanentUrlRequest::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.PermanentUrlRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.ObjectPermanentUrlRequest)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2636,7 +2449,7 @@ uint8_t* PermanentUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PermanentUrlRequest.bucket");
+      "palm.s3.v1.ObjectPermanentUrlRequest.bucket");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_bucket(), target);
   }
@@ -2646,7 +2459,7 @@ uint8_t* PermanentUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PermanentUrlRequest.object");
+      "palm.s3.v1.ObjectPermanentUrlRequest.object");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_object(), target);
   }
@@ -2656,7 +2469,7 @@ uint8_t* PermanentUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PermanentUrlRequest.title");
+      "palm.s3.v1.ObjectPermanentUrlRequest.title");
     target = stream->WriteStringMaybeAliased(
         3, this->_internal_title(), target);
   }
@@ -2666,7 +2479,7 @@ uint8_t* PermanentUrlRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.PermanentUrlRequest.content_type");
+      "palm.s3.v1.ObjectPermanentUrlRequest.content_type");
     target = stream->WriteStringMaybeAliased(
         4, this->_internal_content_type(), target);
   }
@@ -2675,12 +2488,12 @@ uint8_t* PermanentUrlRequest::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.PermanentUrlRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.ObjectPermanentUrlRequest)
   return target;
 }
 
-size_t PermanentUrlRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.PermanentUrlRequest)
+size_t ObjectPermanentUrlRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.ObjectPermanentUrlRequest)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -2719,17 +2532,17 @@ size_t PermanentUrlRequest::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PermanentUrlRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObjectPermanentUrlRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PermanentUrlRequest::MergeImpl
+    ObjectPermanentUrlRequest::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PermanentUrlRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObjectPermanentUrlRequest::GetClassData() const { return &_class_data_; }
 
 
-void PermanentUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<PermanentUrlRequest*>(&to_msg);
-  auto& from = static_cast<const PermanentUrlRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.PermanentUrlRequest)
+void ObjectPermanentUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ObjectPermanentUrlRequest*>(&to_msg);
+  auto& from = static_cast<const ObjectPermanentUrlRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.ObjectPermanentUrlRequest)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2749,18 +2562,18 @@ void PermanentUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void PermanentUrlRequest::CopyFrom(const PermanentUrlRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.PermanentUrlRequest)
+void ObjectPermanentUrlRequest::CopyFrom(const ObjectPermanentUrlRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.ObjectPermanentUrlRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool PermanentUrlRequest::IsInitialized() const {
+bool ObjectPermanentUrlRequest::IsInitialized() const {
   return true;
 }
 
-void PermanentUrlRequest::InternalSwap(PermanentUrlRequest* other) {
+void ObjectPermanentUrlRequest::InternalSwap(ObjectPermanentUrlRequest* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
@@ -2784,7 +2597,7 @@ void PermanentUrlRequest::InternalSwap(PermanentUrlRequest* other) {
   );
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PermanentUrlRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata ObjectPermanentUrlRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[7]);
@@ -2792,27 +2605,22 @@ void PermanentUrlRequest::InternalSwap(PermanentUrlRequest* other) {
 
 // ===================================================================
 
-class AttachmentCreateRequest::_Internal {
+class RemoveObjectRequest::_Internal {
  public:
 };
 
-AttachmentCreateRequest::AttachmentCreateRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+RemoveObjectRequest::RemoveObjectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.AttachmentCreateRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.RemoveObjectRequest)
 }
-AttachmentCreateRequest::AttachmentCreateRequest(const AttachmentCreateRequest& from)
+RemoveObjectRequest::RemoveObjectRequest(const RemoveObjectRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AttachmentCreateRequest* const _this = this; (void)_this;
+  RemoveObjectRequest* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.bucket_){}
     , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.user_){}
-    , decltype(_impl_.size_){}
-    , decltype(_impl_.public__){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -2832,40 +2640,16 @@ AttachmentCreateRequest::AttachmentCreateRequest(const AttachmentCreateRequest& 
     _this->_impl_.object_.Set(from._internal_object(), 
       _this->GetArenaForAllocation());
   }
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_title().empty()) {
-    _this->_impl_.title_.Set(from._internal_title(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_content_type().empty()) {
-    _this->_impl_.content_type_.Set(from._internal_content_type(), 
-      _this->GetArenaForAllocation());
-  }
-  ::memcpy(&_impl_.user_, &from._impl_.user_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.public__) -
-    reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.AttachmentCreateRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.RemoveObjectRequest)
 }
 
-inline void AttachmentCreateRequest::SharedCtor(
+inline void RemoveObjectRequest::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.bucket_){}
     , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.user_){uint64_t{0u}}
-    , decltype(_impl_.size_){uint64_t{0u}}
-    , decltype(_impl_.public__){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.bucket_.InitDefault();
@@ -2876,18 +2660,10 @@ inline void AttachmentCreateRequest::SharedCtor(
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.object_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-AttachmentCreateRequest::~AttachmentCreateRequest() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.AttachmentCreateRequest)
+RemoveObjectRequest::~RemoveObjectRequest() {
+  // @@protoc_insertion_point(destructor:palm.s3.v1.RemoveObjectRequest)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2895,101 +2671,50 @@ AttachmentCreateRequest::~AttachmentCreateRequest() {
   SharedDtor();
 }
 
-inline void AttachmentCreateRequest::SharedDtor() {
+inline void RemoveObjectRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.object_.Destroy();
-  _impl_.title_.Destroy();
-  _impl_.content_type_.Destroy();
 }
 
-void AttachmentCreateRequest::SetCachedSize(int size) const {
+void RemoveObjectRequest::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void AttachmentCreateRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.AttachmentCreateRequest)
+void RemoveObjectRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.s3.v1.RemoveObjectRequest)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.bucket_.ClearToEmpty();
   _impl_.object_.ClearToEmpty();
-  _impl_.title_.ClearToEmpty();
-  _impl_.content_type_.ClearToEmpty();
-  ::memset(&_impl_.user_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.public__) -
-      reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* AttachmentCreateRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* RemoveObjectRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // uint64 user = 1;
+      // string bucket = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.user_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string bucket = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           auto str = _internal_mutable_bucket();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentCreateRequest.bucket"));
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.RemoveObjectRequest.bucket"));
         } else
           goto handle_unusual;
         continue;
-      // string object = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+      // string object = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_object();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentCreateRequest.object"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string title = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          auto str = _internal_mutable_title();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentCreateRequest.title"));
-        } else
-          goto handle_unusual;
-        continue;
-      // uint64 size = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string content_type = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
-          auto str = _internal_mutable_content_type();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentCreateRequest.content_type"));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool public = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _impl_.public__ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.RemoveObjectRequest.object"));
         } else
           goto handle_unusual;
         continue;
@@ -3016,143 +2741,76 @@ failure:
 #undef CHK_
 }
 
-uint8_t* AttachmentCreateRequest::_InternalSerialize(
+uint8_t* RemoveObjectRequest::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.AttachmentCreateRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.RemoveObjectRequest)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 user = 1;
-  if (this->_internal_user() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_user(), target);
-  }
-
-  // string bucket = 2;
+  // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentCreateRequest.bucket");
+      "palm.s3.v1.RemoveObjectRequest.bucket");
     target = stream->WriteStringMaybeAliased(
-        2, this->_internal_bucket(), target);
+        1, this->_internal_bucket(), target);
   }
 
-  // string object = 3;
+  // string object = 2;
   if (!this->_internal_object().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentCreateRequest.object");
+      "palm.s3.v1.RemoveObjectRequest.object");
     target = stream->WriteStringMaybeAliased(
-        3, this->_internal_object(), target);
-  }
-
-  // string title = 4;
-  if (!this->_internal_title().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentCreateRequest.title");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_title(), target);
-  }
-
-  // uint64 size = 5;
-  if (this->_internal_size() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(5, this->_internal_size(), target);
-  }
-
-  // string content_type = 6;
-  if (!this->_internal_content_type().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentCreateRequest.content_type");
-    target = stream->WriteStringMaybeAliased(
-        6, this->_internal_content_type(), target);
-  }
-
-  // bool public = 9;
-  if (this->_internal_public_() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(9, this->_internal_public_(), target);
+        2, this->_internal_object(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.AttachmentCreateRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.RemoveObjectRequest)
   return target;
 }
 
-size_t AttachmentCreateRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.AttachmentCreateRequest)
+size_t RemoveObjectRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.RemoveObjectRequest)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string bucket = 2;
+  // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_bucket());
   }
 
-  // string object = 3;
+  // string object = 2;
   if (!this->_internal_object().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_object());
   }
 
-  // string title = 4;
-  if (!this->_internal_title().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_title());
-  }
-
-  // string content_type = 6;
-  if (!this->_internal_content_type().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_content_type());
-  }
-
-  // uint64 user = 1;
-  if (this->_internal_user() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user());
-  }
-
-  // uint64 size = 5;
-  if (this->_internal_size() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_size());
-  }
-
-  // bool public = 9;
-  if (this->_internal_public_() != 0) {
-    total_size += 1 + 1;
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentCreateRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoveObjectRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    AttachmentCreateRequest::MergeImpl
+    RemoveObjectRequest::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentCreateRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveObjectRequest::GetClassData() const { return &_class_data_; }
 
 
-void AttachmentCreateRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AttachmentCreateRequest*>(&to_msg);
-  auto& from = static_cast<const AttachmentCreateRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.AttachmentCreateRequest)
+void RemoveObjectRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<RemoveObjectRequest*>(&to_msg);
+  auto& from = static_cast<const RemoveObjectRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.RemoveObjectRequest)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -3163,36 +2821,21 @@ void AttachmentCreateRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg
   if (!from._internal_object().empty()) {
     _this->_internal_set_object(from._internal_object());
   }
-  if (!from._internal_title().empty()) {
-    _this->_internal_set_title(from._internal_title());
-  }
-  if (!from._internal_content_type().empty()) {
-    _this->_internal_set_content_type(from._internal_content_type());
-  }
-  if (from._internal_user() != 0) {
-    _this->_internal_set_user(from._internal_user());
-  }
-  if (from._internal_size() != 0) {
-    _this->_internal_set_size(from._internal_size());
-  }
-  if (from._internal_public_() != 0) {
-    _this->_internal_set_public_(from._internal_public_());
-  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void AttachmentCreateRequest::CopyFrom(const AttachmentCreateRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.AttachmentCreateRequest)
+void RemoveObjectRequest::CopyFrom(const RemoveObjectRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.RemoveObjectRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool AttachmentCreateRequest::IsInitialized() const {
+bool RemoveObjectRequest::IsInitialized() const {
   return true;
 }
 
-void AttachmentCreateRequest::InternalSwap(AttachmentCreateRequest* other) {
+void RemoveObjectRequest::InternalSwap(RemoveObjectRequest* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
@@ -3205,1473 +2848,12 @@ void AttachmentCreateRequest::InternalSwap(AttachmentCreateRequest* other) {
       &_impl_.object_, lhs_arena,
       &other->_impl_.object_, rhs_arena
   );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.title_, lhs_arena,
-      &other->_impl_.title_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.content_type_, lhs_arena,
-      &other->_impl_.content_type_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AttachmentCreateRequest, _impl_.public__)
-      + sizeof(AttachmentCreateRequest::_impl_.public__)
-      - PROTOBUF_FIELD_OFFSET(AttachmentCreateRequest, _impl_.user_)>(
-          reinterpret_cast<char*>(&_impl_.user_),
-          reinterpret_cast<char*>(&other->_impl_.user_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata AttachmentCreateRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata RemoveObjectRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[8]);
-}
-
-// ===================================================================
-
-class AttachmentSetTitleRequest::_Internal {
- public:
-};
-
-AttachmentSetTitleRequest::AttachmentSetTitleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.AttachmentSetTitleRequest)
-}
-AttachmentSetTitleRequest::AttachmentSetTitleRequest(const AttachmentSetTitleRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AttachmentSetTitleRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.title_){}
-    , decltype(_impl_.id_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_title().empty()) {
-    _this->_impl_.title_.Set(from._internal_title(), 
-      _this->GetArenaForAllocation());
-  }
-  _this->_impl_.id_ = from._impl_.id_;
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.AttachmentSetTitleRequest)
-}
-
-inline void AttachmentSetTitleRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.title_){}
-    , decltype(_impl_.id_){uint64_t{0u}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-
-AttachmentSetTitleRequest::~AttachmentSetTitleRequest() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.AttachmentSetTitleRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void AttachmentSetTitleRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.title_.Destroy();
-}
-
-void AttachmentSetTitleRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void AttachmentSetTitleRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.AttachmentSetTitleRequest)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.title_.ClearToEmpty();
-  _impl_.id_ = uint64_t{0u};
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* AttachmentSetTitleRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint64 id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string title = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_title();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentSetTitleRequest.title"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* AttachmentSetTitleRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.AttachmentSetTitleRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // uint64 id = 1;
-  if (this->_internal_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
-  }
-
-  // string title = 2;
-  if (!this->_internal_title().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentSetTitleRequest.title");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_title(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.AttachmentSetTitleRequest)
-  return target;
-}
-
-size_t AttachmentSetTitleRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.AttachmentSetTitleRequest)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string title = 2;
-  if (!this->_internal_title().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_title());
-  }
-
-  // uint64 id = 1;
-  if (this->_internal_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentSetTitleRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    AttachmentSetTitleRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentSetTitleRequest::GetClassData() const { return &_class_data_; }
-
-
-void AttachmentSetTitleRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AttachmentSetTitleRequest*>(&to_msg);
-  auto& from = static_cast<const AttachmentSetTitleRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.AttachmentSetTitleRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_title().empty()) {
-    _this->_internal_set_title(from._internal_title());
-  }
-  if (from._internal_id() != 0) {
-    _this->_internal_set_id(from._internal_id());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void AttachmentSetTitleRequest::CopyFrom(const AttachmentSetTitleRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.AttachmentSetTitleRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool AttachmentSetTitleRequest::IsInitialized() const {
-  return true;
-}
-
-void AttachmentSetTitleRequest::InternalSwap(AttachmentSetTitleRequest* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.title_, lhs_arena,
-      &other->_impl_.title_, rhs_arena
-  );
-  swap(_impl_.id_, other->_impl_.id_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata AttachmentSetTitleRequest::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
-      file_level_metadata_s3_2eproto[9]);
-}
-
-// ===================================================================
-
-class AttachmentShowResponse::_Internal {
- public:
-};
-
-AttachmentShowResponse::AttachmentShowResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.AttachmentShowResponse)
-}
-AttachmentShowResponse::AttachmentShowResponse(const AttachmentShowResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AttachmentShowResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.url_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_url().empty()) {
-    _this->_impl_.url_.Set(from._internal_url(), 
-      _this->GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.AttachmentShowResponse)
-}
-
-inline void AttachmentShowResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.url_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-
-AttachmentShowResponse::~AttachmentShowResponse() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.AttachmentShowResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void AttachmentShowResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.url_.Destroy();
-}
-
-void AttachmentShowResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void AttachmentShowResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.AttachmentShowResponse)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.url_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* AttachmentShowResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string url = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_url();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentShowResponse.url"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* AttachmentShowResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.AttachmentShowResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string url = 1;
-  if (!this->_internal_url().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_url().data(), static_cast<int>(this->_internal_url().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentShowResponse.url");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_url(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.AttachmentShowResponse)
-  return target;
-}
-
-size_t AttachmentShowResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.AttachmentShowResponse)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string url = 1;
-  if (!this->_internal_url().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_url());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentShowResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    AttachmentShowResponse::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentShowResponse::GetClassData() const { return &_class_data_; }
-
-
-void AttachmentShowResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AttachmentShowResponse*>(&to_msg);
-  auto& from = static_cast<const AttachmentShowResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.AttachmentShowResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_url().empty()) {
-    _this->_internal_set_url(from._internal_url());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void AttachmentShowResponse::CopyFrom(const AttachmentShowResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.AttachmentShowResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool AttachmentShowResponse::IsInitialized() const {
-  return true;
-}
-
-void AttachmentShowResponse::InternalSwap(AttachmentShowResponse* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.url_, lhs_arena,
-      &other->_impl_.url_, rhs_arena
-  );
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata AttachmentShowResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
-      file_level_metadata_s3_2eproto[10]);
-}
-
-// ===================================================================
-
-class AttachmentListResponse::_Internal {
- public:
-};
-
-AttachmentListResponse::AttachmentListResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.AttachmentListResponse)
-}
-AttachmentListResponse::AttachmentListResponse(const AttachmentListResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AttachmentListResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){from._impl_.items_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.AttachmentListResponse)
-}
-
-inline void AttachmentListResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-AttachmentListResponse::~AttachmentListResponse() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.AttachmentListResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void AttachmentListResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.items_.~RepeatedPtrField();
-}
-
-void AttachmentListResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void AttachmentListResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.AttachmentListResponse)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.items_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* AttachmentListResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .palm.s3.v1.AttachmentIndexResponse.Item items = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* AttachmentListResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.AttachmentListResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .palm.s3.v1.AttachmentIndexResponse.Item items = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
-    const auto& repfield = this->_internal_items(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.AttachmentListResponse)
-  return target;
-}
-
-size_t AttachmentListResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.AttachmentListResponse)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .palm.s3.v1.AttachmentIndexResponse.Item items = 1;
-  total_size += 1UL * this->_internal_items_size();
-  for (const auto& msg : this->_impl_.items_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentListResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    AttachmentListResponse::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentListResponse::GetClassData() const { return &_class_data_; }
-
-
-void AttachmentListResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AttachmentListResponse*>(&to_msg);
-  auto& from = static_cast<const AttachmentListResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.AttachmentListResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  _this->_impl_.items_.MergeFrom(from._impl_.items_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void AttachmentListResponse::CopyFrom(const AttachmentListResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.AttachmentListResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool AttachmentListResponse::IsInitialized() const {
-  return true;
-}
-
-void AttachmentListResponse::InternalSwap(AttachmentListResponse* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.items_.InternalSwap(&other->_impl_.items_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata AttachmentListResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
-      file_level_metadata_s3_2eproto[11]);
-}
-
-// ===================================================================
-
-class AttachmentIndexResponse_Item::_Internal {
- public:
-  using HasBits = decltype(std::declval<AttachmentIndexResponse_Item>()._impl_._has_bits_);
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& published_at(const AttachmentIndexResponse_Item* msg);
-  static void set_has_published_at(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& deleted_at(const AttachmentIndexResponse_Item* msg);
-  static void set_has_deleted_at(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const AttachmentIndexResponse_Item* msg);
-};
-
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
-AttachmentIndexResponse_Item::_Internal::published_at(const AttachmentIndexResponse_Item* msg) {
-  return *msg->_impl_.published_at_;
-}
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
-AttachmentIndexResponse_Item::_Internal::deleted_at(const AttachmentIndexResponse_Item* msg) {
-  return *msg->_impl_.deleted_at_;
-}
-const ::PROTOBUF_NAMESPACE_ID::Timestamp&
-AttachmentIndexResponse_Item::_Internal::updated_at(const AttachmentIndexResponse_Item* msg) {
-  return *msg->_impl_.updated_at_;
-}
-void AttachmentIndexResponse_Item::clear_published_at() {
-  if (_impl_.published_at_ != nullptr) _impl_.published_at_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-void AttachmentIndexResponse_Item::clear_deleted_at() {
-  if (_impl_.deleted_at_ != nullptr) _impl_.deleted_at_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-void AttachmentIndexResponse_Item::clear_updated_at() {
-  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
-    delete _impl_.updated_at_;
-  }
-  _impl_.updated_at_ = nullptr;
-}
-AttachmentIndexResponse_Item::AttachmentIndexResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.AttachmentIndexResponse.Item)
-}
-AttachmentIndexResponse_Item::AttachmentIndexResponse_Item(const AttachmentIndexResponse_Item& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AttachmentIndexResponse_Item* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.published_at_){nullptr}
-    , decltype(_impl_.deleted_at_){nullptr}
-    , decltype(_impl_.updated_at_){nullptr}
-    , decltype(_impl_.user_){}
-    , decltype(_impl_.size_){}
-    , decltype(_impl_.public__){}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_bucket().empty()) {
-    _this->_impl_.bucket_.Set(from._internal_bucket(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_object().empty()) {
-    _this->_impl_.object_.Set(from._internal_object(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_title().empty()) {
-    _this->_impl_.title_.Set(from._internal_title(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_content_type().empty()) {
-    _this->_impl_.content_type_.Set(from._internal_content_type(), 
-      _this->GetArenaForAllocation());
-  }
-  if (from._internal_has_published_at()) {
-    _this->_impl_.published_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.published_at_);
-  }
-  if (from._internal_has_deleted_at()) {
-    _this->_impl_.deleted_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.deleted_at_);
-  }
-  if (from._internal_has_updated_at()) {
-    _this->_impl_.updated_at_ = new ::PROTOBUF_NAMESPACE_ID::Timestamp(*from._impl_.updated_at_);
-  }
-  ::memcpy(&_impl_.user_, &from._impl_.user_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.public__) -
-    reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.AttachmentIndexResponse.Item)
-}
-
-inline void AttachmentIndexResponse_Item::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.published_at_){nullptr}
-    , decltype(_impl_.deleted_at_){nullptr}
-    , decltype(_impl_.updated_at_){nullptr}
-    , decltype(_impl_.user_){uint64_t{0u}}
-    , decltype(_impl_.size_){uint64_t{0u}}
-    , decltype(_impl_.public__){false}
-  };
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-}
-
-AttachmentIndexResponse_Item::~AttachmentIndexResponse_Item() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.AttachmentIndexResponse.Item)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void AttachmentIndexResponse_Item::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.bucket_.Destroy();
-  _impl_.object_.Destroy();
-  _impl_.title_.Destroy();
-  _impl_.content_type_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.published_at_;
-  if (this != internal_default_instance()) delete _impl_.deleted_at_;
-  if (this != internal_default_instance()) delete _impl_.updated_at_;
-}
-
-void AttachmentIndexResponse_Item::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void AttachmentIndexResponse_Item::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.AttachmentIndexResponse.Item)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.bucket_.ClearToEmpty();
-  _impl_.object_.ClearToEmpty();
-  _impl_.title_.ClearToEmpty();
-  _impl_.content_type_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      GOOGLE_DCHECK(_impl_.published_at_ != nullptr);
-      _impl_.published_at_->Clear();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      GOOGLE_DCHECK(_impl_.deleted_at_ != nullptr);
-      _impl_.deleted_at_->Clear();
-    }
-  }
-  if (GetArenaForAllocation() == nullptr && _impl_.updated_at_ != nullptr) {
-    delete _impl_.updated_at_;
-  }
-  _impl_.updated_at_ = nullptr;
-  ::memset(&_impl_.user_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.public__) -
-      reinterpret_cast<char*>(&_impl_.user_)) + sizeof(_impl_.public__));
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* AttachmentIndexResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint64 user = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.user_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string bucket = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_bucket();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentIndexResponse.Item.bucket"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string object = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_object();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentIndexResponse.Item.object"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string title = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          auto str = _internal_mutable_title();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentIndexResponse.Item.title"));
-        } else
-          goto handle_unusual;
-        continue;
-      // uint64 size = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string content_type = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
-          auto str = _internal_mutable_content_type();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.AttachmentIndexResponse.Item.content_type"));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool public = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.public__ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional .google.protobuf.Timestamp published_at = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
-          ptr = ctx->ParseMessage(_internal_mutable_published_at(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // optional .google.protobuf.Timestamp deleted_at = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          ptr = ctx->ParseMessage(_internal_mutable_deleted_at(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Timestamp updated_at = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
-          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _impl_._has_bits_.Or(has_bits);
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* AttachmentIndexResponse_Item::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.AttachmentIndexResponse.Item)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // uint64 user = 1;
-  if (this->_internal_user() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_user(), target);
-  }
-
-  // string bucket = 2;
-  if (!this->_internal_bucket().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentIndexResponse.Item.bucket");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_bucket(), target);
-  }
-
-  // string object = 3;
-  if (!this->_internal_object().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentIndexResponse.Item.object");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_object(), target);
-  }
-
-  // string title = 4;
-  if (!this->_internal_title().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentIndexResponse.Item.title");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_title(), target);
-  }
-
-  // uint64 size = 5;
-  if (this->_internal_size() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(5, this->_internal_size(), target);
-  }
-
-  // string content_type = 6;
-  if (!this->_internal_content_type().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.AttachmentIndexResponse.Item.content_type");
-    target = stream->WriteStringMaybeAliased(
-        6, this->_internal_content_type(), target);
-  }
-
-  // bool public = 7;
-  if (this->_internal_public_() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(7, this->_internal_public_(), target);
-  }
-
-  // optional .google.protobuf.Timestamp published_at = 8;
-  if (_internal_has_published_at()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(8, _Internal::published_at(this),
-        _Internal::published_at(this).GetCachedSize(), target, stream);
-  }
-
-  // optional .google.protobuf.Timestamp deleted_at = 9;
-  if (_internal_has_deleted_at()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(9, _Internal::deleted_at(this),
-        _Internal::deleted_at(this).GetCachedSize(), target, stream);
-  }
-
-  // .google.protobuf.Timestamp updated_at = 10;
-  if (this->_internal_has_updated_at()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(10, _Internal::updated_at(this),
-        _Internal::updated_at(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.AttachmentIndexResponse.Item)
-  return target;
-}
-
-size_t AttachmentIndexResponse_Item::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.AttachmentIndexResponse.Item)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string bucket = 2;
-  if (!this->_internal_bucket().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_bucket());
-  }
-
-  // string object = 3;
-  if (!this->_internal_object().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_object());
-  }
-
-  // string title = 4;
-  if (!this->_internal_title().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_title());
-  }
-
-  // string content_type = 6;
-  if (!this->_internal_content_type().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_content_type());
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    // optional .google.protobuf.Timestamp published_at = 8;
-    if (cached_has_bits & 0x00000001u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.published_at_);
-    }
-
-    // optional .google.protobuf.Timestamp deleted_at = 9;
-    if (cached_has_bits & 0x00000002u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.deleted_at_);
-    }
-
-  }
-  // .google.protobuf.Timestamp updated_at = 10;
-  if (this->_internal_has_updated_at()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.updated_at_);
-  }
-
-  // uint64 user = 1;
-  if (this->_internal_user() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_user());
-  }
-
-  // uint64 size = 5;
-  if (this->_internal_size() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_size());
-  }
-
-  // bool public = 7;
-  if (this->_internal_public_() != 0) {
-    total_size += 1 + 1;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentIndexResponse_Item::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    AttachmentIndexResponse_Item::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentIndexResponse_Item::GetClassData() const { return &_class_data_; }
-
-
-void AttachmentIndexResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AttachmentIndexResponse_Item*>(&to_msg);
-  auto& from = static_cast<const AttachmentIndexResponse_Item&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.AttachmentIndexResponse.Item)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_bucket().empty()) {
-    _this->_internal_set_bucket(from._internal_bucket());
-  }
-  if (!from._internal_object().empty()) {
-    _this->_internal_set_object(from._internal_object());
-  }
-  if (!from._internal_title().empty()) {
-    _this->_internal_set_title(from._internal_title());
-  }
-  if (!from._internal_content_type().empty()) {
-    _this->_internal_set_content_type(from._internal_content_type());
-  }
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _this->_internal_mutable_published_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
-          from._internal_published_at());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _this->_internal_mutable_deleted_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
-          from._internal_deleted_at());
-    }
-  }
-  if (from._internal_has_updated_at()) {
-    _this->_internal_mutable_updated_at()->::PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(
-        from._internal_updated_at());
-  }
-  if (from._internal_user() != 0) {
-    _this->_internal_set_user(from._internal_user());
-  }
-  if (from._internal_size() != 0) {
-    _this->_internal_set_size(from._internal_size());
-  }
-  if (from._internal_public_() != 0) {
-    _this->_internal_set_public_(from._internal_public_());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void AttachmentIndexResponse_Item::CopyFrom(const AttachmentIndexResponse_Item& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.AttachmentIndexResponse.Item)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool AttachmentIndexResponse_Item::IsInitialized() const {
-  return true;
-}
-
-void AttachmentIndexResponse_Item::InternalSwap(AttachmentIndexResponse_Item* other) {
-  using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.bucket_, lhs_arena,
-      &other->_impl_.bucket_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.object_, lhs_arena,
-      &other->_impl_.object_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.title_, lhs_arena,
-      &other->_impl_.title_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.content_type_, lhs_arena,
-      &other->_impl_.content_type_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AttachmentIndexResponse_Item, _impl_.public__)
-      + sizeof(AttachmentIndexResponse_Item::_impl_.public__)
-      - PROTOBUF_FIELD_OFFSET(AttachmentIndexResponse_Item, _impl_.published_at_)>(
-          reinterpret_cast<char*>(&_impl_.published_at_),
-          reinterpret_cast<char*>(&other->_impl_.published_at_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata AttachmentIndexResponse_Item::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
-      file_level_metadata_s3_2eproto[12]);
-}
-
-// ===================================================================
-
-class AttachmentIndexResponse::_Internal {
- public:
-  static const ::palm::balsam::v1::Pagination& pagination(const AttachmentIndexResponse* msg);
-};
-
-const ::palm::balsam::v1::Pagination&
-AttachmentIndexResponse::_Internal::pagination(const AttachmentIndexResponse* msg) {
-  return *msg->_impl_.pagination_;
-}
-void AttachmentIndexResponse::clear_pagination() {
-  if (GetArenaForAllocation() == nullptr && _impl_.pagination_ != nullptr) {
-    delete _impl_.pagination_;
-  }
-  _impl_.pagination_ = nullptr;
-}
-AttachmentIndexResponse::AttachmentIndexResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.AttachmentIndexResponse)
-}
-AttachmentIndexResponse::AttachmentIndexResponse(const AttachmentIndexResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AttachmentIndexResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){from._impl_.items_}
-    , decltype(_impl_.pagination_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_pagination()) {
-    _this->_impl_.pagination_ = new ::palm::balsam::v1::Pagination(*from._impl_.pagination_);
-  }
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.AttachmentIndexResponse)
-}
-
-inline void AttachmentIndexResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){arena}
-    , decltype(_impl_.pagination_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-AttachmentIndexResponse::~AttachmentIndexResponse() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.AttachmentIndexResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void AttachmentIndexResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.items_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.pagination_;
-}
-
-void AttachmentIndexResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void AttachmentIndexResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.AttachmentIndexResponse)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.items_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.pagination_ != nullptr) {
-    delete _impl_.pagination_;
-  }
-  _impl_.pagination_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* AttachmentIndexResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .palm.s3.v1.AttachmentIndexResponse.Item items = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.balsam.v1.Pagination pagination = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_pagination(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* AttachmentIndexResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.AttachmentIndexResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .palm.s3.v1.AttachmentIndexResponse.Item items = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
-    const auto& repfield = this->_internal_items(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // .palm.balsam.v1.Pagination pagination = 2;
-  if (this->_internal_has_pagination()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::pagination(this),
-        _Internal::pagination(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.AttachmentIndexResponse)
-  return target;
-}
-
-size_t AttachmentIndexResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.AttachmentIndexResponse)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .palm.s3.v1.AttachmentIndexResponse.Item items = 1;
-  total_size += 1UL * this->_internal_items_size();
-  for (const auto& msg : this->_impl_.items_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  // .palm.balsam.v1.Pagination pagination = 2;
-  if (this->_internal_has_pagination()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.pagination_);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AttachmentIndexResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    AttachmentIndexResponse::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AttachmentIndexResponse::GetClassData() const { return &_class_data_; }
-
-
-void AttachmentIndexResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<AttachmentIndexResponse*>(&to_msg);
-  auto& from = static_cast<const AttachmentIndexResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.AttachmentIndexResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  _this->_impl_.items_.MergeFrom(from._impl_.items_);
-  if (from._internal_has_pagination()) {
-    _this->_internal_mutable_pagination()->::palm::balsam::v1::Pagination::MergeFrom(
-        from._internal_pagination());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void AttachmentIndexResponse::CopyFrom(const AttachmentIndexResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.AttachmentIndexResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool AttachmentIndexResponse::IsInitialized() const {
-  return true;
-}
-
-void AttachmentIndexResponse::InternalSwap(AttachmentIndexResponse* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.items_.InternalSwap(&other->_impl_.items_);
-  swap(_impl_.pagination_, other->_impl_.pagination_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata AttachmentIndexResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
-      file_level_metadata_s3_2eproto[13]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4691,49 +2873,29 @@ template<> PROTOBUF_NOINLINE ::palm::s3::v1::CreateBucketResponse*
 Arena::CreateMaybeMessage< ::palm::s3::v1::CreateBucketResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::s3::v1::CreateBucketResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::UploadRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::UploadRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::UploadRequest >(arena);
+template<> PROTOBUF_NOINLINE ::palm::s3::v1::UploadObjectRequest*
+Arena::CreateMaybeMessage< ::palm::s3::v1::UploadObjectRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::s3::v1::UploadObjectRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::UploadResponse*
-Arena::CreateMaybeMessage< ::palm::s3::v1::UploadResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::UploadResponse >(arena);
+template<> PROTOBUF_NOINLINE ::palm::s3::v1::UploadObjectResponse*
+Arena::CreateMaybeMessage< ::palm::s3::v1::UploadObjectResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::s3::v1::UploadObjectResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::palm::s3::v1::UrlResponse*
 Arena::CreateMaybeMessage< ::palm::s3::v1::UrlResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::palm::s3::v1::UrlResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::PresignedUrlRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::PresignedUrlRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::PresignedUrlRequest >(arena);
+template<> PROTOBUF_NOINLINE ::palm::s3::v1::ObjectPresignedUrlRequest*
+Arena::CreateMaybeMessage< ::palm::s3::v1::ObjectPresignedUrlRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::s3::v1::ObjectPresignedUrlRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::PermanentUrlRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::PermanentUrlRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::PermanentUrlRequest >(arena);
+template<> PROTOBUF_NOINLINE ::palm::s3::v1::ObjectPermanentUrlRequest*
+Arena::CreateMaybeMessage< ::palm::s3::v1::ObjectPermanentUrlRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::s3::v1::ObjectPermanentUrlRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::AttachmentCreateRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::AttachmentCreateRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::AttachmentCreateRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::AttachmentSetTitleRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::AttachmentSetTitleRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::AttachmentSetTitleRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::AttachmentShowResponse*
-Arena::CreateMaybeMessage< ::palm::s3::v1::AttachmentShowResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::AttachmentShowResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::AttachmentListResponse*
-Arena::CreateMaybeMessage< ::palm::s3::v1::AttachmentListResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::AttachmentListResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::AttachmentIndexResponse_Item*
-Arena::CreateMaybeMessage< ::palm::s3::v1::AttachmentIndexResponse_Item >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::AttachmentIndexResponse_Item >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::AttachmentIndexResponse*
-Arena::CreateMaybeMessage< ::palm::s3::v1::AttachmentIndexResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::AttachmentIndexResponse >(arena);
+template<> PROTOBUF_NOINLINE ::palm::s3::v1::RemoveObjectRequest*
+Arena::CreateMaybeMessage< ::palm::s3::v1::RemoveObjectRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::palm::s3::v1::RemoveObjectRequest >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -8,7 +8,6 @@ package v2
 
 import (
 	context "context"
-	v2 "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,10 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	S3_CreateBucket_FullMethodName = "/palm.s3.v1.S3/CreateBucket"
-	S3_Upload_FullMethodName       = "/palm.s3.v1.S3/Upload"
-	S3_PermanentUrl_FullMethodName = "/palm.s3.v1.S3/PermanentUrl"
-	S3_PresignedUrl_FullMethodName = "/palm.s3.v1.S3/PresignedUrl"
+	S3_CreateBucket_FullMethodName       = "/palm.s3.v1.S3/CreateBucket"
+	S3_UploadObject_FullMethodName       = "/palm.s3.v1.S3/UploadObject"
+	S3_ObjectPermanentUrl_FullMethodName = "/palm.s3.v1.S3/ObjectPermanentUrl"
+	S3_ObjectPresignedUrl_FullMethodName = "/palm.s3.v1.S3/ObjectPresignedUrl"
+	S3_RemoveObject_FullMethodName       = "/palm.s3.v1.S3/RemoveObject"
 )
 
 // S3Client is the client API for S3 service.
@@ -32,9 +32,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type S3Client interface {
 	CreateBucket(ctx context.Context, in *CreateBucketRequest, opts ...grpc.CallOption) (*CreateBucketResponse, error)
-	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
-	PermanentUrl(ctx context.Context, in *PermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
-	PresignedUrl(ctx context.Context, in *PresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
+	UploadObject(ctx context.Context, in *UploadObjectRequest, opts ...grpc.CallOption) (*UploadObjectResponse, error)
+	ObjectPermanentUrl(ctx context.Context, in *ObjectPermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
+	ObjectPresignedUrl(ctx context.Context, in *ObjectPresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
+	RemoveObject(ctx context.Context, in *RemoveObjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type s3Client struct {
@@ -55,30 +56,40 @@ func (c *s3Client) CreateBucket(ctx context.Context, in *CreateBucketRequest, op
 	return out, nil
 }
 
-func (c *s3Client) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error) {
+func (c *s3Client) UploadObject(ctx context.Context, in *UploadObjectRequest, opts ...grpc.CallOption) (*UploadObjectResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UploadResponse)
-	err := c.cc.Invoke(ctx, S3_Upload_FullMethodName, in, out, cOpts...)
+	out := new(UploadObjectResponse)
+	err := c.cc.Invoke(ctx, S3_UploadObject_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *s3Client) PermanentUrl(ctx context.Context, in *PermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
+func (c *s3Client) ObjectPermanentUrl(ctx context.Context, in *ObjectPermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UrlResponse)
-	err := c.cc.Invoke(ctx, S3_PermanentUrl_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, S3_ObjectPermanentUrl_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *s3Client) PresignedUrl(ctx context.Context, in *PresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
+func (c *s3Client) ObjectPresignedUrl(ctx context.Context, in *ObjectPresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UrlResponse)
-	err := c.cc.Invoke(ctx, S3_PresignedUrl_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, S3_ObjectPresignedUrl_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *s3Client) RemoveObject(ctx context.Context, in *RemoveObjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, S3_RemoveObject_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,9 +101,10 @@ func (c *s3Client) PresignedUrl(ctx context.Context, in *PresignedUrlRequest, op
 // for forward compatibility
 type S3Server interface {
 	CreateBucket(context.Context, *CreateBucketRequest) (*CreateBucketResponse, error)
-	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
-	PermanentUrl(context.Context, *PermanentUrlRequest) (*UrlResponse, error)
-	PresignedUrl(context.Context, *PresignedUrlRequest) (*UrlResponse, error)
+	UploadObject(context.Context, *UploadObjectRequest) (*UploadObjectResponse, error)
+	ObjectPermanentUrl(context.Context, *ObjectPermanentUrlRequest) (*UrlResponse, error)
+	ObjectPresignedUrl(context.Context, *ObjectPresignedUrlRequest) (*UrlResponse, error)
+	RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedS3Server()
 }
 
@@ -103,14 +115,17 @@ type UnimplementedS3Server struct {
 func (UnimplementedS3Server) CreateBucket(context.Context, *CreateBucketRequest) (*CreateBucketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBucket not implemented")
 }
-func (UnimplementedS3Server) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
+func (UnimplementedS3Server) UploadObject(context.Context, *UploadObjectRequest) (*UploadObjectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadObject not implemented")
 }
-func (UnimplementedS3Server) PermanentUrl(context.Context, *PermanentUrlRequest) (*UrlResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PermanentUrl not implemented")
+func (UnimplementedS3Server) ObjectPermanentUrl(context.Context, *ObjectPermanentUrlRequest) (*UrlResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ObjectPermanentUrl not implemented")
 }
-func (UnimplementedS3Server) PresignedUrl(context.Context, *PresignedUrlRequest) (*UrlResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PresignedUrl not implemented")
+func (UnimplementedS3Server) ObjectPresignedUrl(context.Context, *ObjectPresignedUrlRequest) (*UrlResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ObjectPresignedUrl not implemented")
+}
+func (UnimplementedS3Server) RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveObject not implemented")
 }
 func (UnimplementedS3Server) mustEmbedUnimplementedS3Server() {}
 
@@ -143,56 +158,74 @@ func _S3_CreateBucket_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _S3_Upload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadRequest)
+func _S3_UploadObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadObjectRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(S3Server).Upload(ctx, in)
+		return srv.(S3Server).UploadObject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: S3_Upload_FullMethodName,
+		FullMethod: S3_UploadObject_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).Upload(ctx, req.(*UploadRequest))
+		return srv.(S3Server).UploadObject(ctx, req.(*UploadObjectRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _S3_PermanentUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PermanentUrlRequest)
+func _S3_ObjectPermanentUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ObjectPermanentUrlRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(S3Server).PermanentUrl(ctx, in)
+		return srv.(S3Server).ObjectPermanentUrl(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: S3_PermanentUrl_FullMethodName,
+		FullMethod: S3_ObjectPermanentUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).PermanentUrl(ctx, req.(*PermanentUrlRequest))
+		return srv.(S3Server).ObjectPermanentUrl(ctx, req.(*ObjectPermanentUrlRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _S3_PresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PresignedUrlRequest)
+func _S3_ObjectPresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ObjectPresignedUrlRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(S3Server).PresignedUrl(ctx, in)
+		return srv.(S3Server).ObjectPresignedUrl(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: S3_PresignedUrl_FullMethodName,
+		FullMethod: S3_ObjectPresignedUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).PresignedUrl(ctx, req.(*PresignedUrlRequest))
+		return srv.(S3Server).ObjectPresignedUrl(ctx, req.(*ObjectPresignedUrlRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _S3_RemoveObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveObjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).RemoveObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_RemoveObject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).RemoveObject(ctx, req.(*RemoveObjectRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -209,411 +242,20 @@ var S3_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _S3_CreateBucket_Handler,
 		},
 		{
-			MethodName: "Upload",
-			Handler:    _S3_Upload_Handler,
+			MethodName: "UploadObject",
+			Handler:    _S3_UploadObject_Handler,
 		},
 		{
-			MethodName: "PermanentUrl",
-			Handler:    _S3_PermanentUrl_Handler,
+			MethodName: "ObjectPermanentUrl",
+			Handler:    _S3_ObjectPermanentUrl_Handler,
 		},
 		{
-			MethodName: "PresignedUrl",
-			Handler:    _S3_PresignedUrl_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "s3.proto",
-}
-
-const (
-	Attachment_Disable_FullMethodName       = "/palm.s3.v1.Attachment/Disable"
-	Attachment_Index_FullMethodName         = "/palm.s3.v1.Attachment/Index"
-	Attachment_SetTitle_FullMethodName      = "/palm.s3.v1.Attachment/SetTitle"
-	Attachment_ById_FullMethodName          = "/palm.s3.v1.Attachment/ById"
-	Attachment_ByUser_FullMethodName        = "/palm.s3.v1.Attachment/ByUser"
-	Attachment_Clear_FullMethodName         = "/palm.s3.v1.Attachment/Clear"
-	Attachment_ByResource_FullMethodName    = "/palm.s3.v1.Attachment/ByResource"
-	Attachment_Create_FullMethodName        = "/palm.s3.v1.Attachment/Create"
-	Attachment_SetUploadedAt_FullMethodName = "/palm.s3.v1.Attachment/SetUploadedAt"
-)
-
-// AttachmentClient is the client API for Attachment service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AttachmentClient interface {
-	Disable(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Index(ctx context.Context, in *v2.Pager, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
-	SetTitle(ctx context.Context, in *AttachmentSetTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ById(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse_Item, error)
-	ByUser(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
-	Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ByResource(ctx context.Context, in *v2.ResourceRequest, opts ...grpc.CallOption) (*AttachmentListResponse, error)
-	Create(ctx context.Context, in *AttachmentCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	SetUploadedAt(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-}
-
-type attachmentClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewAttachmentClient(cc grpc.ClientConnInterface) AttachmentClient {
-	return &attachmentClient{cc}
-}
-
-func (c *attachmentClient) Disable(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Attachment_Disable_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) Index(ctx context.Context, in *v2.Pager, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AttachmentIndexResponse)
-	err := c.cc.Invoke(ctx, Attachment_Index_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) SetTitle(ctx context.Context, in *AttachmentSetTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Attachment_SetTitle_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) ById(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse_Item, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AttachmentIndexResponse_Item)
-	err := c.cc.Invoke(ctx, Attachment_ById_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) ByUser(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AttachmentIndexResponse)
-	err := c.cc.Invoke(ctx, Attachment_ByUser_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Attachment_Clear_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) ByResource(ctx context.Context, in *v2.ResourceRequest, opts ...grpc.CallOption) (*AttachmentListResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AttachmentListResponse)
-	err := c.cc.Invoke(ctx, Attachment_ByResource_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) Create(ctx context.Context, in *AttachmentCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Attachment_Create_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *attachmentClient) SetUploadedAt(ctx context.Context, in *v2.IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Attachment_SetUploadedAt_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// AttachmentServer is the server API for Attachment service.
-// All implementations must embed UnimplementedAttachmentServer
-// for forward compatibility
-type AttachmentServer interface {
-	Disable(context.Context, *v2.IdRequest) (*emptypb.Empty, error)
-	Index(context.Context, *v2.Pager) (*AttachmentIndexResponse, error)
-	SetTitle(context.Context, *AttachmentSetTitleRequest) (*emptypb.Empty, error)
-	ById(context.Context, *v2.IdRequest) (*AttachmentIndexResponse_Item, error)
-	ByUser(context.Context, *v2.IdRequest) (*AttachmentIndexResponse, error)
-	Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	ByResource(context.Context, *v2.ResourceRequest) (*AttachmentListResponse, error)
-	Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error)
-	SetUploadedAt(context.Context, *v2.IdRequest) (*emptypb.Empty, error)
-	mustEmbedUnimplementedAttachmentServer()
-}
-
-// UnimplementedAttachmentServer must be embedded to have forward compatible implementations.
-type UnimplementedAttachmentServer struct {
-}
-
-func (UnimplementedAttachmentServer) Disable(context.Context, *v2.IdRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
-}
-func (UnimplementedAttachmentServer) Index(context.Context, *v2.Pager) (*AttachmentIndexResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
-}
-func (UnimplementedAttachmentServer) SetTitle(context.Context, *AttachmentSetTitleRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetTitle not implemented")
-}
-func (UnimplementedAttachmentServer) ById(context.Context, *v2.IdRequest) (*AttachmentIndexResponse_Item, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
-}
-func (UnimplementedAttachmentServer) ByUser(context.Context, *v2.IdRequest) (*AttachmentIndexResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ByUser not implemented")
-}
-func (UnimplementedAttachmentServer) Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Clear not implemented")
-}
-func (UnimplementedAttachmentServer) ByResource(context.Context, *v2.ResourceRequest) (*AttachmentListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ByResource not implemented")
-}
-func (UnimplementedAttachmentServer) Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedAttachmentServer) SetUploadedAt(context.Context, *v2.IdRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetUploadedAt not implemented")
-}
-func (UnimplementedAttachmentServer) mustEmbedUnimplementedAttachmentServer() {}
-
-// UnsafeAttachmentServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AttachmentServer will
-// result in compilation errors.
-type UnsafeAttachmentServer interface {
-	mustEmbedUnimplementedAttachmentServer()
-}
-
-func RegisterAttachmentServer(s grpc.ServiceRegistrar, srv AttachmentServer) {
-	s.RegisterService(&Attachment_ServiceDesc, srv)
-}
-
-func _Attachment_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v2.IdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).Disable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_Disable_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).Disable(ctx, req.(*v2.IdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v2.Pager)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).Index(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_Index_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).Index(ctx, req.(*v2.Pager))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_SetTitle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AttachmentSetTitleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).SetTitle(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_SetTitle_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).SetTitle(ctx, req.(*AttachmentSetTitleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v2.IdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).ById(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_ById_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).ById(ctx, req.(*v2.IdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_ByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v2.IdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).ByUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_ByUser_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).ByUser(ctx, req.(*v2.IdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_Clear_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).Clear(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_Clear_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).Clear(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_ByResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v2.ResourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).ByResource(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_ByResource_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).ByResource(ctx, req.(*v2.ResourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AttachmentCreateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_Create_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).Create(ctx, req.(*AttachmentCreateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Attachment_SetUploadedAt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v2.IdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AttachmentServer).SetUploadedAt(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Attachment_SetUploadedAt_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).SetUploadedAt(ctx, req.(*v2.IdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Attachment_ServiceDesc is the grpc.ServiceDesc for Attachment service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var Attachment_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "palm.s3.v1.Attachment",
-	HandlerType: (*AttachmentServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Disable",
-			Handler:    _Attachment_Disable_Handler,
+			MethodName: "ObjectPresignedUrl",
+			Handler:    _S3_ObjectPresignedUrl_Handler,
 		},
 		{
-			MethodName: "Index",
-			Handler:    _Attachment_Index_Handler,
-		},
-		{
-			MethodName: "SetTitle",
-			Handler:    _Attachment_SetTitle_Handler,
-		},
-		{
-			MethodName: "ById",
-			Handler:    _Attachment_ById_Handler,
-		},
-		{
-			MethodName: "ByUser",
-			Handler:    _Attachment_ByUser_Handler,
-		},
-		{
-			MethodName: "Clear",
-			Handler:    _Attachment_Clear_Handler,
-		},
-		{
-			MethodName: "ByResource",
-			Handler:    _Attachment_ByResource_Handler,
-		},
-		{
-			MethodName: "Create",
-			Handler:    _Attachment_Create_Handler,
-		},
-		{
-			MethodName: "SetUploadedAt",
-			Handler:    _Attachment_SetUploadedAt_Handler,
+			MethodName: "RemoveObject",
+			Handler:    _S3_RemoveObject_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

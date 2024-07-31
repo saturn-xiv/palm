@@ -4,17 +4,15 @@ option java_package = "com.github.saturn_xiv.palm.plugins.s3.v1";
 option go_package = "github.com/saturn-xiv/palm/atropa/s3/services/v2";
 package palm.s3.v1;
 
-import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
-import "google/protobuf/timestamp.proto";
-
-import "balsam.proto";
+import "google/protobuf/empty.proto";
 
 service S3 {
   rpc CreateBucket(CreateBucketRequest) returns (CreateBucketResponse) {}
-  rpc Upload(UploadRequest) returns (UploadResponse) {}
-  rpc PermanentUrl(PermanentUrlRequest) returns (UrlResponse) {}
-  rpc PresignedUrl(PresignedUrlRequest) returns (UrlResponse) {}
+  rpc UploadObject(UploadObjectRequest) returns (UploadObjectResponse) {}
+  rpc ObjectPermanentUrl(ObjectPermanentUrlRequest) returns (UrlResponse) {}
+  rpc ObjectPresignedUrl(ObjectPresignedUrlRequest) returns (UrlResponse) {}
+  rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
 }
 
 message Bucket {
@@ -30,79 +28,32 @@ message CreateBucketRequest {
 message CreateBucketResponse {
   string name = 1;
 }
-message UploadRequest {
+message UploadObjectRequest {
   string bucket = 1;
   string title = 2;
   google.protobuf.Duration ttl = 9;
 }
-message UploadResponse {
+message UploadObjectResponse {
   string object = 1;
   string url = 9;
 }
 message UrlResponse {
   string url = 1;
 }
-message PresignedUrlRequest {
+message ObjectPresignedUrlRequest {
   string bucket = 1;
   string object = 2;
   string title = 3;
   optional string content_type = 4;
   google.protobuf.Duration ttl = 9;
 }
-message PermanentUrlRequest {
+message ObjectPermanentUrlRequest {
   string bucket = 1;
   string object = 2;
   string title = 3;
   optional string content_type = 4;
 }
-
-// ----------------------------------------------------------------------------
-
-service Attachment {
-  rpc Disable(palm.balsam.v1.IdRequest) returns (google.protobuf.Empty) {}
-  rpc Index(palm.balsam.v1.Pager) returns (AttachmentIndexResponse) {}
-  rpc SetTitle(AttachmentSetTitleRequest) returns (google.protobuf.Empty) {}
-  rpc ById(palm.balsam.v1.IdRequest) returns (AttachmentIndexResponse.Item) {}
-  rpc ByUser(palm.balsam.v1.IdRequest) returns (AttachmentIndexResponse) {}
-  rpc Clear(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-  rpc ByResource(palm.balsam.v1.ResourceRequest)
-      returns (AttachmentListResponse) {}
-
-  rpc Create(AttachmentCreateRequest) returns (google.protobuf.Empty) {}
-  rpc SetUploadedAt(palm.balsam.v1.IdRequest) returns (google.protobuf.Empty) {}
-}
-message AttachmentCreateRequest {
-  uint64 user = 1;
-  string bucket = 2;
-  string object = 3;
-  string title = 4;
-  uint64 size = 5;
-  string content_type = 6;
-  bool public = 9;
-}
-message AttachmentSetTitleRequest {
-  uint64 id = 1;
-  string title = 2;
-}
-message AttachmentShowResponse {
-  string url = 1;
-}
-message AttachmentListResponse {
-  repeated AttachmentIndexResponse.Item items = 1;
-}
-message AttachmentIndexResponse {
-  message Item {
-    uint64 user = 1;
-    string bucket = 2;
-    string object = 3;
-    string title = 4;
-    uint64 size = 5;
-    string content_type = 6;
-    bool public = 7;
-    optional google.protobuf.Timestamp published_at = 8;
-    optional google.protobuf.Timestamp deleted_at = 9;
-    google.protobuf.Timestamp updated_at = 10;
-  }
-  repeated Item items = 1;
-  palm.balsam.v1.Pagination pagination = 2;
+message RemoveObjectRequest {
+  string bucket = 1;
+  string object = 2;
 }

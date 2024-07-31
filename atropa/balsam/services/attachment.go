@@ -3,7 +3,7 @@ package services
 import (
 	"gorm.io/gorm"
 
-	pb "github.com/saturn-xiv/palm/atropa/s3/services/v2"
+	pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
 )
 
 func NewAttachmentService(db *gorm.DB) *AttachmentService {

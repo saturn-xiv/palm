@@ -16,7 +16,6 @@ type Node struct {
 	AccessKey string `toml:"access-key"`
 	SecretKey string `toml:"secret-key"`
 	Secure    bool   `toml:"secure"`
-	Readonly  bool   `toml:"readonly"`
 	Weight    uint8  `toml:"weight"`
 }
 
@@ -25,7 +24,7 @@ type Config struct {
 	Nodes     []Node `toml:"nodes"`
 }
 
-func (p *Node) open() (*Client, error) {
+func (p *Node) open() (*minio_.Client, error) {
 	slog.Info(fmt.Sprintf("open minio %s", p.Endpoint))
 	client, err := minio_.New(p.Endpoint, &minio_.Options{
 		Creds:  credentials.NewStaticV4(p.AccessKey, p.SecretKey, ""),
@@ -46,25 +45,23 @@ func (p *Node) open() (*Client, error) {
 		slog.Debug(fmt.Sprintf("found buckets: %s", strings.Join(names, ",")))
 
 	}
-	return &Client{client: client, Readonly: p.Readonly}, nil
+	return client, nil
 }
 
 func (p *Config) Open() (*Cluster, error) {
-	var clients []*Client
-	var choices []weightedrand.Choice[*Client, uint8]
+	var clients []*minio_.Client
+	var choices []weightedrand.Choice[*minio_.Client, uint8]
 	for _, it := range p.Nodes {
 		cli, err := it.open()
 		if err != nil {
 			return nil, err
 		}
-		if !it.Readonly {
-			choices = append(choices, weightedrand.NewChoice(cli, it.Weight))
-		}
+		choices = append(choices, weightedrand.NewChoice(cli, it.Weight))
 		clients = append(clients, cli)
 	}
 	chooser, err := weightedrand.NewChooser(choices...)
 	if err != nil {
 		return nil, err
 	}
-	return &Cluster{Namespace: p.Namespace, Chooser: chooser, Clients: clients}, nil
+	return &Cluster{namespace: p.Namespace, chooser: chooser, clients: clients}, nil
 }

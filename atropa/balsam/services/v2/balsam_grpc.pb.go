@@ -2626,6 +2626,401 @@ var Locale_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Attachment_Disable_FullMethodName       = "/palm.balsam.v1.Attachment/Disable"
+	Attachment_Index_FullMethodName         = "/palm.balsam.v1.Attachment/Index"
+	Attachment_SetTitle_FullMethodName      = "/palm.balsam.v1.Attachment/SetTitle"
+	Attachment_ById_FullMethodName          = "/palm.balsam.v1.Attachment/ById"
+	Attachment_ByUser_FullMethodName        = "/palm.balsam.v1.Attachment/ByUser"
+	Attachment_Clear_FullMethodName         = "/palm.balsam.v1.Attachment/Clear"
+	Attachment_ByResource_FullMethodName    = "/palm.balsam.v1.Attachment/ByResource"
+	Attachment_Create_FullMethodName        = "/palm.balsam.v1.Attachment/Create"
+	Attachment_SetUploadedAt_FullMethodName = "/palm.balsam.v1.Attachment/SetUploadedAt"
+)
+
+// AttachmentClient is the client API for Attachment service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type AttachmentClient interface {
+	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
+	SetTitle(ctx context.Context, in *AttachmentSetTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse_Item, error)
+	ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
+	Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ByResource(ctx context.Context, in *ResourceRequest, opts ...grpc.CallOption) (*AttachmentListResponse, error)
+	Create(ctx context.Context, in *AttachmentCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetUploadedAt(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type attachmentClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewAttachmentClient(cc grpc.ClientConnInterface) AttachmentClient {
+	return &attachmentClient{cc}
+}
+
+func (c *attachmentClient) Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Disable_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse)
+	err := c.cc.Invoke(ctx, Attachment_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) SetTitle(ctx context.Context, in *AttachmentSetTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_SetTitle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse_Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse_Item)
+	err := c.cc.Invoke(ctx, Attachment_ById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentIndexResponse)
+	err := c.cc.Invoke(ctx, Attachment_ByUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Clear_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) ByResource(ctx context.Context, in *ResourceRequest, opts ...grpc.CallOption) (*AttachmentListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AttachmentListResponse)
+	err := c.cc.Invoke(ctx, Attachment_ByResource_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Create(ctx context.Context, in *AttachmentCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) SetUploadedAt(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_SetUploadedAt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AttachmentServer is the server API for Attachment service.
+// All implementations must embed UnimplementedAttachmentServer
+// for forward compatibility
+type AttachmentServer interface {
+	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Index(context.Context, *Pager) (*AttachmentIndexResponse, error)
+	SetTitle(context.Context, *AttachmentSetTitleRequest) (*emptypb.Empty, error)
+	ById(context.Context, *IdRequest) (*AttachmentIndexResponse_Item, error)
+	ByUser(context.Context, *IdRequest) (*AttachmentIndexResponse, error)
+	Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	ByResource(context.Context, *ResourceRequest) (*AttachmentListResponse, error)
+	Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error)
+	SetUploadedAt(context.Context, *IdRequest) (*emptypb.Empty, error)
+	mustEmbedUnimplementedAttachmentServer()
+}
+
+// UnimplementedAttachmentServer must be embedded to have forward compatible implementations.
+type UnimplementedAttachmentServer struct {
+}
+
+func (UnimplementedAttachmentServer) Disable(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Disable not implemented")
+}
+func (UnimplementedAttachmentServer) Index(context.Context, *Pager) (*AttachmentIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedAttachmentServer) SetTitle(context.Context, *AttachmentSetTitleRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetTitle not implemented")
+}
+func (UnimplementedAttachmentServer) ById(context.Context, *IdRequest) (*AttachmentIndexResponse_Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
+}
+func (UnimplementedAttachmentServer) ByUser(context.Context, *IdRequest) (*AttachmentIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByUser not implemented")
+}
+func (UnimplementedAttachmentServer) Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Clear not implemented")
+}
+func (UnimplementedAttachmentServer) ByResource(context.Context, *ResourceRequest) (*AttachmentListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ByResource not implemented")
+}
+func (UnimplementedAttachmentServer) Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedAttachmentServer) SetUploadedAt(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetUploadedAt not implemented")
+}
+func (UnimplementedAttachmentServer) mustEmbedUnimplementedAttachmentServer() {}
+
+// UnsafeAttachmentServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AttachmentServer will
+// result in compilation errors.
+type UnsafeAttachmentServer interface {
+	mustEmbedUnimplementedAttachmentServer()
+}
+
+func RegisterAttachmentServer(s grpc.ServiceRegistrar, srv AttachmentServer) {
+	s.RegisterService(&Attachment_ServiceDesc, srv)
+}
+
+func _Attachment_Disable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Disable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Disable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Disable(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pager)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Index(ctx, req.(*Pager))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_SetTitle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentSetTitleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).SetTitle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_SetTitle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).SetTitle(ctx, req.(*AttachmentSetTitleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_ById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).ById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_ById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).ById(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_ByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).ByUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_ByUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).ByUser(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Clear_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Clear(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Clear_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Clear(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_ByResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).ByResource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_ByResource_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).ByResource(ctx, req.(*ResourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Create(ctx, req.(*AttachmentCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_SetUploadedAt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).SetUploadedAt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_SetUploadedAt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).SetUploadedAt(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Attachment_ServiceDesc is the grpc.ServiceDesc for Attachment service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Attachment_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.balsam.v1.Attachment",
+	HandlerType: (*AttachmentServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Disable",
+			Handler:    _Attachment_Disable_Handler,
+		},
+		{
+			MethodName: "Index",
+			Handler:    _Attachment_Index_Handler,
+		},
+		{
+			MethodName: "SetTitle",
+			Handler:    _Attachment_SetTitle_Handler,
+		},
+		{
+			MethodName: "ById",
+			Handler:    _Attachment_ById_Handler,
+		},
+		{
+			MethodName: "ByUser",
+			Handler:    _Attachment_ByUser_Handler,
+		},
+		{
+			MethodName: "Clear",
+			Handler:    _Attachment_Clear_Handler,
+		},
+		{
+			MethodName: "ByResource",
+			Handler:    _Attachment_ByResource_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _Attachment_Create_Handler,
+		},
+		{
+			MethodName: "SetUploadedAt",
+			Handler:    _Attachment_SetUploadedAt_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "balsam.proto",
+}
+
+const (
 	LeaveWord_Create_FullMethodName  = "/palm.balsam.v1.LeaveWord/Create"
 	LeaveWord_Index_FullMethodName   = "/palm.balsam.v1.LeaveWord/Index"
 	LeaveWord_Publish_FullMethodName = "/palm.balsam.v1.LeaveWord/Publish"

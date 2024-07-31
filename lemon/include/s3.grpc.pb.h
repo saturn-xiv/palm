@@ -44,38 +44,47 @@ class S3 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>> PrepareAsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>>(PrepareAsyncCreateBucketRaw(context, request, cq));
     }
-    virtual ::grpc::Status Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::palm::s3::v1::UploadResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>> AsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>>(AsyncUploadRaw(context, request, cq));
+    virtual ::grpc::Status UploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::palm::s3::v1::UploadObjectResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadObjectResponse>> AsyncUploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadObjectResponse>>(AsyncUploadObjectRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>>(PrepareAsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadObjectResponse>> PrepareAsyncUploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadObjectResponse>>(PrepareAsyncUploadObjectRaw(context, request, cq));
     }
-    virtual ::grpc::Status PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::palm::s3::v1::UrlResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> AsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(AsyncPermanentUrlRaw(context, request, cq));
+    virtual ::grpc::Status ObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::palm::s3::v1::UrlResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> AsyncObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(AsyncObjectPermanentUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> PrepareAsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPermanentUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> PrepareAsyncObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(PrepareAsyncObjectPermanentUrlRaw(context, request, cq));
     }
-    virtual ::grpc::Status PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::palm::s3::v1::UrlResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> AsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(AsyncPresignedUrlRaw(context, request, cq));
+    virtual ::grpc::Status ObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::palm::s3::v1::UrlResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> AsyncObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(AsyncObjectPresignedUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> PrepareAsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPresignedUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>> PrepareAsyncObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>>(PrepareAsyncObjectPresignedUrlRaw(context, request, cq));
+    }
+    virtual ::grpc::Status RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncRemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncRemoveObjectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncRemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncRemoveObjectRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void UploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest* request, ::palm::s3::v1::UploadObjectResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest* request, ::palm::s3::v1::UploadObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -83,12 +92,14 @@ class S3 final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>* AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::CreateBucketResponse>* PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadObjectResponse>* AsyncUploadObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UploadObjectResponse>* PrepareAsyncUploadObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* AsyncObjectPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* PrepareAsyncObjectPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* AsyncObjectPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::UrlResponse>* PrepareAsyncObjectPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncRemoveObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncRemoveObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -100,38 +111,47 @@ class S3 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>> PrepareAsyncCreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>>(PrepareAsyncCreateBucketRaw(context, request, cq));
     }
-    ::grpc::Status Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::palm::s3::v1::UploadResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>> AsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>>(AsyncUploadRaw(context, request, cq));
+    ::grpc::Status UploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::palm::s3::v1::UploadObjectResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadObjectResponse>> AsyncUploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadObjectResponse>>(AsyncUploadObjectRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>>(PrepareAsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadObjectResponse>> PrepareAsyncUploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadObjectResponse>>(PrepareAsyncUploadObjectRaw(context, request, cq));
     }
-    ::grpc::Status PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::palm::s3::v1::UrlResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> AsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(AsyncPermanentUrlRaw(context, request, cq));
+    ::grpc::Status ObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::palm::s3::v1::UrlResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> AsyncObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(AsyncObjectPermanentUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> PrepareAsyncPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPermanentUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> PrepareAsyncObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(PrepareAsyncObjectPermanentUrlRaw(context, request, cq));
     }
-    ::grpc::Status PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::palm::s3::v1::UrlResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> AsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(AsyncPresignedUrlRaw(context, request, cq));
+    ::grpc::Status ObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::palm::s3::v1::UrlResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> AsyncObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(AsyncObjectPresignedUrlRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> PrepareAsyncPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(PrepareAsyncPresignedUrlRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>> PrepareAsyncObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>>(PrepareAsyncObjectPresignedUrlRaw(context, request, cq));
+    }
+    ::grpc::Status RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncRemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncRemoveObjectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncRemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncRemoveObjectRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
       void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, std::function<void(::grpc::Status)>) override;
       void CreateBucket(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, std::function<void(::grpc::Status)>) override;
-      void Upload(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) override;
-      void PermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) override;
-      void PresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest* request, ::palm::s3::v1::UploadObjectResponse* response, std::function<void(::grpc::Status)>) override;
+      void UploadObject(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest* request, ::palm::s3::v1::UploadObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) override;
+      void ObjectPermanentUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, std::function<void(::grpc::Status)>) override;
+      void ObjectPresignedUrl(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void RemoveObject(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -145,16 +165,19 @@ class S3 final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>* AsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::CreateBucketResponse>* PrepareAsyncCreateBucketRaw(::grpc::ClientContext* context, const ::palm::s3::v1::CreateBucketRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>* AsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadResponse>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* AsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* PrepareAsyncPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* AsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* PrepareAsyncPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadObjectResponse>* AsyncUploadObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UploadObjectResponse>* PrepareAsyncUploadObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::UploadObjectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* AsyncObjectPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* PrepareAsyncObjectPermanentUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* AsyncObjectPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::UrlResponse>* PrepareAsyncObjectPresignedUrlRaw(::grpc::ClientContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncRemoveObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncRemoveObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::RemoveObjectRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_CreateBucket_;
-    const ::grpc::internal::RpcMethod rpcmethod_Upload_;
-    const ::grpc::internal::RpcMethod rpcmethod_PermanentUrl_;
-    const ::grpc::internal::RpcMethod rpcmethod_PresignedUrl_;
+    const ::grpc::internal::RpcMethod rpcmethod_UploadObject_;
+    const ::grpc::internal::RpcMethod rpcmethod_ObjectPermanentUrl_;
+    const ::grpc::internal::RpcMethod rpcmethod_ObjectPresignedUrl_;
+    const ::grpc::internal::RpcMethod rpcmethod_RemoveObject_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -163,9 +186,10 @@ class S3 final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status CreateBucket(::grpc::ServerContext* context, const ::palm::s3::v1::CreateBucketRequest* request, ::palm::s3::v1::CreateBucketResponse* response);
-    virtual ::grpc::Status Upload(::grpc::ServerContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response);
-    virtual ::grpc::Status PermanentUrl(::grpc::ServerContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response);
-    virtual ::grpc::Status PresignedUrl(::grpc::ServerContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response);
+    virtual ::grpc::Status UploadObject(::grpc::ServerContext* context, const ::palm::s3::v1::UploadObjectRequest* request, ::palm::s3::v1::UploadObjectResponse* response);
+    virtual ::grpc::Status ObjectPermanentUrl(::grpc::ServerContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response);
+    virtual ::grpc::Status ObjectPresignedUrl(::grpc::ServerContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response);
+    virtual ::grpc::Status RemoveObject(::grpc::ServerContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_CreateBucket : public BaseClass {
@@ -188,66 +212,86 @@ class S3 final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_Upload : public BaseClass {
+  class WithAsyncMethod_UploadObject : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Upload() {
+    WithAsyncMethod_UploadObject() {
       ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithAsyncMethod_Upload() override {
+    ~WithAsyncMethod_UploadObject() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
+    ::grpc::Status UploadObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadObjectRequest* /*request*/, ::palm::s3::v1::UploadObjectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpload(::grpc::ServerContext* context, ::palm::s3::v1::UploadRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UploadResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUploadObject(::grpc::ServerContext* context, ::palm::s3::v1::UploadObjectRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UploadObjectResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_PermanentUrl : public BaseClass {
+  class WithAsyncMethod_ObjectPermanentUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_PermanentUrl() {
+    WithAsyncMethod_ObjectPermanentUrl() {
       ::grpc::Service::MarkMethodAsync(2);
     }
-    ~WithAsyncMethod_PermanentUrl() override {
+    ~WithAsyncMethod_ObjectPermanentUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPermanentUrl(::grpc::ServerContext* context, ::palm::s3::v1::PermanentUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestObjectPermanentUrl(::grpc::ServerContext* context, ::palm::s3::v1::ObjectPermanentUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_PresignedUrl : public BaseClass {
+  class WithAsyncMethod_ObjectPresignedUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_PresignedUrl() {
+    WithAsyncMethod_ObjectPresignedUrl() {
       ::grpc::Service::MarkMethodAsync(3);
     }
-    ~WithAsyncMethod_PresignedUrl() override {
+    ~WithAsyncMethod_ObjectPresignedUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPresignedUrl(::grpc::ServerContext* context, ::palm::s3::v1::PresignedUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestObjectPresignedUrl(::grpc::ServerContext* context, ::palm::s3::v1::ObjectPresignedUrlRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::UrlResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_CreateBucket<WithAsyncMethod_Upload<WithAsyncMethod_PermanentUrl<WithAsyncMethod_PresignedUrl<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_RemoveObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_RemoveObject() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_RemoveObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::RemoveObjectRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRemoveObject(::grpc::ServerContext* context, ::palm::s3::v1::RemoveObjectRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_CreateBucket<WithAsyncMethod_UploadObject<WithAsyncMethod_ObjectPermanentUrl<WithAsyncMethod_ObjectPresignedUrl<WithAsyncMethod_RemoveObject<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_CreateBucket : public BaseClass {
    private:
@@ -276,87 +320,114 @@ class S3 final {
       ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::CreateBucketRequest* /*request*/, ::palm::s3::v1::CreateBucketResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_Upload : public BaseClass {
+  class WithCallbackMethod_UploadObject : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Upload() {
+    WithCallbackMethod_UploadObject() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::UploadObjectRequest, ::palm::s3::v1::UploadObjectResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::UploadRequest* request, ::palm::s3::v1::UploadResponse* response) { return this->Upload(context, request, response); }));}
-    void SetMessageAllocatorFor_Upload(
-        ::grpc::MessageAllocator< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::UploadObjectRequest* request, ::palm::s3::v1::UploadObjectResponse* response) { return this->UploadObject(context, request, response); }));}
+    void SetMessageAllocatorFor_UploadObject(
+        ::grpc::MessageAllocator< ::palm::s3::v1::UploadObjectRequest, ::palm::s3::v1::UploadObjectResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::UploadObjectRequest, ::palm::s3::v1::UploadObjectResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Upload() override {
+    ~WithCallbackMethod_UploadObject() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
+    ::grpc::Status UploadObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadObjectRequest* /*request*/, ::palm::s3::v1::UploadObjectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Upload(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* UploadObject(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::UploadObjectRequest* /*request*/, ::palm::s3::v1::UploadObjectResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_PermanentUrl : public BaseClass {
+  class WithCallbackMethod_ObjectPermanentUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_PermanentUrl() {
+    WithCallbackMethod_ObjectPermanentUrl() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::ObjectPermanentUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::PermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response) { return this->PermanentUrl(context, request, response); }));}
-    void SetMessageAllocatorFor_PermanentUrl(
-        ::grpc::MessageAllocator< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::ObjectPermanentUrlRequest* request, ::palm::s3::v1::UrlResponse* response) { return this->ObjectPermanentUrl(context, request, response); }));}
+    void SetMessageAllocatorFor_ObjectPermanentUrl(
+        ::grpc::MessageAllocator< ::palm::s3::v1::ObjectPermanentUrlRequest, ::palm::s3::v1::UrlResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::ObjectPermanentUrlRequest, ::palm::s3::v1::UrlResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_PermanentUrl() override {
+    ~WithCallbackMethod_ObjectPermanentUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* PermanentUrl(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* ObjectPermanentUrl(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::ObjectPermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_PresignedUrl : public BaseClass {
+  class WithCallbackMethod_ObjectPresignedUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_PresignedUrl() {
+    WithCallbackMethod_ObjectPresignedUrl() {
       ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::ObjectPresignedUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::PresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response) { return this->PresignedUrl(context, request, response); }));}
-    void SetMessageAllocatorFor_PresignedUrl(
-        ::grpc::MessageAllocator< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::ObjectPresignedUrlRequest* request, ::palm::s3::v1::UrlResponse* response) { return this->ObjectPresignedUrl(context, request, response); }));}
+    void SetMessageAllocatorFor_ObjectPresignedUrl(
+        ::grpc::MessageAllocator< ::palm::s3::v1::ObjectPresignedUrlRequest, ::palm::s3::v1::UrlResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::ObjectPresignedUrlRequest, ::palm::s3::v1::UrlResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_PresignedUrl() override {
+    ~WithCallbackMethod_ObjectPresignedUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* PresignedUrl(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* ObjectPresignedUrl(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::ObjectPresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_CreateBucket<WithCallbackMethod_Upload<WithCallbackMethod_PermanentUrl<WithCallbackMethod_PresignedUrl<Service > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_RemoveObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_RemoveObject() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response) { return this->RemoveObject(context, request, response); }));}
+    void SetMessageAllocatorFor_RemoveObject(
+        ::grpc::MessageAllocator< ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_RemoveObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::RemoveObjectRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RemoveObject(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::RemoveObjectRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_CreateBucket<WithCallbackMethod_UploadObject<WithCallbackMethod_ObjectPermanentUrl<WithCallbackMethod_ObjectPresignedUrl<WithCallbackMethod_RemoveObject<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_CreateBucket : public BaseClass {
@@ -376,52 +447,69 @@ class S3 final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_Upload : public BaseClass {
+  class WithGenericMethod_UploadObject : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Upload() {
+    WithGenericMethod_UploadObject() {
       ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithGenericMethod_Upload() override {
+    ~WithGenericMethod_UploadObject() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
+    ::grpc::Status UploadObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadObjectRequest* /*request*/, ::palm::s3::v1::UploadObjectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_PermanentUrl : public BaseClass {
+  class WithGenericMethod_ObjectPermanentUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_PermanentUrl() {
+    WithGenericMethod_ObjectPermanentUrl() {
       ::grpc::Service::MarkMethodGeneric(2);
     }
-    ~WithGenericMethod_PermanentUrl() override {
+    ~WithGenericMethod_ObjectPermanentUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_PresignedUrl : public BaseClass {
+  class WithGenericMethod_ObjectPresignedUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_PresignedUrl() {
+    WithGenericMethod_ObjectPresignedUrl() {
       ::grpc::Service::MarkMethodGeneric(3);
     }
-    ~WithGenericMethod_PresignedUrl() override {
+    ~WithGenericMethod_ObjectPresignedUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_RemoveObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_RemoveObject() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_RemoveObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::RemoveObjectRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -447,63 +535,83 @@ class S3 final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Upload : public BaseClass {
+  class WithRawMethod_UploadObject : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_Upload() {
+    WithRawMethod_UploadObject() {
       ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawMethod_Upload() override {
+    ~WithRawMethod_UploadObject() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
+    ::grpc::Status UploadObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadObjectRequest* /*request*/, ::palm::s3::v1::UploadObjectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUploadObject(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_PermanentUrl : public BaseClass {
+  class WithRawMethod_ObjectPermanentUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_PermanentUrl() {
+    WithRawMethod_ObjectPermanentUrl() {
       ::grpc::Service::MarkMethodRaw(2);
     }
-    ~WithRawMethod_PermanentUrl() override {
+    ~WithRawMethod_ObjectPermanentUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPermanentUrl(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestObjectPermanentUrl(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_PresignedUrl : public BaseClass {
+  class WithRawMethod_ObjectPresignedUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_PresignedUrl() {
+    WithRawMethod_ObjectPresignedUrl() {
       ::grpc::Service::MarkMethodRaw(3);
     }
-    ~WithRawMethod_PresignedUrl() override {
+    ~WithRawMethod_ObjectPresignedUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPresignedUrl(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestObjectPresignedUrl(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_RemoveObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_RemoveObject() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_RemoveObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::RemoveObjectRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRemoveObject(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -529,69 +637,91 @@ class S3 final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Upload : public BaseClass {
+  class WithRawCallbackMethod_UploadObject : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Upload() {
+    WithRawCallbackMethod_UploadObject() {
       ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Upload(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UploadObject(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Upload() override {
+    ~WithRawCallbackMethod_UploadObject() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
+    ::grpc::Status UploadObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadObjectRequest* /*request*/, ::palm::s3::v1::UploadObjectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Upload(
+    virtual ::grpc::ServerUnaryReactor* UploadObject(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_PermanentUrl : public BaseClass {
+  class WithRawCallbackMethod_ObjectPermanentUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_PermanentUrl() {
+    WithRawCallbackMethod_ObjectPermanentUrl() {
       ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PermanentUrl(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ObjectPermanentUrl(context, request, response); }));
     }
-    ~WithRawCallbackMethod_PermanentUrl() override {
+    ~WithRawCallbackMethod_ObjectPermanentUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* PermanentUrl(
+    virtual ::grpc::ServerUnaryReactor* ObjectPermanentUrl(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_PresignedUrl : public BaseClass {
+  class WithRawCallbackMethod_ObjectPresignedUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_PresignedUrl() {
+    WithRawCallbackMethod_ObjectPresignedUrl() {
       ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PresignedUrl(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ObjectPresignedUrl(context, request, response); }));
     }
-    ~WithRawCallbackMethod_PresignedUrl() override {
+    ~WithRawCallbackMethod_ObjectPresignedUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* PresignedUrl(
+    virtual ::grpc::ServerUnaryReactor* ObjectPresignedUrl(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_RemoveObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_RemoveObject() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RemoveObject(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_RemoveObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RemoveObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::RemoveObjectRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* RemoveObject(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -622,1554 +752,116 @@ class S3 final {
     virtual ::grpc::Status StreamedCreateBucket(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::CreateBucketRequest,::palm::s3::v1::CreateBucketResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_Upload : public BaseClass {
+  class WithStreamedUnaryMethod_UploadObject : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_Upload() {
+    WithStreamedUnaryMethod_UploadObject() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>(
+          ::palm::s3::v1::UploadObjectRequest, ::palm::s3::v1::UploadObjectResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::UploadRequest, ::palm::s3::v1::UploadResponse>* streamer) {
-                       return this->StreamedUpload(context,
+                     ::palm::s3::v1::UploadObjectRequest, ::palm::s3::v1::UploadObjectResponse>* streamer) {
+                       return this->StreamedUploadObject(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_Upload() override {
+    ~WithStreamedUnaryMethod_UploadObject() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadRequest* /*request*/, ::palm::s3::v1::UploadResponse* /*response*/) override {
+    ::grpc::Status UploadObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::UploadObjectRequest* /*request*/, ::palm::s3::v1::UploadObjectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::UploadRequest,::palm::s3::v1::UploadResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUploadObject(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::UploadObjectRequest,::palm::s3::v1::UploadObjectResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_PermanentUrl : public BaseClass {
+  class WithStreamedUnaryMethod_ObjectPermanentUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_PermanentUrl() {
+    WithStreamedUnaryMethod_ObjectPermanentUrl() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>(
+          ::palm::s3::v1::ObjectPermanentUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::PermanentUrlRequest, ::palm::s3::v1::UrlResponse>* streamer) {
-                       return this->StreamedPermanentUrl(context,
+                     ::palm::s3::v1::ObjectPermanentUrlRequest, ::palm::s3::v1::UrlResponse>* streamer) {
+                       return this->StreamedObjectPermanentUrl(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_PermanentUrl() override {
+    ~WithStreamedUnaryMethod_ObjectPermanentUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status PermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPermanentUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPermanentUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPermanentUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::PermanentUrlRequest,::palm::s3::v1::UrlResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedObjectPermanentUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::ObjectPermanentUrlRequest,::palm::s3::v1::UrlResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_PresignedUrl : public BaseClass {
+  class WithStreamedUnaryMethod_ObjectPresignedUrl : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_PresignedUrl() {
+    WithStreamedUnaryMethod_ObjectPresignedUrl() {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>(
+          ::palm::s3::v1::ObjectPresignedUrlRequest, ::palm::s3::v1::UrlResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::PresignedUrlRequest, ::palm::s3::v1::UrlResponse>* streamer) {
-                       return this->StreamedPresignedUrl(context,
+                     ::palm::s3::v1::ObjectPresignedUrlRequest, ::palm::s3::v1::UrlResponse>* streamer) {
+                       return this->StreamedObjectPresignedUrl(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_PresignedUrl() override {
+    ~WithStreamedUnaryMethod_ObjectPresignedUrl() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status PresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::PresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
+    ::grpc::Status ObjectPresignedUrl(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::ObjectPresignedUrlRequest* /*request*/, ::palm::s3::v1::UrlResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPresignedUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::PresignedUrlRequest,::palm::s3::v1::UrlResponse>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_CreateBucket<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_PermanentUrl<WithStreamedUnaryMethod_PresignedUrl<Service > > > > StreamedUnaryService;
-  typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_CreateBucket<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_PermanentUrl<WithStreamedUnaryMethod_PresignedUrl<Service > > > > StreamedService;
-};
-
-// ----------------------------------------------------------------------------
-//
-class Attachment final {
- public:
-  static constexpr char const* service_full_name() {
-    return "palm.s3.v1.Attachment";
-  }
-  class StubInterface {
-   public:
-    virtual ~StubInterface() {}
-    virtual ::grpc::Status Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDisable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDisableRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncDisable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncDisableRaw(context, request, cq));
-    }
-    virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::s3::v1::AttachmentIndexResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>>(AsyncIndexRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>>(PrepareAsyncIndexRaw(context, request, cq));
-    }
-    virtual ::grpc::Status SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetTitleRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetTitleRaw(context, request, cq));
-    }
-    virtual ::grpc::Status ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::s3::v1::AttachmentIndexResponse_Item* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse_Item>> AsyncById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse_Item>>(AsyncByIdRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse_Item>> PrepareAsyncById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse_Item>>(PrepareAsyncByIdRaw(context, request, cq));
-    }
-    virtual ::grpc::Status ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::s3::v1::AttachmentIndexResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>> AsyncByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>>(AsyncByUserRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>> PrepareAsyncByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>>(PrepareAsyncByUserRaw(context, request, cq));
-    }
-    virtual ::grpc::Status Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncClear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncClearRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncClear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncClearRaw(context, request, cq));
-    }
-    virtual ::grpc::Status ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::palm::s3::v1::AttachmentListResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentListResponse>> AsyncByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentListResponse>>(AsyncByResourceRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentListResponse>> PrepareAsyncByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentListResponse>>(PrepareAsyncByResourceRaw(context, request, cq));
-    }
-    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
-    }
-    virtual ::grpc::Status SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSetUploadedAtRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSetUploadedAtRaw(context, request, cq));
-    }
-    class async_interface {
-     public:
-      virtual ~async_interface() {}
-      virtual void Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-    };
-    typedef class async_interface experimental_async_interface;
-    virtual class async_interface* async() { return nullptr; }
-    class async_interface* experimental_async() { return async(); }
-   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse_Item>* AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse_Item>* PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>* AsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentIndexResponse>* PrepareAsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentListResponse>* AsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::AttachmentListResponse>* PrepareAsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-  };
-  class Stub final : public StubInterface {
-   public:
-    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDisable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDisableRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncDisable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncDisableRaw(context, request, cq));
-    }
-    ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::s3::v1::AttachmentIndexResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>> AsyncIndex(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>>(AsyncIndexRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>> PrepareAsyncIndex(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>>(PrepareAsyncIndexRaw(context, request, cq));
-    }
-    ::grpc::Status SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetTitleRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetTitleRaw(context, request, cq));
-    }
-    ::grpc::Status ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::s3::v1::AttachmentIndexResponse_Item* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>> AsyncById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>>(AsyncByIdRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>> PrepareAsyncById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>>(PrepareAsyncByIdRaw(context, request, cq));
-    }
-    ::grpc::Status ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::palm::s3::v1::AttachmentIndexResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>> AsyncByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>>(AsyncByUserRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>> PrepareAsyncByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>>(PrepareAsyncByUserRaw(context, request, cq));
-    }
-    ::grpc::Status Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncClear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncClearRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncClear(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncClearRaw(context, request, cq));
-    }
-    ::grpc::Status ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::palm::s3::v1::AttachmentListResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>> AsyncByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>>(AsyncByResourceRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>> PrepareAsyncByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>>(PrepareAsyncByResourceRaw(context, request, cq));
-    }
-    ::grpc::Status Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncCreate(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncCreateRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncCreateRaw(context, request, cq));
-    }
-    ::grpc::Status SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSetUploadedAtRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSetUploadedAtRaw(context, request, cq));
-    }
-    class async final :
-      public StubInterface::async_interface {
-     public:
-      void Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)>) override;
-      void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void SetTitle(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response, std::function<void(::grpc::Status)>) override;
-      void ById(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response, std::function<void(::grpc::Status)>) override;
-      void ByUser(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Clear(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response, std::function<void(::grpc::Status)>) override;
-      void ByResource(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Create(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void SetUploadedAt(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-     private:
-      friend class Stub;
-      explicit async(Stub* stub): stub_(stub) { }
-      Stub* stub() { return stub_; }
-      Stub* stub_;
-    };
-    class async* async() override { return &async_stub_; }
-
-   private:
-    std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetTitleRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>* AsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse_Item>* PrepareAsyncByIdRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* AsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentIndexResponse>* PrepareAsyncByUserRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncClearRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>* AsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::AttachmentListResponse>* PrepareAsyncByResourceRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::ResourceRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncCreateRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::palm::s3::v1::AttachmentCreateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSetUploadedAtRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_Disable_;
-    const ::grpc::internal::RpcMethod rpcmethod_Index_;
-    const ::grpc::internal::RpcMethod rpcmethod_SetTitle_;
-    const ::grpc::internal::RpcMethod rpcmethod_ById_;
-    const ::grpc::internal::RpcMethod rpcmethod_ByUser_;
-    const ::grpc::internal::RpcMethod rpcmethod_Clear_;
-    const ::grpc::internal::RpcMethod rpcmethod_ByResource_;
-    const ::grpc::internal::RpcMethod rpcmethod_Create_;
-    const ::grpc::internal::RpcMethod rpcmethod_SetUploadedAt_;
-  };
-  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-
-  class Service : public ::grpc::Service {
-   public:
-    Service();
-    virtual ~Service();
-    virtual ::grpc::Status Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response);
-    virtual ::grpc::Status SetTitle(::grpc::ServerContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response);
-    virtual ::grpc::Status ByUser(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response);
-    virtual ::grpc::Status Clear(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status ByResource(::grpc::ServerContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response);
-    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status SetUploadedAt(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status StreamedObjectPresignedUrl(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::ObjectPresignedUrlRequest,::palm::s3::v1::UrlResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithAsyncMethod_Disable : public BaseClass {
+  class WithStreamedUnaryMethod_RemoveObject : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Disable() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_Disable() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Disable(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDisable(::grpc::ServerContext* context, ::palm::balsam::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Index : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Index() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_Index() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::Pager* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestIndex(::grpc::ServerContext* context, ::palm::balsam::v1::Pager* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::AttachmentIndexResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_SetTitle : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_SetTitle() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_SetTitle() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetTitle(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentSetTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetTitle(::grpc::ServerContext* context, ::palm::s3::v1::AttachmentSetTitleRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ById : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ById() {
-      ::grpc::Service::MarkMethodAsync(3);
-    }
-    ~WithAsyncMethod_ById() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ById(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse_Item* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestById(::grpc::ServerContext* context, ::palm::balsam::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::AttachmentIndexResponse_Item>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ByUser : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ByUser() {
-      ::grpc::Service::MarkMethodAsync(4);
-    }
-    ~WithAsyncMethod_ByUser() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByUser(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestByUser(::grpc::ServerContext* context, ::palm::balsam::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::AttachmentIndexResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Clear : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Clear() {
-      ::grpc::Service::MarkMethodAsync(5);
-    }
-    ~WithAsyncMethod_Clear() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Clear(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestClear(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ByResource : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ByResource() {
-      ::grpc::Service::MarkMethodAsync(6);
-    }
-    ~WithAsyncMethod_ByResource() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByResource(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::ResourceRequest* /*request*/, ::palm::s3::v1::AttachmentListResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestByResource(::grpc::ServerContext* context, ::palm::balsam::v1::ResourceRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::AttachmentListResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Create : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Create() {
-      ::grpc::Service::MarkMethodAsync(7);
-    }
-    ~WithAsyncMethod_Create() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestCreate(::grpc::ServerContext* context, ::palm::s3::v1::AttachmentCreateRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_SetUploadedAt : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_SetUploadedAt() {
-      ::grpc::Service::MarkMethodAsync(8);
-    }
-    ~WithAsyncMethod_SetUploadedAt() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetUploadedAt(::grpc::ServerContext* context, ::palm::balsam::v1::IdRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_Disable<WithAsyncMethod_Index<WithAsyncMethod_SetTitle<WithAsyncMethod_ById<WithAsyncMethod_ByUser<WithAsyncMethod_Clear<WithAsyncMethod_ByResource<WithAsyncMethod_Create<WithAsyncMethod_SetUploadedAt<Service > > > > > > > > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_Disable : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Disable() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->Disable(context, request, response); }));}
-    void SetMessageAllocatorFor_Disable(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Disable() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Disable(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Disable(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Index : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Index() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::s3::v1::AttachmentIndexResponse* response) { return this->Index(context, request, response); }));}
-    void SetMessageAllocatorFor_Index(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Index() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::Pager* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Index(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::Pager* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_SetTitle : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_SetTitle() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::AttachmentSetTitleRequest* request, ::google::protobuf::Empty* response) { return this->SetTitle(context, request, response); }));}
-    void SetMessageAllocatorFor_SetTitle(
-        ::grpc::MessageAllocator< ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_SetTitle() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetTitle(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentSetTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetTitle(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::AttachmentSetTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_ById : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_ById() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse_Item* response) { return this->ById(context, request, response); }));}
-    void SetMessageAllocatorFor_ById(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_ById() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ById(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse_Item* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ById(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse_Item* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_ByUser : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_ByUser() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::s3::v1::AttachmentIndexResponse* response) { return this->ByUser(context, request, response); }));}
-    void SetMessageAllocatorFor_ByUser(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_ByUser() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByUser(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ByUser(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Clear : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Clear() {
-      ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::google::protobuf::Empty>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) { return this->Clear(context, request, response); }));}
-    void SetMessageAllocatorFor_Clear(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::google::protobuf::Empty>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Clear() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Clear(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Clear(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_ByResource : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_ByResource() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::ResourceRequest* request, ::palm::s3::v1::AttachmentListResponse* response) { return this->ByResource(context, request, response); }));}
-    void SetMessageAllocatorFor_ByResource(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_ByResource() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByResource(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::ResourceRequest* /*request*/, ::palm::s3::v1::AttachmentListResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ByResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::ResourceRequest* /*request*/, ::palm::s3::v1::AttachmentListResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Create : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Create() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::AttachmentCreateRequest* request, ::google::protobuf::Empty* response) { return this->Create(context, request, response); }));}
-    void SetMessageAllocatorFor_Create(
-        ::grpc::MessageAllocator< ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Create() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Create(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::AttachmentCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_SetUploadedAt : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_SetUploadedAt() {
-      ::grpc::Service::MarkMethodCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response) { return this->SetUploadedAt(context, request, response); }));}
-    void SetMessageAllocatorFor_SetUploadedAt(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_SetUploadedAt() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetUploadedAt(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_Disable<WithCallbackMethod_Index<WithCallbackMethod_SetTitle<WithCallbackMethod_ById<WithCallbackMethod_ByUser<WithCallbackMethod_Clear<WithCallbackMethod_ByResource<WithCallbackMethod_Create<WithCallbackMethod_SetUploadedAt<Service > > > > > > > > > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_Disable : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Disable() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_Disable() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Disable(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Index : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Index() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_Index() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::Pager* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_SetTitle : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_SetTitle() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_SetTitle() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetTitle(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentSetTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_ById : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ById() {
-      ::grpc::Service::MarkMethodGeneric(3);
-    }
-    ~WithGenericMethod_ById() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ById(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse_Item* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_ByUser : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ByUser() {
-      ::grpc::Service::MarkMethodGeneric(4);
-    }
-    ~WithGenericMethod_ByUser() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByUser(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Clear : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Clear() {
-      ::grpc::Service::MarkMethodGeneric(5);
-    }
-    ~WithGenericMethod_Clear() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Clear(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_ByResource : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ByResource() {
-      ::grpc::Service::MarkMethodGeneric(6);
-    }
-    ~WithGenericMethod_ByResource() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByResource(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::ResourceRequest* /*request*/, ::palm::s3::v1::AttachmentListResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Create : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Create() {
-      ::grpc::Service::MarkMethodGeneric(7);
-    }
-    ~WithGenericMethod_Create() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_SetUploadedAt : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_SetUploadedAt() {
-      ::grpc::Service::MarkMethodGeneric(8);
-    }
-    ~WithGenericMethod_SetUploadedAt() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Disable : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Disable() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_Disable() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Disable(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDisable(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Index : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Index() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_Index() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::Pager* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestIndex(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_SetTitle : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_SetTitle() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_SetTitle() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetTitle(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentSetTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetTitle(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_ById : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ById() {
-      ::grpc::Service::MarkMethodRaw(3);
-    }
-    ~WithRawMethod_ById() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ById(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse_Item* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestById(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_ByUser : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ByUser() {
-      ::grpc::Service::MarkMethodRaw(4);
-    }
-    ~WithRawMethod_ByUser() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByUser(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestByUser(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Clear : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Clear() {
-      ::grpc::Service::MarkMethodRaw(5);
-    }
-    ~WithRawMethod_Clear() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Clear(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestClear(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_ByResource : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ByResource() {
-      ::grpc::Service::MarkMethodRaw(6);
-    }
-    ~WithRawMethod_ByResource() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByResource(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::ResourceRequest* /*request*/, ::palm::s3::v1::AttachmentListResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestByResource(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Create : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Create() {
-      ::grpc::Service::MarkMethodRaw(7);
-    }
-    ~WithRawMethod_Create() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestCreate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_SetUploadedAt : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_SetUploadedAt() {
-      ::grpc::Service::MarkMethodRaw(8);
-    }
-    ~WithRawMethod_SetUploadedAt() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetUploadedAt(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Disable : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Disable() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Disable(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Disable() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Disable(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Disable(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Index : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Index() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Index(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Index() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::Pager* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Index(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_SetTitle : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_SetTitle() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetTitle(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_SetTitle() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetTitle(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentSetTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetTitle(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_ById : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_ById() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ById(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_ById() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ById(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse_Item* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ById(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_ByUser : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_ByUser() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ByUser(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_ByUser() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByUser(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ByUser(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Clear : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Clear() {
-      ::grpc::Service::MarkMethodRawCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Clear(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Clear() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Clear(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Clear(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_ByResource : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_ByResource() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ByResource(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_ByResource() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ByResource(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::ResourceRequest* /*request*/, ::palm::s3::v1::AttachmentListResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ByResource(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Create : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Create() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Create(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Create() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Create(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_SetUploadedAt : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_SetUploadedAt() {
-      ::grpc::Service::MarkMethodRawCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetUploadedAt(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_SetUploadedAt() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetUploadedAt(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Disable : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Disable() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedDisable(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Disable() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Disable(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDisable(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Index : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Index() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::Pager, ::palm::s3::v1::AttachmentIndexResponse>* streamer) {
-                       return this->StreamedIndex(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Index() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Index(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::Pager* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedIndex(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::Pager,::palm::s3::v1::AttachmentIndexResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_SetTitle : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_SetTitle() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::AttachmentSetTitleRequest, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedSetTitle(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_SetTitle() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status SetTitle(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentSetTitleRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetTitle(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::AttachmentSetTitleRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_ById : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ById() {
-      ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse_Item>* streamer) {
-                       return this->StreamedById(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_ById() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status ById(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse_Item* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedById(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::IdRequest,::palm::s3::v1::AttachmentIndexResponse_Item>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_ByUser : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ByUser() {
+    WithStreamedUnaryMethod_RemoveObject() {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse>(
+          ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::IdRequest, ::palm::s3::v1::AttachmentIndexResponse>* streamer) {
-                       return this->StreamedByUser(context,
+                     ::palm::s3::v1::RemoveObjectRequest, ::google::protobuf::Empty>* streamer) {
+                       return this->StreamedRemoveObject(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_ByUser() override {
+    ~WithStreamedUnaryMethod_RemoveObject() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ByUser(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::palm::s3::v1::AttachmentIndexResponse* /*response*/) override {
+    ::grpc::Status RemoveObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::RemoveObjectRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedByUser(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::IdRequest,::palm::s3::v1::AttachmentIndexResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedRemoveObject(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::RemoveObjectRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Clear : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Clear() {
-      ::grpc::Service::MarkMethodStreamed(5,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::google::protobuf::Empty, ::google::protobuf::Empty>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::google::protobuf::Empty, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedClear(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Clear() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Clear(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedClear(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::google::protobuf::Empty>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_ByResource : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ByResource() {
-      ::grpc::Service::MarkMethodStreamed(6,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::ResourceRequest, ::palm::s3::v1::AttachmentListResponse>* streamer) {
-                       return this->StreamedByResource(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_ByResource() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status ByResource(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::ResourceRequest* /*request*/, ::palm::s3::v1::AttachmentListResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedByResource(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::ResourceRequest,::palm::s3::v1::AttachmentListResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Create : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Create() {
-      ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::s3::v1::AttachmentCreateRequest, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedCreate(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Create() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::AttachmentCreateRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::AttachmentCreateRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_SetUploadedAt : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_SetUploadedAt() {
-      ::grpc::Service::MarkMethodStreamed(8,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::IdRequest, ::google::protobuf::Empty>* streamer) {
-                       return this->StreamedSetUploadedAt(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_SetUploadedAt() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status SetUploadedAt(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::IdRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetUploadedAt(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::IdRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_Disable<WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_SetTitle<WithStreamedUnaryMethod_ById<WithStreamedUnaryMethod_ByUser<WithStreamedUnaryMethod_Clear<WithStreamedUnaryMethod_ByResource<WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_SetUploadedAt<Service > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_CreateBucket<WithStreamedUnaryMethod_UploadObject<WithStreamedUnaryMethod_ObjectPermanentUrl<WithStreamedUnaryMethod_ObjectPresignedUrl<WithStreamedUnaryMethod_RemoveObject<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Disable<WithStreamedUnaryMethod_Index<WithStreamedUnaryMethod_SetTitle<WithStreamedUnaryMethod_ById<WithStreamedUnaryMethod_ByUser<WithStreamedUnaryMethod_Clear<WithStreamedUnaryMethod_ByResource<WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_SetUploadedAt<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_CreateBucket<WithStreamedUnaryMethod_UploadObject<WithStreamedUnaryMethod_ObjectPermanentUrl<WithStreamedUnaryMethod_ObjectPresignedUrl<WithStreamedUnaryMethod_RemoveObject<Service > > > > > StreamedService;
 };
 
 }  // namespace v1

@@ -430,6 +430,57 @@ message LocaleByLangRequest {
 message LocaleByLangResponse {
   repeated LocaleIndexResponse.Item items = 1;
 }
+
+// ----------------------------------------------------------------------------
+
+service Attachment {
+  rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
+  rpc Index(Pager) returns (AttachmentIndexResponse) {}
+  rpc SetTitle(AttachmentSetTitleRequest) returns (google.protobuf.Empty) {}
+  rpc ById(IdRequest) returns (AttachmentIndexResponse.Item) {}
+  rpc ByUser(IdRequest) returns (AttachmentIndexResponse) {}
+  rpc Clear(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc ByResource(ResourceRequest) returns (AttachmentListResponse) {}
+
+  rpc Create(AttachmentCreateRequest) returns (google.protobuf.Empty) {}
+  rpc SetUploadedAt(IdRequest) returns (google.protobuf.Empty) {}
+}
+message AttachmentCreateRequest {
+  uint64 user = 1;
+  string bucket = 2;
+  string object = 3;
+  string title = 4;
+  uint64 size = 5;
+  string content_type = 6;
+  bool public = 9;
+}
+message AttachmentSetTitleRequest {
+  uint64 id = 1;
+  string title = 2;
+}
+message AttachmentShowResponse {
+  string url = 1;
+}
+message AttachmentListResponse {
+  repeated AttachmentIndexResponse.Item items = 1;
+}
+message AttachmentIndexResponse {
+  message Item {
+    uint64 user = 1;
+    string bucket = 2;
+    string object = 3;
+    string title = 4;
+    uint64 size = 5;
+    string content_type = 6;
+    bool public = 7;
+    optional google.protobuf.Timestamp published_at = 8;
+    optional google.protobuf.Timestamp deleted_at = 9;
+    google.protobuf.Timestamp updated_at = 10;
+  }
+  repeated Item items = 1;
+  Pagination pagination = 2;
+}
+
 // ----------------------------------------------------------------------------
 service LeaveWord {
   rpc Create(LeaveWordCreateRequest) returns (google.protobuf.Empty) {}

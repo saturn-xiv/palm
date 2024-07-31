@@ -123,9 +123,9 @@ func mount(server *grpc.Server,
 	balsam_pb.RegisterJwtServer(server, balsam_services.NewJwtService(jwt))
 	balsam_pb.RegisterLocaleServer(server, balsam_services.NewLocaleService(db))
 	balsam_pb.RegisterLeaveWordServer(server, balsam_services.NewLeaveWordService(db))
+	balsam_pb.RegisterAttachmentServer(server, balsam_services.NewAttachmentService(db))
 	rbac_pb.RegisterPolicyServer(server, rbac_services.NewPolicyService(enforcer))
 	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(s3))
-	s3_pb.RegisterAttachmentServer(server, s3_services.NewAttachmentService(db))
 	if google_oauth2 != nil {
 		service, err := google_services.NewOauth2Service(jwt, google_oauth2.ProjectID, google_oauth2.RedirectURL)
 		if err != nil {
