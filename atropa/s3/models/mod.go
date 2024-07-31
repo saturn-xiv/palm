@@ -21,6 +21,6 @@ type AttachmentResource struct {
 	ID           uint64
 	AttachmentID uint64
 	ResourceType string
-	ResourceID   uint64
+	ResourceID   *uint64
 	CreatedAt    time.Time
 }

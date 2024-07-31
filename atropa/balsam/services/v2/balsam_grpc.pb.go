@@ -2301,7 +2301,7 @@ const (
 type SessionClient interface {
 	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*SessionIndexResponse, error)
-	ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*SessionIndexResponse, error)
+	ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*SessionListResponse, error)
 }
 
 type sessionClient struct {
@@ -2332,9 +2332,9 @@ func (c *sessionClient) Index(ctx context.Context, in *Pager, opts ...grpc.CallO
 	return out, nil
 }
 
-func (c *sessionClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*SessionIndexResponse, error) {
+func (c *sessionClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*SessionListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SessionIndexResponse)
+	out := new(SessionListResponse)
 	err := c.cc.Invoke(ctx, Session_ByUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -2350,7 +2350,7 @@ func (c *sessionClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.
 type SessionServer interface {
 	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
 	Index(context.Context, *Pager) (*SessionIndexResponse, error)
-	ByUser(context.Context, *IdRequest) (*SessionIndexResponse, error)
+	ByUser(context.Context, *IdRequest) (*SessionListResponse, error)
 	mustEmbedUnimplementedSessionServer()
 }
 
@@ -2364,7 +2364,7 @@ func (UnimplementedSessionServer) Disable(context.Context, *IdRequest) (*emptypb
 func (UnimplementedSessionServer) Index(context.Context, *Pager) (*SessionIndexResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Index not implemented")
 }
-func (UnimplementedSessionServer) ByUser(context.Context, *IdRequest) (*SessionIndexResponse, error) {
+func (UnimplementedSessionServer) ByUser(context.Context, *IdRequest) (*SessionListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ByUser not implemented")
 }
 func (UnimplementedSessionServer) mustEmbedUnimplementedSessionServer() {}
@@ -2633,6 +2633,8 @@ const (
 	Attachment_ByUser_FullMethodName        = "/palm.balsam.v1.Attachment/ByUser"
 	Attachment_Clear_FullMethodName         = "/palm.balsam.v1.Attachment/Clear"
 	Attachment_ByResource_FullMethodName    = "/palm.balsam.v1.Attachment/ByResource"
+	Attachment_Associate_FullMethodName     = "/palm.balsam.v1.Attachment/Associate"
+	Attachment_Dissociate_FullMethodName    = "/palm.balsam.v1.Attachment/Dissociate"
 	Attachment_Create_FullMethodName        = "/palm.balsam.v1.Attachment/Create"
 	Attachment_SetUploadedAt_FullMethodName = "/palm.balsam.v1.Attachment/SetUploadedAt"
 )
@@ -2645,9 +2647,11 @@ type AttachmentClient interface {
 	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
 	SetTitle(ctx context.Context, in *AttachmentSetTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse_Item, error)
-	ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error)
-	Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentListResponse, error)
+	Clear(ctx context.Context, in *AttachmentClearRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ByResource(ctx context.Context, in *ResourceRequest, opts ...grpc.CallOption) (*AttachmentListResponse, error)
+	Associate(ctx context.Context, in *AttachmentResourceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Dissociate(ctx context.Context, in *AttachmentResourceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Create(ctx context.Context, in *AttachmentCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SetUploadedAt(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -2700,9 +2704,9 @@ func (c *attachmentClient) ById(ctx context.Context, in *IdRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *attachmentClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentIndexResponse, error) {
+func (c *attachmentClient) ByUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*AttachmentListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AttachmentIndexResponse)
+	out := new(AttachmentListResponse)
 	err := c.cc.Invoke(ctx, Attachment_ByUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -2710,7 +2714,7 @@ func (c *attachmentClient) ByUser(ctx context.Context, in *IdRequest, opts ...gr
 	return out, nil
 }
 
-func (c *attachmentClient) Clear(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *attachmentClient) Clear(ctx context.Context, in *AttachmentClearRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Attachment_Clear_FullMethodName, in, out, cOpts...)
@@ -2724,6 +2728,26 @@ func (c *attachmentClient) ByResource(ctx context.Context, in *ResourceRequest, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AttachmentListResponse)
 	err := c.cc.Invoke(ctx, Attachment_ByResource_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Associate(ctx context.Context, in *AttachmentResourceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Associate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *attachmentClient) Dissociate(ctx context.Context, in *AttachmentResourceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Attachment_Dissociate_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2758,9 +2782,11 @@ type AttachmentServer interface {
 	Index(context.Context, *Pager) (*AttachmentIndexResponse, error)
 	SetTitle(context.Context, *AttachmentSetTitleRequest) (*emptypb.Empty, error)
 	ById(context.Context, *IdRequest) (*AttachmentIndexResponse_Item, error)
-	ByUser(context.Context, *IdRequest) (*AttachmentIndexResponse, error)
-	Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	ByUser(context.Context, *IdRequest) (*AttachmentListResponse, error)
+	Clear(context.Context, *AttachmentClearRequest) (*emptypb.Empty, error)
 	ByResource(context.Context, *ResourceRequest) (*AttachmentListResponse, error)
+	Associate(context.Context, *AttachmentResourceRequest) (*emptypb.Empty, error)
+	Dissociate(context.Context, *AttachmentResourceRequest) (*emptypb.Empty, error)
 	Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error)
 	SetUploadedAt(context.Context, *IdRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedAttachmentServer()
@@ -2782,14 +2808,20 @@ func (UnimplementedAttachmentServer) SetTitle(context.Context, *AttachmentSetTit
 func (UnimplementedAttachmentServer) ById(context.Context, *IdRequest) (*AttachmentIndexResponse_Item, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ById not implemented")
 }
-func (UnimplementedAttachmentServer) ByUser(context.Context, *IdRequest) (*AttachmentIndexResponse, error) {
+func (UnimplementedAttachmentServer) ByUser(context.Context, *IdRequest) (*AttachmentListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ByUser not implemented")
 }
-func (UnimplementedAttachmentServer) Clear(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedAttachmentServer) Clear(context.Context, *AttachmentClearRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Clear not implemented")
 }
 func (UnimplementedAttachmentServer) ByResource(context.Context, *ResourceRequest) (*AttachmentListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ByResource not implemented")
+}
+func (UnimplementedAttachmentServer) Associate(context.Context, *AttachmentResourceRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Associate not implemented")
+}
+func (UnimplementedAttachmentServer) Dissociate(context.Context, *AttachmentResourceRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Dissociate not implemented")
 }
 func (UnimplementedAttachmentServer) Create(context.Context, *AttachmentCreateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
@@ -2901,7 +2933,7 @@ func _Attachment_ByUser_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _Attachment_Clear_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(AttachmentClearRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2913,7 +2945,7 @@ func _Attachment_Clear_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: Attachment_Clear_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AttachmentServer).Clear(ctx, req.(*emptypb.Empty))
+		return srv.(AttachmentServer).Clear(ctx, req.(*AttachmentClearRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2932,6 +2964,42 @@ func _Attachment_ByResource_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AttachmentServer).ByResource(ctx, req.(*ResourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Associate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentResourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Associate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Associate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Associate(ctx, req.(*AttachmentResourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Attachment_Dissociate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentResourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AttachmentServer).Dissociate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Attachment_Dissociate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AttachmentServer).Dissociate(ctx, req.(*AttachmentResourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3006,6 +3074,14 @@ var Attachment_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ByResource",
 			Handler:    _Attachment_ByResource_Handler,
+		},
+		{
+			MethodName: "Associate",
+			Handler:    _Attachment_Associate_Handler,
+		},
+		{
+			MethodName: "Dissociate",
+			Handler:    _Attachment_Dissociate_Handler,
 		},
 		{
 			MethodName: "Create",

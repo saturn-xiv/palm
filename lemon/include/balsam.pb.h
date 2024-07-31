@@ -57,6 +57,9 @@ extern AesCodeMessageDefaultTypeInternal _AesCodeMessage_default_instance_;
 class AesPlainMessage;
 struct AesPlainMessageDefaultTypeInternal;
 extern AesPlainMessageDefaultTypeInternal _AesPlainMessage_default_instance_;
+class AttachmentClearRequest;
+struct AttachmentClearRequestDefaultTypeInternal;
+extern AttachmentClearRequestDefaultTypeInternal _AttachmentClearRequest_default_instance_;
 class AttachmentCreateRequest;
 struct AttachmentCreateRequestDefaultTypeInternal;
 extern AttachmentCreateRequestDefaultTypeInternal _AttachmentCreateRequest_default_instance_;
@@ -69,6 +72,9 @@ extern AttachmentIndexResponse_ItemDefaultTypeInternal _AttachmentIndexResponse_
 class AttachmentListResponse;
 struct AttachmentListResponseDefaultTypeInternal;
 extern AttachmentListResponseDefaultTypeInternal _AttachmentListResponse_default_instance_;
+class AttachmentResourceRequest;
+struct AttachmentResourceRequestDefaultTypeInternal;
+extern AttachmentResourceRequestDefaultTypeInternal _AttachmentResourceRequest_default_instance_;
 class AttachmentSetTitleRequest;
 struct AttachmentSetTitleRequestDefaultTypeInternal;
 extern AttachmentSetTitleRequestDefaultTypeInternal _AttachmentSetTitleRequest_default_instance_;
@@ -162,6 +168,9 @@ extern SessionIndexResponseDefaultTypeInternal _SessionIndexResponse_default_ins
 class SessionIndexResponse_Item;
 struct SessionIndexResponse_ItemDefaultTypeInternal;
 extern SessionIndexResponse_ItemDefaultTypeInternal _SessionIndexResponse_Item_default_instance_;
+class SessionListResponse;
+struct SessionListResponseDefaultTypeInternal;
+extern SessionListResponseDefaultTypeInternal _SessionListResponse_default_instance_;
 class SiteBaiduAccount;
 struct SiteBaiduAccountDefaultTypeInternal;
 extern SiteBaiduAccountDefaultTypeInternal _SiteBaiduAccount_default_instance_;
@@ -288,10 +297,12 @@ extern WechatOauth2UserIndexResponse_ItemDefaultTypeInternal _WechatOauth2UserIn
 PROTOBUF_NAMESPACE_OPEN
 template<> ::palm::balsam::v1::AesCodeMessage* Arena::CreateMaybeMessage<::palm::balsam::v1::AesCodeMessage>(Arena*);
 template<> ::palm::balsam::v1::AesPlainMessage* Arena::CreateMaybeMessage<::palm::balsam::v1::AesPlainMessage>(Arena*);
+template<> ::palm::balsam::v1::AttachmentClearRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentClearRequest>(Arena*);
 template<> ::palm::balsam::v1::AttachmentCreateRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentCreateRequest>(Arena*);
 template<> ::palm::balsam::v1::AttachmentIndexResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentIndexResponse>(Arena*);
 template<> ::palm::balsam::v1::AttachmentIndexResponse_Item* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentIndexResponse_Item>(Arena*);
 template<> ::palm::balsam::v1::AttachmentListResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentListResponse>(Arena*);
+template<> ::palm::balsam::v1::AttachmentResourceRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentResourceRequest>(Arena*);
 template<> ::palm::balsam::v1::AttachmentSetTitleRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentSetTitleRequest>(Arena*);
 template<> ::palm::balsam::v1::AttachmentShowResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::AttachmentShowResponse>(Arena*);
 template<> ::palm::balsam::v1::EmailUserByEmailRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::EmailUserByEmailRequest>(Arena*);
@@ -323,6 +334,7 @@ template<> ::palm::balsam::v1::Pagination* Arena::CreateMaybeMessage<::palm::bal
 template<> ::palm::balsam::v1::ResourceRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::ResourceRequest>(Arena*);
 template<> ::palm::balsam::v1::SessionIndexResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::SessionIndexResponse>(Arena*);
 template<> ::palm::balsam::v1::SessionIndexResponse_Item* Arena::CreateMaybeMessage<::palm::balsam::v1::SessionIndexResponse_Item>(Arena*);
+template<> ::palm::balsam::v1::SessionListResponse* Arena::CreateMaybeMessage<::palm::balsam::v1::SessionListResponse>(Arena*);
 template<> ::palm::balsam::v1::SiteBaiduAccount* Arena::CreateMaybeMessage<::palm::balsam::v1::SiteBaiduAccount>(Arena*);
 template<> ::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify* Arena::CreateMaybeMessage<::palm::balsam::v1::SiteBaiduAccount_WebSiteVerify>(Arena*);
 template<> ::palm::balsam::v1::SiteGetInfoByLangRequest* Arena::CreateMaybeMessage<::palm::balsam::v1::SiteGetInfoByLangRequest>(Arena*);
@@ -9162,6 +9174,163 @@ class WechatMiniProgramUserIndexResponse final :
 };
 // -------------------------------------------------------------------
 
+class SessionListResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.SessionListResponse) */ {
+ public:
+  inline SessionListResponse() : SessionListResponse(nullptr) {}
+  ~SessionListResponse() override;
+  explicit PROTOBUF_CONSTEXPR SessionListResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SessionListResponse(const SessionListResponse& from);
+  SessionListResponse(SessionListResponse&& from) noexcept
+    : SessionListResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SessionListResponse& operator=(const SessionListResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SessionListResponse& operator=(SessionListResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SessionListResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SessionListResponse* internal_default_instance() {
+    return reinterpret_cast<const SessionListResponse*>(
+               &_SessionListResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    42;
+
+  friend void swap(SessionListResponse& a, SessionListResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SessionListResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SessionListResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SessionListResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SessionListResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SessionListResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const SessionListResponse& from) {
+    SessionListResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SessionListResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.balsam.v1.SessionListResponse";
+  }
+  protected:
+  explicit SessionListResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kItemsFieldNumber = 1,
+  };
+  // repeated .palm.balsam.v1.SessionIndexResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+  public:
+  void clear_items();
+  ::palm::balsam::v1::SessionIndexResponse_Item* mutable_items(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::SessionIndexResponse_Item >*
+      mutable_items();
+  private:
+  const ::palm::balsam::v1::SessionIndexResponse_Item& _internal_items(int index) const;
+  ::palm::balsam::v1::SessionIndexResponse_Item* _internal_add_items();
+  public:
+  const ::palm::balsam::v1::SessionIndexResponse_Item& items(int index) const;
+  ::palm::balsam::v1::SessionIndexResponse_Item* add_items();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::SessionIndexResponse_Item >&
+      items() const;
+
+  // @@protoc_insertion_point(class_scope:palm.balsam.v1.SessionListResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::SessionIndexResponse_Item > items_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_balsam_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SessionIndexResponse_Item final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.SessionIndexResponse.Item) */ {
  public:
@@ -9210,7 +9379,7 @@ class SessionIndexResponse_Item final :
                &_SessionIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   friend void swap(SessionIndexResponse_Item& a, SessionIndexResponse_Item& b) {
     a.Swap(&b);
@@ -9283,16 +9452,17 @@ class SessionIndexResponse_Item final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUidFieldNumber = 2,
-    kIpFieldNumber = 5,
-    kExpiresAtFieldNumber = 6,
-    kDeletedAtFieldNumber = 7,
-    kCreatedAtFieldNumber = 8,
-    kUserFieldNumber = 1,
-    kProviderIdFieldNumber = 4,
-    kProviderTypeFieldNumber = 3,
+    kUidFieldNumber = 3,
+    kIpFieldNumber = 6,
+    kExpiresAtFieldNumber = 11,
+    kDeletedAtFieldNumber = 12,
+    kCreatedAtFieldNumber = 13,
+    kIdFieldNumber = 1,
+    kUserFieldNumber = 2,
+    kProviderIdFieldNumber = 5,
+    kProviderTypeFieldNumber = 4,
   };
-  // string uid = 2;
+  // string uid = 3;
   void clear_uid();
   const std::string& uid() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -9306,7 +9476,7 @@ class SessionIndexResponse_Item final :
   std::string* _internal_mutable_uid();
   public:
 
-  // string ip = 5;
+  // string ip = 6;
   void clear_ip();
   const std::string& ip() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -9320,7 +9490,7 @@ class SessionIndexResponse_Item final :
   std::string* _internal_mutable_ip();
   public:
 
-  // .google.protobuf.Timestamp expires_at = 6;
+  // .google.protobuf.Timestamp expires_at = 11;
   bool has_expires_at() const;
   private:
   bool _internal_has_expires_at() const;
@@ -9338,7 +9508,7 @@ class SessionIndexResponse_Item final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* expires_at);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_expires_at();
 
-  // optional .google.protobuf.Timestamp deleted_at = 7;
+  // optional .google.protobuf.Timestamp deleted_at = 12;
   bool has_deleted_at() const;
   private:
   bool _internal_has_deleted_at() const;
@@ -9356,7 +9526,7 @@ class SessionIndexResponse_Item final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_deleted_at();
 
-  // .google.protobuf.Timestamp created_at = 8;
+  // .google.protobuf.Timestamp created_at = 13;
   bool has_created_at() const;
   private:
   bool _internal_has_created_at() const;
@@ -9374,7 +9544,16 @@ class SessionIndexResponse_Item final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
 
-  // uint64 user = 1;
+  // uint64 id = 1;
+  void clear_id();
+  uint64_t id() const;
+  void set_id(uint64_t value);
+  private:
+  uint64_t _internal_id() const;
+  void _internal_set_id(uint64_t value);
+  public:
+
+  // uint64 user = 2;
   void clear_user();
   uint64_t user() const;
   void set_user(uint64_t value);
@@ -9383,7 +9562,7 @@ class SessionIndexResponse_Item final :
   void _internal_set_user(uint64_t value);
   public:
 
-  // uint64 provider_id = 4;
+  // uint64 provider_id = 5;
   void clear_provider_id();
   uint64_t provider_id() const;
   void set_provider_id(uint64_t value);
@@ -9392,7 +9571,7 @@ class SessionIndexResponse_Item final :
   void _internal_set_provider_id(uint64_t value);
   public:
 
-  // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 3;
+  // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 4;
   void clear_provider_type();
   ::palm::balsam::v1::UserSignInResponse_Detail_ProviderType provider_type() const;
   void set_provider_type(::palm::balsam::v1::UserSignInResponse_Detail_ProviderType value);
@@ -9416,6 +9595,7 @@ class SessionIndexResponse_Item final :
     ::PROTOBUF_NAMESPACE_ID::Timestamp* expires_at_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
+    uint64_t id_;
     uint64_t user_;
     uint64_t provider_id_;
     int provider_type_;
@@ -9473,7 +9653,7 @@ class SessionIndexResponse final :
                &_SessionIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   friend void swap(SessionIndexResponse& a, SessionIndexResponse& b) {
     a.Swap(&b);
@@ -9652,7 +9832,7 @@ class LocaleSetRequest final :
                &_LocaleSetRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    45;
 
   friend void swap(LocaleSetRequest& a, LocaleSetRequest& b) {
     a.Swap(&b);
@@ -9837,7 +10017,7 @@ class LocaleIndexResponse_Item final :
                &_LocaleIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    46;
 
   friend void swap(LocaleIndexResponse_Item& a, LocaleIndexResponse_Item& b) {
     a.Swap(&b);
@@ -10053,7 +10233,7 @@ class LocaleIndexResponse final :
                &_LocaleIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   friend void swap(LocaleIndexResponse& a, LocaleIndexResponse& b) {
     a.Swap(&b);
@@ -10232,7 +10412,7 @@ class LocaleByLangRequest final :
                &_LocaleByLangRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   friend void swap(LocaleByLangRequest& a, LocaleByLangRequest& b) {
     a.Swap(&b);
@@ -10385,7 +10565,7 @@ class LocaleByLangResponse final :
                &_LocaleByLangResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   friend void swap(LocaleByLangResponse& a, LocaleByLangResponse& b) {
     a.Swap(&b);
@@ -10494,6 +10674,334 @@ class LocaleByLangResponse final :
 };
 // -------------------------------------------------------------------
 
+class AttachmentClearRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentClearRequest) */ {
+ public:
+  inline AttachmentClearRequest() : AttachmentClearRequest(nullptr) {}
+  ~AttachmentClearRequest() override;
+  explicit PROTOBUF_CONSTEXPR AttachmentClearRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AttachmentClearRequest(const AttachmentClearRequest& from);
+  AttachmentClearRequest(AttachmentClearRequest&& from) noexcept
+    : AttachmentClearRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AttachmentClearRequest& operator=(const AttachmentClearRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AttachmentClearRequest& operator=(AttachmentClearRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AttachmentClearRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AttachmentClearRequest* internal_default_instance() {
+    return reinterpret_cast<const AttachmentClearRequest*>(
+               &_AttachmentClearRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    50;
+
+  friend void swap(AttachmentClearRequest& a, AttachmentClearRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AttachmentClearRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AttachmentClearRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AttachmentClearRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AttachmentClearRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AttachmentClearRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AttachmentClearRequest& from) {
+    AttachmentClearRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AttachmentClearRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.balsam.v1.AttachmentClearRequest";
+  }
+  protected:
+  explicit AttachmentClearRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDaysToKeepFieldNumber = 1,
+  };
+  // uint32 days_to_keep = 1;
+  void clear_days_to_keep();
+  uint32_t days_to_keep() const;
+  void set_days_to_keep(uint32_t value);
+  private:
+  uint32_t _internal_days_to_keep() const;
+  void _internal_set_days_to_keep(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentClearRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint32_t days_to_keep_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_balsam_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AttachmentResourceRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentResourceRequest) */ {
+ public:
+  inline AttachmentResourceRequest() : AttachmentResourceRequest(nullptr) {}
+  ~AttachmentResourceRequest() override;
+  explicit PROTOBUF_CONSTEXPR AttachmentResourceRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AttachmentResourceRequest(const AttachmentResourceRequest& from);
+  AttachmentResourceRequest(AttachmentResourceRequest&& from) noexcept
+    : AttachmentResourceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AttachmentResourceRequest& operator=(const AttachmentResourceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AttachmentResourceRequest& operator=(AttachmentResourceRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AttachmentResourceRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AttachmentResourceRequest* internal_default_instance() {
+    return reinterpret_cast<const AttachmentResourceRequest*>(
+               &_AttachmentResourceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    51;
+
+  friend void swap(AttachmentResourceRequest& a, AttachmentResourceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AttachmentResourceRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AttachmentResourceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AttachmentResourceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<AttachmentResourceRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const AttachmentResourceRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const AttachmentResourceRequest& from) {
+    AttachmentResourceRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AttachmentResourceRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "palm.balsam.v1.AttachmentResourceRequest";
+  }
+  protected:
+  explicit AttachmentResourceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kResourceTypeFieldNumber = 2,
+    kIdFieldNumber = 1,
+    kResourceIdFieldNumber = 3,
+  };
+  // string resource_type = 2;
+  void clear_resource_type();
+  const std::string& resource_type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_resource_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_resource_type();
+  PROTOBUF_NODISCARD std::string* release_resource_type();
+  void set_allocated_resource_type(std::string* resource_type);
+  private:
+  const std::string& _internal_resource_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_resource_type(const std::string& value);
+  std::string* _internal_mutable_resource_type();
+  public:
+
+  // uint64 id = 1;
+  void clear_id();
+  uint64_t id() const;
+  void set_id(uint64_t value);
+  private:
+  uint64_t _internal_id() const;
+  void _internal_set_id(uint64_t value);
+  public:
+
+  // optional uint64 resource_id = 3;
+  bool has_resource_id() const;
+  private:
+  bool _internal_has_resource_id() const;
+  public:
+  void clear_resource_id();
+  uint64_t resource_id() const;
+  void set_resource_id(uint64_t value);
+  private:
+  uint64_t _internal_resource_id() const;
+  void _internal_set_resource_id(uint64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentResourceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resource_type_;
+    uint64_t id_;
+    uint64_t resource_id_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_balsam_2eproto;
+};
+// -------------------------------------------------------------------
+
 class AttachmentCreateRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:palm.balsam.v1.AttachmentCreateRequest) */ {
  public:
@@ -10542,7 +11050,7 @@ class AttachmentCreateRequest final :
                &_AttachmentCreateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    52;
 
   friend void swap(AttachmentCreateRequest& a, AttachmentCreateRequest& b) {
     a.Swap(&b);
@@ -10776,7 +11284,7 @@ class AttachmentSetTitleRequest final :
                &_AttachmentSetTitleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    53;
 
   friend void swap(AttachmentSetTitleRequest& a, AttachmentSetTitleRequest& b) {
     a.Swap(&b);
@@ -10940,7 +11448,7 @@ class AttachmentShowResponse final :
                &_AttachmentShowResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    54;
 
   friend void swap(AttachmentShowResponse& a, AttachmentShowResponse& b) {
     a.Swap(&b);
@@ -11093,7 +11601,7 @@ class AttachmentListResponse final :
                &_AttachmentListResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    55;
 
   friend void swap(AttachmentListResponse& a, AttachmentListResponse& b) {
     a.Swap(&b);
@@ -11250,7 +11758,7 @@ class AttachmentIndexResponse_Item final :
                &_AttachmentIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    56;
 
   friend void swap(AttachmentIndexResponse_Item& a, AttachmentIndexResponse_Item& b) {
     a.Swap(&b);
@@ -11323,18 +11831,18 @@ class AttachmentIndexResponse_Item final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kBucketFieldNumber = 2,
-    kObjectFieldNumber = 3,
-    kTitleFieldNumber = 4,
-    kContentTypeFieldNumber = 6,
-    kPublishedAtFieldNumber = 8,
-    kDeletedAtFieldNumber = 9,
-    kUpdatedAtFieldNumber = 10,
-    kUserFieldNumber = 1,
-    kSizeFieldNumber = 5,
-    kPublicFieldNumber = 7,
+    kBucketFieldNumber = 3,
+    kObjectFieldNumber = 4,
+    kTitleFieldNumber = 5,
+    kContentTypeFieldNumber = 7,
+    kUploadedAtFieldNumber = 11,
+    kDeletedAtFieldNumber = 12,
+    kUpdatedAtFieldNumber = 13,
+    kIdFieldNumber = 1,
+    kUserFieldNumber = 2,
+    kSizeFieldNumber = 6,
   };
-  // string bucket = 2;
+  // string bucket = 3;
   void clear_bucket();
   const std::string& bucket() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -11348,7 +11856,7 @@ class AttachmentIndexResponse_Item final :
   std::string* _internal_mutable_bucket();
   public:
 
-  // string object = 3;
+  // string object = 4;
   void clear_object();
   const std::string& object() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -11362,7 +11870,7 @@ class AttachmentIndexResponse_Item final :
   std::string* _internal_mutable_object();
   public:
 
-  // string title = 4;
+  // string title = 5;
   void clear_title();
   const std::string& title() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -11376,7 +11884,7 @@ class AttachmentIndexResponse_Item final :
   std::string* _internal_mutable_title();
   public:
 
-  // string content_type = 6;
+  // string content_type = 7;
   void clear_content_type();
   const std::string& content_type() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -11390,25 +11898,25 @@ class AttachmentIndexResponse_Item final :
   std::string* _internal_mutable_content_type();
   public:
 
-  // optional .google.protobuf.Timestamp published_at = 8;
-  bool has_published_at() const;
+  // optional .google.protobuf.Timestamp uploaded_at = 11;
+  bool has_uploaded_at() const;
   private:
-  bool _internal_has_published_at() const;
+  bool _internal_has_uploaded_at() const;
   public:
-  void clear_published_at();
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& published_at() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_published_at();
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_published_at();
-  void set_allocated_published_at(::PROTOBUF_NAMESPACE_ID::Timestamp* published_at);
+  void clear_uploaded_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& uploaded_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_uploaded_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_uploaded_at();
+  void set_allocated_uploaded_at(::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at);
   private:
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_published_at() const;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_published_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_uploaded_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_uploaded_at();
   public:
-  void unsafe_arena_set_allocated_published_at(
-      ::PROTOBUF_NAMESPACE_ID::Timestamp* published_at);
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_published_at();
+  void unsafe_arena_set_allocated_uploaded_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_uploaded_at();
 
-  // optional .google.protobuf.Timestamp deleted_at = 9;
+  // optional .google.protobuf.Timestamp deleted_at = 12;
   bool has_deleted_at() const;
   private:
   bool _internal_has_deleted_at() const;
@@ -11426,7 +11934,7 @@ class AttachmentIndexResponse_Item final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_deleted_at();
 
-  // .google.protobuf.Timestamp updated_at = 10;
+  // .google.protobuf.Timestamp updated_at = 13;
   bool has_updated_at() const;
   private:
   bool _internal_has_updated_at() const;
@@ -11444,7 +11952,16 @@ class AttachmentIndexResponse_Item final :
       ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
   ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
 
-  // uint64 user = 1;
+  // uint64 id = 1;
+  void clear_id();
+  uint64_t id() const;
+  void set_id(uint64_t value);
+  private:
+  uint64_t _internal_id() const;
+  void _internal_set_id(uint64_t value);
+  public:
+
+  // uint64 user = 2;
   void clear_user();
   uint64_t user() const;
   void set_user(uint64_t value);
@@ -11453,22 +11970,13 @@ class AttachmentIndexResponse_Item final :
   void _internal_set_user(uint64_t value);
   public:
 
-  // uint64 size = 5;
+  // uint64 size = 6;
   void clear_size();
   uint64_t size() const;
   void set_size(uint64_t value);
   private:
   uint64_t _internal_size() const;
   void _internal_set_size(uint64_t value);
-  public:
-
-  // bool public = 7;
-  void clear_public_();
-  bool public_() const;
-  void set_public_(bool value);
-  private:
-  bool _internal_public_() const;
-  void _internal_set_public_(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:palm.balsam.v1.AttachmentIndexResponse.Item)
@@ -11485,12 +11993,12 @@ class AttachmentIndexResponse_Item final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr object_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_type_;
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* published_at_;
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* deleted_at_;
     ::PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
+    uint64_t id_;
     uint64_t user_;
     uint64_t size_;
-    bool public__;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_balsam_2eproto;
@@ -11545,7 +12053,7 @@ class AttachmentIndexResponse final :
                &_AttachmentIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    54;
+    57;
 
   friend void swap(AttachmentIndexResponse& a, AttachmentIndexResponse& b) {
     a.Swap(&b);
@@ -11724,7 +12232,7 @@ class LeaveWordCreateRequest final :
                &_LeaveWordCreateRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    55;
+    58;
 
   friend void swap(LeaveWordCreateRequest& a, LeaveWordCreateRequest& b) {
     a.Swap(&b);
@@ -11920,7 +12428,7 @@ class LeaveWordIndexResponse_Item final :
                &_LeaveWordIndexResponse_Item_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    56;
+    59;
 
   friend void swap(LeaveWordIndexResponse_Item& a, LeaveWordIndexResponse_Item& b) {
     a.Swap(&b);
@@ -12229,7 +12737,7 @@ class LeaveWordIndexResponse final :
                &_LeaveWordIndexResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    57;
+    60;
 
   friend void swap(LeaveWordIndexResponse& a, LeaveWordIndexResponse& b) {
     a.Swap(&b);
@@ -12408,7 +12916,7 @@ class SiteStatusResponse_Redis final :
                &_SiteStatusResponse_Redis_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    58;
+    61;
 
   friend void swap(SiteStatusResponse_Redis& a, SiteStatusResponse_Redis& b) {
     a.Swap(&b);
@@ -12597,7 +13105,7 @@ class SiteStatusResponse_PostgreSql final :
                &_SiteStatusResponse_PostgreSql_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    59;
+    62;
 
   friend void swap(SiteStatusResponse_PostgreSql& a, SiteStatusResponse_PostgreSql& b) {
     a.Swap(&b);
@@ -12776,7 +13284,7 @@ class SiteStatusResponse_OpenSearch final :
                &_SiteStatusResponse_OpenSearch_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    60;
+    63;
 
   friend void swap(SiteStatusResponse_OpenSearch& a, SiteStatusResponse_OpenSearch& b) {
     a.Swap(&b);
@@ -12929,7 +13437,7 @@ class SiteStatusResponse final :
                &_SiteStatusResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    61;
+    64;
 
   friend void swap(SiteStatusResponse& a, SiteStatusResponse& b) {
     a.Swap(&b);
@@ -13130,7 +13638,7 @@ class SiteIndexNowAccount_WebSiteVerify final :
                &_SiteIndexNowAccount_WebSiteVerify_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    62;
+    65;
 
   friend void swap(SiteIndexNowAccount_WebSiteVerify& a, SiteIndexNowAccount_WebSiteVerify& b) {
     a.Swap(&b);
@@ -13283,7 +13791,7 @@ class SiteIndexNowAccount final :
                &_SiteIndexNowAccount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    63;
+    66;
 
   friend void swap(SiteIndexNowAccount& a, SiteIndexNowAccount& b) {
     a.Swap(&b);
@@ -13443,7 +13951,7 @@ class SiteGoogleAccount_WebSiteVerify final :
                &_SiteGoogleAccount_WebSiteVerify_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    64;
+    67;
 
   friend void swap(SiteGoogleAccount_WebSiteVerify& a, SiteGoogleAccount_WebSiteVerify& b) {
     a.Swap(&b);
@@ -13596,7 +14104,7 @@ class SiteGoogleAccount_ReCaptcha final :
                &_SiteGoogleAccount_ReCaptcha_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    65;
+    68;
 
   friend void swap(SiteGoogleAccount_ReCaptcha& a, SiteGoogleAccount_ReCaptcha& b) {
     a.Swap(&b);
@@ -13765,7 +14273,7 @@ class SiteGoogleAccount final :
                &_SiteGoogleAccount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    66;
+    69;
 
   friend void swap(SiteGoogleAccount& a, SiteGoogleAccount& b) {
     a.Swap(&b);
@@ -13946,7 +14454,7 @@ class SiteBaiduAccount_WebSiteVerify final :
                &_SiteBaiduAccount_WebSiteVerify_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    67;
+    70;
 
   friend void swap(SiteBaiduAccount_WebSiteVerify& a, SiteBaiduAccount_WebSiteVerify& b) {
     a.Swap(&b);
@@ -14115,7 +14623,7 @@ class SiteBaiduAccount final :
                &_SiteBaiduAccount_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    68;
+    71;
 
   friend void swap(SiteBaiduAccount& a, SiteBaiduAccount& b) {
     a.Swap(&b);
@@ -14275,7 +14783,7 @@ class SiteGetInfoByLangRequest final :
                &_SiteGetInfoByLangRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    69;
+    72;
 
   friend void swap(SiteGetInfoByLangRequest& a, SiteGetInfoByLangRequest& b) {
     a.Swap(&b);
@@ -14428,7 +14936,7 @@ class SiteGetInfoByLangResponse final :
                &_SiteGetInfoByLangResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    70;
+    73;
 
   friend void swap(SiteGetInfoByLangResponse& a, SiteGetInfoByLangResponse& b) {
     a.Swap(&b);
@@ -14629,7 +15137,7 @@ class SiteLayoutResponse_Author final :
                &_SiteLayoutResponse_Author_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    71;
+    74;
 
   friend void swap(SiteLayoutResponse_Author& a, SiteLayoutResponse_Author& b) {
     a.Swap(&b);
@@ -14798,7 +15306,7 @@ class SiteLayoutResponse_CnGab final :
                &_SiteLayoutResponse_CnGab_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    72;
+    75;
 
   friend void swap(SiteLayoutResponse_CnGab& a, SiteLayoutResponse_CnGab& b) {
     a.Swap(&b);
@@ -14967,7 +15475,7 @@ class SiteLayoutResponse_CnIcp final :
                &_SiteLayoutResponse_CnIcp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    73;
+    76;
 
   friend void swap(SiteLayoutResponse_CnIcp& a, SiteLayoutResponse_CnIcp& b) {
     a.Swap(&b);
@@ -15120,7 +15628,7 @@ class SiteLayoutResponse final :
                &_SiteLayoutResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    74;
+    77;
 
   friend void swap(SiteLayoutResponse& a, SiteLayoutResponse& b) {
     a.Swap(&b);
@@ -15460,7 +15968,7 @@ class SiteInfoRequest final :
                &_SiteInfoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    75;
+    78;
 
   friend void swap(SiteInfoRequest& a, SiteInfoRequest& b) {
     a.Swap(&b);
@@ -15677,7 +16185,7 @@ class SiteKeywordsRequest final :
                &_SiteKeywordsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    76;
+    79;
 
   friend void swap(SiteKeywordsRequest& a, SiteKeywordsRequest& b) {
     a.Swap(&b);
@@ -24399,9 +24907,73 @@ inline void WechatMiniProgramUserIndexResponse::set_allocated_pagination(::palm:
 
 // -------------------------------------------------------------------
 
+// SessionListResponse
+
+// repeated .palm.balsam.v1.SessionIndexResponse.Item items = 1;
+inline int SessionListResponse::_internal_items_size() const {
+  return _impl_.items_.size();
+}
+inline int SessionListResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void SessionListResponse::clear_items() {
+  _impl_.items_.Clear();
+}
+inline ::palm::balsam::v1::SessionIndexResponse_Item* SessionListResponse::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.SessionListResponse.items)
+  return _impl_.items_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::SessionIndexResponse_Item >*
+SessionListResponse::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:palm.balsam.v1.SessionListResponse.items)
+  return &_impl_.items_;
+}
+inline const ::palm::balsam::v1::SessionIndexResponse_Item& SessionListResponse::_internal_items(int index) const {
+  return _impl_.items_.Get(index);
+}
+inline const ::palm::balsam::v1::SessionIndexResponse_Item& SessionListResponse::items(int index) const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.SessionListResponse.items)
+  return _internal_items(index);
+}
+inline ::palm::balsam::v1::SessionIndexResponse_Item* SessionListResponse::_internal_add_items() {
+  return _impl_.items_.Add();
+}
+inline ::palm::balsam::v1::SessionIndexResponse_Item* SessionListResponse::add_items() {
+  ::palm::balsam::v1::SessionIndexResponse_Item* _add = _internal_add_items();
+  // @@protoc_insertion_point(field_add:palm.balsam.v1.SessionListResponse.items)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::SessionIndexResponse_Item >&
+SessionListResponse::items() const {
+  // @@protoc_insertion_point(field_list:palm.balsam.v1.SessionListResponse.items)
+  return _impl_.items_;
+}
+
+// -------------------------------------------------------------------
+
 // SessionIndexResponse_Item
 
-// uint64 user = 1;
+// uint64 id = 1;
+inline void SessionIndexResponse_Item::clear_id() {
+  _impl_.id_ = uint64_t{0u};
+}
+inline uint64_t SessionIndexResponse_Item::_internal_id() const {
+  return _impl_.id_;
+}
+inline uint64_t SessionIndexResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.SessionIndexResponse.Item.id)
+  return _internal_id();
+}
+inline void SessionIndexResponse_Item::_internal_set_id(uint64_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void SessionIndexResponse_Item::set_id(uint64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.SessionIndexResponse.Item.id)
+}
+
+// uint64 user = 2;
 inline void SessionIndexResponse_Item::clear_user() {
   _impl_.user_ = uint64_t{0u};
 }
@@ -24421,7 +24993,7 @@ inline void SessionIndexResponse_Item::set_user(uint64_t value) {
   // @@protoc_insertion_point(field_set:palm.balsam.v1.SessionIndexResponse.Item.user)
 }
 
-// string uid = 2;
+// string uid = 3;
 inline void SessionIndexResponse_Item::clear_uid() {
   _impl_.uid_.ClearToEmpty();
 }
@@ -24471,7 +25043,7 @@ inline void SessionIndexResponse_Item::set_allocated_uid(std::string* uid) {
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.SessionIndexResponse.Item.uid)
 }
 
-// .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 3;
+// .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 4;
 inline void SessionIndexResponse_Item::clear_provider_type() {
   _impl_.provider_type_ = 0;
 }
@@ -24491,7 +25063,7 @@ inline void SessionIndexResponse_Item::set_provider_type(::palm::balsam::v1::Use
   // @@protoc_insertion_point(field_set:palm.balsam.v1.SessionIndexResponse.Item.provider_type)
 }
 
-// uint64 provider_id = 4;
+// uint64 provider_id = 5;
 inline void SessionIndexResponse_Item::clear_provider_id() {
   _impl_.provider_id_ = uint64_t{0u};
 }
@@ -24511,7 +25083,7 @@ inline void SessionIndexResponse_Item::set_provider_id(uint64_t value) {
   // @@protoc_insertion_point(field_set:palm.balsam.v1.SessionIndexResponse.Item.provider_id)
 }
 
-// string ip = 5;
+// string ip = 6;
 inline void SessionIndexResponse_Item::clear_ip() {
   _impl_.ip_.ClearToEmpty();
 }
@@ -24561,7 +25133,7 @@ inline void SessionIndexResponse_Item::set_allocated_ip(std::string* ip) {
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.SessionIndexResponse.Item.ip)
 }
 
-// .google.protobuf.Timestamp expires_at = 6;
+// .google.protobuf.Timestamp expires_at = 11;
 inline bool SessionIndexResponse_Item::_internal_has_expires_at() const {
   return this != internal_default_instance() && _impl_.expires_at_ != nullptr;
 }
@@ -24646,7 +25218,7 @@ inline void SessionIndexResponse_Item::set_allocated_expires_at(::PROTOBUF_NAMES
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.SessionIndexResponse.Item.expires_at)
 }
 
-// optional .google.protobuf.Timestamp deleted_at = 7;
+// optional .google.protobuf.Timestamp deleted_at = 12;
 inline bool SessionIndexResponse_Item::_internal_has_deleted_at() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.deleted_at_ != nullptr);
@@ -24733,7 +25305,7 @@ inline void SessionIndexResponse_Item::set_allocated_deleted_at(::PROTOBUF_NAMES
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.SessionIndexResponse.Item.deleted_at)
 }
 
-// .google.protobuf.Timestamp created_at = 8;
+// .google.protobuf.Timestamp created_at = 13;
 inline bool SessionIndexResponse_Item::_internal_has_created_at() const {
   return this != internal_default_instance() && _impl_.created_at_ != nullptr;
 }
@@ -25599,6 +26171,132 @@ LocaleByLangResponse::items() const {
 
 // -------------------------------------------------------------------
 
+// AttachmentClearRequest
+
+// uint32 days_to_keep = 1;
+inline void AttachmentClearRequest::clear_days_to_keep() {
+  _impl_.days_to_keep_ = 0u;
+}
+inline uint32_t AttachmentClearRequest::_internal_days_to_keep() const {
+  return _impl_.days_to_keep_;
+}
+inline uint32_t AttachmentClearRequest::days_to_keep() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentClearRequest.days_to_keep)
+  return _internal_days_to_keep();
+}
+inline void AttachmentClearRequest::_internal_set_days_to_keep(uint32_t value) {
+  
+  _impl_.days_to_keep_ = value;
+}
+inline void AttachmentClearRequest::set_days_to_keep(uint32_t value) {
+  _internal_set_days_to_keep(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentClearRequest.days_to_keep)
+}
+
+// -------------------------------------------------------------------
+
+// AttachmentResourceRequest
+
+// uint64 id = 1;
+inline void AttachmentResourceRequest::clear_id() {
+  _impl_.id_ = uint64_t{0u};
+}
+inline uint64_t AttachmentResourceRequest::_internal_id() const {
+  return _impl_.id_;
+}
+inline uint64_t AttachmentResourceRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentResourceRequest.id)
+  return _internal_id();
+}
+inline void AttachmentResourceRequest::_internal_set_id(uint64_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void AttachmentResourceRequest::set_id(uint64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentResourceRequest.id)
+}
+
+// string resource_type = 2;
+inline void AttachmentResourceRequest::clear_resource_type() {
+  _impl_.resource_type_.ClearToEmpty();
+}
+inline const std::string& AttachmentResourceRequest::resource_type() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentResourceRequest.resource_type)
+  return _internal_resource_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AttachmentResourceRequest::set_resource_type(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.resource_type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentResourceRequest.resource_type)
+}
+inline std::string* AttachmentResourceRequest::mutable_resource_type() {
+  std::string* _s = _internal_mutable_resource_type();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentResourceRequest.resource_type)
+  return _s;
+}
+inline const std::string& AttachmentResourceRequest::_internal_resource_type() const {
+  return _impl_.resource_type_.Get();
+}
+inline void AttachmentResourceRequest::_internal_set_resource_type(const std::string& value) {
+  
+  _impl_.resource_type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AttachmentResourceRequest::_internal_mutable_resource_type() {
+  
+  return _impl_.resource_type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AttachmentResourceRequest::release_resource_type() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentResourceRequest.resource_type)
+  return _impl_.resource_type_.Release();
+}
+inline void AttachmentResourceRequest::set_allocated_resource_type(std::string* resource_type) {
+  if (resource_type != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.resource_type_.SetAllocated(resource_type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.resource_type_.IsDefault()) {
+    _impl_.resource_type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentResourceRequest.resource_type)
+}
+
+// optional uint64 resource_id = 3;
+inline bool AttachmentResourceRequest::_internal_has_resource_id() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool AttachmentResourceRequest::has_resource_id() const {
+  return _internal_has_resource_id();
+}
+inline void AttachmentResourceRequest::clear_resource_id() {
+  _impl_.resource_id_ = uint64_t{0u};
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline uint64_t AttachmentResourceRequest::_internal_resource_id() const {
+  return _impl_.resource_id_;
+}
+inline uint64_t AttachmentResourceRequest::resource_id() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentResourceRequest.resource_id)
+  return _internal_resource_id();
+}
+inline void AttachmentResourceRequest::_internal_set_resource_id(uint64_t value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.resource_id_ = value;
+}
+inline void AttachmentResourceRequest::set_resource_id(uint64_t value) {
+  _internal_set_resource_id(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentResourceRequest.resource_id)
+}
+
+// -------------------------------------------------------------------
+
 // AttachmentCreateRequest
 
 // uint64 user = 1;
@@ -26037,7 +26735,27 @@ AttachmentListResponse::items() const {
 
 // AttachmentIndexResponse_Item
 
-// uint64 user = 1;
+// uint64 id = 1;
+inline void AttachmentIndexResponse_Item::clear_id() {
+  _impl_.id_ = uint64_t{0u};
+}
+inline uint64_t AttachmentIndexResponse_Item::_internal_id() const {
+  return _impl_.id_;
+}
+inline uint64_t AttachmentIndexResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.id)
+  return _internal_id();
+}
+inline void AttachmentIndexResponse_Item::_internal_set_id(uint64_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void AttachmentIndexResponse_Item::set_id(uint64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.id)
+}
+
+// uint64 user = 2;
 inline void AttachmentIndexResponse_Item::clear_user() {
   _impl_.user_ = uint64_t{0u};
 }
@@ -26057,7 +26775,7 @@ inline void AttachmentIndexResponse_Item::set_user(uint64_t value) {
   // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.user)
 }
 
-// string bucket = 2;
+// string bucket = 3;
 inline void AttachmentIndexResponse_Item::clear_bucket() {
   _impl_.bucket_.ClearToEmpty();
 }
@@ -26107,7 +26825,7 @@ inline void AttachmentIndexResponse_Item::set_allocated_bucket(std::string* buck
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.bucket)
 }
 
-// string object = 3;
+// string object = 4;
 inline void AttachmentIndexResponse_Item::clear_object() {
   _impl_.object_.ClearToEmpty();
 }
@@ -26157,7 +26875,7 @@ inline void AttachmentIndexResponse_Item::set_allocated_object(std::string* obje
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.object)
 }
 
-// string title = 4;
+// string title = 5;
 inline void AttachmentIndexResponse_Item::clear_title() {
   _impl_.title_.ClearToEmpty();
 }
@@ -26207,7 +26925,7 @@ inline void AttachmentIndexResponse_Item::set_allocated_title(std::string* title
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.title)
 }
 
-// uint64 size = 5;
+// uint64 size = 6;
 inline void AttachmentIndexResponse_Item::clear_size() {
   _impl_.size_ = uint64_t{0u};
 }
@@ -26227,7 +26945,7 @@ inline void AttachmentIndexResponse_Item::set_size(uint64_t value) {
   // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.size)
 }
 
-// string content_type = 6;
+// string content_type = 7;
 inline void AttachmentIndexResponse_Item::clear_content_type() {
   _impl_.content_type_.ClearToEmpty();
 }
@@ -26277,61 +26995,41 @@ inline void AttachmentIndexResponse_Item::set_allocated_content_type(std::string
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.content_type)
 }
 
-// bool public = 7;
-inline void AttachmentIndexResponse_Item::clear_public_() {
-  _impl_.public__ = false;
-}
-inline bool AttachmentIndexResponse_Item::_internal_public_() const {
-  return _impl_.public__;
-}
-inline bool AttachmentIndexResponse_Item::public_() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.public)
-  return _internal_public_();
-}
-inline void AttachmentIndexResponse_Item::_internal_set_public_(bool value) {
-  
-  _impl_.public__ = value;
-}
-inline void AttachmentIndexResponse_Item::set_public_(bool value) {
-  _internal_set_public_(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.AttachmentIndexResponse.Item.public)
-}
-
-// optional .google.protobuf.Timestamp published_at = 8;
-inline bool AttachmentIndexResponse_Item::_internal_has_published_at() const {
+// optional .google.protobuf.Timestamp uploaded_at = 11;
+inline bool AttachmentIndexResponse_Item::_internal_has_uploaded_at() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.published_at_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.uploaded_at_ != nullptr);
   return value;
 }
-inline bool AttachmentIndexResponse_Item::has_published_at() const {
-  return _internal_has_published_at();
+inline bool AttachmentIndexResponse_Item::has_uploaded_at() const {
+  return _internal_has_uploaded_at();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::_internal_published_at() const {
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.published_at_;
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::_internal_uploaded_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.uploaded_at_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
       ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::published_at() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
-  return _internal_published_at();
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& AttachmentIndexResponse_Item::uploaded_at() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.AttachmentIndexResponse.Item.uploaded_at)
+  return _internal_uploaded_at();
 }
-inline void AttachmentIndexResponse_Item::unsafe_arena_set_allocated_published_at(
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* published_at) {
+inline void AttachmentIndexResponse_Item::unsafe_arena_set_allocated_uploaded_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.published_at_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.uploaded_at_);
   }
-  _impl_.published_at_ = published_at;
-  if (published_at) {
+  _impl_.uploaded_at_ = uploaded_at;
+  if (uploaded_at) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.uploaded_at)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::release_published_at() {
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::release_uploaded_at() {
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.published_at_;
-  _impl_.published_at_ = nullptr;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.uploaded_at_;
+  _impl_.uploaded_at_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -26343,48 +27041,48 @@ inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::release
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::unsafe_arena_release_published_at() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::unsafe_arena_release_uploaded_at() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.AttachmentIndexResponse.Item.uploaded_at)
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.published_at_;
-  _impl_.published_at_ = nullptr;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.uploaded_at_;
+  _impl_.uploaded_at_ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::_internal_mutable_published_at() {
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::_internal_mutable_uploaded_at() {
   _impl_._has_bits_[0] |= 0x00000001u;
-  if (_impl_.published_at_ == nullptr) {
+  if (_impl_.uploaded_at_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
-    _impl_.published_at_ = p;
+    _impl_.uploaded_at_ = p;
   }
-  return _impl_.published_at_;
+  return _impl_.uploaded_at_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::mutable_published_at() {
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_published_at();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* AttachmentIndexResponse_Item::mutable_uploaded_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_uploaded_at();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.AttachmentIndexResponse.Item.uploaded_at)
   return _msg;
 }
-inline void AttachmentIndexResponse_Item::set_allocated_published_at(::PROTOBUF_NAMESPACE_ID::Timestamp* published_at) {
+inline void AttachmentIndexResponse_Item::set_allocated_uploaded_at(::PROTOBUF_NAMESPACE_ID::Timestamp* uploaded_at) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.published_at_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.uploaded_at_);
   }
-  if (published_at) {
+  if (uploaded_at) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(published_at));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(uploaded_at));
     if (message_arena != submessage_arena) {
-      published_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, published_at, submessage_arena);
+      uploaded_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, uploaded_at, submessage_arena);
     }
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.published_at_ = published_at;
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.published_at)
+  _impl_.uploaded_at_ = uploaded_at;
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.uploaded_at)
 }
 
-// optional .google.protobuf.Timestamp deleted_at = 9;
+// optional .google.protobuf.Timestamp deleted_at = 12;
 inline bool AttachmentIndexResponse_Item::_internal_has_deleted_at() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.deleted_at_ != nullptr);
@@ -26471,7 +27169,7 @@ inline void AttachmentIndexResponse_Item::set_allocated_deleted_at(::PROTOBUF_NA
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.AttachmentIndexResponse.Item.deleted_at)
 }
 
-// .google.protobuf.Timestamp updated_at = 10;
+// .google.protobuf.Timestamp updated_at = 13;
 inline bool AttachmentIndexResponse_Item::_internal_has_updated_at() const {
   return this != internal_default_instance() && _impl_.updated_at_ != nullptr;
 }
@@ -30325,6 +31023,12 @@ SiteKeywordsRequest::mutable_items() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

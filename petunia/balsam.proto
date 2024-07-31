@@ -384,18 +384,22 @@ message WechatMiniProgramUserIndexResponse {
 service Session {
   rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
   rpc Index(Pager) returns (SessionIndexResponse) {}
-  rpc ByUser(IdRequest) returns (SessionIndexResponse) {}
+  rpc ByUser(IdRequest) returns (SessionListResponse) {}
+}
+message SessionListResponse {
+  repeated SessionIndexResponse.Item items = 1;
 }
 message SessionIndexResponse {
   message Item {
-    uint64 user = 1;
-    string uid = 2;
-    UserSignInResponse.Detail.ProviderType provider_type = 3;
-    uint64 provider_id = 4;
-    string ip = 5;
-    google.protobuf.Timestamp expires_at = 6;
-    optional google.protobuf.Timestamp deleted_at = 7;
-    google.protobuf.Timestamp created_at = 8;
+    uint64 id = 1;
+    uint64 user = 2;
+    string uid = 3;
+    UserSignInResponse.Detail.ProviderType provider_type = 4;
+    uint64 provider_id = 5;
+    string ip = 6;
+    google.protobuf.Timestamp expires_at = 11;
+    optional google.protobuf.Timestamp deleted_at = 12;
+    google.protobuf.Timestamp created_at = 13;
   }
   repeated Item items = 1;
   Pagination pagination = 2;
@@ -438,12 +442,22 @@ service Attachment {
   rpc Index(Pager) returns (AttachmentIndexResponse) {}
   rpc SetTitle(AttachmentSetTitleRequest) returns (google.protobuf.Empty) {}
   rpc ById(IdRequest) returns (AttachmentIndexResponse.Item) {}
-  rpc ByUser(IdRequest) returns (AttachmentIndexResponse) {}
-  rpc Clear(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc ByUser(IdRequest) returns (AttachmentListResponse) {}
+  rpc Clear(AttachmentClearRequest) returns (google.protobuf.Empty) {}
   rpc ByResource(ResourceRequest) returns (AttachmentListResponse) {}
+  rpc Associate(AttachmentResourceRequest) returns (google.protobuf.Empty) {}
+  rpc Dissociate(AttachmentResourceRequest) returns (google.protobuf.Empty) {}
 
   rpc Create(AttachmentCreateRequest) returns (google.protobuf.Empty) {}
   rpc SetUploadedAt(IdRequest) returns (google.protobuf.Empty) {}
+}
+message AttachmentClearRequest {
+  uint32 days_to_keep = 1;
+}
+message AttachmentResourceRequest {
+  uint64 id = 1;
+  string resource_type = 2;
+  optional uint64 resource_id = 3;
 }
 message AttachmentCreateRequest {
   uint64 user = 1;
@@ -466,16 +480,17 @@ message AttachmentListResponse {
 }
 message AttachmentIndexResponse {
   message Item {
-    uint64 user = 1;
-    string bucket = 2;
-    string object = 3;
-    string title = 4;
-    uint64 size = 5;
-    string content_type = 6;
-    bool public = 7;
-    optional google.protobuf.Timestamp published_at = 8;
-    optional google.protobuf.Timestamp deleted_at = 9;
-    google.protobuf.Timestamp updated_at = 10;
+    uint64 id = 1;
+    uint64 user = 2;
+    string bucket = 3;
+    string object = 4;
+    string title = 5;
+    uint64 size = 6;
+    string content_type = 7;
+
+    optional google.protobuf.Timestamp uploaded_at = 11;
+    optional google.protobuf.Timestamp deleted_at = 12;
+    google.protobuf.Timestamp updated_at = 13;
   }
   repeated Item items = 1;
   Pagination pagination = 2;

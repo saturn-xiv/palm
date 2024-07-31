@@ -25,10 +25,11 @@ CREATE TABLE attachment_resources(
     id BIGSERIAL PRIMARY KEY,
     attachment_id BIGINT NOT NULL,
     resource_type VARCHAR(127) NOT NULL,
-    resource_id BIGINT NOT NULL,    
+    resource_id BIGINT,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE UNIQUE INDEX idx_attachments_resources ON attachment_resources(attachment_id, resource_type, resource_id);
+CREATE UNIQUE INDEX idx_attachments_resources_item_type_id ON attachment_resources(attachment_id, resource_type, resource_id) WHERE resource_id IS NOT NULL;
+CREATE UNIQUE INDEX idx_attachments_resources_item_type ON attachment_resources(attachment_id, resource_type) WHERE resource_id IS NULL;
 CREATE INDEX idx_attachments_resources_type ON attachment_resources(resource_type);
 
 -- migrate:down

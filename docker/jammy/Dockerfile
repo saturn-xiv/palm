@@ -106,7 +106,7 @@ RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >>
 RUN zsh -c "source $HOME/.zshrc \
     && nvm install --lts"
 
-ENV JDK_VERSION "22-open"
+ENV JDK_VERSION "22.0.1-open"
 # https://docs.gradle.org/current/userguide/compatibility.html
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config

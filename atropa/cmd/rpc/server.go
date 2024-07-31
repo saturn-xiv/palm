@@ -121,6 +121,7 @@ func mount(server *grpc.Server,
 	balsam_pb.RegisterAesServer(server, balsam_services.NewAesService(aes))
 	balsam_pb.RegisterHMacServer(server, balsam_services.NewHmacService(hmac))
 	balsam_pb.RegisterJwtServer(server, balsam_services.NewJwtService(jwt))
+	balsam_pb.RegisterSessionServer(server, balsam_services.NewSessionService(db))
 	balsam_pb.RegisterLocaleServer(server, balsam_services.NewLocaleService(db))
 	balsam_pb.RegisterLeaveWordServer(server, balsam_services.NewLeaveWordService(db))
 	balsam_pb.RegisterAttachmentServer(server, balsam_services.NewAttachmentService(db))
