@@ -1162,18 +1162,18 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncEnable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncEnableRaw(context, request, cq));
     }
-    virtual ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::palm::balsam::v1::UserLogsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::palm::balsam::v1::UserLogsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>>(AsyncLogsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
     }
-    virtual ::grpc::Status SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSignOutRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSignOutRaw(context, request, cq));
     }
     virtual ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::UserIndexResponse* response) = 0;
@@ -1215,10 +1215,10 @@ class User final {
       virtual void Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void UpdateProfile(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
@@ -1240,10 +1240,10 @@ class User final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSignOutRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateProfileRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -1284,18 +1284,18 @@ class User final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncEnable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncEnableRaw(context, request, cq));
     }
-    ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::palm::balsam::v1::UserLogsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::palm::balsam::v1::UserLogsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>> AsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>>(AsyncLogsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>> PrepareAsyncLogs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>>(PrepareAsyncLogsRaw(context, request, cq));
     }
-    ::grpc::Status SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSignOutRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSignOutRaw(context, request, cq));
     }
     ::grpc::Status Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::palm::balsam::v1::UserIndexResponse* response) override;
@@ -1337,10 +1337,10 @@ class User final {
       void Disable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void Enable(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, std::function<void(::grpc::Status)>) override;
-      void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
-      void SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, std::function<void(::grpc::Status)>) override;
+      void Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response, std::function<void(::grpc::Status)>) override;
       void Index(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void UpdateProfile(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
@@ -1368,10 +1368,10 @@ class User final {
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncDisableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncEnableRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::IdRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSignOutRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse>* AsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserIndexResponse>* PrepareAsyncIndexRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::Pager& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateProfileRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -1401,8 +1401,8 @@ class User final {
     virtual ::grpc::Status Unlock(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status Disable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status Enable(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status Logs(::grpc::ServerContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response);
-    virtual ::grpc::Status SignOut(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status Logs(::grpc::ServerContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response);
+    virtual ::grpc::Status SignOut(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status Index(::grpc::ServerContext* context, const ::palm::balsam::v1::Pager* request, ::palm::balsam::v1::UserIndexResponse* response);
     virtual ::grpc::Status UpdateProfile(::grpc::ServerContext* context, const ::palm::balsam::v1::UserUpdateProfileRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status ById(::grpc::ServerContext* context, const ::palm::balsam::v1::IdRequest* request, ::palm::balsam::v1::UserIndexResponse_Item* response);
@@ -1500,11 +1500,11 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::LogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserLogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestLogs(::grpc::ServerContext* context, ::palm::balsam::v1::LogsRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::balsam::v1::UserLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestLogs(::grpc::ServerContext* context, ::palm::balsam::v1::UserLogsRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::balsam::v1::UserLogsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1520,11 +1520,11 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignOutRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSignOut(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSignOut(::grpc::ServerContext* context, ::palm::balsam::v1::UserSignOutRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1724,25 +1724,25 @@ class User final {
    public:
     WithCallbackMethod_Logs() {
       ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response) { return this->Logs(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response) { return this->Logs(context, request, response); }));}
     void SetMessageAllocatorFor_Logs(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Logs() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::LogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserLogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Logs(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::LogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::UserLogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_SignOut : public BaseClass {
@@ -1751,25 +1751,25 @@ class User final {
    public:
     WithCallbackMethod_SignOut() {
       ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::google::protobuf::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) { return this->SignOut(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response) { return this->SignOut(context, request, response); }));}
     void SetMessageAllocatorFor_SignOut(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::google::protobuf::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::google::protobuf::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_SignOut() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignOutRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SignOut(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::UserSignOutRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Index : public BaseClass {
@@ -1961,7 +1961,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::LogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserLogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1978,7 +1978,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignOutRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2143,7 +2143,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::LogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserLogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2163,7 +2163,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignOutRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2354,7 +2354,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::LogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserLogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2376,7 +2376,7 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignOutRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2587,10 +2587,10 @@ class User final {
     WithStreamedUnaryMethod_Logs() {
       ::grpc::Service::MarkMethodStreamed(4,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse>(
+          ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse>* streamer) {
+                     ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse>* streamer) {
                        return this->StreamedLogs(context,
                          streamer);
                   }));
@@ -2599,12 +2599,12 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::LogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
+    ::grpc::Status Logs(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserLogsRequest* /*request*/, ::palm::balsam::v1::UserLogsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::LogsRequest,::palm::balsam::v1::UserLogsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedLogs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::UserLogsRequest,::palm::balsam::v1::UserLogsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_SignOut : public BaseClass {
@@ -2614,10 +2614,10 @@ class User final {
     WithStreamedUnaryMethod_SignOut() {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::google::protobuf::Empty, ::google::protobuf::Empty>(
+          ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::google::protobuf::Empty, ::google::protobuf::Empty>* streamer) {
+                     ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedSignOut(context,
                          streamer);
                   }));
@@ -2626,12 +2626,12 @@ class User final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::google::protobuf::Empty* /*response*/) override {
+    ::grpc::Status SignOut(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignOutRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSignOut(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::google::protobuf::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedSignOut(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::UserSignOutRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Index : public BaseClass {

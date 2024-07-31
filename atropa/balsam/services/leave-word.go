@@ -23,10 +23,12 @@ type LeaveWordService struct {
 }
 
 func (p *LeaveWordService) Set(ctx context.Context, req *pb.LeaveWordCreateRequest) (*emptypb.Empty, error) {
+	client_ip := ClientIP(ctx).String()
+	locale := Locale(ctx).String()
 	if err := p.db.Transaction(func(tx *gorm.DB) error {
 		return tx.Create(&models.LeaveWord{
-			IP:     req.Ip,
-			Lang:   req.Lang,
+			IP:     client_ip,
+			Lang:   locale,
 			Body:   req.Body,
 			Editor: req.Editor.String(),
 			Status: pb.LeaveWordIndexResponse_Item_Pending.String(),

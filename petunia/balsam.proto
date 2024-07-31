@@ -105,15 +105,19 @@ service User {
   rpc Disable(IdRequest) returns (google.protobuf.Empty) {}
   rpc Enable(IdRequest) returns (google.protobuf.Empty) {}
 
-  rpc Logs(LogsRequest) returns (UserLogsResponse) {}
-  rpc SignOut(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Logs(UserLogsRequest) returns (UserLogsResponse) {}
+  rpc SignOut(UserSignOutRequest) returns (google.protobuf.Empty) {}
   rpc Index(Pager) returns (UserIndexResponse) {}
   rpc UpdateProfile(UserUpdateProfileRequest) returns (google.protobuf.Empty) {}
   rpc ById(IdRequest) returns (UserIndexResponse.Item) {}
   rpc ByUid(UidRequest) returns (UserIndexResponse.Item) {}
 }
+message UserSignOutRequest {
+  uint64 id = 1;
+  string ip = 2;
+}
 message UserUpdateProfileRequest {
-  uint64 user = 1;
+  uint64 id = 1;
   string lang = 2;
   string timezone = 3;
 }
@@ -135,10 +139,9 @@ message UserIndexResponse {
   repeated Item items = 1;
   Pagination pagination = 9;
 }
-message LogsRequest {
+message UserLogsRequest {
   optional uint64 user = 1;
-  uint64 page = 11;
-  uint64 size = 12;
+  Pager pager = 9;
 }
 message UserLogsResponse {
   message Item {
@@ -346,10 +349,9 @@ message WechatOauth2UserIndexResponse {
     string country = 10;
     optional string head_img_url = 11;
     repeated string privilege = 12;
-    optional string picture = 13;
-    Lang lang = 14;
-    optional google.protobuf.Timestamp deleted_at = 15;
-    google.protobuf.Timestamp updated_at = 16;
+    Lang lang = 13;
+    optional google.protobuf.Timestamp deleted_at = 18;
+    google.protobuf.Timestamp updated_at = 19;
   }
   repeated Item items = 1;
   Pagination pagination = 2;
@@ -504,10 +506,8 @@ service LeaveWord {
   rpc Destroy(IdRequest) returns (google.protobuf.Empty) {}
 }
 message LeaveWordCreateRequest {
-  string lang = 1;
-  string body = 2;
-  MediaEditor editor = 3;
-  string ip = 4;
+  string body = 1;
+  MediaEditor editor = 2;
 }
 message LeaveWordIndexResponse {
   message Item {

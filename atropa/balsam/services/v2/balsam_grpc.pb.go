@@ -429,8 +429,8 @@ type UserClient interface {
 	Unlock(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Disable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Enable(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	Logs(ctx context.Context, in *LogsRequest, opts ...grpc.CallOption) (*UserLogsResponse, error)
-	SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Logs(ctx context.Context, in *UserLogsRequest, opts ...grpc.CallOption) (*UserLogsResponse, error)
+	SignOut(ctx context.Context, in *UserSignOutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Index(ctx context.Context, in *Pager, opts ...grpc.CallOption) (*UserIndexResponse, error)
 	UpdateProfile(ctx context.Context, in *UserUpdateProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ById(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*UserIndexResponse_Item, error)
@@ -485,7 +485,7 @@ func (c *userClient) Enable(ctx context.Context, in *IdRequest, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *userClient) Logs(ctx context.Context, in *LogsRequest, opts ...grpc.CallOption) (*UserLogsResponse, error) {
+func (c *userClient) Logs(ctx context.Context, in *UserLogsRequest, opts ...grpc.CallOption) (*UserLogsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserLogsResponse)
 	err := c.cc.Invoke(ctx, User_Logs_FullMethodName, in, out, cOpts...)
@@ -495,7 +495,7 @@ func (c *userClient) Logs(ctx context.Context, in *LogsRequest, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *userClient) SignOut(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *userClient) SignOut(ctx context.Context, in *UserSignOutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, User_SignOut_FullMethodName, in, out, cOpts...)
@@ -555,8 +555,8 @@ type UserServer interface {
 	Unlock(context.Context, *IdRequest) (*emptypb.Empty, error)
 	Disable(context.Context, *IdRequest) (*emptypb.Empty, error)
 	Enable(context.Context, *IdRequest) (*emptypb.Empty, error)
-	Logs(context.Context, *LogsRequest) (*UserLogsResponse, error)
-	SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	Logs(context.Context, *UserLogsRequest) (*UserLogsResponse, error)
+	SignOut(context.Context, *UserSignOutRequest) (*emptypb.Empty, error)
 	Index(context.Context, *Pager) (*UserIndexResponse, error)
 	UpdateProfile(context.Context, *UserUpdateProfileRequest) (*emptypb.Empty, error)
 	ById(context.Context, *IdRequest) (*UserIndexResponse_Item, error)
@@ -580,10 +580,10 @@ func (UnimplementedUserServer) Disable(context.Context, *IdRequest) (*emptypb.Em
 func (UnimplementedUserServer) Enable(context.Context, *IdRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable not implemented")
 }
-func (UnimplementedUserServer) Logs(context.Context, *LogsRequest) (*UserLogsResponse, error) {
+func (UnimplementedUserServer) Logs(context.Context, *UserLogsRequest) (*UserLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logs not implemented")
 }
-func (UnimplementedUserServer) SignOut(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedUserServer) SignOut(context.Context, *UserSignOutRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignOut not implemented")
 }
 func (UnimplementedUserServer) Index(context.Context, *Pager) (*UserIndexResponse, error) {
@@ -684,7 +684,7 @@ func _User_Enable_Handler(srv interface{}, ctx context.Context, dec func(interfa
 }
 
 func _User_Logs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LogsRequest)
+	in := new(UserLogsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -696,13 +696,13 @@ func _User_Logs_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: User_Logs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Logs(ctx, req.(*LogsRequest))
+		return srv.(UserServer).Logs(ctx, req.(*UserLogsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _User_SignOut_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(UserSignOutRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -714,7 +714,7 @@ func _User_SignOut_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: User_SignOut_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).SignOut(ctx, req.(*emptypb.Empty))
+		return srv.(UserServer).SignOut(ctx, req.(*UserSignOutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -456,46 +456,46 @@ void User::Stub::async::Enable(::grpc::ClientContext* context, const ::palm::bal
   return result;
 }
 
-::grpc::Status User::Stub::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::palm::balsam::v1::UserLogsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
+::grpc::Status User::Stub::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::palm::balsam::v1::UserLogsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logs_, context, request, response);
 }
 
-void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void User::Stub::async::Logs(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logs_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* User::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserLogsResponse, ::palm::balsam::v1::LogsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* User::Stub::PrepareAsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserLogsResponse, ::palm::balsam::v1::UserLogsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logs_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* User::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::LogsRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserLogsResponse>* User::Stub::AsyncLogsRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserLogsRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncLogsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status User::Stub::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::google::protobuf::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignOut_, context, request, response);
+::grpc::Status User::Stub::SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignOut_, context, request, response);
 }
 
-void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignOut_, context, request, response, std::move(f));
+void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignOut_, context, request, response, std::move(f));
 }
 
-void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+void User::Stub::async::SignOut(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignOut_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignOut_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::PrepareAsyncSignOutRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserSignOutRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignOut_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSignOutRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* User::Stub::AsyncSignOutRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignOutRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncSignOutRaw(context, request, cq);
   result->StartCall();
@@ -638,20 +638,20 @@ User::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::LogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::UserLogsRequest, ::palm::balsam::v1::UserLogsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::balsam::v1::LogsRequest* req,
+             const ::palm::balsam::v1::UserLogsRequest* req,
              ::palm::balsam::v1::UserLogsResponse* resp) {
                return service->Logs(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       User_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< User::Service, ::google::protobuf::Empty, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< User::Service, ::palm::balsam::v1::UserSignOutRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](User::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::google::protobuf::Empty* req,
+             const ::palm::balsam::v1::UserSignOutRequest* req,
              ::google::protobuf::Empty* resp) {
                return service->SignOut(ctx, req, resp);
              }, this)));
@@ -728,14 +728,14 @@ User::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status User::Service::Logs(::grpc::ServerContext* context, const ::palm::balsam::v1::LogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response) {
+::grpc::Status User::Service::Logs(::grpc::ServerContext* context, const ::palm::balsam::v1::UserLogsRequest* request, ::palm::balsam::v1::UserLogsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status User::Service::SignOut(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::google::protobuf::Empty* response) {
+::grpc::Status User::Service::SignOut(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignOutRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

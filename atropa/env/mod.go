@@ -10,5 +10,7 @@ const (
 	JWT_ISSUER = "palm.atropa"
 	JWT_BEARER = "Bearer "
 
-	GRPC_AUTHORIZATION_HEADER = "authorization"
+	GRPC_AUTHORIZATION_HEADER   = "authorization"
+	GRPC_ACCEPT_LANGUAGE_HEADER = "accept-language"
+	GRPC_X_FORWARDED_FOR_HEADER = "X-Forwarded-For"
 )
