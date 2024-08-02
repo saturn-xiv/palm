@@ -31,7 +31,7 @@ func Mount(theme string, cache *redis.Client, jwt *crypto.Jwt, backend *grpc.Cli
 		if err != nil {
 			return nil, err
 		}
-		router.PathPrefix("/graphql").Handler(handler).Methods(http.MethodGet, http.MethodPost, http.MethodHead)
+		router.Handle("/graphql", handler).Methods(http.MethodGet, http.MethodPost, http.MethodHead)
 	}
 	if err := daisy_controllers.Mount(router, jwt, backend); err != nil {
 		return nil, err

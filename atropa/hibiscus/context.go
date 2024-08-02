@@ -29,10 +29,11 @@ func (p *Context) ParseForm(form interface{}) error {
 }
 
 func (p *Context) HTML(status int, name string, data any) {
-	p.write_header(status, TEXT_HTML_UTF8)
 	if err := gl_html_template.ExecuteTemplate(p.responseWriter, name, data); err != nil {
 		p.Abort(http.StatusInternalServerError, err)
+		return
 	}
+	p.write_header(status, TEXT_HTML_UTF8)
 }
 func (p *Context) Abort(status int, err error) {
 	msg := err.Error()
@@ -40,16 +41,18 @@ func (p *Context) Abort(status int, err error) {
 	p.String(status, msg)
 }
 func (p *Context) XML(status int, value any) {
-	p.write_header(status, APPLICATION_XML)
 	if err := xml.NewEncoder(p.responseWriter).Encode(value); err != nil {
 		p.Abort(http.StatusInternalServerError, err)
+		return
 	}
+	p.write_header(status, APPLICATION_XML)
 }
 func (p *Context) JSON(status int, value any) {
-	p.write_header(status, APPLICATION_JSON)
 	if err := json.NewEncoder(p.responseWriter).Encode(value); err != nil {
 		p.Abort(http.StatusInternalServerError, err)
+		return
 	}
+	p.write_header(status, APPLICATION_JSON)
 }
 func (p *Context) String(status int, body string) {
 	p.write_header(status, TEXT_PLAIN_UTF8)

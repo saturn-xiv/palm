@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io/fs"
 	"net/http"
+	"path/filepath"
 	"text/template"
 
 	"github.com/saturn-xiv/palm/atropa/hibiscus"
@@ -19,7 +20,7 @@ func Home() hibiscus.HandlerFunc {
 
 func RobotsTxt(views_fs fs.FS) hibiscus.HandlerFunc {
 	return func(c *hibiscus.Context) {
-		tpl, err := template.ParseFS(views_fs, "views/robots.txt.tpl")
+		tpl, err := template.ParseFS(views_fs, filepath.Join("templates", "robots.txt"))
 		if err != nil {
 			c.Abort(http.StatusBadRequest, err)
 			return
