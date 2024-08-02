@@ -15,9 +15,9 @@ import (
 	"github.com/saturn-xiv/palm/atropa/balsam/models"
 	pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
 	daisy_pb "github.com/saturn-xiv/palm/atropa/daisy/services/v2"
-	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 	"github.com/saturn-xiv/palm/atropa/env/rabbitmq"
+	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
 
 const (
@@ -112,7 +112,7 @@ func (p *EmailUserService) ConfirmByEmail(ctx context.Context, req *pb.UserByEma
 	return &emptypb.Empty{}, nil
 }
 func (p *EmailUserService) ConfirmByToken(ctx context.Context, req *pb.UserByTokenRequest) (*emptypb.Empty, error) {
-	_, subject, _, err := p.jwt.Verify(req.Token, env.JWT_ISSUER, gl_confirm_audience)
+	_, subject, _, err := p.jwt.Verify(req.Token, hibiscus.JWT_ISSUER, gl_confirm_audience)
 	if err != nil {
 		return nil, err
 	}
@@ -166,7 +166,7 @@ func (p *EmailUserService) UnlockByEmail(ctx context.Context, req *pb.UserByEmai
 	return &emptypb.Empty{}, nil
 }
 func (p *EmailUserService) UnlockByToken(ctx context.Context, req *pb.UserByTokenRequest) (*emptypb.Empty, error) {
-	_, subject, _, err := p.jwt.Verify(req.Token, env.JWT_ISSUER, gl_unlock_audience)
+	_, subject, _, err := p.jwt.Verify(req.Token, hibiscus.JWT_ISSUER, gl_unlock_audience)
 	if err != nil {
 		return nil, err
 	}
@@ -221,7 +221,7 @@ func (p *EmailUserService) ForgotPassword(ctx context.Context, req *pb.UserByEma
 	return &emptypb.Empty{}, nil
 }
 func (p *EmailUserService) ResetPassword(ctx context.Context, req *pb.UserResetPasswordRequest) (*emptypb.Empty, error) {
-	_, subject, _, err := p.jwt.Verify(req.Token, env.JWT_ISSUER, gl_reset_password_audience)
+	_, subject, _, err := p.jwt.Verify(req.Token, hibiscus.JWT_ISSUER, gl_reset_password_audience)
 	if err != nil {
 		return nil, err
 	}
@@ -408,7 +408,7 @@ func (p *EmailUserService) send_email(ctx context.Context, home string, lang str
 	now := time.Now()
 	nbf := now.Add(time.Second * 3)
 	exp := now.Add(time.Hour * 1)
-	token, err := p.jwt.Sign(env.JWT_ISSUER, ie.Nickname, []string{action}, map[string]interface{}{}, &nbf, &exp)
+	token, err := p.jwt.Sign(hibiscus.JWT_ISSUER, ie.Nickname, []string{action}, map[string]interface{}{}, &nbf, &exp)
 	if err != nil {
 		return err
 	}

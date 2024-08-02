@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
+	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
 
 func Launch(keys_dir string, subject string, audiences []string, years int) error {
@@ -31,7 +31,7 @@ func Launch(keys_dir string, subject string, audiences []string, years int) erro
 		slog.Time("not-before", nbf),
 		slog.Time("expires-at", exp),
 	)
-	token, err := jwt.Sign(env.JWT_ISSUER, subject, audiences, map[string]interface{}{}, &nbf, &exp)
+	token, err := jwt.Sign(hibiscus.JWT_ISSUER, subject, audiences, map[string]interface{}{}, &nbf, &exp)
 	if err != nil {
 		return err
 	}

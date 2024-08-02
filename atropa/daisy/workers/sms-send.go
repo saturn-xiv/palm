@@ -10,6 +10,7 @@ import (
 
 	v2 "github.com/saturn-xiv/palm/atropa/daisy/services/v2"
 	"github.com/saturn-xiv/palm/atropa/env"
+	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
 
 type SendSmsWorker struct {
@@ -27,7 +28,7 @@ func NewSendSmsWorker(config *env.Twilio) *SendSmsWorker {
 
 func (p *SendSmsWorker) Handle(id string, content_type string, body []byte) error {
 	var task v2.SmsTask
-	if content_type == env.APPLICATION_GRPC_PROTO {
+	if content_type == hibiscus.APPLICATION_GRPC_PROTO {
 		if err := proto.Unmarshal(body, &task); err != nil {
 			return err
 		}

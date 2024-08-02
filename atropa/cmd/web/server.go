@@ -13,7 +13,6 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/gin-gonic/gin"
 
 	balsam_pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
 	"github.com/saturn-xiv/palm/atropa/controllers"
@@ -53,20 +52,19 @@ func Launch(port uint16, config_file string, keys_dir string, version string, de
 		slog.Debug("receive", slog.String("hmac code", base64.StdEncoding.WithPadding(base64.NoPadding).EncodeToString(res.Code)))
 	}
 
-	gin.DisableConsoleColor()
-	if !debug {
-		gin.SetMode(gin.ReleaseMode)
-	}
-	router := gin.Default()
-	if err = controllers.Mount(router, config.Theme, cache, jwt, backend); err != nil {
+	router, err := controllers.Mount(config.Theme, cache, jwt, backend)
+	if err != nil {
 		return err
 	}
 
 	address := fmt.Sprintf("0.0.0.0:%d", port)
 	slog.Info(fmt.Sprintf("listen on http://%s", address))
 	server := &http.Server{
-		Addr:    address,
-		Handler: router,
+		Addr:         address,
+		WriteTimeout: time.Second * 15,
+		ReadTimeout:  time.Second * 15,
+		IdleTimeout:  time.Second * 60,
+		Handler:      router,
 	}
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {

@@ -10,8 +10,8 @@ import (
 	"golang.org/x/text/language"
 	"google.golang.org/grpc/metadata"
 
-	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
+	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
 
 var gl_validate *validator.Validate = validator.New()
@@ -22,10 +22,10 @@ func Auth(ctx context.Context, jwt *crypto.Jwt, audience string) error {
 	if !ok {
 		return errors.New("empty metadata")
 	}
-	for _, auth := range md.Get(env.GRPC_AUTHORIZATION_HEADER) {
-		if strings.HasPrefix(auth, env.JWT_BEARER) {
-			token := strings.TrimPrefix(auth, env.JWT_BEARER)
-			if _, _, _, err := jwt.Verify(token, env.JWT_ISSUER, audience); err == nil {
+	for _, auth := range md.Get(hibiscus.GRPC_AUTHORIZATION_HEADER) {
+		if strings.HasPrefix(auth, hibiscus.JWT_BEARER) {
+			token := strings.TrimPrefix(auth, hibiscus.JWT_BEARER)
+			if _, _, _, err := jwt.Verify(token, hibiscus.JWT_ISSUER, audience); err == nil {
 				return nil
 			}
 		}
@@ -37,7 +37,7 @@ func Auth(ctx context.Context, jwt *crypto.Jwt, audience string) error {
 func Locale(ctx context.Context) language.Tag {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if ok {
-		for _, it := range md.Get(env.GRPC_ACCEPT_LANGUAGE_HEADER) {
+		for _, it := range md.Get(hibiscus.GRPC_ACCEPT_LANGUAGE_HEADER) {
 			tag, err := language.Parse(it)
 			if err == nil {
 				return tag
@@ -51,7 +51,7 @@ func Locale(ctx context.Context) language.Tag {
 func ClientIP(ctx context.Context) net.IP {
 	md, ok := metadata.FromIncomingContext(ctx)
 	if ok {
-		for _, it := range md.Get(env.GRPC_X_FORWARDED_FOR_HEADER) {
+		for _, it := range md.Get(hibiscus.GRPC_X_FORWARDED_FOR_HEADER) {
 			for _, ips := range strings.Split(it, ",") {
 				ip := net.ParseIP(ips)
 				if ip != nil {
@@ -68,9 +68,9 @@ func Token(ctx context.Context) (string, error) {
 	if !ok {
 		return "", errors.New("empty metadata")
 	}
-	for _, auth := range md.Get(env.GRPC_AUTHORIZATION_HEADER) {
-		if strings.HasPrefix(auth, env.JWT_BEARER) {
-			token := strings.TrimPrefix(auth, env.JWT_BEARER)
+	for _, auth := range md.Get(hibiscus.GRPC_AUTHORIZATION_HEADER) {
+		if strings.HasPrefix(auth, hibiscus.JWT_BEARER) {
+			token := strings.TrimPrefix(auth, hibiscus.JWT_BEARER)
 			return token, nil
 		}
 	}

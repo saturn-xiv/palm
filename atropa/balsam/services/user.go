@@ -13,8 +13,8 @@ import (
 
 	"github.com/saturn-xiv/palm/atropa/balsam/models"
 	pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
-	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
+	"github.com/saturn-xiv/palm/atropa/hibiscus"
 	rbac_pb "github.com/saturn-xiv/palm/atropa/rbac/services/v2"
 )
 
@@ -278,7 +278,7 @@ func create_user_sign_in_response(ctx context.Context, resource any, db *gorm.DB
 	}
 	now := time.Now()
 	exp := now.Add(ttl)
-	token, err := jwt.Sign(env.JWT_ISSUER, user.UID, []string{gl_sign_in_audience}, map[string]interface{}{}, &now, &exp)
+	token, err := jwt.Sign(hibiscus.JWT_ISSUER, user.UID, []string{gl_sign_in_audience}, map[string]interface{}{}, &now, &exp)
 	if err != nil {
 		return nil, err
 	}

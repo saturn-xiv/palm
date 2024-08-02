@@ -6,9 +6,9 @@ import (
 	"encoding/gob"
 	"time"
 
-	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 	wechat "github.com/saturn-xiv/palm/atropa/env/wechat-oauth2"
+	"github.com/saturn-xiv/palm/atropa/hibiscus"
 	pb "github.com/saturn-xiv/palm/atropa/wechat/services/v2"
 )
 
@@ -32,7 +32,7 @@ func (p *Oauth2Service) QrConnectUrl(ctx context.Context, req *pb.Oauth2QrConnec
 	if req.Subject != nil {
 		subject = *req.Subject
 	}
-	token, err := p.jwt.Sign(env.JWT_ISSUER, subject, []string{gl_wechat_oauth2_audience}, map[string]interface{}{}, &now, &exp)
+	token, err := p.jwt.Sign(hibiscus.JWT_ISSUER, subject, []string{gl_wechat_oauth2_audience}, map[string]interface{}{}, &now, &exp)
 	if err != nil {
 		return nil, err
 	}
@@ -42,7 +42,7 @@ func (p *Oauth2Service) QrConnectUrl(ctx context.Context, req *pb.Oauth2QrConnec
 }
 
 func (p *Oauth2Service) SignIn(ctx context.Context, req *pb.Oauth2SignInRequest) (*pb.Oauth2SignInResponse, error) {
-	_, subject, _, err := p.jwt.Verify(req.State, env.JWT_ISSUER, gl_wechat_oauth2_audience)
+	_, subject, _, err := p.jwt.Verify(req.State, hibiscus.JWT_ISSUER, gl_wechat_oauth2_audience)
 	if err != nil {
 		return nil, err
 	}
