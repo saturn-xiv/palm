@@ -836,23 +836,23 @@ void EmailUser::Stub::async::SignIn(::grpc::ClientContext* context, const ::palm
   return result;
 }
 
-::grpc::Status EmailUser::Stub::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::palm::balsam::v1::UserSignInResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignUp_, context, request, response);
+::grpc::Status EmailUser::Stub::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SignUp_, context, request, response);
 }
 
-void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignUp_, context, request, response, std::move(f));
+void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignUp_, context, request, response, std::move(f));
 }
 
-void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void EmailUser::Stub::async::SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SignUp_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* EmailUser::Stub::PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::balsam::v1::UserSignInResponse, ::palm::balsam::v1::UserSignUpByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignUp_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::balsam::v1::UserSignUpByEmailRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SignUp_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* EmailUser::Stub::AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* EmailUser::Stub::AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncSignUpRaw(context, request, cq);
   result->StartCall();
@@ -1172,11 +1172,11 @@ EmailUser::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       EmailUser_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< EmailUser::Service, ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](EmailUser::Service* service,
              ::grpc::ServerContext* ctx,
              const ::palm::balsam::v1::UserSignUpByEmailRequest* req,
-             ::palm::balsam::v1::UserSignInResponse* resp) {
+             ::google::protobuf::Empty* resp) {
                return service->SignUp(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
@@ -1321,7 +1321,7 @@ EmailUser::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status EmailUser::Service::SignUp(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response) {
+::grpc::Status EmailUser::Service::SignUp(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

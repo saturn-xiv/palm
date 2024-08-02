@@ -65,7 +65,7 @@ func (p *PolicyService) Can(ctx context.Context, req *pb.PolicyCanRequest) (*emp
 	}
 
 	for _, rule := range rules {
-		it, err := pb.NewPolicyPermissionsFromRule(rule)
+		it, err := pb.NewPolicyPermissionFromRule(rule)
 		if err != nil {
 			return nil, err
 		}
@@ -243,7 +243,7 @@ func (p *PolicyService) GetPermissionsForUser(ctx context.Context, req *pb.Polic
 	}
 	var items []*pb.PolicyPermissionsResponse_Item
 	for _, rule := range rules {
-		permission, err := pb.NewPolicyPermissionsFromRule(rule)
+		permission, err := pb.NewPolicyPermissionFromRule(rule)
 		if err != nil {
 			return nil, err
 		}
@@ -263,7 +263,7 @@ func (p *PolicyService) GetImplicitPermissionsForUser(ctx context.Context, req *
 	}
 	var items []*pb.PolicyPermissionsResponse_Item
 	for _, rule := range rules {
-		permission, err := pb.NewPolicyPermissionsFromRule(rule)
+		permission, err := pb.NewPolicyPermissionFromRule(rule)
 		if err != nil {
 			return nil, err
 		}
@@ -326,7 +326,7 @@ func (p *PolicyService) GetPermissionsForRole(ctx context.Context, req *pb.Polic
 	}
 	var items []*pb.PolicyPermissionsResponse_Item
 	for _, rule := range rules {
-		permission, err := pb.NewPolicyPermissionsFromRule(rule)
+		permission, err := pb.NewPolicyPermissionFromRule(rule)
 		if err != nil {
 			return nil, err
 		}
@@ -346,7 +346,7 @@ func (p *PolicyService) GetImplicitPermissionsForRole(ctx context.Context, req *
 	}
 	var items []*pb.PolicyPermissionsResponse_Item
 	for _, rule := range rules {
-		permission, err := pb.NewPolicyPermissionsFromRule(rule)
+		permission, err := pb.NewPolicyPermissionFromRule(rule)
 		if err != nil {
 			return nil, err
 		}

@@ -13,6 +13,7 @@ import (
 	"github.com/saturn-xiv/palm/atropa/balsam/models"
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/minio"
+	"github.com/saturn-xiv/palm/atropa/env/rabbitmq"
 	"github.com/saturn-xiv/palm/atropa/env/redis"
 	wechat_mini_program "github.com/saturn-xiv/palm/atropa/env/wechat-mini-program"
 	wechat_oauth2 "github.com/saturn-xiv/palm/atropa/env/wechat-oauth2"
@@ -26,6 +27,7 @@ type Config struct {
 	WechatPay         *wechat_pay.Config          `toml:"wechat-mini-pay,omitempty"`
 	Redis             redis.Cluster               `toml:"redis"`
 	Database          env.Database                `toml:"database"`
+	RabbitMQ          rabbitmq.Config             `toml:"rabbitmq"`
 	Minio             minio.Config                `toml:"minio"`
 	Tls               env.Tls                     `toml:"tls"`
 }

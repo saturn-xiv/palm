@@ -868,7 +868,7 @@ const (
 // ----------------------------------------------------------------------------
 type EmailUserClient interface {
 	SignIn(ctx context.Context, in *UserSignInByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
-	SignUp(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
+	SignUp(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfirmByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ConfirmByToken(ctx context.Context, in *UserByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UnlockByEmail(ctx context.Context, in *UserByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -902,9 +902,9 @@ func (c *emailUserClient) SignIn(ctx context.Context, in *UserSignInByEmailReque
 	return out, nil
 }
 
-func (c *emailUserClient) SignUp(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*UserSignInResponse, error) {
+func (c *emailUserClient) SignUp(ctx context.Context, in *UserSignUpByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserSignInResponse)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, EmailUser_SignUp_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1049,7 +1049,7 @@ func (c *emailUserClient) ByEmail(ctx context.Context, in *EmailUserByEmailReque
 // ----------------------------------------------------------------------------
 type EmailUserServer interface {
 	SignIn(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error)
-	SignUp(context.Context, *UserSignUpByEmailRequest) (*UserSignInResponse, error)
+	SignUp(context.Context, *UserSignUpByEmailRequest) (*emptypb.Empty, error)
 	ConfirmByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
 	ConfirmByToken(context.Context, *UserByTokenRequest) (*emptypb.Empty, error)
 	UnlockByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error)
@@ -1073,7 +1073,7 @@ type UnimplementedEmailUserServer struct {
 func (UnimplementedEmailUserServer) SignIn(context.Context, *UserSignInByEmailRequest) (*UserSignInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
 }
-func (UnimplementedEmailUserServer) SignUp(context.Context, *UserSignUpByEmailRequest) (*UserSignInResponse, error) {
+func (UnimplementedEmailUserServer) SignUp(context.Context, *UserSignUpByEmailRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
 }
 func (UnimplementedEmailUserServer) ConfirmByEmail(context.Context, *UserByEmailRequest) (*emptypb.Empty, error) {

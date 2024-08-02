@@ -6,12 +6,15 @@ import (
 	"net"
 	"strings"
 
+	"github.com/go-playground/validator/v10"
 	"golang.org/x/text/language"
 	"google.golang.org/grpc/metadata"
 
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
+
+var gl_validate *validator.Validate = validator.New()
 
 // https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md
 func Auth(ctx context.Context, jwt *crypto.Jwt, audience string) error {

@@ -166,7 +166,7 @@ message UserLogsResponse {
 // ----------------------------------------------------------------------------
 service EmailUser {
   rpc SignIn(UserSignInByEmailRequest) returns (UserSignInResponse) {}
-  rpc SignUp(UserSignUpByEmailRequest) returns (UserSignInResponse) {}
+  rpc SignUp(UserSignUpByEmailRequest) returns (google.protobuf.Empty) {}
   rpc ConfirmByEmail(UserByEmailRequest) returns (google.protobuf.Empty) {}
   rpc ConfirmByToken(UserByTokenRequest) returns (google.protobuf.Empty) {}
   rpc UnlockByEmail(UserByEmailRequest) returns (google.protobuf.Empty) {}
@@ -207,6 +207,7 @@ message EmailUserIndexResponse {
 message UserResetPasswordRequest {
   string token = 1;
   string password = 2;
+  string home = 9;
 }
 
 message UserByEmailRequest {
@@ -214,6 +215,7 @@ message UserByEmailRequest {
     string email = 1;
     string nickname = 2;
   }
+  string home = 9;
 }
 
 message UserByTokenRequest {
@@ -234,9 +236,8 @@ message UserSignUpByEmailRequest {
   string email = 2;
   string nickname = 3;
   string password = 4;
-  string lang = 5;
-  string timezone = 6;
-  string home = 7;
+  string timezone = 5;
+  string home = 6;
   google.protobuf.Duration ttl = 9;
 }
 
@@ -255,7 +256,6 @@ message UserSignInResponse {
     string lang = 3;
     string timezone = 4;
     ProviderType provider_type = 8;
-    uint64 provider_id = 9;
 
     bool has_email = 11;
     bool has_phone = 12;
@@ -280,6 +280,8 @@ message UserSignInResponse {
   repeated string roles = 11;
   repeated Permission permissions = 12;
   repeated Menu menus = 13;
+  bool is_administrator = 98;
+  bool is_root = 99;
 }
 // ----------------------------------------------------------------------------
 service GoogleOauth2User {

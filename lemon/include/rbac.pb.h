@@ -656,17 +656,17 @@ class PolicyUsersResponse_Item final :
     kIFieldNumber = 2,
     kSFieldNumber = 9,
   };
-  // int64 i = 2;
+  // uint64 i = 2;
   bool has_i() const;
   private:
   bool _internal_has_i() const;
   public:
   void clear_i();
-  int64_t i() const;
-  void set_i(int64_t value);
+  uint64_t i() const;
+  void set_i(uint64_t value);
   private:
-  int64_t _internal_i() const;
-  void _internal_set_i(int64_t value);
+  uint64_t _internal_i() const;
+  void _internal_set_i(uint64_t value);
   public:
 
   // string s = 9;
@@ -705,7 +705,7 @@ class PolicyUsersResponse_Item final :
     union IdUnion {
       constexpr IdUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int64_t i_;
+      uint64_t i_;
       ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr s_;
     } id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2153,17 +2153,17 @@ class PolicyPermissionsResponse_Item_Resource_Id final :
     kIFieldNumber = 11,
     kSFieldNumber = 12,
   };
-  // int64 i = 11;
+  // uint64 i = 11;
   bool has_i() const;
   private:
   bool _internal_has_i() const;
   public:
   void clear_i();
-  int64_t i() const;
-  void set_i(int64_t value);
+  uint64_t i() const;
+  void set_i(uint64_t value);
   private:
-  int64_t _internal_i() const;
-  void _internal_set_i(int64_t value);
+  uint64_t _internal_i() const;
+  void _internal_set_i(uint64_t value);
   public:
 
   // string s = 12;
@@ -2202,7 +2202,7 @@ class PolicyPermissionsResponse_Item_Resource_Id final :
     union ByUnion {
       constexpr ByUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-      int64_t i_;
+      uint64_t i_;
       ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr s_;
     } by_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -4358,7 +4358,7 @@ inline void PolicyCanRequest::set_allocated_operation(::palm::rbac::v1::PolicyPe
 
 // PolicyUsersResponse_Item
 
-// int64 i = 2;
+// uint64 i = 2;
 inline bool PolicyUsersResponse_Item::_internal_has_i() const {
   return id_case() == kI;
 }
@@ -4370,28 +4370,28 @@ inline void PolicyUsersResponse_Item::set_has_i() {
 }
 inline void PolicyUsersResponse_Item::clear_i() {
   if (_internal_has_i()) {
-    _impl_.id_.i_ = int64_t{0};
+    _impl_.id_.i_ = uint64_t{0u};
     clear_has_id();
   }
 }
-inline int64_t PolicyUsersResponse_Item::_internal_i() const {
+inline uint64_t PolicyUsersResponse_Item::_internal_i() const {
   if (_internal_has_i()) {
     return _impl_.id_.i_;
   }
-  return int64_t{0};
+  return uint64_t{0u};
 }
-inline void PolicyUsersResponse_Item::_internal_set_i(int64_t value) {
+inline void PolicyUsersResponse_Item::_internal_set_i(uint64_t value) {
   if (!_internal_has_i()) {
     clear_id();
     set_has_i();
   }
   _impl_.id_.i_ = value;
 }
-inline int64_t PolicyUsersResponse_Item::i() const {
+inline uint64_t PolicyUsersResponse_Item::i() const {
   // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyUsersResponse.Item.i)
   return _internal_i();
 }
-inline void PolicyUsersResponse_Item::set_i(int64_t value) {
+inline void PolicyUsersResponse_Item::set_i(uint64_t value) {
   _internal_set_i(value);
   // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyUsersResponse.Item.i)
 }
@@ -5222,7 +5222,7 @@ PolicyPermissionsForRoleRequest::permissions() const {
 
 // PolicyPermissionsResponse_Item_Resource_Id
 
-// int64 i = 11;
+// uint64 i = 11;
 inline bool PolicyPermissionsResponse_Item_Resource_Id::_internal_has_i() const {
   return by_case() == kI;
 }
@@ -5234,28 +5234,28 @@ inline void PolicyPermissionsResponse_Item_Resource_Id::set_has_i() {
 }
 inline void PolicyPermissionsResponse_Item_Resource_Id::clear_i() {
   if (_internal_has_i()) {
-    _impl_.by_.i_ = int64_t{0};
+    _impl_.by_.i_ = uint64_t{0u};
     clear_has_by();
   }
 }
-inline int64_t PolicyPermissionsResponse_Item_Resource_Id::_internal_i() const {
+inline uint64_t PolicyPermissionsResponse_Item_Resource_Id::_internal_i() const {
   if (_internal_has_i()) {
     return _impl_.by_.i_;
   }
-  return int64_t{0};
+  return uint64_t{0u};
 }
-inline void PolicyPermissionsResponse_Item_Resource_Id::_internal_set_i(int64_t value) {
+inline void PolicyPermissionsResponse_Item_Resource_Id::_internal_set_i(uint64_t value) {
   if (!_internal_has_i()) {
     clear_by();
     set_has_i();
   }
   _impl_.by_.i_ = value;
 }
-inline int64_t PolicyPermissionsResponse_Item_Resource_Id::i() const {
+inline uint64_t PolicyPermissionsResponse_Item_Resource_Id::i() const {
   // @@protoc_insertion_point(field_get:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id.i)
   return _internal_i();
 }
-inline void PolicyPermissionsResponse_Item_Resource_Id::set_i(int64_t value) {
+inline void PolicyPermissionsResponse_Item_Resource_Id::set_i(uint64_t value) {
   _internal_set_i(value);
   // @@protoc_insertion_point(field_set:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id.i)
 }

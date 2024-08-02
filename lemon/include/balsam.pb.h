@@ -5403,6 +5403,7 @@ class UserResetPasswordRequest final :
   enum : int {
     kTokenFieldNumber = 1,
     kPasswordFieldNumber = 2,
+    kHomeFieldNumber = 9,
   };
   // string token = 1;
   void clear_token();
@@ -5432,6 +5433,20 @@ class UserResetPasswordRequest final :
   std::string* _internal_mutable_password();
   public:
 
+  // string home = 9;
+  void clear_home();
+  const std::string& home() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_home(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_home();
+  PROTOBUF_NODISCARD std::string* release_home();
+  void set_allocated_home(std::string* home);
+  private:
+  const std::string& _internal_home() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_home(const std::string& value);
+  std::string* _internal_mutable_home();
+  public:
+
   // @@protoc_insertion_point(class_scope:palm.balsam.v1.UserResetPasswordRequest)
  private:
   class _Internal;
@@ -5442,6 +5457,7 @@ class UserResetPasswordRequest final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr home_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -5576,9 +5592,24 @@ class UserByEmailRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kHomeFieldNumber = 9,
     kEmailFieldNumber = 1,
     kNicknameFieldNumber = 2,
   };
+  // string home = 9;
+  void clear_home();
+  const std::string& home() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_home(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_home();
+  PROTOBUF_NODISCARD std::string* release_home();
+  void set_allocated_home(std::string* home);
+  private:
+  const std::string& _internal_home() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_home(const std::string& value);
+  std::string* _internal_mutable_home();
+  public:
+
   // string email = 1;
   bool has_email() const;
   private:
@@ -5630,6 +5661,7 @@ class UserByEmailRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr home_;
     union UserUnion {
       constexpr UserUnion() : _constinit_{} {}
         ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
@@ -6155,9 +6187,8 @@ class UserSignUpByEmailRequest final :
     kEmailFieldNumber = 2,
     kNicknameFieldNumber = 3,
     kPasswordFieldNumber = 4,
-    kLangFieldNumber = 5,
-    kTimezoneFieldNumber = 6,
-    kHomeFieldNumber = 7,
+    kTimezoneFieldNumber = 5,
+    kHomeFieldNumber = 6,
     kTtlFieldNumber = 9,
   };
   // string real_name = 1;
@@ -6216,21 +6247,7 @@ class UserSignUpByEmailRequest final :
   std::string* _internal_mutable_password();
   public:
 
-  // string lang = 5;
-  void clear_lang();
-  const std::string& lang() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_lang(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_lang();
-  PROTOBUF_NODISCARD std::string* release_lang();
-  void set_allocated_lang(std::string* lang);
-  private:
-  const std::string& _internal_lang() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const std::string& value);
-  std::string* _internal_mutable_lang();
-  public:
-
-  // string timezone = 6;
+  // string timezone = 5;
   void clear_timezone();
   const std::string& timezone() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -6244,7 +6261,7 @@ class UserSignUpByEmailRequest final :
   std::string* _internal_mutable_timezone();
   public:
 
-  // string home = 7;
+  // string home = 6;
   void clear_home();
   const std::string& home() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -6288,7 +6305,6 @@ class UserSignUpByEmailRequest final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr nickname_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr lang_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr timezone_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr home_;
     ::PROTOBUF_NAMESPACE_ID::Duration* ttl_;
@@ -6462,7 +6478,6 @@ class UserSignInResponse_Detail final :
     kAvatarFieldNumber = 2,
     kLangFieldNumber = 3,
     kTimezoneFieldNumber = 4,
-    kProviderIdFieldNumber = 9,
     kProviderTypeFieldNumber = 8,
     kHasEmailFieldNumber = 11,
     kHasPhoneFieldNumber = 12,
@@ -6533,15 +6548,6 @@ class UserSignInResponse_Detail final :
   const std::string& _internal_timezone() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_timezone(const std::string& value);
   std::string* _internal_mutable_timezone();
-  public:
-
-  // uint64 provider_id = 9;
-  void clear_provider_id();
-  uint64_t provider_id() const;
-  void set_provider_id(uint64_t value);
-  private:
-  uint64_t _internal_provider_id() const;
-  void _internal_set_provider_id(uint64_t value);
   public:
 
   // .palm.balsam.v1.UserSignInResponse.Detail.ProviderType provider_type = 8;
@@ -6621,7 +6627,6 @@ class UserSignInResponse_Detail final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr avatar_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr lang_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr timezone_;
-    uint64_t provider_id_;
     int provider_type_;
     bool has_email_;
     bool has_phone_;
@@ -7160,6 +7165,8 @@ class UserSignInResponse final :
     kMenusFieldNumber = 13,
     kTokenFieldNumber = 1,
     kDetailFieldNumber = 2,
+    kIsAdministratorFieldNumber = 98,
+    kIsRootFieldNumber = 99,
   };
   // repeated string roles = 11;
   int roles_size() const;
@@ -7253,6 +7260,24 @@ class UserSignInResponse final :
       ::palm::balsam::v1::UserSignInResponse_Detail* detail);
   ::palm::balsam::v1::UserSignInResponse_Detail* unsafe_arena_release_detail();
 
+  // bool is_administrator = 98;
+  void clear_is_administrator();
+  bool is_administrator() const;
+  void set_is_administrator(bool value);
+  private:
+  bool _internal_is_administrator() const;
+  void _internal_set_is_administrator(bool value);
+  public:
+
+  // bool is_root = 99;
+  void clear_is_root();
+  bool is_root() const;
+  void set_is_root(bool value);
+  private:
+  bool _internal_is_root() const;
+  void _internal_set_is_root(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:palm.balsam.v1.UserSignInResponse)
  private:
   class _Internal;
@@ -7266,6 +7291,8 @@ class UserSignInResponse final :
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::UserSignInResponse_Menu > menus_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
     ::palm::balsam::v1::UserSignInResponse_Detail* detail_;
+    bool is_administrator_;
+    bool is_root_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -20647,6 +20674,56 @@ inline void UserResetPasswordRequest::set_allocated_password(std::string* passwo
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.UserResetPasswordRequest.password)
 }
 
+// string home = 9;
+inline void UserResetPasswordRequest::clear_home() {
+  _impl_.home_.ClearToEmpty();
+}
+inline const std::string& UserResetPasswordRequest::home() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.UserResetPasswordRequest.home)
+  return _internal_home();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UserResetPasswordRequest::set_home(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.home_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.UserResetPasswordRequest.home)
+}
+inline std::string* UserResetPasswordRequest::mutable_home() {
+  std::string* _s = _internal_mutable_home();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.UserResetPasswordRequest.home)
+  return _s;
+}
+inline const std::string& UserResetPasswordRequest::_internal_home() const {
+  return _impl_.home_.Get();
+}
+inline void UserResetPasswordRequest::_internal_set_home(const std::string& value) {
+  
+  _impl_.home_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UserResetPasswordRequest::_internal_mutable_home() {
+  
+  return _impl_.home_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UserResetPasswordRequest::release_home() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.UserResetPasswordRequest.home)
+  return _impl_.home_.Release();
+}
+inline void UserResetPasswordRequest::set_allocated_home(std::string* home) {
+  if (home != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.home_.SetAllocated(home, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.home_.IsDefault()) {
+    _impl_.home_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.UserResetPasswordRequest.home)
+}
+
 // -------------------------------------------------------------------
 
 // UserByEmailRequest
@@ -20803,6 +20880,56 @@ inline void UserByEmailRequest::set_allocated_nickname(std::string* nickname) {
     _impl_.user_.nickname_.InitAllocated(nickname, GetArenaForAllocation());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.UserByEmailRequest.nickname)
+}
+
+// string home = 9;
+inline void UserByEmailRequest::clear_home() {
+  _impl_.home_.ClearToEmpty();
+}
+inline const std::string& UserByEmailRequest::home() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.UserByEmailRequest.home)
+  return _internal_home();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UserByEmailRequest::set_home(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.home_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.UserByEmailRequest.home)
+}
+inline std::string* UserByEmailRequest::mutable_home() {
+  std::string* _s = _internal_mutable_home();
+  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.UserByEmailRequest.home)
+  return _s;
+}
+inline const std::string& UserByEmailRequest::_internal_home() const {
+  return _impl_.home_.Get();
+}
+inline void UserByEmailRequest::_internal_set_home(const std::string& value) {
+  
+  _impl_.home_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UserByEmailRequest::_internal_mutable_home() {
+  
+  return _impl_.home_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UserByEmailRequest::release_home() {
+  // @@protoc_insertion_point(field_release:palm.balsam.v1.UserByEmailRequest.home)
+  return _impl_.home_.Release();
+}
+inline void UserByEmailRequest::set_allocated_home(std::string* home) {
+  if (home != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.home_.SetAllocated(home, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.home_.IsDefault()) {
+    _impl_.home_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.UserByEmailRequest.home)
 }
 
 inline bool UserByEmailRequest::has_user() const {
@@ -21374,57 +21501,7 @@ inline void UserSignUpByEmailRequest::set_allocated_password(std::string* passwo
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.UserSignUpByEmailRequest.password)
 }
 
-// string lang = 5;
-inline void UserSignUpByEmailRequest::clear_lang() {
-  _impl_.lang_.ClearToEmpty();
-}
-inline const std::string& UserSignUpByEmailRequest::lang() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.UserSignUpByEmailRequest.lang)
-  return _internal_lang();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void UserSignUpByEmailRequest::set_lang(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.lang_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.UserSignUpByEmailRequest.lang)
-}
-inline std::string* UserSignUpByEmailRequest::mutable_lang() {
-  std::string* _s = _internal_mutable_lang();
-  // @@protoc_insertion_point(field_mutable:palm.balsam.v1.UserSignUpByEmailRequest.lang)
-  return _s;
-}
-inline const std::string& UserSignUpByEmailRequest::_internal_lang() const {
-  return _impl_.lang_.Get();
-}
-inline void UserSignUpByEmailRequest::_internal_set_lang(const std::string& value) {
-  
-  _impl_.lang_.Set(value, GetArenaForAllocation());
-}
-inline std::string* UserSignUpByEmailRequest::_internal_mutable_lang() {
-  
-  return _impl_.lang_.Mutable(GetArenaForAllocation());
-}
-inline std::string* UserSignUpByEmailRequest::release_lang() {
-  // @@protoc_insertion_point(field_release:palm.balsam.v1.UserSignUpByEmailRequest.lang)
-  return _impl_.lang_.Release();
-}
-inline void UserSignUpByEmailRequest::set_allocated_lang(std::string* lang) {
-  if (lang != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.lang_.SetAllocated(lang, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.lang_.IsDefault()) {
-    _impl_.lang_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.UserSignUpByEmailRequest.lang)
-}
-
-// string timezone = 6;
+// string timezone = 5;
 inline void UserSignUpByEmailRequest::clear_timezone() {
   _impl_.timezone_.ClearToEmpty();
 }
@@ -21474,7 +21551,7 @@ inline void UserSignUpByEmailRequest::set_allocated_timezone(std::string* timezo
   // @@protoc_insertion_point(field_set_allocated:palm.balsam.v1.UserSignUpByEmailRequest.timezone)
 }
 
-// string home = 7;
+// string home = 6;
 inline void UserSignUpByEmailRequest::clear_home() {
   _impl_.home_.ClearToEmpty();
 }
@@ -21867,26 +21944,6 @@ inline void UserSignInResponse_Detail::_internal_set_provider_type(::palm::balsa
 inline void UserSignInResponse_Detail::set_provider_type(::palm::balsam::v1::UserSignInResponse_Detail_ProviderType value) {
   _internal_set_provider_type(value);
   // @@protoc_insertion_point(field_set:palm.balsam.v1.UserSignInResponse.Detail.provider_type)
-}
-
-// uint64 provider_id = 9;
-inline void UserSignInResponse_Detail::clear_provider_id() {
-  _impl_.provider_id_ = uint64_t{0u};
-}
-inline uint64_t UserSignInResponse_Detail::_internal_provider_id() const {
-  return _impl_.provider_id_;
-}
-inline uint64_t UserSignInResponse_Detail::provider_id() const {
-  // @@protoc_insertion_point(field_get:palm.balsam.v1.UserSignInResponse.Detail.provider_id)
-  return _internal_provider_id();
-}
-inline void UserSignInResponse_Detail::_internal_set_provider_id(uint64_t value) {
-  
-  _impl_.provider_id_ = value;
-}
-inline void UserSignInResponse_Detail::set_provider_id(uint64_t value) {
-  _internal_set_provider_id(value);
-  // @@protoc_insertion_point(field_set:palm.balsam.v1.UserSignInResponse.Detail.provider_id)
 }
 
 // bool has_email = 11;
@@ -22650,6 +22707,46 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::palm::balsam::v1::User
 UserSignInResponse::menus() const {
   // @@protoc_insertion_point(field_list:palm.balsam.v1.UserSignInResponse.menus)
   return _impl_.menus_;
+}
+
+// bool is_administrator = 98;
+inline void UserSignInResponse::clear_is_administrator() {
+  _impl_.is_administrator_ = false;
+}
+inline bool UserSignInResponse::_internal_is_administrator() const {
+  return _impl_.is_administrator_;
+}
+inline bool UserSignInResponse::is_administrator() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.UserSignInResponse.is_administrator)
+  return _internal_is_administrator();
+}
+inline void UserSignInResponse::_internal_set_is_administrator(bool value) {
+  
+  _impl_.is_administrator_ = value;
+}
+inline void UserSignInResponse::set_is_administrator(bool value) {
+  _internal_set_is_administrator(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.UserSignInResponse.is_administrator)
+}
+
+// bool is_root = 99;
+inline void UserSignInResponse::clear_is_root() {
+  _impl_.is_root_ = false;
+}
+inline bool UserSignInResponse::_internal_is_root() const {
+  return _impl_.is_root_;
+}
+inline bool UserSignInResponse::is_root() const {
+  // @@protoc_insertion_point(field_get:palm.balsam.v1.UserSignInResponse.is_root)
+  return _internal_is_root();
+}
+inline void UserSignInResponse::_internal_set_is_root(bool value) {
+  
+  _impl_.is_root_ = value;
+}
+inline void UserSignInResponse::set_is_root(bool value) {
+  _internal_set_is_root(value);
+  // @@protoc_insertion_point(field_set:palm.balsam.v1.UserSignInResponse.is_root)
 }
 
 // -------------------------------------------------------------------

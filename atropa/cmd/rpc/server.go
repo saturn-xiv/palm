@@ -22,6 +22,7 @@ import (
 	"github.com/saturn-xiv/palm/atropa/env"
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 	"github.com/saturn-xiv/palm/atropa/env/minio"
+	"github.com/saturn-xiv/palm/atropa/env/rabbitmq"
 	"github.com/saturn-xiv/palm/atropa/env/redis"
 	wechat_mini_program "github.com/saturn-xiv/palm/atropa/env/wechat-mini-program"
 	wechat_oauth2 "github.com/saturn-xiv/palm/atropa/env/wechat-oauth2"
@@ -63,7 +64,6 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 	if err != nil {
 		return err
 	}
-
 	s3, err := config.Minio.Open()
 	if err != nil {
 		return err
@@ -84,7 +84,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 
 	server := grpc.NewServer(grpc.Creds(credentials.NewTLS(tls)))
 	if err = mount(server,
-		db, redis,
+		db, redis, &config.RabbitMQ,
 		aes, hmac, jwt, enforcer, s3,
 		config.GoogleOauth2,
 		config.WechatOauth2, config.WechatMiniProgram, config.WechatPay); err != nil {
@@ -109,7 +109,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 }
 
 func mount(server *grpc.Server,
-	db *gorm.DB, redis *redis.Client,
+	db *gorm.DB, redis *redis.Client, rabbitmq *rabbitmq.Config,
 	aes *crypto.Aes, hmac *crypto.HMac, jwt *crypto.Jwt,
 	enforcer *casbin.Enforcer,
 	s3 *minio.Cluster,
@@ -123,6 +123,7 @@ func mount(server *grpc.Server,
 	balsam_pb.RegisterJwtServer(server, balsam_services.NewJwtService(jwt))
 	balsam_pb.RegisterSessionServer(server, balsam_services.NewSessionService(db))
 	balsam_pb.RegisterUserServer(server, balsam_services.NewUserService(db))
+	balsam_pb.RegisterEmailUserServer(server, balsam_services.NewEmailUserService(db, rabbitmq, enforcer, hmac, jwt))
 	balsam_pb.RegisterGoogleOauth2UserServer(server, balsam_services.NewGoogleOauth2Service(db))
 	balsam_pb.RegisterWechatMiniProgramUserServer(server, balsam_services.NewWechatMiniProgramService(db))
 	balsam_pb.RegisterWechatOauth2UserServer(server, balsam_services.NewWechatOauth2Service(db))

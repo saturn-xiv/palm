@@ -8,7 +8,7 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-func NewPolicyPermissionsFromRule(rule []string) (*PolicyPermissionsResponse_Item, error) {
+func NewPolicyPermissionFromRule(rule []string) (*PolicyPermissionsResponse_Item, error) {
 	if len(rule) != 3 {
 		return nil, fmt.Errorf("unexpected permission %v", rule)
 	}

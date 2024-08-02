@@ -568,7 +568,7 @@ const char descriptor_table_protodef_rbac_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "ac.v1.PolicyPermissionsResponse.Item.Ope"
   "ration\"t\n\023PolicyUsersResponse\0225\n\005items\030\001"
   " \003(\0132&.palm.rbac.v1.PolicyUsersResponse."
-  "Item\032&\n\004Item\022\013\n\001i\030\002 \001(\003H\000\022\013\n\001s\030\t \001(\tH\000B\004"
+  "Item\032&\n\004Item\022\013\n\001i\030\002 \001(\004H\000\022\013\n\001s\030\t \001(\tH\000B\004"
   "\n\002id\"\220\002\n\023PolicyRolesResponse\0225\n\005items\030\001 "
   "\003(\0132&.palm.rbac.v1.PolicyRolesResponse.I"
   "tem\032\301\001\n\004Item\022;\n\004root\030\001 \001(\0132+.palm.rbac.v"
@@ -596,7 +596,7 @@ const char descriptor_table_protodef_rbac_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "ponse.Item.Operation\032\220\001\n\010Resource\022\014\n\004typ"
   "e\030\001 \001(\t\022I\n\002id\030\002 \001(\01328.palm.rbac.v1.Polic"
   "yPermissionsResponse.Item.Resource.IdH\000\210"
-  "\001\001\032$\n\002Id\022\013\n\001i\030\013 \001(\003H\000\022\013\n\001s\030\014 \001(\tH\000B\004\n\002by"
+  "\001\001\032$\n\002Id\022\013\n\001i\030\013 \001(\004H\000\022\013\n\001s\030\014 \001(\tH\000B\004\n\002by"
   "B\005\n\003_id\032\230\005\n\tOperation\022K\n\004read\030\001 \001(\0132;.pa"
   "lm.rbac.v1.PolicyPermissionsResponse.Ite"
   "m.Operation.ReadH\000\022M\n\005write\030\002 \001(\0132<.palm"
@@ -1307,7 +1307,7 @@ const char* PolicyUsersResponse_Item::_InternalParse(const char* ptr, ::_pbi::Pa
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int64 i = 2;
+      // uint64 i = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _internal_set_i(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
@@ -1354,10 +1354,10 @@ uint8_t* PolicyUsersResponse_Item::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int64 i = 2;
+  // uint64 i = 2;
   if (_internal_has_i()) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_i(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_i(), target);
   }
 
   // string s = 9;
@@ -1387,9 +1387,9 @@ size_t PolicyUsersResponse_Item::ByteSizeLong() const {
   (void) cached_has_bits;
 
   switch (id_case()) {
-    // int64 i = 2;
+    // uint64 i = 2;
     case kI: {
-      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_i());
+      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_i());
       break;
     }
     // string s = 9;
@@ -3041,7 +3041,7 @@ const char* PolicyPermissionsResponse_Item_Resource_Id::_InternalParse(const cha
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int64 i = 11;
+      // uint64 i = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
           _internal_set_i(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
@@ -3088,10 +3088,10 @@ uint8_t* PolicyPermissionsResponse_Item_Resource_Id::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int64 i = 11;
+  // uint64 i = 11;
   if (_internal_has_i()) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(11, this->_internal_i(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(11, this->_internal_i(), target);
   }
 
   // string s = 12;
@@ -3121,9 +3121,9 @@ size_t PolicyPermissionsResponse_Item_Resource_Id::ByteSizeLong() const {
   (void) cached_has_bits;
 
   switch (by_case()) {
-    // int64 i = 11;
+    // uint64 i = 11;
     case kI: {
-      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_i());
+      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_i());
       break;
     }
     // string s = 12;

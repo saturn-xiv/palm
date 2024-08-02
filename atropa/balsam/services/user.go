@@ -2,14 +2,20 @@ package services
 
 import (
 	"context"
+	"errors"
+	"log/slog"
 	"time"
 
+	"github.com/casbin/casbin/v2"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/atropa/balsam/models"
 	pb "github.com/saturn-xiv/palm/atropa/balsam/services/v2"
+	"github.com/saturn-xiv/palm/atropa/env"
+	"github.com/saturn-xiv/palm/atropa/env/crypto"
+	rbac_pb "github.com/saturn-xiv/palm/atropa/rbac/services/v2"
 )
 
 func NewUserService(db *gorm.DB) *UserService {
@@ -142,7 +148,6 @@ func (p *UserService) SignOut(ctx context.Context, req *pb.UserSignOutRequest) (
 			"current_sign_ip": nil,
 			"last_sign_at":    it.LastSignInAt,
 			"last_sign_ip":    it.LastSignInIP,
-			"sign_in_count":   it.SignInCount,
 		}).Error; err != nil {
 			return err
 		}
@@ -256,4 +261,146 @@ func (p *UserService) new_log_response_item(it *models.Log) (*pb.UserLogsRespons
 	}
 
 	return &tmp, nil
+}
+
+func create_user_sign_in_response(ctx context.Context, resource any, db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, user_id uint64, detail *pb.UserSignInResponse_Detail, ttl time.Duration) (*pb.UserSignInResponse, error) {
+	lang := Locale(ctx).String()
+	client_ip := ClientIP(ctx).String()
+	var user models.User
+	if err := db.First(&user, user_id).Error; err != nil {
+		return nil, err
+	}
+	if user.DeletedAt != nil {
+		return nil, errors.New("user is disabled")
+	}
+	if user.LockedAt != nil {
+		return nil, errors.New("user is locked")
+	}
+	now := time.Now()
+	exp := now.Add(ttl)
+	token, err := jwt.Sign(env.JWT_ISSUER, user.UID, []string{gl_sign_in_audience}, map[string]interface{}{}, &now, &exp)
+	if err != nil {
+		return nil, err
+	}
+	if err := db.Transaction(func(tx *gorm.DB) error {
+		if err := models.CreateLog(tx, user_id, lang, client_ip, pb.UserLogsResponse_Item_Info, (*UserService)(nil), resource, nil, "user.logs.sign-in", map[string]interface{}{}); err != nil {
+			return err
+		}
+		if err := tx.Model(&models.User{}).Where("id = ?", user_id).Updates(map[string]interface{}{
+			"current_sign_at": time.Now(),
+			"current_sign_ip": client_ip,
+			"last_sign_at":    user.CurrentSignInAt,
+			"last_sign_ip":    user.CurrentSignInIP,
+			"sign_in_count":   user.SignInCount + 1,
+		}).Error; err != nil {
+			return err
+		}
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+	{
+		// TODO
+		detail.HasPhone = false
+	}
+	{
+		// TODO
+		detail.HasFacebookOauth2 = false
+	}
+	{
+		var c int64
+		if err := db.Model(&models.EmailUser{}).Count(&c).Error; err != nil {
+			return nil, err
+		}
+		detail.HasEmail = c > 0
+	}
+	{
+		var c int64
+		if err := db.Model(&models.GoogleOauth2User{}).Count(&c).Error; err != nil {
+			return nil, err
+		}
+		detail.HasGoogleOauth2 = c > 0
+	}
+	{
+		var c int64
+		if err := db.Model(&models.WechatMiniProgramUser{}).Count(&c).Error; err != nil {
+			return nil, err
+		}
+		detail.HasWechatMiniProgram = c > 0
+	}
+	{
+		var c int64
+		if err := db.Model(&models.WechatOauth2User{}).Count(&c).Error; err != nil {
+			return nil, err
+		}
+		detail.HasWechatOauth2 = c > 0
+	}
+	res := pb.UserSignInResponse{
+		Detail:      detail,
+		Token:       token,
+		Roles:       make([]string, 0),
+		Permissions: make([]*pb.UserSignInResponse_Permission, 0),
+		Menus:       make([]*pb.UserSignInResponse_Menu, 0),
+	}
+
+	{
+		pu := rbac_pb.PolicyUsersResponse_Item{
+			Id: &rbac_pb.PolicyUsersResponse_Item_I{I: user.ID},
+		}
+		subject, err := pu.Code()
+		if err != nil {
+			return nil, err
+		}
+		{
+			roles, err := enforcer.GetImplicitRolesForUser(subject)
+			if err != nil {
+				return nil, err
+			}
+			for _, it := range roles {
+				role, err := rbac_pb.NewPolicyRoleFromCode(it)
+				if err != nil {
+					return nil, err
+				}
+				switch by := role.By.(type) {
+				case *rbac_pb.PolicyRolesResponse_Item_Administrator_:
+					res.IsAdministrator = true
+				case *rbac_pb.PolicyRolesResponse_Item_Root_:
+					res.IsRoot = true
+				case *rbac_pb.PolicyRolesResponse_Item_Code:
+					res.Roles = append(res.Roles, by.Code)
+				}
+			}
+		}
+		{
+			permissions, err := enforcer.GetImplicitPermissionsForUser(subject)
+			if err != nil {
+				return nil, err
+			}
+			for _, rule := range permissions {
+				permission, err := rbac_pb.NewPolicyPermissionFromRule(rule)
+				if err != nil {
+					return nil, err
+				}
+				it := pb.UserSignInResponse_Permission{
+					Operation:    permission.Operation.String(),
+					ResourceType: permission.Resource.Type,
+				}
+				if permission.Resource.Id.By != nil {
+					switch by := permission.Resource.Id.By.(type) {
+					case *rbac_pb.PolicyPermissionsResponse_Item_Resource_Id_I:
+						it.ResourceId = &by.I
+					case *rbac_pb.PolicyPermissionsResponse_Item_Resource_Id_S:
+						slog.Warn("unsupported resource id", slog.String("s", by.S))
+						continue
+					}
+				}
+				res.Permissions = append(res.Permissions, &it)
+			}
+		}
+	}
+	{
+		// TODO menus
+	}
+
+	return &res, nil
 }

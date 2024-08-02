@@ -2762,12 +2762,12 @@ class EmailUser final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>> PrepareAsyncSignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>>(PrepareAsyncSignInRaw(context, request, cq));
     }
-    virtual ::grpc::Status SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::palm::balsam::v1::UserSignInResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>> AsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>>(AsyncSignUpRaw(context, request, cq));
+    virtual ::grpc::Status SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncSignUpRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>> PrepareAsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>>(PrepareAsyncSignUpRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncSignUpRaw(context, request, cq));
     }
     virtual ::grpc::Status ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::google::protobuf::Empty* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
@@ -2865,8 +2865,8 @@ class EmailUser final {
       virtual ~async_interface() {}
       virtual void SignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ConfirmByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
@@ -2900,8 +2900,8 @@ class EmailUser final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>* AsyncSignInRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>* PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>* AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::balsam::v1::UserSignInResponse>* PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -2939,12 +2939,12 @@ class EmailUser final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>> PrepareAsyncSignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>>(PrepareAsyncSignInRaw(context, request, cq));
     }
-    ::grpc::Status SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::palm::balsam::v1::UserSignInResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>> AsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>>(AsyncSignUpRaw(context, request, cq));
+    ::grpc::Status SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncSignUpRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>> PrepareAsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>>(PrepareAsyncSignUpRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncSignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncSignUpRaw(context, request, cq));
     }
     ::grpc::Status ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::google::protobuf::Empty* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) {
@@ -3042,8 +3042,8 @@ class EmailUser final {
      public:
       void SignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)>) override;
       void SignIn(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, std::function<void(::grpc::Status)>) override;
-      void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void SignUp(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
       void ConfirmByEmail(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ConfirmByToken(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
@@ -3083,8 +3083,8 @@ class EmailUser final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* AsyncSignInRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* PrepareAsyncSignInRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::balsam::v1::UserSignInResponse>* PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncSignUpRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncConfirmByEmailRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByEmailRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncConfirmByTokenRaw(::grpc::ClientContext* context, const ::palm::balsam::v1::UserByTokenRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -3134,7 +3134,7 @@ class EmailUser final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status SignIn(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignInByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response);
-    virtual ::grpc::Status SignUp(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response);
+    virtual ::grpc::Status SignUp(::grpc::ServerContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status ConfirmByEmail(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status ConfirmByToken(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByTokenRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status UnlockByEmail(::grpc::ServerContext* context, const ::palm::balsam::v1::UserByEmailRequest* request, ::google::protobuf::Empty* response);
@@ -3181,11 +3181,11 @@ class EmailUser final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::palm::balsam::v1::UserSignInResponse* /*response*/) override {
+    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSignUp(::grpc::ServerContext* context, ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::balsam::v1::UserSignInResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSignUp(::grpc::ServerContext* context, ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -3484,25 +3484,25 @@ class EmailUser final {
    public:
     WithCallbackMethod_SignUp() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::palm::balsam::v1::UserSignInResponse* response) { return this->SignUp(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::balsam::v1::UserSignUpByEmailRequest* request, ::google::protobuf::Empty* response) { return this->SignUp(context, request, response); }));}
     void SetMessageAllocatorFor_SignUp(
-        ::grpc::MessageAllocator< ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse>* allocator) {
+        ::grpc::MessageAllocator< ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_SignUp() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::palm::balsam::v1::UserSignInResponse* /*response*/) override {
+    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SignUp(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::palm::balsam::v1::UserSignInResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_ConfirmByEmail : public BaseClass {
@@ -3886,7 +3886,7 @@ class EmailUser final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::palm::balsam::v1::UserSignInResponse* /*response*/) override {
+    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -4144,7 +4144,7 @@ class EmailUser final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::palm::balsam::v1::UserSignInResponse* /*response*/) override {
+    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -4449,7 +4449,7 @@ class EmailUser final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::palm::balsam::v1::UserSignInResponse* /*response*/) override {
+    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -4777,10 +4777,10 @@ class EmailUser final {
     WithStreamedUnaryMethod_SignUp() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse>(
+          ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::balsam::v1::UserSignUpByEmailRequest, ::palm::balsam::v1::UserSignInResponse>* streamer) {
+                     ::palm::balsam::v1::UserSignUpByEmailRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedSignUp(context,
                          streamer);
                   }));
@@ -4789,12 +4789,12 @@ class EmailUser final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::palm::balsam::v1::UserSignInResponse* /*response*/) override {
+    ::grpc::Status SignUp(::grpc::ServerContext* /*context*/, const ::palm::balsam::v1::UserSignUpByEmailRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSignUp(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::UserSignUpByEmailRequest,::palm::balsam::v1::UserSignInResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedSignUp(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::balsam::v1::UserSignUpByEmailRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_ConfirmByEmail : public BaseClass {
