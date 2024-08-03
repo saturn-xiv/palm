@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -238,55 +239,799 @@ var MiniProgram_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "wechat.proto",
 }
 
-// PayClient is the client API for Pay service.
+const (
+	PayNative_Prepay_FullMethodName = "/palm.wechat.v1.PayNative/Prepay"
+)
+
+// PayNativeClient is the client API for PayNative service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-//
-// ----------------------------------------------------------------------------
-type PayClient interface {
+type PayNativeClient interface {
+	Prepay(ctx context.Context, in *PayPrepayRequest, opts ...grpc.CallOption) (*PayNativeQrCodeUrlResponse, error)
 }
 
-type payClient struct {
+type payNativeClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewPayClient(cc grpc.ClientConnInterface) PayClient {
-	return &payClient{cc}
+func NewPayNativeClient(cc grpc.ClientConnInterface) PayNativeClient {
+	return &payNativeClient{cc}
 }
 
-// PayServer is the server API for Pay service.
-// All implementations must embed UnimplementedPayServer
+func (c *payNativeClient) Prepay(ctx context.Context, in *PayPrepayRequest, opts ...grpc.CallOption) (*PayNativeQrCodeUrlResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayNativeQrCodeUrlResponse)
+	err := c.cc.Invoke(ctx, PayNative_Prepay_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PayNativeServer is the server API for PayNative service.
+// All implementations must embed UnimplementedPayNativeServer
 // for forward compatibility
-//
-// ----------------------------------------------------------------------------
-type PayServer interface {
-	mustEmbedUnimplementedPayServer()
+type PayNativeServer interface {
+	Prepay(context.Context, *PayPrepayRequest) (*PayNativeQrCodeUrlResponse, error)
+	mustEmbedUnimplementedPayNativeServer()
 }
 
-// UnimplementedPayServer must be embedded to have forward compatible implementations.
-type UnimplementedPayServer struct {
+// UnimplementedPayNativeServer must be embedded to have forward compatible implementations.
+type UnimplementedPayNativeServer struct {
 }
 
-func (UnimplementedPayServer) mustEmbedUnimplementedPayServer() {}
+func (UnimplementedPayNativeServer) Prepay(context.Context, *PayPrepayRequest) (*PayNativeQrCodeUrlResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Prepay not implemented")
+}
+func (UnimplementedPayNativeServer) mustEmbedUnimplementedPayNativeServer() {}
 
-// UnsafePayServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PayServer will
+// UnsafePayNativeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PayNativeServer will
 // result in compilation errors.
-type UnsafePayServer interface {
-	mustEmbedUnimplementedPayServer()
+type UnsafePayNativeServer interface {
+	mustEmbedUnimplementedPayNativeServer()
 }
 
-func RegisterPayServer(s grpc.ServiceRegistrar, srv PayServer) {
-	s.RegisterService(&Pay_ServiceDesc, srv)
+func RegisterPayNativeServer(s grpc.ServiceRegistrar, srv PayNativeServer) {
+	s.RegisterService(&PayNative_ServiceDesc, srv)
 }
 
-// Pay_ServiceDesc is the grpc.ServiceDesc for Pay service.
+func _PayNative_Prepay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayPrepayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayNativeServer).Prepay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayNative_Prepay_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayNativeServer).Prepay(ctx, req.(*PayPrepayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PayNative_ServiceDesc is the grpc.ServiceDesc for PayNative service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Pay_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "palm.wechat.v1.Pay",
-	HandlerType: (*PayServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "wechat.proto",
+var PayNative_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.wechat.v1.PayNative",
+	HandlerType: (*PayNativeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Prepay",
+			Handler:    _PayNative_Prepay_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "wechat.proto",
+}
+
+const (
+	PayJsapi_Prepay_FullMethodName                 = "/palm.wechat.v1.PayJsapi/Prepay"
+	PayJsapi_QueryOrderByOutTradeNo_FullMethodName = "/palm.wechat.v1.PayJsapi/QueryOrderByOutTradeNo"
+	PayJsapi_QueryOrderById_FullMethodName         = "/palm.wechat.v1.PayJsapi/QueryOrderById"
+	PayJsapi_CloseOrder_FullMethodName             = "/palm.wechat.v1.PayJsapi/CloseOrder"
+)
+
+// PayJsapiClient is the client API for PayJsapi service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PayJsapiClient interface {
+	Prepay(ctx context.Context, in *PayPrepayRequest, opts ...grpc.CallOption) (*PayJsapiPrepayIdResponse, error)
+	QueryOrderByOutTradeNo(ctx context.Context, in *PayQueryOrderByOutTradeNoRequest, opts ...grpc.CallOption) (*PayTradeResponse, error)
+	QueryOrderById(ctx context.Context, in *PayQueryOrderByIdRequest, opts ...grpc.CallOption) (*PayTradeResponse, error)
+	CloseOrder(ctx context.Context, in *PayCloseOrderRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type payJsapiClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPayJsapiClient(cc grpc.ClientConnInterface) PayJsapiClient {
+	return &payJsapiClient{cc}
+}
+
+func (c *payJsapiClient) Prepay(ctx context.Context, in *PayPrepayRequest, opts ...grpc.CallOption) (*PayJsapiPrepayIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayJsapiPrepayIdResponse)
+	err := c.cc.Invoke(ctx, PayJsapi_Prepay_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payJsapiClient) QueryOrderByOutTradeNo(ctx context.Context, in *PayQueryOrderByOutTradeNoRequest, opts ...grpc.CallOption) (*PayTradeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayTradeResponse)
+	err := c.cc.Invoke(ctx, PayJsapi_QueryOrderByOutTradeNo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payJsapiClient) QueryOrderById(ctx context.Context, in *PayQueryOrderByIdRequest, opts ...grpc.CallOption) (*PayTradeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayTradeResponse)
+	err := c.cc.Invoke(ctx, PayJsapi_QueryOrderById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payJsapiClient) CloseOrder(ctx context.Context, in *PayCloseOrderRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, PayJsapi_CloseOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PayJsapiServer is the server API for PayJsapi service.
+// All implementations must embed UnimplementedPayJsapiServer
+// for forward compatibility
+type PayJsapiServer interface {
+	Prepay(context.Context, *PayPrepayRequest) (*PayJsapiPrepayIdResponse, error)
+	QueryOrderByOutTradeNo(context.Context, *PayQueryOrderByOutTradeNoRequest) (*PayTradeResponse, error)
+	QueryOrderById(context.Context, *PayQueryOrderByIdRequest) (*PayTradeResponse, error)
+	CloseOrder(context.Context, *PayCloseOrderRequest) (*emptypb.Empty, error)
+	mustEmbedUnimplementedPayJsapiServer()
+}
+
+// UnimplementedPayJsapiServer must be embedded to have forward compatible implementations.
+type UnimplementedPayJsapiServer struct {
+}
+
+func (UnimplementedPayJsapiServer) Prepay(context.Context, *PayPrepayRequest) (*PayJsapiPrepayIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Prepay not implemented")
+}
+func (UnimplementedPayJsapiServer) QueryOrderByOutTradeNo(context.Context, *PayQueryOrderByOutTradeNoRequest) (*PayTradeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryOrderByOutTradeNo not implemented")
+}
+func (UnimplementedPayJsapiServer) QueryOrderById(context.Context, *PayQueryOrderByIdRequest) (*PayTradeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryOrderById not implemented")
+}
+func (UnimplementedPayJsapiServer) CloseOrder(context.Context, *PayCloseOrderRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloseOrder not implemented")
+}
+func (UnimplementedPayJsapiServer) mustEmbedUnimplementedPayJsapiServer() {}
+
+// UnsafePayJsapiServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PayJsapiServer will
+// result in compilation errors.
+type UnsafePayJsapiServer interface {
+	mustEmbedUnimplementedPayJsapiServer()
+}
+
+func RegisterPayJsapiServer(s grpc.ServiceRegistrar, srv PayJsapiServer) {
+	s.RegisterService(&PayJsapi_ServiceDesc, srv)
+}
+
+func _PayJsapi_Prepay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayPrepayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayJsapiServer).Prepay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayJsapi_Prepay_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayJsapiServer).Prepay(ctx, req.(*PayPrepayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayJsapi_QueryOrderByOutTradeNo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayQueryOrderByOutTradeNoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayJsapiServer).QueryOrderByOutTradeNo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayJsapi_QueryOrderByOutTradeNo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayJsapiServer).QueryOrderByOutTradeNo(ctx, req.(*PayQueryOrderByOutTradeNoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayJsapi_QueryOrderById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayQueryOrderByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayJsapiServer).QueryOrderById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayJsapi_QueryOrderById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayJsapiServer).QueryOrderById(ctx, req.(*PayQueryOrderByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayJsapi_CloseOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayCloseOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayJsapiServer).CloseOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayJsapi_CloseOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayJsapiServer).CloseOrder(ctx, req.(*PayCloseOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PayJsapi_ServiceDesc is the grpc.ServiceDesc for PayJsapi service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PayJsapi_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.wechat.v1.PayJsapi",
+	HandlerType: (*PayJsapiServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Prepay",
+			Handler:    _PayJsapi_Prepay_Handler,
+		},
+		{
+			MethodName: "QueryOrderByOutTradeNo",
+			Handler:    _PayJsapi_QueryOrderByOutTradeNo_Handler,
+		},
+		{
+			MethodName: "QueryOrderById",
+			Handler:    _PayJsapi_QueryOrderById_Handler,
+		},
+		{
+			MethodName: "CloseOrder",
+			Handler:    _PayJsapi_CloseOrder_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "wechat.proto",
+}
+
+const (
+	PayBill_Trade_FullMethodName    = "/palm.wechat.v1.PayBill/Trade"
+	PayBill_FundFlow_FullMethodName = "/palm.wechat.v1.PayBill/FundFlow"
+)
+
+// PayBillClient is the client API for PayBill service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PayBillClient interface {
+	Trade(ctx context.Context, in *PayTradeBillRequest, opts ...grpc.CallOption) (*PayBillResponse, error)
+	FundFlow(ctx context.Context, in *PayFundFlowBillRequest, opts ...grpc.CallOption) (*PayBillResponse, error)
+}
+
+type payBillClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPayBillClient(cc grpc.ClientConnInterface) PayBillClient {
+	return &payBillClient{cc}
+}
+
+func (c *payBillClient) Trade(ctx context.Context, in *PayTradeBillRequest, opts ...grpc.CallOption) (*PayBillResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayBillResponse)
+	err := c.cc.Invoke(ctx, PayBill_Trade_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payBillClient) FundFlow(ctx context.Context, in *PayFundFlowBillRequest, opts ...grpc.CallOption) (*PayBillResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayBillResponse)
+	err := c.cc.Invoke(ctx, PayBill_FundFlow_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PayBillServer is the server API for PayBill service.
+// All implementations must embed UnimplementedPayBillServer
+// for forward compatibility
+type PayBillServer interface {
+	Trade(context.Context, *PayTradeBillRequest) (*PayBillResponse, error)
+	FundFlow(context.Context, *PayFundFlowBillRequest) (*PayBillResponse, error)
+	mustEmbedUnimplementedPayBillServer()
+}
+
+// UnimplementedPayBillServer must be embedded to have forward compatible implementations.
+type UnimplementedPayBillServer struct {
+}
+
+func (UnimplementedPayBillServer) Trade(context.Context, *PayTradeBillRequest) (*PayBillResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Trade not implemented")
+}
+func (UnimplementedPayBillServer) FundFlow(context.Context, *PayFundFlowBillRequest) (*PayBillResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FundFlow not implemented")
+}
+func (UnimplementedPayBillServer) mustEmbedUnimplementedPayBillServer() {}
+
+// UnsafePayBillServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PayBillServer will
+// result in compilation errors.
+type UnsafePayBillServer interface {
+	mustEmbedUnimplementedPayBillServer()
+}
+
+func RegisterPayBillServer(s grpc.ServiceRegistrar, srv PayBillServer) {
+	s.RegisterService(&PayBill_ServiceDesc, srv)
+}
+
+func _PayBill_Trade_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayTradeBillRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayBillServer).Trade(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayBill_Trade_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayBillServer).Trade(ctx, req.(*PayTradeBillRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayBill_FundFlow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayFundFlowBillRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayBillServer).FundFlow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayBill_FundFlow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayBillServer).FundFlow(ctx, req.(*PayFundFlowBillRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PayBill_ServiceDesc is the grpc.ServiceDesc for PayBill service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PayBill_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.wechat.v1.PayBill",
+	HandlerType: (*PayBillServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Trade",
+			Handler:    _PayBill_Trade_Handler,
+		},
+		{
+			MethodName: "FundFlow",
+			Handler:    _PayBill_FundFlow_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "wechat.proto",
+}
+
+const (
+	PayRefund_Create_FullMethodName = "/palm.wechat.v1.PayRefund/Create"
+	PayRefund_Query_FullMethodName  = "/palm.wechat.v1.PayRefund/Query"
+)
+
+// PayRefundClient is the client API for PayRefund service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PayRefundClient interface {
+	Create(ctx context.Context, in *PayCreateRefundRequest, opts ...grpc.CallOption) (*PayRefundResponse, error)
+	Query(ctx context.Context, in *PayQueryRefundRequest, opts ...grpc.CallOption) (*PayRefundResponse, error)
+}
+
+type payRefundClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPayRefundClient(cc grpc.ClientConnInterface) PayRefundClient {
+	return &payRefundClient{cc}
+}
+
+func (c *payRefundClient) Create(ctx context.Context, in *PayCreateRefundRequest, opts ...grpc.CallOption) (*PayRefundResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayRefundResponse)
+	err := c.cc.Invoke(ctx, PayRefund_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payRefundClient) Query(ctx context.Context, in *PayQueryRefundRequest, opts ...grpc.CallOption) (*PayRefundResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayRefundResponse)
+	err := c.cc.Invoke(ctx, PayRefund_Query_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PayRefundServer is the server API for PayRefund service.
+// All implementations must embed UnimplementedPayRefundServer
+// for forward compatibility
+type PayRefundServer interface {
+	Create(context.Context, *PayCreateRefundRequest) (*PayRefundResponse, error)
+	Query(context.Context, *PayQueryRefundRequest) (*PayRefundResponse, error)
+	mustEmbedUnimplementedPayRefundServer()
+}
+
+// UnimplementedPayRefundServer must be embedded to have forward compatible implementations.
+type UnimplementedPayRefundServer struct {
+}
+
+func (UnimplementedPayRefundServer) Create(context.Context, *PayCreateRefundRequest) (*PayRefundResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedPayRefundServer) Query(context.Context, *PayQueryRefundRequest) (*PayRefundResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Query not implemented")
+}
+func (UnimplementedPayRefundServer) mustEmbedUnimplementedPayRefundServer() {}
+
+// UnsafePayRefundServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PayRefundServer will
+// result in compilation errors.
+type UnsafePayRefundServer interface {
+	mustEmbedUnimplementedPayRefundServer()
+}
+
+func RegisterPayRefundServer(s grpc.ServiceRegistrar, srv PayRefundServer) {
+	s.RegisterService(&PayRefund_ServiceDesc, srv)
+}
+
+func _PayRefund_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayCreateRefundRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayRefundServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayRefund_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayRefundServer).Create(ctx, req.(*PayCreateRefundRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayRefund_Query_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayQueryRefundRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayRefundServer).Query(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayRefund_Query_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayRefundServer).Query(ctx, req.(*PayQueryRefundRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PayRefund_ServiceDesc is the grpc.ServiceDesc for PayRefund service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PayRefund_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.wechat.v1.PayRefund",
+	HandlerType: (*PayRefundServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _PayRefund_Create_Handler,
+		},
+		{
+			MethodName: "Query",
+			Handler:    _PayRefund_Query_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "wechat.proto",
+}
+
+const (
+	PayTransfer_ExecuteBatch_FullMethodName         = "/palm.wechat.v1.PayTransfer/ExecuteBatch"
+	PayTransfer_QueryBatch_FullMethodName           = "/palm.wechat.v1.PayTransfer/QueryBatch"
+	PayTransfer_QueryDetail_FullMethodName          = "/palm.wechat.v1.PayTransfer/QueryDetail"
+	PayTransfer_GetBillReceipt_FullMethodName       = "/palm.wechat.v1.PayTransfer/GetBillReceipt"
+	PayTransfer_GetElectronicReceipt_FullMethodName = "/palm.wechat.v1.PayTransfer/GetElectronicReceipt"
+)
+
+// PayTransferClient is the client API for PayTransfer service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type PayTransferClient interface {
+	ExecuteBatch(ctx context.Context, in *PayExecuteBatchTransferRequest, opts ...grpc.CallOption) (*PayExecuteBatchTransferResponse, error)
+	QueryBatch(ctx context.Context, in *PayQueryBatchTransferRequest, opts ...grpc.CallOption) (*PayQueryBatchTransferResponse, error)
+	QueryDetail(ctx context.Context, in *PayQueryTransferDetailRequest, opts ...grpc.CallOption) (*PayQueryTransferDetailResponse, error)
+	GetBillReceipt(ctx context.Context, in *PayTransferGetBillReceiptRequest, opts ...grpc.CallOption) (*PayTransferGetReceiptResponse, error)
+	GetElectronicReceipt(ctx context.Context, in *PayTransferGetElectronicReceiptRequest, opts ...grpc.CallOption) (*PayTransferGetReceiptResponse, error)
+}
+
+type payTransferClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPayTransferClient(cc grpc.ClientConnInterface) PayTransferClient {
+	return &payTransferClient{cc}
+}
+
+func (c *payTransferClient) ExecuteBatch(ctx context.Context, in *PayExecuteBatchTransferRequest, opts ...grpc.CallOption) (*PayExecuteBatchTransferResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayExecuteBatchTransferResponse)
+	err := c.cc.Invoke(ctx, PayTransfer_ExecuteBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payTransferClient) QueryBatch(ctx context.Context, in *PayQueryBatchTransferRequest, opts ...grpc.CallOption) (*PayQueryBatchTransferResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayQueryBatchTransferResponse)
+	err := c.cc.Invoke(ctx, PayTransfer_QueryBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payTransferClient) QueryDetail(ctx context.Context, in *PayQueryTransferDetailRequest, opts ...grpc.CallOption) (*PayQueryTransferDetailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayQueryTransferDetailResponse)
+	err := c.cc.Invoke(ctx, PayTransfer_QueryDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payTransferClient) GetBillReceipt(ctx context.Context, in *PayTransferGetBillReceiptRequest, opts ...grpc.CallOption) (*PayTransferGetReceiptResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayTransferGetReceiptResponse)
+	err := c.cc.Invoke(ctx, PayTransfer_GetBillReceipt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payTransferClient) GetElectronicReceipt(ctx context.Context, in *PayTransferGetElectronicReceiptRequest, opts ...grpc.CallOption) (*PayTransferGetReceiptResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PayTransferGetReceiptResponse)
+	err := c.cc.Invoke(ctx, PayTransfer_GetElectronicReceipt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PayTransferServer is the server API for PayTransfer service.
+// All implementations must embed UnimplementedPayTransferServer
+// for forward compatibility
+type PayTransferServer interface {
+	ExecuteBatch(context.Context, *PayExecuteBatchTransferRequest) (*PayExecuteBatchTransferResponse, error)
+	QueryBatch(context.Context, *PayQueryBatchTransferRequest) (*PayQueryBatchTransferResponse, error)
+	QueryDetail(context.Context, *PayQueryTransferDetailRequest) (*PayQueryTransferDetailResponse, error)
+	GetBillReceipt(context.Context, *PayTransferGetBillReceiptRequest) (*PayTransferGetReceiptResponse, error)
+	GetElectronicReceipt(context.Context, *PayTransferGetElectronicReceiptRequest) (*PayTransferGetReceiptResponse, error)
+	mustEmbedUnimplementedPayTransferServer()
+}
+
+// UnimplementedPayTransferServer must be embedded to have forward compatible implementations.
+type UnimplementedPayTransferServer struct {
+}
+
+func (UnimplementedPayTransferServer) ExecuteBatch(context.Context, *PayExecuteBatchTransferRequest) (*PayExecuteBatchTransferResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecuteBatch not implemented")
+}
+func (UnimplementedPayTransferServer) QueryBatch(context.Context, *PayQueryBatchTransferRequest) (*PayQueryBatchTransferResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryBatch not implemented")
+}
+func (UnimplementedPayTransferServer) QueryDetail(context.Context, *PayQueryTransferDetailRequest) (*PayQueryTransferDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryDetail not implemented")
+}
+func (UnimplementedPayTransferServer) GetBillReceipt(context.Context, *PayTransferGetBillReceiptRequest) (*PayTransferGetReceiptResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBillReceipt not implemented")
+}
+func (UnimplementedPayTransferServer) GetElectronicReceipt(context.Context, *PayTransferGetElectronicReceiptRequest) (*PayTransferGetReceiptResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetElectronicReceipt not implemented")
+}
+func (UnimplementedPayTransferServer) mustEmbedUnimplementedPayTransferServer() {}
+
+// UnsafePayTransferServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PayTransferServer will
+// result in compilation errors.
+type UnsafePayTransferServer interface {
+	mustEmbedUnimplementedPayTransferServer()
+}
+
+func RegisterPayTransferServer(s grpc.ServiceRegistrar, srv PayTransferServer) {
+	s.RegisterService(&PayTransfer_ServiceDesc, srv)
+}
+
+func _PayTransfer_ExecuteBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayExecuteBatchTransferRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayTransferServer).ExecuteBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayTransfer_ExecuteBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayTransferServer).ExecuteBatch(ctx, req.(*PayExecuteBatchTransferRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayTransfer_QueryBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayQueryBatchTransferRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayTransferServer).QueryBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayTransfer_QueryBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayTransferServer).QueryBatch(ctx, req.(*PayQueryBatchTransferRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayTransfer_QueryDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayQueryTransferDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayTransferServer).QueryDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayTransfer_QueryDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayTransferServer).QueryDetail(ctx, req.(*PayQueryTransferDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayTransfer_GetBillReceipt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayTransferGetBillReceiptRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayTransferServer).GetBillReceipt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayTransfer_GetBillReceipt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayTransferServer).GetBillReceipt(ctx, req.(*PayTransferGetBillReceiptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayTransfer_GetElectronicReceipt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayTransferGetElectronicReceiptRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayTransferServer).GetElectronicReceipt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PayTransfer_GetElectronicReceipt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayTransferServer).GetElectronicReceipt(ctx, req.(*PayTransferGetElectronicReceiptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// PayTransfer_ServiceDesc is the grpc.ServiceDesc for PayTransfer service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var PayTransfer_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.wechat.v1.PayTransfer",
+	HandlerType: (*PayTransferServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ExecuteBatch",
+			Handler:    _PayTransfer_ExecuteBatch_Handler,
+		},
+		{
+			MethodName: "QueryBatch",
+			Handler:    _PayTransfer_QueryBatch_Handler,
+		},
+		{
+			MethodName: "QueryDetail",
+			Handler:    _PayTransfer_QueryDetail_Handler,
+		},
+		{
+			MethodName: "GetBillReceipt",
+			Handler:    _PayTransfer_GetBillReceipt_Handler,
+		},
+		{
+			MethodName: "GetElectronicReceipt",
+			Handler:    _PayTransfer_GetElectronicReceipt_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "wechat.proto",
 }

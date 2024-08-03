@@ -6,12 +6,12 @@ import (
 	pb "github.com/saturn-xiv/palm/atropa/wechat/services/v2"
 )
 
-func NewPayService(redis *redis.Client, wechat *wechat.Config) *PayService {
-	return &PayService{redis: redis, wechat: wechat}
+func NewPayBillService(redis *redis.Client, wechat *wechat.Config) *PayBillService {
+	return &PayBillService{redis: redis, wechat: wechat}
 }
 
-type PayService struct {
-	pb.UnimplementedPayServer
+type PayBillService struct {
+	pb.UnimplementedPayBillServer
 
 	wechat *wechat.Config
 	redis  *redis.Client

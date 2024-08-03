@@ -147,7 +147,7 @@ func mount(server *grpc.Server,
 		wechat_pb.RegisterMiniProgramServer(server, wechat_services.NewMiniProgramService(redis, wechat_mini_program))
 	}
 	if wechat_pay != nil {
-		wechat_pb.RegisterPayServer(server, wechat_services.NewPayService(redis, wechat_pay))
+		wechat_pb.RegisterPayBillServer(server, wechat_services.NewPayBillService(redis, wechat_pay))
 	}
 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
 	return nil
