@@ -26,35 +26,23 @@ function build_grpc() {
         git clone --recurse-submodules -b $1 https://github.com/grpc/grpc.git $SOURCE_ROOT
     fi
 
-    cd $HOME/downloads/grpc/third_party/protobuf
-    git checkout main
-    git pull
-    git checkout $2
-    git submodule update --init --recursive
-
     if [ -d $BUILD_ROOT ]; then
         rm -r $BUILD_ROOT
     fi
-
     CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release \
         -DABSL_PROPAGATE_CXX_STD=ON \
         -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
         -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -B $BUILD_ROOT -S $SOURCE_ROOT
-
     make -j $(nproc --ignore=2) -C $BUILD_ROOT
     make install -C $BUILD_ROOT
 }
 
-# if [ "$#" -ne 2 ]; then
-#     echo "USAGE: $0 GRPC_VERSION PROTOC_VERSION"
-#     exit 1
-# fi
-
-build_grpc v1.65.4 v3.25.3
-
-if [[ $UBUNTU_CODENAME == "bionic" ]]; then
-    cp $SOURCE_ROOT/third_party/re2/re2.pc $HOME/.local/lib/pkgconfig/
+if [ "$#" -ne 1 ]; then
+    echo "USAGE: $0 GRPC_VERSION"
+    exit 1
 fi
 
-echo "done."
+build_grpc $1
+
+echo "done($1)."
 exit 0
