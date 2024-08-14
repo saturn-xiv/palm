@@ -4,552 +4,679 @@
 #include "s3.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace s3 {
 namespace v1 {
-PROTOBUF_CONSTEXPR Bucket::Bucket(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.public__)*/false
-  , /*decltype(_impl_.expiration_days_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct BucketDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR BucketDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~BucketDefaultTypeInternal() {}
-  union {
-    Bucket _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BucketDefaultTypeInternal _Bucket_default_instance_;
-PROTOBUF_CONSTEXPR CreateBucketRequest::CreateBucketRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.public__)*/false
-  , /*decltype(_impl_.expiration_days_)*/0u
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct CreateBucketRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CreateBucketRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CreateBucketRequestDefaultTypeInternal() {}
-  union {
-    CreateBucketRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateBucketRequestDefaultTypeInternal _CreateBucketRequest_default_instance_;
-PROTOBUF_CONSTEXPR CreateBucketResponse::CreateBucketResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct CreateBucketResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CreateBucketResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CreateBucketResponseDefaultTypeInternal() {}
-  union {
-    CreateBucketResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateBucketResponseDefaultTypeInternal _CreateBucketResponse_default_instance_;
-PROTOBUF_CONSTEXPR UploadObjectRequest::UploadObjectRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.ttl_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct UploadObjectRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UploadObjectRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UploadObjectRequestDefaultTypeInternal() {}
-  union {
-    UploadObjectRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadObjectRequestDefaultTypeInternal _UploadObjectRequest_default_instance_;
-PROTOBUF_CONSTEXPR UploadObjectResponse::UploadObjectResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct UploadObjectResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UploadObjectResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UploadObjectResponseDefaultTypeInternal() {}
-  union {
-    UploadObjectResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadObjectResponseDefaultTypeInternal _UploadObjectResponse_default_instance_;
-PROTOBUF_CONSTEXPR UrlResponse::UrlResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.url_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+inline constexpr UrlResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : url_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UrlResponse::UrlResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct UrlResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UrlResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR UrlResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~UrlResponseDefaultTypeInternal() {}
   union {
     UrlResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UrlResponseDefaultTypeInternal _UrlResponse_default_instance_;
-PROTOBUF_CONSTEXPR ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.ttl_)*/nullptr} {}
-struct ObjectPresignedUrlRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ObjectPresignedUrlRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ObjectPresignedUrlRequestDefaultTypeInternal() {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UrlResponseDefaultTypeInternal _UrlResponse_default_instance_;
+
+inline constexpr UploadObjectResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        url_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UploadObjectResponse::UploadObjectResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UploadObjectResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadObjectResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadObjectResponseDefaultTypeInternal() {}
   union {
-    ObjectPresignedUrlRequest _instance;
+    UploadObjectResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjectPresignedUrlRequestDefaultTypeInternal _ObjectPresignedUrlRequest_default_instance_;
-PROTOBUF_CONSTEXPR ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
-struct ObjectPermanentUrlRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ObjectPermanentUrlRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ObjectPermanentUrlRequestDefaultTypeInternal() {}
-  union {
-    ObjectPermanentUrlRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjectPermanentUrlRequestDefaultTypeInternal _ObjectPermanentUrlRequest_default_instance_;
-PROTOBUF_CONSTEXPR RemoveObjectRequest::RemoveObjectRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.bucket_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.object_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadObjectResponseDefaultTypeInternal _UploadObjectResponse_default_instance_;
+
+inline constexpr RemoveObjectRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR RemoveObjectRequest::RemoveObjectRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct RemoveObjectRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RemoveObjectRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR RemoveObjectRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~RemoveObjectRequestDefaultTypeInternal() {}
   union {
     RemoveObjectRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveObjectRequestDefaultTypeInternal _RemoveObjectRequest_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoveObjectRequestDefaultTypeInternal _RemoveObjectRequest_default_instance_;
+
+inline constexpr ObjectPermanentUrlRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        content_type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ObjectPermanentUrlRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ObjectPermanentUrlRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ObjectPermanentUrlRequestDefaultTypeInternal() {}
+  union {
+    ObjectPermanentUrlRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjectPermanentUrlRequestDefaultTypeInternal _ObjectPermanentUrlRequest_default_instance_;
+
+inline constexpr CreateBucketResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR CreateBucketResponse::CreateBucketResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct CreateBucketResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CreateBucketResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CreateBucketResponseDefaultTypeInternal() {}
+  union {
+    CreateBucketResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateBucketResponseDefaultTypeInternal _CreateBucketResponse_default_instance_;
+
+inline constexpr CreateBucketRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        public__{false},
+        expiration_days_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR CreateBucketRequest::CreateBucketRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct CreateBucketRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CreateBucketRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CreateBucketRequestDefaultTypeInternal() {}
+  union {
+    CreateBucketRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateBucketRequestDefaultTypeInternal _CreateBucketRequest_default_instance_;
+
+inline constexpr Bucket::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        public__{false},
+        expiration_days_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Bucket::Bucket(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct BucketDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BucketDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BucketDefaultTypeInternal() {}
+  union {
+    Bucket _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BucketDefaultTypeInternal _Bucket_default_instance_;
+
+inline constexpr UploadObjectRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        ttl_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UploadObjectRequest::UploadObjectRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UploadObjectRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadObjectRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadObjectRequestDefaultTypeInternal() {}
+  union {
+    UploadObjectRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadObjectRequestDefaultTypeInternal _UploadObjectRequest_default_instance_;
+
+inline constexpr ObjectPresignedUrlRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        content_type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        ttl_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ObjectPresignedUrlRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ObjectPresignedUrlRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ObjectPresignedUrlRequestDefaultTypeInternal() {}
+  union {
+    ObjectPresignedUrlRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjectPresignedUrlRequestDefaultTypeInternal _ObjectPresignedUrlRequest_default_instance_;
 }  // namespace v1
 }  // namespace s3
 }  // namespace palm
 static ::_pb::Metadata file_level_metadata_s3_2eproto[9];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_s3_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_s3_2eproto = nullptr;
-
-const uint32_t TableStruct_s3_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _impl_.public__),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _impl_.expiration_days_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _impl_.public__),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _impl_.expiration_days_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketResponse, _impl_.name_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.ttl_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _impl_.url_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UrlResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UrlResponse, _impl_.url_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.content_type_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.ttl_),
-  ~0u,
-  ~0u,
-  ~0u,
-  0,
-  ~0u,
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.object_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.content_type_),
-  ~0u,
-  ~0u,
-  ~0u,
-  0,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _impl_.bucket_),
-  PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _impl_.object_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_s3_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_s3_2eproto = nullptr;
+const ::uint32_t TableStruct_s3_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _impl_.public__),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _impl_.expiration_days_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _impl_.public__),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketRequest, _impl_.expiration_days_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::CreateBucketResponse, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.bucket_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.title_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectRequest, _impl_.ttl_),
+    ~0u,
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _impl_.object_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UploadObjectResponse, _impl_.url_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UrlResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::UrlResponse, _impl_.url_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.bucket_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.object_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.title_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.content_type_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPresignedUrlRequest, _impl_.ttl_),
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
+    1,
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.bucket_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.object_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.title_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::ObjectPermanentUrlRequest, _impl_.content_type_),
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _impl_.bucket_),
+    PROTOBUF_FIELD_OFFSET(::palm::s3::v1::RemoveObjectRequest, _impl_.object_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::palm::s3::v1::Bucket)},
-  { 9, -1, -1, sizeof(::palm::s3::v1::CreateBucketRequest)},
-  { 18, -1, -1, sizeof(::palm::s3::v1::CreateBucketResponse)},
-  { 25, -1, -1, sizeof(::palm::s3::v1::UploadObjectRequest)},
-  { 34, -1, -1, sizeof(::palm::s3::v1::UploadObjectResponse)},
-  { 42, -1, -1, sizeof(::palm::s3::v1::UrlResponse)},
-  { 49, 60, -1, sizeof(::palm::s3::v1::ObjectPresignedUrlRequest)},
-  { 65, 75, -1, sizeof(::palm::s3::v1::ObjectPermanentUrlRequest)},
-  { 79, -1, -1, sizeof(::palm::s3::v1::RemoveObjectRequest)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, -1, -1, sizeof(::palm::s3::v1::Bucket)},
+        {11, -1, -1, sizeof(::palm::s3::v1::CreateBucketRequest)},
+        {22, -1, -1, sizeof(::palm::s3::v1::CreateBucketResponse)},
+        {31, 42, -1, sizeof(::palm::s3::v1::UploadObjectRequest)},
+        {45, -1, -1, sizeof(::palm::s3::v1::UploadObjectResponse)},
+        {55, -1, -1, sizeof(::palm::s3::v1::UrlResponse)},
+        {64, 77, -1, sizeof(::palm::s3::v1::ObjectPresignedUrlRequest)},
+        {82, 94, -1, sizeof(::palm::s3::v1::ObjectPermanentUrlRequest)},
+        {98, -1, -1, sizeof(::palm::s3::v1::RemoveObjectRequest)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::palm::s3::v1::_Bucket_default_instance_._instance,
-  &::palm::s3::v1::_CreateBucketRequest_default_instance_._instance,
-  &::palm::s3::v1::_CreateBucketResponse_default_instance_._instance,
-  &::palm::s3::v1::_UploadObjectRequest_default_instance_._instance,
-  &::palm::s3::v1::_UploadObjectResponse_default_instance_._instance,
-  &::palm::s3::v1::_UrlResponse_default_instance_._instance,
-  &::palm::s3::v1::_ObjectPresignedUrlRequest_default_instance_._instance,
-  &::palm::s3::v1::_ObjectPermanentUrlRequest_default_instance_._instance,
-  &::palm::s3::v1::_RemoveObjectRequest_default_instance_._instance,
+    &::palm::s3::v1::_Bucket_default_instance_._instance,
+    &::palm::s3::v1::_CreateBucketRequest_default_instance_._instance,
+    &::palm::s3::v1::_CreateBucketResponse_default_instance_._instance,
+    &::palm::s3::v1::_UploadObjectRequest_default_instance_._instance,
+    &::palm::s3::v1::_UploadObjectResponse_default_instance_._instance,
+    &::palm::s3::v1::_UrlResponse_default_instance_._instance,
+    &::palm::s3::v1::_ObjectPresignedUrlRequest_default_instance_._instance,
+    &::palm::s3::v1::_ObjectPermanentUrlRequest_default_instance_._instance,
+    &::palm::s3::v1::_RemoveObjectRequest_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_s3_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\010s3.proto\022\npalm.s3.v1\032\036google/protobuf/"
-  "duration.proto\032\033google/protobuf/empty.pr"
-  "oto\"\?\n\006Bucket\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 "
-  "\001(\010\022\027\n\017expiration_days\030\003 \001(\005\"L\n\023CreateBu"
-  "cketRequest\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 \001("
-  "\010\022\027\n\017expiration_days\030\t \001(\r\"$\n\024CreateBuck"
-  "etResponse\022\014\n\004name\030\001 \001(\t\"\\\n\023UploadObject"
-  "Request\022\016\n\006bucket\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022&"
-  "\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration\"3"
-  "\n\024UploadObjectResponse\022\016\n\006object\030\001 \001(\t\022\013"
-  "\n\003url\030\t \001(\t\"\032\n\013UrlResponse\022\013\n\003url\030\001 \001(\t\""
-  "\236\001\n\031ObjectPresignedUrlRequest\022\016\n\006bucket\030"
-  "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
-  "content_type\030\004 \001(\tH\000\210\001\001\022&\n\003ttl\030\t \001(\0132\031.g"
-  "oogle.protobuf.DurationB\017\n\r_content_type"
-  "\"v\n\031ObjectPermanentUrlRequest\022\016\n\006bucket\030"
-  "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
-  "content_type\030\004 \001(\tH\000\210\001\001B\017\n\r_content_type"
-  "\"5\n\023RemoveObjectRequest\022\016\n\006bucket\030\001 \001(\t\022"
-  "\016\n\006object\030\002 \001(\t2\251\003\n\002S3\022S\n\014CreateBucket\022\037"
-  ".palm.s3.v1.CreateBucketRequest\032 .palm.s"
-  "3.v1.CreateBucketResponse\"\000\022S\n\014UploadObj"
-  "ect\022\037.palm.s3.v1.UploadObjectRequest\032 .p"
-  "alm.s3.v1.UploadObjectResponse\"\000\022V\n\022Obje"
-  "ctPermanentUrl\022%.palm.s3.v1.ObjectPerman"
-  "entUrlRequest\032\027.palm.s3.v1.UrlResponse\"\000"
-  "\022V\n\022ObjectPresignedUrl\022%.palm.s3.v1.Obje"
-  "ctPresignedUrlRequest\032\027.palm.s3.v1.UrlRe"
-  "sponse\"\000\022I\n\014RemoveObject\022\037.palm.s3.v1.Re"
-  "moveObjectRequest\032\026.google.protobuf.Empt"
-  "y\"\000B^\n(com.github.saturn_xiv.palm.plugin"
-  "s.s3.v1P\001Z0github.com/saturn-xiv/palm/at"
-  "ropa/s3/services/v2b\006proto3"
-  ;
-static const ::_pbi::DescriptorTable* const descriptor_table_s3_2eproto_deps[2] = {
-  &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
-  &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
+const char descriptor_table_protodef_s3_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\010s3.proto\022\npalm.s3.v1\032\036google/protobuf/"
+    "duration.proto\032\033google/protobuf/empty.pr"
+    "oto\"\?\n\006Bucket\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 "
+    "\001(\010\022\027\n\017expiration_days\030\003 \001(\005\"L\n\023CreateBu"
+    "cketRequest\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 \001("
+    "\010\022\027\n\017expiration_days\030\t \001(\r\"$\n\024CreateBuck"
+    "etResponse\022\014\n\004name\030\001 \001(\t\"\\\n\023UploadObject"
+    "Request\022\016\n\006bucket\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022&"
+    "\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration\"3"
+    "\n\024UploadObjectResponse\022\016\n\006object\030\001 \001(\t\022\013"
+    "\n\003url\030\t \001(\t\"\032\n\013UrlResponse\022\013\n\003url\030\001 \001(\t\""
+    "\236\001\n\031ObjectPresignedUrlRequest\022\016\n\006bucket\030"
+    "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
+    "content_type\030\004 \001(\tH\000\210\001\001\022&\n\003ttl\030\t \001(\0132\031.g"
+    "oogle.protobuf.DurationB\017\n\r_content_type"
+    "\"v\n\031ObjectPermanentUrlRequest\022\016\n\006bucket\030"
+    "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
+    "content_type\030\004 \001(\tH\000\210\001\001B\017\n\r_content_type"
+    "\"5\n\023RemoveObjectRequest\022\016\n\006bucket\030\001 \001(\t\022"
+    "\016\n\006object\030\002 \001(\t2\251\003\n\002S3\022S\n\014CreateBucket\022\037"
+    ".palm.s3.v1.CreateBucketRequest\032 .palm.s"
+    "3.v1.CreateBucketResponse\"\000\022S\n\014UploadObj"
+    "ect\022\037.palm.s3.v1.UploadObjectRequest\032 .p"
+    "alm.s3.v1.UploadObjectResponse\"\000\022V\n\022Obje"
+    "ctPermanentUrl\022%.palm.s3.v1.ObjectPerman"
+    "entUrlRequest\032\027.palm.s3.v1.UrlResponse\"\000"
+    "\022V\n\022ObjectPresignedUrl\022%.palm.s3.v1.Obje"
+    "ctPresignedUrlRequest\032\027.palm.s3.v1.UrlRe"
+    "sponse\"\000\022I\n\014RemoveObject\022\037.palm.s3.v1.Re"
+    "moveObjectRequest\032\026.google.protobuf.Empt"
+    "y\"\000B^\n(com.github.saturn_xiv.palm.plugin"
+    "s.s3.v1P\001Z0github.com/saturn-xiv/palm/at"
+    "ropa/s3/services/v2b\006proto3"
 };
-static ::_pbi::once_flag descriptor_table_s3_2eproto_once;
+static const ::_pbi::DescriptorTable* const descriptor_table_s3_2eproto_deps[2] =
+    {
+        &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
+        &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
+};
+static ::absl::once_flag descriptor_table_s3_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_s3_2eproto = {
-    false, false, 1307, descriptor_table_protodef_s3_2eproto,
+    false,
+    false,
+    1307,
+    descriptor_table_protodef_s3_2eproto,
     "s3.proto",
-    &descriptor_table_s3_2eproto_once, descriptor_table_s3_2eproto_deps, 2, 9,
-    schemas, file_default_instances, TableStruct_s3_2eproto::offsets,
-    file_level_metadata_s3_2eproto, file_level_enum_descriptors_s3_2eproto,
+    &descriptor_table_s3_2eproto_once,
+    descriptor_table_s3_2eproto_deps,
+    2,
+    9,
+    schemas,
+    file_default_instances,
+    TableStruct_s3_2eproto::offsets,
+    file_level_metadata_s3_2eproto,
+    file_level_enum_descriptors_s3_2eproto,
     file_level_service_descriptors_s3_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_s3_2eproto_getter() {
   return &descriptor_table_s3_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_s3_2eproto(&descriptor_table_s3_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_s3_2eproto(&descriptor_table_s3_2eproto);
 namespace palm {
 namespace s3 {
 namespace v1 {
-
 // ===================================================================
 
 class Bucket::_Internal {
  public:
 };
 
-Bucket::Bucket(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+Bucket::Bucket(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.Bucket)
 }
-Bucket::Bucket(const Bucket& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Bucket* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.public__){}
-    , decltype(_impl_.expiration_days_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE Bucket::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : name_(arena, from.name_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
-  }
-  ::memcpy(&_impl_.public__, &from._impl_.public__,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.expiration_days_) -
-    reinterpret_cast<char*>(&_impl_.public__)) + sizeof(_impl_.expiration_days_));
+Bucket::Bucket(
+    ::google::protobuf::Arena* arena,
+    const Bucket& from)
+    : ::google::protobuf::Message(arena) {
+  Bucket* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, public__),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, public__),
+           offsetof(Impl_, expiration_days_) -
+               offsetof(Impl_, public__) +
+               sizeof(Impl_::expiration_days_));
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.Bucket)
 }
+inline PROTOBUF_NDEBUG_INLINE Bucket::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        _cached_size_{0} {}
 
-inline void Bucket::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.public__){false}
-    , decltype(_impl_.expiration_days_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void Bucket::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, public__),
+           0,
+           offsetof(Impl_, expiration_days_) -
+               offsetof(Impl_, public__) +
+               sizeof(Impl_::expiration_days_));
 }
-
 Bucket::~Bucket() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.Bucket)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void Bucket::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.name_.Destroy();
+  _impl_.~Impl_();
 }
 
-void Bucket::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void Bucket::Clear() {
+PROTOBUF_NOINLINE void Bucket::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.Bucket)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
-  ::memset(&_impl_.public__, 0, static_cast<size_t>(
+  ::memset(&_impl_.public__, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.expiration_days_) -
       reinterpret_cast<char*>(&_impl_.public__)) + sizeof(_impl_.expiration_days_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* Bucket::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.Bucket.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool public = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.public__ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 expiration_days = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.expiration_days_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* Bucket::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* Bucket::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 30, 2> Bucket::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_Bucket_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Bucket, _impl_.name_)}},
+    // bool public = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Bucket, _impl_.public__), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Bucket, _impl_.public__)}},
+    // int32 expiration_days = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Bucket, _impl_.expiration_days_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(Bucket, _impl_.expiration_days_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(Bucket, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool public = 2;
+    {PROTOBUF_FIELD_OFFSET(Bucket, _impl_.public__), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 expiration_days = 3;
+    {PROTOBUF_FIELD_OFFSET(Bucket, _impl_.expiration_days_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\21\4\0\0\0\0\0\0"
+    "palm.s3.v1.Bucket"
+    "name"
+  }},
+};
+
+::uint8_t* Bucket::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.Bucket)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.Bucket.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.Bucket.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // bool public = 2;
   if (this->_internal_public_() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_public_(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_public_(), target);
   }
 
   // int32 expiration_days = 3;
   if (this->_internal_expiration_days() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_expiration_days(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_expiration_days(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.Bucket)
   return target;
 }
 
-size_t Bucket::ByteSizeLong() const {
+::size_t Bucket::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.Bucket)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // bool public = 2;
   if (this->_internal_public_() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // int32 expiration_days = 3;
   if (this->_internal_expiration_days() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_expiration_days());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_expiration_days());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Bucket::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Bucket::MergeImpl
+const ::google::protobuf::Message::ClassData Bucket::_class_data_ = {
+    Bucket::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Bucket::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* Bucket::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void Bucket::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void Bucket::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<Bucket*>(&to_msg);
   auto& from = static_cast<const Bucket&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.Bucket)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
@@ -561,7 +688,7 @@ void Bucket::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBU
   if (from._internal_expiration_days() != 0) {
     _this->_internal_set_expiration_days(from._internal_expiration_days());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Bucket::CopyFrom(const Bucket& from) {
@@ -571,20 +698,20 @@ void Bucket::CopyFrom(const Bucket& from) {
   MergeFrom(from);
 }
 
-bool Bucket::IsInitialized() const {
+PROTOBUF_NOINLINE bool Bucket::IsInitialized() const {
   return true;
 }
 
-void Bucket::InternalSwap(Bucket* other) {
+::_pbi::CachedSize* Bucket::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void Bucket::InternalSwap(Bucket* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Bucket, _impl_.expiration_days_)
       + sizeof(Bucket::_impl_.expiration_days_)
       - PROTOBUF_FIELD_OFFSET(Bucket, _impl_.public__)>(
@@ -592,227 +719,216 @@ void Bucket::InternalSwap(Bucket* other) {
           reinterpret_cast<char*>(&other->_impl_.public__));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Bucket::GetMetadata() const {
+::google::protobuf::Metadata Bucket::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[0]);
 }
-
 // ===================================================================
 
 class CreateBucketRequest::_Internal {
  public:
 };
 
-CreateBucketRequest::CreateBucketRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+CreateBucketRequest::CreateBucketRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.CreateBucketRequest)
 }
-CreateBucketRequest::CreateBucketRequest(const CreateBucketRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CreateBucketRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.public__){}
-    , decltype(_impl_.expiration_days_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE CreateBucketRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : name_(arena, from.name_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
-  }
-  ::memcpy(&_impl_.public__, &from._impl_.public__,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.expiration_days_) -
-    reinterpret_cast<char*>(&_impl_.public__)) + sizeof(_impl_.expiration_days_));
+CreateBucketRequest::CreateBucketRequest(
+    ::google::protobuf::Arena* arena,
+    const CreateBucketRequest& from)
+    : ::google::protobuf::Message(arena) {
+  CreateBucketRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, public__),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, public__),
+           offsetof(Impl_, expiration_days_) -
+               offsetof(Impl_, public__) +
+               sizeof(Impl_::expiration_days_));
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.CreateBucketRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE CreateBucketRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        _cached_size_{0} {}
 
-inline void CreateBucketRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.public__){false}
-    , decltype(_impl_.expiration_days_){0u}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void CreateBucketRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, public__),
+           0,
+           offsetof(Impl_, expiration_days_) -
+               offsetof(Impl_, public__) +
+               sizeof(Impl_::expiration_days_));
 }
-
 CreateBucketRequest::~CreateBucketRequest() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.CreateBucketRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void CreateBucketRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.name_.Destroy();
+  _impl_.~Impl_();
 }
 
-void CreateBucketRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void CreateBucketRequest::Clear() {
+PROTOBUF_NOINLINE void CreateBucketRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.CreateBucketRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
-  ::memset(&_impl_.public__, 0, static_cast<size_t>(
+  ::memset(&_impl_.public__, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.expiration_days_) -
       reinterpret_cast<char*>(&_impl_.public__)) + sizeof(_impl_.expiration_days_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CreateBucketRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.CreateBucketRequest.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool public = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.public__ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 expiration_days = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _impl_.expiration_days_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* CreateBucketRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* CreateBucketRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 3, 0, 43, 2> CreateBucketRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967036,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_CreateBucketRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool public = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CreateBucketRequest, _impl_.public__), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(CreateBucketRequest, _impl_.public__)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(CreateBucketRequest, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(CreateBucketRequest, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool public = 2;
+    {PROTOBUF_FIELD_OFFSET(CreateBucketRequest, _impl_.public__), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // uint32 expiration_days = 9;
+    {PROTOBUF_FIELD_OFFSET(CreateBucketRequest, _impl_.expiration_days_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\36\4\0\0\0\0\0\0"
+    "palm.s3.v1.CreateBucketRequest"
+    "name"
+  }},
+};
+
+::uint8_t* CreateBucketRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.CreateBucketRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.CreateBucketRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.CreateBucketRequest.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // bool public = 2;
   if (this->_internal_public_() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_public_(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_public_(), target);
   }
 
   // uint32 expiration_days = 9;
   if (this->_internal_expiration_days() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(9, this->_internal_expiration_days(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        9, this->_internal_expiration_days(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.CreateBucketRequest)
   return target;
 }
 
-size_t CreateBucketRequest::ByteSizeLong() const {
+::size_t CreateBucketRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.CreateBucketRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // bool public = 2;
   if (this->_internal_public_() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // uint32 expiration_days = 9;
   if (this->_internal_expiration_days() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_expiration_days());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_expiration_days());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CreateBucketRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    CreateBucketRequest::MergeImpl
+const ::google::protobuf::Message::ClassData CreateBucketRequest::_class_data_ = {
+    CreateBucketRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CreateBucketRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* CreateBucketRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void CreateBucketRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void CreateBucketRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<CreateBucketRequest*>(&to_msg);
   auto& from = static_cast<const CreateBucketRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.CreateBucketRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
@@ -824,7 +940,7 @@ void CreateBucketRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
   if (from._internal_expiration_days() != 0) {
     _this->_internal_set_expiration_days(from._internal_expiration_days());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CreateBucketRequest::CopyFrom(const CreateBucketRequest& from) {
@@ -834,20 +950,20 @@ void CreateBucketRequest::CopyFrom(const CreateBucketRequest& from) {
   MergeFrom(from);
 }
 
-bool CreateBucketRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool CreateBucketRequest::IsInitialized() const {
   return true;
 }
 
-void CreateBucketRequest::InternalSwap(CreateBucketRequest* other) {
+::_pbi::CachedSize* CreateBucketRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void CreateBucketRequest::InternalSwap(CreateBucketRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(CreateBucketRequest, _impl_.expiration_days_)
       + sizeof(CreateBucketRequest::_impl_.expiration_days_)
       - PROTOBUF_FIELD_OFFSET(CreateBucketRequest, _impl_.public__)>(
@@ -855,185 +971,172 @@ void CreateBucketRequest::InternalSwap(CreateBucketRequest* other) {
           reinterpret_cast<char*>(&other->_impl_.public__));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata CreateBucketRequest::GetMetadata() const {
+::google::protobuf::Metadata CreateBucketRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[1]);
 }
-
 // ===================================================================
 
 class CreateBucketResponse::_Internal {
  public:
 };
 
-CreateBucketResponse::CreateBucketResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+CreateBucketResponse::CreateBucketResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.CreateBucketResponse)
 }
-CreateBucketResponse::CreateBucketResponse(const CreateBucketResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CreateBucketResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE CreateBucketResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : name_(arena, from.name_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
-  }
+CreateBucketResponse::CreateBucketResponse(
+    ::google::protobuf::Arena* arena,
+    const CreateBucketResponse& from)
+    : ::google::protobuf::Message(arena) {
+  CreateBucketResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.CreateBucketResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE CreateBucketResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        _cached_size_{0} {}
 
-inline void CreateBucketResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void CreateBucketResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 CreateBucketResponse::~CreateBucketResponse() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.CreateBucketResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void CreateBucketResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.name_.Destroy();
+  _impl_.~Impl_();
 }
 
-void CreateBucketResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void CreateBucketResponse::Clear() {
+PROTOBUF_NOINLINE void CreateBucketResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.CreateBucketResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CreateBucketResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.CreateBucketResponse.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* CreateBucketResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* CreateBucketResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 44, 2> CreateBucketResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_CreateBucketResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(CreateBucketResponse, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(CreateBucketResponse, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\4\0\0\0\0\0\0"
+    "palm.s3.v1.CreateBucketResponse"
+    "name"
+  }},
+};
+
+::uint8_t* CreateBucketResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.CreateBucketResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.CreateBucketResponse.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.CreateBucketResponse.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.CreateBucketResponse)
   return target;
 }
 
-size_t CreateBucketResponse::ByteSizeLong() const {
+::size_t CreateBucketResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.CreateBucketResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CreateBucketResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    CreateBucketResponse::MergeImpl
+const ::google::protobuf::Message::ClassData CreateBucketResponse::_class_data_ = {
+    CreateBucketResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CreateBucketResponse::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* CreateBucketResponse::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void CreateBucketResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void CreateBucketResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<CreateBucketResponse*>(&to_msg);
   auto& from = static_cast<const CreateBucketResponse&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.CreateBucketResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CreateBucketResponse::CopyFrom(const CreateBucketResponse& from) {
@@ -1043,280 +1146,252 @@ void CreateBucketResponse::CopyFrom(const CreateBucketResponse& from) {
   MergeFrom(from);
 }
 
-bool CreateBucketResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool CreateBucketResponse::IsInitialized() const {
   return true;
 }
 
-void CreateBucketResponse::InternalSwap(CreateBucketResponse* other) {
+::_pbi::CachedSize* CreateBucketResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void CreateBucketResponse::InternalSwap(CreateBucketResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata CreateBucketResponse::GetMetadata() const {
+::google::protobuf::Metadata CreateBucketResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[2]);
 }
-
 // ===================================================================
 
 class UploadObjectRequest::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const UploadObjectRequest* msg);
+  using HasBits = decltype(std::declval<UploadObjectRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(UploadObjectRequest, _impl_._has_bits_);
+  static const ::google::protobuf::Duration& ttl(const UploadObjectRequest* msg);
+  static void set_has_ttl(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Duration&
-UploadObjectRequest::_Internal::ttl(const UploadObjectRequest* msg) {
+const ::google::protobuf::Duration& UploadObjectRequest::_Internal::ttl(const UploadObjectRequest* msg) {
   return *msg->_impl_.ttl_;
 }
 void UploadObjectRequest::clear_ttl() {
-  if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
-    delete _impl_.ttl_;
-  }
-  _impl_.ttl_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.ttl_ != nullptr) _impl_.ttl_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-UploadObjectRequest::UploadObjectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+UploadObjectRequest::UploadObjectRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.UploadObjectRequest)
 }
-UploadObjectRequest::UploadObjectRequest(const UploadObjectRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UploadObjectRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.bucket_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.ttl_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE UploadObjectRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        bucket_(arena, from.bucket_),
+        title_(arena, from.title_) {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_bucket().empty()) {
-    _this->_impl_.bucket_.Set(from._internal_bucket(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_title().empty()) {
-    _this->_impl_.title_.Set(from._internal_title(), 
-      _this->GetArenaForAllocation());
-  }
-  if (from._internal_has_ttl()) {
-    _this->_impl_.ttl_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.ttl_);
-  }
+UploadObjectRequest::UploadObjectRequest(
+    ::google::protobuf::Arena* arena,
+    const UploadObjectRequest& from)
+    : ::google::protobuf::Message(arena) {
+  UploadObjectRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.ttl_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::google::protobuf::Duration>(arena, *from._impl_.ttl_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.UploadObjectRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE UploadObjectRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        bucket_(arena),
+        title_(arena) {}
 
-inline void UploadObjectRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.bucket_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.ttl_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void UploadObjectRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.ttl_ = {};
 }
-
 UploadObjectRequest::~UploadObjectRequest() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.UploadObjectRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void UploadObjectRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.title_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.ttl_;
+  delete _impl_.ttl_;
+  _impl_.~Impl_();
 }
 
-void UploadObjectRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void UploadObjectRequest::Clear() {
+PROTOBUF_NOINLINE void UploadObjectRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.UploadObjectRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.bucket_.ClearToEmpty();
   _impl_.title_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
-    delete _impl_.ttl_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.ttl_ != nullptr);
+    _impl_.ttl_->Clear();
   }
-  _impl_.ttl_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UploadObjectRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string bucket = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_bucket();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectRequest.bucket"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string title = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_title();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectRequest.title"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Duration ttl = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ttl(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* UploadObjectRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* UploadObjectRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 3, 1, 50, 2> UploadObjectRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(UploadObjectRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967036,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_UploadObjectRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string title = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UploadObjectRequest, _impl_.title_)}},
+    // string bucket = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UploadObjectRequest, _impl_.bucket_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string bucket = 1;
+    {PROTOBUF_FIELD_OFFSET(UploadObjectRequest, _impl_.bucket_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string title = 2;
+    {PROTOBUF_FIELD_OFFSET(UploadObjectRequest, _impl_.title_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Duration ttl = 9;
+    {PROTOBUF_FIELD_OFFSET(UploadObjectRequest, _impl_.ttl_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Duration>()},
+  }}, {{
+    "\36\6\5\0\0\0\0\0"
+    "palm.s3.v1.UploadObjectRequest"
+    "bucket"
+    "title"
+  }},
+};
+
+::uint8_t* UploadObjectRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.UploadObjectRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadObjectRequest.bucket");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_bucket(), target);
+    const std::string& _s = this->_internal_bucket();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.UploadObjectRequest.bucket");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string title = 2;
   if (!this->_internal_title().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadObjectRequest.title");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_title(), target);
+    const std::string& _s = this->_internal_title();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.UploadObjectRequest.title");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .google.protobuf.Duration ttl = 9;
-  if (this->_internal_has_ttl()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(9, _Internal::ttl(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        9, _Internal::ttl(this),
         _Internal::ttl(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.UploadObjectRequest)
   return target;
 }
 
-size_t UploadObjectRequest::ByteSizeLong() const {
+::size_t UploadObjectRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.UploadObjectRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_bucket());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_bucket());
   }
 
   // string title = 2;
   if (!this->_internal_title().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_title());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_title());
   }
 
   // .google.protobuf.Duration ttl = 9;
-  if (this->_internal_has_ttl()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ttl_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.ttl_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadObjectRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UploadObjectRequest::MergeImpl
+const ::google::protobuf::Message::ClassData UploadObjectRequest::_class_data_ = {
+    UploadObjectRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadObjectRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* UploadObjectRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void UploadObjectRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void UploadObjectRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<UploadObjectRequest*>(&to_msg);
   auto& from = static_cast<const UploadObjectRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.UploadObjectRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_bucket().empty()) {
@@ -1325,11 +1400,11 @@ void UploadObjectRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
   if (!from._internal_title().empty()) {
     _this->_internal_set_title(from._internal_title());
   }
-  if (from._internal_has_ttl()) {
-    _this->_internal_mutable_ttl()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_ttl()->::google::protobuf::Duration::MergeFrom(
         from._internal_ttl());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UploadObjectRequest::CopyFrom(const UploadObjectRequest& from) {
@@ -1339,242 +1414,206 @@ void UploadObjectRequest::CopyFrom(const UploadObjectRequest& from) {
   MergeFrom(from);
 }
 
-bool UploadObjectRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool UploadObjectRequest::IsInitialized() const {
   return true;
 }
 
-void UploadObjectRequest::InternalSwap(UploadObjectRequest* other) {
+::_pbi::CachedSize* UploadObjectRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UploadObjectRequest::InternalSwap(UploadObjectRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.bucket_, lhs_arena,
-      &other->_impl_.bucket_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.title_, lhs_arena,
-      &other->_impl_.title_, rhs_arena
-  );
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
   swap(_impl_.ttl_, other->_impl_.ttl_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UploadObjectRequest::GetMetadata() const {
+::google::protobuf::Metadata UploadObjectRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[3]);
 }
-
 // ===================================================================
 
 class UploadObjectResponse::_Internal {
  public:
 };
 
-UploadObjectResponse::UploadObjectResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+UploadObjectResponse::UploadObjectResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.UploadObjectResponse)
 }
-UploadObjectResponse::UploadObjectResponse(const UploadObjectResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UploadObjectResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.object_){}
-    , decltype(_impl_.url_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE UploadObjectResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : object_(arena, from.object_),
+        url_(arena, from.url_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_object().empty()) {
-    _this->_impl_.object_.Set(from._internal_object(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_url().empty()) {
-    _this->_impl_.url_.Set(from._internal_url(), 
-      _this->GetArenaForAllocation());
-  }
+UploadObjectResponse::UploadObjectResponse(
+    ::google::protobuf::Arena* arena,
+    const UploadObjectResponse& from)
+    : ::google::protobuf::Message(arena) {
+  UploadObjectResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.UploadObjectResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE UploadObjectResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : object_(arena),
+        url_(arena),
+        _cached_size_{0} {}
 
-inline void UploadObjectResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.object_){}
-    , decltype(_impl_.url_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void UploadObjectResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 UploadObjectResponse::~UploadObjectResponse() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.UploadObjectResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void UploadObjectResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.object_.Destroy();
   _impl_.url_.Destroy();
+  _impl_.~Impl_();
 }
 
-void UploadObjectResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void UploadObjectResponse::Clear() {
+PROTOBUF_NOINLINE void UploadObjectResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.UploadObjectResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.object_.ClearToEmpty();
   _impl_.url_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UploadObjectResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string object = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_object();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectResponse.object"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string url = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          auto str = _internal_mutable_url();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UploadObjectResponse.url"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* UploadObjectResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* UploadObjectResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 0, 49, 2> UploadObjectResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967038,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UploadObjectResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string object = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UploadObjectResponse, _impl_.object_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string object = 1;
+    {PROTOBUF_FIELD_OFFSET(UploadObjectResponse, _impl_.object_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string url = 9;
+    {PROTOBUF_FIELD_OFFSET(UploadObjectResponse, _impl_.url_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\6\3\0\0\0\0\0"
+    "palm.s3.v1.UploadObjectResponse"
+    "object"
+    "url"
+  }},
+};
+
+::uint8_t* UploadObjectResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.UploadObjectResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string object = 1;
   if (!this->_internal_object().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadObjectResponse.object");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_object(), target);
+    const std::string& _s = this->_internal_object();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.UploadObjectResponse.object");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string url = 9;
   if (!this->_internal_url().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_url().data(), static_cast<int>(this->_internal_url().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UploadObjectResponse.url");
-    target = stream->WriteStringMaybeAliased(
-        9, this->_internal_url(), target);
+    const std::string& _s = this->_internal_url();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.UploadObjectResponse.url");
+    target = stream->WriteStringMaybeAliased(9, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.UploadObjectResponse)
   return target;
 }
 
-size_t UploadObjectResponse::ByteSizeLong() const {
+::size_t UploadObjectResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.UploadObjectResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string object = 1;
   if (!this->_internal_object().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_object());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_object());
   }
 
   // string url = 9;
   if (!this->_internal_url().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_url());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_url());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UploadObjectResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UploadObjectResponse::MergeImpl
+const ::google::protobuf::Message::ClassData UploadObjectResponse::_class_data_ = {
+    UploadObjectResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UploadObjectResponse::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* UploadObjectResponse::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void UploadObjectResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void UploadObjectResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<UploadObjectResponse*>(&to_msg);
   auto& from = static_cast<const UploadObjectResponse&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.UploadObjectResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_object().empty()) {
@@ -1583,7 +1622,7 @@ void UploadObjectResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, c
   if (!from._internal_url().empty()) {
     _this->_internal_set_url(from._internal_url());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UploadObjectResponse::CopyFrom(const UploadObjectResponse& from) {
@@ -1593,204 +1632,188 @@ void UploadObjectResponse::CopyFrom(const UploadObjectResponse& from) {
   MergeFrom(from);
 }
 
-bool UploadObjectResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool UploadObjectResponse::IsInitialized() const {
   return true;
 }
 
-void UploadObjectResponse::InternalSwap(UploadObjectResponse* other) {
+::_pbi::CachedSize* UploadObjectResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UploadObjectResponse::InternalSwap(UploadObjectResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.object_, lhs_arena,
-      &other->_impl_.object_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.url_, lhs_arena,
-      &other->_impl_.url_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.url_, &other->_impl_.url_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UploadObjectResponse::GetMetadata() const {
+::google::protobuf::Metadata UploadObjectResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[4]);
 }
-
 // ===================================================================
 
 class UrlResponse::_Internal {
  public:
 };
 
-UrlResponse::UrlResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+UrlResponse::UrlResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.UrlResponse)
 }
-UrlResponse::UrlResponse(const UrlResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UrlResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.url_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE UrlResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : url_(arena, from.url_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_url().empty()) {
-    _this->_impl_.url_.Set(from._internal_url(), 
-      _this->GetArenaForAllocation());
-  }
+UrlResponse::UrlResponse(
+    ::google::protobuf::Arena* arena,
+    const UrlResponse& from)
+    : ::google::protobuf::Message(arena) {
+  UrlResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.UrlResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE UrlResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : url_(arena),
+        _cached_size_{0} {}
 
-inline void UrlResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.url_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.url_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.url_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void UrlResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 UrlResponse::~UrlResponse() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.UrlResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void UrlResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.url_.Destroy();
+  _impl_.~Impl_();
 }
 
-void UrlResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void UrlResponse::Clear() {
+PROTOBUF_NOINLINE void UrlResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.UrlResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.url_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UrlResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string url = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_url();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.UrlResponse.url"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* UrlResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* UrlResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 34, 2> UrlResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UrlResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string url = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UrlResponse, _impl_.url_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string url = 1;
+    {PROTOBUF_FIELD_OFFSET(UrlResponse, _impl_.url_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\26\3\0\0\0\0\0\0"
+    "palm.s3.v1.UrlResponse"
+    "url"
+  }},
+};
+
+::uint8_t* UrlResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.UrlResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string url = 1;
   if (!this->_internal_url().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_url().data(), static_cast<int>(this->_internal_url().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.UrlResponse.url");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_url(), target);
+    const std::string& _s = this->_internal_url();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.UrlResponse.url");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.UrlResponse)
   return target;
 }
 
-size_t UrlResponse::ByteSizeLong() const {
+::size_t UrlResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.UrlResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string url = 1;
   if (!this->_internal_url().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_url());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_url());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UrlResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UrlResponse::MergeImpl
+const ::google::protobuf::Message::ClassData UrlResponse::_class_data_ = {
+    UrlResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UrlResponse::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* UrlResponse::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void UrlResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void UrlResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<UrlResponse*>(&to_msg);
   auto& from = static_cast<const UrlResponse&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.UrlResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_url().empty()) {
     _this->_internal_set_url(from._internal_url());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UrlResponse::CopyFrom(const UrlResponse& from) {
@@ -1800,161 +1823,113 @@ void UrlResponse::CopyFrom(const UrlResponse& from) {
   MergeFrom(from);
 }
 
-bool UrlResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool UrlResponse::IsInitialized() const {
   return true;
 }
 
-void UrlResponse::InternalSwap(UrlResponse* other) {
+::_pbi::CachedSize* UrlResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UrlResponse::InternalSwap(UrlResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.url_, lhs_arena,
-      &other->_impl_.url_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.url_, &other->_impl_.url_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UrlResponse::GetMetadata() const {
+::google::protobuf::Metadata UrlResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[5]);
 }
-
 // ===================================================================
 
 class ObjectPresignedUrlRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<ObjectPresignedUrlRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_._has_bits_);
   static void set_has_content_type(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
-  static const ::PROTOBUF_NAMESPACE_ID::Duration& ttl(const ObjectPresignedUrlRequest* msg);
+  static const ::google::protobuf::Duration& ttl(const ObjectPresignedUrlRequest* msg);
+  static void set_has_ttl(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Duration&
-ObjectPresignedUrlRequest::_Internal::ttl(const ObjectPresignedUrlRequest* msg) {
+const ::google::protobuf::Duration& ObjectPresignedUrlRequest::_Internal::ttl(const ObjectPresignedUrlRequest* msg) {
   return *msg->_impl_.ttl_;
 }
 void ObjectPresignedUrlRequest::clear_ttl() {
-  if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
-    delete _impl_.ttl_;
-  }
-  _impl_.ttl_ = nullptr;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.ttl_ != nullptr) _impl_.ttl_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.ObjectPresignedUrlRequest)
 }
-ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(const ObjectPresignedUrlRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ObjectPresignedUrlRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.ttl_){nullptr}};
+inline PROTOBUF_NDEBUG_INLINE ObjectPresignedUrlRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        bucket_(arena, from.bucket_),
+        object_(arena, from.object_),
+        title_(arena, from.title_),
+        content_type_(arena, from.content_type_) {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_bucket().empty()) {
-    _this->_impl_.bucket_.Set(from._internal_bucket(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_object().empty()) {
-    _this->_impl_.object_.Set(from._internal_object(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_title().empty()) {
-    _this->_impl_.title_.Set(from._internal_title(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (from._internal_has_content_type()) {
-    _this->_impl_.content_type_.Set(from._internal_content_type(), 
-      _this->GetArenaForAllocation());
-  }
-  if (from._internal_has_ttl()) {
-    _this->_impl_.ttl_ = new ::PROTOBUF_NAMESPACE_ID::Duration(*from._impl_.ttl_);
-  }
+ObjectPresignedUrlRequest::ObjectPresignedUrlRequest(
+    ::google::protobuf::Arena* arena,
+    const ObjectPresignedUrlRequest& from)
+    : ::google::protobuf::Message(arena) {
+  ObjectPresignedUrlRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.ttl_ = (cached_has_bits & 0x00000002u)
+                ? CreateMaybeMessage<::google::protobuf::Duration>(arena, *from._impl_.ttl_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.ObjectPresignedUrlRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE ObjectPresignedUrlRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        bucket_(arena),
+        object_(arena),
+        title_(arena),
+        content_type_(arena) {}
 
-inline void ObjectPresignedUrlRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.ttl_){nullptr}
-  };
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ObjectPresignedUrlRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.ttl_ = {};
 }
-
 ObjectPresignedUrlRequest::~ObjectPresignedUrlRequest() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.ObjectPresignedUrlRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void ObjectPresignedUrlRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.object_.Destroy();
   _impl_.title_.Destroy();
   _impl_.content_type_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.ttl_;
+  delete _impl_.ttl_;
+  _impl_.~Impl_();
 }
 
-void ObjectPresignedUrlRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void ObjectPresignedUrlRequest::Clear() {
+PROTOBUF_NOINLINE void ObjectPresignedUrlRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.ObjectPresignedUrlRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -1962,217 +1937,197 @@ void ObjectPresignedUrlRequest::Clear() {
   _impl_.object_.ClearToEmpty();
   _impl_.title_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    _impl_.content_type_.ClearNonDefaultToEmpty();
-  }
-  if (GetArenaForAllocation() == nullptr && _impl_.ttl_ != nullptr) {
-    delete _impl_.ttl_;
-  }
-  _impl_.ttl_ = nullptr;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* ObjectPresignedUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string bucket = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_bucket();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.bucket"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string object = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_object();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.object"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string title = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_title();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.title"));
-        } else
-          goto handle_unusual;
-        continue;
-      // optional string content_type = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          auto str = _internal_mutable_content_type();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPresignedUrlRequest.content_type"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.Duration ttl = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ttl(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.content_type_.ClearNonDefaultToEmpty();
     }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _impl_._has_bits_.Or(has_bits);
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.ttl_ != nullptr);
+      _impl_.ttl_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-uint8_t* ObjectPresignedUrlRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+const char* ObjectPresignedUrlRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 5, 1, 74, 2> ObjectPresignedUrlRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967024,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ObjectPresignedUrlRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // optional string content_type = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 0, 0, PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.content_type_)}},
+    // string bucket = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.bucket_)}},
+    // string object = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.object_)}},
+    // string title = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.title_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string bucket = 1;
+    {PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.bucket_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string object = 2;
+    {PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.object_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string title = 3;
+    {PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.title_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string content_type = 4;
+    {PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.content_type_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Duration ttl = 9;
+    {PROTOBUF_FIELD_OFFSET(ObjectPresignedUrlRequest, _impl_.ttl_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Duration>()},
+  }}, {{
+    "\44\6\6\5\14\0\0\0"
+    "palm.s3.v1.ObjectPresignedUrlRequest"
+    "bucket"
+    "object"
+    "title"
+    "content_type"
+  }},
+};
+
+::uint8_t* ObjectPresignedUrlRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.ObjectPresignedUrlRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPresignedUrlRequest.bucket");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_bucket(), target);
+    const std::string& _s = this->_internal_bucket();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPresignedUrlRequest.bucket");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string object = 2;
   if (!this->_internal_object().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPresignedUrlRequest.object");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_object(), target);
+    const std::string& _s = this->_internal_object();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPresignedUrlRequest.object");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   // string title = 3;
   if (!this->_internal_title().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPresignedUrlRequest.title");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_title(), target);
+    const std::string& _s = this->_internal_title();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPresignedUrlRequest.title");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // optional string content_type = 4;
-  if (_internal_has_content_type()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPresignedUrlRequest.content_type");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_content_type(), target);
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_content_type();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPresignedUrlRequest.content_type");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
   // .google.protobuf.Duration ttl = 9;
-  if (this->_internal_has_ttl()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(9, _Internal::ttl(this),
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        9, _Internal::ttl(this),
         _Internal::ttl(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.ObjectPresignedUrlRequest)
   return target;
 }
 
-size_t ObjectPresignedUrlRequest::ByteSizeLong() const {
+::size_t ObjectPresignedUrlRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.ObjectPresignedUrlRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_bucket());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_bucket());
   }
 
   // string object = 2;
   if (!this->_internal_object().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_object());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_object());
   }
 
   // string title = 3;
   if (!this->_internal_title().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_title());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_title());
   }
 
-  // optional string content_type = 4;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_content_type());
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional string content_type = 4;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_content_type());
+    }
 
-  // .google.protobuf.Duration ttl = 9;
-  if (this->_internal_has_ttl()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ttl_);
-  }
+    // .google.protobuf.Duration ttl = 9;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.ttl_);
+    }
 
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObjectPresignedUrlRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    ObjectPresignedUrlRequest::MergeImpl
+const ::google::protobuf::Message::ClassData ObjectPresignedUrlRequest::_class_data_ = {
+    ObjectPresignedUrlRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObjectPresignedUrlRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* ObjectPresignedUrlRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void ObjectPresignedUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void ObjectPresignedUrlRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<ObjectPresignedUrlRequest*>(&to_msg);
   auto& from = static_cast<const ObjectPresignedUrlRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.ObjectPresignedUrlRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_bucket().empty()) {
@@ -2184,14 +2139,17 @@ void ObjectPresignedUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_m
   if (!from._internal_title().empty()) {
     _this->_internal_set_title(from._internal_title());
   }
-  if (from._internal_has_content_type()) {
-    _this->_internal_set_content_type(from._internal_content_type());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_content_type(from._internal_content_type());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_ttl()->::google::protobuf::Duration::MergeFrom(
+          from._internal_ttl());
+    }
   }
-  if (from._internal_has_ttl()) {
-    _this->_internal_mutable_ttl()->::PROTOBUF_NAMESPACE_ID::Duration::MergeFrom(
-        from._internal_ttl());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ObjectPresignedUrlRequest::CopyFrom(const ObjectPresignedUrlRequest& from) {
@@ -2201,158 +2159,100 @@ void ObjectPresignedUrlRequest::CopyFrom(const ObjectPresignedUrlRequest& from) 
   MergeFrom(from);
 }
 
-bool ObjectPresignedUrlRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool ObjectPresignedUrlRequest::IsInitialized() const {
   return true;
 }
 
-void ObjectPresignedUrlRequest::InternalSwap(ObjectPresignedUrlRequest* other) {
+::_pbi::CachedSize* ObjectPresignedUrlRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ObjectPresignedUrlRequest::InternalSwap(ObjectPresignedUrlRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.bucket_, lhs_arena,
-      &other->_impl_.bucket_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.object_, lhs_arena,
-      &other->_impl_.object_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.title_, lhs_arena,
-      &other->_impl_.title_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.content_type_, lhs_arena,
-      &other->_impl_.content_type_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.content_type_, &other->_impl_.content_type_, arena);
   swap(_impl_.ttl_, other->_impl_.ttl_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ObjectPresignedUrlRequest::GetMetadata() const {
+::google::protobuf::Metadata ObjectPresignedUrlRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[6]);
 }
-
 // ===================================================================
 
 class ObjectPermanentUrlRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<ObjectPermanentUrlRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_._has_bits_);
   static void set_has_content_type(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
-ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.ObjectPermanentUrlRequest)
 }
-ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(const ObjectPermanentUrlRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ObjectPermanentUrlRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}};
+inline PROTOBUF_NDEBUG_INLINE ObjectPermanentUrlRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        bucket_(arena, from.bucket_),
+        object_(arena, from.object_),
+        title_(arena, from.title_),
+        content_type_(arena, from.content_type_) {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_bucket().empty()) {
-    _this->_impl_.bucket_.Set(from._internal_bucket(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_object().empty()) {
-    _this->_impl_.object_.Set(from._internal_object(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_title().empty()) {
-    _this->_impl_.title_.Set(from._internal_title(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (from._internal_has_content_type()) {
-    _this->_impl_.content_type_.Set(from._internal_content_type(), 
-      _this->GetArenaForAllocation());
-  }
+ObjectPermanentUrlRequest::ObjectPermanentUrlRequest(
+    ::google::protobuf::Arena* arena,
+    const ObjectPermanentUrlRequest& from)
+    : ::google::protobuf::Message(arena) {
+  ObjectPermanentUrlRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.ObjectPermanentUrlRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE ObjectPermanentUrlRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        bucket_(arena),
+        object_(arena),
+        title_(arena),
+        content_type_(arena) {}
 
-inline void ObjectPermanentUrlRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-  };
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void ObjectPermanentUrlRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 ObjectPermanentUrlRequest::~ObjectPermanentUrlRequest() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.ObjectPermanentUrlRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void ObjectPermanentUrlRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.object_.Destroy();
   _impl_.title_.Destroy();
   _impl_.content_type_.Destroy();
+  _impl_.~Impl_();
 }
 
-void ObjectPermanentUrlRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void ObjectPermanentUrlRequest::Clear() {
+PROTOBUF_NOINLINE void ObjectPermanentUrlRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.ObjectPermanentUrlRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -2364,187 +2264,169 @@ void ObjectPermanentUrlRequest::Clear() {
     _impl_.content_type_.ClearNonDefaultToEmpty();
   }
   _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ObjectPermanentUrlRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string bucket = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_bucket();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.bucket"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string object = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_object();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.object"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string title = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_title();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.title"));
-        } else
-          goto handle_unusual;
-        continue;
-      // optional string content_type = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          auto str = _internal_mutable_content_type();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.ObjectPermanentUrlRequest.content_type"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _impl_._has_bits_.Or(has_bits);
+const char* ObjectPermanentUrlRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* ObjectPermanentUrlRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 74, 2> ObjectPermanentUrlRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ObjectPermanentUrlRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // optional string content_type = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 0, 0, PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.content_type_)}},
+    // string bucket = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.bucket_)}},
+    // string object = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.object_)}},
+    // string title = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.title_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string bucket = 1;
+    {PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.bucket_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string object = 2;
+    {PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.object_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string title = 3;
+    {PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.title_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string content_type = 4;
+    {PROTOBUF_FIELD_OFFSET(ObjectPermanentUrlRequest, _impl_.content_type_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\44\6\6\5\14\0\0\0"
+    "palm.s3.v1.ObjectPermanentUrlRequest"
+    "bucket"
+    "object"
+    "title"
+    "content_type"
+  }},
+};
+
+::uint8_t* ObjectPermanentUrlRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.ObjectPermanentUrlRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPermanentUrlRequest.bucket");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_bucket(), target);
+    const std::string& _s = this->_internal_bucket();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPermanentUrlRequest.bucket");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string object = 2;
   if (!this->_internal_object().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPermanentUrlRequest.object");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_object(), target);
+    const std::string& _s = this->_internal_object();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPermanentUrlRequest.object");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   // string title = 3;
   if (!this->_internal_title().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPermanentUrlRequest.title");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_title(), target);
+    const std::string& _s = this->_internal_title();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPermanentUrlRequest.title");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // optional string content_type = 4;
-  if (_internal_has_content_type()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.ObjectPermanentUrlRequest.content_type");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_content_type(), target);
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_content_type();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.ObjectPermanentUrlRequest.content_type");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.ObjectPermanentUrlRequest)
   return target;
 }
 
-size_t ObjectPermanentUrlRequest::ByteSizeLong() const {
+::size_t ObjectPermanentUrlRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.ObjectPermanentUrlRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_bucket());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_bucket());
   }
 
   // string object = 2;
   if (!this->_internal_object().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_object());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_object());
   }
 
   // string title = 3;
   if (!this->_internal_title().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_title());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_title());
   }
 
   // optional string content_type = 4;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_content_type());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_content_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ObjectPermanentUrlRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    ObjectPermanentUrlRequest::MergeImpl
+const ::google::protobuf::Message::ClassData ObjectPermanentUrlRequest::_class_data_ = {
+    ObjectPermanentUrlRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ObjectPermanentUrlRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* ObjectPermanentUrlRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void ObjectPermanentUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void ObjectPermanentUrlRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<ObjectPermanentUrlRequest*>(&to_msg);
   auto& from = static_cast<const ObjectPermanentUrlRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.ObjectPermanentUrlRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_bucket().empty()) {
@@ -2556,10 +2438,10 @@ void ObjectPermanentUrlRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_m
   if (!from._internal_title().empty()) {
     _this->_internal_set_title(from._internal_title());
   }
-  if (from._internal_has_content_type()) {
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_set_content_type(from._internal_content_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ObjectPermanentUrlRequest::CopyFrom(const ObjectPermanentUrlRequest& from) {
@@ -2569,250 +2451,210 @@ void ObjectPermanentUrlRequest::CopyFrom(const ObjectPermanentUrlRequest& from) 
   MergeFrom(from);
 }
 
-bool ObjectPermanentUrlRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool ObjectPermanentUrlRequest::IsInitialized() const {
   return true;
 }
 
-void ObjectPermanentUrlRequest::InternalSwap(ObjectPermanentUrlRequest* other) {
+::_pbi::CachedSize* ObjectPermanentUrlRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ObjectPermanentUrlRequest::InternalSwap(ObjectPermanentUrlRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.bucket_, lhs_arena,
-      &other->_impl_.bucket_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.object_, lhs_arena,
-      &other->_impl_.object_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.title_, lhs_arena,
-      &other->_impl_.title_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.content_type_, lhs_arena,
-      &other->_impl_.content_type_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.content_type_, &other->_impl_.content_type_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ObjectPermanentUrlRequest::GetMetadata() const {
+::google::protobuf::Metadata ObjectPermanentUrlRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[7]);
 }
-
 // ===================================================================
 
 class RemoveObjectRequest::_Internal {
  public:
 };
 
-RemoveObjectRequest::RemoveObjectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+RemoveObjectRequest::RemoveObjectRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.s3.v1.RemoveObjectRequest)
 }
-RemoveObjectRequest::RemoveObjectRequest(const RemoveObjectRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  RemoveObjectRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE RemoveObjectRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : bucket_(arena, from.bucket_),
+        object_(arena, from.object_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_bucket().empty()) {
-    _this->_impl_.bucket_.Set(from._internal_bucket(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_object().empty()) {
-    _this->_impl_.object_.Set(from._internal_object(), 
-      _this->GetArenaForAllocation());
-  }
+RemoveObjectRequest::RemoveObjectRequest(
+    ::google::protobuf::Arena* arena,
+    const RemoveObjectRequest& from)
+    : ::google::protobuf::Message(arena) {
+  RemoveObjectRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.s3.v1.RemoveObjectRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE RemoveObjectRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : bucket_(arena),
+        object_(arena),
+        _cached_size_{0} {}
 
-inline void RemoveObjectRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.bucket_){}
-    , decltype(_impl_.object_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.bucket_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bucket_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.object_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.object_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void RemoveObjectRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 RemoveObjectRequest::~RemoveObjectRequest() {
   // @@protoc_insertion_point(destructor:palm.s3.v1.RemoveObjectRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void RemoveObjectRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.bucket_.Destroy();
   _impl_.object_.Destroy();
+  _impl_.~Impl_();
 }
 
-void RemoveObjectRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void RemoveObjectRequest::Clear() {
+PROTOBUF_NOINLINE void RemoveObjectRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.s3.v1.RemoveObjectRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.bucket_.ClearToEmpty();
   _impl_.object_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* RemoveObjectRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string bucket = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_bucket();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.RemoveObjectRequest.bucket"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string object = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_object();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.s3.v1.RemoveObjectRequest.object"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* RemoveObjectRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* RemoveObjectRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 51, 2> RemoveObjectRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_RemoveObjectRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string object = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RemoveObjectRequest, _impl_.object_)}},
+    // string bucket = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(RemoveObjectRequest, _impl_.bucket_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string bucket = 1;
+    {PROTOBUF_FIELD_OFFSET(RemoveObjectRequest, _impl_.bucket_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string object = 2;
+    {PROTOBUF_FIELD_OFFSET(RemoveObjectRequest, _impl_.object_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\6\6\0\0\0\0\0"
+    "palm.s3.v1.RemoveObjectRequest"
+    "bucket"
+    "object"
+  }},
+};
+
+::uint8_t* RemoveObjectRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.RemoveObjectRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.RemoveObjectRequest.bucket");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_bucket(), target);
+    const std::string& _s = this->_internal_bucket();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.RemoveObjectRequest.bucket");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string object = 2;
   if (!this->_internal_object().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_object().data(), static_cast<int>(this->_internal_object().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.s3.v1.RemoveObjectRequest.object");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_object(), target);
+    const std::string& _s = this->_internal_object();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.RemoveObjectRequest.object");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.RemoveObjectRequest)
   return target;
 }
 
-size_t RemoveObjectRequest::ByteSizeLong() const {
+::size_t RemoveObjectRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.RemoveObjectRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string bucket = 1;
   if (!this->_internal_bucket().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_bucket());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_bucket());
   }
 
   // string object = 2;
   if (!this->_internal_object().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_object());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_object());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RemoveObjectRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    RemoveObjectRequest::MergeImpl
+const ::google::protobuf::Message::ClassData RemoveObjectRequest::_class_data_ = {
+    RemoveObjectRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RemoveObjectRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* RemoveObjectRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void RemoveObjectRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void RemoveObjectRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<RemoveObjectRequest*>(&to_msg);
   auto& from = static_cast<const RemoveObjectRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.RemoveObjectRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_bucket().empty()) {
@@ -2821,7 +2663,7 @@ void RemoveObjectRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
   if (!from._internal_object().empty()) {
     _this->_internal_set_object(from._internal_object());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void RemoveObjectRequest::CopyFrom(const RemoveObjectRequest& from) {
@@ -2831,73 +2673,34 @@ void RemoveObjectRequest::CopyFrom(const RemoveObjectRequest& from) {
   MergeFrom(from);
 }
 
-bool RemoveObjectRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool RemoveObjectRequest::IsInitialized() const {
   return true;
 }
 
-void RemoveObjectRequest::InternalSwap(RemoveObjectRequest* other) {
+::_pbi::CachedSize* RemoveObjectRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void RemoveObjectRequest::InternalSwap(RemoveObjectRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.bucket_, lhs_arena,
-      &other->_impl_.bucket_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.object_, lhs_arena,
-      &other->_impl_.object_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata RemoveObjectRequest::GetMetadata() const {
+::google::protobuf::Metadata RemoveObjectRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_s3_2eproto_getter, &descriptor_table_s3_2eproto_once,
       file_level_metadata_s3_2eproto[8]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace s3
 }  // namespace palm
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::Bucket*
-Arena::CreateMaybeMessage< ::palm::s3::v1::Bucket >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::Bucket >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::CreateBucketRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::CreateBucketRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::CreateBucketRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::CreateBucketResponse*
-Arena::CreateMaybeMessage< ::palm::s3::v1::CreateBucketResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::CreateBucketResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::UploadObjectRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::UploadObjectRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::UploadObjectRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::UploadObjectResponse*
-Arena::CreateMaybeMessage< ::palm::s3::v1::UploadObjectResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::UploadObjectResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::UrlResponse*
-Arena::CreateMaybeMessage< ::palm::s3::v1::UrlResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::UrlResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::ObjectPresignedUrlRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::ObjectPresignedUrlRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::ObjectPresignedUrlRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::ObjectPermanentUrlRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::ObjectPermanentUrlRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::ObjectPermanentUrlRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::s3::v1::RemoveObjectRequest*
-Arena::CreateMaybeMessage< ::palm::s3::v1::RemoveObjectRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::s3::v1::RemoveObjectRequest >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"

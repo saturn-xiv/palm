@@ -4,306 +4,367 @@
 #include "daisy.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace daisy {
 namespace v1 {
-PROTOBUF_CONSTEXPR SmsTask::SmsTask(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.to_)*/{}
-  , /*decltype(_impl_.body_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.callback_uri_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}} {}
+
+inline constexpr SmsTask::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        to_{},
+        body_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        callback_uri_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SmsTask::SmsTask(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct SmsTaskDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SmsTaskDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR SmsTaskDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~SmsTaskDefaultTypeInternal() {}
   union {
     SmsTask _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SmsTaskDefaultTypeInternal _SmsTask_default_instance_;
-PROTOBUF_CONSTEXPR EmailTask_Address::EmailTask_Address(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct EmailTask_AddressDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EmailTask_AddressDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EmailTask_AddressDefaultTypeInternal() {}
-  union {
-    EmailTask_Address _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTask_AddressDefaultTypeInternal _EmailTask_Address_default_instance_;
-PROTOBUF_CONSTEXPR EmailTask_Body::EmailTask_Body(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.text_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.html_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SmsTaskDefaultTypeInternal _SmsTask_default_instance_;
+
+inline constexpr EmailTask_Body::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : text_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        html_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR EmailTask_Body::EmailTask_Body(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct EmailTask_BodyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EmailTask_BodyDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR EmailTask_BodyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~EmailTask_BodyDefaultTypeInternal() {}
   union {
     EmailTask_Body _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTask_BodyDefaultTypeInternal _EmailTask_Body_default_instance_;
-PROTOBUF_CONSTEXPR EmailTask_Attachment::EmailTask_Attachment(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.title_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.content_type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.body_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.inline__)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTask_BodyDefaultTypeInternal _EmailTask_Body_default_instance_;
+
+inline constexpr EmailTask_Attachment::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        content_type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        body_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        inline__{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR EmailTask_Attachment::EmailTask_Attachment(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct EmailTask_AttachmentDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EmailTask_AttachmentDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR EmailTask_AttachmentDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~EmailTask_AttachmentDefaultTypeInternal() {}
   union {
     EmailTask_Attachment _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTask_AttachmentDefaultTypeInternal _EmailTask_Attachment_default_instance_;
-PROTOBUF_CONSTEXPR EmailTask::EmailTask(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.cc_)*/{}
-  , /*decltype(_impl_.bcc_)*/{}
-  , /*decltype(_impl_.attachments_)*/{}
-  , /*decltype(_impl_.subject_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.body_)*/nullptr
-  , /*decltype(_impl_.to_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTask_AttachmentDefaultTypeInternal _EmailTask_Attachment_default_instance_;
+
+inline constexpr EmailTask_Address::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        email_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR EmailTask_Address::EmailTask_Address(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct EmailTask_AddressDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EmailTask_AddressDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EmailTask_AddressDefaultTypeInternal() {}
+  union {
+    EmailTask_Address _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTask_AddressDefaultTypeInternal _EmailTask_Address_default_instance_;
+
+inline constexpr EmailTask::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        cc_{},
+        bcc_{},
+        attachments_{},
+        subject_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        body_{nullptr},
+        to_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR EmailTask::EmailTask(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct EmailTaskDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EmailTaskDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR EmailTaskDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~EmailTaskDefaultTypeInternal() {}
   union {
     EmailTask _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTaskDefaultTypeInternal _EmailTask_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmailTaskDefaultTypeInternal _EmailTask_default_instance_;
 }  // namespace v1
 }  // namespace daisy
 }  // namespace palm
 static ::_pb::Metadata file_level_metadata_daisy_2eproto[5];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_daisy_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_daisy_2eproto = nullptr;
-
-const uint32_t TableStruct_daisy_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_.to_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_.body_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_.callback_uri_),
-  ~0u,
-  ~0u,
-  0,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Address, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Address, _impl_.name_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Address, _impl_.email_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Body, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Body, _impl_.text_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Body, _impl_.html_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.title_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.content_type_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.inline__),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.body_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.subject_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.body_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.to_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.cc_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.bcc_),
-  PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.attachments_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_daisy_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_daisy_2eproto = nullptr;
+const ::uint32_t TableStruct_daisy_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_.to_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_.body_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::SmsTask, _impl_.callback_uri_),
+    ~0u,
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Address, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Address, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Address, _impl_.email_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Body, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Body, _impl_.text_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Body, _impl_.html_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.title_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.content_type_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.inline__),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask_Attachment, _impl_.body_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.subject_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.body_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.to_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.cc_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.bcc_),
+    PROTOBUF_FIELD_OFFSET(::palm::daisy::v1::EmailTask, _impl_.attachments_),
+    ~0u,
+    0,
+    1,
+    ~0u,
+    ~0u,
+    ~0u,
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 9, -1, sizeof(::palm::daisy::v1::SmsTask)},
-  { 12, -1, -1, sizeof(::palm::daisy::v1::EmailTask_Address)},
-  { 20, -1, -1, sizeof(::palm::daisy::v1::EmailTask_Body)},
-  { 28, -1, -1, sizeof(::palm::daisy::v1::EmailTask_Attachment)},
-  { 38, -1, -1, sizeof(::palm::daisy::v1::EmailTask)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, 11, -1, sizeof(::palm::daisy::v1::SmsTask)},
+        {14, -1, -1, sizeof(::palm::daisy::v1::EmailTask_Address)},
+        {24, -1, -1, sizeof(::palm::daisy::v1::EmailTask_Body)},
+        {34, -1, -1, sizeof(::palm::daisy::v1::EmailTask_Attachment)},
+        {46, 60, -1, sizeof(::palm::daisy::v1::EmailTask)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::palm::daisy::v1::_SmsTask_default_instance_._instance,
-  &::palm::daisy::v1::_EmailTask_Address_default_instance_._instance,
-  &::palm::daisy::v1::_EmailTask_Body_default_instance_._instance,
-  &::palm::daisy::v1::_EmailTask_Attachment_default_instance_._instance,
-  &::palm::daisy::v1::_EmailTask_default_instance_._instance,
+    &::palm::daisy::v1::_SmsTask_default_instance_._instance,
+    &::palm::daisy::v1::_EmailTask_Address_default_instance_._instance,
+    &::palm::daisy::v1::_EmailTask_Body_default_instance_._instance,
+    &::palm::daisy::v1::_EmailTask_Attachment_default_instance_._instance,
+    &::palm::daisy::v1::_EmailTask_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_daisy_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013daisy.proto\022\rpalm.daisy.v1\"O\n\007SmsTask\022"
-  "\n\n\002to\030\001 \003(\t\022\014\n\004body\030\002 \001(\t\022\031\n\014callback_ur"
-  "i\030\003 \001(\tH\000\210\001\001B\017\n\r_callback_uri\"\253\003\n\tEmailT"
-  "ask\022\017\n\007subject\030\001 \001(\t\022+\n\004body\030\002 \001(\0132\035.pal"
-  "m.daisy.v1.EmailTask.Body\022,\n\002to\030\003 \001(\0132 ."
-  "palm.daisy.v1.EmailTask.Address\022,\n\002cc\030\004 "
-  "\003(\0132 .palm.daisy.v1.EmailTask.Address\022-\n"
-  "\003bcc\030\005 \003(\0132 .palm.daisy.v1.EmailTask.Add"
-  "ress\0228\n\013attachments\030\t \003(\0132#.palm.daisy.v"
-  "1.EmailTask.Attachment\032&\n\007Address\022\014\n\004nam"
-  "e\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\032\"\n\004Body\022\014\n\004text\030\001"
-  " \001(\t\022\014\n\004html\030\002 \001(\010\032O\n\nAttachment\022\r\n\005titl"
-  "e\030\001 \001(\t\022\024\n\014content_type\030\002 \001(\t\022\016\n\006inline\030"
-  "\003 \001(\010\022\014\n\004body\030\t \001(\014Bd\n+com.github.saturn"
-  "_xiv.palm.plugins.daisy.v1P\001Z3github.com"
-  "/saturn-xiv/palm/atropa/daisy/services/v"
-  "2b\006proto3"
-  ;
-static ::_pbi::once_flag descriptor_table_daisy_2eproto_once;
+const char descriptor_table_protodef_daisy_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\013daisy.proto\022\rpalm.daisy.v1\"O\n\007SmsTask\022"
+    "\n\n\002to\030\001 \003(\t\022\014\n\004body\030\002 \001(\t\022\031\n\014callback_ur"
+    "i\030\003 \001(\tH\000\210\001\001B\017\n\r_callback_uri\"\253\003\n\tEmailT"
+    "ask\022\017\n\007subject\030\001 \001(\t\022+\n\004body\030\002 \001(\0132\035.pal"
+    "m.daisy.v1.EmailTask.Body\022,\n\002to\030\003 \001(\0132 ."
+    "palm.daisy.v1.EmailTask.Address\022,\n\002cc\030\004 "
+    "\003(\0132 .palm.daisy.v1.EmailTask.Address\022-\n"
+    "\003bcc\030\005 \003(\0132 .palm.daisy.v1.EmailTask.Add"
+    "ress\0228\n\013attachments\030\t \003(\0132#.palm.daisy.v"
+    "1.EmailTask.Attachment\032&\n\007Address\022\014\n\004nam"
+    "e\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\032\"\n\004Body\022\014\n\004text\030\001"
+    " \001(\t\022\014\n\004html\030\002 \001(\010\032O\n\nAttachment\022\r\n\005titl"
+    "e\030\001 \001(\t\022\024\n\014content_type\030\002 \001(\t\022\016\n\006inline\030"
+    "\003 \001(\010\022\014\n\004body\030\t \001(\014Bd\n+com.github.saturn"
+    "_xiv.palm.plugins.daisy.v1P\001Z3github.com"
+    "/saturn-xiv/palm/atropa/daisy/services/v"
+    "2b\006proto3"
+};
+static ::absl::once_flag descriptor_table_daisy_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_daisy_2eproto = {
-    false, false, 649, descriptor_table_protodef_daisy_2eproto,
+    false,
+    false,
+    649,
+    descriptor_table_protodef_daisy_2eproto,
     "daisy.proto",
-    &descriptor_table_daisy_2eproto_once, nullptr, 0, 5,
-    schemas, file_default_instances, TableStruct_daisy_2eproto::offsets,
-    file_level_metadata_daisy_2eproto, file_level_enum_descriptors_daisy_2eproto,
+    &descriptor_table_daisy_2eproto_once,
+    nullptr,
+    0,
+    5,
+    schemas,
+    file_default_instances,
+    TableStruct_daisy_2eproto::offsets,
+    file_level_metadata_daisy_2eproto,
+    file_level_enum_descriptors_daisy_2eproto,
     file_level_service_descriptors_daisy_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_daisy_2eproto_getter() {
   return &descriptor_table_daisy_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_daisy_2eproto(&descriptor_table_daisy_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_daisy_2eproto(&descriptor_table_daisy_2eproto);
 namespace palm {
 namespace daisy {
 namespace v1 {
-
 // ===================================================================
 
 class SmsTask::_Internal {
  public:
   using HasBits = decltype(std::declval<SmsTask>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SmsTask, _impl_._has_bits_);
   static void set_has_callback_uri(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
-SmsTask::SmsTask(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+SmsTask::SmsTask(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.daisy.v1.SmsTask)
 }
-SmsTask::SmsTask(const SmsTask& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  SmsTask* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.to_){from._impl_.to_}
-    , decltype(_impl_.body_){}
-    , decltype(_impl_.callback_uri_){}};
+inline PROTOBUF_NDEBUG_INLINE SmsTask::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        to_{visibility, arena, from.to_},
+        body_(arena, from.body_),
+        callback_uri_(arena, from.callback_uri_) {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.body_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.body_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_body().empty()) {
-    _this->_impl_.body_.Set(from._internal_body(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.callback_uri_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.callback_uri_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (from._internal_has_callback_uri()) {
-    _this->_impl_.callback_uri_.Set(from._internal_callback_uri(), 
-      _this->GetArenaForAllocation());
-  }
+SmsTask::SmsTask(
+    ::google::protobuf::Arena* arena,
+    const SmsTask& from)
+    : ::google::protobuf::Message(arena) {
+  SmsTask* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.daisy.v1.SmsTask)
 }
+inline PROTOBUF_NDEBUG_INLINE SmsTask::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        to_{visibility, arena},
+        body_(arena),
+        callback_uri_(arena) {}
 
-inline void SmsTask::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.to_){arena}
-    , decltype(_impl_.body_){}
-    , decltype(_impl_.callback_uri_){}
-  };
-  _impl_.body_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.body_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.callback_uri_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.callback_uri_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void SmsTask::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 SmsTask::~SmsTask() {
   // @@protoc_insertion_point(destructor:palm.daisy.v1.SmsTask)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void SmsTask::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.to_.~RepeatedPtrField();
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.body_.Destroy();
   _impl_.callback_uri_.Destroy();
+  _impl_.~Impl_();
 }
 
-void SmsTask::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void SmsTask::Clear() {
+PROTOBUF_NOINLINE void SmsTask::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.daisy.v1.SmsTask)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -314,176 +375,159 @@ void SmsTask::Clear() {
     _impl_.callback_uri_.ClearNonDefaultToEmpty();
   }
   _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* SmsTask::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated string to = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            auto str = _internal_add_to();
-            ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(ptr);
-            CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.SmsTask.to"));
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // string body = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_body();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.SmsTask.body"));
-        } else
-          goto handle_unusual;
-        continue;
-      // optional string callback_uri = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_callback_uri();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.SmsTask.callback_uri"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _impl_._has_bits_.Or(has_bits);
+const char* SmsTask::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* SmsTask::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 48, 2> SmsTask::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SmsTask, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SmsTask_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated string to = 1;
+    {::_pbi::TcParser::FastUR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SmsTask, _impl_.to_)}},
+    // string body = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SmsTask, _impl_.body_)}},
+    // optional string callback_uri = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(SmsTask, _impl_.callback_uri_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated string to = 1;
+    {PROTOBUF_FIELD_OFFSET(SmsTask, _impl_.to_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // string body = 2;
+    {PROTOBUF_FIELD_OFFSET(SmsTask, _impl_.body_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string callback_uri = 3;
+    {PROTOBUF_FIELD_OFFSET(SmsTask, _impl_.callback_uri_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\25\2\4\14\0\0\0\0"
+    "palm.daisy.v1.SmsTask"
+    "to"
+    "body"
+    "callback_uri"
+  }},
+};
+
+::uint8_t* SmsTask::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.daisy.v1.SmsTask)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated string to = 1;
-  for (int i = 0, n = this->_internal_to_size(); i < n; i++) {
-    const auto& s = this->_internal_to(i);
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      s.data(), static_cast<int>(s.length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.SmsTask.to");
+  for (int i = 0, n = this->_internal_to_size(); i < n; ++i) {
+    const auto& s = this->_internal_to().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.SmsTask.to");
     target = stream->WriteString(1, s, target);
   }
 
   // string body = 2;
   if (!this->_internal_body().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_body().data(), static_cast<int>(this->_internal_body().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.SmsTask.body");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_body(), target);
+    const std::string& _s = this->_internal_body();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.SmsTask.body");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // optional string callback_uri = 3;
-  if (_internal_has_callback_uri()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_callback_uri().data(), static_cast<int>(this->_internal_callback_uri().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.SmsTask.callback_uri");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_callback_uri(), target);
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_callback_uri();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.SmsTask.callback_uri");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.daisy.v1.SmsTask)
   return target;
 }
 
-size_t SmsTask::ByteSizeLong() const {
+::size_t SmsTask::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.daisy.v1.SmsTask)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated string to = 1;
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(_impl_.to_.size());
-  for (int i = 0, n = _impl_.to_.size(); i < n; i++) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      _impl_.to_.Get(i));
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_to().size());
+  for (int i = 0, n = _internal_to().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_to().Get(i));
   }
-
   // string body = 2;
   if (!this->_internal_body().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_body());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_body());
   }
 
   // optional string callback_uri = 3;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_callback_uri());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_callback_uri());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SmsTask::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    SmsTask::MergeImpl
+const ::google::protobuf::Message::ClassData SmsTask::_class_data_ = {
+    SmsTask::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SmsTask::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* SmsTask::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void SmsTask::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void SmsTask::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<SmsTask*>(&to_msg);
   auto& from = static_cast<const SmsTask&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.daisy.v1.SmsTask)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.to_.MergeFrom(from._impl_.to_);
+  _this->_internal_mutable_to()->MergeFrom(from._internal_to());
   if (!from._internal_body().empty()) {
     _this->_internal_set_body(from._internal_body());
   }
-  if (from._internal_has_callback_uri()) {
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_set_callback_uri(from._internal_callback_uri());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void SmsTask::CopyFrom(const SmsTask& from) {
@@ -493,243 +537,209 @@ void SmsTask::CopyFrom(const SmsTask& from) {
   MergeFrom(from);
 }
 
-bool SmsTask::IsInitialized() const {
+PROTOBUF_NOINLINE bool SmsTask::IsInitialized() const {
   return true;
 }
 
-void SmsTask::InternalSwap(SmsTask* other) {
+::_pbi::CachedSize* SmsTask::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SmsTask::InternalSwap(SmsTask* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.to_.InternalSwap(&other->_impl_.to_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.body_, lhs_arena,
-      &other->_impl_.body_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.callback_uri_, lhs_arena,
-      &other->_impl_.callback_uri_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.body_, &other->_impl_.body_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.callback_uri_, &other->_impl_.callback_uri_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata SmsTask::GetMetadata() const {
+::google::protobuf::Metadata SmsTask::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_daisy_2eproto_getter, &descriptor_table_daisy_2eproto_once,
       file_level_metadata_daisy_2eproto[0]);
 }
-
 // ===================================================================
 
 class EmailTask_Address::_Internal {
  public:
 };
 
-EmailTask_Address::EmailTask_Address(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+EmailTask_Address::EmailTask_Address(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.daisy.v1.EmailTask.Address)
 }
-EmailTask_Address::EmailTask_Address(const EmailTask_Address& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  EmailTask_Address* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.email_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE EmailTask_Address::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : name_(arena, from.name_),
+        email_(arena, from.email_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_name().empty()) {
-    _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.email_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_email().empty()) {
-    _this->_impl_.email_.Set(from._internal_email(), 
-      _this->GetArenaForAllocation());
-  }
+EmailTask_Address::EmailTask_Address(
+    ::google::protobuf::Arena* arena,
+    const EmailTask_Address& from)
+    : ::google::protobuf::Message(arena) {
+  EmailTask_Address* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.daisy.v1.EmailTask.Address)
 }
+inline PROTOBUF_NDEBUG_INLINE EmailTask_Address::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        email_(arena),
+        _cached_size_{0} {}
 
-inline void EmailTask_Address::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.name_){}
-    , decltype(_impl_.email_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.email_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.email_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void EmailTask_Address::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 EmailTask_Address::~EmailTask_Address() {
   // @@protoc_insertion_point(destructor:palm.daisy.v1.EmailTask.Address)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void EmailTask_Address::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.name_.Destroy();
   _impl_.email_.Destroy();
+  _impl_.~Impl_();
 }
 
-void EmailTask_Address::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void EmailTask_Address::Clear() {
+PROTOBUF_NOINLINE void EmailTask_Address::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.daisy.v1.EmailTask.Address)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
   _impl_.email_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* EmailTask_Address::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string name = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.EmailTask.Address.name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string email = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_email();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.EmailTask.Address.email"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* EmailTask_Address::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* EmailTask_Address::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 49, 2> EmailTask_Address::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_EmailTask_Address_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string email = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask_Address, _impl_.email_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask_Address, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Address, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string email = 2;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Address, _impl_.email_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\4\5\0\0\0\0\0"
+    "palm.daisy.v1.EmailTask.Address"
+    "name"
+    "email"
+  }},
+};
+
+::uint8_t* EmailTask_Address::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.daisy.v1.EmailTask.Address)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.EmailTask.Address.name");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.EmailTask.Address.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string email = 2;
   if (!this->_internal_email().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.EmailTask.Address.email");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_email(), target);
+    const std::string& _s = this->_internal_email();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.EmailTask.Address.email");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.daisy.v1.EmailTask.Address)
   return target;
 }
 
-size_t EmailTask_Address::ByteSizeLong() const {
+::size_t EmailTask_Address::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.daisy.v1.EmailTask.Address)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 1;
   if (!this->_internal_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // string email = 2;
   if (!this->_internal_email().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_email());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_email());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailTask_Address::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    EmailTask_Address::MergeImpl
+const ::google::protobuf::Message::ClassData EmailTask_Address::_class_data_ = {
+    EmailTask_Address::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailTask_Address::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* EmailTask_Address::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void EmailTask_Address::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void EmailTask_Address::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<EmailTask_Address*>(&to_msg);
   auto& from = static_cast<const EmailTask_Address&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.daisy.v1.EmailTask.Address)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_name().empty()) {
@@ -738,7 +748,7 @@ void EmailTask_Address::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   if (!from._internal_email().empty()) {
     _this->_internal_set_email(from._internal_email());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EmailTask_Address::CopyFrom(const EmailTask_Address& from) {
@@ -748,221 +758,203 @@ void EmailTask_Address::CopyFrom(const EmailTask_Address& from) {
   MergeFrom(from);
 }
 
-bool EmailTask_Address::IsInitialized() const {
+PROTOBUF_NOINLINE bool EmailTask_Address::IsInitialized() const {
   return true;
 }
 
-void EmailTask_Address::InternalSwap(EmailTask_Address* other) {
+::_pbi::CachedSize* EmailTask_Address::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void EmailTask_Address::InternalSwap(EmailTask_Address* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.name_, lhs_arena,
-      &other->_impl_.name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.email_, lhs_arena,
-      &other->_impl_.email_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.email_, &other->_impl_.email_, arena);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata EmailTask_Address::GetMetadata() const {
+::google::protobuf::Metadata EmailTask_Address::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_daisy_2eproto_getter, &descriptor_table_daisy_2eproto_once,
       file_level_metadata_daisy_2eproto[1]);
 }
-
 // ===================================================================
 
 class EmailTask_Body::_Internal {
  public:
 };
 
-EmailTask_Body::EmailTask_Body(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+EmailTask_Body::EmailTask_Body(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.daisy.v1.EmailTask.Body)
 }
-EmailTask_Body::EmailTask_Body(const EmailTask_Body& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  EmailTask_Body* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.text_){}
-    , decltype(_impl_.html_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE EmailTask_Body::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : text_(arena, from.text_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.text_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.text_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_text().empty()) {
-    _this->_impl_.text_.Set(from._internal_text(), 
-      _this->GetArenaForAllocation());
-  }
-  _this->_impl_.html_ = from._impl_.html_;
+EmailTask_Body::EmailTask_Body(
+    ::google::protobuf::Arena* arena,
+    const EmailTask_Body& from)
+    : ::google::protobuf::Message(arena) {
+  EmailTask_Body* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.html_ = from._impl_.html_;
+
   // @@protoc_insertion_point(copy_constructor:palm.daisy.v1.EmailTask.Body)
 }
+inline PROTOBUF_NDEBUG_INLINE EmailTask_Body::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : text_(arena),
+        _cached_size_{0} {}
 
-inline void EmailTask_Body::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.text_){}
-    , decltype(_impl_.html_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.text_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.text_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void EmailTask_Body::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.html_ = {};
 }
-
 EmailTask_Body::~EmailTask_Body() {
   // @@protoc_insertion_point(destructor:palm.daisy.v1.EmailTask.Body)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void EmailTask_Body::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.text_.Destroy();
+  _impl_.~Impl_();
 }
 
-void EmailTask_Body::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void EmailTask_Body::Clear() {
+PROTOBUF_NOINLINE void EmailTask_Body::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.daisy.v1.EmailTask.Body)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.text_.ClearToEmpty();
   _impl_.html_ = false;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* EmailTask_Body::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string text = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_text();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.EmailTask.Body.text"));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool html = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.html_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* EmailTask_Body::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* EmailTask_Body::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 41, 2> EmailTask_Body::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_EmailTask_Body_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool html = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(EmailTask_Body, _impl_.html_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask_Body, _impl_.html_)}},
+    // string text = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask_Body, _impl_.text_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string text = 1;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Body, _impl_.text_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool html = 2;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Body, _impl_.html_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+    "\34\4\0\0\0\0\0\0"
+    "palm.daisy.v1.EmailTask.Body"
+    "text"
+  }},
+};
+
+::uint8_t* EmailTask_Body::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.daisy.v1.EmailTask.Body)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string text = 1;
   if (!this->_internal_text().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_text().data(), static_cast<int>(this->_internal_text().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.EmailTask.Body.text");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_text(), target);
+    const std::string& _s = this->_internal_text();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.EmailTask.Body.text");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // bool html = 2;
   if (this->_internal_html() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_html(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_html(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.daisy.v1.EmailTask.Body)
   return target;
 }
 
-size_t EmailTask_Body::ByteSizeLong() const {
+::size_t EmailTask_Body::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.daisy.v1.EmailTask.Body)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string text = 1;
   if (!this->_internal_text().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_text());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_text());
   }
 
   // bool html = 2;
   if (this->_internal_html() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailTask_Body::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    EmailTask_Body::MergeImpl
+const ::google::protobuf::Message::ClassData EmailTask_Body::_class_data_ = {
+    EmailTask_Body::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailTask_Body::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* EmailTask_Body::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void EmailTask_Body::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void EmailTask_Body::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<EmailTask_Body*>(&to_msg);
   auto& from = static_cast<const EmailTask_Body&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.daisy.v1.EmailTask.Body)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_text().empty()) {
@@ -971,7 +963,7 @@ void EmailTask_Body::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const :
   if (from._internal_html() != 0) {
     _this->_internal_set_html(from._internal_html());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EmailTask_Body::CopyFrom(const EmailTask_Body& from) {
@@ -981,127 +973,88 @@ void EmailTask_Body::CopyFrom(const EmailTask_Body& from) {
   MergeFrom(from);
 }
 
-bool EmailTask_Body::IsInitialized() const {
+PROTOBUF_NOINLINE bool EmailTask_Body::IsInitialized() const {
   return true;
 }
 
-void EmailTask_Body::InternalSwap(EmailTask_Body* other) {
+::_pbi::CachedSize* EmailTask_Body::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void EmailTask_Body::InternalSwap(EmailTask_Body* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.text_, lhs_arena,
-      &other->_impl_.text_, rhs_arena
-  );
-  swap(_impl_.html_, other->_impl_.html_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.text_, &other->_impl_.text_, arena);
+        swap(_impl_.html_, other->_impl_.html_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata EmailTask_Body::GetMetadata() const {
+::google::protobuf::Metadata EmailTask_Body::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_daisy_2eproto_getter, &descriptor_table_daisy_2eproto_once,
       file_level_metadata_daisy_2eproto[2]);
 }
-
 // ===================================================================
 
 class EmailTask_Attachment::_Internal {
  public:
 };
 
-EmailTask_Attachment::EmailTask_Attachment(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+EmailTask_Attachment::EmailTask_Attachment(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.daisy.v1.EmailTask.Attachment)
 }
-EmailTask_Attachment::EmailTask_Attachment(const EmailTask_Attachment& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  EmailTask_Attachment* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.body_){}
-    , decltype(_impl_.inline__){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE EmailTask_Attachment::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : title_(arena, from.title_),
+        content_type_(arena, from.content_type_),
+        body_(arena, from.body_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_title().empty()) {
-    _this->_impl_.title_.Set(from._internal_title(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_content_type().empty()) {
-    _this->_impl_.content_type_.Set(from._internal_content_type(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.body_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.body_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_body().empty()) {
-    _this->_impl_.body_.Set(from._internal_body(), 
-      _this->GetArenaForAllocation());
-  }
-  _this->_impl_.inline__ = from._impl_.inline__;
+EmailTask_Attachment::EmailTask_Attachment(
+    ::google::protobuf::Arena* arena,
+    const EmailTask_Attachment& from)
+    : ::google::protobuf::Message(arena) {
+  EmailTask_Attachment* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.inline__ = from._impl_.inline__;
+
   // @@protoc_insertion_point(copy_constructor:palm.daisy.v1.EmailTask.Attachment)
 }
+inline PROTOBUF_NDEBUG_INLINE EmailTask_Attachment::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : title_(arena),
+        content_type_(arena),
+        body_(arena),
+        _cached_size_{0} {}
 
-inline void EmailTask_Attachment::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.title_){}
-    , decltype(_impl_.content_type_){}
-    , decltype(_impl_.body_){}
-    , decltype(_impl_.inline__){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.title_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.title_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.content_type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.content_type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.body_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.body_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void EmailTask_Attachment::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.inline__ = {};
 }
-
 EmailTask_Attachment::~EmailTask_Attachment() {
   // @@protoc_insertion_point(destructor:palm.daisy.v1.EmailTask.Attachment)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void EmailTask_Attachment::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.title_.Destroy();
   _impl_.content_type_.Destroy();
   _impl_.body_.Destroy();
+  _impl_.~Impl_();
 }
 
-void EmailTask_Attachment::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void EmailTask_Attachment::Clear() {
+PROTOBUF_NOINLINE void EmailTask_Attachment::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.daisy.v1.EmailTask.Attachment)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -1109,171 +1062,159 @@ void EmailTask_Attachment::Clear() {
   _impl_.content_type_.ClearToEmpty();
   _impl_.body_.ClearToEmpty();
   _impl_.inline__ = false;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* EmailTask_Attachment::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string title = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_title();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.EmailTask.Attachment.title"));
-        } else
-          goto handle_unusual;
-        continue;
-      // string content_type = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_content_type();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.EmailTask.Attachment.content_type"));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool inline = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.inline__ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bytes body = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          auto str = _internal_mutable_body();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* EmailTask_Attachment::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* EmailTask_Attachment::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 60, 2> EmailTask_Attachment::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967032,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_EmailTask_Attachment_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string title = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask_Attachment, _impl_.title_)}},
+    // string content_type = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask_Attachment, _impl_.content_type_)}},
+    // bool inline = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(EmailTask_Attachment, _impl_.inline__), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask_Attachment, _impl_.inline__)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string title = 1;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Attachment, _impl_.title_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string content_type = 2;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Attachment, _impl_.content_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool inline = 3;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Attachment, _impl_.inline__), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes body = 9;
+    {PROTOBUF_FIELD_OFFSET(EmailTask_Attachment, _impl_.body_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\42\5\14\0\0\0\0\0"
+    "palm.daisy.v1.EmailTask.Attachment"
+    "title"
+    "content_type"
+  }},
+};
+
+::uint8_t* EmailTask_Attachment::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.daisy.v1.EmailTask.Attachment)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string title = 1;
   if (!this->_internal_title().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_title().data(), static_cast<int>(this->_internal_title().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.EmailTask.Attachment.title");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_title(), target);
+    const std::string& _s = this->_internal_title();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.EmailTask.Attachment.title");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string content_type = 2;
   if (!this->_internal_content_type().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_content_type().data(), static_cast<int>(this->_internal_content_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.EmailTask.Attachment.content_type");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_content_type(), target);
+    const std::string& _s = this->_internal_content_type();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.EmailTask.Attachment.content_type");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   // bool inline = 3;
   if (this->_internal_inline_() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_inline_(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_inline_(), target);
   }
 
   // bytes body = 9;
   if (!this->_internal_body().empty()) {
-    target = stream->WriteBytesMaybeAliased(
-        9, this->_internal_body(), target);
+    const std::string& _s = this->_internal_body();
+    target = stream->WriteBytesMaybeAliased(9, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.daisy.v1.EmailTask.Attachment)
   return target;
 }
 
-size_t EmailTask_Attachment::ByteSizeLong() const {
+::size_t EmailTask_Attachment::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.daisy.v1.EmailTask.Attachment)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string title = 1;
   if (!this->_internal_title().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_title());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_title());
   }
 
   // string content_type = 2;
   if (!this->_internal_content_type().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_content_type());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_content_type());
   }
 
   // bytes body = 9;
   if (!this->_internal_body().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-        this->_internal_body());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_body());
   }
 
   // bool inline = 3;
   if (this->_internal_inline_() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailTask_Attachment::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    EmailTask_Attachment::MergeImpl
+const ::google::protobuf::Message::ClassData EmailTask_Attachment::_class_data_ = {
+    EmailTask_Attachment::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailTask_Attachment::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* EmailTask_Attachment::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void EmailTask_Attachment::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void EmailTask_Attachment::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<EmailTask_Attachment*>(&to_msg);
   auto& from = static_cast<const EmailTask_Attachment&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.daisy.v1.EmailTask.Attachment)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_title().empty()) {
@@ -1288,7 +1229,7 @@ void EmailTask_Attachment::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, c
   if (from._internal_inline_() != 0) {
     _this->_internal_set_inline_(from._internal_inline_());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EmailTask_Attachment::CopyFrom(const EmailTask_Attachment& from) {
@@ -1298,133 +1239,121 @@ void EmailTask_Attachment::CopyFrom(const EmailTask_Attachment& from) {
   MergeFrom(from);
 }
 
-bool EmailTask_Attachment::IsInitialized() const {
+PROTOBUF_NOINLINE bool EmailTask_Attachment::IsInitialized() const {
   return true;
 }
 
-void EmailTask_Attachment::InternalSwap(EmailTask_Attachment* other) {
+::_pbi::CachedSize* EmailTask_Attachment::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void EmailTask_Attachment::InternalSwap(EmailTask_Attachment* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.title_, lhs_arena,
-      &other->_impl_.title_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.content_type_, lhs_arena,
-      &other->_impl_.content_type_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.body_, lhs_arena,
-      &other->_impl_.body_, rhs_arena
-  );
-  swap(_impl_.inline__, other->_impl_.inline__);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.content_type_, &other->_impl_.content_type_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.body_, &other->_impl_.body_, arena);
+        swap(_impl_.inline__, other->_impl_.inline__);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata EmailTask_Attachment::GetMetadata() const {
+::google::protobuf::Metadata EmailTask_Attachment::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_daisy_2eproto_getter, &descriptor_table_daisy_2eproto_once,
       file_level_metadata_daisy_2eproto[3]);
 }
-
 // ===================================================================
 
 class EmailTask::_Internal {
  public:
+  using HasBits = decltype(std::declval<EmailTask>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(EmailTask, _impl_._has_bits_);
   static const ::palm::daisy::v1::EmailTask_Body& body(const EmailTask* msg);
+  static void set_has_body(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
   static const ::palm::daisy::v1::EmailTask_Address& to(const EmailTask* msg);
+  static void set_has_to(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
-const ::palm::daisy::v1::EmailTask_Body&
-EmailTask::_Internal::body(const EmailTask* msg) {
+const ::palm::daisy::v1::EmailTask_Body& EmailTask::_Internal::body(const EmailTask* msg) {
   return *msg->_impl_.body_;
 }
-const ::palm::daisy::v1::EmailTask_Address&
-EmailTask::_Internal::to(const EmailTask* msg) {
+const ::palm::daisy::v1::EmailTask_Address& EmailTask::_Internal::to(const EmailTask* msg) {
   return *msg->_impl_.to_;
 }
-EmailTask::EmailTask(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+EmailTask::EmailTask(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.daisy.v1.EmailTask)
 }
-EmailTask::EmailTask(const EmailTask& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  EmailTask* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.cc_){from._impl_.cc_}
-    , decltype(_impl_.bcc_){from._impl_.bcc_}
-    , decltype(_impl_.attachments_){from._impl_.attachments_}
-    , decltype(_impl_.subject_){}
-    , decltype(_impl_.body_){nullptr}
-    , decltype(_impl_.to_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE EmailTask::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        cc_{visibility, arena, from.cc_},
+        bcc_{visibility, arena, from.bcc_},
+        attachments_{visibility, arena, from.attachments_},
+        subject_(arena, from.subject_) {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.subject_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.subject_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_subject().empty()) {
-    _this->_impl_.subject_.Set(from._internal_subject(), 
-      _this->GetArenaForAllocation());
-  }
-  if (from._internal_has_body()) {
-    _this->_impl_.body_ = new ::palm::daisy::v1::EmailTask_Body(*from._impl_.body_);
-  }
-  if (from._internal_has_to()) {
-    _this->_impl_.to_ = new ::palm::daisy::v1::EmailTask_Address(*from._impl_.to_);
-  }
+EmailTask::EmailTask(
+    ::google::protobuf::Arena* arena,
+    const EmailTask& from)
+    : ::google::protobuf::Message(arena) {
+  EmailTask* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.body_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::daisy::v1::EmailTask_Body>(arena, *from._impl_.body_)
+                : nullptr;
+  _impl_.to_ = (cached_has_bits & 0x00000002u)
+                ? CreateMaybeMessage<::palm::daisy::v1::EmailTask_Address>(arena, *from._impl_.to_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.daisy.v1.EmailTask)
 }
+inline PROTOBUF_NDEBUG_INLINE EmailTask::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        cc_{visibility, arena},
+        bcc_{visibility, arena},
+        attachments_{visibility, arena},
+        subject_(arena) {}
 
-inline void EmailTask::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.cc_){arena}
-    , decltype(_impl_.bcc_){arena}
-    , decltype(_impl_.attachments_){arena}
-    , decltype(_impl_.subject_){}
-    , decltype(_impl_.body_){nullptr}
-    , decltype(_impl_.to_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.subject_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.subject_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void EmailTask::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, body_),
+           0,
+           offsetof(Impl_, to_) -
+               offsetof(Impl_, body_) +
+               sizeof(Impl_::to_));
 }
-
 EmailTask::~EmailTask() {
   // @@protoc_insertion_point(destructor:palm.daisy.v1.EmailTask)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void EmailTask::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.cc_.~RepeatedPtrField();
-  _impl_.bcc_.~RepeatedPtrField();
-  _impl_.attachments_.~RepeatedPtrField();
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.subject_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.body_;
-  if (this != internal_default_instance()) delete _impl_.to_;
+  delete _impl_.body_;
+  delete _impl_.to_;
+  _impl_.~Impl_();
 }
 
-void EmailTask::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void EmailTask::Clear() {
+PROTOBUF_NOINLINE void EmailTask::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.daisy.v1.EmailTask)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -1432,256 +1361,245 @@ void EmailTask::Clear() {
   _impl_.bcc_.Clear();
   _impl_.attachments_.Clear();
   _impl_.subject_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.body_ != nullptr) {
-    delete _impl_.body_;
-  }
-  _impl_.body_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.to_ != nullptr) {
-    delete _impl_.to_;
-  }
-  _impl_.to_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* EmailTask::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string subject = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_subject();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.daisy.v1.EmailTask.subject"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.daisy.v1.EmailTask.Body body = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_body(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.daisy.v1.EmailTask.Address to = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_to(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .palm.daisy.v1.EmailTask.Address cc = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_cc(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .palm.daisy.v1.EmailTask.Address bcc = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_bcc(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .palm.daisy.v1.EmailTask.Attachment attachments = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_attachments(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<74>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.body_ != nullptr);
+      _impl_.body_->Clear();
     }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.to_ != nullptr);
+      _impl_.to_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-uint8_t* EmailTask::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+const char* EmailTask::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 5, 39, 2> EmailTask::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(EmailTask, _impl_._has_bits_),
+    0, // no _extensions_
+    9, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967008,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    5,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_EmailTask_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string subject = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.subject_)}},
+    // .palm.daisy.v1.EmailTask.Body body = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.body_)}},
+    // .palm.daisy.v1.EmailTask.Address to = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 1, 1, PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.to_)}},
+    // repeated .palm.daisy.v1.EmailTask.Address cc = 4;
+    {::_pbi::TcParser::FastMtR1,
+     {34, 63, 2, PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.cc_)}},
+    // repeated .palm.daisy.v1.EmailTask.Address bcc = 5;
+    {::_pbi::TcParser::FastMtR1,
+     {42, 63, 3, PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.bcc_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string subject = 1;
+    {PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.subject_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .palm.daisy.v1.EmailTask.Body body = 2;
+    {PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.body_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.daisy.v1.EmailTask.Address to = 3;
+    {PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.to_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.daisy.v1.EmailTask.Address cc = 4;
+    {PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.cc_), -1, 2,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.daisy.v1.EmailTask.Address bcc = 5;
+    {PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.bcc_), -1, 3,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.daisy.v1.EmailTask.Attachment attachments = 9;
+    {PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.attachments_), -1, 4,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::daisy::v1::EmailTask_Body>()},
+    {::_pbi::TcParser::GetTable<::palm::daisy::v1::EmailTask_Address>()},
+    {::_pbi::TcParser::GetTable<::palm::daisy::v1::EmailTask_Address>()},
+    {::_pbi::TcParser::GetTable<::palm::daisy::v1::EmailTask_Address>()},
+    {::_pbi::TcParser::GetTable<::palm::daisy::v1::EmailTask_Attachment>()},
+  }}, {{
+    "\27\7\0\0\0\0\0\0"
+    "palm.daisy.v1.EmailTask"
+    "subject"
+  }},
+};
+
+::uint8_t* EmailTask::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.daisy.v1.EmailTask)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string subject = 1;
   if (!this->_internal_subject().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_subject().data(), static_cast<int>(this->_internal_subject().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.daisy.v1.EmailTask.subject");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_subject(), target);
+    const std::string& _s = this->_internal_subject();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.daisy.v1.EmailTask.subject");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .palm.daisy.v1.EmailTask.Body body = 2;
-  if (this->_internal_has_body()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::body(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::body(this),
         _Internal::body(this).GetCachedSize(), target, stream);
   }
 
   // .palm.daisy.v1.EmailTask.Address to = 3;
-  if (this->_internal_has_to()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::to(this),
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, _Internal::to(this),
         _Internal::to(this).GetCachedSize(), target, stream);
   }
 
   // repeated .palm.daisy.v1.EmailTask.Address cc = 4;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_cc_size()); i < n; i++) {
-    const auto& repfield = this->_internal_cc(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_cc().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // repeated .palm.daisy.v1.EmailTask.Address bcc = 5;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_bcc_size()); i < n; i++) {
-    const auto& repfield = this->_internal_bcc(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_bcc().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // repeated .palm.daisy.v1.EmailTask.Attachment attachments = 9;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_attachments_size()); i < n; i++) {
-    const auto& repfield = this->_internal_attachments(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_attachments().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(9, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.daisy.v1.EmailTask)
   return target;
 }
 
-size_t EmailTask::ByteSizeLong() const {
+::size_t EmailTask::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.daisy.v1.EmailTask)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .palm.daisy.v1.EmailTask.Address cc = 4;
   total_size += 1UL * this->_internal_cc_size();
-  for (const auto& msg : this->_impl_.cc_) {
+  for (const auto& msg : this->_internal_cc()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // repeated .palm.daisy.v1.EmailTask.Address bcc = 5;
   total_size += 1UL * this->_internal_bcc_size();
-  for (const auto& msg : this->_impl_.bcc_) {
+  for (const auto& msg : this->_internal_bcc()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // repeated .palm.daisy.v1.EmailTask.Attachment attachments = 9;
   total_size += 1UL * this->_internal_attachments_size();
-  for (const auto& msg : this->_impl_.attachments_) {
+  for (const auto& msg : this->_internal_attachments()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // string subject = 1;
   if (!this->_internal_subject().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_subject());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_subject());
   }
 
-  // .palm.daisy.v1.EmailTask.Body body = 2;
-  if (this->_internal_has_body()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.body_);
-  }
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // .palm.daisy.v1.EmailTask.Body body = 2;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.body_);
+    }
 
-  // .palm.daisy.v1.EmailTask.Address to = 3;
-  if (this->_internal_has_to()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.to_);
-  }
+    // .palm.daisy.v1.EmailTask.Address to = 3;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.to_);
+    }
 
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData EmailTask::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    EmailTask::MergeImpl
+const ::google::protobuf::Message::ClassData EmailTask::_class_data_ = {
+    EmailTask::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*EmailTask::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* EmailTask::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void EmailTask::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void EmailTask::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<EmailTask*>(&to_msg);
   auto& from = static_cast<const EmailTask&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.daisy.v1.EmailTask)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.cc_.MergeFrom(from._impl_.cc_);
-  _this->_impl_.bcc_.MergeFrom(from._impl_.bcc_);
-  _this->_impl_.attachments_.MergeFrom(from._impl_.attachments_);
+  _this->_internal_mutable_cc()->MergeFrom(
+      from._internal_cc());
+  _this->_internal_mutable_bcc()->MergeFrom(
+      from._internal_bcc());
+  _this->_internal_mutable_attachments()->MergeFrom(
+      from._internal_attachments());
   if (!from._internal_subject().empty()) {
     _this->_internal_set_subject(from._internal_subject());
   }
-  if (from._internal_has_body()) {
-    _this->_internal_mutable_body()->::palm::daisy::v1::EmailTask_Body::MergeFrom(
-        from._internal_body());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_body()->::palm::daisy::v1::EmailTask_Body::MergeFrom(
+          from._internal_body());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_to()->::palm::daisy::v1::EmailTask_Address::MergeFrom(
+          from._internal_to());
+    }
   }
-  if (from._internal_has_to()) {
-    _this->_internal_mutable_to()->::palm::daisy::v1::EmailTask_Address::MergeFrom(
-        from._internal_to());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void EmailTask::CopyFrom(const EmailTask& from) {
@@ -1691,23 +1609,24 @@ void EmailTask::CopyFrom(const EmailTask& from) {
   MergeFrom(from);
 }
 
-bool EmailTask::IsInitialized() const {
+PROTOBUF_NOINLINE bool EmailTask::IsInitialized() const {
   return true;
 }
 
-void EmailTask::InternalSwap(EmailTask* other) {
+::_pbi::CachedSize* EmailTask::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void EmailTask::InternalSwap(EmailTask* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.cc_.InternalSwap(&other->_impl_.cc_);
   _impl_.bcc_.InternalSwap(&other->_impl_.bcc_);
   _impl_.attachments_.InternalSwap(&other->_impl_.attachments_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.subject_, lhs_arena,
-      &other->_impl_.subject_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.subject_, &other->_impl_.subject_, arena);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.to_)
       + sizeof(EmailTask::_impl_.to_)
       - PROTOBUF_FIELD_OFFSET(EmailTask, _impl_.body_)>(
@@ -1715,38 +1634,18 @@ void EmailTask::InternalSwap(EmailTask* other) {
           reinterpret_cast<char*>(&other->_impl_.body_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata EmailTask::GetMetadata() const {
+::google::protobuf::Metadata EmailTask::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_daisy_2eproto_getter, &descriptor_table_daisy_2eproto_once,
       file_level_metadata_daisy_2eproto[4]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace daisy
 }  // namespace palm
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::palm::daisy::v1::SmsTask*
-Arena::CreateMaybeMessage< ::palm::daisy::v1::SmsTask >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::daisy::v1::SmsTask >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::daisy::v1::EmailTask_Address*
-Arena::CreateMaybeMessage< ::palm::daisy::v1::EmailTask_Address >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::daisy::v1::EmailTask_Address >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::daisy::v1::EmailTask_Body*
-Arena::CreateMaybeMessage< ::palm::daisy::v1::EmailTask_Body >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::daisy::v1::EmailTask_Body >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::daisy::v1::EmailTask_Attachment*
-Arena::CreateMaybeMessage< ::palm::daisy::v1::EmailTask_Attachment >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::daisy::v1::EmailTask_Attachment >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::daisy::v1::EmailTask*
-Arena::CreateMaybeMessage< ::palm::daisy::v1::EmailTask >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::daisy::v1::EmailTask >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"

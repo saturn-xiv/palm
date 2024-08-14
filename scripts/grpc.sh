@@ -50,7 +50,7 @@ function build_grpc() {
 #     exit 1
 # fi
 
-build_grpc v1.51.1 v3.21.12
+build_grpc v1.65.4 v3.25.3
 
 if [[ $UBUNTU_CODENAME == "bionic" ]]; then
     cp $SOURCE_ROOT/third_party/re2/re2.pc $HOME/.local/lib/pkgconfig/

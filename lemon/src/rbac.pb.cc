@@ -4,894 +4,1092 @@
 #include "rbac.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace rbac {
 namespace v1 {
-PROTOBUF_CONSTEXPR PolicyHasRequest::PolicyHasRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.user_)*/nullptr
-  , /*decltype(_impl_.role_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PolicyHasRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyHasRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyHasRequestDefaultTypeInternal() {}
-  union {
-    PolicyHasRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyHasRequestDefaultTypeInternal _PolicyHasRequest_default_instance_;
-PROTOBUF_CONSTEXPR PolicyCanRequest::PolicyCanRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.user_)*/nullptr
-  , /*decltype(_impl_.resource_)*/nullptr
-  , /*decltype(_impl_.operation_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PolicyCanRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyCanRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyCanRequestDefaultTypeInternal() {}
-  union {
-    PolicyCanRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyCanRequestDefaultTypeInternal _PolicyCanRequest_default_instance_;
-PROTOBUF_CONSTEXPR PolicyUsersResponse_Item::PolicyUsersResponse_Item(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.id_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+
+inline constexpr PolicyUsersResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : id_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyUsersResponse_Item::PolicyUsersResponse_Item(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct PolicyUsersResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyUsersResponse_ItemDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyUsersResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyUsersResponse_ItemDefaultTypeInternal() {}
   union {
     PolicyUsersResponse_Item _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyUsersResponse_ItemDefaultTypeInternal _PolicyUsersResponse_Item_default_instance_;
-PROTOBUF_CONSTEXPR PolicyUsersResponse::PolicyUsersResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.items_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PolicyUsersResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyUsersResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyUsersResponseDefaultTypeInternal() {}
-  union {
-    PolicyUsersResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyUsersResponseDefaultTypeInternal _PolicyUsersResponse_default_instance_;
-PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_Administrator::PolicyRolesResponse_Item_Administrator(
-    ::_pbi::ConstantInitialized) {}
-struct PolicyRolesResponse_Item_AdministratorDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_AdministratorDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyRolesResponse_Item_AdministratorDefaultTypeInternal() {}
-  union {
-    PolicyRolesResponse_Item_Administrator _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponse_Item_AdministratorDefaultTypeInternal _PolicyRolesResponse_Item_Administrator_default_instance_;
-PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_Root::PolicyRolesResponse_Item_Root(
-    ::_pbi::ConstantInitialized) {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyUsersResponse_ItemDefaultTypeInternal _PolicyUsersResponse_Item_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_Root::PolicyRolesResponse_Item_Root(::_pbi::ConstantInitialized) {}
 struct PolicyRolesResponse_Item_RootDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_RootDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_RootDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyRolesResponse_Item_RootDefaultTypeInternal() {}
   union {
     PolicyRolesResponse_Item_Root _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponse_Item_RootDefaultTypeInternal _PolicyRolesResponse_Item_Root_default_instance_;
-PROTOBUF_CONSTEXPR PolicyRolesResponse_Item::PolicyRolesResponse_Item(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.by_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
-struct PolicyRolesResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyRolesResponse_ItemDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyRolesResponse_ItemDefaultTypeInternal() {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponse_Item_RootDefaultTypeInternal _PolicyRolesResponse_Item_Root_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_Administrator::PolicyRolesResponse_Item_Administrator(::_pbi::ConstantInitialized) {}
+struct PolicyRolesResponse_Item_AdministratorDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyRolesResponse_Item_AdministratorDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyRolesResponse_Item_AdministratorDefaultTypeInternal() {}
   union {
-    PolicyRolesResponse_Item _instance;
+    PolicyRolesResponse_Item_Administrator _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponse_ItemDefaultTypeInternal _PolicyRolesResponse_Item_default_instance_;
-PROTOBUF_CONSTEXPR PolicyRolesResponse::PolicyRolesResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.items_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PolicyRolesResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyRolesResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyRolesResponseDefaultTypeInternal() {}
-  union {
-    PolicyRolesResponse _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponseDefaultTypeInternal _PolicyRolesResponse_default_instance_;
-PROTOBUF_CONSTEXPR PolicyRolesForUserRequest::PolicyRolesForUserRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.roles_)*/{}
-  , /*decltype(_impl_.user_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PolicyRolesForUserRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyRolesForUserRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyRolesForUserRequestDefaultTypeInternal() {}
-  union {
-    PolicyRolesForUserRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesForUserRequestDefaultTypeInternal _PolicyRolesForUserRequest_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsForUserRequest::PolicyPermissionsForUserRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.permissions_)*/{}
-  , /*decltype(_impl_.user_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PolicyPermissionsForUserRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsForUserRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsForUserRequestDefaultTypeInternal() {}
-  union {
-    PolicyPermissionsForUserRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsForUserRequestDefaultTypeInternal _PolicyPermissionsForUserRequest_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsForRoleRequest::PolicyPermissionsForRoleRequest(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.permissions_)*/{}
-  , /*decltype(_impl_.role_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct PolicyPermissionsForRoleRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsForRoleRequestDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsForRoleRequestDefaultTypeInternal() {}
-  union {
-    PolicyPermissionsForRoleRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsForRoleRequestDefaultTypeInternal _PolicyPermissionsForRoleRequest_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Resource_Id::PolicyPermissionsResponse_Item_Resource_Id(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.by_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponse_Item_AdministratorDefaultTypeInternal _PolicyRolesResponse_Item_Administrator_default_instance_;
+
+inline constexpr PolicyPermissionsResponse_Item_Resource_Id::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Resource_Id::PolicyPermissionsResponse_Item_Resource_Id(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct PolicyPermissionsResponse_Item_Resource_IdDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Resource_IdDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Resource_IdDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyPermissionsResponse_Item_Resource_IdDefaultTypeInternal() {}
   union {
     PolicyPermissionsResponse_Item_Resource_Id _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Resource_IdDefaultTypeInternal _PolicyPermissionsResponse_Item_Resource_Id_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Resource::PolicyPermissionsResponse_Item_Resource(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.type_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.id_)*/nullptr} {}
-struct PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal() {}
-  union {
-    PolicyPermissionsResponse_Item_Resource _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal _PolicyPermissionsResponse_Item_Resource_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Read::PolicyPermissionsResponse_Item_Operation_Read(
-    ::_pbi::ConstantInitialized) {}
-struct PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal() {}
-  union {
-    PolicyPermissionsResponse_Item_Operation_Read _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Read_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Write::PolicyPermissionsResponse_Item_Operation_Write(
-    ::_pbi::ConstantInitialized) {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Resource_IdDefaultTypeInternal _PolicyPermissionsResponse_Item_Resource_Id_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Write::PolicyPermissionsResponse_Item_Operation_Write(::_pbi::ConstantInitialized) {}
 struct PolicyPermissionsResponse_Item_Operation_WriteDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_WriteDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_WriteDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyPermissionsResponse_Item_Operation_WriteDefaultTypeInternal() {}
   union {
     PolicyPermissionsResponse_Item_Operation_Write _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_WriteDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Write_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Append::PolicyPermissionsResponse_Item_Operation_Append(
-    ::_pbi::ConstantInitialized) {}
-struct PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal() {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_WriteDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Write_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Read::PolicyPermissionsResponse_Item_Operation_Read(::_pbi::ConstantInitialized) {}
+struct PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal() {}
   union {
-    PolicyPermissionsResponse_Item_Operation_Append _instance;
+    PolicyPermissionsResponse_Item_Operation_Read _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Append_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Execute::PolicyPermissionsResponse_Item_Operation_Execute(
-    ::_pbi::ConstantInitialized) {}
-struct PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal() {}
-  union {
-    PolicyPermissionsResponse_Item_Operation_Execute _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Execute_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Credit::PolicyPermissionsResponse_Item_Operation_Credit(
-    ::_pbi::ConstantInitialized) {}
-struct PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal() {}
-  union {
-    PolicyPermissionsResponse_Item_Operation_Credit _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Credit_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Debit::PolicyPermissionsResponse_Item_Operation_Debit(
-    ::_pbi::ConstantInitialized) {}
-struct PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal() {}
-  union {
-    PolicyPermissionsResponse_Item_Operation_Debit _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Debit_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Inquiry::PolicyPermissionsResponse_Item_Operation_Inquiry(
-    ::_pbi::ConstantInitialized) {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_ReadDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Read_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Inquiry::PolicyPermissionsResponse_Item_Operation_Inquiry(::_pbi::ConstantInitialized) {}
 struct PolicyPermissionsResponse_Item_Operation_InquiryDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_InquiryDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_InquiryDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyPermissionsResponse_Item_Operation_InquiryDefaultTypeInternal() {}
   union {
     PolicyPermissionsResponse_Item_Operation_Inquiry _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_InquiryDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Inquiry_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation::PolicyPermissionsResponse_Item_Operation(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.by_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_._oneof_case_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_InquiryDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Inquiry_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Execute::PolicyPermissionsResponse_Item_Operation_Execute(::_pbi::ConstantInitialized) {}
+struct PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal() {}
+  union {
+    PolicyPermissionsResponse_Item_Operation_Execute _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_ExecuteDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Execute_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Debit::PolicyPermissionsResponse_Item_Operation_Debit(::_pbi::ConstantInitialized) {}
+struct PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal() {}
+  union {
+    PolicyPermissionsResponse_Item_Operation_Debit _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_DebitDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Debit_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Credit::PolicyPermissionsResponse_Item_Operation_Credit(::_pbi::ConstantInitialized) {}
+struct PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal() {}
+  union {
+    PolicyPermissionsResponse_Item_Operation_Credit _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_CreditDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Credit_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_Append::PolicyPermissionsResponse_Item_Operation_Append(::_pbi::ConstantInitialized) {}
+struct PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal() {}
+  union {
+    PolicyPermissionsResponse_Item_Operation_Append _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_Operation_AppendDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_Append_default_instance_;
+
+inline constexpr PolicyUsersResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : items_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyUsersResponse::PolicyUsersResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyUsersResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyUsersResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyUsersResponseDefaultTypeInternal() {}
+  union {
+    PolicyUsersResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyUsersResponseDefaultTypeInternal _PolicyUsersResponse_default_instance_;
+
+inline constexpr PolicyRolesResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyRolesResponse_Item::PolicyRolesResponse_Item(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyRolesResponse_ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyRolesResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyRolesResponse_ItemDefaultTypeInternal() {}
+  union {
+    PolicyRolesResponse_Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponse_ItemDefaultTypeInternal _PolicyRolesResponse_Item_default_instance_;
+
+inline constexpr PolicyPermissionsResponse_Item_Resource::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        id_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Resource::PolicyPermissionsResponse_Item_Resource(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal() {}
+  union {
+    PolicyPermissionsResponse_Item_Resource _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_ResourceDefaultTypeInternal _PolicyPermissionsResponse_Item_Resource_default_instance_;
+
+inline constexpr PolicyPermissionsResponse_Item_Operation::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_Operation::PolicyPermissionsResponse_Item_Operation(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct PolicyPermissionsResponse_Item_OperationDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_OperationDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item_OperationDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyPermissionsResponse_Item_OperationDefaultTypeInternal() {}
   union {
     PolicyPermissionsResponse_Item_Operation _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_OperationDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item::PolicyPermissionsResponse_Item(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.resource_)*/nullptr
-  , /*decltype(_impl_.operation_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_Item_OperationDefaultTypeInternal _PolicyPermissionsResponse_Item_Operation_default_instance_;
+
+inline constexpr PolicyRolesResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : items_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyRolesResponse::PolicyRolesResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyRolesResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyRolesResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyRolesResponseDefaultTypeInternal() {}
+  union {
+    PolicyRolesResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesResponseDefaultTypeInternal _PolicyRolesResponse_default_instance_;
+
+inline constexpr PolicyRolesForUserRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        roles_{},
+        user_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyRolesForUserRequest::PolicyRolesForUserRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyRolesForUserRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyRolesForUserRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyRolesForUserRequestDefaultTypeInternal() {}
+  union {
+    PolicyRolesForUserRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyRolesForUserRequestDefaultTypeInternal _PolicyRolesForUserRequest_default_instance_;
+
+inline constexpr PolicyPermissionsResponse_Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        resource_{nullptr},
+        operation_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse_Item::PolicyPermissionsResponse_Item(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct PolicyPermissionsResponse_ItemDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_ItemDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponse_ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyPermissionsResponse_ItemDefaultTypeInternal() {}
   union {
     PolicyPermissionsResponse_Item _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_ItemDefaultTypeInternal _PolicyPermissionsResponse_Item_default_instance_;
-PROTOBUF_CONSTEXPR PolicyPermissionsResponse::PolicyPermissionsResponse(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.items_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponse_ItemDefaultTypeInternal _PolicyPermissionsResponse_Item_default_instance_;
+
+inline constexpr PolicyHasRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        user_{nullptr},
+        role_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyHasRequest::PolicyHasRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyHasRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyHasRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyHasRequestDefaultTypeInternal() {}
+  union {
+    PolicyHasRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyHasRequestDefaultTypeInternal _PolicyHasRequest_default_instance_;
+
+inline constexpr PolicyCanRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        user_{nullptr},
+        resource_{nullptr},
+        operation_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyCanRequest::PolicyCanRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyCanRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyCanRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyCanRequestDefaultTypeInternal() {}
+  union {
+    PolicyCanRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyCanRequestDefaultTypeInternal _PolicyCanRequest_default_instance_;
+
+inline constexpr PolicyPermissionsResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : items_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsResponse::PolicyPermissionsResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct PolicyPermissionsResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PolicyPermissionsResponseDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR PolicyPermissionsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~PolicyPermissionsResponseDefaultTypeInternal() {}
   union {
     PolicyPermissionsResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponseDefaultTypeInternal _PolicyPermissionsResponse_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsResponseDefaultTypeInternal _PolicyPermissionsResponse_default_instance_;
+
+inline constexpr PolicyPermissionsForUserRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        permissions_{},
+        user_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsForUserRequest::PolicyPermissionsForUserRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyPermissionsForUserRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsForUserRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsForUserRequestDefaultTypeInternal() {}
+  union {
+    PolicyPermissionsForUserRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsForUserRequestDefaultTypeInternal _PolicyPermissionsForUserRequest_default_instance_;
+
+inline constexpr PolicyPermissionsForRoleRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        permissions_{},
+        role_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PolicyPermissionsForRoleRequest::PolicyPermissionsForRoleRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PolicyPermissionsForRoleRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PolicyPermissionsForRoleRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PolicyPermissionsForRoleRequestDefaultTypeInternal() {}
+  union {
+    PolicyPermissionsForRoleRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PolicyPermissionsForRoleRequestDefaultTypeInternal _PolicyPermissionsForRoleRequest_default_instance_;
 }  // namespace v1
 }  // namespace rbac
 }  // namespace palm
 static ::_pb::Metadata file_level_metadata_rbac_2eproto[23];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_rbac_2eproto = nullptr;
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_rbac_2eproto = nullptr;
-
-const uint32_t TableStruct_rbac_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyHasRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyHasRequest, _impl_.user_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyHasRequest, _impl_.role_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _impl_.user_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _impl_.resource_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _impl_.operation_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse_Item, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse_Item, _impl_._oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse_Item, _impl_.id_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse, _impl_.items_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item_Administrator, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item_Root, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item, _impl_._oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item, _impl_.by_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse, _impl_.items_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesForUserRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesForUserRequest, _impl_.user_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesForUserRequest, _impl_.roles_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForUserRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForUserRequest, _impl_.user_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForUserRequest, _impl_.permissions_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForRoleRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForRoleRequest, _impl_.role_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForRoleRequest, _impl_.permissions_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id, _impl_._oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id, _impl_.by_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _impl_._has_bits_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _impl_.id_),
-  ~0u,
-  0,
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation, _impl_._oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  ::_pbi::kInvalidFieldOffsetTag,
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation, _impl_.by_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item, _impl_.resource_),
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item, _impl_.operation_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse, _impl_.items_),
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_rbac_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_rbac_2eproto = nullptr;
+const ::uint32_t TableStruct_rbac_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyHasRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyHasRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyHasRequest, _impl_.user_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyHasRequest, _impl_.role_),
+    0,
+    1,
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _impl_.user_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _impl_.resource_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyCanRequest, _impl_.operation_),
+    0,
+    1,
+    2,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse_Item, _internal_metadata_),
+    ~0u,  // no _extensions_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse_Item, _impl_._oneof_case_[0]),
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse_Item, _impl_.id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse, _impl_.items_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item_Administrator, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item_Root, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item, _internal_metadata_),
+    ~0u,  // no _extensions_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item, _impl_._oneof_case_[0]),
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item, _impl_.by_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse, _impl_.items_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesForUserRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesForUserRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesForUserRequest, _impl_.user_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesForUserRequest, _impl_.roles_),
+    0,
+    ~0u,
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForUserRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForUserRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForUserRequest, _impl_.user_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForUserRequest, _impl_.permissions_),
+    0,
+    ~0u,
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForRoleRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForRoleRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForRoleRequest, _impl_.role_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsForRoleRequest, _impl_.permissions_),
+    0,
+    ~0u,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id, _internal_metadata_),
+    ~0u,  // no _extensions_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id, _impl_._oneof_case_[0]),
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id, _impl_.by_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource, _impl_.id_),
+    ~0u,
+    0,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation, _internal_metadata_),
+    ~0u,  // no _extensions_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation, _impl_._oneof_case_[0]),
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    ::_pbi::kInvalidFieldOffsetTag,
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation, _impl_.by_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item, _impl_.resource_),
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item, _impl_.operation_),
+    0,
+    1,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse, _impl_.items_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::palm::rbac::v1::PolicyHasRequest)},
-  { 8, -1, -1, sizeof(::palm::rbac::v1::PolicyCanRequest)},
-  { 17, -1, -1, sizeof(::palm::rbac::v1::PolicyUsersResponse_Item)},
-  { 26, -1, -1, sizeof(::palm::rbac::v1::PolicyUsersResponse)},
-  { 33, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse_Item_Administrator)},
-  { 39, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse_Item_Root)},
-  { 45, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse_Item)},
-  { 55, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse)},
-  { 62, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesForUserRequest)},
-  { 70, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsForUserRequest)},
-  { 78, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsForRoleRequest)},
-  { 86, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id)},
-  { 95, 103, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource)},
-  { 105, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read)},
-  { 111, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write)},
-  { 117, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append)},
-  { 123, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute)},
-  { 129, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit)},
-  { 135, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit)},
-  { 141, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry)},
-  { 147, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation)},
-  { 162, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item)},
-  { 170, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, 10, -1, sizeof(::palm::rbac::v1::PolicyHasRequest)},
+        {12, 23, -1, sizeof(::palm::rbac::v1::PolicyCanRequest)},
+        {26, -1, -1, sizeof(::palm::rbac::v1::PolicyUsersResponse_Item)},
+        {37, -1, -1, sizeof(::palm::rbac::v1::PolicyUsersResponse)},
+        {46, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse_Item_Administrator)},
+        {54, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse_Item_Root)},
+        {62, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse_Item)},
+        {74, -1, -1, sizeof(::palm::rbac::v1::PolicyRolesResponse)},
+        {83, 93, -1, sizeof(::palm::rbac::v1::PolicyRolesForUserRequest)},
+        {95, 105, -1, sizeof(::palm::rbac::v1::PolicyPermissionsForUserRequest)},
+        {107, 117, -1, sizeof(::palm::rbac::v1::PolicyPermissionsForRoleRequest)},
+        {119, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id)},
+        {130, 140, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource)},
+        {142, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read)},
+        {150, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write)},
+        {158, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append)},
+        {166, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute)},
+        {174, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit)},
+        {182, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit)},
+        {190, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry)},
+        {198, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation)},
+        {215, 225, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse_Item)},
+        {227, -1, -1, sizeof(::palm::rbac::v1::PolicyPermissionsResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::palm::rbac::v1::_PolicyHasRequest_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyCanRequest_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyUsersResponse_Item_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyUsersResponse_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyRolesResponse_Item_Administrator_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyRolesResponse_Item_Root_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyRolesResponse_Item_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyRolesResponse_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyRolesForUserRequest_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsForUserRequest_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsForRoleRequest_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Resource_Id_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Resource_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Read_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Write_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Append_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Execute_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Credit_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Debit_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Inquiry_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_Item_default_instance_._instance,
-  &::palm::rbac::v1::_PolicyPermissionsResponse_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyHasRequest_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyCanRequest_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyUsersResponse_Item_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyUsersResponse_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyRolesResponse_Item_Administrator_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyRolesResponse_Item_Root_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyRolesResponse_Item_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyRolesResponse_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyRolesForUserRequest_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsForUserRequest_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsForRoleRequest_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Resource_Id_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Resource_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Read_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Write_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Append_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Execute_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Credit_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Debit_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Inquiry_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_Item_default_instance_._instance,
+    &::palm::rbac::v1::_PolicyPermissionsResponse_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_rbac_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nrbac.proto\022\014palm.rbac.v1\032\033google/proto"
-  "buf/empty.proto\"~\n\020PolicyHasRequest\0224\n\004u"
-  "ser\030\001 \001(\0132&.palm.rbac.v1.PolicyUsersResp"
-  "onse.Item\0224\n\004role\030\002 \001(\0132&.palm.rbac.v1.P"
-  "olicyRolesResponse.Item\"\334\001\n\020PolicyCanReq"
-  "uest\0224\n\004user\030\001 \001(\0132&.palm.rbac.v1.Policy"
-  "UsersResponse.Item\022G\n\010resource\030\002 \001(\01325.p"
-  "alm.rbac.v1.PolicyPermissionsResponse.It"
-  "em.Resource\022I\n\toperation\030\003 \001(\01326.palm.rb"
-  "ac.v1.PolicyPermissionsResponse.Item.Ope"
-  "ration\"t\n\023PolicyUsersResponse\0225\n\005items\030\001"
-  " \003(\0132&.palm.rbac.v1.PolicyUsersResponse."
-  "Item\032&\n\004Item\022\013\n\001i\030\002 \001(\004H\000\022\013\n\001s\030\t \001(\tH\000B\004"
-  "\n\002id\"\220\002\n\023PolicyRolesResponse\0225\n\005items\030\001 "
-  "\003(\0132&.palm.rbac.v1.PolicyRolesResponse.I"
-  "tem\032\301\001\n\004Item\022;\n\004root\030\001 \001(\0132+.palm.rbac.v"
-  "1.PolicyRolesResponse.Item.RootH\000\022M\n\radm"
-  "inistrator\030\002 \001(\01324.palm.rbac.v1.PolicyRo"
-  "lesResponse.Item.AdministratorH\000\022\016\n\004code"
-  "\030\t \001(\tH\000\032\017\n\rAdministrator\032\006\n\004RootB\004\n\002by\""
-  "\210\001\n\031PolicyRolesForUserRequest\0224\n\004user\030\001 "
-  "\001(\0132&.palm.rbac.v1.PolicyUsersResponse.I"
-  "tem\0225\n\005roles\030\002 \003(\0132&.palm.rbac.v1.Policy"
-  "RolesResponse.Item\"\232\001\n\037PolicyPermissions"
-  "ForUserRequest\0224\n\004user\030\001 \001(\0132&.palm.rbac"
-  ".v1.PolicyUsersResponse.Item\022A\n\013permissi"
-  "ons\030\002 \003(\0132,.palm.rbac.v1.PolicyPermissio"
-  "nsResponse.Item\"\232\001\n\037PolicyPermissionsFor"
-  "RoleRequest\0224\n\004role\030\001 \001(\0132&.palm.rbac.v1"
-  ".PolicyRolesResponse.Item\022A\n\013permissions"
-  "\030\002 \003(\0132,.palm.rbac.v1.PolicyPermissionsR"
-  "esponse.Item\"\243\010\n\031PolicyPermissionsRespon"
-  "se\022;\n\005items\030\001 \003(\0132,.palm.rbac.v1.PolicyP"
-  "ermissionsResponse.Item\032\310\007\n\004Item\022G\n\010reso"
-  "urce\030\001 \001(\01325.palm.rbac.v1.PolicyPermissi"
-  "onsResponse.Item.Resource\022I\n\toperation\030\002"
-  " \001(\01326.palm.rbac.v1.PolicyPermissionsRes"
-  "ponse.Item.Operation\032\220\001\n\010Resource\022\014\n\004typ"
-  "e\030\001 \001(\t\022I\n\002id\030\002 \001(\01328.palm.rbac.v1.Polic"
-  "yPermissionsResponse.Item.Resource.IdH\000\210"
-  "\001\001\032$\n\002Id\022\013\n\001i\030\013 \001(\004H\000\022\013\n\001s\030\014 \001(\tH\000B\004\n\002by"
-  "B\005\n\003_id\032\230\005\n\tOperation\022K\n\004read\030\001 \001(\0132;.pa"
-  "lm.rbac.v1.PolicyPermissionsResponse.Ite"
-  "m.Operation.ReadH\000\022M\n\005write\030\002 \001(\0132<.palm"
-  ".rbac.v1.PolicyPermissionsResponse.Item."
-  "Operation.WriteH\000\022O\n\006append\030\003 \001(\0132=.palm"
-  ".rbac.v1.PolicyPermissionsResponse.Item."
-  "Operation.AppendH\000\022Q\n\007execute\030\004 \001(\0132>.pa"
-  "lm.rbac.v1.PolicyPermissionsResponse.Ite"
-  "m.Operation.ExecuteH\000\022O\n\006credit\030\005 \001(\0132=."
-  "palm.rbac.v1.PolicyPermissionsResponse.I"
-  "tem.Operation.CreditH\000\022M\n\005debit\030\006 \001(\0132<."
-  "palm.rbac.v1.PolicyPermissionsResponse.I"
-  "tem.Operation.DebitH\000\022Q\n\007inquiry\030\007 \001(\0132>"
-  ".palm.rbac.v1.PolicyPermissionsResponse."
-  "Item.Operation.InquiryH\000\022\016\n\004code\030c \001(\tH\000"
-  "\032\006\n\004Read\032\007\n\005Write\032\010\n\006Append\032\t\n\007Execute\032\010"
-  "\n\006Credit\032\007\n\005Debit\032\t\n\007InquiryB\004\n\002by2\267\r\n\006P"
-  "olicy\022\?\n\003Has\022\036.palm.rbac.v1.PolicyHasReq"
-  "uest\032\026.google.protobuf.Empty\"\000\022\?\n\003Can\022\036."
-  "palm.rbac.v1.PolicyCanRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\022N\n\nDeleteUser\022&.palm.rba"
-  "c.v1.PolicyUsersResponse.Item\032\026.google.p"
-  "rotobuf.Empty\"\000\022N\n\nDeleteRole\022&.palm.rba"
-  "c.v1.PolicyRolesResponse.Item\032\026.google.p"
-  "rotobuf.Empty\"\000\022^\n\017GetRolesForUser\022&.pal"
-  "m.rbac.v1.PolicyUsersResponse.Item\032!.pal"
-  "m.rbac.v1.PolicyRolesResponse\"\000\022f\n\027GetIm"
-  "plicitRolesForUser\022&.palm.rbac.v1.Policy"
-  "UsersResponse.Item\032!.palm.rbac.v1.Policy"
-  "RolesResponse\"\000\022^\n\017GetUsersForRole\022&.pal"
-  "m.rbac.v1.PolicyRolesResponse.Item\032!.pal"
-  "m.rbac.v1.PolicyUsersResponse\"\000\022f\n\027GetIm"
-  "plicitUsersForRole\022&.palm.rbac.v1.Policy"
-  "RolesResponse.Item\032!.palm.rbac.v1.Policy"
-  "UsersResponse\"\000\022T\n\017AddRolesForUser\022\'.pal"
-  "m.rbac.v1.PolicyRolesForUserRequest\032\026.go"
-  "ogle.protobuf.Empty\"\000\022W\n\022DeleteRolesForU"
-  "ser\022\'.palm.rbac.v1.PolicyRolesForUserReq"
-  "uest\032\026.google.protobuf.Empty\"\000\022j\n\025GetPer"
-  "missionsForUser\022&.palm.rbac.v1.PolicyUse"
-  "rsResponse.Item\032\'.palm.rbac.v1.PolicyPer"
-  "missionsResponse\"\000\022r\n\035GetImplicitPermiss"
-  "ionsForUser\022&.palm.rbac.v1.PolicyUsersRe"
-  "sponse.Item\032\'.palm.rbac.v1.PolicyPermiss"
-  "ionsResponse\"\000\022`\n\025AddPermissionsForUser\022"
-  "-.palm.rbac.v1.PolicyPermissionsForUserR"
-  "equest\032\026.google.protobuf.Empty\"\000\022c\n\030Dele"
-  "tePermissionsForUser\022-.palm.rbac.v1.Poli"
-  "cyPermissionsForUserRequest\032\026.google.pro"
-  "tobuf.Empty\"\000\022j\n\025GetPermissionsForRole\022&"
-  ".palm.rbac.v1.PolicyRolesResponse.Item\032\'"
-  ".palm.rbac.v1.PolicyPermissionsResponse\""
-  "\000\022r\n\035GetImplicitPermissionsForRole\022&.pal"
-  "m.rbac.v1.PolicyRolesResponse.Item\032\'.pal"
-  "m.rbac.v1.PolicyPermissionsResponse\"\000\022`\n"
-  "\025AddPermissionsForRole\022-.palm.rbac.v1.Po"
-  "licyPermissionsForRoleRequest\032\026.google.p"
-  "rotobuf.Empty\"\000\022c\n\030DeletePermissionsForR"
-  "ole\022-.palm.rbac.v1.PolicyPermissionsForR"
-  "oleRequest\032\026.google.protobuf.Empty\"\000Bb\n*"
-  "com.github.saturn_xiv.palm.plugins.rbac."
-  "v1P\001Z2github.com/saturn-xiv/palm/atropa/"
-  "rbac/services/v2b\006proto3"
-  ;
-static const ::_pbi::DescriptorTable* const descriptor_table_rbac_2eproto_deps[1] = {
-  &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
+const char descriptor_table_protodef_rbac_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\nrbac.proto\022\014palm.rbac.v1\032\033google/proto"
+    "buf/empty.proto\"~\n\020PolicyHasRequest\0224\n\004u"
+    "ser\030\001 \001(\0132&.palm.rbac.v1.PolicyUsersResp"
+    "onse.Item\0224\n\004role\030\002 \001(\0132&.palm.rbac.v1.P"
+    "olicyRolesResponse.Item\"\334\001\n\020PolicyCanReq"
+    "uest\0224\n\004user\030\001 \001(\0132&.palm.rbac.v1.Policy"
+    "UsersResponse.Item\022G\n\010resource\030\002 \001(\01325.p"
+    "alm.rbac.v1.PolicyPermissionsResponse.It"
+    "em.Resource\022I\n\toperation\030\003 \001(\01326.palm.rb"
+    "ac.v1.PolicyPermissionsResponse.Item.Ope"
+    "ration\"t\n\023PolicyUsersResponse\0225\n\005items\030\001"
+    " \003(\0132&.palm.rbac.v1.PolicyUsersResponse."
+    "Item\032&\n\004Item\022\013\n\001i\030\002 \001(\004H\000\022\013\n\001s\030\t \001(\tH\000B\004"
+    "\n\002id\"\220\002\n\023PolicyRolesResponse\0225\n\005items\030\001 "
+    "\003(\0132&.palm.rbac.v1.PolicyRolesResponse.I"
+    "tem\032\301\001\n\004Item\022;\n\004root\030\001 \001(\0132+.palm.rbac.v"
+    "1.PolicyRolesResponse.Item.RootH\000\022M\n\radm"
+    "inistrator\030\002 \001(\01324.palm.rbac.v1.PolicyRo"
+    "lesResponse.Item.AdministratorH\000\022\016\n\004code"
+    "\030\t \001(\tH\000\032\017\n\rAdministrator\032\006\n\004RootB\004\n\002by\""
+    "\210\001\n\031PolicyRolesForUserRequest\0224\n\004user\030\001 "
+    "\001(\0132&.palm.rbac.v1.PolicyUsersResponse.I"
+    "tem\0225\n\005roles\030\002 \003(\0132&.palm.rbac.v1.Policy"
+    "RolesResponse.Item\"\232\001\n\037PolicyPermissions"
+    "ForUserRequest\0224\n\004user\030\001 \001(\0132&.palm.rbac"
+    ".v1.PolicyUsersResponse.Item\022A\n\013permissi"
+    "ons\030\002 \003(\0132,.palm.rbac.v1.PolicyPermissio"
+    "nsResponse.Item\"\232\001\n\037PolicyPermissionsFor"
+    "RoleRequest\0224\n\004role\030\001 \001(\0132&.palm.rbac.v1"
+    ".PolicyRolesResponse.Item\022A\n\013permissions"
+    "\030\002 \003(\0132,.palm.rbac.v1.PolicyPermissionsR"
+    "esponse.Item\"\243\010\n\031PolicyPermissionsRespon"
+    "se\022;\n\005items\030\001 \003(\0132,.palm.rbac.v1.PolicyP"
+    "ermissionsResponse.Item\032\310\007\n\004Item\022G\n\010reso"
+    "urce\030\001 \001(\01325.palm.rbac.v1.PolicyPermissi"
+    "onsResponse.Item.Resource\022I\n\toperation\030\002"
+    " \001(\01326.palm.rbac.v1.PolicyPermissionsRes"
+    "ponse.Item.Operation\032\220\001\n\010Resource\022\014\n\004typ"
+    "e\030\001 \001(\t\022I\n\002id\030\002 \001(\01328.palm.rbac.v1.Polic"
+    "yPermissionsResponse.Item.Resource.IdH\000\210"
+    "\001\001\032$\n\002Id\022\013\n\001i\030\013 \001(\004H\000\022\013\n\001s\030\014 \001(\tH\000B\004\n\002by"
+    "B\005\n\003_id\032\230\005\n\tOperation\022K\n\004read\030\001 \001(\0132;.pa"
+    "lm.rbac.v1.PolicyPermissionsResponse.Ite"
+    "m.Operation.ReadH\000\022M\n\005write\030\002 \001(\0132<.palm"
+    ".rbac.v1.PolicyPermissionsResponse.Item."
+    "Operation.WriteH\000\022O\n\006append\030\003 \001(\0132=.palm"
+    ".rbac.v1.PolicyPermissionsResponse.Item."
+    "Operation.AppendH\000\022Q\n\007execute\030\004 \001(\0132>.pa"
+    "lm.rbac.v1.PolicyPermissionsResponse.Ite"
+    "m.Operation.ExecuteH\000\022O\n\006credit\030\005 \001(\0132=."
+    "palm.rbac.v1.PolicyPermissionsResponse.I"
+    "tem.Operation.CreditH\000\022M\n\005debit\030\006 \001(\0132<."
+    "palm.rbac.v1.PolicyPermissionsResponse.I"
+    "tem.Operation.DebitH\000\022Q\n\007inquiry\030\007 \001(\0132>"
+    ".palm.rbac.v1.PolicyPermissionsResponse."
+    "Item.Operation.InquiryH\000\022\016\n\004code\030c \001(\tH\000"
+    "\032\006\n\004Read\032\007\n\005Write\032\010\n\006Append\032\t\n\007Execute\032\010"
+    "\n\006Credit\032\007\n\005Debit\032\t\n\007InquiryB\004\n\002by2\267\r\n\006P"
+    "olicy\022\?\n\003Has\022\036.palm.rbac.v1.PolicyHasReq"
+    "uest\032\026.google.protobuf.Empty\"\000\022\?\n\003Can\022\036."
+    "palm.rbac.v1.PolicyCanRequest\032\026.google.p"
+    "rotobuf.Empty\"\000\022N\n\nDeleteUser\022&.palm.rba"
+    "c.v1.PolicyUsersResponse.Item\032\026.google.p"
+    "rotobuf.Empty\"\000\022N\n\nDeleteRole\022&.palm.rba"
+    "c.v1.PolicyRolesResponse.Item\032\026.google.p"
+    "rotobuf.Empty\"\000\022^\n\017GetRolesForUser\022&.pal"
+    "m.rbac.v1.PolicyUsersResponse.Item\032!.pal"
+    "m.rbac.v1.PolicyRolesResponse\"\000\022f\n\027GetIm"
+    "plicitRolesForUser\022&.palm.rbac.v1.Policy"
+    "UsersResponse.Item\032!.palm.rbac.v1.Policy"
+    "RolesResponse\"\000\022^\n\017GetUsersForRole\022&.pal"
+    "m.rbac.v1.PolicyRolesResponse.Item\032!.pal"
+    "m.rbac.v1.PolicyUsersResponse\"\000\022f\n\027GetIm"
+    "plicitUsersForRole\022&.palm.rbac.v1.Policy"
+    "RolesResponse.Item\032!.palm.rbac.v1.Policy"
+    "UsersResponse\"\000\022T\n\017AddRolesForUser\022\'.pal"
+    "m.rbac.v1.PolicyRolesForUserRequest\032\026.go"
+    "ogle.protobuf.Empty\"\000\022W\n\022DeleteRolesForU"
+    "ser\022\'.palm.rbac.v1.PolicyRolesForUserReq"
+    "uest\032\026.google.protobuf.Empty\"\000\022j\n\025GetPer"
+    "missionsForUser\022&.palm.rbac.v1.PolicyUse"
+    "rsResponse.Item\032\'.palm.rbac.v1.PolicyPer"
+    "missionsResponse\"\000\022r\n\035GetImplicitPermiss"
+    "ionsForUser\022&.palm.rbac.v1.PolicyUsersRe"
+    "sponse.Item\032\'.palm.rbac.v1.PolicyPermiss"
+    "ionsResponse\"\000\022`\n\025AddPermissionsForUser\022"
+    "-.palm.rbac.v1.PolicyPermissionsForUserR"
+    "equest\032\026.google.protobuf.Empty\"\000\022c\n\030Dele"
+    "tePermissionsForUser\022-.palm.rbac.v1.Poli"
+    "cyPermissionsForUserRequest\032\026.google.pro"
+    "tobuf.Empty\"\000\022j\n\025GetPermissionsForRole\022&"
+    ".palm.rbac.v1.PolicyRolesResponse.Item\032\'"
+    ".palm.rbac.v1.PolicyPermissionsResponse\""
+    "\000\022r\n\035GetImplicitPermissionsForRole\022&.pal"
+    "m.rbac.v1.PolicyRolesResponse.Item\032\'.pal"
+    "m.rbac.v1.PolicyPermissionsResponse\"\000\022`\n"
+    "\025AddPermissionsForRole\022-.palm.rbac.v1.Po"
+    "licyPermissionsForRoleRequest\032\026.google.p"
+    "rotobuf.Empty\"\000\022c\n\030DeletePermissionsForR"
+    "ole\022-.palm.rbac.v1.PolicyPermissionsForR"
+    "oleRequest\032\026.google.protobuf.Empty\"\000Bb\n*"
+    "com.github.saturn_xiv.palm.plugins.rbac."
+    "v1P\001Z2github.com/saturn-xiv/palm/atropa/"
+    "rbac/services/v2b\006proto3"
 };
-static ::_pbi::once_flag descriptor_table_rbac_2eproto_once;
+static const ::_pbi::DescriptorTable* const descriptor_table_rbac_2eproto_deps[1] =
+    {
+        &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
+};
+static ::absl::once_flag descriptor_table_rbac_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_rbac_2eproto = {
-    false, false, 4144, descriptor_table_protodef_rbac_2eproto,
+    false,
+    false,
+    4144,
+    descriptor_table_protodef_rbac_2eproto,
     "rbac.proto",
-    &descriptor_table_rbac_2eproto_once, descriptor_table_rbac_2eproto_deps, 1, 23,
-    schemas, file_default_instances, TableStruct_rbac_2eproto::offsets,
-    file_level_metadata_rbac_2eproto, file_level_enum_descriptors_rbac_2eproto,
+    &descriptor_table_rbac_2eproto_once,
+    descriptor_table_rbac_2eproto_deps,
+    1,
+    23,
+    schemas,
+    file_default_instances,
+    TableStruct_rbac_2eproto::offsets,
+    file_level_metadata_rbac_2eproto,
+    file_level_enum_descriptors_rbac_2eproto,
     file_level_service_descriptors_rbac_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_rbac_2eproto_getter() {
   return &descriptor_table_rbac_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_rbac_2eproto(&descriptor_table_rbac_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_rbac_2eproto(&descriptor_table_rbac_2eproto);
 namespace palm {
 namespace rbac {
 namespace v1 {
-
 // ===================================================================
 
 class PolicyHasRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<PolicyHasRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_._has_bits_);
   static const ::palm::rbac::v1::PolicyUsersResponse_Item& user(const PolicyHasRequest* msg);
+  static void set_has_user(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
   static const ::palm::rbac::v1::PolicyRolesResponse_Item& role(const PolicyHasRequest* msg);
+  static void set_has_role(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
-const ::palm::rbac::v1::PolicyUsersResponse_Item&
-PolicyHasRequest::_Internal::user(const PolicyHasRequest* msg) {
+const ::palm::rbac::v1::PolicyUsersResponse_Item& PolicyHasRequest::_Internal::user(const PolicyHasRequest* msg) {
   return *msg->_impl_.user_;
 }
-const ::palm::rbac::v1::PolicyRolesResponse_Item&
-PolicyHasRequest::_Internal::role(const PolicyHasRequest* msg) {
+const ::palm::rbac::v1::PolicyRolesResponse_Item& PolicyHasRequest::_Internal::role(const PolicyHasRequest* msg) {
   return *msg->_impl_.role_;
 }
-PolicyHasRequest::PolicyHasRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyHasRequest::PolicyHasRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyHasRequest)
 }
-PolicyHasRequest::PolicyHasRequest(const PolicyHasRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyHasRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.user_){nullptr}
-    , decltype(_impl_.role_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyHasRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_user()) {
-    _this->_impl_.user_ = new ::palm::rbac::v1::PolicyUsersResponse_Item(*from._impl_.user_);
-  }
-  if (from._internal_has_role()) {
-    _this->_impl_.role_ = new ::palm::rbac::v1::PolicyRolesResponse_Item(*from._impl_.role_);
-  }
+PolicyHasRequest::PolicyHasRequest(
+    ::google::protobuf::Arena* arena,
+    const PolicyHasRequest& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyHasRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.user_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyUsersResponse_Item>(arena, *from._impl_.user_)
+                : nullptr;
+  _impl_.role_ = (cached_has_bits & 0x00000002u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyRolesResponse_Item>(arena, *from._impl_.role_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyHasRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyHasRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void PolicyHasRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.user_){nullptr}
-    , decltype(_impl_.role_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyHasRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, user_),
+           0,
+           offsetof(Impl_, role_) -
+               offsetof(Impl_, user_) +
+               sizeof(Impl_::role_));
 }
-
 PolicyHasRequest::~PolicyHasRequest() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyHasRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyHasRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.user_;
-  if (this != internal_default_instance()) delete _impl_.role_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.user_;
+  delete _impl_.role_;
+  _impl_.~Impl_();
 }
 
-void PolicyHasRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyHasRequest::Clear() {
+PROTOBUF_NOINLINE void PolicyHasRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyHasRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.user_ != nullptr) {
-    delete _impl_.user_;
-  }
-  _impl_.user_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.role_ != nullptr) {
-    delete _impl_.role_;
-  }
-  _impl_.role_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* PolicyHasRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyRolesResponse.Item role = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_role(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.user_ != nullptr);
+      _impl_.user_->Clear();
     }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.role_ != nullptr);
+      _impl_.role_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-uint8_t* PolicyHasRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyHasRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+const char* PolicyHasRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
 
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> PolicyHasRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyHasRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .palm.rbac.v1.PolicyRolesResponse.Item role = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_.role_)}},
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_.user_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_.user_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.rbac.v1.PolicyRolesResponse.Item role = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_.role_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyUsersResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyRolesResponse_Item>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyHasRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyHasRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::user(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::user(this),
         _Internal::user(this).GetCachedSize(), target, stream);
   }
 
   // .palm.rbac.v1.PolicyRolesResponse.Item role = 2;
-  if (this->_internal_has_role()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::role(this),
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::role(this),
         _Internal::role(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyHasRequest)
   return target;
 }
 
-size_t PolicyHasRequest::ByteSizeLong() const {
+::size_t PolicyHasRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyHasRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.user_);
-  }
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.user_);
+    }
 
-  // .palm.rbac.v1.PolicyRolesResponse.Item role = 2;
-  if (this->_internal_has_role()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.role_);
-  }
+    // .palm.rbac.v1.PolicyRolesResponse.Item role = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.role_);
+    }
 
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyHasRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyHasRequest::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyHasRequest::_class_data_ = {
+    PolicyHasRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyHasRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyHasRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyHasRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyHasRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyHasRequest*>(&to_msg);
   auto& from = static_cast<const PolicyHasRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyHasRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_user()) {
-    _this->_internal_mutable_user()->::palm::rbac::v1::PolicyUsersResponse_Item::MergeFrom(
-        from._internal_user());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_user()->::palm::rbac::v1::PolicyUsersResponse_Item::MergeFrom(
+          from._internal_user());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_role()->::palm::rbac::v1::PolicyRolesResponse_Item::MergeFrom(
+          from._internal_role());
+    }
   }
-  if (from._internal_has_role()) {
-    _this->_internal_mutable_role()->::palm::rbac::v1::PolicyRolesResponse_Item::MergeFrom(
-        from._internal_role());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyHasRequest::CopyFrom(const PolicyHasRequest& from) {
@@ -901,14 +1099,18 @@ void PolicyHasRequest::CopyFrom(const PolicyHasRequest& from) {
   MergeFrom(from);
 }
 
-bool PolicyHasRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyHasRequest::IsInitialized() const {
   return true;
 }
 
-void PolicyHasRequest::InternalSwap(PolicyHasRequest* other) {
+::_pbi::CachedSize* PolicyHasRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyHasRequest::InternalSwap(PolicyHasRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_.role_)
       + sizeof(PolicyHasRequest::_impl_.role_)
       - PROTOBUF_FIELD_OFFSET(PolicyHasRequest, _impl_.user_)>(
@@ -916,262 +1118,281 @@ void PolicyHasRequest::InternalSwap(PolicyHasRequest* other) {
           reinterpret_cast<char*>(&other->_impl_.user_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyHasRequest::GetMetadata() const {
+::google::protobuf::Metadata PolicyHasRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[0]);
 }
-
 // ===================================================================
 
 class PolicyCanRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<PolicyCanRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_._has_bits_);
   static const ::palm::rbac::v1::PolicyUsersResponse_Item& user(const PolicyCanRequest* msg);
+  static void set_has_user(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource& resource(const PolicyCanRequest* msg);
+  static void set_has_resource(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation& operation(const PolicyCanRequest* msg);
+  static void set_has_operation(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
 };
 
-const ::palm::rbac::v1::PolicyUsersResponse_Item&
-PolicyCanRequest::_Internal::user(const PolicyCanRequest* msg) {
+const ::palm::rbac::v1::PolicyUsersResponse_Item& PolicyCanRequest::_Internal::user(const PolicyCanRequest* msg) {
   return *msg->_impl_.user_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource&
-PolicyCanRequest::_Internal::resource(const PolicyCanRequest* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource& PolicyCanRequest::_Internal::resource(const PolicyCanRequest* msg) {
   return *msg->_impl_.resource_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation&
-PolicyCanRequest::_Internal::operation(const PolicyCanRequest* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation& PolicyCanRequest::_Internal::operation(const PolicyCanRequest* msg) {
   return *msg->_impl_.operation_;
 }
-PolicyCanRequest::PolicyCanRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyCanRequest::PolicyCanRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyCanRequest)
 }
-PolicyCanRequest::PolicyCanRequest(const PolicyCanRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyCanRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.user_){nullptr}
-    , decltype(_impl_.resource_){nullptr}
-    , decltype(_impl_.operation_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyCanRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_user()) {
-    _this->_impl_.user_ = new ::palm::rbac::v1::PolicyUsersResponse_Item(*from._impl_.user_);
-  }
-  if (from._internal_has_resource()) {
-    _this->_impl_.resource_ = new ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource(*from._impl_.resource_);
-  }
-  if (from._internal_has_operation()) {
-    _this->_impl_.operation_ = new ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation(*from._impl_.operation_);
-  }
+PolicyCanRequest::PolicyCanRequest(
+    ::google::protobuf::Arena* arena,
+    const PolicyCanRequest& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyCanRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.user_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyUsersResponse_Item>(arena, *from._impl_.user_)
+                : nullptr;
+  _impl_.resource_ = (cached_has_bits & 0x00000002u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource>(arena, *from._impl_.resource_)
+                : nullptr;
+  _impl_.operation_ = (cached_has_bits & 0x00000004u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation>(arena, *from._impl_.operation_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyCanRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyCanRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void PolicyCanRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.user_){nullptr}
-    , decltype(_impl_.resource_){nullptr}
-    , decltype(_impl_.operation_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyCanRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, user_),
+           0,
+           offsetof(Impl_, operation_) -
+               offsetof(Impl_, user_) +
+               sizeof(Impl_::operation_));
 }
-
 PolicyCanRequest::~PolicyCanRequest() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyCanRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyCanRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.user_;
-  if (this != internal_default_instance()) delete _impl_.resource_;
-  if (this != internal_default_instance()) delete _impl_.operation_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.user_;
+  delete _impl_.resource_;
+  delete _impl_.operation_;
+  _impl_.~Impl_();
 }
 
-void PolicyCanRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyCanRequest::Clear() {
+PROTOBUF_NOINLINE void PolicyCanRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyCanRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.user_ != nullptr) {
-    delete _impl_.user_;
-  }
-  _impl_.user_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.resource_ != nullptr) {
-    delete _impl_.resource_;
-  }
-  _impl_.resource_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.operation_ != nullptr) {
-    delete _impl_.operation_;
-  }
-  _impl_.operation_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* PolicyCanRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_resource(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_operation(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.user_ != nullptr);
+      _impl_.user_->Clear();
     }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.resource_ != nullptr);
+      _impl_.resource_->Clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      ABSL_DCHECK(_impl_.operation_ != nullptr);
+      _impl_.operation_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-uint8_t* PolicyCanRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyCanRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+const char* PolicyCanRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
 
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 3, 0, 2> PolicyCanRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    3,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyCanRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.user_)}},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.resource_)}},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 2, 2, PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.operation_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.user_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.resource_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 3;
+    {PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.operation_), _Internal::kHasBitsOffset + 2, 2,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyUsersResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource>()},
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyCanRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyCanRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::user(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::user(this),
         _Internal::user(this).GetCachedSize(), target, stream);
   }
 
   // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 2;
-  if (this->_internal_has_resource()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::resource(this),
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::resource(this),
         _Internal::resource(this).GetCachedSize(), target, stream);
   }
 
   // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 3;
-  if (this->_internal_has_operation()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::operation(this),
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, _Internal::operation(this),
         _Internal::operation(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyCanRequest)
   return target;
 }
 
-size_t PolicyCanRequest::ByteSizeLong() const {
+::size_t PolicyCanRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyCanRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.user_);
-  }
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.user_);
+    }
 
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 2;
-  if (this->_internal_has_resource()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.resource_);
-  }
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.resource_);
+    }
 
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 3;
-  if (this->_internal_has_operation()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.operation_);
-  }
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 3;
+    if (cached_has_bits & 0x00000004u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.operation_);
+    }
 
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyCanRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyCanRequest::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyCanRequest::_class_data_ = {
+    PolicyCanRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyCanRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyCanRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyCanRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyCanRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyCanRequest*>(&to_msg);
   auto& from = static_cast<const PolicyCanRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyCanRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_user()) {
-    _this->_internal_mutable_user()->::palm::rbac::v1::PolicyUsersResponse_Item::MergeFrom(
-        from._internal_user());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_user()->::palm::rbac::v1::PolicyUsersResponse_Item::MergeFrom(
+          from._internal_user());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_resource()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource::MergeFrom(
+          from._internal_resource());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_internal_mutable_operation()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation::MergeFrom(
+          from._internal_operation());
+    }
   }
-  if (from._internal_has_resource()) {
-    _this->_internal_mutable_resource()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource::MergeFrom(
-        from._internal_resource());
-  }
-  if (from._internal_has_operation()) {
-    _this->_internal_mutable_operation()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation::MergeFrom(
-        from._internal_operation());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyCanRequest::CopyFrom(const PolicyCanRequest& from) {
@@ -1181,14 +1402,18 @@ void PolicyCanRequest::CopyFrom(const PolicyCanRequest& from) {
   MergeFrom(from);
 }
 
-bool PolicyCanRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyCanRequest::IsInitialized() const {
   return true;
 }
 
-void PolicyCanRequest::InternalSwap(PolicyCanRequest* other) {
+::_pbi::CachedSize* PolicyCanRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyCanRequest::InternalSwap(PolicyCanRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.operation_)
       + sizeof(PolicyCanRequest::_impl_.operation_)
       - PROTOBUF_FIELD_OFFSET(PolicyCanRequest, _impl_.user_)>(
@@ -1196,84 +1421,79 @@ void PolicyCanRequest::InternalSwap(PolicyCanRequest* other) {
           reinterpret_cast<char*>(&other->_impl_.user_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyCanRequest::GetMetadata() const {
+::google::protobuf::Metadata PolicyCanRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[1]);
 }
-
 // ===================================================================
 
 class PolicyUsersResponse_Item::_Internal {
  public:
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyUsersResponse_Item, _impl_._oneof_case_);
 };
 
-PolicyUsersResponse_Item::PolicyUsersResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyUsersResponse_Item::PolicyUsersResponse_Item(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyUsersResponse.Item)
 }
-PolicyUsersResponse_Item::PolicyUsersResponse_Item(const PolicyUsersResponse_Item& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyUsersResponse_Item* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.id_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyUsersResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : id_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  clear_has_id();
-  switch (from.id_case()) {
-    case kI: {
-      _this->_internal_set_i(from._internal_i());
+PolicyUsersResponse_Item::PolicyUsersResponse_Item(
+    ::google::protobuf::Arena* arena,
+    const PolicyUsersResponse_Item& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyUsersResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  switch (id_case()) {
+    case ID_NOT_SET:
       break;
-    }
-    case kS: {
-      _this->_internal_set_s(from._internal_s());
-      break;
-    }
-    case ID_NOT_SET: {
-      break;
-    }
+      case kI:
+        _impl_.id_.i_ = from._impl_.id_.i_;
+        break;
+      case kS:
+        new (&_impl_.id_.s_) decltype(_impl_.id_.s_){arena, from._impl_.id_.s_};
+        break;
   }
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyUsersResponse.Item)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyUsersResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : id_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
 
-inline void PolicyUsersResponse_Item::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.id_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_id();
+inline void PolicyUsersResponse_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 PolicyUsersResponse_Item::~PolicyUsersResponse_Item() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyUsersResponse.Item)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyUsersResponse_Item::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   if (has_id()) {
     clear_id();
   }
-}
-
-void PolicyUsersResponse_Item::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _impl_.~Impl_();
 }
 
 void PolicyUsersResponse_Item::clear_id() {
 // @@protoc_insertion_point(one_of_clear_start:palm.rbac.v1.PolicyUsersResponse.Item)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   switch (id_case()) {
     case kI: {
       // No need to clear
@@ -1291,112 +1511,110 @@ void PolicyUsersResponse_Item::clear_id() {
 }
 
 
-void PolicyUsersResponse_Item::Clear() {
+PROTOBUF_NOINLINE void PolicyUsersResponse_Item::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyUsersResponse.Item)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   clear_id();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyUsersResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint64 i = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _internal_set_i(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string s = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          auto str = _internal_mutable_s();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.rbac.v1.PolicyUsersResponse.Item.s"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyUsersResponse_Item::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyUsersResponse_Item::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 0, 47, 2> PolicyUsersResponse_Item::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967037,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PolicyUsersResponse_Item_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint64 i = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyUsersResponse_Item, _impl_.id_.i_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUInt64)},
+    // string s = 9;
+    {PROTOBUF_FIELD_OFFSET(PolicyUsersResponse_Item, _impl_.id_.s_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\45\0\1\0\0\0\0\0"
+    "palm.rbac.v1.PolicyUsersResponse.Item"
+    "s"
+  }},
+};
+
+::uint8_t* PolicyUsersResponse_Item::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyUsersResponse.Item)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
-  // uint64 i = 2;
-  if (_internal_has_i()) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_i(), target);
+  switch (id_case()) {
+    case kI: {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+          2, this->_internal_i(), target);
+      break;
+    }
+    case kS: {
+      const std::string& _s = this->_internal_s();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.rbac.v1.PolicyUsersResponse.Item.s");
+      target = stream->WriteStringMaybeAliased(9, _s, target);
+      break;
+    }
+    default:
+      break;
   }
-
-  // string s = 9;
-  if (_internal_has_s()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_s().data(), static_cast<int>(this->_internal_s().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.rbac.v1.PolicyUsersResponse.Item.s");
-    target = stream->WriteStringMaybeAliased(
-        9, this->_internal_s(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyUsersResponse.Item)
   return target;
 }
 
-size_t PolicyUsersResponse_Item::ByteSizeLong() const {
+::size_t PolicyUsersResponse_Item::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyUsersResponse.Item)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   switch (id_case()) {
     // uint64 i = 2;
     case kI: {
-      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_i());
+      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+          this->_internal_i());
       break;
     }
     // string s = 9;
     case kS: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_s());
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_s());
       break;
     }
     case ID_NOT_SET: {
@@ -1406,19 +1624,20 @@ size_t PolicyUsersResponse_Item::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyUsersResponse_Item::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyUsersResponse_Item::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyUsersResponse_Item::_class_data_ = {
+    PolicyUsersResponse_Item::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyUsersResponse_Item::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyUsersResponse_Item::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyUsersResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyUsersResponse_Item::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyUsersResponse_Item*>(&to_msg);
   auto& from = static_cast<const PolicyUsersResponse_Item&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyUsersResponse.Item)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.id_case()) {
@@ -1434,7 +1653,7 @@ void PolicyUsersResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_ms
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyUsersResponse_Item::CopyFrom(const PolicyUsersResponse_Item& from) {
@@ -1444,183 +1663,181 @@ void PolicyUsersResponse_Item::CopyFrom(const PolicyUsersResponse_Item& from) {
   MergeFrom(from);
 }
 
-bool PolicyUsersResponse_Item::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyUsersResponse_Item::IsInitialized() const {
   return true;
 }
 
-void PolicyUsersResponse_Item::InternalSwap(PolicyUsersResponse_Item* other) {
+::_pbi::CachedSize* PolicyUsersResponse_Item::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyUsersResponse_Item::InternalSwap(PolicyUsersResponse_Item* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_.id_, other->_impl_.id_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyUsersResponse_Item::GetMetadata() const {
+::google::protobuf::Metadata PolicyUsersResponse_Item::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[2]);
 }
-
 // ===================================================================
 
 class PolicyUsersResponse::_Internal {
  public:
 };
 
-PolicyUsersResponse::PolicyUsersResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyUsersResponse::PolicyUsersResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyUsersResponse)
 }
-PolicyUsersResponse::PolicyUsersResponse(const PolicyUsersResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyUsersResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){from._impl_.items_}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyUsersResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : items_{visibility, arena, from.items_},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyUsersResponse::PolicyUsersResponse(
+    ::google::protobuf::Arena* arena,
+    const PolicyUsersResponse& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyUsersResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyUsersResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyUsersResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : items_{visibility, arena},
+        _cached_size_{0} {}
 
-inline void PolicyUsersResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyUsersResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 PolicyUsersResponse::~PolicyUsersResponse() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyUsersResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyUsersResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.items_.~RepeatedPtrField();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void PolicyUsersResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyUsersResponse::Clear() {
+PROTOBUF_NOINLINE void PolicyUsersResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyUsersResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.items_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyUsersResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .palm.rbac.v1.PolicyUsersResponse.Item items = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyUsersResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyUsersResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> PolicyUsersResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyUsersResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .palm.rbac.v1.PolicyUsersResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PolicyUsersResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.rbac.v1.PolicyUsersResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyUsersResponse, _impl_.items_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyUsersResponse_Item>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyUsersResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyUsersResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyUsersResponse.Item items = 1;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
-    const auto& repfield = this->_internal_items(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_items().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyUsersResponse)
   return target;
 }
 
-size_t PolicyUsersResponse::ByteSizeLong() const {
+::size_t PolicyUsersResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyUsersResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyUsersResponse.Item items = 1;
   total_size += 1UL * this->_internal_items_size();
-  for (const auto& msg : this->_impl_.items_) {
+  for (const auto& msg : this->_internal_items()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyUsersResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyUsersResponse::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyUsersResponse::_class_data_ = {
+    PolicyUsersResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyUsersResponse::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyUsersResponse::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyUsersResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyUsersResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyUsersResponse*>(&to_msg);
   auto& from = static_cast<const PolicyUsersResponse&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyUsersResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.items_.MergeFrom(from._impl_.items_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyUsersResponse::CopyFrom(const PolicyUsersResponse& from) {
@@ -1630,37 +1847,43 @@ void PolicyUsersResponse::CopyFrom(const PolicyUsersResponse& from) {
   MergeFrom(from);
 }
 
-bool PolicyUsersResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyUsersResponse::IsInitialized() const {
   return true;
 }
 
-void PolicyUsersResponse::InternalSwap(PolicyUsersResponse* other) {
+::_pbi::CachedSize* PolicyUsersResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyUsersResponse::InternalSwap(PolicyUsersResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.items_.InternalSwap(&other->_impl_.items_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyUsersResponse::GetMetadata() const {
+::google::protobuf::Metadata PolicyUsersResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[3]);
 }
-
 // ===================================================================
 
 class PolicyRolesResponse_Item_Administrator::_Internal {
  public:
 };
 
-PolicyRolesResponse_Item_Administrator::PolicyRolesResponse_Item_Administrator(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyRolesResponse_Item_Administrator::PolicyRolesResponse_Item_Administrator(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyRolesResponse.Item.Administrator)
 }
-PolicyRolesResponse_Item_Administrator::PolicyRolesResponse_Item_Administrator(const PolicyRolesResponse_Item_Administrator& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyRolesResponse_Item_Administrator* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyRolesResponse_Item_Administrator::PolicyRolesResponse_Item_Administrator(
+    ::google::protobuf::Arena* arena,
+    const PolicyRolesResponse_Item_Administrator& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyRolesResponse_Item_Administrator* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyRolesResponse.Item.Administrator)
 }
 
@@ -1668,39 +1891,34 @@ PolicyRolesResponse_Item_Administrator::PolicyRolesResponse_Item_Administrator(c
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyRolesResponse_Item_Administrator::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyRolesResponse_Item_Administrator::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyRolesResponse_Item_Administrator::GetMetadata() const {
+::google::protobuf::Metadata PolicyRolesResponse_Item_Administrator::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[4]);
 }
-
 // ===================================================================
 
 class PolicyRolesResponse_Item_Root::_Internal {
  public:
 };
 
-PolicyRolesResponse_Item_Root::PolicyRolesResponse_Item_Root(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyRolesResponse_Item_Root::PolicyRolesResponse_Item_Root(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyRolesResponse.Item.Root)
 }
-PolicyRolesResponse_Item_Root::PolicyRolesResponse_Item_Root(const PolicyRolesResponse_Item_Root& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyRolesResponse_Item_Root* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyRolesResponse_Item_Root::PolicyRolesResponse_Item_Root(
+    ::google::protobuf::Arena* arena,
+    const PolicyRolesResponse_Item_Root& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyRolesResponse_Item_Root* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyRolesResponse.Item.Root)
 }
 
@@ -1708,49 +1926,38 @@ PolicyRolesResponse_Item_Root::PolicyRolesResponse_Item_Root(const PolicyRolesRe
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyRolesResponse_Item_Root::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyRolesResponse_Item_Root::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyRolesResponse_Item_Root::GetMetadata() const {
+::google::protobuf::Metadata PolicyRolesResponse_Item_Root::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[5]);
 }
-
 // ===================================================================
 
 class PolicyRolesResponse_Item::_Internal {
  public:
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyRolesResponse_Item, _impl_._oneof_case_);
   static const ::palm::rbac::v1::PolicyRolesResponse_Item_Root& root(const PolicyRolesResponse_Item* msg);
   static const ::palm::rbac::v1::PolicyRolesResponse_Item_Administrator& administrator(const PolicyRolesResponse_Item* msg);
 };
 
-const ::palm::rbac::v1::PolicyRolesResponse_Item_Root&
-PolicyRolesResponse_Item::_Internal::root(const PolicyRolesResponse_Item* msg) {
+const ::palm::rbac::v1::PolicyRolesResponse_Item_Root& PolicyRolesResponse_Item::_Internal::root(const PolicyRolesResponse_Item* msg) {
   return *msg->_impl_.by_.root_;
 }
-const ::palm::rbac::v1::PolicyRolesResponse_Item_Administrator&
-PolicyRolesResponse_Item::_Internal::administrator(const PolicyRolesResponse_Item* msg) {
+const ::palm::rbac::v1::PolicyRolesResponse_Item_Administrator& PolicyRolesResponse_Item::_Internal::administrator(const PolicyRolesResponse_Item* msg) {
   return *msg->_impl_.by_.administrator_;
 }
 void PolicyRolesResponse_Item::set_allocated_root(::palm::rbac::v1::PolicyRolesResponse_Item_Root* root) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (root) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(root);
+    ::google::protobuf::Arena* submessage_arena = root->GetArena();
     if (message_arena != submessage_arena) {
-      root = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, root, submessage_arena);
+      root = ::google::protobuf::internal::GetOwnedMessage(message_arena, root, submessage_arena);
     }
     set_has_root();
     _impl_.by_.root_ = root;
@@ -1758,101 +1965,90 @@ void PolicyRolesResponse_Item::set_allocated_root(::palm::rbac::v1::PolicyRolesR
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyRolesResponse.Item.root)
 }
 void PolicyRolesResponse_Item::set_allocated_administrator(::palm::rbac::v1::PolicyRolesResponse_Item_Administrator* administrator) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (administrator) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(administrator);
+    ::google::protobuf::Arena* submessage_arena = administrator->GetArena();
     if (message_arena != submessage_arena) {
-      administrator = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, administrator, submessage_arena);
+      administrator = ::google::protobuf::internal::GetOwnedMessage(message_arena, administrator, submessage_arena);
     }
     set_has_administrator();
     _impl_.by_.administrator_ = administrator;
   }
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyRolesResponse.Item.administrator)
 }
-PolicyRolesResponse_Item::PolicyRolesResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyRolesResponse_Item::PolicyRolesResponse_Item(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyRolesResponse.Item)
 }
-PolicyRolesResponse_Item::PolicyRolesResponse_Item(const PolicyRolesResponse_Item& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyRolesResponse_Item* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.by_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyRolesResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  clear_has_by();
-  switch (from.by_case()) {
-    case kRoot: {
-      _this->_internal_mutable_root()->::palm::rbac::v1::PolicyRolesResponse_Item_Root::MergeFrom(
-          from._internal_root());
+PolicyRolesResponse_Item::PolicyRolesResponse_Item(
+    ::google::protobuf::Arena* arena,
+    const PolicyRolesResponse_Item& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyRolesResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  switch (by_case()) {
+    case BY_NOT_SET:
       break;
-    }
-    case kAdministrator: {
-      _this->_internal_mutable_administrator()->::palm::rbac::v1::PolicyRolesResponse_Item_Administrator::MergeFrom(
-          from._internal_administrator());
-      break;
-    }
-    case kCode: {
-      _this->_internal_set_code(from._internal_code());
-      break;
-    }
-    case BY_NOT_SET: {
-      break;
-    }
+      case kRoot:
+        _impl_.by_.root_ = CreateMaybeMessage<::palm::rbac::v1::PolicyRolesResponse_Item_Root>(arena, *from._impl_.by_.root_);
+        break;
+      case kAdministrator:
+        _impl_.by_.administrator_ = CreateMaybeMessage<::palm::rbac::v1::PolicyRolesResponse_Item_Administrator>(arena, *from._impl_.by_.administrator_);
+        break;
+      case kCode:
+        new (&_impl_.by_.code_) decltype(_impl_.by_.code_){arena, from._impl_.by_.code_};
+        break;
   }
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyRolesResponse.Item)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyRolesResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
 
-inline void PolicyRolesResponse_Item::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.by_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_by();
+inline void PolicyRolesResponse_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 PolicyRolesResponse_Item::~PolicyRolesResponse_Item() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyRolesResponse.Item)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyRolesResponse_Item::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   if (has_by()) {
     clear_by();
   }
-}
-
-void PolicyRolesResponse_Item::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _impl_.~Impl_();
 }
 
 void PolicyRolesResponse_Item::clear_by() {
 // @@protoc_insertion_point(one_of_clear_start:palm.rbac.v1.PolicyRolesResponse.Item)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   switch (by_case()) {
     case kRoot: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.root_;
       }
       break;
     }
     case kAdministrator: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.administrator_;
       }
       break;
@@ -1869,137 +2065,126 @@ void PolicyRolesResponse_Item::clear_by() {
 }
 
 
-void PolicyRolesResponse_Item::Clear() {
+PROTOBUF_NOINLINE void PolicyRolesResponse_Item::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyRolesResponse.Item)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   clear_by();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyRolesResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyRolesResponse.Item.Root root = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_root(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyRolesResponse.Item.Administrator administrator = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_administrator(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string code = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          auto str = _internal_mutable_code();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.rbac.v1.PolicyRolesResponse.Item.code"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyRolesResponse_Item::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyRolesResponse_Item::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 3, 2, 50, 2> PolicyRolesResponse_Item::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    9, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967036,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyRolesResponse_Item_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyRolesResponse.Item.Root root = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyRolesResponse_Item, _impl_.by_.root_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .palm.rbac.v1.PolicyRolesResponse.Item.Administrator administrator = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyRolesResponse_Item, _impl_.by_.administrator_), _Internal::kOneofCaseOffset + 0, 1,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // string code = 9;
+    {PROTOBUF_FIELD_OFFSET(PolicyRolesResponse_Item, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }}, {{
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyRolesResponse_Item_Root_default_instance_},
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyRolesResponse_Item_Administrator_default_instance_},
+  }}, {{
+    "\45\0\0\4\0\0\0\0"
+    "palm.rbac.v1.PolicyRolesResponse.Item"
+    "code"
+  }},
+};
+
+::uint8_t* PolicyRolesResponse_Item::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyRolesResponse.Item)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
-  // .palm.rbac.v1.PolicyRolesResponse.Item.Root root = 1;
-  if (_internal_has_root()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::root(this),
-        _Internal::root(this).GetCachedSize(), target, stream);
+  switch (by_case()) {
+    case kRoot: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          1, _Internal::root(this),
+          _Internal::root(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kAdministrator: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          2, _Internal::administrator(this),
+          _Internal::administrator(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kCode: {
+      const std::string& _s = this->_internal_code();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.rbac.v1.PolicyRolesResponse.Item.code");
+      target = stream->WriteStringMaybeAliased(9, _s, target);
+      break;
+    }
+    default:
+      break;
   }
-
-  // .palm.rbac.v1.PolicyRolesResponse.Item.Administrator administrator = 2;
-  if (_internal_has_administrator()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::administrator(this),
-        _Internal::administrator(this).GetCachedSize(), target, stream);
-  }
-
-  // string code = 9;
-  if (_internal_has_code()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.rbac.v1.PolicyRolesResponse.Item.code");
-    target = stream->WriteStringMaybeAliased(
-        9, this->_internal_code(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyRolesResponse.Item)
   return target;
 }
 
-size_t PolicyRolesResponse_Item::ByteSizeLong() const {
+::size_t PolicyRolesResponse_Item::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyRolesResponse.Item)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   switch (by_case()) {
     // .palm.rbac.v1.PolicyRolesResponse.Item.Root root = 1;
     case kRoot: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.root_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.root_);
       break;
     }
     // .palm.rbac.v1.PolicyRolesResponse.Item.Administrator administrator = 2;
     case kAdministrator: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.administrator_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.administrator_);
       break;
     }
     // string code = 9;
     case kCode: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_code());
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_code());
       break;
     }
     case BY_NOT_SET: {
@@ -2009,19 +2194,20 @@ size_t PolicyRolesResponse_Item::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyRolesResponse_Item::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyRolesResponse_Item::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyRolesResponse_Item::_class_data_ = {
+    PolicyRolesResponse_Item::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyRolesResponse_Item::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyRolesResponse_Item::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyRolesResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyRolesResponse_Item::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyRolesResponse_Item*>(&to_msg);
   auto& from = static_cast<const PolicyRolesResponse_Item&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyRolesResponse.Item)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.by_case()) {
@@ -2043,7 +2229,7 @@ void PolicyRolesResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_ms
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyRolesResponse_Item::CopyFrom(const PolicyRolesResponse_Item& from) {
@@ -2053,183 +2239,181 @@ void PolicyRolesResponse_Item::CopyFrom(const PolicyRolesResponse_Item& from) {
   MergeFrom(from);
 }
 
-bool PolicyRolesResponse_Item::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyRolesResponse_Item::IsInitialized() const {
   return true;
 }
 
-void PolicyRolesResponse_Item::InternalSwap(PolicyRolesResponse_Item* other) {
+::_pbi::CachedSize* PolicyRolesResponse_Item::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyRolesResponse_Item::InternalSwap(PolicyRolesResponse_Item* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_.by_, other->_impl_.by_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyRolesResponse_Item::GetMetadata() const {
+::google::protobuf::Metadata PolicyRolesResponse_Item::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[6]);
 }
-
 // ===================================================================
 
 class PolicyRolesResponse::_Internal {
  public:
 };
 
-PolicyRolesResponse::PolicyRolesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyRolesResponse::PolicyRolesResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyRolesResponse)
 }
-PolicyRolesResponse::PolicyRolesResponse(const PolicyRolesResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyRolesResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){from._impl_.items_}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyRolesResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : items_{visibility, arena, from.items_},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyRolesResponse::PolicyRolesResponse(
+    ::google::protobuf::Arena* arena,
+    const PolicyRolesResponse& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyRolesResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyRolesResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyRolesResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : items_{visibility, arena},
+        _cached_size_{0} {}
 
-inline void PolicyRolesResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyRolesResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 PolicyRolesResponse::~PolicyRolesResponse() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyRolesResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyRolesResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.items_.~RepeatedPtrField();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void PolicyRolesResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyRolesResponse::Clear() {
+PROTOBUF_NOINLINE void PolicyRolesResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyRolesResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.items_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyRolesResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .palm.rbac.v1.PolicyRolesResponse.Item items = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyRolesResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyRolesResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> PolicyRolesResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyRolesResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .palm.rbac.v1.PolicyRolesResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PolicyRolesResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.rbac.v1.PolicyRolesResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyRolesResponse, _impl_.items_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyRolesResponse_Item>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyRolesResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyRolesResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyRolesResponse.Item items = 1;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
-    const auto& repfield = this->_internal_items(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_items().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyRolesResponse)
   return target;
 }
 
-size_t PolicyRolesResponse::ByteSizeLong() const {
+::size_t PolicyRolesResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyRolesResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyRolesResponse.Item items = 1;
   total_size += 1UL * this->_internal_items_size();
-  for (const auto& msg : this->_impl_.items_) {
+  for (const auto& msg : this->_internal_items()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyRolesResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyRolesResponse::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyRolesResponse::_class_data_ = {
+    PolicyRolesResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyRolesResponse::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyRolesResponse::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyRolesResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyRolesResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyRolesResponse*>(&to_msg);
   auto& from = static_cast<const PolicyRolesResponse&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyRolesResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.items_.MergeFrom(from._impl_.items_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyRolesResponse::CopyFrom(const PolicyRolesResponse& from) {
@@ -2239,223 +2423,229 @@ void PolicyRolesResponse::CopyFrom(const PolicyRolesResponse& from) {
   MergeFrom(from);
 }
 
-bool PolicyRolesResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyRolesResponse::IsInitialized() const {
   return true;
 }
 
-void PolicyRolesResponse::InternalSwap(PolicyRolesResponse* other) {
+::_pbi::CachedSize* PolicyRolesResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyRolesResponse::InternalSwap(PolicyRolesResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.items_.InternalSwap(&other->_impl_.items_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyRolesResponse::GetMetadata() const {
+::google::protobuf::Metadata PolicyRolesResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[7]);
 }
-
 // ===================================================================
 
 class PolicyRolesForUserRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<PolicyRolesForUserRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PolicyRolesForUserRequest, _impl_._has_bits_);
   static const ::palm::rbac::v1::PolicyUsersResponse_Item& user(const PolicyRolesForUserRequest* msg);
+  static void set_has_user(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::palm::rbac::v1::PolicyUsersResponse_Item&
-PolicyRolesForUserRequest::_Internal::user(const PolicyRolesForUserRequest* msg) {
+const ::palm::rbac::v1::PolicyUsersResponse_Item& PolicyRolesForUserRequest::_Internal::user(const PolicyRolesForUserRequest* msg) {
   return *msg->_impl_.user_;
 }
-PolicyRolesForUserRequest::PolicyRolesForUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyRolesForUserRequest::PolicyRolesForUserRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyRolesForUserRequest)
 }
-PolicyRolesForUserRequest::PolicyRolesForUserRequest(const PolicyRolesForUserRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyRolesForUserRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.roles_){from._impl_.roles_}
-    , decltype(_impl_.user_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyRolesForUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        roles_{visibility, arena, from.roles_} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_user()) {
-    _this->_impl_.user_ = new ::palm::rbac::v1::PolicyUsersResponse_Item(*from._impl_.user_);
-  }
+PolicyRolesForUserRequest::PolicyRolesForUserRequest(
+    ::google::protobuf::Arena* arena,
+    const PolicyRolesForUserRequest& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyRolesForUserRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.user_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyUsersResponse_Item>(arena, *from._impl_.user_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyRolesForUserRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyRolesForUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        roles_{visibility, arena} {}
 
-inline void PolicyRolesForUserRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.roles_){arena}
-    , decltype(_impl_.user_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyRolesForUserRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.user_ = {};
 }
-
 PolicyRolesForUserRequest::~PolicyRolesForUserRequest() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyRolesForUserRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyRolesForUserRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.roles_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.user_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.user_;
+  _impl_.~Impl_();
 }
 
-void PolicyRolesForUserRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyRolesForUserRequest::Clear() {
+PROTOBUF_NOINLINE void PolicyRolesForUserRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyRolesForUserRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.roles_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.user_ != nullptr) {
-    delete _impl_.user_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.user_ != nullptr);
+    _impl_.user_->Clear();
   }
-  _impl_.user_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyRolesForUserRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .palm.rbac.v1.PolicyRolesResponse.Item roles = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_roles(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyRolesForUserRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyRolesForUserRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyRolesForUserRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> PolicyRolesForUserRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PolicyRolesForUserRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyRolesForUserRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .palm.rbac.v1.PolicyRolesResponse.Item roles = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(PolicyRolesForUserRequest, _impl_.roles_)}},
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(PolicyRolesForUserRequest, _impl_.user_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyRolesForUserRequest, _impl_.user_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.rbac.v1.PolicyRolesResponse.Item roles = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyRolesForUserRequest, _impl_.roles_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyUsersResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyRolesResponse_Item>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyRolesForUserRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyRolesForUserRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::user(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::user(this),
         _Internal::user(this).GetCachedSize(), target, stream);
   }
 
   // repeated .palm.rbac.v1.PolicyRolesResponse.Item roles = 2;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_roles_size()); i < n; i++) {
-    const auto& repfield = this->_internal_roles(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_roles().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyRolesForUserRequest)
   return target;
 }
 
-size_t PolicyRolesForUserRequest::ByteSizeLong() const {
+::size_t PolicyRolesForUserRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyRolesForUserRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyRolesResponse.Item roles = 2;
   total_size += 1UL * this->_internal_roles_size();
-  for (const auto& msg : this->_impl_.roles_) {
+  for (const auto& msg : this->_internal_roles()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.user_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.user_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyRolesForUserRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyRolesForUserRequest::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyRolesForUserRequest::_class_data_ = {
+    PolicyRolesForUserRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyRolesForUserRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyRolesForUserRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyRolesForUserRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyRolesForUserRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyRolesForUserRequest*>(&to_msg);
   auto& from = static_cast<const PolicyRolesForUserRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyRolesForUserRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.roles_.MergeFrom(from._impl_.roles_);
-  if (from._internal_has_user()) {
+  _this->_internal_mutable_roles()->MergeFrom(
+      from._internal_roles());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_mutable_user()->::palm::rbac::v1::PolicyUsersResponse_Item::MergeFrom(
         from._internal_user());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyRolesForUserRequest::CopyFrom(const PolicyRolesForUserRequest& from) {
@@ -2465,224 +2655,231 @@ void PolicyRolesForUserRequest::CopyFrom(const PolicyRolesForUserRequest& from) 
   MergeFrom(from);
 }
 
-bool PolicyRolesForUserRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyRolesForUserRequest::IsInitialized() const {
   return true;
 }
 
-void PolicyRolesForUserRequest::InternalSwap(PolicyRolesForUserRequest* other) {
+::_pbi::CachedSize* PolicyRolesForUserRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyRolesForUserRequest::InternalSwap(PolicyRolesForUserRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.roles_.InternalSwap(&other->_impl_.roles_);
   swap(_impl_.user_, other->_impl_.user_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyRolesForUserRequest::GetMetadata() const {
+::google::protobuf::Metadata PolicyRolesForUserRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[8]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsForUserRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<PolicyPermissionsForUserRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PolicyPermissionsForUserRequest, _impl_._has_bits_);
   static const ::palm::rbac::v1::PolicyUsersResponse_Item& user(const PolicyPermissionsForUserRequest* msg);
+  static void set_has_user(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::palm::rbac::v1::PolicyUsersResponse_Item&
-PolicyPermissionsForUserRequest::_Internal::user(const PolicyPermissionsForUserRequest* msg) {
+const ::palm::rbac::v1::PolicyUsersResponse_Item& PolicyPermissionsForUserRequest::_Internal::user(const PolicyPermissionsForUserRequest* msg) {
   return *msg->_impl_.user_;
 }
-PolicyPermissionsForUserRequest::PolicyPermissionsForUserRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyPermissionsForUserRequest::PolicyPermissionsForUserRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsForUserRequest)
 }
-PolicyPermissionsForUserRequest::PolicyPermissionsForUserRequest(const PolicyPermissionsForUserRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyPermissionsForUserRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.permissions_){from._impl_.permissions_}
-    , decltype(_impl_.user_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsForUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        permissions_{visibility, arena, from.permissions_} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_user()) {
-    _this->_impl_.user_ = new ::palm::rbac::v1::PolicyUsersResponse_Item(*from._impl_.user_);
-  }
+PolicyPermissionsForUserRequest::PolicyPermissionsForUserRequest(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsForUserRequest& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyPermissionsForUserRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.user_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyUsersResponse_Item>(arena, *from._impl_.user_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsForUserRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsForUserRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        permissions_{visibility, arena} {}
 
-inline void PolicyPermissionsForUserRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.permissions_){arena}
-    , decltype(_impl_.user_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyPermissionsForUserRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.user_ = {};
 }
-
 PolicyPermissionsForUserRequest::~PolicyPermissionsForUserRequest() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyPermissionsForUserRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyPermissionsForUserRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.permissions_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.user_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.user_;
+  _impl_.~Impl_();
 }
 
-void PolicyPermissionsForUserRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyPermissionsForUserRequest::Clear() {
+PROTOBUF_NOINLINE void PolicyPermissionsForUserRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyPermissionsForUserRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.permissions_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.user_ != nullptr) {
-    delete _impl_.user_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.user_ != nullptr);
+    _impl_.user_->Clear();
   }
-  _impl_.user_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyPermissionsForUserRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_permissions(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyPermissionsForUserRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyPermissionsForUserRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsForUserRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> PolicyPermissionsForUserRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PolicyPermissionsForUserRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyPermissionsForUserRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(PolicyPermissionsForUserRequest, _impl_.permissions_)}},
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(PolicyPermissionsForUserRequest, _impl_.user_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsForUserRequest, _impl_.user_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsForUserRequest, _impl_.permissions_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyUsersResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyPermissionsForUserRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsForUserRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::user(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::user(this),
         _Internal::user(this).GetCachedSize(), target, stream);
   }
 
   // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_permissions_size()); i < n; i++) {
-    const auto& repfield = this->_internal_permissions(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_permissions().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyPermissionsForUserRequest)
   return target;
 }
 
-size_t PolicyPermissionsForUserRequest::ByteSizeLong() const {
+::size_t PolicyPermissionsForUserRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyPermissionsForUserRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
   total_size += 1UL * this->_internal_permissions_size();
-  for (const auto& msg : this->_impl_.permissions_) {
+  for (const auto& msg : this->_internal_permissions()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // .palm.rbac.v1.PolicyUsersResponse.Item user = 1;
-  if (this->_internal_has_user()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.user_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.user_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsForUserRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyPermissionsForUserRequest::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyPermissionsForUserRequest::_class_data_ = {
+    PolicyPermissionsForUserRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsForUserRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyPermissionsForUserRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyPermissionsForUserRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyPermissionsForUserRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyPermissionsForUserRequest*>(&to_msg);
   auto& from = static_cast<const PolicyPermissionsForUserRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyPermissionsForUserRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.permissions_.MergeFrom(from._impl_.permissions_);
-  if (from._internal_has_user()) {
+  _this->_internal_mutable_permissions()->MergeFrom(
+      from._internal_permissions());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_mutable_user()->::palm::rbac::v1::PolicyUsersResponse_Item::MergeFrom(
         from._internal_user());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyPermissionsForUserRequest::CopyFrom(const PolicyPermissionsForUserRequest& from) {
@@ -2692,224 +2889,231 @@ void PolicyPermissionsForUserRequest::CopyFrom(const PolicyPermissionsForUserReq
   MergeFrom(from);
 }
 
-bool PolicyPermissionsForUserRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyPermissionsForUserRequest::IsInitialized() const {
   return true;
 }
 
-void PolicyPermissionsForUserRequest::InternalSwap(PolicyPermissionsForUserRequest* other) {
+::_pbi::CachedSize* PolicyPermissionsForUserRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyPermissionsForUserRequest::InternalSwap(PolicyPermissionsForUserRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.permissions_.InternalSwap(&other->_impl_.permissions_);
   swap(_impl_.user_, other->_impl_.user_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsForUserRequest::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsForUserRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[9]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsForRoleRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<PolicyPermissionsForRoleRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PolicyPermissionsForRoleRequest, _impl_._has_bits_);
   static const ::palm::rbac::v1::PolicyRolesResponse_Item& role(const PolicyPermissionsForRoleRequest* msg);
+  static void set_has_role(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::palm::rbac::v1::PolicyRolesResponse_Item&
-PolicyPermissionsForRoleRequest::_Internal::role(const PolicyPermissionsForRoleRequest* msg) {
+const ::palm::rbac::v1::PolicyRolesResponse_Item& PolicyPermissionsForRoleRequest::_Internal::role(const PolicyPermissionsForRoleRequest* msg) {
   return *msg->_impl_.role_;
 }
-PolicyPermissionsForRoleRequest::PolicyPermissionsForRoleRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyPermissionsForRoleRequest::PolicyPermissionsForRoleRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsForRoleRequest)
 }
-PolicyPermissionsForRoleRequest::PolicyPermissionsForRoleRequest(const PolicyPermissionsForRoleRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyPermissionsForRoleRequest* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.permissions_){from._impl_.permissions_}
-    , decltype(_impl_.role_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsForRoleRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        permissions_{visibility, arena, from.permissions_} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_role()) {
-    _this->_impl_.role_ = new ::palm::rbac::v1::PolicyRolesResponse_Item(*from._impl_.role_);
-  }
+PolicyPermissionsForRoleRequest::PolicyPermissionsForRoleRequest(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsForRoleRequest& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyPermissionsForRoleRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.role_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyRolesResponse_Item>(arena, *from._impl_.role_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsForRoleRequest)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsForRoleRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        permissions_{visibility, arena} {}
 
-inline void PolicyPermissionsForRoleRequest::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.permissions_){arena}
-    , decltype(_impl_.role_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyPermissionsForRoleRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.role_ = {};
 }
-
 PolicyPermissionsForRoleRequest::~PolicyPermissionsForRoleRequest() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyPermissionsForRoleRequest)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyPermissionsForRoleRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.permissions_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.role_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.role_;
+  _impl_.~Impl_();
 }
 
-void PolicyPermissionsForRoleRequest::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyPermissionsForRoleRequest::Clear() {
+PROTOBUF_NOINLINE void PolicyPermissionsForRoleRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyPermissionsForRoleRequest)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.permissions_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.role_ != nullptr) {
-    delete _impl_.role_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.role_ != nullptr);
+    _impl_.role_->Clear();
   }
-  _impl_.role_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyPermissionsForRoleRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyRolesResponse.Item role = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_role(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_permissions(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyPermissionsForRoleRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyPermissionsForRoleRequest::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsForRoleRequest)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> PolicyPermissionsForRoleRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PolicyPermissionsForRoleRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyPermissionsForRoleRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(PolicyPermissionsForRoleRequest, _impl_.permissions_)}},
+    // .palm.rbac.v1.PolicyRolesResponse.Item role = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(PolicyPermissionsForRoleRequest, _impl_.role_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyRolesResponse.Item role = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsForRoleRequest, _impl_.role_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsForRoleRequest, _impl_.permissions_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyRolesResponse_Item>()},
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyPermissionsForRoleRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsForRoleRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .palm.rbac.v1.PolicyRolesResponse.Item role = 1;
-  if (this->_internal_has_role()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::role(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::role(this),
         _Internal::role(this).GetCachedSize(), target, stream);
   }
 
   // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_permissions_size()); i < n; i++) {
-    const auto& repfield = this->_internal_permissions(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_permissions().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyPermissionsForRoleRequest)
   return target;
 }
 
-size_t PolicyPermissionsForRoleRequest::ByteSizeLong() const {
+::size_t PolicyPermissionsForRoleRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyPermissionsForRoleRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item permissions = 2;
   total_size += 1UL * this->_internal_permissions_size();
-  for (const auto& msg : this->_impl_.permissions_) {
+  for (const auto& msg : this->_internal_permissions()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // .palm.rbac.v1.PolicyRolesResponse.Item role = 1;
-  if (this->_internal_has_role()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.role_);
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.role_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsForRoleRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyPermissionsForRoleRequest::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyPermissionsForRoleRequest::_class_data_ = {
+    PolicyPermissionsForRoleRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsForRoleRequest::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyPermissionsForRoleRequest::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyPermissionsForRoleRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyPermissionsForRoleRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyPermissionsForRoleRequest*>(&to_msg);
   auto& from = static_cast<const PolicyPermissionsForRoleRequest&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyPermissionsForRoleRequest)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.permissions_.MergeFrom(from._impl_.permissions_);
-  if (from._internal_has_role()) {
+  _this->_internal_mutable_permissions()->MergeFrom(
+      from._internal_permissions());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_mutable_role()->::palm::rbac::v1::PolicyRolesResponse_Item::MergeFrom(
         from._internal_role());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyPermissionsForRoleRequest::CopyFrom(const PolicyPermissionsForRoleRequest& from) {
@@ -2919,95 +3123,94 @@ void PolicyPermissionsForRoleRequest::CopyFrom(const PolicyPermissionsForRoleReq
   MergeFrom(from);
 }
 
-bool PolicyPermissionsForRoleRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyPermissionsForRoleRequest::IsInitialized() const {
   return true;
 }
 
-void PolicyPermissionsForRoleRequest::InternalSwap(PolicyPermissionsForRoleRequest* other) {
+::_pbi::CachedSize* PolicyPermissionsForRoleRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyPermissionsForRoleRequest::InternalSwap(PolicyPermissionsForRoleRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.permissions_.InternalSwap(&other->_impl_.permissions_);
   swap(_impl_.role_, other->_impl_.role_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsForRoleRequest::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsForRoleRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[10]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Resource_Id::_Internal {
  public:
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id, _impl_._oneof_case_);
 };
 
-PolicyPermissionsResponse_Item_Resource_Id::PolicyPermissionsResponse_Item_Resource_Id(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyPermissionsResponse_Item_Resource_Id::PolicyPermissionsResponse_Item_Resource_Id(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
 }
-PolicyPermissionsResponse_Item_Resource_Id::PolicyPermissionsResponse_Item_Resource_Id(const PolicyPermissionsResponse_Item_Resource_Id& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyPermissionsResponse_Item_Resource_Id* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.by_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item_Resource_Id::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  clear_has_by();
-  switch (from.by_case()) {
-    case kI: {
-      _this->_internal_set_i(from._internal_i());
+PolicyPermissionsResponse_Item_Resource_Id::PolicyPermissionsResponse_Item_Resource_Id(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Resource_Id& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyPermissionsResponse_Item_Resource_Id* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  switch (by_case()) {
+    case BY_NOT_SET:
       break;
-    }
-    case kS: {
-      _this->_internal_set_s(from._internal_s());
-      break;
-    }
-    case BY_NOT_SET: {
-      break;
-    }
+      case kI:
+        _impl_.by_.i_ = from._impl_.by_.i_;
+        break;
+      case kS:
+        new (&_impl_.by_.s_) decltype(_impl_.by_.s_){arena, from._impl_.by_.s_};
+        break;
   }
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item_Resource_Id::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
 
-inline void PolicyPermissionsResponse_Item_Resource_Id::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.by_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_by();
+inline void PolicyPermissionsResponse_Item_Resource_Id::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 PolicyPermissionsResponse_Item_Resource_Id::~PolicyPermissionsResponse_Item_Resource_Id() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyPermissionsResponse_Item_Resource_Id::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   if (has_by()) {
     clear_by();
   }
-}
-
-void PolicyPermissionsResponse_Item_Resource_Id::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _impl_.~Impl_();
 }
 
 void PolicyPermissionsResponse_Item_Resource_Id::clear_by() {
 // @@protoc_insertion_point(one_of_clear_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   switch (by_case()) {
     case kI: {
       // No need to clear
@@ -3025,112 +3228,110 @@ void PolicyPermissionsResponse_Item_Resource_Id::clear_by() {
 }
 
 
-void PolicyPermissionsResponse_Item_Resource_Id::Clear() {
+PROTOBUF_NOINLINE void PolicyPermissionsResponse_Item_Resource_Id::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   clear_by();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyPermissionsResponse_Item_Resource_Id::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint64 i = 11;
-      case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
-          _internal_set_i(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string s = 12;
-      case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
-          auto str = _internal_mutable_s();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id.s"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyPermissionsResponse_Item_Resource_Id::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyPermissionsResponse_Item_Resource_Id::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 0, 65, 2> PolicyPermissionsResponse_Item_Resource_Id::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    12, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294964223,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PolicyPermissionsResponse_Item_Resource_Id_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint64 i = 11;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource_Id, _impl_.by_.i_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUInt64)},
+    // string s = 12;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource_Id, _impl_.by_.s_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\67\0\1\0\0\0\0\0"
+    "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id"
+    "s"
+  }},
+};
+
+::uint8_t* PolicyPermissionsResponse_Item_Resource_Id::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
-  // uint64 i = 11;
-  if (_internal_has_i()) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(11, this->_internal_i(), target);
+  switch (by_case()) {
+    case kI: {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+          11, this->_internal_i(), target);
+      break;
+    }
+    case kS: {
+      const std::string& _s = this->_internal_s();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id.s");
+      target = stream->WriteStringMaybeAliased(12, _s, target);
+      break;
+    }
+    default:
+      break;
   }
-
-  // string s = 12;
-  if (_internal_has_s()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_s().data(), static_cast<int>(this->_internal_s().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id.s");
-    target = stream->WriteStringMaybeAliased(
-        12, this->_internal_s(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
   return target;
 }
 
-size_t PolicyPermissionsResponse_Item_Resource_Id::ByteSizeLong() const {
+::size_t PolicyPermissionsResponse_Item_Resource_Id::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   switch (by_case()) {
     // uint64 i = 11;
     case kI: {
-      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_i());
+      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+          this->_internal_i());
       break;
     }
     // string s = 12;
     case kS: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_s());
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_s());
       break;
     }
     case BY_NOT_SET: {
@@ -3140,19 +3341,20 @@ size_t PolicyPermissionsResponse_Item_Resource_Id::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Resource_Id::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyPermissionsResponse_Item_Resource_Id::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyPermissionsResponse_Item_Resource_Id::_class_data_ = {
+    PolicyPermissionsResponse_Item_Resource_Id::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Resource_Id::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyPermissionsResponse_Item_Resource_Id::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyPermissionsResponse_Item_Resource_Id::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyPermissionsResponse_Item_Resource_Id::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyPermissionsResponse_Item_Resource_Id*>(&to_msg);
   auto& from = static_cast<const PolicyPermissionsResponse_Item_Resource_Id&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.by_case()) {
@@ -3168,7 +3370,7 @@ void PolicyPermissionsResponse_Item_Resource_Id::MergeImpl(::PROTOBUF_NAMESPACE_
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyPermissionsResponse_Item_Resource_Id::CopyFrom(const PolicyPermissionsResponse_Item_Resource_Id& from) {
@@ -3178,248 +3380,234 @@ void PolicyPermissionsResponse_Item_Resource_Id::CopyFrom(const PolicyPermission
   MergeFrom(from);
 }
 
-bool PolicyPermissionsResponse_Item_Resource_Id::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyPermissionsResponse_Item_Resource_Id::IsInitialized() const {
   return true;
 }
 
-void PolicyPermissionsResponse_Item_Resource_Id::InternalSwap(PolicyPermissionsResponse_Item_Resource_Id* other) {
+::_pbi::CachedSize* PolicyPermissionsResponse_Item_Resource_Id::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyPermissionsResponse_Item_Resource_Id::InternalSwap(PolicyPermissionsResponse_Item_Resource_Id* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_.by_, other->_impl_.by_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Resource_Id::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Resource_Id::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[11]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Resource::_Internal {
  public:
   using HasBits = decltype(std::declval<PolicyPermissionsResponse_Item_Resource>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource, _impl_._has_bits_);
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id& id(const PolicyPermissionsResponse_Item_Resource* msg);
   static void set_has_id(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
 };
 
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id&
-PolicyPermissionsResponse_Item_Resource::_Internal::id(const PolicyPermissionsResponse_Item_Resource* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id& PolicyPermissionsResponse_Item_Resource::_Internal::id(const PolicyPermissionsResponse_Item_Resource* msg) {
   return *msg->_impl_.id_;
 }
-PolicyPermissionsResponse_Item_Resource::PolicyPermissionsResponse_Item_Resource(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyPermissionsResponse_Item_Resource::PolicyPermissionsResponse_Item_Resource(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
 }
-PolicyPermissionsResponse_Item_Resource::PolicyPermissionsResponse_Item_Resource(const PolicyPermissionsResponse_Item_Resource& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyPermissionsResponse_Item_Resource* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.type_){}
-    , decltype(_impl_.id_){nullptr}};
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item_Resource::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        type_(arena, from.type_) {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_type().empty()) {
-    _this->_impl_.type_.Set(from._internal_type(), 
-      _this->GetArenaForAllocation());
-  }
-  if (from._internal_has_id()) {
-    _this->_impl_.id_ = new ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id(*from._impl_.id_);
-  }
+PolicyPermissionsResponse_Item_Resource::PolicyPermissionsResponse_Item_Resource(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Resource& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyPermissionsResponse_Item_Resource* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.id_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id>(arena, *from._impl_.id_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item_Resource::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        type_(arena) {}
 
-inline void PolicyPermissionsResponse_Item_Resource::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.type_){}
-    , decltype(_impl_.id_){nullptr}
-  };
-  _impl_.type_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.type_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void PolicyPermissionsResponse_Item_Resource::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.id_ = {};
 }
-
 PolicyPermissionsResponse_Item_Resource::~PolicyPermissionsResponse_Item_Resource() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyPermissionsResponse_Item_Resource::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.type_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.id_;
+  delete _impl_.id_;
+  _impl_.~Impl_();
 }
 
-void PolicyPermissionsResponse_Item_Resource::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyPermissionsResponse_Item_Resource::Clear() {
+PROTOBUF_NOINLINE void PolicyPermissionsResponse_Item_Resource::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.type_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(_impl_.id_ != nullptr);
+    ABSL_DCHECK(_impl_.id_ != nullptr);
     _impl_.id_->Clear();
   }
   _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyPermissionsResponse_Item_Resource::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string type = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_type();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.type"));
-        } else
-          goto handle_unusual;
-        continue;
-      // optional .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id id = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_id(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _impl_._has_bits_.Or(has_bits);
+const char* PolicyPermissionsResponse_Item_Resource::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyPermissionsResponse_Item_Resource::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 65, 2> PolicyPermissionsResponse_Item_Resource::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyPermissionsResponse_Item_Resource_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // optional .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id id = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource, _impl_.id_)}},
+    // string type = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource, _impl_.type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string type = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource, _impl_.type_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id id = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Resource, _impl_.id_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id>()},
+  }}, {{
+    "\64\4\0\0\0\0\0\0"
+    "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource"
+    "type"
+  }},
+};
+
+::uint8_t* PolicyPermissionsResponse_Item_Resource::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string type = 1;
   if (!this->_internal_type().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_type().data(), static_cast<int>(this->_internal_type().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.type");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_type(), target);
+    const std::string& _s = this->_internal_type();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.type");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // optional .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id id = 2;
-  if (_internal_has_id()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::id(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::id(this),
         _Internal::id(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
   return target;
 }
 
-size_t PolicyPermissionsResponse_Item_Resource::ByteSizeLong() const {
+::size_t PolicyPermissionsResponse_Item_Resource::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string type = 1;
   if (!this->_internal_type().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_type());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_type());
   }
 
   // optional .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource.Id id = 2;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.id_);
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.id_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Resource::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyPermissionsResponse_Item_Resource::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyPermissionsResponse_Item_Resource::_class_data_ = {
+    PolicyPermissionsResponse_Item_Resource::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Resource::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyPermissionsResponse_Item_Resource::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyPermissionsResponse_Item_Resource::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyPermissionsResponse_Item_Resource::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyPermissionsResponse_Item_Resource*>(&to_msg);
   auto& from = static_cast<const PolicyPermissionsResponse_Item_Resource&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Resource)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_type().empty()) {
     _this->_internal_set_type(from._internal_type());
   }
-  if (from._internal_has_id()) {
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
     _this->_internal_mutable_id()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id::MergeFrom(
         from._internal_id());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyPermissionsResponse_Item_Resource::CopyFrom(const PolicyPermissionsResponse_Item_Resource& from) {
@@ -3429,44 +3617,47 @@ void PolicyPermissionsResponse_Item_Resource::CopyFrom(const PolicyPermissionsRe
   MergeFrom(from);
 }
 
-bool PolicyPermissionsResponse_Item_Resource::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyPermissionsResponse_Item_Resource::IsInitialized() const {
   return true;
 }
 
-void PolicyPermissionsResponse_Item_Resource::InternalSwap(PolicyPermissionsResponse_Item_Resource* other) {
+::_pbi::CachedSize* PolicyPermissionsResponse_Item_Resource::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyPermissionsResponse_Item_Resource::InternalSwap(PolicyPermissionsResponse_Item_Resource* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.type_, lhs_arena,
-      &other->_impl_.type_, rhs_arena
-  );
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
   swap(_impl_.id_, other->_impl_.id_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Resource::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Resource::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[12]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation_Read::_Internal {
  public:
 };
 
-PolicyPermissionsResponse_Item_Operation_Read::PolicyPermissionsResponse_Item_Operation_Read(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyPermissionsResponse_Item_Operation_Read::PolicyPermissionsResponse_Item_Operation_Read(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Read)
 }
-PolicyPermissionsResponse_Item_Operation_Read::PolicyPermissionsResponse_Item_Operation_Read(const PolicyPermissionsResponse_Item_Operation_Read& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyPermissionsResponse_Item_Operation_Read* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse_Item_Operation_Read::PolicyPermissionsResponse_Item_Operation_Read(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation_Read& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyPermissionsResponse_Item_Operation_Read* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Read)
 }
 
@@ -3474,39 +3665,34 @@ PolicyPermissionsResponse_Item_Operation_Read::PolicyPermissionsResponse_Item_Op
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation_Read::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation_Read::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation_Read::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation_Read::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[13]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation_Write::_Internal {
  public:
 };
 
-PolicyPermissionsResponse_Item_Operation_Write::PolicyPermissionsResponse_Item_Operation_Write(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyPermissionsResponse_Item_Operation_Write::PolicyPermissionsResponse_Item_Operation_Write(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Write)
 }
-PolicyPermissionsResponse_Item_Operation_Write::PolicyPermissionsResponse_Item_Operation_Write(const PolicyPermissionsResponse_Item_Operation_Write& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyPermissionsResponse_Item_Operation_Write* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse_Item_Operation_Write::PolicyPermissionsResponse_Item_Operation_Write(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation_Write& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyPermissionsResponse_Item_Operation_Write* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Write)
 }
 
@@ -3514,39 +3700,34 @@ PolicyPermissionsResponse_Item_Operation_Write::PolicyPermissionsResponse_Item_O
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation_Write::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation_Write::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation_Write::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation_Write::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[14]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation_Append::_Internal {
  public:
 };
 
-PolicyPermissionsResponse_Item_Operation_Append::PolicyPermissionsResponse_Item_Operation_Append(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyPermissionsResponse_Item_Operation_Append::PolicyPermissionsResponse_Item_Operation_Append(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Append)
 }
-PolicyPermissionsResponse_Item_Operation_Append::PolicyPermissionsResponse_Item_Operation_Append(const PolicyPermissionsResponse_Item_Operation_Append& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyPermissionsResponse_Item_Operation_Append* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse_Item_Operation_Append::PolicyPermissionsResponse_Item_Operation_Append(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation_Append& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyPermissionsResponse_Item_Operation_Append* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Append)
 }
 
@@ -3554,39 +3735,34 @@ PolicyPermissionsResponse_Item_Operation_Append::PolicyPermissionsResponse_Item_
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation_Append::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation_Append::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation_Append::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation_Append::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[15]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation_Execute::_Internal {
  public:
 };
 
-PolicyPermissionsResponse_Item_Operation_Execute::PolicyPermissionsResponse_Item_Operation_Execute(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyPermissionsResponse_Item_Operation_Execute::PolicyPermissionsResponse_Item_Operation_Execute(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Execute)
 }
-PolicyPermissionsResponse_Item_Operation_Execute::PolicyPermissionsResponse_Item_Operation_Execute(const PolicyPermissionsResponse_Item_Operation_Execute& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyPermissionsResponse_Item_Operation_Execute* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse_Item_Operation_Execute::PolicyPermissionsResponse_Item_Operation_Execute(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation_Execute& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyPermissionsResponse_Item_Operation_Execute* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Execute)
 }
 
@@ -3594,39 +3770,34 @@ PolicyPermissionsResponse_Item_Operation_Execute::PolicyPermissionsResponse_Item
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation_Execute::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation_Execute::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation_Execute::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation_Execute::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[16]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation_Credit::_Internal {
  public:
 };
 
-PolicyPermissionsResponse_Item_Operation_Credit::PolicyPermissionsResponse_Item_Operation_Credit(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyPermissionsResponse_Item_Operation_Credit::PolicyPermissionsResponse_Item_Operation_Credit(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Credit)
 }
-PolicyPermissionsResponse_Item_Operation_Credit::PolicyPermissionsResponse_Item_Operation_Credit(const PolicyPermissionsResponse_Item_Operation_Credit& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyPermissionsResponse_Item_Operation_Credit* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse_Item_Operation_Credit::PolicyPermissionsResponse_Item_Operation_Credit(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation_Credit& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyPermissionsResponse_Item_Operation_Credit* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Credit)
 }
 
@@ -3634,39 +3805,34 @@ PolicyPermissionsResponse_Item_Operation_Credit::PolicyPermissionsResponse_Item_
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation_Credit::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation_Credit::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation_Credit::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation_Credit::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[17]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation_Debit::_Internal {
  public:
 };
 
-PolicyPermissionsResponse_Item_Operation_Debit::PolicyPermissionsResponse_Item_Operation_Debit(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyPermissionsResponse_Item_Operation_Debit::PolicyPermissionsResponse_Item_Operation_Debit(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Debit)
 }
-PolicyPermissionsResponse_Item_Operation_Debit::PolicyPermissionsResponse_Item_Operation_Debit(const PolicyPermissionsResponse_Item_Operation_Debit& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyPermissionsResponse_Item_Operation_Debit* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse_Item_Operation_Debit::PolicyPermissionsResponse_Item_Operation_Debit(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation_Debit& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyPermissionsResponse_Item_Operation_Debit* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Debit)
 }
 
@@ -3674,39 +3840,34 @@ PolicyPermissionsResponse_Item_Operation_Debit::PolicyPermissionsResponse_Item_O
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation_Debit::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation_Debit::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation_Debit::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation_Debit::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[18]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation_Inquiry::_Internal {
  public:
 };
 
-PolicyPermissionsResponse_Item_Operation_Inquiry::PolicyPermissionsResponse_Item_Operation_Inquiry(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+PolicyPermissionsResponse_Item_Operation_Inquiry::PolicyPermissionsResponse_Item_Operation_Inquiry(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Inquiry)
 }
-PolicyPermissionsResponse_Item_Operation_Inquiry::PolicyPermissionsResponse_Item_Operation_Inquiry(const PolicyPermissionsResponse_Item_Operation_Inquiry& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  PolicyPermissionsResponse_Item_Operation_Inquiry* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse_Item_Operation_Inquiry::PolicyPermissionsResponse_Item_Operation_Inquiry(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation_Inquiry& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  PolicyPermissionsResponse_Item_Operation_Inquiry* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Inquiry)
 }
 
@@ -3714,28 +3875,21 @@ PolicyPermissionsResponse_Item_Operation_Inquiry::PolicyPermissionsResponse_Item
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation_Inquiry::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation_Inquiry::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation_Inquiry::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation_Inquiry::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[19]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item_Operation::_Internal {
  public:
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation, _impl_._oneof_case_);
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read& read(const PolicyPermissionsResponse_Item_Operation* msg);
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write& write(const PolicyPermissionsResponse_Item_Operation* msg);
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append& append(const PolicyPermissionsResponse_Item_Operation* msg);
@@ -3745,43 +3899,34 @@ class PolicyPermissionsResponse_Item_Operation::_Internal {
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry& inquiry(const PolicyPermissionsResponse_Item_Operation* msg);
 };
 
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read&
-PolicyPermissionsResponse_Item_Operation::_Internal::read(const PolicyPermissionsResponse_Item_Operation* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read& PolicyPermissionsResponse_Item_Operation::_Internal::read(const PolicyPermissionsResponse_Item_Operation* msg) {
   return *msg->_impl_.by_.read_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write&
-PolicyPermissionsResponse_Item_Operation::_Internal::write(const PolicyPermissionsResponse_Item_Operation* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write& PolicyPermissionsResponse_Item_Operation::_Internal::write(const PolicyPermissionsResponse_Item_Operation* msg) {
   return *msg->_impl_.by_.write_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append&
-PolicyPermissionsResponse_Item_Operation::_Internal::append(const PolicyPermissionsResponse_Item_Operation* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append& PolicyPermissionsResponse_Item_Operation::_Internal::append(const PolicyPermissionsResponse_Item_Operation* msg) {
   return *msg->_impl_.by_.append_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute&
-PolicyPermissionsResponse_Item_Operation::_Internal::execute(const PolicyPermissionsResponse_Item_Operation* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute& PolicyPermissionsResponse_Item_Operation::_Internal::execute(const PolicyPermissionsResponse_Item_Operation* msg) {
   return *msg->_impl_.by_.execute_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit&
-PolicyPermissionsResponse_Item_Operation::_Internal::credit(const PolicyPermissionsResponse_Item_Operation* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit& PolicyPermissionsResponse_Item_Operation::_Internal::credit(const PolicyPermissionsResponse_Item_Operation* msg) {
   return *msg->_impl_.by_.credit_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit&
-PolicyPermissionsResponse_Item_Operation::_Internal::debit(const PolicyPermissionsResponse_Item_Operation* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit& PolicyPermissionsResponse_Item_Operation::_Internal::debit(const PolicyPermissionsResponse_Item_Operation* msg) {
   return *msg->_impl_.by_.debit_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry&
-PolicyPermissionsResponse_Item_Operation::_Internal::inquiry(const PolicyPermissionsResponse_Item_Operation* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry& PolicyPermissionsResponse_Item_Operation::_Internal::inquiry(const PolicyPermissionsResponse_Item_Operation* msg) {
   return *msg->_impl_.by_.inquiry_;
 }
 void PolicyPermissionsResponse_Item_Operation::set_allocated_read(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read* read) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (read) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(read);
+    ::google::protobuf::Arena* submessage_arena = read->GetArena();
     if (message_arena != submessage_arena) {
-      read = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, read, submessage_arena);
+      read = ::google::protobuf::internal::GetOwnedMessage(message_arena, read, submessage_arena);
     }
     set_has_read();
     _impl_.by_.read_ = read;
@@ -3789,14 +3934,12 @@ void PolicyPermissionsResponse_Item_Operation::set_allocated_read(::palm::rbac::
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.read)
 }
 void PolicyPermissionsResponse_Item_Operation::set_allocated_write(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write* write) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (write) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(write);
+    ::google::protobuf::Arena* submessage_arena = write->GetArena();
     if (message_arena != submessage_arena) {
-      write = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, write, submessage_arena);
+      write = ::google::protobuf::internal::GetOwnedMessage(message_arena, write, submessage_arena);
     }
     set_has_write();
     _impl_.by_.write_ = write;
@@ -3804,14 +3947,12 @@ void PolicyPermissionsResponse_Item_Operation::set_allocated_write(::palm::rbac:
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.write)
 }
 void PolicyPermissionsResponse_Item_Operation::set_allocated_append(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append* append) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (append) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(append);
+    ::google::protobuf::Arena* submessage_arena = append->GetArena();
     if (message_arena != submessage_arena) {
-      append = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, append, submessage_arena);
+      append = ::google::protobuf::internal::GetOwnedMessage(message_arena, append, submessage_arena);
     }
     set_has_append();
     _impl_.by_.append_ = append;
@@ -3819,14 +3960,12 @@ void PolicyPermissionsResponse_Item_Operation::set_allocated_append(::palm::rbac
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.append)
 }
 void PolicyPermissionsResponse_Item_Operation::set_allocated_execute(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute* execute) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (execute) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(execute);
+    ::google::protobuf::Arena* submessage_arena = execute->GetArena();
     if (message_arena != submessage_arena) {
-      execute = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, execute, submessage_arena);
+      execute = ::google::protobuf::internal::GetOwnedMessage(message_arena, execute, submessage_arena);
     }
     set_has_execute();
     _impl_.by_.execute_ = execute;
@@ -3834,14 +3973,12 @@ void PolicyPermissionsResponse_Item_Operation::set_allocated_execute(::palm::rba
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.execute)
 }
 void PolicyPermissionsResponse_Item_Operation::set_allocated_credit(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit* credit) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (credit) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(credit);
+    ::google::protobuf::Arena* submessage_arena = credit->GetArena();
     if (message_arena != submessage_arena) {
-      credit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, credit, submessage_arena);
+      credit = ::google::protobuf::internal::GetOwnedMessage(message_arena, credit, submessage_arena);
     }
     set_has_credit();
     _impl_.by_.credit_ = credit;
@@ -3849,14 +3986,12 @@ void PolicyPermissionsResponse_Item_Operation::set_allocated_credit(::palm::rbac
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.credit)
 }
 void PolicyPermissionsResponse_Item_Operation::set_allocated_debit(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit* debit) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (debit) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(debit);
+    ::google::protobuf::Arena* submessage_arena = debit->GetArena();
     if (message_arena != submessage_arena) {
-      debit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, debit, submessage_arena);
+      debit = ::google::protobuf::internal::GetOwnedMessage(message_arena, debit, submessage_arena);
     }
     set_has_debit();
     _impl_.by_.debit_ = debit;
@@ -3864,156 +3999,135 @@ void PolicyPermissionsResponse_Item_Operation::set_allocated_debit(::palm::rbac:
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.debit)
 }
 void PolicyPermissionsResponse_Item_Operation::set_allocated_inquiry(::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry* inquiry) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  ::google::protobuf::Arena* message_arena = GetArena();
   clear_by();
   if (inquiry) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(inquiry);
+    ::google::protobuf::Arena* submessage_arena = inquiry->GetArena();
     if (message_arena != submessage_arena) {
-      inquiry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, inquiry, submessage_arena);
+      inquiry = ::google::protobuf::internal::GetOwnedMessage(message_arena, inquiry, submessage_arena);
     }
     set_has_inquiry();
     _impl_.by_.inquiry_ = inquiry;
   }
   // @@protoc_insertion_point(field_set_allocated:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.inquiry)
 }
-PolicyPermissionsResponse_Item_Operation::PolicyPermissionsResponse_Item_Operation(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyPermissionsResponse_Item_Operation::PolicyPermissionsResponse_Item_Operation(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
 }
-PolicyPermissionsResponse_Item_Operation::PolicyPermissionsResponse_Item_Operation(const PolicyPermissionsResponse_Item_Operation& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyPermissionsResponse_Item_Operation* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.by_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item_Operation::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  clear_has_by();
-  switch (from.by_case()) {
-    case kRead: {
-      _this->_internal_mutable_read()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read::MergeFrom(
-          from._internal_read());
+PolicyPermissionsResponse_Item_Operation::PolicyPermissionsResponse_Item_Operation(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item_Operation& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyPermissionsResponse_Item_Operation* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  switch (by_case()) {
+    case BY_NOT_SET:
       break;
-    }
-    case kWrite: {
-      _this->_internal_mutable_write()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write::MergeFrom(
-          from._internal_write());
-      break;
-    }
-    case kAppend: {
-      _this->_internal_mutable_append()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append::MergeFrom(
-          from._internal_append());
-      break;
-    }
-    case kExecute: {
-      _this->_internal_mutable_execute()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute::MergeFrom(
-          from._internal_execute());
-      break;
-    }
-    case kCredit: {
-      _this->_internal_mutable_credit()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit::MergeFrom(
-          from._internal_credit());
-      break;
-    }
-    case kDebit: {
-      _this->_internal_mutable_debit()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit::MergeFrom(
-          from._internal_debit());
-      break;
-    }
-    case kInquiry: {
-      _this->_internal_mutable_inquiry()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry::MergeFrom(
-          from._internal_inquiry());
-      break;
-    }
-    case kCode: {
-      _this->_internal_set_code(from._internal_code());
-      break;
-    }
-    case BY_NOT_SET: {
-      break;
-    }
+      case kRead:
+        _impl_.by_.read_ = CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read>(arena, *from._impl_.by_.read_);
+        break;
+      case kWrite:
+        _impl_.by_.write_ = CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write>(arena, *from._impl_.by_.write_);
+        break;
+      case kAppend:
+        _impl_.by_.append_ = CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append>(arena, *from._impl_.by_.append_);
+        break;
+      case kExecute:
+        _impl_.by_.execute_ = CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute>(arena, *from._impl_.by_.execute_);
+        break;
+      case kCredit:
+        _impl_.by_.credit_ = CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit>(arena, *from._impl_.by_.credit_);
+        break;
+      case kDebit:
+        _impl_.by_.debit_ = CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit>(arena, *from._impl_.by_.debit_);
+        break;
+      case kInquiry:
+        _impl_.by_.inquiry_ = CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry>(arena, *from._impl_.by_.inquiry_);
+        break;
+      case kCode:
+        new (&_impl_.by_.code_) decltype(_impl_.by_.code_){arena, from._impl_.by_.code_};
+        break;
   }
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item_Operation::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : by_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
 
-inline void PolicyPermissionsResponse_Item_Operation::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.by_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , /*decltype(_impl_._oneof_case_)*/{}
-  };
-  clear_has_by();
+inline void PolicyPermissionsResponse_Item_Operation::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 PolicyPermissionsResponse_Item_Operation::~PolicyPermissionsResponse_Item_Operation() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyPermissionsResponse_Item_Operation::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   if (has_by()) {
     clear_by();
   }
-}
-
-void PolicyPermissionsResponse_Item_Operation::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _impl_.~Impl_();
 }
 
 void PolicyPermissionsResponse_Item_Operation::clear_by() {
 // @@protoc_insertion_point(one_of_clear_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   switch (by_case()) {
     case kRead: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.read_;
       }
       break;
     }
     case kWrite: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.write_;
       }
       break;
     }
     case kAppend: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.append_;
       }
       break;
     }
     case kExecute: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.execute_;
       }
       break;
     }
     case kCredit: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.credit_;
       }
       break;
     }
     case kDebit: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.debit_;
       }
       break;
     }
     case kInquiry: {
-      if (GetArenaForAllocation() == nullptr) {
+      if (GetArena() == nullptr) {
         delete _impl_.by_.inquiry_;
       }
       break;
@@ -4030,247 +4144,208 @@ void PolicyPermissionsResponse_Item_Operation::clear_by() {
 }
 
 
-void PolicyPermissionsResponse_Item_Operation::Clear() {
+PROTOBUF_NOINLINE void PolicyPermissionsResponse_Item_Operation::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   clear_by();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyPermissionsResponse_Item_Operation::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Read read = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_read(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Write write = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_write(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Append append = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_append(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Execute execute = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_execute(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Credit credit = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          ptr = ctx->ParseMessage(_internal_mutable_credit(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Debit debit = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
-          ptr = ctx->ParseMessage(_internal_mutable_debit(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Inquiry inquiry = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
-          ptr = ctx->ParseMessage(_internal_mutable_inquiry(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string code = 99;
-      case 99:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_code();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.code"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyPermissionsResponse_Item_Operation::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyPermissionsResponse_Item_Operation::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 8, 7, 74, 7> PolicyPermissionsResponse_Item_Operation::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    99, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    8,  // num_field_entries
+    7,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyPermissionsResponse_Item_Operation_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    99, 0, 1,
+    65534, 7,
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Read read = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.read_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Write write = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.write_), _Internal::kOneofCaseOffset + 0, 1,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Append append = 3;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.append_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Execute execute = 4;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.execute_), _Internal::kOneofCaseOffset + 0, 3,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Credit credit = 5;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.credit_), _Internal::kOneofCaseOffset + 0, 4,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Debit debit = 6;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.debit_), _Internal::kOneofCaseOffset + 0, 5,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Inquiry inquiry = 7;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.inquiry_), _Internal::kOneofCaseOffset + 0, 6,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // string code = 99;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item_Operation, _impl_.by_.code_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }}, {{
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Read_default_instance_},
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Write_default_instance_},
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Append_default_instance_},
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Execute_default_instance_},
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Credit_default_instance_},
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Debit_default_instance_},
+    {::_pbi::FieldAuxDefaultMessage{}, &::palm::rbac::v1::_PolicyPermissionsResponse_Item_Operation_Inquiry_default_instance_},
+  }}, {{
+    "\65\0\0\0\0\0\0\0\4\0\0\0\0\0\0\0"
+    "palm.rbac.v1.PolicyPermissionsResponse.Item.Operation"
+    "code"
+  }},
+};
+
+::uint8_t* PolicyPermissionsResponse_Item_Operation::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Read read = 1;
-  if (_internal_has_read()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::read(this),
-        _Internal::read(this).GetCachedSize(), target, stream);
+  switch (by_case()) {
+    case kRead: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          1, _Internal::read(this),
+          _Internal::read(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kWrite: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          2, _Internal::write(this),
+          _Internal::write(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kAppend: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          3, _Internal::append(this),
+          _Internal::append(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kExecute: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          4, _Internal::execute(this),
+          _Internal::execute(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kCredit: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          5, _Internal::credit(this),
+          _Internal::credit(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kDebit: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          6, _Internal::debit(this),
+          _Internal::debit(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kInquiry: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          7, _Internal::inquiry(this),
+          _Internal::inquiry(this).GetCachedSize(), target, stream);
+      break;
+    }
+    case kCode: {
+      const std::string& _s = this->_internal_code();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.code");
+      target = stream->WriteStringMaybeAliased(99, _s, target);
+      break;
+    }
+    default:
+      break;
   }
-
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Write write = 2;
-  if (_internal_has_write()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::write(this),
-        _Internal::write(this).GetCachedSize(), target, stream);
-  }
-
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Append append = 3;
-  if (_internal_has_append()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::append(this),
-        _Internal::append(this).GetCachedSize(), target, stream);
-  }
-
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Execute execute = 4;
-  if (_internal_has_execute()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::execute(this),
-        _Internal::execute(this).GetCachedSize(), target, stream);
-  }
-
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Credit credit = 5;
-  if (_internal_has_credit()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(5, _Internal::credit(this),
-        _Internal::credit(this).GetCachedSize(), target, stream);
-  }
-
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Debit debit = 6;
-  if (_internal_has_debit()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(6, _Internal::debit(this),
-        _Internal::debit(this).GetCachedSize(), target, stream);
-  }
-
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Inquiry inquiry = 7;
-  if (_internal_has_inquiry()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(7, _Internal::inquiry(this),
-        _Internal::inquiry(this).GetCachedSize(), target, stream);
-  }
-
-  // string code = 99;
-  if (_internal_has_code()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_code().data(), static_cast<int>(this->_internal_code().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.code");
-    target = stream->WriteStringMaybeAliased(
-        99, this->_internal_code(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
   return target;
 }
 
-size_t PolicyPermissionsResponse_Item_Operation::ByteSizeLong() const {
+::size_t PolicyPermissionsResponse_Item_Operation::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   switch (by_case()) {
     // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Read read = 1;
     case kRead: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.read_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.read_);
       break;
     }
     // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Write write = 2;
     case kWrite: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.write_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.write_);
       break;
     }
     // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Append append = 3;
     case kAppend: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.append_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.append_);
       break;
     }
     // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Execute execute = 4;
     case kExecute: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.execute_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.execute_);
       break;
     }
     // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Credit credit = 5;
     case kCredit: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.credit_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.credit_);
       break;
     }
     // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Debit debit = 6;
     case kDebit: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.debit_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.debit_);
       break;
     }
     // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation.Inquiry inquiry = 7;
     case kInquiry: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *_impl_.by_.inquiry_);
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.by_.inquiry_);
       break;
     }
     // string code = 99;
     case kCode: {
-      total_size += 2 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_code());
+      total_size += 2 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_code());
       break;
     }
     case BY_NOT_SET: {
@@ -4280,19 +4355,20 @@ size_t PolicyPermissionsResponse_Item_Operation::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item_Operation::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyPermissionsResponse_Item_Operation::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyPermissionsResponse_Item_Operation::_class_data_ = {
+    PolicyPermissionsResponse_Item_Operation::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item_Operation::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyPermissionsResponse_Item_Operation::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyPermissionsResponse_Item_Operation::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyPermissionsResponse_Item_Operation::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyPermissionsResponse_Item_Operation*>(&to_msg);
   auto& from = static_cast<const PolicyPermissionsResponse_Item_Operation&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyPermissionsResponse.Item.Operation)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   switch (from.by_case()) {
@@ -4339,7 +4415,7 @@ void PolicyPermissionsResponse_Item_Operation::MergeImpl(::PROTOBUF_NAMESPACE_ID
       break;
     }
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyPermissionsResponse_Item_Operation::CopyFrom(const PolicyPermissionsResponse_Item_Operation& from) {
@@ -4349,232 +4425,255 @@ void PolicyPermissionsResponse_Item_Operation::CopyFrom(const PolicyPermissionsR
   MergeFrom(from);
 }
 
-bool PolicyPermissionsResponse_Item_Operation::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyPermissionsResponse_Item_Operation::IsInitialized() const {
   return true;
 }
 
-void PolicyPermissionsResponse_Item_Operation::InternalSwap(PolicyPermissionsResponse_Item_Operation* other) {
+::_pbi::CachedSize* PolicyPermissionsResponse_Item_Operation::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyPermissionsResponse_Item_Operation::InternalSwap(PolicyPermissionsResponse_Item_Operation* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_.by_, other->_impl_.by_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item_Operation::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item_Operation::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[20]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse_Item::_Internal {
  public:
+  using HasBits = decltype(std::declval<PolicyPermissionsResponse_Item>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_._has_bits_);
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource& resource(const PolicyPermissionsResponse_Item* msg);
+  static void set_has_resource(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
   static const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation& operation(const PolicyPermissionsResponse_Item* msg);
+  static void set_has_operation(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource&
-PolicyPermissionsResponse_Item::_Internal::resource(const PolicyPermissionsResponse_Item* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource& PolicyPermissionsResponse_Item::_Internal::resource(const PolicyPermissionsResponse_Item* msg) {
   return *msg->_impl_.resource_;
 }
-const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation&
-PolicyPermissionsResponse_Item::_Internal::operation(const PolicyPermissionsResponse_Item* msg) {
+const ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation& PolicyPermissionsResponse_Item::_Internal::operation(const PolicyPermissionsResponse_Item* msg) {
   return *msg->_impl_.operation_;
 }
-PolicyPermissionsResponse_Item::PolicyPermissionsResponse_Item(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyPermissionsResponse_Item::PolicyPermissionsResponse_Item(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item)
 }
-PolicyPermissionsResponse_Item::PolicyPermissionsResponse_Item(const PolicyPermissionsResponse_Item& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyPermissionsResponse_Item* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.resource_){nullptr}
-    , decltype(_impl_.operation_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_resource()) {
-    _this->_impl_.resource_ = new ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource(*from._impl_.resource_);
-  }
-  if (from._internal_has_operation()) {
-    _this->_impl_.operation_ = new ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation(*from._impl_.operation_);
-  }
+PolicyPermissionsResponse_Item::PolicyPermissionsResponse_Item(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse_Item& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyPermissionsResponse_Item* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.resource_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource>(arena, *from._impl_.resource_)
+                : nullptr;
+  _impl_.operation_ = (cached_has_bits & 0x00000002u)
+                ? CreateMaybeMessage<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation>(arena, *from._impl_.operation_)
+                : nullptr;
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse.Item)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse_Item::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void PolicyPermissionsResponse_Item::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.resource_){nullptr}
-    , decltype(_impl_.operation_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyPermissionsResponse_Item::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, resource_),
+           0,
+           offsetof(Impl_, operation_) -
+               offsetof(Impl_, resource_) +
+               sizeof(Impl_::operation_));
 }
-
 PolicyPermissionsResponse_Item::~PolicyPermissionsResponse_Item() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyPermissionsResponse.Item)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyPermissionsResponse_Item::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.resource_;
-  if (this != internal_default_instance()) delete _impl_.operation_;
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.resource_;
+  delete _impl_.operation_;
+  _impl_.~Impl_();
 }
 
-void PolicyPermissionsResponse_Item::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyPermissionsResponse_Item::Clear() {
+PROTOBUF_NOINLINE void PolicyPermissionsResponse_Item::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyPermissionsResponse.Item)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.resource_ != nullptr) {
-    delete _impl_.resource_;
-  }
-  _impl_.resource_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.operation_ != nullptr) {
-    delete _impl_.operation_;
-  }
-  _impl_.operation_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* PolicyPermissionsResponse_Item::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_resource(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_operation(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.resource_ != nullptr);
+      _impl_.resource_->Clear();
     }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.operation_ != nullptr);
+      _impl_.operation_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-uint8_t* PolicyPermissionsResponse_Item::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsResponse.Item)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+const char* PolicyPermissionsResponse_Item::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
 
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> PolicyPermissionsResponse_Item::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyPermissionsResponse_Item_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_.operation_)}},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_.resource_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_.resource_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 2;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_.operation_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource>()},
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyPermissionsResponse_Item::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsResponse.Item)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 1;
-  if (this->_internal_has_resource()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::resource(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::resource(this),
         _Internal::resource(this).GetCachedSize(), target, stream);
   }
 
   // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 2;
-  if (this->_internal_has_operation()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::operation(this),
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, _Internal::operation(this),
         _Internal::operation(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyPermissionsResponse.Item)
   return target;
 }
 
-size_t PolicyPermissionsResponse_Item::ByteSizeLong() const {
+::size_t PolicyPermissionsResponse_Item::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyPermissionsResponse.Item)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 1;
-  if (this->_internal_has_resource()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.resource_);
-  }
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Resource resource = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.resource_);
+    }
 
-  // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 2;
-  if (this->_internal_has_operation()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.operation_);
-  }
+    // .palm.rbac.v1.PolicyPermissionsResponse.Item.Operation operation = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.operation_);
+    }
 
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse_Item::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyPermissionsResponse_Item::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyPermissionsResponse_Item::_class_data_ = {
+    PolicyPermissionsResponse_Item::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse_Item::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyPermissionsResponse_Item::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyPermissionsResponse_Item::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyPermissionsResponse_Item::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyPermissionsResponse_Item*>(&to_msg);
   auto& from = static_cast<const PolicyPermissionsResponse_Item&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyPermissionsResponse.Item)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_resource()) {
-    _this->_internal_mutable_resource()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource::MergeFrom(
-        from._internal_resource());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_resource()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource::MergeFrom(
+          from._internal_resource());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_operation()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation::MergeFrom(
+          from._internal_operation());
+    }
   }
-  if (from._internal_has_operation()) {
-    _this->_internal_mutable_operation()->::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation::MergeFrom(
-        from._internal_operation());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyPermissionsResponse_Item::CopyFrom(const PolicyPermissionsResponse_Item& from) {
@@ -4584,14 +4683,18 @@ void PolicyPermissionsResponse_Item::CopyFrom(const PolicyPermissionsResponse_It
   MergeFrom(from);
 }
 
-bool PolicyPermissionsResponse_Item::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyPermissionsResponse_Item::IsInitialized() const {
   return true;
 }
 
-void PolicyPermissionsResponse_Item::InternalSwap(PolicyPermissionsResponse_Item* other) {
+::_pbi::CachedSize* PolicyPermissionsResponse_Item::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyPermissionsResponse_Item::InternalSwap(PolicyPermissionsResponse_Item* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_.operation_)
       + sizeof(PolicyPermissionsResponse_Item::_impl_.operation_)
       - PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse_Item, _impl_.resource_)>(
@@ -4599,172 +4702,167 @@ void PolicyPermissionsResponse_Item::InternalSwap(PolicyPermissionsResponse_Item
           reinterpret_cast<char*>(&other->_impl_.resource_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse_Item::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse_Item::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[21]);
 }
-
 // ===================================================================
 
 class PolicyPermissionsResponse::_Internal {
  public:
 };
 
-PolicyPermissionsResponse::PolicyPermissionsResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+PolicyPermissionsResponse::PolicyPermissionsResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:palm.rbac.v1.PolicyPermissionsResponse)
 }
-PolicyPermissionsResponse::PolicyPermissionsResponse(const PolicyPermissionsResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  PolicyPermissionsResponse* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){from._impl_.items_}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : items_{visibility, arena, from.items_},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+PolicyPermissionsResponse::PolicyPermissionsResponse(
+    ::google::protobuf::Arena* arena,
+    const PolicyPermissionsResponse& from)
+    : ::google::protobuf::Message(arena) {
+  PolicyPermissionsResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
   // @@protoc_insertion_point(copy_constructor:palm.rbac.v1.PolicyPermissionsResponse)
 }
+inline PROTOBUF_NDEBUG_INLINE PolicyPermissionsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : items_{visibility, arena},
+        _cached_size_{0} {}
 
-inline void PolicyPermissionsResponse::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.items_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void PolicyPermissionsResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
 }
-
 PolicyPermissionsResponse::~PolicyPermissionsResponse() {
   // @@protoc_insertion_point(destructor:palm.rbac.v1.PolicyPermissionsResponse)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void PolicyPermissionsResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.items_.~RepeatedPtrField();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void PolicyPermissionsResponse::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void PolicyPermissionsResponse::Clear() {
+PROTOBUF_NOINLINE void PolicyPermissionsResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:palm.rbac.v1.PolicyPermissionsResponse)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.items_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* PolicyPermissionsResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item items = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_items(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* PolicyPermissionsResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* PolicyPermissionsResponse::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> PolicyPermissionsResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PolicyPermissionsResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item items = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse, _impl_.items_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item items = 1;
+    {PROTOBUF_FIELD_OFFSET(PolicyPermissionsResponse, _impl_.items_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::palm::rbac::v1::PolicyPermissionsResponse_Item>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* PolicyPermissionsResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:palm.rbac.v1.PolicyPermissionsResponse)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item items = 1;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_items_size()); i < n; i++) {
-    const auto& repfield = this->_internal_items(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_items().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:palm.rbac.v1.PolicyPermissionsResponse)
   return target;
 }
 
-size_t PolicyPermissionsResponse::ByteSizeLong() const {
+::size_t PolicyPermissionsResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:palm.rbac.v1.PolicyPermissionsResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .palm.rbac.v1.PolicyPermissionsResponse.Item items = 1;
   total_size += 1UL * this->_internal_items_size();
-  for (const auto& msg : this->_impl_.items_) {
+  for (const auto& msg : this->_internal_items()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PolicyPermissionsResponse::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    PolicyPermissionsResponse::MergeImpl
+const ::google::protobuf::Message::ClassData PolicyPermissionsResponse::_class_data_ = {
+    PolicyPermissionsResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PolicyPermissionsResponse::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* PolicyPermissionsResponse::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void PolicyPermissionsResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void PolicyPermissionsResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<PolicyPermissionsResponse*>(&to_msg);
   auto& from = static_cast<const PolicyPermissionsResponse&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:palm.rbac.v1.PolicyPermissionsResponse)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.items_.MergeFrom(from._impl_.items_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void PolicyPermissionsResponse::CopyFrom(const PolicyPermissionsResponse& from) {
@@ -4774,120 +4872,31 @@ void PolicyPermissionsResponse::CopyFrom(const PolicyPermissionsResponse& from) 
   MergeFrom(from);
 }
 
-bool PolicyPermissionsResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool PolicyPermissionsResponse::IsInitialized() const {
   return true;
 }
 
-void PolicyPermissionsResponse::InternalSwap(PolicyPermissionsResponse* other) {
+::_pbi::CachedSize* PolicyPermissionsResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void PolicyPermissionsResponse::InternalSwap(PolicyPermissionsResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.items_.InternalSwap(&other->_impl_.items_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata PolicyPermissionsResponse::GetMetadata() const {
+::google::protobuf::Metadata PolicyPermissionsResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_rbac_2eproto_getter, &descriptor_table_rbac_2eproto_once,
       file_level_metadata_rbac_2eproto[22]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace v1
 }  // namespace rbac
 }  // namespace palm
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyHasRequest*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyHasRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyHasRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyCanRequest*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyCanRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyCanRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyUsersResponse_Item*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyUsersResponse_Item >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyUsersResponse_Item >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyUsersResponse*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyUsersResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyUsersResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyRolesResponse_Item_Administrator*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyRolesResponse_Item_Administrator >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyRolesResponse_Item_Administrator >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyRolesResponse_Item_Root*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyRolesResponse_Item_Root >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyRolesResponse_Item_Root >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyRolesResponse_Item*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyRolesResponse_Item >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyRolesResponse_Item >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyRolesResponse*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyRolesResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyRolesResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyRolesForUserRequest*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyRolesForUserRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyRolesForUserRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsForUserRequest*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsForUserRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsForUserRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsForRoleRequest*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsForRoleRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsForRoleRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource_Id >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Resource >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Read >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Write >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Append >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Execute >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Credit >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Debit >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation_Inquiry >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item_Operation >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse_Item*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse_Item >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse_Item >(arena);
-}
-template<> PROTOBUF_NOINLINE ::palm::rbac::v1::PolicyPermissionsResponse*
-Arena::CreateMaybeMessage< ::palm::rbac::v1::PolicyPermissionsResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::palm::rbac::v1::PolicyPermissionsResponse >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"

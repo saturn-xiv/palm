@@ -19,8 +19,8 @@
         <dropwizard.version>4.0.7</dropwizard.version>
         <mainClass>com.github.saturn_xiv.PalmApplication</mainClass>
 
-        <grpc.version>1.51.1</grpc.version>
-        <protoc.version>3.21.12</protoc.version>
+	<!-- https://github.com/grpc/grpc-java/blob/master/README.md#generated-code -->
+        <grpc.version>1.66.0</grpc.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
@@ -71,15 +71,17 @@
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
         </dependency>
+	<!-- necessary for Java 9+ -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>annotations-api</artifactId>
             <version>6.0.53</version>
-            <scope>provided</scope> <!-- not needed at runtime -->
+	    <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty-shaded</artifactId>
+	    <scope>runtime</scope>
         </dependency>
     </dependencies>
 
