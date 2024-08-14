@@ -9,7 +9,15 @@ RUN apt -y upgrade
 RUN apt-get install -y zsh git locales locales-all rsync openssh-client sshpass \
     curl wget vim tzdata pwgen zip unzip tree tmux dialog asciidoc doxygen \
     build-essential \
-    fonts-dejavu-extra fonts-noto-extra fonts-noto-cjk-extra fonts-noto-color-emoji \
+    fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fonts-smiley-sans \
+    fonts-noto-extra fonts-noto-cjk-extra fonts-noto-color-emoji \
+    fonts-arphic-ukai fonts-arphic-uming  \
+    fonts-wqy-microhei fonts-wqy-zenhei \
+    fonts-cns11643-kai fonts-cns11643-sung \
+    fonts-moe-standard-kai fonts-moe-standard-song \
+    fonts-ipaexfont fonts-ipafont fonts-konatu fonts-ipafont-nonfree-jisx0208 fonts-ipafont-nonfree-uigothic \
+    fonts-mikachan \
+    fonts-tibetan-machine fonts-ddc-uchen fonts-monlam fonts-sambhota-tsugring fonts-sambhota-yigchung \
     imagemagick ffmpeg graphviz pandoc texlive-full
 
 RUN apt -y autoremove 
