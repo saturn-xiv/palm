@@ -17,7 +17,7 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-tw-fonts \
     ttf-dejavu nerd-fonts ttf-ubuntu-font-family \
     ttf-arphic-ukai ttf-arphic-uming \
-    texlive texlive-lang pandoc \
+    texlive texlive-lang graphviz pandoc \
     php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl \
     dart haxe lua \
     erlang elixir rebar \

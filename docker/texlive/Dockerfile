@@ -8,7 +8,7 @@ RUN apt -y upgrade
 
 RUN apt-get install -y zsh git locales locales-all rsync openssh-client sshpass \
     curl wget vim tzdata pwgen zip unzip tree tmux dialog asciidoc doxygen \
-    imagemagick ffmpeg fonts-dejavu-extra texlive-full
+    imagemagick ffmpeg fonts-dejavu-extra graphviz pandoc texlive-full
 
 RUN apt -y autoremove 
 RUN apt -y clean
