@@ -31,3 +31,5 @@ sudo pacman -S crun podman buildah fuse-overlayfs
   ```
 
 - Merge file `~/.config/containers/storage.conf` and `~/.config/containers/registries.conf`
+
+- Disable build cache `podman build --no-cache NAME`
