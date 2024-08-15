@@ -1,8 +1,11 @@
 add_rules("mode.debug", "mode.release")
+set_languages("cxx20")
+
 
 target("rosebay")
     set_kind("binary")
-    add_files("src/*.cpp")
+    add_files("src/*.cpp", "protocols/src/*.cc")
+    add_includedirs("include", "protocols/include")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
