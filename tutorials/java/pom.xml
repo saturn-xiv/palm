@@ -22,8 +22,6 @@
         <!-- https://github.com/grpc/grpc-java/blob/master/README.md#generated-code -->
         <grpc.version>1.66.0</grpc.version>
         <protoc.version>4.27.3</protoc.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
