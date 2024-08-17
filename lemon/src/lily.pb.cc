@@ -428,18 +428,18 @@ const char descriptor_table_protodef_lily_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\022 \n\004file\030\001 \001(\0132\022.palm.lily.v1.File\022&\n\003tt"
     "l\030\t \001(\0132\031.google.protobuf.Duration\"\033\n\014Sh"
     "owResponse\022\013\n\003url\030\001 \001(\t\".\n\016StatusRespons"
-    "e\022\013\n\003log\030\001 \001(\t\022\017\n\007succeed\030\002 \001(\010*#\n\005Style"
-    "\022\007\n\003APA\020\000\022\010\n\004CMOS\020\001\022\007\n\003MLA\020\002*\033\n\006Format\022\007"
-    "\n\003Pdf\020\000\022\010\n\004Word\020\0012\367\001\n\003Tex\0228\n\006ToWord\022\030.pa"
-    "lm.lily.v1.TexRequest\032\022.palm.lily.v1.Fil"
-    "e\"\000\0227\n\005ToPdf\022\030.palm.lily.v1.TexRequest\032\022"
-    ".palm.lily.v1.File\"\000\022\?\n\004Show\022\031.palm.lily"
-    ".v1.ShowRequest\032\032.palm.lily.v1.ShowRespo"
-    "nse\"\000\022<\n\006Status\022\022.palm.lily.v1.File\032\034.pa"
-    "lm.lily.v1.StatusResponse\"\000Bb\n*com.githu"
-    "b.saturn_xiv.palm.plugins.lily.v1P\001Z2git"
-    "hub.com/saturn-xiv/palm/atropa/lily/serv"
-    "ices/v2b\006proto3"
+    "e\022\013\n\003log\030\001 \001(\t\022\017\n\007succeed\030\002 \001(\010*\'\n\005Style"
+    "\022\t\n\005APA_7\020\000\022\t\n\005MLA_8\020\n\022\010\n\004CMOS\020\024*\033\n\006Form"
+    "at\022\007\n\003Pdf\020\000\022\010\n\004Word\020\0012\367\001\n\003Tex\0228\n\006ToWord\022"
+    "\030.palm.lily.v1.TexRequest\032\022.palm.lily.v1"
+    ".File\"\000\0227\n\005ToPdf\022\030.palm.lily.v1.TexReque"
+    "st\032\022.palm.lily.v1.File\"\000\022\?\n\004Show\022\031.palm."
+    "lily.v1.ShowRequest\032\032.palm.lily.v1.ShowR"
+    "esponse\"\000\022<\n\006Status\022\022.palm.lily.v1.File\032"
+    "\034.palm.lily.v1.StatusResponse\"\000Bb\n*com.g"
+    "ithub.saturn_xiv.palm.plugins.lily.v1P\001Z"
+    "2github.com/saturn-xiv/palm/atropa/lily/"
+    "services/v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_lily_2eproto_deps[1] =
     {
@@ -449,7 +449,7 @@ static ::absl::once_flag descriptor_table_lily_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_lily_2eproto = {
     false,
     false,
-    1295,
+    1299,
     descriptor_table_protodef_lily_2eproto,
     "lily.proto",
     &descriptor_table_lily_2eproto_once,
@@ -470,9 +470,9 @@ const ::google::protobuf::EnumDescriptor* Style_descriptor() {
   return file_level_enum_descriptors_lily_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t Style_internal_data_[] = {
-    196608u, 0u, };
+    65536u, 32u, 524800u, };
 bool Style_IsValid(int value) {
-  return 0 <= value && value <= 2;
+  return 0 <= value && value <= 20 && ((1049601u >> value) & 1) != 0;
 }
 const ::google::protobuf::EnumDescriptor* Format_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_lily_2eproto);

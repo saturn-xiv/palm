@@ -106,9 +106,9 @@ namespace palm {
 namespace lily {
 namespace v1 {
 enum Style : int {
-  APA = 0,
-  CMOS = 1,
-  MLA = 2,
+  APA_7 = 0,
+  MLA_8 = 10,
+  CMOS = 20,
   Style_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   Style_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -118,8 +118,8 @@ enum Style : int {
 bool Style_IsValid(int value);
 extern const uint32_t Style_internal_data_[];
 constexpr Style Style_MIN = static_cast<Style>(0);
-constexpr Style Style_MAX = static_cast<Style>(2);
-constexpr int Style_ARRAYSIZE = 2 + 1;
+constexpr Style Style_MAX = static_cast<Style>(20);
+constexpr int Style_ARRAYSIZE = 20 + 1;
 const ::google::protobuf::EnumDescriptor*
 Style_descriptor();
 template <typename T>
@@ -127,13 +127,7 @@ const std::string& Style_Name(T value) {
   static_assert(std::is_same<T, Style>::value ||
                     std::is_integral<T>::value,
                 "Incorrect type passed to Style_Name().");
-  return Style_Name(static_cast<Style>(value));
-}
-template <>
-inline const std::string& Style_Name(Style value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<Style_descriptor,
-                                                 0, 2>(
-      static_cast<int>(value));
+  return ::google::protobuf::internal::NameOfEnum(Style_descriptor(), value);
 }
 inline bool Style_Parse(absl::string_view name, Style* value) {
   return ::google::protobuf::internal::ParseNamedEnum<Style>(
