@@ -1,0 +1,84 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.lily.v1";
+option go_package = "github.com/saturn-xiv/palm/atropa/lily/services/v2";
+package palm.lily.v1;
+
+import "google/protobuf/duration.proto";
+
+// ----------------------------------------------------------------------------
+
+// https://owl.purdue.edu/owl/general_writing/general_writing_faqs.html
+enum Style {
+  //   https://apastyle.apa.org/
+  //   https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html
+  APA = 0;
+  //   https://www.chicagomanualofstyle.org/home.html
+  //   https://owl.purdue.edu/owl/research_and_citation/chicago_manual_17th_edition/cmos_formatting_and_style_guide/chicago_manual_of_style_17th_edition.html
+  CMOS = 1;
+  //   https://www.mla.org/MLA-Style
+  //   https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_formatting_and_style_guide.html#:~:text=MLA%20(Modern%20Language%20Association)%20style,the%20liberal%20arts%20and%20humanities.
+  MLA = 2;
+}
+
+enum Format {
+  Pdf = 0;
+  Word = 1;
+}
+
+message File {
+  string bucket = 1;
+  string object = 2;
+}
+
+message Book {}
+
+message Slideshow {}
+
+message Article {}
+
+message Section {
+  repeated Section items = 1;
+}
+
+// ----------------------------------------------------------------------------
+
+message TexBuildTask {
+  string entry = 1;
+  map<string, bytes> attachments = 2;
+  File output = 9;
+}
+
+// ----------------------------------------------------------------------------
+
+service Tex {
+  rpc ToWord(TexRequest) returns (File) {}
+  rpc ToPdf(TexRequest) returns (File) {}
+  rpc Show(ShowRequest) returns (ShowResponse) {}
+  rpc Status(File) returns (StatusResponse) {}
+}
+
+message TexRequest {
+  oneof Payload {
+    Book book = 1;
+    Article article = 2;
+    Slideshow slideshow = 3;
+  }
+  map<string, bytes> attachments = 97;
+  Style style = 98;
+  Format format = 99;
+}
+
+message ShowRequest {
+  File file = 1;
+  google.protobuf.Duration ttl = 9;
+}
+
+message ShowResponse {
+  string url = 1;
+}
+
+message StatusResponse {
+  string log = 1;
+  bool succeed = 2;
+}

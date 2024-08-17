@@ -118,6 +118,8 @@ generate_grpc_for_go s3 atropa/s3/services/v2
 generate_grpc_for_go rbac atropa/rbac/services/v2
 generate_grpc_for_go google atropa/google/services/v2
 generate_grpc_for_go wechat atropa/wechat/services/v2
+generate_grpc_for_go lily atropa/lily/services/v2
+generate_grpc_for_go morus atropa/morus/services/v2
 generate_grpc_for_php lemon/php
 
 declare -a langs=(
