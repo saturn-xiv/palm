@@ -9,14 +9,14 @@ import (
 	pb "github.com/saturn-xiv/palm/atropa/s3/services/v2"
 )
 
-func NewS3Service(cluster *minio.Cluster) *S3Service {
+func NewS3Service(cluster *minio.Client) *S3Service {
 	return &S3Service{cluster: cluster}
 }
 
 type S3Service struct {
 	pb.UnimplementedS3Server
 
-	cluster *minio.Cluster
+	cluster *minio.Client
 }
 
 func (p *S3Service) CreateBucket(ctx context.Context, req *pb.CreateBucketRequest) (*pb.CreateBucketResponse, error) {

@@ -29,6 +29,8 @@ import (
 	wechat_pay "github.com/saturn-xiv/palm/atropa/env/wechat-pay"
 	google_services "github.com/saturn-xiv/palm/atropa/google/services"
 	google_pb "github.com/saturn-xiv/palm/atropa/google/services/v2"
+	lily_services "github.com/saturn-xiv/palm/atropa/lily/services"
+	lily_pb "github.com/saturn-xiv/palm/atropa/lily/services/v2"
 	rbac_services "github.com/saturn-xiv/palm/atropa/rbac/services"
 	rbac_pb "github.com/saturn-xiv/palm/atropa/rbac/services/v2"
 	s3_services "github.com/saturn-xiv/palm/atropa/s3/services"
@@ -112,7 +114,7 @@ func mount(server *grpc.Server,
 	db *gorm.DB, redis *redis.Client, rabbitmq *rabbitmq.Config,
 	aes *crypto.Aes, hmac *crypto.HMac, jwt *crypto.Jwt,
 	enforcer *casbin.Enforcer,
-	s3 *minio.Cluster,
+	s3 *minio.Client,
 	google_oauth2 *GoogleOauth2,
 	wechat_oauth2 *wechat_oauth2.Config,
 	wechat_mini_program *wechat_mini_program.Config,
@@ -132,6 +134,7 @@ func mount(server *grpc.Server,
 	balsam_pb.RegisterAttachmentServer(server, balsam_services.NewAttachmentService(db))
 	rbac_pb.RegisterPolicyServer(server, rbac_services.NewPolicyService(enforcer))
 	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(s3))
+	lily_pb.RegisterTexServer(server, lily_services.NewTexService(s3))
 	if google_oauth2 != nil {
 		service, err := google_services.NewOauth2Service(jwt, google_oauth2.ProjectID, google_oauth2.RedirectURL)
 		if err != nil {

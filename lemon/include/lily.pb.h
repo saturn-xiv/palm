@@ -1437,9 +1437,9 @@ class TexRequest final : public ::google::protobuf::Message
     return *internal_default_instance();
   }
   enum PayloadCase {
-    kBook = 1,
-    kArticle = 2,
-    kSlideshow = 3,
+    kBook = 11,
+    kArticle = 12,
+    kSlideshow = 13,
     PAYLOAD_NOT_SET = 0,
   };
   static inline const TexRequest* internal_default_instance() {
@@ -1515,14 +1515,16 @@ class TexRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kAttachmentsFieldNumber = 97,
-    kStyleFieldNumber = 98,
-    kFormatFieldNumber = 99,
-    kBookFieldNumber = 1,
-    kArticleFieldNumber = 2,
-    kSlideshowFieldNumber = 3,
+    kAttachmentsFieldNumber = 99,
+    kNameFieldNumber = 1,
+    kTtlFieldNumber = 9,
+    kStyleFieldNumber = 2,
+    kFormatFieldNumber = 3,
+    kBookFieldNumber = 11,
+    kArticleFieldNumber = 12,
+    kSlideshowFieldNumber = 13,
   };
-  // map<string, bytes> attachments = 97;
+  // map<string, bytes> attachments = 99;
   int attachments_size() const;
   private:
   int _internal_attachments_size() const;
@@ -1537,7 +1539,38 @@ class TexRequest final : public ::google::protobuf::Message
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_attachments();
 
   public:
-  // .palm.lily.v1.Style style = 98;
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // .google.protobuf.Duration ttl = 9;
+  bool has_ttl() const;
+  void clear_ttl() ;
+  const ::google::protobuf::Duration& ttl() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_ttl();
+  ::google::protobuf::Duration* mutable_ttl();
+  void set_allocated_ttl(::google::protobuf::Duration* value);
+  void unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value);
+  ::google::protobuf::Duration* unsafe_arena_release_ttl();
+
+  private:
+  const ::google::protobuf::Duration& _internal_ttl() const;
+  ::google::protobuf::Duration* _internal_mutable_ttl();
+
+  public:
+  // .palm.lily.v1.Style style = 2;
   void clear_style() ;
   ::palm::lily::v1::Style style() const;
   void set_style(::palm::lily::v1::Style value);
@@ -1547,7 +1580,7 @@ class TexRequest final : public ::google::protobuf::Message
   void _internal_set_style(::palm::lily::v1::Style value);
 
   public:
-  // .palm.lily.v1.Format format = 99;
+  // .palm.lily.v1.Format format = 3;
   void clear_format() ;
   ::palm::lily::v1::Format format() const;
   void set_format(::palm::lily::v1::Format value);
@@ -1557,7 +1590,7 @@ class TexRequest final : public ::google::protobuf::Message
   void _internal_set_format(::palm::lily::v1::Format value);
 
   public:
-  // .palm.lily.v1.Book book = 1;
+  // .palm.lily.v1.Book book = 11;
   bool has_book() const;
   private:
   bool _internal_has_book() const;
@@ -1576,7 +1609,7 @@ class TexRequest final : public ::google::protobuf::Message
   ::palm::lily::v1::Book* _internal_mutable_book();
 
   public:
-  // .palm.lily.v1.Article article = 2;
+  // .palm.lily.v1.Article article = 12;
   bool has_article() const;
   private:
   bool _internal_has_article() const;
@@ -1595,7 +1628,7 @@ class TexRequest final : public ::google::protobuf::Message
   ::palm::lily::v1::Article* _internal_mutable_article();
 
   public:
-  // .palm.lily.v1.Slideshow slideshow = 3;
+  // .palm.lily.v1.Slideshow slideshow = 13;
   bool has_slideshow() const;
   private:
   bool _internal_has_slideshow() const;
@@ -1626,8 +1659,8 @@ class TexRequest final : public ::google::protobuf::Message
   inline void clear_has_Payload();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 6, 4,
-      43, 7>
+      4, 8, 5,
+      55, 7>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -1647,10 +1680,14 @@ class TexRequest final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const TexRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::MapField<TexRequest_AttachmentsEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         attachments_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::Duration* ttl_;
     int style_;
     int format_;
     union PayloadUnion {
@@ -1660,7 +1697,6 @@ class TexRequest final : public ::google::protobuf::Message
       ::palm::lily::v1::Article* article_;
       ::palm::lily::v1::Slideshow* slideshow_;
     } Payload_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2444,7 +2480,192 @@ inline void TexBuildTask::set_allocated_output(::palm::lily::v1::File* value) {
 
 // TexRequest
 
-// .palm.lily.v1.Book book = 1;
+// string name = 1;
+inline void TexRequest::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& TexRequest::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TexRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.name)
+}
+inline std::string* TexRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexRequest.name)
+  return _s;
+}
+inline const std::string& TexRequest::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void TexRequest::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* TexRequest::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* TexRequest::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TexRequest.name)
+  return _impl_.name_.Release();
+}
+inline void TexRequest::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TexRequest.name)
+}
+
+// .palm.lily.v1.Style style = 2;
+inline void TexRequest::clear_style() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.style_ = 0;
+}
+inline ::palm::lily::v1::Style TexRequest::style() const {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.style)
+  return _internal_style();
+}
+inline void TexRequest::set_style(::palm::lily::v1::Style value) {
+  _internal_set_style(value);
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.style)
+}
+inline ::palm::lily::v1::Style TexRequest::_internal_style() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::lily::v1::Style>(_impl_.style_);
+}
+inline void TexRequest::_internal_set_style(::palm::lily::v1::Style value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.style_ = value;
+}
+
+// .palm.lily.v1.Format format = 3;
+inline void TexRequest::clear_format() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_ = 0;
+}
+inline ::palm::lily::v1::Format TexRequest::format() const {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.format)
+  return _internal_format();
+}
+inline void TexRequest::set_format(::palm::lily::v1::Format value) {
+  _internal_set_format(value);
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.format)
+}
+inline ::palm::lily::v1::Format TexRequest::_internal_format() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::lily::v1::Format>(_impl_.format_);
+}
+inline void TexRequest::_internal_set_format(::palm::lily::v1::Format value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_ = value;
+}
+
+// .google.protobuf.Duration ttl = 9;
+inline bool TexRequest::has_ttl() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.ttl_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Duration& TexRequest::_internal_ttl() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Duration* p = _impl_.ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Duration&>(::google::protobuf::_Duration_default_instance_);
+}
+inline const ::google::protobuf::Duration& TexRequest::ttl() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.ttl)
+  return _internal_ttl();
+}
+inline void TexRequest::unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TexRequest.ttl)
+}
+inline ::google::protobuf::Duration* TexRequest::release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Duration* released = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Duration* TexRequest::unsafe_arena_release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TexRequest.ttl)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Duration* temp = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Duration* TexRequest::_internal_mutable_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ttl_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Duration>(GetArena());
+    _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(p);
+  }
+  return _impl_.ttl_;
+}
+inline ::google::protobuf::Duration* TexRequest::mutable_ttl() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Duration* _msg = _internal_mutable_ttl();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexRequest.ttl)
+  return _msg;
+}
+inline void TexRequest::set_allocated_ttl(::google::protobuf::Duration* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TexRequest.ttl)
+}
+
+// .palm.lily.v1.Book book = 11;
 inline bool TexRequest::has_book() const {
   return Payload_case() == kBook;
 }
@@ -2523,7 +2744,7 @@ inline ::palm::lily::v1::Book* TexRequest::mutable_book() ABSL_ATTRIBUTE_LIFETIM
   return _msg;
 }
 
-// .palm.lily.v1.Article article = 2;
+// .palm.lily.v1.Article article = 12;
 inline bool TexRequest::has_article() const {
   return Payload_case() == kArticle;
 }
@@ -2602,7 +2823,7 @@ inline ::palm::lily::v1::Article* TexRequest::mutable_article() ABSL_ATTRIBUTE_L
   return _msg;
 }
 
-// .palm.lily.v1.Slideshow slideshow = 3;
+// .palm.lily.v1.Slideshow slideshow = 13;
 inline bool TexRequest::has_slideshow() const {
   return Payload_case() == kSlideshow;
 }
@@ -2681,7 +2902,7 @@ inline ::palm::lily::v1::Slideshow* TexRequest::mutable_slideshow() ABSL_ATTRIBU
   return _msg;
 }
 
-// map<string, bytes> attachments = 97;
+// map<string, bytes> attachments = 99;
 inline int TexRequest::_internal_attachments_size() const {
   return _internal_attachments().size();
 }
@@ -2707,50 +2928,6 @@ inline ::google::protobuf::Map<std::string, std::string>* TexRequest::_internal_
 inline ::google::protobuf::Map<std::string, std::string>* TexRequest::mutable_attachments() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_map:palm.lily.v1.TexRequest.attachments)
   return _internal_mutable_attachments();
-}
-
-// .palm.lily.v1.Style style = 98;
-inline void TexRequest::clear_style() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.style_ = 0;
-}
-inline ::palm::lily::v1::Style TexRequest::style() const {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.style)
-  return _internal_style();
-}
-inline void TexRequest::set_style(::palm::lily::v1::Style value) {
-  _internal_set_style(value);
-  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.style)
-}
-inline ::palm::lily::v1::Style TexRequest::_internal_style() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::palm::lily::v1::Style>(_impl_.style_);
-}
-inline void TexRequest::_internal_set_style(::palm::lily::v1::Style value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.style_ = value;
-}
-
-// .palm.lily.v1.Format format = 99;
-inline void TexRequest::clear_format() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.format_ = 0;
-}
-inline ::palm::lily::v1::Format TexRequest::format() const {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.format)
-  return _internal_format();
-}
-inline void TexRequest::set_format(::palm::lily::v1::Format value) {
-  _internal_set_format(value);
-  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.format)
-}
-inline ::palm::lily::v1::Format TexRequest::_internal_format() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::palm::lily::v1::Format>(_impl_.format_);
-}
-inline void TexRequest::_internal_set_format(::palm::lily::v1::Format value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.format_ = value;
 }
 
 inline bool TexRequest::has_Payload() const {

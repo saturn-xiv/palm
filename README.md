@@ -39,6 +39,11 @@ $ podman run --rm -it --events-backend=file --network host -v $PWD:/workspace:z 
 - [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
 - [Protobuf Version Support](https://protobuf.dev/support/version-support/)
 
+### Minio
+
+- [Deploy MinIO: Multi-Node Multi-Drive](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-multi-node-multi-drive.html)
+- [Erasure Code Calculator](https://min.io/product/erasure-code-calculator)
+
 ### UI
 
 - [Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web)

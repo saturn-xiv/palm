@@ -60,14 +60,16 @@ service Tex {
 }
 
 message TexRequest {
+  string name = 1;
+  Style style = 2;
+  Format format = 3;
+  google.protobuf.Duration ttl = 9;
   oneof Payload {
-    Book book = 1;
-    Article article = 2;
-    Slideshow slideshow = 3;
+    Book book = 11;
+    Article article = 12;
+    Slideshow slideshow = 13;
   }
-  map<string, bytes> attachments = 97;
-  Style style = 98;
-  Format format = 99;
+  map<string, bytes> attachments = 99;
 }
 
 message ShowRequest {
