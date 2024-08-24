@@ -7,7 +7,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/automattic/go-gravatar"
 	"github.com/casbin/casbin/v2"
+	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"gorm.io/gorm"
@@ -47,19 +49,88 @@ type userSignUpByEmailForm struct {
 	RealName string `validate:"required,min=2,max=127"`
 	Password string `validate:"required,min=6,max=32"`
 	Home     string `validate:"required,min=8,max=63"`
+	Timezone string `validate:"required,min=2,max=32"`
 }
 
 func (p *EmailUserService) SignUp(ctx context.Context, req *pb.UserSignUpByEmailRequest) (*emptypb.Empty, error) {
-	// TODO
-	// lang := Locale(ctx).String()
-	// client_ip := ClientIP(ctx).String()
 	form := userSignUpByEmailForm{
 		Email:    strings.ToLower(strings.TrimSpace(req.Email)),
 		Nickname: strings.ToLower(strings.TrimSpace(req.Nickname)),
 		Password: req.Password,
+		RealName: req.RealName,
+		Timezone: req.Timezone,
+		Home:     req.Home,
 	}
 	if err := gl_validate.Struct(&form); err != nil {
 		return nil, err
+	}
+	timezone, err := time.LoadLocation(form.Timezone)
+	if err != nil {
+		return nil, err
+	}
+	{
+		var it models.EmailUser
+		{
+			err := p.db.First(&it, "email = ?", form.Email).Error
+			if err == nil {
+				return nil, errors.New("user already exists")
+			}
+			if err != gorm.ErrRecordNotFound {
+				return nil, err
+			}
+		}
+		{
+			err := p.db.First(&it, "nickname = ?", form.Nickname).Error
+			if err == nil {
+				return nil, errors.New("user already exists")
+			}
+			if err != gorm.ErrRecordNotFound {
+				return nil, err
+			}
+		}
+	}
+	{
+		lang := Locale(ctx).String()
+		client_ip := ClientIP(ctx).String()
+		uid := uuid.New().String()
+
+		// https://docs.gravatar.com/api/avatars/hash/
+		avatar := gravatar.NewGravatarFromEmail(form.Email).GetURL()
+		password, salt, err := p.hmac.Sign([]byte(form.Password))
+		if err != nil {
+			return nil, err
+		}
+		if err := p.db.Transaction(func(tx *gorm.DB) error {
+			if err := tx.Create(&models.User{
+				UID:      uid,
+				Lang:     lang,
+				Timezone: timezone.String(),
+			}).Error; err != nil {
+				return err
+			}
+			var user models.User
+			if err := p.db.First(&user, "uid = ?", uid).Error; err != nil {
+				return err
+			}
+			if err := tx.Create(&models.EmailUser{
+				UserID:   user.ID,
+				Email:    form.Email,
+				Nickname: form.Nickname,
+				RealName: form.RealName,
+				Password: password,
+				Salt:     salt,
+				Avatar:   avatar,
+			}).Error; err != nil {
+				return err
+			}
+
+			if err := models.CreateLog(tx, user.ID, lang, client_ip, pb.UserLogsResponse_Item_Info, (*UserService)(nil), (*models.EmailUser)(nil), nil, "user.logs.sign-up", map[string]interface{}{}); err != nil {
+				return err
+			}
+			return nil
+		}); err != nil {
+			return nil, err
+		}
 	}
 	return &emptypb.Empty{}, nil
 }
@@ -69,11 +140,11 @@ func (p *EmailUserService) SignIn(ctx context.Context, req *pb.UserSignInByEmail
 
 	switch user := req.User.(type) {
 	case *pb.UserSignInByEmailRequest_Email:
-		if err := p.db.First(&it, "email = ?", user.Email).Error; err != nil {
+		if err := p.db.First(&it, "email = ?", strings.ToLower(strings.TrimSpace(user.Email))).Error; err != nil {
 			return nil, err
 		}
 	case *pb.UserSignInByEmailRequest_Nickname:
-		if err := p.db.First(&it, "nickname = ?", user.Nickname).Error; err != nil {
+		if err := p.db.First(&it, "nickname = ?", strings.ToLower(strings.TrimSpace(user.Nickname))).Error; err != nil {
 			return nil, err
 		}
 	}
@@ -374,11 +445,11 @@ func (p *EmailUserService) from_request(db *gorm.DB, req *pb.UserByEmailRequest)
 
 	switch user := req.User.(type) {
 	case *pb.UserByEmailRequest_Email:
-		if err := db.First(&it, "email = ?", user.Email).Error; err == nil {
+		if err := db.First(&it, "email = ?", strings.ToLower(strings.TrimSpace(user.Email))).Error; err == nil {
 			return &it, nil
 		}
 	case *pb.UserByEmailRequest_Nickname:
-		if err := db.First(&it, "nickname = ?", user.Nickname).Error; err == nil {
+		if err := db.First(&it, "nickname = ?", strings.ToLower(strings.TrimSpace(user.Nickname))).Error; err == nil {
 			return &it, nil
 		}
 

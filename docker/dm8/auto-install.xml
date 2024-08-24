@@ -8,7 +8,7 @@
     <DB_PARAMS>
         <PATH>/var/lib/dm8</PATH>
         <DBNAME>demo</DBNAME>
-        <EXTENT_SIZE>32</EXTENT_SIZE>
+        <EXTENT_SIZE>64</EXTENT_SIZE>
         <PAGE_SIZE>32</PAGE_SIZE>
         <LOG_SIZE>2048</LOG_SIZE>
         <CASE_SENSITIVE>y</CASE_SENSITIVE>

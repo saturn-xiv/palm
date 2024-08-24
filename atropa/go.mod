@@ -5,6 +5,7 @@ go 1.23.0
 require (
 	github.com/BurntSushi/toml v1.4.0
 	github.com/amacneil/dbmate/v2 v2.19.0
+	github.com/automattic/go-gravatar v0.0.0-20210818030622-453d3c921ea3
 	github.com/btcsuite/btcutil v1.0.2
 	github.com/casbin/casbin/v2 v2.98.0
 	github.com/casbin/gorm-adapter/v3 v3.28.0
@@ -19,7 +20,6 @@ require (
 	github.com/graphql-go/graphql v0.8.1
 	github.com/graphql-go/handler v0.2.4
 	github.com/minio/minio-go/v7 v7.0.75
-	github.com/mroth/weightedrand/v2 v2.1.0
 	github.com/rabbitmq/amqp091-go v1.10.0
 	github.com/redis/go-redis/v9 v9.6.1
 	github.com/spf13/cobra v1.8.1

@@ -51,7 +51,7 @@ MySql: mysql://USER:PASSWORD@HOST:PORT/DBNAME?charset=utf8mb4&allowMultiQueries=
 PostgreSQL: postgres://USER:PASSWORD@HOST:PORT/DBNAME?sslmode=disable
 SqlServer: sqlserver://USER:PASSWORD@HOST:PORT/INSTANCE?allowMultiQueries=true
 Oracle: oracle:thin:@HOST:PORT/INSTANCE
-DM8: dm://USER:PASSWORD@HOST:PORT
+DM8: dm://USER:PASSWORD@HOST:PORT?charset=utf8
 `,
 	)
 	root_cmd.PersistentFlags().StringVar(&gl_migrations_dir, "migrations-dir", "migrations", "specify the directory containing migration files")
