@@ -6,6 +6,7 @@
   "ssl": {
     "ca-file": "tmp/ca.crt",
     "key-file": "tmp/client.key",
-    "cert-file": "tmp/client.crt"
+    "cert-file": "tmp/client.crt",
+    "authority": "www.saturn-xiv.org"
   }
 }
