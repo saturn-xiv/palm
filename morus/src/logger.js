@@ -1,7 +1,11 @@
 "use strict";
 
 import pino from "pino";
+import pretty from "pino-pretty";
 
-const logger = pino();
+const stream = pretty({
+  colorize: true,
+});
+const logger = pino({ level: "debug" }, stream);
 
 export default logger;
