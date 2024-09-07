@@ -1,8 +1,7 @@
 "use strict";
 
-import pino from 'pino';
+import pino from "pino";
 
 const logger = pino();
-
 
 export default logger;
