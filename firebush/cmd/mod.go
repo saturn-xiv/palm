@@ -8,6 +8,7 @@ import (
 
 	"github.com/saturn-xiv/palm/firebush/cmd/job"
 	"github.com/saturn-xiv/palm/firebush/cmd/ping"
+	"github.com/saturn-xiv/palm/firebush/env"
 )
 
 var (
@@ -42,8 +43,8 @@ var (
 
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
-	root_cmd.PersistentFlags().StringVarP(&gl_inventory, "inventory", "i", "staging", "specify inventory host path or comma separated host list")
-	root_cmd.PersistentFlags().StringVarP(&gl_subset, "subset", "l", "all", "further limit selected hosts to an additional pattern")
+	root_cmd.PersistentFlags().StringVarP(&gl_inventory, "inventory", "i", "staging.toml", "specify inventory host filepath")
+	root_cmd.PersistentFlags().StringVarP(&gl_subset, "subset", "l", env.GROUP_ALL, "further limit selected hosts to an additional pattern")
 	root_cmd.PersistentFlags().UintVarP(&gl_timeout, "timeout", "T", 20, "the connection timeout in seconds")
 
 	{

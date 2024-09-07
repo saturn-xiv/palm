@@ -7,16 +7,9 @@ import (
 	"os"
 
 	"golang.org/x/crypto/ssh"
-	"gopkg.in/ini.v1"
 )
 
 type Execution func(env map[string]interface{}) ([]string, error)
-
-func NewNode(host string, config *ini.File) (*Node, error) {
-	item := Node{}
-	// TODO
-	return &item, nil
-}
 
 type Node struct {
 	Host         string
@@ -25,7 +18,7 @@ type Node struct {
 	Password     *string
 	KeyFile      *string
 	SudoPassword *string
-	Environment  map[string]interface{}
+	Environment  Environment
 }
 
 func (p *Node) Execute(job string) error {

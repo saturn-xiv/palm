@@ -2,106 +2,106 @@ package env
 
 import (
 	"fmt"
+	"io"
 	"log/slog"
-	"path/filepath"
+	"slices"
 	"sync"
-
-	"gopkg.in/ini.v1"
 )
 
 type Inventory struct {
-	Groups      []*Group
-	Nodes       []*Node
-	Environment map[string]interface{}
+	Groups      map[string]Environment `toml:"groups"`
+	Hosts       map[string]Environment `toml:"hosts"`
+	Environment Environment            `toml:"env"`
 }
 
-func LoadInventory(folder string) (*Inventory, error) {
-	file := filepath.Join(folder, "config.ini")
-	slog.Info("load inventory", slog.String("file", file))
-	item := Inventory{
-		Groups:      []*Group{},
-		Nodes:       []*Node{},
-		Environment: map[string]interface{}{},
+func (p *Inventory) Display(w io.Writer) {
+	fmt.Fprintln(w, "============ INVENTORY ============")
+	for n, g := range p.Groups {
+		fmt.Fprintf(w, "------ GROUP %s ------\n", n)
+		g.Display(w)
 	}
-	cfg, err := ini.LoadSources(ini.LoadOptions{
-		IgnoreInlineComment:      true,
-		SpaceBeforeInlineComment: true,
-	}, file)
-	if err != nil {
-		return nil, err
+	for n, h := range p.Hosts {
+		fmt.Fprintf(w, "------ HOST %s ------\n", n)
+		h.Display(w)
 	}
-	load_env(cfg.Section(""), item.Environment)
-
-	for _, it := range cfg.Sections() {
-		name := it.Name()
-		slog.Debug("found section", slog.String("name", name))
-		// FIXME
+	{
+		fmt.Fprintln(w, "------ GLOBAL ENV -------")
+		p.Environment.Display(w)
 	}
-	// {
-	// 	file := filepath.Join(name, "vars.ini")
-	// 	slog.Debug("load global environment", slog.String("file", file))
-	// 	cfg, err := ini.Load(file)
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
-	// 	load_env(cfg.Section(""), item.Environment)
-	// }
-	// {
-	// 	root := filepath.Join(name, "groups")
-	// 	files, err := os.ReadDir(root)
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
-	// 	for _, it := range files {
-	// 		file := it.Name()
-	// 		if !it.Type().IsRegular() {
-	// 			return nil, fmt.Errorf("bad group file %s", file)
-	// 		}
-	// 		name = strings.TrimSuffix(file, filepath.Ext(file))
-	// 		slog.Debug("found group", slog.String("name", name))
-	// 		cfg, err := ini.Load(filepath.Join(root, name))
-	// 		if err != nil {
-	// 			return nil, err
-	// 		}
-	// 		group, err := NewGroup(name, cfg)
-	// 		if err != nil {
-	// 			return nil, err
-	// 		}
-	// 		item.Groups = append(item.Groups, group)
-	// 	}
-	// }
-	// {
-	// 	root := filepath.Join(name, "hosts")
-	// 	files, err := os.ReadDir(root)
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
-	// 	for _, it := range files {
-	// 		file := it.Name()
-	// 		if !it.Type().IsRegular() {
-	// 			return nil, fmt.Errorf("bad host file %s", file)
-	// 		}
-	// 		name = strings.TrimSuffix(file, filepath.Ext(file))
-	// 		slog.Debug("found host", slog.String("name", name))
-	// 		cfg, err := ini.Load(filepath.Join(root, name))
-	// 		if err != nil {
-	// 			return nil, err
-	// 		}
-	// 		node, err := NewNode(name, cfg)
-	// 		if err != nil {
-	// 			return nil, err
-	// 		}
-	// 		item.Nodes = append(item.Nodes, node)
-	// 	}
-	// }
-	return &item, nil
+	fmt.Fprintln(w, "====================================")
 }
 
 func (p *Inventory) subset(name string) []*Node {
-	items := []*Node{}
-	// TODO all
-	// TODO by group
-	// TODO by host
+	items := map[string]Environment{}
+	if name == GROUP_ALL {
+		for group := range p.Groups {
+			hosts := p.by_group(group)
+			for k, v := range hosts {
+				items[k] = v
+			}
+		}
+		for host := range p.Hosts {
+			items[host] = p.by_host(host)
+		}
+	}
+	if _, ok := p.Groups[name]; ok {
+		for k, v := range p.by_group(name) {
+			items[k] = v
+		}
+	}
+	if _, ok := p.Hosts[name]; ok {
+		items[name] = p.by_host(name)
+	}
+
+	nodes := []*Node{}
+	for k, v := range items {
+		nodes = append(nodes, v.Node(k))
+	}
+	return nodes
+}
+
+func (p *Inventory) by_host(name string) Environment {
+	item := Environment{}
+	for k, v := range p.Environment {
+		item[k] = v
+	}
+
+	for _, group := range p.Groups {
+		if hosts, ok := group[GROUP_KEY_HOSTS]; ok {
+			if hosts, ok := hosts.([]string); ok {
+				if slices.Contains(hosts, name) {
+					for k, v := range group {
+						if k != GROUP_KEY_HOSTS {
+							item[k] = v
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if host, ok := p.Hosts[name]; ok {
+		for k, v := range host {
+			item[k] = v
+		}
+	}
+	return item
+}
+
+func (p *Inventory) by_group(name string) map[string]Environment {
+	items := map[string]Environment{}
+	if group, ok := p.Groups[name]; ok {
+		if hosts, ok := group[GROUP_KEY_HOSTS]; ok {
+			if hosts, ok := hosts.([]string); ok {
+				for _, host := range hosts {
+					if _, ok := items[host]; ok {
+						slog.Warn("host already exists", slog.String("group", name), slog.String("name", host))
+					}
+					items[host] = p.by_host(host)
+				}
+			}
+		}
+	}
 	return items
 }
 
@@ -112,12 +112,12 @@ func (p *Inventory) Execute(subset string, handler func(*Node) error) {
 		var wg sync.WaitGroup
 		for _, node := range nodes {
 			wg.Add(1)
-			go func(n *Node, r map[string]string) {
+			go func(n *Node) {
 				defer wg.Done()
-				if e := handler(n); e != nil {
-					r[n.Host] = e.Error()
+				if er := handler(n); er != nil {
+					reports[n.Host] = er.Error()
 				}
-			}(node, reports)
+			}(node)
 		}
 		wg.Wait()
 	}
