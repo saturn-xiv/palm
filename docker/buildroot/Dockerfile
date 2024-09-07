@@ -41,7 +41,7 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 
 # https://github.com/buildroot/buildroot
 # https://buildroot.org/downloads/manual/manual.html#requirement
-ENV BUILDROOT_VERSION "2024.02.2"
+ENV BUILDROOT_VERSION "2024.08"
 RUN git clone -b ${BUILDROOT_VERSION} https://git.buildroot.net/buildroot $HOME/downloads/buildroot
 RUN echo 'export BR2_DL_DIR=$HOME/downloads' >> $HOME/.zshrc
 # make list-defconfigs
@@ -65,7 +65,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && make source"
 
 # https://github.com/openwrt/openwrt
-ENV OPENWRT_VERSION "v23.05.3"
+ENV OPENWRT_VERSION "v23.05.4"
 RUN git clone -b ${OPENWRT_VERSION} https://git.openwrt.org/openwrt/openwrt.git $HOME/downloads/openwrt
 RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/downloads/openwrt \
