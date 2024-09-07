@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 goog.exportSymbol('proto.palm.morus.v1.MarkdownToHtmlRequest', null, global);
 goog.exportSymbol('proto.palm.morus.v1.MarkdownToHtmlResponse', null, global);
@@ -97,8 +97,8 @@ proto.palm.morus.v1.MarkdownToHtmlRequest.prototype.toObject = function(opt_incl
  */
 proto.palm.morus.v1.MarkdownToHtmlRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-payload: jspb.Message.getFieldWithDefault(msg, 1, ""),
-sanitize: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    payload: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    sanitize: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -257,7 +257,7 @@ proto.palm.morus.v1.MarkdownToHtmlResponse.prototype.toObject = function(opt_inc
  */
 proto.palm.morus.v1.MarkdownToHtmlResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-payload: jspb.Message.getFieldWithDefault(msg, 1, "")
+    payload: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {

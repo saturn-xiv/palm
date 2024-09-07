@@ -110,7 +110,7 @@ function generate_tutorials() {
 }
 
 # https://github.com/grpc/grpc-web#code-generator-plugin
-function generate_grpc_for_typescript() {
+function generate_grpc_web_for_typescript() {
     echo "generate typescript sdk $1 => $2"
     if [ -d $2 ]; then
         rm -r $2
@@ -122,6 +122,18 @@ function generate_grpc_for_typescript() {
         --js_out=import_style=commonjs,binary:$2 \
         --grpc-web_out=import_style=typescript,mode=grpcweb:$2 \
         $WORKSPACE/petunia/$1.proto
+}
+
+# https://github.com/grpc/grpc-node/tree/%40grpc/grpc-js%401.9.0/examples/helloworld/static_codegen
+function generate_grpc_for_js() {
+    if [ -d $2 ]; then
+        rm -r $2
+    fi
+    mkdir -p $2
+    grpc_tools_node_protoc -I $WORKSPACE/petunia \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$2 \
+        --grpc_out=grpc_js:$2 $WORKSPACE/petunia/$1.proto
 }
 
 # -----------------------------------------------------------------------------
@@ -136,7 +148,7 @@ generate_grpc_for_go google atropa/google/services/v2
 generate_grpc_for_go wechat atropa/wechat/services/v2
 generate_grpc_for_go lily atropa/lily/services/v2
 generate_grpc_for_go morus atropa/morus/services/v2
-generate_grpc_for_typescript morus morus/src/protocols
+generate_grpc_for_js morus morus/src/protocols
 generate_grpc_for_php lemon/php
 
 declare -a langs=(
