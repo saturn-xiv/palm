@@ -3,13 +3,15 @@
   "description": "gRPC example for PHP",
   "require": {
     "grpc/grpc": "^v1.39.0",
-    "google/protobuf": "^v3.12.2"
+    "google/protobuf": "^v3.12.2",
+    "monolog/monolog": "^3.7"
   },
   "autoload": {
     "psr-4": {
-      "Routeguide\\": "route_guide/Routeguide/",
-      "GPBMetadata\\": ["GPBMetadata/","route_guide/GPBMetadata/"],
-      "Helloworld\\": "Helloworld/"
+      "GPBMetadata\\": [
+        "GPBMetadata/"
+      ],
+      "Palm\\": "Palm/"
     }
   }
 }
