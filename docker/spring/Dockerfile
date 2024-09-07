@@ -219,7 +219,7 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && sudo chmod +x /usr/local/bin/dbmate
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.66.0"
+ENV GRPC_VERSION "v1.66.1"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 # ENV PROTOBUF_VERSION "v3.21.8"
 # RUN cd $HOME/downloads/grpc/third_party/protobuf \
@@ -243,7 +243,7 @@ RUN wget -q -O $HOME/.local/bin/protoc-gen-grpc-web \
 RUN chmod +x $HOME/.local/bin/protoc-gen-grpc-web
 
 # https://github.com/protocolbuffers/protobuf-javascript
-ENV GRPC_JS_PLUGIN_VERSION "3.21.3"
+ENV GRPC_JS_PLUGIN_VERSION "3.21.4"
 RUN wget -q -P $HOME/downloads \
     https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${GRPC_JS_PLUGIN_VERSION}/protobuf-javascript-${GRPC_JS_PLUGIN_VERSION}-linux-x86_64.tar.gz
 RUN mkdir -p $HOME/build/protobuf-javascript \

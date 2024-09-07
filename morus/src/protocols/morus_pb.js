@@ -97,8 +97,8 @@ proto.palm.morus.v1.MarkdownToHtmlRequest.prototype.toObject = function(opt_incl
  */
 proto.palm.morus.v1.MarkdownToHtmlRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    payload: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    sanitize: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+payload: jspb.Message.getFieldWithDefault(msg, 1, ""),
+sanitize: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -257,7 +257,7 @@ proto.palm.morus.v1.MarkdownToHtmlResponse.prototype.toObject = function(opt_inc
  */
 proto.palm.morus.v1.MarkdownToHtmlResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    payload: jspb.Message.getFieldWithDefault(msg, 1, "")
+payload: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
