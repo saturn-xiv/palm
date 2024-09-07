@@ -4,6 +4,7 @@ LABEL maintainer="Jeremy Zheng"
 RUN apk update
 RUN apk upgrade
 RUN apk add bash wget pwgen openssl git rsync \
+    inetutils-telnet bind-tools \
     build-base openssh-client sshpass \
     python3 py3-pip python3-dev 
 
