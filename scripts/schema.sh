@@ -107,6 +107,20 @@ function generate_tutorials() {
         --java_out=$java_target --grpc_out=$java_target \
         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_java_plugin \
         $WORKSPACE/petunia/*.proto
+
+    local php_target=$WORKSPACE/tutorials/php
+    if [ -d $php_target/GPBMetadata ]; then
+        rm -r $php_target/GPBMetadata
+    fi
+    if [ -d $php_target/Palm ]; then
+        rm -r $php_target/Palm
+    fi
+    mkdir -p $php_target
+    $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --php_out=$php_target --grpc_out=generate_server:$php_target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_php_plugin \
+        $WORKSPACE/petunia/*.proto
 }
 
 # https://github.com/grpc/grpc-web#code-generator-plugin
