@@ -8,6 +8,7 @@ package v2
 
 import (
 	context "context"
+	v2 "github.com/saturn-xiv/palm/atropa/s3/services/v2"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,215 +20,101 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Tex_ToWord_FullMethodName = "/palm.lily.v1.Tex/ToWord"
-	Tex_ToPdf_FullMethodName  = "/palm.lily.v1.Tex/ToPdf"
-	Tex_Show_FullMethodName   = "/palm.lily.v1.Tex/Show"
-	Tex_Status_FullMethodName = "/palm.lily.v1.Tex/Status"
+	TeXLive_ToPdf_FullMethodName = "/palm.lily.v1.TeXLive/ToPdf"
 )
 
-// TexClient is the client API for Tex service.
+// TeXLiveClient is the client API for TeXLive service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TexClient interface {
-	ToWord(ctx context.Context, in *TexRequest, opts ...grpc.CallOption) (*File, error)
-	ToPdf(ctx context.Context, in *TexRequest, opts ...grpc.CallOption) (*File, error)
-	Show(ctx context.Context, in *ShowRequest, opts ...grpc.CallOption) (*ShowResponse, error)
-	Status(ctx context.Context, in *File, opts ...grpc.CallOption) (*StatusResponse, error)
+type TeXLiveClient interface {
+	ToPdf(ctx context.Context, in *TeXLiveRequest, opts ...grpc.CallOption) (*v2.File, error)
 }
 
-type texClient struct {
+type teXLiveClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTexClient(cc grpc.ClientConnInterface) TexClient {
-	return &texClient{cc}
+func NewTeXLiveClient(cc grpc.ClientConnInterface) TeXLiveClient {
+	return &teXLiveClient{cc}
 }
 
-func (c *texClient) ToWord(ctx context.Context, in *TexRequest, opts ...grpc.CallOption) (*File, error) {
+func (c *teXLiveClient) ToPdf(ctx context.Context, in *TeXLiveRequest, opts ...grpc.CallOption) (*v2.File, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(File)
-	err := c.cc.Invoke(ctx, Tex_ToWord_FullMethodName, in, out, cOpts...)
+	out := new(v2.File)
+	err := c.cc.Invoke(ctx, TeXLive_ToPdf_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *texClient) ToPdf(ctx context.Context, in *TexRequest, opts ...grpc.CallOption) (*File, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(File)
-	err := c.cc.Invoke(ctx, Tex_ToPdf_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *texClient) Show(ctx context.Context, in *ShowRequest, opts ...grpc.CallOption) (*ShowResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ShowResponse)
-	err := c.cc.Invoke(ctx, Tex_Show_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *texClient) Status(ctx context.Context, in *File, opts ...grpc.CallOption) (*StatusResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StatusResponse)
-	err := c.cc.Invoke(ctx, Tex_Status_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// TexServer is the server API for Tex service.
-// All implementations must embed UnimplementedTexServer
+// TeXLiveServer is the server API for TeXLive service.
+// All implementations must embed UnimplementedTeXLiveServer
 // for forward compatibility.
-type TexServer interface {
-	ToWord(context.Context, *TexRequest) (*File, error)
-	ToPdf(context.Context, *TexRequest) (*File, error)
-	Show(context.Context, *ShowRequest) (*ShowResponse, error)
-	Status(context.Context, *File) (*StatusResponse, error)
-	mustEmbedUnimplementedTexServer()
+type TeXLiveServer interface {
+	ToPdf(context.Context, *TeXLiveRequest) (*v2.File, error)
+	mustEmbedUnimplementedTeXLiveServer()
 }
 
-// UnimplementedTexServer must be embedded to have
+// UnimplementedTeXLiveServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedTexServer struct{}
+type UnimplementedTeXLiveServer struct{}
 
-func (UnimplementedTexServer) ToWord(context.Context, *TexRequest) (*File, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ToWord not implemented")
-}
-func (UnimplementedTexServer) ToPdf(context.Context, *TexRequest) (*File, error) {
+func (UnimplementedTeXLiveServer) ToPdf(context.Context, *TeXLiveRequest) (*v2.File, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ToPdf not implemented")
 }
-func (UnimplementedTexServer) Show(context.Context, *ShowRequest) (*ShowResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Show not implemented")
-}
-func (UnimplementedTexServer) Status(context.Context, *File) (*StatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Status not implemented")
-}
-func (UnimplementedTexServer) mustEmbedUnimplementedTexServer() {}
-func (UnimplementedTexServer) testEmbeddedByValue()             {}
+func (UnimplementedTeXLiveServer) mustEmbedUnimplementedTeXLiveServer() {}
+func (UnimplementedTeXLiveServer) testEmbeddedByValue()                 {}
 
-// UnsafeTexServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TexServer will
+// UnsafeTeXLiveServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TeXLiveServer will
 // result in compilation errors.
-type UnsafeTexServer interface {
-	mustEmbedUnimplementedTexServer()
+type UnsafeTeXLiveServer interface {
+	mustEmbedUnimplementedTeXLiveServer()
 }
 
-func RegisterTexServer(s grpc.ServiceRegistrar, srv TexServer) {
-	// If the following call pancis, it indicates UnimplementedTexServer was
+func RegisterTeXLiveServer(s grpc.ServiceRegistrar, srv TeXLiveServer) {
+	// If the following call pancis, it indicates UnimplementedTeXLiveServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Tex_ServiceDesc, srv)
+	s.RegisterService(&TeXLive_ServiceDesc, srv)
 }
 
-func _Tex_ToWord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TexRequest)
+func _TeXLive_ToPdf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TeXLiveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TexServer).ToWord(ctx, in)
+		return srv.(TeXLiveServer).ToPdf(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Tex_ToWord_FullMethodName,
+		FullMethod: TeXLive_ToPdf_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TexServer).ToWord(ctx, req.(*TexRequest))
+		return srv.(TeXLiveServer).ToPdf(ctx, req.(*TeXLiveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Tex_ToPdf_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TexRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TexServer).ToPdf(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Tex_ToPdf_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TexServer).ToPdf(ctx, req.(*TexRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Tex_Show_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ShowRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TexServer).Show(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Tex_Show_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TexServer).Show(ctx, req.(*ShowRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Tex_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(File)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TexServer).Status(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Tex_Status_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TexServer).Status(ctx, req.(*File))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Tex_ServiceDesc is the grpc.ServiceDesc for Tex service.
+// TeXLive_ServiceDesc is the grpc.ServiceDesc for TeXLive service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Tex_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "palm.lily.v1.Tex",
-	HandlerType: (*TexServer)(nil),
+var TeXLive_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.lily.v1.TeXLive",
+	HandlerType: (*TeXLiveServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ToWord",
-			Handler:    _Tex_ToWord_Handler,
-		},
-		{
 			MethodName: "ToPdf",
-			Handler:    _Tex_ToPdf_Handler,
-		},
-		{
-			MethodName: "Show",
-			Handler:    _Tex_Show_Handler,
-		},
-		{
-			MethodName: "Status",
-			Handler:    _Tex_Status_Handler,
+			Handler:    _TeXLive_ToPdf_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

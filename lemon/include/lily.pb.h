@@ -34,6 +34,7 @@
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "google/protobuf/duration.pb.h"
+#include "s3.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -64,36 +65,30 @@ extern ArticleDefaultTypeInternal _Article_default_instance_;
 class Book;
 struct BookDefaultTypeInternal;
 extern BookDefaultTypeInternal _Book_default_instance_;
-class File;
-struct FileDefaultTypeInternal;
-extern FileDefaultTypeInternal _File_default_instance_;
+class Output;
+struct OutputDefaultTypeInternal;
+extern OutputDefaultTypeInternal _Output_default_instance_;
+class PandocTask;
+struct PandocTaskDefaultTypeInternal;
+extern PandocTaskDefaultTypeInternal _PandocTask_default_instance_;
 class Section;
 struct SectionDefaultTypeInternal;
 extern SectionDefaultTypeInternal _Section_default_instance_;
-class ShowRequest;
-struct ShowRequestDefaultTypeInternal;
-extern ShowRequestDefaultTypeInternal _ShowRequest_default_instance_;
-class ShowResponse;
-struct ShowResponseDefaultTypeInternal;
-extern ShowResponseDefaultTypeInternal _ShowResponse_default_instance_;
 class Slideshow;
 struct SlideshowDefaultTypeInternal;
 extern SlideshowDefaultTypeInternal _Slideshow_default_instance_;
-class StatusResponse;
-struct StatusResponseDefaultTypeInternal;
-extern StatusResponseDefaultTypeInternal _StatusResponse_default_instance_;
-class TexBuildTask;
-struct TexBuildTaskDefaultTypeInternal;
-extern TexBuildTaskDefaultTypeInternal _TexBuildTask_default_instance_;
-class TexBuildTask_AttachmentsEntry_DoNotUse;
-struct TexBuildTask_AttachmentsEntry_DoNotUseDefaultTypeInternal;
-extern TexBuildTask_AttachmentsEntry_DoNotUseDefaultTypeInternal _TexBuildTask_AttachmentsEntry_DoNotUse_default_instance_;
-class TexRequest;
-struct TexRequestDefaultTypeInternal;
-extern TexRequestDefaultTypeInternal _TexRequest_default_instance_;
-class TexRequest_AttachmentsEntry_DoNotUse;
-struct TexRequest_AttachmentsEntry_DoNotUseDefaultTypeInternal;
-extern TexRequest_AttachmentsEntry_DoNotUseDefaultTypeInternal _TexRequest_AttachmentsEntry_DoNotUse_default_instance_;
+class TeXLiveRequest;
+struct TeXLiveRequestDefaultTypeInternal;
+extern TeXLiveRequestDefaultTypeInternal _TeXLiveRequest_default_instance_;
+class TeXLiveRequest_AttachmentsEntry_DoNotUse;
+struct TeXLiveRequest_AttachmentsEntry_DoNotUseDefaultTypeInternal;
+extern TeXLiveRequest_AttachmentsEntry_DoNotUseDefaultTypeInternal _TeXLiveRequest_AttachmentsEntry_DoNotUse_default_instance_;
+class TeXLiveTask;
+struct TeXLiveTaskDefaultTypeInternal;
+extern TeXLiveTaskDefaultTypeInternal _TeXLiveTask_default_instance_;
+class TeXLiveTask_AttachmentsEntry_DoNotUse;
+struct TeXLiveTask_AttachmentsEntry_DoNotUseDefaultTypeInternal;
+extern TeXLiveTask_AttachmentsEntry_DoNotUseDefaultTypeInternal _TeXLiveTask_AttachmentsEntry_DoNotUse_default_instance_;
 }  // namespace v1
 }  // namespace lily
 }  // namespace palm
@@ -105,6 +100,73 @@ namespace protobuf {
 namespace palm {
 namespace lily {
 namespace v1 {
+enum TeXLiveTask_Format : int {
+  TeXLiveTask_Format_Pdf = 0,
+  TeXLiveTask_Format_TeXLiveTask_Format_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  TeXLiveTask_Format_TeXLiveTask_Format_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool TeXLiveTask_Format_IsValid(int value);
+extern const uint32_t TeXLiveTask_Format_internal_data_[];
+constexpr TeXLiveTask_Format TeXLiveTask_Format_Format_MIN = static_cast<TeXLiveTask_Format>(0);
+constexpr TeXLiveTask_Format TeXLiveTask_Format_Format_MAX = static_cast<TeXLiveTask_Format>(0);
+constexpr int TeXLiveTask_Format_Format_ARRAYSIZE = 0 + 1;
+const ::google::protobuf::EnumDescriptor*
+TeXLiveTask_Format_descriptor();
+template <typename T>
+const std::string& TeXLiveTask_Format_Name(T value) {
+  static_assert(std::is_same<T, TeXLiveTask_Format>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Format_Name().");
+  return TeXLiveTask_Format_Name(static_cast<TeXLiveTask_Format>(value));
+}
+template <>
+inline const std::string& TeXLiveTask_Format_Name(TeXLiveTask_Format value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<TeXLiveTask_Format_descriptor,
+                                                 0, 0>(
+      static_cast<int>(value));
+}
+inline bool TeXLiveTask_Format_Parse(absl::string_view name, TeXLiveTask_Format* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<TeXLiveTask_Format>(
+      TeXLiveTask_Format_descriptor(), name, value);
+}
+enum PandocTask_Format : int {
+  PandocTask_Format_Plain = 0,
+  PandocTask_Format_Markdown = 1,
+  PandocTask_Format_Pdf = 2,
+  PandocTask_Format_Docx = 3,
+  PandocTask_Format_PandocTask_Format_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  PandocTask_Format_PandocTask_Format_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool PandocTask_Format_IsValid(int value);
+extern const uint32_t PandocTask_Format_internal_data_[];
+constexpr PandocTask_Format PandocTask_Format_Format_MIN = static_cast<PandocTask_Format>(0);
+constexpr PandocTask_Format PandocTask_Format_Format_MAX = static_cast<PandocTask_Format>(3);
+constexpr int PandocTask_Format_Format_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor*
+PandocTask_Format_descriptor();
+template <typename T>
+const std::string& PandocTask_Format_Name(T value) {
+  static_assert(std::is_same<T, PandocTask_Format>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Format_Name().");
+  return PandocTask_Format_Name(static_cast<PandocTask_Format>(value));
+}
+template <>
+inline const std::string& PandocTask_Format_Name(PandocTask_Format value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<PandocTask_Format_descriptor,
+                                                 0, 3>(
+      static_cast<int>(value));
+}
+inline bool PandocTask_Format_Parse(absl::string_view name, PandocTask_Format* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<PandocTask_Format>(
+      PandocTask_Format_descriptor(), name, value);
+}
 enum Style : int {
   APA_7 = 0,
   MLA_8 = 10,
@@ -133,278 +195,56 @@ inline bool Style_Parse(absl::string_view name, Style* value) {
   return ::google::protobuf::internal::ParseNamedEnum<Style>(
       Style_descriptor(), name, value);
 }
-enum Format : int {
-  Pdf = 0,
-  Word = 1,
-  Format_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  Format_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool Format_IsValid(int value);
-extern const uint32_t Format_internal_data_[];
-constexpr Format Format_MIN = static_cast<Format>(0);
-constexpr Format Format_MAX = static_cast<Format>(1);
-constexpr int Format_ARRAYSIZE = 1 + 1;
-const ::google::protobuf::EnumDescriptor*
-Format_descriptor();
-template <typename T>
-const std::string& Format_Name(T value) {
-  static_assert(std::is_same<T, Format>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to Format_Name().");
-  return Format_Name(static_cast<Format>(value));
-}
-template <>
-inline const std::string& Format_Name(Format value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<Format_descriptor,
-                                                 0, 1>(
-      static_cast<int>(value));
-}
-inline bool Format_Parse(absl::string_view name, Format* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Format>(
-      Format_descriptor(), name, value);
-}
 
 // ===================================================================
 
 
 // -------------------------------------------------------------------
 
-class TexRequest_AttachmentsEntry_DoNotUse final
+class TeXLiveTask_AttachmentsEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          TexRequest_AttachmentsEntry_DoNotUse, std::string, std::string,
+          TeXLiveTask_AttachmentsEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      TexRequest_AttachmentsEntry_DoNotUse, std::string, std::string,
+      TeXLiveTask_AttachmentsEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  TexRequest_AttachmentsEntry_DoNotUse();
+  TeXLiveTask_AttachmentsEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TexRequest_AttachmentsEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR TeXLiveTask_AttachmentsEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit TexRequest_AttachmentsEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const TexRequest_AttachmentsEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const TexRequest_AttachmentsEntry_DoNotUse*>(
-        &_TexRequest_AttachmentsEntry_DoNotUse_default_instance_);
+  explicit TeXLiveTask_AttachmentsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const TeXLiveTask_AttachmentsEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const TeXLiveTask_AttachmentsEntry_DoNotUse*>(
+        &_TeXLiveTask_AttachmentsEntry_DoNotUse_default_instance_);
   }
 const ::google::protobuf::Message::ClassData* GetClassData() const final;
   friend struct ::TableStruct_lily_2eproto;
 };
 // -------------------------------------------------------------------
 
-class TexBuildTask_AttachmentsEntry_DoNotUse final
+class TeXLiveRequest_AttachmentsEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          TexBuildTask_AttachmentsEntry_DoNotUse, std::string, std::string,
+          TeXLiveRequest_AttachmentsEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      TexBuildTask_AttachmentsEntry_DoNotUse, std::string, std::string,
+      TeXLiveRequest_AttachmentsEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  TexBuildTask_AttachmentsEntry_DoNotUse();
+  TeXLiveRequest_AttachmentsEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TexBuildTask_AttachmentsEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR TeXLiveRequest_AttachmentsEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit TexBuildTask_AttachmentsEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const TexBuildTask_AttachmentsEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const TexBuildTask_AttachmentsEntry_DoNotUse*>(
-        &_TexBuildTask_AttachmentsEntry_DoNotUse_default_instance_);
+  explicit TeXLiveRequest_AttachmentsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const TeXLiveRequest_AttachmentsEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const TeXLiveRequest_AttachmentsEntry_DoNotUse*>(
+        &_TeXLiveRequest_AttachmentsEntry_DoNotUse_default_instance_);
   }
 const ::google::protobuf::Message::ClassData* GetClassData() const final;
-  friend struct ::TableStruct_lily_2eproto;
-};
-// -------------------------------------------------------------------
-
-class StatusResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.lily.v1.StatusResponse) */ {
- public:
-  inline StatusResponse() : StatusResponse(nullptr) {}
-  ~StatusResponse() override;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR StatusResponse(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline StatusResponse(const StatusResponse& from) : StatusResponse(nullptr, from) {}
-  inline StatusResponse(StatusResponse&& from) noexcept
-      : StatusResponse(nullptr, std::move(from)) {}
-  inline StatusResponse& operator=(const StatusResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline StatusResponse& operator=(StatusResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const StatusResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const StatusResponse* internal_default_instance() {
-    return reinterpret_cast<const StatusResponse*>(
-        &_StatusResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 11;
-  friend void swap(StatusResponse& a, StatusResponse& b) { a.Swap(&b); }
-  inline void Swap(StatusResponse* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(StatusResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  StatusResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<StatusResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const StatusResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const StatusResponse& from) { StatusResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(StatusResponse* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "palm.lily.v1.StatusResponse"; }
-
- protected:
-  explicit StatusResponse(::google::protobuf::Arena* arena);
-  StatusResponse(::google::protobuf::Arena* arena, const StatusResponse& from);
-  StatusResponse(::google::protobuf::Arena* arena, StatusResponse&& from) noexcept
-      : StatusResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kLogFieldNumber = 1,
-    kSucceedFieldNumber = 2,
-  };
-  // string log = 1;
-  void clear_log() ;
-  const std::string& log() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_log(Arg_&& arg, Args_... args);
-  std::string* mutable_log();
-  PROTOBUF_NODISCARD std::string* release_log();
-  void set_allocated_log(std::string* value);
-
-  private:
-  const std::string& _internal_log() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_log(
-      const std::string& value);
-  std::string* _internal_mutable_log();
-
-  public:
-  // bool succeed = 2;
-  void clear_succeed() ;
-  bool succeed() const;
-  void set_succeed(bool value);
-
-  private:
-  bool _internal_succeed() const;
-  void _internal_set_succeed(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.lily.v1.StatusResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      39, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_StatusResponse_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const StatusResponse& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr log_;
-    bool succeed_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
   friend struct ::TableStruct_lily_2eproto;
 };
 // -------------------------------------------------------------------
@@ -463,7 +303,7 @@ class Slideshow final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const Slideshow*>(
         &_Slideshow_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(Slideshow& a, Slideshow& b) { a.Swap(&b); }
   inline void Swap(Slideshow* other) {
     if (other == this) return;
@@ -551,183 +391,6 @@ class Slideshow final : public ::google::protobuf::internal::ZeroFieldsBase
 };
 // -------------------------------------------------------------------
 
-class ShowResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.lily.v1.ShowResponse) */ {
- public:
-  inline ShowResponse() : ShowResponse(nullptr) {}
-  ~ShowResponse() override;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ShowResponse(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline ShowResponse(const ShowResponse& from) : ShowResponse(nullptr, from) {}
-  inline ShowResponse(ShowResponse&& from) noexcept
-      : ShowResponse(nullptr, std::move(from)) {}
-  inline ShowResponse& operator=(const ShowResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ShowResponse& operator=(ShowResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ShowResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ShowResponse* internal_default_instance() {
-    return reinterpret_cast<const ShowResponse*>(
-        &_ShowResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 10;
-  friend void swap(ShowResponse& a, ShowResponse& b) { a.Swap(&b); }
-  inline void Swap(ShowResponse* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ShowResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ShowResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<ShowResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ShowResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const ShowResponse& from) { ShowResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(ShowResponse* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "palm.lily.v1.ShowResponse"; }
-
- protected:
-  explicit ShowResponse(::google::protobuf::Arena* arena);
-  ShowResponse(::google::protobuf::Arena* arena, const ShowResponse& from);
-  ShowResponse(::google::protobuf::Arena* arena, ShowResponse&& from) noexcept
-      : ShowResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kUrlFieldNumber = 1,
-  };
-  // string url = 1;
-  void clear_url() ;
-  const std::string& url() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_url(Arg_&& arg, Args_... args);
-  std::string* mutable_url();
-  PROTOBUF_NODISCARD std::string* release_url();
-  void set_allocated_url(std::string* value);
-
-  private:
-  const std::string& _internal_url() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_url(
-      const std::string& value);
-  std::string* _internal_mutable_url();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.lily.v1.ShowResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      37, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_ShowResponse_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const ShowResponse& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr url_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_lily_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Section final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.lily.v1.Section) */ {
  public:
@@ -783,7 +446,7 @@ class Section final : public ::google::protobuf::Message
     return reinterpret_cast<const Section*>(
         &_Section_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(Section& a, Section& b) { a.Swap(&b); }
   inline void Swap(Section* other) {
     if (other == this) return;
@@ -906,201 +569,6 @@ class Section final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class File final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.lily.v1.File) */ {
- public:
-  inline File() : File(nullptr) {}
-  ~File() override;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR File(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline File(const File& from) : File(nullptr, from) {}
-  inline File(File&& from) noexcept
-      : File(nullptr, std::move(from)) {}
-  inline File& operator=(const File& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline File& operator=(File&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const File& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const File* internal_default_instance() {
-    return reinterpret_cast<const File*>(
-        &_File_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(File& a, File& b) { a.Swap(&b); }
-  inline void Swap(File* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(File* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  File* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<File>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const File& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const File& from) { File::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(File* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "palm.lily.v1.File"; }
-
- protected:
-  explicit File(::google::protobuf::Arena* arena);
-  File(::google::protobuf::Arena* arena, const File& from);
-  File(::google::protobuf::Arena* arena, File&& from) noexcept
-      : File(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kBucketFieldNumber = 1,
-    kObjectFieldNumber = 2,
-  };
-  // string bucket = 1;
-  void clear_bucket() ;
-  const std::string& bucket() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_bucket(Arg_&& arg, Args_... args);
-  std::string* mutable_bucket();
-  PROTOBUF_NODISCARD std::string* release_bucket();
-  void set_allocated_bucket(std::string* value);
-
-  private:
-  const std::string& _internal_bucket() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(
-      const std::string& value);
-  std::string* _internal_mutable_bucket();
-
-  public:
-  // string object = 2;
-  void clear_object() ;
-  const std::string& object() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_object(Arg_&& arg, Args_... args);
-  std::string* mutable_object();
-  PROTOBUF_NODISCARD std::string* release_object();
-  void set_allocated_object(std::string* value);
-
-  private:
-  const std::string& _internal_object() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_object(
-      const std::string& value);
-  std::string* _internal_mutable_object();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.lily.v1.File)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      38, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_File_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const File& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr bucket_;
-    ::google::protobuf::internal::ArenaStringPtr object_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_lily_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Book final : public ::google::protobuf::internal::ZeroFieldsBase
 /* @@protoc_insertion_point(class_definition:palm.lily.v1.Book) */ {
  public:
@@ -1155,7 +623,7 @@ class Book final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const Book*>(
         &_Book_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 0;
   friend void swap(Book& a, Book& b) { a.Swap(&b); }
   inline void Swap(Book* other) {
     if (other == this) return;
@@ -1297,7 +765,7 @@ class Article final : public ::google::protobuf::internal::ZeroFieldsBase
     return reinterpret_cast<const Article*>(
         &_Article_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(Article& a, Article& b) { a.Swap(&b); }
   inline void Swap(Article* other) {
     if (other == this) return;
@@ -1385,23 +853,23 @@ class Article final : public ::google::protobuf::internal::ZeroFieldsBase
 };
 // -------------------------------------------------------------------
 
-class TexRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.lily.v1.TexRequest) */ {
+class TeXLiveRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.lily.v1.TeXLiveRequest) */ {
  public:
-  inline TexRequest() : TexRequest(nullptr) {}
-  ~TexRequest() override;
+  inline TeXLiveRequest() : TeXLiveRequest(nullptr) {}
+  ~TeXLiveRequest() override;
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TexRequest(
+  explicit PROTOBUF_CONSTEXPR TeXLiveRequest(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline TexRequest(const TexRequest& from) : TexRequest(nullptr, from) {}
-  inline TexRequest(TexRequest&& from) noexcept
-      : TexRequest(nullptr, std::move(from)) {}
-  inline TexRequest& operator=(const TexRequest& from) {
+  inline TeXLiveRequest(const TeXLiveRequest& from) : TeXLiveRequest(nullptr, from) {}
+  inline TeXLiveRequest(TeXLiveRequest&& from) noexcept
+      : TeXLiveRequest(nullptr, std::move(from)) {}
+  inline TeXLiveRequest& operator=(const TeXLiveRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TexRequest& operator=(TexRequest&& from) noexcept {
+  inline TeXLiveRequest& operator=(TeXLiveRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
 #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1433,7 +901,7 @@ class TexRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const TexRequest& default_instance() {
+  static const TeXLiveRequest& default_instance() {
     return *internal_default_instance();
   }
   enum PayloadCase {
@@ -1442,13 +910,13 @@ class TexRequest final : public ::google::protobuf::Message
     kSlideshow = 13,
     PAYLOAD_NOT_SET = 0,
   };
-  static inline const TexRequest* internal_default_instance() {
-    return reinterpret_cast<const TexRequest*>(
-        &_TexRequest_default_instance_);
+  static inline const TeXLiveRequest* internal_default_instance() {
+    return reinterpret_cast<const TeXLiveRequest*>(
+        &_TeXLiveRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
-  friend void swap(TexRequest& a, TexRequest& b) { a.Swap(&b); }
-  inline void Swap(TexRequest* other) {
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(TeXLiveRequest& a, TeXLiveRequest& b) { a.Swap(&b); }
+  inline void Swap(TeXLiveRequest* other) {
     if (other == this) return;
 #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr && GetArena() == other->GetArena()) {
@@ -1460,7 +928,7 @@ class TexRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TexRequest* other) {
+  void UnsafeArenaSwap(TeXLiveRequest* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1468,13 +936,13 @@ class TexRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  TexRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<TexRequest>(arena);
+  TeXLiveRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<TeXLiveRequest>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const TexRequest& from);
+  void CopyFrom(const TeXLiveRequest& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const TexRequest& from) { TexRequest::MergeImpl(*this, from); }
+  void MergeFrom(const TeXLiveRequest& from) { TeXLiveRequest::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -1495,16 +963,16 @@ class TexRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(TexRequest* other);
+  void InternalSwap(TeXLiveRequest* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "palm.lily.v1.TexRequest"; }
+  static ::absl::string_view FullMessageName() { return "palm.lily.v1.TeXLiveRequest"; }
 
  protected:
-  explicit TexRequest(::google::protobuf::Arena* arena);
-  TexRequest(::google::protobuf::Arena* arena, const TexRequest& from);
-  TexRequest(::google::protobuf::Arena* arena, TexRequest&& from) noexcept
-      : TexRequest(arena) {
+  explicit TeXLiveRequest(::google::protobuf::Arena* arena);
+  TeXLiveRequest(::google::protobuf::Arena* arena, const TeXLiveRequest& from);
+  TeXLiveRequest(::google::protobuf::Arena* arena, TeXLiveRequest&& from) noexcept
+      : TeXLiveRequest(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::Message::ClassData* GetClassData() const final;
@@ -1517,6 +985,7 @@ class TexRequest final : public ::google::protobuf::Message
   enum : int {
     kAttachmentsFieldNumber = 99,
     kNameFieldNumber = 1,
+    kEntryFieldNumber = 98,
     kTtlFieldNumber = 9,
     kStyleFieldNumber = 2,
     kFormatFieldNumber = 3,
@@ -1555,6 +1024,22 @@ class TexRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_name();
 
   public:
+  // bytes entry = 98;
+  void clear_entry() ;
+  const std::string& entry() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_entry(Arg_&& arg, Args_... args);
+  std::string* mutable_entry();
+  PROTOBUF_NODISCARD std::string* release_entry();
+  void set_allocated_entry(std::string* value);
+
+  private:
+  const std::string& _internal_entry() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_entry(
+      const std::string& value);
+  std::string* _internal_mutable_entry();
+
+  public:
   // .google.protobuf.Duration ttl = 9;
   bool has_ttl() const;
   void clear_ttl() ;
@@ -1580,14 +1065,14 @@ class TexRequest final : public ::google::protobuf::Message
   void _internal_set_style(::palm::lily::v1::Style value);
 
   public:
-  // .palm.lily.v1.Format format = 3;
+  // .palm.lily.v1.TeXLiveTask.Format format = 3;
   void clear_format() ;
-  ::palm::lily::v1::Format format() const;
-  void set_format(::palm::lily::v1::Format value);
+  ::palm::lily::v1::TeXLiveTask_Format format() const;
+  void set_format(::palm::lily::v1::TeXLiveTask_Format value);
 
   private:
-  ::palm::lily::v1::Format _internal_format() const;
-  void _internal_set_format(::palm::lily::v1::Format value);
+  ::palm::lily::v1::TeXLiveTask_Format _internal_format() const;
+  void _internal_set_format(::palm::lily::v1::TeXLiveTask_Format value);
 
   public:
   // .palm.lily.v1.Book book = 11;
@@ -1649,7 +1134,7 @@ class TexRequest final : public ::google::protobuf::Message
   public:
   void clear_Payload();
   PayloadCase Payload_case() const;
-  // @@protoc_insertion_point(class_scope:palm.lily.v1.TexRequest)
+  // @@protoc_insertion_point(class_scope:palm.lily.v1.TeXLiveRequest)
  private:
   class _Internal;
   void set_has_book();
@@ -1659,12 +1144,12 @@ class TexRequest final : public ::google::protobuf::Message
   inline void clear_has_Payload();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 8, 5,
-      55, 7>
+      4, 9, 5,
+      59, 7>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
-      &_TexRequest_default_instance_;
+      &_TeXLiveRequest_default_instance_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1679,14 +1164,15 @@ class TexRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const TexRequest& from_msg);
+                          const TeXLiveRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::MapField<TexRequest_AttachmentsEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<TeXLiveRequest_AttachmentsEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         attachments_;
     ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr entry_;
     ::google::protobuf::Duration* ttl_;
     int style_;
     int format_;
@@ -1705,23 +1191,23 @@ class TexRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class TexBuildTask final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.lily.v1.TexBuildTask) */ {
+class Output final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.lily.v1.Output) */ {
  public:
-  inline TexBuildTask() : TexBuildTask(nullptr) {}
-  ~TexBuildTask() override;
+  inline Output() : Output(nullptr) {}
+  ~Output() override;
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR TexBuildTask(
+  explicit PROTOBUF_CONSTEXPR Output(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline TexBuildTask(const TexBuildTask& from) : TexBuildTask(nullptr, from) {}
-  inline TexBuildTask(TexBuildTask&& from) noexcept
-      : TexBuildTask(nullptr, std::move(from)) {}
-  inline TexBuildTask& operator=(const TexBuildTask& from) {
+  inline Output(const Output& from) : Output(nullptr, from) {}
+  inline Output(Output&& from) noexcept
+      : Output(nullptr, std::move(from)) {}
+  inline Output& operator=(const Output& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TexBuildTask& operator=(TexBuildTask&& from) noexcept {
+  inline Output& operator=(Output&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
 #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1753,16 +1239,16 @@ class TexBuildTask final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const TexBuildTask& default_instance() {
+  static const Output& default_instance() {
     return *internal_default_instance();
   }
-  static inline const TexBuildTask* internal_default_instance() {
-    return reinterpret_cast<const TexBuildTask*>(
-        &_TexBuildTask_default_instance_);
+  static inline const Output* internal_default_instance() {
+    return reinterpret_cast<const Output*>(
+        &_Output_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
-  friend void swap(TexBuildTask& a, TexBuildTask& b) { a.Swap(&b); }
-  inline void Swap(TexBuildTask* other) {
+  static constexpr int kIndexInFileMessages = 9;
+  friend void swap(Output& a, Output& b) { a.Swap(&b); }
+  inline void Swap(Output* other) {
     if (other == this) return;
 #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr && GetArena() == other->GetArena()) {
@@ -1774,7 +1260,7 @@ class TexBuildTask final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TexBuildTask* other) {
+  void UnsafeArenaSwap(Output* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1782,13 +1268,13 @@ class TexBuildTask final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  TexBuildTask* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<TexBuildTask>(arena);
+  Output* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<Output>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const TexBuildTask& from);
+  void CopyFrom(const Output& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const TexBuildTask& from) { TexBuildTask::MergeImpl(*this, from); }
+  void MergeFrom(const Output& from) { Output::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -1809,16 +1295,16 @@ class TexBuildTask final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(TexBuildTask* other);
+  void InternalSwap(Output* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "palm.lily.v1.TexBuildTask"; }
+  static ::absl::string_view FullMessageName() { return "palm.lily.v1.Output"; }
 
  protected:
-  explicit TexBuildTask(::google::protobuf::Arena* arena);
-  TexBuildTask(::google::protobuf::Arena* arena, const TexBuildTask& from);
-  TexBuildTask(::google::protobuf::Arena* arena, TexBuildTask&& from) noexcept
-      : TexBuildTask(arena) {
+  explicit Output(::google::protobuf::Arena* arena);
+  Output(::google::protobuf::Arena* arena, const Output& from);
+  Output(::google::protobuf::Arena* arena, Output&& from) noexcept
+      : Output(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::Message::ClassData* GetClassData() const final;
@@ -1829,11 +1315,224 @@ class TexBuildTask final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kAttachmentsFieldNumber = 2,
+    kObjectFieldNumber = 2,
+    kBucketFieldNumber = 1,
+  };
+  // string object = 2;
+  void clear_object() ;
+  const std::string& object() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_object(Arg_&& arg, Args_... args);
+  std::string* mutable_object();
+  PROTOBUF_NODISCARD std::string* release_object();
+  void set_allocated_object(std::string* value);
+
+  private:
+  const std::string& _internal_object() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_object(
+      const std::string& value);
+  std::string* _internal_mutable_object();
+
+  public:
+  // .palm.s3.v1.Bucket bucket = 1;
+  bool has_bucket() const;
+  void clear_bucket() ;
+  const ::palm::s3::v1::Bucket& bucket() const;
+  PROTOBUF_NODISCARD ::palm::s3::v1::Bucket* release_bucket();
+  ::palm::s3::v1::Bucket* mutable_bucket();
+  void set_allocated_bucket(::palm::s3::v1::Bucket* value);
+  void unsafe_arena_set_allocated_bucket(::palm::s3::v1::Bucket* value);
+  ::palm::s3::v1::Bucket* unsafe_arena_release_bucket();
+
+  private:
+  const ::palm::s3::v1::Bucket& _internal_bucket() const;
+  ::palm::s3::v1::Bucket* _internal_mutable_bucket();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.lily.v1.Output)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      34, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_Output_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Output& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr object_;
+    ::palm::s3::v1::Bucket* bucket_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_lily_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TeXLiveTask final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.lily.v1.TeXLiveTask) */ {
+ public:
+  inline TeXLiveTask() : TeXLiveTask(nullptr) {}
+  ~TeXLiveTask() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR TeXLiveTask(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline TeXLiveTask(const TeXLiveTask& from) : TeXLiveTask(nullptr, from) {}
+  inline TeXLiveTask(TeXLiveTask&& from) noexcept
+      : TeXLiveTask(nullptr, std::move(from)) {}
+  inline TeXLiveTask& operator=(const TeXLiveTask& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TeXLiveTask& operator=(TeXLiveTask&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TeXLiveTask& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TeXLiveTask* internal_default_instance() {
+    return reinterpret_cast<const TeXLiveTask*>(
+        &_TeXLiveTask_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(TeXLiveTask& a, TeXLiveTask& b) { a.Swap(&b); }
+  inline void Swap(TeXLiveTask* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TeXLiveTask* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TeXLiveTask* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<TeXLiveTask>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const TeXLiveTask& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const TeXLiveTask& from) { TeXLiveTask::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(TeXLiveTask* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "palm.lily.v1.TeXLiveTask"; }
+
+ protected:
+  explicit TeXLiveTask(::google::protobuf::Arena* arena);
+  TeXLiveTask(::google::protobuf::Arena* arena, const TeXLiveTask& from);
+  TeXLiveTask(::google::protobuf::Arena* arena, TeXLiveTask&& from) noexcept
+      : TeXLiveTask(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Format = TeXLiveTask_Format;
+  static constexpr Format Pdf = TeXLiveTask_Format_Pdf;
+  static inline bool Format_IsValid(int value) {
+    return TeXLiveTask_Format_IsValid(value);
+  }
+  static constexpr Format Format_MIN = TeXLiveTask_Format_Format_MIN;
+  static constexpr Format Format_MAX = TeXLiveTask_Format_Format_MAX;
+  static constexpr int Format_ARRAYSIZE = TeXLiveTask_Format_Format_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Format_descriptor() {
+    return TeXLiveTask_Format_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Format_Name(T value) {
+    return TeXLiveTask_Format_Name(value);
+  }
+  static inline bool Format_Parse(absl::string_view name, Format* value) {
+    return TeXLiveTask_Format_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAttachmentsFieldNumber = 3,
     kEntryFieldNumber = 1,
     kOutputFieldNumber = 9,
   };
-  // map<string, bytes> attachments = 2;
+  // map<string, bytes> attachments = 3;
   int attachments_size() const;
   private:
   int _internal_attachments_size() const;
@@ -1848,7 +1547,7 @@ class TexBuildTask final : public ::google::protobuf::Message
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_attachments();
 
   public:
-  // string entry = 1;
+  // bytes entry = 1;
   void clear_entry() ;
   const std::string& entry() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1864,32 +1563,32 @@ class TexBuildTask final : public ::google::protobuf::Message
   std::string* _internal_mutable_entry();
 
   public:
-  // .palm.lily.v1.File output = 9;
+  // .palm.lily.v1.Output output = 9;
   bool has_output() const;
   void clear_output() ;
-  const ::palm::lily::v1::File& output() const;
-  PROTOBUF_NODISCARD ::palm::lily::v1::File* release_output();
-  ::palm::lily::v1::File* mutable_output();
-  void set_allocated_output(::palm::lily::v1::File* value);
-  void unsafe_arena_set_allocated_output(::palm::lily::v1::File* value);
-  ::palm::lily::v1::File* unsafe_arena_release_output();
+  const ::palm::lily::v1::Output& output() const;
+  PROTOBUF_NODISCARD ::palm::lily::v1::Output* release_output();
+  ::palm::lily::v1::Output* mutable_output();
+  void set_allocated_output(::palm::lily::v1::Output* value);
+  void unsafe_arena_set_allocated_output(::palm::lily::v1::Output* value);
+  ::palm::lily::v1::Output* unsafe_arena_release_output();
 
   private:
-  const ::palm::lily::v1::File& _internal_output() const;
-  ::palm::lily::v1::File* _internal_mutable_output();
+  const ::palm::lily::v1::Output& _internal_output() const;
+  ::palm::lily::v1::Output* _internal_mutable_output();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.lily.v1.TexBuildTask)
+  // @@protoc_insertion_point(class_scope:palm.lily.v1.TeXLiveTask)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 3, 2,
-      50, 2>
+      44, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
-      &_TexBuildTask_default_instance_;
+      &_TeXLiveTask_default_instance_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1904,15 +1603,15 @@ class TexBuildTask final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const TexBuildTask& from_msg);
+                          const TeXLiveTask& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::MapField<TexBuildTask_AttachmentsEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<TeXLiveTask_AttachmentsEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         attachments_;
     ::google::protobuf::internal::ArenaStringPtr entry_;
-    ::palm::lily::v1::File* output_;
+    ::palm::lily::v1::Output* output_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1920,23 +1619,23 @@ class TexBuildTask final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class ShowRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.lily.v1.ShowRequest) */ {
+class PandocTask final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.lily.v1.PandocTask) */ {
  public:
-  inline ShowRequest() : ShowRequest(nullptr) {}
-  ~ShowRequest() override;
+  inline PandocTask() : PandocTask(nullptr) {}
+  ~PandocTask() override;
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ShowRequest(
+  explicit PROTOBUF_CONSTEXPR PandocTask(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline ShowRequest(const ShowRequest& from) : ShowRequest(nullptr, from) {}
-  inline ShowRequest(ShowRequest&& from) noexcept
-      : ShowRequest(nullptr, std::move(from)) {}
-  inline ShowRequest& operator=(const ShowRequest& from) {
+  inline PandocTask(const PandocTask& from) : PandocTask(nullptr, from) {}
+  inline PandocTask(PandocTask&& from) noexcept
+      : PandocTask(nullptr, std::move(from)) {}
+  inline PandocTask& operator=(const PandocTask& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ShowRequest& operator=(ShowRequest&& from) noexcept {
+  inline PandocTask& operator=(PandocTask&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
 #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1968,16 +1667,16 @@ class ShowRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ShowRequest& default_instance() {
+  static const PandocTask& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ShowRequest* internal_default_instance() {
-    return reinterpret_cast<const ShowRequest*>(
-        &_ShowRequest_default_instance_);
+  static inline const PandocTask* internal_default_instance() {
+    return reinterpret_cast<const PandocTask*>(
+        &_PandocTask_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
-  friend void swap(ShowRequest& a, ShowRequest& b) { a.Swap(&b); }
-  inline void Swap(ShowRequest* other) {
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(PandocTask& a, PandocTask& b) { a.Swap(&b); }
+  inline void Swap(PandocTask* other) {
     if (other == this) return;
 #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr && GetArena() == other->GetArena()) {
@@ -1989,7 +1688,7 @@ class ShowRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ShowRequest* other) {
+  void UnsafeArenaSwap(PandocTask* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1997,13 +1696,13 @@ class ShowRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  ShowRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<ShowRequest>(arena);
+  PandocTask* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<PandocTask>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ShowRequest& from);
+  void CopyFrom(const PandocTask& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const ShowRequest& from) { ShowRequest::MergeImpl(*this, from); }
+  void MergeFrom(const PandocTask& from) { PandocTask::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -2024,16 +1723,16 @@ class ShowRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ShowRequest* other);
+  void InternalSwap(PandocTask* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "palm.lily.v1.ShowRequest"; }
+  static ::absl::string_view FullMessageName() { return "palm.lily.v1.PandocTask"; }
 
  protected:
-  explicit ShowRequest(::google::protobuf::Arena* arena);
-  ShowRequest(::google::protobuf::Arena* arena, const ShowRequest& from);
-  ShowRequest(::google::protobuf::Arena* arena, ShowRequest&& from) noexcept
-      : ShowRequest(arena) {
+  explicit PandocTask(::google::protobuf::Arena* arena);
+  PandocTask(::google::protobuf::Arena* arena, const PandocTask& from);
+  PandocTask(::google::protobuf::Arena* arena, PandocTask&& from) noexcept
+      : PandocTask(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::Message::ClassData* GetClassData() const final;
@@ -2041,53 +1740,75 @@ class ShowRequest final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using Format = PandocTask_Format;
+  static constexpr Format Plain = PandocTask_Format_Plain;
+  static constexpr Format Markdown = PandocTask_Format_Markdown;
+  static constexpr Format Pdf = PandocTask_Format_Pdf;
+  static constexpr Format Docx = PandocTask_Format_Docx;
+  static inline bool Format_IsValid(int value) {
+    return PandocTask_Format_IsValid(value);
+  }
+  static constexpr Format Format_MIN = PandocTask_Format_Format_MIN;
+  static constexpr Format Format_MAX = PandocTask_Format_Format_MAX;
+  static constexpr int Format_ARRAYSIZE = PandocTask_Format_Format_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Format_descriptor() {
+    return PandocTask_Format_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Format_Name(T value) {
+    return PandocTask_Format_Name(value);
+  }
+  static inline bool Format_Parse(absl::string_view name, Format* value) {
+    return PandocTask_Format_Parse(name, value);
+  }
 
   // accessors -------------------------------------------------------
   enum : int {
-    kFileFieldNumber = 1,
-    kTtlFieldNumber = 9,
+    kPayloadFieldNumber = 1,
+    kOutputFieldNumber = 2,
   };
-  // .palm.lily.v1.File file = 1;
-  bool has_file() const;
-  void clear_file() ;
-  const ::palm::lily::v1::File& file() const;
-  PROTOBUF_NODISCARD ::palm::lily::v1::File* release_file();
-  ::palm::lily::v1::File* mutable_file();
-  void set_allocated_file(::palm::lily::v1::File* value);
-  void unsafe_arena_set_allocated_file(::palm::lily::v1::File* value);
-  ::palm::lily::v1::File* unsafe_arena_release_file();
+  // string payload = 1;
+  void clear_payload() ;
+  const std::string& payload() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_payload(Arg_&& arg, Args_... args);
+  std::string* mutable_payload();
+  PROTOBUF_NODISCARD std::string* release_payload();
+  void set_allocated_payload(std::string* value);
 
   private:
-  const ::palm::lily::v1::File& _internal_file() const;
-  ::palm::lily::v1::File* _internal_mutable_file();
+  const std::string& _internal_payload() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_payload(
+      const std::string& value);
+  std::string* _internal_mutable_payload();
 
   public:
-  // .google.protobuf.Duration ttl = 9;
-  bool has_ttl() const;
-  void clear_ttl() ;
-  const ::google::protobuf::Duration& ttl() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Duration* release_ttl();
-  ::google::protobuf::Duration* mutable_ttl();
-  void set_allocated_ttl(::google::protobuf::Duration* value);
-  void unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value);
-  ::google::protobuf::Duration* unsafe_arena_release_ttl();
+  // .palm.lily.v1.Output output = 2;
+  bool has_output() const;
+  void clear_output() ;
+  const ::palm::lily::v1::Output& output() const;
+  PROTOBUF_NODISCARD ::palm::lily::v1::Output* release_output();
+  ::palm::lily::v1::Output* mutable_output();
+  void set_allocated_output(::palm::lily::v1::Output* value);
+  void unsafe_arena_set_allocated_output(::palm::lily::v1::Output* value);
+  ::palm::lily::v1::Output* unsafe_arena_release_output();
 
   private:
-  const ::google::protobuf::Duration& _internal_ttl() const;
-  ::google::protobuf::Duration* _internal_mutable_ttl();
+  const ::palm::lily::v1::Output& _internal_output() const;
+  ::palm::lily::v1::Output* _internal_mutable_output();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.lily.v1.ShowRequest)
+  // @@protoc_insertion_point(class_scope:palm.lily.v1.PandocTask)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 2, 2,
-      0, 2>
+      1, 2, 1,
+      39, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
-      &_ShowRequest_default_instance_;
+      &_PandocTask_default_instance_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2102,11 +1823,11 @@ class ShowRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const ShowRequest& from_msg);
+                          const PandocTask& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::palm::lily::v1::File* file_;
-    ::google::protobuf::Duration* ttl_;
+    ::google::protobuf::internal::ArenaStringPtr payload_;
+    ::palm::lily::v1::Output* output_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2125,110 +1846,6 @@ class ShowRequest final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// File
-
-// string bucket = 1;
-inline void File::clear_bucket() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.ClearToEmpty();
-}
-inline const std::string& File::bucket() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.File.bucket)
-  return _internal_bucket();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void File::set_bucket(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.lily.v1.File.bucket)
-}
-inline std::string* File::mutable_bucket() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.File.bucket)
-  return _s;
-}
-inline const std::string& File::_internal_bucket() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.bucket_.Get();
-}
-inline void File::_internal_set_bucket(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.Set(value, GetArena());
-}
-inline std::string* File::_internal_mutable_bucket() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.bucket_.Mutable( GetArena());
-}
-inline std::string* File::release_bucket() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.File.bucket)
-  return _impl_.bucket_.Release();
-}
-inline void File::set_allocated_bucket(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.bucket_.IsDefault()) {
-          _impl_.bucket_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.File.bucket)
-}
-
-// string object = 2;
-inline void File::clear_object() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.object_.ClearToEmpty();
-}
-inline const std::string& File::object() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.File.object)
-  return _internal_object();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void File::set_object(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.object_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.lily.v1.File.object)
-}
-inline std::string* File::mutable_object() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.File.object)
-  return _s;
-}
-inline const std::string& File::_internal_object() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.object_.Get();
-}
-inline void File::_internal_set_object(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.object_.Set(value, GetArena());
-}
-inline std::string* File::_internal_mutable_object() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.object_.Mutable( GetArena());
-}
-inline std::string* File::release_object() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.File.object)
-  return _impl_.object_.Release();
-}
-inline void File::set_allocated_object(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.object_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.object_.IsDefault()) {
-          _impl_.object_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.File.object)
-}
-
 // -------------------------------------------------------------------
 
 // Book
@@ -2298,48 +1915,470 @@ Section::_internal_mutable_items() {
 
 // -------------------------------------------------------------------
 
-// TexBuildTask
+// TeXLiveRequest
 
-// string entry = 1;
-inline void TexBuildTask::clear_entry() {
+// string name = 1;
+inline void TeXLiveRequest::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& TeXLiveRequest::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TeXLiveRequest::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TeXLiveRequest.name)
+}
+inline std::string* TeXLiveRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveRequest.name)
+  return _s;
+}
+inline const std::string& TeXLiveRequest::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void TeXLiveRequest::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* TeXLiveRequest::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* TeXLiveRequest::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveRequest.name)
+  return _impl_.name_.Release();
+}
+inline void TeXLiveRequest::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TeXLiveRequest.name)
+}
+
+// .palm.lily.v1.Style style = 2;
+inline void TeXLiveRequest::clear_style() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.style_ = 0;
+}
+inline ::palm::lily::v1::Style TeXLiveRequest::style() const {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.style)
+  return _internal_style();
+}
+inline void TeXLiveRequest::set_style(::palm::lily::v1::Style value) {
+  _internal_set_style(value);
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TeXLiveRequest.style)
+}
+inline ::palm::lily::v1::Style TeXLiveRequest::_internal_style() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::lily::v1::Style>(_impl_.style_);
+}
+inline void TeXLiveRequest::_internal_set_style(::palm::lily::v1::Style value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.style_ = value;
+}
+
+// .palm.lily.v1.TeXLiveTask.Format format = 3;
+inline void TeXLiveRequest::clear_format() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_ = 0;
+}
+inline ::palm::lily::v1::TeXLiveTask_Format TeXLiveRequest::format() const {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.format)
+  return _internal_format();
+}
+inline void TeXLiveRequest::set_format(::palm::lily::v1::TeXLiveTask_Format value) {
+  _internal_set_format(value);
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TeXLiveRequest.format)
+}
+inline ::palm::lily::v1::TeXLiveTask_Format TeXLiveRequest::_internal_format() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::lily::v1::TeXLiveTask_Format>(_impl_.format_);
+}
+inline void TeXLiveRequest::_internal_set_format(::palm::lily::v1::TeXLiveTask_Format value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_ = value;
+}
+
+// .google.protobuf.Duration ttl = 9;
+inline bool TeXLiveRequest::has_ttl() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.ttl_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Duration& TeXLiveRequest::_internal_ttl() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Duration* p = _impl_.ttl_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Duration&>(::google::protobuf::_Duration_default_instance_);
+}
+inline const ::google::protobuf::Duration& TeXLiveRequest::ttl() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.ttl)
+  return _internal_ttl();
+}
+inline void TeXLiveRequest::unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TeXLiveRequest.ttl)
+}
+inline ::google::protobuf::Duration* TeXLiveRequest::release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Duration* released = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::google::protobuf::Duration* TeXLiveRequest::unsafe_arena_release_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveRequest.ttl)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Duration* temp = _impl_.ttl_;
+  _impl_.ttl_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Duration* TeXLiveRequest::_internal_mutable_ttl() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ttl_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Duration>(GetArena());
+    _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(p);
+  }
+  return _impl_.ttl_;
+}
+inline ::google::protobuf::Duration* TeXLiveRequest::mutable_ttl() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Duration* _msg = _internal_mutable_ttl();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveRequest.ttl)
+  return _msg;
+}
+inline void TeXLiveRequest::set_allocated_ttl(::google::protobuf::Duration* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TeXLiveRequest.ttl)
+}
+
+// .palm.lily.v1.Book book = 11;
+inline bool TeXLiveRequest::has_book() const {
+  return Payload_case() == kBook;
+}
+inline bool TeXLiveRequest::_internal_has_book() const {
+  return Payload_case() == kBook;
+}
+inline void TeXLiveRequest::set_has_book() {
+  _impl_._oneof_case_[0] = kBook;
+}
+inline void TeXLiveRequest::clear_book() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (Payload_case() == kBook) {
+    if (GetArena() == nullptr) {
+      delete _impl_.Payload_.book_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.Payload_.book_);
+    }
+    clear_has_Payload();
+  }
+}
+inline ::palm::lily::v1::Book* TeXLiveRequest::release_book() {
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveRequest.book)
+  if (Payload_case() == kBook) {
+    clear_has_Payload();
+    auto* temp = _impl_.Payload_.book_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Payload_.book_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::lily::v1::Book& TeXLiveRequest::_internal_book() const {
+  return Payload_case() == kBook ? *_impl_.Payload_.book_ : reinterpret_cast<::palm::lily::v1::Book&>(::palm::lily::v1::_Book_default_instance_);
+}
+inline const ::palm::lily::v1::Book& TeXLiveRequest::book() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.book)
+  return _internal_book();
+}
+inline ::palm::lily::v1::Book* TeXLiveRequest::unsafe_arena_release_book() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.lily.v1.TeXLiveRequest.book)
+  if (Payload_case() == kBook) {
+    clear_has_Payload();
+    auto* temp = _impl_.Payload_.book_;
+    _impl_.Payload_.book_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void TeXLiveRequest::unsafe_arena_set_allocated_book(::palm::lily::v1::Book* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_Payload();
+  if (value) {
+    set_has_book();
+    _impl_.Payload_.book_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TeXLiveRequest.book)
+}
+inline ::palm::lily::v1::Book* TeXLiveRequest::_internal_mutable_book() {
+  if (Payload_case() != kBook) {
+    clear_Payload();
+    set_has_book();
+    _impl_.Payload_.book_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Book>(GetArena());
+  }
+  return _impl_.Payload_.book_;
+}
+inline ::palm::lily::v1::Book* TeXLiveRequest::mutable_book() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::lily::v1::Book* _msg = _internal_mutable_book();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveRequest.book)
+  return _msg;
+}
+
+// .palm.lily.v1.Article article = 12;
+inline bool TeXLiveRequest::has_article() const {
+  return Payload_case() == kArticle;
+}
+inline bool TeXLiveRequest::_internal_has_article() const {
+  return Payload_case() == kArticle;
+}
+inline void TeXLiveRequest::set_has_article() {
+  _impl_._oneof_case_[0] = kArticle;
+}
+inline void TeXLiveRequest::clear_article() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (Payload_case() == kArticle) {
+    if (GetArena() == nullptr) {
+      delete _impl_.Payload_.article_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.Payload_.article_);
+    }
+    clear_has_Payload();
+  }
+}
+inline ::palm::lily::v1::Article* TeXLiveRequest::release_article() {
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveRequest.article)
+  if (Payload_case() == kArticle) {
+    clear_has_Payload();
+    auto* temp = _impl_.Payload_.article_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Payload_.article_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::lily::v1::Article& TeXLiveRequest::_internal_article() const {
+  return Payload_case() == kArticle ? *_impl_.Payload_.article_ : reinterpret_cast<::palm::lily::v1::Article&>(::palm::lily::v1::_Article_default_instance_);
+}
+inline const ::palm::lily::v1::Article& TeXLiveRequest::article() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.article)
+  return _internal_article();
+}
+inline ::palm::lily::v1::Article* TeXLiveRequest::unsafe_arena_release_article() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.lily.v1.TeXLiveRequest.article)
+  if (Payload_case() == kArticle) {
+    clear_has_Payload();
+    auto* temp = _impl_.Payload_.article_;
+    _impl_.Payload_.article_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void TeXLiveRequest::unsafe_arena_set_allocated_article(::palm::lily::v1::Article* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_Payload();
+  if (value) {
+    set_has_article();
+    _impl_.Payload_.article_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TeXLiveRequest.article)
+}
+inline ::palm::lily::v1::Article* TeXLiveRequest::_internal_mutable_article() {
+  if (Payload_case() != kArticle) {
+    clear_Payload();
+    set_has_article();
+    _impl_.Payload_.article_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Article>(GetArena());
+  }
+  return _impl_.Payload_.article_;
+}
+inline ::palm::lily::v1::Article* TeXLiveRequest::mutable_article() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::lily::v1::Article* _msg = _internal_mutable_article();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveRequest.article)
+  return _msg;
+}
+
+// .palm.lily.v1.Slideshow slideshow = 13;
+inline bool TeXLiveRequest::has_slideshow() const {
+  return Payload_case() == kSlideshow;
+}
+inline bool TeXLiveRequest::_internal_has_slideshow() const {
+  return Payload_case() == kSlideshow;
+}
+inline void TeXLiveRequest::set_has_slideshow() {
+  _impl_._oneof_case_[0] = kSlideshow;
+}
+inline void TeXLiveRequest::clear_slideshow() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (Payload_case() == kSlideshow) {
+    if (GetArena() == nullptr) {
+      delete _impl_.Payload_.slideshow_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.Payload_.slideshow_);
+    }
+    clear_has_Payload();
+  }
+}
+inline ::palm::lily::v1::Slideshow* TeXLiveRequest::release_slideshow() {
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveRequest.slideshow)
+  if (Payload_case() == kSlideshow) {
+    clear_has_Payload();
+    auto* temp = _impl_.Payload_.slideshow_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Payload_.slideshow_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::lily::v1::Slideshow& TeXLiveRequest::_internal_slideshow() const {
+  return Payload_case() == kSlideshow ? *_impl_.Payload_.slideshow_ : reinterpret_cast<::palm::lily::v1::Slideshow&>(::palm::lily::v1::_Slideshow_default_instance_);
+}
+inline const ::palm::lily::v1::Slideshow& TeXLiveRequest::slideshow() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.slideshow)
+  return _internal_slideshow();
+}
+inline ::palm::lily::v1::Slideshow* TeXLiveRequest::unsafe_arena_release_slideshow() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.lily.v1.TeXLiveRequest.slideshow)
+  if (Payload_case() == kSlideshow) {
+    clear_has_Payload();
+    auto* temp = _impl_.Payload_.slideshow_;
+    _impl_.Payload_.slideshow_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void TeXLiveRequest::unsafe_arena_set_allocated_slideshow(::palm::lily::v1::Slideshow* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_Payload();
+  if (value) {
+    set_has_slideshow();
+    _impl_.Payload_.slideshow_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TeXLiveRequest.slideshow)
+}
+inline ::palm::lily::v1::Slideshow* TeXLiveRequest::_internal_mutable_slideshow() {
+  if (Payload_case() != kSlideshow) {
+    clear_Payload();
+    set_has_slideshow();
+    _impl_.Payload_.slideshow_ =
+        ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Slideshow>(GetArena());
+  }
+  return _impl_.Payload_.slideshow_;
+}
+inline ::palm::lily::v1::Slideshow* TeXLiveRequest::mutable_slideshow() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::lily::v1::Slideshow* _msg = _internal_mutable_slideshow();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveRequest.slideshow)
+  return _msg;
+}
+
+// bytes entry = 98;
+inline void TeXLiveRequest::clear_entry() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.entry_.ClearToEmpty();
 }
-inline const std::string& TexBuildTask::entry() const
+inline const std::string& TeXLiveRequest::entry() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexBuildTask.entry)
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveRequest.entry)
   return _internal_entry();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void TexBuildTask::set_entry(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void TeXLiveRequest::set_entry(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.entry_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.lily.v1.TexBuildTask.entry)
+  _impl_.entry_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TeXLiveRequest.entry)
 }
-inline std::string* TexBuildTask::mutable_entry() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* TeXLiveRequest::mutable_entry() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_entry();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexBuildTask.entry)
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveRequest.entry)
   return _s;
 }
-inline const std::string& TexBuildTask::_internal_entry() const {
+inline const std::string& TeXLiveRequest::_internal_entry() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.entry_.Get();
 }
-inline void TexBuildTask::_internal_set_entry(const std::string& value) {
+inline void TeXLiveRequest::_internal_set_entry(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.entry_.Set(value, GetArena());
 }
-inline std::string* TexBuildTask::_internal_mutable_entry() {
+inline std::string* TeXLiveRequest::_internal_mutable_entry() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.entry_.Mutable( GetArena());
 }
-inline std::string* TexBuildTask::release_entry() {
+inline std::string* TeXLiveRequest::release_entry() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.TexBuildTask.entry)
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveRequest.entry)
   return _impl_.entry_.Release();
 }
-inline void TexBuildTask::set_allocated_entry(std::string* value) {
+inline void TeXLiveRequest::set_allocated_entry(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.entry_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2347,75 +2386,168 @@ inline void TexBuildTask::set_allocated_entry(std::string* value) {
           _impl_.entry_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TexBuildTask.entry)
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TeXLiveRequest.entry)
 }
 
-// map<string, bytes> attachments = 2;
-inline int TexBuildTask::_internal_attachments_size() const {
+// map<string, bytes> attachments = 99;
+inline int TeXLiveRequest::_internal_attachments_size() const {
   return _internal_attachments().size();
 }
-inline int TexBuildTask::attachments_size() const {
+inline int TeXLiveRequest::attachments_size() const {
   return _internal_attachments_size();
 }
-inline void TexBuildTask::clear_attachments() {
+inline void TeXLiveRequest::clear_attachments() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.attachments_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& TexBuildTask::_internal_attachments() const {
+inline const ::google::protobuf::Map<std::string, std::string>& TeXLiveRequest::_internal_attachments() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.attachments_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& TexBuildTask::attachments() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:palm.lily.v1.TexBuildTask.attachments)
+inline const ::google::protobuf::Map<std::string, std::string>& TeXLiveRequest::attachments() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:palm.lily.v1.TeXLiveRequest.attachments)
   return _internal_attachments();
 }
-inline ::google::protobuf::Map<std::string, std::string>* TexBuildTask::_internal_mutable_attachments() {
+inline ::google::protobuf::Map<std::string, std::string>* TeXLiveRequest::_internal_mutable_attachments() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.attachments_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* TexBuildTask::mutable_attachments() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:palm.lily.v1.TexBuildTask.attachments)
+inline ::google::protobuf::Map<std::string, std::string>* TeXLiveRequest::mutable_attachments() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:palm.lily.v1.TeXLiveRequest.attachments)
   return _internal_mutable_attachments();
 }
 
-// .palm.lily.v1.File output = 9;
-inline bool TexBuildTask::has_output() const {
+inline bool TeXLiveRequest::has_Payload() const {
+  return Payload_case() != PAYLOAD_NOT_SET;
+}
+inline void TeXLiveRequest::clear_has_Payload() {
+  _impl_._oneof_case_[0] = PAYLOAD_NOT_SET;
+}
+inline TeXLiveRequest::PayloadCase TeXLiveRequest::Payload_case() const {
+  return TeXLiveRequest::PayloadCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// TeXLiveTask
+
+// bytes entry = 1;
+inline void TeXLiveTask::clear_entry() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entry_.ClearToEmpty();
+}
+inline const std::string& TeXLiveTask::entry() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveTask.entry)
+  return _internal_entry();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TeXLiveTask::set_entry(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entry_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.lily.v1.TeXLiveTask.entry)
+}
+inline std::string* TeXLiveTask::mutable_entry() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_entry();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveTask.entry)
+  return _s;
+}
+inline const std::string& TeXLiveTask::_internal_entry() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.entry_.Get();
+}
+inline void TeXLiveTask::_internal_set_entry(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entry_.Set(value, GetArena());
+}
+inline std::string* TeXLiveTask::_internal_mutable_entry() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.entry_.Mutable( GetArena());
+}
+inline std::string* TeXLiveTask::release_entry() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveTask.entry)
+  return _impl_.entry_.Release();
+}
+inline void TeXLiveTask::set_allocated_entry(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entry_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.entry_.IsDefault()) {
+          _impl_.entry_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TeXLiveTask.entry)
+}
+
+// map<string, bytes> attachments = 3;
+inline int TeXLiveTask::_internal_attachments_size() const {
+  return _internal_attachments().size();
+}
+inline int TeXLiveTask::attachments_size() const {
+  return _internal_attachments_size();
+}
+inline void TeXLiveTask::clear_attachments() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.attachments_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& TeXLiveTask::_internal_attachments() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.attachments_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& TeXLiveTask::attachments() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:palm.lily.v1.TeXLiveTask.attachments)
+  return _internal_attachments();
+}
+inline ::google::protobuf::Map<std::string, std::string>* TeXLiveTask::_internal_mutable_attachments() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.attachments_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* TeXLiveTask::mutable_attachments() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:palm.lily.v1.TeXLiveTask.attachments)
+  return _internal_mutable_attachments();
+}
+
+// .palm.lily.v1.Output output = 9;
+inline bool TeXLiveTask::has_output() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.output_ != nullptr);
   return value;
 }
-inline void TexBuildTask::clear_output() {
+inline void TeXLiveTask::clear_output() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.output_ != nullptr) _impl_.output_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::palm::lily::v1::File& TexBuildTask::_internal_output() const {
+inline const ::palm::lily::v1::Output& TeXLiveTask::_internal_output() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::lily::v1::File* p = _impl_.output_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::lily::v1::File&>(::palm::lily::v1::_File_default_instance_);
+  const ::palm::lily::v1::Output* p = _impl_.output_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::lily::v1::Output&>(::palm::lily::v1::_Output_default_instance_);
 }
-inline const ::palm::lily::v1::File& TexBuildTask::output() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexBuildTask.output)
+inline const ::palm::lily::v1::Output& TeXLiveTask::output() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.TeXLiveTask.output)
   return _internal_output();
 }
-inline void TexBuildTask::unsafe_arena_set_allocated_output(::palm::lily::v1::File* value) {
+inline void TeXLiveTask::unsafe_arena_set_allocated_output(::palm::lily::v1::Output* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.output_);
   }
-  _impl_.output_ = reinterpret_cast<::palm::lily::v1::File*>(value);
+  _impl_.output_ = reinterpret_cast<::palm::lily::v1::Output*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TexBuildTask.output)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TeXLiveTask.output)
 }
-inline ::palm::lily::v1::File* TexBuildTask::release_output() {
+inline ::palm::lily::v1::Output* TeXLiveTask::release_output() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::lily::v1::File* released = _impl_.output_;
+  ::palm::lily::v1::Output* released = _impl_.output_;
   _impl_.output_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -2430,30 +2562,30 @@ inline ::palm::lily::v1::File* TexBuildTask::release_output() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::palm::lily::v1::File* TexBuildTask::unsafe_arena_release_output() {
+inline ::palm::lily::v1::Output* TeXLiveTask::unsafe_arena_release_output() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.TexBuildTask.output)
+  // @@protoc_insertion_point(field_release:palm.lily.v1.TeXLiveTask.output)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::lily::v1::File* temp = _impl_.output_;
+  ::palm::lily::v1::Output* temp = _impl_.output_;
   _impl_.output_ = nullptr;
   return temp;
 }
-inline ::palm::lily::v1::File* TexBuildTask::_internal_mutable_output() {
+inline ::palm::lily::v1::Output* TeXLiveTask::_internal_mutable_output() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.output_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::File>(GetArena());
-    _impl_.output_ = reinterpret_cast<::palm::lily::v1::File*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Output>(GetArena());
+    _impl_.output_ = reinterpret_cast<::palm::lily::v1::Output*>(p);
   }
   return _impl_.output_;
 }
-inline ::palm::lily::v1::File* TexBuildTask::mutable_output() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::palm::lily::v1::Output* TeXLiveTask::mutable_output() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::palm::lily::v1::File* _msg = _internal_mutable_output();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexBuildTask.output)
+  ::palm::lily::v1::Output* _msg = _internal_mutable_output();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TeXLiveTask.output)
   return _msg;
 }
-inline void TexBuildTask::set_allocated_output(::palm::lily::v1::File* value) {
+inline void TeXLiveTask::set_allocated_output(::palm::lily::v1::Output* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -2470,144 +2602,103 @@ inline void TexBuildTask::set_allocated_output(::palm::lily::v1::File* value) {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.output_ = reinterpret_cast<::palm::lily::v1::File*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TexBuildTask.output)
+  _impl_.output_ = reinterpret_cast<::palm::lily::v1::Output*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TeXLiveTask.output)
 }
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
+// PandocTask
 
-// TexRequest
-
-// string name = 1;
-inline void TexRequest::clear_name() {
+// string payload = 1;
+inline void PandocTask::clear_payload() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
+  _impl_.payload_.ClearToEmpty();
 }
-inline const std::string& TexRequest::name() const
+inline const std::string& PandocTask::payload() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.name)
-  return _internal_name();
+  // @@protoc_insertion_point(field_get:palm.lily.v1.PandocTask.payload)
+  return _internal_payload();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void TexRequest::set_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void PandocTask::set_payload(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.name)
+  _impl_.payload_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.lily.v1.PandocTask.payload)
 }
-inline std::string* TexRequest::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexRequest.name)
+inline std::string* PandocTask::mutable_payload() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_payload();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.PandocTask.payload)
   return _s;
 }
-inline const std::string& TexRequest::_internal_name() const {
+inline const std::string& PandocTask::_internal_payload() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
+  return _impl_.payload_.Get();
 }
-inline void TexRequest::_internal_set_name(const std::string& value) {
+inline void PandocTask::_internal_set_payload(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
+  _impl_.payload_.Set(value, GetArena());
 }
-inline std::string* TexRequest::_internal_mutable_name() {
+inline std::string* PandocTask::_internal_mutable_payload() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
+  return _impl_.payload_.Mutable( GetArena());
 }
-inline std::string* TexRequest::release_name() {
+inline std::string* PandocTask::release_payload() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.TexRequest.name)
-  return _impl_.name_.Release();
+  // @@protoc_insertion_point(field_release:palm.lily.v1.PandocTask.payload)
+  return _impl_.payload_.Release();
 }
-inline void TexRequest::set_allocated_name(std::string* value) {
+inline void PandocTask::set_allocated_payload(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
+  _impl_.payload_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.name_.IsDefault()) {
-          _impl_.name_.Set("", GetArena());
+        if (_impl_.payload_.IsDefault()) {
+          _impl_.payload_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TexRequest.name)
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.PandocTask.payload)
 }
 
-// .palm.lily.v1.Style style = 2;
-inline void TexRequest::clear_style() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.style_ = 0;
-}
-inline ::palm::lily::v1::Style TexRequest::style() const {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.style)
-  return _internal_style();
-}
-inline void TexRequest::set_style(::palm::lily::v1::Style value) {
-  _internal_set_style(value);
-  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.style)
-}
-inline ::palm::lily::v1::Style TexRequest::_internal_style() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::palm::lily::v1::Style>(_impl_.style_);
-}
-inline void TexRequest::_internal_set_style(::palm::lily::v1::Style value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.style_ = value;
-}
-
-// .palm.lily.v1.Format format = 3;
-inline void TexRequest::clear_format() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.format_ = 0;
-}
-inline ::palm::lily::v1::Format TexRequest::format() const {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.format)
-  return _internal_format();
-}
-inline void TexRequest::set_format(::palm::lily::v1::Format value) {
-  _internal_set_format(value);
-  // @@protoc_insertion_point(field_set:palm.lily.v1.TexRequest.format)
-}
-inline ::palm::lily::v1::Format TexRequest::_internal_format() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::palm::lily::v1::Format>(_impl_.format_);
-}
-inline void TexRequest::_internal_set_format(::palm::lily::v1::Format value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.format_ = value;
-}
-
-// .google.protobuf.Duration ttl = 9;
-inline bool TexRequest::has_ttl() const {
+// .palm.lily.v1.Output output = 2;
+inline bool PandocTask::has_output() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.ttl_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.output_ != nullptr);
   return value;
 }
-inline const ::google::protobuf::Duration& TexRequest::_internal_ttl() const {
+inline void PandocTask::clear_output() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.output_ != nullptr) _impl_.output_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::lily::v1::Output& PandocTask::_internal_output() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::google::protobuf::Duration* p = _impl_.ttl_;
-  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Duration&>(::google::protobuf::_Duration_default_instance_);
+  const ::palm::lily::v1::Output* p = _impl_.output_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::lily::v1::Output&>(::palm::lily::v1::_Output_default_instance_);
 }
-inline const ::google::protobuf::Duration& TexRequest::ttl() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.ttl)
-  return _internal_ttl();
+inline const ::palm::lily::v1::Output& PandocTask::output() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.PandocTask.output)
+  return _internal_output();
 }
-inline void TexRequest::unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value) {
+inline void PandocTask::unsafe_arena_set_allocated_output(::palm::lily::v1::Output* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.output_);
   }
-  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  _impl_.output_ = reinterpret_cast<::palm::lily::v1::Output*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TexRequest.ttl)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.PandocTask.output)
 }
-inline ::google::protobuf::Duration* TexRequest::release_ttl() {
+inline ::palm::lily::v1::Output* PandocTask::release_output() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Duration* released = _impl_.ttl_;
-  _impl_.ttl_ = nullptr;
+  ::palm::lily::v1::Output* released = _impl_.output_;
+  _impl_.output_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
   released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -2621,408 +2712,34 @@ inline ::google::protobuf::Duration* TexRequest::release_ttl() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::google::protobuf::Duration* TexRequest::unsafe_arena_release_ttl() {
+inline ::palm::lily::v1::Output* PandocTask::unsafe_arena_release_output() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.TexRequest.ttl)
+  // @@protoc_insertion_point(field_release:palm.lily.v1.PandocTask.output)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Duration* temp = _impl_.ttl_;
-  _impl_.ttl_ = nullptr;
+  ::palm::lily::v1::Output* temp = _impl_.output_;
+  _impl_.output_ = nullptr;
   return temp;
 }
-inline ::google::protobuf::Duration* TexRequest::_internal_mutable_ttl() {
+inline ::palm::lily::v1::Output* PandocTask::_internal_mutable_output() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.ttl_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Duration>(GetArena());
-    _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(p);
+  if (_impl_.output_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Output>(GetArena());
+    _impl_.output_ = reinterpret_cast<::palm::lily::v1::Output*>(p);
   }
-  return _impl_.ttl_;
+  return _impl_.output_;
 }
-inline ::google::protobuf::Duration* TexRequest::mutable_ttl() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::palm::lily::v1::Output* PandocTask::mutable_output() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::google::protobuf::Duration* _msg = _internal_mutable_ttl();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexRequest.ttl)
+  ::palm::lily::v1::Output* _msg = _internal_mutable_output();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.PandocTask.output)
   return _msg;
 }
-inline void TexRequest::set_allocated_ttl(::google::protobuf::Duration* value) {
+inline void PandocTask::set_allocated_output(::palm::lily::v1::Output* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.TexRequest.ttl)
-}
-
-// .palm.lily.v1.Book book = 11;
-inline bool TexRequest::has_book() const {
-  return Payload_case() == kBook;
-}
-inline bool TexRequest::_internal_has_book() const {
-  return Payload_case() == kBook;
-}
-inline void TexRequest::set_has_book() {
-  _impl_._oneof_case_[0] = kBook;
-}
-inline void TexRequest::clear_book() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (Payload_case() == kBook) {
-    if (GetArena() == nullptr) {
-      delete _impl_.Payload_.book_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.Payload_.book_);
-    }
-    clear_has_Payload();
-  }
-}
-inline ::palm::lily::v1::Book* TexRequest::release_book() {
-  // @@protoc_insertion_point(field_release:palm.lily.v1.TexRequest.book)
-  if (Payload_case() == kBook) {
-    clear_has_Payload();
-    auto* temp = _impl_.Payload_.book_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Payload_.book_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::palm::lily::v1::Book& TexRequest::_internal_book() const {
-  return Payload_case() == kBook ? *_impl_.Payload_.book_ : reinterpret_cast<::palm::lily::v1::Book&>(::palm::lily::v1::_Book_default_instance_);
-}
-inline const ::palm::lily::v1::Book& TexRequest::book() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.book)
-  return _internal_book();
-}
-inline ::palm::lily::v1::Book* TexRequest::unsafe_arena_release_book() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.lily.v1.TexRequest.book)
-  if (Payload_case() == kBook) {
-    clear_has_Payload();
-    auto* temp = _impl_.Payload_.book_;
-    _impl_.Payload_.book_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void TexRequest::unsafe_arena_set_allocated_book(::palm::lily::v1::Book* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_Payload();
-  if (value) {
-    set_has_book();
-    _impl_.Payload_.book_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TexRequest.book)
-}
-inline ::palm::lily::v1::Book* TexRequest::_internal_mutable_book() {
-  if (Payload_case() != kBook) {
-    clear_Payload();
-    set_has_book();
-    _impl_.Payload_.book_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Book>(GetArena());
-  }
-  return _impl_.Payload_.book_;
-}
-inline ::palm::lily::v1::Book* TexRequest::mutable_book() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::lily::v1::Book* _msg = _internal_mutable_book();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexRequest.book)
-  return _msg;
-}
-
-// .palm.lily.v1.Article article = 12;
-inline bool TexRequest::has_article() const {
-  return Payload_case() == kArticle;
-}
-inline bool TexRequest::_internal_has_article() const {
-  return Payload_case() == kArticle;
-}
-inline void TexRequest::set_has_article() {
-  _impl_._oneof_case_[0] = kArticle;
-}
-inline void TexRequest::clear_article() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (Payload_case() == kArticle) {
-    if (GetArena() == nullptr) {
-      delete _impl_.Payload_.article_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.Payload_.article_);
-    }
-    clear_has_Payload();
-  }
-}
-inline ::palm::lily::v1::Article* TexRequest::release_article() {
-  // @@protoc_insertion_point(field_release:palm.lily.v1.TexRequest.article)
-  if (Payload_case() == kArticle) {
-    clear_has_Payload();
-    auto* temp = _impl_.Payload_.article_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Payload_.article_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::palm::lily::v1::Article& TexRequest::_internal_article() const {
-  return Payload_case() == kArticle ? *_impl_.Payload_.article_ : reinterpret_cast<::palm::lily::v1::Article&>(::palm::lily::v1::_Article_default_instance_);
-}
-inline const ::palm::lily::v1::Article& TexRequest::article() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.article)
-  return _internal_article();
-}
-inline ::palm::lily::v1::Article* TexRequest::unsafe_arena_release_article() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.lily.v1.TexRequest.article)
-  if (Payload_case() == kArticle) {
-    clear_has_Payload();
-    auto* temp = _impl_.Payload_.article_;
-    _impl_.Payload_.article_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void TexRequest::unsafe_arena_set_allocated_article(::palm::lily::v1::Article* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_Payload();
-  if (value) {
-    set_has_article();
-    _impl_.Payload_.article_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TexRequest.article)
-}
-inline ::palm::lily::v1::Article* TexRequest::_internal_mutable_article() {
-  if (Payload_case() != kArticle) {
-    clear_Payload();
-    set_has_article();
-    _impl_.Payload_.article_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Article>(GetArena());
-  }
-  return _impl_.Payload_.article_;
-}
-inline ::palm::lily::v1::Article* TexRequest::mutable_article() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::lily::v1::Article* _msg = _internal_mutable_article();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexRequest.article)
-  return _msg;
-}
-
-// .palm.lily.v1.Slideshow slideshow = 13;
-inline bool TexRequest::has_slideshow() const {
-  return Payload_case() == kSlideshow;
-}
-inline bool TexRequest::_internal_has_slideshow() const {
-  return Payload_case() == kSlideshow;
-}
-inline void TexRequest::set_has_slideshow() {
-  _impl_._oneof_case_[0] = kSlideshow;
-}
-inline void TexRequest::clear_slideshow() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (Payload_case() == kSlideshow) {
-    if (GetArena() == nullptr) {
-      delete _impl_.Payload_.slideshow_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.Payload_.slideshow_);
-    }
-    clear_has_Payload();
-  }
-}
-inline ::palm::lily::v1::Slideshow* TexRequest::release_slideshow() {
-  // @@protoc_insertion_point(field_release:palm.lily.v1.TexRequest.slideshow)
-  if (Payload_case() == kSlideshow) {
-    clear_has_Payload();
-    auto* temp = _impl_.Payload_.slideshow_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.Payload_.slideshow_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::palm::lily::v1::Slideshow& TexRequest::_internal_slideshow() const {
-  return Payload_case() == kSlideshow ? *_impl_.Payload_.slideshow_ : reinterpret_cast<::palm::lily::v1::Slideshow&>(::palm::lily::v1::_Slideshow_default_instance_);
-}
-inline const ::palm::lily::v1::Slideshow& TexRequest::slideshow() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.TexRequest.slideshow)
-  return _internal_slideshow();
-}
-inline ::palm::lily::v1::Slideshow* TexRequest::unsafe_arena_release_slideshow() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:palm.lily.v1.TexRequest.slideshow)
-  if (Payload_case() == kSlideshow) {
-    clear_has_Payload();
-    auto* temp = _impl_.Payload_.slideshow_;
-    _impl_.Payload_.slideshow_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void TexRequest::unsafe_arena_set_allocated_slideshow(::palm::lily::v1::Slideshow* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_Payload();
-  if (value) {
-    set_has_slideshow();
-    _impl_.Payload_.slideshow_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.TexRequest.slideshow)
-}
-inline ::palm::lily::v1::Slideshow* TexRequest::_internal_mutable_slideshow() {
-  if (Payload_case() != kSlideshow) {
-    clear_Payload();
-    set_has_slideshow();
-    _impl_.Payload_.slideshow_ =
-        ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::Slideshow>(GetArena());
-  }
-  return _impl_.Payload_.slideshow_;
-}
-inline ::palm::lily::v1::Slideshow* TexRequest::mutable_slideshow() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::palm::lily::v1::Slideshow* _msg = _internal_mutable_slideshow();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.TexRequest.slideshow)
-  return _msg;
-}
-
-// map<string, bytes> attachments = 99;
-inline int TexRequest::_internal_attachments_size() const {
-  return _internal_attachments().size();
-}
-inline int TexRequest::attachments_size() const {
-  return _internal_attachments_size();
-}
-inline void TexRequest::clear_attachments() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.attachments_.Clear();
-}
-inline const ::google::protobuf::Map<std::string, std::string>& TexRequest::_internal_attachments() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.attachments_.GetMap();
-}
-inline const ::google::protobuf::Map<std::string, std::string>& TexRequest::attachments() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:palm.lily.v1.TexRequest.attachments)
-  return _internal_attachments();
-}
-inline ::google::protobuf::Map<std::string, std::string>* TexRequest::_internal_mutable_attachments() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.attachments_.MutableMap();
-}
-inline ::google::protobuf::Map<std::string, std::string>* TexRequest::mutable_attachments() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:palm.lily.v1.TexRequest.attachments)
-  return _internal_mutable_attachments();
-}
-
-inline bool TexRequest::has_Payload() const {
-  return Payload_case() != PAYLOAD_NOT_SET;
-}
-inline void TexRequest::clear_has_Payload() {
-  _impl_._oneof_case_[0] = PAYLOAD_NOT_SET;
-}
-inline TexRequest::PayloadCase TexRequest::Payload_case() const {
-  return TexRequest::PayloadCase(_impl_._oneof_case_[0]);
-}
-// -------------------------------------------------------------------
-
-// ShowRequest
-
-// .palm.lily.v1.File file = 1;
-inline bool ShowRequest::has_file() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.file_ != nullptr);
-  return value;
-}
-inline void ShowRequest::clear_file() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.file_ != nullptr) _impl_.file_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::palm::lily::v1::File& ShowRequest::_internal_file() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::lily::v1::File* p = _impl_.file_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::lily::v1::File&>(::palm::lily::v1::_File_default_instance_);
-}
-inline const ::palm::lily::v1::File& ShowRequest::file() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.ShowRequest.file)
-  return _internal_file();
-}
-inline void ShowRequest::unsafe_arena_set_allocated_file(::palm::lily::v1::File* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.file_);
-  }
-  _impl_.file_ = reinterpret_cast<::palm::lily::v1::File*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.ShowRequest.file)
-}
-inline ::palm::lily::v1::File* ShowRequest::release_file() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::lily::v1::File* released = _impl_.file_;
-  _impl_.file_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::palm::lily::v1::File* ShowRequest::unsafe_arena_release_file() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.ShowRequest.file)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::palm::lily::v1::File* temp = _impl_.file_;
-  _impl_.file_ = nullptr;
-  return temp;
-}
-inline ::palm::lily::v1::File* ShowRequest::_internal_mutable_file() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.file_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::lily::v1::File>(GetArena());
-    _impl_.file_ = reinterpret_cast<::palm::lily::v1::File*>(p);
-  }
-  return _impl_.file_;
-}
-inline ::palm::lily::v1::File* ShowRequest::mutable_file() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::palm::lily::v1::File* _msg = _internal_mutable_file();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.ShowRequest.file)
-  return _msg;
-}
-inline void ShowRequest::set_allocated_file(::palm::lily::v1::File* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.file_);
+    delete (_impl_.output_);
   }
 
   if (value != nullptr) {
@@ -3035,44 +2752,48 @@ inline void ShowRequest::set_allocated_file(::palm::lily::v1::File* value) {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.file_ = reinterpret_cast<::palm::lily::v1::File*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.ShowRequest.file)
+  _impl_.output_ = reinterpret_cast<::palm::lily::v1::Output*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.PandocTask.output)
 }
 
-// .google.protobuf.Duration ttl = 9;
-inline bool ShowRequest::has_ttl() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.ttl_ != nullptr);
+// -------------------------------------------------------------------
+
+// Output
+
+// .palm.s3.v1.Bucket bucket = 1;
+inline bool Output::has_bucket() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.bucket_ != nullptr);
   return value;
 }
-inline const ::google::protobuf::Duration& ShowRequest::_internal_ttl() const {
+inline const ::palm::s3::v1::Bucket& Output::_internal_bucket() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::google::protobuf::Duration* p = _impl_.ttl_;
-  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Duration&>(::google::protobuf::_Duration_default_instance_);
+  const ::palm::s3::v1::Bucket* p = _impl_.bucket_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::s3::v1::Bucket&>(::palm::s3::v1::_Bucket_default_instance_);
 }
-inline const ::google::protobuf::Duration& ShowRequest::ttl() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.ShowRequest.ttl)
-  return _internal_ttl();
+inline const ::palm::s3::v1::Bucket& Output::bucket() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.lily.v1.Output.bucket)
+  return _internal_bucket();
 }
-inline void ShowRequest::unsafe_arena_set_allocated_ttl(::google::protobuf::Duration* value) {
+inline void Output::unsafe_arena_set_allocated_bucket(::palm::s3::v1::Bucket* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.bucket_);
   }
-  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
+  _impl_.bucket_ = reinterpret_cast<::palm::s3::v1::Bucket*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.ShowRequest.ttl)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.lily.v1.Output.bucket)
 }
-inline ::google::protobuf::Duration* ShowRequest::release_ttl() {
+inline ::palm::s3::v1::Bucket* Output::release_bucket() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Duration* released = _impl_.ttl_;
-  _impl_.ttl_ = nullptr;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::s3::v1::Bucket* released = _impl_.bucket_;
+  _impl_.bucket_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
   released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -3086,34 +2807,34 @@ inline ::google::protobuf::Duration* ShowRequest::release_ttl() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::google::protobuf::Duration* ShowRequest::unsafe_arena_release_ttl() {
+inline ::palm::s3::v1::Bucket* Output::unsafe_arena_release_bucket() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.ShowRequest.ttl)
+  // @@protoc_insertion_point(field_release:palm.lily.v1.Output.bucket)
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Duration* temp = _impl_.ttl_;
-  _impl_.ttl_ = nullptr;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::s3::v1::Bucket* temp = _impl_.bucket_;
+  _impl_.bucket_ = nullptr;
   return temp;
 }
-inline ::google::protobuf::Duration* ShowRequest::_internal_mutable_ttl() {
+inline ::palm::s3::v1::Bucket* Output::_internal_mutable_bucket() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.ttl_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Duration>(GetArena());
-    _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(p);
+  if (_impl_.bucket_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::s3::v1::Bucket>(GetArena());
+    _impl_.bucket_ = reinterpret_cast<::palm::s3::v1::Bucket*>(p);
   }
-  return _impl_.ttl_;
+  return _impl_.bucket_;
 }
-inline ::google::protobuf::Duration* ShowRequest::mutable_ttl() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
-  ::google::protobuf::Duration* _msg = _internal_mutable_ttl();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.ShowRequest.ttl)
+inline ::palm::s3::v1::Bucket* Output::mutable_bucket() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::s3::v1::Bucket* _msg = _internal_mutable_bucket();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.Output.bucket)
   return _msg;
 }
-inline void ShowRequest::set_allocated_ttl(::google::protobuf::Duration* value) {
+inline void Output::set_allocated_bucket(::palm::s3::v1::Bucket* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ttl_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.bucket_);
   }
 
   if (value != nullptr) {
@@ -3121,143 +2842,63 @@ inline void ShowRequest::set_allocated_ttl(::google::protobuf::Duration* value) 
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.ttl_ = reinterpret_cast<::google::protobuf::Duration*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.ShowRequest.ttl)
+  _impl_.bucket_ = reinterpret_cast<::palm::s3::v1::Bucket*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.Output.bucket)
 }
 
-// -------------------------------------------------------------------
-
-// ShowResponse
-
-// string url = 1;
-inline void ShowResponse::clear_url() {
+// string object = 2;
+inline void Output::clear_object() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.url_.ClearToEmpty();
+  _impl_.object_.ClearToEmpty();
 }
-inline const std::string& ShowResponse::url() const
+inline const std::string& Output::object() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.ShowResponse.url)
-  return _internal_url();
+  // @@protoc_insertion_point(field_get:palm.lily.v1.Output.object)
+  return _internal_object();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ShowResponse::set_url(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Output::set_object(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.lily.v1.ShowResponse.url)
+  _impl_.object_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.lily.v1.Output.object)
 }
-inline std::string* ShowResponse::mutable_url() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_url();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.ShowResponse.url)
+inline std::string* Output::mutable_object() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_object();
+  // @@protoc_insertion_point(field_mutable:palm.lily.v1.Output.object)
   return _s;
 }
-inline const std::string& ShowResponse::_internal_url() const {
+inline const std::string& Output::_internal_object() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.url_.Get();
+  return _impl_.object_.Get();
 }
-inline void ShowResponse::_internal_set_url(const std::string& value) {
+inline void Output::_internal_set_object(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.url_.Set(value, GetArena());
+  _impl_.object_.Set(value, GetArena());
 }
-inline std::string* ShowResponse::_internal_mutable_url() {
+inline std::string* Output::_internal_mutable_object() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.url_.Mutable( GetArena());
+  return _impl_.object_.Mutable( GetArena());
 }
-inline std::string* ShowResponse::release_url() {
+inline std::string* Output::release_object() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.ShowResponse.url)
-  return _impl_.url_.Release();
+  // @@protoc_insertion_point(field_release:palm.lily.v1.Output.object)
+  return _impl_.object_.Release();
 }
-inline void ShowResponse::set_allocated_url(std::string* value) {
+inline void Output::set_allocated_object(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.url_.SetAllocated(value, GetArena());
+  _impl_.object_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.url_.IsDefault()) {
-          _impl_.url_.Set("", GetArena());
+        if (_impl_.object_.IsDefault()) {
+          _impl_.object_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.ShowResponse.url)
-}
-
-// -------------------------------------------------------------------
-
-// StatusResponse
-
-// string log = 1;
-inline void StatusResponse::clear_log() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.log_.ClearToEmpty();
-}
-inline const std::string& StatusResponse::log() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.StatusResponse.log)
-  return _internal_log();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void StatusResponse::set_log(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.log_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.lily.v1.StatusResponse.log)
-}
-inline std::string* StatusResponse::mutable_log() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_log();
-  // @@protoc_insertion_point(field_mutable:palm.lily.v1.StatusResponse.log)
-  return _s;
-}
-inline const std::string& StatusResponse::_internal_log() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.log_.Get();
-}
-inline void StatusResponse::_internal_set_log(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.log_.Set(value, GetArena());
-}
-inline std::string* StatusResponse::_internal_mutable_log() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.log_.Mutable( GetArena());
-}
-inline std::string* StatusResponse::release_log() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.lily.v1.StatusResponse.log)
-  return _impl_.log_.Release();
-}
-inline void StatusResponse::set_allocated_log(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.log_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.log_.IsDefault()) {
-          _impl_.log_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.StatusResponse.log)
-}
-
-// bool succeed = 2;
-inline void StatusResponse::clear_succeed() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.succeed_ = false;
-}
-inline bool StatusResponse::succeed() const {
-  // @@protoc_insertion_point(field_get:palm.lily.v1.StatusResponse.succeed)
-  return _internal_succeed();
-}
-inline void StatusResponse::set_succeed(bool value) {
-  _internal_set_succeed(value);
-  // @@protoc_insertion_point(field_set:palm.lily.v1.StatusResponse.succeed)
-}
-inline bool StatusResponse::_internal_succeed() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.succeed_;
-}
-inline void StatusResponse::_internal_set_succeed(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.succeed_ = value;
+  // @@protoc_insertion_point(field_set_allocated:palm.lily.v1.Output.object)
 }
 
 #ifdef __GNUC__
@@ -3274,16 +2915,22 @@ namespace google {
 namespace protobuf {
 
 template <>
+struct is_proto_enum<::palm::lily::v1::TeXLiveTask_Format> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::palm::lily::v1::TeXLiveTask_Format>() {
+  return ::palm::lily::v1::TeXLiveTask_Format_descriptor();
+}
+template <>
+struct is_proto_enum<::palm::lily::v1::PandocTask_Format> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::palm::lily::v1::PandocTask_Format>() {
+  return ::palm::lily::v1::PandocTask_Format_descriptor();
+}
+template <>
 struct is_proto_enum<::palm::lily::v1::Style> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::palm::lily::v1::Style>() {
   return ::palm::lily::v1::Style_descriptor();
-}
-template <>
-struct is_proto_enum<::palm::lily::v1::Format> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::palm::lily::v1::Format>() {
-  return ::palm::lily::v1::Format_descriptor();
 }
 
 }  // namespace protobuf

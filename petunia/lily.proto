@@ -6,6 +6,8 @@ package palm.lily.v1;
 
 import "google/protobuf/duration.proto";
 
+import "s3.proto";
+
 // ----------------------------------------------------------------------------
 
 // https://owl.purdue.edu/owl/general_writing/general_writing_faqs.html
@@ -22,16 +24,6 @@ enum Style {
   CMOS = 20;
 }
 
-enum Format {
-  Pdf = 0;
-  Word = 1;
-}
-
-message File {
-  string bucket = 1;
-  string object = 2;
-}
-
 message Book {}
 
 message Slideshow {}
@@ -44,44 +36,50 @@ message Section {
 
 // ----------------------------------------------------------------------------
 
-message TexBuildTask {
-  string entry = 1;
-  map<string, bytes> attachments = 2;
-  File output = 9;
+service TeXLive {
+  rpc ToPdf(TeXLiveRequest) returns (palm.s3.v1.File) {}
 }
 
-// ----------------------------------------------------------------------------
-
-service Tex {
-  rpc ToWord(TexRequest) returns (File) {}
-  rpc ToPdf(TexRequest) returns (File) {}
-  rpc Show(ShowRequest) returns (ShowResponse) {}
-  rpc Status(File) returns (StatusResponse) {}
-}
-
-message TexRequest {
+message TeXLiveRequest {
   string name = 1;
   Style style = 2;
-  Format format = 3;
+  TeXLiveTask.Format format = 3;
   google.protobuf.Duration ttl = 9;
   oneof Payload {
     Book book = 11;
     Article article = 12;
     Slideshow slideshow = 13;
   }
+  bytes entry = 98;
   map<string, bytes> attachments = 99;
 }
 
-message ShowRequest {
-  File file = 1;
-  google.protobuf.Duration ttl = 9;
+// ----------------------------------------------------------------------------
+
+message TeXLiveTask {
+  enum Format {
+    Pdf = 0;
+  }
+  bytes entry = 1;
+  map<string, bytes> attachments = 3;
+  Output output = 9;
 }
 
-message ShowResponse {
-  string url = 1;
+// https://pandoc.org/MANUAL.html
+message PandocTask {
+  enum Format {
+    Plain = 0;
+    Markdown = 1;
+    Pdf = 2;
+    Docx = 3;
+  }
+
+  string payload = 1;
+  Output output = 2;
 }
 
-message StatusResponse {
-  string log = 1;
-  bool succeed = 2;
+message Output {
+  palm.s3.v1.Bucket bucket = 1;
+  string object = 2;
 }
+// ----------------------------------------------------------------------------

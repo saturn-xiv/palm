@@ -23,186 +23,60 @@ namespace palm {
 namespace lily {
 namespace v1 {
 
-static const char* Tex_method_names[] = {
-  "/palm.lily.v1.Tex/ToWord",
-  "/palm.lily.v1.Tex/ToPdf",
-  "/palm.lily.v1.Tex/Show",
-  "/palm.lily.v1.Tex/Status",
+static const char* TeXLive_method_names[] = {
+  "/palm.lily.v1.TeXLive/ToPdf",
 };
 
-std::unique_ptr< Tex::Stub> Tex::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+std::unique_ptr< TeXLive::Stub> TeXLive::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< Tex::Stub> stub(new Tex::Stub(channel, options));
+  std::unique_ptr< TeXLive::Stub> stub(new TeXLive::Stub(channel, options));
   return stub;
 }
 
-Tex::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_ToWord_(Tex_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ToPdf_(Tex_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Show_(Tex_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Status_(Tex_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+TeXLive::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_ToPdf_(TeXLive_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Tex::Stub::ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::palm::lily::v1::File* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ToWord_, context, request, response);
+::grpc::Status TeXLive::Stub::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::s3::v1::File* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ToPdf_, context, request, response);
 }
 
-void Tex::Stub::async::ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToWord_, context, request, response, std::move(f));
+void TeXLive::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToPdf_, context, request, response, std::move(f));
 }
 
-void Tex::Stub::async::ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToWord_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* Tex::Stub::PrepareAsyncToWordRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::lily::v1::File, ::palm::lily::v1::TexRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ToWord_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* Tex::Stub::AsyncToWordRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncToWordRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status Tex::Stub::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::palm::lily::v1::File* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ToPdf_, context, request, response);
-}
-
-void Tex::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToPdf_, context, request, response, std::move(f));
-}
-
-void Tex::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, ::grpc::ClientUnaryReactor* reactor) {
+void TeXLive::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToPdf_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* Tex::Stub::PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::lily::v1::File, ::palm::lily::v1::TexRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ToPdf_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* TeXLive::Stub::PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::File, ::palm::lily::v1::TeXLiveRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ToPdf_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* Tex::Stub::AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* TeXLive::Stub::AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncToPdfRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status Tex::Stub::Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::palm::lily::v1::ShowResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Show_, context, request, response);
-}
-
-void Tex::Stub::async::Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, std::move(f));
-}
-
-void Tex::Stub::async::Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Show_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>* Tex::Stub::PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::lily::v1::ShowResponse, ::palm::lily::v1::ShowRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Show_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>* Tex::Stub::AsyncShowRaw(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncShowRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-::grpc::Status Tex::Stub::Status(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::palm::lily::v1::StatusResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Status_, context, request, response);
-}
-
-void Tex::Stub::async::Status(::grpc::ClientContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Status_, context, request, response, std::move(f));
-}
-
-void Tex::Stub::async::Status(::grpc::ClientContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Status_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>* Tex::Stub::PrepareAsyncStatusRaw(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::lily::v1::StatusResponse, ::palm::lily::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Status_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>* Tex::Stub::AsyncStatusRaw(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncStatusRaw(context, request, cq);
-  result->StartCall();
-  return result;
-}
-
-Tex::Service::Service() {
+TeXLive::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tex_method_names[0],
+      TeXLive_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Tex::Service, ::palm::lily::v1::TexRequest, ::palm::lily::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Tex::Service* service,
+      new ::grpc::internal::RpcMethodHandler< TeXLive::Service, ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](TeXLive::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::palm::lily::v1::TexRequest* req,
-             ::palm::lily::v1::File* resp) {
-               return service->ToWord(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tex_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Tex::Service, ::palm::lily::v1::TexRequest, ::palm::lily::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Tex::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::palm::lily::v1::TexRequest* req,
-             ::palm::lily::v1::File* resp) {
+             const ::palm::lily::v1::TeXLiveRequest* req,
+             ::palm::s3::v1::File* resp) {
                return service->ToPdf(ctx, req, resp);
              }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tex_method_names[2],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Tex::Service, ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Tex::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::palm::lily::v1::ShowRequest* req,
-             ::palm::lily::v1::ShowResponse* resp) {
-               return service->Show(ctx, req, resp);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tex_method_names[3],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Tex::Service, ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](Tex::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::palm::lily::v1::File* req,
-             ::palm::lily::v1::StatusResponse* resp) {
-               return service->Status(ctx, req, resp);
-             }, this)));
 }
 
-Tex::Service::~Service() {
+TeXLive::Service::~Service() {
 }
 
-::grpc::Status Tex::Service::ToWord(::grpc::ServerContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status Tex::Service::ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status Tex::Service::Show(::grpc::ServerContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response) {
-  (void) context;
-  (void) request;
-  (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status Tex::Service::Status(::grpc::ServerContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response) {
+::grpc::Status TeXLive::Service::ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -31,109 +31,49 @@ namespace v1 {
 
 // ----------------------------------------------------------------------------
 //
-class Tex final {
+class TeXLive final {
  public:
   static constexpr char const* service_full_name() {
-    return "palm.lily.v1.Tex";
+    return "palm.lily.v1.TeXLive";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::palm::lily::v1::File* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>> AsyncToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>>(AsyncToWordRaw(context, request, cq));
+    virtual ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::s3::v1::File* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>>(AsyncToPdfRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>> PrepareAsyncToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>>(PrepareAsyncToWordRaw(context, request, cq));
-    }
-    virtual ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::palm::lily::v1::File* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>>(AsyncToPdfRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>>(PrepareAsyncToPdfRaw(context, request, cq));
-    }
-    virtual ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::palm::lily::v1::ShowResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::ShowResponse>> AsyncShow(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::ShowResponse>>(AsyncShowRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::ShowResponse>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::ShowResponse>>(PrepareAsyncShowRaw(context, request, cq));
-    }
-    virtual ::grpc::Status Status(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::palm::lily::v1::StatusResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::StatusResponse>> AsyncStatus(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::StatusResponse>>(AsyncStatusRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::StatusResponse>> PrepareAsyncStatus(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::StatusResponse>>(PrepareAsyncStatusRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>>(PrepareAsyncToPdfRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Status(::grpc::ClientContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Status(::grpc::ClientContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>* AsyncToWordRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>* PrepareAsyncToWordRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::File>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::ShowResponse>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::ShowResponse>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::StatusResponse>* AsyncStatusRaw(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::StatusResponse>* PrepareAsyncStatusRaw(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::palm::lily::v1::File* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>> AsyncToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>>(AsyncToWordRaw(context, request, cq));
+    ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::s3::v1::File* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>>(AsyncToPdfRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>> PrepareAsyncToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>>(PrepareAsyncToWordRaw(context, request, cq));
-    }
-    ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::palm::lily::v1::File* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>>(AsyncToPdfRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>>(PrepareAsyncToPdfRaw(context, request, cq));
-    }
-    ::grpc::Status Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::palm::lily::v1::ShowResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>> AsyncShow(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>>(AsyncShowRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>> PrepareAsyncShow(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>>(PrepareAsyncShowRaw(context, request, cq));
-    }
-    ::grpc::Status Status(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::palm::lily::v1::StatusResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>> AsyncStatus(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>>(AsyncStatusRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>> PrepareAsyncStatus(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>>(PrepareAsyncStatusRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>>(PrepareAsyncToPdfRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, std::function<void(::grpc::Status)>) override;
-      void ToWord(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, std::function<void(::grpc::Status)>) override;
-      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response, std::function<void(::grpc::Status)>) override;
-      void Show(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Status(::grpc::ClientContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response, std::function<void(::grpc::Status)>) override;
-      void Status(::grpc::ClientContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, std::function<void(::grpc::Status)>) override;
+      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -145,18 +85,9 @@ class Tex final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* AsyncToWordRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* PrepareAsyncToWordRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::File>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TexRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>* AsyncShowRaw(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::ShowResponse>* PrepareAsyncShowRaw(::grpc::ClientContext* context, const ::palm::lily::v1::ShowRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>* AsyncStatusRaw(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::StatusResponse>* PrepareAsyncStatusRaw(::grpc::ClientContext* context, const ::palm::lily::v1::File& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_ToWord_;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_ToPdf_;
-    const ::grpc::internal::RpcMethod rpcmethod_Show_;
-    const ::grpc::internal::RpcMethod rpcmethod_Status_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -164,30 +95,7 @@ class Tex final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status ToWord(::grpc::ServerContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response);
-    virtual ::grpc::Status ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response);
-    virtual ::grpc::Status Show(::grpc::ServerContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response);
-    virtual ::grpc::Status Status(::grpc::ServerContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response);
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_ToWord : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_ToWord() {
-      ::grpc::Service::MarkMethodAsync(0);
-    }
-    ~WithAsyncMethod_ToWord() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ToWord(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestToWord(::grpc::ServerContext* context, ::palm::lily::v1::TexRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::lily::v1::File>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
-    }
+    virtual ::grpc::Status ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_ToPdf : public BaseClass {
@@ -195,257 +103,65 @@ class Tex final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_ToPdf() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(0);
     }
     ~WithAsyncMethod_ToPdf() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestToPdf(::grpc::ServerContext* context, ::palm::lily::v1::TexRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::lily::v1::File>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestToPdf(::grpc::ServerContext* context, ::palm::lily::v1::TeXLiveRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::File>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  template <class BaseClass>
-  class WithAsyncMethod_Show : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Show() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_Show() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::ShowRequest* /*request*/, ::palm::lily::v1::ShowResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestShow(::grpc::ServerContext* context, ::palm::lily::v1::ShowRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::lily::v1::ShowResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Status : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Status() {
-      ::grpc::Service::MarkMethodAsync(3);
-    }
-    ~WithAsyncMethod_Status() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Status(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::File* /*request*/, ::palm::lily::v1::StatusResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestStatus(::grpc::ServerContext* context, ::palm::lily::v1::File* request, ::grpc::ServerAsyncResponseWriter< ::palm::lily::v1::StatusResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_ToWord<WithAsyncMethod_ToPdf<WithAsyncMethod_Show<WithAsyncMethod_Status<Service > > > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_ToWord : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_ToWord() {
-      ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response) { return this->ToWord(context, request, response); }));}
-    void SetMessageAllocatorFor_ToWord(
-        ::grpc::MessageAllocator< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_ToWord() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ToWord(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ToWord(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/)  { return nullptr; }
-  };
+  typedef WithAsyncMethod_ToPdf<Service > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_ToPdf : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_ToPdf() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>(
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::lily::v1::TexRequest* request, ::palm::lily::v1::File* response) { return this->ToPdf(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response) { return this->ToPdf(context, request, response); }));}
     void SetMessageAllocatorFor_ToPdf(
-        ::grpc::MessageAllocator< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>*>(handler)
+        ::grpc::MessageAllocator< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_ToPdf() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ToPdf(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_Show : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Show() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::lily::v1::ShowRequest* request, ::palm::lily::v1::ShowResponse* response) { return this->Show(context, request, response); }));}
-    void SetMessageAllocatorFor_Show(
-        ::grpc::MessageAllocator< ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Show() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::ShowRequest* /*request*/, ::palm::lily::v1::ShowResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Show(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::lily::v1::ShowRequest* /*request*/, ::palm::lily::v1::ShowResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Status : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Status() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::lily::v1::File* request, ::palm::lily::v1::StatusResponse* response) { return this->Status(context, request, response); }));}
-    void SetMessageAllocatorFor_Status(
-        ::grpc::MessageAllocator< ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Status() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Status(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::File* /*request*/, ::palm::lily::v1::StatusResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Status(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::lily::v1::File* /*request*/, ::palm::lily::v1::StatusResponse* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_ToWord<WithCallbackMethod_ToPdf<WithCallbackMethod_Show<WithCallbackMethod_Status<Service > > > > CallbackService;
+  typedef WithCallbackMethod_ToPdf<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  template <class BaseClass>
-  class WithGenericMethod_ToWord : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_ToWord() {
-      ::grpc::Service::MarkMethodGeneric(0);
-    }
-    ~WithGenericMethod_ToWord() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ToWord(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
   template <class BaseClass>
   class WithGenericMethod_ToPdf : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_ToPdf() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(0);
     }
     ~WithGenericMethod_ToPdf() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Show : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Show() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_Show() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::ShowRequest* /*request*/, ::palm::lily::v1::ShowResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Status : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Status() {
-      ::grpc::Service::MarkMethodGeneric(3);
-    }
-    ~WithGenericMethod_Status() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Status(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::File* /*request*/, ::palm::lily::v1::StatusResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_ToWord : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_ToWord() {
-      ::grpc::Service::MarkMethodRaw(0);
-    }
-    ~WithRawMethod_ToWord() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ToWord(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestToWord(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -454,81 +170,19 @@ class Tex final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_ToPdf() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(0);
     }
     ~WithRawMethod_ToPdf() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestToPdf(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Show : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Show() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_Show() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::ShowRequest* /*request*/, ::palm::lily::v1::ShowResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestShow(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Status : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Status() {
-      ::grpc::Service::MarkMethodRaw(3);
-    }
-    ~WithRawMethod_Status() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Status(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::File* /*request*/, ::palm::lily::v1::StatusResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestStatus(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_ToWord : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_ToWord() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ToWord(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_ToWord() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status ToWord(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* ToWord(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_ToPdf : public BaseClass {
@@ -536,7 +190,7 @@ class Tex final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_ToPdf() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ToPdf(context, request, response); }));
@@ -545,7 +199,7 @@ class Tex final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -553,88 +207,17 @@ class Tex final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Show : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Show() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Show(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Show() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::ShowRequest* /*request*/, ::palm::lily::v1::ShowResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Show(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Status : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Status() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Status(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Status() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Status(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::File* /*request*/, ::palm::lily::v1::StatusResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Status(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_ToWord : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_ToWord() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>* streamer) {
-                       return this->StreamedToWord(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_ToWord() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status ToWord(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedToWord(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::lily::v1::TexRequest,::palm::lily::v1::File>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_ToPdf : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_ToPdf() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>(
+          ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::lily::v1::TexRequest, ::palm::lily::v1::File>* streamer) {
+                     ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>* streamer) {
                        return this->StreamedToPdf(context,
                          streamer);
                   }));
@@ -643,70 +226,16 @@ class Tex final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TexRequest* /*request*/, ::palm::lily::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedToPdf(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::lily::v1::TexRequest,::palm::lily::v1::File>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedToPdf(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::lily::v1::TeXLiveRequest,::palm::s3::v1::File>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Show : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Show() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::lily::v1::ShowRequest, ::palm::lily::v1::ShowResponse>* streamer) {
-                       return this->StreamedShow(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Show() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Show(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::ShowRequest* /*request*/, ::palm::lily::v1::ShowResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedShow(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::lily::v1::ShowRequest,::palm::lily::v1::ShowResponse>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Status : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Status() {
-      ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::palm::lily::v1::File, ::palm::lily::v1::StatusResponse>* streamer) {
-                       return this->StreamedStatus(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Status() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Status(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::File* /*request*/, ::palm::lily::v1::StatusResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedStatus(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::lily::v1::File,::palm::lily::v1::StatusResponse>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_ToWord<WithStreamedUnaryMethod_ToPdf<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Status<Service > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_ToPdf<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_ToWord<WithStreamedUnaryMethod_ToPdf<WithStreamedUnaryMethod_Show<WithStreamedUnaryMethod_Status<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_ToPdf<Service > StreamedService;
 };
 
 }  // namespace v1
