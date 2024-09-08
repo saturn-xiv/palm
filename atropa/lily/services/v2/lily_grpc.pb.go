@@ -8,7 +8,6 @@ package v2
 
 import (
 	context "context"
-	v2 "github.com/saturn-xiv/palm/atropa/s3/services/v2"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -27,7 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeXLiveClient interface {
-	ToPdf(ctx context.Context, in *TeXLiveRequest, opts ...grpc.CallOption) (*v2.File, error)
+	ToPdf(ctx context.Context, in *TeXLiveRequest, opts ...grpc.CallOption) (*TeXLiveResponse, error)
 }
 
 type teXLiveClient struct {
@@ -38,9 +37,9 @@ func NewTeXLiveClient(cc grpc.ClientConnInterface) TeXLiveClient {
 	return &teXLiveClient{cc}
 }
 
-func (c *teXLiveClient) ToPdf(ctx context.Context, in *TeXLiveRequest, opts ...grpc.CallOption) (*v2.File, error) {
+func (c *teXLiveClient) ToPdf(ctx context.Context, in *TeXLiveRequest, opts ...grpc.CallOption) (*TeXLiveResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(v2.File)
+	out := new(TeXLiveResponse)
 	err := c.cc.Invoke(ctx, TeXLive_ToPdf_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -52,7 +51,7 @@ func (c *teXLiveClient) ToPdf(ctx context.Context, in *TeXLiveRequest, opts ...g
 // All implementations must embed UnimplementedTeXLiveServer
 // for forward compatibility.
 type TeXLiveServer interface {
-	ToPdf(context.Context, *TeXLiveRequest) (*v2.File, error)
+	ToPdf(context.Context, *TeXLiveRequest) (*TeXLiveResponse, error)
 	mustEmbedUnimplementedTeXLiveServer()
 }
 
@@ -63,7 +62,7 @@ type TeXLiveServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTeXLiveServer struct{}
 
-func (UnimplementedTeXLiveServer) ToPdf(context.Context, *TeXLiveRequest) (*v2.File, error) {
+func (UnimplementedTeXLiveServer) ToPdf(context.Context, *TeXLiveRequest) (*TeXLiveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ToPdf not implemented")
 }
 func (UnimplementedTeXLiveServer) mustEmbedUnimplementedTeXLiveServer() {}

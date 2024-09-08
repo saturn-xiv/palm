@@ -1,6 +1,7 @@
 package workers
 
 import (
+	"context"
 	"fmt"
 	"log/slog"
 
@@ -26,7 +27,7 @@ func NewSendSmsWorker(config *env.Twilio) *SendSmsWorker {
 	return &SendSmsWorker{client: client, from: config.From}
 }
 
-func (p *SendSmsWorker) Handle(id string, content_type string, body []byte) error {
+func (p *SendSmsWorker) Handle(ctx context.Context, id string, content_type string, body []byte) error {
 	var task v2.SmsTask
 	if content_type == hibiscus.APPLICATION_GRPC_PROTO {
 		if err := proto.Unmarshal(body, &task); err != nil {

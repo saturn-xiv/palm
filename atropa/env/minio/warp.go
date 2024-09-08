@@ -73,6 +73,16 @@ func create_bucket(ctx context.Context, client *minio_.Client, name string, publ
 	return nil
 }
 
+func object_upload_via_file(ctx context.Context, client *minio_.Client, file string, content_type string, bucket string, object string) error {
+	slog.Debug("upload", slog.String("endpoint", client.EndpointURL().String()), slog.String("file", file), slog.String("bucket", bucket), slog.String("object", object))
+	info, err := client.FPutObject(ctx, bucket, object, file, minio_.PutObjectOptions{ContentType: content_type})
+	if err != nil {
+		return err
+	}
+	slog.Info("upload done", slog.Int64("size", info.Size))
+	return nil
+}
+
 // https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
 func object_upload_via_browser(ctx context.Context, client *minio_.Client, bucket string, title string, expires time.Duration) (*url.URL, string, error) {
 	object := uuid.New().String()

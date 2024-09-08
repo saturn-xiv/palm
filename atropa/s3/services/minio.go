@@ -29,7 +29,7 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.CreateBucketReques
 
 // https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
 func (p *S3Service) UploadObject(ctx context.Context, req *pb.UploadObjectRequest) (*pb.UploadObjectResponse, error) {
-	url, object, err := p.client.Upload(ctx, req.Bucket, req.Title, req.Ttl.AsDuration())
+	url, object, err := p.client.UploadURL(ctx, req.Bucket, req.Title, req.Ttl.AsDuration())
 	if err != nil {
 		return nil, err
 	}

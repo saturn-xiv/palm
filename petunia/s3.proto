@@ -15,10 +15,6 @@ service S3 {
   rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
 }
 
-message File {
-  string bucket = 1;
-  string name = 2;
-}
 message Bucket {
   string name = 1;
   bool public = 2;

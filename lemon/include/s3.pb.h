@@ -63,9 +63,6 @@ extern CreateBucketRequestDefaultTypeInternal _CreateBucketRequest_default_insta
 class CreateBucketResponse;
 struct CreateBucketResponseDefaultTypeInternal;
 extern CreateBucketResponseDefaultTypeInternal _CreateBucketResponse_default_instance_;
-class File;
-struct FileDefaultTypeInternal;
-extern FileDefaultTypeInternal _File_default_instance_;
 class ObjectPermanentUrlRequest;
 struct ObjectPermanentUrlRequestDefaultTypeInternal;
 extern ObjectPermanentUrlRequestDefaultTypeInternal _ObjectPermanentUrlRequest_default_instance_;
@@ -156,7 +153,7 @@ class UrlResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UrlResponse*>(
         &_UrlResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(UrlResponse& a, UrlResponse& b) { a.Swap(&b); }
   inline void Swap(UrlResponse* other) {
     if (other == this) return;
@@ -333,7 +330,7 @@ class UploadObjectResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UploadObjectResponse*>(
         &_UploadObjectResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(UploadObjectResponse& a, UploadObjectResponse& b) { a.Swap(&b); }
   inline void Swap(UploadObjectResponse* other) {
     if (other == this) return;
@@ -528,7 +525,7 @@ class RemoveObjectRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoveObjectRequest*>(
         &_RemoveObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(RemoveObjectRequest& a, RemoveObjectRequest& b) { a.Swap(&b); }
   inline void Swap(RemoveObjectRequest* other) {
     if (other == this) return;
@@ -723,7 +720,7 @@ class ObjectPermanentUrlRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const ObjectPermanentUrlRequest*>(
         &_ObjectPermanentUrlRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(ObjectPermanentUrlRequest& a, ObjectPermanentUrlRequest& b) { a.Swap(&b); }
   inline void Swap(ObjectPermanentUrlRequest* other) {
     if (other == this) return;
@@ -901,201 +898,6 @@ class ObjectPermanentUrlRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class File final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.s3.v1.File) */ {
- public:
-  inline File() : File(nullptr) {}
-  ~File() override;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR File(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline File(const File& from) : File(nullptr, from) {}
-  inline File(File&& from) noexcept
-      : File(nullptr, std::move(from)) {}
-  inline File& operator=(const File& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline File& operator=(File&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const File& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const File* internal_default_instance() {
-    return reinterpret_cast<const File*>(
-        &_File_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(File& a, File& b) { a.Swap(&b); }
-  inline void Swap(File* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(File* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  File* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<File>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const File& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const File& from) { File::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(File* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "palm.s3.v1.File"; }
-
- protected:
-  explicit File(::google::protobuf::Arena* arena);
-  File(::google::protobuf::Arena* arena, const File& from);
-  File(::google::protobuf::Arena* arena, File&& from) noexcept
-      : File(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kBucketFieldNumber = 1,
-    kNameFieldNumber = 2,
-  };
-  // string bucket = 1;
-  void clear_bucket() ;
-  const std::string& bucket() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_bucket(Arg_&& arg, Args_... args);
-  std::string* mutable_bucket();
-  PROTOBUF_NODISCARD std::string* release_bucket();
-  void set_allocated_bucket(std::string* value);
-
-  private:
-  const std::string& _internal_bucket() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(
-      const std::string& value);
-  std::string* _internal_mutable_bucket();
-
-  public:
-  // string name = 2;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.s3.v1.File)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      34, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_File_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const File& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr bucket_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_s3_2eproto;
-};
-// -------------------------------------------------------------------
-
 class CreateBucketResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.s3.v1.CreateBucketResponse) */ {
  public:
@@ -1151,7 +953,7 @@ class CreateBucketResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const CreateBucketResponse*>(
         &_CreateBucketResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(CreateBucketResponse& a, CreateBucketResponse& b) { a.Swap(&b); }
   inline void Swap(CreateBucketResponse* other) {
     if (other == this) return;
@@ -1328,7 +1130,7 @@ class CreateBucketRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const CreateBucketRequest*>(
         &_CreateBucketRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(CreateBucketRequest& a, CreateBucketRequest& b) { a.Swap(&b); }
   inline void Swap(CreateBucketRequest* other) {
     if (other == this) return;
@@ -1529,7 +1331,7 @@ class Bucket final : public ::google::protobuf::Message
     return reinterpret_cast<const Bucket*>(
         &_Bucket_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 0;
   friend void swap(Bucket& a, Bucket& b) { a.Swap(&b); }
   inline void Swap(Bucket* other) {
     if (other == this) return;
@@ -1730,7 +1532,7 @@ class UploadObjectRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UploadObjectRequest*>(
         &_UploadObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(UploadObjectRequest& a, UploadObjectRequest& b) { a.Swap(&b); }
   inline void Swap(UploadObjectRequest* other) {
     if (other == this) return;
@@ -1943,7 +1745,7 @@ class ObjectPresignedUrlRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const ObjectPresignedUrlRequest*>(
         &_ObjectPresignedUrlRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(ObjectPresignedUrlRequest& a, ObjectPresignedUrlRequest& b) { a.Swap(&b); }
   inline void Swap(ObjectPresignedUrlRequest* other) {
     if (other == this) return;
@@ -2149,110 +1951,6 @@ class ObjectPresignedUrlRequest final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// File
-
-// string bucket = 1;
-inline void File::clear_bucket() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.ClearToEmpty();
-}
-inline const std::string& File::bucket() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.File.bucket)
-  return _internal_bucket();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void File::set_bucket(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.File.bucket)
-}
-inline std::string* File::mutable_bucket() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.File.bucket)
-  return _s;
-}
-inline const std::string& File::_internal_bucket() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.bucket_.Get();
-}
-inline void File::_internal_set_bucket(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.Set(value, GetArena());
-}
-inline std::string* File::_internal_mutable_bucket() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.bucket_.Mutable( GetArena());
-}
-inline std::string* File::release_bucket() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.s3.v1.File.bucket)
-  return _impl_.bucket_.Release();
-}
-inline void File::set_allocated_bucket(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bucket_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.bucket_.IsDefault()) {
-          _impl_.bucket_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.File.bucket)
-}
-
-// string name = 2;
-inline void File::clear_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
-}
-inline const std::string& File::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.s3.v1.File.name)
-  return _internal_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void File::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.s3.v1.File.name)
-}
-inline std::string* File::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:palm.s3.v1.File.name)
-  return _s;
-}
-inline const std::string& File::_internal_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
-}
-inline void File::_internal_set_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
-}
-inline std::string* File::_internal_mutable_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
-}
-inline std::string* File::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.s3.v1.File.name)
-  return _impl_.name_.Release();
-}
-inline void File::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.name_.IsDefault()) {
-          _impl_.name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.File.name)
-}
-
 // -------------------------------------------------------------------
 
 // Bucket

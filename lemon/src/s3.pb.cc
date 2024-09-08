@@ -126,30 +126,6 @@ struct ObjectPermanentUrlRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjectPermanentUrlRequestDefaultTypeInternal _ObjectPermanentUrlRequest_default_instance_;
 
-inline constexpr File::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : bucket_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR File::File(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct FileDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR FileDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~FileDefaultTypeInternal() {}
-  union {
-    File _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileDefaultTypeInternal _File_default_instance_;
-
 inline constexpr CreateBucketResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : name_(
@@ -283,16 +259,6 @@ const ::uint32_t
     TableStruct_s3_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::palm::s3::v1::File, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::s3::v1::File, _impl_.bucket_),
-        PROTOBUF_FIELD_OFFSET(::palm::s3::v1::File, _impl_.name_),
-        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::s3::v1::Bucket, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -404,19 +370,17 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::palm::s3::v1::File)},
-        {10, -1, -1, sizeof(::palm::s3::v1::Bucket)},
-        {21, -1, -1, sizeof(::palm::s3::v1::CreateBucketRequest)},
-        {32, -1, -1, sizeof(::palm::s3::v1::CreateBucketResponse)},
-        {41, 52, -1, sizeof(::palm::s3::v1::UploadObjectRequest)},
-        {55, -1, -1, sizeof(::palm::s3::v1::UploadObjectResponse)},
-        {65, -1, -1, sizeof(::palm::s3::v1::UrlResponse)},
-        {74, 87, -1, sizeof(::palm::s3::v1::ObjectPresignedUrlRequest)},
-        {92, 104, -1, sizeof(::palm::s3::v1::ObjectPermanentUrlRequest)},
-        {108, -1, -1, sizeof(::palm::s3::v1::RemoveObjectRequest)},
+        {0, -1, -1, sizeof(::palm::s3::v1::Bucket)},
+        {11, -1, -1, sizeof(::palm::s3::v1::CreateBucketRequest)},
+        {22, -1, -1, sizeof(::palm::s3::v1::CreateBucketResponse)},
+        {31, 42, -1, sizeof(::palm::s3::v1::UploadObjectRequest)},
+        {45, -1, -1, sizeof(::palm::s3::v1::UploadObjectResponse)},
+        {55, -1, -1, sizeof(::palm::s3::v1::UrlResponse)},
+        {64, 77, -1, sizeof(::palm::s3::v1::ObjectPresignedUrlRequest)},
+        {82, 94, -1, sizeof(::palm::s3::v1::ObjectPermanentUrlRequest)},
+        {98, -1, -1, sizeof(::palm::s3::v1::RemoveObjectRequest)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::palm::s3::v1::_File_default_instance_._instance,
     &::palm::s3::v1::_Bucket_default_instance_._instance,
     &::palm::s3::v1::_CreateBucketRequest_default_instance_._instance,
     &::palm::s3::v1::_CreateBucketResponse_default_instance_._instance,
@@ -431,38 +395,37 @@ const char descriptor_table_protodef_s3_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABL
     protodesc_cold) = {
     "\n\010s3.proto\022\npalm.s3.v1\032\036google/protobuf/"
     "duration.proto\032\033google/protobuf/empty.pr"
-    "oto\"$\n\004File\022\016\n\006bucket\030\001 \001(\t\022\014\n\004name\030\002 \001("
-    "\t\"\?\n\006Bucket\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 \001("
-    "\010\022\027\n\017expiration_days\030\003 \001(\005\"L\n\023CreateBuck"
-    "etRequest\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 \001(\010\022"
-    "\027\n\017expiration_days\030\t \001(\r\"$\n\024CreateBucket"
-    "Response\022\014\n\004name\030\001 \001(\t\"\\\n\023UploadObjectRe"
-    "quest\022\016\n\006bucket\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022&\n\003"
-    "ttl\030\t \001(\0132\031.google.protobuf.Duration\"3\n\024"
-    "UploadObjectResponse\022\016\n\006object\030\001 \001(\t\022\013\n\003"
-    "url\030\t \001(\t\"\032\n\013UrlResponse\022\013\n\003url\030\001 \001(\t\"\236\001"
-    "\n\031ObjectPresignedUrlRequest\022\016\n\006bucket\030\001 "
-    "\001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014co"
-    "ntent_type\030\004 \001(\tH\000\210\001\001\022&\n\003ttl\030\t \001(\0132\031.goo"
-    "gle.protobuf.DurationB\017\n\r_content_type\"v"
-    "\n\031ObjectPermanentUrlRequest\022\016\n\006bucket\030\001 "
-    "\001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014co"
-    "ntent_type\030\004 \001(\tH\000\210\001\001B\017\n\r_content_type\"5"
-    "\n\023RemoveObjectRequest\022\016\n\006bucket\030\001 \001(\t\022\016\n"
-    "\006object\030\002 \001(\t2\251\003\n\002S3\022S\n\014CreateBucket\022\037.p"
-    "alm.s3.v1.CreateBucketRequest\032 .palm.s3."
-    "v1.CreateBucketResponse\"\000\022S\n\014UploadObjec"
-    "t\022\037.palm.s3.v1.UploadObjectRequest\032 .pal"
-    "m.s3.v1.UploadObjectResponse\"\000\022V\n\022Object"
-    "PermanentUrl\022%.palm.s3.v1.ObjectPermanen"
-    "tUrlRequest\032\027.palm.s3.v1.UrlResponse\"\000\022V"
-    "\n\022ObjectPresignedUrl\022%.palm.s3.v1.Object"
-    "PresignedUrlRequest\032\027.palm.s3.v1.UrlResp"
-    "onse\"\000\022I\n\014RemoveObject\022\037.palm.s3.v1.Remo"
-    "veObjectRequest\032\026.google.protobuf.Empty\""
-    "\000B^\n(com.github.saturn_xiv.palm.plugins."
-    "s3.v1P\001Z0github.com/saturn-xiv/palm/atro"
-    "pa/s3/services/v2b\006proto3"
+    "oto\"\?\n\006Bucket\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 "
+    "\001(\010\022\027\n\017expiration_days\030\003 \001(\005\"L\n\023CreateBu"
+    "cketRequest\022\014\n\004name\030\001 \001(\t\022\016\n\006public\030\002 \001("
+    "\010\022\027\n\017expiration_days\030\t \001(\r\"$\n\024CreateBuck"
+    "etResponse\022\014\n\004name\030\001 \001(\t\"\\\n\023UploadObject"
+    "Request\022\016\n\006bucket\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022&"
+    "\n\003ttl\030\t \001(\0132\031.google.protobuf.Duration\"3"
+    "\n\024UploadObjectResponse\022\016\n\006object\030\001 \001(\t\022\013"
+    "\n\003url\030\t \001(\t\"\032\n\013UrlResponse\022\013\n\003url\030\001 \001(\t\""
+    "\236\001\n\031ObjectPresignedUrlRequest\022\016\n\006bucket\030"
+    "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
+    "content_type\030\004 \001(\tH\000\210\001\001\022&\n\003ttl\030\t \001(\0132\031.g"
+    "oogle.protobuf.DurationB\017\n\r_content_type"
+    "\"v\n\031ObjectPermanentUrlRequest\022\016\n\006bucket\030"
+    "\001 \001(\t\022\016\n\006object\030\002 \001(\t\022\r\n\005title\030\003 \001(\t\022\031\n\014"
+    "content_type\030\004 \001(\tH\000\210\001\001B\017\n\r_content_type"
+    "\"5\n\023RemoveObjectRequest\022\016\n\006bucket\030\001 \001(\t\022"
+    "\016\n\006object\030\002 \001(\t2\251\003\n\002S3\022S\n\014CreateBucket\022\037"
+    ".palm.s3.v1.CreateBucketRequest\032 .palm.s"
+    "3.v1.CreateBucketResponse\"\000\022S\n\014UploadObj"
+    "ect\022\037.palm.s3.v1.UploadObjectRequest\032 .p"
+    "alm.s3.v1.UploadObjectResponse\"\000\022V\n\022Obje"
+    "ctPermanentUrl\022%.palm.s3.v1.ObjectPerman"
+    "entUrlRequest\032\027.palm.s3.v1.UrlResponse\"\000"
+    "\022V\n\022ObjectPresignedUrl\022%.palm.s3.v1.Obje"
+    "ctPresignedUrlRequest\032\027.palm.s3.v1.UrlRe"
+    "sponse\"\000\022I\n\014RemoveObject\022\037.palm.s3.v1.Re"
+    "moveObjectRequest\032\026.google.protobuf.Empt"
+    "y\"\000B^\n(com.github.saturn_xiv.palm.plugin"
+    "s.s3.v1P\001Z0github.com/saturn-xiv/palm/at"
+    "ropa/s3/services/v2b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_s3_2eproto_deps[2] =
     {
@@ -473,13 +436,13 @@ static ::absl::once_flag descriptor_table_s3_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_s3_2eproto = {
     false,
     false,
-    1345,
+    1307,
     descriptor_table_protodef_s3_2eproto,
     "s3.proto",
     &descriptor_table_s3_2eproto_once,
     descriptor_table_s3_2eproto_deps,
     2,
-    10,
+    9,
     schemas,
     file_default_instances,
     TableStruct_s3_2eproto::offsets,
@@ -489,228 +452,6 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_s3_2eproto = {
 namespace palm {
 namespace s3 {
 namespace v1 {
-// ===================================================================
-
-class File::_Internal {
- public:
-};
-
-File::File(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.s3.v1.File)
-}
-inline PROTOBUF_NDEBUG_INLINE File::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::s3::v1::File& from_msg)
-      : bucket_(arena, from.bucket_),
-        name_(arena, from.name_),
-        _cached_size_{0} {}
-
-File::File(
-    ::google::protobuf::Arena* arena,
-    const File& from)
-    : ::google::protobuf::Message(arena) {
-  File* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-
-  // @@protoc_insertion_point(copy_constructor:palm.s3.v1.File)
-}
-inline PROTOBUF_NDEBUG_INLINE File::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : bucket_(arena),
-        name_(arena),
-        _cached_size_{0} {}
-
-inline void File::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-}
-File::~File() {
-  // @@protoc_insertion_point(destructor:palm.s3.v1.File)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void File::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.bucket_.Destroy();
-  _impl_.name_.Destroy();
-  _impl_.~Impl_();
-}
-
-const ::google::protobuf::MessageLite::ClassData*
-File::GetClassData() const {
-  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
-      ClassDataFull _data_ = {
-          {
-              &_table_.header,
-              nullptr,  // OnDemandRegisterArenaDtor
-              nullptr,  // IsInitialized
-              PROTOBUF_FIELD_OFFSET(File, _impl_._cached_size_),
-              false,
-          },
-          &File::MergeImpl,
-          &File::kDescriptorMethods,
-          &descriptor_table_s3_2eproto,
-          nullptr,  // tracker
-      };
-  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
-  return _data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 34, 2> File::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_File_default_instance_._instance,
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::s3::v1::File>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // string name = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(File, _impl_.name_)}},
-    // string bucket = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(File, _impl_.bucket_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string bucket = 1;
-    {PROTOBUF_FIELD_OFFSET(File, _impl_.bucket_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string name = 2;
-    {PROTOBUF_FIELD_OFFSET(File, _impl_.name_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\17\6\4\0\0\0\0\0"
-    "palm.s3.v1.File"
-    "bucket"
-    "name"
-  }},
-};
-
-PROTOBUF_NOINLINE void File::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.s3.v1.File)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.bucket_.ClearToEmpty();
-  _impl_.name_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-::uint8_t* File::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.s3.v1.File)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // string bucket = 1;
-  if (!this->_internal_bucket().empty()) {
-    const std::string& _s = this->_internal_bucket();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.File.bucket");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
-  }
-
-  // string name = 2;
-  if (!this->_internal_name().empty()) {
-    const std::string& _s = this->_internal_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.s3.v1.File.name");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.s3.v1.File)
-  return target;
-}
-
-::size_t File::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.s3.v1.File)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // string bucket = 1;
-  if (!this->_internal_bucket().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_bucket());
-  }
-
-  // string name = 2;
-  if (!this->_internal_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_name());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-
-void File::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<File*>(&to_msg);
-  auto& from = static_cast<const File&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.s3.v1.File)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_bucket().empty()) {
-    _this->_internal_set_bucket(from._internal_bucket());
-  }
-  if (!from._internal_name().empty()) {
-    _this->_internal_set_name(from._internal_name());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void File::CopyFrom(const File& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.s3.v1.File)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void File::InternalSwap(File* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-}
-
-::google::protobuf::Metadata File::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
 // ===================================================================
 
 class Bucket::_Internal {

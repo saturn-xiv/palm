@@ -6,8 +6,6 @@ package palm.lily.v1;
 
 import "google/protobuf/duration.proto";
 
-import "s3.proto";
-
 // ----------------------------------------------------------------------------
 
 // https://owl.purdue.edu/owl/general_writing/general_writing_faqs.html
@@ -37,13 +35,13 @@ message Section {
 // ----------------------------------------------------------------------------
 
 service TeXLive {
-  rpc ToPdf(TeXLiveRequest) returns (palm.s3.v1.File) {}
+  rpc ToPdf(TeXLiveRequest) returns (TeXLiveResponse) {}
 }
 
 message TeXLiveRequest {
   string name = 1;
   Style style = 2;
-  TeXLiveTask.Format format = 3;
+  TeXLiveTask.Output.Format format = 3;
   google.protobuf.Duration ttl = 9;
   oneof Payload {
     Book book = 11;
@@ -54,14 +52,26 @@ message TeXLiveRequest {
   map<string, bytes> attachments = 99;
 }
 
+message TeXLiveResponse {
+  string bucket = 1;
+  string object = 2;
+}
+
 // ----------------------------------------------------------------------------
 
 message TeXLiveTask {
-  enum Format {
-    Pdf = 0;
-  }
   bytes entry = 1;
   map<string, bytes> attachments = 3;
+
+  message Output {
+    enum Format {
+      Pdf = 0;
+    }
+
+    Format format = 1;
+    string bucket = 2;
+    string object = 3;
+  }
   Output output = 9;
 }
 
@@ -74,12 +84,18 @@ message PandocTask {
     Docx = 3;
   }
 
-  string payload = 1;
+  message Input {
+    Format format = 1;
+    bytes payload = 2;
+  }
+  message Output {
+    Format format = 1;
+    string bucket = 2;
+    string object = 3;
+  }
+
+  Input input = 1;
   Output output = 2;
 }
 
-message Output {
-  palm.s3.v1.Bucket bucket = 1;
-  string object = 2;
-}
 // ----------------------------------------------------------------------------

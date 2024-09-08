@@ -13,7 +13,7 @@ import (
 )
 
 type Consumer interface {
-	Handle(id string, content_type string, body []byte) error
+	Handle(ctx context.Context, id string, content_type string, body []byte) error
 }
 
 type Config struct {
@@ -112,7 +112,7 @@ func (p *Config) Consume(ctx context.Context, name string, queue string, consume
 	}
 	for it := range messages {
 		slog.Info(fmt.Sprintf("receive message (%s,%s)", it.MessageId, it.ContentType))
-		if err = consumer.Handle(it.MessageId, it.ContentType, it.Body); err != nil {
+		if err = consumer.Handle(ctx, it.MessageId, it.ContentType, it.Body); err != nil {
 			return err
 		}
 	}

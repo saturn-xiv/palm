@@ -5,7 +5,6 @@ import (
 
 	"github.com/saturn-xiv/palm/atropa/env/minio"
 	pb "github.com/saturn-xiv/palm/atropa/lily/services/v2"
-	s3_pb "github.com/saturn-xiv/palm/atropa/s3/services/v2"
 )
 
 func NewTeXLiveService(s3 *minio.Client) *TeXLiveService {
@@ -18,7 +17,7 @@ type TeXLiveService struct {
 	s3 *minio.Client
 }
 
-func (p *TeXLiveService) ToPdf(ctx context.Context, req *pb.TeXLiveRequest) (*s3_pb.File, error) {
+func (p *TeXLiveService) ToPdf(ctx context.Context, req *pb.TeXLiveRequest) (*pb.TeXLiveResponse, error) {
 	// TODO
-	return &s3_pb.File{}, nil
+	return &pb.TeXLiveResponse{}, nil
 }

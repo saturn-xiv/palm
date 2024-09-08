@@ -1,6 +1,7 @@
 package workers
 
 import (
+	"context"
 	"crypto/tls"
 	"fmt"
 	"log/slog"
@@ -28,7 +29,7 @@ func NewSendEmailWorker(config *env.Smtp) *SendEmailWorker {
 	return &SendEmailWorker{dialer: dialer, from: config.User, cc: config.Cc, bcc: config.Bcc}
 }
 
-func (p *SendEmailWorker) Handle(id string, content_type string, body []byte) error {
+func (p *SendEmailWorker) Handle(ctx context.Context, id string, content_type string, body []byte) error {
 	var task v2.EmailTask
 
 	if content_type == hibiscus.APPLICATION_GRPC_PROTO {

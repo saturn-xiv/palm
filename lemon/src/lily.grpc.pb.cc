@@ -37,23 +37,23 @@ TeXLive::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, c
   : channel_(channel), rpcmethod_ToPdf_(TeXLive_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status TeXLive::Stub::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::s3::v1::File* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ToPdf_, context, request, response);
+::grpc::Status TeXLive::Stub::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::lily::v1::TeXLiveResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ToPdf_, context, request, response);
 }
 
-void TeXLive::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToPdf_, context, request, response, std::move(f));
+void TeXLive::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToPdf_, context, request, response, std::move(f));
 }
 
-void TeXLive::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, ::grpc::ClientUnaryReactor* reactor) {
+void TeXLive::Stub::async::ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ToPdf_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* TeXLive::Stub::PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::File, ::palm::lily::v1::TeXLiveRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ToPdf_, context, request);
+::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>* TeXLive::Stub::PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::lily::v1::TeXLiveResponse, ::palm::lily::v1::TeXLiveRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ToPdf_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* TeXLive::Stub::AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>* TeXLive::Stub::AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncToPdfRaw(context, request, cq);
   result->StartCall();
@@ -64,11 +64,11 @@ TeXLive::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TeXLive_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TeXLive::Service, ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< TeXLive::Service, ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TeXLive::Service* service,
              ::grpc::ServerContext* ctx,
              const ::palm::lily::v1::TeXLiveRequest* req,
-             ::palm::s3::v1::File* resp) {
+             ::palm::lily::v1::TeXLiveResponse* resp) {
                return service->ToPdf(ctx, req, resp);
              }, this)));
 }
@@ -76,7 +76,7 @@ TeXLive::Service::Service() {
 TeXLive::Service::~Service() {
 }
 
-::grpc::Status TeXLive::Service::ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response) {
+::grpc::Status TeXLive::Service::ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response) {
   (void) context;
   (void) request;
   (void) response;

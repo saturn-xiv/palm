@@ -33,12 +33,16 @@ func (p *Client) CreateBucket(ctx context.Context, name string, public bool, exp
 }
 
 // https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
-func (p *Client) Upload(ctx context.Context, bucket string, title string, ttl time.Duration) (*url.URL, string, error) {
+func (p *Client) UploadURL(ctx context.Context, bucket string, title string, ttl time.Duration) (*url.URL, string, error) {
 	url, object, err := object_upload_via_browser(ctx, p.client, bucket, title, ttl)
 	if err != nil {
 		return nil, "", err
 	}
 	return url, object, nil
+}
+
+func (p *Client) UploadFile(ctx context.Context, file string, content_type string, bucket string, object string) error {
+	return object_upload_via_file(ctx, p.client, file, content_type, bucket, object)
 }
 
 func (p *Client) PermanentUrl(ctx context.Context, bucket string, object string, title string, content_type *string) (*url.URL, error) {

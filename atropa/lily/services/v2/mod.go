@@ -4,9 +4,9 @@ import (
 	"fmt"
 )
 
-func (p *TeXLiveTask_Format) File(name string) (string, error) {
+func (p *TeXLiveTask_Output_Format) File(name string) (string, error) {
 	switch *p {
-	case TeXLiveTask_Pdf:
+	case TeXLiveTask_Output_Pdf:
 		return name + ".pdf", nil
 	default:
 		return "", fmt.Errorf("unsupported ext %s", p.String())

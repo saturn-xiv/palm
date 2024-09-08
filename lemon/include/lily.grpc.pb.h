@@ -39,41 +39,41 @@ class TeXLive final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::s3::v1::File* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>>(AsyncToPdfRaw(context, request, cq));
+    virtual ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::lily::v1::TeXLiveResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::TeXLiveResponse>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::TeXLiveResponse>>(AsyncToPdfRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>>(PrepareAsyncToPdfRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::TeXLiveResponse>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::TeXLiveResponse>>(PrepareAsyncToPdfRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::File>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::TeXLiveResponse>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::lily::v1::TeXLiveResponse>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::s3::v1::File* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>>(AsyncToPdfRaw(context, request, cq));
+    ::grpc::Status ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::palm::lily::v1::TeXLiveResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>> AsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>>(AsyncToPdfRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>>(PrepareAsyncToPdfRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>> PrepareAsyncToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>>(PrepareAsyncToPdfRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, std::function<void(::grpc::Status)>) override;
-      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response, std::function<void(::grpc::Status)>) override;
+      void ToPdf(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -85,8 +85,8 @@ class TeXLive final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::File>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>* AsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::lily::v1::TeXLiveResponse>* PrepareAsyncToPdfRaw(::grpc::ClientContext* context, const ::palm::lily::v1::TeXLiveRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_ToPdf_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -95,7 +95,7 @@ class TeXLive final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response);
+    virtual ::grpc::Status ToPdf(::grpc::ServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_ToPdf : public BaseClass {
@@ -109,11 +109,11 @@ class TeXLive final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::lily::v1::TeXLiveResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestToPdf(::grpc::ServerContext* context, ::palm::lily::v1::TeXLiveRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::File>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestToPdf(::grpc::ServerContext* context, ::palm::lily::v1::TeXLiveRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::lily::v1::TeXLiveResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -125,25 +125,25 @@ class TeXLive final {
    public:
     WithCallbackMethod_ToPdf() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::s3::v1::File* response) { return this->ToPdf(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::lily::v1::TeXLiveRequest* request, ::palm::lily::v1::TeXLiveResponse* response) { return this->ToPdf(context, request, response); }));}
     void SetMessageAllocatorFor_ToPdf(
-        ::grpc::MessageAllocator< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>* allocator) {
+        ::grpc::MessageAllocator< ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_ToPdf() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::lily::v1::TeXLiveResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ToPdf(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::lily::v1::TeXLiveResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_ToPdf<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -159,7 +159,7 @@ class TeXLive final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::lily::v1::TeXLiveResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -176,7 +176,7 @@ class TeXLive final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::lily::v1::TeXLiveResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -199,7 +199,7 @@ class TeXLive final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::lily::v1::TeXLiveResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -214,10 +214,10 @@ class TeXLive final {
     WithStreamedUnaryMethod_ToPdf() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>(
+          ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::lily::v1::TeXLiveRequest, ::palm::s3::v1::File>* streamer) {
+                     ::palm::lily::v1::TeXLiveRequest, ::palm::lily::v1::TeXLiveResponse>* streamer) {
                        return this->StreamedToPdf(context,
                          streamer);
                   }));
@@ -226,12 +226,12 @@ class TeXLive final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::s3::v1::File* /*response*/) override {
+    ::grpc::Status ToPdf(::grpc::ServerContext* /*context*/, const ::palm::lily::v1::TeXLiveRequest* /*request*/, ::palm::lily::v1::TeXLiveResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedToPdf(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::lily::v1::TeXLiveRequest,::palm::s3::v1::File>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedToPdf(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::lily::v1::TeXLiveRequest,::palm::lily::v1::TeXLiveResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_ToPdf<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;

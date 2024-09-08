@@ -26,6 +26,31 @@ namespace _fl = ::google::protobuf::internal::field_layout;
 namespace palm {
 namespace lily {
 namespace v1 {
+
+inline constexpr TeXLiveTask_Output::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        format_{static_cast< ::palm::lily::v1::TeXLiveTask_Output_Format >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TeXLiveTask_Output::TeXLiveTask_Output(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct TeXLiveTask_OutputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TeXLiveTask_OutputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TeXLiveTask_OutputDefaultTypeInternal() {}
+  union {
+    TeXLiveTask_Output _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TeXLiveTask_OutputDefaultTypeInternal _TeXLiveTask_Output_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR TeXLiveTask_AttachmentsEntry_DoNotUse::TeXLiveTask_AttachmentsEntry_DoNotUse(::_pbi::ConstantInitialized) {}
 struct TeXLiveTask_AttachmentsEntry_DoNotUseDefaultTypeInternal {
@@ -38,6 +63,30 @@ struct TeXLiveTask_AttachmentsEntry_DoNotUseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TeXLiveTask_AttachmentsEntry_DoNotUseDefaultTypeInternal _TeXLiveTask_AttachmentsEntry_DoNotUse_default_instance_;
+
+inline constexpr TeXLiveResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TeXLiveResponse::TeXLiveResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct TeXLiveResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TeXLiveResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TeXLiveResponseDefaultTypeInternal() {}
+  union {
+    TeXLiveResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TeXLiveResponseDefaultTypeInternal _TeXLiveResponse_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR TeXLiveRequest_AttachmentsEntry_DoNotUse::TeXLiveRequest_AttachmentsEntry_DoNotUse(::_pbi::ConstantInitialized) {}
 struct TeXLiveRequest_AttachmentsEntry_DoNotUseDefaultTypeInternal {
@@ -81,6 +130,53 @@ struct SectionDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SectionDefaultTypeInternal _Section_default_instance_;
+
+inline constexpr PandocTask_Output::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : bucket_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        object_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        format_{static_cast< ::palm::lily::v1::PandocTask_Format >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PandocTask_Output::PandocTask_Output(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PandocTask_OutputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PandocTask_OutputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PandocTask_OutputDefaultTypeInternal() {}
+  union {
+    PandocTask_Output _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PandocTask_OutputDefaultTypeInternal _PandocTask_Output_default_instance_;
+
+inline constexpr PandocTask_Input::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : payload_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        format_{static_cast< ::palm::lily::v1::PandocTask_Format >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PandocTask_Input::PandocTask_Input(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PandocTask_InputDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PandocTask_InputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PandocTask_InputDefaultTypeInternal() {}
+  union {
+    PandocTask_Input _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PandocTask_InputDefaultTypeInternal _PandocTask_Input_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR Book::Book(::_pbi::ConstantInitialized) {}
 struct BookDefaultTypeInternal {
@@ -106,58 +202,6 @@ struct ArticleDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ArticleDefaultTypeInternal _Article_default_instance_;
 
-inline constexpr TeXLiveRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        attachments_{},
-        name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        entry_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        ttl_{nullptr},
-        style_{static_cast< ::palm::lily::v1::Style >(0)},
-        format_{static_cast< ::palm::lily::v1::TeXLiveTask_Format >(0)},
-        Payload_{},
-        _oneof_case_{} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR TeXLiveRequest::TeXLiveRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct TeXLiveRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR TeXLiveRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~TeXLiveRequestDefaultTypeInternal() {}
-  union {
-    TeXLiveRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TeXLiveRequestDefaultTypeInternal _TeXLiveRequest_default_instance_;
-
-inline constexpr Output::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        object_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        bucket_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Output::Output(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct OutputDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR OutputDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~OutputDefaultTypeInternal() {}
-  union {
-    Output _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OutputDefaultTypeInternal _Output_default_instance_;
-
 inline constexpr TeXLiveTask::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -181,12 +225,40 @@ struct TeXLiveTaskDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TeXLiveTaskDefaultTypeInternal _TeXLiveTask_default_instance_;
 
+inline constexpr TeXLiveRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        attachments_{},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        entry_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        ttl_{nullptr},
+        style_{static_cast< ::palm::lily::v1::Style >(0)},
+        format_{static_cast< ::palm::lily::v1::TeXLiveTask_Output_Format >(0)},
+        Payload_{},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TeXLiveRequest::TeXLiveRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct TeXLiveRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TeXLiveRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TeXLiveRequestDefaultTypeInternal() {}
+  union {
+    TeXLiveRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TeXLiveRequestDefaultTypeInternal _TeXLiveRequest_default_instance_;
+
 inline constexpr PandocTask::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        payload_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
+        input_{nullptr},
         output_{nullptr} {}
 
 template <typename>
@@ -283,6 +355,16 @@ const ::uint32_t
         ~0u,
         ~0u,
         ~0u,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveResponse, _impl_.bucket_),
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveResponse, _impl_.object_),
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask_AttachmentsEntry_DoNotUse, _has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask_AttachmentsEntry_DoNotUse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -295,6 +377,17 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask_AttachmentsEntry_DoNotUse, value_),
         0,
         1,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask_Output, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask_Output, _impl_.format_),
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask_Output, _impl_.bucket_),
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask_Output, _impl_.object_),
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::TeXLiveTask, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -309,6 +402,27 @@ const ::uint32_t
         ~0u,
         ~0u,
         0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask_Input, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask_Input, _impl_.format_),
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask_Input, _impl_.payload_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask_Output, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask_Output, _impl_.format_),
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask_Output, _impl_.bucket_),
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask_Output, _impl_.object_),
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -317,22 +431,10 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask, _impl_.payload_),
+        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask, _impl_.input_),
         PROTOBUF_FIELD_OFFSET(::palm::lily::v1::PandocTask, _impl_.output_),
-        ~0u,
         0,
-        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::Output, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::Output, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::Output, _impl_.bucket_),
-        PROTOBUF_FIELD_OFFSET(::palm::lily::v1::Output, _impl_.object_),
-        0,
-        ~0u,
+        1,
 };
 
 static const ::_pbi::MigrationSchema
@@ -343,10 +445,13 @@ static const ::_pbi::MigrationSchema
         {24, -1, -1, sizeof(::palm::lily::v1::Section)},
         {33, 43, -1, sizeof(::palm::lily::v1::TeXLiveRequest_AttachmentsEntry_DoNotUse)},
         {45, 63, -1, sizeof(::palm::lily::v1::TeXLiveRequest)},
-        {72, 82, -1, sizeof(::palm::lily::v1::TeXLiveTask_AttachmentsEntry_DoNotUse)},
-        {84, 95, -1, sizeof(::palm::lily::v1::TeXLiveTask)},
-        {98, 108, -1, sizeof(::palm::lily::v1::PandocTask)},
-        {110, 120, -1, sizeof(::palm::lily::v1::Output)},
+        {72, -1, -1, sizeof(::palm::lily::v1::TeXLiveResponse)},
+        {82, 92, -1, sizeof(::palm::lily::v1::TeXLiveTask_AttachmentsEntry_DoNotUse)},
+        {94, -1, -1, sizeof(::palm::lily::v1::TeXLiveTask_Output)},
+        {105, 116, -1, sizeof(::palm::lily::v1::TeXLiveTask)},
+        {119, -1, -1, sizeof(::palm::lily::v1::PandocTask_Input)},
+        {129, -1, -1, sizeof(::palm::lily::v1::PandocTask_Output)},
+        {140, 150, -1, sizeof(::palm::lily::v1::PandocTask)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::lily::v1::_Book_default_instance_._instance,
@@ -355,60 +460,70 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::palm::lily::v1::_Section_default_instance_._instance,
     &::palm::lily::v1::_TeXLiveRequest_AttachmentsEntry_DoNotUse_default_instance_._instance,
     &::palm::lily::v1::_TeXLiveRequest_default_instance_._instance,
+    &::palm::lily::v1::_TeXLiveResponse_default_instance_._instance,
     &::palm::lily::v1::_TeXLiveTask_AttachmentsEntry_DoNotUse_default_instance_._instance,
+    &::palm::lily::v1::_TeXLiveTask_Output_default_instance_._instance,
     &::palm::lily::v1::_TeXLiveTask_default_instance_._instance,
+    &::palm::lily::v1::_PandocTask_Input_default_instance_._instance,
+    &::palm::lily::v1::_PandocTask_Output_default_instance_._instance,
     &::palm::lily::v1::_PandocTask_default_instance_._instance,
-    &::palm::lily::v1::_Output_default_instance_._instance,
 };
 const char descriptor_table_protodef_lily_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\nlily.proto\022\014palm.lily.v1\032\036google/proto"
-    "buf/duration.proto\032\010s3.proto\"\006\n\004Book\"\013\n\t"
-    "Slideshow\"\t\n\007Article\"/\n\007Section\022$\n\005items"
-    "\030\001 \003(\0132\025.palm.lily.v1.Section\"\252\003\n\016TeXLiv"
-    "eRequest\022\014\n\004name\030\001 \001(\t\022\"\n\005style\030\002 \001(\0162\023."
-    "palm.lily.v1.Style\0220\n\006format\030\003 \001(\0162 .pal"
-    "m.lily.v1.TeXLiveTask.Format\022&\n\003ttl\030\t \001("
-    "\0132\031.google.protobuf.Duration\022\"\n\004book\030\013 \001"
-    "(\0132\022.palm.lily.v1.BookH\000\022(\n\007article\030\014 \001("
-    "\0132\025.palm.lily.v1.ArticleH\000\022,\n\tslideshow\030"
-    "\r \001(\0132\027.palm.lily.v1.SlideshowH\000\022\r\n\005entr"
-    "y\030b \001(\014\022B\n\013attachments\030c \003(\0132-.palm.lily"
-    ".v1.TeXLiveRequest.AttachmentsEntry\0322\n\020A"
-    "ttachmentsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 "
-    "\001(\014:\0028\001B\t\n\007Payload\"\312\001\n\013TeXLiveTask\022\r\n\005en"
-    "try\030\001 \001(\014\022\?\n\013attachments\030\003 \003(\0132*.palm.li"
-    "ly.v1.TeXLiveTask.AttachmentsEntry\022$\n\006ou"
-    "tput\030\t \001(\0132\024.palm.lily.v1.Output\0322\n\020Atta"
+    "buf/duration.proto\"\006\n\004Book\"\013\n\tSlideshow\""
+    "\t\n\007Article\"/\n\007Section\022$\n\005items\030\001 \003(\0132\025.p"
+    "alm.lily.v1.Section\"\261\003\n\016TeXLiveRequest\022\014"
+    "\n\004name\030\001 \001(\t\022\"\n\005style\030\002 \001(\0162\023.palm.lily."
+    "v1.Style\0227\n\006format\030\003 \001(\0162\'.palm.lily.v1."
+    "TeXLiveTask.Output.Format\022&\n\003ttl\030\t \001(\0132\031"
+    ".google.protobuf.Duration\022\"\n\004book\030\013 \001(\0132"
+    "\022.palm.lily.v1.BookH\000\022(\n\007article\030\014 \001(\0132\025"
+    ".palm.lily.v1.ArticleH\000\022,\n\tslideshow\030\r \001"
+    "(\0132\027.palm.lily.v1.SlideshowH\000\022\r\n\005entry\030b"
+    " \001(\014\022B\n\013attachments\030c \003(\0132-.palm.lily.v1"
+    ".TeXLiveRequest.AttachmentsEntry\0322\n\020Atta"
     "chmentsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014"
-    ":\0028\001\"\021\n\006Format\022\007\n\003Pdf\020\000\"y\n\nPandocTask\022\017\n"
-    "\007payload\030\001 \001(\t\022$\n\006output\030\002 \001(\0132\024.palm.li"
-    "ly.v1.Output\"4\n\006Format\022\t\n\005Plain\020\000\022\014\n\010Mar"
-    "kdown\020\001\022\007\n\003Pdf\020\002\022\010\n\004Docx\020\003\"<\n\006Output\022\"\n\006"
-    "bucket\030\001 \001(\0132\022.palm.s3.v1.Bucket\022\016\n\006obje"
-    "ct\030\002 \001(\t*\'\n\005Style\022\t\n\005APA_7\020\000\022\t\n\005MLA_8\020\n\022"
-    "\010\n\004CMOS\020\0242D\n\007TeXLive\0229\n\005ToPdf\022\034.palm.lil"
-    "y.v1.TeXLiveRequest\032\020.palm.s3.v1.File\"\000B"
-    "b\n*com.github.saturn_xiv.palm.plugins.li"
-    "ly.v1P\001Z2github.com/saturn-xiv/palm/atro"
-    "pa/lily/services/v2b\006proto3"
+    ":\0028\001B\t\n\007Payload\"1\n\017TeXLiveResponse\022\016\n\006bu"
+    "cket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\"\271\002\n\013TeXLiveTa"
+    "sk\022\r\n\005entry\030\001 \001(\014\022\?\n\013attachments\030\003 \003(\0132*"
+    ".palm.lily.v1.TeXLiveTask.AttachmentsEnt"
+    "ry\0220\n\006output\030\t \001(\0132 .palm.lily.v1.TeXLiv"
+    "eTask.Output\0322\n\020AttachmentsEntry\022\013\n\003key\030"
+    "\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\032t\n\006Output\0227\n\006fo"
+    "rmat\030\001 \001(\0162\'.palm.lily.v1.TeXLiveTask.Ou"
+    "tput.Format\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003 "
+    "\001(\t\"\021\n\006Format\022\007\n\003Pdf\020\000\"\310\002\n\nPandocTask\022-\n"
+    "\005input\030\001 \001(\0132\036.palm.lily.v1.PandocTask.I"
+    "nput\022/\n\006output\030\002 \001(\0132\037.palm.lily.v1.Pand"
+    "ocTask.Output\032I\n\005Input\022/\n\006format\030\001 \001(\0162\037"
+    ".palm.lily.v1.PandocTask.Format\022\017\n\007paylo"
+    "ad\030\002 \001(\014\032Y\n\006Output\022/\n\006format\030\001 \001(\0162\037.pal"
+    "m.lily.v1.PandocTask.Format\022\016\n\006bucket\030\002 "
+    "\001(\t\022\016\n\006object\030\003 \001(\t\"4\n\006Format\022\t\n\005Plain\020\000"
+    "\022\014\n\010Markdown\020\001\022\007\n\003Pdf\020\002\022\010\n\004Docx\020\003*\'\n\005Sty"
+    "le\022\t\n\005APA_7\020\000\022\t\n\005MLA_8\020\n\022\010\n\004CMOS\020\0242Q\n\007Te"
+    "XLive\022F\n\005ToPdf\022\034.palm.lily.v1.TeXLiveReq"
+    "uest\032\035.palm.lily.v1.TeXLiveResponse\"\000Bb\n"
+    "*com.github.saturn_xiv.palm.plugins.lily"
+    ".v1P\001Z2github.com/saturn-xiv/palm/atropa"
+    "/lily/services/v2b\006proto3"
 };
-static const ::_pbi::DescriptorTable* const descriptor_table_lily_2eproto_deps[2] =
+static const ::_pbi::DescriptorTable* const descriptor_table_lily_2eproto_deps[1] =
     {
         &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
-        &::descriptor_table_s3_2eproto,
 };
 static ::absl::once_flag descriptor_table_lily_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_lily_2eproto = {
     false,
     false,
-    1187,
+    1505,
     descriptor_table_protodef_lily_2eproto,
     "lily.proto",
     &descriptor_table_lily_2eproto_once,
     descriptor_table_lily_2eproto_deps,
-    2,
-    10,
+    1,
+    13,
     schemas,
     file_default_instances,
     TableStruct_lily_2eproto::offsets,
@@ -418,22 +533,22 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_lily_2eproto =
 namespace palm {
 namespace lily {
 namespace v1 {
-const ::google::protobuf::EnumDescriptor* TeXLiveTask_Format_descriptor() {
+const ::google::protobuf::EnumDescriptor* TeXLiveTask_Output_Format_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_lily_2eproto);
   return file_level_enum_descriptors_lily_2eproto[0];
 }
-PROTOBUF_CONSTINIT const uint32_t TeXLiveTask_Format_internal_data_[] = {
+PROTOBUF_CONSTINIT const uint32_t TeXLiveTask_Output_Format_internal_data_[] = {
     65536u, 0u, };
-bool TeXLiveTask_Format_IsValid(int value) {
+bool TeXLiveTask_Output_Format_IsValid(int value) {
   return 0 <= value && value <= 0;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-constexpr TeXLiveTask_Format TeXLiveTask::Pdf;
-constexpr TeXLiveTask_Format TeXLiveTask::Format_MIN;
-constexpr TeXLiveTask_Format TeXLiveTask::Format_MAX;
-constexpr int TeXLiveTask::Format_ARRAYSIZE;
+constexpr TeXLiveTask_Output_Format TeXLiveTask_Output::Pdf;
+constexpr TeXLiveTask_Output_Format TeXLiveTask_Output::Format_MIN;
+constexpr TeXLiveTask_Output_Format TeXLiveTask_Output::Format_MAX;
+constexpr int TeXLiveTask_Output::Format_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
@@ -1148,7 +1263,7 @@ const ::_pbi::TcParseTable<4, 9, 5, 59, 7> TeXLiveRequest::_table_ = {
     // .palm.lily.v1.Style style = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(TeXLiveRequest, _impl_.style_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(TeXLiveRequest, _impl_.style_)}},
-    // .palm.lily.v1.TeXLiveTask.Format format = 3;
+    // .palm.lily.v1.TeXLiveTask.Output.Format format = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(TeXLiveRequest, _impl_.format_), 63>(),
      {24, 63, 0, PROTOBUF_FIELD_OFFSET(TeXLiveRequest, _impl_.format_)}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -1176,7 +1291,7 @@ const ::_pbi::TcParseTable<4, 9, 5, 59, 7> TeXLiveRequest::_table_ = {
     // .palm.lily.v1.Style style = 2;
     {PROTOBUF_FIELD_OFFSET(TeXLiveRequest, _impl_.style_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // .palm.lily.v1.TeXLiveTask.Format format = 3;
+    // .palm.lily.v1.TeXLiveTask.Output.Format format = 3;
     {PROTOBUF_FIELD_OFFSET(TeXLiveRequest, _impl_.format_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // .google.protobuf.Duration ttl = 9;
@@ -1259,7 +1374,7 @@ PROTOBUF_NOINLINE void TeXLiveRequest::Clear() {
         2, this->_internal_style(), target);
   }
 
-  // .palm.lily.v1.TeXLiveTask.Format format = 3;
+  // .palm.lily.v1.TeXLiveTask.Output.Format format = 3;
   if (this->_internal_format() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -1375,7 +1490,7 @@ PROTOBUF_NOINLINE void TeXLiveRequest::Clear() {
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_style());
   }
 
-  // .palm.lily.v1.TeXLiveTask.Format format = 3;
+  // .palm.lily.v1.TeXLiveTask.Output.Format format = 3;
   if (this->_internal_format() != 0) {
     total_size += 1 +
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
@@ -1518,6 +1633,228 @@ void TeXLiveRequest::InternalSwap(TeXLiveRequest* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class TeXLiveResponse::_Internal {
+ public:
+};
+
+TeXLiveResponse::TeXLiveResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.lily.v1.TeXLiveResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE TeXLiveResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::lily::v1::TeXLiveResponse& from_msg)
+      : bucket_(arena, from.bucket_),
+        object_(arena, from.object_),
+        _cached_size_{0} {}
+
+TeXLiveResponse::TeXLiveResponse(
+    ::google::protobuf::Arena* arena,
+    const TeXLiveResponse& from)
+    : ::google::protobuf::Message(arena) {
+  TeXLiveResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:palm.lily.v1.TeXLiveResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE TeXLiveResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : bucket_(arena),
+        object_(arena),
+        _cached_size_{0} {}
+
+inline void TeXLiveResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+TeXLiveResponse::~TeXLiveResponse() {
+  // @@protoc_insertion_point(destructor:palm.lily.v1.TeXLiveResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void TeXLiveResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.bucket_.Destroy();
+  _impl_.object_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+TeXLiveResponse::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(TeXLiveResponse, _impl_._cached_size_),
+              false,
+          },
+          &TeXLiveResponse::MergeImpl,
+          &TeXLiveResponse::kDescriptorMethods,
+          &descriptor_table_lily_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 49, 2> TeXLiveResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_TeXLiveResponse_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::lily::v1::TeXLiveResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string object = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(TeXLiveResponse, _impl_.object_)}},
+    // string bucket = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(TeXLiveResponse, _impl_.bucket_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string bucket = 1;
+    {PROTOBUF_FIELD_OFFSET(TeXLiveResponse, _impl_.bucket_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string object = 2;
+    {PROTOBUF_FIELD_OFFSET(TeXLiveResponse, _impl_.object_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\34\6\6\0\0\0\0\0"
+    "palm.lily.v1.TeXLiveResponse"
+    "bucket"
+    "object"
+  }},
+};
+
+PROTOBUF_NOINLINE void TeXLiveResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.lily.v1.TeXLiveResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.bucket_.ClearToEmpty();
+  _impl_.object_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* TeXLiveResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.lily.v1.TeXLiveResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string bucket = 1;
+  if (!this->_internal_bucket().empty()) {
+    const std::string& _s = this->_internal_bucket();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.TeXLiveResponse.bucket");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string object = 2;
+  if (!this->_internal_object().empty()) {
+    const std::string& _s = this->_internal_object();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.TeXLiveResponse.object");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.lily.v1.TeXLiveResponse)
+  return target;
+}
+
+::size_t TeXLiveResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.lily.v1.TeXLiveResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // string bucket = 1;
+  if (!this->_internal_bucket().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_bucket());
+  }
+
+  // string object = 2;
+  if (!this->_internal_object().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_object());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void TeXLiveResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<TeXLiveResponse*>(&to_msg);
+  auto& from = static_cast<const TeXLiveResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.lily.v1.TeXLiveResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_bucket().empty()) {
+    _this->_internal_set_bucket(from._internal_bucket());
+  }
+  if (!from._internal_object().empty()) {
+    _this->_internal_set_object(from._internal_object());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TeXLiveResponse::CopyFrom(const TeXLiveResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.lily.v1.TeXLiveResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void TeXLiveResponse::InternalSwap(TeXLiveResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
+}
+
+::google::protobuf::Metadata TeXLiveResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 TeXLiveTask_AttachmentsEntry_DoNotUse::TeXLiveTask_AttachmentsEntry_DoNotUse() {}
 TeXLiveTask_AttachmentsEntry_DoNotUse::TeXLiveTask_AttachmentsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
 const ::google::protobuf::MessageLite::ClassData*
@@ -1539,6 +1876,255 @@ TeXLiveTask_AttachmentsEntry_DoNotUse::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
   return _data_.base();
+}
+// ===================================================================
+
+class TeXLiveTask_Output::_Internal {
+ public:
+};
+
+TeXLiveTask_Output::TeXLiveTask_Output(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.lily.v1.TeXLiveTask.Output)
+}
+inline PROTOBUF_NDEBUG_INLINE TeXLiveTask_Output::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::lily::v1::TeXLiveTask_Output& from_msg)
+      : bucket_(arena, from.bucket_),
+        object_(arena, from.object_),
+        _cached_size_{0} {}
+
+TeXLiveTask_Output::TeXLiveTask_Output(
+    ::google::protobuf::Arena* arena,
+    const TeXLiveTask_Output& from)
+    : ::google::protobuf::Message(arena) {
+  TeXLiveTask_Output* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.format_ = from._impl_.format_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.lily.v1.TeXLiveTask.Output)
+}
+inline PROTOBUF_NDEBUG_INLINE TeXLiveTask_Output::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : bucket_(arena),
+        object_(arena),
+        _cached_size_{0} {}
+
+inline void TeXLiveTask_Output::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.format_ = {};
+}
+TeXLiveTask_Output::~TeXLiveTask_Output() {
+  // @@protoc_insertion_point(destructor:palm.lily.v1.TeXLiveTask.Output)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void TeXLiveTask_Output::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.bucket_.Destroy();
+  _impl_.object_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+TeXLiveTask_Output::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(TeXLiveTask_Output, _impl_._cached_size_),
+              false,
+          },
+          &TeXLiveTask_Output::MergeImpl,
+          &TeXLiveTask_Output::kDescriptorMethods,
+          &descriptor_table_lily_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 52, 2> TeXLiveTask_Output::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_TeXLiveTask_Output_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::lily::v1::TeXLiveTask_Output>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .palm.lily.v1.TeXLiveTask.Output.Format format = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(TeXLiveTask_Output, _impl_.format_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(TeXLiveTask_Output, _impl_.format_)}},
+    // string bucket = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(TeXLiveTask_Output, _impl_.bucket_)}},
+    // string object = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(TeXLiveTask_Output, _impl_.object_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.lily.v1.TeXLiveTask.Output.Format format = 1;
+    {PROTOBUF_FIELD_OFFSET(TeXLiveTask_Output, _impl_.format_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string bucket = 2;
+    {PROTOBUF_FIELD_OFFSET(TeXLiveTask_Output, _impl_.bucket_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string object = 3;
+    {PROTOBUF_FIELD_OFFSET(TeXLiveTask_Output, _impl_.object_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\0\6\6\0\0\0\0"
+    "palm.lily.v1.TeXLiveTask.Output"
+    "bucket"
+    "object"
+  }},
+};
+
+PROTOBUF_NOINLINE void TeXLiveTask_Output::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.lily.v1.TeXLiveTask.Output)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.bucket_.ClearToEmpty();
+  _impl_.object_.ClearToEmpty();
+  _impl_.format_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* TeXLiveTask_Output::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.lily.v1.TeXLiveTask.Output)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .palm.lily.v1.TeXLiveTask.Output.Format format = 1;
+  if (this->_internal_format() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_format(), target);
+  }
+
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    const std::string& _s = this->_internal_bucket();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.TeXLiveTask.Output.bucket");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    const std::string& _s = this->_internal_object();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.TeXLiveTask.Output.object");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.lily.v1.TeXLiveTask.Output)
+  return target;
+}
+
+::size_t TeXLiveTask_Output::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.lily.v1.TeXLiveTask.Output)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_bucket());
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_object());
+  }
+
+  // .palm.lily.v1.TeXLiveTask.Output.Format format = 1;
+  if (this->_internal_format() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void TeXLiveTask_Output::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<TeXLiveTask_Output*>(&to_msg);
+  auto& from = static_cast<const TeXLiveTask_Output&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.lily.v1.TeXLiveTask.Output)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_bucket().empty()) {
+    _this->_internal_set_bucket(from._internal_bucket());
+  }
+  if (!from._internal_object().empty()) {
+    _this->_internal_set_object(from._internal_object());
+  }
+  if (from._internal_format() != 0) {
+    _this->_impl_.format_ = from._impl_.format_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TeXLiveTask_Output::CopyFrom(const TeXLiveTask_Output& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.lily.v1.TeXLiveTask.Output)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void TeXLiveTask_Output::InternalSwap(TeXLiveTask_Output* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
+  swap(_impl_.format_, other->_impl_.format_);
+}
+
+::google::protobuf::Metadata TeXLiveTask_Output::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
@@ -1573,7 +2159,7 @@ TeXLiveTask::TeXLiveTask(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.output_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::Output>(
+  _impl_.output_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::TeXLiveTask_Output>(
                               arena, *from._impl_.output_)
                         : nullptr;
 
@@ -1653,11 +2239,11 @@ const ::_pbi::TcParseTable<0, 3, 2, 44, 2> TeXLiveTask::_table_ = {
     // map<string, bytes> attachments = 3;
     {PROTOBUF_FIELD_OFFSET(TeXLiveTask, _impl_.attachments_), -1, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-    // .palm.lily.v1.Output output = 9;
+    // .palm.lily.v1.TeXLiveTask.Output output = 9;
     {PROTOBUF_FIELD_OFFSET(TeXLiveTask, _impl_.output_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::palm::lily::v1::Output>()},
+    {::_pbi::TcParser::GetTable<::palm::lily::v1::TeXLiveTask_Output>()},
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(TeXLiveTask()._impl_.attachments_)>(
         1, 0, 0, 9,
@@ -1728,7 +2314,7 @@ PROTOBUF_NOINLINE void TeXLiveTask::Clear() {
   }
 
   cached_has_bits = _impl_._has_bits_[0];
-  // .palm.lily.v1.Output output = 9;
+  // .palm.lily.v1.TeXLiveTask.Output output = 9;
   if (cached_has_bits & 0x00000001u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         9, *_impl_.output_, _impl_.output_->GetCachedSize(), target, stream);
@@ -1765,7 +2351,7 @@ PROTOBUF_NOINLINE void TeXLiveTask::Clear() {
                                     this->_internal_entry());
   }
 
-  // .palm.lily.v1.Output output = 9;
+  // .palm.lily.v1.TeXLiveTask.Output output = 9;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size +=
@@ -1794,7 +2380,7 @@ void TeXLiveTask::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
     ABSL_DCHECK(from._impl_.output_ != nullptr);
     if (_this->_impl_.output_ == nullptr) {
       _this->_impl_.output_ =
-          ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::Output>(arena, *from._impl_.output_);
+          ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::TeXLiveTask_Output>(arena, *from._impl_.output_);
     } else {
       _this->_impl_.output_->MergeFrom(*from._impl_.output_);
     }
@@ -1827,6 +2413,469 @@ void TeXLiveTask::InternalSwap(TeXLiveTask* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class PandocTask_Input::_Internal {
+ public:
+};
+
+PandocTask_Input::PandocTask_Input(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.lily.v1.PandocTask.Input)
+}
+inline PROTOBUF_NDEBUG_INLINE PandocTask_Input::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::lily::v1::PandocTask_Input& from_msg)
+      : payload_(arena, from.payload_),
+        _cached_size_{0} {}
+
+PandocTask_Input::PandocTask_Input(
+    ::google::protobuf::Arena* arena,
+    const PandocTask_Input& from)
+    : ::google::protobuf::Message(arena) {
+  PandocTask_Input* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.format_ = from._impl_.format_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.lily.v1.PandocTask.Input)
+}
+inline PROTOBUF_NDEBUG_INLINE PandocTask_Input::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : payload_(arena),
+        _cached_size_{0} {}
+
+inline void PandocTask_Input::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.format_ = {};
+}
+PandocTask_Input::~PandocTask_Input() {
+  // @@protoc_insertion_point(destructor:palm.lily.v1.PandocTask.Input)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PandocTask_Input::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.payload_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+PandocTask_Input::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(PandocTask_Input, _impl_._cached_size_),
+              false,
+          },
+          &PandocTask_Input::MergeImpl,
+          &PandocTask_Input::kDescriptorMethods,
+          &descriptor_table_lily_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> PandocTask_Input::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PandocTask_Input_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::lily::v1::PandocTask_Input>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bytes payload = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PandocTask_Input, _impl_.payload_)}},
+    // .palm.lily.v1.PandocTask.Format format = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PandocTask_Input, _impl_.format_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PandocTask_Input, _impl_.format_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.lily.v1.PandocTask.Format format = 1;
+    {PROTOBUF_FIELD_OFFSET(PandocTask_Input, _impl_.format_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // bytes payload = 2;
+    {PROTOBUF_FIELD_OFFSET(PandocTask_Input, _impl_.payload_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PandocTask_Input::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.lily.v1.PandocTask.Input)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.payload_.ClearToEmpty();
+  _impl_.format_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* PandocTask_Input::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.lily.v1.PandocTask.Input)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .palm.lily.v1.PandocTask.Format format = 1;
+  if (this->_internal_format() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_format(), target);
+  }
+
+  // bytes payload = 2;
+  if (!this->_internal_payload().empty()) {
+    const std::string& _s = this->_internal_payload();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.lily.v1.PandocTask.Input)
+  return target;
+}
+
+::size_t PandocTask_Input::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.lily.v1.PandocTask.Input)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // bytes payload = 2;
+  if (!this->_internal_payload().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_payload());
+  }
+
+  // .palm.lily.v1.PandocTask.Format format = 1;
+  if (this->_internal_format() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void PandocTask_Input::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PandocTask_Input*>(&to_msg);
+  auto& from = static_cast<const PandocTask_Input&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.lily.v1.PandocTask.Input)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_payload().empty()) {
+    _this->_internal_set_payload(from._internal_payload());
+  }
+  if (from._internal_format() != 0) {
+    _this->_impl_.format_ = from._impl_.format_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PandocTask_Input::CopyFrom(const PandocTask_Input& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.lily.v1.PandocTask.Input)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PandocTask_Input::InternalSwap(PandocTask_Input* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.payload_, &other->_impl_.payload_, arena);
+  swap(_impl_.format_, other->_impl_.format_);
+}
+
+::google::protobuf::Metadata PandocTask_Input::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PandocTask_Output::_Internal {
+ public:
+};
+
+PandocTask_Output::PandocTask_Output(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.lily.v1.PandocTask.Output)
+}
+inline PROTOBUF_NDEBUG_INLINE PandocTask_Output::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::palm::lily::v1::PandocTask_Output& from_msg)
+      : bucket_(arena, from.bucket_),
+        object_(arena, from.object_),
+        _cached_size_{0} {}
+
+PandocTask_Output::PandocTask_Output(
+    ::google::protobuf::Arena* arena,
+    const PandocTask_Output& from)
+    : ::google::protobuf::Message(arena) {
+  PandocTask_Output* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.format_ = from._impl_.format_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.lily.v1.PandocTask.Output)
+}
+inline PROTOBUF_NDEBUG_INLINE PandocTask_Output::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : bucket_(arena),
+        object_(arena),
+        _cached_size_{0} {}
+
+inline void PandocTask_Output::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.format_ = {};
+}
+PandocTask_Output::~PandocTask_Output() {
+  // @@protoc_insertion_point(destructor:palm.lily.v1.PandocTask.Output)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PandocTask_Output::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.bucket_.Destroy();
+  _impl_.object_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+PandocTask_Output::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(PandocTask_Output, _impl_._cached_size_),
+              false,
+          },
+          &PandocTask_Output::MergeImpl,
+          &PandocTask_Output::kDescriptorMethods,
+          &descriptor_table_lily_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 51, 2> PandocTask_Output::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PandocTask_Output_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::lily::v1::PandocTask_Output>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .palm.lily.v1.PandocTask.Format format = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PandocTask_Output, _impl_.format_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PandocTask_Output, _impl_.format_)}},
+    // string bucket = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PandocTask_Output, _impl_.bucket_)}},
+    // string object = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(PandocTask_Output, _impl_.object_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.lily.v1.PandocTask.Format format = 1;
+    {PROTOBUF_FIELD_OFFSET(PandocTask_Output, _impl_.format_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string bucket = 2;
+    {PROTOBUF_FIELD_OFFSET(PandocTask_Output, _impl_.bucket_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string object = 3;
+    {PROTOBUF_FIELD_OFFSET(PandocTask_Output, _impl_.object_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\0\6\6\0\0\0\0"
+    "palm.lily.v1.PandocTask.Output"
+    "bucket"
+    "object"
+  }},
+};
+
+PROTOBUF_NOINLINE void PandocTask_Output::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.lily.v1.PandocTask.Output)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.bucket_.ClearToEmpty();
+  _impl_.object_.ClearToEmpty();
+  _impl_.format_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* PandocTask_Output::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:palm.lily.v1.PandocTask.Output)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .palm.lily.v1.PandocTask.Format format = 1;
+  if (this->_internal_format() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_format(), target);
+  }
+
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    const std::string& _s = this->_internal_bucket();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.PandocTask.Output.bucket");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    const std::string& _s = this->_internal_object();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.PandocTask.Output.object");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.lily.v1.PandocTask.Output)
+  return target;
+}
+
+::size_t PandocTask_Output::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:palm.lily.v1.PandocTask.Output)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // string bucket = 2;
+  if (!this->_internal_bucket().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_bucket());
+  }
+
+  // string object = 3;
+  if (!this->_internal_object().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_object());
+  }
+
+  // .palm.lily.v1.PandocTask.Format format = 1;
+  if (this->_internal_format() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_format());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void PandocTask_Output::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PandocTask_Output*>(&to_msg);
+  auto& from = static_cast<const PandocTask_Output&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.lily.v1.PandocTask.Output)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_bucket().empty()) {
+    _this->_internal_set_bucket(from._internal_bucket());
+  }
+  if (!from._internal_object().empty()) {
+    _this->_internal_set_object(from._internal_object());
+  }
+  if (from._internal_format() != 0) {
+    _this->_impl_.format_ = from._impl_.format_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PandocTask_Output::CopyFrom(const PandocTask_Output& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.lily.v1.PandocTask.Output)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PandocTask_Output::InternalSwap(PandocTask_Output* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bucket_, &other->_impl_.bucket_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
+  swap(_impl_.format_, other->_impl_.format_);
+}
+
+::google::protobuf::Metadata PandocTask_Output::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class PandocTask::_Internal {
  public:
   using HasBits =
@@ -1844,8 +2893,7 @@ inline PROTOBUF_NDEBUG_INLINE PandocTask::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::lily::v1::PandocTask& from_msg)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        payload_(arena, from.payload_) {}
+        _cached_size_{0} {}
 
 PandocTask::PandocTask(
     ::google::protobuf::Arena* arena,
@@ -1857,7 +2905,10 @@ PandocTask::PandocTask(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.output_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::Output>(
+  _impl_.input_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::PandocTask_Input>(
+                              arena, *from._impl_.input_)
+                        : nullptr;
+  _impl_.output_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::PandocTask_Output>(
                               arena, *from._impl_.output_)
                         : nullptr;
 
@@ -1866,12 +2917,16 @@ PandocTask::PandocTask(
 inline PROTOBUF_NDEBUG_INLINE PandocTask::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        payload_(arena) {}
+      : _cached_size_{0} {}
 
 inline void PandocTask::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.output_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, input_),
+           0,
+           offsetof(Impl_, output_) -
+               offsetof(Impl_, input_) +
+               sizeof(Impl_::output_));
 }
 PandocTask::~PandocTask() {
   // @@protoc_insertion_point(destructor:palm.lily.v1.PandocTask)
@@ -1880,7 +2935,7 @@ PandocTask::~PandocTask() {
 }
 inline void PandocTask::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.payload_.Destroy();
+  delete _impl_.input_;
   delete _impl_.output_;
   _impl_.~Impl_();
 }
@@ -1906,7 +2961,7 @@ PandocTask::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 39, 2> PandocTask::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> PandocTask::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(PandocTask, _impl_._has_bits_),
     0, // no _extensions_
@@ -1915,7 +2970,7 @@ const ::_pbi::TcParseTable<1, 2, 1, 39, 2> PandocTask::_table_ = {
     4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
     2,  // num_field_entries
-    1,  // num_aux_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_PandocTask_default_instance_._instance,
     nullptr,  // post_loop_handler
@@ -1924,27 +2979,25 @@ const ::_pbi::TcParseTable<1, 2, 1, 39, 2> PandocTask::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::lily::v1::PandocTask>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .palm.lily.v1.Output output = 2;
+    // .palm.lily.v1.PandocTask.Output output = 2;
     {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.output_)}},
-    // string payload = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.payload_)}},
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.output_)}},
+    // .palm.lily.v1.PandocTask.Input input = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.input_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string payload = 1;
-    {PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.payload_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.lily.v1.Output output = 2;
-    {PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.output_), _Internal::kHasBitsOffset + 0, 0,
+    // .palm.lily.v1.PandocTask.Input input = 1;
+    {PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.input_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.lily.v1.PandocTask.Output output = 2;
+    {PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.output_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::palm::lily::v1::Output>()},
+    {::_pbi::TcParser::GetTable<::palm::lily::v1::PandocTask_Input>()},
+    {::_pbi::TcParser::GetTable<::palm::lily::v1::PandocTask_Output>()},
   }}, {{
-    "\27\7\0\0\0\0\0\0"
-    "palm.lily.v1.PandocTask"
-    "payload"
   }},
 };
 
@@ -1955,11 +3008,16 @@ PROTOBUF_NOINLINE void PandocTask::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.payload_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.output_ != nullptr);
-    _impl_.output_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.input_ != nullptr);
+      _impl_.input_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.output_ != nullptr);
+      _impl_.output_->Clear();
+    }
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -1972,17 +3030,15 @@ PROTOBUF_NOINLINE void PandocTask::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string payload = 1;
-  if (!this->_internal_payload().empty()) {
-    const std::string& _s = this->_internal_payload();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.PandocTask.payload");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+  cached_has_bits = _impl_._has_bits_[0];
+  // .palm.lily.v1.PandocTask.Input input = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *_impl_.input_, _impl_.input_->GetCachedSize(), target, stream);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
-  // .palm.lily.v1.Output output = 2;
-  if (cached_has_bits & 0x00000001u) {
+  // .palm.lily.v1.PandocTask.Output output = 2;
+  if (cached_has_bits & 0x00000002u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         2, *_impl_.output_, _impl_.output_->GetCachedSize(), target, stream);
   }
@@ -2005,19 +3061,21 @@ PROTOBUF_NOINLINE void PandocTask::Clear() {
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // string payload = 1;
-  if (!this->_internal_payload().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_payload());
-  }
-
-  // .palm.lily.v1.Output output = 2;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.output_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // .palm.lily.v1.PandocTask.Input input = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.input_);
+    }
 
+    // .palm.lily.v1.PandocTask.Output output = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.output_);
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -2031,17 +3089,25 @@ void PandocTask::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_payload().empty()) {
-    _this->_internal_set_payload(from._internal_payload());
-  }
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.output_ != nullptr);
-    if (_this->_impl_.output_ == nullptr) {
-      _this->_impl_.output_ =
-          ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::Output>(arena, *from._impl_.output_);
-    } else {
-      _this->_impl_.output_->MergeFrom(*from._impl_.output_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.input_ != nullptr);
+      if (_this->_impl_.input_ == nullptr) {
+        _this->_impl_.input_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::PandocTask_Input>(arena, *from._impl_.input_);
+      } else {
+        _this->_impl_.input_->MergeFrom(*from._impl_.input_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.output_ != nullptr);
+      if (_this->_impl_.output_ == nullptr) {
+        _this->_impl_.output_ =
+            ::google::protobuf::Message::CopyConstruct<::palm::lily::v1::PandocTask_Output>(arena, *from._impl_.output_);
+      } else {
+        _this->_impl_.output_->MergeFrom(*from._impl_.output_);
+      }
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -2058,264 +3124,17 @@ void PandocTask::CopyFrom(const PandocTask& from) {
 
 void PandocTask::InternalSwap(PandocTask* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.payload_, &other->_impl_.payload_, arena);
-  swap(_impl_.output_, other->_impl_.output_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.output_)
+      + sizeof(PandocTask::_impl_.output_)
+      - PROTOBUF_FIELD_OFFSET(PandocTask, _impl_.input_)>(
+          reinterpret_cast<char*>(&_impl_.input_),
+          reinterpret_cast<char*>(&other->_impl_.input_));
 }
 
 ::google::protobuf::Metadata PandocTask::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class Output::_Internal {
- public:
-  using HasBits =
-      decltype(std::declval<Output>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Output, _impl_._has_bits_);
-};
-
-void Output::clear_bucket() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.bucket_ != nullptr) _impl_.bucket_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-Output::Output(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.lily.v1.Output)
-}
-inline PROTOBUF_NDEBUG_INLINE Output::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::palm::lily::v1::Output& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        object_(arena, from.object_) {}
-
-Output::Output(
-    ::google::protobuf::Arena* arena,
-    const Output& from)
-    : ::google::protobuf::Message(arena) {
-  Output* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.bucket_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::palm::s3::v1::Bucket>(
-                              arena, *from._impl_.bucket_)
-                        : nullptr;
-
-  // @@protoc_insertion_point(copy_constructor:palm.lily.v1.Output)
-}
-inline PROTOBUF_NDEBUG_INLINE Output::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        object_(arena) {}
-
-inline void Output::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.bucket_ = {};
-}
-Output::~Output() {
-  // @@protoc_insertion_point(destructor:palm.lily.v1.Output)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void Output::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.object_.Destroy();
-  delete _impl_.bucket_;
-  _impl_.~Impl_();
-}
-
-const ::google::protobuf::MessageLite::ClassData*
-Output::GetClassData() const {
-  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
-      ClassDataFull _data_ = {
-          {
-              &_table_.header,
-              nullptr,  // OnDemandRegisterArenaDtor
-              nullptr,  // IsInitialized
-              PROTOBUF_FIELD_OFFSET(Output, _impl_._cached_size_),
-              false,
-          },
-          &Output::MergeImpl,
-          &Output::kDescriptorMethods,
-          &descriptor_table_lily_2eproto,
-          nullptr,  // tracker
-      };
-  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
-  return _data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 34, 2> Output::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(Output, _impl_._has_bits_),
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_Output_default_instance_._instance,
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::lily::v1::Output>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // string object = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Output, _impl_.object_)}},
-    // .palm.s3.v1.Bucket bucket = 1;
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Output, _impl_.bucket_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // .palm.s3.v1.Bucket bucket = 1;
-    {PROTOBUF_FIELD_OFFSET(Output, _impl_.bucket_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string object = 2;
-    {PROTOBUF_FIELD_OFFSET(Output, _impl_.object_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::palm::s3::v1::Bucket>()},
-  }}, {{
-    "\23\0\6\0\0\0\0\0"
-    "palm.lily.v1.Output"
-    "object"
-  }},
-};
-
-PROTOBUF_NOINLINE void Output::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.lily.v1.Output)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.object_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.bucket_ != nullptr);
-    _impl_.bucket_->Clear();
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-::uint8_t* Output::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:palm.lily.v1.Output)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .palm.s3.v1.Bucket bucket = 1;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *_impl_.bucket_, _impl_.bucket_->GetCachedSize(), target, stream);
-  }
-
-  // string object = 2;
-  if (!this->_internal_object().empty()) {
-    const std::string& _s = this->_internal_object();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.lily.v1.Output.object");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.lily.v1.Output)
-  return target;
-}
-
-::size_t Output::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:palm.lily.v1.Output)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // string object = 2;
-  if (!this->_internal_object().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_object());
-  }
-
-  // .palm.s3.v1.Bucket bucket = 1;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.bucket_);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-
-void Output::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<Output*>(&to_msg);
-  auto& from = static_cast<const Output&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.lily.v1.Output)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_object().empty()) {
-    _this->_internal_set_object(from._internal_object());
-  }
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.bucket_ != nullptr);
-    if (_this->_impl_.bucket_ == nullptr) {
-      _this->_impl_.bucket_ =
-          ::google::protobuf::Message::CopyConstruct<::palm::s3::v1::Bucket>(arena, *from._impl_.bucket_);
-    } else {
-      _this->_impl_.bucket_->MergeFrom(*from._impl_.bucket_);
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void Output::CopyFrom(const Output& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:palm.lily.v1.Output)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void Output::InternalSwap(Output* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.object_, &other->_impl_.object_, arena);
-  swap(_impl_.bucket_, other->_impl_.bucket_);
-}
-
-::google::protobuf::Metadata Output::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
