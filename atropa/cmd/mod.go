@@ -10,8 +10,10 @@ import (
 	email_send_worker "github.com/saturn-xiv/palm/atropa/cmd/email-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/etc"
 	generate_token "github.com/saturn-xiv/palm/atropa/cmd/generate-token"
+	pandoc_worker "github.com/saturn-xiv/palm/atropa/cmd/pandoc-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
 	sms_send_worker "github.com/saturn-xiv/palm/atropa/cmd/sms-send-worker"
+	texlive_worker "github.com/saturn-xiv/palm/atropa/cmd/texlive-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/web"
 )
 
@@ -38,9 +40,8 @@ func Execute() error {
 }
 
 var (
-	gl_debug    bool
-	gl_config   string
-	gl_keys_dir string
+	gl_debug  bool
+	gl_config string
 
 	gl_rpc_port uint16
 	gl_web_port uint16
@@ -58,7 +59,6 @@ var (
 func init() {
 	root_cmd.PersistentFlags().BoolVarP(&gl_debug, "debug", "d", false, "run on debug mode")
 	root_cmd.PersistentFlags().StringVarP(&gl_config, "config", "c", "config.toml", "load configuration file")
-	root_cmd.PersistentFlags().StringVarP(&gl_keys_dir, "keys-dir", "k", "tmp", "load keys")
 
 	{
 		var cmd = &cobra.Command{
@@ -66,7 +66,7 @@ func init() {
 			Short: "Start a HTTP server",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return web.Launch(gl_web_port, gl_config, gl_keys_dir, git_version, gl_debug)
+				return web.Launch(gl_web_port, gl_config, git_version, gl_debug)
 			},
 		}
 
@@ -79,7 +79,7 @@ func init() {
 			Short: "Start a gRPC server",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return rpc.Launch(gl_web_port, gl_config, gl_keys_dir, git_version)
+				return rpc.Launch(gl_web_port, gl_config, git_version)
 			},
 		}
 
@@ -155,11 +155,43 @@ func init() {
 	}
 	{
 		var cmd = &cobra.Command{
+			Use:   "texlive-consumer",
+			Short: "Start a TeXLive consumer",
+			RunE: func(cmd *cobra.Command, args []string) error {
+				set_log(gl_debug)
+				return texlive_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
+			},
+		}
+		hostname, _ := os.Hostname()
+
+		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
+		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "sms", "queue name")
+
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
+			Use:   "pandoc-consumer",
+			Short: "Start a Pandoc consumer",
+			RunE: func(cmd *cobra.Command, args []string) error {
+				set_log(gl_debug)
+				return pandoc_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
+			},
+		}
+		hostname, _ := os.Hostname()
+
+		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
+		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "sms", "queue name")
+
+		root_cmd.AddCommand(cmd)
+	}
+	{
+		var cmd = &cobra.Command{
 			Use:   "generate-token",
 			Short: "Generate a jwt token",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return generate_token.Launch(gl_keys_dir, gl_generate_token_subject, gl_generate_token_audiences, int(gl_generate_token_years))
+				return generate_token.Launch(gl_config, gl_generate_token_subject, gl_generate_token_audiences, int(gl_generate_token_years))
 			},
 		}
 

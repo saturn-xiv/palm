@@ -7,18 +7,28 @@ import (
 	"strings"
 	"time"
 
+	"github.com/BurntSushi/toml"
+
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 	"github.com/saturn-xiv/palm/atropa/hibiscus"
 )
 
-func Launch(keys_dir string, subject string, audiences []string, years int) error {
+type Config struct {
+	KeysDir string `toml:"keys-dir"`
+}
+
+func Launch(config_file string, subject string, audiences []string, years int) error {
 	if subject == "" {
 		return errors.New("empty subject")
 	}
 	if len(audiences) == 0 {
 		return errors.New("empty audiences")
 	}
-	_, _, jwt, err := crypto.Open(keys_dir)
+	var config Config
+	if _, err := toml.DecodeFile(config_file, &config); err != nil {
+		return err
+	}
+	_, _, jwt, err := crypto.Open(config.KeysDir)
 	if err != nil {
 		return err
 	}

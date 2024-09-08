@@ -39,7 +39,7 @@ import (
 	wechat_pb "github.com/saturn-xiv/palm/atropa/wechat/services/v2"
 )
 
-func Launch(port uint16, config_file string, keys_dir string, version string) error {
+func Launch(port uint16, config_file string, version string) error {
 	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
@@ -62,7 +62,7 @@ func Launch(port uint16, config_file string, keys_dir string, version string) er
 		return err
 	}
 
-	aes, hmac, jwt, err := crypto.Open(keys_dir)
+	aes, hmac, jwt, err := crypto.Open(config.KeysDir)
 	if err != nil {
 		return err
 	}

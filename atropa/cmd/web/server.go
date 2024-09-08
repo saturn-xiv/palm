@@ -19,13 +19,13 @@ import (
 	"github.com/saturn-xiv/palm/atropa/env/crypto"
 )
 
-func Launch(port uint16, config_file string, keys_dir string, version string, debug bool) error {
+func Launch(port uint16, config_file string, version string, debug bool) error {
 	slog.Debug(fmt.Sprintf("load configuration from %s", config_file))
 	var config Config
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
 	}
-	_, _, jwt, err := crypto.Open(keys_dir)
+	_, _, jwt, err := crypto.Open(config.KeysDir)
 	if err != nil {
 		return err
 	}
