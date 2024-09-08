@@ -7,6 +7,6 @@
     "ca-file": "tmp/ca.crt",
     "key-file": "tmp/client.key",
     "cert-file": "tmp/client.crt",
-    "authority": "www.saturn-xiv.org"
+    "authority": "www.change-me.org"
   }
 }
