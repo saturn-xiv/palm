@@ -4,6 +4,8 @@
 /*.json
 /db/schema.sql
 
+/target/
+/Cargo.lock
 /go.work.sum
 /node_modules/
 /package-lock.json
