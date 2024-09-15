@@ -6,6 +6,8 @@ description = "a collections of communication protocols."
 
 [dependencies]
 log = "0.4"
+tonic-health = "0.12"
+tonic-reflection = "0.12"
 prost = "0.13"
 prost-types = "0.13"
 flexbuffers = "2"
