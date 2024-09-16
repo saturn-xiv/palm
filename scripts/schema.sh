@@ -25,6 +25,18 @@ function generate_grpc_for_go() {
         $PROTOCOLS_HOME/$1.proto
 }
 
+# https://github.com/grpc/grpc-node/tree/%40grpc/grpc-js%401.9.0/examples/helloworld/static_codegen
+function generate_grpc_for_js() {
+    if [ -d $2 ]; then
+        rm -r $2
+    fi
+    mkdir -p $2
+    grpc_tools_node_protoc -I $PROTOCOLS_HOME \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$2 \
+        --grpc_out=grpc_js:$2 $PROTOCOLS_HOME/$1.proto
+}
+
 generate_grpc_for_go balsam atropa/balsam/services/v2
 generate_grpc_for_go daisy atropa/daisy/services/v2
 generate_grpc_for_go s3 atropa/s3/services/v2
@@ -33,6 +45,8 @@ generate_grpc_for_go google atropa/google/services/v2
 generate_grpc_for_go wechat atropa/wechat/services/v2
 generate_grpc_for_go lily atropa/lily/services/v2
 generate_grpc_for_go morus atropa/morus/services/v2
+
+generate_grpc_for_js morus morus/src/protocols
 
 echo 'done.'
 
@@ -152,24 +166,12 @@ exit 0
 #         $WORKSPACE/petunia/$1.proto
 # }
 
-# # https://github.com/grpc/grpc-node/tree/%40grpc/grpc-js%401.9.0/examples/helloworld/static_codegen
-# function generate_grpc_for_js() {
-#     if [ -d $2 ]; then
-#         rm -r $2
-#     fi
-#     mkdir -p $2
-#     grpc_tools_node_protoc -I $WORKSPACE/petunia \
-#         -I $PROTOBUF_ROOT/include/google/protobuf \
-#         --js_out=import_style=commonjs,binary:$2 \
-#         --grpc_out=grpc_js:$2 $WORKSPACE/petunia/$1.proto
-# }
-
 # # -----------------------------------------------------------------------------
 
 # generate_gourd
 # generate_lemon
 
-# generate_grpc_for_js morus morus/src/protocols
+#
 # generate_grpc_for_php lemon/php
 
 # declare -a langs=(
