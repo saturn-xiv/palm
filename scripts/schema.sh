@@ -76,6 +76,10 @@ generate_grpc_for_js morus morus/src/protocols
 
 generate_tutorials
 
+echo "generate fig database schema"
+DATABASE_URL="postgres://www:change-me@127.0.0.1:5432/palm?sslmode=disable" diesel print-schema >fig/src/schema.rs
+cargo fmt
+
 echo 'done.'
 
 exit 0

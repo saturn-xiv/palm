@@ -5,6 +5,58 @@ edition = "2021"
 description = "Some usefull toolkits"
 
 [dependencies]
+log = "0.4"
+askama = "0.12"
+tonic = "0.12"
+prost = "0.13"
+prost-types = "0.13"
+data-encoding = "2"
+flexbuffers = "2"
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "std"]
+
+[dependencies.rand]
+version = "0.8"
+features = ["small_rng"]
+
+[dependencies.chrono-tz]
+version = "0.10"
+features = ["serde", "std"]
+
+[dependencies.juniper]
+version = "0.16"
+features = ["chrono"]
+
+[dependencies.nix]
+version = "0.29"
+features = ["user"]
+
+[dependencies.hyper]
+version = "1"
+features = ["full"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = ["postgres", "mysql", "sqlite", "extras", "128-column-tables"]
+
+[dependencies.actix-web]
+version = "4"
+features = ["cookies"]
 
 [dependencies.petunia]
 path = '../petunia'
