@@ -1,19 +1,19 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
 	"log/slog"
 	"os"
+	"strings"
 
+	"github.com/BurntSushi/toml"
 	"github.com/spf13/cobra"
 
-	email_send_worker "github.com/saturn-xiv/palm/atropa/cmd/email-send-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/etc"
 	generate_token "github.com/saturn-xiv/palm/atropa/cmd/generate-token"
-	pandoc_worker "github.com/saturn-xiv/palm/atropa/cmd/pandoc-worker"
+	queue_worker "github.com/saturn-xiv/palm/atropa/cmd/queue-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/rpc"
-	sms_send_worker "github.com/saturn-xiv/palm/atropa/cmd/sms-send-worker"
-	texlive_worker "github.com/saturn-xiv/palm/atropa/cmd/texlive-worker"
 	"github.com/saturn-xiv/palm/atropa/cmd/web"
 )
 
@@ -50,6 +50,7 @@ var (
 
 	gl_worker_consumer_name string
 	gl_worker_queue_name    string
+	gl_worker_task_name     string
 
 	gl_generate_token_years     uint8
 	gl_generate_token_subject   string
@@ -123,68 +124,53 @@ func init() {
 
 	{
 		var cmd = &cobra.Command{
-			Use:   "sms-send-consumer",
-			Short: "Start a sms-send consumer",
+			Use:   "queue-consumer",
+			Short: "Start a queue consumer",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				set_log(gl_debug)
-				return sms_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
+				slog.Debug(fmt.Sprintf("load configuration from %s", gl_config))
+				ctx := context.Background()
+				switch gl_worker_task_name {
+				case queue_worker.EmailSendTask:
+					var cfg queue_worker.EmailSend
+					if _, err := toml.DecodeFile(gl_config, &cfg); err != nil {
+						return err
+					}
+					return cfg.Execute(ctx, gl_worker_consumer_name, gl_worker_queue_name)
+				case queue_worker.SmsSendTask:
+					var cfg queue_worker.SmsSend
+					if _, err := toml.DecodeFile(gl_config, &cfg); err != nil {
+						return err
+					}
+					return cfg.Execute(ctx, gl_worker_consumer_name, gl_worker_queue_name)
+				case queue_worker.PandocTask:
+					var cfg queue_worker.Pandoc
+					if _, err := toml.DecodeFile(gl_config, &cfg); err != nil {
+						return err
+					}
+					return cfg.Execute(ctx, gl_worker_consumer_name, gl_worker_queue_name)
+				case queue_worker.TexliveTask:
+					var cfg queue_worker.Texlive
+					if _, err := toml.DecodeFile(gl_config, &cfg); err != nil {
+						return err
+					}
+					return cfg.Execute(ctx, gl_worker_consumer_name, gl_worker_queue_name)
+				default:
+					return fmt.Errorf("unsupported task %s", gl_worker_task_name)
+				}
+
 			},
 		}
 		hostname, _ := os.Hostname()
 
 		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
-		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "sms", "queue name")
-
+		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "my-queue", "queue name")
+		cmd.Flags().StringVar(&gl_worker_task_name, "task", "email-send", fmt.Sprintf("task name(%s)", strings.Join(
+			[]string{queue_worker.EmailSendTask, queue_worker.SmsSendTask, queue_worker.PandocTask, queue_worker.TexliveTask},
+			",")))
 		root_cmd.AddCommand(cmd)
 	}
-	{
-		var cmd = &cobra.Command{
-			Use:   "email-send-consumer",
-			Short: "Start a email-send consumer",
-			RunE: func(cmd *cobra.Command, args []string) error {
-				set_log(gl_debug)
-				return email_send_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
-			},
-		}
-		hostname, _ := os.Hostname()
 
-		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
-		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "emails", "queue name")
-
-		root_cmd.AddCommand(cmd)
-	}
-	{
-		var cmd = &cobra.Command{
-			Use:   "texlive-consumer",
-			Short: "Start a TeXLive consumer",
-			RunE: func(cmd *cobra.Command, args []string) error {
-				set_log(gl_debug)
-				return texlive_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
-			},
-		}
-		hostname, _ := os.Hostname()
-
-		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
-		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "sms", "queue name")
-
-		root_cmd.AddCommand(cmd)
-	}
-	{
-		var cmd = &cobra.Command{
-			Use:   "pandoc-consumer",
-			Short: "Start a Pandoc consumer",
-			RunE: func(cmd *cobra.Command, args []string) error {
-				set_log(gl_debug)
-				return pandoc_worker.Launch(gl_config, gl_worker_consumer_name, gl_worker_queue_name)
-			},
-		}
-		hostname, _ := os.Hostname()
-
-		cmd.Flags().StringVar(&gl_worker_consumer_name, "consumer", fmt.Sprintf("%s-%d", hostname, os.Getpid()), "consumer name")
-		cmd.Flags().StringVar(&gl_worker_queue_name, "queue", "sms", "queue name")
-
-		root_cmd.AddCommand(cmd)
-	}
 	{
 		var cmd = &cobra.Command{
 			Use:   "generate-token",
