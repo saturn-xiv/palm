@@ -37,6 +37,32 @@ function generate_grpc_for_js() {
         --grpc_out=grpc_js:$2 $PROTOCOLS_HOME/$1.proto
 }
 
+function generate_tutorials() {
+    local java_target=$WORKSPACE/tutorials/java/src/main/java
+    if [ -d $java_target/com/github/saturn_xiv/palm/plugins ]; then
+        rm -r $java_target/com/github/saturn_xiv/palm/plugins
+    fi
+    $PROTOBUF_ROOT/bin/protoc -I $PROTOCOLS_HOME \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --java_out=$java_target --grpc_out=$java_target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_java_plugin \
+        $PROTOCOLS_HOME/*.proto
+
+    local php_target=$WORKSPACE/tutorials/php
+    if [ -d $php_target/GPBMetadata ]; then
+        rm -r $php_target/GPBMetadata
+    fi
+    if [ -d $php_target/Palm ]; then
+        rm -r $php_target/Palm
+    fi
+    mkdir -p $php_target
+    $PROTOBUF_ROOT/bin/protoc -I $PROTOCOLS_HOME \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --php_out=$php_target --grpc_out=generate_server:$php_target \
+        --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_php_plugin \
+        $PROTOCOLS_HOME/*.proto
+}
+
 generate_grpc_for_go balsam atropa/balsam/services/v2
 generate_grpc_for_go daisy atropa/daisy/services/v2
 generate_grpc_for_go s3 atropa/s3/services/v2
@@ -47,6 +73,8 @@ generate_grpc_for_go lily atropa/lily/services/v2
 generate_grpc_for_go morus atropa/morus/services/v2
 
 generate_grpc_for_js morus morus/src/protocols
+
+generate_tutorials
 
 echo 'done.'
 
@@ -125,32 +153,6 @@ exit 0
 #     mv $WORKSPACE/lemon/src/*.h $WORKSPACE/lemon/include/
 # }
 
-# function generate_tutorials() {
-#     local java_target=$WORKSPACE/tutorials/java/src/main/java
-#     if [ -d $java_target/com/github/saturn_xiv/palm/plugins ]; then
-#         rm -r $java_target/com/github/saturn_xiv/palm/plugins
-#     fi
-#     $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
-#         -I $PROTOBUF_ROOT/include/google/protobuf \
-#         --java_out=$java_target --grpc_out=$java_target \
-#         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_java_plugin \
-#         $WORKSPACE/petunia/*.proto
-
-#     local php_target=$WORKSPACE/tutorials/php
-#     if [ -d $php_target/GPBMetadata ]; then
-#         rm -r $php_target/GPBMetadata
-#     fi
-#     if [ -d $php_target/Palm ]; then
-#         rm -r $php_target/Palm
-#     fi
-#     mkdir -p $php_target
-#     $PROTOBUF_ROOT/bin/protoc -I $WORKSPACE/petunia \
-#         -I $PROTOBUF_ROOT/include/google/protobuf \
-#         --php_out=$php_target --grpc_out=generate_server:$php_target \
-#         --plugin=protoc-gen-grpc=$PROTOBUF_ROOT/bin/grpc_php_plugin \
-#         $WORKSPACE/petunia/*.proto
-# }
-
 # # https://github.com/grpc/grpc-web#code-generator-plugin
 # function generate_grpc_web_for_typescript() {
 #     echo "generate typescript sdk $1 => $2"
@@ -183,5 +185,3 @@ exit 0
 # for l in "${langs[@]}"; do
 #     generate_grpc_for_lang $l lemon/$l
 # done
-
-# generate_tutorials
