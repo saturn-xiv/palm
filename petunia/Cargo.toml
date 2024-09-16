@@ -1,0 +1,40 @@
+[package]
+name = "petunia"
+version = "2024.9.11"
+edition = "2021"
+description = "a collections of communication protocols."
+
+[dependencies]
+log = "0.4"
+tonic-health = "0.12"
+tonic-reflection = "0.12"
+prost = "0.13"
+prost-types = "0.13"
+flexbuffers = "2"
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "std"]
+
+[dependencies.rand]
+version = "0.8"
+features = ["small_rng"]
+
+[dependencies.tonic]
+version = "0.12"
+features = ["transport"]
+
+[dependencies.hyper]
+version = "1"
+features = ["full"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[build-dependencies]
+tonic-build = "0.12"

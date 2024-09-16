@@ -1,0 +1,59 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.s3.v1";
+option go_package = "github.com/saturn-xiv/palm/atropa/s3/services/v2";
+package palm.s3.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+
+service S3 {
+  rpc CreateBucket(CreateBucketRequest) returns (CreateBucketResponse) {}
+  rpc UploadObject(UploadObjectRequest) returns (UploadObjectResponse) {}
+  rpc ObjectPermanentUrl(ObjectPermanentUrlRequest) returns (UrlResponse) {}
+  rpc ObjectPresignedUrl(ObjectPresignedUrlRequest) returns (UrlResponse) {}
+  rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
+}
+
+message Bucket {
+  string name = 1;
+  bool public = 2;
+  int32 expiration_days = 3;
+}
+message CreateBucketRequest {
+  string name = 1;
+  bool public = 2;
+  uint32 expiration_days = 9;
+}
+message CreateBucketResponse {
+  string name = 1;
+}
+message UploadObjectRequest {
+  string bucket = 1;
+  string title = 2;
+  google.protobuf.Duration ttl = 9;
+}
+message UploadObjectResponse {
+  string object = 1;
+  string url = 9;
+}
+message UrlResponse {
+  string url = 1;
+}
+message ObjectPresignedUrlRequest {
+  string bucket = 1;
+  string object = 2;
+  string title = 3;
+  optional string content_type = 4;
+  google.protobuf.Duration ttl = 9;
+}
+message ObjectPermanentUrlRequest {
+  string bucket = 1;
+  string object = 2;
+  string title = 3;
+  optional string content_type = 4;
+}
+message RemoveObjectRequest {
+  string bucket = 1;
+  string object = 2;
+}

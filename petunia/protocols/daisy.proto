@@ -1,0 +1,37 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.daisy.v1";
+option go_package = "github.com/saturn-xiv/palm/atropa/daisy/services/v2";
+package palm.daisy.v1;
+
+message SmsTask {
+  repeated string to = 1;
+  string body = 2;
+  optional string callback_uri = 3;
+}
+
+message EmailTask {
+  message Address {
+    string name = 1;
+    string email = 2;
+  }
+
+  message Body {
+    string text = 1;
+    bool html = 2;
+  }
+
+  message Attachment {
+    string title = 1;
+    string content_type = 2;
+    bool inline = 3;
+    bytes body = 9;
+  }
+
+  string subject = 1;
+  Body body = 2;
+  Address to = 3;
+  repeated Address cc = 4;
+  repeated Address bcc = 5;
+  repeated Attachment attachments = 9;
+}

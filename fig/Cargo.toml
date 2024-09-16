@@ -1,0 +1,14 @@
+[package]
+name = "fig"
+version = "2024.9.11"
+edition = "2021"
+authors = ["Jeremy Zheng <jitang.zheng@gmail.com>"]
+description = "A total free education & translation solution."
+
+[dependencies]
+
+[dependencies.petunia]
+path = '../petunia'
+
+[dependencies.camelia]
+path = '../camelia'

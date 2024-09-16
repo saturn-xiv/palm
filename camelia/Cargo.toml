@@ -1,0 +1,10 @@
+[package]
+name = "camelia"
+version = "2024.9.11"
+edition = "2021"
+description = "Some usefull toolkits"
+
+[dependencies]
+
+[dependencies.petunia]
+path = '../petunia'

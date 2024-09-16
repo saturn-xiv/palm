@@ -1,0 +1,127 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.rbac.v1";
+option go_package = "github.com/saturn-xiv/palm/atropa/rbac/services/v2";
+package palm.rbac.v1;
+
+import "google/protobuf/empty.proto";
+
+service Policy {
+  rpc Has(PolicyHasRequest) returns (google.protobuf.Empty) {}
+  rpc Can(PolicyCanRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteUser(PolicyUsersResponse.Item) returns (google.protobuf.Empty) {}
+  rpc DeleteRole(PolicyRolesResponse.Item) returns (google.protobuf.Empty) {}
+  rpc GetRolesForUser(PolicyUsersResponse.Item) returns (PolicyRolesResponse) {}
+  rpc GetImplicitRolesForUser(PolicyUsersResponse.Item)
+      returns (PolicyRolesResponse) {}
+  rpc GetUsersForRole(PolicyRolesResponse.Item) returns (PolicyUsersResponse) {}
+  rpc GetImplicitUsersForRole(PolicyRolesResponse.Item)
+      returns (PolicyUsersResponse) {}
+  rpc AddRolesForUser(PolicyRolesForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeleteRolesForUser(PolicyRolesForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetPermissionsForUser(PolicyUsersResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc GetImplicitPermissionsForUser(PolicyUsersResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc AddPermissionsForUser(PolicyPermissionsForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionsForUser(PolicyPermissionsForUserRequest)
+      returns (google.protobuf.Empty) {}
+  rpc GetPermissionsForRole(PolicyRolesResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc GetImplicitPermissionsForRole(PolicyRolesResponse.Item)
+      returns (PolicyPermissionsResponse) {}
+  rpc AddPermissionsForRole(PolicyPermissionsForRoleRequest)
+      returns (google.protobuf.Empty) {}
+  rpc DeletePermissionsForRole(PolicyPermissionsForRoleRequest)
+      returns (google.protobuf.Empty) {}
+}
+
+message PolicyHasRequest {
+  PolicyUsersResponse.Item user = 1;
+  PolicyRolesResponse.Item role = 2;
+}
+
+message PolicyCanRequest {
+  PolicyUsersResponse.Item user = 1;
+  PolicyPermissionsResponse.Item.Resource resource = 2;
+  PolicyPermissionsResponse.Item.Operation operation = 3;
+}
+
+message PolicyUsersResponse {
+  message Item {
+    oneof id {
+      uint64 i = 2;
+      string s = 9;
+    }
+  }
+  repeated Item items = 1;
+}
+
+message PolicyRolesResponse {
+  message Item {
+    message Administrator {}
+    message Root {}
+    oneof by {
+      Root root = 1;
+      Administrator administrator = 2;
+      string code = 9;
+    }
+  }
+  repeated Item items = 1;
+}
+
+message PolicyRolesForUserRequest {
+  PolicyUsersResponse.Item user = 1;
+  repeated PolicyRolesResponse.Item roles = 2;
+}
+
+message PolicyPermissionsForUserRequest {
+  PolicyUsersResponse.Item user = 1;
+  repeated PolicyPermissionsResponse.Item permissions = 2;
+}
+
+message PolicyPermissionsForRoleRequest {
+  PolicyRolesResponse.Item role = 1;
+  repeated PolicyPermissionsResponse.Item permissions = 2;
+}
+
+message PolicyPermissionsResponse {
+  message Item {
+    message Resource {
+      message Id {
+        oneof by {
+          uint64 i = 11;
+          string s = 12;
+        }
+      }
+      string type = 1;
+      optional Id id = 2;
+    }
+    message Operation {
+      message Read {}
+      message Write {}
+      message Append {}
+      message Execute {}
+      message Credit {}
+      message Debit {}
+      message Inquiry {}
+      oneof by {
+        Read read = 1;
+        Write write = 2;
+        Append append = 3;
+        Execute execute = 4;
+        Credit credit = 5;
+        Debit debit = 6;
+        Inquiry inquiry = 7;
+        string code = 99;
+      }
+    }
+    Resource resource = 1;
+    Operation operation = 2;
+  }
+
+  repeated Item items = 1;
+}

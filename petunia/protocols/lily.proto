@@ -1,0 +1,101 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.lily.v1";
+option go_package = "github.com/saturn-xiv/palm/atropa/lily/services/v2";
+package palm.lily.v1;
+
+import "google/protobuf/duration.proto";
+
+// ----------------------------------------------------------------------------
+
+// https://owl.purdue.edu/owl/general_writing/general_writing_faqs.html
+enum Style {
+  // https://apastyle.apa.org/
+  // https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html
+  // https://www.ilc.cuhk.edu.hk/Chinese/APAMLA/APA/APAlayout.aspx
+  APA_7 = 0;
+  // https://www.mla.org/MLA-Style
+  // https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_formatting_and_style_guide.html#:~:text=MLA%20(Modern%20Language%20Association)%20style,the%20liberal%20arts%20and%20humanities.
+  MLA_8 = 10;
+  // https://www.chicagomanualofstyle.org/home.html
+  // https://owl.purdue.edu/owl/research_and_citation/chicago_manual_17th_edition/cmos_formatting_and_style_guide/chicago_manual_of_style_17th_edition.html
+  CMOS = 20;
+}
+
+message Book {}
+
+message Slideshow {}
+
+message Article {}
+
+message Section {
+  repeated Section items = 1;
+}
+
+// ----------------------------------------------------------------------------
+
+service TeXLive {
+  rpc ToPdf(TeXLiveRequest) returns (TeXLiveResponse) {}
+}
+
+message TeXLiveRequest {
+  string name = 1;
+  Style style = 2;
+  TeXLiveTask.Output.Format format = 3;
+  google.protobuf.Duration ttl = 9;
+  oneof Payload {
+    Book book = 11;
+    Article article = 12;
+    Slideshow slideshow = 13;
+  }
+  bytes entry = 98;
+  map<string, bytes> attachments = 99;
+}
+
+message TeXLiveResponse {
+  string bucket = 1;
+  string object = 2;
+}
+
+// ----------------------------------------------------------------------------
+
+message TeXLiveTask {
+  bytes entry = 1;
+  map<string, bytes> attachments = 3;
+
+  message Output {
+    enum Format {
+      Pdf = 0;
+    }
+
+    Format format = 1;
+    string bucket = 2;
+    string object = 3;
+  }
+  Output output = 9;
+}
+
+// https://pandoc.org/MANUAL.html
+message PandocTask {
+  enum Format {
+    Plain = 0;
+    Markdown = 1;
+    Pdf = 2;
+    Docx = 3;
+  }
+
+  message Input {
+    Format format = 1;
+    bytes payload = 2;
+  }
+  message Output {
+    Format format = 1;
+    string bucket = 2;
+    string object = 3;
+  }
+
+  Input input = 1;
+  Output output = 2;
+}
+
+// ----------------------------------------------------------------------------
