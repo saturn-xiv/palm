@@ -14,8 +14,8 @@ import (
 
 var gl_google_oauth2_audience = "google.oauth2"
 
-func NewOauth2Service(jwt *crypto.Jwt, project string, redirect_url string) (*Oauth2Service, error) {
-	google, err := google_oauth2.NewClient(project, redirect_url)
+func NewOauth2Service(jwt *crypto.Jwt, project_file string, redirect_url string) (*Oauth2Service, error) {
+	google, err := google_oauth2.NewClient(project_file, redirect_url)
 	if err != nil {
 		return nil, err
 	}

@@ -24,6 +24,6 @@ type Config struct {
 }
 
 type GoogleOauth2 struct {
-	ProjectID   string `toml:"project-id"`
+	ProjectFile string `toml:"project-file"`
 	RedirectURL string `toml:"redirect-url"`
 }

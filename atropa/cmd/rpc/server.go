@@ -123,7 +123,7 @@ func mount(server *grpc.Server,
 	s3_pb.RegisterS3Server(server, s3_services.NewS3Service(s3))
 	lily_pb.RegisterTeXLiveServer(server, lily_services.NewTeXLiveService(s3))
 	if google_oauth2 != nil {
-		service, err := google_services.NewOauth2Service(jwt, google_oauth2.ProjectID, google_oauth2.RedirectURL)
+		service, err := google_services.NewOauth2Service(jwt, google_oauth2.ProjectFile, google_oauth2.RedirectURL)
 		if err != nil {
 			return err
 		}

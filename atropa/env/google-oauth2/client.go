@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"log/slog"
 	"net/http"
@@ -25,9 +24,9 @@ type Client struct {
 	verifier string
 }
 
-func NewClient(project string, redirect_url string) (*Client, error) {
-	slog.Info("load google oauth2 config", slog.String("project", project))
-	file, err := os.Open(fmt.Sprintf("%s.json", project))
+func NewClient(project_file string, redirect_url string) (*Client, error) {
+	slog.Info("load google oauth2 config", slog.String("project", project_file))
+	file, err := os.Open(project_file)
 	if err != nil {
 		return nil, err
 	}
