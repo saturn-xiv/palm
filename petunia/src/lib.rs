@@ -35,9 +35,7 @@ pub mod s3 {
     }
 }
 pub mod wechat {
-    pub mod pay {
-        pub mod v1 {
-            tonic::include_proto!("palm.wechat.pay.v1");
-        }
+    pub mod v1 {
+        tonic::include_proto!("palm.wechat.v1");
     }
 }

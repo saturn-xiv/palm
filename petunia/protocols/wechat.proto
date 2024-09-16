@@ -1,24 +1,74 @@
 syntax = "proto3";
 option java_multiple_files = true;
-option java_package = "com.github.saturn_xiv.palm.plugins.wechat.pay.v1";
-option go_package = "github.com/saturn-xiv/palm/atropa/wechat/pay/services/v2";
-package palm.wechat.pay.v1;
+option java_package = "com.github.saturn_xiv.palm.plugins.wechat.v1";
+option go_package = "github.com/saturn-xiv/palm/atropa/wechat/services/v2";
+package palm.wechat.v1;
 
 import "google/protobuf/empty.proto";
 
 // ----------------------------------------------------------------------------
-enum Currency {
+
+service Oauth2 {
+  rpc QrConnectUrl(Oauth2QrConnectUrlRequest)
+      returns (Oauth2QrConnectUrlResponse) {}
+  rpc SignIn(Oauth2SignInRequest) returns (Oauth2SignInResponse) {}
+}
+message Oauth2QrConnectUrlRequest {
+  optional string subject = 1;
+  enum Lang {
+    Cn = 0;
+    En = 1;
+  }
+  Lang lang = 9;
+}
+message Oauth2QrConnectUrlResponse { string url = 1; }
+message Oauth2SignInRequest {
+  string code = 1;
+  string state = 2;
+  Oauth2QrConnectUrlRequest.Lang lang = 9;
+}
+message Oauth2SignInResponse {
+  message UserInfo {
+    string open_id = 1;
+    string nickname = 2;
+    uint32 sex = 3;
+    string province = 4;
+    string city = 5;
+    string country = 6;
+    optional string head_img_url = 7;
+    repeated string privilege = 8;
+    string union_id = 9;
+  }
+  UserInfo user_info = 1;
+  bytes token = 2;
+  optional string subject = 9;
+}
+
+// ----------------------------------------------------------------------------
+
+service MiniProgram {
+  rpc Code2Session(MiniProgramCode2SessionRequest)
+      returns (MiniProgramCode2SessionResponse) {}
+}
+message MiniProgramCode2SessionRequest { string code = 1; }
+message MiniProgramCode2SessionResponse {
+  optional string union_id = 1;
+  string open_id = 2;
+}
+
+// ----------------------------------------------------------------------------
+enum PayCurrency {
   CNY = 0;
 }
-enum NotifyAction {
+enum PayNotifyAction {
   TRANSCATION = 0;
   REFUND = 1;
 }
 
-message PrepayRequest {
+message PayPrepayRequest {
   message Amount {
     int32 total = 1;
-    Currency currency = 2;
+    PayCurrency currency = 2;
   }
 
   string app_id = 1;
@@ -31,45 +81,45 @@ message PrepayRequest {
   string notify_host = 99;
 }
 
-message CloseOrderRequest {
+message PayCloseOrderRequest {
   string out_trade_no = 1;
   string reason = 2;
 }
 
-message Error {
+message PayError {
   string code = 1;
   string message = 2;
 }
 // ----------------------------------------------------------------------------
 
-service Native {
-  rpc Prepay(PrepayRequest) returns (NativeQrCodeUrlResponse) {}
+service PayNative {
+  rpc Prepay(PayPrepayRequest) returns (PayNativeQrCodeUrlResponse) {}
 }
 
-message NativeQrCodeUrlResponse {
+message PayNativeQrCodeUrlResponse {
   string url = 1;
   string out_trade_no = 2;
 }
 
-message TradeResponse {
+message PayTradeResponse {
   string trade_state = 1;
   string trade_state_desc = 2;
 }
 
-message QueryOrderByIdRequest { string transaction_id = 1; }
-message QueryOrderByOutTradeNoRequest { string out_trade_no = 1; }
+message PayQueryOrderByIdRequest { string transaction_id = 1; }
+message PayQueryOrderByOutTradeNoRequest { string out_trade_no = 1; }
 
 // ----------------------------------------------------------------------------
 
-service Jsapi {
-  rpc Prepay(PrepayRequest) returns (JsapiPrepayIdResponse) {}
-  rpc QueryOrderByOutTradeNo(QueryOrderByOutTradeNoRequest)
-      returns (TradeResponse) {}
-  rpc QueryOrderById(QueryOrderByIdRequest) returns (TradeResponse) {}
-  rpc CloseOrder(CloseOrderRequest) returns (google.protobuf.Empty) {}
+service PayJsapi {
+  rpc Prepay(PayPrepayRequest) returns (PayJsapiPrepayIdResponse) {}
+  rpc QueryOrderByOutTradeNo(PayQueryOrderByOutTradeNoRequest)
+      returns (PayTradeResponse) {}
+  rpc QueryOrderById(PayQueryOrderByIdRequest) returns (PayTradeResponse) {}
+  rpc CloseOrder(PayCloseOrderRequest) returns (google.protobuf.Empty) {}
 }
 
-message JsapiPrepayIdResponse {
+message PayJsapiPrepayIdResponse {
   string app_id = 1;
   string time_stamp = 2;
   string nonce_str = 3;
@@ -82,62 +132,62 @@ message JsapiPrepayIdResponse {
 
 // ----------------------------------------------------------------------------
 
-service Bill {
-  rpc Trade(TradeBillRequest) returns (BillResponse) {}
-  rpc FundFlow(FundFlowBillRequest) returns (BillResponse) {}
+service PayBill {
+  rpc Trade(PayTradeBillRequest) returns (PayBillResponse) {}
+  rpc FundFlow(PayFundFlowBillRequest) returns (PayBillResponse) {}
 }
 
-enum TarType {
+enum PayTarType {
   GZIP = 0;
 }
 
-message BillDate {
+message PayBillDate {
   int32 year = 1;
   int32 month = 2;
   int32 day = 3;
 }
 
-message BillResponse { bytes content = 1; }
-message TradeBillRequest {
+message PayBillResponse { bytes content = 1; }
+message PayTradeBillRequest {
   enum BillType {
     ALL = 0;
     SUCCESS = 1;
     REFUND = 2;
   }
-  BillDate bill_date = 1;
+  PayBillDate bill_date = 1;
   BillType bill_type = 2;
 }
 
-message FundFlowBillRequest {
+message PayFundFlowBillRequest {
   enum AccountType {
     BASIC = 0;
     OPERATION = 1;
     FEES = 2;
   }
-  BillDate bill_date = 1;
+  PayBillDate bill_date = 1;
   AccountType account_type = 2;
 }
 
 // ----------------------------------------------------------------------------
 
-service Refund {
-  rpc Create(CreateRefundRequest) returns (RefundResponse) {}
-  rpc Query(QueryRefundRequest) returns (RefundResponse) {}
+service PayRefund {
+  rpc Create(PayCreateRefundRequest) returns (PayRefundResponse) {}
+  rpc Query(PayQueryRefundRequest) returns (PayRefundResponse) {}
 }
 
-message CreateRefundRequest {
+message PayCreateRefundRequest {
   message Amount {
     int32 total = 1;
     int32 refund = 2;
-    Currency currency = 3;
+    PayCurrency currency = 3;
   }
   string out_trade_no = 1;
   string reason = 2;
   Amount amount = 3;
   string notify_host = 11;
 }
-message QueryRefundRequest { string out_refund_no = 1; }
-message RefundResponse {
+message PayQueryRefundRequest { string out_refund_no = 1; }
+message PayRefundResponse {
   string out_refund_no = 1;
   string channel = 2;
   string status = 3;
@@ -147,20 +197,20 @@ message RefundResponse {
 
 // ----------------------------------------------------------------------------
 
-service Transfer {
-  rpc ExecuteBatch(ExecuteBatchTransferRequest)
-      returns (ExecuteBatchTransferResponse) {}
-  rpc QueryBatch(QueryBatchTransferRequest)
-      returns (QueryBatchTransferResponse) {}
-  rpc QueryDetail(QueryTransferDetailRequest)
-      returns (QueryTransferDetailResponse) {}
-  rpc GetBillReceipt(TransferGetBillReceiptRequest)
-      returns (TransferGetReceiptResponse) {}
-  rpc GetElectronicReceipt(TransferGetElectronicReceiptRequest)
-      returns (TransferGetReceiptResponse) {}
+service PayTransfer {
+  rpc ExecuteBatch(PayExecuteBatchTransferRequest)
+      returns (PayExecuteBatchTransferResponse) {}
+  rpc QueryBatch(PayQueryBatchTransferRequest)
+      returns (PayQueryBatchTransferResponse) {}
+  rpc QueryDetail(PayQueryTransferDetailRequest)
+      returns (PayQueryTransferDetailResponse) {}
+  rpc GetBillReceipt(PayTransferGetBillReceiptRequest)
+      returns (PayTransferGetReceiptResponse) {}
+  rpc GetElectronicReceipt(PayTransferGetElectronicReceiptRequest)
+      returns (PayTransferGetReceiptResponse) {}
 }
 
-message TransferGetElectronicReceiptRequest {
+message PayTransferGetElectronicReceiptRequest {
   enum AcceptType {
     BATCH_TRANSFER = 0;
     TRANSFER_TO_POCKET = 1;
@@ -171,11 +221,11 @@ message TransferGetElectronicReceiptRequest {
   string out_detail_no = 3;
 }
 
-message TransferGetReceiptResponse { bytes payload = 1; }
+message PayTransferGetReceiptResponse { bytes payload = 1; }
 
-message TransferGetBillReceiptRequest { string out_batch_no = 1; }
+message PayTransferGetBillReceiptRequest { string out_batch_no = 1; }
 
-message ExecuteBatchTransferRequest {
+message PayExecuteBatchTransferRequest {
   message Batch {
     string name = 1;
     string remark = 2;
@@ -194,7 +244,7 @@ message ExecuteBatchTransferRequest {
 
   string scene_id = 9;
 }
-message ExecuteBatchTransferResponse {
+message PayExecuteBatchTransferResponse {
   message Detail {
     string open_id = 1;
     string out_detail_no = 2;
@@ -209,10 +259,10 @@ message ExecuteBatchTransferResponse {
 
   oneof payload {
     Succeeded succeeded = 11;
-    Error error = 12;
+    PayError error = 12;
   }
 }
-message QueryBatchTransferRequest {
+message PayQueryBatchTransferRequest {
   enum DetailStatus {
     ALL = 0;
     SUCCESS = 1;
@@ -224,7 +274,7 @@ message QueryBatchTransferRequest {
   int32 limit = 3;
   DetailStatus detail_status = 9;
 }
-message QueryBatchTransferResponse {
+message PayQueryBatchTransferResponse {
   message Detail {
     string detail_id = 1;
     string out_detail_no = 2;
@@ -257,12 +307,12 @@ message QueryBatchTransferResponse {
   repeated Detail details = 9;
 }
 
-message QueryTransferDetailRequest {
+message PayQueryTransferDetailRequest {
   string out_batch_no = 1;
   string out_detail_no = 2;
 }
 
-message QueryTransferDetailResponse {
+message PayQueryTransferDetailResponse {
   string app_id = 1;
   string mch_id = 2;
   string open_id = 3;

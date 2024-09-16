@@ -1,0 +1,81 @@
+{
+  "sign-in": {
+    "title": "Sign in",
+    "succeed": "Signed in successfully."
+  },
+  "sign-up": {
+    "title": "Sign up"
+  },
+  "confirm": {
+    "by-email": {
+      "title": "Didn't receive confirmation instructions?",
+      "succeed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
+      "submit": "Resend confirmation instructions"
+    },
+    "by-token": {
+      "title": "Confirm my account",
+      "succeed": "Your email address has been successfully confirmed. Please sign in to continue."
+    }
+  },
+  "unlock": {
+    "by-email": {
+      "title": "Didn't receive unlock instructions?",
+      "submit": "Resend unlock instructions",
+      "succeed": "You will receive an email with instructions for how to unlock your account in a few minutes."
+    },
+    "by-token": {
+      "title": "Unlock my account",
+      "succeed": "Your account has been unlocked successfully. Please sign in to continue."
+    }
+  },
+  "forgot-password": {
+    "by-email": {
+      "title": "Forgot your password?",
+      "submit": "Send me reset password instructions",
+      "succeed": "You will receive an email with instructions on how to reset your password in a few minutes."
+    }
+  },
+  "reset-password": {
+    "title": "Confirm new password",
+    "succeed": "Your password has been changed successfully."
+  },
+
+  "sign-out": {
+    "title": "Sign out",
+    "confirm": "You will sign out from this system.",
+    "succeed": "Signed out successfully."
+  },
+  "errors": {
+    "inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
+    "locked": "You have signed up successfully. However, we could not sign you in because your account is locked.",
+    "already-confirmed": "Your account was already confirmed, please try signing in.",
+    "not-locked": "Your account was not locked",
+    "update-needs-confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
+  },
+  "mailer": {
+    "confirm": {
+      "body": "Welcome {{recipient}},<br/>You can confirm your account email through the link below:<br/><a href='{{home}}my/anonymous/users/confirm/by-email/{{token}}'>Confirm my account</a>",
+      "subject": "Confirmation instructions"
+    },
+    "unlock": {
+      "body": "Hello {{recipient}},<br/>Click the link below to unlock your account:<br/><a href='{{home}}my/anonymous/users/unlock/by-email/{{token}}'>Unlock my account</a><br/>Your account has been locked due to an excessive number of unsuccessful sign in attempts.",
+      "subject": "Unlock instructions"
+    },
+    "email-changed": {
+      "body": "Hello {{recipient}},<br/>We're contacting you to notify you that your email has been changed to {{email}}.",
+      "subject": "Email Changed"
+    },
+    "change-email": {
+      "body": "Hello {{recipient}},<br/>We're contacting you to notify you that your email is being changed to {{email}}.",
+      "subject": "Email change instructions "
+    },
+    "password-changed": {
+      "body": "Hello {{recipient}},<br/>We're contacting you to notify you that your password has been changed.",
+      "subject": "Password changed"
+    },
+    "reset-password": {
+      "body": "Hello {{recipient}},<br/>Someone has requested a link to change your password. You can do this through the link below.<br/><a href='{{home}}my/anonymous/users/reset-password/by-email/{{token}}'>Change my password</a><br/>If you didn't request this, please ignore this email.<br/>Your password won't change until you access the link above and create a new one.",
+      "subject": "Reset password instructions"
+    }
+  }
+}
