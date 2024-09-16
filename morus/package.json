@@ -1,5 +1,6 @@
 {
   "name": "morus",
+  "private": true,
   "version": "2024.9.7",
   "description": "A markdown-to-html converter",
   "main": "webpack.config.js",

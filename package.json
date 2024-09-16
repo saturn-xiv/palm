@@ -1,5 +1,6 @@
 {
   "name": "palm",
+  "private": true,
   "version": "2024.9.16",
   "description": "A total free education & translation solution.",
   "main": "index.js",
