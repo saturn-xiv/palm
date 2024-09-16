@@ -104,7 +104,7 @@ RUN sh -c ". $HOME/.profile \
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
 
 # https://github.com/nvm-sh/nvm
-ENV NVM_VERSION "v0.40.0"
+ENV NVM_VERSION "v0.40.1"
 RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.zshrc
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.zshrc
@@ -123,7 +123,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk install gradle"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.23.0"
+ENV GO_VERSION "1.23.1"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
