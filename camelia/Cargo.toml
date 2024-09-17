@@ -2,7 +2,8 @@
 name = "camelia"
 version = "2024.9.11"
 edition = "2021"
-description = "Some usefull toolkits"
+authors = ["Jeremy Zheng <jitang.zheng@gmail.com>"]
+description = "An open-source smart router inspired by OpenWrt"
 
 [dependencies]
 log = "0.4"
@@ -52,7 +53,7 @@ features = ["full"]
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = ["postgres", "mysql", "sqlite", "extras", "128-column-tables"]
+features = ["sqlite", "extras", "128-column-tables"]
 
 [dependencies.actix-web]
 version = "4"

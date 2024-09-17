@@ -63,6 +63,3 @@ features = ["cookies"]
 
 [dependencies.petunia]
 path = '../petunia'
-
-[dependencies.camelia]
-path = '../camelia'
