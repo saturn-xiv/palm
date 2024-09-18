@@ -6,6 +6,8 @@ export PROTOBUF_ROOT=$HOME/.local
 export WORKSPACE=$PWD
 export PROTOCOLS_HOME=$WORKSPACE/petunia/protocols
 
+# ---------------------------------------------------------
+
 function generate_grpc_for_go() {
     echo "generate grpc $1 => $2"
     if [ -d $2 ]; then
@@ -23,6 +25,18 @@ function generate_grpc_for_go() {
         --go_out=$2 --go_opt=paths=source_relative \
         --go-grpc_out=$2 --go-grpc_opt=paths=source_relative \
         $PROTOCOLS_HOME/$1.proto
+}
+
+function generate_grpc_for_python() {
+    # pip install grpcio-tools
+    cd $WORKSPACE/$1
+    local target=palm/$2/v1
+    if [ -d $target ]; then
+        rm -r $target
+    fi
+    python -m grpc_tools.protoc -I$target=$PROTOCOLS_HOME \
+        -I $PROTOBUF_ROOT/include/google/protobuf \
+        --python_out=. --pyi_out=. --grpc_python_out=. $PROTOCOLS_HOME/$2.proto
 }
 
 # https://github.com/grpc/grpc-node/tree/%40grpc/grpc-js%401.9.0/examples/helloworld/static_codegen
@@ -63,22 +77,34 @@ function generate_tutorials() {
         $PROTOCOLS_HOME/*.proto
 }
 
+# ---------------------------------------------------------
+
 generate_grpc_for_go balsam atropa/balsam/services/v2
-generate_grpc_for_go daisy atropa/daisy/services/v2
-generate_grpc_for_go s3 atropa/s3/services/v2
-generate_grpc_for_go rbac atropa/rbac/services/v2
+# generate_grpc_for_go daisy atropa/daisy/services/v2
+# generate_grpc_for_go s3 atropa/s3/services/v2
+# generate_grpc_for_go rbac atropa/rbac/services/v2
 generate_grpc_for_go google atropa/google/services/v2
 generate_grpc_for_go wechat atropa/wechat/services/v2
-generate_grpc_for_go lily atropa/lily/services/v2
+# generate_grpc_for_go lily atropa/lily/services/v2
 generate_grpc_for_go morus atropa/morus/services/v2
 
 generate_grpc_for_js morus morus/src/protocols
 
+generate_grpc_for_python bougainvillea rbac
+generate_grpc_for_python bougainvillea s3
+generate_grpc_for_python bougainvillea lily
+generate_grpc_for_python bougainvillea daisy
+
 generate_tutorials
 
+# ---------------------------------------------------------
+
+cd $WORKSPACE/
 echo "generate fig database schema"
 DATABASE_URL="postgres://www:change-me@127.0.0.1:5432/palm?sslmode=disable" diesel print-schema >fig/src/schema.rs
 cargo fmt
+
+# ---------------------------------------------------------
 
 echo 'done.'
 

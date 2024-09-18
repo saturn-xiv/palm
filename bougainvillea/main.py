@@ -4,11 +4,13 @@ import logging
 import tomllib
 import argparse
 
+from bougainvillea.services import launch as start_rpc_server
+
 logger = logging.getLogger(__name__)
 
 
 def launch_rpc_server(args):
-    logger.info("start gRPC server on http://0.0.0.0:%d" % args.port)
+    start_rpc_server("d", "q", "s", args.port)
 
 
 def launch_queue_consumer(args):

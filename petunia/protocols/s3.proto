@@ -8,8 +8,11 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 
 service S3 {
-  rpc CreateBucket(CreateBucketRequest) returns (CreateBucketResponse) {}
-  rpc UploadObject(UploadObjectRequest) returns (UploadObjectResponse) {}
+  rpc CreateBucket(CreateBucketRequest) returns (google.protobuf.Empty) {}
+  rpc ListBucket(google.protobuf.Empty) returns (ListBucketResponse) {}
+  rpc RemoveBucket(RemoveBucketRequest) returns (google.protobuf.Empty) {}
+  rpc PresignedPutObject(PresignedPutObjectRequest)
+      returns (PresignedPutObjectResponse) {}
   rpc ObjectPermanentUrl(ObjectPermanentUrlRequest) returns (UrlResponse) {}
   rpc ObjectPresignedUrl(ObjectPresignedUrlRequest) returns (UrlResponse) {}
   rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
@@ -20,20 +23,26 @@ message Bucket {
   bool public = 2;
   int32 expiration_days = 3;
 }
+
 message CreateBucketRequest {
   string name = 1;
   bool public = 2;
   uint32 expiration_days = 9;
 }
-message CreateBucketResponse {
-  string name = 1;
+
+message ListBucketResponse {
+  message Item {
+    string name = 1;
+  }
+  repeated Item items = 1;
 }
-message UploadObjectRequest {
+
+message PresignedPutObjectRequest {
   string bucket = 1;
   string title = 2;
   google.protobuf.Duration ttl = 9;
 }
-message UploadObjectResponse {
+message PresignedPutObjectResponse {
   string object = 1;
   string url = 9;
 }
@@ -56,4 +65,7 @@ message ObjectPermanentUrlRequest {
 message RemoveObjectRequest {
   string bucket = 1;
   string object = 2;
+}
+message RemoveBucketRequest {
+  string bucket = 1;
 }
