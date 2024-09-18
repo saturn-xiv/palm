@@ -38,7 +38,7 @@ class S3Stub(object):
         self.CreateBucket = channel.unary_unary(
                 '/palm.s3.v1.S3/CreateBucket',
                 request_serializer=palm_dot_s3_dot_v1_dot_s3__pb2.CreateBucketRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=palm_dot_s3_dot_v1_dot_s3__pb2.CreateBucketResponse.FromString,
                 _registered_method=True)
         self.ListBucket = channel.unary_unary(
                 '/palm.s3.v1.S3/ListBucket',
@@ -123,7 +123,7 @@ def add_S3Servicer_to_server(servicer, server):
             'CreateBucket': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateBucket,
                     request_deserializer=palm_dot_s3_dot_v1_dot_s3__pb2.CreateBucketRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=palm_dot_s3_dot_v1_dot_s3__pb2.CreateBucketResponse.SerializeToString,
             ),
             'ListBucket': grpc.unary_unary_rpc_method_handler(
                     servicer.ListBucket,
@@ -182,7 +182,7 @@ class S3(object):
             target,
             '/palm.s3.v1.S3/CreateBucket',
             palm_dot_s3_dot_v1_dot_s3__pb2.CreateBucketRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            palm_dot_s3_dot_v1_dot_s3__pb2.CreateBucketResponse.FromString,
             options,
             channel_credentials,
             insecure,

@@ -27,6 +27,12 @@ class CreateBucketRequest(_message.Message):
     expiration_days: int
     def __init__(self, name: _Optional[str] = ..., public: bool = ..., expiration_days: _Optional[int] = ...) -> None: ...
 
+class CreateBucketResponse(_message.Message):
+    __slots__ = ("name",)
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    def __init__(self, name: _Optional[str] = ...) -> None: ...
+
 class ListBucketResponse(_message.Message):
     __slots__ = ("items",)
     class Item(_message.Message):
@@ -97,7 +103,7 @@ class RemoveObjectRequest(_message.Message):
     def __init__(self, bucket: _Optional[str] = ..., object: _Optional[str] = ...) -> None: ...
 
 class RemoveBucketRequest(_message.Message):
-    __slots__ = ("bucket",)
-    BUCKET_FIELD_NUMBER: _ClassVar[int]
-    bucket: str
-    def __init__(self, bucket: _Optional[str] = ...) -> None: ...
+    __slots__ = ("name",)
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    def __init__(self, name: _Optional[str] = ...) -> None: ...

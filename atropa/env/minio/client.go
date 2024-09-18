@@ -32,9 +32,8 @@ func (p *Client) CreateBucket(ctx context.Context, name string, public bool, exp
 	return name, nil
 }
 
-// https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
-func (p *Client) UploadURL(ctx context.Context, bucket string, title string, ttl time.Duration) (*url.URL, string, error) {
-	url, object, err := object_upload_via_browser(ctx, p.client, bucket, title, ttl)
+func (p *Client) PresignedPutObject(ctx context.Context, bucket string, title string, ttl time.Duration) (*url.URL, string, error) {
+	url, object, err := presigned_put_object(ctx, p.client, bucket, title, ttl)
 	if err != nil {
 		return nil, "", err
 	}
@@ -74,14 +73,18 @@ func (p *Client) PresignedUrl(ctx context.Context, bucket string, object string,
 			return nil, errors.New("bucket is public")
 		}
 	}
-	// _, err := object_status(ctx, p.client, bucket, object)
-	// if err != nil {
-	// 	return nil, err
-	// }
-	// slog.Debug("found", slog.String("node", p.client.EndpointURL().Host), slog.String("bucket", bucket), slog.String("object", object))
+	_, err := object_status(ctx, p.client, bucket, object)
+	if err != nil {
+		return nil, err
+	}
+
 	return object_presigned_url(ctx, p.client, bucket, object, title, content_type, ttl)
 }
 
 func (p *Client) RemoveObject(ctx context.Context, bucket string, object string) error {
 	return remove_object(ctx, p.client, bucket, object)
+}
+
+func (p *Client) RemoveBucket(ctx context.Context, name string) error {
+	return remove_bucket(ctx, p.client, name)
 }

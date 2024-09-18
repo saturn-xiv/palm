@@ -26,7 +26,7 @@ from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13palm/s3/v1/s3.proto\x12\npalm.s3.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\"?\n\x06\x42ucket\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06public\x18\x02 \x01(\x08\x12\x17\n\x0f\x65xpiration_days\x18\x03 \x01(\x05\"L\n\x13\x43reateBucketRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06public\x18\x02 \x01(\x08\x12\x17\n\x0f\x65xpiration_days\x18\t \x01(\r\"^\n\x12ListBucketResponse\x12\x32\n\x05items\x18\x01 \x03(\x0b\x32#.palm.s3.v1.ListBucketResponse.Item\x1a\x14\n\x04Item\x12\x0c\n\x04name\x18\x01 \x01(\t\"b\n\x19PresignedPutObjectRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12&\n\x03ttl\x18\t \x01(\x0b\x32\x19.google.protobuf.Duration\"9\n\x1aPresignedPutObjectResponse\x12\x0e\n\x06object\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\t \x01(\t\"\x1a\n\x0bUrlResponse\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x9e\x01\n\x19ObjectPresignedUrlRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0e\n\x06object\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x19\n\x0c\x63ontent_type\x18\x04 \x01(\tH\x00\x88\x01\x01\x12&\n\x03ttl\x18\t \x01(\x0b\x32\x19.google.protobuf.DurationB\x0f\n\r_content_type\"v\n\x19ObjectPermanentUrlRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0e\n\x06object\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x19\n\x0c\x63ontent_type\x18\x04 \x01(\tH\x00\x88\x01\x01\x42\x0f\n\r_content_type\"5\n\x13RemoveObjectRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0e\n\x06object\x18\x02 \x01(\t\"%\n\x13RemoveBucketRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t2\xc4\x04\n\x02S3\x12I\n\x0c\x43reateBucket\x12\x1f.palm.s3.v1.CreateBucketRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x46\n\nListBucket\x12\x16.google.protobuf.Empty\x1a\x1e.palm.s3.v1.ListBucketResponse\"\x00\x12I\n\x0cRemoveBucket\x12\x1f.palm.s3.v1.RemoveBucketRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x65\n\x12PresignedPutObject\x12%.palm.s3.v1.PresignedPutObjectRequest\x1a&.palm.s3.v1.PresignedPutObjectResponse\"\x00\x12V\n\x12ObjectPermanentUrl\x12%.palm.s3.v1.ObjectPermanentUrlRequest\x1a\x17.palm.s3.v1.UrlResponse\"\x00\x12V\n\x12ObjectPresignedUrl\x12%.palm.s3.v1.ObjectPresignedUrlRequest\x1a\x17.palm.s3.v1.UrlResponse\"\x00\x12I\n\x0cRemoveObject\x12\x1f.palm.s3.v1.RemoveObjectRequest\x1a\x16.google.protobuf.Empty\"\x00\x42^\n(com.github.saturn_xiv.palm.plugins.s3.v1P\x01Z0github.com/saturn-xiv/palm/atropa/s3/services/v2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13palm/s3/v1/s3.proto\x12\npalm.s3.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\"?\n\x06\x42ucket\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06public\x18\x02 \x01(\x08\x12\x17\n\x0f\x65xpiration_days\x18\x03 \x01(\x05\"L\n\x13\x43reateBucketRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06public\x18\x02 \x01(\x08\x12\x17\n\x0f\x65xpiration_days\x18\t \x01(\r\"$\n\x14\x43reateBucketResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\"^\n\x12ListBucketResponse\x12\x32\n\x05items\x18\x01 \x03(\x0b\x32#.palm.s3.v1.ListBucketResponse.Item\x1a\x14\n\x04Item\x12\x0c\n\x04name\x18\x01 \x01(\t\"b\n\x19PresignedPutObjectRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12&\n\x03ttl\x18\t \x01(\x0b\x32\x19.google.protobuf.Duration\"9\n\x1aPresignedPutObjectResponse\x12\x0e\n\x06object\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\t \x01(\t\"\x1a\n\x0bUrlResponse\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x9e\x01\n\x19ObjectPresignedUrlRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0e\n\x06object\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x19\n\x0c\x63ontent_type\x18\x04 \x01(\tH\x00\x88\x01\x01\x12&\n\x03ttl\x18\t \x01(\x0b\x32\x19.google.protobuf.DurationB\x0f\n\r_content_type\"v\n\x19ObjectPermanentUrlRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0e\n\x06object\x18\x02 \x01(\t\x12\r\n\x05title\x18\x03 \x01(\t\x12\x19\n\x0c\x63ontent_type\x18\x04 \x01(\tH\x00\x88\x01\x01\x42\x0f\n\r_content_type\"5\n\x13RemoveObjectRequest\x12\x0e\n\x06\x62ucket\x18\x01 \x01(\t\x12\x0e\n\x06object\x18\x02 \x01(\t\"#\n\x13RemoveBucketRequest\x12\x0c\n\x04name\x18\x01 \x01(\t2\xce\x04\n\x02S3\x12S\n\x0c\x43reateBucket\x12\x1f.palm.s3.v1.CreateBucketRequest\x1a .palm.s3.v1.CreateBucketResponse\"\x00\x12\x46\n\nListBucket\x12\x16.google.protobuf.Empty\x1a\x1e.palm.s3.v1.ListBucketResponse\"\x00\x12I\n\x0cRemoveBucket\x12\x1f.palm.s3.v1.RemoveBucketRequest\x1a\x16.google.protobuf.Empty\"\x00\x12\x65\n\x12PresignedPutObject\x12%.palm.s3.v1.PresignedPutObjectRequest\x1a&.palm.s3.v1.PresignedPutObjectResponse\"\x00\x12V\n\x12ObjectPermanentUrl\x12%.palm.s3.v1.ObjectPermanentUrlRequest\x1a\x17.palm.s3.v1.UrlResponse\"\x00\x12V\n\x12ObjectPresignedUrl\x12%.palm.s3.v1.ObjectPresignedUrlRequest\x1a\x17.palm.s3.v1.UrlResponse\"\x00\x12I\n\x0cRemoveObject\x12\x1f.palm.s3.v1.RemoveObjectRequest\x1a\x16.google.protobuf.Empty\"\x00\x42^\n(com.github.saturn_xiv.palm.plugins.s3.v1P\x01Z0github.com/saturn-xiv/palm/atropa/s3/services/v2b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -38,24 +38,26 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_BUCKET']._serialized_end=159
   _globals['_CREATEBUCKETREQUEST']._serialized_start=161
   _globals['_CREATEBUCKETREQUEST']._serialized_end=237
-  _globals['_LISTBUCKETRESPONSE']._serialized_start=239
-  _globals['_LISTBUCKETRESPONSE']._serialized_end=333
-  _globals['_LISTBUCKETRESPONSE_ITEM']._serialized_start=313
-  _globals['_LISTBUCKETRESPONSE_ITEM']._serialized_end=333
-  _globals['_PRESIGNEDPUTOBJECTREQUEST']._serialized_start=335
-  _globals['_PRESIGNEDPUTOBJECTREQUEST']._serialized_end=433
-  _globals['_PRESIGNEDPUTOBJECTRESPONSE']._serialized_start=435
-  _globals['_PRESIGNEDPUTOBJECTRESPONSE']._serialized_end=492
-  _globals['_URLRESPONSE']._serialized_start=494
-  _globals['_URLRESPONSE']._serialized_end=520
-  _globals['_OBJECTPRESIGNEDURLREQUEST']._serialized_start=523
-  _globals['_OBJECTPRESIGNEDURLREQUEST']._serialized_end=681
-  _globals['_OBJECTPERMANENTURLREQUEST']._serialized_start=683
-  _globals['_OBJECTPERMANENTURLREQUEST']._serialized_end=801
-  _globals['_REMOVEOBJECTREQUEST']._serialized_start=803
-  _globals['_REMOVEOBJECTREQUEST']._serialized_end=856
-  _globals['_REMOVEBUCKETREQUEST']._serialized_start=858
-  _globals['_REMOVEBUCKETREQUEST']._serialized_end=895
-  _globals['_S3']._serialized_start=898
-  _globals['_S3']._serialized_end=1478
+  _globals['_CREATEBUCKETRESPONSE']._serialized_start=239
+  _globals['_CREATEBUCKETRESPONSE']._serialized_end=275
+  _globals['_LISTBUCKETRESPONSE']._serialized_start=277
+  _globals['_LISTBUCKETRESPONSE']._serialized_end=371
+  _globals['_LISTBUCKETRESPONSE_ITEM']._serialized_start=351
+  _globals['_LISTBUCKETRESPONSE_ITEM']._serialized_end=371
+  _globals['_PRESIGNEDPUTOBJECTREQUEST']._serialized_start=373
+  _globals['_PRESIGNEDPUTOBJECTREQUEST']._serialized_end=471
+  _globals['_PRESIGNEDPUTOBJECTRESPONSE']._serialized_start=473
+  _globals['_PRESIGNEDPUTOBJECTRESPONSE']._serialized_end=530
+  _globals['_URLRESPONSE']._serialized_start=532
+  _globals['_URLRESPONSE']._serialized_end=558
+  _globals['_OBJECTPRESIGNEDURLREQUEST']._serialized_start=561
+  _globals['_OBJECTPRESIGNEDURLREQUEST']._serialized_end=719
+  _globals['_OBJECTPERMANENTURLREQUEST']._serialized_start=721
+  _globals['_OBJECTPERMANENTURLREQUEST']._serialized_end=839
+  _globals['_REMOVEOBJECTREQUEST']._serialized_start=841
+  _globals['_REMOVEOBJECTREQUEST']._serialized_end=894
+  _globals['_REMOVEBUCKETREQUEST']._serialized_start=896
+  _globals['_REMOVEBUCKETREQUEST']._serialized_end=931
+  _globals['_S3']._serialized_start=934
+  _globals['_S3']._serialized_end=1524
 # @@protoc_insertion_point(module_scope)

@@ -27,13 +27,12 @@ func (p *S3Service) CreateBucket(ctx context.Context, req *pb.CreateBucketReques
 	return &pb.CreateBucketResponse{Name: name}, nil
 }
 
-// https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
-func (p *S3Service) UploadObject(ctx context.Context, req *pb.UploadObjectRequest) (*pb.UploadObjectResponse, error) {
-	url, object, err := p.client.UploadURL(ctx, req.Bucket, req.Title, req.Ttl.AsDuration())
+func (p *S3Service) UploadObject(ctx context.Context, req *pb.PresignedPutObjectRequest) (*pb.PresignedPutObjectResponse, error) {
+	url, object, err := p.client.PresignedPutObject(ctx, req.Bucket, req.Title, req.Ttl.AsDuration())
 	if err != nil {
 		return nil, err
 	}
-	return &pb.UploadObjectResponse{Url: url.String(), Object: object}, nil
+	return &pb.PresignedPutObjectResponse{Url: url.String(), Object: object}, nil
 }
 
 func (p *S3Service) ObjectPermanentUrl(ctx context.Context, req *pb.ObjectPermanentUrlRequest) (*pb.UrlResponse, error) {
@@ -54,6 +53,13 @@ func (p *S3Service) ObjectPresignedUrl(ctx context.Context, req *pb.ObjectPresig
 
 func (p *S3Service) RemoveObject(ctx context.Context, req *pb.RemoveObjectRequest) (*emptypb.Empty, error) {
 	if err := p.client.RemoveObject(ctx, req.Bucket, req.Object); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
+}
+
+func (p *S3Service) RemoveBucket(ctx context.Context, req *pb.RemoveBucketRequest) (*emptypb.Empty, error) {
+	if err := p.client.RemoveBucket(ctx, req.Name); err != nil {
 		return nil, err
 	}
 	return &emptypb.Empty{}, nil

@@ -29,6 +29,7 @@ function generate_grpc_for_go() {
 
 function generate_grpc_for_python() {
     # pip install grpcio-tools
+    echo "generate grpc $2 => $1"
     cd $WORKSPACE/$1
     local target=palm/$2/v1
     if [ -d $target ]; then
@@ -80,16 +81,17 @@ function generate_tutorials() {
 # ---------------------------------------------------------
 
 generate_grpc_for_go balsam atropa/balsam/services/v2
-# generate_grpc_for_go daisy atropa/daisy/services/v2
-# generate_grpc_for_go s3 atropa/s3/services/v2
+generate_grpc_for_go daisy atropa/daisy/services/v2
+generate_grpc_for_go s3 atropa/s3/services/v2
 # generate_grpc_for_go rbac atropa/rbac/services/v2
 generate_grpc_for_go google atropa/google/services/v2
 generate_grpc_for_go wechat atropa/wechat/services/v2
-# generate_grpc_for_go lily atropa/lily/services/v2
+generate_grpc_for_go lily atropa/lily/services/v2
 generate_grpc_for_go morus atropa/morus/services/v2
 
 generate_grpc_for_js morus morus/src/protocols
 
+source $HOME/local/python/bin/activate
 generate_grpc_for_python bougainvillea rbac
 generate_grpc_for_python bougainvillea s3
 generate_grpc_for_python bougainvillea lily

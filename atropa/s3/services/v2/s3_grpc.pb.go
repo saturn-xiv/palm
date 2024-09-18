@@ -21,7 +21,9 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	S3_CreateBucket_FullMethodName       = "/palm.s3.v1.S3/CreateBucket"
-	S3_UploadObject_FullMethodName       = "/palm.s3.v1.S3/UploadObject"
+	S3_ListBucket_FullMethodName         = "/palm.s3.v1.S3/ListBucket"
+	S3_RemoveBucket_FullMethodName       = "/palm.s3.v1.S3/RemoveBucket"
+	S3_PresignedPutObject_FullMethodName = "/palm.s3.v1.S3/PresignedPutObject"
 	S3_ObjectPermanentUrl_FullMethodName = "/palm.s3.v1.S3/ObjectPermanentUrl"
 	S3_ObjectPresignedUrl_FullMethodName = "/palm.s3.v1.S3/ObjectPresignedUrl"
 	S3_RemoveObject_FullMethodName       = "/palm.s3.v1.S3/RemoveObject"
@@ -32,7 +34,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type S3Client interface {
 	CreateBucket(ctx context.Context, in *CreateBucketRequest, opts ...grpc.CallOption) (*CreateBucketResponse, error)
-	UploadObject(ctx context.Context, in *UploadObjectRequest, opts ...grpc.CallOption) (*UploadObjectResponse, error)
+	ListBucket(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListBucketResponse, error)
+	RemoveBucket(ctx context.Context, in *RemoveBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PresignedPutObject(ctx context.Context, in *PresignedPutObjectRequest, opts ...grpc.CallOption) (*PresignedPutObjectResponse, error)
 	ObjectPermanentUrl(ctx context.Context, in *ObjectPermanentUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
 	ObjectPresignedUrl(ctx context.Context, in *ObjectPresignedUrlRequest, opts ...grpc.CallOption) (*UrlResponse, error)
 	RemoveObject(ctx context.Context, in *RemoveObjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -56,10 +60,30 @@ func (c *s3Client) CreateBucket(ctx context.Context, in *CreateBucketRequest, op
 	return out, nil
 }
 
-func (c *s3Client) UploadObject(ctx context.Context, in *UploadObjectRequest, opts ...grpc.CallOption) (*UploadObjectResponse, error) {
+func (c *s3Client) ListBucket(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListBucketResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UploadObjectResponse)
-	err := c.cc.Invoke(ctx, S3_UploadObject_FullMethodName, in, out, cOpts...)
+	out := new(ListBucketResponse)
+	err := c.cc.Invoke(ctx, S3_ListBucket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *s3Client) RemoveBucket(ctx context.Context, in *RemoveBucketRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, S3_RemoveBucket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *s3Client) PresignedPutObject(ctx context.Context, in *PresignedPutObjectRequest, opts ...grpc.CallOption) (*PresignedPutObjectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PresignedPutObjectResponse)
+	err := c.cc.Invoke(ctx, S3_PresignedPutObject_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +125,9 @@ func (c *s3Client) RemoveObject(ctx context.Context, in *RemoveObjectRequest, op
 // for forward compatibility.
 type S3Server interface {
 	CreateBucket(context.Context, *CreateBucketRequest) (*CreateBucketResponse, error)
-	UploadObject(context.Context, *UploadObjectRequest) (*UploadObjectResponse, error)
+	ListBucket(context.Context, *emptypb.Empty) (*ListBucketResponse, error)
+	RemoveBucket(context.Context, *RemoveBucketRequest) (*emptypb.Empty, error)
+	PresignedPutObject(context.Context, *PresignedPutObjectRequest) (*PresignedPutObjectResponse, error)
 	ObjectPermanentUrl(context.Context, *ObjectPermanentUrlRequest) (*UrlResponse, error)
 	ObjectPresignedUrl(context.Context, *ObjectPresignedUrlRequest) (*UrlResponse, error)
 	RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error)
@@ -118,8 +144,14 @@ type UnimplementedS3Server struct{}
 func (UnimplementedS3Server) CreateBucket(context.Context, *CreateBucketRequest) (*CreateBucketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBucket not implemented")
 }
-func (UnimplementedS3Server) UploadObject(context.Context, *UploadObjectRequest) (*UploadObjectResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UploadObject not implemented")
+func (UnimplementedS3Server) ListBucket(context.Context, *emptypb.Empty) (*ListBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListBucket not implemented")
+}
+func (UnimplementedS3Server) RemoveBucket(context.Context, *RemoveBucketRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveBucket not implemented")
+}
+func (UnimplementedS3Server) PresignedPutObject(context.Context, *PresignedPutObjectRequest) (*PresignedPutObjectResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PresignedPutObject not implemented")
 }
 func (UnimplementedS3Server) ObjectPermanentUrl(context.Context, *ObjectPermanentUrlRequest) (*UrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ObjectPermanentUrl not implemented")
@@ -169,20 +201,56 @@ func _S3_CreateBucket_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _S3_UploadObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UploadObjectRequest)
+func _S3_ListBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(S3Server).UploadObject(ctx, in)
+		return srv.(S3Server).ListBucket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: S3_UploadObject_FullMethodName,
+		FullMethod: S3_ListBucket_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3Server).UploadObject(ctx, req.(*UploadObjectRequest))
+		return srv.(S3Server).ListBucket(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _S3_RemoveBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveBucketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).RemoveBucket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_RemoveBucket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).RemoveBucket(ctx, req.(*RemoveBucketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _S3_PresignedPutObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PresignedPutObjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).PresignedPutObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_PresignedPutObject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).PresignedPutObject(ctx, req.(*PresignedPutObjectRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -253,8 +321,16 @@ var S3_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _S3_CreateBucket_Handler,
 		},
 		{
-			MethodName: "UploadObject",
-			Handler:    _S3_UploadObject_Handler,
+			MethodName: "ListBucket",
+			Handler:    _S3_ListBucket_Handler,
+		},
+		{
+			MethodName: "RemoveBucket",
+			Handler:    _S3_RemoveBucket_Handler,
+		},
+		{
+			MethodName: "PresignedPutObject",
+			Handler:    _S3_PresignedPutObject_Handler,
 		},
 		{
 			MethodName: "ObjectPermanentUrl",

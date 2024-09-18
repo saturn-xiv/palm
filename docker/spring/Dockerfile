@@ -93,7 +93,8 @@ RUN zsh -c ". $HOME/.zshrc \
     && python3 -m venv $HOME/local/python3 \
     && . $HOME/local/python3/bin/activate \
     && pip install --upgrade pip \
-    && pip install cmake ansible paramiko conan supervisor"
+    && pip install cmake ansible paramiko conan supervisor \
+    && pip install grpcio-tools grpcio-health-checking"
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
     && echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.zshrc
@@ -198,7 +199,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
 
 
 # https://opensearch.org/downloads.html#opensearch
-ENV OPENSEARCH_VERSION "2.15.0"
+ENV OPENSEARCH_VERSION "2.17.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
 RUN cd $HOME/build \

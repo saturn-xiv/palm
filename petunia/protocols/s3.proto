@@ -8,7 +8,7 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 
 service S3 {
-  rpc CreateBucket(CreateBucketRequest) returns (google.protobuf.Empty) {}
+  rpc CreateBucket(CreateBucketRequest) returns (CreateBucketResponse) {}
   rpc ListBucket(google.protobuf.Empty) returns (ListBucketResponse) {}
   rpc RemoveBucket(RemoveBucketRequest) returns (google.protobuf.Empty) {}
   rpc PresignedPutObject(PresignedPutObjectRequest)
@@ -28,6 +28,10 @@ message CreateBucketRequest {
   string name = 1;
   bool public = 2;
   uint32 expiration_days = 9;
+}
+
+message CreateBucketResponse {
+  string name = 1;
 }
 
 message ListBucketResponse {
@@ -67,5 +71,5 @@ message RemoveObjectRequest {
   string object = 2;
 }
 message RemoveBucketRequest {
-  string bucket = 1;
+  string name = 1;
 }

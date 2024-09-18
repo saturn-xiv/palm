@@ -83,8 +83,7 @@ func object_upload_via_file(ctx context.Context, client *minio_.Client, file str
 	return nil
 }
 
-// https://min.io/docs/minio/linux/integrations/presigned-put-upload-via-browser.html
-func object_upload_via_browser(ctx context.Context, client *minio_.Client, bucket string, title string, expires time.Duration) (*url.URL, string, error) {
+func presigned_put_object(ctx context.Context, client *minio_.Client, bucket string, title string, expires time.Duration) (*url.URL, string, error) {
 	object := uuid.New().String()
 	{
 		ext := filepath.Ext(title)
@@ -100,6 +99,10 @@ func object_upload_via_browser(ctx context.Context, client *minio_.Client, bucke
 	return url, object, nil
 }
 
+func remove_bucket(ctx context.Context, client *minio_.Client, name string) error {
+	slog.Warn("delete", slog.String("node", client.EndpointURL().Host), slog.String("bucket", name))
+	return client.RemoveBucket(ctx, name)
+}
 func remove_object(ctx context.Context, client *minio_.Client, bucket string, object string) error {
 	slog.Warn("delete", slog.String("node", client.EndpointURL().Host), slog.String("bucket", bucket), slog.String("object", object))
 	return client.RemoveObject(ctx, bucket, object, minio_.RemoveObjectOptions{})
