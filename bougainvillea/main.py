@@ -10,7 +10,11 @@ logger = logging.getLogger(__name__)
 
 
 def launch_rpc_server(args):
-    start_rpc_server("d", "q", "s", args.port)
+    # TODO
+    logger.debug("load tls from files: %s, %s, %s" %
+                 (args.ca_file, args.cert_file, args.key_file))
+    start_rpc_server("d", "q", "s", args.port,
+                     (open(args.ca_file, 'rb').read(), open(args.cert_file, 'rb').read(), open(args.key_file, 'rb').read()))
 
 
 def launch_queue_consumer(args):
@@ -36,6 +40,9 @@ if __name__ == "__main__":
         'rpc-server', help='start a gRPC server')
     cmd_rpc_server.add_argument('-p', '--port', type=int,
                                 required=True, help='port to listen')
+    cmd_rpc_server.add_argument('--ca-file', default='ca.crt')
+    cmd_rpc_server.add_argument('--cert-file', default='server.crt')
+    cmd_rpc_server.add_argument('--key-file', default='server.key')
     cmd_rpc_server.set_defaults(func=launch_rpc_server)
 
     cmd_queue_consumer = subparsers.add_parser(

@@ -44,13 +44,17 @@ def _configure_health_server(server: grpc.Server):
     toggle_health_status_thread.start()
 
 
-def launch(db, queue, s3,  port, host='0.0.0.0', max_workers=16):
+def launch(db, queue, s3,  port, tls, host='0.0.0.0', max_workers=16):
+    credentials = grpc.ssl_server_credentials(
+        [(tls[2], tls[1])],
+        root_certificates=tls[0],
+        require_client_auth=True)
     addr = "%s:%d" % (host, port)
     logger.info("start gRPC server on http://%s" % addr)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=max_workers))
     rbac_pb2_grpc.add_PolicyServicer_to_server(RbacService(), server)
     s3_pb2_grpc.add_S3Servicer_to_server(S3Service(), server)
-    server.add_insecure_port(addr)
+    server.add_secure_port(addr, credentials)
     _configure_health_server(server)
     server.start()
     server.wait_for_termination()

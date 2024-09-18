@@ -45,13 +45,25 @@ if __name__ == "__main__":
                         default='127.0.0.1', help='rpc host')
     parser.add_argument('-p', '--port', type=int,
                         required=True, help='rpc port')
+    parser.add_argument('--ca-file', default='ca.crt')
+    parser.add_argument('--cert-file', default='client.crt')
+    parser.add_argument('--key-file', default='client.key')
+    parser.add_argument('--cert-authority', required=True)
 
     args = parser.parse_args()
     logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO)
-    logger.debug("run on debug mode")
+    logger.debug("run on debug mode %s")
 
     addr = "%s:%d" % (args.host, args.port)
     logger.info("connect to %s" % addr)
-    with grpc.insecure_channel(addr) as channel:
+    logger.debug("load tls from files: %s, %s, %s, %s" %
+                 (args.ca_file, args.cert_file, args.key_file, args.cert_authority))
+    credentials = grpc.ssl_channel_credentials(
+        root_certificates=open(args.ca_file, 'rb').read(),
+        private_key=open(args.key_file, 'rb').read(),
+        certificate_chain=open(args.cert_file, 'rb').read()
+    )
+
+    with grpc.secure_channel(addr, credentials, options=(('grpc.default_authority', args.cert_authority))) as channel:
         s3_list_buckets(channel)
         health_check_call(channel, "palm.s3.v1.S3")
