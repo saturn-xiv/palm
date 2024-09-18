@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -e
+
+. /etc/os-release
+
+# ---------------------------------------------------------
+
 export WORKSPACE=$PWD
 export GIT_VERSION=$(git describe --tags --always --dirty --first-parent)
 export PACKAGE_NAME="palm-$VERSION_CODENAME-$GIT_VERSION"
@@ -12,6 +18,7 @@ function build_go() {
     local ldflags="-s -w -X '$pkg.repo_url=$(git remote get-url origin)' -X '$pkg.author_name=$(git config --get user.name)' -X '$pkg.author_email=$(git config --get user.email)' -X '$pkg.build_time=$(date -u)' -X '$pkg.git_version=$(git describe --tags --always --dirty --first-parent)'"
 
     echo "build $1 for $2"
+    mkdir -p $TARGET_DIR/$2/bin
     GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $TARGET_DIR/$2/bin/$1
 }
 
@@ -24,6 +31,7 @@ function build_rust_x86_64() {
     local target="x86_64-unknown-linux-gnu"
 
     cargo build --release --target $target -p $1
+    mkdir -p $TARGET_DIR/amd64/bin
     cp target/$target/release/$1 $TARGET_DIR/amd64/bin/
 }
 
@@ -43,6 +51,7 @@ function build_rust_aarch64() {
     local target="aarch64-unknown-linux-gnu"
 
     cargo build --release --target $target -p $1
+    mkdir -p $TARGET_DIR/arm64/bin
     cp target/$target/release/$1 $TARGET_DIR/arm64/bin/
 }
 
@@ -62,6 +71,7 @@ function build_rust_armhf() {
     local target="armv7-unknown-linux-gnueabihf"
 
     cargo build --release --target $target -p $1
+    mkdir -p $TARGET_DIR/armhf/bin
     cp target/$target/release/$1 $TARGET_DIR/armhf/bin/
 }
 
@@ -75,6 +85,7 @@ function build_dashboard() {
     fi
     npm run build
 
+    mkdir -p $TARGET_DIR/$1
     cp -r dist $TARGET_DIR/$1/dashboard
 }
 
@@ -160,6 +171,8 @@ copy_fig_assets() {
         mkdir -p $t
         cp -a $p $t/
     done
+
+    cp -r db $TARGET_DIR/fig/
 }
 
 # https://github.com/envoyproxy/envoy/tags
@@ -188,6 +201,11 @@ function copy_envoy() {
 
 # ---------------------------------------------------------
 
+if [[ "$ID" != "ubuntu" ]]; then
+    echo "Unsupported system: $ID"
+    exit 1
+fi
+
 if [ -f ${TARGET_DIR}.tar.xz ]; then
     echo "check passed(${TARGET_DIR}.tar.xz)."
     exit 0
@@ -209,23 +227,23 @@ declare -a go_targets=(
 )
 
 for t in "${go_targets[@]}"; do
-    mkdir -p $TARGET_DIR/bin/$t
     build_go atropa $t
 done
 
 # ---------------------------------------------------------
 
-build_dashboard fig
+declare -a rust_projects=(
+    "fig"
+    "camelia"
+)
+
+for p in "${rust_projects[@]}"; do
+    build_dashboard $p
+    build_rust_x86_64 $p
+    build_rust_aarch64 $p
+done
+
 copy_fig_assets
-cp -r $WORKSPACE/fig/db $TARGET_DIR/fig/
-
-build_dashboard camelia
-
-build_rust_x86_64 fig
-build_rust_x86_64 camelia
-
-build_rust_aarch64 fig
-build_rust_aarch64 camelia
 
 # ---------------------------------------------------------
 
