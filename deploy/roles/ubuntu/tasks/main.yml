@@ -66,6 +66,10 @@
       - libmysqlclient-dev
       - libsqlite3-dev
       - libudev-dev
+      - crun
+      - podman
+      - buildah
+      - fuse-overlayfs
 
 - include_tasks: locales.yml
 
