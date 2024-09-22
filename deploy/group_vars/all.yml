@@ -1,0 +1,29 @@
+ansible_ssh_private_key_file: "{{inventory_dir}}/.ssh/id_ed25519"
+ansible_python_interpreter: /usr/bin/python3
+ansible_user: deploy
+
+app_go_version: "1.21.4"
+app_go_architecture: "amd64"
+
+app_jdk_version: "22.0.1"
+app_jdk_architecture: "x64"
+app_jdk_hash: "c7ec1332f7bb44aeba2eb341ae18aca4"
+app_maven_version: "3.9.8"
+app_gradle_version: "8.8"
+
+app_nodejs_version: "20.15.0"
+app_nodejs_architecture: "x64"
+
+app_kylin_nodejs_iron_version: "20.15.0"
+app_kylin_nodejs_fermium_version: "14.21.3"
+app_kylin_jdk_lts_version: "22.0.1"
+app_kylin_gradle_lts_version: "8.8"
+app_kylin_jdk19_version: "19.0.2"
+app_kylin_gradle7_version: "7.6.4"
+app_kylin_maven_version: "3.9.8"
+app_kylin_vscode_version: "1718750038"
+app_kylin_intellij_idea_version: "2024.1.4"
+app_kylin_intellij_idea_version_code: "241.18034.62"
+app_kylin_sql_developer_version: "23.1.1.345.2114"
+app_kylin_sql_developer_jdk_version: "11.0.22"
+app_kylin_dbeaver_version: "24.1.1"

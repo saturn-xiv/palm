@@ -1,0 +1,103 @@
+# update-desktop-database ~/.local/share/applications
+
+- name: Install nodejs iron
+  ansible.builtin.unarchive:
+    src: node-v{{ app_kylin_nodejs_iron_version }}-linux-x64.tar.xz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install nodejs fermium
+  ansible.builtin.unarchive:
+    src: node-v{{ app_kylin_nodejs_fermium_version }}-linux-x64.tar.xz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install openjdk-lts
+  ansible.builtin.unarchive:
+    src: openjdk-{{ app_kylin_jdk_lts_version }}_linux-x64_bin.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install openjdk-19
+  ansible.builtin.unarchive:
+    src: jdk-{{ app_kylin_jdk19_version }}_linux-x64_bin.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install gradle-lts
+  ansible.builtin.unarchive:
+    src: gradle-{{ app_kylin_gradle_lts_version }}-bin.zip
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install gradle-7
+  ansible.builtin.unarchive:
+    src: gradle-{{ app_kylin_gradle7_version }}-bin.zip
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install maven
+  ansible.builtin.unarchive:
+    src: apache-maven-{{ app_kylin_maven_version }}-bin.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install vscode
+  ansible.builtin.unarchive:
+    src: code-stable-x64-{{ app_kylin_vscode_version }}.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install jdk for sqldevelper
+  ansible.builtin.unarchive:
+    src: jdk-{{ app_kylin_sql_developer_jdk_version }}_linux-x64_bin.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install sqldevelper
+  ansible.builtin.unarchive:
+    src: sqldeveloper-{{ app_kylin_sql_developer_version }}-no-jre.zip
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install dbeaver-ce
+  ansible.builtin.unarchive:
+    src: dbeaver-ce-{{ app_kylin_dbeaver_version }}-linux.gtk.x86_64.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Install intellij-idea
+  ansible.builtin.unarchive:
+    src: ideaIC-{{ app_kylin_intellij_idea_version }}.tar.gz
+    dest: "{{ ansible_env.HOME }}/local"
+
+- name: Upload lts.sh
+  ansible.builtin.template:
+    src: lts.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/lts.sh"
+    mode: "0755"
+
+- name: Upload jdk19-fermium.sh
+  ansible.builtin.template:
+    src: jdk19-fermium.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/jdk19-fermium.sh"
+    mode: "0755"
+
+- name: Upload vscode.desktop
+  ansible.builtin.template:
+    src: vscode.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/vscode.desktop"
+    mode: "0644"
+
+- name: Upload dbeaver-ce.desktop
+  ansible.builtin.template:
+    src: io.dbeaver.DBeaver.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/io.dbeaver.DBeaver.desktop"
+    mode: "0644"
+
+- name: Upload sqldeveloper.sh
+  ansible.builtin.template:
+    src: oracle-sqldeveloper/run.sh.j2
+    dest: "{{ ansible_env.HOME }}/local/oracle-sqldeveloper.sh"
+    mode: "755"
+
+- name: Upload sqldeveloper.desktop
+  ansible.builtin.template:
+    src: oracle-sqldeveloper/desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/oracle-sqldeveloper.desktop"
+    mode: "0644"
+
+- name: Upload intellij-idea.desktop
+  ansible.builtin.template:
+    src: intellij-idea.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/intellij-idea.desktop"
+    mode: "0644"

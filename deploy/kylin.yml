@@ -1,0 +1,6 @@
+- name: Setup kylin development env
+  hosts: all
+  roles:
+    - os
+    - oh-my-zsh
+    - kylin-desktop
