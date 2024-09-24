@@ -26,6 +26,10 @@ features = ["cookie-session", "redis-session"]
 version = "0.16"
 features = ["chrono"]
 
+[dependencies.nix]
+version = "0.29"
+features = ["process", "user"]
+
 [dependencies.hyper]
 version = "1"
 features = ["full"]

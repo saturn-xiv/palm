@@ -2,6 +2,9 @@ pub mod cache;
 pub mod crypto;
 pub mod grpc;
 pub mod jwt;
+pub mod network;
+pub mod opensearch;
+pub mod parser;
 pub mod queue;
 pub mod result;
 
@@ -44,6 +47,7 @@ pub mod wechat {
 pub use self::result::{Error, GrpcResult, HttpError, HttpResult, Result};
 
 pub const BANNER: &str = include_str!("banner.txt");
+pub const HOMEPAGE: &str = env!("CARGO_PKG_HOMEPAGE");
 include!(concat!(env!("OUT_DIR"), "/env.rs"));
 
 lazy_static::lazy_static! {
@@ -55,3 +59,28 @@ lazy_static::lazy_static! {
 // https://developers.cloudflare.com/support/speed/optimization-file-size/what-will-cloudflare-compress/
 pub const PROTOBUF: &str = "application/x-protobuf";
 pub const FLATBUFFER: &str = "application/x-flatbuffer";
+
+use std::fs::File;
+use std::os::unix::fs::PermissionsExt;
+use std::path::Path;
+
+use hyper::StatusCode;
+
+pub fn is_stopped() -> bool {
+    Path::new(".stop").exists()
+}
+
+pub fn check_config_permission<P: AsRef<Path>>(file: P) -> Result<()> {
+    let file = file.as_ref();
+    let mode = {
+        let file = File::open(file)?;
+        file.metadata()?.permissions().mode()
+    };
+    if ![0o100400, 0o100600].contains(&mode) {
+        return Err(Box::new(HttpError(
+            StatusCode::BAD_REQUEST,
+            Some(format!("bad file ({}) mode({:#o})", file.display(), mode)),
+        )));
+    }
+    Ok(())
+}

@@ -3,24 +3,33 @@ name = "petunia"
 version = "2024.9.11"
 edition = "2021"
 description = "a collections of communication protocols."
+homepage = "https://github.com/saturn-xiv/palm"
+license = "MIT"
 
 [dependencies]
 futures = "0.3"
+mime = "0.3"
 log = "0.4"
 openssl = "0.10"
 r2d2 = "0.8"
+toml = "0.8"
 zmq = "0.10"
+askama = "0.12"
 paho-mqtt = "0.12"
 tonic-health = "0.12"
 tonic-reflection = "0.12"
 prost = "0.13"
 prost-types = "0.13"
+byteorder = "1"
+eui48 = "1"
 lazy_static = "1"
 data-encoding = "2"
 flexbuffers = "2"
+ipnet = "2"
 lapin = "2"
 opensearch = "2"
 percent-encoding = "2"
+tempfile = "3"
 amq-protocol-uri = "7"
 jsonwebtoken = "9"
 
@@ -35,6 +44,10 @@ features = ["small_rng"]
 [dependencies.tonic]
 version = "0.12"
 features = ["transport", "tls"]
+
+[dependencies.validator]
+version = "0.18"
+features = ["derive"]
 
 [dependencies.redis]
 version = "0.27"

@@ -1,4 +1,3 @@
-use chrono::Duration;
 use jsonwebtoken::{
     decode, encode, Algorithm, DecodingKey, EncodingKey, Header, TokenData, Validation,
 };
@@ -22,13 +21,18 @@ pub struct Token {
 }
 
 impl Jwt for OpenSsl {
-    fn sign(&self, subject: &str, audience: &str, ttl: Duration) -> Result<String> {
-        let (nbf, exp) = Self::timestamps(ttl);
+    fn sign(
+        &self,
+        subject: &str,
+        audience: &str,
+        not_before: i64,
+        expires_at: i64,
+    ) -> Result<String> {
         let token = Token {
             sub: subject.to_string(),
             aud: audience.to_string(),
-            exp,
-            nbf,
+            exp: expires_at,
+            nbf: not_before,
         };
         self.sum(None, &token)
     }
