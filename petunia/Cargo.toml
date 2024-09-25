@@ -7,7 +7,6 @@ description = "a collections of communication protocols."
 [dependencies]
 futures = "0.3"
 log = "0.4"
-openssl = "0.10"
 r2d2 = "0.8"
 zmq = "0.10"
 paho-mqtt = "0.12"
@@ -55,6 +54,10 @@ features = ["derive"]
 [dependencies.uuid]
 version = "1"
 features = ["v4", "serde"]
+
+[dependencies.openssl]
+version = "*"
+features = ["vendored"]
 
 [dependencies.actix-web]
 version = "4"
