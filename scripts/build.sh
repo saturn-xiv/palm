@@ -22,7 +22,13 @@ function build_go() {
     GOOS=linux GOARCH=$2 go build -ldflags "$ldflags" -o $TARGET_DIR/$2/bin/$1
 }
 
+function install_deb() {
+    apt -y install libc6-dev:$1 libudev-dev:$1 libssl-dev:$1 \
+        libpq5:$1 libpq-dev:$1 libmysqlclient-dev:$1 libsqlite3-dev:$1 libczmq-dev:$1
+}
+
 function build_rust_x86_64() {
+    install_deb amd64
     echo "build $1 for x84-64"
     cd $WORKSPACE
 
@@ -36,6 +42,7 @@ function build_rust_x86_64() {
 }
 
 function build_rust_aarch64() {
+    install_deb arm64
     echo "build $1 for aarch64"
     cd $WORKSPACE
 
@@ -56,6 +63,8 @@ function build_rust_aarch64() {
 }
 
 function build_rust_armhf() {
+    install_deb armhf
+
     echo "build $1 for armhf"
     cd $WORKSPACE
 
@@ -232,9 +241,11 @@ done
 
 # ---------------------------------------------------------
 
+cargo update
 declare -a rust_projects=(
     "fig"
     "camelia"
+    "azalea"
 )
 
 for p in "${rust_projects[@]}"; do

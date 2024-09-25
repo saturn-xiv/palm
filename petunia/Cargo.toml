@@ -10,7 +10,6 @@ license = "MIT"
 futures = "0.3"
 mime = "0.3"
 log = "0.4"
-openssl = "0.10"
 r2d2 = "0.8"
 toml = "0.8"
 zmq = "0.10"
@@ -68,6 +67,10 @@ features = ["derive"]
 [dependencies.uuid]
 version = "1"
 features = ["v4", "serde"]
+
+[dependencies.openssl]
+version = "*"
+features = ["vendored"]
 
 [dependencies.actix-web]
 version = "4"
