@@ -6,6 +6,7 @@ pub mod iptables;
 pub mod netplan;
 pub mod nginx;
 
+use std::any::type_name;
 use std::collections::BTreeMap;
 use std::fs::metadata;
 use std::net::IpAddr;
@@ -55,7 +56,7 @@ pub fn save<T: Etc>(it: &T) -> Result<()> {
 #[cfg(not(debug_assertions))]
 pub fn save<T: Etc>(it: &T) -> Result<()> {
     let file = it.file();
-    log::info!("write {} to {}", std::any::type_name::<T>(), file.display());
+    log::info!("write {} to {}", type_name::<T>(), file.display());
     std::fs::write(&file, it.render()?)?;
     Ok(())
 }

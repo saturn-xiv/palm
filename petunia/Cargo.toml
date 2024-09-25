@@ -69,13 +69,17 @@ features = ["derive"]
 version = "1"
 features = ["v4", "serde"]
 
-[dependencies.openssl]
-version = "*"
-features = ["vendored"]
-
 [dependencies.actix-web]
 version = "4"
 features = ["cookies"]
+
+[dependencies.minio]
+git = "https://github.com/minio/minio-rs.git"
+rev = "b254b2f"
+
+[dependencies.openssl]
+version = "*"
+features = ["vendored"]
 
 [build-dependencies]
 tonic-build = "0.12"

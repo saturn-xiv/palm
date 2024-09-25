@@ -6,4 +6,14 @@ strip = true
 
 resolver = "2"
 
-members = ["petunia", "azalea", "camelia", "fig"]
+members = [
+    "petunia",
+
+    "daffodil",
+    "hibiscus",
+    "carnation",
+
+    "azalea",
+    "camelia",
+    "fig",
+]

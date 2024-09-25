@@ -1,22 +1,14 @@
 [package]
-name = "fig"
-version = "2024.9.11"
+name = "carnation"
+version = "2024.9.25"
 edition = "2021"
-authors = ["Jeremy Zheng <jitang.zheng@gmail.com>"]
-description = "A total free education & translation solution."
+description = "A content management system focused on flexibility and user experience."
 
 [dependencies]
 log = "0.4"
-juniper_actix = "0.6"
-actix-cors = "0.7"
-actix-identity = "0.8"
-env_logger = "0.11"
+actix-session = "0.10"
 askama = "0.12"
-tonic = "0.12"
-tonic-health = "0.12"
-prost = "0.13"
-prost-types = "0.13"
-actix-web-lab = "0.22"
+casbin = "2"
 data-encoding = "2"
 flexbuffers = "2"
 
@@ -24,17 +16,9 @@ flexbuffers = "2"
 version = "0.4"
 features = ["serde", "std"]
 
-[dependencies.actix-session]
-version = "0.10"
-features = ["cookie-session", "redis-session"]
-
 [dependencies.juniper]
 version = "0.16"
 features = ["chrono"]
-
-[dependencies.nix]
-version = "0.29"
-features = ["user"]
 
 [dependencies.hyper]
 version = "1"
@@ -53,10 +37,6 @@ version = "2"
 default-features = false
 features = ["postgres", "extras", "128-column-tables"]
 
-[dependencies.clap]
-version = "4"
-features = ["derive"]
-
 [dependencies.actix-web]
 version = "4"
 features = ["cookies"]
@@ -66,9 +46,3 @@ path = '../petunia'
 
 [dependencies.daffodil]
 path = '../daffodil'
-
-[dependencies.hibiscus]
-path = '../hibiscus'
-
-[dependencies.carnation]
-path = '../carnation'
