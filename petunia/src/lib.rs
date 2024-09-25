@@ -1,12 +1,14 @@
 pub mod cache;
 pub mod crypto;
 pub mod grpc;
+pub mod handlers;
 pub mod jwt;
 pub mod network;
 pub mod opensearch;
 pub mod parser;
 pub mod queue;
 pub mod result;
+pub mod session;
 
 pub mod balsam {
     pub mod v1 {
@@ -60,11 +62,34 @@ lazy_static::lazy_static! {
 pub const PROTOBUF: &str = "application/x-protobuf";
 pub const FLATBUFFER: &str = "application/x-flatbuffer";
 
+use std::fmt;
 use std::fs::File;
 use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 
 use hyper::StatusCode;
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub enum Environment {
+    Production,
+    Staging,
+    #[default]
+    Development,
+    Test,
+}
+
+impl fmt::Display for Environment {
+    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            Environment::Production => fmt.write_str("production"),
+            Environment::Staging => fmt.write_str("staging"),
+            Environment::Development => fmt.write_str("development"),
+            Environment::Test => fmt.write_str("test"),
+        }
+    }
+}
 
 pub fn is_stopped() -> bool {
     Path::new(".stop").exists()

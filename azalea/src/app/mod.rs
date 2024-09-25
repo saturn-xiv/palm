@@ -61,7 +61,7 @@ pub async fn launch() -> Result<()> {
             check_config_permission(&args.config)?;
         }
         let cfg: web::Config = from_toml(&args.config)?;
-        return web::launch(&cfg, it.port);
+        return web::launch(&cfg, it.port, it.threads).await;
     }
 
     Ok(())
