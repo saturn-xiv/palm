@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE email_users(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
     real_name VARCHAR(63) NOT NULL,    
     nickname VARCHAR(63) NOT NULL,
     email VARCHAR(127) NOT NULL,

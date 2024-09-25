@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE google_oauth2_users(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
     subject VARCHAR(127) NOT NULL,    
     email VARCHAR(127),
     email_verified BOOL NOT NULL DEFAULT FALSE,    

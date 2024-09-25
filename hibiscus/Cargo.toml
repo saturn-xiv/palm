@@ -2,7 +2,7 @@
 name = "hibiscus"
 version = "2024.9.25"
 edition = "2021"
-description = "A fast, light, user-friendly forum application for your website."
+description = "A fast, light, user-friendly forum application for your website(inspired by FluxBB)."
 
 [dependencies]
 log = "0.4"

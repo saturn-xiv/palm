@@ -1,12 +1,12 @@
 -- migrate:up
 CREATE TABLE attachments(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
     public BOOL NOT NULL DEFAULT FALSE,
     bucket VARCHAR(63) NOT NULL,
     object VARCHAR(63) NOT NULL,
     title VARCHAR(127) NOT NULL,
-    size BIGINT NOT NULL,
+    size INT NOT NULL,
     content_type VARCHAR(63) NOT NULL,
     uploaded_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
@@ -22,10 +22,10 @@ CREATE INDEX idx_attachments_content_type ON attachments(content_type);
 
 
 CREATE TABLE attachment_resources(
-    id BIGSERIAL PRIMARY KEY,
-    attachment_id BIGINT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    attachment_id INT NOT NULL,
     resource_type VARCHAR(127) NOT NULL,
-    resource_id BIGINT,    
+    resource_id INT,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX idx_attachments_resources_item_type_id ON attachment_resources(attachment_id, resource_type, resource_id) WHERE resource_id IS NOT NULL;

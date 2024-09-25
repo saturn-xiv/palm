@@ -1,6 +1,6 @@
 -- migrate:up
 CREATE TABLE users(
-    id BIGSERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     uid VARCHAR(36) NOT NULL,    
     lang VARCHAR(15) NOT NULL DEFAULT 'en-US',
     timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',
@@ -23,13 +23,13 @@ CREATE INDEX idx_users_last_sign_in_ip ON users(last_sign_in_ip) WHERE last_sign
 
 
 CREATE TABLE logs(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
     plugin VARCHAR(31) NOT NULL,
     ip VARCHAR(45) NOT NULL,
     level VARCHAR(8) NOT NULL,
     resource_type VARCHAR(127) NOT NULL,
-    resource_id BIGINT,
+    resource_id INT,
     message TEXT NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -40,11 +40,11 @@ CREATE INDEX idx_logs_resource_type ON logs(resource_type);
 
 
 CREATE TABLE sessions(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
     uid VARCHAR(36) NOT NULL, 
     provider_type VARCHAR(127) NOT NULL,
-    provider_id BIGINT NOT NULL,
+    provider_id INT NOT NULL,
     ip VARCHAR(45) NOT NULL,
     expires_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,    

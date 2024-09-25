@@ -1,7 +1,7 @@
 -- migrate:up
 CREATE TABLE wechat_oauth2_users(
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
     union_id VARCHAR(127) NOT NULL,
     app_id VARCHAR(63) NOT NULL,
     open_id VARCHAR(127) NOT NULL,

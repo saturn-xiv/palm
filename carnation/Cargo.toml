@@ -2,7 +2,7 @@
 name = "carnation"
 version = "2024.9.25"
 edition = "2021"
-description = "A content management system focused on flexibility and user experience."
+description = "A content management system focused on flexibility and user experience(inspired by Grav)."
 
 [dependencies]
 log = "0.4"
