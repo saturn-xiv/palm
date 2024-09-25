@@ -16,12 +16,12 @@ pub fn apply() -> Result<()> {
 // netplan --debug apply
 #[cfg(not(debug_assertions))]
 pub fn apply() -> Result<()> {
-    warn!("apply netplan settings");
+    log::warn!("apply netplan settings");
     let out = std::process::Command::new("netplan")
         .arg("apply")
         .output()?;
     let out = String::from_utf8(out.stdout)?;
-    info!("{}", out);
+    log::info!("{}", out);
     Ok(())
 }
 

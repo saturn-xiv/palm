@@ -34,7 +34,7 @@ impl super::WanPool {
 
         let out = out.output()?;
         let out = String::from_utf8(out.stdout)?;
-        debug!("{}", out);
+        log::debug!("{}", out);
         Ok(())
     }
 }

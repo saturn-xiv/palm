@@ -34,7 +34,7 @@ impl Arp {
             .arg(file)
             .output()?;
         let out = String::from_utf8(out.stdout)?;
-        info!("{}", out);
+        log::info!("{}", out);
         Ok(())
     }
 
@@ -54,13 +54,13 @@ pub fn apply() -> Result<()> {
 
 #[cfg(not(debug_assertions))]
 pub fn apply() -> Result<()> {
-    warn!("apply dnsmasq settings");
+    log::warn!("apply dnsmasq settings");
     let out = std::process::Command::new("systemctl")
         .arg("restart")
         .arg("dnsmasq")
         .output()?;
     let out = String::from_utf8(out.stdout)?;
-    info!("{}", out);
+    log::info!("{}", out);
     super::save(&Reslov)?;
     Ok(())
 }
