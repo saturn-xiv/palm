@@ -2,19 +2,19 @@
 
 diesel::table! {
     attachment_resources (id) {
-        id -> Int8,
-        attachment_id -> Int8,
+        id -> Int4,
+        attachment_id -> Int4,
         #[max_length = 127]
         resource_type -> Varchar,
-        resource_id -> Nullable<Int8>,
+        resource_id -> Nullable<Int4>,
         created_at -> Timestamp,
     }
 }
 
 diesel::table! {
     attachments (id) {
-        id -> Int8,
-        user_id -> Int8,
+        id -> Int4,
+        user_id -> Int4,
         public -> Bool,
         #[max_length = 63]
         bucket -> Varchar,
@@ -22,7 +22,7 @@ diesel::table! {
         object -> Varchar,
         #[max_length = 127]
         title -> Varchar,
-        size -> Int8,
+        size -> Int4,
         #[max_length = 63]
         content_type -> Varchar,
         uploaded_at -> Nullable<Timestamp>,
@@ -35,8 +35,8 @@ diesel::table! {
 
 diesel::table! {
     email_users (id) {
-        id -> Int8,
-        user_id -> Int8,
+        id -> Int4,
+        user_id -> Int4,
         #[max_length = 63]
         real_name -> Varchar,
         #[max_length = 63]
@@ -57,8 +57,8 @@ diesel::table! {
 
 diesel::table! {
     google_oauth2_users (id) {
-        id -> Int8,
-        user_id -> Int8,
+        id -> Int4,
+        user_id -> Int4,
         #[max_length = 127]
         subject -> Varchar,
         #[max_length = 127]
@@ -80,7 +80,7 @@ diesel::table! {
 
 diesel::table! {
     leave_words (id) {
-        id -> Int8,
+        id -> Int4,
         #[max_length = 15]
         lang -> Varchar,
         #[max_length = 45]
@@ -100,7 +100,7 @@ diesel::table! {
 
 diesel::table! {
     locales (id) {
-        id -> Int8,
+        id -> Int4,
         #[max_length = 15]
         lang -> Varchar,
         #[max_length = 255]
@@ -114,8 +114,8 @@ diesel::table! {
 
 diesel::table! {
     logs (id) {
-        id -> Int8,
-        user_id -> Int8,
+        id -> Int4,
+        user_id -> Int4,
         #[max_length = 31]
         plugin -> Varchar,
         #[max_length = 45]
@@ -124,28 +124,21 @@ diesel::table! {
         level -> Varchar,
         #[max_length = 127]
         resource_type -> Varchar,
-        resource_id -> Nullable<Int8>,
+        resource_id -> Nullable<Int4>,
         message -> Text,
         created_at -> Timestamp,
     }
 }
 
 diesel::table! {
-    schema_migrations (version) {
-        #[max_length = 128]
-        version -> Varchar,
-    }
-}
-
-diesel::table! {
     sessions (id) {
-        id -> Int8,
-        user_id -> Int8,
+        id -> Int4,
+        user_id -> Int4,
         #[max_length = 36]
         uid -> Varchar,
         #[max_length = 127]
         provider_type -> Varchar,
-        provider_id -> Int8,
+        provider_id -> Int4,
         #[max_length = 45]
         ip -> Varchar,
         expires_at -> Timestamp,
@@ -156,8 +149,8 @@ diesel::table! {
 
 diesel::table! {
     settings (id) {
-        id -> Int8,
-        user_id -> Nullable<Int8>,
+        id -> Int4,
+        user_id -> Nullable<Int4>,
         #[max_length = 255]
         key -> Varchar,
         value -> Bytea,
@@ -170,7 +163,7 @@ diesel::table! {
 
 diesel::table! {
     users (id) {
-        id -> Int8,
+        id -> Int4,
         #[max_length = 36]
         uid -> Varchar,
         #[max_length = 15]
@@ -194,8 +187,8 @@ diesel::table! {
 
 diesel::table! {
     wechat_mini_program_users (id) {
-        id -> Int8,
-        user_id -> Int8,
+        id -> Int4,
+        user_id -> Int4,
         #[max_length = 127]
         union_id -> Varchar,
         #[max_length = 63]
@@ -215,8 +208,8 @@ diesel::table! {
 
 diesel::table! {
     wechat_oauth2_users (id) {
-        id -> Int8,
-        user_id -> Int8,
+        id -> Int4,
+        user_id -> Int4,
         #[max_length = 127]
         union_id -> Varchar,
         #[max_length = 63]
@@ -252,7 +245,6 @@ diesel::allow_tables_to_appear_in_same_query!(
     leave_words,
     locales,
     logs,
-    schema_migrations,
     sessions,
     settings,
     users,

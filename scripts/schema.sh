@@ -78,6 +78,20 @@ function generate_tutorials() {
         $PROTOCOLS_HOME/*.proto
 }
 
+function generate_diesel_schema() {
+
+    cd $WORKSPACE/
+    echo "generate database schema for daffodil"
+    DATABASE_URL=$1 diesel print-schema -o locales settings \
+        users logs sessions email_users google_oauth2_users wechat_oauth2_users wechat_mini_program_users \
+        attachments attachment_resources \
+        leave_words >daffodil/src/schema.rs
+    echo "generate database schema for carnation"
+    DATABASE_URL=$1 diesel print-schema -o cms_pages >carnation/src/schema.rs
+    echo "generate database schema for hibiscus"
+    DATABASE_URL=$1 diesel print-schema -o forum forum_topics forum_posts >hibiscus/src/schema.rs
+}
+
 # ---------------------------------------------------------
 
 generate_grpc_for_go balsam atropa/balsam/services/v2
@@ -101,9 +115,8 @@ generate_tutorials
 
 # ---------------------------------------------------------
 
-cd $WORKSPACE/
-echo "generate fig database schema"
-DATABASE_URL="postgres://www:change-me@127.0.0.1:5432/palm?sslmode=disable" diesel print-schema >fig/src/schema.rs
+generate_diesel_schema "postgres://www:change-me@127.0.0.1:5432/palm?sslmode=disable"
+
 cargo fmt
 
 # ---------------------------------------------------------
