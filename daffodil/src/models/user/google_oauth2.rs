@@ -1,11 +1,7 @@
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
 use petunia::{
-    google::oauth::openid::{
-        AuthorizationCode as GoogleAuthorizationCode, IdToken as GoogleOpenIdToken,
-    },
-    orm::postgresql::Connection,
-    Result,
+    google::oauth::openid::IdToken as GoogleOpenIdToken, orm::postgresql::Connection, Result,
 };
 use serde::{Deserialize, Serialize};
 
@@ -22,8 +18,6 @@ pub struct Item {
     pub name: Option<String>,
     pub picture: Option<String>,
     pub locale: Option<String>,
-    pub code: Vec<u8>,
-    pub token: Vec<u8>,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
     pub created_at: NaiveDateTime,
@@ -31,20 +25,10 @@ pub struct Item {
 }
 
 pub trait Dao {
-    fn create(
-        &mut self,
-        user: i32,
-        code: &GoogleAuthorizationCode,
-        token: &GoogleOpenIdToken,
-    ) -> Result<()>;
+    fn create(&mut self, user: i32, token: &GoogleOpenIdToken) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_subject(&mut self, subject: &str) -> Result<Item>;
-    fn update(
-        &mut self,
-        id: i32,
-        code: &GoogleAuthorizationCode,
-        token: &GoogleOpenIdToken,
-    ) -> Result<()>;
+    fn update(&mut self, id: i32, token: &GoogleOpenIdToken) -> Result<()>;
     fn total(&mut self) -> Result<i64>;
     fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn disable(&mut self, id: i32) -> Result<()>;
@@ -52,12 +36,7 @@ pub trait Dao {
 }
 
 impl Dao for Connection {
-    fn create(
-        &mut self,
-        user: i32,
-        code: &GoogleAuthorizationCode,
-        token: &GoogleOpenIdToken,
-    ) -> Result<()> {
+    fn create(&mut self, user: i32, token: &GoogleOpenIdToken) -> Result<()> {
         let now = Utc::now().naive_utc();
         insert_into(google_oauth2_users::dsl::google_oauth2_users)
             .values((
@@ -68,8 +47,6 @@ impl Dao for Connection {
                 google_oauth2_users::dsl::email_verified.eq(token.email_verified),
                 google_oauth2_users::dsl::picture.eq(&token.picture),
                 google_oauth2_users::dsl::locale.eq(&token.locale),
-                google_oauth2_users::dsl::code.eq(&flexbuffers::to_vec(code)?),
-                google_oauth2_users::dsl::token.eq(&flexbuffers::to_vec(token)?),
                 google_oauth2_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -101,25 +78,17 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn update(
-        &mut self,
-        id: i32,
-        code: &GoogleAuthorizationCode,
-        token: &GoogleOpenIdToken,
-    ) -> Result<()> {
+    fn update(&mut self, id: i32, token: &GoogleOpenIdToken) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = google_oauth2_users::dsl::google_oauth2_users
             .filter(google_oauth2_users::dsl::id.eq(id));
         update(it)
             .set((
-                google_oauth2_users::dsl::subject.eq(&token.sub),
                 google_oauth2_users::dsl::name.eq(&token.name),
                 google_oauth2_users::dsl::email.eq(&token.email),
                 google_oauth2_users::dsl::email_verified.eq(token.email_verified),
                 google_oauth2_users::dsl::picture.eq(&token.picture),
                 google_oauth2_users::dsl::locale.eq(&token.locale),
-                google_oauth2_users::dsl::code.eq(&flexbuffers::to_vec(code)?),
-                google_oauth2_users::dsl::token.eq(&flexbuffers::to_vec(token)?),
                 google_oauth2_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

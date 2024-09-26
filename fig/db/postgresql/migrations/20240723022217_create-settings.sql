@@ -4,7 +4,7 @@ CREATE TABLE settings(
     user_id INT,    
     key VARCHAR(255) NOT NULL,
     value BYTEA NOT NULL,
-    salt BYTEA,
+    nonce BYTEA,
     version INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP

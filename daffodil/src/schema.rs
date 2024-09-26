@@ -22,7 +22,7 @@ diesel::table! {
         object -> Varchar,
         #[max_length = 127]
         title -> Varchar,
-        size -> Int4,
+        size -> Int8,
         #[max_length = 63]
         content_type -> Varchar,
         uploaded_at -> Nullable<Timestamp>,
@@ -69,8 +69,6 @@ diesel::table! {
         picture -> Nullable<Varchar>,
         #[max_length = 15]
         locale -> Nullable<Varchar>,
-        code -> Bytea,
-        token -> Bytea,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -154,7 +152,7 @@ diesel::table! {
         #[max_length = 255]
         key -> Varchar,
         value -> Bytea,
-        salt -> Nullable<Bytea>,
+        nonce -> Nullable<Bytea>,
         version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,

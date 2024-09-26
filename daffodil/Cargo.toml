@@ -5,10 +5,14 @@ edition = "2021"
 
 [dependencies]
 language-tags = "0.3"
+mime = "0.3"
 log = "0.4"
+yaml-rust = "0.4"
 argon2 = "0.5"
+aes = "0.8"
 actix-session = "0.10"
 sha2 = "0.10"
+aes-gcm-siv = "0.11"
 askama = "0.12"
 tonic = "0.12"
 prost = "0.13"
@@ -52,6 +56,10 @@ features = ["derive"]
 [dependencies.tokio]
 version = "1"
 features = ["full"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
 
 [dependencies.diesel]
 version = "2"
