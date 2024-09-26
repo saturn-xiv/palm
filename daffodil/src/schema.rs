@@ -44,7 +44,6 @@ diesel::table! {
         #[max_length = 127]
         email -> Varchar,
         password -> Bytea,
-        salt -> Bytea,
         #[max_length = 255]
         avatar -> Varchar,
         confirmed_at -> Nullable<Timestamp>,
@@ -70,6 +69,7 @@ diesel::table! {
         picture -> Nullable<Varchar>,
         #[max_length = 15]
         locale -> Nullable<Varchar>,
+        code -> Bytea,
         token -> Bytea,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,

@@ -8,6 +8,7 @@ CREATE TABLE google_oauth2_users(
     name VARCHAR(63),
     picture VARCHAR(255),
     locale VARCHAR(15),
+    code BYTEA NOT NULL,
     token BYTEA NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,    
     version INT NOT NULL DEFAULT 0,

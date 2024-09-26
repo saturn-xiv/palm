@@ -23,13 +23,16 @@ prost-types = "0.13"
 byteorder = "1"
 eui48 = "1"
 lazy_static = "1"
+serde_json = "1"
 data-encoding = "2"
 flexbuffers = "2"
 ipnet = "2"
 lapin = "2"
 opensearch = "2"
 percent-encoding = "2"
+url = "2"
 tempfile = "3"
+google-youtube3 = "5"
 amq-protocol-uri = "7"
 jsonwebtoken = "9"
 
@@ -41,12 +44,20 @@ features = ["serde", "std"]
 version = "0.8"
 features = ["small_rng"]
 
+[dependencies.reqwest]
+version = "0.12"
+features = ["json"]
+
 [dependencies.tonic]
 version = "0.12"
 features = ["transport", "tls"]
 
 [dependencies.validator]
 version = "0.18"
+features = ["derive"]
+
+[dependencies.strum]
+version = "0.26"
 features = ["derive"]
 
 [dependencies.redis]
@@ -68,6 +79,11 @@ features = ["derive"]
 [dependencies.uuid]
 version = "1"
 features = ["v4", "serde"]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = ["postgres", "mysql", "sqlite"]
 
 [dependencies.actix-web]
 version = "4"

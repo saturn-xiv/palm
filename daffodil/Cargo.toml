@@ -4,8 +4,11 @@ version = "2024.9.25"
 edition = "2021"
 
 [dependencies]
+language-tags = "0.3"
 log = "0.4"
+argon2 = "0.5"
 actix-session = "0.10"
+sha2 = "0.10"
 askama = "0.12"
 tonic = "0.12"
 prost = "0.13"
@@ -18,9 +21,17 @@ flexbuffers = "2"
 version = "0.4"
 features = ["serde", "std"]
 
+[dependencies.chrono-tz]
+version = "0.10"
+features = ["serde"]
+
 [dependencies.juniper]
 version = "0.16"
 features = ["chrono"]
+
+[dependencies.strum]
+version = "0.26"
+features = ["derive"]
 
 [dependencies.nix]
 version = "0.29"
