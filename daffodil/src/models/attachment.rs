@@ -78,6 +78,7 @@ pub enum Status {
 
 pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;
+    fn by_bucket_and_object(&mut self, bucket: &str, object: &str) -> Result<Item>;
     fn create(
         &mut self,
         user: i32,
@@ -109,6 +110,13 @@ impl Dao for Connection {
     fn by_id(&mut self, id: i32) -> Result<Item> {
         let it = attachments::dsl::attachments
             .filter(attachments::dsl::id.eq(id))
+            .first::<Item>(self)?;
+        Ok(it)
+    }
+    fn by_bucket_and_object(&mut self, bucket: &str, object: &str) -> Result<Item> {
+        let it = attachments::dsl::attachments
+            .filter(attachments::dsl::bucket.eq(bucket))
+            .filter(attachments::dsl::object.eq(object))
             .first::<Item>(self)?;
         Ok(it)
     }
@@ -181,10 +189,11 @@ impl Dao for Connection {
             .select(attachment_resources::dsl::attachment_id)
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
             .filter(attachment_resources::dsl::resource_id.eq(resource_id))
+            .distinct()
             .order(attachment_resources::dsl::created_at.desc())
             .load(self)?;
         let items = attachments::dsl::attachments
-            .filter(attachments::dsl::user_id.eq_any(ids))
+            .filter(attachments::dsl::id.eq_any(ids))
             .load::<Item>(self)?;
         Ok(items)
     }
@@ -192,10 +201,11 @@ impl Dao for Connection {
         let ids: Vec<i32> = attachment_resources::dsl::attachment_resources
             .select(attachment_resources::dsl::attachment_id)
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
+            .distinct()
             .order(attachment_resources::dsl::created_at.desc())
             .load(self)?;
         let items = attachments::dsl::attachments
-            .filter(attachments::dsl::user_id.eq_any(ids))
+            .filter(attachments::dsl::id.eq_any(ids))
             .load::<Item>(self)?;
         Ok(items)
     }

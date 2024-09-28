@@ -28,9 +28,9 @@ CREATE TABLE attachment_resources(
     resource_id INT,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE UNIQUE INDEX idx_attachments_resources_item_type_id ON attachment_resources(attachment_id, resource_type, resource_id) WHERE resource_id IS NOT NULL;
-CREATE UNIQUE INDEX idx_attachments_resources_item_type ON attachment_resources(attachment_id, resource_type) WHERE resource_id IS NULL;
-CREATE INDEX idx_attachments_resources_type ON attachment_resources(resource_type);
+CREATE UNIQUE INDEX idx_attachment_resources_item_type_id ON attachment_resources(attachment_id, resource_type, resource_id) WHERE resource_id IS NOT NULL;
+CREATE UNIQUE INDEX idx_attachment_resources_item_type ON attachment_resources(attachment_id, resource_type) WHERE resource_id IS NULL;
+CREATE INDEX idx_attachment_resources_type ON attachment_resources(resource_type);
 
 -- migrate:down
 DROP TABLE attachment_resources;

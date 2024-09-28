@@ -5,7 +5,7 @@ use diesel::{insert_into, prelude::*, update};
 use petunia::{orm::postgresql::Connection, Result};
 use serde::{Deserialize, Serialize};
 
-use super::super::super::schema::wechat_mini_program_users;
+use super::super::super::super::schema::wechat_mini_program_users;
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

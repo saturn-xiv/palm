@@ -1,7 +1,11 @@
+use std::fmt;
+
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use petunia::{orm::postgresql::Connection, Result};
+use hyper::StatusCode;
+use petunia::{orm::postgresql::Connection, HttpError, Result};
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 use super::super::super::schema::email_users;
 
@@ -20,6 +24,42 @@ pub struct Item {
     pub version: i32,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+}
+
+impl fmt::Display for Item {
+    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+        write!(fmt, "{}<{}>", self.real_name, self.email)
+    }
+}
+
+impl Item {
+    pub const GUEST_NAME: &str = "Guest";
+    pub const GUEST_LANG: &str = "en-US";
+    pub const GUEST_TIMEZONE: &str = "UTC";
+    pub const NIL: &str = "nil";
+
+    pub fn guest_email() -> String {
+        format!("{}@local", Uuid::new_v4().simple())
+    }
+    pub fn guest_nickname() -> String {
+        Uuid::new_v4().simple().to_string()
+    }
+
+    pub fn available(&self) -> Result<()> {
+        if self.deleted_at.is_some() {
+            return Err(Box::new(HttpError(
+                StatusCode::GONE,
+                Some("user is disabled".to_string()),
+            )));
+        }
+        if self.confirmed_at.is_none() {
+            return Err(Box::new(HttpError(
+                StatusCode::PRECONDITION_REQUIRED,
+                Some("user isn't confirmed".to_string()),
+            )));
+        }
+        Ok(())
+    }
 }
 
 pub trait Dao {

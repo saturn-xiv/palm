@@ -1,7 +1,6 @@
 pub mod email;
 pub mod google_oauth2;
-pub mod wechat_mini_program;
-pub mod wechat_oauth2;
+pub mod wechat;
 
 use argon2::{
     password_hash::{rand_core::OsRng, PasswordHash, PasswordVerifier, SaltString},

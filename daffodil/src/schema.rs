@@ -34,6 +34,30 @@ diesel::table! {
 }
 
 diesel::table! {
+    categories (id) {
+        id -> Int4,
+        #[max_length = 63]
+        code -> Varchar,
+        left -> Int4,
+        right -> Int4,
+        version -> Int4,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
+    category_resources (id) {
+        id -> Int4,
+        category_id -> Int4,
+        #[max_length = 127]
+        resource_type -> Varchar,
+        resource_id -> Nullable<Int4>,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     email_users (id) {
         id -> Int4,
         user_id -> Int4,
@@ -85,10 +109,9 @@ diesel::table! {
         ip -> Varchar,
         body -> Text,
         #[max_length = 15]
-        editor -> Varchar,
-        #[max_length = 15]
+        body_editor -> Varchar,
+        #[max_length = 63]
         status -> Varchar,
-        published_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
@@ -153,6 +176,29 @@ diesel::table! {
         key -> Varchar,
         value -> Bytea,
         nonce -> Nullable<Bytea>,
+        version -> Int4,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
+    tag_resources (id) {
+        id -> Int4,
+        tag_id -> Int4,
+        #[max_length = 127]
+        resource_type -> Varchar,
+        resource_id -> Nullable<Int4>,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
+    tags (id) {
+        id -> Int4,
+        #[max_length = 63]
+        code -> Varchar,
+        deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
@@ -238,6 +284,8 @@ diesel::table! {
 diesel::allow_tables_to_appear_in_same_query!(
     attachment_resources,
     attachments,
+    categories,
+    category_resources,
     email_users,
     google_oauth2_users,
     leave_words,
@@ -245,6 +293,8 @@ diesel::allow_tables_to_appear_in_same_query!(
     logs,
     sessions,
     settings,
+    tag_resources,
+    tags,
     users,
     wechat_mini_program_users,
     wechat_oauth2_users,
