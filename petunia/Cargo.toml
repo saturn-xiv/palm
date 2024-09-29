@@ -83,7 +83,7 @@ features = ["v4", "serde"]
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = ["postgres", "mysql", "sqlite"]
+features = ["postgres", "mysql", "sqlite", "r2d2"]
 
 [dependencies.actix-web]
 version = "4"
