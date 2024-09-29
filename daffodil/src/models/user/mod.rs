@@ -48,6 +48,16 @@ pub struct Item {
     pub updated_at: NaiveDateTime,
 }
 
+impl Item {
+    pub fn guest_lang() -> Result<LanguageTag> {
+        let it = LanguageTag::parse("en-US")?;
+        Ok(it)
+    }
+    pub fn guest_timezone() -> Tz {
+        Tz::UTC
+    }
+}
+
 pub trait Dao {
     fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;

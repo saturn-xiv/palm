@@ -19,6 +19,17 @@ pub struct Config {
     #[serde(rename = "index-prefix")]
     pub index_prefix: String,
 }
+impl Default for Config {
+    fn default() -> Self {
+        Self {
+            host: "127.0.0.1".to_string(),
+            port: 9200,
+            user: "admin".to_string(),
+            password: "admin".to_string(),
+            index_prefix: super::NAME.to_string(),
+        }
+    }
+}
 
 impl Config {
     pub fn open(&self) -> Result<OpenSearch> {

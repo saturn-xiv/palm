@@ -46,6 +46,7 @@ pub mod s3 {
 
 pub use self::result::{Error, GrpcResult, HttpError, HttpResult, Result};
 
+pub const NAME: &str = env!("CARGO_PKG_NAME");
 pub const BANNER: &str = include_str!("banner.txt");
 pub const HOMEPAGE: &str = env!("CARGO_PKG_HOMEPAGE");
 include!(concat!(env!("OUT_DIR"), "/env.rs"));
@@ -95,4 +96,17 @@ pub fn check_config_permission<P: AsRef<Path>>(file: P) -> Result<()> {
         )));
     }
     Ok(())
+}
+
+pub fn hostname() -> Result<String> {
+    let it = nix::unistd::gethostname()?;
+    let it = it
+        .into_string()
+        .map_err(|_| Box::new(HttpError(StatusCode::INTERNAL_SERVER_ERROR, None)))?;
+    Ok(it)
+}
+pub fn current_user() -> Result<String> {
+    let it = nix::unistd::User::from_uid(nix::unistd::getuid())
+        .map_or_else(|_| None, |x| x.map(|y| y.name));
+    it.ok_or(Box::new(HttpError(StatusCode::INTERNAL_SERVER_ERROR, None)))
 }

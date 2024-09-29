@@ -1,6 +1,10 @@
+use std::path::Path;
+
 use petunia::{
+    check_config_permission,
     crypto::Key,
     jwt::{openssl::OpenSsl as Jwt, Jwt as JwtProvider},
+    parser::from_toml,
     Result,
 };
 use serde::{Deserialize, Serialize};
@@ -17,12 +21,23 @@ pub struct Command {
 pub struct Config {
     pub secrets: Key,
 }
-
-pub fn launch(config: &Config, user: &str, years: u8) -> Result<()> {
-    log::info!("generate a {years}-years token for user({user})");
-    let jwt = Jwt::new(config.secrets.0.clone());
-    let (nbf, exp) = Jwt::years(years as i32)?;
-    let token = jwt.sign(user, super::NAME, nbf, exp)?;
-    println!("{token}");
-    Ok(())
+impl Command {
+    pub async fn launch<P: AsRef<Path>>(&self, config: P) -> Result<()> {
+        let config: Config = {
+            let config = config.as_ref();
+            log::info!("load config from {}", config.display());
+            check_config_permission(config)?;
+            from_toml(config)?
+        };
+        log::info!(
+            "generate a {}-years token for user({})",
+            self.years,
+            self.user
+        );
+        let jwt = Jwt::new(config.secrets.0.clone());
+        let (nbf, exp) = Jwt::years(self.years as i32)?;
+        let token = jwt.sign(&self.user, super::NAME, nbf, exp)?;
+        println!("{token}");
+        Ok(())
+    }
 }
