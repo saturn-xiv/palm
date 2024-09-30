@@ -20,6 +20,7 @@ actix-web-lab = "0.22"
 casbin = "2"
 data-encoding = "2"
 flexbuffers = "2"
+opensearch = "2"
 
 [dependencies.chrono]
 version = "0.4"

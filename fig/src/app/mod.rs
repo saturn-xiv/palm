@@ -29,13 +29,13 @@ pub enum SubCommand {
     #[clap(about = "Generate systemd.conf")]
     GenerateSystemd(systemd::Command),
     #[clap(about = "Create a new user by email")]
-    UserCreateByEmail(user::CreateByEmail),
+    CreateUserByEmail(user::CreateByEmail),
     #[clap(about = "List all users")]
-    UserList,
+    ListUser,
     #[clap(about = "Apply role to user(by uid)")]
-    UserApplyRole(user::Role),
+    ApplyRoleToUser(user::Role),
     #[clap(about = "Exempt role from user(by uid)")]
-    UserExemptRole(user::Role),
+    ExemptRoleFromUser(user::Role),
     #[clap(about = "Reset user's password(by email)")]
     UserResetPasswordByEmail(user::ResetPasswordByEmail),
     #[clap(about = "Sync i18n records from filesystem")]
@@ -58,17 +58,23 @@ pub async fn launch() -> Result<()> {
     if let SubCommand::GenerateSystemd(ref it) = args.command {
         return it.launch();
     }
-    if let SubCommand::UserCreateByEmail(ref it) = args.command {
+    if SubCommand::ListUser == args.command {
+        return user::list(&args.config);
+    }
+    if let SubCommand::CreateUserByEmail(ref it) = args.command {
         return it.launch(&args.config);
     }
     if let SubCommand::UserResetPasswordByEmail(ref it) = args.command {
         return it.launch(&args.config);
     }
-    if let SubCommand::UserApplyRole(ref it) = args.command {
+    if let SubCommand::ApplyRoleToUser(ref it) = args.command {
         return it.apply(&args.config).await;
     }
-    if let SubCommand::UserExemptRole(ref it) = args.command {
+    if let SubCommand::ExemptRoleFromUser(ref it) = args.command {
         return it.exempt(&args.config).await;
+    }
+    if let SubCommand::Web(ref it) = args.command {
+        return it.launch(&args.config).await;
     }
     Ok(())
 }
