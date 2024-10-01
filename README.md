@@ -1,8 +1,19 @@
-# palm
+# PALM
 
 A total free education &amp; translation &amp; ops solution.
 
-## Notes
+## Usage
+
+- Clone source codes
+
+  ```bash
+  # clone source codes
+  $ git clone --recurse-submodules https://github.com/saturn-xiv/palm.git
+
+  # OR upgrade source codes
+  $ cd palm
+  $ git submodule update --init --recursive
+  ```
 
 - install dejavu fonts
 

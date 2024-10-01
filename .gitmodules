@@ -1,0 +1,9 @@
+[submodule "themes/hugo-universal"]
+	path = themes/hugo-universal
+	url = https://github.com/devcows/hugo-universal-theme.git
+[submodule "themes/hugo-even"]
+	path = themes/hugo-even
+	url = https://github.com/olOwOlo/hugo-theme-even.git
+[submodule "themes/jekyll-al-folio"]
+	path = themes/jekyll-al-folio
+	url = https://github.com/alshedivat/al-folio.git
