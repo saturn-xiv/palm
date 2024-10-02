@@ -11,6 +11,7 @@ pub mod parser;
 pub mod queue;
 pub mod result;
 pub mod session;
+pub mod themes;
 pub mod wechat;
 
 pub mod balsam {
