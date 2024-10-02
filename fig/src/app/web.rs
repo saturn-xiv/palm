@@ -121,6 +121,7 @@ impl Command {
                     .cookie_secure(is_prod)
                     .build(),
                 )
+                .configure(petunia::themes::x_corporation::register)
                 .configure(graphql::controllers::register)
                 .configure(daffodil_controllers::register)
         })

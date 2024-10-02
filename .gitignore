@@ -3,6 +3,8 @@
 
 /go.work.sum
 
+.DS_Store
+
 /tmp/
 /atropa-*.toml
 /azalea-*.toml
