@@ -66,6 +66,7 @@
       - libmysqlclient-dev
       - libsqlite3-dev
       - libudev-dev
+      - libjpeg-dev
       - crun
       - podman
       - buildah
