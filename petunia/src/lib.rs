@@ -9,6 +9,7 @@ pub mod opensearch;
 pub mod orm;
 pub mod parser;
 pub mod queue;
+pub mod rbac;
 pub mod result;
 pub mod session;
 pub mod themes;
@@ -32,11 +33,6 @@ pub mod lily {
 pub mod morus {
     pub mod v1 {
         tonic::include_proto!("palm.morus.v1");
-    }
-}
-pub mod rbac {
-    pub mod v1 {
-        tonic::include_proto!("palm.rbac.v1");
     }
 }
 pub mod s3 {

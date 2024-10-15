@@ -18,7 +18,6 @@ askama = "0.12"
 tonic = "0.12"
 prost = "0.13"
 prost-types = "0.13"
-casbin = "2"
 data-encoding = "2"
 flexbuffers = "2"
 
@@ -43,7 +42,8 @@ version = "0.29"
 features = ["user"]
 
 [dependencies.diesel-adapter]
-version = "1"
+git = "https://github.com/saturn-xiv/diesel-adapter.git"
+rev = "14b1b31"
 features = ["postgres"]
 
 [dependencies.hyper]
@@ -61,6 +61,10 @@ features = ["full"]
 [dependencies.uuid]
 version = "1"
 features = ["v4", "serde"]
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher"]
 
 [dependencies.diesel]
 version = "2"

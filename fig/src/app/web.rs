@@ -1,6 +1,9 @@
+use std::any::type_name;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
+use std::ops::Deref;
 use std::path::Path;
 use std::sync::Arc;
+use std::time::Duration as StdDuration;
 
 use actix_cors::Cors;
 use actix_identity::IdentityMiddleware;
@@ -19,14 +22,21 @@ use actix_web::{
 };
 use chrono::Duration;
 use clap::Parser;
-use daffodil::controllers as daffodil_controllers;
+use daffodil::{controllers as daffodil_controllers, rbac::new as new_enforcer};
 use data_encoding::BASE64;
 use hyper::StatusCode;
 use juniper::EmptySubscription;
 use petunia::{
-    cache::redis::Config as Redis, check_config_permission, crypto::Key,
-    jwt::openssl::OpenSsl as Jwt, opensearch::Config as OpenSearch,
-    orm::postgresql::Config as PostgreSql, parser::from_toml, queue::amqp::Config as RabbitMq,
+    cache::redis::Config as Redis,
+    check_config_permission,
+    crypto::Key,
+    hostname,
+    jwt::openssl::OpenSsl as Jwt,
+    opensearch::Config as OpenSearch,
+    orm::postgresql::Config as PostgreSql,
+    parser::from_toml,
+    queue::amqp::{Config as RabbitMq, RabbitMq as Queue},
+    rbac::v1::WatcherMessage as CasbinWatcherMessage,
     Environment, HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
@@ -53,9 +63,39 @@ impl Command {
         let cookie_key = BASE64.decode(config.secrets.0.as_bytes())?;
         let is_prod = config.env == Environment::Production;
 
+        let secrets = web::Data::new(config.secrets.clone());
+        let db = web::Data::new(config.postgresql.open()?);
+        let cache = web::Data::new(config.redis.open()?);
         let jwt = web::Data::new(Jwt::new(config.secrets.0.clone()));
-
+        let queue = web::Data::new(config.rabbitmq.open());
         let search = web::Data::new(config.open_search.open()?);
+        let enforcer = {
+            let db = db.clone();
+            let db = db.into_inner();
+            let db = db.deref();
+            let queue = queue.clone();
+            let queue = queue.into_inner();
+            let it = new_enforcer(db.clone(), queue).await?;
+            web::Data::from(it)
+        };
+        {
+            let name = format!("{}.casbin-watcher", hostname()?);
+            let ch = queue.open().await?;
+            let queue = type_name::<CasbinWatcherMessage>();
+            let enf = enforcer.clone();
+            tokio::spawn(async move {
+                log::info!("start a enforcer watcher subscriber({queue})");
+                let enf = enf.deref();
+                let enf = enf.deref();
+
+                loop {
+                    if let Err(e) = Queue::consume(&ch, &name, queue, enf).await {
+                        log::error!("casbin watcher subscriber{:?}", e);
+                    }
+                    tokio::time::sleep(StdDuration::from_secs(5)).await;
+                }
+            });
+        }
         {
             log::debug!("{:?}", search.info());
         }
@@ -83,7 +123,12 @@ impl Command {
         log::info!("listen on http://{}", addr);
         HttpServer::new(move || {
             App::new()
+                .app_data(secrets.clone())
+                .app_data(db.clone())
+                .app_data(cache.clone())
                 .app_data(jwt.clone())
+                .app_data(queue.clone())
+                .app_data(enforcer.clone())
                 .app_data(search.clone())
                 .app_data(web::Data::from(schema.clone()))
                 // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS

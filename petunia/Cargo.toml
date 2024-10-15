@@ -81,6 +81,14 @@ features = ["derive"]
 version = "1"
 features = ["v4", "serde"]
 
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher"]
+
 [dependencies.diesel]
 version = "2"
 default-features = false

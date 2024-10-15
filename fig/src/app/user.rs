@@ -1,5 +1,6 @@
 use std::ops::DerefMut;
 use std::path::Path;
+use std::sync::Arc;
 
 use casbin::{prelude::RbacApi, Enforcer};
 use clap::Parser;
@@ -12,9 +13,11 @@ use petunia::{
     hostname,
     orm::postgresql::{Config as PostgreSql, Pool as DbPool},
     parser::from_toml,
+    queue::amqp::Config as RabbitMq,
     Error, Result,
 };
 use serde::{Deserialize, Serialize};
+use tokio::sync::Mutex;
 use uuid::Uuid;
 
 #[derive(Parser, PartialEq, Eq, Debug)]
@@ -75,8 +78,11 @@ pub struct Role {
 
 impl Role {
     pub async fn apply<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let (db, mut enforcer, user, role) = self.open(config_file).await?;
-        enforcer.add_role_for_user(&user, &role, None).await?;
+        let (db, enforcer, user, role) = self.open(config_file).await?;
+        {
+            let mut it = enforcer.lock().await;
+            it.add_role_for_user(&user, &role, None).await?;
+        }
         {
             let mut db = db.get()?;
             let db = db.deref_mut();
@@ -100,8 +106,12 @@ impl Role {
     }
 
     pub async fn exempt<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let (db, mut enforcer, user, role) = self.open(config_file).await?;
-        enforcer.delete_role_for_user(&user, &role, None).await?;
+        let (db, enforcer, user, role) = self.open(config_file).await?;
+
+        {
+            let mut it = enforcer.lock().await;
+            it.delete_role_for_user(&user, &role, None).await?;
+        }
         {
             let mut db = db.get()?;
             let db = db.deref_mut();
@@ -127,10 +137,11 @@ impl Role {
     async fn open<P: AsRef<Path>>(
         &self,
         config_file: P,
-    ) -> Result<(DbPool, Enforcer, String, String)> {
+    ) -> Result<(DbPool, Arc<Mutex<Enforcer>>, String, String)> {
         let config: Config = from_toml(config_file)?;
         let db = config.postgresql.open()?;
-        let enforcer = daffodil::rbac::new(config.postgresql.to_string(), 1 << 4).await?;
+        let queue = Arc::new(config.rabbitmq.open());
+        let enforcer = daffodil::rbac::new(db.clone(), queue).await?;
         let user = {
             let mut db = db.get()?;
             let db = db.deref_mut();
@@ -204,4 +215,5 @@ pub fn list<P: AsRef<Path>>(config_file: P) -> Result<()> {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
     pub postgresql: PostgreSql,
+    pub rabbitmq: RabbitMq,
 }

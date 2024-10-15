@@ -125,3 +125,5 @@ message PolicyPermissionsResponse {
 
   repeated Item items = 1;
 }
+
+message WatcherMessage {}
