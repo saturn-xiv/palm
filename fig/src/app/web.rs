@@ -1,7 +1,7 @@
 use std::any::type_name;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::ops::Deref;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::time::Duration as StdDuration;
 
@@ -49,6 +49,8 @@ pub struct Command {
     pub port: u16,
     #[clap(short, long, default_value_t = 4)]
     pub threads: usize,
+    #[clap(short = 'T', long = "themes-folder", default_value = "themes")]
+    pub themes: PathBuf,
 }
 
 impl Command {
@@ -106,6 +108,7 @@ impl Command {
             )))?
             .num_seconds() as usize;
 
+        let themes = self.themes.clone();
         let addr = SocketAddr::new(
             IpAddr::V4(if is_prod {
                 Ipv4Addr::new(127, 0, 0, 1)
@@ -160,7 +163,7 @@ impl Command {
                     .cookie_secure(is_prod)
                     .build(),
                 )
-                .configure(petunia::themes::x_corporation::register)
+                .configure(petunia::themes::register(&themes))
                 .configure(graphql::controllers::register)
                 .configure(daffodil_controllers::register)
         })
