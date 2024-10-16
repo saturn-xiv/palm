@@ -1,8 +1,13 @@
 use actix_web::{get, route, web, HttpResponse, Responder, Result};
+use casbin::Enforcer;
 use juniper::http::GraphQLRequest;
 use juniper_actix::{graphiql_handler, playground_handler};
 use opensearch::OpenSearch;
-use petunia::{jwt::openssl::OpenSsl as Jwt, session::Session};
+use petunia::{
+    cache::redis::Pool as RedisPool, crypto::Key, jwt::openssl::OpenSsl as Jwt,
+    orm::postgresql::Pool as PostgreSqlPool, queue::amqp::RabbitMq, session::Session,
+};
+use tokio::sync::Mutex;
 
 use super::Schema;
 
@@ -22,17 +27,29 @@ async fn graphiql() -> Result<HttpResponse> {
     graphiql_handler("/graphql", None).await
 }
 
-type Context = (web::Data<Jwt>, web::Data<OpenSearch>, web::Data<Schema>);
+type Context = (
+    web::Data<Key>,
+    web::Data<PostgreSqlPool>,
+    web::Data<RedisPool>,
+    web::Data<Jwt>,
+    web::Data<Mutex<Enforcer>>,
+    web::Data<RabbitMq>,
+    web::Data<OpenSearch>,
+    web::Data<Schema>,
+);
 
 #[route("/graphql", method = "GET", method = "POST")]
 async fn handler(
     session: Session,
-    (jwt, search, schema): Context,
+    (secrets, postgresql, redis, jwt, enforcer, rabbitmq, search, schema): Context,
     request: web::Json<GraphQLRequest>,
 ) -> impl Responder {
     let context = super::context::Context {
         jwt: jwt.into_inner(),
         search: search.into_inner(),
+        postgresql: postgresql.into_inner(),
+        redis: redis.into_inner(),
+        rabbitmq: rabbitmq.into_inner(),
         session,
     };
     let response = request.execute(&schema, &context).await;
