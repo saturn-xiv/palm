@@ -54,13 +54,13 @@ pub struct Command {
 impl Command {
     pub async fn launch<P: AsRef<Path>>(&self, config: P) -> Result<()> {
         let config: Config = parse_config_file(config)?;
-        let cookie_key = BASE64.decode(config.secrets.0.as_bytes())?;
+        let cookie_key = BASE64.decode(config.cookie_key.0.as_bytes())?;
         let is_prod = config.env == Environment::Production;
 
         let secrets = web::Data::new(config.secrets.clone());
         let db = web::Data::new(config.postgresql.open()?);
         let cache = web::Data::new(config.redis.open()?);
-        let jwt = web::Data::new(Jwt::new(config.secrets.0.clone()));
+        let jwt = web::Data::new(Jwt::new(config.jwt_key.0.clone()));
         let queue = web::Data::new(config.rabbitmq.open());
         let search = web::Data::new(config.open_search.open()?);
         let enforcer = {
@@ -76,12 +76,12 @@ impl Command {
             let name = format!("{}.casbin-watcher", hostname()?);
             let ch = queue.open().await?;
             let queue = type_name::<CasbinWatcherMessage>();
+            Queue::queue_declare(&ch, queue, false, false).await?;
             let enf = enforcer.clone();
             tokio::spawn(async move {
-                log::info!("start a enforcer watcher subscriber({queue})");
+                log::info!("start enforcer watcher subscriber({queue})");
                 let enf = enf.deref();
                 let enf = enf.deref();
-
                 loop {
                     if let Err(e) = Queue::consume(&ch, &name, queue, enf).await {
                         log::error!("casbin watcher subscriber{:?}", e);
@@ -186,6 +186,6 @@ struct Config {
     postgresql: PostgreSql,
     redis: Redis,
     rabbitmq: RabbitMq,
-    #[serde(rename = "open-search")]
+    #[serde(rename = "opensearch")]
     open_search: OpenSearch,
 }

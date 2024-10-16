@@ -12,8 +12,7 @@ use petunia::{
 use tokio::{runtime::Builder as TokioRuntimeBuilder, sync::Mutex};
 
 pub async fn new(db: Pool, queue: Arc<RabbitMq>) -> Result<Arc<Mutex<Enforcer>>> {
-    let model =
-        DefaultModel::from_file(include_str!("rbac_with_resource_roles_model.conf")).await?;
+    let model = DefaultModel::from_str(include_str!("rbac_with_resource_roles_model.conf")).await?;
     let adapter = DieselAdapter::new(db)?;
 
     let enforcer = {
