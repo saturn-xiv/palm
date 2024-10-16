@@ -12,13 +12,14 @@ use diesel::Connection as DieselConntection;
 use petunia::{
     hostname,
     orm::postgresql::{Config as PostgreSql, Pool as DbPool},
-    parser::from_toml,
     queue::amqp::Config as RabbitMq,
     Error, Result,
 };
 use serde::{Deserialize, Serialize};
 use tokio::sync::Mutex;
 use uuid::Uuid;
+
+use super::parse_config_file;
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct CreateByEmail {
@@ -33,8 +34,8 @@ pub struct CreateByEmail {
 }
 
 impl CreateByEmail {
-    pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let config: Config = from_toml(config_file)?;
+    pub fn launch<P: AsRef<Path>>(&self, config: P) -> Result<()> {
+        let config: Config = parse_config_file(config)?;
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;
@@ -136,9 +137,9 @@ impl Role {
 
     async fn open<P: AsRef<Path>>(
         &self,
-        config_file: P,
+        config: P,
     ) -> Result<(DbPool, Arc<Mutex<Enforcer>>, String, String)> {
-        let config: Config = from_toml(config_file)?;
+        let config: Config = parse_config_file(config)?;
         let db = config.postgresql.open()?;
         let queue = Arc::new(config.rabbitmq.open());
         let enforcer = daffodil::rbac::new(db.clone(), queue).await?;
@@ -162,8 +163,8 @@ pub struct ResetPasswordByEmail {
 }
 
 impl ResetPasswordByEmail {
-    pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let config: Config = from_toml(config_file)?;
+    pub fn launch<P: AsRef<Path>>(&self, config: P) -> Result<()> {
+        let config: Config = parse_config_file(config)?;
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;
@@ -189,8 +190,8 @@ impl ResetPasswordByEmail {
     }
 }
 
-pub fn list<P: AsRef<Path>>(config_file: P) -> Result<()> {
-    let config: Config = from_toml(config_file)?;
+pub fn list<P: AsRef<Path>>(config: P) -> Result<()> {
+    let config: Config = parse_config_file(config)?;
     let db = config.postgresql.open()?;
     {
         let mut db = db.get()?;

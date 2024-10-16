@@ -28,21 +28,20 @@ use hyper::StatusCode;
 use juniper::EmptySubscription;
 use petunia::{
     cache::redis::Config as Redis,
-    check_config_permission,
     crypto::Key,
     hostname,
     jwt::openssl::OpenSsl as Jwt,
     opensearch::Config as OpenSearch,
     orm::postgresql::Config as PostgreSql,
-    parser::from_toml,
     queue::amqp::{Config as RabbitMq, RabbitMq as Queue},
     rbac::v1::WatcherMessage as CasbinWatcherMessage,
+    themes::Theme,
     Environment, HttpError, Result,
 };
 use serde::{Deserialize, Serialize};
 
 use super::super::graphql;
-use super::NAME;
+use super::{parse_config_file, NAME};
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Command {
@@ -54,12 +53,7 @@ pub struct Command {
 
 impl Command {
     pub async fn launch<P: AsRef<Path>>(&self, config: P) -> Result<()> {
-        let config: Config = {
-            let config = config.as_ref();
-            log::info!("load config from {}", config.display());
-            check_config_permission(config)?;
-            from_toml(config)?
-        };
+        let config: Config = parse_config_file(config)?;
         let cookie_key = BASE64.decode(config.secrets.0.as_bytes())?;
         let is_prod = config.env == Environment::Production;
 
@@ -180,12 +174,14 @@ impl Command {
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 struct Config {
+    theme: Theme,
     env: Environment,
     // openssl rand -base64 128
     #[serde(rename = "cookie-key")]
     cookie_key: Key,
     #[serde(rename = "jwt-key")]
     jwt_key: Key,
+    // openssl rand -base64 32
     secrets: Key,
     postgresql: PostgreSql,
     redis: Redis,

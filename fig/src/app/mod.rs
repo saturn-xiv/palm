@@ -5,10 +5,11 @@ pub mod user;
 pub mod web;
 
 use std::ops::Deref;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 use clap::{Parser, Subcommand};
-use petunia::{Result, BANNER, HOMEPAGE, VERSION};
+use petunia::{check_config_permission, parser::from_toml, Result, BANNER, HOMEPAGE, VERSION};
+use serde::de::DeserializeOwned;
 
 pub const NAME: &str = env!("CARGO_PKG_NAME");
 pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");
@@ -61,6 +62,9 @@ pub async fn launch() -> Result<()> {
     if SubCommand::ListUser == args.command {
         return user::list(&args.config);
     }
+    if let SubCommand::I18nSync(ref it) = args.command {
+        return it.launch(&args.config);
+    }
     if let SubCommand::CreateUserByEmail(ref it) = args.command {
         return it.launch(&args.config);
     }
@@ -77,4 +81,12 @@ pub async fn launch() -> Result<()> {
         return it.launch(&args.config).await;
     }
     Ok(())
+}
+
+pub fn parse_config_file<P: AsRef<Path>, T: DeserializeOwned>(config: P) -> Result<T> {
+    let config = config.as_ref();
+    log::info!("load config from {}", config.display());
+    check_config_permission(config)?;
+    let it = from_toml(config)?;
+    Ok(it)
 }

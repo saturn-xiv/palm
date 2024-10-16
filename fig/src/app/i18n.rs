@@ -4,18 +4,20 @@ use std::path::Path;
 use clap::Parser;
 use daffodil::models::locale::Dao as LocaleDao;
 use diesel::Connection as DieselConntection;
-use petunia::{orm::postgresql::Config as PostgreSql, parser::from_toml, Error, Result};
+use petunia::{orm::postgresql::Config as PostgreSql, Error, Result};
 use serde::{Deserialize, Serialize};
+
+use super::parse_config_file;
 
 #[derive(Parser, PartialEq, Eq, Debug)]
 pub struct Command {
-    #[clap(short, long)]
+    #[clap(short, long, default_value = "locales")]
     pub folder: String,
 }
 
 impl Command {
-    pub fn launch<P: AsRef<Path>>(&self, config_file: P) -> Result<()> {
-        let config: Config = from_toml(config_file)?;
+    pub fn launch<P: AsRef<Path>>(&self, config: P) -> Result<()> {
+        let config: Config = parse_config_file(config)?;
         let db = config.postgresql.open()?;
         {
             let mut db = db.get()?;

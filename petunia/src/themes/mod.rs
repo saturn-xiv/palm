@@ -1,6 +1,14 @@
 pub mod x_corporation;
 
 use serde::{Deserialize, Serialize};
+use strum::{Display as EnumDisplay, EnumString};
+
+#[derive(EnumDisplay, EnumString, Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub enum Theme {
+    #[default]
+    XCorporation,
+}
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
