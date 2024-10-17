@@ -45,7 +45,9 @@ async fn handler(
     request: web::Json<GraphQLRequest>,
 ) -> impl Responder {
     let context = super::context::Context {
+        secrets: secrets.into_inner(),
         jwt: jwt.into_inner(),
+        enforcer: enforcer.into_inner(),
         search: search.into_inner(),
         postgresql: postgresql.into_inner(),
         redis: redis.into_inner(),

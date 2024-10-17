@@ -53,7 +53,7 @@ message PolicyCanRequest {
 message PolicyUsersResponse {
   message Item {
     oneof id {
-      uint64 i = 2;
+      int32 i = 2;
       string s = 9;
     }
   }
@@ -93,7 +93,7 @@ message PolicyPermissionsResponse {
     message Resource {
       message Id {
         oneof by {
-          uint64 i = 11;
+          int32 i = 11;
           string s = 12;
         }
       }

@@ -36,8 +36,8 @@ impl Jwt for OpenSsl {
         };
         self.sum(None, &token)
     }
-    fn verify(&self, token: &str, _audience: &str) -> Result<String> {
-        let token: TokenData<Token> = self.parse(token)?;
+    fn verify(&self, token: &str, audience: &str) -> Result<String> {
+        let token: TokenData<Token> = self.parse(token, audience)?;
         Ok(token.claims.sub)
     }
 }
@@ -60,9 +60,10 @@ impl OpenSsl {
         )?;
         Ok(token)
     }
-    pub fn parse<T: DeserializeOwned>(&self, token: &str) -> Result<TokenData<T>> {
+    pub fn parse<T: DeserializeOwned>(&self, token: &str, audience: &str) -> Result<TokenData<T>> {
         let mut vat = Validation::new(Algorithm::HS512);
         vat.leeway = 60;
+        vat.set_audience(&[audience]);
         let val = decode(token, &DecodingKey::from_base64_secret(&self.key)?, &vat)?;
         Ok(val)
     }

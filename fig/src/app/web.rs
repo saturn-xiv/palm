@@ -64,7 +64,7 @@ impl Command {
         let cache = web::Data::new(config.redis.open()?);
         let jwt = web::Data::new(Jwt::new(config.jwt_key.0.clone()));
         let queue = web::Data::new(config.rabbitmq.open());
-        let search = web::Data::new(config.open_search.open()?);
+        let search = web::Data::new(config.opensearch.open()?);
         let enforcer = {
             let db = db.clone();
             let db = db.into_inner();
@@ -190,5 +190,5 @@ struct Config {
     redis: Redis,
     rabbitmq: RabbitMq,
     #[serde(rename = "opensearch")]
-    open_search: OpenSearch,
+    opensearch: OpenSearch,
 }

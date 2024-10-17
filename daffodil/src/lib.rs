@@ -3,3 +3,4 @@ pub mod graphql;
 pub mod models;
 pub mod rbac;
 pub mod schema;
+pub mod session;
