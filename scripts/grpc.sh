@@ -29,7 +29,8 @@ function build_grpc() {
     if [ -d $BUILD_ROOT ]; then
         rm -r $BUILD_ROOT
     fi
-    CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release \
+    # https://github.com/abseil/abseil-cpp/pull/1536
+    CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 \
         -DABSL_PROPAGATE_CXX_STD=ON \
         -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
         -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -B $BUILD_ROOT -S $SOURCE_ROOT
