@@ -1,6 +1,7 @@
 pub mod cache;
 pub mod crypto;
 pub mod google;
+pub mod graphql;
 pub mod grpc;
 pub mod handlers;
 pub mod jwt;

@@ -11,6 +11,7 @@ yaml-rust = "0.4"
 argon2 = "0.5"
 actix-files = "0.6"
 aes = "0.8"
+mustache = "0.9"
 actix-session = "0.10"
 sha2 = "0.10"
 aes-gcm-siv = "0.11"
@@ -32,6 +33,10 @@ features = ["serde"]
 [dependencies.juniper]
 version = "0.16"
 features = ["chrono"]
+
+[dependencies.validator]
+version = "0.18"
+features = ["derive"]
 
 [dependencies.strum]
 version = "0.26"

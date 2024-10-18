@@ -2,8 +2,7 @@ use std::fmt;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use hyper::StatusCode;
-use petunia::{orm::postgresql::Connection, HttpError, Result};
+use petunia::{orm::postgresql::Connection, Result};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -40,22 +39,6 @@ impl Item {
     }
     pub fn guest_nickname() -> String {
         Uuid::new_v4().simple().to_string()
-    }
-
-    pub fn available(&self) -> Result<()> {
-        if self.deleted_at.is_some() {
-            return Err(Box::new(HttpError(
-                StatusCode::GONE,
-                Some("user is disabled".to_string()),
-            )));
-        }
-        if self.confirmed_at.is_none() {
-            return Err(Box::new(HttpError(
-                StatusCode::PRECONDITION_REQUIRED,
-                Some("user isn't confirmed".to_string()),
-            )));
-        }
-        Ok(())
     }
 }
 

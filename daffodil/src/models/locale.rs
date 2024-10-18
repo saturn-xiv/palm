@@ -263,3 +263,35 @@ impl Dao for Connection {
         Ok(())
     }
 }
+
+pub trait I18n {
+    fn t<T: Serialize>(&mut self, lang: &str, code: &str, args: Option<T>) -> String;
+}
+
+impl I18n for Connection {
+    fn t<T: Serialize>(&mut self, lang: &str, code: &str, args: Option<T>) -> String {
+        if let Ok(msg) = locales::dsl::locales
+            .select(locales::dsl::message)
+            .filter(locales::dsl::lang.eq(lang))
+            .filter(locales::dsl::code.eq(code))
+            .first::<String>(self)
+        {
+            if let Ok(ref tpl) = mustache::compile_str(&msg) {
+                match args {
+                    Some(ref args) => match tpl.render_to_string(args) {
+                        Ok(it) => {
+                            return it;
+                        }
+                        Err(e) => {
+                            log::error!("{}", e);
+                        }
+                    },
+                    None => {
+                        return msg;
+                    }
+                }
+            }
+        }
+        format!("{lang}.{code}")
+    }
+}

@@ -6,9 +6,12 @@ pub mod v1 {
 
 use std::any::type_name;
 use std::fmt;
+use std::str::FromStr;
 
 use data_encoding::BASE64_NOPAD;
 use prost::Message;
+
+use super::{Error, Result};
 
 impl v1::policy_users_response::Item {
     pub fn by_id(id: i32) -> Self {
@@ -37,6 +40,15 @@ impl fmt::Display for v1::policy_users_response::Item {
     }
 }
 
+impl FromStr for v1::policy_users_response::Item {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        let buf = BASE64_NOPAD.decode(s.as_bytes())?;
+        let it = Self::decode(&buf[..])?;
+        Ok(it)
+    }
+}
 impl v1::policy_roles_response::Item {
     pub fn root() -> Self {
         Self {
@@ -70,6 +82,16 @@ impl fmt::Display for v1::policy_roles_response::Item {
             BASE64_NOPAD.encode(&buf)
         };
         write!(f, "{}", s)
+    }
+}
+
+impl FromStr for v1::policy_roles_response::Item {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        let buf = BASE64_NOPAD.decode(s.as_bytes())?;
+        let it = Self::decode(&buf[..])?;
+        Ok(it)
     }
 }
 
@@ -147,6 +169,15 @@ impl fmt::Display for v1::policy_permissions_response::item::Operation {
     }
 }
 
+impl FromStr for v1::policy_permissions_response::item::Operation {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        let buf = BASE64_NOPAD.decode(s.as_bytes())?;
+        let it = Self::decode(&buf[..])?;
+        Ok(it)
+    }
+}
 impl v1::policy_permissions_response::item::Resource {
     pub fn new<T>() -> Self {
         Self {
@@ -187,5 +218,15 @@ impl fmt::Display for v1::policy_permissions_response::item::Resource {
             BASE64_NOPAD.encode(&buf)
         };
         write!(f, "{}", s)
+    }
+}
+
+impl FromStr for v1::policy_permissions_response::item::Resource {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        let buf = BASE64_NOPAD.decode(s.as_bytes())?;
+        let it = Self::decode(&buf[..])?;
+        Ok(it)
     }
 }

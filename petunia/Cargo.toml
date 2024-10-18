@@ -53,6 +53,10 @@ features = ["json"]
 version = "0.12"
 features = ["transport", "tls"]
 
+[dependencies.juniper]
+version = "0.16"
+features = ["chrono"]
+
 [dependencies.validator]
 version = "0.18"
 features = ["derive"]

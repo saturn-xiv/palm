@@ -3,6 +3,7 @@ use std::string::ToString;
 use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use hyper::StatusCode;
+use juniper::GraphQLEnum;
 use petunia::{orm::postgresql::Connection, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -43,11 +44,28 @@ impl Item {
     }
 }
 
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
+#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone, Copy)]
 #[serde(rename_all = "camelCase")]
+pub enum Action {
+    Confirm,
+    Unlock,
+    #[strum(serialize = "reset-password")]
+    #[serde(rename = "reset-password")]
+    ResetPassword,
+    #[strum(serialize = "sign-in")]
+    #[serde(rename = "sign-in")]
+    SignIn,
+}
+
+#[derive(
+    GraphQLEnum, EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone, Copy,
+)]
+#[serde(rename_all = "camelCase")]
+#[graphql(name = "UserProviderType")]
 pub enum ProviderType {
     Email,
     Google,
+    Facebook,
     WechatMiniProgram,
     WechatOauth2,
 }
@@ -56,7 +74,7 @@ pub trait Dao {
     fn create(
         &mut self,
         user: i32,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
         provider_id: i32,
         ip: &str,
         ttl: Duration,
@@ -66,7 +84,7 @@ pub trait Dao {
     fn by_user_and_provider_type(
         &mut self,
         user: i32,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
     ) -> Result<Vec<Item>>;
     fn by_ip(&mut self, ip: &str) -> Result<Vec<Item>>;
     fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
@@ -80,7 +98,7 @@ impl Dao for Connection {
     fn create(
         &mut self,
         user: i32,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
         provider_id: i32,
         ip: &str,
         ttl: Duration,
@@ -102,7 +120,7 @@ impl Dao for Connection {
     fn by_user_and_provider_type(
         &mut self,
         user: i32,
-        provider_type: &ProviderType,
+        provider_type: ProviderType,
     ) -> Result<Vec<Item>> {
         let provider_type = provider_type.to_string();
         let items = sessions::dsl::sessions
