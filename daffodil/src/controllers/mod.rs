@@ -1,3 +1,5 @@
+pub mod attachments;
+
 use actix_web::web;
 
 pub fn register(config: &mut web::ServiceConfig) {
@@ -16,4 +18,6 @@ pub fn register(config: &mut web::ServiceConfig) {
                     .use_last_modified(true),
             );
     }
+
+    config.service(web::scope("/attachments").service(attachments::upload));
 }

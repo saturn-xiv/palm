@@ -1,7 +1,11 @@
 use std::ops::Deref;
 
-use daffodil::graphql::user::{
-    self as daffodil_user, email as daffodil_user_by_email, SignInResponse as UserSignInResponse,
+use daffodil::graphql::{
+    locale as daffodil_locale,
+    user::{
+        self as daffodil_user, email as daffodil_user_by_email,
+        SignInResponse as UserSignInResponse,
+    },
 };
 use juniper::{graphql_object, FieldResult};
 use petunia::graphql::Succeed;
@@ -202,4 +206,28 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
+    async fn set_locale(
+        context: &Context,
+        lang: String,
+        code: String,
+        message: String,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_locale::Set {
+            lang: lang.trim().to_string(),
+            code: code.trim().to_lowercase(),
+            message: message.trim().to_string(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf).await?;
+        Ok(Succeed::default())
+    }
+    async fn destroy_locale(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_locale::destroy(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
 }

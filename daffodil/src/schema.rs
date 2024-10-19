@@ -15,14 +15,13 @@ diesel::table! {
     attachments (id) {
         id -> Int4,
         user_id -> Int4,
-        public -> Bool,
         #[max_length = 63]
         bucket -> Varchar,
         #[max_length = 63]
         object -> Varchar,
         #[max_length = 127]
         title -> Varchar,
-        size -> Int8,
+        size -> Int4,
         #[max_length = 63]
         content_type -> Varchar,
         uploaded_at -> Nullable<Timestamp>,

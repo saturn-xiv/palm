@@ -6,8 +6,7 @@ use chrono::{Datelike, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use mime::Mime;
 use petunia::{orm::postgresql::Connection, Result};
-use serde::{Deserialize, Serialize};
-use strum::{Display as EnumDisplay, EnumString};
+use serde::Serialize;
 use uuid::Uuid;
 
 use super::super::schema::{attachment_resources, attachments};
@@ -17,11 +16,10 @@ use super::super::schema::{attachment_resources, attachments};
 pub struct Item {
     pub id: i32,
     pub user_id: i32,
-    pub public: bool,
     pub bucket: String,
     pub object: String,
     pub title: String,
-    pub size: i64,
+    pub size: i32,
     pub content_type: String,
     pub uploaded_at: Option<NaiveDateTime>,
     pub deleted_at: Option<NaiveDateTime>,
@@ -44,36 +42,6 @@ impl Item {
         }
         id.to_string()
     }
-    pub fn content_type(title: &str) -> Mime {
-        if let Some(it) = Path::new(&title).extension() {
-            if let Some(it) = it.to_str() {
-                let ct = match it {
-                    "png" => mime::IMAGE_PNG,
-                    "svg" => mime::IMAGE_SVG,
-                    "jpg" | "jpeg" => mime::IMAGE_JPEG,
-                    "js" => mime::APPLICATION_JAVASCRIPT_UTF_8,
-                    "css" => mime::TEXT_CSS_UTF_8,
-                    "csv" => mime::TEXT_CSV_UTF_8,
-                    "pdf" => mime::APPLICATION_PDF,
-                    "txt" | "md" => mime::TEXT_PLAIN_UTF_8,
-                    v => {
-                        log::warn!("unknown file extension: {}", v);
-                        mime::APPLICATION_OCTET_STREAM
-                    }
-                };
-                return ct;
-            }
-        }
-        log::warn!("unknown file type: {}", title);
-        mime::APPLICATION_OCTET_STREAM
-    }
-}
-
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub enum Status {
-    Public,
-    Private,
 }
 
 pub trait Dao {
@@ -82,12 +50,12 @@ pub trait Dao {
     fn create(
         &mut self,
         user: i32,
-        public: bool,
         bucket: &str,
         object: &str,
-        info: (&str, &Mime, u64),
+        info: (&str, &Mime, i32),
     ) -> Result<()>;
     fn set_title(&mut self, id: i32, title: &str) -> Result<()>;
+    fn set_upload_at(&mut self, id: i32) -> Result<()>;
     fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
     fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
@@ -104,6 +72,7 @@ pub trait Dao {
     fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
     fn associate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
     fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
+    fn resources(&mut self, id: i32) -> Result<Vec<(String, Option<i32>)>>;
 }
 
 impl Dao for Connection {
@@ -123,10 +92,9 @@ impl Dao for Connection {
     fn create(
         &mut self,
         user: i32,
-        public: bool,
         bucket: &str,
         object: &str,
-        (title, content_type, size): (&str, &Mime, u64),
+        (title, content_type, size): (&str, &Mime, i32),
     ) -> Result<()> {
         let now = Utc::now().naive_utc();
 
@@ -134,18 +102,26 @@ impl Dao for Connection {
         insert_into(attachments::dsl::attachments)
             .values((
                 attachments::dsl::user_id.eq(user),
-                attachments::dsl::public.eq(public),
                 attachments::dsl::bucket.eq(bucket),
                 attachments::dsl::object.eq(object),
                 attachments::dsl::title.eq(title),
                 attachments::dsl::content_type.eq(content_type),
-                attachments::dsl::size.eq(size as i64),
+                attachments::dsl::size.eq(size),
                 attachments::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
     }
-
+    fn set_upload_at(&mut self, id: i32) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        update(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id)))
+            .set((
+                attachments::dsl::uploaded_at.eq(&now),
+                attachments::dsl::updated_at.eq(&now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
     fn set_title(&mut self, id: i32, title: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         update(attachments::dsl::attachments.filter(attachments::dsl::id.eq(id)))
@@ -271,5 +247,17 @@ impl Dao for Connection {
         )
         .execute(self)?;
         Ok(())
+    }
+    fn resources(&mut self, id: i32) -> Result<Vec<(String, Option<i32>)>> {
+        let items = attachment_resources::dsl::attachment_resources
+            .select((
+                attachment_resources::dsl::resource_type,
+                attachment_resources::dsl::resource_id,
+            ))
+            .filter(attachment_resources::dsl::attachment_id.eq(id))
+            .distinct()
+            .order(attachment_resources::dsl::created_at.desc())
+            .load(self)?;
+        Ok(items)
     }
 }

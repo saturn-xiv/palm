@@ -12,6 +12,7 @@ pub mod parser;
 pub mod queue;
 pub mod rbac;
 pub mod result;
+pub mod s3;
 pub mod session;
 pub mod themes;
 pub mod wechat;
@@ -34,11 +35,6 @@ pub mod lily {
 pub mod morus {
     pub mod v1 {
         tonic::include_proto!("palm.morus.v1");
-    }
-}
-pub mod s3 {
-    pub mod v1 {
-        tonic::include_proto!("palm.s3.v1");
     }
 }
 
@@ -64,6 +60,7 @@ use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
 
 use hyper::StatusCode;
+use mime::Mime;
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 
@@ -107,4 +104,27 @@ pub fn current_user() -> Result<String> {
     let it = nix::unistd::User::from_uid(nix::unistd::getuid())
         .map_or_else(|_| None, |x| x.map(|y| y.name));
     it.ok_or(Box::new(HttpError(StatusCode::INTERNAL_SERVER_ERROR, None)))
+}
+pub fn content_type(title: &str) -> Mime {
+    if let Some(it) = Path::new(&title).extension() {
+        if let Some(it) = it.to_str() {
+            let ct = match it {
+                "png" => mime::IMAGE_PNG,
+                "svg" => mime::IMAGE_SVG,
+                "jpg" | "jpeg" => mime::IMAGE_JPEG,
+                "js" => mime::APPLICATION_JAVASCRIPT_UTF_8,
+                "css" => mime::TEXT_CSS_UTF_8,
+                "csv" => mime::TEXT_CSV_UTF_8,
+                "pdf" => mime::APPLICATION_PDF,
+                "txt" | "md" => mime::TEXT_PLAIN_UTF_8,
+                v => {
+                    log::warn!("unknown file extension: {}", v);
+                    mime::APPLICATION_OCTET_STREAM
+                }
+            };
+            return ct;
+        }
+    }
+    log::warn!("unknown file type: {}", title);
+    mime::APPLICATION_OCTET_STREAM
 }
