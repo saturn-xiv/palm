@@ -2,7 +2,6 @@ use std::any::type_name;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::ops::Deref;
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
 use std::time::Duration as StdDuration;
 
 use actix_cors::Cors;
@@ -35,6 +34,7 @@ use petunia::{
     orm::postgresql::Config as PostgreSql,
     queue::amqp::{Config as RabbitMq, RabbitMq as Queue},
     rbac::v1::WatcherMessage as CasbinWatcherMessage,
+    s3::Config as Minio,
     themes::Theme,
     Environment, HttpError, Result,
 };
@@ -65,6 +65,7 @@ impl Command {
         let jwt = web::Data::new(Jwt::new(config.jwt_key.0.clone()));
         let queue = web::Data::new(config.rabbitmq.open());
         let search = web::Data::new(config.opensearch.open()?);
+        let s3 = web::Data::new(config.minio.open()?);
         let enforcer = {
             let db = db.clone();
             let db = db.into_inner();
@@ -96,7 +97,7 @@ impl Command {
             log::debug!("{:?}", search.info());
         }
 
-        let schema = Arc::new(graphql::Schema::new(
+        let schema = web::Data::new(graphql::Schema::new(
             graphql::query::Query {},
             graphql::mutation::Mutation {},
             EmptySubscription::new(),
@@ -127,7 +128,8 @@ impl Command {
                 .app_data(queue.clone())
                 .app_data(enforcer.clone())
                 .app_data(search.clone())
-                .app_data(web::Data::from(schema.clone()))
+                .app_data(s3.clone())
+                .app_data(schema.clone())
                 // https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
                 .wrap(
                     Cors::default()
@@ -189,6 +191,6 @@ struct Config {
     postgresql: PostgreSql,
     redis: Redis,
     rabbitmq: RabbitMq,
-    #[serde(rename = "opensearch")]
     opensearch: OpenSearch,
+    minio: Minio,
 }

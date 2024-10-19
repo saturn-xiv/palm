@@ -4,7 +4,8 @@ use casbin::Enforcer;
 use opensearch::OpenSearch;
 use petunia::{
     cache::redis::Pool as Redis, crypto::Key, jwt::openssl::OpenSsl as Jwt,
-    orm::postgresql::Pool as PostgreSql, queue::amqp::RabbitMq, session::Session,
+    orm::postgresql::Pool as PostgreSql, queue::amqp::RabbitMq, s3::Client as Minio,
+    session::Session,
 };
 use tokio::sync::Mutex;
 
@@ -17,6 +18,7 @@ pub struct Context {
     pub session: Session,
     pub jwt: Arc<Jwt>,
     pub search: Arc<OpenSearch>,
+    pub minio: Arc<Minio>,
 }
 
 impl juniper::Context for Context {}

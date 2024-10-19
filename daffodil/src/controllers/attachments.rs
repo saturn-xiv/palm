@@ -20,15 +20,15 @@ use super::super::{
 };
 
 #[derive(Debug, Deserialize)]
-struct Metadata {
-    name: String,
+pub struct Metadata {
+    pub name: String,
 }
 
 #[derive(Debug, MultipartForm)]
-struct UploadForm {
+pub struct UploadForm {
     #[multipart(limit = "512MB")]
-    file: TempFile,
-    json: MPJson<Metadata>,
+    pub file: TempFile,
+    pub json: MPJson<Metadata>,
 }
 
 #[post("/upload")]
@@ -44,7 +44,7 @@ pub async fn upload(
     let jwt = jwt.deref();
     let s3 = s3.deref();
     let it = form
-        .execute(&ss, db, jwt, s3, NAME)
+        .execute(&ss, db, jwt, s3, (NAME, false, -1))
         .await
         .map_err(|e| -> WebError { ErrorInternalServerError(e) })?;
     Ok(web::Json(it))
@@ -57,7 +57,7 @@ impl UploadForm {
         db: &DbPool,
         jwt: &Jwt,
         s3: &S3,
-        bucket: &str,
+        (bucket, public, expiration_days): (&str, bool, i32),
     ) -> Result<Attachment> {
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -68,16 +68,17 @@ impl UploadForm {
             .content_type
             .as_ref()
             .unwrap_or(&mime::APPLICATION_OCTET_STREAM);
-        let (_, object, _, _) = s3.upload_object(bucket, self.file.file.path()).await?;
+        let bucket = s3.create_bucket(bucket, public, expiration_days).await?;
+        let (_, object, _, _) = s3.upload_object(&bucket, self.file.file.path()).await?;
         let it = db.transaction::<_, Error, _>(|db| {
             AttachmentDao::create(
                 db,
                 user.id,
-                bucket,
+                &bucket,
                 &object,
                 (&self.json.name, content_type, size as i32),
             )?;
-            let it = AttachmentDao::by_bucket_and_object(db, bucket, &object)?;
+            let it = AttachmentDao::by_bucket_and_object(db, &bucket, &object)?;
             AttachmentDao::set_upload_at(db, it.id)?;
             Ok(it)
         })?;

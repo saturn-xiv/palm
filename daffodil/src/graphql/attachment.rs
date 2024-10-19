@@ -1,6 +1,6 @@
 use std::ops::DerefMut;
 
-use chrono::NaiveDateTime;
+use chrono::{Duration, NaiveDateTime};
 use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
 use juniper::GraphQLObject;
@@ -8,6 +8,7 @@ use petunia::{
     graphql::{Pager, Pagination},
     jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::Pool as DbPool,
+    s3::Client as Minio,
     session::Session,
     Error, HttpError, Result,
 };
@@ -71,7 +72,7 @@ impl List {
     }
 }
 
-pub async fn destroy(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
+pub fn destroy(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
     let user = User::new(ss, db, jwt)?;
@@ -87,7 +88,7 @@ pub async fn destroy(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()
     Ok(())
 }
 
-pub async fn set_uploaded_at(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
+pub fn set_uploaded_at(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
     let user = User::new(ss, db, jwt)?;
@@ -124,5 +125,27 @@ impl SetTitle {
             Ok(())
         })?;
         Ok(())
+    }
+}
+
+#[derive(GraphQLObject)]
+#[graphql(name = "AttachmentShowResponse")]
+pub struct Show {
+    pub item: Item,
+    pub url: String,
+}
+impl Show {
+    pub async fn new(db: &DbPool, s3: &Minio, id: i32, ttl: Option<Duration>) -> Result<Self> {
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let it = AttachmentDao::by_id(db, id)?;
+        if it.deleted_at.is_some() {
+            return Err(Box::new(HttpError(StatusCode::GONE, None)));
+        }
+        let url = s3.get_object_url(&it.bucket, &it.object, ttl).await?;
+        Ok(Self {
+            item: it.into(),
+            url,
+        })
     }
 }

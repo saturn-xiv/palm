@@ -1,7 +1,7 @@
 use std::ops::Deref;
 
 use daffodil::graphql::{
-    locale as daffodil_locale,
+    attachment as daffodil_attachment, locale as daffodil_locale,
     user::{
         self as daffodil_user, email as daffodil_user_by_email,
         SignInResponse as UserSignInResponse,
@@ -230,4 +230,28 @@ impl Mutation {
         daffodil_locale::destroy(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
+    // ------------------------------------------------------------------------
+    fn set_attachment_title(context: &Context, id: i32, title: String) -> FieldResult<Succeed> {
+        let form = daffodil_attachment::SetTitle {
+            title: title.trim().to_string(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn set_attachment_uploaded_at(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        daffodil_attachment::set_uploaded_at(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn destroy_attachment(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        daffodil_attachment::destroy(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 }
