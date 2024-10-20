@@ -88,7 +88,8 @@ pub trait Dao {
     ) -> Result<Vec<Item>>;
     fn by_ip(&mut self, ip: &str) -> Result<Vec<Item>>;
     fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
-    fn index(&mut self) -> Result<Vec<Item>>;
+    fn total(&mut self) -> Result<i64>;
+    fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
     fn clean(&mut self) -> Result<()>;
@@ -153,9 +154,15 @@ impl Dao for Connection {
             .load(self)?;
         Ok(items)
     }
-    fn index(&mut self) -> Result<Vec<Item>> {
+    fn total(&mut self) -> Result<i64> {
+        let cnt: i64 = sessions::dsl::sessions.count().get_result(self)?;
+        Ok(cnt)
+    }
+    fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = sessions::dsl::sessions
             .order(sessions::dsl::created_at.desc())
+            .offset(offset)
+            .limit(limit)
             .load::<Item>(self)?;
         Ok(items)
     }

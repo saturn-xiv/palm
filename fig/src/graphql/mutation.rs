@@ -1,8 +1,9 @@
 use std::ops::Deref;
 
 use daffodil::graphql::{
-    attachment as daffodil_attachment, leave_word as daffodil_leave_word,
-    locale as daffodil_locale,
+    attachment as daffodil_attachment, category as daffodil_category,
+    leave_word as daffodil_leave_word, locale as daffodil_locale, session as daffodil_session,
+    tag as daffodil_tag,
     user::{
         self as daffodil_user, email as daffodil_user_by_email,
         SignInResponse as UserSignInResponse,
@@ -308,6 +309,89 @@ impl Mutation {
         daffodil_leave_word::destroy(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
+    // ------------------------------------------------------------------------
+    async fn disable_session(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_session::disable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn enable_session(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_session::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    async fn create_tag(context: &Context, code: String) -> FieldResult<Succeed> {
+        let form = daffodil_tag::Form {
+            code: code.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.create(&context.session, db, jwt, enf).await?;
+        Ok(Succeed::default())
+    }
+    async fn update_tag(context: &Context, id: i32, code: String) -> FieldResult<Succeed> {
+        let form = daffodil_tag::Form {
+            code: code.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.update(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn destroy_tag(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_tag::destroy(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    async fn create_category(context: &Context, parent: i32, code: String) -> FieldResult<Succeed> {
+        let form = daffodil_category::Form {
+            code: code.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.create(&context.session, db, jwt, enf, parent).await?;
+        Ok(Succeed::default())
+    }
+    async fn append_category(context: &Context, near: i32, code: String) -> FieldResult<Succeed> {
+        let form = daffodil_category::Form {
+            code: code.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.append(&context.session, db, jwt, enf, near).await?;
+        Ok(Succeed::default())
+    }
+    async fn update_category(context: &Context, id: i32, code: String) -> FieldResult<Succeed> {
+        let form = daffodil_category::Form {
+            code: code.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.update(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn destroy_category(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_category::destroy(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------

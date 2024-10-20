@@ -12,7 +12,6 @@ use super::super::schema::{tag_resources, tags};
 pub struct Item {
     pub id: i32,
     pub code: String,
-    pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
     pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
@@ -29,8 +28,7 @@ pub trait Dao {
     fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>>;
     fn by_resource_type_(&mut self, resource_type: &str) -> Result<Vec<Item>>;
 
-    fn disable(&mut self, id: i32) -> Result<()>;
-    fn enable(&mut self, id: i32) -> Result<()>;
+    fn destroy(&mut self, id: i32) -> Result<()>;
 
     fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
     fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
@@ -106,26 +104,10 @@ impl Dao for Connection {
         Ok(items)
     }
 
-    fn disable(&mut self, id: i32) -> Result<()> {
-        let now = Utc::now().naive_utc();
-        let it = tags::dsl::tags.filter(tags::dsl::id.eq(id));
-        update(it)
-            .set((
-                tags::dsl::deleted_at.eq(&Some(now)),
-                tags::dsl::updated_at.eq(&now),
-            ))
+    fn destroy(&mut self, id: i32) -> Result<()> {
+        delete(tag_resources::dsl::tag_resources.filter(tag_resources::dsl::tag_id.eq(id)))
             .execute(self)?;
-        Ok(())
-    }
-    fn enable(&mut self, id: i32) -> Result<()> {
-        let now = Utc::now().naive_utc();
-        let it = tags::dsl::tags.filter(tags::dsl::id.eq(id));
-        update(it)
-            .set((
-                tags::dsl::deleted_at.eq(&None::<NaiveDateTime>),
-                tags::dsl::updated_at.eq(&now),
-            ))
-            .execute(self)?;
+        delete(tags::dsl::tags.filter(tags::dsl::id.eq(id))).execute(self)?;
         Ok(())
     }
     fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()> {

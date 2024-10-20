@@ -198,7 +198,6 @@ diesel::table! {
         id -> Int4,
         #[max_length = 63]
         code -> Varchar,
-        deleted_at -> Nullable<Timestamp>,
         version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
