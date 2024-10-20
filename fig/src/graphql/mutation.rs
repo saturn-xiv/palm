@@ -3,14 +3,14 @@ use std::ops::Deref;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
     leave_word as daffodil_leave_word, locale as daffodil_locale, menu as daffodil_menu,
-    session as daffodil_session, tag as daffodil_tag,
+    session as daffodil_session, site as daffodil_site, tag as daffodil_tag,
     user::{
         self as daffodil_user, email as daffodil_user_by_email,
         SignInResponse as UserSignInResponse,
     },
 };
 use juniper::{graphql_object, FieldResult};
-use petunia::graphql::Succeed;
+use petunia::{graphql::Succeed, themes::Author as SiteAuthor};
 
 use super::context::Context;
 
@@ -391,18 +391,11 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
-    async fn append_menu(
-        context: &Context,
-        lang: String,
-        location: String,
-        label: String,
-        sort_order: i32,
-    ) -> FieldResult<Succeed> {
-        let form = daffodil_menu::Append {
-            lang,
-            location: location.trim().to_lowercase(),
-            label: label.trim().to_string(),
-            sort_order,
+    async fn append_menu(context: &Context, form: daffodil_menu::Append) -> FieldResult<Succeed> {
+        let form = {
+            let mut it = form.clone();
+            it.location = form.location.trim().to_lowercase();
+            it
         };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
@@ -413,13 +406,8 @@ impl Mutation {
     async fn create_menu(
         context: &Context,
         parent: i32,
-        label: String,
-        sort_order: i32,
+        form: daffodil_menu::Form,
     ) -> FieldResult<Succeed> {
-        let form = daffodil_menu::Form {
-            label: label.trim().to_string(),
-            sort_order,
-        };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
@@ -429,13 +417,8 @@ impl Mutation {
     async fn update_menu(
         context: &Context,
         id: i32,
-        label: String,
-        sort_order: i32,
+        form: daffodil_menu::Form,
     ) -> FieldResult<Succeed> {
-        let form = daffodil_menu::Form {
-            label: label.trim().to_string(),
-            sort_order,
-        };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
@@ -450,6 +433,68 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
+    async fn set_site_base_info(
+        context: &Context,
+        lang: String,
+        title: String,
+        subhead: String,
+        description: String,
+        copyright: String,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_site::info::Base {
+            title: title.trim().to_string(),
+            subhead: subhead.trim().to_string(),
+            description: description.trim().to_string(),
+            copyright: copyright.trim().to_string(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.save(&context.session, db, jwt, enf, &lang).await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_keywords(context: &Context, items: Vec<String>) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        daffodil_site::info::Keywords::save(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            &items,
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_author(
+        context: &Context,
+        lang: String,
+        name: String,
+        email: String,
+    ) -> FieldResult<Succeed> {
+        let form = SiteAuthor {
+            name: name.trim().to_string(),
+            email: email.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        daffodil_site::info::Author::save(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            &lang,
+            &form,
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------

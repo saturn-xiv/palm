@@ -4,12 +4,13 @@ use chrono::Duration;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
     leave_word as daffodil_leave_word, locale as daffodil_locale, log as daffodil_log,
-    menu as daffodil_menu, session as daffodil_session, tag as daffodil_tag,
+    menu as daffodil_menu, session as daffodil_session, site as daffodil_site, tag as daffodil_tag,
     user::email as daffodil_user_by_email,
 };
 use juniper::{graphql_object, FieldResult};
 use petunia::{
     graphql::{Pager, Succeed},
+    themes::{Layout, Menu},
     GIT_VERSION,
 };
 
@@ -23,6 +24,13 @@ impl Query {
         GIT_VERSION
     }
 
+    // ------------------------------------------------------------------------
+    fn layout(context: &Context) -> FieldResult<Layout> {
+        let db = context.postgresql.deref();
+        let secrets = context.secrets.deref();
+        let it = daffodil_site::layout(&context.session, db, secrets.clone())?;
+        Ok(it)
+    }
     // ------------------------------------------------------------------------
 
     async fn send_confirm_email_for_user(context: &Context, user: String) -> FieldResult<Succeed> {
@@ -151,9 +159,9 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
-    fn menus(context: &Context, location: String) -> FieldResult<Vec<daffodil_menu::Menu>> {
+    fn menus(context: &Context, location: String) -> FieldResult<Vec<Menu>> {
         let db = context.postgresql.deref();
-        let res = daffodil_menu::Menu::all(db, &context.session.lang, &location)?;
+        let res = daffodil_menu::menus_by_lang_and_location(db, &context.session.lang, &location)?;
         Ok(res)
     }
     fn index(context: &Context) -> FieldResult<Vec<daffodil_menu::Item>> {

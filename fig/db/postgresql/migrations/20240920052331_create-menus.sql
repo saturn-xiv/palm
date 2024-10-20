@@ -5,6 +5,8 @@ CREATE TABLE menu_items(
     lang VARCHAR(15) NOT NULL,
     location VARCHAR(63) NOT NULL,
     label VARCHAR(63) NOT NULL,
+    link VARCHAR(255),
+    extra BOOLEAN NOT NULL DEFAULT FALSE,
     sort_order INT NOT NULL DEFAULT 0,
     version INT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    

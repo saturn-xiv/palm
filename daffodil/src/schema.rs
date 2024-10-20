@@ -161,6 +161,9 @@ diesel::table! {
         location -> Varchar,
         #[max_length = 63]
         label -> Varchar,
+        #[max_length = 255]
+        link -> Nullable<Varchar>,
+        extra -> Bool,
         sort_order -> Int4,
         version -> Int4,
         updated_at -> Timestamp,

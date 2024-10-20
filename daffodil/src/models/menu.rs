@@ -12,6 +12,8 @@ pub struct Item {
     pub lang: String,
     pub location: String,
     pub label: String,
+    pub link: Option<String>,
+    pub extra: bool,
     pub sort_order: i32,
     pub version: i32,
     pub created_at: NaiveDateTime,
@@ -24,9 +26,31 @@ pub trait Dao {
     fn by_lang_and_location(&mut self, lang: &str, location: &str) -> Result<Vec<Item>>;
     fn root(&mut self, lang: &str, location: &str) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
-    fn append(&mut self, lang: &str, location: &str, label: &str, sort_order: i32) -> Result<()>;
-    fn create(&mut self, parent: i32, label: &str, sort_order: i32) -> Result<()>;
-    fn update(&mut self, id: i32, label: &str, sort_order: i32) -> Result<()>;
+    fn append(
+        &mut self,
+        lang: &str,
+        location: &str,
+        label: &str,
+        link: &str,
+        extra: bool,
+        sort_order: i32,
+    ) -> Result<()>;
+    fn create(
+        &mut self,
+        parent: i32,
+        label: &str,
+        link: &str,
+        extra: bool,
+        sort_order: i32,
+    ) -> Result<()>;
+    fn update(
+        &mut self,
+        id: i32,
+        label: &str,
+        link: &str,
+        extra: bool,
+        sort_order: i32,
+    ) -> Result<()>;
     fn destroy(&mut self, id: i32) -> Result<()>;
 }
 
@@ -67,20 +91,37 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn append(&mut self, lang: &str, location: &str, label: &str, sort_order: i32) -> Result<()> {
+    fn append(
+        &mut self,
+        lang: &str,
+        location: &str,
+        label: &str,
+        link: &str,
+        extra: bool,
+        sort_order: i32,
+    ) -> Result<()> {
         let now = Utc::now().naive_utc();
         insert_into(menu_items::dsl::menu_items)
             .values((
                 menu_items::dsl::lang.eq(lang),
                 menu_items::dsl::location.eq(location),
                 menu_items::dsl::label.eq(label),
+                menu_items::dsl::link.eq(link),
+                menu_items::dsl::extra.eq(extra),
                 menu_items::dsl::sort_order.eq(sort_order),
                 menu_items::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
     }
-    fn create(&mut self, parent: i32, label: &str, sort_order: i32) -> Result<()> {
+    fn create(
+        &mut self,
+        parent: i32,
+        label: &str,
+        link: &str,
+        extra: bool,
+        sort_order: i32,
+    ) -> Result<()> {
         let parent = menu_items::dsl::menu_items
             .filter(menu_items::dsl::id.eq(parent))
             .first::<Item>(self)?;
@@ -91,18 +132,29 @@ impl Dao for Connection {
                 menu_items::dsl::lang.eq(&parent.lang),
                 menu_items::dsl::location.eq(&parent.location),
                 menu_items::dsl::label.eq(label),
+                menu_items::dsl::link.eq(link),
+                menu_items::dsl::extra.eq(extra),
                 menu_items::dsl::sort_order.eq(sort_order),
                 menu_items::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
     }
-    fn update(&mut self, id: i32, label: &str, sort_order: i32) -> Result<()> {
+    fn update(
+        &mut self,
+        id: i32,
+        label: &str,
+        link: &str,
+        extra: bool,
+        sort_order: i32,
+    ) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = menu_items::dsl::menu_items.filter(menu_items::dsl::id.eq(id));
         update(it)
             .set((
                 menu_items::dsl::label.eq(label),
+                menu_items::dsl::link.eq(link),
+                menu_items::dsl::extra.eq(extra),
                 menu_items::dsl::sort_order.eq(sort_order),
                 menu_items::dsl::updated_at.eq(&now),
             ))

@@ -75,7 +75,7 @@ impl<'a> Setting<'a> {
             db,
         }
     }
-    fn get<K: Display>(&mut self, key: &K, user: Option<i32>) -> Result<Vec<u8>> {
+    pub fn get<K: Display>(&mut self, key: &K, user: Option<i32>) -> Result<Vec<u8>> {
         let (value, nonce) = self.db.get(key, user)?;
         match nonce {
             Some(ref nonce) => {
@@ -91,7 +91,7 @@ impl<'a> Setting<'a> {
             None => Ok(value),
         }
     }
-    fn set<K: Display>(
+    pub fn set<K: Display>(
         &mut self,
         key: &K,
         user: Option<i32>,

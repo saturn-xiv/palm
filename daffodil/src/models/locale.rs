@@ -266,6 +266,7 @@ impl Dao for Connection {
 
 pub trait I18n {
     fn t<T: Serialize>(&mut self, lang: &str, code: &str, args: Option<T>) -> String;
+    fn set(&mut self, lang: &str, code: &str, message: &str) -> Result<()>;
 }
 
 impl I18n for Connection {
@@ -293,5 +294,22 @@ impl I18n for Connection {
             }
         }
         format!("{lang}.{code}")
+    }
+
+    fn set(&mut self, lang: &str, code: &str, message: &str) -> Result<()> {
+        match locales::dsl::locales
+            .select(locales::dsl::id)
+            .filter(locales::dsl::lang.eq(lang))
+            .filter(locales::dsl::code.eq(code))
+            .first::<i32>(self)
+        {
+            Ok(id) => {
+                Dao::update(self, id, message)?;
+            }
+            Err(_) => {
+                Dao::create(self, lang, code, message)?;
+            }
+        }
+        Ok(())
     }
 }

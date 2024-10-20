@@ -16,6 +16,8 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
+use crate::models::locale::I18n;
+
 use super::super::{
     models::locale::{Dao as LocaleDao, Item as Locale},
     session::current_user,
@@ -110,14 +112,7 @@ impl Set {
         }
 
         db.transaction::<_, Error, _>(|db| {
-            match LocaleDao::by_lang_and_code(db, &lang, &self.code) {
-                Ok(ref it) => {
-                    LocaleDao::update(db, it.id, &self.message)?;
-                }
-                Err(_) => {
-                    LocaleDao::create(db, &lang, &self.code, &self.message)?;
-                }
-            }
+            I18n::set(db, &lang, &self.code, &self.message)?;
             Ok(())
         })?;
 

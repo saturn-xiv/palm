@@ -3,8 +3,10 @@ pub mod x_corporation;
 use std::path::Path;
 
 use actix_web::web;
+use juniper::GraphQLObject;
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
+use validator::Validate;
 
 #[cfg(not(debug_assertions))]
 pub fn register<P>(_themes: P) -> impl FnOnce(&mut web::ServiceConfig)
@@ -61,16 +63,7 @@ pub enum Theme {
     XCorporation,
 }
 
-#[derive(Serialize, Deserialize, Default, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct Menu {
-    pub label: String,
-    pub link: String,
-    pub extra: bool,
-    pub children: Vec<Self>,
-}
-
-#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+#[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Layout {
     pub title: String,
@@ -86,27 +79,48 @@ pub struct Layout {
     pub languages: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+impl Layout {
+    pub const TITLE: &str = "site.title";
+    pub const SUBHEAD: &str = "site.subhead";
+    pub const DESCRIPTION: &str = "site.description";
+    pub const KEYWORDS: &str = "site.keywords";
+    pub const COPYRIGHT: &str = "site.copyright";
+}
+
+#[derive(GraphQLObject, Validate, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Author {
+    #[validate(length(min = 2, max = 31))]
     pub name: String,
+    #[validate(email, length(min = 2, max = 63))]
     pub email: String,
 }
 
-#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+#[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct CnGab {
     pub code: String,
 }
 
-#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+#[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct CnIcp {
     pub code: String,
 }
 
-#[derive(Serialize, Deserialize, Default, Debug, Clone)]
+#[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct CnBi {
     pub code: String,
+}
+
+#[derive(GraphQLObject, Serialize, Deserialize)]
+#[graphql(name = "Menu")]
+#[serde(rename_all = "camelCase")]
+pub struct Menu {
+    pub link: Option<String>,
+    pub extra: bool,
+    pub label: String,
+    pub sort_order: i32,
+    pub children: Vec<Self>,
 }
