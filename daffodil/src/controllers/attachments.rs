@@ -13,10 +13,8 @@ use serde::Deserialize;
 
 use super::super::{
     graphql::NAME,
-    models::{
-        attachment::{Dao as AttachmentDao, Item as Attachment},
-        user::Item as User,
-    },
+    models::attachment::{Dao as AttachmentDao, Item as Attachment},
+    session::current_user,
 };
 
 #[derive(Debug, Deserialize)]
@@ -61,7 +59,7 @@ impl UploadForm {
     ) -> Result<Attachment> {
         let mut db = db.get()?;
         let db = db.deref_mut();
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let size = self.file.size;
         let content_type = self
             .file

@@ -1,5 +1,3 @@
-use std::fmt;
-
 use actix_web::{
     dev::Payload, http::header::ACCEPT_LANGUAGE, web, Error, FromRequest, HttpRequest,
 };
@@ -9,17 +7,6 @@ use serde::Deserialize;
 
 #[derive(Debug)]
 pub struct Locale(pub Option<LanguageTag>);
-
-impl fmt::Display for Locale {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match self.0 {
-            Some(ref it) => {
-                write!(f, "{it}")
-            }
-            None => write!(f, "en-US"),
-        }
-    }
-}
 
 #[derive(Debug, Deserialize)]
 pub struct Query {

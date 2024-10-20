@@ -25,14 +25,17 @@ use tokio::sync::Mutex;
 use uuid::Uuid;
 use validator::Validate;
 
-use super::super::super::models::{
-    locale::I18n,
-    log::{Dao as LogDao, Level as LogLevel},
-    session::ProviderType,
-    user::{
-        email::{Dao as EmailDao, Item as EmailUser},
-        Action as UserAction, Dao as UserDao, Item as User,
+use super::super::super::{
+    models::{
+        locale::I18n,
+        log::{Dao as LogDao, Level as LogLevel},
+        session::ProviderType,
+        user::{
+            email::{Dao as EmailDao, Item as EmailUser},
+            Action as UserAction, Dao as UserDao, Item as User,
+        },
     },
+    session::current_user,
 };
 use super::super::NAME;
 use super::SignInResponse;
@@ -47,8 +50,8 @@ pub struct SignUp {
     pub email: String,
     #[validate(length(min = 6, max = 31))]
     pub password: String,
+    #[validate(length(min = 3, max = 31))]
     pub timezone: String,
-    pub lang: String,
 }
 
 impl SignUp {
@@ -57,12 +60,15 @@ impl SignUp {
         db: &DbPool,
         jwt: &Jwt,
         queue: &RabbitMq,
+        lang: &str,
         client_ip: &str,
     ) -> Result<()> {
         self.validate()?;
 
-        let lang = LanguageTag::from_str(&self.lang)?;
-        let timezone = Tz::from_str(&self.timezone)?;
+        let timezone = {
+            let it = Tz::from_str(&self.timezone)?;
+            it.to_string()
+        };
         let uid = Uuid::new_v4().to_string();
 
         let mut db = db.get()?;
@@ -82,7 +88,7 @@ impl SignUp {
                 )));
             }
 
-            UserDao::create(db, &uid, &lang, timezone)?;
+            UserDao::create(db, &uid, lang, &timezone)?;
             let user = UserDao::by_uid(db, &uid)?;
             EmailDao::create(
                 db,
@@ -105,7 +111,7 @@ impl SignUp {
         })?;
         send_email(
             (&self.email, &self.real_name),
-            &self.lang,
+            lang,
             db,
             jwt,
             queue,
@@ -590,7 +596,7 @@ impl List {
         let mut db = db.get()?;
         let db = db.deref_mut();
         {
-            let user = User::new(ss, db, jwt)?;
+            let (_, user) = current_user(ss, db, jwt)?;
             let mut enf = enforcer.lock().await;
             let enf = enf.deref_mut();
             user.is_administrator(enf)?;
@@ -627,7 +633,7 @@ pub async fn confirm(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;
@@ -666,7 +672,7 @@ pub async fn enable(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;
@@ -713,7 +719,7 @@ pub async fn disable(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;
@@ -766,10 +772,11 @@ impl SetPassword {
         enforcer: &Mutex<Enforcer>,
         client_ip: &str,
     ) -> Result<()> {
+        self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
         {
-            let user = User::new(ss, db, jwt)?;
+            let (_, user) = current_user(ss, db, jwt)?;
             let mut enf = enforcer.lock().await;
             let enf = enf.deref_mut();
             user.is_administrator(enf)?;
@@ -793,6 +800,91 @@ impl SetPassword {
                 client_ip,
                 None,
                 "Change password by administrator.",
+            )?;
+            Ok(())
+        })?;
+
+        Ok(())
+    }
+}
+
+#[derive(Validate)]
+pub struct ChangePassword {
+    #[validate(length(min = 1))]
+    pub current_password: String,
+    #[validate(length(min = 6, max = 31))]
+    pub new_password: String,
+}
+
+impl ChangePassword {
+    pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt, client_ip: &str) -> Result<()> {
+        self.validate()?;
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let (su, _) = current_user(ss, db, jwt)?;
+        {
+            if su.provider_type.parse::<ProviderType>()? != ProviderType::Email {
+                return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+            }
+        }
+
+        db.transaction::<_, Error, _>(|db| {
+            let eu = EmailDao::by_id(db, su.provider_id)?;
+            User::verify(&self.current_password, &eu.password)?;
+            EmailDao::set_password(db, eu.id, &self.new_password)?;
+            LogDao::create::<_, EmailUser>(
+                db,
+                eu.user_id,
+                NAME,
+                LogLevel::Info,
+                client_ip,
+                None,
+                "Change password.",
+            )?;
+            Ok(())
+        })?;
+
+        Ok(())
+    }
+}
+
+#[derive(Validate)]
+pub struct Profile {
+    #[validate(length(min = 2, max = 31))]
+    pub real_name: String,
+    #[validate(length(min = 2, max = 15))]
+    pub lang: String,
+    #[validate(length(min = 3, max = 31))]
+    pub timezone: String,
+}
+
+impl Profile {
+    pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt, client_ip: &str) -> Result<()> {
+        self.validate()?;
+        let lang = LanguageTag::from_str(&self.lang)?;
+        let timezone = Tz::from_str(&self.timezone)?;
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let (su, _) = current_user(ss, db, jwt)?;
+        {
+            if su.provider_type.parse::<ProviderType>()? != ProviderType::Email {
+                return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+            }
+        }
+
+        db.transaction::<_, Error, _>(|db| {
+            let eu = EmailDao::by_id(db, su.provider_id)?;
+            EmailDao::set_real_name(db, eu.id, &self.real_name)?;
+            UserDao::set_lang(db, eu.user_id, &lang.to_string())?;
+            UserDao::set_timezone(db, eu.user_id, &timezone.to_string())?;
+            LogDao::create::<_, EmailUser>(
+                db,
+                eu.user_id,
+                NAME,
+                LogLevel::Info,
+                client_ip,
+                None,
+                "Change password.",
             )?;
             Ok(())
         })?;

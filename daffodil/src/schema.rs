@@ -66,7 +66,8 @@ diesel::table! {
         nickname -> Varchar,
         #[max_length = 127]
         email -> Varchar,
-        password -> Bytea,
+        #[max_length = 255]
+        password -> Varchar,
         #[max_length = 255]
         avatar -> Varchar,
         confirmed_at -> Nullable<Timestamp>,

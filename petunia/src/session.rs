@@ -16,17 +16,17 @@ pub struct Session {
 }
 
 impl Session {
-    const DEFAULT_LANG: &'static str = "en-US";
     const DEFAULT_CLIENT_IP: &'static str = "n/a";
+    const AMERICAN_ENGLISH: &str = "en-US";
     fn detect_locale(meta: &MetadataMap) -> String {
         if let Some(it) = meta.get(ACCEPT_LANGUAGE.as_str().to_lowercase()) {
             if let Ok(it) = it.to_str() {
-                if let Ok(it) = LanguageTag::parse(it) {
+                if let Ok(ref it) = LanguageTag::parse(it) {
                     return it.to_string();
                 }
             }
         }
-        Self::DEFAULT_LANG.to_string()
+        Self::AMERICAN_ENGLISH.to_string()
     }
 
     fn detect_token(meta: &MetadataMap) -> Option<String> {
@@ -65,9 +65,9 @@ impl FromRequest for Session {
     type Future = Ready<Result<Self, Error>>;
 
     fn from_request(req: &HttpRequest, _payload: &mut Payload) -> Self::Future {
-        let lang = Locale::detect(req).map_or(Self::DEFAULT_LANG.to_string(), |x| x.to_string());
-        let client_ip =
-            ClientIp::detect(req).map_or(Self::DEFAULT_CLIENT_IP.to_string(), |x| x.to_string());
+        let lang =
+            Locale::detect(req).map_or(Self::AMERICAN_ENGLISH.to_string(), |x| x.to_string());
+        let client_ip = ClientIp::detect(req).unwrap_or(Self::DEFAULT_CLIENT_IP.to_string());
         let token = Token::detect(req);
 
         ok(Self {

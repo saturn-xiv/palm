@@ -5,7 +5,7 @@ CREATE TABLE email_users(
     real_name VARCHAR(63) NOT NULL,    
     nickname VARCHAR(63) NOT NULL,
     email VARCHAR(127) NOT NULL,
-    password BYTEA NOT NULL,    
+    password VARCHAR(255) NOT NULL,    
     avatar VARCHAR(255) NOT NULL,    
     confirmed_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,    

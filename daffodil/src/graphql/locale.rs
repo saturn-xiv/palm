@@ -14,9 +14,9 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
-use super::super::models::{
-    locale::{Dao as LocaleDao, Item as Locale},
-    user::Item as User,
+use super::super::{
+    models::locale::{Dao as LocaleDao, Item as Locale},
+    session::current_user,
 };
 
 #[derive(GraphQLObject)]
@@ -59,7 +59,7 @@ impl List {
         let mut db = db.get()?;
         let db = db.deref_mut();
         {
-            let user = User::new(ss, db, jwt)?;
+            let (_, user) = current_user(ss, db, jwt)?;
             let mut enf = enforcer.lock().await;
             let enf = enf.deref_mut();
             user.is_administrator(enf)?;
@@ -93,10 +93,11 @@ impl Set {
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
     ) -> Result<()> {
+        self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
         {
-            let user = User::new(ss, db, jwt)?;
+            let (_, user) = current_user(ss, db, jwt)?;
             let mut enf = enforcer.lock().await;
             let enf = enf.deref_mut();
             user.is_administrator(enf)?;
@@ -140,7 +141,7 @@ pub async fn destroy(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;

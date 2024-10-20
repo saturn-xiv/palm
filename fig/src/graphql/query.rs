@@ -2,8 +2,8 @@ use std::ops::Deref;
 
 use chrono::Duration;
 use daffodil::graphql::{
-    attachment as daffodil_attachment, locale as daffodil_locale, log as daffodil_log,
-    user::email as daffodil_user_by_email,
+    attachment as daffodil_attachment, leave_word as daffodil_leave_word,
+    locale as daffodil_locale, log as daffodil_log, user::email as daffodil_user_by_email,
 };
 use juniper::{graphql_object, FieldResult};
 use petunia::{
@@ -111,6 +111,16 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
+    async fn index_leave_word(
+        context: &Context,
+        pager: Pager,
+    ) -> FieldResult<daffodil_leave_word::List> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let res = daffodil_leave_word::List::new(&context.session, db, jwt, enf, &pager).await?;
+        Ok(res)
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }

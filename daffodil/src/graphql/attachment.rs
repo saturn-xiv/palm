@@ -14,9 +14,9 @@ use petunia::{
 };
 use validator::Validate;
 
-use super::super::models::{
-    attachment::{Dao as AttachmentDao, Item as Attachment},
-    user::Item as User,
+use super::super::{
+    models::attachment::{Dao as AttachmentDao, Item as Attachment},
+    session::current_user,
 };
 
 #[derive(GraphQLObject)]
@@ -60,7 +60,7 @@ impl List {
     pub fn new(ss: &Session, db: &DbPool, jwt: &Jwt, pager: &Pager) -> Result<Self> {
         let mut db = db.get()?;
         let db = db.deref_mut();
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
 
         let mut items = Vec::new();
         let total = AttachmentDao::count_by_user(db, user.id)?;
@@ -75,7 +75,7 @@ impl List {
 pub fn destroy(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
-    let user = User::new(ss, db, jwt)?;
+    let (_, user) = current_user(ss, db, jwt)?;
     let it = AttachmentDao::by_id(db, id)?;
     if it.user_id != user.id {
         return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
@@ -91,7 +91,7 @@ pub fn destroy(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
 pub fn set_uploaded_at(ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
     let mut db = db.get()?;
     let db = db.deref_mut();
-    let user = User::new(ss, db, jwt)?;
+    let (_, user) = current_user(ss, db, jwt)?;
     let it = AttachmentDao::by_id(db, id)?;
     if it.user_id != user.id {
         return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
@@ -113,9 +113,10 @@ pub struct SetTitle {
 
 impl SetTitle {
     pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
+        self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let it = AttachmentDao::by_id(db, id)?;
         if it.user_id != user.id {
             return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));

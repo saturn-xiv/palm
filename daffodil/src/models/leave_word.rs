@@ -2,21 +2,18 @@ use std::string::ToString;
 
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
-use language_tags::LanguageTag;
-use petunia::{orm::postgresql::Connection, Result};
+use petunia::{orm::postgresql::Connection, Editor, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 
 use super::super::schema::leave_words;
-use super::Editor;
 
 #[derive(EnumDisplay, EnumString, Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub enum Status {
     #[default]
     Pending,
-    Private,
-    Published(NaiveDateTime),
+    Closed,
 }
 
 #[derive(Queryable, Clone, Serialize)]
@@ -35,11 +32,12 @@ pub struct Item {
 }
 pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;
-    fn create(&mut self, lang: &LanguageTag, ip: &str, body: &str, editor: Editor) -> Result<()>;
+    fn create(&mut self, lang: &str, ip: &str, body: &str, editor: Editor) -> Result<()>;
     fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
+    fn set_status(&mut self, id: i32, status: Status) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -49,11 +47,11 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn create(&mut self, lang: &LanguageTag, ip: &str, body: &str, editor: Editor) -> Result<()> {
+    fn create(&mut self, lang: &str, ip: &str, body: &str, editor: Editor) -> Result<()> {
         let now = Utc::now().naive_utc();
         insert_into(leave_words::dsl::leave_words)
             .values((
-                leave_words::lang.eq(&lang.to_string()),
+                leave_words::lang.eq(lang),
                 leave_words::ip.eq(&ip),
                 leave_words::body.eq(&body),
                 leave_words::body_editor.eq(&editor.to_string()),
@@ -92,6 +90,17 @@ impl Dao for Connection {
         update(it)
             .set((
                 leave_words::dsl::deleted_at.eq(&None::<NaiveDateTime>),
+                leave_words::dsl::updated_at.eq(&now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
+    fn set_status(&mut self, id: i32, status: Status) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        let it = leave_words::dsl::leave_words.filter(leave_words::dsl::id.eq(id));
+        update(it)
+            .set((
+                leave_words::dsl::status.eq(&status.to_string()),
                 leave_words::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

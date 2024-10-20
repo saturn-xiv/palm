@@ -4,7 +4,7 @@ pub mod wechat;
 
 use argon2::{
     password_hash::{rand_core::OsRng, PasswordHash, PasswordVerifier, SaltString},
-    Argon2,
+    Argon2, PasswordHasher,
 };
 use chrono::{NaiveDateTime, Utc};
 use chrono_tz::Tz;
@@ -59,7 +59,7 @@ impl Item {
 }
 
 pub trait Dao {
-    fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()>;
+    fn create(&mut self, uid: &str, lang: &str, timezone: &str) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn total(&mut self) -> Result<i64>;
@@ -69,18 +69,18 @@ pub trait Dao {
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
     fn sign_in(&mut self, id: i32, ip: &str) -> Result<()>;
-    fn set_lang(&mut self, id: i32, lang: &LanguageTag) -> Result<()>;
-    fn set_timezone(&mut self, id: i32, timezone: Tz) -> Result<()>;
+    fn set_lang(&mut self, id: i32, lang: &str) -> Result<()>;
+    fn set_timezone(&mut self, id: i32, timezone: &str) -> Result<()>;
 }
 
 impl Dao for Connection {
-    fn create(&mut self, uid: &str, lang: &LanguageTag, timezone: Tz) -> Result<()> {
+    fn create(&mut self, uid: &str, lang: &str, timezone: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         insert_into(users::dsl::users)
             .values((
                 users::dsl::uid.eq(uid),
-                users::dsl::lang.eq(&lang.to_string()),
-                users::dsl::timezone.eq(&timezone.to_string()),
+                users::dsl::lang.eq(lang),
+                users::dsl::timezone.eq(timezone),
                 users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -176,23 +176,20 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_lang(&mut self, id: i32, lang: &LanguageTag) -> Result<()> {
+    fn set_lang(&mut self, id: i32, lang: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = users::dsl::users.filter(users::dsl::id.eq(id));
         update(it)
-            .set((
-                users::dsl::lang.eq(&lang.to_string()),
-                users::dsl::updated_at.eq(&now),
-            ))
+            .set((users::dsl::lang.eq(lang), users::dsl::updated_at.eq(&now)))
             .execute(self)?;
         Ok(())
     }
-    fn set_timezone(&mut self, id: i32, timezone: Tz) -> Result<()> {
+    fn set_timezone(&mut self, id: i32, timezone: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = users::dsl::users.filter(users::dsl::id.eq(id));
         update(it)
             .set((
-                users::dsl::timezone.eq(&timezone.to_string()),
+                users::dsl::timezone.eq(timezone),
                 users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -211,29 +208,20 @@ impl Item {
         Ok(it)
     }
 
-    pub fn password(plain: &str) -> Result<Vec<u8>> {
+    pub fn password(plain: &str) -> Result<String> {
         let plain = plain.as_bytes();
-        let mut salt = Vec::new();
-        {
-            let it = SaltString::generate(&mut OsRng);
-            it.decode_b64(&mut salt).map_err(|x| {
-                Box::new(HttpError(
-                    StatusCode::INTERNAL_SERVER_ERROR,
-                    Some(x.to_string()),
-                ))
-            })?;
-        };
+        let salt = SaltString::generate(&mut OsRng);
 
-        let mut cipher = [0u8; 32];
-        Argon2::default()
-            .hash_password_into(plain, &salt, &mut cipher)
+        let cipher = Argon2::default()
+            .hash_password(plain, &salt)
             .map_err(|x| {
                 Box::new(HttpError(
                     StatusCode::INTERNAL_SERVER_ERROR,
                     Some(x.to_string()),
                 ))
-            })?;
-        Ok(cipher.to_vec())
+            })?
+            .to_string();
+        Ok(cipher)
     }
 
     pub fn verify(plain: &str, cipher: &str) -> Result<()> {

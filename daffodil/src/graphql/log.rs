@@ -10,9 +10,9 @@ use petunia::{
     Result,
 };
 
-use super::super::models::{
-    log::{Dao as LogDao, Item as Log},
-    user::Item as User,
+use super::super::{
+    models::log::{Dao as LogDao, Item as Log},
+    session::current_user,
 };
 
 #[derive(GraphQLObject)]
@@ -55,7 +55,7 @@ impl List {
     pub fn new(ss: &Session, db: &DbPool, jwt: &Jwt, pager: &Pager) -> Result<Self> {
         let mut db = db.get()?;
         let db = db.deref_mut();
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut items = Vec::new();
         let total = LogDao::count_by_user(db, user.id)?;
         let pagination = Pagination::new(pager, total);

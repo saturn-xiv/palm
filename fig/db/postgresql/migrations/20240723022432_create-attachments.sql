@@ -1,12 +1,11 @@
 -- migrate:up
 CREATE TABLE attachments(
     id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
-    public BOOL NOT NULL DEFAULT FALSE,
+    user_id INT NOT NULL,    
     bucket VARCHAR(63) NOT NULL,
     object VARCHAR(63) NOT NULL,
     title VARCHAR(127) NOT NULL,
-    size BIGINT NOT NULL,
+    size INT NOT NULL,
     content_type VARCHAR(63) NOT NULL,
     uploaded_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,

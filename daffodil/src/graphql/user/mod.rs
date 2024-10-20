@@ -20,10 +20,13 @@ use petunia::{
 use tokio::sync::Mutex;
 use uuid::Uuid;
 
-use super::super::models::{
-    log::{Dao as LogDao, Level as LogLevel},
-    session::{Action as UserAction, Dao as SessionDao, ProviderType as UserProviderType},
-    user::{Dao as UserDao, Item as User},
+use super::super::{
+    models::{
+        log::{Dao as LogDao, Level as LogLevel},
+        session::{Action as UserAction, Dao as SessionDao, ProviderType as UserProviderType},
+        user::{Dao as UserDao, Item as User},
+    },
+    session::current_user,
 };
 use super::NAME;
 
@@ -168,7 +171,7 @@ pub async fn disable(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;
@@ -215,7 +218,7 @@ pub async fn enable(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;
@@ -262,7 +265,7 @@ pub async fn lock(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;
@@ -309,7 +312,7 @@ pub async fn unlock(
     let mut db = db.get()?;
     let db = db.deref_mut();
     {
-        let user = User::new(ss, db, jwt)?;
+        let (_, user) = current_user(ss, db, jwt)?;
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
         user.is_administrator(enf)?;

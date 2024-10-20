@@ -46,7 +46,12 @@ impl CreateByEmail {
             let email = self.email.trim().to_lowercase();
             let real_name = self.real_name.trim();
             db.transaction::<_, Error, _>(move |db| {
-                UserDao::create(db, &uid, &User::guest_lang()?, User::guest_timezone())?;
+                UserDao::create(
+                    db,
+                    &uid,
+                    &User::guest_lang()?.to_string(),
+                    &User::guest_timezone().to_string(),
+                )?;
                 let iu = UserDao::by_uid(db, &uid)?;
 
                 EmailUserDao::create(db, iu.id, real_name, &nickname, &email, &self.password)?;

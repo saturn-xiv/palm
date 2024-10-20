@@ -74,6 +74,14 @@ pub enum Environment {
     Testing,
 }
 
+#[derive(EnumDisplay, EnumString, Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub enum Editor {
+    #[default]
+    Textarea,
+    Slate,
+}
+
 pub fn is_stopped() -> bool {
     Path::new(".stop").exists()
 }

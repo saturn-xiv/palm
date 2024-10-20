@@ -1,7 +1,8 @@
 use std::ops::Deref;
 
 use daffodil::graphql::{
-    attachment as daffodil_attachment, locale as daffodil_locale,
+    attachment as daffodil_attachment, leave_word as daffodil_leave_word,
+    locale as daffodil_locale,
     user::{
         self as daffodil_user, email as daffodil_user_by_email,
         SignInResponse as UserSignInResponse,
@@ -48,13 +49,18 @@ impl Mutation {
             nickname: nickname.trim().to_lowercase(),
             password,
             timezone,
-            lang: context.session.lang.clone(),
         };
         let db = context.postgresql.deref();
         let queue = context.rabbitmq.deref();
         let jwt = context.jwt.deref();
-        form.execute(db, jwt, queue, &context.session.client_ip)
-            .await?;
+        form.execute(
+            db,
+            jwt,
+            queue,
+            &context.session.lang,
+            &context.session.client_ip,
+        )
+        .await?;
         Ok(Succeed::default())
     }
 
@@ -142,7 +148,36 @@ impl Mutation {
             .await?;
         Ok(Succeed::default())
     }
-
+    fn set_email_user_profile(
+        context: &Context,
+        real_name: String,
+        lang: String,
+        timezone: String,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_user_by_email::Profile {
+            real_name: real_name.trim().to_string(),
+            lang,
+            timezone,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, &context.session.client_ip)?;
+        Ok(Succeed::default())
+    }
+    fn change_email_user_password(
+        context: &Context,
+        current_password: String,
+        new_password: String,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_user_by_email::ChangePassword {
+            current_password,
+            new_password,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, &context.session.client_ip)?;
+        Ok(Succeed::default())
+    }
     // ------------------------------------------------------------------------
 
     async fn enable_user(context: &Context, id: i32) -> FieldResult<Succeed> {
@@ -252,6 +287,28 @@ impl Mutation {
         daffodil_attachment::destroy(&context.session, db, jwt, id)?;
         Ok(Succeed::default())
     }
+    // ------------------------------------------------------------------------
+    fn create_leave_word(context: &Context, body: String, editor: String) -> FieldResult<Succeed> {
+        let form = daffodil_leave_word::Create { body, editor };
+        let db = context.postgresql.deref();
+        form.execute(&context.session, db)?;
+        Ok(Succeed::default())
+    }
+    async fn close_leave_word(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_leave_word::close(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn destroy_leave_word(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_leave_word::destroy(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }

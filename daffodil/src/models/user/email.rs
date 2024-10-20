@@ -16,7 +16,7 @@ pub struct Item {
     pub real_name: String,
     pub nickname: String,
     pub email: String,
-    pub password: Vec<u8>,
+    pub password: String,
     pub avatar: String,
     pub confirmed_at: Option<NaiveDateTime>,
     pub deleted_at: Option<NaiveDateTime>,
