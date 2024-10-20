@@ -4,7 +4,8 @@ use chrono::Duration;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
     leave_word as daffodil_leave_word, locale as daffodil_locale, log as daffodil_log,
-    session as daffodil_session, tag as daffodil_tag, user::email as daffodil_user_by_email,
+    menu as daffodil_menu, session as daffodil_session, tag as daffodil_tag,
+    user::email as daffodil_user_by_email,
 };
 use juniper::{graphql_object, FieldResult};
 use petunia::{
@@ -150,6 +151,16 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
+    fn menus(context: &Context, location: String) -> FieldResult<Vec<daffodil_menu::Menu>> {
+        let db = context.postgresql.deref();
+        let res = daffodil_menu::Menu::all(db, &context.session.lang, &location)?;
+        Ok(res)
+    }
+    fn index(context: &Context) -> FieldResult<Vec<daffodil_menu::Item>> {
+        let db = context.postgresql.deref();
+        let res = daffodil_menu::Item::all(db)?;
+        Ok(res)
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------

@@ -152,6 +152,23 @@ diesel::table! {
 }
 
 diesel::table! {
+    menu_items (id) {
+        id -> Int4,
+        parent_id -> Nullable<Int4>,
+        #[max_length = 15]
+        lang -> Varchar,
+        #[max_length = 63]
+        location -> Varchar,
+        #[max_length = 63]
+        label -> Varchar,
+        sort_order -> Int4,
+        version -> Int4,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     sessions (id) {
         id -> Int4,
         user_id -> Int4,
@@ -290,6 +307,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     leave_words,
     locales,
     logs,
+    menu_items,
     sessions,
     settings,
     tag_resources,

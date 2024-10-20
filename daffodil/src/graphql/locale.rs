@@ -1,9 +1,11 @@
 use std::ops::DerefMut;
+use std::str::FromStr;
 
 use casbin::Enforcer;
 use chrono::NaiveDateTime;
 use diesel::Connection as DieselConnection;
 use juniper::GraphQLObject;
+use language_tags::LanguageTag;
 use petunia::{
     graphql::{Pager, Pagination},
     jwt::openssl::OpenSsl as Jwt,
@@ -94,6 +96,10 @@ impl Set {
         enforcer: &Mutex<Enforcer>,
     ) -> Result<()> {
         self.validate()?;
+        let lang = {
+            let it = LanguageTag::from_str(&self.lang)?;
+            it.to_string()
+        };
         let mut db = db.get()?;
         let db = db.deref_mut();
         {
@@ -104,12 +110,12 @@ impl Set {
         }
 
         db.transaction::<_, Error, _>(|db| {
-            match LocaleDao::by_lang_and_code(db, &self.lang, &self.code) {
+            match LocaleDao::by_lang_and_code(db, &lang, &self.code) {
                 Ok(ref it) => {
                     LocaleDao::update(db, it.id, &self.message)?;
                 }
                 Err(_) => {
-                    LocaleDao::create(db, &self.lang, &self.code, &self.message)?;
+                    LocaleDao::create(db, &lang, &self.code, &self.message)?;
                 }
             }
             Ok(())

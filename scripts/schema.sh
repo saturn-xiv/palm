@@ -87,7 +87,7 @@ function generate_diesel_schema() {
         attachments attachment_resources \
         tags tag_resources \
         categories category_resources \
-        leave_words >daffodil/src/schema.rs
+        menu_items leave_words >daffodil/src/schema.rs
     echo "generate database schema for carnation"
     DATABASE_URL=$1 diesel print-schema -o cms_pages >carnation/src/schema.rs
     echo "generate database schema for hibiscus"

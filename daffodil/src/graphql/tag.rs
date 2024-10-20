@@ -48,7 +48,7 @@ impl Item {
 
 #[derive(Validate)]
 pub struct Form {
-    #[validate(length(min = 2, max = 255))]
+    #[validate(length(min = 2, max = 63))]
     pub code: String,
 }
 

@@ -5,7 +5,6 @@ diesel::table! {
         id -> Int4,
         #[max_length = 15]
         lang -> Varchar,
-        parent_id -> Int4,
         #[max_length = 31]
         slug -> Varchar,
         #[max_length = 255]

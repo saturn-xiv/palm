@@ -2,8 +2,8 @@ use std::ops::Deref;
 
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
-    leave_word as daffodil_leave_word, locale as daffodil_locale, session as daffodil_session,
-    tag as daffodil_tag,
+    leave_word as daffodil_leave_word, locale as daffodil_locale, menu as daffodil_menu,
+    session as daffodil_session, tag as daffodil_tag,
     user::{
         self as daffodil_user, email as daffodil_user_by_email,
         SignInResponse as UserSignInResponse,
@@ -391,6 +391,64 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
+    async fn append_menu(
+        context: &Context,
+        lang: String,
+        location: String,
+        label: String,
+        sort_order: i32,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_menu::Append {
+            lang,
+            location: location.trim().to_lowercase(),
+            label: label.trim().to_string(),
+            sort_order,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf).await?;
+        Ok(Succeed::default())
+    }
+    async fn create_menu(
+        context: &Context,
+        parent: i32,
+        label: String,
+        sort_order: i32,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_menu::Form {
+            label: label.trim().to_string(),
+            sort_order,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.create(&context.session, db, jwt, enf, parent).await?;
+        Ok(Succeed::default())
+    }
+    async fn update_menu(
+        context: &Context,
+        id: i32,
+        label: String,
+        sort_order: i32,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_menu::Form {
+            label: label.trim().to_string(),
+            sort_order,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.update(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn destroy_menu(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_menu::destroy(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
