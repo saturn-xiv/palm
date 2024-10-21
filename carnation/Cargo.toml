@@ -5,6 +5,7 @@ edition = "2021"
 description = "A content management system focused on flexibility and user experience(inspired by Grav)."
 
 [dependencies]
+language-tags = "0.3"
 log = "0.4"
 actix-session = "0.10"
 askama = "0.12"
@@ -19,6 +20,14 @@ features = ["serde", "std"]
 [dependencies.juniper]
 version = "0.16"
 features = ["chrono"]
+
+[dependencies.validator]
+version = "0.18"
+features = ["derive"]
+
+[dependencies.strum]
+version = "0.26"
+features = ["derive"]
 
 [dependencies.hyper]
 version = "1"

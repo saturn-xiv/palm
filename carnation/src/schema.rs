@@ -3,6 +3,7 @@
 diesel::table! {
     cms_pages (id) {
         id -> Int4,
+        user_id -> Int4,
         #[max_length = 15]
         lang -> Varchar,
         #[max_length = 31]

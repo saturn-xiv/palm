@@ -1,6 +1,7 @@
 -- migrate:up
 CREATE TABLE cms_pages(
     id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
     lang VARCHAR(15) NOT NULL,
     slug VARCHAR(31) NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -23,4 +24,4 @@ CREATE INDEX idx_cms_pages_status ON cms_pages(status);
 
 
 -- migrate:down
-DROP TABLE idx_cms_pages;
+DROP TABLE cms_pages;

@@ -48,7 +48,7 @@ impl From<LeaveWord> for Item {
 }
 
 #[derive(GraphQLObject)]
-#[graphql(name = "AttachmentList")]
+#[graphql(name = "LeaveWordList")]
 pub struct List {
     pub pagination: Pagination,
     pub items: Vec<Item>,

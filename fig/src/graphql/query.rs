@@ -1,5 +1,6 @@
 use std::ops::Deref;
 
+use carnation::graphql::page as cms_page;
 use chrono::Duration;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
@@ -170,6 +171,12 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
+    fn index_cms_page(context: &Context, pager: Pager) -> FieldResult<cms_page::List> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let res = cms_page::List::new(&context.session, db, jwt, &pager)?;
+        Ok(res)
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }

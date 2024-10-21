@@ -1,5 +1,6 @@
 use std::ops::Deref;
 
+use carnation::graphql::page as cms_page;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
     leave_word as daffodil_leave_word, locale as daffodil_locale, menu as daffodil_menu,
@@ -496,6 +497,42 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
+    fn create_cms_page(context: &Context, form: cms_page::Create) -> FieldResult<Succeed> {
+        let form = {
+            let mut it = form.clone();
+            it.template = form.template.trim().to_lowercase();
+            it.slug = form.slug.trim().to_lowercase();
+            it
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt)?;
+        Ok(Succeed::default())
+    }
+    fn update_cms_page(
+        context: &Context,
+        id: i32,
+        slug: String,
+        body: String,
+    ) -> FieldResult<Succeed> {
+        let form = cms_page::Update {
+            slug: slug.trim().to_lowercase(),
+            body,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn set_cms_page_template(context: &Context, id: i32, template: String) -> FieldResult<Succeed> {
+        let form = cms_page::SetTemplate {
+            template: template.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }
