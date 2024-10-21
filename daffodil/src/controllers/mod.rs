@@ -19,5 +19,7 @@ pub fn register(config: &mut web::ServiceConfig) {
             );
     }
 
-    config.service(web::scope("/attachments").service(attachments::upload));
+    config.service(
+        web::scope("/api").service(web::scope("/attachments").service(attachments::upload)),
+    );
 }

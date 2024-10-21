@@ -29,7 +29,8 @@ impl fmt::Display for Host {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
-    pub pool: Option<u32>,
+    #[serde(rename = "pool-size")]
+    pub pool_size: Option<u32>,
     pub namespace: String,
     pub nodes: Vec<Host>,
 }
@@ -40,7 +41,7 @@ impl Config {
         let client = ClusterClient::builder(nodes).build()?;
 
         let pool = r2d2::Pool::builder()
-            .max_size(self.pool.unwrap_or(32))
+            .max_size(self.pool_size.unwrap_or(32))
             .build(client)?;
         Ok(pool)
     }
@@ -76,7 +77,7 @@ impl Default for Config {
                 },
             ],
             namespace: "demo://".to_string(),
-            pool: Some(32),
+            pool_size: Some(32),
         }
     }
 }

@@ -1,8 +1,8 @@
 [package]
-name = "carnation"
-version = "2024.9.25"
+name = "wisteria"
+version = "2024.10.21"
 edition = "2021"
-description = "A content management system focused on flexibility and user experience(inspired by Grav)."
+description = "An online survey tool to quickly create questionnaires, poll votes & surveys."
 
 [dependencies]
 language-tags = "0.3"

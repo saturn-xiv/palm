@@ -68,13 +68,16 @@ version = "4"
 features = ["cookies"]
 
 [dependencies.petunia]
-path = '../petunia'
+path = "../petunia"
 
 [dependencies.daffodil]
-path = '../daffodil'
+path = "../daffodil"
 
 [dependencies.hibiscus]
-path = '../hibiscus'
+path = "../hibiscus"
 
 [dependencies.carnation]
-path = '../carnation'
+path = "../carnation"
+
+[dependencies.wisteria]
+path = "../wisteria"
