@@ -52,8 +52,8 @@ impl Dao for Connection {
         insert_into(leave_words::dsl::leave_words)
             .values((
                 leave_words::lang.eq(lang),
-                leave_words::ip.eq(&ip),
-                leave_words::body.eq(&body),
+                leave_words::ip.eq(ip),
+                leave_words::body.eq(body),
                 leave_words::body_editor.eq(&editor.to_string()),
                 leave_words::status.eq(&Status::Pending.to_string()),
                 leave_words::updated_at.eq(&now),

@@ -40,6 +40,10 @@ features = ["derive"]
 version = "1"
 features = ["full"]
 
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
 [dependencies.diesel]
 version = "2"
 default-features = false

@@ -12,6 +12,7 @@ use daffodil::graphql::{
 };
 use juniper::{graphql_object, FieldResult};
 use petunia::{graphql::Succeed, themes::Author as SiteAuthor};
+use wisteria::graphql as wisteria_graphql;
 
 use super::context::Context;
 
@@ -534,5 +535,129 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
+    fn create_questionnaire_form(
+        context: &Context,
+        title: String,
+        description: String,
+        description_editor: String,
+    ) -> FieldResult<Succeed> {
+        let form = wisteria_graphql::form::Create {
+            title,
+            description,
+            editor: description_editor.trim().to_lowercase(),
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt)?;
+        Ok(Succeed::default())
+    }
+    fn update_questionnaire_form(
+        context: &Context,
+        id: i32,
+        title: String,
+        description: String,
+    ) -> FieldResult<Succeed> {
+        let form = wisteria_graphql::form::Update { title, description };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn lock_questionnaire_form(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::form::lock(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn unlock_questionnaire_form(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::form::unlock(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn enable_questionnaire_form(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::form::enable(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn disable_questionnaire_form(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::form::disable(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    fn create_questionnaire_field(
+        context: &Context,
+        form: i32,
+        label: String,
+        summary: String,
+        sort_order: i32,
+    ) -> FieldResult<Succeed> {
+        let form_ = wisteria_graphql::field::Create {
+            label,
+            summary,
+            sort_order,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form_.execute(&context.session, db, jwt, form)?;
+        Ok(Succeed::default())
+    }
+    fn update_questionnaire_field(
+        context: &Context,
+        id: i32,
+        label: String,
+        summary: String,
+        sort_order: i32,
+    ) -> FieldResult<Succeed> {
+        let form = wisteria_graphql::field::Update {
+            label,
+            summary,
+            sort_order,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn enable_questionnaire_field(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::field::enable(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn disable_questionnaire_field(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::field::disable(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    fn create_questionnaire_pool(context: &Context, form: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::poll::create(&context.session, db, jwt, form)?;
+        Ok(Succeed::default())
+    }
+    fn update_questionnaire_pool(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::poll::update(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn enable_questionnaire_pool(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::poll::enable(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
+    fn disable_questionnaire_pool(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        wisteria_graphql::poll::disable(&context.session, db, jwt, id)?;
+        Ok(Succeed::default())
+    }
     // ------------------------------------------------------------------------
 }

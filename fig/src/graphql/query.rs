@@ -14,6 +14,7 @@ use petunia::{
     themes::{Layout, Menu},
     GIT_VERSION,
 };
+use wisteria::graphql as wisteria_graphql;
 
 use super::context::Context;
 
@@ -178,5 +179,33 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
+    fn index_questionnaire_form(
+        context: &Context,
+    ) -> FieldResult<Vec<wisteria_graphql::form::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let res = wisteria_graphql::form::Item::all(&context.session, db, jwt)?;
+        Ok(res)
+    }
+    // ------------------------------------------------------------------------
+    fn index_questionnaire_field(
+        context: &Context,
+        form: i32,
+    ) -> FieldResult<Vec<wisteria_graphql::field::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let res = wisteria_graphql::field::Item::by_form(&context.session, db, jwt, form)?;
+        Ok(res)
+    }
+    // ------------------------------------------------------------------------
+    fn index_questionnaire_pool(
+        context: &Context,
+        form: i32,
+    ) -> FieldResult<Vec<wisteria_graphql::poll::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let res = wisteria_graphql::poll::Item::by_form(&context.session, db, jwt, form)?;
+        Ok(res)
+    }
     // ------------------------------------------------------------------------
 }
