@@ -1,9 +1,5 @@
 import Cookies from "js-cookie";
 
-export interface ILocale {
-  messages: Record<string, string>;
-}
-
 const KEY = "locale";
 
 export const get = (): string => {

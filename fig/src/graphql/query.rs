@@ -94,9 +94,12 @@ impl Query {
         let res = daffodil_locale::List::new(&context.session, db, jwt, enf, &pager).await?;
         Ok(res)
     }
-    fn index_locale_by_lang(context: &Context) -> FieldResult<Vec<daffodil_locale::Item>> {
+    fn index_locale_by_lang(
+        context: &Context,
+        lang: String,
+    ) -> FieldResult<Vec<daffodil_locale::Item>> {
         let db = context.postgresql.deref();
-        let res = daffodil_locale::Item::by_lang(db, &context.session.lang)?;
+        let res = daffodil_locale::Item::by_lang(db, &lang)?;
         Ok(res)
     }
     // ------------------------------------------------------------------------

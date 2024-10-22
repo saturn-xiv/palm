@@ -2,6 +2,25 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "../store";
 
+export const ROLE_ROOT = "root";
+export const ROLE_ADMINISTRATOR = "administrator";
+export const SESSION_LIFETIME =
+  parseInt(import.meta.env.VITE_SESSION_LIFETIME_IN_MINUTES) * 60;
+
+const KEY = "token";
+
+export const get = (): string | null => {
+  return sessionStorage.getItem(KEY);
+};
+
+const set = (token: string) => {
+  sessionStorage.setItem(KEY, token);
+};
+
+const remove = () => {
+  sessionStorage.removeItem(KEY);
+};
+
 export interface IPermission {
   operation: string;
   resource: IResource;
@@ -33,10 +52,11 @@ export const currentUserSlice = createSlice({
   reducers: {
     signIn: (state, action: PayloadAction<IUserSignInAction>) => {
       // TODO
-      console.log(action.payload.token);
+      set(action.payload.token);
       state.uid = "who-am-i";
     },
     signOut: (state) => {
+      remove();
       state.uid = undefined;
     },
   },

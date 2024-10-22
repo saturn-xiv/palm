@@ -3,13 +3,16 @@ import { IntlProvider } from "react-intl";
 
 import Router from "./Router";
 import store from "./store";
-import { DEFAULT_LANGUAGE, get as detect_locale } from "./i18n";
+import { DEFAULT_LANGUAGE } from "./i18n";
 
-const Widget = () => {
-  const locale = detect_locale();
+interface IProps {
+  locale: string;
+  messages: Record<string, string>;
+}
+const Widget = ({ locale, messages }: IProps) => {
   return (
     <IntlProvider
-      messages={{}}
+      messages={messages}
       locale={locale}
       defaultLocale={DEFAULT_LANGUAGE}
     >
