@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 
+import Copyright from "../copyright";
+
 const Widget = () => {
   return (
     <div>
@@ -7,7 +9,10 @@ const Widget = () => {
       <div>
         <Outlet />
       </div>
-      <div>application footer</div>
+      <div>
+        application footer
+        <Copyright />
+      </div>
     </div>
   );
 };
