@@ -1,5 +1,7 @@
+import Router from "./Router";
+
 const Widget = () => {
-  return <>home</>;
+  return <Router />;
 };
 
 export default Widget;
