@@ -6,7 +6,6 @@ set -e
 # npm create vite@latest fig -- --template react-ts
 
 npm install --save filesize timezones-list \
-    moment moment-timezone \
     marked \
     diff @types/diff \
     lodash @types/lodash \
@@ -33,8 +32,9 @@ npm install --save filesize timezones-list \
     react-router-dom@latest \
     @reduxjs/toolkit react-redux
 
+# https://mui.com/material-ui/getting-started/installation/
 npm install --save @mui/material @emotion/react @emotion/styled \
-    @fontsource/roboto @mui/icons-material
+    @fontsource/roboto @mui/icons-material @mui/x-charts
 
 # npm install --save grpc-web google-protobuf @types/google-protobuf
 
