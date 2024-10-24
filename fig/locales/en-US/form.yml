@@ -1,0 +1,5 @@
+fields:
+  email-or-nickname:
+    label: "Email or nickname"
+  password:
+    label: "Password"

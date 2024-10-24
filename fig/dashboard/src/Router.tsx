@@ -2,7 +2,7 @@ import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const Dashboard = lazy(() => import("./layouts/dashboard"));
-const Application = lazy(() => import("./layouts/application"));
+const SignInSideLayout = lazy(() => import("./layouts/sign-in-side"));
 
 const Home = lazy(() => import("./pages/home"));
 const UsersSignIn = lazy(() => import("./pages/users/sign-in"));
@@ -58,20 +58,20 @@ const router = createBrowserRouter(
     },
     {
       path: "anonymous",
-      element: <Application />,
+      element: <SignInSideLayout />,
       children: [
         { path: "users/sign-in", element: <UsersSignIn /> },
         { path: "users/sign-up", element: <UsersSignUp /> },
         { path: "users/forgot-password", element: <UsersForgotPassword /> },
         { path: "users/reset-password", element: <UsersRestPassword /> },
-        { path: "users/confirm/by-email", element: <UsersConfirmByEmail /> },
+        { path: "users/confirm", element: <UsersConfirmByEmail /> },
         {
-          path: "users/confirm/by-token/:token",
+          path: "users/confirm/:token",
           element: <UsersConfirmByToken />,
         },
-        { path: "users/unlock/by-email", element: <UsersUnlockByEmail /> },
+        { path: "users/unlock", element: <UsersUnlockByEmail /> },
         {
-          path: "users/unlock/by-token/:token",
+          path: "users/unlock/:token",
           element: <UsersUnlockByToken />,
         },
         { path: "leave-words/new", element: <NewLeaveWords /> },

@@ -5,10 +5,13 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+
 import SelectContent from "./SelectContent";
 import MenuContent from "./MenuContent";
 import CardAlert from "./CardAlert";
 import OptionsMenu from "./OptionsMenu";
+
+import avatar_url from "../../../assets/user.svg";
 
 const drawerWidth = 240;
 
@@ -59,7 +62,7 @@ export default function SideMenu() {
         <Avatar
           sizes="small"
           alt="Riley Carter"
-          src="/static/images/avatar/7.jpg"
+          src={avatar_url}
           sx={{ width: 36, height: 36 }}
         />
         <Box sx={{ mr: "auto" }}>

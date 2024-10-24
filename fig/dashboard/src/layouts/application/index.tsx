@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import Copyright from "../copyright";
+import Copyright from "../Copyright";
 
 const Widget = () => {
   return (

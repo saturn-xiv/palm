@@ -6,6 +6,7 @@ export interface ISiteLayout {
   title: string;
   subhead: string;
   copyright: string;
+  logo: string;
 }
 
 interface IState {
@@ -23,6 +24,7 @@ export const siteSlice = createSlice({
         title: action.payload.title,
         subhead: action.payload.subhead,
         copyright: action.payload.copyright,
+        logo: action.payload.logo,
       };
     },
   },

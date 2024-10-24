@@ -9,7 +9,14 @@ const Widget = () => {
   useEffect(() => {
     if (!site_layout) {
       // TODO
-      dispatch(refresh({ title: "ttt", subhead: "sss", copyright: "ccc" }));
+      dispatch(
+        refresh({
+          title: "ttt",
+          subhead: "sss",
+          copyright: "ccc",
+          logo: "/my/logo.svg",
+        })
+      );
     }
   });
   return <span>&copy;{site_layout?.copyright}</span>;

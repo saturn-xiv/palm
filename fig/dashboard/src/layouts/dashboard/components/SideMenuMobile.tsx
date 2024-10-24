@@ -10,6 +10,7 @@ import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import MenuButton from "./MenuButton";
 import MenuContent from "./MenuContent";
 import CardAlert from "./CardAlert";
+import avatar_url from "../../../assets/user.svg";
 
 interface SideMenuMobileProps {
   open: boolean | undefined;
@@ -47,7 +48,7 @@ export default function SideMenuMobile({
             <Avatar
               sizes="small"
               alt="Riley Carter"
-              src="/static/images/avatar/7.jpg"
+              src={avatar_url}
               sx={{ width: 24, height: 24 }}
             />
             <Typography component="p" variant="h6">

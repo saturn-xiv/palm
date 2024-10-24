@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { Provider } from "react-redux";
 import { IntlProvider } from "react-intl";
+import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 
 import Router from "./Router";
 import store from "./store";
@@ -17,7 +19,9 @@ const Widget = ({ locale, messages }: IProps) => {
       defaultLocale={DEFAULT_LANGUAGE}
     >
       <Provider store={store}>
-        <Router />
+        <Suspense fallback={<RefreshRoundedIcon />}>
+          <Router />
+        </Suspense>
       </Provider>
     </IntlProvider>
   );
