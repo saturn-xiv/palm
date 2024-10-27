@@ -5,12 +5,15 @@ use std::time::{SystemTime, UNIX_EPOCH};
 use amq_protocol_uri::{AMQPAuthority, AMQPUri, AMQPUserInfo};
 use futures::StreamExt;
 use hyper::StatusCode;
+pub use lapin::ExchangeKind;
 use lapin::{
     message::Delivery,
-    options::{BasicAckOptions, BasicConsumeOptions, BasicPublishOptions, QueueDeclareOptions},
-    options::{ExchangeDeclareOptions, QueueBindOptions},
+    options::{
+        BasicAckOptions, BasicConsumeOptions, BasicPublishOptions, ExchangeDeclareOptions,
+        QueueBindOptions, QueueDeclareOptions,
+    },
     types::FieldTable,
-    BasicProperties, Channel, Connection, ConnectionProperties, ExchangeKind,
+    BasicProperties, Channel, Connection, ConnectionProperties,
 };
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -179,8 +182,8 @@ impl Flatbuffer for RabbitMq {
 
 impl RabbitMq {
     // https://www.rabbitmq.com/tutorials/tutorial-three-python.html
-    pub async fn publish(&self, queue: &str, content_type: &str, task: &[u8]) -> Result<()> {
-        self.send(queue, "", content_type, task).await
+    pub async fn publish(&self, exchange: &str, content_type: &str, task: &[u8]) -> Result<()> {
+        self.send(exchange, "", content_type, task).await
     }
     // https://www.rabbitmq.com/tutorials/tutorial-two-python.html
     pub async fn produce(&self, queue: &str, content_type: &str, task: &[u8]) -> Result<()> {

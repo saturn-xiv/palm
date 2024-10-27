@@ -4,6 +4,7 @@ version = "2024.9.25"
 edition = "2021"
 
 [dependencies]
+futures = "0.3"
 language-tags = "0.3"
 mime = "0.3"
 log = "0.4"

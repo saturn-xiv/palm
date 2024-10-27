@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { useIntl } from "react-intl";
-import { useNavigate } from "react-router-dom";
 
 import { EmailForm, IEmailFormValues } from "./users/sign-up";
 import { install } from "../api/daffodil";
 import { guess_timezone } from "../utils";
-import { SIGN_IN_PATH } from "../reducers/current-user";
 import { IAlert } from "../components";
 import { IError } from "../api";
 
 const Widget = () => {
   const [alert, setAlert] = useState<IAlert>();
-  const navigate = useNavigate();
   const intl = useIntl();
   const handleSubmit = (values: IEmailFormValues) => {
     install(
@@ -34,7 +31,6 @@ const Widget = () => {
           color: "success",
           messages: [intl.formatMessage({ id: "flashes.succeed" })],
         });
-        // navigate(SIGN_IN_PATH);
       })
       .catch((reason: IError[]) => {
         setAlert({

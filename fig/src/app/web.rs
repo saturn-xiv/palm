@@ -77,16 +77,19 @@ impl Command {
         };
         {
             let name = format!("{}.casbin-watcher", hostname()?);
+
             let ch = queue.open().await?;
-            let queue = type_name::<CasbinWatcherMessage>();
-            Queue::queue_declare(&ch, queue, false, false).await?;
+            let exchange = type_name::<CasbinWatcherMessage>();
+            let queue = Queue::queue_declare(&ch, "", true, true).await?;
+            Queue::queue_bind(&ch, &queue, exchange, "").await?;
+
             let enf = enforcer.clone();
             tokio::spawn(async move {
                 log::info!("start enforcer watcher subscriber({queue})");
                 let enf = enf.deref();
                 let enf = enf.deref();
                 loop {
-                    if let Err(e) = Queue::consume(&ch, &name, queue, enf).await {
+                    if let Err(e) = Queue::consume(&ch, &name, &queue, enf).await {
                         log::error!("casbin watcher subscriber{:?}", e);
                     }
                     tokio::time::sleep(StdDuration::from_secs(5)).await;

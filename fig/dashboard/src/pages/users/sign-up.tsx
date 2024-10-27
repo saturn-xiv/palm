@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useFormik } from "formik";
 import Alert from "@mui/material/Alert";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 import Layout from "../../layouts/sign-in-side/Card";
@@ -18,6 +19,7 @@ import {
   PASSWORD_MIN_LENGTH,
   PASSWORD_PLACEHOLDER,
 } from "../../components";
+import { SIGN_IN_PATH } from "../../reducers/current-user";
 
 interface IEmailFormProps {
   title: string;
@@ -63,6 +65,7 @@ const validationSchema = yup.object({
 });
 
 export const EmailForm = ({ title, alert, handleSubmit }: IEmailFormProps) => {
+  const navigate = useNavigate();
   const initialValues: IEmailFormValues = {
     email: "",
     realName: "",
@@ -81,7 +84,14 @@ export const EmailForm = ({ title, alert, handleSubmit }: IEmailFormProps) => {
   return (
     <Layout title={title} handleSubmit={formik.handleSubmit}>
       {alert && (
-        <Alert severity={alert?.color}>
+        <Alert
+          severity={alert?.color}
+          onClose={() => {
+            if (alert.color == "success") {
+              navigate(SIGN_IN_PATH);
+            }
+          }}
+        >
           {alert.messages.map((x, i) => (
             <div key={i}>{x}</div>
           ))}
