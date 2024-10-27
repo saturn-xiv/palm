@@ -1,5 +1,13 @@
 fields:
-  email-or-nickname:
-    label: "Email or nickname"
+  email:
+    label: "Email"
+  nickname:
+    label: "Nickname"
+  username:
+    label: "Label"
+  real-name:
+    label: "Real name"
   password:
     label: "Password"
+  password-confirmation:
+    label: "Password confirmation"

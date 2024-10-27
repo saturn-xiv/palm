@@ -7,7 +7,7 @@ use chrono::{Duration, NaiveDateTime};
 use chrono_tz::Tz;
 use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
-use juniper::GraphQLObject;
+use juniper::{GraphQLInputObject, GraphQLObject};
 use language_tags::LanguageTag;
 use petunia::{
     daisy::v1::{
@@ -40,7 +40,8 @@ use super::super::super::{
 use super::super::NAME;
 use super::SignInResponse;
 
-#[derive(Validate)]
+#[derive(GraphQLInputObject, Validate)]
+#[graphql(name = "UserSignUpByEmailRequest")]
 pub struct SignUp {
     #[validate(length(min = 2, max = 31))]
     pub real_name: String,
@@ -65,6 +66,10 @@ impl SignUp {
     ) -> Result<()> {
         self.validate()?;
 
+        let lang = {
+            let it = LanguageTag::from_str(lang)?;
+            it.to_string()
+        };
         let timezone = {
             let it = Tz::from_str(&self.timezone)?;
             it.to_string()
@@ -88,7 +93,7 @@ impl SignUp {
                 )));
             }
 
-            UserDao::create(db, &uid, lang, &timezone)?;
+            UserDao::create(db, &uid, &lang, &timezone)?;
             let user = UserDao::by_uid(db, &uid)?;
             EmailDao::create(
                 db,
@@ -111,7 +116,7 @@ impl SignUp {
         })?;
         send_email(
             (&self.email, &self.real_name),
-            lang,
+            &lang,
             db,
             jwt,
             queue,

@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { RootState } from "../store";
 
+export const SIGN_IN_PATH = "/anonymous/users/sign-in";
+
 export const ROLE_ROOT = "root";
 export const ROLE_ADMINISTRATOR = "administrator";
 export const SESSION_LIFETIME =

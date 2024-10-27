@@ -30,7 +30,8 @@ npm install --save filesize timezones-list \
     react-big-calendar @types/react-big-calendar \
     react-intl \
     react-router-dom@latest \
-    @reduxjs/toolkit react-redux
+    @reduxjs/toolkit react-redux \
+    formik yup
 
 # https://mui.com/material-ui/getting-started/installation/
 npm install --save @mui/material @emotion/react @emotion/styled \

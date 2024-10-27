@@ -1,4 +1,4 @@
-import { get as get_token } from "./reducers/current-user";
+import { get as get_token } from "../reducers/current-user";
 
 export const query = async <V, R>(query: string, args: V): Promise<R> => {
   return graphql<{ query: string; variables: V }, R>({
@@ -26,6 +26,18 @@ const graphql = async <Q, R>(body: Q): Promise<R> => {
     method: "POST",
     body: JSON.stringify(body),
   });
-  const res: { data: R } = await response.json();
+  const res: { data: R } | { errors: IError[] } = await response.json();
+  if ("errors" in res) {
+    return Promise.reject(res.errors);
+  }
   return res.data;
 };
+
+export interface ISucceed {
+  createdAt: Date;
+}
+
+export interface IError {
+  message: string;
+  locations: { line: number; column: number }[];
+}

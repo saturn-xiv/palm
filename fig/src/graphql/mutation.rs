@@ -20,6 +20,29 @@ pub struct Mutation;
 
 #[graphql_object(Context = Context)]
 impl Mutation {
+    async fn install(
+        context: &Context,
+        lang: String,
+        site: daffodil_site::info::Base,
+        user: daffodil_user_by_email::SignUp,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_site::Install {
+            site,
+            user: daffodil_user_by_email::SignUp {
+                real_name: user.real_name.trim().to_string(),
+                email: user.email.trim().to_lowercase(),
+                nickname: user.nickname.trim().to_lowercase(),
+                password: user.password.clone(),
+                timezone: user.timezone,
+            },
+        };
+
+        let db = context.postgresql.deref();
+        let enf = context.enforcer.deref();
+        form.execute(db, enf, &lang, &context.session.client_ip)
+            .await?;
+        Ok(Succeed::default())
+    }
     async fn user_sign_in_by_email(
         context: &Context,
         user: String,
@@ -40,18 +63,14 @@ impl Mutation {
     }
     async fn user_sign_up_by_email(
         context: &Context,
-        real_name: String,
-        nickname: String,
-        email: String,
-        password: String,
-        timezone: String,
+        form: daffodil_user_by_email::SignUp,
     ) -> FieldResult<Succeed> {
         let form = daffodil_user_by_email::SignUp {
-            real_name: real_name.trim().to_string(),
-            email: email.trim().to_lowercase(),
-            nickname: nickname.trim().to_lowercase(),
-            password,
-            timezone,
+            real_name: form.real_name.trim().to_string(),
+            email: form.email.trim().to_lowercase(),
+            nickname: form.nickname.trim().to_lowercase(),
+            password: form.password.clone(),
+            timezone: form.timezone,
         };
         let db = context.postgresql.deref();
         let queue = context.rabbitmq.deref();
@@ -438,16 +457,13 @@ impl Mutation {
     async fn set_site_base_info(
         context: &Context,
         lang: String,
-        title: String,
-        subhead: String,
-        description: String,
-        copyright: String,
+        form: daffodil_site::info::Base,
     ) -> FieldResult<Succeed> {
         let form = daffodil_site::info::Base {
-            title: title.trim().to_string(),
-            subhead: subhead.trim().to_string(),
-            description: description.trim().to_string(),
-            copyright: copyright.trim().to_string(),
+            title: form.title.trim().to_string(),
+            subhead: form.subhead.trim().to_string(),
+            description: form.description.trim().to_string(),
+            copyright: form.copyright.trim().to_string(),
         };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();

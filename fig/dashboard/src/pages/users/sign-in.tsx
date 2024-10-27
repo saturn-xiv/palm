@@ -64,7 +64,7 @@ const Widget = () => {
     >
       <FormControl>
         <FormLabel htmlFor="user">
-          <FormattedMessage id="form.fields.email-or-nickname.label" />
+          <FormattedMessage id="pages.users.sign-in.form.email-or-nickname.label" />
         </FormLabel>
         <TextField
           error={emailError}

@@ -1,24 +1,38 @@
 pub mod info;
 
 use std::ops::DerefMut;
+use std::str::FromStr;
 
-use casbin::Enforcer;
+use casbin::{Enforcer, RbacApi};
+use chrono_tz::Tz;
 use diesel::Connection as DieselConnection;
+use hyper::StatusCode;
+use language_tags::LanguageTag;
 use petunia::{
     crypto::Key,
     jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::Pool as DbPool,
+    rbac::v1::{
+        policy_roles_response::Item as PolicyRole, policy_users_response::Item as PolicyUser,
+    },
     session::Session,
     themes::{Author, Layout},
-    Error, Result,
+    Error, HttpError, Result,
 };
 use serde::{de::DeserializeOwned, Serialize};
 use tokio::sync::Mutex;
+use uuid::Uuid;
+use validator::Validate;
 
 use super::super::{
     models::{
         locale::{Dao as LocaleDao, I18n},
+        log::{Dao as LogDao, Level as LogLevel},
         setting::Setting,
+        user::{
+            email::{Dao as EmailDao, Item as EmailUser},
+            Dao as UserDao,
+        },
     },
     session::current_user,
 };
@@ -102,4 +116,89 @@ pub async fn set<T: Serialize>(
     })?;
 
     Ok(())
+}
+
+#[derive(Validate)]
+pub struct Install {
+    pub user: super::user::email::SignUp,
+    pub site: info::Base,
+}
+
+impl Install {
+    pub async fn execute(
+        &self,
+        db: &DbPool,
+        enforcer: &Mutex<Enforcer>,
+        lang: &str,
+        client_ip: &str,
+    ) -> Result<()> {
+        self.validate()?;
+        let lang = {
+            let it = LanguageTag::from_str(lang)?;
+            it.to_string()
+        };
+        let timezone = {
+            let it = Tz::from_str(&self.user.timezone)?;
+            it.to_string()
+        };
+        let uid = Uuid::new_v4().to_string();
+
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+
+        let user = db.transaction::<_, Error, _>(|db| {
+            if UserDao::total(db)? > 0 {
+                return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+            }
+            I18n::set(db, &lang, Layout::TITLE, &self.site.title)?;
+            I18n::set(db, &lang, Layout::SUBHEAD, &self.site.subhead)?;
+            I18n::set(db, &lang, Layout::DESCRIPTION, &self.site.description)?;
+            I18n::set(db, &lang, Layout::COPYRIGHT, &self.site.copyright)?;
+
+            UserDao::create(db, &uid, &lang, &timezone)?;
+            let user = UserDao::by_uid(db, &uid)?;
+            EmailDao::create(
+                db,
+                user.id,
+                &self.user.real_name,
+                &self.user.nickname,
+                &self.user.email,
+                &self.user.password,
+            )?;
+            {
+                let it = EmailDao::by_email(db, &self.user.email)?;
+                EmailDao::confirm(db, it.id)?;
+            }
+            LogDao::create::<_, EmailUser>(
+                db,
+                user.id,
+                super::NAME,
+                LogLevel::Info,
+                client_ip,
+                None,
+                "Init system administrator.",
+            )?;
+            Ok(user)
+        })?;
+
+        {
+            let user = {
+                let it = PolicyUser::by_id(user.id);
+                it.to_string()
+            };
+            let mut enf = enforcer.lock().await;
+            let enf = enf.deref_mut();
+            enf.add_roles_for_user(
+                &user,
+                vec![
+                    PolicyRole::administrator().to_string(),
+                    PolicyRole::root().to_string(),
+                ],
+                None,
+            )
+            .await?;
+        }
+
+        Ok(())
+    }
 }

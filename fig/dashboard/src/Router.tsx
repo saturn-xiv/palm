@@ -5,6 +5,7 @@ const Dashboard = lazy(() => import("./layouts/dashboard"));
 const SignInSideLayout = lazy(() => import("./layouts/sign-in-side"));
 
 const Home = lazy(() => import("./pages/home"));
+const Install = lazy(() => import("./pages/install"));
 const UsersSignIn = lazy(() => import("./pages/users/sign-in"));
 const UsersSignUp = lazy(() => import("./pages/users/sign-up"));
 const UsersRestPassword = lazy(() => import("./pages/users/reset-password"));
@@ -60,6 +61,7 @@ const router = createBrowserRouter(
       path: "anonymous",
       element: <SignInSideLayout />,
       children: [
+        { path: "install", element: <Install /> },
         { path: "users/sign-in", element: <UsersSignIn /> },
         { path: "users/sign-up", element: <UsersSignUp /> },
         { path: "users/forgot-password", element: <UsersForgotPassword /> },

@@ -3,6 +3,7 @@ use std::{any::type_name, ops::DerefMut};
 
 use casbin::Enforcer;
 use diesel::Connection as DieselConnection;
+use juniper::GraphQLInputObject;
 use language_tags::LanguageTag;
 use petunia::{
     crypto::Key,
@@ -18,7 +19,8 @@ use validator::Validate;
 use super::super::super::{models::locale::I18n, session::current_user};
 use super::{get, set};
 
-#[derive(Validate)]
+#[derive(GraphQLInputObject, Validate)]
+#[graphql(name = "SetSiteInfoRequest")]
 pub struct Base {
     #[validate(length(min = 1, max = 127))]
     pub title: String,

@@ -63,12 +63,13 @@ const Widget = () => {
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
         <img
           style={{
-            height: 24,
-            width: 24,
+            height: 36,
+            width: 36,
           }}
           src={layout?.logo}
         />
-        &nbsp; {layout?.subhead}
+        &nbsp;
+        <Typography variant="h2">{layout?.subhead}</Typography>
       </Box>
       {items.map((item) => (
         <Stack key={item.to} direction="row" sx={{ gap: 2 }}>
