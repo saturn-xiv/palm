@@ -14,7 +14,7 @@ RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs) 
 RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-updates main restricted universe multiverse" >> /etc/apt/sources.list
 RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ $(lsb_release -cs)-security main restricted universe multiverse" >> /etc/apt/sources.list
 # https://apt.llvm.org/
-ENV CLANG_VERSION 17
+ENV CLANG_VERSION 18
 RUN echo "deb [arch=amd64] http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-${CLANG_VERSION} main" > /etc/apt/sources.list.d/llvm.list
 RUN wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
 # https://wiki.debian.org/ToolChain/Cross
@@ -106,7 +106,7 @@ RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >>
 RUN zsh -c "source $HOME/.zshrc \
     && nvm install --lts"
 
-ENV JDK_VERSION "22.0.1-open"
+ENV JDK_VERSION "23-open"
 # https://docs.gradle.org/current/userguide/compatibility.html
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
@@ -116,7 +116,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk install gradle"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.23.1"
+ENV GO_VERSION "1.23.2"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -143,7 +143,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.66.1"
+ENV GRPC_VERSION "v1.67.0"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN apt install -y libssl-dev
 RUN zsh -c "source $HOME/.zshrc \
