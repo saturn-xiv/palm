@@ -63,6 +63,7 @@ impl Mutation {
     }
     async fn user_sign_up_by_email(
         context: &Context,
+        lang: String,
         form: daffodil_user_by_email::SignUp,
     ) -> FieldResult<Succeed> {
         let form = daffodil_user_by_email::SignUp {
@@ -75,14 +76,8 @@ impl Mutation {
         let db = context.postgresql.deref();
         let queue = context.rabbitmq.deref();
         let jwt = context.jwt.deref();
-        form.execute(
-            db,
-            jwt,
-            queue,
-            &context.session.lang,
-            &context.session.client_ip,
-        )
-        .await?;
+        form.execute(db, jwt, queue, &lang, &context.session.client_ip)
+            .await?;
         Ok(Succeed::default())
     }
 

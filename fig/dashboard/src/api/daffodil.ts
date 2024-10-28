@@ -15,6 +15,24 @@ export interface IUserSignUpByEmailRequest {
   timezone: string;
 }
 
+const USER_SIGN_UP_BY_EMAIL = `
+mutation call($lang: String!, $form: UserSignUpByEmailRequest!){
+    userSignUpByEmail(lang: $lang, form: $form) {
+        createdAt
+    }
+}
+`;
+
+export const user_sign_up_by_email = async (
+  form: IUserSignUpByEmailRequest
+): Promise<ISucceed> => {
+  const res: ISucceed = await query(USER_SIGN_UP_BY_EMAIL, {
+    lang: detect_locale(),
+    form,
+  });
+  return res;
+};
+
 const INSTALL = `
 mutation call($lang: String!, $site: SetSiteInfoRequest!, $user: UserSignUpByEmailRequest!){
     install(lang: $lang, site: $site, user: $user) {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
@@ -20,6 +21,9 @@ import {
   PASSWORD_PLACEHOLDER,
 } from "../../components";
 import { SIGN_IN_PATH } from "../../reducers/current-user";
+import { user_sign_up_by_email } from "../../api/daffodil";
+import { guess_timezone } from "../../utils";
+import { IError } from "../../api";
 
 interface IEmailFormProps {
   title: string;
@@ -85,7 +89,7 @@ export const EmailForm = ({ title, alert, handleSubmit }: IEmailFormProps) => {
     <Layout title={title} handleSubmit={formik.handleSubmit}>
       {alert && (
         <Alert
-          severity={alert?.color}
+          severity={alert.color}
           onClose={() => {
             if (alert.color == "success") {
               navigate(SIGN_IN_PATH);
@@ -209,14 +213,35 @@ export const EmailForm = ({ title, alert, handleSubmit }: IEmailFormProps) => {
 };
 
 const Widget = () => {
+  const [alert, setAlert] = useState<IAlert>();
   const intl = useIntl();
   const handleSubmit = (values: IEmailFormValues) => {
-    // TODO
-    console.log("form", values);
+    user_sign_up_by_email({
+      realName: values.realName,
+      nickname: values.nickname,
+      email: values.email,
+      password: values.password,
+      timezone: guess_timezone(),
+    })
+      .then(() => {
+        setAlert({
+          color: "success",
+          messages: [
+            intl.formatMessage({ id: "pages.users.sign-up.instruction" }),
+          ],
+        });
+      })
+      .catch((reason: IError[]) => {
+        setAlert({
+          color: "error",
+          messages: reason.map((x) => x.message),
+        });
+      });
   };
   return (
     <EmailForm
       title={intl.formatMessage({ id: "pages.users.sign-up.title" })}
+      alert={alert}
       handleSubmit={handleSubmit}
     />
   );

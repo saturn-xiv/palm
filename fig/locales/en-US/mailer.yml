@@ -8,9 +8,9 @@ users:
   reset-password:
     subject: "Reset password instructions"
     body: "Hello {{ recipient }}!<br/>Someone has requested a link to change your password. You can do this through the link below.<br/><a href='{{ home }}/my/users/reset-password/{{ token }}'>Change my password</a><br />If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one."
-  email_changed:
+  email-changed:
     subject: "Email Changed"
     body: "Hello {{ recipient }}!<br/>We're contacting you to notify you that your email is being changed to {{ email }}."
-  password_changed:
+  password-changed:
     subject: "Password Changed"
     body: "Hello {{ recipient }}!<br/>We're contacting you to notify you that your password has been changed."
