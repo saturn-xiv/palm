@@ -93,7 +93,7 @@ RUN zsh -c ". $HOME/.zshrc \
     && python3 -m venv $HOME/local/python3 \
     && . $HOME/local/python3/bin/activate \
     && pip install --upgrade pip \
-    && pip install cmake ansible paramiko conan supervisor \
+    && pip install ansible paramiko conan supervisor \
     && pip install grpcio-tools grpcio-health-checking"
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
@@ -180,9 +180,9 @@ RUN zsh -c "source $HOME/.cargo/env \
     && rustup target add x86_64-unknown-linux-musl \
     && rustup target add aarch64-unknown-linux-musl \
     && rustup target add loongarch64-unknown-linux-gnu"
+# && cargo install --locked cargo-outdated \
 RUN zsh -c "source $HOME/.zshrc \
     && cargo install diesel_cli \
-    && cargo install --locked cargo-outdated \
     && cargo install mdbook"
 
 # https://www.swift.org/download/#releases
@@ -229,7 +229,7 @@ RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/grpc \
     && cd $HOME/build/grpc \
-    && cmake -DCMAKE_BUILD_TYPE=Release \
+    && CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release \
     -DgRPC_INSTALL=ON \
     -DgRPC_SSL_PROVIDER=package \
     -DgRPC_BUILD_TESTS=OFF \
@@ -279,7 +279,7 @@ RUN git clone -b $FLATBUFFERS_VERSION https://github.com/google/flatbuffers.git 
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
     && cd $HOME/build/flatbuffers \
-    && CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF \
+    && CC=clang CXX=clang++ cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF \
     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/flatbuffers \
     && make \
     && make install"
