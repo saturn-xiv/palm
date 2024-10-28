@@ -7,6 +7,120 @@ export interface ISetSiteInfoRequest {
   description: string;
   copyright: string;
 }
+
+const USER_RESET_PASSWORD_BY_TOKEN = `
+mutation call($token: String!, $password: String!){
+    userResetPasswordByToken(token: $token, password: $password) {
+        createdAt
+    }
+}
+`;
+export const user_reset_password_by_token = async (
+  token: string,
+  password: string
+): Promise<ISucceed> => {
+  const res: ISucceed = await query(USER_RESET_PASSWORD_BY_TOKEN, {
+    token,
+    password,
+  });
+  return res;
+};
+const USER_FORGOT_PASSWORD_BY_EMAIL = `
+mutation call($user: String!){
+    userForgotPasswordByEmail(user: $user) {
+        createdAt
+    }
+}
+`;
+export const user_forgot_password_by_email = async (
+  user: string
+): Promise<ISucceed> => {
+  const res: ISucceed = await query(USER_FORGOT_PASSWORD_BY_EMAIL, {
+    user,
+  });
+  return res;
+};
+const USER_UNLOCK_BY_TOKEN = `
+mutation call($token: String!){
+    userUnlockByToken(token: $token) {
+        createdAt
+    }
+}
+`;
+export const user_unlock_by_token = async (
+  token: string
+): Promise<ISucceed> => {
+  const res: ISucceed = await query(USER_UNLOCK_BY_TOKEN, {
+    token,
+  });
+  return res;
+};
+const USER_UNLOCK_BY_EMAIL = `
+mutation call($user: String!){
+    userUnlockByEmail(user: $user) {
+        createdAt
+    }
+}
+`;
+export const user_unlock_by_email = async (user: string): Promise<ISucceed> => {
+  const res: ISucceed = await query(USER_UNLOCK_BY_EMAIL, {
+    user,
+  });
+  return res;
+};
+const USER_CONFIRM_BY_TOKEN = `
+mutation call($token: String!){
+    userConfirmByToken(token: $token) {
+        createdAt
+    }
+}
+`;
+export const user_confirm_by_token = async (
+  token: string
+): Promise<ISucceed> => {
+  const res: ISucceed = await query(USER_CONFIRM_BY_TOKEN, {
+    token,
+  });
+  return res;
+};
+const USER_CONFIRM_BY_EMAIL = `
+mutation call($user: String!){
+    userConfirmByEmail(user: $user) {
+        createdAt
+    }
+}
+`;
+export const user_confirm_by_email = async (
+  user: string
+): Promise<ISucceed> => {
+  const res: ISucceed = await query(USER_CONFIRM_BY_EMAIL, {
+    user,
+  });
+  return res;
+};
+
+export interface ISignInResponse {
+  token: string;
+}
+
+const USER_SIGN_IN_BY_EMAIL = `
+mutation call($user: String!, $password: String!){
+    userSignInByEmail(user: $user, password: $password) {
+        createdAt
+    }
+}
+`;
+export const user_sign_in_by_email = async (
+  user: string,
+  password: string
+): Promise<ISignInResponse> => {
+  const res: ISignInResponse = await query(USER_SIGN_IN_BY_EMAIL, {
+    user,
+    password,
+  });
+  return res;
+};
+
 export interface IUserSignUpByEmailRequest {
   email: string;
   realName: string;

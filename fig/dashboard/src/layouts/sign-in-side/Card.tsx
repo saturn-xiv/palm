@@ -15,7 +15,7 @@ interface IProps {
   children: ReactNode;
 }
 
-const Card = styled(MuiCard)(({ theme }) => ({
+export const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignSelf: "center",

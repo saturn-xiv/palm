@@ -1,140 +1,140 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import { FormattedMessage, useIntl } from "react-intl";
+import { useFormik } from "formik";
+import Alert from "@mui/material/Alert";
+import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 
 import Layout from "../../layouts/sign-in-side/Card";
+import {
+  IAlert,
+  PASSWORD_MIN_LENGTH,
+  PASSWORD_PLACEHOLDER,
+} from "../../components";
+import { PERSONAL_PATH } from "../../reducers/current-user";
+import { user_sign_in_by_email } from "../../api/daffodil";
+import { IError } from "../../api";
+import { useAppDispatch } from "../../hooks";
+import { signIn } from "../../reducers/current-user";
+
+export interface IFormValues {
+  user: string;
+  password: string;
+  rememberMe: boolean;
+}
+
+const validationSchema = yup.object({
+  user: yup.string().trim().required(),
+  password: yup.string().trim().min(PASSWORD_MIN_LENGTH).required(),
+});
 
 const Widget = () => {
+  const [alert, setAlert] = useState<IAlert>();
   const intl = useIntl();
-  const [emailError, setEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const initialValues: IFormValues = {
+    user: "",
+    password: "",
+    rememberMe: true,
   };
-
-  const validateInputs = () => {
-    const email = document.getElementById("email") as HTMLInputElement;
-    const password = document.getElementById("password") as HTMLInputElement;
-
-    let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage("Please enter a valid email address.");
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage("");
-    }
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage("Password must be at least 6 characters long.");
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage("");
-    }
-
-    return isValid;
-  };
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: (values) => {
+      user_sign_in_by_email(values.user, values.password)
+        .then((res) => {
+          setAlert({
+            color: "success",
+            messages: [
+              intl.formatMessage({ id: "pages.users.sign-in.succeed" }),
+            ],
+          });
+          // TODO
+          dispatch(signIn({ token: res.token }));
+          navigate(PERSONAL_PATH);
+        })
+        .catch((reason: IError[]) => {
+          setAlert({
+            color: "error",
+            messages: reason.map((x) => x.message),
+          });
+        });
+    },
+  });
   return (
     <Layout
       title={intl.formatMessage({ id: "pages.users.sign-in.title" })}
-      handleSubmit={handleSubmit}
+      handleSubmit={formik.handleSubmit}
     >
+      {alert && (
+        <Alert severity={alert.color}>
+          {alert.messages.map((x, i) => (
+            <div key={i}>{x}</div>
+          ))}
+        </Alert>
+      )}
       <FormControl>
         <FormLabel htmlFor="user">
           <FormattedMessage id="pages.users.sign-in.form.email-or-nickname.label" />
         </FormLabel>
         <TextField
-          error={emailError}
-          helperText={emailErrorMessage}
-          id="user"
+          value={formik.values.user}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.user && Boolean(formik.errors.user)}
+          helperText={formik.touched.user && formik.errors.user}
+          color={formik.errors.user ? "error" : "primary"}
           type="text"
           name="user"
-          placeholder="Who am I?"
-          autoComplete="user"
           autoFocus
           required
           fullWidth
           variant="outlined"
-          color={emailError ? "error" : "primary"}
           sx={{ ariaLabel: "user" }}
         />
       </FormControl>
       <FormControl>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <FormLabel htmlFor="password">
-            <FormattedMessage id="form.fields.password.label" />
-          </FormLabel>
-          <Link
-            component="button"
-            type="button"
-            variant="body2"
-            sx={{ alignSelf: "baseline" }}
-          >
-            Forgot your password?
-          </Link>
-        </Box>
+        <FormLabel htmlFor="password">
+          <FormattedMessage id="form.fields.password.label" />
+        </FormLabel>
         <TextField
-          error={passwordError}
-          helperText={passwordErrorMessage}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+          color={formik.errors.password ? "error" : "primary"}
           name="password"
-          placeholder="••••••"
+          placeholder={PASSWORD_PLACEHOLDER}
           type="password"
-          id="password"
-          autoComplete="current-password"
-          autoFocus
           required
           fullWidth
           variant="outlined"
-          color={passwordError ? "error" : "primary"}
+          sx={{ ariaLabel: "password" }}
         />
       </FormControl>
       <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label="Remember me"
+        control={
+          <Checkbox
+            value={formik.values.rememberMe}
+            onChange={formik.handleChange}
+            color="primary"
+          />
+        }
+        label={
+          <FormattedMessage id="pages.users.sign-in.form.email-or-nickname.label" />
+        }
       />
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        onClick={validateInputs}
-      >
+      <Button type="submit" fullWidth variant="contained">
         <FormattedMessage id="buttons.submit" />
       </Button>
-      <Typography sx={{ textAlign: "center" }}>
-        Don&apos;t have an account? &nbsp;
-        <span>
-          <Link
-            href="/material-ui/getting-started/templates/sign-in/"
-            variant="body2"
-            sx={{ alignSelf: "center" }}
-          >
-            Sign up
-          </Link>
-        </span>
-      </Typography>
     </Layout>
   );
 };

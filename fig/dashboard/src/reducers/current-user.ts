@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
 export const SIGN_IN_PATH = "/anonymous/users/sign-in";
+export const PERSONAL_PATH = "/dashboard/personal";
 
 export const ROLE_ROOT = "root";
 export const ROLE_ADMINISTRATOR = "administrator";
@@ -37,7 +38,7 @@ export interface IUserSignInAction {
   token: string;
 }
 
-interface IState {
+export interface IState {
   uid?: string;
   roles: string[];
   permissions: IPermission[];
