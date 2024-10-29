@@ -22,7 +22,7 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     dart haxe lua \
     erlang elixir rebar \
     jdk-openjdk libxcrypt-compat \
-    nginx mariadb postgresql rabbitmq redis
+    nginx mariadb postgresql rabbitmq redis supervisor
 RUN pacman -Scc --noconfirm
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
@@ -93,7 +93,7 @@ RUN zsh -c ". $HOME/.zshrc \
     && python3 -m venv $HOME/local/python3 \
     && . $HOME/local/python3/bin/activate \
     && pip install --upgrade pip \
-    && pip install ansible paramiko conan supervisor \
+    && pip install ansible paramiko conan \
     && pip install grpcio-tools grpcio-health-checking"
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \

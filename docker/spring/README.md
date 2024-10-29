@@ -1,6 +1,6 @@
 # USAGE
 
-- add to `/etc/sysctl.d/60-my.conf` and then `reboot` or `sysctl -p`
+- add to `/etc/sysctl.d/60-palm.conf` and then `reboot` or `sysctl --system`
 
   ```text
   vm.overcommit_memory = 1
