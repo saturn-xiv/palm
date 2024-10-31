@@ -5,26 +5,21 @@ set -e
 # https://vitejs.dev/guide/#scaffolding-your-first-vite-project
 # npm create vite@latest fig -- --template react-ts
 
-npm install --save filesize timezones-list \
-    marked \
-    diff @types/diff \
-    lodash @types/lodash \
-    @fortawesome/fontawesome-free \
+npm install --save @fortawesome/fontawesome-free \
     famfamfam-flags famfamfam-silk famfamfam-mini \
     js-cookie @types/js-cookie \
     mermaid \
     jwt-decode \
-    dinero.js@alpha @dinero.js/currencies@alpha react-currency-input-field \
+    react-currency-input-field \
     video.js @types/video.js \
     react-copy-to-clipboard @types/react-copy-to-clipboard \
     slate slate-react react-dropzone \
     google-map-react qrcode.react \
-    react-markdown @uiw/react-md-editor \
+    @uiw/react-md-editor \
     react-color @types/react-color \
     react-pdf \
     react-syntax-highlighter \
     emoji-mart react-sparklines react-highlight-words \
-    react-number-format react-image-crop \
     react-player \
     react-draggable \
     react-big-calendar @types/react-big-calendar \
@@ -33,16 +28,9 @@ npm install --save filesize timezones-list \
     @reduxjs/toolkit react-redux \
     formik yup
 
-# https://mui.com/material-ui/getting-started/installation/
-npm install --save @mui/material @emotion/react @emotion/styled \
-    @fontsource/roboto @mui/icons-material \
-    @mui/base @mui/x-charts @mui/x-date-pickers @mui/x-data-grid @mui/x-tree-view
-
-# npm install --save grpc-web google-protobuf @types/google-protobuf
-
-# npm install --save \
-#     antd @ant-design/pro-components @ant-design/charts \
-#     @emotion/css
+# https://blueprintjs.com/docs/#blueprint.quick-start
+npm install --save @blueprintjs/core \
+    @blueprintjs/icons @blueprintjs/datetime2 @blueprintjs/select @blueprintjs/table
 
 echo 'done.'
 exit 0
