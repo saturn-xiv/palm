@@ -70,6 +70,14 @@ pub struct Client {
 }
 
 impl Client {
+    pub async fn list_buckets(&self) -> Result<Vec<String>> {
+        let items = self.client.list_buckets().send().await?;
+        Ok(items.buckets.into_iter().map(|x| x.name).collect())
+    }
+    // pub async fn list_objects(&self, bucket: &str) -> Result<Vec<String>> {
+    //     let items = self.client.list_objects(bucket).send().await?;
+    //     Ok(items.objects.into_iter().map(|x| x.name).collect())
+    // }
     pub async fn remove_object(&self, bucket: &str, object: &str) -> Result<()> {
         log::warn!("remove {}/{}", bucket, object);
         self.client.remove_object(bucket, object).send().await?;

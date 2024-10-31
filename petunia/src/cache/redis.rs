@@ -2,7 +2,8 @@ use std::default::Default;
 use std::fmt;
 use std::fmt::Display;
 
-use ::redis::{cluster::ClusterClient, cmd, Commands, RedisResult, Value};
+pub use ::redis::cmd;
+use ::redis::{cluster::ClusterClient, Commands, RedisResult, Value};
 use chrono::Duration;
 use hyper::StatusCode;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
@@ -86,8 +87,9 @@ impl Default for Config {
 impl super::Provider for ClusterConnection {
     fn version(&mut self) -> Result<String> {
         let val: Value = cmd("cluster").arg("info").query(self)?;
-        if let Value::SimpleString(it) = val {
-            return Ok(it);
+        if let Value::BulkString(ref it) = val {
+            let it = std::str::from_utf8(it)?;
+            return Ok(it.to_string());
         }
         Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)))
     }

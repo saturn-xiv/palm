@@ -1,8 +1,11 @@
 use std::default::Default;
 use std::fmt;
 
-use super::super::Result;
+use chrono::NaiveDateTime;
+use diesel::{sql_query, RunQueryDsl};
 use serde::{Deserialize, Serialize};
+
+use super::super::Result;
 
 pub type Pool = diesel::r2d2::Pool<diesel::r2d2::ConnectionManager<Connection>>;
 pub type PooledConnection =
@@ -60,4 +63,16 @@ pub fn schema_migrations_exists(name: &str) -> String {
         "SELECT table_name AS name FROM information_schema.tables WHERE table_name = '{}'",
         name
     )
+}
+
+impl super::Dao for Connection {
+    fn version(&mut self) -> Result<String> {
+        let it = sql_query("SELECT VERSION() AS value").get_result::<super::Version>(self)?;
+        Ok(it.value)
+    }
+    fn timestamp(&mut self) -> Result<NaiveDateTime> {
+        let it =
+            sql_query("SELECT CURRENT_TIMESTAMP as value").get_result::<super::Timestamp>(self)?;
+        Ok(it.value)
+    }
 }

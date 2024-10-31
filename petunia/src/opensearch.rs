@@ -47,3 +47,5 @@ impl Config {
         Ok(client)
     }
 }
+
+pub trait Search {}

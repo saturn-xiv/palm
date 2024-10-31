@@ -1,6 +1,6 @@
 use std::any::type_name;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
-use std::ops::Deref;
+use std::ops::{Deref, DerefMut};
 use std::path::{Path, PathBuf};
 use std::time::Duration as StdDuration;
 
@@ -26,12 +26,12 @@ use data_encoding::BASE64;
 use hyper::StatusCode;
 use juniper::EmptySubscription;
 use petunia::{
-    cache::redis::Config as Redis,
+    cache::{redis::Config as Redis, Provider as CacheProvider},
     crypto::Key,
     hostname,
     jwt::openssl::OpenSsl as Jwt,
     opensearch::Config as OpenSearch,
-    orm::postgresql::Config as PostgreSql,
+    orm::{postgresql::Config as PostgreSql, Dao as VersionDao},
     queue::amqp::{Config as RabbitMq, RabbitMq as Queue},
     rbac::v1::WatcherMessage as CasbinWatcherMessage,
     s3::Config as Minio,
@@ -61,11 +61,32 @@ impl Command {
 
         let secrets = web::Data::new(config.secrets.clone());
         let db = web::Data::new(config.postgresql.open()?);
+        {
+            let mut it = db.get()?;
+            let it = it.deref_mut();
+            let vr = VersionDao::version(it)?;
+            let ts = VersionDao::timestamp(it)?;
+            log::debug!("{vr}({ts})");
+        }
         let cache = web::Data::new(config.redis.open()?);
+        {
+            let mut it = cache.get()?;
+            let it = it.deref_mut();
+            let v = CacheProvider::version(it)?;
+            log::debug!("Redis\n{v}");
+        }
         let jwt = web::Data::new(Jwt::new(config.jwt_key.0.clone()));
         let queue = web::Data::new(config.rabbitmq.open());
         let search = web::Data::new(config.opensearch.open()?);
+        {
+            let res = search.cat().plugins().send().await?;
+            log::debug!("OpenSearch plugins \n{}", res.text().await?);
+        }
         let s3 = web::Data::new(config.minio.open()?);
+        {
+            let buckets = s3.list_buckets().await?;
+            log::debug!("found buckets: {}", buckets.join(","))
+        }
         let enforcer = {
             let db = db.clone();
             let db = db.into_inner();
