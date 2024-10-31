@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useFormik } from "formik";
 import Alert from "@mui/material/Alert";
@@ -14,6 +13,7 @@ import { IAlert } from "../../components";
 import { SIGN_IN_PATH } from "../../reducers/current-user";
 import { create_leave_word } from "../../api/daffodil";
 import { IError } from "../../api";
+import Textarea from "../../components/Textarea";
 
 export interface IFormValues {
   content: string;
@@ -76,23 +76,21 @@ const Widget = () => {
         <FormLabel htmlFor="content">
           <FormattedMessage id="form.fields.content.label" />
         </FormLabel>
-        <TextField
+        <Textarea
           value={formik.values.content}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.content && Boolean(formik.errors.content)}
-          helperText={formik.touched.content && formik.errors.content}
+          // error={formik.touched.content && Boolean(formik.errors.content)}
+
+          // helperText={formik.touched.content && formik.errors.content}
           color={formik.errors.content ? "error" : "primary"}
           name="content"
-          multiline
-          minRows={4}
+          minRows={6}
           autoFocus
           required
-          fullWidth
-          variant="outlined"
-          sx={{ ariaLabel: "content" }}
         />
       </FormControl>
+
       <Button type="submit" fullWidth variant="contained">
         <FormattedMessage id="buttons.submit" />
       </Button>

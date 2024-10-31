@@ -36,7 +36,7 @@ npm install --save filesize timezones-list \
 # https://mui.com/material-ui/getting-started/installation/
 npm install --save @mui/material @emotion/react @emotion/styled \
     @fontsource/roboto @mui/icons-material \
-    @mui/x-charts @mui/x-date-pickers @mui/x-data-grid @mui/x-tree-view
+    @mui/base @mui/x-charts @mui/x-date-pickers @mui/x-data-grid @mui/x-tree-view
 
 # npm install --save grpc-web google-protobuf @types/google-protobuf
 
