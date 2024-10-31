@@ -11,3 +11,7 @@ fields:
     label: "Password"
   password-confirmation:
     label: "Password confirmation"
+  content:
+    label: "Content"
+  body:
+    label: "Body"

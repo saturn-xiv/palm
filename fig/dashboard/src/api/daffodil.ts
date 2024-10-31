@@ -1,5 +1,5 @@
 import { get as detect_locale } from "../i18n";
-import { query, ISucceed } from ".";
+import { query, ISucceed, EDITOR_TEXTAREA } from ".";
 
 export interface ISetSiteInfoRequest {
   title: string;
@@ -8,6 +8,20 @@ export interface ISetSiteInfoRequest {
   copyright: string;
 }
 
+const CREATE_LEAVE_WORD = `
+mutation call($body: String!, $editor: Editor!){
+    createLeaveWord(body: $body, editor: $editor) {
+        createdAt
+    }
+}
+`;
+export const create_leave_word = async (body: string): Promise<ISucceed> => {
+  const res: { createLeaveWord: ISucceed } = await query(CREATE_LEAVE_WORD, {
+    body,
+    editor: EDITOR_TEXTAREA,
+  });
+  return res.createLeaveWord;
+};
 const RESET_EMAIL_USER_PASSWORD_BY_TOKEN = `
 mutation call($token: String!, $password: String!){
     resetEmailUserPasswordByToken(token: $token, password: $password) {

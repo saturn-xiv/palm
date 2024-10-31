@@ -11,7 +11,7 @@ use daffodil::graphql::{
     },
 };
 use juniper::{graphql_object, FieldResult};
-use petunia::{graphql::Succeed, themes::Author as SiteAuthor};
+use petunia::{graphql::Succeed, themes::Author as SiteAuthor, Editor};
 use wisteria::graphql as wisteria_graphql;
 
 use super::context::Context;
@@ -305,7 +305,7 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
-    fn create_leave_word(context: &Context, body: String, editor: String) -> FieldResult<Succeed> {
+    fn create_leave_word(context: &Context, body: String, editor: Editor) -> FieldResult<Succeed> {
         let form = daffodil_leave_word::Create { body, editor };
         let db = context.postgresql.deref();
         form.execute(&context.session, db)?;

@@ -1,4 +1,4 @@
-use std::{ops::DerefMut, str::FromStr};
+use std::ops::DerefMut;
 
 use casbin::Enforcer;
 use chrono::NaiveDateTime;
@@ -133,17 +133,16 @@ pub async fn close(
 pub struct Create {
     #[validate(length(min = 31))]
     pub body: String,
-    #[validate(length(min = 1, max = 15))]
-    pub editor: String,
+    pub editor: Editor,
 }
 
 impl Create {
     pub fn execute(&self, ss: &Session, db: &DbPool) -> Result<()> {
         self.validate()?;
-        let editor = Editor::from_str(&self.editor)?;
         let mut db = db.get()?;
         let db = db.deref_mut();
 
+        let editor = self.editor.clone();
         db.transaction::<_, Error, _>(|db| {
             LeaveWordDao::create(db, &ss.lang, &ss.client_ip, &self.body, editor)?;
             Ok(())

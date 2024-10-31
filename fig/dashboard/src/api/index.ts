@@ -1,5 +1,8 @@
 import { get as get_token } from "../reducers/current-user";
 
+export const EDITOR_TEXTAREA = "TEXTAREA";
+export const EDITOR_SLATE = "SLATE";
+
 export const query = async <V, R>(query: string, args: V): Promise<R> => {
   return graphql<{ query: string; variables: V }, R>({
     query,

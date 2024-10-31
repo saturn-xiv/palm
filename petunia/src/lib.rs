@@ -60,6 +60,7 @@ use std::os::unix::fs::PermissionsExt;
 use std::path::{Component, Path};
 
 use hyper::StatusCode;
+use juniper::GraphQLEnum;
 use mime::Mime;
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -74,8 +75,20 @@ pub enum Environment {
     Testing,
 }
 
-#[derive(EnumDisplay, EnumString, Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone)]
+#[derive(
+    GraphQLEnum,
+    EnumDisplay,
+    EnumString,
+    Serialize,
+    Deserialize,
+    Default,
+    PartialEq,
+    Eq,
+    Debug,
+    Clone,
+)]
 #[serde(rename_all = "camelCase")]
+#[graphql(name = "Editor")]
 pub enum Editor {
     #[default]
     Textarea,
