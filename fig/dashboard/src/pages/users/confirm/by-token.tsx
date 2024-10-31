@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 import { Card } from "../../../layouts/sign-in-side/Card";
 import { IAlert } from "../../../components";
 import { SIGN_IN_PATH } from "../../../reducers/current-user";
-import { user_confirm_by_token } from "../../../api/daffodil";
+import { confirm_email_user_by_token } from "../../../api/daffodil";
 import { IError } from "../../../api";
 import NotFound from "../../../components/NotFound";
 
@@ -18,7 +18,7 @@ const Widget = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (token) {
-      user_confirm_by_token(token)
+      confirm_email_user_by_token(token)
         .then(() => {
           setAlert({
             color: "success",
@@ -34,7 +34,7 @@ const Widget = () => {
           });
         });
     }
-  });
+  }, [intl, token]);
 
   return token ? (
     <Card variant="outlined">

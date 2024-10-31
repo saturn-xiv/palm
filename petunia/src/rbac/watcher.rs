@@ -7,10 +7,12 @@ use super::v1::WatcherMessage;
 
 impl RabbitMqConsumerHandler for Mutex<Enforcer> {
     async fn handle(&self, _id: &str, _content_type: &str, payload: &[u8]) -> Result<()> {
-        WatcherMessage::decode(payload)?;
-        let mut it = self.lock().await;
-        log::debug!("reload policies");
-        it.load_policy().await?;
+        let msg = WatcherMessage::decode(payload)?;
+        if msg.by != WatcherMessage::this_id()? {
+            let mut it = self.lock().await;
+            log::debug!("reload policies");
+            it.load_policy().await?;
+        }
         Ok(())
     }
 }

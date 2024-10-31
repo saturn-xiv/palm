@@ -55,9 +55,9 @@ lazy_static::lazy_static! {
 pub const PROTOBUF: &str = "application/x-protobuf";
 pub const FLATBUFFER: &str = "application/x-flatbuffer";
 
-use std::fs::File;
+use std::fs::{read_to_string, File};
 use std::os::unix::fs::PermissionsExt;
-use std::path::Path;
+use std::path::{Component, Path};
 
 use hyper::StatusCode;
 use mime::Mime;
@@ -99,6 +99,15 @@ pub fn check_config_permission<P: AsRef<Path>>(file: P) -> Result<()> {
         )));
     }
     Ok(())
+}
+
+pub fn machine_id() -> Result<String> {
+    let it = read_to_string(
+        Path::new(&Component::RootDir)
+            .join("etc")
+            .join("machine-id"),
+    )?;
+    Ok(it.trim().to_string())
 }
 
 pub fn hostname() -> Result<String> {

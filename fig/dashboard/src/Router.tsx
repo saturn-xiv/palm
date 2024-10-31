@@ -65,7 +65,7 @@ const router = createBrowserRouter(
         { path: "users/sign-in", element: <UsersSignIn /> },
         { path: "users/sign-up", element: <UsersSignUp /> },
         { path: "users/forgot-password", element: <UsersForgotPassword /> },
-        { path: "users/reset-password", element: <UsersRestPassword /> },
+        { path: "users/reset-password/:token", element: <UsersRestPassword /> },
         { path: "users/confirm", element: <UsersConfirmByEmail /> },
         {
           path: "users/confirm/:token",

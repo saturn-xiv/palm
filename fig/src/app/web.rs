@@ -28,8 +28,8 @@ use juniper::EmptySubscription;
 use petunia::{
     cache::{redis::Config as Redis, Provider as CacheProvider},
     crypto::Key,
-    hostname,
     jwt::openssl::OpenSsl as Jwt,
+    machine_id,
     opensearch::Config as OpenSearch,
     orm::{postgresql::Config as PostgreSql, Dao as VersionDao},
     queue::amqp::{Config as RabbitMq, RabbitMq as Queue},
@@ -97,7 +97,7 @@ impl Command {
             web::Data::from(it)
         };
         {
-            let name = format!("{}.casbin-watcher", hostname()?);
+            let name = format!("{}.casbin-watcher", machine_id()?);
 
             let ch = queue.open().await?;
             let exchange = type_name::<CasbinWatcherMessage>();

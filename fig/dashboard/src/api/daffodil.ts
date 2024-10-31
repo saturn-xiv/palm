@@ -8,95 +8,115 @@ export interface ISetSiteInfoRequest {
   copyright: string;
 }
 
-const USER_RESET_PASSWORD_BY_TOKEN = `
+const RESET_EMAIL_USER_PASSWORD_BY_TOKEN = `
 mutation call($token: String!, $password: String!){
-    userResetPasswordByToken(token: $token, password: $password) {
+    resetEmailUserPasswordByToken(token: $token, password: $password) {
         createdAt
     }
 }
 `;
-export const user_reset_password_by_token = async (
+export const reset_email_user_password_by_token = async (
   token: string,
   password: string
 ): Promise<ISucceed> => {
-  const res: ISucceed = await query(USER_RESET_PASSWORD_BY_TOKEN, {
-    token,
-    password,
-  });
-  return res;
+  const res: { resetEmailUserPasswordByToken: ISucceed } = await query(
+    RESET_EMAIL_USER_PASSWORD_BY_TOKEN,
+    {
+      token,
+      password,
+    }
+  );
+  return res.resetEmailUserPasswordByToken;
 };
-const USER_FORGOT_PASSWORD_BY_EMAIL = `
-mutation call($user: String!){
-    userForgotPasswordByEmail(user: $user) {
+const SEND_FORGOT_PASSWORD_EMAIL_FOR_USER = `
+query call($user: String!){
+    sendForgotPasswordEmailForUser(user: $user) {
         createdAt
     }
 }
 `;
-export const user_forgot_password_by_email = async (
+export const send_forgot_password_email_for_user = async (
   user: string
 ): Promise<ISucceed> => {
-  const res: ISucceed = await query(USER_FORGOT_PASSWORD_BY_EMAIL, {
-    user,
-  });
-  return res;
+  const res: { sendForgotPasswordEmailForUser: ISucceed } = await query(
+    SEND_FORGOT_PASSWORD_EMAIL_FOR_USER,
+    {
+      user,
+    }
+  );
+  return res.sendForgotPasswordEmailForUser;
 };
-const USER_UNLOCK_BY_TOKEN = `
+const UNLOCK_EMAIL_USER_BY_TOKEN = `
 mutation call($token: String!){
-    userUnlockByToken(token: $token) {
+    unlockEmailUserByToken(token: $token) {
         createdAt
     }
 }
 `;
-export const user_unlock_by_token = async (
+export const unlock_email_user_by_token = async (
   token: string
 ): Promise<ISucceed> => {
-  const res: ISucceed = await query(USER_UNLOCK_BY_TOKEN, {
-    token,
-  });
-  return res;
+  const res: { unlockEmailUserByToken: ISucceed } = await query(
+    UNLOCK_EMAIL_USER_BY_TOKEN,
+    {
+      token,
+    }
+  );
+  return res.unlockEmailUserByToken;
 };
-const USER_UNLOCK_BY_EMAIL = `
-mutation call($user: String!){
-    userUnlockByEmail(user: $user) {
+const SEND_UNLOCK_EMAIL_FOR_USER = `
+query call($user: String!){
+    sendUnlockEmailForUser(user: $user) {
         createdAt
     }
 }
 `;
-export const user_unlock_by_email = async (user: string): Promise<ISucceed> => {
-  const res: ISucceed = await query(USER_UNLOCK_BY_EMAIL, {
-    user,
-  });
-  return res;
-};
-const USER_CONFIRM_BY_TOKEN = `
-mutation call($token: String!){
-    userConfirmByToken(token: $token) {
-        createdAt
-    }
-}
-`;
-export const user_confirm_by_token = async (
-  token: string
-): Promise<ISucceed> => {
-  const res: ISucceed = await query(USER_CONFIRM_BY_TOKEN, {
-    token,
-  });
-  return res;
-};
-const USER_CONFIRM_BY_EMAIL = `
-mutation call($user: String!){
-    userConfirmByEmail(user: $user) {
-        createdAt
-    }
-}
-`;
-export const user_confirm_by_email = async (
+export const send_unlock_email_for_user = async (
   user: string
 ): Promise<ISucceed> => {
-  const res: ISucceed = await query(USER_CONFIRM_BY_EMAIL, {
-    user,
-  });
-  return res;
+  const res: { sendUnlockEmailForUser: ISucceed } = await query(
+    SEND_UNLOCK_EMAIL_FOR_USER,
+    {
+      user,
+    }
+  );
+  return res.sendUnlockEmailForUser;
+};
+const CONFIRM_EMAIL_USER_BY_TOKEN = `
+mutation call($token: String!){
+    confirmEmailUserByToken(token: $token) {
+        createdAt
+    }
+}
+`;
+export const confirm_email_user_by_token = async (
+  token: string
+): Promise<ISucceed> => {
+  const res: { confirmEmailUserByToken: ISucceed } = await query(
+    CONFIRM_EMAIL_USER_BY_TOKEN,
+    {
+      token,
+    }
+  );
+  return res.confirmEmailUserByToken;
+};
+const SEND_CONFIRM_EMAIL_FOR_USER = `
+query call($user: String!){
+    sendConfirmEmailForUser(user: $user) {
+        createdAt
+    }
+}
+`;
+export const send_confirm_email_for_user = async (
+  user: string
+): Promise<ISucceed> => {
+  const res: { sendConfirmEmailForUser: ISucceed } = await query(
+    SEND_CONFIRM_EMAIL_FOR_USER,
+    {
+      user,
+    }
+  );
+  return res.sendConfirmEmailForUser;
 };
 
 export interface ISignInResponse {
@@ -140,11 +160,14 @@ mutation call($lang: String!, $form: UserSignUpByEmailRequest!){
 export const user_sign_up_by_email = async (
   form: IUserSignUpByEmailRequest
 ): Promise<ISucceed> => {
-  const res: ISucceed = await query(USER_SIGN_UP_BY_EMAIL, {
-    lang: detect_locale(),
-    form,
-  });
-  return res;
+  const res: { userSignUpByEmail: ISucceed } = await query(
+    USER_SIGN_UP_BY_EMAIL,
+    {
+      lang: detect_locale(),
+      form,
+    }
+  );
+  return res.userSignUpByEmail;
 };
 
 const INSTALL = `

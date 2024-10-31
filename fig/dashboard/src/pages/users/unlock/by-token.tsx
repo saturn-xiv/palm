@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 import { Card } from "../../../layouts/sign-in-side/Card";
 import { IAlert } from "../../../components";
 import { SIGN_IN_PATH } from "../../../reducers/current-user";
-import { user_unlock_by_token } from "../../../api/daffodil";
+import { unlock_email_user_by_token } from "../../../api/daffodil";
 import { IError } from "../../../api";
 import NotFound from "../../../components/NotFound";
 
@@ -19,7 +19,7 @@ const Widget = () => {
 
   useEffect(() => {
     if (token) {
-      user_unlock_by_token(token)
+      unlock_email_user_by_token(token)
         .then(() => {
           setAlert({
             color: "success",
@@ -35,7 +35,7 @@ const Widget = () => {
           });
         });
     }
-  });
+  }, [intl, token]);
   return token ? (
     <Card variant="outlined">
       <Typography

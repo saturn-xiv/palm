@@ -17,7 +17,7 @@ import {
   PASSWORD_PLACEHOLDER,
 } from "../../components";
 import { SIGN_IN_PATH } from "../../reducers/current-user";
-import { user_reset_password_by_token } from "../../api/daffodil";
+import { reset_email_user_password_by_token } from "../../api/daffodil";
 import { IError } from "../../api";
 import NotFound from "../../components/NotFound";
 
@@ -54,7 +54,7 @@ const Widget = () => {
   const { token } = useParams<{ token: string }>();
 
   const handleSubmit = (values: IFormValues) => {
-    user_reset_password_by_token(token || "", values.password)
+    reset_email_user_password_by_token(token || "", values.password)
       .then(() => {
         setAlert({
           color: "success",

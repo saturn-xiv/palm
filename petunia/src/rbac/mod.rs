@@ -9,9 +9,10 @@ use std::fmt;
 use std::str::FromStr;
 
 use data_encoding::BASE64_NOPAD;
+use nix::unistd::Pid;
 use prost::Message;
 
-use super::{Error, Result};
+use super::{machine_id, Error, Result};
 
 impl v1::policy_users_response::Item {
     pub fn by_id(id: i32) -> Self {
@@ -228,5 +229,13 @@ impl FromStr for v1::policy_permissions_response::item::Resource {
         let buf = BASE64_NOPAD.decode(s.as_bytes())?;
         let it = Self::decode(&buf[..])?;
         Ok(it)
+    }
+}
+
+impl v1::WatcherMessage {
+    pub fn this_id() -> Result<String> {
+        let machine = machine_id()?;
+        let pid = Pid::this();
+        Ok(format!("{machine}.{pid}"))
     }
 }

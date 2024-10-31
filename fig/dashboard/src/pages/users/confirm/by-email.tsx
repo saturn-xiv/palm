@@ -12,7 +12,7 @@ import * as yup from "yup";
 import Layout from "../../../layouts/sign-in-side/Card";
 import { IAlert } from "../../../components";
 import { SIGN_IN_PATH } from "../../../reducers/current-user";
-import { user_confirm_by_email } from "../../../api/daffodil";
+import { send_confirm_email_for_user } from "../../../api/daffodil";
 import { IError } from "../../../api";
 
 interface IByEmailFormProps {
@@ -74,12 +74,12 @@ export const ByEmailForm = ({
           helperText={formik.touched.user && formik.errors.user}
           color={formik.errors.user ? "error" : "primary"}
           type="text"
-          name="realName"
+          name="user"
           autoFocus
           required
           fullWidth
           variant="outlined"
-          sx={{ ariaLabel: "realName" }}
+          sx={{ ariaLabel: "user" }}
         />
       </FormControl>
       <Button type="submit" fullWidth variant="contained">
@@ -93,7 +93,7 @@ const Widget = () => {
   const [alert, setAlert] = useState<IAlert>();
   const intl = useIntl();
   const handleSubmit = (values: IByEmailFormValues) => {
-    user_confirm_by_email(values.user)
+    send_confirm_email_for_user(values.user)
       .then(() => {
         setAlert({
           color: "success",
