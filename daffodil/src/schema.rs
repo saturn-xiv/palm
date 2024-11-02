@@ -33,6 +33,20 @@ diesel::table! {
 }
 
 diesel::table! {
+    bookkeeper_categories (id) {
+        id -> Int4,
+        user_id -> Int4,
+        parent_id -> Nullable<Int4>,
+        #[max_length = 63]
+        label -> Varchar,
+        deleted_at -> Nullable<Timestamp>,
+        version -> Int4,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     categories (id) {
         id -> Int4,
         #[max_length = 63]
@@ -303,6 +317,7 @@ diesel::table! {
 diesel::allow_tables_to_appear_in_same_query!(
     attachment_resources,
     attachments,
+    bookkeeper_categories,
     categories,
     category_resources,
     email_users,

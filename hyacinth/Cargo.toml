@@ -1,0 +1,64 @@
+[package]
+name = "hyacinth"
+version = "2024.11.1"
+edition = "2021"
+description = "A personal and small-business financial-accounting software."
+
+[dependencies]
+log = "0.4"
+actix-files = "0.6"
+actix-multipart = "0.7"
+askama = "0.12"
+flexbuffers = "2"
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "std"]
+
+[dependencies.chrono-tz]
+version = "0.10"
+features = ["serde"]
+
+[dependencies.juniper]
+version = "0.16"
+features = ["chrono"]
+
+[dependencies.validator]
+version = "0.18"
+features = ["derive"]
+
+[dependencies.strum]
+version = "0.26"
+features = ["derive"]
+
+[dependencies.hyper]
+version = "1"
+features = ["full"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[dependencies.casbin]
+version = "2"
+features = ["watcher"]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = ["postgres", "extras", "128-column-tables"]
+
+[dependencies.actix-web]
+version = "4"
+features = ["cookies"]
+
+[dependencies.petunia]
+path = '../petunia'

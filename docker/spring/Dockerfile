@@ -115,7 +115,7 @@ RUN chmod +x $HOME/.local/bin/bazel
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION "3.3.5"
+ENV RUBY_VERSION "3.3.6"
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
