@@ -19,7 +19,7 @@ const Widget = () => {
       );
     }
   });
-  return <span>&copy;{site_layout?.copyright}</span>;
+  return <>&copy;{site_layout?.copyright}</>;
 };
 
 export default Widget;

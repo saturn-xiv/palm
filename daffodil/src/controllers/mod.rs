@@ -1,4 +1,5 @@
 pub mod attachments;
+pub mod home;
 
 use actix_web::web;
 
@@ -22,4 +23,5 @@ pub fn register(config: &mut web::ServiceConfig) {
     config.service(
         web::scope("/api").service(web::scope("/attachments").service(attachments::upload)),
     );
+    config.service(home::get);
 }
