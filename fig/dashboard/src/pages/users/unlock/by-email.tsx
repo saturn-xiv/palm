@@ -1,6 +1,6 @@
 const Widget = () => {
   // TODO
-  return <>app</>;
+  return <>unlock by email</>;
 };
 
 export default Widget;

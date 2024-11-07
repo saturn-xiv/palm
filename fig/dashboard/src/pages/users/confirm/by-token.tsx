@@ -1,6 +1,6 @@
 const Widget = () => {
   // TODO
-  return <>app</>;
+  return <>confirm by token</>;
 };
 
 export default Widget;

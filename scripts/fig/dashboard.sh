@@ -13,7 +13,7 @@ npm install --save @fortawesome/fontawesome-free \
     react-currency-input-field \
     video.js @types/video.js \
     react-copy-to-clipboard @types/react-copy-to-clipboard \
-    slate slate-react react-dropzone \
+    slate slate-react \
     google-map-react qrcode.react \
     @uiw/react-md-editor \
     react-color @types/react-color \
@@ -25,12 +25,11 @@ npm install --save @fortawesome/fontawesome-free \
     react-big-calendar @types/react-big-calendar \
     react-intl \
     react-router-dom@latest \
-    @reduxjs/toolkit react-redux \
-    formik yup
+    @reduxjs/toolkit react-redux
 
-# https://blueprintjs.com/docs/#blueprint.quick-start
-npm install --save @blueprintjs/core \
-    @blueprintjs/icons @blueprintjs/datetime2 @blueprintjs/select @blueprintjs/table
+# https://procomponents.ant.design/en-US/docs
+# https://ant-design-charts.antgroup.com/en/manual/getting-started
+npm install --save antd @ant-design/pro-components @ant-design/charts
 
 echo 'done.'
 exit 0

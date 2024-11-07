@@ -2,7 +2,7 @@ import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const Dashboard = lazy(() => import("./layouts/dashboard"));
-const SignInSideLayout = lazy(() => import("./layouts/sign-in-side"));
+const Application = lazy(() => import("./layouts/application"));
 
 const Home = lazy(() => import("./pages/home"));
 const Install = lazy(() => import("./pages/install"));
@@ -18,7 +18,7 @@ const UsersConfirmByEmail = lazy(
 const UsersConfirmByToken = lazy(
   () => import("./pages/users/confirm/by-token")
 );
-const UsersPersonal = lazy(() => import("./pages/users/personal"));
+const Personal = lazy(() => import("./pages/personal"));
 const NewLeaveWords = lazy(() => import("./pages/leave-words/new"));
 const AdminUsers = lazy(() => import("./pages/admin/users"));
 const AdminLeaveWords = lazy(() => import("./pages/admin/leave-words"));
@@ -38,7 +38,7 @@ const router = createBrowserRouter(
       children: [
         {
           path: "personal",
-          element: <UsersPersonal />,
+          element: <Personal />,
         },
         {
           path: "admin",
@@ -59,7 +59,7 @@ const router = createBrowserRouter(
     },
     {
       path: "anonymous",
-      element: <SignInSideLayout />,
+      element: <Application />,
       children: [
         { path: "install", element: <Install /> },
         { path: "users/sign-in", element: <UsersSignIn /> },
