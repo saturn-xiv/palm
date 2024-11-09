@@ -4,6 +4,7 @@ pub mod google;
 pub mod graphql;
 pub mod grpc;
 pub mod handlers;
+pub mod iso4217;
 pub mod jwt;
 pub mod network;
 pub mod opensearch;

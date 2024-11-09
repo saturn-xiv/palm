@@ -74,6 +74,10 @@ features = ["cluster", "r2d2"]
 version = "0.29"
 features = ["process", "hostname", "user"]
 
+[dependencies.quick-xml]
+version = "0.37"
+features = ["serialize"]
+
 [dependencies.hyper]
 version = "1"
 features = ["full"]
@@ -97,7 +101,7 @@ features = ["watcher"]
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = ["postgres", "mysql", "sqlite", "r2d2"]
+features = ["postgres", "mysql", "sqlite", "extras", "r2d2"]
 
 [dependencies.actix-web]
 version = "4"
