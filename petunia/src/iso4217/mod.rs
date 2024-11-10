@@ -11,4 +11,5 @@ pub struct Currency {
     pub number: String,
     pub country: String,
     pub units: u8,
+    pub is_fund: Option<bool>,
 }

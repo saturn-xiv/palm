@@ -2,11 +2,12 @@ use std::ops::Deref;
 
 use carnation::graphql::page as cms_page;
 use chrono::Duration;
+use chrono_tz::TZ_VARIANTS;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
-    leave_word as daffodil_leave_word, locale as daffodil_locale, log as daffodil_log,
-    menu as daffodil_menu, session as daffodil_session, site as daffodil_site, tag as daffodil_tag,
-    user::email as daffodil_user_by_email,
+    currency as daffodil_currency, leave_word as daffodil_leave_word, locale as daffodil_locale,
+    log as daffodil_log, menu as daffodil_menu, session as daffodil_session, site as daffodil_site,
+    tag as daffodil_tag, user::email as daffodil_user_by_email,
 };
 use juniper::{graphql_object, FieldResult};
 use petunia::{
@@ -25,7 +26,16 @@ impl Query {
     fn api_version(_context: &Context) -> &str {
         GIT_VERSION
     }
-
+    // ------------------------------------------------------------------------
+    fn currencies(context: &Context) -> FieldResult<Vec<daffodil_currency::Item>> {
+        let db = context.postgresql.deref();
+        let items = daffodil_currency::Item::all(db)?;
+        Ok(items)
+    }
+    fn timezones(_context: &Context) -> FieldResult<Vec<String>> {
+        let items = TZ_VARIANTS.iter().map(|x| x.to_string()).collect();
+        Ok(items)
+    }
     // ------------------------------------------------------------------------
     fn layout(context: &Context) -> FieldResult<Layout> {
         let db = context.postgresql.deref();

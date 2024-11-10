@@ -13,6 +13,7 @@ impl super::Currency {
                         if unts.value != "N.A." {
                             items.push(Self {
                                 name: it.ccynm.value.clone(),
+                                is_fund: it.ccynm.fund,
                                 country: it.ctrynm.value.clone(),
                                 code: ccy.value.clone(),
                                 number: nbr.value.clone(),
@@ -72,6 +73,8 @@ struct CtryNm {
 }
 #[derive(Deserialize, Debug, Clone)]
 struct CcyNm {
+    #[serde(rename = "@IsFund")]
+    fund: Option<bool>,
     #[serde(rename = "$text")]
     value: String,
 }

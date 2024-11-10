@@ -1,5 +1,6 @@
 pub mod attachment;
 pub mod category;
+pub mod currency;
 pub mod leave_word;
 pub mod locale;
 pub mod log;

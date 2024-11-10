@@ -35,7 +35,7 @@ diesel::table! {
 diesel::table! {
     bookkeeper_categories (id) {
         id -> Int4,
-        user_id -> Int4,
+        ledger_id -> Int4,
         parent_id -> Nullable<Int4>,
         #[max_length = 63]
         label -> Varchar,
@@ -66,6 +66,22 @@ diesel::table! {
         #[max_length = 127]
         resource_type -> Varchar,
         resource_id -> Nullable<Int4>,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
+    currencies (id) {
+        id -> Int4,
+        #[max_length = 3]
+        code -> Bpchar,
+        #[max_length = 3]
+        number -> Bpchar,
+        #[max_length = 127]
+        name -> Varchar,
+        #[max_length = 127]
+        country -> Varchar,
+        units -> Int4,
         created_at -> Timestamp,
     }
 }
@@ -320,6 +336,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     bookkeeper_categories,
     categories,
     category_resources,
+    currencies,
     email_users,
     google_oauth2_users,
     leave_words,

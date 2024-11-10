@@ -82,7 +82,7 @@ function generate_diesel_schema() {
 
     cd $WORKSPACE/
     echo "generate database schema for daffodil"
-    DATABASE_URL=$1 diesel print-schema -o locales settings \
+    DATABASE_URL=$1 diesel print-schema -o currencies locales settings \
         users logs sessions email_users google_oauth2_users wechat_oauth2_users wechat_mini_program_users \
         attachments attachment_resources \
         tags tag_resources \
@@ -96,7 +96,7 @@ function generate_diesel_schema() {
     DATABASE_URL=$1 diesel print-schema -o questionnaire_forms questionnaire_fields questionnaire_polls >wisteria/src/schema.rs
     echo "generate database schema for hyacinth"
     DATABASE_URL=$1 diesel print-schema -o bookkeeper_ledgers bookkeeper_accounts bookkeeper_categories bookkeeper_merchants bookkeeper_transactions bookkeeper_entries >hyacinth/src/schema.rs
-    
+
 }
 
 # ---------------------------------------------------------

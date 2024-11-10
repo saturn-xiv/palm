@@ -9,8 +9,7 @@ diesel::table! {
         label -> Varchar,
         #[max_length = 1023]
         memo -> Varchar,
-        #[max_length = 3]
-        currency -> Bpchar,
+        currency_id -> Int4,
         #[sql_name = "type"]
         #[max_length = 15]
         type_ -> Varchar,
@@ -24,7 +23,7 @@ diesel::table! {
 diesel::table! {
     bookkeeper_categories (id) {
         id -> Int4,
-        user_id -> Int4,
+        ledger_id -> Int4,
         parent_id -> Nullable<Int4>,
         #[max_length = 63]
         label -> Varchar,
@@ -43,10 +42,9 @@ diesel::table! {
         to_account_id -> Int4,
         category_id -> Int4,
         merchant_id -> Int4,
-        amount -> Money,
+        amount -> Int4,
         #[max_length = 1023]
         memo -> Varchar,
-        bills -> Bytea,
         deleted_at -> Nullable<Timestamp>,
         created_at -> Timestamp,
     }
@@ -62,8 +60,6 @@ diesel::table! {
         label -> Varchar,
         #[max_length = 1023]
         memo -> Varchar,
-        #[max_length = 127]
-        cover -> Nullable<Varchar>,
         profile -> Bytea,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
@@ -75,14 +71,14 @@ diesel::table! {
 diesel::table! {
     bookkeeper_merchants (id) {
         id -> Int4,
-        user_id -> Int4,
+        ledger_id -> Int4,
         #[max_length = 63]
         label -> Varchar,
         #[max_length = 1023]
         memo -> Varchar,
-        #[max_length = 31]
+        #[max_length = 127]
         contact -> Nullable<Varchar>,
-        address -> Bytea,
+        addresses -> Bytea,
         phones -> Bytea,
         maps -> Bytea,
         deleted_at -> Nullable<Timestamp>,
@@ -95,6 +91,8 @@ diesel::table! {
 diesel::table! {
     bookkeeper_transactions (id) {
         id -> Int4,
+        #[max_length = 36]
+        uid -> Varchar,
         ledger_id -> Int4,
         #[max_length = 1023]
         memo -> Varchar,

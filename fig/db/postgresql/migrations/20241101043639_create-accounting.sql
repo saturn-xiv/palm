@@ -5,7 +5,6 @@ CREATE TABLE bookkeeper_ledgers(
     "uid" VARCHAR(36) NOT NULL,
     label VARCHAR(63) NOT NULL,
     memo VARCHAR(1023) NOT NULL,
-    cover VARCHAR(127),
     profile BYTEA NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     version INT NOT NULL DEFAULT 0,
@@ -21,7 +20,7 @@ CREATE TABLE bookkeeper_accounts(
     parent_id INTEGER,    
     label VARCHAR(63) NOT NULL,
     memo VARCHAR(1023) NOT NULL,    
-    currency CHAR(3) NOT NULL,
+    currency_id INTEGER NOT NULL,
     "type" VARCHAR(15) NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     version INT NOT NULL DEFAULT 0,
@@ -29,12 +28,11 @@ CREATE TABLE bookkeeper_accounts(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_bookkeeper_accounts_label ON bookkeeper_accounts(label);
-CREATE INDEX idx_bookkeeper_accounts_currency ON bookkeeper_accounts(currency);
 CREATE INDEX idx_bookkeeper_accounts_type ON bookkeeper_accounts("type");
 
 CREATE TABLE bookkeeper_categories(
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    ledger_id INTEGER NOT NULL,
     parent_id INTEGER,    
     label VARCHAR(63) NOT NULL, 
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
@@ -46,11 +44,11 @@ CREATE INDEX idx_bookkeeper_categories_label ON bookkeeper_categories(label);
 
 CREATE TABLE bookkeeper_merchants(
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,    
+    ledger_id INTEGER NOT NULL,    
     label VARCHAR(63) NOT NULL,
     memo VARCHAR(1023) NOT NULL,
-    contact VARCHAR(31),
-    address BYTEA NOT NULL,
+    contact VARCHAR(127),
+    addresses BYTEA NOT NULL,
     phones BYTEA NOT NULL,
     maps BYTEA NOT NULL,   
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
@@ -64,11 +62,13 @@ CREATE INDEX idx_bookkeeper_merchants_contact ON bookkeeper_merchants(contact) W
 
 CREATE TABLE bookkeeper_transactions(
     id SERIAL PRIMARY KEY,
+    "uid" VARCHAR(36) NOT NULL,
     ledger_id INTEGER NOT NULL,
     memo VARCHAR(1023) NOT NULL,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX idx_bookkeeper_transactions_uid ON bookkeeper_transactions("uid");
 CREATE INDEX idx_bookkeeper_transactions_memo ON bookkeeper_transactions(memo);
 
 CREATE TABLE bookkeeper_entries(
@@ -78,9 +78,8 @@ CREATE TABLE bookkeeper_entries(
     to_account_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
     merchant_id INTEGER NOT NULL,
-    amount MONEY NOT NULL,
+    amount INTEGER NOT NULL,
     memo VARCHAR(1023) NOT NULL,
-    bills BYTEA NOT NULL,     
     deleted_at TIMESTAMP WITHOUT TIME ZONE,        
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
