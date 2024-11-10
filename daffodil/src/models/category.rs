@@ -15,8 +15,8 @@ pub struct Item {
     pub left: i32,
     pub right: i32,
     pub version: i32,
-    pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 
 impl Item {

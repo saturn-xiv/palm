@@ -20,8 +20,8 @@ pub struct Item {
     pub locale: Option<String>,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
-    pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {

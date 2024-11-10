@@ -122,8 +122,8 @@ pub struct Item {
     pub value: Vec<u8>,
     pub nonce: Option<Vec<u8>>,
     pub version: i32,
-    pub updated_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
+    pub updated_at: NaiveDateTime,
 }
 
 pub trait Dao {

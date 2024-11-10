@@ -202,6 +202,42 @@ diesel::table! {
 }
 
 diesel::table! {
+    postal_addresses (id) {
+        id -> Int4,
+        #[max_length = 127]
+        street -> Varchar,
+        #[max_length = 63]
+        city -> Varchar,
+        #[max_length = 63]
+        state -> Varchar,
+        #[max_length = 63]
+        country -> Varchar,
+        #[max_length = 15]
+        zip_code -> Varchar,
+        deleted_at -> Nullable<Timestamp>,
+        version -> Int4,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
+    postal_recipients (id) {
+        id -> Int4,
+        #[max_length = 31]
+        name -> Varchar,
+        #[max_length = 7]
+        country_code -> Varchar,
+        #[max_length = 15]
+        phone -> Varchar,
+        deleted_at -> Nullable<Timestamp>,
+        version -> Int4,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     sessions (id) {
         id -> Int4,
         user_id -> Int4,
@@ -343,6 +379,8 @@ diesel::allow_tables_to_appear_in_same_query!(
     locales,
     logs,
     menu_items,
+    postal_addresses,
+    postal_recipients,
     sessions,
     settings,
     tag_resources,

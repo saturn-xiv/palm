@@ -27,8 +27,8 @@ pub struct Item {
     pub status: String,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
-    pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 pub trait Dao {
     fn by_id(&mut self, id: i32) -> Result<Item>;

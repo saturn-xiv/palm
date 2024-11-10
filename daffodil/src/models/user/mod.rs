@@ -44,8 +44,8 @@ pub struct Item {
     pub locked_at: Option<NaiveDateTime>,
     pub deleted_at: Option<NaiveDateTime>,
     pub version: i32,
-    pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 
 impl Item {

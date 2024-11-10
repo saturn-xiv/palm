@@ -13,8 +13,8 @@ pub struct Item {
     pub id: i32,
     pub code: String,
     pub version: i32,
-    pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {

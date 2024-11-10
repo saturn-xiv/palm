@@ -82,7 +82,8 @@ function generate_diesel_schema() {
 
     cd $WORKSPACE/
     echo "generate database schema for daffodil"
-    DATABASE_URL=$1 diesel print-schema -o currencies locales settings \
+    DATABASE_URL=$1 diesel print-schema -o postal_recipients postal_addresses currencies \
+        locales settings \
         users logs sessions email_users google_oauth2_users wechat_oauth2_users wechat_mini_program_users \
         attachments attachment_resources \
         tags tag_resources \

@@ -5,6 +5,7 @@ pub mod leave_word;
 pub mod locale;
 pub mod log;
 pub mod menu;
+pub mod postal;
 pub mod role;
 pub mod session;
 pub mod setting;

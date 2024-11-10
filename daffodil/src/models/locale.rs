@@ -16,8 +16,8 @@ pub struct Item {
     pub code: String,
     pub message: String,
     pub version: i32,
-    pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 
 #[derive(Insertable)]

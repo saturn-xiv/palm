@@ -16,8 +16,8 @@ pub struct Item {
     pub extra: bool,
     pub sort_order: i32,
     pub version: i32,
-    pub created_at: NaiveDateTime,
     pub updated_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {
