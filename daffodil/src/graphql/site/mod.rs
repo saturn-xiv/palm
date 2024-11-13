@@ -10,6 +10,7 @@ use hyper::StatusCode;
 use language_tags::LanguageTag;
 use petunia::{
     crypto::Key,
+    iso4217,
     jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::Pool as DbPool,
     rbac::v1::{
@@ -26,6 +27,7 @@ use validator::Validate;
 
 use super::super::{
     models::{
+        currency::Dao as CurrencyDao,
         locale::{Dao as LocaleDao, I18n},
         log::{Dao as LogDao, Level as LogLevel},
         setting::Setting,
@@ -178,6 +180,7 @@ impl Install {
                 None,
                 "Init system administrator.",
             )?;
+
             Ok(user)
         })?;
 
@@ -199,6 +202,9 @@ impl Install {
             .await?;
         }
 
+        for it in iso4217::Currency::list_one()?.iter() {
+            CurrencyDao::create(db, &it.code, &it.number, &it.name, &it.country, it.units as i32)?;
+        }
         Ok(())
     }
 }
