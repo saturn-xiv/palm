@@ -10,7 +10,7 @@ import { user_sign_up_by_email } from "../../api/daffodil";
 import { IError } from "../../api";
 import { SIGN_IN_PATH } from "../../reducers/current-user";
 
-interface IFormValue {
+export interface IFormValue {
   realName: string;
   nickname: string;
   email: string;

@@ -35,7 +35,7 @@ const Widget = () => {
         </Header>
         <Content>
           <Row>
-            <Col offset={8} span={8}>
+            <Col offset={6} span={12}>
               <Outlet />
               <br />
               <Menu

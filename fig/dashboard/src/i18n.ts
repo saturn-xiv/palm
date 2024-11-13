@@ -1,6 +1,29 @@
 import Cookies from "js-cookie";
+import enUS from "antd/locale/en_US";
+import zhCN from "antd/locale/zh_CN";
+import zhTW from "antd/locale/zh_TW";
+import dayjs from "dayjs";
+import type { ConfigProviderProps } from "antd";
+
+import "dayjs/locale/zh-cn";
 
 const KEY = "locale";
+
+export type Locale = ConfigProviderProps["locale"];
+
+export const load = (lang: string): Locale => {
+  switch (lang) {
+    case "zh-Hans":
+      dayjs.locale("zh-cn");
+      return zhCN;
+    case "zh-Hant":
+      dayjs.locale("zh-tw");
+      return zhTW;
+    default:
+      dayjs.locale("en");
+      return enUS;
+  }
+};
 
 export const get = (): string => {
   return (

@@ -1,5 +1,11 @@
 install:
-  title: "Setup an administrator account"
+  title: "Site installation"
+  site-info:
+    title: "Site information"
+    description: "Setup a website"
+  administrator:
+    title: "User profile"
+    description: "Setup the first administrator"
 users:
   sign-in:
     title: "Already have an account? Sign in"
@@ -39,5 +45,14 @@ users:
 leave-words:
   new:
     title: "Leave us a message"
+admin:
+  site:
+    base:
+      title: "Base info"
+      form:
+        copyright:
+          label: "Copyright"
+        subhead:
+          label: "Subhead"
 not-found:
   title: "Not found"

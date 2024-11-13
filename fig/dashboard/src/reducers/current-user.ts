@@ -10,7 +10,7 @@ export const ROLE_ADMINISTRATOR = "administrator";
 export const SESSION_LIFETIME =
   parseInt(import.meta.env.VITE_SESSION_LIFETIME_IN_MINUTES) * 60;
 
-const KEY = "token";
+const KEY = "token.v20241013";
 
 export const get = (): string | null => {
   return sessionStorage.getItem(KEY);

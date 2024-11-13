@@ -5,11 +5,12 @@ import "./main.css";
 
 import App from "./App.tsx";
 import { index_locale_by_lang } from "./api/daffodil";
-import { get as detect_locale } from "./i18n";
+import { get as detect_locale, load as i18n_load } from "./i18n";
 
-const locale = detect_locale();
+const lang = detect_locale();
+const locale = i18n_load(lang);
 
-index_locale_by_lang(locale).then((res) => {
+index_locale_by_lang(lang).then((res) => {
   const messages = res.reduce((obj, it) => {
     obj[it.code] = it.message;
     return obj;
@@ -17,7 +18,7 @@ index_locale_by_lang(locale).then((res) => {
 
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
-      <App messages={messages} locale={locale} />
+      <App messages={messages} lang={lang} locale={locale} />
     </StrictMode>
   );
 });

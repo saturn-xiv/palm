@@ -15,3 +15,13 @@ fields:
     label: "Content"
   body:
     label: "Body"
+  title:
+    label: "Title"
+  memo:
+    label: "Memo"
+  description:
+    label: "Description"
+  details:
+    label: "Details"
+  label:
+    label: 'Label'
