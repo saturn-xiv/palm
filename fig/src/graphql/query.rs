@@ -9,6 +9,7 @@ use daffodil::graphql::{
     log as daffodil_log, menu as daffodil_menu, session as daffodil_session, site as daffodil_site,
     tag as daffodil_tag, user::email as daffodil_user_by_email,
 };
+use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
 use petunia::{
     graphql::{Pager, Succeed},
@@ -220,5 +221,73 @@ impl Query {
         let res = wisteria_graphql::poll::Item::by_form(&context.session, db, jwt, form)?;
         Ok(res)
     }
+    // ------------------------------------------------------------------------
+    async fn index_bookkeeping_ledger(
+        context: &Context,
+    ) -> FieldResult<Vec<hyacinth_graphql::ledger::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let items = hyacinth_graphql::ledger::Item::all(&context.session, db, jwt).await?;
+        Ok(items)
+    }
+    async fn index_bookkeeping_category_by_ledger(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<Vec<hyacinth_graphql::category::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let items =
+            hyacinth_graphql::category::Item::by_ledger(&context.session, db, jwt, enf, id).await?;
+        Ok(items)
+    }
+    async fn index_bookkeeping_account_by_ledger(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<Vec<hyacinth_graphql::account::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let items =
+            hyacinth_graphql::account::Item::by_ledger(&context.session, db, jwt, enf, id).await?;
+        Ok(items)
+    }
+    async fn index_bookkeeping_merchant_by_ledger(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<Vec<hyacinth_graphql::merchant::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let items =
+            hyacinth_graphql::merchant::Item::by_ledger(&context.session, db, jwt, enf, id).await?;
+        Ok(items)
+    }
+    async fn index_bookkeeping_transaction_by_ledger(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<Vec<hyacinth_graphql::transaction::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let items =
+            hyacinth_graphql::transaction::Item::by_ledger(&context.session, db, jwt, enf, id)
+                .await?;
+        Ok(items)
+    }
+    async fn index_bookkeeping_entries_by_transaction(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<Vec<hyacinth_graphql::entry::Item>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let items =
+            hyacinth_graphql::entry::Item::by_transaction(&context.session, db, jwt, enf, id)
+                .await?;
+        Ok(items)
+    }
+
+    // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }

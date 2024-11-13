@@ -10,6 +10,7 @@ use daffodil::graphql::{
         SignInResponse as UserSignInResponse,
     },
 };
+use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
 use petunia::{graphql::Succeed, themes::Author as SiteAuthor, Editor};
 use wisteria::graphql as wisteria_graphql;
@@ -670,5 +671,234 @@ impl Mutation {
         wisteria_graphql::poll::disable(&context.session, db, jwt, id)?;
         Ok(Succeed::default())
     }
+    // ------------------------------------------------------------------------
+    fn create_bookkeeping_ledger(
+        context: &Context,
+        label: String,
+        memo: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let form = hyacinth_graphql::ledger::Form { label, memo };
+        form.create(&context.session, db, jwt)?;
+        Ok(Succeed::default())
+    }
+    async fn update_bookkeeping_ledger(
+        context: &Context,
+        id: i32,
+        label: String,
+        memo: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::ledger::Form { label, memo };
+        form.update(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn enable_bookkeeping_ledger(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::ledger::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_bookkeeping_ledger(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::ledger::disable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn create_bookkeeping_category(
+        context: &Context,
+        ledger: i32,
+        parent: Option<i32>,
+        label: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::category::Form { label };
+        form.create(&context.session, db, jwt, enf, ledger, parent)
+            .await?;
+        Ok(Succeed::default())
+    }
+    async fn update_bookkeeping_category(
+        context: &Context,
+        id: i32,
+        label: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::category::Form { label };
+        form.update(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn enable_bookkeeping_category(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::category::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_bookkeeping_category(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::category::disable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn create_bookkeeping_account(
+        context: &Context,
+        ledger: i32,
+        parent: Option<i32>,
+        label: String,
+        memo: String,
+        currency: i32,
+        r#type: hyacinth::models::account::Type,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::account::Form { label, memo };
+        form.create(
+            &context.session,
+            db,
+            jwt,
+            enf,
+            (ledger, parent, currency, r#type),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn update_bookkeeping_account(
+        context: &Context,
+        id: i32,
+        label: String,
+        memo: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::account::Form { label, memo };
+        form.update(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn enable_bookkeeping_account(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::account::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_bookkeeping_account(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::account::disable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn create_bookkeeping_merchant(
+        context: &Context,
+        ledger: i32,
+        label: String,
+        memo: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::merchant::Form { label, memo };
+        form.create(&context.session, db, jwt, enf, ledger).await?;
+        Ok(Succeed::default())
+    }
+    async fn update_bookkeeping_merchant(
+        context: &Context,
+        id: i32,
+        label: String,
+        memo: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::merchant::Form { label, memo };
+        form.update(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn enable_bookkeeping_merchant(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::merchant::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_bookkeeping_merchant(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::merchant::disable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn create_bookkeeping_transaction(
+        context: &Context,
+        ledger: i32,
+        memo: String,
+        entries: Vec<hyacinth_graphql::entry::New>,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let form = hyacinth_graphql::transaction::Form { memo };
+        form.create(&context.session, db, jwt, enf, ledger, &entries)
+            .await?;
+        Ok(Succeed::default())
+    }
+    async fn enable_bookkeeping_transaction(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::transaction::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_bookkeeping_transaction(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::transaction::disable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+
+    async fn create_bookkeeping_entry(
+        context: &Context,
+        transaction: i32,
+        form: hyacinth_graphql::entry::New,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.create(&context.session, db, jwt, enf, transaction)
+            .await?;
+        Ok(Succeed::default())
+    }
+    async fn enable_bookkeeping_entry(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::entry::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_bookkeeping_entry(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        hyacinth_graphql::entry::disable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }

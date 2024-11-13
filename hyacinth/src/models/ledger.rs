@@ -28,7 +28,7 @@ pub struct Item {
 pub struct Profile {}
 
 pub trait Dao {
-    fn create(&mut self, user: i32, label: &str, memo: &str) -> Result<()>;
+    fn create(&mut self, user: i32, label: &str, memo: &str) -> Result<String>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn by_user(&mut self, user: i32) -> Result<Vec<Item>>;
@@ -38,21 +38,21 @@ pub trait Dao {
 }
 
 impl Dao for Connection {
-    fn create(&mut self, user: i32, label: &str, memo: &str) -> Result<()> {
+    fn create(&mut self, user: i32, label: &str, memo: &str) -> Result<String> {
         let now = Utc::now().naive_utc();
         let uid = Uuid::new_v4().to_string();
         let profile = flexbuffers::to_vec(Profile::default())?;
         insert_into(bookkeeper_ledgers::dsl::bookkeeper_ledgers)
             .values((
                 bookkeeper_ledgers::dsl::user_id.eq(user),
-                bookkeeper_ledgers::dsl::uid.eq(uid),
+                bookkeeper_ledgers::dsl::uid.eq(&uid),
                 bookkeeper_ledgers::dsl::label.eq(label),
                 bookkeeper_ledgers::dsl::memo.eq(memo),
                 bookkeeper_ledgers::dsl::profile.eq(&profile),
                 bookkeeper_ledgers::dsl::updated_at.eq(now),
             ))
             .execute(self)?;
-        Ok(())
+        Ok(uid)
     }
     fn by_id(&mut self, id: i32) -> Result<Item> {
         let it = bookkeeper_ledgers::dsl::bookkeeper_ledgers
