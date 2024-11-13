@@ -31,6 +31,19 @@ use super::super::{
 use super::NAME;
 
 #[derive(GraphQLObject)]
+#[graphql(name = "Resource")]
+pub struct Resource {
+    pub r#type: String,
+    pub id: Option<i32>,
+}
+
+#[derive(GraphQLObject)]
+#[graphql(name = "Permission")]
+pub struct Permission {
+    pub operation: String,
+    pub resource: Resource,
+}
+#[derive(GraphQLObject)]
 #[graphql(name = "UserSignInResponse")]
 pub struct SignInResponse {
     pub real_name: String,
@@ -41,6 +54,7 @@ pub struct SignInResponse {
     pub is_administrator: bool,
     pub is_root: bool,
     pub roles: Vec<String>,
+    pub permissions: Vec<Permission>,
 }
 
 impl SignInResponse {
@@ -120,6 +134,7 @@ impl SignInResponse {
             is_administrator,
             is_root,
             roles,
+            permissions: Vec::new(),
         })
     }
 }

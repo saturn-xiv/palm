@@ -110,6 +110,7 @@ impl Dao for Connection {
         insert_into(sessions::dsl::sessions)
             .values((
                 sessions::dsl::user_id.eq(user),
+                sessions::dsl::uid.eq(&uid),
                 sessions::dsl::provider_type.eq(provider_type),
                 sessions::dsl::provider_id.eq(provider_id),
                 sessions::dsl::ip.eq(ip),

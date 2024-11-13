@@ -140,7 +140,8 @@ export interface ISignInResponse {
 const USER_SIGN_IN_BY_EMAIL = `
 mutation call($user: String!, $password: String!){
     userSignInByEmail(user: $user, password: $password) {
-        createdAt
+        token, roles, 
+        permissions {operation, resource {type, id}}
     }
 }
 `;
@@ -148,11 +149,14 @@ export const user_sign_in_by_email = async (
   user: string,
   password: string
 ): Promise<ISignInResponse> => {
-  const res: ISignInResponse = await query(USER_SIGN_IN_BY_EMAIL, {
-    user,
-    password,
-  });
-  return res;
+  const res: { userSignInByEmail: ISignInResponse } = await query(
+    USER_SIGN_IN_BY_EMAIL,
+    {
+      user,
+      password,
+    }
+  );
+  return res.userSignInByEmail;
 };
 
 export interface IUserSignUpByEmailRequest {
@@ -196,12 +200,12 @@ export const install = async (
   site: ISetSiteInfoRequest,
   user: IUserSignUpByEmailRequest
 ): Promise<ISucceed> => {
-  const res: ISucceed = await query(INSTALL, {
+  const res: { install: ISucceed } = await query(INSTALL, {
     lang: detect_locale(),
     site,
     user,
   });
-  return res;
+  return res.install;
 };
 
 const INDEX_LOCALE_BY_LANG = `

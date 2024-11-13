@@ -2,12 +2,15 @@ import { useEffect } from "react";
 
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { refresh } from "../reducers/site";
+import { isSignIn, signIn, get as get_token } from "../reducers/current-user";
 
 const Widget = () => {
-  const site_layout = useAppSelector((state) => state.site.layout);
+  const is_sign_in = useAppSelector(isSignIn);
+  const token = get_token();
+  const site = useAppSelector((state) => state.site.layout);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (!site_layout) {
+    if (!site) {
       // TODO
       dispatch(
         refresh({
@@ -18,8 +21,11 @@ const Widget = () => {
         })
       );
     }
-  });
-  return <>&copy;{site_layout?.copyright}</>;
+    if (!is_sign_in && token !== null) {
+      dispatch(signIn({ token }));
+    }
+  }, [site, dispatch, is_sign_in, token]);
+  return <>&copy;{site?.copyright}</>;
 };
 
 export default Widget;
