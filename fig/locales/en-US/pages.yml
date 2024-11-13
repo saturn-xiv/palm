@@ -39,3 +39,5 @@ users:
 leave-words:
   new:
     title: "Leave us a message"
+not-found:
+  title: "Not found"

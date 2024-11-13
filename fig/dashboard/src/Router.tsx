@@ -30,6 +30,8 @@ const AdminSiteSeo = lazy(() => import("./pages/admin/site/seo"));
 const AdminSiteSmtp = lazy(() => import("./pages/admin/site/smtp"));
 const AdminSiteStatus = lazy(() => import("./pages/admin/site/status"));
 
+const NotFound = lazy(() => import("./pages/not-found"));
+
 const router = createBrowserRouter(
   [
     {
@@ -82,6 +84,10 @@ const router = createBrowserRouter(
     {
       path: "/",
       element: <Home />,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
     },
   ],
   {
