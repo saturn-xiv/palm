@@ -1,6 +1,10 @@
 import { get as detect_locale } from "../i18n";
-import { query, ISucceed, EDITOR_TEXTAREA } from ".";
-import { ICurrentUser } from "../reducers/current-user";
+import { query, ISucceed, EDITOR_TEXTAREA, IPagination, IPager } from ".";
+import {
+  ICurrentUser,
+  IResource,
+  mingle_password,
+} from "../reducers/current-user";
 import { ISiteInfo } from "../reducers/site";
 
 interface IRefreshResponse {
@@ -32,25 +36,6 @@ export const refresh = async (): Promise<IRefreshResponse> => {
   return res.refresh;
 };
 
-const USER_SIGN_OUT = `
-mutation call{
-    userSignOut {
-        createdAt
-    }
-}
-`;
-export const user_sign_out = async (): Promise<ISucceed> => {
-  const res: { userSignOut: ISucceed } = await query(USER_SIGN_OUT, {});
-  return res.userSignOut;
-};
-
-export interface ISetSiteInfoRequest {
-  title: string;
-  subhead: string;
-  description: string;
-  copyright: string;
-}
-
 const CREATE_LEAVE_WORD = `
 mutation call($body: String!, $editor: Editor!){
     createLeaveWord(body: $body, editor: $editor) {
@@ -65,6 +50,129 @@ export const create_leave_word = async (body: string): Promise<ISucceed> => {
   });
   return res.createLeaveWord;
 };
+
+// ----------------------------------------------------------------------------
+const INDEX_LOG = `
+query call($pager: Pager!){
+    indexLog(pager: $pager) {
+      pagination{total, page, size, hasPrevious, hasNext},
+      items{
+        id, plugin, message, level, ip, createdAt,
+        resource{type, id}
+      }
+    }
+}
+`;
+export interface ILog {
+  id: number;
+  plugin: string;
+  message: string;
+  level: string;
+  ip: string;
+  resource: IResource;
+  createdAt: Date;
+}
+interface IIndexLogResponse {
+  pagination: IPagination;
+  items: ILog[];
+}
+export const index_log = async (pager: IPager): Promise<IIndexLogResponse> => {
+  const res: { indexLog: IIndexLogResponse } = await query(INDEX_LOG, {
+    pager,
+  });
+  return res.indexLog;
+};
+
+const GET_EMAIL_USER_PROFILE = `
+query call{
+    getEmailUserProfile {
+        realName, nickname, email, avatar, lang, timezone
+    }
+}
+`;
+interface IEmailUserProfile {
+  realName: string;
+  nickname: string;
+  email: string;
+  avatar: string;
+  lang: string;
+  timezone: string;
+}
+export const get_email_user_profile = async (): Promise<IEmailUserProfile> => {
+  const res: { getEmailUserProfile: IEmailUserProfile } = await query(
+    GET_EMAIL_USER_PROFILE,
+    {}
+  );
+  return res.getEmailUserProfile;
+};
+const SET_EMAIL_USER_PROFILE = `
+mutation call($realName: String!, $lang: String!, $timezone: String!){
+    setEmailUserProfile(realName: $realName, lang: $lang, timezone: $timezone) {
+        createdAt
+    }
+}
+`;
+export const set_email_user_profile = async (
+  realName: string,
+  lang: string,
+  timezone: string
+): Promise<ISucceed> => {
+  const res: { setEmailUserProfile: ISucceed } = await query(
+    SET_EMAIL_USER_PROFILE,
+    { realName, lang, timezone }
+  );
+  return res.setEmailUserProfile;
+};
+const CANCEL_MY_EMAIL_ACCOUNT = `
+mutation call($password: String!, $reason: String!){
+    cancelMyEmailAccount(password: $password, reason: $reason) {
+        createdAt
+    }
+}
+`;
+export const cancel_my_email_account = async (
+  password: string,
+  reason: string
+): Promise<ISucceed> => {
+  const res: { cancelMyEmailAccount: ISucceed } = await query(
+    CANCEL_MY_EMAIL_ACCOUNT,
+    { password: mingle_password(password), reason }
+  );
+  return res.cancelMyEmailAccount;
+};
+const CHANGE_EMAIL_USER_PASSWORD = `
+mutation call($currentPassword: String!, $newPassword: String!){
+    changeEmailUserPassword(currentPassword: $currentPassword, newPassword: $newPassword) {
+        createdAt
+    }
+}
+`;
+export const change_email_user_password = async (
+  currentPassword: string,
+  newPassword: string
+): Promise<ISucceed> => {
+  const res: { changeEmailUserPassword: ISucceed } = await query(
+    CHANGE_EMAIL_USER_PASSWORD,
+    {
+      currentPassword: mingle_password(currentPassword),
+      newPassword: mingle_password(newPassword),
+    }
+  );
+  return res.changeEmailUserPassword;
+};
+
+const USER_SIGN_OUT = `
+mutation call{
+    userSignOut {
+        createdAt
+    }
+}
+`;
+export const user_sign_out = async (): Promise<ISucceed> => {
+  const res: { userSignOut: ISucceed } = await query(USER_SIGN_OUT, {});
+  return res.userSignOut;
+};
+
 const RESET_EMAIL_USER_PASSWORD_BY_TOKEN = `
 mutation call($token: String!, $password: String!){
     resetEmailUserPasswordByToken(token: $token, password: $password) {
@@ -80,7 +188,7 @@ export const reset_email_user_password_by_token = async (
     RESET_EMAIL_USER_PASSWORD_BY_TOKEN,
     {
       token,
-      password,
+      password: mingle_password(password),
     }
   );
   return res.resetEmailUserPasswordByToken;
@@ -204,7 +312,7 @@ export const user_sign_in_by_email = async (
     USER_SIGN_IN_BY_EMAIL,
     {
       user,
-      password,
+      password: mingle_password(password),
     }
   );
   return res.userSignInByEmail;
@@ -239,6 +347,7 @@ export const user_sign_up_by_email = async (
   return res.userSignUpByEmail;
 };
 
+// ----------------------------------------------------------------------------
 const INSTALL = `
 mutation call($lang: String!, $site: SetSiteInfoRequest!, $user: UserSignUpByEmailRequest!){
     install(lang: $lang, site: $site, user: $user) {
@@ -247,10 +356,17 @@ mutation call($lang: String!, $site: SetSiteInfoRequest!, $user: UserSignUpByEma
 }
 `;
 
+export interface ISetSiteInfoRequest {
+  title: string;
+  subhead: string;
+  description: string;
+  copyright: string;
+}
 export const install = async (
   site: ISetSiteInfoRequest,
   user: IUserSignUpByEmailRequest
 ): Promise<ISucceed> => {
+  user.password = mingle_password(user.password);
   const res: { install: ISucceed } = await query(INSTALL, {
     lang: detect_locale(),
     site,

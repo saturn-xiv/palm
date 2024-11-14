@@ -13,6 +13,11 @@ export const SESSION_LIFETIME =
 
 const KEY = "token.v20241013";
 
+export const mingle_password = (s: string): string => {
+  // salt length: 11
+  return `${Math.random().toString(36).slice(2)}${btoa(s)}`;
+};
+
 export const get = (): string | null => {
   return sessionStorage.getItem(KEY);
 };

@@ -8,6 +8,7 @@ use argon2::{
 };
 use chrono::{NaiveDateTime, Utc};
 use chrono_tz::Tz;
+use data_encoding::BASE64_NOPAD;
 use data_encoding::HEXLOWER;
 use diesel::{insert_into, prelude::*, update};
 use hyper::StatusCode;
@@ -219,11 +220,11 @@ impl Item {
     }
 
     pub fn password(plain: &str) -> Result<String> {
-        let plain = plain.as_bytes();
+        let plain = Self::from_mingle_password(plain)?;
         let salt = SaltString::generate(&mut OsRng);
 
         let cipher = Argon2::default()
-            .hash_password(plain, &salt)
+            .hash_password(&plain, &salt)
             .map_err(|x| {
                 Box::new(HttpError(
                     StatusCode::INTERNAL_SERVER_ERROR,
@@ -234,16 +235,30 @@ impl Item {
         Ok(cipher)
     }
 
+    // Math.random().toString(36).slice(2)
+    fn from_mingle_password(plain: &str) -> Result<Vec<u8>> {
+        let salt_size = 11;
+        if plain.len() <= salt_size {
+            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+        }
+        let plain = {
+            let it = &plain[salt_size..];
+            BASE64_NOPAD.decode(it.as_bytes())?
+        };
+        Ok(plain)
+    }
+
     pub fn verify(plain: &str, cipher: &str) -> Result<()> {
+        let plain = Self::from_mingle_password(plain)?;
         let hash = PasswordHash::new(cipher).map_err(|x| {
             Box::new(HttpError(
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Some(x.to_string()),
             ))
         })?;
-        let plain = plain.as_bytes();
+
         Argon2::default()
-            .verify_password(plain, &hash)
+            .verify_password(&plain, &hash)
             .map_err(|x| {
                 Box::new(HttpError(
                     StatusCode::INTERNAL_SERVER_ERROR,

@@ -854,7 +854,7 @@ impl ChangePassword {
 }
 
 #[derive(Validate)]
-pub struct Profile {
+pub struct SetProfile {
     #[validate(length(min = 2, max = 31))]
     pub real_name: String,
     #[validate(length(min = 2, max = 15))]
@@ -863,7 +863,7 @@ pub struct Profile {
     pub timezone: String,
 }
 
-impl Profile {
+impl SetProfile {
     pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt, client_ip: &str) -> Result<()> {
         self.validate()?;
         let lang = LanguageTag::from_str(&self.lang)?;
@@ -895,5 +895,74 @@ impl Profile {
         })?;
 
         Ok(())
+    }
+}
+
+#[derive(Validate)]
+pub struct Cancel {
+    #[validate(length(min = 6, max = 31))]
+    pub password: String,
+    #[validate(length(min = 1, max = 1023))]
+    pub reason: String,
+}
+impl Cancel {
+    pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt, client_ip: &str) -> Result<()> {
+        self.validate()?;
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let (su, user) = current_user(ss, db, jwt)?;
+        if su.provider_type.parse::<ProviderType>()? != ProviderType::Email {
+            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+        }
+
+        db.transaction::<_, Error, _>(|db| {
+            let eu = EmailDao::by_id(db, su.provider_id)?;
+            User::verify(&self.password, &eu.password)?;
+            EmailDao::disable(db, eu.id)?;
+            LogDao::create::<_, User>(
+                db,
+                user.id,
+                NAME,
+                LogLevel::Info,
+                client_ip,
+                None,
+                &format!("Cancel email account({}).", self.reason),
+            )?;
+            Ok(())
+        })?;
+
+        Ok(())
+    }
+}
+
+#[derive(GraphQLObject)]
+#[graphql(name = "EmailUserProfile")]
+pub struct GetProfile {
+    pub real_name: String,
+    pub nickname: String,
+    pub email: String,
+    pub avatar: String,
+    pub lang: String,
+    pub timezone: String,
+}
+
+impl GetProfile {
+    pub fn new(ss: &Session, db: &DbPool, jwt: &Jwt) -> Result<Self> {
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let (su, user) = current_user(ss, db, jwt)?;
+        if su.provider_type.parse::<ProviderType>()? != ProviderType::Email {
+            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+        }
+        let eu = EmailDao::by_id(db, su.provider_id)?;
+
+        Ok(Self {
+            real_name: eu.real_name.clone(),
+            nickname: eu.nickname.clone(),
+            email: eu.email.clone(),
+            avatar: eu.avatar.clone(),
+            lang: user.lang.clone(),
+            timezone: user.timezone.clone(),
+        })
     }
 }

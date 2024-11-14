@@ -48,7 +48,14 @@ impl Query {
         Ok(it)
     }
     // ------------------------------------------------------------------------
-
+    fn get_email_user_profile(
+        context: &Context,
+    ) -> FieldResult<daffodil_user_by_email::GetProfile> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let it = daffodil_user_by_email::GetProfile::new(&context.session, db, jwt)?;
+        Ok(it)
+    }
     async fn send_confirm_email_for_user(context: &Context, user: String) -> FieldResult<Succeed> {
         let form = daffodil_user_by_email::Email {
             user: user.trim().to_lowercase(),

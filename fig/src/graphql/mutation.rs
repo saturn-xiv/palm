@@ -172,7 +172,7 @@ impl Mutation {
         lang: String,
         timezone: String,
     ) -> FieldResult<Succeed> {
-        let form = daffodil_user_by_email::Profile {
+        let form = daffodil_user_by_email::SetProfile {
             real_name: real_name.trim().to_string(),
             lang,
             timezone,
@@ -262,6 +262,17 @@ impl Mutation {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         daffodil_user::sign_out(&context.session, db, jwt, &context.session.client_ip)?;
+        Ok(Succeed::default())
+    }
+    fn cancel_my_email_account(
+        context: &Context,
+        password: String,
+        reason: String,
+    ) -> FieldResult<Succeed> {
+        let form = daffodil_user::email::Cancel { password, reason };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, &context.session.client_ip)?;
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------

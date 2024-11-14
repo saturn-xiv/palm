@@ -9,6 +9,10 @@ fields:
     label: "Real name"
   password:
     label: "Password"
+  current-password:
+    label: "Current password"
+  new-password:
+    label: "New password"
   password-confirmation:
     label: "Password confirmation"
     errors:
@@ -27,3 +31,29 @@ fields:
     label: "Details"
   label:
     label: "Label"
+  reason:
+    label: "Reason"
+  lang:
+    label: "Lang"
+  timezone:
+    label: "Timezone"
+  id:
+    label: "ID"
+  ip:
+    label: "IP"
+  created-at:
+    label: "Created at"
+  deleted-at:
+    label: "Deleted at"
+  locked-at:
+    label: "Locked at"
+  updated-at:
+    label: "Updated At"
+  level:
+    label: "Label"
+  message:
+    label: "Message"
+  resource:
+    label: "Resource"
+  plugin:
+    label: "Plugin"

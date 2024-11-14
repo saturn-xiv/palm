@@ -44,3 +44,16 @@ export interface IError {
   message: string;
   locations: { line: number; column: number }[];
 }
+
+export interface IPagination {
+  total: number;
+  page: number;
+  size: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+
+export interface IPager {
+  page: number;
+  size: number;
+}
