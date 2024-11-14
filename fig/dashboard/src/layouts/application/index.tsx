@@ -13,11 +13,12 @@ import {
 
 import Copyright from "../Copyright";
 import { useAppSelector } from "../../hooks";
+import { siteInfo } from "../../reducers/site";
 
 const { Header, Footer, Content } = Layout;
 
 const Widget = () => {
-  const site = useAppSelector((state) => state.site.layout);
+  const site = useAppSelector(siteInfo);
   const navigate = useNavigate();
 
   return (

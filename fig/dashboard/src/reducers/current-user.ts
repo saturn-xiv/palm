@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
 import type { RootState } from "../store";
 
@@ -24,39 +25,69 @@ const remove = () => {
   sessionStorage.removeItem(KEY);
 };
 
-export interface IPermission {
-  operation: string;
-  resource: IResource;
-}
-
-export interface IResource {
+interface IResource {
   type: string;
   id?: number;
 }
+interface IPermission {
+  operation: string;
+  resource: IResource;
+}
+interface IMenu {
+  label: string;
+  to: string;
+  external: boolean;
+  children?: IMenu[];
+}
+enum IProviderType {
+  EMAIL,
+  GOOGLE,
+  FACEBOOK,
+  WECHAT_MINI_PROGRAM,
+  WECHAT_OAUTH2,
+}
 
-export interface IUserSignInAction {
-  token: string;
+export interface ICurrentUser {
+  realName: string;
+  providerType: IProviderType;
+  lang: string;
+  timezone: string;
+  isAdministrator: boolean;
+  isRoot: boolean;
+  roles: string[];
+  permissions: IPermission[];
+  sideBar: IMenu[];
 }
 
 export interface IState {
   uid?: string;
-  roles: string[];
-  permissions: IPermission[];
+  profile?: ICurrentUser;
 }
 
-const initialState: IState = {
-  roles: [],
-  permissions: [],
-};
+const initialState: IState = {};
 
 export const currentUserSlice = createSlice({
   name: "current-user",
   initialState,
   reducers: {
-    signIn: (state, action: PayloadAction<IUserSignInAction>) => {
-      // TODO
-      set(action.payload.token);
-      state.uid = "who-am-i";
+    signIn: (
+      state,
+      action: PayloadAction<{ token: string; profile: ICurrentUser }>
+    ) => {
+      try {
+        const decoded = jwtDecode<JwtPayload>(action.payload.token);
+        if (decoded.sub) {
+          set(action.payload.token);
+          state.uid = decoded.sub;
+          state.profile = Object.assign({}, action.payload.profile);
+        }
+        return;
+      } catch (e) {
+        console.error(e);
+      }
+      state.uid = undefined;
+      state.profile = undefined;
+      remove();
     },
     signOut: (state) => {
       remove();
@@ -69,5 +100,6 @@ export const { signIn, signOut } = currentUserSlice.actions;
 
 export const isSignIn = (state: RootState) =>
   state.currentUser.uid !== undefined;
+export const currentUser = (state: RootState) => state.currentUser.profile;
 
 export default currentUserSlice.reducer;

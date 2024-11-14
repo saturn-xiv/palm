@@ -42,7 +42,8 @@ CREATE INDEX idx_logs_resource_type ON logs(resource_type);
 CREATE TABLE sessions(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
-    uid VARCHAR(36) NOT NULL, 
+    uid VARCHAR(36) NOT NULL,
+    real_name VARCHAR(31) NOT NULL, 
     provider_type VARCHAR(127) NOT NULL,
     provider_id INT NOT NULL,
     ip VARCHAR(45) NOT NULL,
@@ -52,6 +53,7 @@ CREATE TABLE sessions(
 );
 CREATE UNIQUE INDEX idx_sessions_uid ON sessions(uid);
 CREATE INDEX idx_sessions_ip ON sessions(ip);
+CREATE INDEX idx_sessions_real_name ON sessions(real_name);
 CREATE INDEX idx_sessions_provider_type ON sessions(provider_type);
 
 

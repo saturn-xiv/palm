@@ -1,5 +1,36 @@
 import { get as detect_locale } from "../i18n";
 import { query, ISucceed, EDITOR_TEXTAREA } from ".";
+import { ICurrentUser } from "../reducers/current-user";
+import { ISiteInfo } from "../reducers/site";
+
+interface IRefreshResponse {
+  currentUser?: ICurrentUser;
+  siteInfo: ISiteInfo;
+}
+
+const REFRESH = `
+query call{
+    refresh{
+        siteInfo{
+          favicon, title, subhead, keywords, description, copyright, locale, languages,
+          author{name, email},
+          cnBi{code}, cnIcp{code}, cnGab{code}
+        }
+        currentUser{
+          realName, providerType, lang, timezone, isAdministrator, isRoot, roles
+          permissions {operation, resource {type, id}},
+          sideBar{
+            label, to, external,
+            children{label, to, external}
+          }
+        }
+    }
+}
+`;
+export const refresh = async (): Promise<IRefreshResponse> => {
+  const res: { refresh: IRefreshResponse } = await query(REFRESH, {});
+  return res.refresh;
+};
 
 export interface ISetSiteInfoRequest {
   title: string;
@@ -133,23 +164,31 @@ export const send_confirm_email_for_user = async (
   return res.sendConfirmEmailForUser;
 };
 
-export interface ISignInResponse {
-  token: string;
-}
-
 const USER_SIGN_IN_BY_EMAIL = `
 mutation call($user: String!, $password: String!){
     userSignInByEmail(user: $user, password: $password) {
-        token, roles, 
-        permissions {operation, resource {type, id}}
+        token,
+        profile{
+          realName, providerType, lang, timezone, isAdministrator, isRoot, roles
+          permissions {operation, resource {type, id}},
+          sideBar{
+            label, to, external,
+            children{label, to, external}
+          }
+        }
     }
 }
 `;
+
+interface IUserSignInResponse {
+  token: string;
+  profile: ICurrentUser;
+}
 export const user_sign_in_by_email = async (
   user: string,
   password: string
-): Promise<ISignInResponse> => {
-  const res: { userSignInByEmail: ISignInResponse } = await query(
+): Promise<IUserSignInResponse> => {
+  const res: { userSignInByEmail: IUserSignInResponse } = await query(
     USER_SIGN_IN_BY_EMAIL,
     {
       user,

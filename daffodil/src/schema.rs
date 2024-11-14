@@ -243,6 +243,8 @@ diesel::table! {
         user_id -> Int4,
         #[max_length = 36]
         uid -> Varchar,
+        #[max_length = 31]
+        real_name -> Varchar,
         #[max_length = 127]
         provider_type -> Varchar,
         provider_id -> Int4,

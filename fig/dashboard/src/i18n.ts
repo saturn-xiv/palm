@@ -49,3 +49,4 @@ export const remove = () => {
 };
 
 export const DEFAULT_LANGUAGE = import.meta.env.VITE_DEFAULT_LANGUAGE;
+export const DEFAULT_TIMEZONE = import.meta.env.VITE_DEFAULT_TIMEZONE;

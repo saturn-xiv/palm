@@ -37,8 +37,8 @@ const SiteForm = () => {
       formKey="install.site-info"
       request={async () => {
         return {
-          title: "Demo site",
-          subhead: "Demo",
+          title: "Demo site title",
+          subhead: "Demo site subhead",
           description: "Demo information",
           copyright: `~ ${new Date().getFullYear()}`,
         };

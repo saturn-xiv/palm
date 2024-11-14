@@ -164,7 +164,7 @@ impl SignIn {
         };
 
         SignInResponse::new::<EmailUser>(
-            (eu.user_id, eu.real_name.clone(), ProviderType::Email, eu.id),
+            (eu.user_id, &eu.real_name, ProviderType::Email, eu.id),
             db,
             jwt,
             enforcer,

@@ -41,7 +41,7 @@ const Widget = () => {
                   intl.formatMessage({ id: "pages.users.sign-in.succeed" })
                 )
                 .then(() => {
-                  dispatch(signIn({ token: res.token }));
+                  dispatch(signIn(res));
                   navigate(PERSONAL_PATH);
                 });
             })

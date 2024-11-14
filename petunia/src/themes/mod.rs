@@ -65,7 +65,9 @@ pub enum Theme {
 
 #[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
+#[graphql(name = "SiteInfo")]
 pub struct Layout {
+    pub favicon: String,
     pub title: String,
     pub subhead: String,
     pub author: Author,
@@ -85,6 +87,7 @@ impl Layout {
     pub const DESCRIPTION: &str = "site.description";
     pub const KEYWORDS: &str = "site.keywords";
     pub const COPYRIGHT: &str = "site.copyright";
+    pub const FAVICON: &str = "site.favicon";
 }
 
 #[derive(GraphQLObject, Validate, Serialize, Deserialize, Default, Debug, Clone)]

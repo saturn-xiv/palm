@@ -1,15 +1,17 @@
 import { Space, Col, Button, Row, Flex, Layout, Image } from "antd";
 import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import { HomeOutlined, RollbackOutlined } from "@ant-design/icons";
 
 import page_not_found from "../assets/page-not-found.svg";
 import Copyright from "../layouts/Copyright";
 import { useAppSelector } from "../hooks";
+import { siteInfo } from "../reducers/site";
 
 const { Header, Footer, Content } = Layout;
 
 const Widget = () => {
-  const site = useAppSelector((state) => state.site.layout);
+  const site = useAppSelector(siteInfo);
   const navigate = useNavigate();
   return (
     <Flex gap="middle" wrap>
@@ -30,9 +32,9 @@ const Widget = () => {
               <Space>
                 <Image src={page_not_found} />
               </Space>
-              <Space>
+              <Space size="large">
                 <Button
-                  type="link"
+                  icon={<RollbackOutlined />}
                   onClick={(e) => {
                     e.preventDefault();
                     navigate(-1);
@@ -41,7 +43,8 @@ const Widget = () => {
                   <FormattedMessage id="buttons.go-back" />
                 </Button>
                 <Button
-                  type="link"
+                  type="primary"
+                  icon={<HomeOutlined />}
                   onClick={(e) => {
                     e.preventDefault();
                     navigate("/");

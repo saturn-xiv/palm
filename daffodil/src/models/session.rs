@@ -17,6 +17,7 @@ pub struct Item {
     pub id: i32,
     pub user_id: i32,
     pub uid: String,
+    pub real_name: String,
     pub provider_type: String,
     pub provider_id: i32,
     pub ip: String,
@@ -47,13 +48,17 @@ impl Item {
 #[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone, Copy)]
 #[serde(rename_all = "camelCase")]
 pub enum Action {
+    #[strum(serialize = "user.confirm")]
+    #[serde(rename = "user.confirm")]
     Confirm,
+    #[strum(serialize = "user.unlock")]
+    #[serde(rename = "user.unlock")]
     Unlock,
-    #[strum(serialize = "reset-password")]
-    #[serde(rename = "reset-password")]
+    #[strum(serialize = "user.reset-password")]
+    #[serde(rename = "user.reset-password")]
     ResetPassword,
-    #[strum(serialize = "sign-in")]
-    #[serde(rename = "sign-in")]
+    #[strum(serialize = "user.sign-in")]
+    #[serde(rename = "user.sign-in")]
     SignIn,
 }
 
@@ -74,6 +79,7 @@ pub trait Dao {
     fn create(
         &mut self,
         user: i32,
+        real_name: &str,
         provider_type: ProviderType,
         provider_id: i32,
         ip: &str,
@@ -99,6 +105,7 @@ impl Dao for Connection {
     fn create(
         &mut self,
         user: i32,
+        real_name: &str,
         provider_type: ProviderType,
         provider_id: i32,
         ip: &str,
@@ -111,6 +118,7 @@ impl Dao for Connection {
             .values((
                 sessions::dsl::user_id.eq(user),
                 sessions::dsl::uid.eq(&uid),
+                sessions::dsl::real_name.eq(&real_name),
                 sessions::dsl::provider_type.eq(provider_type),
                 sessions::dsl::provider_id.eq(provider_id),
                 sessions::dsl::ip.eq(ip),

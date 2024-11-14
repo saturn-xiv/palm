@@ -13,7 +13,7 @@ use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
 use petunia::{
     graphql::{Pager, Succeed},
-    themes::{Layout, Menu},
+    themes::Menu,
     GIT_VERSION,
 };
 use wisteria::graphql as wisteria_graphql;
@@ -38,10 +38,13 @@ impl Query {
         Ok(items)
     }
     // ------------------------------------------------------------------------
-    fn layout(context: &Context) -> FieldResult<Layout> {
+    async fn refresh(context: &Context) -> FieldResult<daffodil_site::Refresh> {
         let db = context.postgresql.deref();
         let secrets = context.secrets.deref();
-        let it = daffodil_site::layout(&context.session, db, secrets.clone())?;
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let it =
+            daffodil_site::Refresh::new(&context.session, db, jwt, secrets.clone(), enf).await?;
         Ok(it)
     }
     // ------------------------------------------------------------------------
