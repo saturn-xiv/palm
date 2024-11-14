@@ -22,22 +22,15 @@ const menu_icon = (key: string) => {
   }
 };
 
-const Widget = () => {
+interface IProps {
+  collapsed: boolean;
+}
+
+const Widget = ({ collapsed }: IProps) => {
   const current_user = useAppSelector(currentUser);
   const navigate = useNavigate();
   return (
-    <Sider
-      style={{
-        overflow: "auto",
-        height: "100vh",
-        position: "fixed",
-        insetInlineStart: 0,
-        top: 0,
-        bottom: 0,
-        scrollbarWidth: "thin",
-        scrollbarGutter: "stable",
-      }}
-    >
+    <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="dashboard-sidebar-logo-vertical" />
       <Menu
         theme="dark"
