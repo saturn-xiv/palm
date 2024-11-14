@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
-import { Button, Layout, theme } from "antd";
+import { Button, Space, Layout, theme } from "antd";
 import { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 import Copyright from "../Copyright";
 import SideBar from "./SideBar";
+import { header_button_style } from "./style";
+import SignOutButton from "./SignOutButton";
 
 const { Header, Content, Footer } = Layout;
 
@@ -23,12 +25,11 @@ const Widget = () => {
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
+            style={header_button_style}
           />
+          <Space align="center" wrap={false}>
+            <SignOutButton />
+          </Space>
         </Header>
         <Content
           style={{

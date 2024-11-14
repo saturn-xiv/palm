@@ -32,6 +32,18 @@ export const refresh = async (): Promise<IRefreshResponse> => {
   return res.refresh;
 };
 
+const USER_SIGN_OUT = `
+mutation call{
+    userSignOut {
+        createdAt
+    }
+}
+`;
+export const user_sign_out = async (): Promise<ISucceed> => {
+  const res: { userSignOut: ISucceed } = await query(USER_SIGN_OUT, {});
+  return res.userSignOut;
+};
+
 export interface ISetSiteInfoRequest {
   title: string;
   subhead: string;

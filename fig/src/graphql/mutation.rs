@@ -258,6 +258,12 @@ impl Mutation {
         .await?;
         Ok(Succeed::default())
     }
+    fn user_sign_out(context: &Context) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        daffodil_user::sign_out(&context.session, db, jwt, &context.session.client_ip)?;
+        Ok(Succeed::default())
+    }
     // ------------------------------------------------------------------------
     async fn set_locale(
         context: &Context,

@@ -58,6 +58,7 @@ pub trait Dao {
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
     fn sign_in(&mut self, id: i32, ip: &str) -> Result<()>;
+    fn sign_out(&mut self, id: i32) -> Result<()>;
     fn set_lang(&mut self, id: i32, lang: &str) -> Result<()>;
     fn set_timezone(&mut self, id: i32, timezone: &str) -> Result<()>;
 }
@@ -160,6 +161,26 @@ impl Dao for Connection {
                 users::dsl::last_sign_in_at.eq(&current_sign_in_at),
                 users::dsl::last_sign_in_ip.eq(&current_sign_in_ip),
                 users::dsl::sign_in_count.eq(&(sign_in_count + 1)),
+                users::dsl::updated_at.eq(&now),
+            ))
+            .execute(self)?;
+        Ok(())
+    }
+    fn sign_out(&mut self, id: i32) -> Result<()> {
+        let now = Utc::now().naive_utc();
+        let (current_sign_in_at, current_sign_in_ip) = users::dsl::users
+            .select((
+                users::dsl::current_sign_in_at,
+                users::dsl::current_sign_in_ip,
+            ))
+            .filter(users::dsl::id.eq(id))
+            .first::<(Option<NaiveDateTime>, Option<String>)>(self)?;
+        update(users::dsl::users.filter(users::dsl::id.eq(id)))
+            .set((
+                users::dsl::current_sign_in_at.eq(&None::<NaiveDateTime>),
+                users::dsl::current_sign_in_ip.eq(&None::<String>),
+                users::dsl::last_sign_in_at.eq(&current_sign_in_at),
+                users::dsl::last_sign_in_ip.eq(&current_sign_in_ip),
                 users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

@@ -496,3 +496,25 @@ pub async fn unlock(
 
     Ok(())
 }
+
+pub fn sign_out(ss: &Session, db: &DbPool, jwt: &Jwt, client_ip: &str) -> Result<()> {
+    let mut db = db.get()?;
+    let db = db.deref_mut();
+    let (_, user) = current_user(ss, db, jwt)?;
+
+    db.transaction::<_, Error, _>(|db| {
+        UserDao::sign_out(db, user.id)?;
+        LogDao::create::<_, User>(
+            db,
+            user.id,
+            NAME,
+            LogLevel::Info,
+            client_ip,
+            None,
+            "Sign out.",
+        )?;
+        Ok(())
+    })?;
+
+    Ok(())
+}
