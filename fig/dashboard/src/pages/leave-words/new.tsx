@@ -49,6 +49,7 @@ const Widget = () => {
           width="md"
           name="content"
           label={<FormattedMessage id="form.fields.content.label" />}
+          rules={[{ required: true }, { min: 31, max: 1023 }]}
         />
       </ProForm>
     </>

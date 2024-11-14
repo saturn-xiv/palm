@@ -13,6 +13,12 @@ import { IError } from "../../api";
 import { user_sign_in_by_email } from "../../api/daffodil";
 import { useAppDispatch } from "../../hooks";
 import { PERSONAL_PATH, signIn } from "../../reducers/current-user";
+import {
+  NAME_MAX_LENGTH,
+  NAME_MIN_LENGTH,
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from "../../components";
 
 interface IFormValue {
   user: string;
@@ -66,11 +72,19 @@ const Widget = () => {
           label={
             <FormattedMessage id="pages.users.sign-in.form.email-or-nickname.label" />
           }
+          rules={[
+            { required: true },
+            { min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH },
+          ]}
         />
         <ProFormText.Password
           name="password"
           width="md"
           label={<FormattedMessage id="form.fields.password.label" />}
+          rules={[
+            { required: true },
+            { min: PASSWORD_MIN_LENGTH, max: PASSWORD_MAX_LENGTH },
+          ]}
         />
         <ProFormSwitch
           colProps={{

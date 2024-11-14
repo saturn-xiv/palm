@@ -10,6 +10,14 @@ import { install } from "../api/daffodil";
 import { IError } from "../api";
 import { SIGN_IN_PATH } from "../reducers/current-user";
 import { IFormValue as IUserFormValue } from "./users/sign-up";
+import {
+  EMAIL_MAX_LENGTH,
+  EMAIL_MIN_LENGTH,
+  NAME_MAX_LENGTH,
+  NAME_MIN_LENGTH,
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from "../components";
 
 interface ISiteFormValue {
   title: string;
@@ -68,6 +76,7 @@ const SiteForm = () => {
         label={
           <FormattedMessage id="pages.admin.site.base.form.copyright.label" />
         }
+        rules={[{ required: true }]}
       />
     </StepsForm.StepForm>
   );
@@ -105,21 +114,37 @@ const UserForm = () => {
         name="realName"
         width="md"
         label={<FormattedMessage id="form.fields.real-name.label" />}
+        rules={[
+          { required: true },
+          { min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH },
+        ]}
       />
       <ProFormText
         name="email"
         width="md"
         label={<FormattedMessage id="form.fields.email.label" />}
+        rules={[
+          { required: true },
+          { min: EMAIL_MIN_LENGTH, max: EMAIL_MAX_LENGTH },
+        ]}
       />
       <ProFormText
         name="nickname"
         width="md"
         label={<FormattedMessage id="form.fields.nickname.label" />}
+        rules={[
+          { required: true },
+          { min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH },
+        ]}
       />
       <ProFormText.Password
         name="password"
         width="md"
         label={<FormattedMessage id="form.fields.password.label" />}
+        rules={[
+          { required: true },
+          { min: PASSWORD_MIN_LENGTH, max: PASSWORD_MAX_LENGTH },
+        ]}
       />
       <ProFormText.Password
         name="passwordConfirmation"
@@ -127,6 +152,23 @@ const UserForm = () => {
         label={
           <FormattedMessage id="form.fields.password-confirmation.label" />
         }
+        rules={[
+          { required: true },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue("password") === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(
+                new Error(
+                  intl.formatMessage({
+                    id: "form.fields.password-confirmation.errors.not-match",
+                  })
+                )
+              );
+            },
+          }),
+        ]}
       />
     </StepsForm.StepForm>
   );

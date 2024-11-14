@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SIGN_IN_PATH } from "../../reducers/current-user";
 import { reset_email_user_password_by_token } from "../../api/daffodil";
 import { IError } from "../../api";
+import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "../../components";
 
 interface IFormValue {
   password: string;
@@ -58,6 +59,10 @@ const Widget = () => {
           name="password"
           width="md"
           label={<FormattedMessage id="form.fields.password.label" />}
+          rules={[
+            { required: true },
+            { min: PASSWORD_MIN_LENGTH, max: PASSWORD_MAX_LENGTH },
+          ]}
         />
         <ProFormText.Password
           name="passwordConfirmation"
@@ -65,6 +70,23 @@ const Widget = () => {
           label={
             <FormattedMessage id="form.fields.password-confirmation.label" />
           }
+          rules={[
+            { required: true },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error(
+                    intl.formatMessage({
+                      id: "form.fields.password-confirmation.errors.not-match",
+                    })
+                  )
+                );
+              },
+            }),
+          ]}
         />
       </ProForm>
     </>

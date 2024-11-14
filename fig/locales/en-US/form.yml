@@ -11,6 +11,8 @@ fields:
     label: "Password"
   password-confirmation:
     label: "Password confirmation"
+    errors:
+      not-match: "The new password that you entered do not match!"
   content:
     label: "Content"
   body:
@@ -24,4 +26,4 @@ fields:
   details:
     label: "Details"
   label:
-    label: 'Label'
+    label: "Label"

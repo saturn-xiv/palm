@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { IError } from "../../../api";
 import { send_confirm_email_for_user } from "../../../api/daffodil";
 import { SIGN_IN_PATH } from "../../../reducers/current-user";
+import { NAME_MAX_LENGTH, NAME_MIN_LENGTH } from "../../../components";
 
 interface IFormValue {
   user: string;
@@ -53,6 +54,10 @@ const Widget = () => {
           label={
             <FormattedMessage id="pages.users.sign-in.form.email-or-nickname.label" />
           }
+          rules={[
+            { required: true },
+            { min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH },
+          ]}
         />
       </ProForm>
     </>
