@@ -45,8 +45,27 @@ users:
 leave-words:
   new:
     title: "Leave us a message"
+personal:
+  index:
+    title: "Personal"
 admin:
+  index:
+    title: "Settings"
+  locales:
+    index:
+      title: "Locales"
+  users:
+    index:
+      title: "Users"
+  policies:
+    index:
+      title: "Policies"
+  leave-words:
+    index:
+      title: "Leave words"
   site:
+    index:
+      title: "Website"
     base:
       title: "Base info"
       form:

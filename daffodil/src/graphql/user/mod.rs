@@ -47,7 +47,7 @@ impl SideBarMenu {
     async fn load(db: &mut Db, enforcer: &Mutex<Enforcer>, user: &User) -> Result<Vec<Self>> {
         let mut items = Vec::new();
         items.push(Self {
-            label: I18n::t(db, &user.lang, "pages.personal.title", None::<String>),
+            label: I18n::t(db, &user.lang, "pages.personal.index.title", None::<String>),
             to: "/personal".to_string(),
             icon: Some("personal".to_string()),
             external: false,
@@ -251,10 +251,8 @@ impl SignInResponse {
         db.transaction::<_, Error, _>(|db| {
             SessionDao::create(
                 db,
-                user_id,
-                real_name,
-                provider_type,
-                provider_id,
+                (&uid, user_id, real_name),
+                (provider_type, provider_id),
                 client_ip,
                 ttl,
             )?;

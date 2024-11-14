@@ -62,7 +62,8 @@ impl Refresh {
 
         Ok(Self {
             site_info: Self::_site_info(ss, db, secrets).unwrap_or_default(),
-            current_user: Self::_current_user(ss, db, jwt, enforcer).await.ok(),
+            // current_user: Self::_current_user(ss, db, jwt, enforcer).await?.ok(),
+            current_user: Some(Self::_current_user(ss, db, jwt, enforcer).await?),
         })
     }
     async fn _current_user(

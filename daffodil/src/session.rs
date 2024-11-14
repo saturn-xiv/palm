@@ -13,8 +13,8 @@ use petunia::{
 };
 
 use super::models::{
-    session::{Dao as SessionDao, Item as SessionItem},
-    user::{Action as UserAction, Dao as UserDao, Item as UserItem},
+    session::{Action, Dao as SessionDao, Item as SessionItem},
+    user::{Dao as UserDao, Item as UserItem},
 };
 
 impl UserItem {
@@ -92,7 +92,7 @@ impl UserItem {
 
 pub fn current_user(ss: &Session, db: &mut Db, jwt: &Jwt) -> Result<(SessionItem, UserItem)> {
     if let Some(ref token) = ss.token {
-        let uid = jwt.verify(token, &UserAction::SignIn.to_string())?;
+        let uid = jwt.verify(token, &Action::SignIn.to_string())?;
         let sit = SessionDao::by_uid(db, &uid)?;
         let uit = UserDao::by_id(db, sit.user_id)?;
         if uit.locked_at.is_some() {

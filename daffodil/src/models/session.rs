@@ -7,7 +7,6 @@ use juniper::GraphQLEnum;
 use petunia::{orm::postgresql::Connection, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
-use uuid::Uuid;
 
 use super::super::schema::sessions;
 
@@ -78,13 +77,11 @@ pub enum ProviderType {
 pub trait Dao {
     fn create(
         &mut self,
-        user: i32,
-        real_name: &str,
-        provider_type: ProviderType,
-        provider_id: i32,
+        user: (&str, i32, &str),
+        provider: (ProviderType, i32),
         ip: &str,
         ttl: Duration,
-    ) -> Result<String>;
+    ) -> Result<()>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn by_user_and_provider_type(
@@ -104,20 +101,17 @@ pub trait Dao {
 impl Dao for Connection {
     fn create(
         &mut self,
-        user: i32,
-        real_name: &str,
-        provider_type: ProviderType,
-        provider_id: i32,
+        (uid, user, real_name): (&str, i32, &str),
+        (provider_type, provider_id): (ProviderType, i32),
         ip: &str,
         ttl: Duration,
-    ) -> Result<String> {
-        let uid = Uuid::new_v4().to_string();
+    ) -> Result<()> {
         let expires_at = Utc::now().naive_utc() + ttl;
         let provider_type = provider_type.to_string();
         insert_into(sessions::dsl::sessions)
             .values((
                 sessions::dsl::user_id.eq(user),
-                sessions::dsl::uid.eq(&uid),
+                sessions::dsl::uid.eq(uid),
                 sessions::dsl::real_name.eq(&real_name),
                 sessions::dsl::provider_type.eq(provider_type),
                 sessions::dsl::provider_id.eq(provider_id),
@@ -125,7 +119,7 @@ impl Dao for Connection {
                 sessions::dsl::expires_at.eq(expires_at),
             ))
             .execute(self)?;
-        Ok(uid)
+        Ok(())
     }
     fn by_user_and_provider_type(
         &mut self,

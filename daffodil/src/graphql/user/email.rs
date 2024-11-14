@@ -32,13 +32,13 @@ use super::super::super::{
         session::ProviderType,
         user::{
             email::{Dao as EmailDao, Item as EmailUser},
-            Action as UserAction, Dao as UserDao, Item as User,
+            Dao as UserDao, Item as User,
         },
     },
     session::current_user,
 };
 use super::super::NAME;
-use super::SignInResponse;
+use super::{SignInResponse, UserAction};
 
 #[derive(GraphQLInputObject, Validate)]
 #[graphql(name = "UserSignUpByEmailRequest")]

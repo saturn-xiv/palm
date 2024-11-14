@@ -15,19 +15,8 @@ use language_tags::LanguageTag;
 use petunia::{orm::postgresql::Connection, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
-use strum::{Display as EnumDisplay, EnumString};
 
 use super::super::schema::users;
-
-#[derive(EnumString, EnumDisplay, Serialize, Deserialize, PartialEq, Eq, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub enum Action {
-    SignIn,
-    ResetPassword,
-    Unlock,
-    Confirm,
-    Other(String),
-}
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

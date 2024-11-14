@@ -25,21 +25,21 @@ const remove = () => {
   sessionStorage.removeItem(KEY);
 };
 
-interface IResource {
+export interface IResource {
   type: string;
   id?: number;
 }
-interface IPermission {
+export interface IPermission {
   operation: string;
   resource: IResource;
 }
-interface IMenu {
+export interface IMenu {
   label: string;
   to: string;
   external: boolean;
   children?: IMenu[];
 }
-enum IProviderType {
+export enum IProviderType {
   EMAIL,
   GOOGLE,
   FACEBOOK,

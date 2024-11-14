@@ -24,6 +24,7 @@ const AdminUsers = lazy(() => import("./pages/admin/users"));
 const AdminLeaveWords = lazy(() => import("./pages/admin/leave-words"));
 const AdminPolicies = lazy(() => import("./pages/admin/policies"));
 const AdminLocales = lazy(() => import("./pages/admin/locales"));
+const AdminSite = lazy(() => import("./pages/admin/site"));
 const AdminSiteBase = lazy(() => import("./pages/admin/site/base"));
 const AdminSiteChina = lazy(() => import("./pages/admin/site/china"));
 const AdminSiteSeo = lazy(() => import("./pages/admin/site/seo"));
@@ -49,6 +50,7 @@ const router = createBrowserRouter(
             { path: "users", element: <AdminUsers /> },
             { path: "policies", element: <AdminPolicies /> },
             { path: "leave-words", element: <AdminLeaveWords /> },
+            { path: "site", element: <AdminSite /> },
             { path: "site/status", element: <AdminSiteStatus /> },
             { path: "site/base", element: <AdminSiteBase /> },
             { path: "site/seo", element: <AdminSiteSeo /> },
