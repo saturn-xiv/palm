@@ -1,0 +1,6 @@
+user:
+  last-sign-in-at: "Last sign in at"
+  last-sign-in-ip: "Last sign in ip"
+  current-sign-in-at: "Current sign in at"
+  current-sign-in-ip: "Current sign in ip"
+  sign-in-count: "Total sign in count"

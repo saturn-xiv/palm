@@ -187,7 +187,156 @@ export const index_leave_word = async (
   );
   return res.indexLeaveWord;
 };
+
 // ----------------------------------------------------------------------------
+
+const UNLOCK_USER = `
+mutation call($id: Int!){
+    unlockUser(id: $id) {
+        createdAt
+    }
+}
+`;
+export const unlock_user = async (id: number): Promise<ISucceed> => {
+  const res: { unlockUser: ISucceed } = await query(UNLOCK_USER, {
+    id,
+  });
+  return res.unlockUser;
+};
+const LOCK_USER = `
+mutation call($id: Int!){
+    lockUser(id: $id) {
+        createdAt
+    }
+}
+`;
+export const lock_user = async (id: number): Promise<ISucceed> => {
+  const res: { lockUser: ISucceed } = await query(LOCK_USER, {
+    id,
+  });
+  return res.lockUser;
+};
+
+const ENABLE_USER = `
+mutation call($id: Int!){
+    enableUser(id: $id) {
+        createdAt
+    }
+}
+`;
+export const enable_user = async (id: number): Promise<ISucceed> => {
+  const res: { enableUser: ISucceed } = await query(ENABLE_USER, {
+    id,
+  });
+  return res.enableUser;
+};
+const DISABLE_USER = `
+mutation call($id: Int!){
+    disableUser(id: $id) {
+        createdAt
+    }
+}
+`;
+export const disable_user = async (id: number): Promise<ISucceed> => {
+  const res: { disableUser: ISucceed } = await query(DISABLE_USER, {
+    id,
+  });
+  return res.disableUser;
+};
+
+const ENABLE_EMAIL_USER = `
+mutation call($id: Int!){
+    enableEmailUser(id: $id) {
+        createdAt
+    }
+}
+`;
+export const enable_email_user = async (id: number): Promise<ISucceed> => {
+  const res: { enableEmailUser: ISucceed } = await query(ENABLE_EMAIL_USER, {
+    id,
+  });
+  return res.enableEmailUser;
+};
+const DISABLE_EMAIL_USER = `
+mutation call($id: Int!){
+    disableEmailUser(id: $id) {
+        createdAt
+    }
+}
+`;
+export const disable_email_user = async (id: number): Promise<ISucceed> => {
+  const res: { disableEmailUser: ISucceed } = await query(DISABLE_EMAIL_USER, {
+    id,
+  });
+  return res.disableEmailUser;
+};
+const CONFIRM_EMAIL_USER = `
+mutation call($id: Int!){
+    confirmEmailUser(id: $id) {
+        createdAt
+    }
+}
+`;
+export const confirm_email_user = async (id: number): Promise<ISucceed> => {
+  const res: { confirmEmailUser: ISucceed } = await query(CONFIRM_EMAIL_USER, {
+    id,
+  });
+  return res.confirmEmailUser;
+};
+
+const INDEX_EMAIL_USER = `
+query call($pager: Pager!){
+    indexEmailUser(pager: $pager) {
+      pagination{total},
+      items{
+        id, realName, nickname, email, avatar, confirmedAt, deletedAt, updatedAt,
+        detail{id, lang, timezone, signInCount, lastSignInAt, lastSignInIp, currentSignInAt, currentSignInIp, lockedAt, deletedAt, updatedAt}
+      }
+    }
+}
+`;
+
+export interface IUser {
+  id: number;
+  lang: string;
+  timezone: string;
+  signInCount: number;
+  lastSignInAt?: Date;
+  lastSignInIp?: string;
+  currentSignInAt?: Date;
+  currentSignInIp?: string;
+  lockedAt?: Date;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+export interface IEmailUser {
+  id: number;
+  realName: string;
+  nickname: string;
+  email: string;
+  avatar: string;
+  detail: IUser;
+  resource: IResource;
+  confirmedAt?: Date;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+interface IIndexEmailUserResponse {
+  pagination: IPagination;
+  items: IEmailUser[];
+}
+export const index_email_user = async (
+  pager: IPager
+): Promise<IIndexEmailUserResponse> => {
+  const res: { indexEmailUser: IIndexEmailUserResponse } = await query(
+    INDEX_EMAIL_USER,
+    {
+      pager,
+    }
+  );
+  return res.indexEmailUser;
+};
+
 const INDEX_LOG = `
 query call($pager: Pager!){
     indexLog(pager: $pager) {
@@ -473,6 +622,7 @@ mutation call($lang: String!, $form: UserSignUpByEmailRequest!){
 export const user_sign_up_by_email = async (
   form: IUserSignUpByEmailRequest
 ): Promise<ISucceed> => {
+  form.password = mingle_password(form.password);
   const res: { userSignUpByEmail: ISucceed } = await query(
     USER_SIGN_UP_BY_EMAIL,
     {

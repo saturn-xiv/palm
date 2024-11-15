@@ -66,6 +66,8 @@ admin:
   users:
     index:
       title: "Users"
+    by-email:
+      title: "By email"
   policies:
     index:
       title: "Policies"
