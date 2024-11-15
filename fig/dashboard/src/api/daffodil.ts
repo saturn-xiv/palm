@@ -36,6 +36,68 @@ export const refresh = async (): Promise<IRefreshResponse> => {
   return res.refresh;
 };
 // ----------------------------------------------------------------------------
+const DESTROY_LOCALE = `
+mutation call($id: Int!){
+    destroyLocale(id: $id) {
+        createdAt
+    }
+}
+`;
+export const destroy_locale = async (id: number): Promise<ISucceed> => {
+  const res: { destroyLocale: ISucceed } = await query(DESTROY_LOCALE, {
+    id,
+  });
+  return res.destroyLocale;
+};
+const SET_LOCALE = `
+mutation call($lang: String!, $code: String!, $message: String!){
+    setLocale(lang: $lang, code: $code, message: $message) {
+        createdAt
+    }
+}
+`;
+export const set_locale = async (
+  lang: string,
+  code: string,
+  message: string
+): Promise<ISucceed> => {
+  const res: { setLocale: ISucceed } = await query(SET_LOCALE, {
+    lang,
+    code,
+    message,
+  });
+  return res.setLocale;
+};
+const INDEX_LOCALE = `
+query call($pager: Pager!){
+    indexLocale(pager: $pager) {
+      pagination{total},
+      items{
+        id, lang, code, message, updatedAt
+      }
+    }
+}
+`;
+export interface ILocale {
+  id: number;
+  lang: string;
+  code: string;
+  message: string;
+  updatedAt: Date;
+}
+interface IIndexLocaleResponse {
+  pagination: IPagination;
+  items: ILocale[];
+}
+export const index_locale = async (
+  pager: IPager
+): Promise<IIndexLocaleResponse> => {
+  const res: { indexLocale: IIndexLocaleResponse } = await query(INDEX_LOCALE, {
+    pager,
+  });
+  return res.indexLocale;
+};
+// ----------------------------------------------------------------------------
 const CLOSE_LEAVE_WORD = `
 mutation call($id: Int!){
     closeLeaveWord(id: $id) {
