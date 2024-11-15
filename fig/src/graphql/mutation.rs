@@ -336,11 +336,18 @@ impl Mutation {
         daffodil_leave_word::close(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
-    async fn destroy_leave_word(context: &Context, id: i32) -> FieldResult<Succeed> {
+    async fn enable_leave_word(context: &Context, id: i32) -> FieldResult<Succeed> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        daffodil_leave_word::destroy(&context.session, db, jwt, enf, id).await?;
+        daffodil_leave_word::enable(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_leave_word(context: &Context, id: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        daffodil_leave_word::disable(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------

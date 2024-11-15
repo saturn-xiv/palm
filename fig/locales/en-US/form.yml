@@ -57,3 +57,5 @@ fields:
     label: "Resource"
   plugin:
     label: "Plugin"
+  status:
+    label: "Status"

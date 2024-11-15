@@ -35,7 +35,46 @@ export const refresh = async (): Promise<IRefreshResponse> => {
   const res: { refresh: IRefreshResponse } = await query(REFRESH, {});
   return res.refresh;
 };
-
+// ----------------------------------------------------------------------------
+const CLOSE_LEAVE_WORD = `
+mutation call($id: Int!){
+    closeLeaveWord(id: $id) {
+        createdAt
+    }
+}
+`;
+export const close_leave_word = async (id: number): Promise<ISucceed> => {
+  const res: { closeLeaveWord: ISucceed } = await query(CLOSE_LEAVE_WORD, {
+    id,
+  });
+  return res.closeLeaveWord;
+};
+const DISABLE_LEAVE_WORD = `
+mutation call($id: Int!){
+    disableLeaveWord(id: $id) {
+        createdAt
+    }
+}
+`;
+export const disable_leave_word = async (id: number): Promise<ISucceed> => {
+  const res: { disableLeaveWord: ISucceed } = await query(DISABLE_LEAVE_WORD, {
+    id,
+  });
+  return res.disableLeaveWord;
+};
+const ENABLE_LEAVE_WORD = `
+mutation call($id: Int!){
+    enableLeaveWord(id: $id) {
+        createdAt
+    }
+}
+`;
+export const enable_leave_word = async (id: number): Promise<ISucceed> => {
+  const res: { enableLeaveWord: ISucceed } = await query(ENABLE_LEAVE_WORD, {
+    id,
+  });
+  return res.enableLeaveWord;
+};
 const CREATE_LEAVE_WORD = `
 mutation call($body: String!, $editor: Editor!){
     createLeaveWord(body: $body, editor: $editor) {
@@ -51,11 +90,46 @@ export const create_leave_word = async (body: string): Promise<ISucceed> => {
   return res.createLeaveWord;
 };
 
+const INDEX_LEAVE_WORD = `
+query call($pager: Pager!){
+    indexLeaveWord(pager: $pager) {
+      pagination{total},
+      items{
+        id, lang, ip, body, bodyEditor, status, deletedAt, updatedAt
+      }
+    }
+}
+`;
+export interface ILeaveWord {
+  id: number;
+  lang: string;
+  ip: string;
+  body: string;
+  bodyEditor: string;
+  status: string;
+  deletedAt?: Date;
+  updatedAt: Date;
+}
+interface IIndexLeaveWordResponse {
+  pagination: IPagination;
+  items: ILeaveWord[];
+}
+export const index_leave_word = async (
+  pager: IPager
+): Promise<IIndexLeaveWordResponse> => {
+  const res: { indexLeaveWord: IIndexLeaveWordResponse } = await query(
+    INDEX_LEAVE_WORD,
+    {
+      pager,
+    }
+  );
+  return res.indexLeaveWord;
+};
 // ----------------------------------------------------------------------------
 const INDEX_LOG = `
 query call($pager: Pager!){
     indexLog(pager: $pager) {
-      pagination{total, page, size, hasPrevious, hasNext},
+      pagination{total},
       items{
         id, plugin, message, level, ip, createdAt,
         resource{type, id}

@@ -38,6 +38,11 @@ const Widget = () => {
             key: "level",
           },
           {
+            title: <FormattedMessage id="form.fields.ip.label" />,
+            dataIndex: "ip",
+            key: "ip",
+          },
+          {
             title: <FormattedMessage id="form.fields.resource.label" />,
             key: "resource",
             render: (_, { resource }) => (

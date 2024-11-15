@@ -81,7 +81,7 @@ impl List {
     }
 }
 
-pub async fn destroy(
+pub async fn disable(
     ss: &Session,
     db: &DbPool,
     jwt: &Jwt,
@@ -104,7 +104,29 @@ pub async fn destroy(
 
     Ok(())
 }
+pub async fn enable(
+    ss: &Session,
+    db: &DbPool,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    id: i32,
+) -> Result<()> {
+    let mut db = db.get()?;
+    let db = db.deref_mut();
+    {
+        let (_, user) = current_user(ss, db, jwt)?;
+        let mut enf = enforcer.lock().await;
+        let enf = enf.deref_mut();
+        user.is_administrator(enf)?;
+    }
 
+    db.transaction::<_, Error, _>(|db| {
+        LeaveWordDao::enable(db, id)?;
+        Ok(())
+    })?;
+
+    Ok(())
+}
 pub async fn close(
     ss: &Session,
     db: &DbPool,
