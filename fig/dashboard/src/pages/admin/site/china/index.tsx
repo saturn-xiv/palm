@@ -5,7 +5,7 @@ import CnMps from "./mps";
 
 const Widget = () => {
   return (
-    <Row>
+    <Row gutter={24}>
       <Col md={12}>
         <CnIcp />
       </Col>

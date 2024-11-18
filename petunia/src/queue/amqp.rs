@@ -218,8 +218,12 @@ impl RabbitMq {
         Ok(())
     }
 
-    pub async fn open(&self) -> Result<Channel> {
+    pub async fn connect(&self) -> Result<Connection> {
         let con = Connection::connect_uri(self.uri.clone(), self.conn.clone()).await?;
+        Ok(con)
+    }
+    pub async fn open(&self) -> Result<Channel> {
+        let con = self.connect().await?;
         let ch = con.create_channel().await?;
         Ok(ch)
     }

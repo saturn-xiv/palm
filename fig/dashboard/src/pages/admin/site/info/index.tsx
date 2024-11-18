@@ -10,7 +10,7 @@ import { DEFAULT_LANGUAGE } from "../../../../i18n";
 const Widget = () => {
   const site = useAppSelector(siteInfo);
   return (
-    <Row>
+    <Row gutter={[{ md: 24 }, { md: 24 }]}>
       <Col md={8}>
         <Base lang={site?.locale || DEFAULT_LANGUAGE} />
       </Col>

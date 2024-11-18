@@ -43,14 +43,14 @@ type Context = (
 #[route("/graphql", method = "GET", method = "POST")]
 async fn handler(
     session: Session,
-    (secrets, postgresql, redis, jwt, enforcer, rabbitmq, search, minio, schema): Context,
+    (secrets, postgresql, redis, jwt, enforcer, rabbitmq, opensearch, minio, schema): Context,
     request: web::Json<GraphQLRequest>,
 ) -> impl Responder {
     let context = super::context::Context {
         secrets: secrets.into_inner(),
         jwt: jwt.into_inner(),
         enforcer: enforcer.into_inner(),
-        search: search.into_inner(),
+        opensearch: opensearch.into_inner(),
         postgresql: postgresql.into_inner(),
         redis: redis.into_inner(),
         rabbitmq: rabbitmq.into_inner(),

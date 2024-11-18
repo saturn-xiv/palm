@@ -206,6 +206,22 @@ impl Query {
             daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
         Ok(it)
     }
+    async fn get_site_status(context: &Context) -> FieldResult<daffodil_site::status::Response> {
+        let db = context.postgresql.deref();
+        let ch = context.redis.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let queue = context.rabbitmq.deref();
+        let minio = context.minio.deref();
+        let search = context.opensearch.deref();
+        let it = daffodil_site::status::Response::new(
+            &context.session,
+            (db, ch, queue, minio, search),
+            (jwt, enf),
+        )
+        .await?;
+        Ok(it)
+    }
     // ------------------------------------------------------------------------
     async fn show_attachment(
         context: &Context,

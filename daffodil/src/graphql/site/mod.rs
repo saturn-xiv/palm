@@ -1,6 +1,7 @@
 pub mod info;
 pub mod seo;
 pub mod smtp;
+pub mod status;
 
 use std::any::type_name;
 use std::ops::DerefMut;

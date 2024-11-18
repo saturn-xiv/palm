@@ -269,6 +269,49 @@ export const set_site_base_info = async (
   });
   return res.setSiteBaseInfo;
 };
+
+const GET_SITE_STATUS = `
+query call{
+    getSiteStatus {
+        postgresql{timestamp, version},
+        redis{version},
+        rabbitmq{username, virtualHost},
+        minio{buckets},
+        opensearch{plugins}
+    }
+}
+`;
+export interface IPostgreSqlStatus {
+  timestamp: Date;
+  version: string;
+}
+export interface IRedisStatus {
+  version: string[];
+}
+export interface IRabbitMQStatus {
+  username: string;
+  virtualHost: string;
+}
+export interface IMinioStatus {
+  buckets: string[];
+}
+export interface IOpenSearchStatus {
+  plugins: string[];
+}
+export interface IGetSiteStatusResponse {
+  postgresql: IPostgreSqlStatus;
+  redis: IRedisStatus;
+  rabbitmq: IRabbitMQStatus;
+  minio: IMinioStatus;
+  opensearch: IOpenSearchStatus;
+}
+export const get_site_status = async (): Promise<IGetSiteStatusResponse> => {
+  const res: { getSiteStatus: IGetSiteStatusResponse } = await query(
+    GET_SITE_STATUS,
+    {}
+  );
+  return res.getSiteStatus;
+};
 // ----------------------------------------------------------------------------
 
 interface IRefreshResponse {

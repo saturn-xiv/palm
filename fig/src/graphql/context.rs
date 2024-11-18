@@ -17,7 +17,7 @@ pub struct Context {
     pub redis: Arc<Redis>,
     pub session: Session,
     pub jwt: Arc<Jwt>,
-    pub search: Arc<OpenSearch>,
+    pub opensearch: Arc<OpenSearch>,
     pub minio: Arc<Minio>,
 }
 

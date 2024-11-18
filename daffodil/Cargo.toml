@@ -23,6 +23,8 @@ prost = "0.13"
 prost-types = "0.13"
 data-encoding = "2"
 flexbuffers = "2"
+lapin = "2"
+opensearch = "2"
 
 [dependencies.chrono]
 version = "0.4"

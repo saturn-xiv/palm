@@ -1,18 +1,18 @@
 import { List, Typography } from "antd";
 
-import { IOpenSearchStatus } from "../../../../api/daffodil";
+import { IMinioStatus } from "../../../../api/daffodil";
 
 interface IProps {
-  item?: IOpenSearchStatus;
+  item?: IMinioStatus;
 }
 
 const Widget = ({ item }: IProps) => {
   return item ? (
     <List
       size="small"
-      header={<Typography.Title level={4}>OpenSearch</Typography.Title>}
+      header={<Typography.Title level={4}>Minio</Typography.Title>}
       bordered
-      dataSource={item.plugins}
+      dataSource={item.buckets}
       renderItem={(x, i) => <List.Item key={i}>{x}</List.Item>}
       pagination={{}}
     />

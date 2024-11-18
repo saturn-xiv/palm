@@ -4,7 +4,7 @@ import Smtp from "./Smtp";
 
 const Widget = () => {
   return (
-    <Row>
+    <Row gutter={[{ md: 24 }, { md: 24 }]}>
       <Col md={8}>
         <Smtp />
       </Col>
