@@ -74,8 +74,7 @@ pub struct Layout {
     pub keywords: Vec<String>,
     pub description: String,
     pub copyright: String,
-    pub cn_gab: Option<CnGab>,
-    pub cn_bi: Option<CnBi>,
+    pub cn_mps: Option<CnMps>,
     pub cn_icp: Option<CnIcp>,
     pub locale: String,
     pub languages: Vec<String>,
@@ -99,21 +98,19 @@ pub struct Author {
     pub email: String,
 }
 
-#[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
+#[derive(GraphQLObject, Validate, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
-pub struct CnGab {
+pub struct CnMps {
+    #[validate(length(min = 2, max = 63))]
     pub code: String,
+    #[validate(length(min = 2, max = 63))]
+    pub name: String,
 }
 
-#[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
+#[derive(GraphQLObject, Validate, Serialize, Deserialize, Default, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct CnIcp {
-    pub code: String,
-}
-
-#[derive(GraphQLObject, Serialize, Deserialize, Default, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct CnBi {
+    #[validate(length(min = 2, max = 63))]
     pub code: String,
 }
 

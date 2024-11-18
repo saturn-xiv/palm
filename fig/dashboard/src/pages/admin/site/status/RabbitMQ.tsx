@@ -1,6 +1,6 @@
 const Widget = () => {
   // TODO
-  return <>site base</>;
+  return <>rabbitmq</>;
 };
 
 export default Widget;

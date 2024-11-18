@@ -93,6 +93,18 @@ impl SideBarMenu {
                             label: I18n::t(
                                 db,
                                 &user.lang,
+                                "pages.admin.sessions.index.title",
+                                None::<String>,
+                            ),
+                            to: "/admin/sessions".to_string(),
+                            icon: None,
+                            external: false,
+                            children: None,
+                        },
+                        Self {
+                            label: I18n::t(
+                                db,
+                                &user.lang,
                                 "pages.admin.policies.index.title",
                                 None::<String>,
                             ),

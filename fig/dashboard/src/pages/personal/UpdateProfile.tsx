@@ -82,6 +82,7 @@ const Widget = () => {
           disabled
         />
         <ProFormSelect
+          width="md"
           name="lang"
           label={<FormattedMessage id="form.fields.lang.label" />}
           options={available_languages.map((x) => {
@@ -93,6 +94,7 @@ const Widget = () => {
           rules={[{ required: true }]}
         />
         <ProFormSelect
+          width="md"
           name="timezone"
           label={<FormattedMessage id="form.fields.timezone.label" />}
           options={timezones().map((x) => {

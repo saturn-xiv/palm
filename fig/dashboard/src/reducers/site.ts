@@ -6,15 +6,19 @@ export interface ISiteInfo {
   favicon: string;
   title: string;
   subhead: string;
-  author: { name: string; email: string };
+  author: IAuthor;
   keywords: string[];
   description: string;
   copyright: string;
-  cnGab?: { code: string };
+  cnMps?: { code: string; name: string };
   cnIcp?: { code: string };
-  cnBi?: { code: string };
   locale: string;
   languages: string[];
+}
+
+export interface IAuthor {
+  name: string;
+  email: string;
 }
 
 interface IState {

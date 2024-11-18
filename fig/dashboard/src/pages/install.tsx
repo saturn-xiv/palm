@@ -1,5 +1,9 @@
 import type { ProFormInstance } from "@ant-design/pro-components";
-import { StepsForm, ProFormText } from "@ant-design/pro-components";
+import {
+  StepsForm,
+  ProFormTextArea,
+  ProFormText,
+} from "@ant-design/pro-components";
 import { message, Typography } from "antd";
 import { useRef } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -57,6 +61,7 @@ const SiteForm = () => {
         name="title"
         width="md"
         label={<FormattedMessage id="form.fields.title.label" />}
+        rules={[{ required: true }]}
       />
       <ProFormText
         name="subhead"
@@ -64,11 +69,13 @@ const SiteForm = () => {
         label={
           <FormattedMessage id="pages.admin.site.base.form.subhead.label" />
         }
+        rules={[{ required: true }]}
       />
-      <ProFormText
+      <ProFormTextArea
         name="description"
         width="md"
         label={<FormattedMessage id="form.fields.description.label" />}
+        rules={[{ required: true }]}
       />
       <ProFormText
         name="copyright"

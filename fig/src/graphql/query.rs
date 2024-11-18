@@ -13,7 +13,7 @@ use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
 use petunia::{
     graphql::{Pager, Succeed},
-    themes::Menu,
+    themes::{Layout, Menu},
     GIT_VERSION,
 };
 use wisteria::graphql as wisteria_graphql;
@@ -122,6 +122,49 @@ impl Query {
         let db = context.postgresql.deref();
         let res = daffodil_locale::Item::by_lang(db, &lang)?;
         Ok(res)
+    }
+    // ------------------------------------------------------------------------
+    fn get_site_info_by_lang(
+        context: &Context,
+        lang: String,
+    ) -> FieldResult<daffodil_site::info::ByLang> {
+        let db = context.postgresql.deref();
+        let res = daffodil_site::info::ByLang::new(db, &lang)?;
+        Ok(res)
+    }
+    async fn get_site_author(context: &Context) -> FieldResult<petunia::themes::Author> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        let res = daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
+        Ok(res)
+    }
+    async fn get_site_keywords(context: &Context) -> FieldResult<Vec<String>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        let res: daffodil_site::info::Keywords = daffodil_site::get_(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            Layout::KEYWORDS,
+            None,
+        )
+        .await?;
+        Ok(res.items)
+    }
+    async fn get_site_smtp(context: &Context) -> FieldResult<daffodil_site::smtp::Show> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        let it: daffodil_site::smtp::Profile =
+            daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
+        Ok(it.into())
     }
     // ------------------------------------------------------------------------
     async fn show_attachment(

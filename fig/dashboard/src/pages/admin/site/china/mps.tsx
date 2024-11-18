@@ -1,6 +1,6 @@
 const Widget = () => {
   // TODO
-  return <>site seo</>;
+  return <>cn mps</>;
 };
 
 export default Widget;

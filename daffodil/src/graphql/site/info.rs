@@ -1,23 +1,46 @@
+use std::ops::DerefMut;
 use std::str::FromStr;
-use std::{any::type_name, ops::DerefMut};
 
 use casbin::Enforcer;
 use diesel::Connection as DieselConnection;
-use juniper::GraphQLInputObject;
+use juniper::{GraphQLInputObject, GraphQLObject};
 use language_tags::LanguageTag;
 use petunia::{
-    crypto::Key,
-    jwt::openssl::OpenSsl as Jwt,
-    orm::postgresql::Pool as DbPool,
-    session::Session,
-    themes::{Author as SiteAuthor, Layout},
-    Error, Result,
+    jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool, session::Session,
+    themes::Layout, Error, Result,
 };
+use serde::{Deserialize, Serialize};
 use tokio::sync::Mutex;
 use validator::Validate;
 
 use super::super::super::{models::locale::I18n, session::current_user};
-use super::{get, set};
+
+#[derive(GraphQLObject)]
+#[graphql(name = "GetSiteInfoByLangResponse")]
+pub struct ByLang {
+    pub title: String,
+    pub subhead: String,
+    pub description: String,
+    pub copyright: String,
+}
+
+impl ByLang {
+    pub fn new(db: &DbPool, lang: &str) -> Result<Self> {
+        let lang = {
+            let it = LanguageTag::from_str(lang)?;
+            it.to_string()
+        };
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+
+        Ok(Self {
+            title: I18n::t(db, &lang, Layout::TITLE, None::<String>),
+            subhead: I18n::t(db, &lang, Layout::SUBHEAD, None::<String>),
+            description: I18n::t(db, &lang, Layout::DESCRIPTION, None::<String>),
+            copyright: I18n::t(db, &lang, Layout::COPYRIGHT, None::<String>),
+        })
+    }
+}
 
 #[derive(GraphQLInputObject, Validate)]
 #[graphql(name = "SetSiteInfoRequest")]
@@ -67,70 +90,8 @@ impl Base {
     }
 }
 
-pub struct Author;
-
-impl Author {
-    pub fn get(db: &DbPool, secrets: Key, lang: &str) -> Result<SiteAuthor> {
-        let it = get(db, secrets, Self::key(lang), None)?;
-        Ok(it)
-    }
-    pub async fn save(
-        ss: &Session,
-        db: &DbPool,
-        secrets: Key,
-        jwt: &Jwt,
-        enforcer: &Mutex<Enforcer>,
-        lang: &str,
-        value: &SiteAuthor,
-    ) -> Result<()> {
-        let lang = {
-            let it = LanguageTag::from_str(lang)?;
-            it.to_string()
-        };
-        value.validate()?;
-        set(
-            ss,
-            db,
-            secrets,
-            jwt,
-            enforcer,
-            (Self::key(&lang), None, value, false),
-        )
-        .await?;
-
-        Ok(())
-    }
-
-    pub fn key(lang: &str) -> String {
-        format!("{}://{}", lang, type_name::<SiteAuthor>())
-    }
-}
-
-pub struct Keywords;
-
-impl Keywords {
-    pub fn get(db: &DbPool, secrets: Key) -> Result<Vec<String>> {
-        let it = get(db, secrets, Layout::KEYWORDS.to_string(), None)?;
-        Ok(it)
-    }
-    pub async fn save(
-        ss: &Session,
-        db: &DbPool,
-        secrets: Key,
-        jwt: &Jwt,
-        enforcer: &Mutex<Enforcer>,
-        values: &Vec<String>,
-    ) -> Result<()> {
-        set(
-            ss,
-            db,
-            secrets,
-            jwt,
-            enforcer,
-            (Layout::KEYWORDS.to_string(), None, values, false),
-        )
-        .await?;
-
-        Ok(())
-    }
+#[derive(Validate, Serialize, Deserialize)]
+pub struct Keywords {
+    #[validate(length(min = 1, max = 63))]
+    pub items: Vec<String>,
 }

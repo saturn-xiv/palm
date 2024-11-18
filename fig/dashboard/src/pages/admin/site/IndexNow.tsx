@@ -1,6 +1,6 @@
 const Widget = () => {
   // TODO
-  return <>site china</>;
+  return <>index now</>;
 };
 
 export default Widget;

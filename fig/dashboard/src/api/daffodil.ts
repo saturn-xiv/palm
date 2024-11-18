@@ -5,7 +5,174 @@ import {
   IResource,
   mingle_password,
 } from "../reducers/current-user";
-import { ISiteInfo } from "../reducers/site";
+import { IAuthor, ISiteInfo } from "../reducers/site";
+
+// ----------------------------------------------------------------------------
+const SET_SITE_SMTP = `
+mutation call($host: String!, $port: Int!, $account: String!, $password: String!){
+    setSiteSmtp(host: $host, port: $port, account: $account, password: $password){
+      createdAt
+    }
+}
+`;
+export const set_site_smtp = async (
+  host: string,
+  port: number,
+  account: string,
+  password: string
+): Promise<ISucceed> => {
+  const res: { setSiteSmtp: ISucceed } = await query(SET_SITE_SMTP, {
+    host,
+    port,
+    account,
+    password,
+  });
+  return res.setSiteSmtp;
+};
+const GET_SITE_SMTP = `
+query call{
+    getSiteSmtp{host, port account}
+}
+`;
+interface IGetSiteSmtpResponse {
+  host: string;
+  port: number;
+  account: string;
+}
+export const get_site_smtp = async (): Promise<IGetSiteSmtpResponse> => {
+  const res: { getSiteSmtp: IGetSiteSmtpResponse } = await query(
+    GET_SITE_SMTP,
+    {}
+  );
+  return res.getSiteSmtp;
+};
+
+const SET_SITE_CN_ICP = `
+mutation call($code: String!){
+    setSiteCnIcp(code: $code){
+      createdAt
+    }
+}
+`;
+export const set_site_cn_icp = async (code: string): Promise<ISucceed> => {
+  const res: { setSiteCnIcp: ISucceed } = await query(SET_SITE_CN_ICP, {
+    code,
+  });
+  return res.setSiteCnIcp;
+};
+
+const SET_SITE_CN_MPS = `
+mutation call($code: String!, $name: String!){
+    setSiteCnMps(code: $code){
+      createdAt
+    }
+}
+`;
+export const set_site_cn_mps = async (
+  code: string,
+  name: string
+): Promise<ISucceed> => {
+  const res: { setSiteCnMps: ISucceed } = await query(SET_SITE_CN_MPS, {
+    code,
+    name,
+  });
+  return res.setSiteCnMps;
+};
+
+const GET_SITE_AUTHOR = `
+query call{
+    getSiteAuthor{name, email}
+}
+`;
+export const get_site_author = async (): Promise<IAuthor> => {
+  const res: { getSiteAuthor: IAuthor } = await query(GET_SITE_AUTHOR, {});
+  return res.getSiteAuthor;
+};
+const SET_SITE_AUTHOR = `
+mutation call($name: String!, $email: String!){
+    setSiteAuthor(name: $name, email: $email){
+      createdAt
+    }
+}
+`;
+export const set_site_author = async (
+  name: string,
+  email: string
+): Promise<ISucceed> => {
+  const res: { setSiteAuthor: ISucceed } = await query(SET_SITE_AUTHOR, {
+    name,
+    email,
+  });
+  return res.setSiteAuthor;
+};
+
+const GET_SITE_KEYWORDS = `
+query call{
+    getSiteKeywords
+}
+`;
+export const get_site_keywords = async (): Promise<string[]> => {
+  const res: { getSiteKeywords: string[] } = await query(GET_SITE_KEYWORDS, {});
+  return res.getSiteKeywords;
+};
+const SET_SITE_KEYWORDS = `
+mutation call($items: [String!]!){
+    setSiteKeywords(items: $items){
+      createdAt
+    }
+}
+`;
+export const set_site_keywords = async (items: string[]): Promise<ISucceed> => {
+  const res: { setSiteKeywords: ISucceed } = await query(SET_SITE_KEYWORDS, {
+    items,
+  });
+  return res.setSiteKeywords;
+};
+
+const GET_SITE_INFO_BY_LANG = `
+query call($lang: String!){
+    getSiteInfoByLang(lang: $lang) {
+        title, subhead, description, copyright
+    }
+}
+`;
+export interface IGetSiteInfoByLangResponse {
+  title: string;
+  subhead: string;
+  description: string;
+  copyright: string;
+  author: { name: string; email: string };
+}
+export const get_site_info_by_lang = async (
+  lang: string
+): Promise<IGetSiteInfoByLangResponse> => {
+  const res: { getSiteInfoByLang: IGetSiteInfoByLangResponse } = await query(
+    GET_SITE_INFO_BY_LANG,
+    {
+      lang,
+    }
+  );
+  return res.getSiteInfoByLang;
+};
+
+const SET_SITE_BASE_INFO = `
+mutation call($lang: String!, $form: SetSiteInfoRequest!){
+    setSiteBaseInfo(lang: $lang, form: $form) {
+        createdAt
+    }
+}
+`;
+export const set_site_base_info = async (
+  lang: string,
+  form: ISetSiteInfoRequest
+): Promise<ISucceed> => {
+  const res: { setSiteBaseInfo: ISucceed } = await query(SET_SITE_BASE_INFO, {
+    lang,
+    form,
+  });
+  return res.setSiteBaseInfo;
+};
+// ----------------------------------------------------------------------------
 
 interface IRefreshResponse {
   currentUser?: ICurrentUser;
@@ -18,7 +185,7 @@ query call{
         siteInfo{
           favicon, title, subhead, keywords, description, copyright, locale, languages,
           author{name, email},
-          cnBi{code}, cnIcp{code}, cnGab{code}
+          cnIcp{code}, cnMps{code, name}
         }
         currentUser{
           realName, providerType, lang, timezone, isAdministrator, isRoot, roles
@@ -188,6 +355,73 @@ export const index_leave_word = async (
   return res.indexLeaveWord;
 };
 
+// ----------------------------------------------------------------------------
+
+const ENABLE_SESSION = `
+mutation call($id: Int!){
+    enableSession(id: $id) {
+        createdAt
+    }
+}
+`;
+export const enable_session = async (id: number): Promise<ISucceed> => {
+  const res: { enableSession: ISucceed } = await query(ENABLE_SESSION, {
+    id,
+  });
+  return res.enableSession;
+};
+const DISABLE_SESSION = `
+mutation call($id: Int!){
+    disableSession(id: $id) {
+        createdAt
+    }
+}
+`;
+export const disable_session = async (id: number): Promise<ISucceed> => {
+  const res: { disableSession: ISucceed } = await query(DISABLE_SESSION, {
+    id,
+  });
+  return res.disableSession;
+};
+const INDEX_SESSION = `
+query call($pager: Pager!){
+    indexSession(pager: $pager) {
+      pagination{total},
+      items{
+        id, realName, uid, providerType, providerId, ip, expiresAt, deletedAt, createdAt,
+        detail{id, lang, timezone, signInCount, lastSignInAt, lastSignInIp, currentSignInAt, currentSignInIp, lockedAt, deletedAt, updatedAt}
+      }
+    }
+}
+`;
+
+export interface ISession {
+  id: number;
+  detail: IUser;
+  realName: string;
+  uid: string;
+  providerType: string;
+  providerId: number;
+  ip: string;
+  expiresAt: Date;
+  deletedAt?: Date;
+  createdAt: Date;
+}
+interface IIndexSessionResponse {
+  pagination: IPagination;
+  items: ISession[];
+}
+export const index_session = async (
+  pager: IPager
+): Promise<IIndexSessionResponse> => {
+  const res: { indexSession: IIndexSessionResponse } = await query(
+    INDEX_SESSION,
+    {
+      pager,
+    }
+  );
+  return res.indexSession;
+};
 // ----------------------------------------------------------------------------
 
 const UNLOCK_USER = `

@@ -74,6 +74,9 @@ admin:
   leave-words:
     index:
       title: "Leave words"
+  sessions:
+    index:
+      title: "Sessions"
   site:
     index:
       title: "Website"
@@ -84,5 +87,9 @@ admin:
           label: "Copyright"
         subhead:
           label: "Subhead"
+    keywords:
+      title: "Keywords"
+    author:
+      title: "Author"
 not-found:
   title: "Not found"

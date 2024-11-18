@@ -23,7 +23,8 @@ use super::user::Item as UserDetail;
 #[graphql(name = "Session")]
 pub struct Item {
     pub id: i32,
-    pub user: UserDetail,
+    pub real_name: String,
+    pub detail: UserDetail,
     pub uid: String,
     pub provider_type: String,
     pub provider_id: i32,
@@ -63,7 +64,8 @@ impl List {
             let user = UserDao::by_id(db, it.user_id)?;
             items.push(Item {
                 id: it.id,
-                user: user.into(),
+                real_name: it.real_name.clone(),
+                detail: user.into(),
                 uid: it.uid.clone(),
                 provider_type: it.provider_type.clone(),
                 provider_id: it.provider_id,

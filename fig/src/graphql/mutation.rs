@@ -12,7 +12,7 @@ use daffodil::graphql::{
 };
 use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
-use petunia::{graphql::Succeed, themes::Author as SiteAuthor, Editor};
+use petunia::{graphql::Succeed, themes::Layout, Editor};
 use wisteria::graphql as wisteria_graphql;
 
 use super::context::Context;
@@ -496,39 +496,110 @@ impl Mutation {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
         let secrets = context.secrets.deref();
-        daffodil_site::info::Keywords::save(
+        daffodil_site::set_(
             &context.session,
             db,
             secrets.clone(),
             jwt,
             enf,
-            &items,
+            (
+                Layout::KEYWORDS,
+                None,
+                &daffodil_site::info::Keywords { items },
+                false,
+            ),
         )
         .await?;
         Ok(Succeed::default())
     }
     async fn set_site_author(
         context: &Context,
-        lang: String,
         name: String,
         email: String,
     ) -> FieldResult<Succeed> {
-        let form = SiteAuthor {
-            name: name.trim().to_string(),
-            email: email.trim().to_lowercase(),
-        };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
         let secrets = context.secrets.deref();
-        daffodil_site::info::Author::save(
+        daffodil_site::set(
             &context.session,
             db,
             secrets.clone(),
             jwt,
             enf,
-            &lang,
-            &form,
+            (
+                None,
+                &petunia::themes::Author {
+                    name: name.trim().to_string(),
+                    email: email.trim().to_lowercase(),
+                },
+                false,
+            ),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_cn_icp(context: &Context, code: String) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        daffodil_site::set(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            (None, &petunia::themes::CnIcp { code }, false),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_cn_mps(
+        context: &Context,
+        code: String,
+        name: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        daffodil_site::set(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            (None, &petunia::themes::CnMps { code, name }, false),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_site_smtp(
+        context: &Context,
+        host: String,
+        port: i32,
+        account: String,
+        password: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+
+        let it = daffodil_site::smtp::Profile {
+            host,
+            port: port as u16,
+            account,
+            password,
+        };
+        daffodil_site::set(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            (None, &it, false),
         )
         .await?;
         Ok(Succeed::default())

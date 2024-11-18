@@ -1,6 +1,6 @@
 const Widget = () => {
   // TODO
-  return <>site info</>;
+  return <>postgresql</>;
 };
 
 export default Widget;

@@ -1,5 +1,7 @@
 pub mod info;
+pub mod smtp;
 
+use std::any::type_name;
 use std::ops::DerefMut;
 use std::str::FromStr;
 
@@ -89,13 +91,14 @@ impl Refresh {
             } else {
                 "/my/logo.svg".to_string()
             };
-            let ah = if let Ok(ref buf) = st.get(&info::Author::key(&ss.lang), None) {
+            let ah = if let Ok(ref buf) = st.get(&type_name::<Author>().to_string(), None) {
                 flexbuffers::from_slice(buf)?
             } else {
                 Author::default()
             };
             let ks = if let Ok(ref buf) = st.get(&Layout::KEYWORDS.to_string(), None) {
-                flexbuffers::from_slice(buf)?
+                let it: info::Keywords = flexbuffers::from_slice(buf)?;
+                it.items
             } else {
                 Vec::new()
             };
@@ -112,22 +115,32 @@ impl Refresh {
             keywords,
             locale: ss.lang.clone(),
             languages: LocaleDao::languages(db)?,
-            cn_bi: None,
-            cn_gab: None,
+
+            // TODO
+            cn_mps: None,
             cn_icp: None,
         };
         Ok(it)
     }
 }
 
-pub fn get<T: DeserializeOwned>(
+pub async fn get_<T: DeserializeOwned>(
+    ss: &Session,
     db: &DbPool,
     secrets: Key,
-    key: String,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    key: &str,
     user: Option<i32>,
 ) -> Result<T> {
     let mut db = db.get()?;
     let db = db.deref_mut();
+    {
+        let (_, user) = current_user(ss, db, jwt)?;
+        let mut enf = enforcer.lock().await;
+        let enf = enf.deref_mut();
+        user.is_administrator(enf)?;
+    }
     let cipher = Result::<Vec<u8>>::from(secrets)?;
     let mut st = Setting::new(&cipher, db);
     let it = {
@@ -136,14 +149,25 @@ pub fn get<T: DeserializeOwned>(
     };
     Ok(it)
 }
-pub async fn set<T: Serialize>(
+pub async fn get<T: DeserializeOwned>(
     ss: &Session,
     db: &DbPool,
     secrets: Key,
     jwt: &Jwt,
     enforcer: &Mutex<Enforcer>,
-    (key, user, value, encrypt): (String, Option<i32>, &T, bool),
+    user: Option<i32>,
+) -> Result<T> {
+    get_(ss, db, secrets, jwt, enforcer, type_name::<T>(), user).await
+}
+pub async fn set_<T: Serialize + Validate>(
+    ss: &Session,
+    db: &DbPool,
+    secrets: Key,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    (key, user, value, encrypt): (&str, Option<i32>, &T, bool),
 ) -> Result<()> {
+    value.validate()?;
     let value = flexbuffers::to_vec(value)?;
     let mut db = db.get()?;
     let db = db.deref_mut();
@@ -162,6 +186,25 @@ pub async fn set<T: Serialize>(
     })?;
 
     Ok(())
+}
+
+pub async fn set<T: Serialize + Validate>(
+    ss: &Session,
+    db: &DbPool,
+    secrets: Key,
+    jwt: &Jwt,
+    enforcer: &Mutex<Enforcer>,
+    (user, value, encrypt): (Option<i32>, &T, bool),
+) -> Result<()> {
+    set_(
+        ss,
+        db,
+        secrets,
+        jwt,
+        enforcer,
+        (type_name::<T>(), user, value, encrypt),
+    )
+    .await
 }
 
 #[derive(Validate)]

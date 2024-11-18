@@ -4,7 +4,7 @@ fields:
   nickname:
     label: "Nickname"
   username:
-    label: "Label"
+    label: "Username"
   real-name:
     label: "Real name"
   password:
@@ -48,7 +48,9 @@ fields:
   locked-at:
     label: "Locked at"
   updated-at:
-    label: "Updated At"
+    label: "Updated at"
+  expires-at:
+    label: "Expires at"
   level:
     label: "Label"
   message:
@@ -63,3 +65,5 @@ fields:
     label: "Code"
   user:
     label: "User"
+  uid:
+    label: "UID"
