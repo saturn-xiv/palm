@@ -9,12 +9,12 @@ import { message, Typography } from "antd";
 import { useRef } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { IError } from "../../../api";
+import { IError } from "../../../../api";
 import {
   get_site_info_by_lang,
   set_site_base_info,
-} from "../../../api/daffodil";
-import { available_languages } from "../../../i18n";
+} from "../../../../api/daffodil";
+import { available_languages } from "../../../../i18n";
 
 interface IFormValue {
   lang: string;

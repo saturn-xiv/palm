@@ -19,8 +19,8 @@ import {
   Tooltip,
 } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
-import { get_site_keywords, set_site_keywords } from "../../../api/daffodil";
-import { IError } from "../../../api";
+import { get_site_keywords, set_site_keywords } from "../../../../api/daffodil";
+import { IError } from "../../../../api";
 
 const tagInputStyle: CSSProperties = {
   width: 64,

@@ -116,5 +116,7 @@ admin:
         label: "SEO"
       maintenance:
         label: "Maintenance"
+      status:
+        label: "Status"
 not-found:
   title: "Not found"

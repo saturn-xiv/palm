@@ -8,9 +8,12 @@ import { Button, message, Typography } from "antd";
 import { useRef } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { IError } from "../../../api";
-import { get_site_smtp, set_site_smtp } from "../../../api/daffodil";
-import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "../../../components";
+import { IError } from "../../../../api";
+import { get_site_smtp, set_site_smtp } from "../../../../api/daffodil";
+import {
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from "../../../../components";
 
 interface IFormValue {
   host: string;

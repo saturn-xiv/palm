@@ -4,12 +4,12 @@ import { Button, message, Typography } from "antd";
 import { useRef } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { IError } from "../../../api";
+import { IError } from "../../../../api";
 import {
-  get_index_now_site_ownership_verifying,
-  IIndexNowSiteOwnershipVerifying as IFormValue,
-  set_index_now_site_ownership_verifying,
-} from "../../../api/daffodil";
+  get_google_site_ownership_verifying,
+  IGoogleSiteOwnershipVerifying as IFormValue,
+  set_google_site_ownership_verifying,
+} from "../../../../api/daffodil";
 
 const Widget = () => {
   const intl = useIntl();
@@ -18,12 +18,12 @@ const Widget = () => {
   return (
     <>
       <Typography.Title level={3}>
-        <FormattedMessage id="pages.admin.site.index-now.ownership-verifying.title" />
+        <FormattedMessage id="pages.admin.site.google.ownership-verifying.title" />
       </Typography.Title>
       {contextHolder}
       <ProForm<IFormValue>
         onFinish={async (values) => {
-          set_index_now_site_ownership_verifying(values.key)
+          set_google_site_ownership_verifying(values.code)
             .then(() => {
               messageApi.success(intl.formatMessage({ id: "flashes.succeed" }));
             })
@@ -32,9 +32,9 @@ const Widget = () => {
             });
         }}
         formRef={formRef}
-        formKey="admin.site.index-now-ownership-verifying"
+        formKey="admin.site.google-ownership-verifying"
         request={async () => {
-          const res = await get_index_now_site_ownership_verifying();
+          const res = await get_google_site_ownership_verifying();
           return res;
         }}
         submitter={{
@@ -47,11 +47,14 @@ const Widget = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   window
-                    .open("https://www.indexnow.org/documentation", "_blank")
+                    .open(
+                      "https://support.google.com/webmasters/answer/9008080?hl=en#meta_tag_verification",
+                      "_blank"
+                    )
                     ?.focus();
                 }}
               >
-                Verifying ownership via the key
+                HTML tag
               </Button>,
             ];
           },
@@ -59,9 +62,9 @@ const Widget = () => {
         autoFocusFirstInput
       >
         <ProFormText
-          name="key"
+          name="code"
           width="md"
-          label={<FormattedMessage id="form.fields.key.label" />}
+          label={<FormattedMessage id="form.fields.code.label" />}
           rules={[{ required: true }]}
         />
       </ProForm>

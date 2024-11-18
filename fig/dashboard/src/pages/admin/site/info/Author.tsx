@@ -4,9 +4,9 @@ import { message, Typography } from "antd";
 import { useRef } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { IError } from "../../../api";
-import { get_site_author, set_site_author } from "../../../api/daffodil";
-import { IAuthor as IFormValue } from "../../../reducers/site";
+import { IError } from "../../../../api";
+import { get_site_author, set_site_author } from "../../../../api/daffodil";
+import { IAuthor as IFormValue } from "../../../../reducers/site";
 
 const Widget = () => {
   const intl = useIntl();
