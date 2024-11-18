@@ -184,6 +184,28 @@ impl Query {
             daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
         Ok(it.into())
     }
+    async fn get_google_site_ownership_verifying(
+        context: &Context,
+    ) -> FieldResult<daffodil_site::seo::google::SiteOwnershipVerifying> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        let it: daffodil_site::seo::google::SiteOwnershipVerifying =
+            daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
+        Ok(it)
+    }
+    async fn get_index_now_site_ownership_verifying(
+        context: &Context,
+    ) -> FieldResult<daffodil_site::seo::index_now::SiteOwnershipVerifying> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        let it: daffodil_site::seo::index_now::SiteOwnershipVerifying =
+            daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
+        Ok(it)
+    }
     // ------------------------------------------------------------------------
     async fn show_attachment(
         context: &Context,

@@ -1,4 +1,5 @@
 pub mod info;
+pub mod seo;
 pub mod smtp;
 
 use std::any::type_name;

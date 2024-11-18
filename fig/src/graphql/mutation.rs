@@ -575,6 +575,52 @@ impl Mutation {
         .await?;
         Ok(Succeed::default())
     }
+    async fn set_google_site_ownership_verifying(
+        context: &Context,
+        code: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        daffodil_site::set(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            (
+                None,
+                &daffodil_site::seo::google::SiteOwnershipVerifying { code },
+                false,
+            ),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
+    async fn set_index_now_site_ownership_verifying(
+        context: &Context,
+        key: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        daffodil_site::set(
+            &context.session,
+            db,
+            secrets.clone(),
+            jwt,
+            enf,
+            (
+                None,
+                &daffodil_site::seo::index_now::SiteOwnershipVerifying { key },
+                false,
+            ),
+        )
+        .await?;
+        Ok(Succeed::default())
+    }
     async fn set_site_smtp(
         context: &Context,
         host: String,

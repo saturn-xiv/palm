@@ -39,6 +39,7 @@ const Widget = () => {
             return [
               ...doms,
               <Button
+                key="help"
                 type="link"
                 onClick={(e) => {
                   e.preventDefault();

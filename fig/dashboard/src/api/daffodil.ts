@@ -90,6 +90,80 @@ export const set_site_cn_mps = async (
   return res.setSiteCnMps;
 };
 
+const GET_SITE_GOOGLE_SITE_OWNERSHIP_VERIFYING = `
+query call{
+    getGoogleSiteOwnershipVerifying{
+      code
+    }
+}
+`;
+export interface IGoogleSiteOwnershipVerifying {
+  code: string;
+}
+export const get_google_site_ownership_verifying =
+  async (): Promise<IGoogleSiteOwnershipVerifying> => {
+    const res: {
+      getGoogleSiteOwnershipVerifying: IGoogleSiteOwnershipVerifying;
+    } = await query(GET_SITE_GOOGLE_SITE_OWNERSHIP_VERIFYING, {});
+    return res.getGoogleSiteOwnershipVerifying;
+  };
+
+const SET_GOOGLE_SITE_OWNERSHIP_VERIFYING = `
+mutation call($code: String!){
+    setGoogleSiteOwnershipVerifying(code: $code){
+      createdAt
+    }
+}
+`;
+export const set_google_site_ownership_verifying = async (
+  code: string
+): Promise<ISucceed> => {
+  const res: { setGoogleSiteOwnershipVerifying: ISucceed } = await query(
+    SET_GOOGLE_SITE_OWNERSHIP_VERIFYING,
+    {
+      code,
+    }
+  );
+  return res.setGoogleSiteOwnershipVerifying;
+};
+
+const GET_INDEX_NOW_SITE_OWNERSHIP_VERIFYING = `
+query call{
+    getIndexNowSiteOwnershipVerifying{
+      key
+    }
+}
+`;
+export interface IIndexNowSiteOwnershipVerifying {
+  key: string;
+}
+export const get_index_now_site_ownership_verifying =
+  async (): Promise<IIndexNowSiteOwnershipVerifying> => {
+    const res: {
+      getIndexNowSiteOwnershipVerifying: IIndexNowSiteOwnershipVerifying;
+    } = await query(GET_INDEX_NOW_SITE_OWNERSHIP_VERIFYING, {});
+    return res.getIndexNowSiteOwnershipVerifying;
+  };
+
+const SET_INDEX_NOW_OWNERSHIP_VERIFYING = `
+mutation call($key: String!){
+    setIndexNowSiteOwnershipVerifying(key: $key){
+      createdAt
+    }
+}
+`;
+export const set_index_now_site_ownership_verifying = async (
+  key: string
+): Promise<ISucceed> => {
+  const res: { setIndexNowSiteOwnershipVerifying: ISucceed } = await query(
+    SET_INDEX_NOW_OWNERSHIP_VERIFYING,
+    {
+      key,
+    }
+  );
+  return res.setIndexNowSiteOwnershipVerifying;
+};
+
 const GET_SITE_CN_MPS = `
 query call{
     getSiteCnMps{

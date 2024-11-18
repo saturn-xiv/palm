@@ -99,6 +99,12 @@ admin:
       title: "MPS license"
       homage:
         label: "National Internet Security Management Service Platform"
+    google:
+      ownership-verifying:
+        title: "Verify your website ownership for Google"
+    index-now:
+      ownership-verifying:
+        title: "Verify your website ownership for IndexNow"
     tabs:
       info:
         label: "Information"

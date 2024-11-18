@@ -55,10 +55,10 @@ const Widget = () => {
           label: <FormattedMessage id="pages.admin.site.tabs.seo.label" />,
           children: (
             <Row>
-              <Col md={8}>
+              <Col md={12}>
                 <Google />
               </Col>
-              <Col md={8}>
+              <Col md={12}>
                 <IndexNow />
               </Col>
             </Row>

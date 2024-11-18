@@ -69,3 +69,5 @@ fields:
     label: "User"
   uid:
     label: "UID"
+  key:
+    label: "Key"
