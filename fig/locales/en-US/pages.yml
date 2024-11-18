@@ -91,5 +91,22 @@ admin:
       title: "Keywords"
     author:
       title: "Author"
+    cn-icp:
+      title: "ICP license"
+      homage:
+        label: "Internet Content Provider Registration Record"
+    cn-mps:
+      title: "MPS license"
+      homage:
+        label: "National Internet Security Management Service Platform"
+    tabs:
+      info:
+        label: "Information"
+      china:
+        label: "China"
+      seo:
+        label: "SEO"
+      maintenance:
+        label: "Maintenance"
 not-found:
   title: "Not found"

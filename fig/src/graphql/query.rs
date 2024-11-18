@@ -157,6 +157,24 @@ impl Query {
         .await?;
         Ok(res.items)
     }
+    async fn get_site_cn_icp(context: &Context) -> FieldResult<petunia::themes::CnIcp> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        let it: petunia::themes::CnIcp =
+            daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
+        Ok(it)
+    }
+    async fn get_site_cn_mps(context: &Context) -> FieldResult<petunia::themes::CnMps> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let secrets = context.secrets.deref();
+        let it: petunia::themes::CnMps =
+            daffodil_site::get(&context.session, db, secrets.clone(), jwt, enf, None).await?;
+        Ok(it)
+    }
     async fn get_site_smtp(context: &Context) -> FieldResult<daffodil_site::smtp::Show> {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();

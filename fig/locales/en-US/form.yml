@@ -1,6 +1,8 @@
 fields:
   email:
     label: "Email"
+  name:
+    label: "Name"
   nickname:
     label: "Nickname"
   username:

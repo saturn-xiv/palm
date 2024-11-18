@@ -5,7 +5,7 @@ import {
   IResource,
   mingle_password,
 } from "../reducers/current-user";
-import { IAuthor, ISiteInfo } from "../reducers/site";
+import { IAuthor, ICnIcp, ICnMps, ISiteInfo } from "../reducers/site";
 
 // ----------------------------------------------------------------------------
 const SET_SITE_SMTP = `
@@ -60,10 +60,21 @@ export const set_site_cn_icp = async (code: string): Promise<ISucceed> => {
   });
   return res.setSiteCnIcp;
 };
+const GET_SITE_CN_ICP = `
+query call{
+    getSiteCnIcp{
+      code
+    }
+}
+`;
+export const get_site_cn_icp = async (): Promise<ICnIcp> => {
+  const res: { getSiteCnIcp: ICnIcp } = await query(GET_SITE_CN_ICP, {});
+  return res.getSiteCnIcp;
+};
 
 const SET_SITE_CN_MPS = `
 mutation call($code: String!, $name: String!){
-    setSiteCnMps(code: $code){
+    setSiteCnMps(code: $code, name: $name){
       createdAt
     }
 }
@@ -77,6 +88,18 @@ export const set_site_cn_mps = async (
     name,
   });
   return res.setSiteCnMps;
+};
+
+const GET_SITE_CN_MPS = `
+query call{
+    getSiteCnMps{
+      code, name
+    }
+}
+`;
+export const get_site_cn_mps = async (): Promise<ICnMps> => {
+  const res: { getSiteCnMps: ICnMps } = await query(GET_SITE_CN_MPS, {});
+  return res.getSiteCnMps;
 };
 
 const GET_SITE_AUTHOR = `

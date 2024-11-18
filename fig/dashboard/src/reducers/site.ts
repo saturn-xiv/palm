@@ -10,8 +10,8 @@ export interface ISiteInfo {
   keywords: string[];
   description: string;
   copyright: string;
-  cnMps?: { code: string; name: string };
-  cnIcp?: { code: string };
+  cnMps?: ICnMps;
+  cnIcp?: ICnIcp;
   locale: string;
   languages: string[];
 }
@@ -19,6 +19,13 @@ export interface ISiteInfo {
 export interface IAuthor {
   name: string;
   email: string;
+}
+export interface ICnMps {
+  code: string;
+  name: string;
+}
+export interface ICnIcp {
+  code: string;
 }
 
 interface IState {
