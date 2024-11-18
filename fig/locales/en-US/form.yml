@@ -71,3 +71,9 @@ fields:
     label: "UID"
   key:
     label: "Key"
+  host:
+    label: "Host"
+  account:
+    label: "Account"
+  port:
+    label: "Port"

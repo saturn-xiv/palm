@@ -105,6 +105,8 @@ admin:
     index-now:
       ownership-verifying:
         title: "Verify your website ownership for IndexNow"
+    smtp:
+      title: "SMTP"
     tabs:
       info:
         label: "Information"
