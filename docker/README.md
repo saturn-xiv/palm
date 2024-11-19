@@ -20,6 +20,8 @@ sudo pacman -S crun podman buildah fuse-overlayfs
   podman system reset # clean
   podman images # show images
   podman ps -a # show containers
+  podman ps --filter status=running
+  podman logs xxxx
   podman load -i tmp/palm-CODE-TIMESTAMP.tar.xz # import image
   ```
 

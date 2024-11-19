@@ -71,6 +71,23 @@ admin:
   policies:
     index:
       title: "Policies"
+    roles:
+      form:
+        title: "Role"
+      user-list:
+        title: "Users"
+      relation-list:
+        title: "Relations"
+    administrators:
+      form:
+        title: "Administrator"
+      user-list:
+        title: "Users"
+    tabs:
+      roles:
+        label: "Roles"
+      administrators:
+        label: "Administrators"
   leave-words:
     index:
       title: "Leave words"

@@ -6,8 +6,9 @@ use chrono_tz::TZ_VARIANTS;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
     currency as daffodil_currency, leave_word as daffodil_leave_word, locale as daffodil_locale,
-    log as daffodil_log, menu as daffodil_menu, session as daffodil_session, site as daffodil_site,
-    tag as daffodil_tag, user::email as daffodil_user_by_email,
+    log as daffodil_log, menu as daffodil_menu, policy as daffodil_policy,
+    session as daffodil_session, site as daffodil_site, tag as daffodil_tag,
+    user::email as daffodil_user_by_email,
 };
 use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
@@ -99,7 +100,57 @@ impl Query {
         let res = daffodil_user_by_email::List::new(&context.session, db, jwt, enf, &pager).await?;
         Ok(res)
     }
+    // ------------------------------------------------------------------------
+    async fn policy_users(
+        context: &Context,
+    ) -> FieldResult<Vec<daffodil::models::user::SelectOption>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
 
+        let it = daffodil_policy::users(&context.session, db, jwt, enf).await?;
+        Ok(it)
+    }
+    async fn policy_roles(context: &Context) -> FieldResult<Vec<String>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let it = daffodil_policy::roles(&context.session, db, jwt, enf).await?;
+        Ok(it)
+    }
+    async fn users_for_role(
+        context: &Context,
+        code: String,
+    ) -> FieldResult<Vec<daffodil::models::user::SelectOption>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let form = daffodil_policy::RoleForm { code };
+        let it = form.users(&context.session, db, jwt, enf).await?;
+        Ok(it)
+    }
+    async fn policy_user_role_relations(
+        context: &Context,
+    ) -> FieldResult<Vec<daffodil_policy::UserRoleRelation>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let it = daffodil_policy::UserRoleRelation::all(&context.session, db, jwt, enf).await?;
+        Ok(it)
+    }
+    async fn administrators(
+        context: &Context,
+    ) -> FieldResult<Vec<daffodil::models::user::SelectOption>> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let it = daffodil_policy::Administrator::users(&context.session, db, jwt, enf).await?;
+        Ok(it)
+    }
     // ------------------------------------------------------------------------
     fn index_log(context: &Context, pager: Pager) -> FieldResult<daffodil_log::List> {
         let db = context.postgresql.deref();
@@ -222,6 +273,7 @@ impl Query {
         .await?;
         Ok(it)
     }
+
     // ------------------------------------------------------------------------
     async fn show_attachment(
         context: &Context,

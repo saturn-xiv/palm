@@ -4,7 +4,8 @@ use carnation::graphql::page as cms_page;
 use daffodil::graphql::{
     attachment as daffodil_attachment, category as daffodil_category,
     leave_word as daffodil_leave_word, locale as daffodil_locale, menu as daffodil_menu,
-    session as daffodil_session, site as daffodil_site, tag as daffodil_tag,
+    policy as daffodil_policy, session as daffodil_session, site as daffodil_site,
+    tag as daffodil_tag,
     user::{
         self as daffodil_user, email as daffodil_user_by_email,
         SignInResponse as UserSignInResponse,
@@ -273,6 +274,53 @@ impl Mutation {
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         form.execute(&context.session, db, jwt, &context.session.client_ip)?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    async fn add_role_to_user(context: &Context, user: i32, role: String) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let form = daffodil_policy::RoleForm {
+            code: role.trim().to_lowercase(),
+        };
+        form.apply_to_user(&context.session, db, jwt, enf, user)
+            .await?;
+        Ok(Succeed::default())
+    }
+    async fn remove_role_from_user(
+        context: &Context,
+        user: i32,
+        role: String,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        let form = daffodil_policy::RoleForm {
+            code: role.trim().to_lowercase(),
+        };
+        form.withdraw_from_user(&context.session, db, jwt, enf, user)
+            .await?;
+        Ok(Succeed::default())
+    }
+
+    async fn enable_administrator(context: &Context, user: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        daffodil_policy::Administrator::apply_to_user(&context.session, db, jwt, enf, user).await?;
+        Ok(Succeed::default())
+    }
+    async fn disable_administrator(context: &Context, user: i32) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+
+        daffodil_policy::Administrator::withdraw_from_user(&context.session, db, jwt, enf, user)
+            .await?;
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------

@@ -8,16 +8,17 @@ use argon2::{
 };
 use chrono::{NaiveDateTime, Utc};
 use chrono_tz::Tz;
-use data_encoding::BASE64_NOPAD;
-use data_encoding::HEXLOWER;
+use data_encoding::{BASE64_NOPAD, HEXLOWER};
 use diesel::{insert_into, prelude::*, update};
 use hyper::StatusCode;
+use juniper::GraphQLObject;
 use language_tags::LanguageTag;
 use petunia::{orm::postgresql::Connection, HttpError, Result};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 
-use super::super::schema::users;
+use super::super::schema::{email_users, users};
+use super::session::ProviderType;
 
 #[derive(Hash, Eq, PartialEq, Queryable, Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -266,5 +267,71 @@ impl Item {
                 ))
             })?;
         Ok(())
+    }
+}
+
+#[derive(GraphQLObject)]
+#[graphql(name = "UserSelectOption")]
+pub struct SelectOption {
+    pub id: i32,
+    pub provider_id: i32,
+    pub provider_type: ProviderType,
+    pub label: String,
+    pub lang: String,
+    pub timezone: String,
+}
+
+impl SelectOption {
+    pub fn new(db: &mut Connection, id: i32) -> Result<Self> {
+        let (lang, timezone) = users::dsl::users
+            .select((users::dsl::lang, users::dsl::timezone))
+            .filter(users::dsl::id.eq(id))
+            .filter(users::dsl::deleted_at.is_null())
+            .filter(users::dsl::locked_at.is_null())
+            .order(users::dsl::updated_at.desc())
+            .first::<(String, String)>(db)?;
+
+        Self::by_id(db, id, lang, timezone)
+    }
+    pub fn all(db: &mut Connection) -> Result<Vec<Self>> {
+        let mut items = Vec::new();
+        for (id, lang, timezone) in users::dsl::users
+            .select((users::dsl::id, users::dsl::lang, users::dsl::timezone))
+            .filter(users::dsl::deleted_at.is_null())
+            .filter(users::dsl::locked_at.is_null())
+            .order(users::dsl::updated_at.desc())
+            .load::<(i32, String, String)>(db)?
+        {
+            if let Ok(it) = Self::by_id(db, id, lang, timezone) {
+                items.push(it);
+            }
+        }
+
+        Ok(items)
+    }
+
+    fn by_id(db: &mut Connection, id: i32, lang: String, timezone: String) -> Result<Self> {
+        if let Ok((eu_id, real_name, email)) = email_users::dsl::email_users
+            .select((
+                email_users::dsl::id,
+                email_users::dsl::real_name,
+                email_users::dsl::email,
+            ))
+            .filter(email_users::dsl::user_id.eq(id))
+            .filter(email_users::dsl::confirmed_at.is_not_null())
+            .filter(email_users::dsl::deleted_at.is_null())
+            .first::<(i32, String, String)>(db)
+        {
+            return Ok(Self {
+                id,
+                provider_id: eu_id,
+                provider_type: ProviderType::Email,
+                label: format!("{real_name}<{email}>"),
+                lang,
+                timezone,
+            });
+        }
+
+        Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)))
     }
 }

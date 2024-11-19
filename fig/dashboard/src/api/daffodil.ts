@@ -496,6 +496,164 @@ export const index_leave_word = async (
 };
 
 // ----------------------------------------------------------------------------
+const POLICY_ROLES = `
+query call{
+    policyRoles
+}
+`;
+export const policy_roles = async (): Promise<string[]> => {
+  const res: { policyRoles: string[] } = await query(POLICY_ROLES, {});
+  return res.policyRoles;
+};
+
+const POLICY_USERS = `
+query call{
+    policyUsers {
+        id, providerType, providerId, label, lang, timezone
+    }
+}
+`;
+export interface IUserSelectOption {
+  id: number;
+  label: string;
+  providerType: string;
+  providerId: number;
+  lang: string;
+  timezone: string;
+}
+export const policy_users = async (): Promise<IUserSelectOption[]> => {
+  const res: { policyUsers: IUserSelectOption[] } = await query(
+    POLICY_USERS,
+    {}
+  );
+  return res.policyUsers;
+};
+
+const POLICY_USER_ROLE_RELATIONS = `
+query call{
+    policyUserRoleRelations {
+        users{id, providerType, providerId, label, lang, timezone},
+        role
+    }
+}
+`;
+export interface IUserRoleRelation {
+  users: IUserSelectOption[];
+  role: string;
+}
+export const policy_user_role_relations = async (): Promise<
+  IUserRoleRelation[]
+> => {
+  const res: { policyUserRoleRelations: IUserRoleRelation[] } = await query(
+    POLICY_USER_ROLE_RELATIONS,
+    {}
+  );
+  return res.policyUserRoleRelations;
+};
+
+const ADMINISTRATORS = `
+query call{
+    administrators {
+        id, providerType, providerId, label, lang, timezone
+    }
+}
+`;
+export const administrators = async (): Promise<IUserSelectOption[]> => {
+  const res: { administrators: IUserSelectOption[] } = await query(
+    ADMINISTRATORS,
+    {}
+  );
+  return res.administrators;
+};
+const ENABLE_ADMINISTRATOR = `
+mutation call($user: Int!){
+    enableAdministrator(user: $user) {
+        createdAt
+    }
+}
+`;
+export const enable_administrator = async (user: number): Promise<ISucceed> => {
+  const res: { enableAdministrator: ISucceed } = await query(
+    ENABLE_ADMINISTRATOR,
+    {
+      user,
+    }
+  );
+  return res.enableAdministrator;
+};
+const DISABLE_ADMINISTRATOR = `
+mutation call($user: Int!){
+    disableAdministrator(user: $user) {
+        createdAt
+    }
+}
+`;
+export const disable_administrator = async (
+  user: number
+): Promise<ISucceed> => {
+  const res: { disableAdministrator: ISucceed } = await query(
+    DISABLE_ADMINISTRATOR,
+    {
+      user,
+    }
+  );
+  return res.disableAdministrator;
+};
+
+const USERS_FOR_ROLE = `
+query call($code: String!){
+    usersForRole(code: $code) {
+        id, providerType, providerId, label, lang, timezone
+    }
+}
+`;
+export const users_for_role = async (
+  code: string
+): Promise<IUserSelectOption[]> => {
+  const res: { usersForRole: IUserSelectOption[] } = await query(
+    USERS_FOR_ROLE,
+    { code }
+  );
+  return res.usersForRole;
+};
+const ADD_ROLE_TO_USER = `
+mutation call($user: Int!, $role: String!){
+    addRoleToUser(user: $user, role: $role) {
+        createdAt
+    }
+}
+`;
+export const add_role_to_user = async (
+  user: number,
+  role: string
+): Promise<ISucceed> => {
+  const res: { addRoleToUser: ISucceed } = await query(ADD_ROLE_TO_USER, {
+    user,
+    role,
+  });
+  return res.addRoleToUser;
+};
+const REMOVE_ROLE_FROM_USER = `
+mutation call($user: Int!, $role: String!){
+    removeRoleFromUser(user: $user, role: $role) {
+        createdAt
+    }
+}
+`;
+export const remove_role_from_user = async (
+  user: number,
+  role: string
+): Promise<ISucceed> => {
+  const res: { removeRoleFromUser: ISucceed } = await query(
+    REMOVE_ROLE_FROM_USER,
+    {
+      user,
+      role,
+    }
+  );
+  return res.removeRoleFromUser;
+};
+// ----------------------------------------------------------------------------
 
 const ENABLE_SESSION = `
 mutation call($id: Int!){
