@@ -26,6 +26,8 @@ const AdminPolicies = lazy(() => import("./pages/admin/policies"));
 const AdminLocales = lazy(() => import("./pages/admin/locales"));
 const AdminSession = lazy(() => import("./pages/admin/sessions"));
 const AdminSite = lazy(() => import("./pages/admin/site"));
+const AdminTags = lazy(() => import("./pages/admin/tags"));
+const AdminCategories = lazy(() => import("./pages/admin/categories"));
 
 const NotFound = lazy(() => import("./pages/not-found"));
 
@@ -48,6 +50,8 @@ const router = createBrowserRouter(
             { path: "leave-words", element: <AdminLeaveWords /> },
             { path: "sessions", element: <AdminSession /> },
             { path: "site", element: <AdminSite /> },
+            { path: "tags", element: <AdminTags /> },
+            { path: "categories", element: <AdminCategories /> },
           ],
         },
       ],

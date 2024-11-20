@@ -8,6 +8,59 @@ import {
 import { IAuthor, ICnIcp, ICnMps, ISiteInfo } from "../reducers/site";
 
 // ----------------------------------------------------------------------------
+const CREATE_TAG = `
+mutation call($code: String!){
+    createTag(code: $code){
+      createdAt
+    }
+}
+`;
+export const create_tag = async (code: string): Promise<ISucceed> => {
+  const res: { createTag: ISucceed } = await query(CREATE_TAG, {
+    code,
+  });
+  return res.createTag;
+};
+const UPDATE_TAG = `
+mutation call($id: Int!, $code: String!){
+    updateTag(id: $id, code: $code){
+      createdAt
+    }
+}
+`;
+export const update_tag = async (
+  id: number,
+  code: string
+): Promise<ISucceed> => {
+  const res: { updateTag: ISucceed } = await query(UPDATE_TAG, { id, code });
+  return res.updateTag;
+};
+const DESTROY_TAG = `
+mutation call($id: Int!){
+    destroyTag(id: $id){
+      createdAt
+    }
+}
+`;
+export const destroy_tag = async (id: number): Promise<ISucceed> => {
+  const res: { destroyTag: ISucceed } = await query(DESTROY_TAG, { id });
+  return res.destroyTag;
+};
+const INDEX_TAG = `
+query call{
+    indexTag{id, code, updatedAt}
+}
+`;
+export interface ITag {
+  id: number;
+  code: string;
+  updatedAt: Date;
+}
+export const index_tag = async (): Promise<ITag[]> => {
+  const res: { indexTag: ITag[] } = await query(INDEX_TAG, {});
+  return res.indexTag;
+};
+// ----------------------------------------------------------------------------
 const SET_SITE_SMTP = `
 mutation call($host: String!, $port: Int!, $account: String!, $password: String!){
     setSiteSmtp(host: $host, port: $port, account: $account, password: $password){

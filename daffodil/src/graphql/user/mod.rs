@@ -53,6 +53,18 @@ impl SideBarMenu {
             external: false,
             children: None,
         });
+        items.push(Self {
+            label: I18n::t(
+                db,
+                &user.lang,
+                "pages.attachments.index.title",
+                None::<String>,
+            ),
+            to: "/attachments".to_string(),
+            icon: Some("attachments".to_string()),
+            external: false,
+            children: None,
+        });
 
         {
             let mut enforcer = enforcer.lock().await;
@@ -121,6 +133,30 @@ impl SideBarMenu {
                                 None::<String>,
                             ),
                             to: "/admin/locales".to_string(),
+                            icon: None,
+                            external: false,
+                            children: None,
+                        },
+                        Self {
+                            label: I18n::t(
+                                db,
+                                &user.lang,
+                                "pages.admin.tags.index.title",
+                                None::<String>,
+                            ),
+                            to: "/admin/tags".to_string(),
+                            icon: None,
+                            external: false,
+                            children: None,
+                        },
+                        Self {
+                            label: I18n::t(
+                                db,
+                                &user.lang,
+                                "pages.admin.categories.index.title",
+                                None::<String>,
+                            ),
+                            to: "/admin/categories".to_string(),
                             icon: None,
                             external: false,
                             children: None,

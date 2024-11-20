@@ -2,6 +2,7 @@ import {
   DashboardOutlined,
   UserOutlined,
   InfoCircleOutlined,
+  FileOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +18,8 @@ const menu_icon = (key: string) => {
       return <UserOutlined />;
     case "/admin":
       return <DashboardOutlined />;
+    case "/attachments":
+      return <FileOutlined />;
     default:
       return <InfoCircleOutlined />;
   }

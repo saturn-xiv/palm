@@ -57,6 +57,9 @@ leave-words:
 personal:
   index:
     title: "Personal"
+attachments:
+  index:
+    title: "Attachments"
 admin:
   index:
     title: "Settings"
@@ -94,6 +97,14 @@ admin:
   sessions:
     index:
       title: "Sessions"
+  tags:
+    index:
+      title: "Tags"
+    list:
+      title: "Tags"
+  categories:
+    index:
+      title: "Categories"
   site:
     index:
       title: "Website"
