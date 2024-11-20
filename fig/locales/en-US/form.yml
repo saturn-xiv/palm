@@ -79,3 +79,13 @@ fields:
     label: "Port"
   role:
     label: "Role"
+  tags:
+    label: "Tags"
+  category:
+    label: "Category"
+  parent:
+    label: "Parent"
+  left-of:
+    label: "Left of"
+  right-of:
+    label: "Right of"

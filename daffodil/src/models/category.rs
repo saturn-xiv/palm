@@ -190,7 +190,7 @@ impl Dao for Connection {
 
     fn index(&mut self) -> Result<Vec<Item>> {
         let items = categories::dsl::categories
-            .order(categories::dsl::updated_at.desc())
+            .order(categories::dsl::left.asc())
             .load::<Item>(self)?;
         Ok(items)
     }

@@ -9,7 +9,7 @@ CREATE TABLE categories(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX idx_categories_code ON categories(code);
-INSERT INTO categories(code, "left", "right", updated_at) VALUES('root', 1, 1, CURRENT_TIMESTAMP);
+INSERT INTO categories(id, code, "left", "right", updated_at) VALUES(1, 'root', 1, 2, CURRENT_TIMESTAMP);
 
 CREATE TABLE category_resources(
     id SERIAL PRIMARY KEY,

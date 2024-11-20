@@ -8,6 +8,87 @@ import {
 import { IAuthor, ICnIcp, ICnMps, ISiteInfo } from "../reducers/site";
 
 // ----------------------------------------------------------------------------
+const CREATE_CATEGORY = `
+mutation call($parent: Int!, $code: String!){
+    createCategory(parent: $parent, code: $code){
+      createdAt
+    }
+}
+`;
+export const create_category = async (
+  parent: number,
+  code: string
+): Promise<ISucceed> => {
+  const res: { createCategory: ISucceed } = await query(CREATE_CATEGORY, {
+    parent,
+    code,
+  });
+  return res.createCategory;
+};
+const APPEND_CATEGORY = `
+mutation call($near: Int!, $code: String!){
+    appendCategory(near: $near, code: $code){
+      createdAt
+    }
+}
+`;
+export const append_category = async (
+  near: number,
+  code: string
+): Promise<ISucceed> => {
+  const res: { appendCategory: ISucceed } = await query(APPEND_CATEGORY, {
+    near,
+    code,
+  });
+  return res.appendCategory;
+};
+const UPDATE_CATEGORY = `
+mutation call($id: Int!, $code: String!){
+    updateCategory(id: $id, code: $code){
+      createdAt
+    }
+}
+`;
+export const update_category = async (
+  id: number,
+  code: string
+): Promise<ISucceed> => {
+  const res: { updateCategory: ISucceed } = await query(UPDATE_CATEGORY, {
+    id,
+    code,
+  });
+  return res.updateCategory;
+};
+const DESTROY_CATEGORY = `
+mutation call($id: Int!){
+    destroyCategory(id: $id){
+      createdAt
+    }
+}
+`;
+export const destroy_category = async (id: number): Promise<ISucceed> => {
+  const res: { destroyCategory: ISucceed } = await query(DESTROY_CATEGORY, {
+    id,
+  });
+  return res.destroyCategory;
+};
+const INDEX_CATEGORY = `
+query call{
+    indexCategory{id, code, left, right, updatedAt}
+}
+`;
+export interface ICategory {
+  id: number;
+  code: string;
+  left: number;
+  right: number;
+  updatedAt: Date;
+}
+export const index_category = async (): Promise<ICategory[]> => {
+  const res: { indexCategory: ICategory[] } = await query(INDEX_CATEGORY, {});
+  return res.indexCategory;
+};
+// ----------------------------------------------------------------------------
 const CREATE_TAG = `
 mutation call($code: String!){
     createTag(code: $code){

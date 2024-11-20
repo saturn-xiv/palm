@@ -105,6 +105,8 @@ admin:
   categories:
     index:
       title: "Categories"
+    list:
+      title: "Categories"
   site:
     index:
       title: "Website"

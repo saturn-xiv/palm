@@ -3,9 +3,11 @@ use std::ops::DerefMut;
 use casbin::Enforcer;
 use chrono::NaiveDateTime;
 use diesel::Connection as DieselConnection;
+use hyper::StatusCode;
 use juniper::GraphQLObject;
 use petunia::{
-    jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool, session::Session, Error, Result,
+    jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool, session::Session, Error,
+    HttpError, Result,
 };
 use tokio::sync::Mutex;
 use validator::Validate;
@@ -137,6 +139,9 @@ impl Form {
 
         db.transaction::<_, Error, _>(|db| {
             let it = CategoryDao::by_id(db, id)?;
+            if it.code == Category::ROOT {
+                return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
+            }
             CategoryDao::set_code(db, it.id, &self.code)?;
             Ok(())
         })?;
@@ -162,6 +167,10 @@ pub async fn destroy(
     }
 
     db.transaction::<_, Error, _>(|db| {
+        let it = CategoryDao::by_id(db, id)?;
+        if it.code == Category::ROOT {
+            return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
+        }
         CategoryDao::destroy(db, id)?;
         Ok(())
     })?;
