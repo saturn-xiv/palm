@@ -6,8 +6,8 @@ use actix_web::{
 };
 use diesel::Connection as DieselConnection;
 use petunia::{
-    jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool, s3::Client as S3,
-    session::Session, Error, Result,
+    graphql::Resource, jwt::openssl::OpenSsl as Jwt, orm::postgresql::Pool as DbPool,
+    s3::Client as S3, session::Session, Error, Result,
 };
 use serde::Deserialize;
 
@@ -19,7 +19,7 @@ use super::super::{
 
 #[derive(Debug, Deserialize)]
 pub struct Metadata {
-    pub name: String,
+    pub resource: Resource,
 }
 
 #[derive(Debug, MultipartForm)]
@@ -29,7 +29,7 @@ pub struct UploadForm {
     pub json: MPJson<Metadata>,
 }
 
-#[post("/upload")]
+#[post("/")]
 pub async fn upload(
     ss: Session,
     db: web::Data<DbPool>,
@@ -41,6 +41,7 @@ pub async fn upload(
     let db = db.deref();
     let jwt = jwt.deref();
     let s3 = s3.deref();
+    log::debug!("{:?}", form);
     let it = form
         .execute(&ss, db, jwt, s3, (NAME, false, -1))
         .await
@@ -66,15 +67,21 @@ impl UploadForm {
             .content_type
             .as_ref()
             .unwrap_or(&mime::APPLICATION_OCTET_STREAM);
+        let title = match self.file.file_name {
+            Some(ref it) => it.clone(),
+            None => "anonymous".to_string(),
+        };
         let bucket = s3.create_bucket(bucket, public, expiration_days).await?;
-        let (_, object, _, _) = s3.upload_object(&bucket, self.file.file.path()).await?;
+        let object = s3
+            .upload_object(&bucket, &title, self.file.file.path())
+            .await?;
         let it = db.transaction::<_, Error, _>(|db| {
             AttachmentDao::create(
                 db,
                 user.id,
                 &bucket,
                 &object,
-                (&self.json.name, content_type, size as i32),
+                (&title, content_type, size as i32),
             )?;
             let it = AttachmentDao::by_bucket_and_object(db, &bucket, &object)?;
             AttachmentDao::set_upload_at(db, it.id)?;

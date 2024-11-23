@@ -8,6 +8,39 @@ import {
 import { IAuthor, ICnIcp, ICnMps, ISiteInfo } from "../reducers/site";
 
 // ----------------------------------------------------------------------------
+const INDEX_ATTACHMENT = `
+query call($pager: Pager!){
+    indexAttachment(pager: $pager){
+      items{id, bucket, object, title, size, contentType, uploadedAt, updatedAt, deletedAt},
+      pagination{total}
+    }
+}
+`;
+export interface IAttachment {
+  id: number;
+  bucket: string;
+  object: number;
+  title: string;
+  size: number;
+  contentType: string;
+  uploadedAt: Date;
+  deletedAt: Date;
+  updatedAt: Date;
+}
+interface IIndexAttachmentResponse {
+  items: IAttachment[];
+  pagination: IPagination;
+}
+export const index_attachment = async (
+  pager: IPager
+): Promise<IIndexAttachmentResponse> => {
+  const res: { indexAttachment: IIndexAttachmentResponse } = await query(
+    INDEX_ATTACHMENT,
+    { pager }
+  );
+  return res.indexAttachment;
+};
+// ----------------------------------------------------------------------------
 const CREATE_CATEGORY = `
 mutation call($parent: Int!, $code: String!){
     createCategory(parent: $parent, code: $code){

@@ -3,6 +3,7 @@ import { Row, Col } from "antd";
 import Base from "./Base";
 import Keywords from "./Keywords";
 import Author from "./Author";
+import Favicon from "./Favicon";
 import { useAppSelector } from "../../../../hooks";
 import { siteInfo } from "../../../../reducers/site";
 import { DEFAULT_LANGUAGE } from "../../../../i18n";
@@ -19,6 +20,9 @@ const Widget = () => {
       </Col>
       <Col md={8}>
         <Keywords />
+      </Col>
+      <Col md={8}>
+        <Favicon />
       </Col>
     </Row>
   );

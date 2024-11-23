@@ -3,30 +3,29 @@ pub mod v1 {
 }
 
 use std::fmt;
-use std::fs;
-use std::os::unix::fs::MetadataExt;
 use std::path::Path;
 use std::str::FromStr;
 
 use askama::Template;
 use chrono::{Duration, Utc};
-use hyper::{Method, StatusCode};
-use mime::Mime;
-use minio::s3::args::GetPresignedObjectUrlArgs;
-use minio::s3::types::S3Api;
+use data_encoding::BASE32_NOPAD;
+use hyper::Method;
 use minio::s3::{
-    args::{BucketExistsArgs, MakeBucketArgs, SetBucketLifecycleArgs, SetBucketPolicyArgs},
+    args::{
+        BucketExistsArgs, GetPresignedObjectUrlArgs, MakeBucketArgs, SetBucketLifecycleArgs,
+        SetBucketPolicyArgs,
+    },
     builders::ObjectContent,
     creds::StaticProvider,
     http::BaseUrl,
-    types::{Filter, LifecycleConfig, LifecycleRule},
+    types::{Filter, LifecycleConfig, LifecycleRule, S3Api},
     Client as MinioClient, ClientBuilder,
 };
 use prost::Message;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-use super::{content_type as detect_content_type, Error, HttpError, Result};
+use super::{Error, Result};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
@@ -120,38 +119,25 @@ impl Client {
         let res = self.client.get_presigned_object_url(&args).await?;
         Ok(res.url)
     }
+
+    fn file_name<P: AsRef<Path>>(file: P) -> String {
+        let it = Uuid::new_v4().to_string();
+        let file = file.as_ref();
+        if let Some(ext) = file.extension() {
+            if let Some(ext) = ext.to_str() {
+                return format!("{it}.{ext}");
+            }
+        }
+        it
+    }
     pub async fn upload_object<P: AsRef<Path>>(
         &self,
         bucket: &str,
+        title: &str,
         file: P,
-    ) -> Result<(String, String, Mime, u64)> {
+    ) -> Result<String> {
         let file = file.as_ref();
-
-        let size = {
-            let mt = fs::metadata(file)?;
-            if !mt.is_file() {
-                return Err(Box::new(HttpError(
-                    StatusCode::BAD_REQUEST,
-                    Some(format!("{} isn't a regular file", file.display())),
-                )));
-            }
-            mt.size()
-        };
-        let title = file
-            .file_name()
-            .ok_or(Box::new(HttpError(StatusCode::BAD_REQUEST, None)))?
-            .to_str()
-            .ok_or(Box::new(HttpError(StatusCode::BAD_REQUEST, None)))?;
-        let ext = file
-            .extension()
-            .ok_or(Box::new(HttpError(StatusCode::BAD_REQUEST, None)))?
-            .to_str()
-            .ok_or(Box::new(HttpError(StatusCode::BAD_REQUEST, None)))?;
-        let object = {
-            let it = Uuid::new_v4().to_string();
-            format!("{it}.{ext}")
-        };
-        let content_type = detect_content_type(title);
+        let object = Self::file_name(title);
         {
             log::info!("upload {} to {}/{}", file.display(), bucket, object);
             let content = ObjectContent::from(file);
@@ -161,7 +147,7 @@ impl Client {
                 .await?;
         }
 
-        Ok((title.to_string(), object, content_type, size))
+        Ok(object)
     }
     pub async fn create_bucket(
         &self,
@@ -250,7 +236,8 @@ impl fmt::Display for v1::Bucket {
                 log::error!("{}", e);
                 fmt::Error
             })?;
-            bs58::encode(&buf).into_string()
+            // bs58::encode(&buf).into_string()
+            BASE32_NOPAD.encode(&buf).to_lowercase()
         };
         write!(f, "{}", s)
     }
@@ -260,7 +247,11 @@ impl FromStr for v1::Bucket {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self> {
-        let buf = bs58::decode(s).into_vec()?;
+        // let buf = bs58::decode(s).into_vec()?;
+        let buf = {
+            let it = s.to_uppercase();
+            BASE32_NOPAD.decode(it.as_bytes())?
+        };
         let it = Self::decode(&buf[..])?;
         Ok(it)
     }

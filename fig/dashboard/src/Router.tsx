@@ -20,6 +20,8 @@ const UsersConfirmByToken = lazy(
 );
 const Personal = lazy(() => import("./pages/personal"));
 const NewLeaveWords = lazy(() => import("./pages/leave-words/new"));
+const Attachments = lazy(() => import("./pages/attachments"));
+
 const AdminUsers = lazy(() => import("./pages/admin/users"));
 const AdminLeaveWords = lazy(() => import("./pages/admin/leave-words"));
 const AdminPolicies = lazy(() => import("./pages/admin/policies"));
@@ -40,6 +42,10 @@ const router = createBrowserRouter(
         {
           path: "personal",
           element: <Personal />,
+        },
+        {
+          path: "attachments",
+          element: <Attachments />,
         },
         {
           path: "admin",

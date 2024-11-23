@@ -1,7 +1,8 @@
 use chrono::{NaiveDateTime, Utc};
 use juniper::{GraphQLInputObject, GraphQLObject};
+use serde::{Deserialize, Serialize};
 
-#[derive(GraphQLObject)]
+#[derive(GraphQLObject, Debug, Serialize, Deserialize)]
 pub struct Succeed {
     pub created_at: NaiveDateTime,
 }
@@ -13,7 +14,7 @@ impl Default for Succeed {
     }
 }
 
-#[derive(GraphQLObject)]
+#[derive(GraphQLObject, Debug, Serialize, Deserialize)]
 pub struct Pagination {
     pub page: i32,
     pub total: i32,
@@ -37,7 +38,7 @@ impl Pagination {
     }
 }
 
-#[derive(GraphQLInputObject)]
+#[derive(GraphQLInputObject, Debug, Serialize, Deserialize)]
 pub struct Pager {
     pub page: i32,
     pub size: i32,
@@ -75,7 +76,7 @@ impl Pager {
     const MIN_SIZE: i64 = 1 << 2;
 }
 
-#[derive(GraphQLObject)]
+#[derive(GraphQLObject, Debug, Serialize, Deserialize)]
 pub struct Resource {
     pub r#type: String,
     pub id: Option<i32>,

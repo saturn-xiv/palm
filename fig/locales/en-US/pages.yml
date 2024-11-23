@@ -60,6 +60,11 @@ personal:
 attachments:
   index:
     title: "Attachments"
+  upload:
+    help: "Click or drag file to this area to upload"
+    hint: "Support for a single or bulk upload. Strictly prohibited from uploading company data or other banned files."
+    done: "File { name } uploaded successfully."
+    failed: "File { name } upload failed."
 admin:
   index:
     title: "Settings"

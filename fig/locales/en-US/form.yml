@@ -89,3 +89,7 @@ fields:
     label: "Left of"
   right-of:
     label: "Right of"
+  content-type:
+    label: "Content type"
+  size:
+    label: "Size"
