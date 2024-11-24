@@ -21,8 +21,9 @@ use petunia::{
     rbac::v1::{
         policy_roles_response::Item as PolicyRole, policy_users_response::Item as PolicyUser,
     },
+    s3::Client as S3,
     session::Session,
-    themes::{Author, Layout},
+    themes::{Author, CnIcp, CnMps, Layout},
     Error, HttpError, Result,
 };
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
@@ -32,10 +33,11 @@ use validator::Validate;
 
 use super::super::{
     models::{
+        attachment::Dao as AttachmentDao,
         currency::Dao as CurrencyDao,
         locale::{Dao as LocaleDao, I18n},
         log::{Dao as LogDao, Level as LogLevel},
-        setting::Setting,
+        setting::{FlatBuffer, Setting},
         user::{
             email::{Dao as EmailDao, Item as EmailUser},
             Dao as UserDao,
@@ -58,6 +60,7 @@ impl Refresh {
         ss: &Session,
         db: &DbPool,
         jwt: &Jwt,
+        s3: &S3,
         secrets: Key,
         enforcer: &Mutex<Enforcer>,
     ) -> Result<Self> {
@@ -65,7 +68,9 @@ impl Refresh {
         let db = db.deref_mut();
 
         Ok(Self {
-            site_info: Self::_site_info(ss, db, secrets).unwrap_or_default(),
+            site_info: Self::_site_info(ss, db, s3, secrets)
+                .await
+                .unwrap_or_default(),
             current_user: Self::_current_user(ss, db, jwt, enforcer).await.ok(),
             // current_user: Some(Self::_current_user(ss, db, jwt, enforcer).await?),
         })
@@ -84,15 +89,19 @@ impl Refresh {
         )
         .await
     }
-    fn _site_info(ss: &Session, db: &mut Db, secrets: Key) -> Result<Layout> {
+    async fn _favicon(db: &mut Db, s3: &S3) -> Result<String> {
+        for it in AttachmentDao::by_resource_(db, Layout::FAVICON, None)?.iter() {
+            if it.deleted_at.is_none() && it.is_image() {
+                return it.url(s3, None).await;
+            }
+        }
+
+        Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)))
+    }
+    async fn _site_info(ss: &Session, db: &mut Db, s3: &S3, secrets: Key) -> Result<Layout> {
         let cipher = Result::<Vec<u8>>::from(secrets)?;
-        let (favicon, author, keywords) = {
+        let (author, keywords, cn_icp, cn_mps) = {
             let mut st = Setting::new(&cipher, db);
-            let lg = if let Ok(ref buf) = st.get(&Layout::FAVICON.to_string(), None) {
-                flexbuffers::from_slice(buf)?
-            } else {
-                "/my/logo.svg".to_string()
-            };
             let ah = if let Ok(ref buf) = st.get(&type_name::<Author>().to_string(), None) {
                 flexbuffers::from_slice(buf)?
             } else {
@@ -104,8 +113,15 @@ impl Refresh {
             } else {
                 Vec::new()
             };
-            (lg, ah, ks)
+
+            let icp: Option<CnIcp> = FlatBuffer::get(&mut st, None).ok();
+            let mps: Option<CnMps> = FlatBuffer::get(&mut st, None).ok();
+
+            (ah, ks, icp, mps)
         };
+        let favicon = Self::_favicon(db, s3)
+            .await
+            .unwrap_or_else(|_| "/my/favicon.svg".to_string());
 
         let it = Layout {
             title: I18n::t(db, &ss.lang, Layout::TITLE, None::<String>),
@@ -115,12 +131,10 @@ impl Refresh {
             favicon,
             author,
             keywords,
+            cn_mps,
+            cn_icp,
             locale: ss.lang.clone(),
             languages: LocaleDao::languages(db)?,
-
-            // TODO
-            cn_mps: None,
-            cn_icp: None,
         };
         Ok(it)
     }

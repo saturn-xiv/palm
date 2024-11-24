@@ -7,7 +7,7 @@ use std::path::Path;
 use std::str::FromStr;
 
 use askama::Template;
-use chrono::{Duration, Utc};
+use chrono::Duration;
 use data_encoding::BASE32_NOPAD;
 use hyper::Method;
 use minio::s3::{
@@ -153,13 +153,13 @@ impl Client {
         &self,
         name: &str,
         public: bool,
-        expiration_days: i32,
+        expiration_days: Option<usize>,
     ) -> Result<String> {
         let name = {
             let it = v1::Bucket {
                 name: name.to_string(),
                 public,
-                expiration_days: expiration_days as u32,
+                expiration_days: expiration_days.map(|x| x as u32),
             };
             it.to_string()
         };
@@ -175,7 +175,8 @@ impl Client {
             if public {
                 let policy = {
                     let it = BucketPolicy {
-                        version: &Utc::now().format("%Y-%m-%d").to_string(),
+                        // https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_version.html
+                        version: "2012-10-17",
                         name: &name,
                     };
                     it.render()?
@@ -185,8 +186,12 @@ impl Client {
                     .set_bucket_policy(&SetBucketPolicyArgs::new(&name, &policy)?)
                     .await?;
             }
-            if expiration_days > 0 {
-                log::info!("set bucket({name}) expiration days({expiration_days})");
+            if expiration_days.is_some() {
+                log::info!(
+                    "set bucket({}) expiration days({:?})",
+                    name,
+                    expiration_days
+                );
 
                 self.client
                     .set_bucket_lifecycle(&SetBucketLifecycleArgs::new(
@@ -195,7 +200,7 @@ impl Client {
                             rules: vec![LifecycleRule {
                                 abort_incomplete_multipart_upload_days_after_initiation: None,
                                 expiration_date: None,
-                                expiration_days: Some(expiration_days as usize),
+                                expiration_days,
                                 expiration_expired_object_delete_marker: None,
                                 filter: Filter {
                                     and_operator: None,

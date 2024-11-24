@@ -9,9 +9,33 @@ const { Dragger } = Upload;
 
 interface IProps {
   resource: IResource;
+  public: boolean;
+  expirationDays?: number;
 }
 
-const Widget = ({ resource }: IProps) => {
+const upload = async (
+  action: string,
+  data: FormData,
+  props: IProps
+): Promise<IAttachment> => {
+  data.append(
+    "json",
+    new Blob([JSON.stringify(props)], {
+      type: "application/json",
+    })
+  );
+  const response = await fetch(action, {
+    method: "POST",
+    body: data,
+    headers: {
+      Authorization: `Bearer ${get_token()}`,
+    },
+  });
+  const item = await response.json();
+  return item;
+};
+
+const Widget = (props: IProps) => {
   const [messageApi, contextHolder] = message.useMessage();
   const intl = useIntl();
   return (
@@ -25,32 +49,19 @@ const Widget = ({ resource }: IProps) => {
         customRequest={(options) => {
           const data = new FormData();
           data.append("file", options.file);
-          data.append(
-            "json",
-            new Blob(
-              [
-                JSON.stringify({
-                  resource,
-                }),
-              ],
-              {
-                type: "application/json",
-              }
-            )
-          );
-          fetch(options.action, {
-            method: "POST",
-            body: data,
-            headers: {
-              Authorization: `Bearer ${get_token()}`,
-            },
-          })
+
+          upload(options.action, data, props)
             .then((res: IAttachment) => {
               console.log(res);
-              options.onSuccess(res.object, options.file);
+              if (options.onSuccess) {
+                options.onSuccess(res.object, options.file);
+              }
             })
-            .catch((e) => {
-              messageApi.error(e);
+            .catch((e: Error) => {
+              messageApi.error(e.message);
+              if (options.onError) {
+                options.onError(e, options.file);
+              }
             });
         }}
         onChange={(info) => {

@@ -22,9 +22,13 @@ const Widget = () => {
         user_sign_out()
           .then(() => {
             messageApi
-              .success(
-                intl.formatMessage({ id: "pages.users.sign-out.succeed" })
-              )
+              .open({
+                type: "success",
+                content: intl.formatMessage({
+                  id: "pages.users.sign-out.succeed",
+                }),
+                duration: 1,
+              })
               .then(() => {
                 dispatch(signOut());
                 navigate(SIGN_IN_PATH);

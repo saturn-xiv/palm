@@ -43,9 +43,13 @@ const Widget = () => {
           user_sign_in_by_email(values.user, values.password)
             .then((res) => {
               messageApi
-                .success(
-                  intl.formatMessage({ id: "pages.users.sign-in.succeed" })
-                )
+                .open({
+                  type: "success",
+                  content: intl.formatMessage({
+                    id: "pages.users.sign-in.succeed",
+                  }),
+                  duration: 1,
+                })
                 .then(() => {
                   dispatch(signIn(res));
                   navigate(PERSONAL_PATH);

@@ -20,6 +20,8 @@ use super::super::{
 #[derive(Debug, Deserialize)]
 pub struct Metadata {
     pub resource: Resource,
+    pub public: bool,
+    pub expiration_days: Option<usize>,
 }
 
 #[derive(Debug, MultipartForm)]
@@ -43,7 +45,7 @@ pub async fn upload(
     let s3 = s3.deref();
     log::debug!("{:?}", form);
     let it = form
-        .execute(&ss, db, jwt, s3, (NAME, false, -1))
+        .execute(&ss, db, jwt, s3, NAME)
         .await
         .map_err(|e| -> WebError { ErrorInternalServerError(e) })?;
     Ok(web::Json(it))
@@ -56,7 +58,7 @@ impl UploadForm {
         db: &DbPool,
         jwt: &Jwt,
         s3: &S3,
-        (bucket, public, expiration_days): (&str, bool, i32),
+        bucket: &str,
     ) -> Result<Attachment> {
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -71,7 +73,9 @@ impl UploadForm {
             Some(ref it) => it.clone(),
             None => "anonymous".to_string(),
         };
-        let bucket = s3.create_bucket(bucket, public, expiration_days).await?;
+        let bucket = s3
+            .create_bucket(bucket, self.json.public, self.json.expiration_days)
+            .await?;
         let object = s3
             .upload_object(&bucket, &title, self.file.file.path())
             .await?;
@@ -85,6 +89,12 @@ impl UploadForm {
             )?;
             let it = AttachmentDao::by_bucket_and_object(db, &bucket, &object)?;
             AttachmentDao::set_upload_at(db, it.id)?;
+            AttachmentDao::associate_(
+                db,
+                it.id,
+                &self.json.resource.r#type,
+                self.json.resource.id,
+            )?;
             Ok(it)
         })?;
         Ok(it)

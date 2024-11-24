@@ -126,6 +126,8 @@ admin:
       title: "Keywords"
     author:
       title: "Author"
+    favicon:
+      title: "Favicon"
     cn-icp:
       title: "ICP license"
       homage:

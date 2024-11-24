@@ -2,10 +2,10 @@ use std::any::type_name;
 use std::path::Path;
 use std::string::ToString;
 
-use chrono::{Datelike, NaiveDateTime, Utc};
+use chrono::{Datelike, Duration, NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use mime::Mime;
-use petunia::{orm::postgresql::Connection, Result};
+use petunia::{orm::postgresql::Connection, s3::Client as S3, Result};
 use serde::Serialize;
 use uuid::Uuid;
 
@@ -42,6 +42,12 @@ impl Item {
         }
         id.to_string()
     }
+    pub fn is_image(&self) -> bool {
+        self.content_type.starts_with("image/")
+    }
+    pub async fn url(&self, s3: &S3, ttl: Option<Duration>) -> Result<String> {
+        s3.get_object_url(&self.bucket, &self.object, ttl).await
+    }
 }
 
 pub trait Dao {
@@ -59,19 +65,20 @@ pub trait Dao {
     fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn count(&mut self) -> Result<i64>;
     fn by_user(&mut self, user: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
-    fn by_resource<T>(&mut self, resource_id: i32) -> Result<Vec<Item>>;
+    fn by_resource<T>(&mut self, resource_id: Option<i32>) -> Result<Vec<Item>>;
     fn by_resource_type<T>(&mut self) -> Result<Vec<Item>>;
-    fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>>;
+    fn by_resource_(&mut self, resource_type: &str, resource_id: Option<i32>) -> Result<Vec<Item>>;
     fn by_resource_type_(&mut self, resource_type: &str) -> Result<Vec<Item>>;
 
     fn count_by_user(&mut self, user: i32) -> Result<i64>;
     fn disable(&mut self, id: i32) -> Result<()>;
     fn enable(&mut self, id: i32) -> Result<()>;
 
-    fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
-    fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()>;
-    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
-    fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()>;
+    fn associate<T>(&mut self, id: i32, resource_id: Option<i32>) -> Result<()>;
+    fn dissociate<T>(&mut self, id: i32, resource_id: Option<i32>) -> Result<()>;
+    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: Option<i32>) -> Result<()>;
+    fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: Option<i32>)
+        -> Result<()>;
     fn resources(&mut self, id: i32) -> Result<Vec<(String, Option<i32>)>>;
 }
 
@@ -154,13 +161,13 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn by_resource<T>(&mut self, resource_id: i32) -> Result<Vec<Item>> {
+    fn by_resource<T>(&mut self, resource_id: Option<i32>) -> Result<Vec<Item>> {
         self.by_resource_(type_name::<T>(), resource_id)
     }
     fn by_resource_type<T>(&mut self) -> Result<Vec<Item>> {
         self.by_resource_type_(type_name::<T>())
     }
-    fn by_resource_(&mut self, resource_type: &str, resource_id: i32) -> Result<Vec<Item>> {
+    fn by_resource_(&mut self, resource_type: &str, resource_id: Option<i32>) -> Result<Vec<Item>> {
         let ids: Vec<i32> = attachment_resources::dsl::attachment_resources
             .select(attachment_resources::dsl::attachment_id)
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
@@ -214,13 +221,13 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn associate<T>(&mut self, id: i32, resource_id: i32) -> Result<()> {
+    fn associate<T>(&mut self, id: i32, resource_id: Option<i32>) -> Result<()> {
         self.associate_(id, type_name::<T>(), resource_id)
     }
-    fn dissociate<T>(&mut self, id: i32, resource_id: i32) -> Result<()> {
+    fn dissociate<T>(&mut self, id: i32, resource_id: Option<i32>) -> Result<()> {
         self.dissociate_(id, type_name::<T>(), resource_id)
     }
-    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn associate_(&mut self, id: i32, resource_type: &str, resource_id: Option<i32>) -> Result<()> {
         let cnt: i64 = attachment_resources::dsl::attachment_resources
             .filter(attachment_resources::dsl::attachment_id.eq(id))
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
@@ -238,7 +245,12 @@ impl Dao for Connection {
         }
         Ok(())
     }
-    fn dissociate_(&mut self, id: i32, resource_type: &str, resource_id: i32) -> Result<()> {
+    fn dissociate_(
+        &mut self,
+        id: i32,
+        resource_type: &str,
+        resource_id: Option<i32>,
+    ) -> Result<()> {
         delete(
             attachment_resources::dsl::attachment_resources
                 .filter(attachment_resources::dsl::attachment_id.eq(id))

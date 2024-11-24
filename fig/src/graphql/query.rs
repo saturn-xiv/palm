@@ -44,8 +44,9 @@ impl Query {
         let secrets = context.secrets.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        let it =
-            daffodil_site::Refresh::new(&context.session, db, jwt, secrets.clone(), enf).await?;
+        let s3 = context.minio.deref();
+        let it = daffodil_site::Refresh::new(&context.session, db, jwt, s3, secrets.clone(), enf)
+            .await?;
         Ok(it)
     }
     // ------------------------------------------------------------------------

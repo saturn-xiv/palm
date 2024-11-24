@@ -21,13 +21,13 @@ service S3 {
 message Bucket {
   string name = 1;
   bool public = 2;
-  uint32 expiration_days = 3;
+  optional uint32 expiration_days = 3;
 }
 
 message CreateBucketRequest {
   string name = 1;
   bool public = 2;
-  uint32 expiration_days = 9;
+  optional uint32 expiration_days = 9;
 }
 
 message CreateBucketResponse {
