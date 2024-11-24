@@ -10,6 +10,7 @@ use daffodil::graphql::{
     session as daffodil_session, site as daffodil_site, tag as daffodil_tag,
     user::email as daffodil_user_by_email,
 };
+use hibiscus::graphql as hibiscus_graphql;
 use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
 use petunia::{
@@ -355,6 +356,41 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
+    fn index_bbs_forums_by_lang(
+        context: &Context,
+        lang: String,
+    ) -> FieldResult<Vec<hibiscus_graphql::forum::Item>> {
+        let db = context.postgresql.deref();
+        let res = hibiscus_graphql::forum::Item::by_lang(db, &lang)?;
+        Ok(res)
+    }
+    fn index_bbs_topics_by_forum(
+        context: &Context,
+        forum: i32,
+    ) -> FieldResult<Vec<hibiscus_graphql::topic::Item>> {
+        let db = context.postgresql.deref();
+        let res = hibiscus_graphql::topic::Item::by_forum(db, forum)?;
+        Ok(res)
+    }
+    fn index_bbs_posts_by_topic(
+        context: &Context,
+        topic: i32,
+        pager: Pager,
+    ) -> FieldResult<hibiscus_graphql::post::List> {
+        let db = context.postgresql.deref();
+        let res = hibiscus_graphql::post::List::by_topic(db, topic, pager)?;
+        Ok(res)
+    }
+    fn index_bbs_posts_by_forum(
+        context: &Context,
+        forum: i32,
+        pager: Pager,
+    ) -> FieldResult<hibiscus_graphql::post::List> {
+        let db = context.postgresql.deref();
+        let res = hibiscus_graphql::post::List::by_forum(db, forum, pager)?;
+        Ok(res)
+    }
+    // ------------------------------------------------------------------------
     fn index_questionnaire_form(
         context: &Context,
     ) -> FieldResult<Vec<wisteria_graphql::form::Item>> {
@@ -363,6 +399,7 @@ impl Query {
         let res = wisteria_graphql::form::Item::all(&context.session, db, jwt)?;
         Ok(res)
     }
+
     // ------------------------------------------------------------------------
     fn index_questionnaire_field(
         context: &Context,

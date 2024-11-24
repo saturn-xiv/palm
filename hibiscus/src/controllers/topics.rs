@@ -22,6 +22,20 @@ pub async fn latest(db: web::Data<DbPool>) -> WebResult<impl Responder> {
     Ok(web::Html::new(body))
 }
 
+#[get("/{code}")]
+pub async fn by_code(
+    db: web::Data<DbPool>,
+    params: web::Path<(String,)>,
+) -> WebResult<impl Responder> {
+    let (_code,) = params.into_inner();
+    let db = db.into_inner();
+    let mut _db = db
+        .get()
+        .map_err(|e| ErrorInternalServerError(e.to_string()))?;
+
+    Ok(web::Html::new("show topics by code"))
+}
+
 #[get("/{year}-{month}-{day}")]
 pub async fn by_day(
     db: web::Data<DbPool>,

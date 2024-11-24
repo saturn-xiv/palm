@@ -1,7 +1,8 @@
 -- migrate:up
-CREATE TABLE forum(
+CREATE TABLE bbs_forums(
     id SERIAL PRIMARY KEY,
     lang VARCHAR(15) NOT NULL,
+    slug VARCHAR(31) NOT NULL,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(511) NOT NULL,    
     status VARCHAR(15) NOT NULL,
@@ -12,15 +13,17 @@ CREATE TABLE forum(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE INDEX idx_forum_lang ON forum(lang);
-CREATE INDEX idx_forum_title ON forum(title);
-CREATE INDEX idx_forum_status ON forum(status);
+CREATE UNIQUE INDEX idx_bbs_forums_slug ON bbs_forums(slug);
+CREATE INDEX idx_bbs_forums_lang ON bbs_forums(lang);
+CREATE INDEX idx_bbs_forums_title ON bbs_forums(title);
+CREATE INDEX idx_bbs_forums_status ON bbs_forums(status);
 
-CREATE TABLE forum_topics(
+CREATE TABLE bbs_topics(
     id SERIAL PRIMARY KEY,
     forum_id INT NOT NULL,
+    slug VARCHAR(127) NOT NULL,
     subject VARCHAR(255) NOT NULL,
-    body TEXT NOT NULL,
+    "body" TEXT NOT NULL,
     body_editor VARCHAR(15) NOT NULL, 
     author_id INT NOT NULL,  
     status VARCHAR(15) NOT NULL,
@@ -30,16 +33,17 @@ CREATE TABLE forum_topics(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE INDEX idx_forum_topics_subject ON forum_topics(subject);
-CREATE INDEX idx_forum_topics_status ON forum_topics(status);
+CREATE UNIQUE INDEX idx_bbs_topics_slug ON bbs_topics(slug);
+CREATE INDEX idx_bbs_topics_subject ON bbs_topics(subject);
+CREATE INDEX idx_bbs_topics_status ON bbs_topics(status);
 
 
-CREATE TABLE forum_posts(
+CREATE TABLE bbs_posts(
     id SERIAL PRIMARY KEY,
     forum_id INT NOT NULL,
     topic_id INT NOT NULL,
-    post_id INT,    
-    body TEXT NOT NULL,
+    parent_id INT,    
+    "body" TEXT NOT NULL,
     body_editor VARCHAR(15) NOT NULL,
     author_id INT NOT NULL,  
     status VARCHAR(15) NOT NULL,
@@ -49,9 +53,9 @@ CREATE TABLE forum_posts(
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE INDEX idx_forum_posts_status ON forum_posts(status);
+CREATE INDEX idx_bbs_posts_status ON bbs_posts(status);
 
 -- migrate:down
-DROP TABLE forum_posts;
-DROP TABLE forum_topics;
-DROP TABLE forum;
+DROP TABLE bbs_posts;
+DROP TABLE bbs_topics;
+DROP TABLE bbs;

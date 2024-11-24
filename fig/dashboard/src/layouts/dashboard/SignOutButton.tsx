@@ -35,7 +35,11 @@ const Widget = () => {
               });
           })
           .catch((reason: IError[]) => {
-            messageApi.error(reason.map((x) => x.message).join("\n"));
+            messageApi
+              .error(reason.map((x) => x.message).join("\n"))
+              .then(() => {
+                navigate(SIGN_IN_PATH);
+              });
           });
       }}
       okText={<FormattedMessage id="buttons.yes" />}

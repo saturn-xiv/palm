@@ -11,6 +11,7 @@ use daffodil::graphql::{
         SignInResponse as UserSignInResponse,
     },
 };
+use hibiscus::graphql as hibiscus_graphql;
 use hyacinth::graphql as hyacinth_graphql;
 use juniper::{graphql_object, FieldResult};
 use petunia::{graphql::Succeed, themes::Layout, Editor};
@@ -699,7 +700,103 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
-    fn create_cms_page(context: &Context, form: cms_page::Create) -> FieldResult<Succeed> {
+    async fn create_bbc_forum(
+        context: &Context,
+        lang: String,
+        form: hibiscus_graphql::forum::Create,
+    ) -> FieldResult<Succeed> {
+        let form = {
+            let mut it = form.clone();
+            it.slug = form.slug.trim().to_lowercase();
+            it
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf, &lang).await?;
+        Ok(Succeed::default())
+    }
+    async fn update_bbc_forum(
+        context: &Context,
+        id: i32,
+        slug: String,
+        title: String,
+        description: String,
+    ) -> FieldResult<Succeed> {
+        let form = hibiscus_graphql::forum::Update {
+            slug: slug.trim().to_lowercase(),
+            title,
+            description,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    fn create_bbc_topic(
+        context: &Context,
+        forum: i32,
+        form: hibiscus_graphql::topic::Create,
+    ) -> FieldResult<Succeed> {
+        let form = {
+            let mut it = form.clone();
+            it.slug = form.slug.trim().to_lowercase();
+            it
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, forum)?;
+        Ok(Succeed::default())
+    }
+    async fn update_bbc_topic(
+        context: &Context,
+        id: i32,
+        slug: String,
+        subject: String,
+        body: String,
+    ) -> FieldResult<Succeed> {
+        let form = hibiscus_graphql::topic::Update {
+            slug: slug.trim().to_lowercase(),
+            subject,
+            body,
+        };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    fn create_bbc_post(
+        context: &Context,
+        topic: i32,
+        form: hibiscus_graphql::post::Create,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.execute(&context.session, db, jwt, topic)?;
+        Ok(Succeed::default())
+    }
+    fn reply_bbc_post(
+        context: &Context,
+        parent: i32,
+        form: hibiscus_graphql::post::Create,
+    ) -> FieldResult<Succeed> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        form.reply(&context.session, db, jwt, parent)?;
+        Ok(Succeed::default())
+    }
+    async fn update_bbc_post(context: &Context, id: i32, body: String) -> FieldResult<Succeed> {
+        let form = hibiscus_graphql::post::Update { body };
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf, id).await?;
+        Ok(Succeed::default())
+    }
+    // ------------------------------------------------------------------------
+    async fn create_cms_page(context: &Context, form: cms_page::Create) -> FieldResult<Succeed> {
         let form = {
             let mut it = form.clone();
             it.template = form.template.trim().to_lowercase();
@@ -708,10 +805,11 @@ impl Mutation {
         };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
-        form.execute(&context.session, db, jwt)?;
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf).await?;
         Ok(Succeed::default())
     }
-    fn update_cms_page(
+    async fn update_cms_page(
         context: &Context,
         id: i32,
         slug: String,
@@ -723,16 +821,22 @@ impl Mutation {
         };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
-        form.execute(&context.session, db, jwt, id)?;
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
-    fn set_cms_page_template(context: &Context, id: i32, template: String) -> FieldResult<Succeed> {
+    async fn set_cms_page_template(
+        context: &Context,
+        id: i32,
+        template: String,
+    ) -> FieldResult<Succeed> {
         let form = cms_page::SetTemplate {
             template: template.trim().to_lowercase(),
         };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
-        form.execute(&context.session, db, jwt, id)?;
+        let enf = context.enforcer.deref();
+        form.execute(&context.session, db, jwt, enf, id).await?;
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------

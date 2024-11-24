@@ -143,8 +143,8 @@ pub async fn by_year_month(
         .ok_or(ErrorBadRequest("bad year month day"))?
         .and_time(NaiveTime::MIN);
     let end = begin
-        .with_year(year + 1)
-        .ok_or(ErrorBadRequest("bad next year"))?;
+        .checked_add_months(Months::new(1))
+        .ok_or(ErrorBadRequest("bad year month day"))?;
 
     let db = db.into_inner();
     let mut db = db

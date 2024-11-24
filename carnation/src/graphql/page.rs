@@ -1,9 +1,10 @@
-use std::{ops::DerefMut, str::FromStr};
+use std::ops::DerefMut;
+use std::str::FromStr;
 
+use casbin::Enforcer;
 use chrono::NaiveDateTime;
-use daffodil::session::current_user;
+use daffodil::{models::user::Item as User, session::current_user};
 use diesel::Connection as DieselConnection;
-use hyper::StatusCode;
 use juniper::{GraphQLInputObject, GraphQLObject};
 use language_tags::LanguageTag;
 use petunia::{
@@ -11,11 +12,13 @@ use petunia::{
     jwt::openssl::OpenSsl as Jwt,
     orm::postgresql::Pool as DbPool,
     session::Session,
-    Editor, Error, HttpError, Result,
+    Editor, Error, Result,
 };
+use tokio::sync::Mutex;
 use validator::Validate;
 
 use super::super::models::page::{Dao as PageDao, Item as Page};
+use super::ROLE_MANAGER;
 
 #[derive(GraphQLObject)]
 #[graphql(name = "CmsPage")]
@@ -92,7 +95,13 @@ pub struct Create {
 }
 
 impl Create {
-    pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt) -> Result<()> {
+    pub async fn execute(
+        &self,
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enf: &Mutex<Enforcer>,
+    ) -> Result<()> {
         let lang = {
             let it = LanguageTag::from_str(&self.lang)?;
             it.to_string()
@@ -102,6 +111,11 @@ impl Create {
         let mut db = db.get()?;
         let db = db.deref_mut();
         let (_, user) = current_user(ss, db, jwt)?;
+        {
+            let mut enf = enf.lock().await;
+            let enf = enf.deref_mut();
+            user.has(enf, ROLE_MANAGER)?;
+        }
 
         db.transaction::<_, Error, _>(|db| {
             PageDao::create(
@@ -129,15 +143,20 @@ pub struct Update {
 }
 
 impl Update {
-    pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
+    pub async fn execute(
+        &self,
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enf: &Mutex<Enforcer>,
+        id: i32,
+    ) -> Result<()> {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
         let (_, user) = current_user(ss, db, jwt)?;
         let it = PageDao::by_id(db, id)?;
-        if it.user_id != user.id {
-            return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
-        }
+        it.can_edit(&user, enf).await?;
 
         db.transaction::<_, Error, _>(|db| {
             PageDao::update(db, it.id, &self.slug, &self.body)?;
@@ -155,21 +174,38 @@ pub struct SetTemplate {
 }
 
 impl SetTemplate {
-    pub fn execute(&self, ss: &Session, db: &DbPool, jwt: &Jwt, id: i32) -> Result<()> {
+    pub async fn execute(
+        &self,
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enf: &Mutex<Enforcer>,
+        id: i32,
+    ) -> Result<()> {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
         let (_, user) = current_user(ss, db, jwt)?;
         let it = PageDao::by_id(db, id)?;
-        if it.user_id != user.id {
-            return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
-        }
+        it.can_edit(&user, enf).await?;
 
         db.transaction::<_, Error, _>(|db| {
             PageDao::set_template(db, it.id, &self.template)?;
             Ok(())
         })?;
 
+        Ok(())
+    }
+}
+
+impl Page {
+    pub async fn can_edit(&self, user: &User, enf: &Mutex<Enforcer>) -> Result<()> {
+        if self.user_id == user.id {
+            return Ok(());
+        }
+        let mut enf = enf.lock().await;
+        let enf = enf.deref_mut();
+        user.has(enf, ROLE_MANAGER)?;
         Ok(())
     }
 }

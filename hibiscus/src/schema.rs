@@ -1,10 +1,12 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    forum (id) {
+    bbs_forums (id) {
         id -> Int4,
         #[max_length = 15]
         lang -> Varchar,
+        #[max_length = 31]
+        slug -> Varchar,
         #[max_length = 255]
         title -> Varchar,
         #[max_length = 511]
@@ -21,11 +23,11 @@ diesel::table! {
 }
 
 diesel::table! {
-    forum_posts (id) {
+    bbs_posts (id) {
         id -> Int4,
         forum_id -> Int4,
         topic_id -> Int4,
-        post_id -> Nullable<Int4>,
+        parent_id -> Nullable<Int4>,
         body -> Text,
         #[max_length = 15]
         body_editor -> Varchar,
@@ -41,9 +43,11 @@ diesel::table! {
 }
 
 diesel::table! {
-    forum_topics (id) {
+    bbs_topics (id) {
         id -> Int4,
         forum_id -> Int4,
+        #[max_length = 127]
+        slug -> Varchar,
         #[max_length = 255]
         subject -> Varchar,
         body -> Text,
@@ -60,4 +64,4 @@ diesel::table! {
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(forum, forum_posts, forum_topics,);
+diesel::allow_tables_to_appear_in_same_query!(bbs_forums, bbs_posts, bbs_topics,);

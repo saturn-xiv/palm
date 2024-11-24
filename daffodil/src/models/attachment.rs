@@ -168,13 +168,20 @@ impl Dao for Connection {
         self.by_resource_type_(type_name::<T>())
     }
     fn by_resource_(&mut self, resource_type: &str, resource_id: Option<i32>) -> Result<Vec<Item>> {
-        let ids: Vec<i32> = attachment_resources::dsl::attachment_resources
-            .select(attachment_resources::dsl::attachment_id)
-            .filter(attachment_resources::dsl::resource_type.eq(resource_type))
-            .filter(attachment_resources::dsl::resource_id.eq(resource_id))
-            .distinct()
-            .order(attachment_resources::dsl::created_at.desc())
-            .load(self)?;
+        let ids: Vec<i32> = match resource_id {
+            Some(resource_id) => attachment_resources::dsl::attachment_resources
+                .select(attachment_resources::dsl::attachment_id)
+                .filter(attachment_resources::dsl::resource_type.eq(resource_type))
+                .filter(attachment_resources::dsl::resource_id.eq(resource_id))
+                .order(attachment_resources::dsl::created_at.desc())
+                .load(self)?,
+            None => attachment_resources::dsl::attachment_resources
+                .select(attachment_resources::dsl::attachment_id)
+                .filter(attachment_resources::dsl::resource_type.eq(resource_type))
+                .filter(attachment_resources::dsl::resource_id.is_null())
+                .order(attachment_resources::dsl::created_at.desc())
+                .load(self)?,
+        };
         let items = attachments::dsl::attachments
             .filter(attachments::dsl::id.eq_any(ids))
             .load::<Item>(self)?;
@@ -184,7 +191,6 @@ impl Dao for Connection {
         let ids: Vec<i32> = attachment_resources::dsl::attachment_resources
             .select(attachment_resources::dsl::attachment_id)
             .filter(attachment_resources::dsl::resource_type.eq(resource_type))
-            .distinct()
             .order(attachment_resources::dsl::created_at.desc())
             .load(self)?;
         let items = attachments::dsl::attachments
@@ -251,13 +257,23 @@ impl Dao for Connection {
         resource_type: &str,
         resource_id: Option<i32>,
     ) -> Result<()> {
-        delete(
-            attachment_resources::dsl::attachment_resources
-                .filter(attachment_resources::dsl::attachment_id.eq(id))
-                .filter(attachment_resources::dsl::resource_type.eq(resource_type))
-                .filter(attachment_resources::dsl::resource_id.eq(resource_id)),
-        )
-        .execute(self)?;
+        match resource_id {
+            Some(resource_id) => delete(
+                attachment_resources::dsl::attachment_resources
+                    .filter(attachment_resources::dsl::attachment_id.eq(id))
+                    .filter(attachment_resources::dsl::resource_type.eq(resource_type))
+                    .filter(attachment_resources::dsl::resource_id.eq(resource_id)),
+            )
+            .execute(self)?,
+            None => delete(
+                attachment_resources::dsl::attachment_resources
+                    .filter(attachment_resources::dsl::attachment_id.eq(id))
+                    .filter(attachment_resources::dsl::resource_type.eq(resource_type))
+                    .filter(attachment_resources::dsl::resource_id.is_null()),
+            )
+            .execute(self)?,
+        };
+
         Ok(())
     }
     fn resources(&mut self, id: i32) -> Result<Vec<(String, Option<i32>)>> {
@@ -267,7 +283,6 @@ impl Dao for Connection {
                 attachment_resources::dsl::resource_id,
             ))
             .filter(attachment_resources::dsl::attachment_id.eq(id))
-            .distinct()
             .order(attachment_resources::dsl::created_at.desc())
             .load(self)?;
         Ok(items)

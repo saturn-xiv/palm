@@ -92,7 +92,7 @@ function generate_diesel_schema() {
     echo "generate database schema for carnation"
     DATABASE_URL=$1 diesel print-schema -o cms_pages >carnation/src/schema.rs
     echo "generate database schema for hibiscus"
-    DATABASE_URL=$1 diesel print-schema -o forum forum_topics forum_posts >hibiscus/src/schema.rs
+    DATABASE_URL=$1 diesel print-schema -o bbs_forum bbs_topics bbs_posts >hibiscus/src/schema.rs
     echo "generate database schema for wisteria"
     DATABASE_URL=$1 diesel print-schema -o questionnaire_forms questionnaire_fields questionnaire_polls >wisteria/src/schema.rs
     echo "generate database schema for hyacinth"

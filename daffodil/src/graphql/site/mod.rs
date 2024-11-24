@@ -119,6 +119,7 @@ impl Refresh {
 
             (ah, ks, icp, mps)
         };
+
         let favicon = Self::_favicon(db, s3)
             .await
             .unwrap_or_else(|_| "/my/favicon.svg".to_string());
