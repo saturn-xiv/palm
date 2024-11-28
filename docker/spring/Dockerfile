@@ -41,7 +41,7 @@ RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/downloa
 
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION "1.32.0"
+ENV ENVOY_VERSION "1.32.1"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo mv $HOME/downloads/envoy /usr/local/bin/envoy \
     && sudo chmod +x /usr/local/bin/envoy \
@@ -108,7 +108,7 @@ RUN cd $HOME/downloads \
 
 
 # https://github.com/bazelbuild/bazelisk
-ENV BAZEL_VERSION "v1.22.1"
+ENV BAZEL_VERSION "v1.24.1"
 RUN wget -q -O $HOME/.local/bin/bazel \
     https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64
 RUN chmod +x $HOME/.local/bin/bazel
@@ -127,7 +127,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && gem install bundler"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.23.2"
+ENV GO_VERSION "1.23.3"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -142,7 +142,7 @@ RUN zsh -c "source $HOME/.zshrc \
 # https://github.com/sdkman/sdkman-cli
 # https://docs.gradle.org/current/userguide/compatibility.html
 ENV JDK_VERSION "23-open"
-ENV GRADLE_VERSION "8.10.2"
+ENV GRADLE_VERSION "8.11.1"
 ENV THRIFT_JAVA_VERSION "19.0.2-open"
 ENV THRIFT_GRADLE_VERSION "7.6.4"
 RUN curl -s "https://get.sdkman.io" | bash
@@ -186,7 +186,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && cargo install mdbook"
 
 # https://www.swift.org/download/#releases
-ENV SWIFT_VERSION "6.0.1"
+ENV SWIFT_VERSION "6.0.2"
 RUN wget -q -P $HOME/downloads https://download.swift.org/swift-${SWIFT_VERSION}-release/ubuntu2404/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz \
     && cd /opt \
     && sudo tar xf $HOME/downloads/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz \
@@ -199,7 +199,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
 
 
 # https://opensearch.org/downloads.html#opensearch
-ENV OPENSEARCH_VERSION "2.17.1"
+ENV OPENSEARCH_VERSION "2.18.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
 RUN cd $HOME/build \
@@ -220,7 +220,7 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && sudo chmod +x /usr/local/bin/dbmate
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.68.0"
+ENV GRPC_VERSION "v1.68.1"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 # ENV PROTOBUF_VERSION "v3.21.8"
 # RUN cd $HOME/downloads/grpc/third_party/protobuf \
@@ -234,7 +234,7 @@ RUN zsh -c "source $HOME/.zshrc \
     -DgRPC_SSL_PROVIDER=package \
     -DgRPC_BUILD_TESTS=OFF \
     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
-    && make \
+    && make -j $(nproc --ignore=2) \
     && make install"
 
 # https://github.com/grpc/grpc-web#code-generator-plugin
@@ -254,7 +254,7 @@ RUN mkdir -p $HOME/build/protobuf-javascript \
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
-ENV GRPC_JAVA_PLUGIN_VERSION "1.68.1"
+ENV GRPC_JAVA_PLUGIN_VERSION "1.68.2"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
@@ -281,7 +281,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/build/flatbuffers \
     && CC=clang CXX=clang++ cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF \
     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/flatbuffers \
-    && make \
+    && make -j $(nproc --ignore=2) \
     && make install"
 
 

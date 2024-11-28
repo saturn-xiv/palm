@@ -123,7 +123,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && sdk install gradle"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.23.2"
+ENV GO_VERSION "1.23.3"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -150,7 +150,7 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION "v1.68.0"
+ENV GRPC_VERSION "v1.68.1"
 RUN git clone --recurse-submodules -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN apt install -y libssl-dev
 RUN zsh -c "source $HOME/.zshrc \
@@ -161,7 +161,7 @@ RUN zsh -c "source $HOME/.zshrc \
     -DgRPC_SSL_PROVIDER=package \
     -DgRPC_BUILD_TESTS=OFF \
     -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
-    && make \
+    && make -j $(nproc --ignore=2) \
     && make install"
 
 # https://github.com/rui314/mold
@@ -171,7 +171,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && cd $HOME/build/mold \
     && $HOME/downloads/mold/install-build-deps.sh \
     && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ $HOME/downloads/mold \
-    && make \
+    && make -j $(nproc --ignore=2) \
     && make install"
 RUN ln -s /usr/local/bin/mold /usr/bin/mold
 
