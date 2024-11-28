@@ -8,7 +8,7 @@ export CODE="palm-spring"
 podman pull archlinux:latest
 podman build -t $CODE .
 podman save --format=oci-archive -o $CODE-$VERSION.tar $CODE
-split -d -b 3G $CODE-$VERSION.tar $CODE-$VERSION.tar.
+split -d -b 1G $CODE-$VERSION.tar $CODE-$VERSION.tar.
 md5sum $CODE-$VERSION.tar* >$CODE-$VERSION.md5
 # cat $CODE-$VERSION.tar.?? >$CODE-$VERSION.tar
 
