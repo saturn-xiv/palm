@@ -31,6 +31,9 @@ const AdminSite = lazy(() => import("./pages/admin/site"));
 const AdminTags = lazy(() => import("./pages/admin/tags"));
 const AdminCategories = lazy(() => import("./pages/admin/categories"));
 
+const Cms = lazy(() => import("./pages/cms"));
+const Bbs = lazy(() => import("./pages/bbs"));
+
 const NotFound = lazy(() => import("./pages/not-found"));
 
 const router = createBrowserRouter(
@@ -46,6 +49,14 @@ const router = createBrowserRouter(
         {
           path: "attachments",
           element: <Attachments />,
+        },
+        {
+          path: "cms",
+          element: <Cms />,
+        },
+        {
+          path: "bbs",
+          element: <Bbs />,
         },
         {
           path: "admin",

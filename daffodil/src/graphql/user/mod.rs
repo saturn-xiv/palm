@@ -177,6 +177,31 @@ impl SideBarMenu {
                 });
             }
         }
+
+        items.push(Self {
+            label: I18n::t(
+                db,
+                &user.lang,
+                "pages.cms.index.abbreviation",
+                None::<String>,
+            ),
+            to: "/cms".to_string(),
+            icon: Some("cms".to_string()),
+            external: false,
+            children: None,
+        });
+        items.push(Self {
+            label: I18n::t(
+                db,
+                &user.lang,
+                "pages.bbs.index.abbreviation",
+                None::<String>,
+            ),
+            to: "/bbs".to_string(),
+            icon: Some("bbs".to_string()),
+            external: false,
+            children: None,
+        });
         Ok(items)
     }
 }

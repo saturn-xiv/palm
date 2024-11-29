@@ -6,6 +6,8 @@ install:
   administrator:
     title: "User profile"
     description: "Setup the first administrator"
+not-found:
+  title: "Not found"
 users:
   sign-in:
     title: "Already have an account? Sign in"
@@ -155,5 +157,11 @@ admin:
         label: "Maintenance"
       status:
         label: "Status"
-not-found:
-  title: "Not found"
+cms:
+  index:
+    title: "Content management system"
+    abbreviation: "CMS"
+bbs:
+  index:
+    title: "Bulletin board system"
+    abbreviation: "BBS"

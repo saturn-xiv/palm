@@ -11,6 +11,8 @@ export const MEMO_MAX_LENGTH = 1023;
 export const TITLE_MIN_LENGTH = 1;
 export const TITLE_MAX_LENGTH = 127;
 
+export const DEFAULT_PAGE_SIZE = 60;
+
 export interface IAlert {
   color: string;
   messages: string[];

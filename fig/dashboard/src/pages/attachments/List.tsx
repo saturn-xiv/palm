@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { Typography } from "antd";
 
 import { IAttachment, index_attachment } from "../../api/daffodil";
+import Filesize from "../../components/Filesize";
 
 interface IParams {
   key: string;
@@ -38,14 +39,11 @@ const Widget = () => {
             key: "contentType",
           },
           {
-            title: (
-              <>
-                <FormattedMessage id="form.fields.size.label" />
-                (KB)
-              </>
-            ),
-            dataIndex: "size",
+            title: <FormattedMessage id="form.fields.size.label" />,
             key: "size",
+            render: (_, { size }) => {
+              return <Filesize value={size} />;
+            },
           },
           {
             title: <FormattedMessage id="form.fields.updated-at.label" />,
