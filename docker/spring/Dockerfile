@@ -18,10 +18,11 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     ttf-dejavu nerd-fonts ttf-ubuntu-font-family \
     ttf-arphic-ukai ttf-arphic-uming \
     texlive texlive-lang graphviz pandoc \
-    php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl \
+    xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc php-pspell \
     dart haxe lua \
     erlang elixir rebar \
     jdk-openjdk libxcrypt-compat \
+    nodejs yarn \
     nginx mariadb postgresql rabbitmq redis supervisor
 RUN pacman -Scc --noconfirm
 
@@ -166,9 +167,15 @@ RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.zshrc \
     && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.zshrc
 # https://stackoverflow.com/questions/37324519/node-sass-does-not-yet-support-your-current-environment-linux-64-bit-with-false
 RUN zsh -c "source $HOME/.zshrc \
-    && nvm install node \
+    && nvm install stable \
+    && nvm use stable \
+    && npm install -g yarn \
     && nvm install --lts \
-    && nvm install lts/fermium"
+    && nvm use --lts \
+    && npm install -g yarn \
+    && nvm install lts/fermium \
+    && nvm use lts/fermium \
+    && npm install -g yarn"
 
 # https://www.rust-lang.org/tools/install
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -323,6 +330,34 @@ RUN mkdir -p /var/www/html \
     && sed -i '35i include sites-enabled/*.conf;' /etc/nginx/nginx.conf \
     && sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf
 ADD etc/nginx/sites-enabled/localhost.conf /etc/nginx/sites-enabled/localhost.conf
+
+RUN sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
+    && sed -i 's/;extension=bz2/extension=bz2/' /etc/php/php.ini \
+    && sed -i 's/;extension=calendar/extension=calendar/' /etc/php/php.ini \
+    && sed -i 's/;extension=enchant/extension=enchant/' /etc/php/php.ini \
+    && sed -i 's/;extension=exif/extension=exif/' /etc/php/php.ini \
+    && sed -i 's/;extension=ftp/extension=ftp/' /etc/php/php.ini \
+    && sed -i 's/;extension=gd/extension=gd/' /etc/php/php.ini \
+    && sed -i 's/;extension=gettext/extension=gettext/' /etc/php/php.ini \
+    && sed -i 's/;extension=gmp/extension=gmp/' /etc/php/php.ini \
+    && sed -i 's/;extension=iconv/extension=iconv/' /etc/php/php.ini \
+    && sed -i 's/;extension=intl/extension=intl/' /etc/php/php.ini \
+    && sed -i 's/;extension=mysqli/extension=mysqli/' /etc/php/php.ini \
+    && sed -i 's/;extension=odbc/extension=odbc/' /etc/php/php.ini \
+    && sed -i 's/;extension=pdo_mysql/extension=pdo_mysql/' /etc/php/php.ini \
+    && sed -i 's/;extension=pdo_odbc/extension=pdo_odbc/' /etc/php/php.ini \
+    && sed -i 's/;extension=pdo_pgsql/extension=pdo_pgsql/' /etc/php/php.ini \
+    && sed -i 's/;extension=pdo_sqlite/extension=pdo_sqlite/' /etc/php/php.ini \
+    && sed -i 's/;extension=pgsql/extension=pgsql/' /etc/php/php.ini \
+    && sed -i 's/;extension=pspell/extension=pspell/' /etc/php/php.ini \
+    && sed -i 's/;extension=snmp/extension=snmp/' /etc/php/php.ini \
+    && sed -i 's/;extension=soap/extension=soap/' /etc/php/php.ini \
+    && sed -i 's/;extension=sockets/extension=sockets/' /etc/php/php.ini \
+    && sed -i 's/;extension=sodium/extension=sodium/' /etc/php/php.ini \
+    && sed -i 's/;extension=sqlite3/extension=sqlite3/' /etc/php/php.ini \
+    && sed -i 's/;extension=tidy/extension=tidy/' /etc/php/php.ini \
+    && sed -i 's/;extension=xsl/extension=xsl/' /etc/php/php.ini \
+    && sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini 
 
 ADD etc/envoy.yaml /etc/
 RUN mkdir -p /var/log/envoy
