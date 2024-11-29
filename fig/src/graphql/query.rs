@@ -486,7 +486,18 @@ impl Query {
                 .await?;
         Ok(items)
     }
-
+    async fn index_bookkeeping_logs_by_ledger(
+        context: &Context,
+        id: i32,
+        pager: Pager,
+    ) -> FieldResult<hyacinth_graphql::log::List> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let it = hyacinth_graphql::log::List::by_ledger(&context.session, db, jwt, enf, id, &pager)
+            .await?;
+        Ok(it)
+    }
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
 }

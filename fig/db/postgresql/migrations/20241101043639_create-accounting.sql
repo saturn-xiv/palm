@@ -80,12 +80,23 @@ CREATE TABLE bookkeeper_entries(
     merchant_id INTEGER NOT NULL,
     amount INTEGER NOT NULL,
     memo VARCHAR(1023) NOT NULL,
-    deleted_at TIMESTAMP WITHOUT TIME ZONE,        
+    deleted_at TIMESTAMP WITHOUT TIME ZONE,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_bookkeeper_entries_memo ON bookkeeper_entries(memo);
 
+CREATE TABLE bookkeeper_logs(
+    id SERIAL PRIMARY KEY,
+    ledger_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    action VARCHAR(15) NOT NULL,
+    detail BYTEA NOT NULL,        
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX idx_bookkeeper_logs_action ON bookkeeper_logs(action);
+
 -- migrate:down
+DROP TABLE bookkeeper_logs;
 DROP TABLE bookkeeper_entries;
 DROP TABLE bookkeeper_transactions;
 DROP TABLE bookkeeper_merchants;
