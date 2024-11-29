@@ -105,20 +105,13 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: import.meta.env.BASE_URL,
-    future: {
-      v7_relativeSplatPath: true,
-      v7_normalizeFormMethod: true,
-      v7_partialHydration: true,
-      v7_skipActionErrorRevalidation: true,
-      v7_fetcherPersist: true,
-    },
+    basename: import.meta.env.BASE_URL
   }
 );
 
 const Widget = () => {
   return (
-    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+    <RouterProvider router={router} />
   );
 };
 
