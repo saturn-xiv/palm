@@ -9,7 +9,8 @@ set -e
 npm install --save @fortawesome/fontawesome-free \
     famfamfam-flags famfamfam-silk famfamfam-mini \
     js-cookie @types/js-cookie \
-    filesize html-to-text \
+    filesize \
+    html-to-text @types/html-to-text \
     mermaid \
     jwt-decode \
     react-currency-input-field \

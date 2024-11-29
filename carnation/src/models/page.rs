@@ -80,7 +80,7 @@ pub trait Dao {
         title: &str,
         body: (&str, Editor, Template),
     ) -> Result<()>;
-    fn update(&mut self, id: i32, slug: &str, body: &str) -> Result<()>;
+    fn update(&mut self, id: i32, slug: &str, title: &str, body: &str) -> Result<()>;
     fn set_template(&mut self, id: i32, template: Template) -> Result<()>;
     fn set_profile(&mut self, id: i32, profile: &Profile) -> Result<()>;
     fn lock(&mut self, id: i32) -> Result<()>;
@@ -161,12 +161,13 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn update(&mut self, id: i32, slug: &str, body: &str) -> Result<()> {
+    fn update(&mut self, id: i32, slug: &str, title: &str, body: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = cms_pages::dsl::cms_pages.filter(cms_pages::dsl::id.eq(id));
         update(it)
             .set((
                 cms_pages::dsl::slug.eq(slug),
+                cms_pages::dsl::title.eq(title),
                 cms_pages::dsl::body.eq(body),
                 cms_pages::dsl::updated_at.eq(&now),
             ))

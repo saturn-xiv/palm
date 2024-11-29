@@ -30,26 +30,24 @@ const Widget = ({ html, handleChange }: IProps) => {
       setEditor(null);
     };
   }, [editor]);
+  // <div style={{ marginTop: "15px" }}>{html}</div>
   return (
-    <>
-      <div style={{ border: "1px solid #ccc", zIndex: 100 }}>
-        <Toolbar
-          editor={editor}
-          defaultConfig={toolbarConfig}
-          mode="default"
-          style={{ borderBottom: "1px solid #ccc" }}
-        />
-        <Editor
-          defaultConfig={editorConfig}
-          value={html}
-          onCreated={setEditor}
-          onChange={(editor) => handleChange(editor.getHtml())}
-          mode="default"
-          style={{ height: "500px", overflowY: "hidden" }}
-        />
-      </div>
-      <div style={{ marginTop: "15px" }}>{html}</div>
-    </>
+    <div style={{ border: "1px solid #ccc", zIndex: 100 }}>
+      <Toolbar
+        editor={editor}
+        defaultConfig={toolbarConfig}
+        mode="default"
+        style={{ borderBottom: "1px solid #ccc" }}
+      />
+      <Editor
+        defaultConfig={editorConfig}
+        value={html}
+        onCreated={setEditor}
+        onChange={(editor) => handleChange(editor.getHtml())}
+        mode="default"
+        style={{ height: "500px", overflowY: "hidden" }}
+      />
+    </div>
   );
 };
 

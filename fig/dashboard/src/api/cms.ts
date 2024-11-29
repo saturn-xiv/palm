@@ -1,7 +1,28 @@
 import { IPager, IPagination, ISucceed, query } from ".";
 
 export const templates = ["blog", "archive"];
+const UPDATE_PAGE = `
+mutation call($id: Int!, $slug: String!, $title: String!, $body: String!){
+    updateCmsPage(id: $id, slug: $slug, title: $title, body: $body){
+      createdAt
+    }
+}
+`;
 
+export const update_page = async (
+  id: number,
+  slug: string,
+  title: string,
+  body: string
+): Promise<ISucceed> => {
+  const res: { updateCmsPage: ISucceed } = await query(UPDATE_PAGE, {
+    id,
+    slug,
+    title,
+    body,
+  });
+  return res.updateCmsPage;
+};
 const CREATE_PAGE = `
 mutation call($lang: String!, $form: CmsPageCreateForm!){
     createCmsPage(lang: $lang, form: $form){

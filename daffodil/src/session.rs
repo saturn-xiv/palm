@@ -101,6 +101,7 @@ pub fn current_user(ss: &Session, db: &mut Db, jwt: &Jwt) -> Result<(SessionItem
         if uit.deleted_at.is_some() {
             return Err(Box::new(HttpError(StatusCode::GONE, None)));
         }
+        log::debug!("current user {:?}", sit);
         return Ok((sit, uit));
     }
     Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)))

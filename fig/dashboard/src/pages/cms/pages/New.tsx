@@ -119,7 +119,7 @@ const Widget = ({ messageApi, handleReload }: IProps) => {
         rules={[{ required: true }]}
       />
       <ProForm.Group>
-        <HtmlEditor html="" handleChange={setBody} />
+        <HtmlEditor html={body} handleChange={setBody} />
       </ProForm.Group>
     </ModalForm>
   );

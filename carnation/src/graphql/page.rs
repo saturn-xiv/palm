@@ -133,6 +133,8 @@ impl Create {
 pub struct Update {
     #[validate(length(min = 1, max = 127))]
     pub slug: String,
+    #[validate(length(min = 1, max = 255))]
+    pub title: String,
     #[validate(length(min = 1))]
     pub body: String,
 }
@@ -154,7 +156,7 @@ impl Update {
         it.can_edit(&user, enf).await?;
 
         db.transaction::<_, Error, _>(|db| {
-            PageDao::update(db, it.id, &self.slug, &self.body)?;
+            PageDao::update(db, it.id, &self.slug, &self.title, &self.body)?;
             Ok(())
         })?;
 

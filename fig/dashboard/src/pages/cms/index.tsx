@@ -50,7 +50,11 @@ const Widget = () => {
       </Col>
       {pages.map((x) => (
         <Col key={x.id} md={5}>
-          <PageCard item={x} />
+          <PageCard
+            item={x}
+            messageApi={messageApi}
+            handleReload={() => reload_pages(1, DEFAULT_PAGE_SIZE)}
+          />
         </Col>
       ))}
       <Col md={24}>

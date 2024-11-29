@@ -816,11 +816,13 @@ impl Mutation {
         context: &Context,
         id: i32,
         slug: String,
+        title: String,
         body: String,
     ) -> FieldResult<Succeed> {
         let form = cms_page::Update {
             slug: slug.trim().to_lowercase(),
             body,
+            title,
         };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
