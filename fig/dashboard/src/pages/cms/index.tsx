@@ -9,6 +9,8 @@ import PaginationBar from "../../components/PaginationBar";
 import { DEFAULT_PAGE_SIZE } from "../../components";
 import NewPage from "./pages/New";
 
+import HtmlEditor from "../../components/SlateEditor";
+
 const Widget = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [pages, setPages] = useState<IPage[]>([]);
@@ -29,9 +31,17 @@ const Widget = () => {
         </Typography.Title>
         {contextHolder}
       </Col>
+      <Col md={24}>
+        <HtmlEditor
+          defaultValue={[{ children: [{ text: "demo" }] }]}
+          handleChange={(value: string) => {
+            console.log(value);
+          }}
+        />
+      </Col>
       <Col md={24} style={{ display: "flex", justifyContent: "flex-end" }}>
         <Space align="end">
-          <NewPage />
+          <NewPage messageApi={messageApi} />
         </Space>
       </Col>
       {pages.map((x) => (

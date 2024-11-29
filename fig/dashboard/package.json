@@ -46,8 +46,6 @@
     "react-router-dom": "^6.28.0",
     "react-sparklines": "^1.7.0",
     "react-syntax-highlighter": "^15.6.1",
-    "slate": "^0.110.2",
-    "slate-react": "^0.111.0",
     "video.js": "^8.19.1"
   },
   "devDependencies": {
