@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import type { MessageInstance } from "antd/es/message/interface";
 import { useState } from "react";
 
-import HtmlEditor from "../../../components/SlateEditor";
+import HtmlEditor from "../../../components/WangEditor";
 
 interface IFormValue {
   title: string;
@@ -48,10 +48,7 @@ const Widget = ({ messageApi }: IProps) => {
         label={<FormattedMessage id="form.fields.title.label" />}
       />
       <ProForm.Group>
-        <HtmlEditor
-          defaultValue={[{ children: [{ text: "demo" }] }]}
-          handleChange={setBody}
-        />
+        <HtmlEditor html="" handleChange={setBody} />
       </ProForm.Group>
     </ModalForm>
   );

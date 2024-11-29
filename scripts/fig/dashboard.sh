@@ -5,6 +5,7 @@ set -e
 # https://vitejs.dev/guide/#scaffolding-your-first-vite-project
 # npm create vite@latest fig -- --template react-ts
 
+# slate slate-react slate-history
 npm install --save @fortawesome/fontawesome-free \
     famfamfam-flags famfamfam-silk famfamfam-mini \
     js-cookie @types/js-cookie \
@@ -14,7 +15,7 @@ npm install --save @fortawesome/fontawesome-free \
     react-currency-input-field \
     video.js @types/video.js \
     react-copy-to-clipboard @types/react-copy-to-clipboard \
-    slate slate-react \
+    @wangeditor/editor @wangeditor/editor-for-react \
     google-map-react qrcode.react \
     @uiw/react-md-editor \
     react-color @types/react-color \

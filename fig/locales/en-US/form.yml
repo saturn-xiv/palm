@@ -25,6 +25,8 @@ fields:
     label: "Body"
   title:
     label: "Title"
+  slug:
+    label: "Slug"
   memo:
     label: "Memo"
   description:
@@ -93,3 +95,5 @@ fields:
     label: "Content type"
   size:
     label: "Size"
+placeholder:
+  type-here: "Type here..."

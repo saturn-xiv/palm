@@ -20,6 +20,8 @@
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/video.js": "^7.3.58",
     "@uiw/react-md-editor": "^4.0.4",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-react": "^1.0.6",
     "antd": "^5.22.0",
     "emoji-mart": "^5.6.0",
     "famfamfam-flags": "^1.0.0",

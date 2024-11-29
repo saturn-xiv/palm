@@ -161,6 +161,9 @@ cms:
   index:
     title: "Content management system"
     abbreviation: "CMS"
+  pages:
+    new:
+      title: 'Create a new page'
 bbs:
   index:
     title: "Bulletin board system"
