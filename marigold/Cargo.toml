@@ -1,0 +1,7 @@
+[package]
+name = "marigold"
+version = "2024.11.30"
+edition = "2021"
+description = "An AI-enhanced learning platform which offers personalized quizzes and practice tests."
+
+[dependencies]

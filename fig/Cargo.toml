@@ -85,3 +85,6 @@ path = "../wisteria"
 
 [dependencies.hyacinth]
 path = "../hyacinth"
+
+[dependencies.marigold]
+path = "../marigold"
