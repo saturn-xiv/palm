@@ -6,7 +6,8 @@ RUN pacman -Sy --noconfirm archlinux-keyring
 RUN pacman-key --populate
 RUN pacman -Syu --noconfirm
 RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
-    bzip2 bzip3 vim git cmake thrift capnproto wget zsh man-db man-pages \
+    bzip2 bzip3 p7zip unarchiver \
+    vim git cmake thrift capnproto wget zsh man-db man-pages \
     pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio \
     clang llvm lld lldb mold bison flex ninja bazel \
     imagemagick ffmpeg xorg-font-util \
@@ -340,6 +341,13 @@ RUN sed -i 's/;extension=bcmath/extension=bcmath/' /etc/php/php.ini \
     && sed -i 's/;extension=tidy/extension=tidy/' /etc/php/php.ini \
     && sed -i 's/;extension=xsl/extension=xsl/' /etc/php/php.ini \
     && sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini 
+
+RUN mkdir -p $HOME/.ssh \
+    && touch $HOME/.ssh/authorized_keys \
+    && echo 'UseDNS no' >> /etc/ssh/sshd_config \
+    && echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config \
+    && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
+    && echo 'AllowUsers root' >> /etc/ssh/sshd_config
 
 ADD etc/envoy.yaml /etc/
 RUN mkdir -p /var/log/envoy
