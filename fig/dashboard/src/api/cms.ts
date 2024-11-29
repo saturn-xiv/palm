@@ -1,4 +1,29 @@
-import { IPager, IPagination, query } from ".";
+import { IPager, IPagination, ISucceed, query } from ".";
+
+export const templates = ["blog", "archive"];
+
+const CREATE_PAGE = `
+mutation call($lang: String!, $form: CmsPageCreateForm!){
+    createCmsPage(lang: $lang, form: $form){
+      createdAt
+    }
+}
+`;
+
+export const create_page = async (
+  lang: string,
+  slug: string,
+  title: string,
+  template: string,
+  body: string,
+  bodyEditor: string
+): Promise<ISucceed> => {
+  const res: { createCmsPage: ISucceed } = await query(CREATE_PAGE, {
+    lang,
+    form: { slug, title, template, body, bodyEditor },
+  });
+  return res.createCmsPage;
+};
 
 const INDEX_PAGE = `
 query call($pager: Pager!){

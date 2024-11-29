@@ -5,7 +5,7 @@ import { useIntl } from "react-intl";
 
 import "@wangeditor/editor/dist/css/style.css";
 
-export const EDITOR = "wang";
+export const EDITOR = "WANG";
 
 interface IProps {
   html: string;

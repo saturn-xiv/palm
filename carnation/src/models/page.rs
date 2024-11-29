@@ -1,10 +1,32 @@
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
+use juniper::GraphQLEnum;
 use petunia::{orm::postgresql::Connection, Editor, Result};
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
 
 use super::super::schema::cms_pages;
+
+#[derive(
+    GraphQLEnum,
+    EnumDisplay,
+    EnumString,
+    Serialize,
+    Deserialize,
+    Default,
+    PartialEq,
+    Eq,
+    Debug,
+    Clone,
+    Copy,
+)]
+#[serde(rename_all = "camelCase")]
+#[graphql(name = "CmsPageTemplate")]
+pub enum Template {
+    #[default]
+    Blog,
+    Archive,
+}
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]
 pub struct Item {
@@ -55,12 +77,11 @@ pub trait Dao {
         user: i32,
         lang: &str,
         slug: &str,
-        body: &str,
-        body_editor: Editor,
-        template: &str,
+        title: &str,
+        body: (&str, Editor, Template),
     ) -> Result<()>;
     fn update(&mut self, id: i32, slug: &str, body: &str) -> Result<()>;
-    fn set_template(&mut self, id: i32, template: &str) -> Result<()>;
+    fn set_template(&mut self, id: i32, template: Template) -> Result<()>;
     fn set_profile(&mut self, id: i32, profile: &Profile) -> Result<()>;
     fn lock(&mut self, id: i32) -> Result<()>;
     fn unlock(&mut self, id: i32) -> Result<()>;
@@ -119,20 +140,22 @@ impl Dao for Connection {
         user: i32,
         lang: &str,
         slug: &str,
-        body: &str,
-        editor: Editor,
-        template: &str,
+        title: &str,
+        (body, editor, template): (&str, Editor, Template),
     ) -> Result<()> {
         let now = Utc::now().naive_utc();
+        let profile = flexbuffers::to_vec(Profile::default())?;
         insert_into(cms_pages::dsl::cms_pages)
             .values((
                 cms_pages::user_id.eq(user),
                 cms_pages::lang.eq(lang),
                 cms_pages::slug.eq(slug),
+                cms_pages::title.eq(title),
                 cms_pages::body.eq(&body),
                 cms_pages::body_editor.eq(&editor.to_string()),
                 cms_pages::status.eq(&Status::Pending.to_string()),
-                cms_pages::template.eq(template),
+                cms_pages::template.eq(&template.to_string()),
+                cms_pages::profile.eq(&profile),
                 cms_pages::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -150,12 +173,12 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_template(&mut self, id: i32, template: &str) -> Result<()> {
+    fn set_template(&mut self, id: i32, template: Template) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = cms_pages::dsl::cms_pages.filter(cms_pages::dsl::id.eq(id));
         update(it)
             .set((
-                cms_pages::dsl::template.eq(template),
+                cms_pages::dsl::template.eq(&template.to_string()),
                 cms_pages::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

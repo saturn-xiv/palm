@@ -87,6 +87,7 @@ pub enum Environment {
     Eq,
     Debug,
     Clone,
+    Copy,
 )]
 #[serde(rename_all = "camelCase")]
 #[graphql(name = "Editor")]
@@ -94,6 +95,7 @@ pub enum Editor {
     #[default]
     Textarea,
     Slate,
+    Wang,
 }
 
 pub fn is_stopped() -> bool {

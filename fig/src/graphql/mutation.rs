@@ -796,17 +796,20 @@ impl Mutation {
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------
-    async fn create_cms_page(context: &Context, form: cms_page::Create) -> FieldResult<Succeed> {
+    async fn create_cms_page(
+        context: &Context,
+        lang: String,
+        form: cms_page::Create,
+    ) -> FieldResult<Succeed> {
         let form = {
             let mut it = form.clone();
-            it.template = form.template.trim().to_lowercase();
             it.slug = form.slug.trim().to_lowercase();
             it
         };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        form.execute(&context.session, db, jwt, enf).await?;
+        form.execute(&context.session, db, jwt, enf, &lang).await?;
         Ok(Succeed::default())
     }
     async fn update_cms_page(
@@ -828,15 +831,12 @@ impl Mutation {
     async fn set_cms_page_template(
         context: &Context,
         id: i32,
-        template: String,
+        template: carnation::models::page::Template,
     ) -> FieldResult<Succeed> {
-        let form = cms_page::SetTemplate {
-            template: template.trim().to_lowercase(),
-        };
         let db = context.postgresql.deref();
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
-        form.execute(&context.session, db, jwt, enf, id).await?;
+        cms_page::set_template(&context.session, db, jwt, enf, id, template).await?;
         Ok(Succeed::default())
     }
     // ------------------------------------------------------------------------

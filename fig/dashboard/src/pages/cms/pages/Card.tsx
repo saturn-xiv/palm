@@ -13,9 +13,7 @@ const Widget = ({ item }: IProps) => {
       extra={<a href="#">More</a>}
       style={{ width: 300 }}
     >
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
+      <p>{item.body}</p>
     </Card>
   );
 };

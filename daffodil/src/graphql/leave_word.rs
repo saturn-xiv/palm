@@ -164,9 +164,8 @@ impl Create {
         let mut db = db.get()?;
         let db = db.deref_mut();
 
-        let editor = self.editor.clone();
         db.transaction::<_, Error, _>(|db| {
-            LeaveWordDao::create(db, &ss.lang, &ss.client_ip, &self.body, editor)?;
+            LeaveWordDao::create(db, &ss.lang, &ss.client_ip, &self.body, self.editor)?;
             Ok(())
         })?;
         Ok(())

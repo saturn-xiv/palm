@@ -163,7 +163,12 @@ cms:
     abbreviation: "CMS"
   pages:
     new:
-      title: 'Create a new page'
+      title: "Create a new page"
+  page-templates:
+    blog:
+      label: "Blog"
+    archive:
+      label: "Archive"
 bbs:
   index:
     title: "Bulletin board system"

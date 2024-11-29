@@ -17,7 +17,7 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
-use super::super::models::page::{Dao as PageDao, Item as Page};
+use super::super::models::page::{Dao as PageDao, Item as Page, Template};
 use super::ROLE_MANAGER;
 
 #[derive(GraphQLObject)]
@@ -80,18 +80,14 @@ impl List {
 #[derive(Validate, GraphQLInputObject, Clone)]
 #[graphql(name = "CmsPageCreateForm")]
 pub struct Create {
-    #[validate(length(min = 1, max = 15))]
-    pub lang: String,
     #[validate(length(min = 1, max = 127))]
     pub slug: String,
     #[validate(length(min = 1, max = 255))]
     pub title: String,
     #[validate(length(min = 1))]
     pub body: String,
-    #[validate(length(min = 1, max = 15))]
-    pub body_editor: String,
-    #[validate(length(min = 1, max = 31))]
-    pub template: String,
+    pub body_editor: Editor,
+    pub template: Template,
 }
 
 impl Create {
@@ -101,12 +97,12 @@ impl Create {
         db: &DbPool,
         jwt: &Jwt,
         enf: &Mutex<Enforcer>,
+        lang: &str,
     ) -> Result<()> {
         let lang = {
-            let it = LanguageTag::from_str(&self.lang)?;
+            let it = LanguageTag::from_str(lang)?;
             it.to_string()
         };
-        let editor = Editor::from_str(&self.body_editor)?;
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -123,9 +119,8 @@ impl Create {
                 user.id,
                 &lang,
                 &self.slug,
-                &self.body,
-                editor,
-                &self.template,
+                &self.title,
+                (&self.body, self.body_editor, self.template),
             )?;
             Ok(())
         })?;
@@ -167,35 +162,26 @@ impl Update {
     }
 }
 
-#[derive(Validate)]
-pub struct SetTemplate {
-    #[validate(length(min = 1, max = 31))]
-    pub template: String,
-}
+pub async fn set_template(
+    ss: &Session,
+    db: &DbPool,
+    jwt: &Jwt,
+    enf: &Mutex<Enforcer>,
+    id: i32,
+    template: Template,
+) -> Result<()> {
+    let mut db = db.get()?;
+    let db = db.deref_mut();
+    let (_, user) = current_user(ss, db, jwt)?;
+    let it = PageDao::by_id(db, id)?;
+    it.can_edit(&user, enf).await?;
 
-impl SetTemplate {
-    pub async fn execute(
-        &self,
-        ss: &Session,
-        db: &DbPool,
-        jwt: &Jwt,
-        enf: &Mutex<Enforcer>,
-        id: i32,
-    ) -> Result<()> {
-        self.validate()?;
-        let mut db = db.get()?;
-        let db = db.deref_mut();
-        let (_, user) = current_user(ss, db, jwt)?;
-        let it = PageDao::by_id(db, id)?;
-        it.can_edit(&user, enf).await?;
-
-        db.transaction::<_, Error, _>(|db| {
-            PageDao::set_template(db, it.id, &self.template)?;
-            Ok(())
-        })?;
-
+    db.transaction::<_, Error, _>(|db| {
+        PageDao::set_template(db, it.id, template)?;
         Ok(())
-    }
+    })?;
+
+    Ok(())
 }
 
 impl Page {

@@ -95,5 +95,11 @@ fields:
     label: "Content type"
   size:
     label: "Size"
+  template:
+    label: "Template"
+  style:
+    label: "style"
+  theme:
+    label: "Theme"
 placeholder:
   type-here: "Type here..."
