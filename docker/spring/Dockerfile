@@ -6,7 +6,7 @@ RUN pacman -Sy --noconfirm archlinux-keyring
 RUN pacman-key --populate
 RUN pacman -Syu --noconfirm
 RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
-    vim git cmake thrift capnproto wget zsh man-db man-pages \
+    bzip2 bzip3 vim git cmake thrift capnproto wget zsh man-db man-pages \
     pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio \
     clang llvm lld lldb mold bison flex ninja bazel \
     imagemagick ffmpeg xorg-font-util \
@@ -22,38 +22,30 @@ RUN pacman -S --needed --noconfirm base-devel aarch64-linux-gnu-gcc risc-v \
     dart haxe lua \
     erlang elixir rebar \
     jdk-openjdk libxcrypt-compat \
-    nodejs yarn \
     nginx mariadb postgresql rabbitmq redis supervisor
 RUN pacman -Scc --noconfirm
 
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
-RUN useradd -s /bin/zsh -m deploy
-RUN passwd -l deploy
-RUN echo 'deploy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-deploy
-USER deploy
 RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp
 
 # https://pkl-lang.org/main/current/pkl-cli/index.html#linux-executable
 ENV PKL_VERSION="0.25.1"
 RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/download/$PKL_VERSION/pkl-linux-amd64 \
-    && sudo mv $HOME/downloads/pkl /usr/local/bin/pkl \
-    && chmod +x /usr/local/bin/pkl \
-    && sudo chown root:root /usr/local/bin/pkl
+    && mv $HOME/downloads/pkl /usr/local/bin/pkl \
+    && chmod +x /usr/local/bin/pkl
 
 
 # https://github.com/envoyproxy/envoy
 ENV ENVOY_VERSION "1.32.1"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
-    && sudo mv $HOME/downloads/envoy /usr/local/bin/envoy \
-    && sudo chmod +x /usr/local/bin/envoy \
-    && sudo chown root:root /usr/local/bin/envoy
+    && mv $HOME/downloads/envoy /usr/local/bin/envoy \
+    && chmod +x /usr/local/bin/envoy
 
 # https://aur.archlinux.org/packages/ttf-arphic-tex-extra
 ENV ARPHIC_TTF_VERSION "20161212-1"
 RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
     && cd $HOME/downloads/ttf-arphic-tex-extra \
     && makepkg \
-    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
+    && pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
@@ -72,21 +64,17 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 
 # https://musl.cc/
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/x86_64-linux-musl-cross.tgz \
-    && cd /opt \
-    && sudo tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz \
-    && echo 'export PATH=/opt/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz $HOME/local \
+    && echo 'export PATH=\$HOME/local/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/armv7l-linux-musleabihf-cross.tgz \
-    && cd /opt \
-    && sudo tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz \
-    && echo 'export PATH=/opt/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz $HOME/local \
+    && echo 'export PATH=\$HOME/local/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/aarch64-linux-musl-cross.tgz \
-    && cd /opt \
-    && sudo tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz \
-    && echo 'export PATH=/opt/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz $HOME/local \
+    && echo 'export PATH=\$HOME/local/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/riscv64-linux-musl-cross.tgz \
-    && cd /opt \
-    && sudo tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz \
-    && echo 'export PATH=/opt/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz $HOME/local \
+    && echo 'export PATH=\$HOME/local/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 
 
 # https://pip.pypa.io/en/stable/installation/
@@ -195,9 +183,8 @@ RUN zsh -c "source $HOME/.zshrc \
 # https://www.swift.org/download/#releases
 ENV SWIFT_VERSION "6.0.2"
 RUN wget -q -P $HOME/downloads https://download.swift.org/swift-${SWIFT_VERSION}-release/ubuntu2404/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz \
-    && cd /opt \
-    && sudo tar xf $HOME/downloads/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz \
-    && echo "export PATH=/opt/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04/bin:\$PATH" >> $HOME/.zshrc
+    && tar xf $HOME/downloads/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04.tar.gz -C $HOME/local \
+    && echo "export PATH=\$HOME/local/swift-${SWIFT_VERSION}-RELEASE-ubuntu24.04/bin:\$PATH" >> $HOME/.zshrc
 
 # https://github.com/microsoft/vcpkg
 RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
@@ -209,22 +196,19 @@ RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
 ENV OPENSEARCH_VERSION "2.18.0"
 RUN wget -q -P $HOME/downloads \
     https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz
-RUN cd $HOME/build \
-    && tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz \
-    && sudo mv opensearch-${OPENSEARCH_VERSION} /opt/opensearch
+RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C /opt \
+    && mv /opt/opensearch-${OPENSEARCH_VERSION} /opt/opensearch
 
 # https://min.io/download#/linux
 RUN wget -q -O $HOME/downloads/minio \
     https://dl.min.io/server/minio/release/linux-amd64/minio \
-    && sudo mv $HOME/downloads/minio /usr/local/bin/minio \
-    && sudo chown root:root /usr/local/bin/minio \
-    && sudo chmod +x /usr/local/bin/minio
+    && mv $HOME/downloads/minio /usr/local/bin/minio \
+    && chmod +x /usr/local/bin/minio
 
 # https://github.com/amacneil/dbmate
 RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64 \
-    && sudo mv $HOME/downloads/dbmate /usr/local/bin/ \
-    && sudo chown root:root /usr/local/bin/dbmate \
-    && sudo chmod +x /usr/local/bin/dbmate
+    && mv $HOME/downloads/dbmate /usr/local/bin/ \
+    && chmod +x /usr/local/bin/dbmate
 
 # https://github.com/grpc/grpc
 ENV GRPC_VERSION "v1.68.1"
@@ -255,9 +239,8 @@ ENV GRPC_JS_PLUGIN_VERSION "3.21.4"
 RUN wget -q -P $HOME/downloads \
     https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${GRPC_JS_PLUGIN_VERSION}/protobuf-javascript-${GRPC_JS_PLUGIN_VERSION}-linux-x86_64.tar.gz
 RUN mkdir -p $HOME/build/protobuf-javascript \
-    && cd $HOME/build/protobuf-javascript \
-    && tar xf $HOME/downloads/protobuf-javascript-${GRPC_JS_PLUGIN_VERSION}-linux-x86_64.tar.gz \
-    && cp bin/protoc-gen-js $HOME/.local/bin/
+    && tar xf $HOME/downloads/protobuf-javascript-${GRPC_JS_PLUGIN_VERSION}-linux-x86_64.tar.gz -C $HOME/build/protobuf-javascript \
+    && cp $HOME/build/protobuf-javascript/bin/protoc-gen-js $HOME/.local/bin/
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
@@ -292,7 +275,6 @@ RUN zsh -c "source $HOME/.zshrc \
     && make install"
 
 
-USER root
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \
     && echo "discovery.type: single-node" >> /opt/opensearch/config/opensearch.yml \
@@ -365,7 +347,6 @@ ADD etc/supervisor /etc/supervisor
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
-USER deploy
 VOLUME /workspace
 WORKDIR /workspace
 

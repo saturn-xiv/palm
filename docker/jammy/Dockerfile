@@ -81,21 +81,17 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 
 # https://musl.cc/
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/x86_64-linux-musl-cross.tgz \
-    && cd /opt \
-    && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz \
-    && echo 'export PATH=/opt/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/x86_64-linux-musl-cross.tgz -C $HOME/local \
+    && echo 'export PATH=\$HOME/local/x86_64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/armv7l-linux-musleabihf-cross.tgz \
-    && cd /opt \
-    && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz \
-    && echo 'export PATH=/opt/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/armv7l-linux-musleabihf-cross.tgz -C $HOME/local \
+    && echo 'export PATH=\$HOME/local/armv7l-linux-musleabihf-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/aarch64-linux-musl-cross.tgz \
-    && cd /opt \
-    && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz \
-    && echo 'export PATH=/opt/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/aarch64-linux-musl-cross.tgz -C $HOME/local \
+    && echo 'export PATH=\$HOME/local/aarch64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 RUN wget -q -P $HOME/downloads https://more.musl.cc/x86_64-linux-musl/riscv64-linux-musl-cross.tgz \
-    && cd /opt \
-    && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz \
-    && echo 'export PATH=/opt/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
+    && tar xf $HOME/downloads/riscv64-linux-musl-cross.tgz -C $HOME/local \
+    && echo 'export PATH=\$HOME/local/riscv64-linux-musl-cross/bin:$PATH' >> $HOME/.zshrc
 
 # https://github.com/nvm-sh/nvm
 ENV NVM_VERSION "v0.40.1"

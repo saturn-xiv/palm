@@ -86,6 +86,17 @@ RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CL
 # RUN echo "deb [arch=amd64] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/6.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 # RUN apt update
 # RUN apt install -y mongodb
+# sudo chown root:root /usr/local/bin/pkl
+# && sudo chown root:root /usr/local/bin/envoy
+# && sudo chown root:root /usr/local/bin/minio
+# && sudo chown root:root /usr/local/bin/dbmate
+
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
+RUN useradd -s /bin/zsh -m deploy
+RUN passwd -l deploy
+RUN echo 'deploy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-deploy
+USER deploy
+USER deploy
 
 RUN apt -y autoremove && apt -y clean
 
@@ -269,10 +280,10 @@ RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/grpc \
     && cd $HOME/build/grpc \
     && cmake -DCMAKE_BUILD_TYPE=Release \
-        -DgRPC_INSTALL=ON \
-        -DgRPC_SSL_PROVIDER=package \
-        -DgRPC_BUILD_TESTS=OFF \
-        -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
+    -DgRPC_INSTALL=ON \
+    -DgRPC_SSL_PROVIDER=package \
+    -DgRPC_BUILD_TESTS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/grpc \
     && make \
     && make install"
 
@@ -315,7 +326,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
     && cd $HOME/build/flatbuffers \
     && CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF \
-        -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/flatbuffers \
+    -DCMAKE_INSTALL_PREFIX=$HOME/.local $HOME/downloads/flatbuffers \
     && make \
     && make install"
 
@@ -328,9 +339,9 @@ RUN chmod +x $HOME/.local/bin/dbmate
 ENV THRIFT_VERSION "v0.18.1"
 RUN git clone -b $THRIFT_VERSION https://github.com/apache/thrift.git $HOME/downloads/thrift
 RUN apt install -y libboost-all-dev libevent-dev libz-dev zlib1g-dev \
-        mono-devel \
-        libglib2.0-dev \
-        libbit-vector-perl libclass-accessor-perl
+    mono-devel \
+    libglib2.0-dev \
+    libbit-vector-perl libclass-accessor-perl
 # Could not find method classifier() for arguments [test] on task ':testJar'
 
 # TODO 
@@ -345,7 +356,7 @@ RUN apt install -y libboost-all-dev libevent-dev libz-dev zlib1g-dev \
 #     && sdk use gradle ${THRIFT_GRADLE_VERSION} \
 #     && ./bootstrap.sh \
 #     && ./configure MAKE=gmake CXXFLAGS='-g -O2' CFLAGS='-g -O2' --prefix=$HOME/.local --disable-tests"
-   
+
 
 # ADD conan /opt/conan
 # RUN zsh -c "source $HOME/.zshrc && cd /opt/conan && ./install.sh amd64"
