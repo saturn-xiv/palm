@@ -16,7 +16,13 @@ use petunia::{
 use tokio::sync::Mutex;
 use validator::Validate;
 
-use super::super::models::ledger::{Dao as LedgerDao, Item as Ledger};
+use super::{
+    super::models::{
+        ledger::{Dao as LedgerDao, Item as Ledger},
+        log::{Action, Dao as LogDao},
+    },
+    ROLE_MEMBER,
+};
 
 #[derive(GraphQLObject)]
 #[graphql(name = "BookkeeperLedger")]
@@ -43,6 +49,22 @@ impl From<Ledger> for Item {
 }
 
 impl Item {
+    pub async fn by_id(
+        ss: &Session,
+        db: &DbPool,
+        jwt: &Jwt,
+        enforcer: &Mutex<Enforcer>,
+        id: i32,
+    ) -> Result<Self> {
+        let mut db = db.get()?;
+        let db = db.deref_mut();
+        let (_, user) = current_user(ss, db, jwt)?;
+
+        let it = LedgerDao::by_id(db, id)?;
+        it.can_read(&user, enforcer).await?;
+
+        Ok(it.into())
+    }
     pub async fn all(ss: &Session, db: &DbPool, jwt: &Jwt) -> Result<Vec<Self>> {
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -116,10 +138,22 @@ impl Form {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
-        let (_, user) = current_user(ss, db, jwt)?;
+        let (si, user) = current_user(ss, db, jwt)?;
 
         db.transaction::<_, Error, _>(|db| {
-            LedgerDao::create(db, user.id, &self.label, &self.memo)?;
+            let uid = LedgerDao::create(db, user.id, &self.label, &self.memo)?;
+            let it = LedgerDao::by_uid(db, &uid)?;
+            LogDao::create(
+                db,
+                it.id,
+                (user.id, &si.to_string()),
+                (
+                    Action::CreateLedge,
+                    &format!("{} {}", self.label, self.memo),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
             Ok(())
         })?;
         Ok(())
@@ -135,13 +169,27 @@ impl Form {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
-        let (_, user) = current_user(ss, db, jwt)?;
-        {
-            let it = LedgerDao::by_id(db, id)?;
-            it.can_write(&user, enforcer).await?;
-        }
+        let (si, user) = current_user(ss, db, jwt)?;
+
+        let it = LedgerDao::by_id(db, id)?;
+        it.can_write(&user, enforcer).await?;
+
         db.transaction::<_, Error, _>(|db| {
             LedgerDao::set_details(db, id, &self.label, &self.memo)?;
+            LogDao::create(
+                db,
+                id,
+                (user.id, &si.to_string()),
+                (
+                    Action::UpdateLedge,
+                    &format!(
+                        "{} => {}, {} => {}",
+                        it.label, self.label, it.memo, self.memo
+                    ),
+                    None,
+                ),
+                &ss.client_ip,
+            )?;
             Ok(())
         })?;
         Ok(())
@@ -155,7 +203,10 @@ impl Ledger {
         }
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
-        user.can(enf, &Operation::write(), &Resource::by_id::<Self>(self.id))?;
+        {
+            user.has(enf, ROLE_MEMBER)?;
+            user.can(enf, &Operation::write(), &Resource::by_id::<Self>(self.id))?;
+        }
         Ok(())
     }
     pub async fn can_read(&self, user: &User, enforcer: &Mutex<Enforcer>) -> Result<()> {
@@ -164,7 +215,10 @@ impl Ledger {
         }
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
-        user.can(enf, &Operation::read(), &Resource::by_id::<Self>(self.id))?;
+        {
+            user.has(enf, ROLE_MEMBER)?;
+            user.can(enf, &Operation::read(), &Resource::by_id::<Self>(self.id))?;
+        }
         Ok(())
     }
     pub async fn can_append(&self, user: &User, enforcer: &Mutex<Enforcer>) -> Result<()> {
@@ -176,7 +230,10 @@ impl Ledger {
         }
         let mut enf = enforcer.lock().await;
         let enf = enf.deref_mut();
-        user.can(enf, &Operation::append(), &Resource::by_id::<Self>(self.id))?;
+        {
+            user.has(enf, ROLE_MEMBER)?;
+            user.can(enf, &Operation::append(), &Resource::by_id::<Self>(self.id))?;
+        }
         Ok(())
     }
 }

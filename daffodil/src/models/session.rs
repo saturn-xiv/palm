@@ -1,3 +1,4 @@
+use std::fmt;
 use std::string::ToString;
 
 use chrono::{Duration, NaiveDateTime, Utc};
@@ -23,6 +24,12 @@ pub struct Item {
     pub expires_at: NaiveDateTime,
     pub deleted_at: Option<NaiveDateTime>,
     pub created_at: NaiveDateTime,
+}
+
+impl fmt::Display for Item {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}({})", self.real_name, self.provider_type)
+    }
 }
 
 impl Item {

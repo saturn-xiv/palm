@@ -1,14 +1,17 @@
-use std::ops::Deref;
+use std::ops::{Deref, DerefMut};
 
 use carnation::graphql::page as cms_page;
 use chrono::Duration;
 use chrono_tz::TZ_VARIANTS;
-use daffodil::graphql::{
-    attachment as daffodil_attachment, category as daffodil_category,
-    currency as daffodil_currency, leave_word as daffodil_leave_word, locale as daffodil_locale,
-    log as daffodil_log, menu as daffodil_menu, policy as daffodil_policy,
-    session as daffodil_session, site as daffodil_site, tag as daffodil_tag,
-    user::email as daffodil_user_by_email,
+use daffodil::{
+    graphql::{
+        attachment as daffodil_attachment, category as daffodil_category,
+        currency as daffodil_currency, leave_word as daffodil_leave_word,
+        locale as daffodil_locale, log as daffodil_log, menu as daffodil_menu,
+        policy as daffodil_policy, session as daffodil_session, site as daffodil_site,
+        tag as daffodil_tag, user::email as daffodil_user_by_email,
+    },
+    session::current_user,
 };
 use hibiscus::graphql as hibiscus_graphql;
 use hyacinth::graphql as hyacinth_graphql;
@@ -20,6 +23,7 @@ use petunia::{
 };
 use wisteria::graphql as wisteria_graphql;
 
+use super::super::layout::ExtraSideBarMenus;
 use super::context::Context;
 
 pub struct Query;
@@ -46,8 +50,17 @@ impl Query {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
         let s3 = context.minio.deref();
-        let it = daffodil_site::Refresh::new(&context.session, db, jwt, s3, secrets.clone(), enf)
-            .await?;
+        let mut it =
+            daffodil_site::Refresh::new(&context.session, db, jwt, s3, secrets.clone(), enf)
+                .await?;
+        {
+            if let Some(ref mut it) = it.current_user {
+                let mut db = db.get()?;
+                let db = db.deref_mut();
+                let (_, user) = current_user(&context.session, db, jwt)?;
+                it.append(db, enf, &user).await?;
+            }
+        }
         Ok(it)
     }
     // ------------------------------------------------------------------------
@@ -421,6 +434,17 @@ impl Query {
         Ok(res)
     }
     // ------------------------------------------------------------------------
+    async fn show_bookkeeping_ledger(
+        context: &Context,
+        id: i32,
+    ) -> FieldResult<hyacinth_graphql::ledger::Item> {
+        let db = context.postgresql.deref();
+        let jwt = context.jwt.deref();
+        let enf = context.enforcer.deref();
+        let item =
+            hyacinth_graphql::ledger::Item::by_id(&context.session, db, jwt, enf, id).await?;
+        Ok(item)
+    }
     async fn index_bookkeeping_ledger(
         context: &Context,
     ) -> FieldResult<Vec<hyacinth_graphql::ledger::Item>> {
@@ -486,7 +510,7 @@ impl Query {
                 .await?;
         Ok(items)
     }
-    async fn index_bookkeeping_logs_by_ledger(
+    async fn index_bookkeeping_log_by_ledger(
         context: &Context,
         id: i32,
         pager: Pager,

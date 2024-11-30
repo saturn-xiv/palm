@@ -2,9 +2,9 @@ use std::string::ToString;
 
 use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
-use juniper::GraphQLObject;
 use petunia::{orm::postgresql::Connection, Result};
 use serde::{Deserialize, Serialize};
+use strum::{Display as EnumDisplay, EnumString};
 use uuid::Uuid;
 
 use super::super::schema::bookkeeper_logs;
@@ -15,45 +15,76 @@ pub struct Item {
     pub id: i32,
     pub ledger_id: i32,
     pub user_id: i32,
+    pub username: String,
     pub action: String,
-    pub detail: Vec<u8>,
+    pub memo: String,
+    pub reason: Option<String>,
+    pub ip: String,
     pub created_at: NaiveDateTime,
 }
 
-#[derive(GraphQLObject, Serialize, Deserialize, Default, Clone)]
-#[graphql(name = "BookkeeperLogDetail")]
-pub struct Detail {
-    pub user: String,
-    pub memo: String,
-    pub reason: Option<String>,
-}
-
-impl Detail {
-    pub fn new(buf: &[u8]) -> Result<Self> {
-        let it = flexbuffers::from_slice(buf)?;
-        Ok(it)
-    }
+#[derive(
+    EnumDisplay, EnumString, Serialize, Deserialize, Default, PartialEq, Eq, Debug, Clone, Copy,
+)]
+#[serde(rename_all = "camelCase")]
+pub enum Action {
+    #[default]
+    CreateTransaction,
+    UpdateLedge,
+    CreateLedge,
 }
 
 pub trait Dao {
-    fn create(&mut self, ledger: i32, user: i32, action: &str, detail: &Detail) -> Result<String>;
+    fn create(
+        &mut self,
+        ledger: i32,
+        user: (i32, &str),
+        details: (Action, &str, Option<&str>),
+        ip: &str,
+    ) -> Result<String>;
     fn by_id(&mut self, id: i32) -> Result<Item>;
     fn count_by_ledger(&mut self, ledger: i32) -> Result<i64>;
     fn by_ledger(&mut self, ledger: i32, offset: i64, limit: i64) -> Result<Vec<Item>>;
 }
 
 impl Dao for Connection {
-    fn create(&mut self, ledger: i32, user: i32, action: &str, detail: &Detail) -> Result<String> {
+    fn create(
+        &mut self,
+        ledger: i32,
+        (user_id, username): (i32, &str),
+        (action, memo, reason): (Action, &str, Option<&str>),
+        ip: &str,
+    ) -> Result<String> {
         let uid = Uuid::new_v4().to_string();
-        let detail = flexbuffers::to_vec(detail)?;
-        insert_into(bookkeeper_logs::dsl::bookkeeper_logs)
-            .values((
-                bookkeeper_logs::dsl::ledger_id.eq(ledger),
-                bookkeeper_logs::dsl::user_id.eq(&user),
-                bookkeeper_logs::dsl::action.eq(action),
-                bookkeeper_logs::dsl::detail.eq(&detail),
-            ))
-            .execute(self)?;
+
+        match reason {
+            Some(reason) => {
+                insert_into(bookkeeper_logs::dsl::bookkeeper_logs)
+                    .values((
+                        bookkeeper_logs::dsl::ledger_id.eq(ledger),
+                        bookkeeper_logs::dsl::user_id.eq(user_id),
+                        bookkeeper_logs::dsl::username.eq(username),
+                        bookkeeper_logs::dsl::action.eq(&action.to_string()),
+                        bookkeeper_logs::dsl::memo.eq(&memo),
+                        bookkeeper_logs::dsl::reason.eq(&reason),
+                        bookkeeper_logs::dsl::ip.eq(ip),
+                    ))
+                    .execute(self)?;
+            }
+            None => {
+                insert_into(bookkeeper_logs::dsl::bookkeeper_logs)
+                    .values((
+                        bookkeeper_logs::dsl::ledger_id.eq(ledger),
+                        bookkeeper_logs::dsl::user_id.eq(user_id),
+                        bookkeeper_logs::dsl::username.eq(username),
+                        bookkeeper_logs::dsl::action.eq(&action.to_string()),
+                        bookkeeper_logs::dsl::memo.eq(&memo),
+                        bookkeeper_logs::dsl::ip.eq(ip),
+                    ))
+                    .execute(self)?;
+            }
+        }
+
         Ok(uid)
     }
     fn by_id(&mut self, id: i32) -> Result<Item> {

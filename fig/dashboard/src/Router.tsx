@@ -33,7 +33,11 @@ const AdminCategories = lazy(() => import("./pages/admin/categories"));
 
 const Cms = lazy(() => import("./pages/cms"));
 const Bbs = lazy(() => import("./pages/bbs"));
+
 const Accounting = lazy(() => import("./pages/accounting"));
+const ShowAccountingLedge = lazy(
+  () => import("./pages/accounting/ledgers/show")
+);
 
 const NotFound = lazy(() => import("./pages/not-found"));
 
@@ -62,6 +66,10 @@ const router = createBrowserRouter(
         {
           path: "accounting",
           element: <Accounting />,
+        },
+        {
+          path: "accounting/ledgers/:id",
+          element: <ShowAccountingLedge />,
         },
         {
           path: "admin",

@@ -45,6 +45,8 @@ pub struct SideBarMenu {
 
 impl SideBarMenu {
     async fn load(db: &mut Db, enforcer: &Mutex<Enforcer>, user: &User) -> Result<Vec<Self>> {
+        let mut enforcer = enforcer.lock().await;
+        let enforcer = enforcer.deref_mut();
         let mut items = Vec::new();
         items.push(Self {
             label: I18n::t(db, &user.lang, "pages.personal.index.title", None::<String>),
@@ -67,8 +69,6 @@ impl SideBarMenu {
         });
 
         {
-            let mut enforcer = enforcer.lock().await;
-            let enforcer = enforcer.deref_mut();
             let is_admin = user.is_administrator(enforcer).is_ok();
             if is_admin {
                 items.push(Self {
@@ -178,42 +178,6 @@ impl SideBarMenu {
             }
         }
 
-        items.push(Self {
-            label: I18n::t(
-                db,
-                &user.lang,
-                "pages.cms.index.abbreviation",
-                None::<String>,
-            ),
-            to: "/cms".to_string(),
-            icon: Some("cms".to_string()),
-            external: false,
-            children: None,
-        });
-        items.push(Self {
-            label: I18n::t(
-                db,
-                &user.lang,
-                "pages.bbs.index.abbreviation",
-                None::<String>,
-            ),
-            to: "/bbs".to_string(),
-            icon: Some("bbs".to_string()),
-            external: false,
-            children: None,
-        });
-        items.push(Self {
-            label: I18n::t(
-                db,
-                &user.lang,
-                "pages.accounting.index.abbreviation",
-                None::<String>,
-            ),
-            to: "/accounting".to_string(),
-            icon: Some("accounting".to_string()),
-            external: false,
-            children: None,
-        });
         Ok(items)
     }
 }

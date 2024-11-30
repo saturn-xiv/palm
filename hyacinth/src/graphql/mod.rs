@@ -5,3 +5,5 @@ pub mod ledger;
 pub mod log;
 pub mod merchant;
 pub mod transaction;
+
+pub const ROLE_MEMBER: &str = "accounting.member";

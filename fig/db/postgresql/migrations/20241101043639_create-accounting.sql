@@ -89,11 +89,17 @@ CREATE TABLE bookkeeper_logs(
     id SERIAL PRIMARY KEY,
     ledger_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
+    username VARCHAR(511) NOT NULL,
     action VARCHAR(15) NOT NULL,
-    detail BYTEA NOT NULL,        
+    memo TEXT NOT NULL,
+    reason VARCHAR(255),
+    ip VARCHAR(45) NOT NULL,       
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_bookkeeper_logs_action ON bookkeeper_logs(action);
+CREATE INDEX idx_bookkeeper_logs_ip ON bookkeeper_logs(ip);
+CREATE INDEX idx_bookkeeper_logs_username ON bookkeeper_logs(username);
+CREATE INDEX idx_bookkeeper_logs_reason ON bookkeeper_logs(reason) WHERE reason IS NOT NULL;
 
 -- migrate:down
 DROP TABLE bookkeeper_logs;

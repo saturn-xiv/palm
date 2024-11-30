@@ -117,7 +117,7 @@ pub async fn roles(
 
 #[derive(Validate)]
 pub struct RoleForm {
-    #[validate(length(min = 2, max = 15))]
+    #[validate(length(min = 2, max = 63))]
     pub code: String,
 }
 impl RoleForm {

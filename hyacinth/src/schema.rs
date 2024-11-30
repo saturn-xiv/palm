@@ -73,9 +73,15 @@ diesel::table! {
         id -> Int4,
         ledger_id -> Int4,
         user_id -> Int4,
+        #[max_length = 511]
+        username -> Varchar,
         #[max_length = 15]
         action -> Varchar,
-        detail -> Bytea,
+        memo -> Text,
+        #[max_length = 255]
+        reason -> Nullable<Varchar>,
+        #[max_length = 45]
+        ip -> Varchar,
         created_at -> Timestamp,
     }
 }

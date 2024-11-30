@@ -8,6 +8,7 @@ set -e
 npm install marked moment moment-timezone d3 mermaid qrcodejs epubjs \
     bootstrap @popperjs/core \
     mdb-ui-kit@latest \
+    universalviewer \
     swagger-ui-dist \
     bulma \
     tailwindcss@latest \

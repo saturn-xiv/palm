@@ -14,6 +14,7 @@ npm install --save @fortawesome/fontawesome-free \
     mermaid \
     jwt-decode \
     react-currency-input-field \
+    react-easy-crop \
     video.js @types/video.js \
     react-copy-to-clipboard @types/react-copy-to-clipboard \
     @wangeditor/editor @wangeditor/editor-for-react \

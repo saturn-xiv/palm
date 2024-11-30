@@ -1,4 +1,4 @@
-use std::ops::Deref;
+use std::ops::{Deref, DerefMut};
 
 use carnation::graphql::page as cms_page;
 use daffodil::graphql::{
@@ -17,6 +17,7 @@ use juniper::{graphql_object, FieldResult};
 use petunia::{graphql::Succeed, themes::Layout, Editor};
 use wisteria::graphql as wisteria_graphql;
 
+use super::super::layout::ExtraSideBarMenus;
 use super::context::Context;
 
 pub struct Mutation;
@@ -59,9 +60,15 @@ impl Mutation {
         let jwt = context.jwt.deref();
         let enf = context.enforcer.deref();
 
-        let it = form
+        let (mut it, eu) = form
             .execute(db, jwt, enf, &context.session.client_ip)
             .await?;
+        {
+            let mut db = db.get()?;
+            let db = db.deref_mut();
+            let user = daffodil::models::user::Dao::by_id(db, eu.user_id)?;
+            it.profile.append(db, enf, &user).await?;
+        }
         Ok(it)
     }
     async fn user_sign_up_by_email(

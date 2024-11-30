@@ -141,7 +141,7 @@ impl SignIn {
         jwt: &Jwt,
         enforcer: &Mutex<Enforcer>,
         client_ip: &str,
-    ) -> Result<SignInResponse> {
+    ) -> Result<(SignInResponse, EmailUser)> {
         self.validate()?;
         let mut db = db.get()?;
         let db = db.deref_mut();
@@ -163,14 +163,15 @@ impl SignIn {
             eu
         };
 
-        SignInResponse::new::<EmailUser>(
+        let res = SignInResponse::new::<EmailUser>(
             (eu.user_id, &eu.real_name, ProviderType::Email, eu.id),
             db,
             jwt,
             enforcer,
             client_ip,
         )
-        .await
+        .await?;
+        Ok((res, eu))
     }
 }
 

@@ -101,5 +101,7 @@ fields:
     label: "style"
   theme:
     label: "Theme"
+  action:
+    label: "Action"
 placeholder:
   type-here: "Type here..."
