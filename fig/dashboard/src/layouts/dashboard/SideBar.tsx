@@ -119,7 +119,7 @@ const menu_icon = (key: string) => {
           <ForumIcon />
         </Space>
       );
-    case "/ledger":
+    case "/accounting":
       return <AccountBookOutlined />;
     case "/monitoring":
       return <AuditOutlined />;

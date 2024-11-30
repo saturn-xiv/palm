@@ -1,37 +1,38 @@
 import { EditOutlined } from "@ant-design/icons";
-import { ModalForm, ProForm, ProFormText } from "@ant-design/pro-components";
+import {
+  ModalForm,
+  ProFormText,
+  ProFormTextArea,
+} from "@ant-design/pro-components";
 import { Button, Form } from "antd";
 import { FormattedMessage, useIntl } from "react-intl";
 import type { MessageInstance } from "antd/es/message/interface";
-import { useState } from "react";
 
-import HtmlEditor from "../../../components/WangEditor";
-import { IPage, update_page } from "../../../api/carnation";
 import {
-  SLUG_MAX_LENGTH,
-  SLUG_MIN_LENGTH,
+  MEMO_MAX_LENGTH,
+  MEMO_MIN_LENGTH,
   TITLE_MAX_LENGTH,
   TITLE_MIN_LENGTH,
 } from "../../../components";
 import { IError } from "../../../api";
+import { ILedger, update_ledger } from "../../../api/hyacinth";
 
 interface IFormValue {
-  title: string;
-  slug: string;
+  label: string;
+  memo: string;
 }
 interface IProps {
-  item: IPage;
+  item: ILedger;
   messageApi: MessageInstance;
   handleReload: () => void;
 }
 const Widget = ({ item, messageApi, handleReload }: IProps) => {
   const [form] = Form.useForm<IFormValue>();
-  const [body, setBody] = useState(item.body);
   const intl = useIntl();
 
   return (
     <ModalForm<IFormValue>
-      title={item.title}
+      title={item.label}
       trigger={
         <Button icon={<EditOutlined />} size="small" type="dashed">
           <FormattedMessage id="buttons.edit" />
@@ -44,8 +45,8 @@ const Widget = ({ item, messageApi, handleReload }: IProps) => {
       }}
       request={async () => {
         return {
-          title: item.title,
-          slug: item.slug,
+          label: item.label,
+          memo: item.memo,
         };
       }}
       submitter={{
@@ -53,20 +54,20 @@ const Widget = ({ item, messageApi, handleReload }: IProps) => {
           return [
             ...defaultDoms,
             <Button
-              key="delete"
+              key="disable"
               danger
               onClick={() => {
                 // TODO
-                console.log("delete", item.id);
+                console.log("disable", item.id);
               }}
             >
-              <FormattedMessage id="buttons.delete" />
+              <FormattedMessage id="buttons.disable" />
             </Button>,
           ];
         },
       }}
       onFinish={async (values) => {
-        const ok = await update_page(item.id, values.slug, values.title, body)
+        const ok = await update_ledger(item.id, values.label, values.memo)
           .then(async () => {
             await messageApi
               .success(intl.formatMessage({ id: "flashes.succeed" }))
@@ -83,25 +84,22 @@ const Widget = ({ item, messageApi, handleReload }: IProps) => {
       }}
     >
       <ProFormText
-        width="md"
-        name="slug"
-        label={<FormattedMessage id="form.fields.slug.label" />}
-        rules={[
-          { required: true },
-          { min: SLUG_MIN_LENGTH, max: SLUG_MAX_LENGTH },
-        ]}
-      />
-      <ProFormText
-        name="title"
-        label={<FormattedMessage id="form.fields.title.label" />}
+        name="label"
+        label={<FormattedMessage id="form.fields.label.label" />}
         rules={[
           { required: true },
           { min: TITLE_MIN_LENGTH, max: TITLE_MAX_LENGTH },
         ]}
       />
-      <ProForm.Group>
-        <HtmlEditor html={body} handleChange={setBody} />
-      </ProForm.Group>
+      <ProFormTextArea
+        colProps={{ span: 24 }}
+        name="memo"
+        label={<FormattedMessage id="form.fields.memo.label" />}
+        rules={[
+          { required: true },
+          { min: MEMO_MIN_LENGTH, max: MEMO_MAX_LENGTH },
+        ]}
+      />
     </ModalForm>
   );
 };

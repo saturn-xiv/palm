@@ -33,6 +33,7 @@ const AdminCategories = lazy(() => import("./pages/admin/categories"));
 
 const Cms = lazy(() => import("./pages/cms"));
 const Bbs = lazy(() => import("./pages/bbs"));
+const Accounting = lazy(() => import("./pages/accounting"));
 
 const NotFound = lazy(() => import("./pages/not-found"));
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter(
         {
           path: "bbs",
           element: <Bbs />,
+        },
+        {
+          path: "accounting",
+          element: <Accounting />,
         },
         {
           path: "admin",
@@ -105,14 +110,12 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: import.meta.env.BASE_URL
+    basename: import.meta.env.BASE_URL,
   }
 );
 
 const Widget = () => {
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default Widget;

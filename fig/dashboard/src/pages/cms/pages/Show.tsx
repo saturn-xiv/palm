@@ -1,4 +1,4 @@
-import { IPage } from "../../../api/cms";
+import { IPage } from "../../../api/carnation";
 
 interface IProps {
   item: IPage;

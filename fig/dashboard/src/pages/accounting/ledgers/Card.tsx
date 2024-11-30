@@ -1,14 +1,13 @@
-import { Card, Space } from "antd";
-import { FormattedMessage } from "react-intl";
+import { Card, Space, Typography } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
+import { useState } from "react";
 
-import { IPage } from "../../../api/carnation";
-import Summary from "../../../components/Summary";
 import Timestamp from "../../../components/Timestamp";
 import EditForm from "./Edit";
+import { ILedger } from "../../../api/hyacinth";
 
 interface IProps {
-  item: IPage;
+  item: ILedger;
   messageApi: MessageInstance;
   handleReload: () => void;
 }
@@ -16,9 +15,10 @@ interface IProps {
 const { Meta } = Card;
 
 const Widget = ({ item, messageApi, handleReload }: IProps) => {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Card
-      title={item.title}
+      title={item.label}
       extra={
         <EditForm
           item={item}
@@ -27,15 +27,22 @@ const Widget = ({ item, messageApi, handleReload }: IProps) => {
         />
       }
     >
-      <p>
-        <Summary wordwrap={320} html={item.body} />
-      </p>
+      <Typography.Paragraph
+        ellipsis={{
+          rows: 4,
+          expandable: "collapsible",
+          expanded,
+          onExpand: (_, info) => setExpanded(info.expanded),
+        }}
+        copyable
+      >
+        {item.memo}
+      </Typography.Paragraph>
       <Meta
-        title={item.slug}
+        title={item.uid}
         description={
           <Space>
             <Timestamp value={item.updatedAt} />
-            <FormattedMessage id={`languages.${item.lang}`} />
           </Space>
         }
       />

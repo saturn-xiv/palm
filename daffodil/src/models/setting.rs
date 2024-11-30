@@ -24,7 +24,7 @@ pub trait Protobuf {
     ) -> Result<()>;
 }
 
-impl<'a> Protobuf for Setting<'a> {
+impl Protobuf for Setting<'_> {
     fn get<V: prost::Message + Default>(&mut self, user: Option<i32>) -> Result<V> {
         let buf: Vec<u8> = Setting::get(self, &type_name::<V>().to_string(), user)?;
         let it = V::decode(&buf[..])?;
@@ -49,7 +49,7 @@ pub trait FlatBuffer {
     fn set<V: Serialize>(&mut self, user: Option<i32>, value: &V, encrypt: bool) -> Result<()>;
 }
 
-impl<'a> FlatBuffer for Setting<'a> {
+impl FlatBuffer for Setting<'_> {
     fn get<V: DeserializeOwned>(&mut self, user: Option<i32>) -> Result<V> {
         let buf: Vec<u8> = Setting::get(self, &type_name::<V>().to_string(), user)?;
         let it = flexbuffers::from_slice(&buf)?;

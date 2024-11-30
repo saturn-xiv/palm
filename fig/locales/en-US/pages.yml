@@ -173,3 +173,12 @@ bbs:
   index:
     title: "Bulletin board system"
     abbreviation: "BBS"
+accounting:
+  index:
+    title: "Accounting"
+    abbreviation: "Accounting"
+  ledgers:
+    index:
+      title: "Ledgers"
+    new:
+      title: "Create a new ledger"

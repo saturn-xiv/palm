@@ -202,6 +202,18 @@ impl SideBarMenu {
             external: false,
             children: None,
         });
+        items.push(Self {
+            label: I18n::t(
+                db,
+                &user.lang,
+                "pages.accounting.index.abbreviation",
+                None::<String>,
+            ),
+            to: "/accounting".to_string(),
+            icon: Some("accounting".to_string()),
+            external: false,
+            children: None,
+        });
         Ok(items)
     }
 }

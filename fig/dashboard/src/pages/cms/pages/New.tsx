@@ -11,7 +11,7 @@ import type { MessageInstance } from "antd/es/message/interface";
 import { useState } from "react";
 
 import HtmlEditor, { EDITOR } from "../../../components/WangEditor";
-import { create_page, templates } from "../../../api/cms";
+import { create_page, templates } from "../../../api/carnation";
 import {
   SLUG_MAX_LENGTH,
   SLUG_MIN_LENGTH,

@@ -2,7 +2,7 @@ import { Col, Row, Space, Typography, message } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { index_page, IPage } from "../../api/cms";
+import { index_page, IPage } from "../../api/carnation";
 import PageCard from "./pages/Card";
 import { IError } from "../../api";
 import PaginationBar from "../../components/PaginationBar";
