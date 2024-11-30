@@ -69,6 +69,18 @@ diesel::table! {
 }
 
 diesel::table! {
+    bookkeeper_logs (id) {
+        id -> Int4,
+        ledger_id -> Int4,
+        user_id -> Int4,
+        #[max_length = 15]
+        action -> Varchar,
+        detail -> Bytea,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     bookkeeper_merchants (id) {
         id -> Int4,
         ledger_id -> Int4,
@@ -106,6 +118,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     bookkeeper_categories,
     bookkeeper_entries,
     bookkeeper_ledgers,
+    bookkeeper_logs,
     bookkeeper_merchants,
     bookkeeper_transactions,
 );

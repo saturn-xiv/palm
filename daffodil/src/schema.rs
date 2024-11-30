@@ -47,6 +47,18 @@ diesel::table! {
 }
 
 diesel::table! {
+    bookkeeper_logs (id) {
+        id -> Int4,
+        ledger_id -> Int4,
+        user_id -> Int4,
+        #[max_length = 15]
+        action -> Varchar,
+        detail -> Bytea,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     categories (id) {
         id -> Int4,
         #[max_length = 63]
@@ -372,6 +384,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     attachment_resources,
     attachments,
     bookkeeper_categories,
+    bookkeeper_logs,
     categories,
     category_resources,
     currencies,
