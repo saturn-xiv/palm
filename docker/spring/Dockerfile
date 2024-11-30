@@ -42,11 +42,10 @@ RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/release
     && chmod +x /usr/local/bin/envoy
 
 # https://aur.archlinux.org/packages/ttf-arphic-tex-extra
-ENV ARPHIC_TTF_VERSION "20161212-1"
-RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
-    && cd $HOME/downloads/ttf-arphic-tex-extra \
-    && makepkg \
-    && pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
+RUN wget -q -P $HOME/downloads http://mirrors.ctan.org/fonts/arphic-ttf.zip \
+    && unzip -q -d $HOME/tmp $HOME/downloads/arphic-ttf.zip \
+    && cd $HOME/tmp/arphic-ttf \
+    && cp bkai00mp.ttf bsmi00lp.ttf gbsn00lp.ttf gkai00mp.ttf ARPHICPL.txt /usr/share/fonts/TTF/
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
